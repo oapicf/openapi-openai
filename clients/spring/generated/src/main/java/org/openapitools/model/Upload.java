@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -9,20 +10,20 @@ import org.openapitools.model.OpenAIFile;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * The Upload object can accept byte chunks in the form of Parts. 
  */
 
 @Schema(name = "Upload", description = "The Upload object can accept byte chunks in the form of Parts. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class Upload {
 
   private String id;
@@ -111,8 +112,10 @@ public class Upload {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable ObjectEnum _object;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable OpenAIFile file;
 
   public Upload() {
@@ -148,6 +151,7 @@ public class Upload {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
@@ -168,6 +172,7 @@ public class Upload {
     return createdAt;
   }
 
+  @JsonProperty("created_at")
   public void setCreatedAt(Integer createdAt) {
     this.createdAt = createdAt;
   }
@@ -188,6 +193,7 @@ public class Upload {
     return filename;
   }
 
+  @JsonProperty("filename")
   public void setFilename(String filename) {
     this.filename = filename;
   }
@@ -208,6 +214,7 @@ public class Upload {
     return bytes;
   }
 
+  @JsonProperty("bytes")
   public void setBytes(Integer bytes) {
     this.bytes = bytes;
   }
@@ -228,6 +235,7 @@ public class Upload {
     return purpose;
   }
 
+  @JsonProperty("purpose")
   public void setPurpose(String purpose) {
     this.purpose = purpose;
   }
@@ -248,6 +256,7 @@ public class Upload {
     return status;
   }
 
+  @JsonProperty("status")
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -268,6 +277,7 @@ public class Upload {
     return expiresAt;
   }
 
+  @JsonProperty("expires_at")
   public void setExpiresAt(Integer expiresAt) {
     this.expiresAt = expiresAt;
   }
@@ -288,6 +298,7 @@ public class Upload {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(@Nullable ObjectEnum _object) {
     this._object = _object;
   }
@@ -308,6 +319,7 @@ public class Upload {
     return file;
   }
 
+  @JsonProperty("file")
   public void setFile(@Nullable OpenAIFile file) {
     this.file = file;
   }
@@ -358,11 +370,8 @@ public class Upload {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

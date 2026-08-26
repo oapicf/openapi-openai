@@ -50,8 +50,8 @@ function Initialize-MessageContentRefusalObject {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "refusal" = ${Refusal}
+            'type' = ${Type}
+            'refusal' = ${Refusal}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToMessageContentRefusalObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in MessageContentRefusalObject
-        $AllProperties = ("type", "refusal")
+        $AllProperties = ('type', 'refusal')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToMessageContentRefusalObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "refusal"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'refusal'))) {
             throw "Error! JSON cannot be serialized due to the required property 'refusal' missing."
         } else {
-            $Refusal = $JsonParameters.PSobject.Properties["refusal"].value
+            $Refusal = $JsonParameters.PSobject.Properties['refusal'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "refusal" = ${Refusal}
+            'type' = ${Type}
+            'refusal' = ${Refusal}
         }
 
         return $PSO

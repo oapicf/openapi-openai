@@ -1,7 +1,10 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -20,10 +23,16 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class FineTuneCompletionRequestInput(
 
-    @Schema(example = "null", description = "The input prompt for this training example.")
+    @Schema(description = "The input prompt for this training example.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("prompt")
     @get:JsonProperty("prompt") val prompt: kotlin.String? = null,
 
-    @Schema(example = "null", description = "The desired completion for this training example.")
+    @Schema(description = "The desired completion for this training example.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("completion")
     @get:JsonProperty("completion") val completion: kotlin.String? = null
 ) {
 

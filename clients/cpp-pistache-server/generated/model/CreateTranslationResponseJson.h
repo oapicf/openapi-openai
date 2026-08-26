@@ -32,7 +32,7 @@ class  CreateTranslationResponseJson
 {
 public:
     CreateTranslationResponseJson();
-    virtual ~CreateTranslationResponseJson() = default;
+    virtual ~CreateTranslationResponseJson();
 
 
     /// <summary>

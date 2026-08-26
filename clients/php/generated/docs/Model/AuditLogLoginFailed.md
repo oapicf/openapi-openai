@@ -1,4 +1,4 @@
-# # AuditLogLoginFailed
+# AuditLogLoginFailed
 
 ## Properties
 

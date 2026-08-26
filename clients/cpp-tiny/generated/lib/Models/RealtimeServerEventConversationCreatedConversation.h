@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The unique ID of the conversation.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The object type, must be `realtime.conversation`.
 	 */
 	std::string getObject();
 
 	/*! \brief Set The object type, must be `realtime.conversation`.
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 
 
     private:

@@ -49,7 +49,7 @@ class DoneEvent
      * @var string|null
      * @SerializedName("event")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['done'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class DoneEvent
      * @var string|null
      * @SerializedName("data")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['[DONE]'])]
     #[Assert\Type("string")]
@@ -88,12 +88,12 @@ class DoneEvent
     }
 
     /**
-    * Sets event.
-    *
-    * @param string|null $event
-    *
-    * @return $this
-    */
+     * Sets event.
+     *
+     * @param string|null $event
+     *
+     * @return $this
+     */
     public function setEvent(?string $event): self
     {
         $this->event = $event;
@@ -115,12 +115,12 @@ class DoneEvent
     }
 
     /**
-    * Sets data.
-    *
-    * @param string|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param string|null $data
+     *
+     * @return $this
+     */
     public function setData(?string $data): self
     {
         $this->data = $data;

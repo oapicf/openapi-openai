@@ -15,7 +15,7 @@ package org.openapitools.client.model
 case class ResponseFormatJsonObject(
   /* The type of response format being defined: `json_object` */
   `type`: ResponseFormatJsonObjectEnums.`Type`
-)
+) extends CreateChatCompletionRequestResponseFormat
 
 object ResponseFormatJsonObjectEnums {
 

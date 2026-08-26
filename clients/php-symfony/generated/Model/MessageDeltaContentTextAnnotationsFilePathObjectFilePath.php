@@ -49,7 +49,7 @@ class MessageDeltaContentTextAnnotationsFilePathObjectFilePath
      * @var string|null
      * @SerializedName("file_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $fileId = null;
 
@@ -75,12 +75,12 @@ class MessageDeltaContentTextAnnotationsFilePathObjectFilePath
     }
 
     /**
-    * Sets fileId.
-    *
-    * @param string|null $fileId  The ID of the file that was generated.
-    *
-    * @return $this
-    */
+     * Sets fileId.
+     *
+     * @param string|null $fileId  The ID of the file that was generated.
+     *
+     * @return $this
+     */
     public function setFileId(?string $fileId = null): self
     {
         $this->fileId = $fileId;

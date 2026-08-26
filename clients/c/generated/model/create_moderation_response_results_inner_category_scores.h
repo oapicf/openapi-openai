@@ -19,37 +19,37 @@ typedef struct create_moderation_response_results_inner_category_scores_t create
 
 
 typedef struct create_moderation_response_results_inner_category_scores_t {
-    double hate; //numeric
-    double hate_threatening; //numeric
-    double harassment; //numeric
-    double harassment_threatening; //numeric
-    double illicit; //numeric
-    double illicit_violent; //numeric
-    double self_harm; //numeric
-    double self_harm_intent; //numeric
-    double self_harm_instructions; //numeric
-    double sexual; //numeric
-    double sexual_minors; //numeric
-    double violence; //numeric
-    double violence_graphic; //numeric
+    double *hate; //numeric
+    double *hate_threatening; //numeric
+    double *harassment; //numeric
+    double *harassment_threatening; //numeric
+    double *illicit; //numeric
+    double *illicit_violent; //numeric
+    double *self_harm; //numeric
+    double *self_harm_intent; //numeric
+    double *self_harm_instructions; //numeric
+    double *sexual; //numeric
+    double *sexual_minors; //numeric
+    double *violence; //numeric
+    double *violence_graphic; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } create_moderation_response_results_inner_category_scores_t;
 
 __attribute__((deprecated)) create_moderation_response_results_inner_category_scores_t *create_moderation_response_results_inner_category_scores_create(
-    double hate,
-    double hate_threatening,
-    double harassment,
-    double harassment_threatening,
-    double illicit,
-    double illicit_violent,
-    double self_harm,
-    double self_harm_intent,
-    double self_harm_instructions,
-    double sexual,
-    double sexual_minors,
-    double violence,
-    double violence_graphic
+    double *hate,
+    double *hate_threatening,
+    double *harassment,
+    double *harassment_threatening,
+    double *illicit,
+    double *illicit_violent,
+    double *self_harm,
+    double *self_harm_intent,
+    double *self_harm_instructions,
+    double *sexual,
+    double *sexual_minors,
+    double *violence,
+    double *violence_graphic
 );
 
 void create_moderation_response_results_inner_category_scores_free(create_moderation_response_results_inner_category_scores_t *create_moderation_response_results_inner_category_scores);

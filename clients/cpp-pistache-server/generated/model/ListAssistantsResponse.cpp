@@ -28,6 +28,8 @@ ListAssistantsResponse::ListAssistantsResponse()
     
 }
 
+ListAssistantsResponse::~ListAssistantsResponse() = default;
+
 void ListAssistantsResponse::validate() const
 {
     std::stringstream msg;

@@ -19,7 +19,7 @@ type `Type`* {.pure.} = enum
 
 type CreateFineTuningJobRequestIntegrationsInner* = object
   ## 
-  `type`*: `Type`
+  `type`*: `Type` ## The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
   wandb*: CreateFineTuningJobRequest_integrations_inner_wandb
 
 func `%`*(v: `Type`): JsonNode =

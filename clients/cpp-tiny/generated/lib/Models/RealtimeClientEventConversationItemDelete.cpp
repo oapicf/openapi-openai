@@ -106,7 +106,7 @@ RealtimeClientEventConversationItemDelete::getEventId()
 }
 
 void
-RealtimeClientEventConversationItemDelete::setEventId(std::string  event_id)
+RealtimeClientEventConversationItemDelete::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -118,7 +118,7 @@ RealtimeClientEventConversationItemDelete::getType()
 }
 
 void
-RealtimeClientEventConversationItemDelete::setType(std::string  type)
+RealtimeClientEventConversationItemDelete::setType(std::string type)
 {
 	this->type = type;
 }
@@ -130,7 +130,7 @@ RealtimeClientEventConversationItemDelete::getItemId()
 }
 
 void
-RealtimeClientEventConversationItemDelete::setItemId(std::string  item_id)
+RealtimeClientEventConversationItemDelete::setItemId(std::string item_id)
 {
 	this->item_id = item_id;
 }

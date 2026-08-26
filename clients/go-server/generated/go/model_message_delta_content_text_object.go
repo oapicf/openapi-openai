@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // MessageDeltaContentTextObject - The text content that is part of a message.
@@ -25,19 +30,76 @@ type MessageDeltaContentTextObject struct {
 
 	Text MessageDeltaContentTextObjectText `json:"text,omitempty"`
 }
-
-// AssertMessageDeltaContentTextObjectRequired checks if the required fields are not zero-ed
-func AssertMessageDeltaContentTextObjectRequired(obj MessageDeltaContentTextObject) error {
-	elements := map[string]interface{}{
-		"index": obj.Index,
-		"type": obj.Type,
+// UnmarshalJSON validates required property keys then unmarshals into MessageDeltaContentTextObject
+func (o *MessageDeltaContentTextObject) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"index",
+		"type",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"index": false,
+		"type": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"index": {},
+		"type": {},
+		"text": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded MessageDeltaContentTextObject
+
+	if value, exists := allProperties["index"]; exists {
+		if err = json.Unmarshal(value, &decoded.Index); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["text"]; exists {
+		if err = json.Unmarshal(value, &decoded.Text); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertMessageDeltaContentTextObjectRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertMessageDeltaContentTextObjectRequired(obj MessageDeltaContentTextObject) error {
 	if err := AssertMessageDeltaContentTextObjectTextRequired(obj.Text); err != nil {
 		return err
 	}

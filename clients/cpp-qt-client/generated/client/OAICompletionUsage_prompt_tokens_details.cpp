@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICompletionUsage_prompt_tokens_details::OAICompletionUsage_prompt_tokens_details(QString json) {
+OAICompletionUsage_prompt_tokens_details::OAICompletionUsage_prompt_tokens_details(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAICompletionUsage_prompt_tokens_details::initializeModel() {
     m_cached_tokens_isValid = false;
 }
 
-void OAICompletionUsage_prompt_tokens_details::fromJson(QString jsonString) {
+void OAICompletionUsage_prompt_tokens_details::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

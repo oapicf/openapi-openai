@@ -26,6 +26,8 @@ RealtimeServerEventSessionCreated::RealtimeServerEventSessionCreated()
     
 }
 
+RealtimeServerEventSessionCreated::~RealtimeServerEventSessionCreated() = default;
+
 void RealtimeServerEventSessionCreated::validate() const
 {
     std::stringstream msg;

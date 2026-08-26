@@ -32,7 +32,7 @@ class  ChatCompletionRequestMessageContentPartImage_image_url
 {
 public:
     ChatCompletionRequestMessageContentPartImage_image_url();
-    virtual ~ChatCompletionRequestMessageContentPartImage_image_url() = default;
+    virtual ~ChatCompletionRequestMessageContentPartImage_image_url();
 
 
     /// <summary>

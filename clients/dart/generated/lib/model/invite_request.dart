@@ -62,10 +62,10 @@ class InviteRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "InviteRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "InviteRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'email'), 'Required key "InviteRequest[email]" is missing from JSON.');
+        assert(json[r'email'] != null, 'Required key "InviteRequest[email]" has a null value in JSON.');
+        assert(json.containsKey(r'role'), 'Required key "InviteRequest[role]" is missing from JSON.');
+        assert(json[r'role'] != null, 'Required key "InviteRequest[role]" has a null value in JSON.');
         return true;
       }());
 
@@ -126,29 +126,29 @@ class InviteRequest {
 }
 
 /// `owner` or `reader`
-class InviteRequestRoleEnum {
-  /// Instantiate a new enum with the provided [value].
-  const InviteRequestRoleEnum._(this.value);
+enum InviteRequestRoleEnum {
+  reader._(r'reader'),
+  owner._(r'owner'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const InviteRequestRoleEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const reader = InviteRequestRoleEnum._(r'reader');
-  static const owner = InviteRequestRoleEnum._(r'owner');
-
-  /// List of all possible values in this [enum][InviteRequestRoleEnum].
-  static const values = <InviteRequestRoleEnum>[
-    reader,
-    owner,
-  ];
-
+  /// Returns the instance of [InviteRequestRoleEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static InviteRequestRoleEnum? fromJson(dynamic value) => InviteRequestRoleEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [InviteRequestRoleEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<InviteRequestRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <InviteRequestRoleEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -170,9 +170,10 @@ class InviteRequestRoleEnumTypeTransformer {
 
   const InviteRequestRoleEnumTypeTransformer._();
 
-  String encode(InviteRequestRoleEnum data) => data.value;
+  String encode(InviteRequestRoleEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a InviteRequestRoleEnum.
+  /// Returns the instance of [InviteRequestRoleEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -181,6 +182,9 @@ class InviteRequestRoleEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   InviteRequestRoleEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is InviteRequestRoleEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'reader': return InviteRequestRoleEnum.reader;
@@ -194,7 +198,7 @@ class InviteRequestRoleEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [InviteRequestRoleEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static InviteRequestRoleEnumTypeTransformer? _instance;
 }
 

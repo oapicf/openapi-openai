@@ -25,30 +25,39 @@ openai_api_project_service_account_delete_response_OBJECT_e project_service_acco
 static project_service_account_delete_response_t *project_service_account_delete_response_create_internal(
     openai_api_project_service_account_delete_response_OBJECT_e object,
     char *id,
-    int deleted
+    int *deleted
     ) {
     project_service_account_delete_response_t *project_service_account_delete_response_local_var = malloc(sizeof(project_service_account_delete_response_t));
     if (!project_service_account_delete_response_local_var) {
         return NULL;
     }
+    memset(project_service_account_delete_response_local_var, 0, sizeof(project_service_account_delete_response_t));
+    project_service_account_delete_response_local_var->_library_owned = 1;
     project_service_account_delete_response_local_var->object = object;
     project_service_account_delete_response_local_var->id = id;
     project_service_account_delete_response_local_var->deleted = deleted;
-
-    project_service_account_delete_response_local_var->_library_owned = 1;
     return project_service_account_delete_response_local_var;
 }
 
 __attribute__((deprecated)) project_service_account_delete_response_t *project_service_account_delete_response_create(
     openai_api_project_service_account_delete_response_OBJECT_e object,
     char *id,
-    int deleted
+    int *deleted
     ) {
-    return project_service_account_delete_response_create_internal (
+    int *deleted_copy = NULL;
+    if (deleted) {
+        deleted_copy = malloc(sizeof(int));
+        if (deleted_copy) *deleted_copy = *deleted;
+    }
+    project_service_account_delete_response_t *result = project_service_account_delete_response_create_internal (
         object,
         id,
-        deleted
+        deleted_copy
         );
+    if (!result) {
+        free(deleted_copy);
+    }
+    return result;
 }
 
 void project_service_account_delete_response_free(project_service_account_delete_response_t *project_service_account_delete_response) {
@@ -63,6 +72,10 @@ void project_service_account_delete_response_free(project_service_account_delete
     if (project_service_account_delete_response->id) {
         free(project_service_account_delete_response->id);
         project_service_account_delete_response->id = NULL;
+    }
+    if (project_service_account_delete_response->deleted) {
+        free(project_service_account_delete_response->deleted);
+        project_service_account_delete_response->deleted = NULL;
     }
     free(project_service_account_delete_response);
 }
@@ -93,7 +106,7 @@ cJSON *project_service_account_delete_response_convertToJSON(project_service_acc
     if (!project_service_account_delete_response->deleted) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "deleted", project_service_account_delete_response->deleted) == NULL) {
+    if(cJSON_AddBoolToObject(item, "deleted", *project_service_account_delete_response->deleted) == NULL) {
     goto fail; //Bool
     }
 
@@ -108,6 +121,11 @@ fail:
 project_service_account_delete_response_t *project_service_account_delete_response_parseFromJSON(cJSON *project_service_account_delete_responseJSON){
 
     project_service_account_delete_response_t *project_service_account_delete_response_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    // define the local variable for project_service_account_delete_response->deleted
+    int *deleted_local_var = NULL;
 
     // project_service_account_delete_response->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(project_service_account_delete_responseJSON, "object");
@@ -155,16 +173,36 @@ project_service_account_delete_response_t *project_service_account_delete_respon
     {
     goto end; //Bool
     }
+    deleted_local_var = malloc(sizeof(int));
+    if(!deleted_local_var)
+    {
+        goto end;
+    }
+    *deleted_local_var = deleted->valueint;
 
+
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
 
     project_service_account_delete_response_local_var = project_service_account_delete_response_create_internal (
         objectVariable,
-        strdup(id->valuestring),
-        deleted->valueint
+        id_local_str,
+        deleted_local_var
         );
+
+    if (!project_service_account_delete_response_local_var) {
+        goto end;
+    }
 
     return project_service_account_delete_response_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (deleted_local_var) {
+        free(deleted_local_var);
+        deleted_local_var = NULL;
+    }
     return NULL;
 
 }

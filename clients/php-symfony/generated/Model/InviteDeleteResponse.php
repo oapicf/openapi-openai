@@ -49,7 +49,7 @@ class InviteDeleteResponse
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['organization.invite.deleted'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class InviteDeleteResponse
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -68,7 +68,7 @@ class InviteDeleteResponse
      * @var bool|null
      * @SerializedName("deleted")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $deleted = null;
@@ -97,12 +97,12 @@ class InviteDeleteResponse
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `organization.invite.deleted`
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `organization.invite.deleted`
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -124,12 +124,12 @@ class InviteDeleteResponse
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -151,12 +151,12 @@ class InviteDeleteResponse
     }
 
     /**
-    * Sets deleted.
-    *
-    * @param bool|null $deleted
-    *
-    * @return $this
-    */
+     * Sets deleted.
+     *
+     * @param bool|null $deleted
+     *
+     * @return $this
+     */
     public function setDeleted(?bool $deleted): self
     {
         $this->deleted = $deleted;

@@ -1,4 +1,4 @@
-# # ListVectorStoresResponse
+# ListVectorStoresResponse
 
 ## Properties
 

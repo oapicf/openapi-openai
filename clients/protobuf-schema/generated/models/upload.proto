@@ -41,7 +41,7 @@ message Upload {
     STATUS_EXPIRED = 3;
   }
 
-  Status status = 355610639;
+  string status = 355610639;
 
   // The Unix timestamp (in seconds) for when the Upload was created.
   int32 expires_at = 296940259;
@@ -51,7 +51,7 @@ message Upload {
     OBJECT_UPLOAD = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   OpenAIFile file = 3143036;
 

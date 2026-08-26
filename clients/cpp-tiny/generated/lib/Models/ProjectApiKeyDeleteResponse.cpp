@@ -106,7 +106,7 @@ ProjectApiKeyDeleteResponse::getObject()
 }
 
 void
-ProjectApiKeyDeleteResponse::setObject(std::string  object)
+ProjectApiKeyDeleteResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -118,7 +118,7 @@ ProjectApiKeyDeleteResponse::getId()
 }
 
 void
-ProjectApiKeyDeleteResponse::setId(std::string  id)
+ProjectApiKeyDeleteResponse::setId(std::string id)
 {
 	this->id = id;
 }
@@ -130,7 +130,7 @@ ProjectApiKeyDeleteResponse::isDeleted()
 }
 
 void
-ProjectApiKeyDeleteResponse::setDeleted(bool  deleted)
+ProjectApiKeyDeleteResponse::setDeleted(bool deleted)
 {
 	this->deleted = deleted;
 }

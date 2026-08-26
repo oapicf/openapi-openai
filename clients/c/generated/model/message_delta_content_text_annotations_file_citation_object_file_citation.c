@@ -13,10 +13,10 @@ static message_delta_content_text_annotations_file_citation_object_file_citation
     if (!message_delta_content_text_annotations_file_citation_object_file_citation_local_var) {
         return NULL;
     }
+    memset(message_delta_content_text_annotations_file_citation_object_file_citation_local_var, 0, sizeof(message_delta_content_text_annotations_file_citation_object_file_citation_t));
+    message_delta_content_text_annotations_file_citation_object_file_citation_local_var->_library_owned = 1;
     message_delta_content_text_annotations_file_citation_object_file_citation_local_var->file_id = file_id;
     message_delta_content_text_annotations_file_citation_object_file_citation_local_var->quote = quote;
-
-    message_delta_content_text_annotations_file_citation_object_file_citation_local_var->_library_owned = 1;
     return message_delta_content_text_annotations_file_citation_object_file_citation_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) message_delta_content_text_annotations_file_citation
     char *file_id,
     char *quote
     ) {
-    return message_delta_content_text_annotations_file_citation_object_file_citation_create_internal (
+    message_delta_content_text_annotations_file_citation_object_file_citation_t *result = message_delta_content_text_annotations_file_citation_object_file_citation_create_internal (
         file_id,
         quote
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_delta_content_text_annotations_file_citation_object_file_citation_free(message_delta_content_text_annotations_file_citation_object_file_citation_t *message_delta_content_text_annotations_file_citation_object_file_citation) {
@@ -80,6 +83,10 @@ message_delta_content_text_annotations_file_citation_object_file_citation_t *mes
 
     message_delta_content_text_annotations_file_citation_object_file_citation_t *message_delta_content_text_annotations_file_citation_object_file_citation_local_var = NULL;
 
+    char *file_id_local_str = NULL;
+
+    char *quote_local_str = NULL;
+
     // message_delta_content_text_annotations_file_citation_object_file_citation->file_id
     cJSON *file_id = cJSON_GetObjectItemCaseSensitive(message_delta_content_text_annotations_file_citation_object_file_citationJSON, "file_id");
     if (cJSON_IsNull(file_id)) {
@@ -105,13 +112,28 @@ message_delta_content_text_annotations_file_citation_object_file_citation_t *mes
     }
 
 
+    if (file_id && !cJSON_IsNull(file_id)) file_id_local_str = strdup(file_id->valuestring);
+    if (quote && !cJSON_IsNull(quote)) quote_local_str = strdup(quote->valuestring);
+
     message_delta_content_text_annotations_file_citation_object_file_citation_local_var = message_delta_content_text_annotations_file_citation_object_file_citation_create_internal (
-        file_id && !cJSON_IsNull(file_id) ? strdup(file_id->valuestring) : NULL,
-        quote && !cJSON_IsNull(quote) ? strdup(quote->valuestring) : NULL
+        file_id_local_str,
+        quote_local_str
         );
+
+    if (!message_delta_content_text_annotations_file_citation_object_file_citation_local_var) {
+        goto end;
+    }
 
     return message_delta_content_text_annotations_file_citation_object_file_citation_local_var;
 end:
+    if (file_id_local_str) {
+        free(file_id_local_str);
+        file_id_local_str = NULL;
+    }
+    if (quote_local_str) {
+        free(quote_local_str);
+        quote_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -40,7 +40,7 @@ function Initialize-AssistantObjectToolResourcesFileSearch {
 
 
         $PSO = [PSCustomObject]@{
-            "vector_store_ids" = ${VectorStoreIds}
+            'vector_store_ids' = ${VectorStoreIds}
         }
 
 
@@ -78,21 +78,21 @@ function ConvertFrom-JsonToAssistantObjectToolResourcesFileSearch {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AssistantObjectToolResourcesFileSearch
-        $AllProperties = ("vector_store_ids")
+        $AllProperties = ('vector_store_ids')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vector_store_ids"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'vector_store_ids'))) { #optional property not found
             $VectorStoreIds = $null
         } else {
-            $VectorStoreIds = $JsonParameters.PSobject.Properties["vector_store_ids"].value
+            $VectorStoreIds = $JsonParameters.PSobject.Properties['vector_store_ids'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "vector_store_ids" = ${VectorStoreIds}
+            'vector_store_ids' = ${VectorStoreIds}
         }
 
         return $PSO

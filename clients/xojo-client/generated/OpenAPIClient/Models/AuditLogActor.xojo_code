@@ -10,12 +10,12 @@ Protected Class AuditLogActor
 
 
 	#tag Property, Flags = &h0
-		session As AuditLogActorSession
+		session As OpenAPIClient.Models.AuditLogActorSession
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		api_key As AuditLogActorApiKey
+		api_key As OpenAPIClient.Models.AuditLogActorApiKey
 	#tag EndProperty
 
 

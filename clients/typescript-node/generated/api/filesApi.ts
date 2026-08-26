@@ -187,7 +187,7 @@ export class FilesApi {
      */
     public async deleteFile (fileId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DeleteFileResponse;  }> {
         const localVarPath = this.basePath + '/files/{file_id}'
-            .replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
+            .replace('{file_id}', encodeURIComponent(String(fileId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -259,7 +259,7 @@ export class FilesApi {
      */
     public async downloadFile (fileId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
         const localVarPath = this.basePath + '/files/{file_id}/content'
-            .replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
+            .replace('{file_id}', encodeURIComponent(String(fileId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -416,7 +416,7 @@ export class FilesApi {
      */
     public async retrieveFile (fileId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OpenAIFile;  }> {
         const localVarPath = this.basePath + '/files/{file_id}'
-            .replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
+            .replace('{file_id}', encodeURIComponent(String(fileId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];

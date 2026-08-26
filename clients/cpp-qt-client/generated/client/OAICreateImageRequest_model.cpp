@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateImageRequest_model::OAICreateImageRequest_model(QString json) {
+OAICreateImageRequest_model::OAICreateImageRequest_model(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -36,7 +36,7 @@ void OAICreateImageRequest_model::initializeModel() {
 
 }
 
-void OAICreateImageRequest_model::fromJson(QString jsonString) {
+void OAICreateImageRequest_model::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

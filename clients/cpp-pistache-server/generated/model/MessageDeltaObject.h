@@ -33,7 +33,7 @@ class  MessageDeltaObject
 {
 public:
     MessageDeltaObject();
-    virtual ~MessageDeltaObject() = default;
+    virtual ~MessageDeltaObject();
 
 
     /// <summary>

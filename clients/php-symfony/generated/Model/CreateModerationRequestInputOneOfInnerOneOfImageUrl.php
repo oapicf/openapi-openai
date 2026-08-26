@@ -51,7 +51,7 @@ class CreateModerationRequestInputOneOfInnerOneOfImageUrl
      * @var string|null
      * @SerializedName("url")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $url = null;
@@ -78,12 +78,12 @@ class CreateModerationRequestInputOneOfInnerOneOfImageUrl
     }
 
     /**
-    * Sets url.
-    *
-    * @param string|null $url  Either a URL of the image or the base64 encoded image data.
-    *
-    * @return $this
-    */
+     * Sets url.
+     *
+     * @param string|null $url  Either a URL of the image or the base64 encoded image data.
+     *
+     * @return $this
+     */
     public function setUrl(?string $url): self
     {
         $this->url = $url;

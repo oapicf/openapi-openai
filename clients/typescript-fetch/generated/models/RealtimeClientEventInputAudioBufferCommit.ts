@@ -37,7 +37,7 @@ export interface RealtimeClientEventInputAudioBufferCommit {
     eventId?: string;
     /**
      * The event type, must be `input_audio_buffer.commit`.
-     * @type {string}
+     * @type {RealtimeClientEventInputAudioBufferCommitTypeEnum}
      * @memberof RealtimeClientEventInputAudioBufferCommit
      */
     type: RealtimeClientEventInputAudioBufferCommitTypeEnum;
@@ -58,6 +58,8 @@ export type RealtimeClientEventInputAudioBufferCommitTypeEnum = typeof RealtimeC
  */
 export function instanceOfRealtimeClientEventInputAudioBufferCommit(value: object): value is RealtimeClientEventInputAudioBufferCommit {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'input_audio_buffer.commit') return false;
+    
     return true;
 }
 

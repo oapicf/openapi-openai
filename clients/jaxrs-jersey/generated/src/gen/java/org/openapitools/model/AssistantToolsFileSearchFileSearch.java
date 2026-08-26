@@ -32,7 +32,7 @@ import javax.validation.Valid;
   AssistantToolsFileSearchFileSearch.JSON_PROPERTY_MAX_NUM_RESULTS,
   AssistantToolsFileSearchFileSearch.JSON_PROPERTY_RANKING_OPTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-01-29T14:09:10.882541726Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class AssistantToolsFileSearchFileSearch   {
   public static final String JSON_PROPERTY_MAX_NUM_RESULTS = "max_num_results";
   @JsonProperty(JSON_PROPERTY_MAX_NUM_RESULTS)
@@ -119,10 +119,7 @@ public class AssistantToolsFileSearchFileSearch   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

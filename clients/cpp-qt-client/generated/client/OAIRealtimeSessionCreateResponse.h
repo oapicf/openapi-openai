@@ -41,13 +41,13 @@ class OAIRealtimeResponseCreateParams_tools_inner;
 class OAIRealtimeSessionCreateResponse : public OAIObject {
 public:
     OAIRealtimeSessionCreateResponse();
-    OAIRealtimeSessionCreateResponse(QString json);
+    OAIRealtimeSessionCreateResponse(const QString &json);
     ~OAIRealtimeSessionCreateResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     OAIRealtimeSessionCreateResponse_client_secret getClientSecret() const;
     void setClientSecret(const OAIRealtimeSessionCreateResponse_client_secret &client_secret);

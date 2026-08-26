@@ -31,11 +31,11 @@ static chat_completion_request_user_message_t *chat_completion_request_user_mess
     if (!chat_completion_request_user_message_local_var) {
         return NULL;
     }
+    memset(chat_completion_request_user_message_local_var, 0, sizeof(chat_completion_request_user_message_t));
+    chat_completion_request_user_message_local_var->_library_owned = 1;
     chat_completion_request_user_message_local_var->content = content;
     chat_completion_request_user_message_local_var->role = role;
     chat_completion_request_user_message_local_var->name = name;
-
-    chat_completion_request_user_message_local_var->_library_owned = 1;
     return chat_completion_request_user_message_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) chat_completion_request_user_message_t *chat_complet
     openai_api_chat_completion_request_user_message_ROLE_e role,
     char *name
     ) {
-    return chat_completion_request_user_message_create_internal (
+    chat_completion_request_user_message_t *result = chat_completion_request_user_message_create_internal (
         content,
         role,
         name
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_request_user_message_free(chat_completion_request_user_message_t *chat_completion_request_user_message) {
@@ -120,6 +123,8 @@ chat_completion_request_user_message_t *chat_completion_request_user_message_par
     // define the local variable for chat_completion_request_user_message->content
     chat_completion_request_user_message_content_t *content_local_nonprim = NULL;
 
+    char *name_local_str = NULL;
+
     // chat_completion_request_user_message->content
     cJSON *content = cJSON_GetObjectItemCaseSensitive(chat_completion_request_user_messageJSON, "content");
     if (cJSON_IsNull(content)) {
@@ -162,17 +167,27 @@ chat_completion_request_user_message_t *chat_completion_request_user_message_par
     }
 
 
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     chat_completion_request_user_message_local_var = chat_completion_request_user_message_create_internal (
         content_local_nonprim,
         roleVariable,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL
+        name_local_str
         );
+
+    if (!chat_completion_request_user_message_local_var) {
+        goto end;
+    }
 
     return chat_completion_request_user_message_local_var;
 end:
     if (content_local_nonprim) {
         chat_completion_request_user_message_content_free(content_local_nonprim);
         content_local_nonprim = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
     }
     return NULL;
 

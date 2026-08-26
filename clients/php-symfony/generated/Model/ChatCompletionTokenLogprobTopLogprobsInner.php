@@ -49,7 +49,7 @@ class ChatCompletionTokenLogprobTopLogprobsInner
      * @var string|null
      * @SerializedName("token")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $token = null;
@@ -60,7 +60,7 @@ class ChatCompletionTokenLogprobTopLogprobsInner
      * @var float|null
      * @SerializedName("logprob")
      * @Type("float")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("float")]
     protected ?float $logprob = null;
@@ -71,7 +71,7 @@ class ChatCompletionTokenLogprobTopLogprobsInner
      * @var int[]|null
      * @SerializedName("bytes")
      * @Type("array<int>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Type("int"),
@@ -102,12 +102,12 @@ class ChatCompletionTokenLogprobTopLogprobsInner
     }
 
     /**
-    * Sets token.
-    *
-    * @param string|null $token  The token.
-    *
-    * @return $this
-    */
+     * Sets token.
+     *
+     * @param string|null $token  The token.
+     *
+     * @return $this
+     */
     public function setToken(?string $token): self
     {
         $this->token = $token;
@@ -129,12 +129,12 @@ class ChatCompletionTokenLogprobTopLogprobsInner
     }
 
     /**
-    * Sets logprob.
-    *
-    * @param float|null $logprob  The log probability of this token, if it is within the top 20 most likely tokens. Otherwise, the value `-9999.0` is used to signify that the token is very unlikely.
-    *
-    * @return $this
-    */
+     * Sets logprob.
+     *
+     * @param float|null $logprob  The log probability of this token, if it is within the top 20 most likely tokens. Otherwise, the value `-9999.0` is used to signify that the token is very unlikely.
+     *
+     * @return $this
+     */
     public function setLogprob(?float $logprob): self
     {
         $this->logprob = $logprob;
@@ -156,12 +156,12 @@ class ChatCompletionTokenLogprobTopLogprobsInner
     }
 
     /**
-    * Sets bytes.
-    *
-    * @param int[]|null $bytes  A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be `null` if there is no bytes representation for the token.
-    *
-    * @return $this
-    */
+     * Sets bytes.
+     *
+     * @param int[]|null $bytes  A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be `null` if there is no bytes representation for the token.
+     *
+     * @return $this
+     */
     public function setBytes(?array $bytes): self
     {
         $this->bytes = $bytes;

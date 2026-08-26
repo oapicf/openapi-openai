@@ -1,4 +1,4 @@
-# # RealtimeClientEventInputAudioBufferCommit
+# RealtimeClientEventInputAudioBufferCommit
 
 ## Properties
 

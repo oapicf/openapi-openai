@@ -32,7 +32,7 @@ class  RealtimeResponse_status_details_error
 {
 public:
     RealtimeResponse_status_details_error();
-    virtual ~RealtimeResponse_status_details_error() = default;
+    virtual ~RealtimeResponse_status_details_error();
 
 
     /// <summary>

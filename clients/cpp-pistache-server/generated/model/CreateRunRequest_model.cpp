@@ -24,6 +24,8 @@ CreateRunRequest_model::CreateRunRequest_model()
     
 }
 
+CreateRunRequest_model::~CreateRunRequest_model() = default;
+
 void CreateRunRequest_model::validate() const
 {
     std::stringstream msg;

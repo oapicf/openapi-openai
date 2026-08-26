@@ -19,7 +19,7 @@ case class ChatCompletionNamedToolChoice(
   /* The type of the tool. Currently, only `function` is supported. */
   `type`: ChatCompletionNamedToolChoiceEnums.`Type`,
   function: AssistantsNamedToolChoiceFunction
-)
+) extends ChatCompletionToolChoiceOption
 
 object ChatCompletionNamedToolChoiceEnums {
 

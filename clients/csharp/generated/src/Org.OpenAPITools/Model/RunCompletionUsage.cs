@@ -98,8 +98,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunCompletionUsage" />
     /// </summary>
-    public class RunCompletionUsageJsonConverter : JsonConverter<RunCompletionUsage>
+    public partial class RunCompletionUsageJsonConverter : JsonConverter<RunCompletionUsage>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunCompletionUsageJsonConverter" /> class.
+        /// </summary>
+        public RunCompletionUsageJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunCompletionUsage" />
         /// </summary>

@@ -249,7 +249,7 @@ Invite::getObject()
 }
 
 void
-Invite::setObject(std::string  object)
+Invite::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -261,7 +261,7 @@ Invite::getId()
 }
 
 void
-Invite::setId(std::string  id)
+Invite::setId(std::string id)
 {
 	this->id = id;
 }
@@ -273,7 +273,7 @@ Invite::getEmail()
 }
 
 void
-Invite::setEmail(std::string  email)
+Invite::setEmail(std::string email)
 {
 	this->email = email;
 }
@@ -285,7 +285,7 @@ Invite::getRole()
 }
 
 void
-Invite::setRole(std::string  role)
+Invite::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -297,7 +297,7 @@ Invite::getStatus()
 }
 
 void
-Invite::setStatus(std::string  status)
+Invite::setStatus(std::string status)
 {
 	this->status = status;
 }
@@ -309,7 +309,7 @@ Invite::getInvitedAt()
 }
 
 void
-Invite::setInvitedAt(int  invited_at)
+Invite::setInvitedAt(int invited_at)
 {
 	this->invited_at = invited_at;
 }
@@ -321,7 +321,7 @@ Invite::getExpiresAt()
 }
 
 void
-Invite::setExpiresAt(int  expires_at)
+Invite::setExpiresAt(int expires_at)
 {
 	this->expires_at = expires_at;
 }
@@ -333,7 +333,7 @@ Invite::getAcceptedAt()
 }
 
 void
-Invite::setAcceptedAt(int  accepted_at)
+Invite::setAcceptedAt(int accepted_at)
 {
 	this->accepted_at = accepted_at;
 }
@@ -345,7 +345,7 @@ Invite::getProjects()
 }
 
 void
-Invite::setProjects(std::list <Invite_projects_inner> projects)
+Invite::setProjects(std::list<Invite_projects_inner> projects)
 {
 	this->projects = projects;
 }

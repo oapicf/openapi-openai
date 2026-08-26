@@ -33,7 +33,7 @@ class  RunStepDeltaStepDetailsToolCallsFileSearchObject
 {
 public:
     RunStepDeltaStepDetailsToolCallsFileSearchObject();
-    virtual ~RunStepDeltaStepDetailsToolCallsFileSearchObject() = default;
+    virtual ~RunStepDeltaStepDetailsToolCallsFileSearchObject();
 
 
     /// <summary>

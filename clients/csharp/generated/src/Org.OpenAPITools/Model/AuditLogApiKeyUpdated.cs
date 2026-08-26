@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The tracking ID of the API key.</value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ChangesRequested
@@ -71,7 +71,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ChangesRequested
         /// </summary>
         [JsonPropertyName("changes_requested")]
-        public AuditLogApiKeyUpdatedChangesRequested? ChangesRequested { get { return this.ChangesRequestedOption; } set { this.ChangesRequestedOption = new(value); } }
+        public AuditLogApiKeyUpdatedChangesRequested? ChangesRequested { get { return this.ChangesRequestedOption.Value; } set { this.ChangesRequestedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogApiKeyUpdated" />
     /// </summary>
-    public class AuditLogApiKeyUpdatedJsonConverter : JsonConverter<AuditLogApiKeyUpdated>
+    public partial class AuditLogApiKeyUpdatedJsonConverter : JsonConverter<AuditLogApiKeyUpdated>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogApiKeyUpdatedJsonConverter" /> class.
+        /// </summary>
+        public AuditLogApiKeyUpdatedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogApiKeyUpdated" />
         /// </summary>

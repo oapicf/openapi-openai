@@ -76,10 +76,16 @@ class ProjectServiceAccount {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectServiceAccount[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectServiceAccount[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "ProjectServiceAccount[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "ProjectServiceAccount[object]" has a null value in JSON.');
+        assert(json.containsKey(r'id'), 'Required key "ProjectServiceAccount[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "ProjectServiceAccount[id]" has a null value in JSON.');
+        assert(json.containsKey(r'name'), 'Required key "ProjectServiceAccount[name]" is missing from JSON.');
+        assert(json[r'name'] != null, 'Required key "ProjectServiceAccount[name]" has a null value in JSON.');
+        assert(json.containsKey(r'role'), 'Required key "ProjectServiceAccount[role]" is missing from JSON.');
+        assert(json[r'role'] != null, 'Required key "ProjectServiceAccount[role]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "ProjectServiceAccount[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "ProjectServiceAccount[created_at]" has a null value in JSON.');
         return true;
       }());
 
@@ -145,27 +151,28 @@ class ProjectServiceAccount {
 }
 
 /// The object type, which is always `organization.project.service_account`
-class ProjectServiceAccountObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ProjectServiceAccountObjectEnum._(this.value);
+enum ProjectServiceAccountObjectEnum {
+  organizationPeriodProjectPeriodServiceAccount._(r'organization.project.service_account'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ProjectServiceAccountObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const organizationPeriodProjectPeriodServiceAccount = ProjectServiceAccountObjectEnum._(r'organization.project.service_account');
-
-  /// List of all possible values in this [enum][ProjectServiceAccountObjectEnum].
-  static const values = <ProjectServiceAccountObjectEnum>[
-    organizationPeriodProjectPeriodServiceAccount,
-  ];
-
+  /// Returns the instance of [ProjectServiceAccountObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ProjectServiceAccountObjectEnum? fromJson(dynamic value) => ProjectServiceAccountObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ProjectServiceAccountObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ProjectServiceAccountObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ProjectServiceAccountObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -187,9 +194,10 @@ class ProjectServiceAccountObjectEnumTypeTransformer {
 
   const ProjectServiceAccountObjectEnumTypeTransformer._();
 
-  String encode(ProjectServiceAccountObjectEnum data) => data.value;
+  String encode(ProjectServiceAccountObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ProjectServiceAccountObjectEnum.
+  /// Returns the instance of [ProjectServiceAccountObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -198,6 +206,9 @@ class ProjectServiceAccountObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ProjectServiceAccountObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ProjectServiceAccountObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'organization.project.service_account': return ProjectServiceAccountObjectEnum.organizationPeriodProjectPeriodServiceAccount;
@@ -210,35 +221,35 @@ class ProjectServiceAccountObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ProjectServiceAccountObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ProjectServiceAccountObjectEnumTypeTransformer? _instance;
 }
 
 
 /// `owner` or `member`
-class ProjectServiceAccountRoleEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ProjectServiceAccountRoleEnum._(this.value);
+enum ProjectServiceAccountRoleEnum {
+  owner._(r'owner'),
+  member._(r'member'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ProjectServiceAccountRoleEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const owner = ProjectServiceAccountRoleEnum._(r'owner');
-  static const member = ProjectServiceAccountRoleEnum._(r'member');
-
-  /// List of all possible values in this [enum][ProjectServiceAccountRoleEnum].
-  static const values = <ProjectServiceAccountRoleEnum>[
-    owner,
-    member,
-  ];
-
+  /// Returns the instance of [ProjectServiceAccountRoleEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ProjectServiceAccountRoleEnum? fromJson(dynamic value) => ProjectServiceAccountRoleEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ProjectServiceAccountRoleEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ProjectServiceAccountRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ProjectServiceAccountRoleEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -260,9 +271,10 @@ class ProjectServiceAccountRoleEnumTypeTransformer {
 
   const ProjectServiceAccountRoleEnumTypeTransformer._();
 
-  String encode(ProjectServiceAccountRoleEnum data) => data.value;
+  String encode(ProjectServiceAccountRoleEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ProjectServiceAccountRoleEnum.
+  /// Returns the instance of [ProjectServiceAccountRoleEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -271,6 +283,9 @@ class ProjectServiceAccountRoleEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ProjectServiceAccountRoleEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ProjectServiceAccountRoleEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'owner': return ProjectServiceAccountRoleEnum.owner;
@@ -284,7 +299,7 @@ class ProjectServiceAccountRoleEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ProjectServiceAccountRoleEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ProjectServiceAccountRoleEnumTypeTransformer? _instance;
 }
 

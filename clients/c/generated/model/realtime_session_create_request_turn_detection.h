@@ -20,20 +20,20 @@ typedef struct realtime_session_create_request_turn_detection_t realtime_session
 
 typedef struct realtime_session_create_request_turn_detection_t {
     char *type; // string
-    double threshold; //numeric
-    int prefix_padding_ms; //numeric
-    int silence_duration_ms; //numeric
-    int create_response; //boolean
+    double *threshold; //numeric
+    int *prefix_padding_ms; //numeric
+    int *silence_duration_ms; //numeric
+    int *create_response; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } realtime_session_create_request_turn_detection_t;
 
 __attribute__((deprecated)) realtime_session_create_request_turn_detection_t *realtime_session_create_request_turn_detection_create(
     char *type,
-    double threshold,
-    int prefix_padding_ms,
-    int silence_duration_ms,
-    int create_response
+    double *threshold,
+    int *prefix_padding_ms,
+    int *silence_duration_ms,
+    int *create_response
 );
 
 void realtime_session_create_request_turn_detection_free(realtime_session_create_request_turn_detection_t *realtime_session_create_request_turn_detection);

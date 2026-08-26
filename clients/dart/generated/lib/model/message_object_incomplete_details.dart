@@ -48,10 +48,8 @@ class MessageObjectIncompleteDetails {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageObjectIncompleteDetails[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageObjectIncompleteDetails[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'reason'), 'Required key "MessageObjectIncompleteDetails[reason]" is missing from JSON.');
+        assert(json[r'reason'] != null, 'Required key "MessageObjectIncompleteDetails[reason]" has a null value in JSON.');
         return true;
       }());
 
@@ -109,35 +107,32 @@ class MessageObjectIncompleteDetails {
 }
 
 /// The reason the message is incomplete.
-class MessageObjectIncompleteDetailsReasonEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageObjectIncompleteDetailsReasonEnum._(this.value);
+enum MessageObjectIncompleteDetailsReasonEnum {
+  contentFilter._(r'content_filter'),
+  maxTokens._(r'max_tokens'),
+  runCancelled._(r'run_cancelled'),
+  runExpired._(r'run_expired'),
+  runFailed._(r'run_failed'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageObjectIncompleteDetailsReasonEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const contentFilter = MessageObjectIncompleteDetailsReasonEnum._(r'content_filter');
-  static const maxTokens = MessageObjectIncompleteDetailsReasonEnum._(r'max_tokens');
-  static const runCancelled = MessageObjectIncompleteDetailsReasonEnum._(r'run_cancelled');
-  static const runExpired = MessageObjectIncompleteDetailsReasonEnum._(r'run_expired');
-  static const runFailed = MessageObjectIncompleteDetailsReasonEnum._(r'run_failed');
-
-  /// List of all possible values in this [enum][MessageObjectIncompleteDetailsReasonEnum].
-  static const values = <MessageObjectIncompleteDetailsReasonEnum>[
-    contentFilter,
-    maxTokens,
-    runCancelled,
-    runExpired,
-    runFailed,
-  ];
-
+  /// Returns the instance of [MessageObjectIncompleteDetailsReasonEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageObjectIncompleteDetailsReasonEnum? fromJson(dynamic value) => MessageObjectIncompleteDetailsReasonEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageObjectIncompleteDetailsReasonEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageObjectIncompleteDetailsReasonEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageObjectIncompleteDetailsReasonEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -159,9 +154,10 @@ class MessageObjectIncompleteDetailsReasonEnumTypeTransformer {
 
   const MessageObjectIncompleteDetailsReasonEnumTypeTransformer._();
 
-  String encode(MessageObjectIncompleteDetailsReasonEnum data) => data.value;
+  String encode(MessageObjectIncompleteDetailsReasonEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageObjectIncompleteDetailsReasonEnum.
+  /// Returns the instance of [MessageObjectIncompleteDetailsReasonEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -170,6 +166,9 @@ class MessageObjectIncompleteDetailsReasonEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageObjectIncompleteDetailsReasonEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageObjectIncompleteDetailsReasonEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'content_filter': return MessageObjectIncompleteDetailsReasonEnum.contentFilter;
@@ -186,7 +185,7 @@ class MessageObjectIncompleteDetailsReasonEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageObjectIncompleteDetailsReasonEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageObjectIncompleteDetailsReasonEnumTypeTransformer? _instance;
 }
 

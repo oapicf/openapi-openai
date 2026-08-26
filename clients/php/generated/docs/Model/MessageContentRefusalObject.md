@@ -1,4 +1,4 @@
-# # MessageContentRefusalObject
+# MessageContentRefusalObject
 
 ## Properties
 

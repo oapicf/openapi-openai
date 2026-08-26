@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -22,20 +23,20 @@ import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Represents an execution run on a [thread](/docs/api-reference/threads).
  */
 
 @Schema(name = "RunObject", description = "Represents an execution run on a [thread](/docs/api-reference/threads).")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RunObject {
 
   private String id;
@@ -152,15 +153,16 @@ public class RunObject {
 
   private String instructions;
 
-  @Valid
   private List<AssistantObjectToolsInner> tools = new ArrayList<>();
 
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
   private JsonNullable<RunCompletionUsage> usage = JsonNullable.<RunCompletionUsage>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
 
   private JsonNullable<@Min(value = 256) Integer> maxPromptTokens = JsonNullable.<Integer>undefined();
@@ -226,6 +228,7 @@ public class RunObject {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
@@ -246,6 +249,7 @@ public class RunObject {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
@@ -266,6 +270,7 @@ public class RunObject {
     return createdAt;
   }
 
+  @JsonProperty("created_at")
   public void setCreatedAt(Integer createdAt) {
     this.createdAt = createdAt;
   }
@@ -286,6 +291,7 @@ public class RunObject {
     return threadId;
   }
 
+  @JsonProperty("thread_id")
   public void setThreadId(String threadId) {
     this.threadId = threadId;
   }
@@ -306,6 +312,7 @@ public class RunObject {
     return assistantId;
   }
 
+  @JsonProperty("assistant_id")
   public void setAssistantId(String assistantId) {
     this.assistantId = assistantId;
   }
@@ -326,6 +333,7 @@ public class RunObject {
     return status;
   }
 
+  @JsonProperty("status")
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -346,6 +354,7 @@ public class RunObject {
     return requiredAction;
   }
 
+  @JsonProperty("required_action")
   public void setRequiredAction(JsonNullable<RunObjectRequiredAction> requiredAction) {
     this.requiredAction = requiredAction;
   }
@@ -366,6 +375,7 @@ public class RunObject {
     return lastError;
   }
 
+  @JsonProperty("last_error")
   public void setLastError(JsonNullable<RunObjectLastError> lastError) {
     this.lastError = lastError;
   }
@@ -386,6 +396,7 @@ public class RunObject {
     return expiresAt;
   }
 
+  @JsonProperty("expires_at")
   public void setExpiresAt(JsonNullable<Integer> expiresAt) {
     this.expiresAt = expiresAt;
   }
@@ -406,6 +417,7 @@ public class RunObject {
     return startedAt;
   }
 
+  @JsonProperty("started_at")
   public void setStartedAt(JsonNullable<Integer> startedAt) {
     this.startedAt = startedAt;
   }
@@ -426,6 +438,7 @@ public class RunObject {
     return cancelledAt;
   }
 
+  @JsonProperty("cancelled_at")
   public void setCancelledAt(JsonNullable<Integer> cancelledAt) {
     this.cancelledAt = cancelledAt;
   }
@@ -446,6 +459,7 @@ public class RunObject {
     return failedAt;
   }
 
+  @JsonProperty("failed_at")
   public void setFailedAt(JsonNullable<Integer> failedAt) {
     this.failedAt = failedAt;
   }
@@ -466,6 +480,7 @@ public class RunObject {
     return completedAt;
   }
 
+  @JsonProperty("completed_at")
   public void setCompletedAt(JsonNullable<Integer> completedAt) {
     this.completedAt = completedAt;
   }
@@ -486,6 +501,7 @@ public class RunObject {
     return incompleteDetails;
   }
 
+  @JsonProperty("incomplete_details")
   public void setIncompleteDetails(JsonNullable<RunObjectIncompleteDetails> incompleteDetails) {
     this.incompleteDetails = incompleteDetails;
   }
@@ -506,6 +522,7 @@ public class RunObject {
     return model;
   }
 
+  @JsonProperty("model")
   public void setModel(String model) {
     this.model = model;
   }
@@ -526,6 +543,7 @@ public class RunObject {
     return instructions;
   }
 
+  @JsonProperty("instructions")
   public void setInstructions(String instructions) {
     this.instructions = instructions;
   }
@@ -554,6 +572,7 @@ public class RunObject {
     return tools;
   }
 
+  @JsonProperty("tools")
   public void setTools(List<AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
@@ -574,6 +593,7 @@ public class RunObject {
     return metadata;
   }
 
+  @JsonProperty("metadata")
   public void setMetadata(JsonNullable<Object> metadata) {
     this.metadata = metadata;
   }
@@ -594,6 +614,7 @@ public class RunObject {
     return usage;
   }
 
+  @JsonProperty("usage")
   public void setUsage(JsonNullable<RunCompletionUsage> usage) {
     this.usage = usage;
   }
@@ -655,6 +676,7 @@ public class RunObject {
     return maxPromptTokens;
   }
 
+  @JsonProperty("max_prompt_tokens")
   public void setMaxPromptTokens(JsonNullable<Integer> maxPromptTokens) {
     this.maxPromptTokens = maxPromptTokens;
   }
@@ -676,6 +698,7 @@ public class RunObject {
     return maxCompletionTokens;
   }
 
+  @JsonProperty("max_completion_tokens")
   public void setMaxCompletionTokens(JsonNullable<Integer> maxCompletionTokens) {
     this.maxCompletionTokens = maxCompletionTokens;
   }
@@ -696,6 +719,7 @@ public class RunObject {
     return truncationStrategy;
   }
 
+  @JsonProperty("truncation_strategy")
   public void setTruncationStrategy(TruncationObject truncationStrategy) {
     this.truncationStrategy = truncationStrategy;
   }
@@ -716,6 +740,7 @@ public class RunObject {
     return toolChoice;
   }
 
+  @JsonProperty("tool_choice")
   public void setToolChoice(AssistantsApiToolChoiceOption toolChoice) {
     this.toolChoice = toolChoice;
   }
@@ -736,6 +761,7 @@ public class RunObject {
     return parallelToolCalls;
   }
 
+  @JsonProperty("parallel_tool_calls")
   public void setParallelToolCalls(Boolean parallelToolCalls) {
     this.parallelToolCalls = parallelToolCalls;
   }
@@ -756,6 +782,7 @@ public class RunObject {
     return responseFormat;
   }
 
+  @JsonProperty("response_format")
   public void setResponseFormat(AssistantsApiResponseFormatOption responseFormat) {
     this.responseFormat = responseFormat;
   }
@@ -853,11 +880,8 @@ public class RunObject {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

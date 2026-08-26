@@ -28,6 +28,8 @@ UserListResponse::UserListResponse()
     
 }
 
+UserListResponse::~UserListResponse() = default;
+
 void UserListResponse::validate() const
 {
     std::stringstream msg;

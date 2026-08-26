@@ -26,20 +26,20 @@ static realtime_server_event_conversation_item_input_audio_transcription_complet
     char *event_id,
     openai_api_realtime_server_event_conversation_item_input_audio_transcription_completed_TYPE_e type,
     char *item_id,
-    int content_index,
+    int *content_index,
     char *transcript
     ) {
     realtime_server_event_conversation_item_input_audio_transcription_completed_t *realtime_server_event_conversation_item_input_audio_transcription_completed_local_var = malloc(sizeof(realtime_server_event_conversation_item_input_audio_transcription_completed_t));
     if (!realtime_server_event_conversation_item_input_audio_transcription_completed_local_var) {
         return NULL;
     }
+    memset(realtime_server_event_conversation_item_input_audio_transcription_completed_local_var, 0, sizeof(realtime_server_event_conversation_item_input_audio_transcription_completed_t));
+    realtime_server_event_conversation_item_input_audio_transcription_completed_local_var->_library_owned = 1;
     realtime_server_event_conversation_item_input_audio_transcription_completed_local_var->event_id = event_id;
     realtime_server_event_conversation_item_input_audio_transcription_completed_local_var->type = type;
     realtime_server_event_conversation_item_input_audio_transcription_completed_local_var->item_id = item_id;
     realtime_server_event_conversation_item_input_audio_transcription_completed_local_var->content_index = content_index;
     realtime_server_event_conversation_item_input_audio_transcription_completed_local_var->transcript = transcript;
-
-    realtime_server_event_conversation_item_input_audio_transcription_completed_local_var->_library_owned = 1;
     return realtime_server_event_conversation_item_input_audio_transcription_completed_local_var;
 }
 
@@ -47,16 +47,25 @@ __attribute__((deprecated)) realtime_server_event_conversation_item_input_audio_
     char *event_id,
     openai_api_realtime_server_event_conversation_item_input_audio_transcription_completed_TYPE_e type,
     char *item_id,
-    int content_index,
+    int *content_index,
     char *transcript
     ) {
-    return realtime_server_event_conversation_item_input_audio_transcription_completed_create_internal (
+    int *content_index_copy = NULL;
+    if (content_index) {
+        content_index_copy = malloc(sizeof(int));
+        if (content_index_copy) *content_index_copy = *content_index;
+    }
+    realtime_server_event_conversation_item_input_audio_transcription_completed_t *result = realtime_server_event_conversation_item_input_audio_transcription_completed_create_internal (
         event_id,
         type,
         item_id,
-        content_index,
+        content_index_copy,
         transcript
         );
+    if (!result) {
+        free(content_index_copy);
+    }
+    return result;
 }
 
 void realtime_server_event_conversation_item_input_audio_transcription_completed_free(realtime_server_event_conversation_item_input_audio_transcription_completed_t *realtime_server_event_conversation_item_input_audio_transcription_completed) {
@@ -75,6 +84,10 @@ void realtime_server_event_conversation_item_input_audio_transcription_completed
     if (realtime_server_event_conversation_item_input_audio_transcription_completed->item_id) {
         free(realtime_server_event_conversation_item_input_audio_transcription_completed->item_id);
         realtime_server_event_conversation_item_input_audio_transcription_completed->item_id = NULL;
+    }
+    if (realtime_server_event_conversation_item_input_audio_transcription_completed->content_index) {
+        free(realtime_server_event_conversation_item_input_audio_transcription_completed->content_index);
+        realtime_server_event_conversation_item_input_audio_transcription_completed->content_index = NULL;
     }
     if (realtime_server_event_conversation_item_input_audio_transcription_completed->transcript) {
         free(realtime_server_event_conversation_item_input_audio_transcription_completed->transcript);
@@ -118,7 +131,7 @@ cJSON *realtime_server_event_conversation_item_input_audio_transcription_complet
     if (!realtime_server_event_conversation_item_input_audio_transcription_completed->content_index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "content_index", realtime_server_event_conversation_item_input_audio_transcription_completed->content_index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "content_index", *realtime_server_event_conversation_item_input_audio_transcription_completed->content_index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -142,6 +155,15 @@ fail:
 realtime_server_event_conversation_item_input_audio_transcription_completed_t *realtime_server_event_conversation_item_input_audio_transcription_completed_parseFromJSON(cJSON *realtime_server_event_conversation_item_input_audio_transcription_completedJSON){
 
     realtime_server_event_conversation_item_input_audio_transcription_completed_t *realtime_server_event_conversation_item_input_audio_transcription_completed_local_var = NULL;
+
+    char *event_id_local_str = NULL;
+
+    char *item_id_local_str = NULL;
+
+    // define the local variable for realtime_server_event_conversation_item_input_audio_transcription_completed->content_index
+    int *content_index_local_var = NULL;
+
+    char *transcript_local_str = NULL;
 
     // realtime_server_event_conversation_item_input_audio_transcription_completed->event_id
     cJSON *event_id = cJSON_GetObjectItemCaseSensitive(realtime_server_event_conversation_item_input_audio_transcription_completedJSON, "event_id");
@@ -204,6 +226,12 @@ realtime_server_event_conversation_item_input_audio_transcription_completed_t *r
     {
     goto end; //Numeric
     }
+    content_index_local_var = malloc(sizeof(int));
+    if(!content_index_local_var)
+    {
+        goto end;
+    }
+    *content_index_local_var = content_index->valuedouble;
 
     // realtime_server_event_conversation_item_input_audio_transcription_completed->transcript
     cJSON *transcript = cJSON_GetObjectItemCaseSensitive(realtime_server_event_conversation_item_input_audio_transcription_completedJSON, "transcript");
@@ -221,16 +249,40 @@ realtime_server_event_conversation_item_input_audio_transcription_completed_t *r
     }
 
 
+    if (event_id && !cJSON_IsNull(event_id)) event_id_local_str = strdup(event_id->valuestring);
+    if (item_id && !cJSON_IsNull(item_id)) item_id_local_str = strdup(item_id->valuestring);
+    if (transcript && !cJSON_IsNull(transcript)) transcript_local_str = strdup(transcript->valuestring);
+
     realtime_server_event_conversation_item_input_audio_transcription_completed_local_var = realtime_server_event_conversation_item_input_audio_transcription_completed_create_internal (
-        strdup(event_id->valuestring),
+        event_id_local_str,
         typeVariable,
-        strdup(item_id->valuestring),
-        content_index->valuedouble,
-        strdup(transcript->valuestring)
+        item_id_local_str,
+        content_index_local_var,
+        transcript_local_str
         );
+
+    if (!realtime_server_event_conversation_item_input_audio_transcription_completed_local_var) {
+        goto end;
+    }
 
     return realtime_server_event_conversation_item_input_audio_transcription_completed_local_var;
 end:
+    if (event_id_local_str) {
+        free(event_id_local_str);
+        event_id_local_str = NULL;
+    }
+    if (item_id_local_str) {
+        free(item_id_local_str);
+        item_id_local_str = NULL;
+    }
+    if (content_index_local_var) {
+        free(content_index_local_var);
+        content_index_local_var = NULL;
+    }
+    if (transcript_local_str) {
+        free(transcript_local_str);
+        transcript_local_str = NULL;
+    }
     return NULL;
 
 }

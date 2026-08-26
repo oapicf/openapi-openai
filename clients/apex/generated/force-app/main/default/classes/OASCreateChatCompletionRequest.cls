@@ -116,7 +116,7 @@ public class OASCreateChatCompletionRequest implements OAS.MappedProperties {
     public List<ModalitiesEnum> modalities { get; set; }
 
     /**
-     * Get prediction
+     * Configuration for a [Predicted Output](/docs/guides/predicted-outputs),\nwhich can greatly improve response times when large parts of the model\nresponse are known ahead of time. This is most common when you are\nregenerating a file with only minor changes to most of the content.\n
      * @return prediction
      */
     public OASPredictionContent prediction { get; set; }

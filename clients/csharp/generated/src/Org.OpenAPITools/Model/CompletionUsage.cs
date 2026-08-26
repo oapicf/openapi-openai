@@ -84,7 +84,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets CompletionTokensDetails
         /// </summary>
         [JsonPropertyName("completion_tokens_details")]
-        public CompletionUsageCompletionTokensDetails? CompletionTokensDetails { get { return this.CompletionTokensDetailsOption; } set { this.CompletionTokensDetailsOption = new(value); } }
+        public CompletionUsageCompletionTokensDetails? CompletionTokensDetails { get { return this.CompletionTokensDetailsOption.Value; } set { this.CompletionTokensDetailsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PromptTokensDetails
@@ -97,7 +97,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets PromptTokensDetails
         /// </summary>
         [JsonPropertyName("prompt_tokens_details")]
-        public CompletionUsagePromptTokensDetails? PromptTokensDetails { get { return this.PromptTokensDetailsOption; } set { this.PromptTokensDetailsOption = new(value); } }
+        public CompletionUsagePromptTokensDetails? PromptTokensDetails { get { return this.PromptTokensDetailsOption.Value; } set { this.PromptTokensDetailsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -130,8 +130,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CompletionUsage" />
     /// </summary>
-    public class CompletionUsageJsonConverter : JsonConverter<CompletionUsage>
+    public partial class CompletionUsageJsonConverter : JsonConverter<CompletionUsage>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CompletionUsageJsonConverter" /> class.
+        /// </summary>
+        public CompletionUsageJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CompletionUsage" />
         /// </summary>

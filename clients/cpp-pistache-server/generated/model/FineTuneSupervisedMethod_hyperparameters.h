@@ -34,7 +34,7 @@ class  FineTuneSupervisedMethod_hyperparameters
 {
 public:
     FineTuneSupervisedMethod_hyperparameters();
-    virtual ~FineTuneSupervisedMethod_hyperparameters() = default;
+    virtual ~FineTuneSupervisedMethod_hyperparameters();
 
 
     /// <summary>

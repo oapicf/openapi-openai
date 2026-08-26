@@ -57,35 +57,35 @@ public:
 
 	/*! \brief Set The ID of the tool call object.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
 	 */
 	std::string getType();
 
 	/*! \brief Set The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	RunStepDetailsToolCallsCodeObject_code_interpreter getCodeInterpreter();
 
 	/*! \brief Set 
 	 */
-	void setCodeInterpreter(RunStepDetailsToolCallsCodeObject_code_interpreter  code_interpreter);
+	void setCodeInterpreter(RunStepDetailsToolCallsCodeObject_code_interpreter code_interpreter);
 	/*! \brief Get 
 	 */
 	RunStepDetailsToolCallsFileSearchObject_file_search getFileSearch();
 
 	/*! \brief Set 
 	 */
-	void setFileSearch(RunStepDetailsToolCallsFileSearchObject_file_search  file_search);
+	void setFileSearch(RunStepDetailsToolCallsFileSearchObject_file_search file_search);
 	/*! \brief Get 
 	 */
 	RunStepDetailsToolCallsFunctionObject_function getFunction();
 
 	/*! \brief Set 
 	 */
-	void setFunction(RunStepDetailsToolCallsFunctionObject_function  function);
+	void setFunction(RunStepDetailsToolCallsFunctionObject_function function);
 
 
     private:

@@ -65,10 +65,14 @@ class UsageTimeBucket {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UsageTimeBucket[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UsageTimeBucket[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "UsageTimeBucket[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "UsageTimeBucket[object]" has a null value in JSON.');
+        assert(json.containsKey(r'start_time'), 'Required key "UsageTimeBucket[start_time]" is missing from JSON.');
+        assert(json[r'start_time'] != null, 'Required key "UsageTimeBucket[start_time]" has a null value in JSON.');
+        assert(json.containsKey(r'end_time'), 'Required key "UsageTimeBucket[end_time]" is missing from JSON.');
+        assert(json[r'end_time'] != null, 'Required key "UsageTimeBucket[end_time]" has a null value in JSON.');
+        assert(json.containsKey(r'result'), 'Required key "UsageTimeBucket[result]" is missing from JSON.');
+        assert(json[r'result'] != null, 'Required key "UsageTimeBucket[result]" has a null value in JSON.');
         return true;
       }());
 
@@ -132,27 +136,28 @@ class UsageTimeBucket {
 }
 
 
-class UsageTimeBucketObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const UsageTimeBucketObjectEnum._(this.value);
+enum UsageTimeBucketObjectEnum {
+  bucket._(r'bucket'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const UsageTimeBucketObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const bucket = UsageTimeBucketObjectEnum._(r'bucket');
-
-  /// List of all possible values in this [enum][UsageTimeBucketObjectEnum].
-  static const values = <UsageTimeBucketObjectEnum>[
-    bucket,
-  ];
-
+  /// Returns the instance of [UsageTimeBucketObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static UsageTimeBucketObjectEnum? fromJson(dynamic value) => UsageTimeBucketObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [UsageTimeBucketObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<UsageTimeBucketObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <UsageTimeBucketObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -174,9 +179,10 @@ class UsageTimeBucketObjectEnumTypeTransformer {
 
   const UsageTimeBucketObjectEnumTypeTransformer._();
 
-  String encode(UsageTimeBucketObjectEnum data) => data.value;
+  String encode(UsageTimeBucketObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a UsageTimeBucketObjectEnum.
+  /// Returns the instance of [UsageTimeBucketObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -185,6 +191,9 @@ class UsageTimeBucketObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   UsageTimeBucketObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is UsageTimeBucketObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'bucket': return UsageTimeBucketObjectEnum.bucket;
@@ -197,7 +206,7 @@ class UsageTimeBucketObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [UsageTimeBucketObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static UsageTimeBucketObjectEnumTypeTransformer? _instance;
 }
 

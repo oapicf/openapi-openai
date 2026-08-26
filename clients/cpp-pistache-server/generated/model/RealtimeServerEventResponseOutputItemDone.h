@@ -33,7 +33,7 @@ class  RealtimeServerEventResponseOutputItemDone
 {
 public:
     RealtimeServerEventResponseOutputItemDone();
-    virtual ~RealtimeServerEventResponseOutputItemDone() = default;
+    virtual ~RealtimeServerEventResponseOutputItemDone();
 
 
     /// <summary>

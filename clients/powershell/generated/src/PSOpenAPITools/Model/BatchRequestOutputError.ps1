@@ -41,8 +41,8 @@ function Initialize-BatchRequestOutputError {
 
 
         $PSO = [PSCustomObject]@{
-            "code" = ${Code}
-            "message" = ${Message}
+            'code' = ${Code}
+            'message' = ${Message}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToBatchRequestOutputError {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in BatchRequestOutputError
-        $AllProperties = ("code", "message")
+        $AllProperties = ('code', 'message')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "code"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'code'))) { #optional property not found
             $Code = $null
         } else {
-            $Code = $JsonParameters.PSobject.Properties["code"].value
+            $Code = $JsonParameters.PSobject.Properties['code'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "message"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'message'))) { #optional property not found
             $Message = $null
         } else {
-            $Message = $JsonParameters.PSobject.Properties["message"].value
+            $Message = $JsonParameters.PSobject.Properties['message'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "code" = ${Code}
-            "message" = ${Message}
+            'code' = ${Code}
+            'message' = ${Message}
         }
 
         return $PSO

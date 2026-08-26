@@ -46,9 +46,9 @@ function Initialize-CreateThreadRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "messages" = ${Messages}
-            "tool_resources" = ${ToolResources}
-            "metadata" = ${Metadata}
+            'messages' = ${Messages}
+            'tool_resources' = ${ToolResources}
+            'metadata' = ${Metadata}
         }
 
 
@@ -86,35 +86,35 @@ function ConvertFrom-JsonToCreateThreadRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateThreadRequest
-        $AllProperties = ("messages", "tool_resources", "metadata")
+        $AllProperties = ('messages', 'tool_resources', 'metadata')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "messages"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'messages'))) { #optional property not found
             $Messages = $null
         } else {
-            $Messages = $JsonParameters.PSobject.Properties["messages"].value
+            $Messages = $JsonParameters.PSobject.Properties['messages'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tool_resources"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tool_resources'))) { #optional property not found
             $ToolResources = $null
         } else {
-            $ToolResources = $JsonParameters.PSobject.Properties["tool_resources"].value
+            $ToolResources = $JsonParameters.PSobject.Properties['tool_resources'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) { #optional property not found
             $Metadata = $null
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "messages" = ${Messages}
-            "tool_resources" = ${ToolResources}
-            "metadata" = ${Metadata}
+            'messages' = ${Messages}
+            'tool_resources' = ${ToolResources}
+            'metadata' = ${Metadata}
         }
 
         return $PSO

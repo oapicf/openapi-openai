@@ -22,10 +22,12 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RunStepObjectLastError(
 
-    @Schema(example = "null", required = true, description = "One of `server_error` or `rate_limit_exceeded`.")
+    @Schema(required = true, description = "One of `server_error` or `rate_limit_exceeded`.")
+    @param:JsonProperty("code")
     @get:JsonProperty("code", required = true) val code: RunStepObjectLastError.Code,
 
-    @Schema(example = "null", required = true, description = "A human-readable description of the error.")
+    @Schema(required = true, description = "A human-readable description of the error.")
+    @param:JsonProperty("message")
     @get:JsonProperty("message", required = true) val message: kotlin.String
 ) {
 
@@ -43,7 +45,7 @@ data class RunStepObjectLastError(
             @JsonCreator
             fun forValue(value: kotlin.String): Code {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RunStepObjectLastError'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Code'")
             }
         }
     }

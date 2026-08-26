@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"deleted\" : true,\n  \"id\" : \"id\",\n  \"object\" : \"object\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"deleted\" : true,\n  \"object\" : \"object\"\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<DeleteModelResponse>(exampleJson)
@@ -70,7 +70,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"data\" : [ {\n    \"created\" : 0,\n    \"owned_by\" : \"owned_by\",\n    \"id\" : \"id\",\n    \"object\" : \"model\"\n  }, {\n    \"created\" : 0,\n    \"owned_by\" : \"owned_by\",\n    \"id\" : \"id\",\n    \"object\" : \"model\"\n  } ],\n  \"object\" : \"list\"\n}";
+            exampleJson = "{\n  \"object\" : \"list\",\n  \"data\" : [ {\n    \"id\" : \"id\",\n    \"created\" : 0,\n    \"object\" : \"model\",\n    \"owned_by\" : \"owned_by\"\n  }, {\n    \"id\" : \"id\",\n    \"created\" : 0,\n    \"object\" : \"model\",\n    \"owned_by\" : \"owned_by\"\n  } ]\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ListModelsResponse>(exampleJson)
@@ -96,7 +96,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"created\" : 0,\n  \"owned_by\" : \"owned_by\",\n  \"id\" : \"id\",\n  \"object\" : \"model\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"created\" : 0,\n  \"object\" : \"model\",\n  \"owned_by\" : \"owned_by\"\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<Model>(exampleJson)

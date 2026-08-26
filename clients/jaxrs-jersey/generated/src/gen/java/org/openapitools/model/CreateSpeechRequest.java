@@ -35,7 +35,7 @@ import javax.validation.Valid;
   CreateSpeechRequest.JSON_PROPERTY_RESPONSE_FORMAT,
   CreateSpeechRequest.JSON_PROPERTY_SPEED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-01-29T14:09:10.882541726Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateSpeechRequest   {
   public static final String JSON_PROPERTY_MODEL = "model";
   @JsonProperty(JSON_PROPERTY_MODEL)
@@ -286,10 +286,7 @@ public class CreateSpeechRequest   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

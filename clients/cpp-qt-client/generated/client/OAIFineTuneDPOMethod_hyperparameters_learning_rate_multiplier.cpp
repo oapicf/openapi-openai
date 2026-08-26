@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIFineTuneDPOMethod_hyperparameters_learning_rate_multiplier::OAIFineTuneDPOMethod_hyperparameters_learning_rate_multiplier(QString json) {
+OAIFineTuneDPOMethod_hyperparameters_learning_rate_multiplier::OAIFineTuneDPOMethod_hyperparameters_learning_rate_multiplier(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -36,7 +36,7 @@ void OAIFineTuneDPOMethod_hyperparameters_learning_rate_multiplier::initializeMo
 
 }
 
-void OAIFineTuneDPOMethod_hyperparameters_learning_rate_multiplier::fromJson(QString jsonString) {
+void OAIFineTuneDPOMethod_hyperparameters_learning_rate_multiplier::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

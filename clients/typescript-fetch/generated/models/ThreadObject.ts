@@ -35,7 +35,7 @@ export interface ThreadObject {
     id: string;
     /**
      * The object type, which is always `thread`.
-     * @type {string}
+     * @type {ThreadObjectObjectEnum}
      * @memberof ThreadObject
      */
     object: ThreadObjectObjectEnum;
@@ -76,8 +76,10 @@ export type ThreadObjectObjectEnum = typeof ThreadObjectObjectEnum[keyof typeof 
 export function instanceOfThreadObject(value: object): value is ThreadObject {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-    if (!('toolResources' in value) || value['toolResources'] === undefined) return false;
+    if (value['object'] !== 'thread') return false;
+    
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
+    if ((!('toolResources' in (value as Record<string, any>)) && !('tool_resources' in (value as Record<string, any>))) || ((value as Record<string, any>)['toolResources'] === undefined && (value as Record<string, any>)['tool_resources'] === undefined)) return false;
     if (!('metadata' in value) || value['metadata'] === undefined) return false;
     return true;
 }

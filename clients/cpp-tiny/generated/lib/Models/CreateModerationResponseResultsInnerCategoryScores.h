@@ -51,91 +51,91 @@ public:
 
 	/*! \brief Set The score for the category 'hate'.
 	 */
-	void setHate(long  hate);
+	void setHate(long hate);
 	/*! \brief Get The score for the category 'hate/threatening'.
 	 */
 	long getHatethreatening();
 
 	/*! \brief Set The score for the category 'hate/threatening'.
 	 */
-	void setHatethreatening(long  hatethreatening);
+	void setHatethreatening(long hatethreatening);
 	/*! \brief Get The score for the category 'harassment'.
 	 */
 	long getHarassment();
 
 	/*! \brief Set The score for the category 'harassment'.
 	 */
-	void setHarassment(long  harassment);
+	void setHarassment(long harassment);
 	/*! \brief Get The score for the category 'harassment/threatening'.
 	 */
 	long getHarassmentthreatening();
 
 	/*! \brief Set The score for the category 'harassment/threatening'.
 	 */
-	void setHarassmentthreatening(long  harassmentthreatening);
+	void setHarassmentthreatening(long harassmentthreatening);
 	/*! \brief Get The score for the category 'illicit'.
 	 */
 	long getIllicit();
 
 	/*! \brief Set The score for the category 'illicit'.
 	 */
-	void setIllicit(long  illicit);
+	void setIllicit(long illicit);
 	/*! \brief Get The score for the category 'illicit/violent'.
 	 */
 	long getIllicitviolent();
 
 	/*! \brief Set The score for the category 'illicit/violent'.
 	 */
-	void setIllicitviolent(long  illicitviolent);
+	void setIllicitviolent(long illicitviolent);
 	/*! \brief Get The score for the category 'self-harm'.
 	 */
 	long getSelfharm();
 
 	/*! \brief Set The score for the category 'self-harm'.
 	 */
-	void setSelfharm(long  selfharm);
+	void setSelfharm(long selfharm);
 	/*! \brief Get The score for the category 'self-harm/intent'.
 	 */
 	long getSelfharmintent();
 
 	/*! \brief Set The score for the category 'self-harm/intent'.
 	 */
-	void setSelfharmintent(long  selfharmintent);
+	void setSelfharmintent(long selfharmintent);
 	/*! \brief Get The score for the category 'self-harm/instructions'.
 	 */
 	long getSelfharminstructions();
 
 	/*! \brief Set The score for the category 'self-harm/instructions'.
 	 */
-	void setSelfharminstructions(long  selfharminstructions);
+	void setSelfharminstructions(long selfharminstructions);
 	/*! \brief Get The score for the category 'sexual'.
 	 */
 	long getSexual();
 
 	/*! \brief Set The score for the category 'sexual'.
 	 */
-	void setSexual(long  sexual);
+	void setSexual(long sexual);
 	/*! \brief Get The score for the category 'sexual/minors'.
 	 */
 	long getSexualminors();
 
 	/*! \brief Set The score for the category 'sexual/minors'.
 	 */
-	void setSexualminors(long  sexualminors);
+	void setSexualminors(long sexualminors);
 	/*! \brief Get The score for the category 'violence'.
 	 */
 	long getViolence();
 
 	/*! \brief Set The score for the category 'violence'.
 	 */
-	void setViolence(long  violence);
+	void setViolence(long violence);
 	/*! \brief Get The score for the category 'violence/graphic'.
 	 */
 	long getViolencegraphic();
 
 	/*! \brief Set The score for the category 'violence/graphic'.
 	 */
-	void setViolencegraphic(long  violencegraphic);
+	void setViolencegraphic(long violencegraphic);
 
 
     private:

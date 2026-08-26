@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **String** | The type of method. Is either &#x60;supervised&#x60; or &#x60;dpo&#x60;. | [optional] 
-**Supervised** | [**FineTuneSupervisedMethod**](.md) |  | [optional] 
-**Dpo** | [**FineTuneDPOMethod**](.md) |  | [optional] 
+**Supervised** | [**FineTuneSupervisedMethod**](FineTuneSupervisedMethod.md) |  | [optional] 
+**Dpo** | [**FineTuneDPOMethod**](FineTuneDPOMethod.md) |  | [optional] 
 
 ## Examples
 

@@ -36,7 +36,7 @@ class  CreateVectorStoreRequest
 {
 public:
     CreateVectorStoreRequest();
-    virtual ~CreateVectorStoreRequest() = default;
+    virtual ~CreateVectorStoreRequest();
 
 
     /// <summary>

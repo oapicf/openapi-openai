@@ -51,7 +51,7 @@ class UploadPart
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class UploadPart
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -73,7 +73,7 @@ class UploadPart
      * @var string|null
      * @SerializedName("upload_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $uploadId = null;
@@ -84,7 +84,7 @@ class UploadPart
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['upload.part'])]
     #[Assert\Type("string")]
@@ -115,12 +115,12 @@ class UploadPart
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The upload Part unique identifier, which can be referenced in API endpoints.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The upload Part unique identifier, which can be referenced in API endpoints.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -142,12 +142,12 @@ class UploadPart
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) for when the Part was created.
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) for when the Part was created.
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -169,12 +169,12 @@ class UploadPart
     }
 
     /**
-    * Sets uploadId.
-    *
-    * @param string|null $uploadId  The ID of the Upload object that this Part was added to.
-    *
-    * @return $this
-    */
+     * Sets uploadId.
+     *
+     * @param string|null $uploadId  The ID of the Upload object that this Part was added to.
+     *
+     * @return $this
+     */
     public function setUploadId(?string $uploadId): self
     {
         $this->uploadId = $uploadId;
@@ -196,12 +196,12 @@ class UploadPart
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `upload.part`.
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `upload.part`.
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;

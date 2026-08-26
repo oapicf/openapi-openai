@@ -30,10 +30,10 @@ static static_chunking_strategy_t *static_chunking_strategy_create_internal(
     if (!static_chunking_strategy_local_var) {
         return NULL;
     }
+    memset(static_chunking_strategy_local_var, 0, sizeof(static_chunking_strategy_t));
+    static_chunking_strategy_local_var->_library_owned = 1;
     static_chunking_strategy_local_var->type = type;
     static_chunking_strategy_local_var->_static = _static;
-
-    static_chunking_strategy_local_var->_library_owned = 1;
     return static_chunking_strategy_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) static_chunking_strategy_t *static_chunking_strategy
     openai_api_static_chunking_strategy_TYPE_e type,
     static_chunking_strategy_static_t *_static
     ) {
-    return static_chunking_strategy_create_internal (
+    static_chunking_strategy_t *result = static_chunking_strategy_create_internal (
         type,
         _static
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void static_chunking_strategy_free(static_chunking_strategy_t *static_chunking_strategy) {
@@ -134,10 +137,15 @@ static_chunking_strategy_t *static_chunking_strategy_parseFromJSON(cJSON *static
     _static_local_nonprim = static_chunking_strategy_static_parseFromJSON(_static); //nonprimitive
 
 
+
     static_chunking_strategy_local_var = static_chunking_strategy_create_internal (
         typeVariable,
         _static_local_nonprim
         );
+
+    if (!static_chunking_strategy_local_var) {
+        goto end;
+    }
 
     return static_chunking_strategy_local_var;
 end:

@@ -23,7 +23,7 @@ class ModelsApi : public Service {
 public:
     ModelsApi() = default;
 
-    virtual ~ModelsApi() = default;
+    virtual ~ModelsApi();
 
     /**
     * Delete a fine-tuned model. You must have the Owner role in your organization to delete a model..

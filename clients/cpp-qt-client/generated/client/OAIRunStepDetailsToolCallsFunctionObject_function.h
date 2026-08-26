@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIRunStepDetailsToolCallsFunctionObject_function : public OAIObject {
 public:
     OAIRunStepDetailsToolCallsFunctionObject_function();
-    OAIRunStepDetailsToolCallsFunctionObject_function(QString json);
+    OAIRunStepDetailsToolCallsFunctionObject_function(const QString &json);
     ~OAIRunStepDetailsToolCallsFunctionObject_function() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getName() const;
     void setName(const QString &name);

@@ -32,13 +32,13 @@ namespace OpenAPI {
 class OAIAssistantObject_tool_resources_code_interpreter : public OAIObject {
 public:
     OAIAssistantObject_tool_resources_code_interpreter();
-    OAIAssistantObject_tool_resources_code_interpreter(QString json);
+    OAIAssistantObject_tool_resources_code_interpreter(const QString &json);
     ~OAIAssistantObject_tool_resources_code_interpreter() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QList<QString> getFileIds() const;
     void setFileIds(const QList<QString> &file_ids);

@@ -70,7 +70,7 @@ export interface CreateCompletionResponse {
     systemFingerprint?: string;
     /**
      * The object type, which is always "text_completion"
-     * @type {string}
+     * @type {CreateCompletionResponseObjectEnum}
      * @memberof CreateCompletionResponse
      */
     object: CreateCompletionResponseObjectEnum;
@@ -101,6 +101,8 @@ export function instanceOfCreateCompletionResponse(value: object): value is Crea
     if (!('created' in value) || value['created'] === undefined) return false;
     if (!('model' in value) || value['model'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'text_completion') return false;
+    
     return true;
 }
 

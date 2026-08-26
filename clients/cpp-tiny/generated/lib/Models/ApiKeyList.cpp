@@ -165,7 +165,7 @@ ApiKeyList::getObject()
 }
 
 void
-ApiKeyList::setObject(std::string  object)
+ApiKeyList::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -177,7 +177,7 @@ ApiKeyList::getData()
 }
 
 void
-ApiKeyList::setData(std::list <AdminApiKey> data)
+ApiKeyList::setData(std::list<AdminApiKey> data)
 {
 	this->data = data;
 }
@@ -189,7 +189,7 @@ ApiKeyList::isHasMore()
 }
 
 void
-ApiKeyList::setHasMore(bool  has_more)
+ApiKeyList::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }
@@ -201,7 +201,7 @@ ApiKeyList::getFirstId()
 }
 
 void
-ApiKeyList::setFirstId(std::string  first_id)
+ApiKeyList::setFirstId(std::string first_id)
 {
 	this->first_id = first_id;
 }
@@ -213,7 +213,7 @@ ApiKeyList::getLastId()
 }
 
 void
-ApiKeyList::setLastId(std::string  last_id)
+ApiKeyList::setLastId(std::string last_id)
 {
 	this->last_id = last_id;
 }

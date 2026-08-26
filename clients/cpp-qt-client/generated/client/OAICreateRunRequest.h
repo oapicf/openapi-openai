@@ -44,13 +44,13 @@ class OAIAssistantsApiResponseFormatOption;
 class OAICreateRunRequest : public OAIObject {
 public:
     OAICreateRunRequest();
-    OAICreateRunRequest(QString json);
+    OAICreateRunRequest(const QString &json);
     ~OAICreateRunRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getAssistantId() const;
     void setAssistantId(const QString &assistant_id);

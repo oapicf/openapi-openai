@@ -33,13 +33,13 @@ namespace OpenAPI {
 class OAICreateCompletionResponse_choices_inner_logprobs : public OAIObject {
 public:
     OAICreateCompletionResponse_choices_inner_logprobs();
-    OAICreateCompletionResponse_choices_inner_logprobs(QString json);
+    OAICreateCompletionResponse_choices_inner_logprobs(const QString &json);
     ~OAICreateCompletionResponse_choices_inner_logprobs() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QList<qint32> getTextOffset() const;
     void setTextOffset(const QList<qint32> &text_offset);

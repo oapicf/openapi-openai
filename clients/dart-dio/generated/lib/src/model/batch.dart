@@ -312,8 +312,9 @@ class _$BatchSerializer implements PrimitiveSerializer<Batch> {
         case r'errors':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BatchErrors),
-          ) as BatchErrors;
+            specifiedType: const FullType.nullable(BatchErrors),
+          ) as BatchErrors?;
+          if (valueDes == null) continue;
           result.errors.replace(valueDes);
           break;
         case r'input_file_id':
@@ -340,15 +341,17 @@ class _$BatchSerializer implements PrimitiveSerializer<Batch> {
         case r'output_file_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.outputFileId = valueDes;
           break;
         case r'error_file_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.errorFileId = valueDes;
           break;
         case r'created_at':
@@ -361,64 +364,73 @@ class _$BatchSerializer implements PrimitiveSerializer<Batch> {
         case r'in_progress_at':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.inProgressAt = valueDes;
           break;
         case r'expires_at':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.expiresAt = valueDes;
           break;
         case r'finalizing_at':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.finalizingAt = valueDes;
           break;
         case r'completed_at':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.completedAt = valueDes;
           break;
         case r'failed_at':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.failedAt = valueDes;
           break;
         case r'expired_at':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.expiredAt = valueDes;
           break;
         case r'cancelling_at':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.cancellingAt = valueDes;
           break;
         case r'cancelled_at':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.cancelledAt = valueDes;
           break;
         case r'request_counts':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BatchRequestCounts),
-          ) as BatchRequestCounts;
+            specifiedType: const FullType.nullable(BatchRequestCounts),
+          ) as BatchRequestCounts?;
+          if (valueDes == null) continue;
           result.requestCounts.replace(valueDes);
           break;
         case r'metadata':

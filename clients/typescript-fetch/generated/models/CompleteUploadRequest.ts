@@ -39,7 +39,7 @@ export interface CompleteUploadRequest {
  * Check if a given object implements the CompleteUploadRequest interface.
  */
 export function instanceOfCompleteUploadRequest(value: object): value is CompleteUploadRequest {
-    if (!('partIds' in value) || value['partIds'] === undefined) return false;
+    if ((!('partIds' in (value as Record<string, any>)) && !('part_ids' in (value as Record<string, any>))) || ((value as Record<string, any>)['partIds'] === undefined && (value as Record<string, any>)['part_ids'] === undefined)) return false;
     return true;
 }
 

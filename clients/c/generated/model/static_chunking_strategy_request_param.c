@@ -30,10 +30,10 @@ static static_chunking_strategy_request_param_t *static_chunking_strategy_reques
     if (!static_chunking_strategy_request_param_local_var) {
         return NULL;
     }
+    memset(static_chunking_strategy_request_param_local_var, 0, sizeof(static_chunking_strategy_request_param_t));
+    static_chunking_strategy_request_param_local_var->_library_owned = 1;
     static_chunking_strategy_request_param_local_var->type = type;
     static_chunking_strategy_request_param_local_var->_static = _static;
-
-    static_chunking_strategy_request_param_local_var->_library_owned = 1;
     return static_chunking_strategy_request_param_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) static_chunking_strategy_request_param_t *static_chu
     openai_api_static_chunking_strategy_request_param_TYPE_e type,
     static_chunking_strategy_t *_static
     ) {
-    return static_chunking_strategy_request_param_create_internal (
+    static_chunking_strategy_request_param_t *result = static_chunking_strategy_request_param_create_internal (
         type,
         _static
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void static_chunking_strategy_request_param_free(static_chunking_strategy_request_param_t *static_chunking_strategy_request_param) {
@@ -134,10 +137,15 @@ static_chunking_strategy_request_param_t *static_chunking_strategy_request_param
     _static_local_nonprim = static_chunking_strategy_parseFromJSON(_static); //nonprimitive
 
 
+
     static_chunking_strategy_request_param_local_var = static_chunking_strategy_request_param_create_internal (
         typeVariable,
         _static_local_nonprim
         );
+
+    if (!static_chunking_strategy_request_param_local_var) {
+        goto end;
+    }
 
     return static_chunking_strategy_request_param_local_var;
 end:

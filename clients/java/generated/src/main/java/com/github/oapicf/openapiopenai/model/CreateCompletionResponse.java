@@ -52,7 +52,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). 
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateCompletionResponse {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -327,10 +327,7 @@ public class CreateCompletionResponse {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -376,16 +373,16 @@ public class CreateCompletionResponse {
       if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
-      // ensure the json data is an array
-      if (!jsonObj.get("choices").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `choices` to be an array in the JSON string but got `%s`", jsonObj.get("choices").toString()));
+      if (jsonObj.get("choices") != null) {
+        if (!jsonObj.get("choices").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `choices` to be an array in the JSON string but got `%s`", jsonObj.get("choices").toString()));
+        }
+        JsonArray jsonArraychoices = jsonObj.getAsJsonArray("choices");
+        // validate the required field `choices` (array)
+        for (int i = 0; i < jsonArraychoices.size(); i++) {
+          CreateCompletionResponseChoicesInner.validateJsonElement(jsonArraychoices.get(i));
+        }
       }
-
-      JsonArray jsonArraychoices = jsonObj.getAsJsonArray("choices");
-      // validate the required field `choices` (array)
-      for (int i = 0; i < jsonArraychoices.size(); i++) {
-        CreateCompletionResponseChoicesInner.validateJsonElement(jsonArraychoices.get(i));
-      };
       if (!jsonObj.get("model").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `model` to be a primitive type in the JSON string but got `%s`", jsonObj.get("model").toString()));
       }

@@ -31,7 +31,7 @@ class  FineTuningJobCheckpoint_metrics
 {
 public:
     FineTuningJobCheckpoint_metrics();
-    virtual ~FineTuningJobCheckpoint_metrics() = default;
+    virtual ~FineTuningJobCheckpoint_metrics();
 
 
     /// <summary>

@@ -68,6 +68,8 @@ CreateChatCompletionRequest::CreateChatCompletionRequest()
     
 }
 
+CreateChatCompletionRequest::~CreateChatCompletionRequest() = default;
+
 void CreateChatCompletionRequest::validate() const
 {
     std::stringstream msg;

@@ -230,11 +230,11 @@ RunStepObject <- R6::R6Class(
       }
       if (!is.null(self$`step_details`)) {
         RunStepObjectObject[["step_details"]] <-
-          self$`step_details`$toSimpleType()
+          self$extractSimpleType(self$`step_details`)
       }
       if (!is.null(self$`last_error`)) {
         RunStepObjectObject[["last_error"]] <-
-          self$`last_error`$toSimpleType()
+          self$extractSimpleType(self$`last_error`)
       }
       if (!is.null(self$`expired_at`)) {
         RunStepObjectObject[["expired_at"]] <-
@@ -258,9 +258,32 @@ RunStepObject <- R6::R6Class(
       }
       if (!is.null(self$`usage`)) {
         RunStepObjectObject[["usage"]] <-
-          self$`usage`$toSimpleType()
+          self$extractSimpleType(self$`usage`)
       }
       return(RunStepObjectObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

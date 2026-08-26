@@ -34,7 +34,7 @@ class  AuditLogActorApiKey
 {
 public:
     AuditLogActorApiKey();
-    virtual ~AuditLogActorApiKey() = default;
+    virtual ~AuditLogActorApiKey();
 
 
     /// <summary>

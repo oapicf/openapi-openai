@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // AssistantsNamedToolChoice - Specifies a tool the model should use. Use to force the model to call a specific tool.
@@ -22,18 +27,68 @@ type AssistantsNamedToolChoice struct {
 
 	Function AssistantsNamedToolChoiceFunction `json:"function,omitempty"`
 }
-
-// AssertAssistantsNamedToolChoiceRequired checks if the required fields are not zero-ed
-func AssertAssistantsNamedToolChoiceRequired(obj AssistantsNamedToolChoice) error {
-	elements := map[string]interface{}{
-		"type": obj.Type,
+// UnmarshalJSON validates required property keys then unmarshals into AssistantsNamedToolChoice
+func (o *AssistantsNamedToolChoice) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"type",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"type": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"type": {},
+		"function": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded AssistantsNamedToolChoice
+
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["function"]; exists {
+		if err = json.Unmarshal(value, &decoded.Function); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertAssistantsNamedToolChoiceRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertAssistantsNamedToolChoiceRequired(obj AssistantsNamedToolChoice) error {
 	if err := AssertAssistantsNamedToolChoiceFunctionRequired(obj.Function); err != nil {
 		return err
 	}

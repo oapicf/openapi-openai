@@ -30,10 +30,10 @@ static list_models_response_t *list_models_response_create_internal(
     if (!list_models_response_local_var) {
         return NULL;
     }
+    memset(list_models_response_local_var, 0, sizeof(list_models_response_t));
+    list_models_response_local_var->_library_owned = 1;
     list_models_response_local_var->object = object;
     list_models_response_local_var->data = data;
-
-    list_models_response_local_var->_library_owned = 1;
     return list_models_response_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) list_models_response_t *list_models_response_create(
     openai_api_list_models_response_OBJECT_e object,
     list_t *data
     ) {
-    return list_models_response_create_internal (
+    list_models_response_t *result = list_models_response_create_internal (
         object,
         data
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void list_models_response_free(list_models_response_t *list_models_response) {
@@ -159,10 +162,15 @@ list_models_response_t *list_models_response_parseFromJSON(cJSON *list_models_re
     }
 
 
+
     list_models_response_local_var = list_models_response_create_internal (
         objectVariable,
         dataList
         );
+
+    if (!list_models_response_local_var) {
+        goto end;
+    }
 
     return list_models_response_local_var;
 end:

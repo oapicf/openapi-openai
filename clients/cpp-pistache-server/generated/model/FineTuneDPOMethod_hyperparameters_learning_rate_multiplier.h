@@ -31,7 +31,7 @@ class  FineTuneDPOMethod_hyperparameters_learning_rate_multiplier
 {
 public:
     FineTuneDPOMethod_hyperparameters_learning_rate_multiplier();
-    virtual ~FineTuneDPOMethod_hyperparameters_learning_rate_multiplier() = default;
+    virtual ~FineTuneDPOMethod_hyperparameters_learning_rate_multiplier();
 
 
     /// <summary>

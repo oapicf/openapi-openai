@@ -39,14 +39,14 @@ export interface RealtimeConversationItem {
     /**
      * The type of the item (`message`, `function_call`, `function_call_output`).
      * 
-     * @type {string}
+     * @type {RealtimeConversationItemTypeEnum}
      * @memberof RealtimeConversationItem
      */
     type?: RealtimeConversationItemTypeEnum;
     /**
      * Identifier for the API object being returned - always `realtime.item`.
      * 
-     * @type {string}
+     * @type {RealtimeConversationItemObjectEnum}
      * @memberof RealtimeConversationItem
      */
     object?: RealtimeConversationItemObjectEnum;
@@ -55,7 +55,7 @@ export interface RealtimeConversationItem {
      * on the conversation, but are accepted for consistency with the 
      * `conversation.item.created` event.
      * 
-     * @type {string}
+     * @type {RealtimeConversationItemStatusEnum}
      * @memberof RealtimeConversationItem
      */
     status?: RealtimeConversationItemStatusEnum;
@@ -63,7 +63,7 @@ export interface RealtimeConversationItem {
      * The role of the message sender (`user`, `assistant`, `system`), only 
      * applicable for `message` items.
      * 
-     * @type {string}
+     * @type {RealtimeConversationItemRoleEnum}
      * @memberof RealtimeConversationItem
      */
     role?: RealtimeConversationItemRoleEnum;

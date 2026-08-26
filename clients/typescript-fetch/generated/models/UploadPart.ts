@@ -40,7 +40,7 @@ export interface UploadPart {
     uploadId: string;
     /**
      * The object type, which is always `upload.part`.
-     * @type {string}
+     * @type {UploadPartObjectEnum}
      * @memberof UploadPart
      */
     object: UploadPartObjectEnum;
@@ -61,9 +61,11 @@ export type UploadPartObjectEnum = typeof UploadPartObjectEnum[keyof typeof Uplo
  */
 export function instanceOfUploadPart(value: object): value is UploadPart {
     if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-    if (!('uploadId' in value) || value['uploadId'] === undefined) return false;
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
+    if ((!('uploadId' in (value as Record<string, any>)) && !('upload_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['uploadId'] === undefined && (value as Record<string, any>)['upload_id'] === undefined)) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'upload.part') return false;
+    
     return true;
 }
 

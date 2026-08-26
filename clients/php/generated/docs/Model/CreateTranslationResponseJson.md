@@ -1,4 +1,4 @@
-# # CreateTranslationResponseJson
+# CreateTranslationResponseJson
 
 ## Properties
 

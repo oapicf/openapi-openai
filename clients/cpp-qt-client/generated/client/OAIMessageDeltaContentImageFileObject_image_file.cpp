@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIMessageDeltaContentImageFileObject_image_file::OAIMessageDeltaContentImageFileObject_image_file(QString json) {
+OAIMessageDeltaContentImageFileObject_image_file::OAIMessageDeltaContentImageFileObject_image_file(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIMessageDeltaContentImageFileObject_image_file::initializeModel() {
     m_detail_isValid = false;
 }
 
-void OAIMessageDeltaContentImageFileObject_image_file::fromJson(QString jsonString) {
+void OAIMessageDeltaContentImageFileObject_image_file::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

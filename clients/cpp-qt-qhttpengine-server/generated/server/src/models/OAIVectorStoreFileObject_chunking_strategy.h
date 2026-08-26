@@ -23,7 +23,7 @@
 
 #include "OAIOtherChunkingStrategyResponseParam.h"
 #include "OAIStaticChunkingStrategy.h"
-#include "OAIStaticChunkingStrategyResponseParam.h"
+#include "OAIStaticChunkingStrategyRequestParam.h"
 #include <QString>
 
 #include "OAIEnum.h"

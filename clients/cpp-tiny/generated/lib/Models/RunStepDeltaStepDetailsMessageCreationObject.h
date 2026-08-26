@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set Always `message_creation`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	RunStepDeltaStepDetailsMessageCreationObject_message_creation getMessageCreation();
 
 	/*! \brief Set 
 	 */
-	void setMessageCreation(RunStepDeltaStepDetailsMessageCreationObject_message_creation  message_creation);
+	void setMessageCreation(RunStepDeltaStepDetailsMessageCreationObject_message_creation message_creation);
 
 
     private:

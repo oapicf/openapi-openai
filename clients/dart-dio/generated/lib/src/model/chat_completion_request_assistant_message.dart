@@ -204,8 +204,9 @@ class _$$ChatCompletionRequestAssistantMessageSerializer implements PrimitiveSer
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'audio':
@@ -219,8 +220,9 @@ class _$$ChatCompletionRequestAssistantMessageSerializer implements PrimitiveSer
         case r'tool_calls':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ChatCompletionMessageToolCall)]),
-          ) as BuiltList<ChatCompletionMessageToolCall>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ChatCompletionMessageToolCall)]),
+          ) as BuiltList<ChatCompletionMessageToolCall>?;
+          if (valueDes == null) continue;
           result.toolCalls.replace(valueDes);
           break;
         case r'function_call':

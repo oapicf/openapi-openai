@@ -32,7 +32,7 @@ class  RealtimeServerEventResponseFunctionCallArgumentsDone
 {
 public:
     RealtimeServerEventResponseFunctionCallArgumentsDone();
-    virtual ~RealtimeServerEventResponseFunctionCallArgumentsDone() = default;
+    virtual ~RealtimeServerEventResponseFunctionCallArgumentsDone();
 
 
     /// <summary>

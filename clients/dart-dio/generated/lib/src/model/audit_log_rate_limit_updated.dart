@@ -86,15 +86,17 @@ class _$AuditLogRateLimitUpdatedSerializer implements PrimitiveSerializer<AuditL
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'changes_requested':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogRateLimitUpdatedChangesRequested),
-          ) as AuditLogRateLimitUpdatedChangesRequested;
+            specifiedType: const FullType.nullable(AuditLogRateLimitUpdatedChangesRequested),
+          ) as AuditLogRateLimitUpdatedChangesRequested?;
+          if (valueDes == null) continue;
           result.changesRequested.replace(valueDes);
           break;
         default:

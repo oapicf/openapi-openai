@@ -14,6 +14,8 @@ package openapi
 
 import (
 	"errors"
+	"encoding/json"
+	"fmt"
 )
 
 
@@ -70,12 +72,168 @@ type CreateCompletionRequest struct {
 	// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 	User string `json:"user,omitempty"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into CreateCompletionRequest
+func (o *CreateCompletionRequest) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"model",
+		"prompt",
+	}
 
-// AssertCreateCompletionRequestRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"model": false,
+		"prompt": true,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"model": {},
+		"prompt": {},
+		"best_of": {},
+		"echo": {},
+		"frequency_penalty": {},
+		"logit_bias": {},
+		"logprobs": {},
+		"max_tokens": {},
+		"n": {},
+		"presence_penalty": {},
+		"seed": {},
+		"stop": {},
+		"stream": {},
+		"stream_options": {},
+		"suffix": {},
+		"temperature": {},
+		"top_p": {},
+		"user": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CreateCompletionRequest
+
+	if value, exists := allProperties["model"]; exists {
+		if err = json.Unmarshal(value, &decoded.Model); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["prompt"]; exists {
+		if err = json.Unmarshal(value, &decoded.Prompt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["best_of"]; exists {
+		if err = json.Unmarshal(value, &decoded.BestOf); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["echo"]; exists {
+		if err = json.Unmarshal(value, &decoded.Echo); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["frequency_penalty"]; exists {
+		if err = json.Unmarshal(value, &decoded.FrequencyPenalty); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["logit_bias"]; exists {
+		if err = json.Unmarshal(value, &decoded.LogitBias); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["logprobs"]; exists {
+		if err = json.Unmarshal(value, &decoded.Logprobs); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["max_tokens"]; exists {
+		if err = json.Unmarshal(value, &decoded.MaxTokens); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["n"]; exists {
+		if err = json.Unmarshal(value, &decoded.N); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["presence_penalty"]; exists {
+		if err = json.Unmarshal(value, &decoded.PresencePenalty); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["seed"]; exists {
+		if err = json.Unmarshal(value, &decoded.Seed); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["stop"]; exists {
+		if err = json.Unmarshal(value, &decoded.Stop); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["stream"]; exists {
+		if err = json.Unmarshal(value, &decoded.Stream); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["stream_options"]; exists {
+		if err = json.Unmarshal(value, &decoded.StreamOptions); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["suffix"]; exists {
+		if err = json.Unmarshal(value, &decoded.Suffix); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["temperature"]; exists {
+		if err = json.Unmarshal(value, &decoded.Temperature); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["top_p"]; exists {
+		if err = json.Unmarshal(value, &decoded.TopP); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["user"]; exists {
+		if err = json.Unmarshal(value, &decoded.User); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCreateCompletionRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateCompletionRequestRequired(obj CreateCompletionRequest) error {
 	elements := map[string]interface{}{
 		"model": obj.Model,
-		"prompt": obj.Prompt,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {

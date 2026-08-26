@@ -28,6 +28,8 @@ Error::Error()
     
 }
 
+Error::~Error() = default;
+
 void Error::validate() const
 {
     std::stringstream msg;

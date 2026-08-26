@@ -25,7 +25,7 @@ message Project {
     OBJECT_ORGANIZATION_PROJECT = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The name of the project. This appears in reporting.
   string name = 3373707;
@@ -42,7 +42,7 @@ message Project {
     STATUS_ARCHIVED = 1;
   }
 
-  Status status = 355610639;
+  string status = 355610639;
 
 }
 

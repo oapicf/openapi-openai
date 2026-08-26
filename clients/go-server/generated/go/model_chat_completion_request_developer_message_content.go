@@ -18,7 +18,8 @@ package openapi
 type ChatCompletionRequestDeveloperMessageContent struct {
 }
 
-// AssertChatCompletionRequestDeveloperMessageContentRequired checks if the required fields are not zero-ed
+// AssertChatCompletionRequestDeveloperMessageContentRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertChatCompletionRequestDeveloperMessageContentRequired(obj ChatCompletionRequestDeveloperMessageContent) error {
 	return nil
 }

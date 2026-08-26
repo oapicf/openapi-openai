@@ -23,7 +23,7 @@ message ResponseFormatJsonSchema {
     TYPE_JSON_SCHEMA = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   ResponseFormatJsonSchemaJsonSchema json_schema = 76648234;
 

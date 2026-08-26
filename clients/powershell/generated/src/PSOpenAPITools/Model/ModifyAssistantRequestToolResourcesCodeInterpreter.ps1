@@ -40,7 +40,7 @@ function Initialize-ModifyAssistantRequestToolResourcesCodeInterpreter {
 
 
         $PSO = [PSCustomObject]@{
-            "file_ids" = ${FileIds}
+            'file_ids' = ${FileIds}
         }
 
 
@@ -78,21 +78,21 @@ function ConvertFrom-JsonToModifyAssistantRequestToolResourcesCodeInterpreter {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ModifyAssistantRequestToolResourcesCodeInterpreter
-        $AllProperties = ("file_ids")
+        $AllProperties = ('file_ids')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_ids"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_ids'))) { #optional property not found
             $FileIds = $null
         } else {
-            $FileIds = $JsonParameters.PSobject.Properties["file_ids"].value
+            $FileIds = $JsonParameters.PSobject.Properties['file_ids'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "file_ids" = ${FileIds}
+            'file_ids' = ${FileIds}
         }
 
         return $PSO

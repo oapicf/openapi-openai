@@ -27,6 +27,8 @@ FineTuneSupervisedMethod_hyperparameters::FineTuneSupervisedMethod_hyperparamete
     
 }
 
+FineTuneSupervisedMethod_hyperparameters::~FineTuneSupervisedMethod_hyperparameters() = default;
+
 void FineTuneSupervisedMethod_hyperparameters::validate() const
 {
     std::stringstream msg;

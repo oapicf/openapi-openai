@@ -33,7 +33,7 @@ class  RealtimeResponseCreateParams_tools_inner
 {
 public:
     RealtimeResponseCreateParams_tools_inner();
-    virtual ~RealtimeResponseCreateParams_tools_inner() = default;
+    virtual ~RealtimeResponseCreateParams_tools_inner();
 
 
     /// <summary>

@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAISubmitToolOutputsRunRequest::OAISubmitToolOutputsRunRequest(QString json) {
+OAISubmitToolOutputsRunRequest::OAISubmitToolOutputsRunRequest(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAISubmitToolOutputsRunRequest::initializeModel() {
     m_stream_isValid = false;
 }
 
-void OAISubmitToolOutputsRunRequest::fromJson(QString jsonString) {
+void OAISubmitToolOutputsRunRequest::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -31,6 +31,8 @@ CreateCompletionResponse::CreateCompletionResponse()
     
 }
 
+CreateCompletionResponse::~CreateCompletionResponse() = default;
+
 void CreateCompletionResponse::validate() const
 {
     std::stringstream msg;

@@ -129,7 +129,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The type of API key. Can be either &#x60;user&#x60; or &#x60;service_account&#x60;.</value>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -143,7 +143,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The tracking id of the API key.</value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of User
@@ -156,7 +156,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets User
         /// </summary>
         [JsonPropertyName("user")]
-        public AuditLogActorUser? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public AuditLogActorUser? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ServiceAccount
@@ -169,7 +169,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ServiceAccount
         /// </summary>
         [JsonPropertyName("service_account")]
-        public AuditLogActorServiceAccount? ServiceAccount { get { return this.ServiceAccountOption; } set { this.ServiceAccountOption = new(value); } }
+        public AuditLogActorServiceAccount? ServiceAccount { get { return this.ServiceAccountOption.Value; } set { this.ServiceAccountOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -201,8 +201,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogActorApiKey" />
     /// </summary>
-    public class AuditLogActorApiKeyJsonConverter : JsonConverter<AuditLogActorApiKey>
+    public partial class AuditLogActorApiKeyJsonConverter : JsonConverter<AuditLogActorApiKey>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogActorApiKeyJsonConverter" /> class.
+        /// </summary>
+        public AuditLogActorApiKeyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogActorApiKey" />
         /// </summary>

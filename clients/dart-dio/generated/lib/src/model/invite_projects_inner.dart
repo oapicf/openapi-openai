@@ -88,15 +88,17 @@ class _$InviteProjectsInnerSerializer implements PrimitiveSerializer<InviteProje
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'role':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(InviteProjectsInnerRoleEnum),
-          ) as InviteProjectsInnerRoleEnum;
+            specifiedType: const FullType.nullable(InviteProjectsInnerRoleEnum),
+          ) as InviteProjectsInnerRoleEnum?;
+          if (valueDes == null) continue;
           result.role = valueDes;
           break;
         default:

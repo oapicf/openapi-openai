@@ -33,7 +33,7 @@ class  ChatCompletionTool
 {
 public:
     ChatCompletionTool();
-    virtual ~ChatCompletionTool() = default;
+    virtual ~ChatCompletionTool();
 
 
     /// <summary>

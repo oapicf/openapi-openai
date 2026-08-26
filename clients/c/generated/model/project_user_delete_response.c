@@ -25,30 +25,39 @@ openai_api_project_user_delete_response_OBJECT_e project_user_delete_response_ob
 static project_user_delete_response_t *project_user_delete_response_create_internal(
     openai_api_project_user_delete_response_OBJECT_e object,
     char *id,
-    int deleted
+    int *deleted
     ) {
     project_user_delete_response_t *project_user_delete_response_local_var = malloc(sizeof(project_user_delete_response_t));
     if (!project_user_delete_response_local_var) {
         return NULL;
     }
+    memset(project_user_delete_response_local_var, 0, sizeof(project_user_delete_response_t));
+    project_user_delete_response_local_var->_library_owned = 1;
     project_user_delete_response_local_var->object = object;
     project_user_delete_response_local_var->id = id;
     project_user_delete_response_local_var->deleted = deleted;
-
-    project_user_delete_response_local_var->_library_owned = 1;
     return project_user_delete_response_local_var;
 }
 
 __attribute__((deprecated)) project_user_delete_response_t *project_user_delete_response_create(
     openai_api_project_user_delete_response_OBJECT_e object,
     char *id,
-    int deleted
+    int *deleted
     ) {
-    return project_user_delete_response_create_internal (
+    int *deleted_copy = NULL;
+    if (deleted) {
+        deleted_copy = malloc(sizeof(int));
+        if (deleted_copy) *deleted_copy = *deleted;
+    }
+    project_user_delete_response_t *result = project_user_delete_response_create_internal (
         object,
         id,
-        deleted
+        deleted_copy
         );
+    if (!result) {
+        free(deleted_copy);
+    }
+    return result;
 }
 
 void project_user_delete_response_free(project_user_delete_response_t *project_user_delete_response) {
@@ -63,6 +72,10 @@ void project_user_delete_response_free(project_user_delete_response_t *project_u
     if (project_user_delete_response->id) {
         free(project_user_delete_response->id);
         project_user_delete_response->id = NULL;
+    }
+    if (project_user_delete_response->deleted) {
+        free(project_user_delete_response->deleted);
+        project_user_delete_response->deleted = NULL;
     }
     free(project_user_delete_response);
 }
@@ -93,7 +106,7 @@ cJSON *project_user_delete_response_convertToJSON(project_user_delete_response_t
     if (!project_user_delete_response->deleted) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "deleted", project_user_delete_response->deleted) == NULL) {
+    if(cJSON_AddBoolToObject(item, "deleted", *project_user_delete_response->deleted) == NULL) {
     goto fail; //Bool
     }
 
@@ -108,6 +121,11 @@ fail:
 project_user_delete_response_t *project_user_delete_response_parseFromJSON(cJSON *project_user_delete_responseJSON){
 
     project_user_delete_response_t *project_user_delete_response_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    // define the local variable for project_user_delete_response->deleted
+    int *deleted_local_var = NULL;
 
     // project_user_delete_response->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(project_user_delete_responseJSON, "object");
@@ -155,16 +173,36 @@ project_user_delete_response_t *project_user_delete_response_parseFromJSON(cJSON
     {
     goto end; //Bool
     }
+    deleted_local_var = malloc(sizeof(int));
+    if(!deleted_local_var)
+    {
+        goto end;
+    }
+    *deleted_local_var = deleted->valueint;
 
+
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
 
     project_user_delete_response_local_var = project_user_delete_response_create_internal (
         objectVariable,
-        strdup(id->valuestring),
-        deleted->valueint
+        id_local_str,
+        deleted_local_var
         );
+
+    if (!project_user_delete_response_local_var) {
+        goto end;
+    }
 
     return project_user_delete_response_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (deleted_local_var) {
+        free(deleted_local_var);
+        deleted_local_var = NULL;
+    }
     return NULL;
 
 }

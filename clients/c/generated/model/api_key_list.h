@@ -22,7 +22,7 @@ typedef struct api_key_list_t api_key_list_t;
 typedef struct api_key_list_t {
     char *object; // string
     list_t *data; //nonprimitive container
-    int has_more; //boolean
+    int *has_more; //boolean
     char *first_id; // string
     char *last_id; // string
 
@@ -32,7 +32,7 @@ typedef struct api_key_list_t {
 __attribute__((deprecated)) api_key_list_t *api_key_list_create(
     char *object,
     list_t *data,
-    int has_more,
+    int *has_more,
     char *first_id,
     char *last_id
 );

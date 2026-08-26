@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -13,32 +14,32 @@ import java.util.Map;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * CreateCompletionResponseChoicesInnerLogprobs
  */
 
 @JsonTypeName("CreateCompletionResponse_choices_inner_logprobs")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateCompletionResponseChoicesInnerLogprobs {
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<Integer> textOffset = new ArrayList<>();
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<BigDecimal> tokenLogprobs = new ArrayList<>();
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<String> tokens = new ArrayList<>();
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<Map<String, BigDecimal>> topLogprobs = new ArrayList<>();
 
   public CreateCompletionResponseChoicesInnerLogprobs textOffset(List<Integer> textOffset) {
@@ -65,6 +66,7 @@ public class CreateCompletionResponseChoicesInnerLogprobs {
     return textOffset;
   }
 
+  @JsonProperty("text_offset")
   public void setTextOffset(List<Integer> textOffset) {
     this.textOffset = textOffset;
   }
@@ -93,6 +95,7 @@ public class CreateCompletionResponseChoicesInnerLogprobs {
     return tokenLogprobs;
   }
 
+  @JsonProperty("token_logprobs")
   public void setTokenLogprobs(List<BigDecimal> tokenLogprobs) {
     this.tokenLogprobs = tokenLogprobs;
   }
@@ -121,6 +124,7 @@ public class CreateCompletionResponseChoicesInnerLogprobs {
     return tokens;
   }
 
+  @JsonProperty("tokens")
   public void setTokens(List<String> tokens) {
     this.tokens = tokens;
   }
@@ -149,6 +153,7 @@ public class CreateCompletionResponseChoicesInnerLogprobs {
     return topLogprobs;
   }
 
+  @JsonProperty("top_logprobs")
   public void setTopLogprobs(List<Map<String, BigDecimal>> topLogprobs) {
     this.topLogprobs = topLogprobs;
   }
@@ -190,10 +195,7 @@ public class CreateCompletionResponseChoicesInnerLogprobs {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

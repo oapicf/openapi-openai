@@ -69,7 +69,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A description of what the function does, used by the model to choose when and how to call the function.</value>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Parameters
@@ -83,7 +83,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list.</value>
         [JsonPropertyName("parameters")]
-        public Dictionary<string, Object>? Parameters { get { return this.ParametersOption; } set { this.ParametersOption = new(value); } }
+        public Dictionary<string, Object>? Parameters { get { return this.ParametersOption.Value; } set { this.ParametersOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Strict
@@ -97,7 +97,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the &#x60;parameters&#x60; field. Only a subset of JSON Schema is supported when &#x60;strict&#x60; is &#x60;true&#x60;. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).</value>
         [JsonPropertyName("strict")]
-        public bool? Strict { get { return this.StrictOption; } set { this.StrictOption = new(value); } }
+        public bool? Strict { get { return this.StrictOption.Value; } set { this.StrictOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -129,8 +129,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FunctionObject" />
     /// </summary>
-    public class FunctionObjectJsonConverter : JsonConverter<FunctionObject>
+    public partial class FunctionObjectJsonConverter : JsonConverter<FunctionObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FunctionObjectJsonConverter" /> class.
+        /// </summary>
+        public FunctionObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FunctionObject" />
         /// </summary>

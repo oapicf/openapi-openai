@@ -25,6 +25,8 @@ CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_s
     
 }
 
+CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy::~CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy() = default;
+
 void CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy::validate() const
 {
     std::stringstream msg;

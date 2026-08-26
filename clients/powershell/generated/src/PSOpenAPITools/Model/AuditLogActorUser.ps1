@@ -41,8 +41,8 @@ function Initialize-AuditLogActorUser {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "email" = ${Email}
+            'id' = ${Id}
+            'email' = ${Email}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToAuditLogActorUser {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AuditLogActorUser
-        $AllProperties = ("id", "email")
+        $AllProperties = ('id', 'email')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) { #optional property not found
             $Id = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "email"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'email'))) { #optional property not found
             $Email = $null
         } else {
-            $Email = $JsonParameters.PSobject.Properties["email"].value
+            $Email = $JsonParameters.PSobject.Properties['email'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "email" = ${Email}
+            'id' = ${Id}
+            'email' = ${Email}
         }
 
         return $PSO

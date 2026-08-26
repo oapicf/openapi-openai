@@ -13,10 +13,10 @@ static message_content_text_object_text_t *message_content_text_object_text_crea
     if (!message_content_text_object_text_local_var) {
         return NULL;
     }
+    memset(message_content_text_object_text_local_var, 0, sizeof(message_content_text_object_text_t));
+    message_content_text_object_text_local_var->_library_owned = 1;
     message_content_text_object_text_local_var->value = value;
     message_content_text_object_text_local_var->annotations = annotations;
-
-    message_content_text_object_text_local_var->_library_owned = 1;
     return message_content_text_object_text_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) message_content_text_object_text_t *message_content_
     char *value,
     list_t *annotations
     ) {
-    return message_content_text_object_text_create_internal (
+    message_content_text_object_text_t *result = message_content_text_object_text_create_internal (
         value,
         annotations
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_content_text_object_text_free(message_content_text_object_text_t *message_content_text_object_text) {
@@ -97,6 +100,8 @@ message_content_text_object_text_t *message_content_text_object_text_parseFromJS
 
     message_content_text_object_text_t *message_content_text_object_text_local_var = NULL;
 
+    char *value_local_str = NULL;
+
     // define the local list for message_content_text_object_text->annotations
     list_t *annotationsList = NULL;
 
@@ -143,13 +148,23 @@ message_content_text_object_text_t *message_content_text_object_text_parseFromJS
     }
 
 
+    if (value && !cJSON_IsNull(value)) value_local_str = strdup(value->valuestring);
+
     message_content_text_object_text_local_var = message_content_text_object_text_create_internal (
-        strdup(value->valuestring),
+        value_local_str,
         annotationsList
         );
 
+    if (!message_content_text_object_text_local_var) {
+        goto end;
+    }
+
     return message_content_text_object_text_local_var;
 end:
+    if (value_local_str) {
+        free(value_local_str);
+        value_local_str = NULL;
+    }
     if (annotationsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, annotationsList) {

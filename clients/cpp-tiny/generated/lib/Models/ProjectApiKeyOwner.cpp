@@ -108,7 +108,7 @@ ProjectApiKey_owner::getType()
 }
 
 void
-ProjectApiKey_owner::setType(std::string  type)
+ProjectApiKey_owner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -120,7 +120,7 @@ ProjectApiKey_owner::getUser()
 }
 
 void
-ProjectApiKey_owner::setUser(ProjectUser  user)
+ProjectApiKey_owner::setUser(ProjectUser user)
 {
 	this->user = user;
 }
@@ -132,7 +132,7 @@ ProjectApiKey_owner::getServiceAccount()
 }
 
 void
-ProjectApiKey_owner::setServiceAccount(ProjectServiceAccount  service_account)
+ProjectApiKey_owner::setServiceAccount(ProjectServiceAccount service_account)
 {
 	this->service_account = service_account;
 }

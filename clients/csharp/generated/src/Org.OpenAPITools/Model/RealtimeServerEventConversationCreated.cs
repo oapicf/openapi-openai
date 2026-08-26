@@ -150,8 +150,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeServerEventConversationCreated" />
     /// </summary>
-    public class RealtimeServerEventConversationCreatedJsonConverter : JsonConverter<RealtimeServerEventConversationCreated>
+    public partial class RealtimeServerEventConversationCreatedJsonConverter : JsonConverter<RealtimeServerEventConversationCreated>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeServerEventConversationCreatedJsonConverter" /> class.
+        /// </summary>
+        public RealtimeServerEventConversationCreatedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeServerEventConversationCreated" />
         /// </summary>

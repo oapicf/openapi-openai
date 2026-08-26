@@ -47,7 +47,7 @@ class ChatCompletionMessageToolCallChunk
      * @var int|null
      * @SerializedName("index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $index = null;
@@ -58,7 +58,7 @@ class ChatCompletionMessageToolCallChunk
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -68,7 +68,7 @@ class ChatCompletionMessageToolCallChunk
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['function'])]
     #[Assert\Type("string")]
     protected ?string $type = null;
@@ -77,7 +77,7 @@ class ChatCompletionMessageToolCallChunk
      * @var ChatCompletionMessageToolCallChunkFunction|null
      * @SerializedName("function")
      * @Type("OpenAPI\Server\Model\ChatCompletionMessageToolCallChunkFunction")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionMessageToolCallChunkFunction")]
     protected ?ChatCompletionMessageToolCallChunkFunction $function = null;
 
@@ -106,12 +106,12 @@ class ChatCompletionMessageToolCallChunk
     }
 
     /**
-    * Sets index.
-    *
-    * @param int|null $index
-    *
-    * @return $this
-    */
+     * Sets index.
+     *
+     * @param int|null $index
+     *
+     * @return $this
+     */
     public function setIndex(?int $index): self
     {
         $this->index = $index;
@@ -133,12 +133,12 @@ class ChatCompletionMessageToolCallChunk
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The ID of the tool call.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The ID of the tool call.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -160,12 +160,12 @@ class ChatCompletionMessageToolCallChunk
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of the tool. Currently, only `function` is supported.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of the tool. Currently, only `function` is supported.
+     *
+     * @return $this
+     */
     public function setType(?string $type = null): self
     {
         $this->type = $type;
@@ -187,12 +187,12 @@ class ChatCompletionMessageToolCallChunk
     }
 
     /**
-    * Sets function.
-    *
-    * @param ChatCompletionMessageToolCallChunkFunction|null $function
-    *
-    * @return $this
-    */
+     * Sets function.
+     *
+     * @param ChatCompletionMessageToolCallChunkFunction|null $function
+     *
+     * @return $this
+     */
     public function setFunction(?ChatCompletionMessageToolCallChunkFunction $function = null): self
     {
         $this->function = $function;

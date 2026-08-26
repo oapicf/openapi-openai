@@ -22,7 +22,7 @@ message RunStepStreamEventOneOf1 {
     EVENT_THREAD_RUN_STEP_IN_PROGRESS = 0;
   }
 
-  Event event = 96891546;
+  string event = 96891546;
 
   RunStepObject data = 3076010;
 

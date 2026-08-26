@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -12,25 +13,27 @@ import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * CreateImageRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateImageRequest {
 
   private String prompt;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<CreateImageRequestModel> model = JsonNullable.<CreateImageRequestModel>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 1) @Max(value = 10) Integer> n = JsonNullable.<Integer>undefined();
 
   /**
@@ -68,6 +71,7 @@ public class CreateImageRequest {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private QualityEnum quality = QualityEnum.STANDARD;
 
   /**
@@ -105,6 +109,7 @@ public class CreateImageRequest {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<ResponseFormatEnum> responseFormat = JsonNullable.<ResponseFormatEnum>undefined();
 
   /**
@@ -148,6 +153,7 @@ public class CreateImageRequest {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<SizeEnum> size = JsonNullable.<SizeEnum>undefined();
 
   /**
@@ -185,8 +191,10 @@ public class CreateImageRequest {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<StyleEnum> style = JsonNullable.<StyleEnum>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String user;
 
   public CreateImageRequest() {
@@ -216,6 +224,7 @@ public class CreateImageRequest {
     return prompt;
   }
 
+  @JsonProperty("prompt")
   public void setPrompt(String prompt) {
     this.prompt = prompt;
   }
@@ -278,6 +287,7 @@ public class CreateImageRequest {
     return quality;
   }
 
+  @JsonProperty("quality")
   public void setQuality(QualityEnum quality) {
     this.quality = quality;
   }
@@ -358,6 +368,7 @@ public class CreateImageRequest {
     return user;
   }
 
+  @JsonProperty("user")
   public void setUser(@Nullable String user) {
     this.user = user;
   }
@@ -417,11 +428,8 @@ public class CreateImageRequest {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

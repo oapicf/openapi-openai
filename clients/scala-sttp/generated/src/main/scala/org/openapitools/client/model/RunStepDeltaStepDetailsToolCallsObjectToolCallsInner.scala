@@ -11,19 +11,43 @@
  */
 package org.openapitools.client.model
 
+import org.json4s.JValue
 
-case class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner(
+sealed trait RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
+object RunStepDeltaStepDetailsToolCallsObjectToolCallsInner {
+}
+
+case class RunStepDeltaStepDetailsToolCallsCodeObject(
+  /* The index of the tool call in the tool calls array. */
+  index: Int,
+  /* The ID of the tool call. */
+  id: Option[String] = None,
+  /* The type of tool call. This is always going to be `code_interpreter` for this type of tool call. */
+  `type`: RunStepDeltaStepDetailsToolCallsCodeObjectEnums.`Type`,
+  codeInterpreter: Option[RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter] = None
+) extends RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
+
+case class RunStepDeltaStepDetailsToolCallsFileSearchObject(
   /* The index of the tool call in the tool calls array. */
   index: Int,
   /* The ID of the tool call object. */
   id: Option[String] = None,
-  /* The type of tool call. This is always going to be `code_interpreter` for this type of tool call. */
-  `type`: RunStepDeltaStepDetailsToolCallsObjectToolCallsInnerEnums.`Type`,
-  codeInterpreter: Option[RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter] = None,
+  /* The type of tool call. This is always going to be `file_search` for this type of tool call. */
+  `type`: RunStepDeltaStepDetailsToolCallsFileSearchObjectEnums.`Type`,
   /* For now, this is always going to be an empty object. */
-  fileSearch: Any,
+  fileSearch: JValue
+) extends RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
+
+case class RunStepDeltaStepDetailsToolCallsFunctionObject(
+  /* The index of the tool call in the tool calls array. */
+  index: Int,
+  /* The ID of the tool call object. */
+  id: Option[String] = None,
+  /* The type of tool call. This is always going to be `function` for this type of tool call. */
+  `type`: RunStepDeltaStepDetailsToolCallsFunctionObjectEnums.`Type`,
   function: Option[RunStepDeltaStepDetailsToolCallsFunctionObjectFunction] = None
-)
+) extends RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
+
 
 object RunStepDeltaStepDetailsToolCallsObjectToolCallsInnerEnums {
 

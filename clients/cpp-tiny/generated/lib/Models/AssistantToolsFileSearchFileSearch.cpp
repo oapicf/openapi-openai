@@ -86,7 +86,7 @@ AssistantToolsFileSearch_file_search::getMaxNumResults()
 }
 
 void
-AssistantToolsFileSearch_file_search::setMaxNumResults(int  max_num_results)
+AssistantToolsFileSearch_file_search::setMaxNumResults(int max_num_results)
 {
 	this->max_num_results = max_num_results;
 }
@@ -98,7 +98,7 @@ AssistantToolsFileSearch_file_search::getRankingOptions()
 }
 
 void
-AssistantToolsFileSearch_file_search::setRankingOptions(FileSearchRankingOptions  ranking_options)
+AssistantToolsFileSearch_file_search::setRankingOptions(FileSearchRankingOptions ranking_options)
 {
 	this->ranking_options = ranking_options;
 }

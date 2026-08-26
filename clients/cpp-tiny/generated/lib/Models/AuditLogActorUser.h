@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The user id.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The user email.
 	 */
 	std::string getEmail();
 
 	/*! \brief Set The user email.
 	 */
-	void setEmail(std::string  email);
+	void setEmail(std::string email);
 
 
     private:

@@ -23,7 +23,7 @@ openai_api_run_step_delta_step_details_tool_calls_code_object_code_interpreter_o
 }
 
 static run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_t *run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_create_internal(
-    int index,
+    int *index,
     openai_api_run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_TYPE_e type,
     char *logs,
     run_step_delta_step_details_tool_calls_code_output_image_object_image_t *image
@@ -32,27 +32,36 @@ static run_step_delta_step_details_tool_calls_code_object_code_interpreter_outpu
     if (!run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var) {
         return NULL;
     }
+    memset(run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var, 0, sizeof(run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_t));
+    run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var->_library_owned = 1;
     run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var->index = index;
     run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var->type = type;
     run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var->logs = logs;
     run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var->image = image;
-
-    run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var->_library_owned = 1;
     return run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var;
 }
 
 __attribute__((deprecated)) run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_t *run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_create(
-    int index,
+    int *index,
     openai_api_run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_TYPE_e type,
     char *logs,
     run_step_delta_step_details_tool_calls_code_output_image_object_image_t *image
     ) {
-    return run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_create_internal (
-        index,
+    int *index_copy = NULL;
+    if (index) {
+        index_copy = malloc(sizeof(int));
+        if (index_copy) *index_copy = *index;
+    }
+    run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_t *result = run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_create_internal (
+        index_copy,
         type,
         logs,
         image
         );
+    if (!result) {
+        free(index_copy);
+    }
+    return result;
 }
 
 void run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_free(run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_t *run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner) {
@@ -64,6 +73,10 @@ void run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs
         return ;
     }
     listEntry_t *listEntry;
+    if (run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner->index) {
+        free(run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner->index);
+        run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner->index = NULL;
+    }
     if (run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner->logs) {
         free(run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner->logs);
         run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner->logs = NULL;
@@ -82,7 +95,7 @@ cJSON *run_step_delta_step_details_tool_calls_code_object_code_interpreter_outpu
     if (!run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner->index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "index", run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner->index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "index", *run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner->index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -129,6 +142,11 @@ run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inne
 
     run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_t *run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var = NULL;
 
+    // define the local variable for run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner->index
+    int *index_local_var = NULL;
+
+    char *logs_local_str = NULL;
+
     // define the local variable for run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner->image
     run_step_delta_step_details_tool_calls_code_output_image_object_image_t *image_local_nonprim = NULL;
 
@@ -146,6 +164,12 @@ run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inne
     {
     goto end; //Numeric
     }
+    index_local_var = malloc(sizeof(int));
+    if(!index_local_var)
+    {
+        goto end;
+    }
+    *index_local_var = index->valuedouble;
 
     // run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_innerJSON, "type");
@@ -186,15 +210,29 @@ run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inne
     }
 
 
+    if (logs && !cJSON_IsNull(logs)) logs_local_str = strdup(logs->valuestring);
+
     run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var = run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_create_internal (
-        index->valuedouble,
+        index_local_var,
         typeVariable,
-        logs && !cJSON_IsNull(logs) ? strdup(logs->valuestring) : NULL,
+        logs_local_str,
         image ? image_local_nonprim : NULL
         );
 
+    if (!run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var) {
+        goto end;
+    }
+
     return run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var;
 end:
+    if (index_local_var) {
+        free(index_local_var);
+        index_local_var = NULL;
+    }
+    if (logs_local_str) {
+        free(logs_local_str);
+        logs_local_str = NULL;
+    }
     if (image_local_nonprim) {
         run_step_delta_step_details_tool_calls_code_output_image_object_image_free(image_local_nonprim);
         image_local_nonprim = NULL;

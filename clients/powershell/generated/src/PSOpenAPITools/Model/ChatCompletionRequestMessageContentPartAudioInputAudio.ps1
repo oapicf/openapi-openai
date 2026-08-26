@@ -50,8 +50,8 @@ function Initialize-ChatCompletionRequestMessageContentPartAudioInputAudio {
 
 
         $PSO = [PSCustomObject]@{
-            "data" = ${VarData}
-            "format" = ${Format}
+            'data' = ${VarData}
+            'format' = ${Format}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToChatCompletionRequestMessageContentPartAudioInputAudi
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ChatCompletionRequestMessageContentPartAudioInputAudio
-        $AllProperties = ("data", "format")
+        $AllProperties = ('data', 'format')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToChatCompletionRequestMessageContentPartAudioInputAudi
             throw "Error! Empty JSON cannot be serialized due to the required property 'data' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "data"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'data'))) {
             throw "Error! JSON cannot be serialized due to the required property 'data' missing."
         } else {
-            $VarData = $JsonParameters.PSobject.Properties["data"].value
+            $VarData = $JsonParameters.PSobject.Properties['data'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "format"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'format'))) {
             throw "Error! JSON cannot be serialized due to the required property 'format' missing."
         } else {
-            $Format = $JsonParameters.PSobject.Properties["format"].value
+            $Format = $JsonParameters.PSobject.Properties['format'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "data" = ${VarData}
-            "format" = ${Format}
+            'data' = ${VarData}
+            'format' = ${Format}
         }
 
         return $PSO

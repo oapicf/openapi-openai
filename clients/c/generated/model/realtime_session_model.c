@@ -11,15 +11,18 @@ static realtime_session_model_t *realtime_session_model_create_internal(
     if (!realtime_session_model_local_var) {
         return NULL;
     }
-
+    memset(realtime_session_model_local_var, 0, sizeof(realtime_session_model_t));
     realtime_session_model_local_var->_library_owned = 1;
     return realtime_session_model_local_var;
 }
 
 __attribute__((deprecated)) realtime_session_model_t *realtime_session_model_create(
     ) {
-    return realtime_session_model_create_internal (
+    realtime_session_model_t *result = realtime_session_model_create_internal (
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_session_model_free(realtime_session_model_t *realtime_session_model) {
@@ -49,8 +52,13 @@ realtime_session_model_t *realtime_session_model_parseFromJSON(cJSON *realtime_s
     realtime_session_model_t *realtime_session_model_local_var = NULL;
 
 
+
     realtime_session_model_local_var = realtime_session_model_create_internal (
         );
+
+    if (!realtime_session_model_local_var) {
+        goto end;
+    }
 
     return realtime_session_model_local_var;
 end:

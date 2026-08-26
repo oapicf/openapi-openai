@@ -79,8 +79,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateModerationRequestInputOneOfInnerOneOfImageUrl" />
     /// </summary>
-    public class CreateModerationRequestInputOneOfInnerOneOfImageUrlJsonConverter : JsonConverter<CreateModerationRequestInputOneOfInnerOneOfImageUrl>
+    public partial class CreateModerationRequestInputOneOfInnerOneOfImageUrlJsonConverter : JsonConverter<CreateModerationRequestInputOneOfInnerOneOfImageUrl>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateModerationRequestInputOneOfInnerOneOfImageUrlJsonConverter" /> class.
+        /// </summary>
+        public CreateModerationRequestInputOneOfInnerOneOfImageUrlJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateModerationRequestInputOneOfInnerOneOfImageUrl" />
         /// </summary>

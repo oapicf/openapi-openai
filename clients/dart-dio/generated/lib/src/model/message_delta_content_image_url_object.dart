@@ -110,8 +110,9 @@ class _$MessageDeltaContentImageUrlObjectSerializer implements PrimitiveSerializ
         case r'image_url':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MessageDeltaContentImageUrlObjectImageUrl),
-          ) as MessageDeltaContentImageUrlObjectImageUrl;
+            specifiedType: const FullType.nullable(MessageDeltaContentImageUrlObjectImageUrl),
+          ) as MessageDeltaContentImageUrlObjectImageUrl?;
+          if (valueDes == null) continue;
           result.imageUrl.replace(valueDes);
           break;
         default:

@@ -38,7 +38,7 @@ export interface RealtimeServerEventError {
     eventId: string;
     /**
      * The event type, must be `error`.
-     * @type {string}
+     * @type {RealtimeServerEventErrorTypeEnum}
      * @memberof RealtimeServerEventError
      */
     type: RealtimeServerEventErrorTypeEnum;
@@ -64,8 +64,10 @@ export type RealtimeServerEventErrorTypeEnum = typeof RealtimeServerEventErrorTy
  * Check if a given object implements the RealtimeServerEventError interface.
  */
 export function instanceOfRealtimeServerEventError(value: object): value is RealtimeServerEventError {
-    if (!('eventId' in value) || value['eventId'] === undefined) return false;
+    if ((!('eventId' in (value as Record<string, any>)) && !('event_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['eventId'] === undefined && (value as Record<string, any>)['event_id'] === undefined)) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'error') return false;
+    
     if (!('error' in value) || value['error'] === undefined) return false;
     return true;
 }

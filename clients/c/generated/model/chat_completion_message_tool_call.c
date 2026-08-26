@@ -31,11 +31,11 @@ static chat_completion_message_tool_call_t *chat_completion_message_tool_call_cr
     if (!chat_completion_message_tool_call_local_var) {
         return NULL;
     }
+    memset(chat_completion_message_tool_call_local_var, 0, sizeof(chat_completion_message_tool_call_t));
+    chat_completion_message_tool_call_local_var->_library_owned = 1;
     chat_completion_message_tool_call_local_var->id = id;
     chat_completion_message_tool_call_local_var->type = type;
     chat_completion_message_tool_call_local_var->function = function;
-
-    chat_completion_message_tool_call_local_var->_library_owned = 1;
     return chat_completion_message_tool_call_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) chat_completion_message_tool_call_t *chat_completion
     openai_api_chat_completion_message_tool_call_TYPE_e type,
     chat_completion_message_tool_call_function_t *function
     ) {
-    return chat_completion_message_tool_call_create_internal (
+    chat_completion_message_tool_call_t *result = chat_completion_message_tool_call_create_internal (
         id,
         type,
         function
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_message_tool_call_free(chat_completion_message_tool_call_t *chat_completion_message_tool_call) {
@@ -118,6 +121,8 @@ chat_completion_message_tool_call_t *chat_completion_message_tool_call_parseFrom
 
     chat_completion_message_tool_call_t *chat_completion_message_tool_call_local_var = NULL;
 
+    char *id_local_str = NULL;
+
     // define the local variable for chat_completion_message_tool_call->function
     chat_completion_message_tool_call_function_t *function_local_nonprim = NULL;
 
@@ -166,14 +171,24 @@ chat_completion_message_tool_call_t *chat_completion_message_tool_call_parseFrom
     function_local_nonprim = chat_completion_message_tool_call_function_parseFromJSON(function); //nonprimitive
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     chat_completion_message_tool_call_local_var = chat_completion_message_tool_call_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         typeVariable,
         function_local_nonprim
         );
 
+    if (!chat_completion_message_tool_call_local_var) {
+        goto end;
+    }
+
     return chat_completion_message_tool_call_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     if (function_local_nonprim) {
         chat_completion_message_tool_call_function_free(function_local_nonprim);
         function_local_nonprim = NULL;

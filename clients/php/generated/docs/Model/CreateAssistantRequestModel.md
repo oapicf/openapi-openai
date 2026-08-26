@@ -1,4 +1,4 @@
-# # CreateAssistantRequestModel
+# CreateAssistantRequestModel
 
 ## Properties
 

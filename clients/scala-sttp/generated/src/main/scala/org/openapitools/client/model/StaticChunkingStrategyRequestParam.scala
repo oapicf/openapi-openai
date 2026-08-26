@@ -16,7 +16,7 @@ case class StaticChunkingStrategyRequestParam(
   /* Always `static`. */
   `type`: StaticChunkingStrategyRequestParamEnums.`Type`,
   static: StaticChunkingStrategy
-)
+) extends VectorStoreFileObjectChunkingStrategy
 
 object StaticChunkingStrategyRequestParamEnums {
 

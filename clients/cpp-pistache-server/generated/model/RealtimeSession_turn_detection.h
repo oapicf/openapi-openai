@@ -32,7 +32,7 @@ class  RealtimeSession_turn_detection
 {
 public:
     RealtimeSession_turn_detection();
-    virtual ~RealtimeSession_turn_detection() = default;
+    virtual ~RealtimeSession_turn_detection();
 
 
     /// <summary>

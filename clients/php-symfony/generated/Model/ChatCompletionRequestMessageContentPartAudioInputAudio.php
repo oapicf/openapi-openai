@@ -49,7 +49,7 @@ class ChatCompletionRequestMessageContentPartAudioInputAudio
      * @var string|null
      * @SerializedName("data")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $data = null;
@@ -60,7 +60,7 @@ class ChatCompletionRequestMessageContentPartAudioInputAudio
      * @var string|null
      * @SerializedName("format")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['wav', 'mp3'])]
     #[Assert\Type("string")]
@@ -89,12 +89,12 @@ class ChatCompletionRequestMessageContentPartAudioInputAudio
     }
 
     /**
-    * Sets data.
-    *
-    * @param string|null $data  Base64 encoded audio data.
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param string|null $data  Base64 encoded audio data.
+     *
+     * @return $this
+     */
     public function setData(?string $data): self
     {
         $this->data = $data;
@@ -116,12 +116,12 @@ class ChatCompletionRequestMessageContentPartAudioInputAudio
     }
 
     /**
-    * Sets format.
-    *
-    * @param string|null $format  The format of the encoded audio data. Currently supports \"wav\" and \"mp3\".
-    *
-    * @return $this
-    */
+     * Sets format.
+     *
+     * @param string|null $format  The format of the encoded audio data. Currently supports \"wav\" and \"mp3\".
+     *
+     * @return $this
+     */
     public function setFormat(?string $format): self
     {
         $this->format = $format;

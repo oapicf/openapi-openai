@@ -71,10 +71,16 @@ class UserListResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserListResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserListResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "UserListResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "UserListResponse[object]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "UserListResponse[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "UserListResponse[data]" has a null value in JSON.');
+        assert(json.containsKey(r'first_id'), 'Required key "UserListResponse[first_id]" is missing from JSON.');
+        assert(json[r'first_id'] != null, 'Required key "UserListResponse[first_id]" has a null value in JSON.');
+        assert(json.containsKey(r'last_id'), 'Required key "UserListResponse[last_id]" is missing from JSON.');
+        assert(json[r'last_id'] != null, 'Required key "UserListResponse[last_id]" has a null value in JSON.');
+        assert(json.containsKey(r'has_more'), 'Required key "UserListResponse[has_more]" is missing from JSON.');
+        assert(json[r'has_more'] != null, 'Required key "UserListResponse[has_more]" has a null value in JSON.');
         return true;
       }());
 
@@ -140,27 +146,28 @@ class UserListResponse {
 }
 
 
-class UserListResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const UserListResponseObjectEnum._(this.value);
+enum UserListResponseObjectEnum {
+  list._(r'list'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const UserListResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const list = UserListResponseObjectEnum._(r'list');
-
-  /// List of all possible values in this [enum][UserListResponseObjectEnum].
-  static const values = <UserListResponseObjectEnum>[
-    list,
-  ];
-
+  /// Returns the instance of [UserListResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static UserListResponseObjectEnum? fromJson(dynamic value) => UserListResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [UserListResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<UserListResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <UserListResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -182,9 +189,10 @@ class UserListResponseObjectEnumTypeTransformer {
 
   const UserListResponseObjectEnumTypeTransformer._();
 
-  String encode(UserListResponseObjectEnum data) => data.value;
+  String encode(UserListResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a UserListResponseObjectEnum.
+  /// Returns the instance of [UserListResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -193,6 +201,9 @@ class UserListResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   UserListResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is UserListResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'list': return UserListResponseObjectEnum.list;
@@ -205,7 +216,7 @@ class UserListResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [UserListResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static UserListResponseObjectEnumTypeTransformer? _instance;
 }
 

@@ -32,7 +32,7 @@ class  UsageEmbeddingsResult
 {
 public:
     UsageEmbeddingsResult();
-    virtual ~UsageEmbeddingsResult() = default;
+    virtual ~UsageEmbeddingsResult();
 
 
     /// <summary>

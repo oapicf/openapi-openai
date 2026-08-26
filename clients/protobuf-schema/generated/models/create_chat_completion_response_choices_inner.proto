@@ -28,7 +28,7 @@ message CreateChatCompletionResponseChoicesInner {
     FINISH_REASON_FUNCTION_CALL = 4;
   }
 
-  Finish_reason finish_reason = 194820243;
+  string finish_reason = 194820243;
 
   // The index of the choice in the list of choices.
   int32 index = 100346066;

@@ -41,8 +41,8 @@ function Initialize-CreateThreadRequestToolResources {
 
 
         $PSO = [PSCustomObject]@{
-            "code_interpreter" = ${CodeInterpreter}
-            "file_search" = ${FileSearch}
+            'code_interpreter' = ${CodeInterpreter}
+            'file_search' = ${FileSearch}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToCreateThreadRequestToolResources {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateThreadRequestToolResources
-        $AllProperties = ("code_interpreter", "file_search")
+        $AllProperties = ('code_interpreter', 'file_search')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "code_interpreter"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'code_interpreter'))) { #optional property not found
             $CodeInterpreter = $null
         } else {
-            $CodeInterpreter = $JsonParameters.PSobject.Properties["code_interpreter"].value
+            $CodeInterpreter = $JsonParameters.PSobject.Properties['code_interpreter'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_search"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_search'))) { #optional property not found
             $FileSearch = $null
         } else {
-            $FileSearch = $JsonParameters.PSobject.Properties["file_search"].value
+            $FileSearch = $JsonParameters.PSobject.Properties['file_search'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "code_interpreter" = ${CodeInterpreter}
-            "file_search" = ${FileSearch}
+            'code_interpreter' = ${CodeInterpreter}
+            'file_search' = ${FileSearch}
         }
 
         return $PSO

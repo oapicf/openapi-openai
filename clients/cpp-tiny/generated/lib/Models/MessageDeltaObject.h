@@ -52,21 +52,21 @@ public:
 
 	/*! \brief Set The identifier of the message, which can be referenced in API endpoints.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The object type, which is always `thread.message.delta`.
 	 */
 	std::string getObject();
 
 	/*! \brief Set The object type, which is always `thread.message.delta`.
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get 
 	 */
 	MessageDeltaObject_delta getDelta();
 
 	/*! \brief Set 
 	 */
-	void setDelta(MessageDeltaObject_delta  delta);
+	void setDelta(MessageDeltaObject_delta delta);
 
 
     private:

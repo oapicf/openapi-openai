@@ -107,7 +107,7 @@ RunToolCallObject::getId()
 }
 
 void
-RunToolCallObject::setId(std::string  id)
+RunToolCallObject::setId(std::string id)
 {
 	this->id = id;
 }
@@ -119,7 +119,7 @@ RunToolCallObject::getType()
 }
 
 void
-RunToolCallObject::setType(std::string  type)
+RunToolCallObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -131,7 +131,7 @@ RunToolCallObject::getFunction()
 }
 
 void
-RunToolCallObject::setFunction(RunToolCallObject_function  function)
+RunToolCallObject::setFunction(RunToolCallObject_function function)
 {
 	this->function = function;
 }

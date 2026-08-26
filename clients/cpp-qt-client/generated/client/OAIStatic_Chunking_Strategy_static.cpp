@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIStatic_Chunking_Strategy_static::OAIStatic_Chunking_Strategy_static(QString json) {
+OAIStatic_Chunking_Strategy_static::OAIStatic_Chunking_Strategy_static(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIStatic_Chunking_Strategy_static::initializeModel() {
     m_chunk_overlap_tokens_isValid = false;
 }
 
-void OAIStatic_Chunking_Strategy_static::fromJson(QString jsonString) {
+void OAIStatic_Chunking_Strategy_static::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

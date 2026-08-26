@@ -85,7 +85,7 @@ DoneEvent::getEvent()
 }
 
 void
-DoneEvent::setEvent(std::string  event)
+DoneEvent::setEvent(std::string event)
 {
 	this->event = event;
 }
@@ -97,7 +97,7 @@ DoneEvent::getData()
 }
 
 void
-DoneEvent::setData(std::string  data)
+DoneEvent::setData(std::string data)
 {
 	this->data = data;
 }

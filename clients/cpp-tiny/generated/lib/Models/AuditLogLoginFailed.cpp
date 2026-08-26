@@ -85,7 +85,7 @@ AuditLog_login_failed::getErrorCode()
 }
 
 void
-AuditLog_login_failed::setErrorCode(std::string  error_code)
+AuditLog_login_failed::setErrorCode(std::string error_code)
 {
 	this->error_code = error_code;
 }
@@ -97,7 +97,7 @@ AuditLog_login_failed::getErrorMessage()
 }
 
 void
-AuditLog_login_failed::setErrorMessage(std::string  error_message)
+AuditLog_login_failed::setErrorMessage(std::string error_message)
 {
 	this->error_message = error_message;
 }

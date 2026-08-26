@@ -27,7 +27,7 @@ export interface InviteRequestProjectsInner {
     id: string;
     /**
      * Project membership role
-     * @type {string}
+     * @type {InviteRequestProjectsInnerRoleEnum}
      * @memberof InviteRequestProjectsInner
      */
     role: InviteRequestProjectsInnerRoleEnum;

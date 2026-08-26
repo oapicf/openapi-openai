@@ -79,13 +79,13 @@ function Initialize-UsageAudioSpeechesResult {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "characters" = ${Characters}
-            "num_model_requests" = ${NumModelRequests}
-            "project_id" = ${ProjectId}
-            "user_id" = ${UserId}
-            "api_key_id" = ${ApiKeyId}
-            "model" = ${Model}
+            'object' = ${Object}
+            'characters' = ${Characters}
+            'num_model_requests' = ${NumModelRequests}
+            'project_id' = ${ProjectId}
+            'user_id' = ${UserId}
+            'api_key_id' = ${ApiKeyId}
+            'model' = ${Model}
         }
 
 
@@ -123,7 +123,7 @@ function ConvertFrom-JsonToUsageAudioSpeechesResult {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in UsageAudioSpeechesResult
-        $AllProperties = ("object", "characters", "num_model_requests", "project_id", "user_id", "api_key_id", "model")
+        $AllProperties = ('object', 'characters', 'num_model_requests', 'project_id', 'user_id', 'api_key_id', 'model')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -134,56 +134,56 @@ function ConvertFrom-JsonToUsageAudioSpeechesResult {
             throw "Error! Empty JSON cannot be serialized due to the required property 'object' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "characters"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'characters'))) {
             throw "Error! JSON cannot be serialized due to the required property 'characters' missing."
         } else {
-            $Characters = $JsonParameters.PSobject.Properties["characters"].value
+            $Characters = $JsonParameters.PSobject.Properties['characters'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "num_model_requests"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'num_model_requests'))) {
             throw "Error! JSON cannot be serialized due to the required property 'num_model_requests' missing."
         } else {
-            $NumModelRequests = $JsonParameters.PSobject.Properties["num_model_requests"].value
+            $NumModelRequests = $JsonParameters.PSobject.Properties['num_model_requests'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "project_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'project_id'))) { #optional property not found
             $ProjectId = $null
         } else {
-            $ProjectId = $JsonParameters.PSobject.Properties["project_id"].value
+            $ProjectId = $JsonParameters.PSobject.Properties['project_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'user_id'))) { #optional property not found
             $UserId = $null
         } else {
-            $UserId = $JsonParameters.PSobject.Properties["user_id"].value
+            $UserId = $JsonParameters.PSobject.Properties['user_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "api_key_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'api_key_id'))) { #optional property not found
             $ApiKeyId = $null
         } else {
-            $ApiKeyId = $JsonParameters.PSobject.Properties["api_key_id"].value
+            $ApiKeyId = $JsonParameters.PSobject.Properties['api_key_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) { #optional property not found
             $Model = $null
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "characters" = ${Characters}
-            "num_model_requests" = ${NumModelRequests}
-            "project_id" = ${ProjectId}
-            "user_id" = ${UserId}
-            "api_key_id" = ${ApiKeyId}
-            "model" = ${Model}
+            'object' = ${Object}
+            'characters' = ${Characters}
+            'num_model_requests' = ${NumModelRequests}
+            'project_id' = ${ProjectId}
+            'user_id' = ${UserId}
+            'api_key_id' = ${ApiKeyId}
+            'model' = ${Model}
         }
 
         return $PSO

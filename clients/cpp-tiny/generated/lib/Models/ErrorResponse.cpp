@@ -65,7 +65,7 @@ ErrorResponse::getError()
 }
 
 void
-ErrorResponse::setError(Error  error)
+ErrorResponse::setError(Error error)
 {
 	this->error = error;
 }

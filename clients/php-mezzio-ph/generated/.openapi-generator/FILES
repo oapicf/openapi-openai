@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 README.md
 application/config.yml
 application/config/app.yml
@@ -69,7 +68,6 @@ src/App/DTO/AuditLogUserAddedData.php
 src/App/DTO/AuditLogUserDeleted.php
 src/App/DTO/AuditLogUserUpdated.php
 src/App/DTO/AuditLogUserUpdatedChangesRequested.php
-src/App/DTO/AutoChunkingStrategy.php
 src/App/DTO/AutoChunkingStrategyRequestParam.php
 src/App/DTO/Batch.php
 src/App/DTO/BatchErrors.php
@@ -652,7 +650,6 @@ src/App/DTO/RunToolCallObject.php
 src/App/DTO/RunToolCallObjectFunction.php
 src/App/DTO/StaticChunkingStrategy.php
 src/App/DTO/StaticChunkingStrategyRequestParam.php
-src/App/DTO/StaticChunkingStrategyResponseParam.php
 src/App/DTO/StaticChunkingStrategyStatic.php
 src/App/DTO/SubmitToolOutputsRunRequest.php
 src/App/DTO/SubmitToolOutputsRunRequestToolOutputsInner.php

@@ -1,4 +1,4 @@
-# # AuditLogActorServiceAccount
+# AuditLogActorServiceAccount
 
 ## Properties
 

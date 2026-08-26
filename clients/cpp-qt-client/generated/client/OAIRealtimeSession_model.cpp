@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRealtimeSession_model::OAIRealtimeSession_model(QString json) {
+OAIRealtimeSession_model::OAIRealtimeSession_model(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -36,7 +36,7 @@ void OAIRealtimeSession_model::initializeModel() {
 
 }
 
-void OAIRealtimeSession_model::fromJson(QString jsonString) {
+void OAIRealtimeSession_model::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

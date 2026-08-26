@@ -51,7 +51,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * CreateChatCompletionStreamResponseChoicesInner
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateChatCompletionStreamResponseChoicesInner {
   public static final String SERIALIZED_NAME_DELTA = "delta";
   @SerializedName(SERIALIZED_NAME_DELTA)
@@ -259,10 +259,7 @@ public class CreateChatCompletionStreamResponseChoicesInner {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -314,8 +311,10 @@ public class CreateChatCompletionStreamResponseChoicesInner {
       if ((jsonObj.get("finish_reason") != null && !jsonObj.get("finish_reason").isJsonNull()) && !jsonObj.get("finish_reason").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `finish_reason` to be a primitive type in the JSON string but got `%s`", jsonObj.get("finish_reason").toString()));
       }
+      if (jsonObj.get("finish_reason") != null && !jsonObj.get("finish_reason").isJsonNull()) {
       // validate the required field `finish_reason`
       FinishReasonEnum.validateJsonElement(jsonObj.get("finish_reason"));
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

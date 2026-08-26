@@ -16,17 +16,18 @@ import org.openapitools.server.models.CreateFineTuningJobRequestIntegrationsInne
 import kotlinx.serialization.Serializable
 /**
  * 
- * @param type 
+ * @param type The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
  * @param wandb 
  */
 @Serializable
 data class CreateFineTuningJobRequestIntegrationsInner(
+    /* The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported.  */
     val type: CreateFineTuningJobRequestIntegrationsInner.Type,
     val wandb: CreateFineTuningJobRequestIntegrationsInnerWandb
 )
 {
     /**
-    * 
+    * The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
     * Values: wandb
     */
     enum class Type(val value: kotlin.String){

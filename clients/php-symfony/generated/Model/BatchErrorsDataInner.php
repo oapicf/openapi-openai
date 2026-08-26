@@ -49,7 +49,7 @@ class BatchErrorsDataInner
      * @var string|null
      * @SerializedName("code")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $code = null;
 
@@ -59,7 +59,7 @@ class BatchErrorsDataInner
      * @var string|null
      * @SerializedName("message")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $message = null;
 
@@ -69,7 +69,7 @@ class BatchErrorsDataInner
      * @var string|null
      * @SerializedName("param")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $param = null;
 
@@ -79,7 +79,7 @@ class BatchErrorsDataInner
      * @var int|null
      * @SerializedName("line")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $line = null;
 
@@ -108,12 +108,12 @@ class BatchErrorsDataInner
     }
 
     /**
-    * Sets code.
-    *
-    * @param string|null $code  An error code identifying the error type.
-    *
-    * @return $this
-    */
+     * Sets code.
+     *
+     * @param string|null $code  An error code identifying the error type.
+     *
+     * @return $this
+     */
     public function setCode(?string $code = null): self
     {
         $this->code = $code;
@@ -135,12 +135,12 @@ class BatchErrorsDataInner
     }
 
     /**
-    * Sets message.
-    *
-    * @param string|null $message  A human-readable message providing more details about the error.
-    *
-    * @return $this
-    */
+     * Sets message.
+     *
+     * @param string|null $message  A human-readable message providing more details about the error.
+     *
+     * @return $this
+     */
     public function setMessage(?string $message = null): self
     {
         $this->message = $message;
@@ -162,12 +162,12 @@ class BatchErrorsDataInner
     }
 
     /**
-    * Sets param.
-    *
-    * @param string|null $param  The name of the parameter that caused the error, if applicable.
-    *
-    * @return $this
-    */
+     * Sets param.
+     *
+     * @param string|null $param  The name of the parameter that caused the error, if applicable.
+     *
+     * @return $this
+     */
     public function setParam(?string $param = null): self
     {
         $this->param = $param;
@@ -189,12 +189,12 @@ class BatchErrorsDataInner
     }
 
     /**
-    * Sets line.
-    *
-    * @param int|null $line  The line number of the input file where the error occurred, if applicable.
-    *
-    * @return $this
-    */
+     * Sets line.
+     *
+     * @param int|null $line  The line number of the input file where the error occurred, if applicable.
+     *
+     * @return $this
+     */
     public function setLine(?int $line = null): self
     {
         $this->line = $line;

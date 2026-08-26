@@ -19,14 +19,14 @@ typedef struct default_project_error_response_t default_project_error_response_t
 
 
 typedef struct default_project_error_response_t {
-    int code; //numeric
+    int *code; //numeric
     char *message; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } default_project_error_response_t;
 
 __attribute__((deprecated)) default_project_error_response_t *default_project_error_response_create(
-    int code,
+    int *code,
     char *message
 );
 

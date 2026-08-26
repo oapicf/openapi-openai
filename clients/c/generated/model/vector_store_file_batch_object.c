@@ -42,7 +42,7 @@ openai_api_vector_store_file_batch_object_STATUS_e vector_store_file_batch_objec
 static vector_store_file_batch_object_t *vector_store_file_batch_object_create_internal(
     char *id,
     openai_api_vector_store_file_batch_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     char *vector_store_id,
     openai_api_vector_store_file_batch_object_STATUS_e status,
     vector_store_file_batch_object_file_counts_t *file_counts
@@ -51,33 +51,42 @@ static vector_store_file_batch_object_t *vector_store_file_batch_object_create_i
     if (!vector_store_file_batch_object_local_var) {
         return NULL;
     }
+    memset(vector_store_file_batch_object_local_var, 0, sizeof(vector_store_file_batch_object_t));
+    vector_store_file_batch_object_local_var->_library_owned = 1;
     vector_store_file_batch_object_local_var->id = id;
     vector_store_file_batch_object_local_var->object = object;
     vector_store_file_batch_object_local_var->created_at = created_at;
     vector_store_file_batch_object_local_var->vector_store_id = vector_store_id;
     vector_store_file_batch_object_local_var->status = status;
     vector_store_file_batch_object_local_var->file_counts = file_counts;
-
-    vector_store_file_batch_object_local_var->_library_owned = 1;
     return vector_store_file_batch_object_local_var;
 }
 
 __attribute__((deprecated)) vector_store_file_batch_object_t *vector_store_file_batch_object_create(
     char *id,
     openai_api_vector_store_file_batch_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     char *vector_store_id,
     openai_api_vector_store_file_batch_object_STATUS_e status,
     vector_store_file_batch_object_file_counts_t *file_counts
     ) {
-    return vector_store_file_batch_object_create_internal (
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    vector_store_file_batch_object_t *result = vector_store_file_batch_object_create_internal (
         id,
         object,
-        created_at,
+        created_at_copy,
         vector_store_id,
         status,
         file_counts
         );
+    if (!result) {
+        free(created_at_copy);
+    }
+    return result;
 }
 
 void vector_store_file_batch_object_free(vector_store_file_batch_object_t *vector_store_file_batch_object) {
@@ -92,6 +101,10 @@ void vector_store_file_batch_object_free(vector_store_file_batch_object_t *vecto
     if (vector_store_file_batch_object->id) {
         free(vector_store_file_batch_object->id);
         vector_store_file_batch_object->id = NULL;
+    }
+    if (vector_store_file_batch_object->created_at) {
+        free(vector_store_file_batch_object->created_at);
+        vector_store_file_batch_object->created_at = NULL;
     }
     if (vector_store_file_batch_object->vector_store_id) {
         free(vector_store_file_batch_object->vector_store_id);
@@ -130,7 +143,7 @@ cJSON *vector_store_file_batch_object_convertToJSON(vector_store_file_batch_obje
     if (!vector_store_file_batch_object->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", vector_store_file_batch_object->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *vector_store_file_batch_object->created_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -178,6 +191,13 @@ fail:
 vector_store_file_batch_object_t *vector_store_file_batch_object_parseFromJSON(cJSON *vector_store_file_batch_objectJSON){
 
     vector_store_file_batch_object_t *vector_store_file_batch_object_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    // define the local variable for vector_store_file_batch_object->created_at
+    int *created_at_local_var = NULL;
+
+    char *vector_store_id_local_str = NULL;
 
     // define the local variable for vector_store_file_batch_object->file_counts
     vector_store_file_batch_object_file_counts_t *file_counts_local_nonprim = NULL;
@@ -228,6 +248,12 @@ vector_store_file_batch_object_t *vector_store_file_batch_object_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
     // vector_store_file_batch_object->vector_store_id
     cJSON *vector_store_id = cJSON_GetObjectItemCaseSensitive(vector_store_file_batch_objectJSON, "vector_store_id");
@@ -274,17 +300,36 @@ vector_store_file_batch_object_t *vector_store_file_batch_object_parseFromJSON(c
     file_counts_local_nonprim = vector_store_file_batch_object_file_counts_parseFromJSON(file_counts); //nonprimitive
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (vector_store_id && !cJSON_IsNull(vector_store_id)) vector_store_id_local_str = strdup(vector_store_id->valuestring);
+
     vector_store_file_batch_object_local_var = vector_store_file_batch_object_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         objectVariable,
-        created_at->valuedouble,
-        strdup(vector_store_id->valuestring),
+        created_at_local_var,
+        vector_store_id_local_str,
         statusVariable,
         file_counts_local_nonprim
         );
 
+    if (!vector_store_file_batch_object_local_var) {
+        goto end;
+    }
+
     return vector_store_file_batch_object_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
+    if (vector_store_id_local_str) {
+        free(vector_store_id_local_str);
+        vector_store_id_local_str = NULL;
+    }
     if (file_counts_local_nonprim) {
         vector_store_file_batch_object_file_counts_free(file_counts_local_nonprim);
         file_counts_local_nonprim = NULL;

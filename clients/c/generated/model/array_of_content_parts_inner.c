@@ -32,12 +32,12 @@ static array_of_content_parts_inner_t *array_of_content_parts_inner_create_inter
     if (!array_of_content_parts_inner_local_var) {
         return NULL;
     }
+    memset(array_of_content_parts_inner_local_var, 0, sizeof(array_of_content_parts_inner_t));
+    array_of_content_parts_inner_local_var->_library_owned = 1;
     array_of_content_parts_inner_local_var->type = type;
     array_of_content_parts_inner_local_var->image_file = image_file;
     array_of_content_parts_inner_local_var->image_url = image_url;
     array_of_content_parts_inner_local_var->text = text;
-
-    array_of_content_parts_inner_local_var->_library_owned = 1;
     return array_of_content_parts_inner_local_var;
 }
 
@@ -47,12 +47,15 @@ __attribute__((deprecated)) array_of_content_parts_inner_t *array_of_content_par
     message_content_image_url_object_image_url_t *image_url,
     char *text
     ) {
-    return array_of_content_parts_inner_create_internal (
+    array_of_content_parts_inner_t *result = array_of_content_parts_inner_create_internal (
         type,
         image_file,
         image_url,
         text
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void array_of_content_parts_inner_free(array_of_content_parts_inner_t *array_of_content_parts_inner) {
@@ -146,6 +149,8 @@ array_of_content_parts_inner_t *array_of_content_parts_inner_parseFromJSON(cJSON
     // define the local variable for array_of_content_parts_inner->image_url
     message_content_image_url_object_image_url_t *image_url_local_nonprim = NULL;
 
+    char *text_local_str = NULL;
+
     // array_of_content_parts_inner->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(array_of_content_parts_innerJSON, "type");
     if (cJSON_IsNull(type)) {
@@ -203,12 +208,18 @@ array_of_content_parts_inner_t *array_of_content_parts_inner_parseFromJSON(cJSON
     }
 
 
+    if (text && !cJSON_IsNull(text)) text_local_str = strdup(text->valuestring);
+
     array_of_content_parts_inner_local_var = array_of_content_parts_inner_create_internal (
         typeVariable,
         image_file_local_nonprim,
         image_url_local_nonprim,
-        strdup(text->valuestring)
+        text_local_str
         );
+
+    if (!array_of_content_parts_inner_local_var) {
+        goto end;
+    }
 
     return array_of_content_parts_inner_local_var;
 end:
@@ -219,6 +230,10 @@ end:
     if (image_url_local_nonprim) {
         message_content_image_url_object_image_url_free(image_url_local_nonprim);
         image_url_local_nonprim = NULL;
+    }
+    if (text_local_str) {
+        free(text_local_str);
+        text_local_str = NULL;
     }
     return NULL;
 

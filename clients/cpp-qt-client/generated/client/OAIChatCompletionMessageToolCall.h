@@ -33,13 +33,13 @@ class OAIChatCompletionMessageToolCall_function;
 class OAIChatCompletionMessageToolCall : public OAIObject {
 public:
     OAIChatCompletionMessageToolCall();
-    OAIChatCompletionMessageToolCall(QString json);
+    OAIChatCompletionMessageToolCall(const QString &json);
     ~OAIChatCompletionMessageToolCall() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

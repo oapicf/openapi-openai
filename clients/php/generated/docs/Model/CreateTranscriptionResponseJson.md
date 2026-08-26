@@ -1,4 +1,4 @@
-# # CreateTranscriptionResponseJson
+# CreateTranscriptionResponseJson
 
 ## Properties
 

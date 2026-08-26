@@ -52,7 +52,7 @@ public:
 
 	/*! \brief Set A list of [file](/docs/api-reference/files) IDs made available to the `code_interpreter`` tool. There can be a maximum of 20 files associated with the tool. 
 	 */
-	void setFileIds(std::list <std::string> file_ids);
+	void setFileIds(std::list<std::string> file_ids);
 
 
     private:

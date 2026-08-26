@@ -42,7 +42,7 @@ typedef struct audit_log_t audit_log_t;
 typedef struct audit_log_t {
     char *id; // string
     openai_api_audit_log_event_type__e type; //referenced enum
-    int effective_at; //numeric
+    int *effective_at; //numeric
     struct audit_log_project_t *project; //model
     struct audit_log_actor_t *actor; //model
     struct audit_log_api_key_created_t *api_key_created; //model
@@ -72,7 +72,7 @@ typedef struct audit_log_t {
 __attribute__((deprecated)) audit_log_t *audit_log_create(
     char *id,
     openai_api_audit_log_event_type__e type,
-    int effective_at,
+    int *effective_at,
     audit_log_project_t *project,
     audit_log_actor_t *actor,
     audit_log_api_key_created_t *api_key_created,

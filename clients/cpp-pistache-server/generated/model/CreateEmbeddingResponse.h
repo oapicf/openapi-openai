@@ -35,7 +35,7 @@ class  CreateEmbeddingResponse
 {
 public:
     CreateEmbeddingResponse();
-    virtual ~CreateEmbeddingResponse() = default;
+    virtual ~CreateEmbeddingResponse();
 
 
     /// <summary>

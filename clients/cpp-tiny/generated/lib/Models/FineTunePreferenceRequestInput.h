@@ -54,21 +54,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setInput(FineTunePreferenceRequestInput_input  input);
+	void setInput(FineTunePreferenceRequestInput_input input);
 	/*! \brief Get The preferred completion message for the output.
 	 */
 	std::list<FineTunePreferenceRequestInput_preferred_completion_inner> getPreferredCompletion();
 
 	/*! \brief Set The preferred completion message for the output.
 	 */
-	void setPreferredCompletion(std::list <FineTunePreferenceRequestInput_preferred_completion_inner> preferred_completion);
+	void setPreferredCompletion(std::list<FineTunePreferenceRequestInput_preferred_completion_inner> preferred_completion);
 	/*! \brief Get The non-preferred completion message for the output.
 	 */
 	std::list<FineTunePreferenceRequestInput_preferred_completion_inner> getNonPreferredCompletion();
 
 	/*! \brief Set The non-preferred completion message for the output.
 	 */
-	void setNonPreferredCompletion(std::list <FineTunePreferenceRequestInput_preferred_completion_inner> non_preferred_completion);
+	void setNonPreferredCompletion(std::list<FineTunePreferenceRequestInput_preferred_completion_inner> non_preferred_completion);
 
 
     private:

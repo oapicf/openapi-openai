@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set A [File](/docs/api-reference/files) ID that the vector store should use. Useful for tools like `file_search` that can access files.
 	 */
-	void setFileId(std::string  file_id);
+	void setFileId(std::string file_id);
 	/*! \brief Get 
 	 */
 	ChunkingStrategyRequestParam getChunkingStrategy();
 
 	/*! \brief Set 
 	 */
-	void setChunkingStrategy(ChunkingStrategyRequestParam  chunking_strategy);
+	void setChunkingStrategy(ChunkingStrategyRequestParam chunking_strategy);
 
 
     private:

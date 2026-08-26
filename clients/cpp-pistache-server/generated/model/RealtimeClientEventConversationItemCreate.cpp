@@ -29,6 +29,8 @@ RealtimeClientEventConversationItemCreate::RealtimeClientEventConversationItemCr
     
 }
 
+RealtimeClientEventConversationItemCreate::~RealtimeClientEventConversationItemCreate() = default;
+
 void RealtimeClientEventConversationItemCreate::validate() const
 {
     std::stringstream msg;

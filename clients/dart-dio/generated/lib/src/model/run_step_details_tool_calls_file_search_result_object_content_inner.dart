@@ -88,15 +88,17 @@ class _$RunStepDetailsToolCallsFileSearchResultObjectContentInnerSerializer impl
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum),
-          ) as RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum;
+            specifiedType: const FullType.nullable(RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum),
+          ) as RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'text':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.text = valueDes;
           break;
         default:

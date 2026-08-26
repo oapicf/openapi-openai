@@ -1,4 +1,4 @@
-import connexion
+import flask
 from typing import Dict
 from typing import Tuple
 from typing import Union
@@ -19,6 +19,6 @@ def create_moderation(body):  # noqa: E501
     :rtype: Union[CreateModerationResponse, Tuple[CreateModerationResponse, int], Tuple[CreateModerationResponse, int, Dict[str, str]]
     """
     create_moderation_request = body
-    if connexion.request.is_json:
-        create_moderation_request = CreateModerationRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        create_moderation_request = CreateModerationRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'

@@ -49,7 +49,7 @@ class ChatCompletionMessageToolCall
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -60,7 +60,7 @@ class ChatCompletionMessageToolCall
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['function'])]
     #[Assert\Type("string")]
@@ -70,7 +70,7 @@ class ChatCompletionMessageToolCall
      * @var ChatCompletionMessageToolCallFunction|null
      * @SerializedName("function")
      * @Type("OpenAPI\Server\Model\ChatCompletionMessageToolCallFunction")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionMessageToolCallFunction")]
@@ -100,12 +100,12 @@ class ChatCompletionMessageToolCall
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The ID of the tool call.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The ID of the tool call.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -127,12 +127,12 @@ class ChatCompletionMessageToolCall
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of the tool. Currently, only `function` is supported.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of the tool. Currently, only `function` is supported.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -154,12 +154,12 @@ class ChatCompletionMessageToolCall
     }
 
     /**
-    * Sets function.
-    *
-    * @param ChatCompletionMessageToolCallFunction|null $function
-    *
-    * @return $this
-    */
+     * Sets function.
+     *
+     * @param ChatCompletionMessageToolCallFunction|null $function
+     *
+     * @return $this
+     */
     public function setFunction(?ChatCompletionMessageToolCallFunction $function): self
     {
         $this->function = $function;

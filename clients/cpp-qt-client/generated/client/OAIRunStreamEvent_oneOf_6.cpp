@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRunStreamEvent_oneOf_6::OAIRunStreamEvent_oneOf_6(QString json) {
+OAIRunStreamEvent_oneOf_6::OAIRunStreamEvent_oneOf_6(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIRunStreamEvent_oneOf_6::initializeModel() {
     m_data_isValid = false;
 }
 
-void OAIRunStreamEvent_oneOf_6::fromJson(QString jsonString) {
+void OAIRunStreamEvent_oneOf_6::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

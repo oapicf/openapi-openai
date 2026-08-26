@@ -64,7 +64,7 @@ CreateMessageRequest_attachments_inner_tools_inner::getType()
 }
 
 void
-CreateMessageRequest_attachments_inner_tools_inner::setType(std::string  type)
+CreateMessageRequest_attachments_inner_tools_inner::setType(std::string type)
 {
 	this->type = type;
 }

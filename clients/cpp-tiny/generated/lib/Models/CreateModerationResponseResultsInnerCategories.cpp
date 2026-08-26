@@ -316,7 +316,7 @@ CreateModerationResponse_results_inner_categories::isHate()
 }
 
 void
-CreateModerationResponse_results_inner_categories::setHate(bool  hate)
+CreateModerationResponse_results_inner_categories::setHate(bool hate)
 {
 	this->hate = hate;
 }
@@ -328,7 +328,7 @@ CreateModerationResponse_results_inner_categories::isHatethreatening()
 }
 
 void
-CreateModerationResponse_results_inner_categories::setHatethreatening(bool  hatethreatening)
+CreateModerationResponse_results_inner_categories::setHatethreatening(bool hatethreatening)
 {
 	this->hatethreatening = hatethreatening;
 }
@@ -340,7 +340,7 @@ CreateModerationResponse_results_inner_categories::isHarassment()
 }
 
 void
-CreateModerationResponse_results_inner_categories::setHarassment(bool  harassment)
+CreateModerationResponse_results_inner_categories::setHarassment(bool harassment)
 {
 	this->harassment = harassment;
 }
@@ -352,7 +352,7 @@ CreateModerationResponse_results_inner_categories::isHarassmentthreatening()
 }
 
 void
-CreateModerationResponse_results_inner_categories::setHarassmentthreatening(bool  harassmentthreatening)
+CreateModerationResponse_results_inner_categories::setHarassmentthreatening(bool harassmentthreatening)
 {
 	this->harassmentthreatening = harassmentthreatening;
 }
@@ -364,7 +364,7 @@ CreateModerationResponse_results_inner_categories::isIllicit()
 }
 
 void
-CreateModerationResponse_results_inner_categories::setIllicit(bool  illicit)
+CreateModerationResponse_results_inner_categories::setIllicit(bool illicit)
 {
 	this->illicit = illicit;
 }
@@ -376,7 +376,7 @@ CreateModerationResponse_results_inner_categories::isIllicitviolent()
 }
 
 void
-CreateModerationResponse_results_inner_categories::setIllicitviolent(bool  illicitviolent)
+CreateModerationResponse_results_inner_categories::setIllicitviolent(bool illicitviolent)
 {
 	this->illicitviolent = illicitviolent;
 }
@@ -388,7 +388,7 @@ CreateModerationResponse_results_inner_categories::isSelfharm()
 }
 
 void
-CreateModerationResponse_results_inner_categories::setSelfharm(bool  selfharm)
+CreateModerationResponse_results_inner_categories::setSelfharm(bool selfharm)
 {
 	this->selfharm = selfharm;
 }
@@ -400,7 +400,7 @@ CreateModerationResponse_results_inner_categories::isSelfharmintent()
 }
 
 void
-CreateModerationResponse_results_inner_categories::setSelfharmintent(bool  selfharmintent)
+CreateModerationResponse_results_inner_categories::setSelfharmintent(bool selfharmintent)
 {
 	this->selfharmintent = selfharmintent;
 }
@@ -412,7 +412,7 @@ CreateModerationResponse_results_inner_categories::isSelfharminstructions()
 }
 
 void
-CreateModerationResponse_results_inner_categories::setSelfharminstructions(bool  selfharminstructions)
+CreateModerationResponse_results_inner_categories::setSelfharminstructions(bool selfharminstructions)
 {
 	this->selfharminstructions = selfharminstructions;
 }
@@ -424,7 +424,7 @@ CreateModerationResponse_results_inner_categories::isSexual()
 }
 
 void
-CreateModerationResponse_results_inner_categories::setSexual(bool  sexual)
+CreateModerationResponse_results_inner_categories::setSexual(bool sexual)
 {
 	this->sexual = sexual;
 }
@@ -436,7 +436,7 @@ CreateModerationResponse_results_inner_categories::isSexualminors()
 }
 
 void
-CreateModerationResponse_results_inner_categories::setSexualminors(bool  sexualminors)
+CreateModerationResponse_results_inner_categories::setSexualminors(bool sexualminors)
 {
 	this->sexualminors = sexualminors;
 }
@@ -448,7 +448,7 @@ CreateModerationResponse_results_inner_categories::isViolence()
 }
 
 void
-CreateModerationResponse_results_inner_categories::setViolence(bool  violence)
+CreateModerationResponse_results_inner_categories::setViolence(bool violence)
 {
 	this->violence = violence;
 }
@@ -460,7 +460,7 @@ CreateModerationResponse_results_inner_categories::isViolencegraphic()
 }
 
 void
-CreateModerationResponse_results_inner_categories::setViolencegraphic(bool  violencegraphic)
+CreateModerationResponse_results_inner_categories::setViolencegraphic(bool violencegraphic)
 {
 	this->violencegraphic = violencegraphic;
 }

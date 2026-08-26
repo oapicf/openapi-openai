@@ -82,7 +82,7 @@ AssistantObject_tool_resources_file_search::getVectorStoreIds()
 }
 
 void
-AssistantObject_tool_resources_file_search::setVectorStoreIds(std::list <std::string> vector_store_ids)
+AssistantObject_tool_resources_file_search::setVectorStoreIds(std::list<std::string> vector_store_ids)
 {
 	this->vector_store_ids = vector_store_ids;
 }

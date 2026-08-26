@@ -59,12 +59,12 @@ openai_api_message_object_ROLE_e message_object_role_FromString(char* role){
 static message_object_t *message_object_create_internal(
     char *id,
     openai_api_message_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     char *thread_id,
     openai_api_message_object_STATUS_e status,
     message_object_incomplete_details_t *incomplete_details,
-    int completed_at,
-    int incomplete_at,
+    int *completed_at,
+    int *incomplete_at,
     openai_api_message_object_ROLE_e role,
     list_t *content,
     char *assistant_id,
@@ -76,6 +76,8 @@ static message_object_t *message_object_create_internal(
     if (!message_object_local_var) {
         return NULL;
     }
+    memset(message_object_local_var, 0, sizeof(message_object_t));
+    message_object_local_var->_library_owned = 1;
     message_object_local_var->id = id;
     message_object_local_var->object = object;
     message_object_local_var->created_at = created_at;
@@ -90,20 +92,18 @@ static message_object_t *message_object_create_internal(
     message_object_local_var->run_id = run_id;
     message_object_local_var->attachments = attachments;
     message_object_local_var->metadata = metadata;
-
-    message_object_local_var->_library_owned = 1;
     return message_object_local_var;
 }
 
 __attribute__((deprecated)) message_object_t *message_object_create(
     char *id,
     openai_api_message_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     char *thread_id,
     openai_api_message_object_STATUS_e status,
     message_object_incomplete_details_t *incomplete_details,
-    int completed_at,
-    int incomplete_at,
+    int *completed_at,
+    int *incomplete_at,
     openai_api_message_object_ROLE_e role,
     list_t *content,
     char *assistant_id,
@@ -111,15 +111,30 @@ __attribute__((deprecated)) message_object_t *message_object_create(
     list_t *attachments,
     object_t *metadata
     ) {
-    return message_object_create_internal (
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    int *completed_at_copy = NULL;
+    if (completed_at) {
+        completed_at_copy = malloc(sizeof(int));
+        if (completed_at_copy) *completed_at_copy = *completed_at;
+    }
+    int *incomplete_at_copy = NULL;
+    if (incomplete_at) {
+        incomplete_at_copy = malloc(sizeof(int));
+        if (incomplete_at_copy) *incomplete_at_copy = *incomplete_at;
+    }
+    message_object_t *result = message_object_create_internal (
         id,
         object,
-        created_at,
+        created_at_copy,
         thread_id,
         status,
         incomplete_details,
-        completed_at,
-        incomplete_at,
+        completed_at_copy,
+        incomplete_at_copy,
         role,
         content,
         assistant_id,
@@ -127,6 +142,12 @@ __attribute__((deprecated)) message_object_t *message_object_create(
         attachments,
         metadata
         );
+    if (!result) {
+        free(created_at_copy);
+        free(completed_at_copy);
+        free(incomplete_at_copy);
+    }
+    return result;
 }
 
 void message_object_free(message_object_t *message_object) {
@@ -142,6 +163,10 @@ void message_object_free(message_object_t *message_object) {
         free(message_object->id);
         message_object->id = NULL;
     }
+    if (message_object->created_at) {
+        free(message_object->created_at);
+        message_object->created_at = NULL;
+    }
     if (message_object->thread_id) {
         free(message_object->thread_id);
         message_object->thread_id = NULL;
@@ -149,6 +174,14 @@ void message_object_free(message_object_t *message_object) {
     if (message_object->incomplete_details) {
         message_object_incomplete_details_free(message_object->incomplete_details);
         message_object->incomplete_details = NULL;
+    }
+    if (message_object->completed_at) {
+        free(message_object->completed_at);
+        message_object->completed_at = NULL;
+    }
+    if (message_object->incomplete_at) {
+        free(message_object->incomplete_at);
+        message_object->incomplete_at = NULL;
     }
     if (message_object->content) {
         list_ForEach(listEntry, message_object->content) {
@@ -205,7 +238,7 @@ cJSON *message_object_convertToJSON(message_object_t *message_object) {
     if (!message_object->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", message_object->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *message_object->created_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -247,7 +280,7 @@ cJSON *message_object_convertToJSON(message_object_t *message_object) {
     if (!message_object->completed_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "completed_at", message_object->completed_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "completed_at", *message_object->completed_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -256,7 +289,7 @@ cJSON *message_object_convertToJSON(message_object_t *message_object) {
     if (!message_object->incomplete_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "incomplete_at", message_object->incomplete_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "incomplete_at", *message_object->incomplete_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -356,11 +389,28 @@ message_object_t *message_object_parseFromJSON(cJSON *message_objectJSON){
 
     message_object_t *message_object_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    // define the local variable for message_object->created_at
+    int *created_at_local_var = NULL;
+
+    char *thread_id_local_str = NULL;
+
     // define the local variable for message_object->incomplete_details
     message_object_incomplete_details_t *incomplete_details_local_nonprim = NULL;
 
+    // define the local variable for message_object->completed_at
+    int *completed_at_local_var = NULL;
+
+    // define the local variable for message_object->incomplete_at
+    int *incomplete_at_local_var = NULL;
+
     // define the local list for message_object->content
     list_t *contentList = NULL;
+
+    char *assistant_id_local_str = NULL;
+
+    char *run_id_local_str = NULL;
 
     // define the local list for message_object->attachments
     list_t *attachmentsList = NULL;
@@ -411,6 +461,12 @@ message_object_t *message_object_parseFromJSON(cJSON *message_objectJSON){
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
     // message_object->thread_id
     cJSON *thread_id = cJSON_GetObjectItemCaseSensitive(message_objectJSON, "thread_id");
@@ -470,6 +526,12 @@ message_object_t *message_object_parseFromJSON(cJSON *message_objectJSON){
     {
     goto end; //Numeric
     }
+    completed_at_local_var = malloc(sizeof(int));
+    if(!completed_at_local_var)
+    {
+        goto end;
+    }
+    *completed_at_local_var = completed_at->valuedouble;
 
     // message_object->incomplete_at
     cJSON *incomplete_at = cJSON_GetObjectItemCaseSensitive(message_objectJSON, "incomplete_at");
@@ -485,6 +547,12 @@ message_object_t *message_object_parseFromJSON(cJSON *message_objectJSON){
     {
     goto end; //Numeric
     }
+    incomplete_at_local_var = malloc(sizeof(int));
+    if(!incomplete_at_local_var)
+    {
+        goto end;
+    }
+    *incomplete_at_local_var = incomplete_at->valuedouble;
 
     // message_object->role
     cJSON *role = cJSON_GetObjectItemCaseSensitive(message_objectJSON, "role");
@@ -601,28 +669,57 @@ message_object_t *message_object_parseFromJSON(cJSON *message_objectJSON){
     metadata_local_object = object_parseFromJSON(metadata); //object
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (thread_id && !cJSON_IsNull(thread_id)) thread_id_local_str = strdup(thread_id->valuestring);
+    if (assistant_id && !cJSON_IsNull(assistant_id)) assistant_id_local_str = strdup(assistant_id->valuestring);
+    if (run_id && !cJSON_IsNull(run_id)) run_id_local_str = strdup(run_id->valuestring);
+
     message_object_local_var = message_object_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         objectVariable,
-        created_at->valuedouble,
-        strdup(thread_id->valuestring),
+        created_at_local_var,
+        thread_id_local_str,
         statusVariable,
         incomplete_details_local_nonprim,
-        completed_at->valuedouble,
-        incomplete_at->valuedouble,
+        completed_at_local_var,
+        incomplete_at_local_var,
         roleVariable,
         contentList,
-        strdup(assistant_id->valuestring),
-        strdup(run_id->valuestring),
+        assistant_id_local_str,
+        run_id_local_str,
         attachmentsList,
         metadata_local_object
         );
 
+    if (!message_object_local_var) {
+        goto end;
+    }
+
     return message_object_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
+    if (thread_id_local_str) {
+        free(thread_id_local_str);
+        thread_id_local_str = NULL;
+    }
     if (incomplete_details_local_nonprim) {
         message_object_incomplete_details_free(incomplete_details_local_nonprim);
         incomplete_details_local_nonprim = NULL;
+    }
+    if (completed_at_local_var) {
+        free(completed_at_local_var);
+        completed_at_local_var = NULL;
+    }
+    if (incomplete_at_local_var) {
+        free(incomplete_at_local_var);
+        incomplete_at_local_var = NULL;
     }
     if (contentList) {
         listEntry_t *listEntry = NULL;
@@ -632,6 +729,14 @@ end:
         }
         list_freeList(contentList);
         contentList = NULL;
+    }
+    if (assistant_id_local_str) {
+        free(assistant_id_local_str);
+        assistant_id_local_str = NULL;
+    }
+    if (run_id_local_str) {
+        free(run_id_local_str);
+        run_id_local_str = NULL;
     }
     if (attachmentsList) {
         listEntry_t *listEntry = NULL;

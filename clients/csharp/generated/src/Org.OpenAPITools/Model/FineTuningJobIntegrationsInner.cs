@@ -74,8 +74,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTuningJobIntegrationsInner" />
     /// </summary>
-    public class FineTuningJobIntegrationsInnerJsonConverter : JsonConverter<FineTuningJobIntegrationsInner>
+    public partial class FineTuningJobIntegrationsInnerJsonConverter : JsonConverter<FineTuningJobIntegrationsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTuningJobIntegrationsInnerJsonConverter" /> class.
+        /// </summary>
+        public FineTuningJobIntegrationsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTuningJobIntegrationsInner" />
         /// </summary>

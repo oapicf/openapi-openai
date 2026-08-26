@@ -51,35 +51,35 @@ public:
 
 	/*! \brief Set The number of files that are currently being processed.
 	 */
-	void setInProgress(int  in_progress);
+	void setInProgress(int in_progress);
 	/*! \brief Get The number of files that have been processed.
 	 */
 	int getCompleted();
 
 	/*! \brief Set The number of files that have been processed.
 	 */
-	void setCompleted(int  completed);
+	void setCompleted(int completed);
 	/*! \brief Get The number of files that have failed to process.
 	 */
 	int getFailed();
 
 	/*! \brief Set The number of files that have failed to process.
 	 */
-	void setFailed(int  failed);
+	void setFailed(int failed);
 	/*! \brief Get The number of files that where cancelled.
 	 */
 	int getCancelled();
 
 	/*! \brief Set The number of files that where cancelled.
 	 */
-	void setCancelled(int  cancelled);
+	void setCancelled(int cancelled);
 	/*! \brief Get The total number of files.
 	 */
 	int getTotal();
 
 	/*! \brief Set The total number of files.
 	 */
-	void setTotal(int  total);
+	void setTotal(int total);
 
 
     private:

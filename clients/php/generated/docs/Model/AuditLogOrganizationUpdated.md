@@ -1,4 +1,4 @@
-# # AuditLogOrganizationUpdated
+# AuditLogOrganizationUpdated
 
 ## Properties
 

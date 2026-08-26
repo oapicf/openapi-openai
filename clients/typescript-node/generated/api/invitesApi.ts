@@ -102,7 +102,7 @@ export class InvitesApi {
      */
     public async deleteInvite (inviteId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InviteDeleteResponse;  }> {
         const localVarPath = this.basePath + '/organization/invites/{invite_id}'
-            .replace('{' + 'invite_id' + '}', encodeURIComponent(String(inviteId)));
+            .replace('{invite_id}', encodeURIComponent(String(inviteId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -321,7 +321,7 @@ export class InvitesApi {
      */
     public async retrieveInvite (inviteId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Invite;  }> {
         const localVarPath = this.basePath + '/organization/invites/{invite_id}'
-            .replace('{' + 'invite_id' + '}', encodeURIComponent(String(inviteId)));
+            .replace('{invite_id}', encodeURIComponent(String(inviteId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];

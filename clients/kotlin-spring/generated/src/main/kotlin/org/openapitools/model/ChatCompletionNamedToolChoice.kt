@@ -23,13 +23,15 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ChatCompletionNamedToolChoice(
 
-    @Schema(example = "null", required = true, description = "The type of the tool. Currently, only `function` is supported.")
+    @Schema(required = true, description = "The type of the tool. Currently, only `function` is supported.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: ChatCompletionNamedToolChoice.Type,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("function")
     @get:JsonProperty("function", required = true) val function: AssistantsNamedToolChoiceFunction
-) {
+) : ChatCompletionToolChoiceOption {
 
     /**
     * The type of the tool. Currently, only `function` is supported.
@@ -44,7 +46,7 @@ data class ChatCompletionNamedToolChoice(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ChatCompletionNamedToolChoice'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

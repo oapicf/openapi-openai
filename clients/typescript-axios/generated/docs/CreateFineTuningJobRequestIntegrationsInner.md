@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **string** |  | [default to undefined]
+**type** | **string** | The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported.  | [default to undefined]
 **wandb** | [**CreateFineTuningJobRequestIntegrationsInnerWandb**](CreateFineTuningJobRequestIntegrationsInnerWandb.md) |  | [default to undefined]
 
 ## Example

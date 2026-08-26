@@ -51,7 +51,7 @@ class RealtimeServerEventResponseFunctionCallArgumentsDelta
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $eventId = null;
@@ -62,7 +62,7 @@ class RealtimeServerEventResponseFunctionCallArgumentsDelta
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['response.function_call_arguments.delta'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class RealtimeServerEventResponseFunctionCallArgumentsDelta
      * @var string|null
      * @SerializedName("response_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $responseId = null;
@@ -85,7 +85,7 @@ class RealtimeServerEventResponseFunctionCallArgumentsDelta
      * @var string|null
      * @SerializedName("item_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $itemId = null;
@@ -96,7 +96,7 @@ class RealtimeServerEventResponseFunctionCallArgumentsDelta
      * @var int|null
      * @SerializedName("output_index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $outputIndex = null;
@@ -107,7 +107,7 @@ class RealtimeServerEventResponseFunctionCallArgumentsDelta
      * @var string|null
      * @SerializedName("call_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $callId = null;
@@ -118,7 +118,7 @@ class RealtimeServerEventResponseFunctionCallArgumentsDelta
      * @var string|null
      * @SerializedName("delta")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $delta = null;
@@ -151,12 +151,12 @@ class RealtimeServerEventResponseFunctionCallArgumentsDelta
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  The unique ID of the server event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  The unique ID of the server event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId): self
     {
         $this->eventId = $eventId;
@@ -178,12 +178,12 @@ class RealtimeServerEventResponseFunctionCallArgumentsDelta
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `response.function_call_arguments.delta`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `response.function_call_arguments.delta`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -205,12 +205,12 @@ class RealtimeServerEventResponseFunctionCallArgumentsDelta
     }
 
     /**
-    * Sets responseId.
-    *
-    * @param string|null $responseId  The ID of the response.
-    *
-    * @return $this
-    */
+     * Sets responseId.
+     *
+     * @param string|null $responseId  The ID of the response.
+     *
+     * @return $this
+     */
     public function setResponseId(?string $responseId): self
     {
         $this->responseId = $responseId;
@@ -232,12 +232,12 @@ class RealtimeServerEventResponseFunctionCallArgumentsDelta
     }
 
     /**
-    * Sets itemId.
-    *
-    * @param string|null $itemId  The ID of the function call item.
-    *
-    * @return $this
-    */
+     * Sets itemId.
+     *
+     * @param string|null $itemId  The ID of the function call item.
+     *
+     * @return $this
+     */
     public function setItemId(?string $itemId): self
     {
         $this->itemId = $itemId;
@@ -259,12 +259,12 @@ class RealtimeServerEventResponseFunctionCallArgumentsDelta
     }
 
     /**
-    * Sets outputIndex.
-    *
-    * @param int|null $outputIndex  The index of the output item in the response.
-    *
-    * @return $this
-    */
+     * Sets outputIndex.
+     *
+     * @param int|null $outputIndex  The index of the output item in the response.
+     *
+     * @return $this
+     */
     public function setOutputIndex(?int $outputIndex): self
     {
         $this->outputIndex = $outputIndex;
@@ -286,12 +286,12 @@ class RealtimeServerEventResponseFunctionCallArgumentsDelta
     }
 
     /**
-    * Sets callId.
-    *
-    * @param string|null $callId  The ID of the function call.
-    *
-    * @return $this
-    */
+     * Sets callId.
+     *
+     * @param string|null $callId  The ID of the function call.
+     *
+     * @return $this
+     */
     public function setCallId(?string $callId): self
     {
         $this->callId = $callId;
@@ -313,12 +313,12 @@ class RealtimeServerEventResponseFunctionCallArgumentsDelta
     }
 
     /**
-    * Sets delta.
-    *
-    * @param string|null $delta  The arguments delta as a JSON string.
-    *
-    * @return $this
-    */
+     * Sets delta.
+     *
+     * @param string|null $delta  The arguments delta as a JSON string.
+     *
+     * @return $this
+     */
     public function setDelta(?string $delta): self
     {
         $this->delta = $delta;

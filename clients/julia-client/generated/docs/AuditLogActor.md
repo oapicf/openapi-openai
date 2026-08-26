@@ -1,0 +1,14 @@
+# AuditLogActor
+
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**`type`** | **`String`** | The type of actor. Is either &#x60;session&#x60; or &#x60;api_key&#x60;. | [optional] [default to nothing]
+**`session`** | [**`*AuditLogActorSession`**](AuditLogActorSession.md) |  | [optional] [default to nothing]
+**`api_key`** | [**`*AuditLogActorApiKey`**](AuditLogActorApiKey.md) |  | [optional] [default to nothing]
+
+
+[[Back to Model list]](../README.md#models) [[Back to API list]](../README.md#api-endpoints) [[Back to README]](../README.md)
+
+

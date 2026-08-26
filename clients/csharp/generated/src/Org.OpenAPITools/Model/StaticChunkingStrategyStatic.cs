@@ -100,8 +100,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="StaticChunkingStrategyStatic" />
     /// </summary>
-    public class StaticChunkingStrategyStaticJsonConverter : JsonConverter<StaticChunkingStrategyStatic>
+    public partial class StaticChunkingStrategyStaticJsonConverter : JsonConverter<StaticChunkingStrategyStatic>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StaticChunkingStrategyStaticJsonConverter" /> class.
+        /// </summary>
+        public StaticChunkingStrategyStaticJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="StaticChunkingStrategyStatic" />
         /// </summary>

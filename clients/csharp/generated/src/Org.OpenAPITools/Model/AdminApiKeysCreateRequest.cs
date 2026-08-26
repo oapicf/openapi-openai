@@ -78,8 +78,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AdminApiKeysCreateRequest" />
     /// </summary>
-    public class AdminApiKeysCreateRequestJsonConverter : JsonConverter<AdminApiKeysCreateRequest>
+    public partial class AdminApiKeysCreateRequestJsonConverter : JsonConverter<AdminApiKeysCreateRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminApiKeysCreateRequestJsonConverter" /> class.
+        /// </summary>
+        public AdminApiKeysCreateRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AdminApiKeysCreateRequest" />
         /// </summary>

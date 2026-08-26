@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setEvent(std::string  event);
+	void setEvent(std::string event);
 	/*! \brief Get 
 	 */
 	RunStepDeltaObject getData();
 
 	/*! \brief Set 
 	 */
-	void setData(RunStepDeltaObject  data);
+	void setData(RunStepDeltaObject data);
 
 
     private:

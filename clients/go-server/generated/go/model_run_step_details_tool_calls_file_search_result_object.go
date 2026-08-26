@@ -14,6 +14,8 @@ package openapi
 
 import (
 	"errors"
+	"encoding/json"
+	"fmt"
 )
 
 
@@ -33,20 +35,84 @@ type RunStepDetailsToolCallsFileSearchResultObject struct {
 	// The content of the result that was found. The content is only included if requested via the include query parameter.
 	Content []RunStepDetailsToolCallsFileSearchResultObjectContentInner `json:"content,omitempty"`
 }
-
-// AssertRunStepDetailsToolCallsFileSearchResultObjectRequired checks if the required fields are not zero-ed
-func AssertRunStepDetailsToolCallsFileSearchResultObjectRequired(obj RunStepDetailsToolCallsFileSearchResultObject) error {
-	elements := map[string]interface{}{
-		"file_id": obj.FileId,
-		"file_name": obj.FileName,
-		"score": obj.Score,
+// UnmarshalJSON validates required property keys then unmarshals into RunStepDetailsToolCallsFileSearchResultObject
+func (o *RunStepDetailsToolCallsFileSearchResultObject) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"file_id",
+		"file_name",
+		"score",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"file_id": false,
+		"file_name": false,
+		"score": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"file_id": {},
+		"file_name": {},
+		"score": {},
+		"content": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RunStepDetailsToolCallsFileSearchResultObject
+
+	if value, exists := allProperties["file_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.FileId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["file_name"]; exists {
+		if err = json.Unmarshal(value, &decoded.FileName); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["score"]; exists {
+		if err = json.Unmarshal(value, &decoded.Score); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["content"]; exists {
+		if err = json.Unmarshal(value, &decoded.Content); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRunStepDetailsToolCallsFileSearchResultObjectRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertRunStepDetailsToolCallsFileSearchResultObjectRequired(obj RunStepDetailsToolCallsFileSearchResultObject) error {
 	for _, el := range obj.Content {
 		if err := AssertRunStepDetailsToolCallsFileSearchResultObjectContentInnerRequired(el); err != nil {
 			return err

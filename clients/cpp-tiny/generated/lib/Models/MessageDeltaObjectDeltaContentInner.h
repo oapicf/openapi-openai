@@ -58,42 +58,42 @@ public:
 
 	/*! \brief Set The index of the content part in the message.
 	 */
-	void setIndex(int  index);
+	void setIndex(int index);
 	/*! \brief Get Always `image_file`.
 	 */
 	std::string getType();
 
 	/*! \brief Set Always `image_file`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	MessageDeltaContentImageFileObject_image_file getImageFile();
 
 	/*! \brief Set 
 	 */
-	void setImageFile(MessageDeltaContentImageFileObject_image_file  image_file);
+	void setImageFile(MessageDeltaContentImageFileObject_image_file image_file);
 	/*! \brief Get 
 	 */
 	MessageDeltaContentTextObject_text getText();
 
 	/*! \brief Set 
 	 */
-	void setText(MessageDeltaContentTextObject_text  text);
+	void setText(MessageDeltaContentTextObject_text text);
 	/*! \brief Get 
 	 */
 	std::string getRefusal();
 
 	/*! \brief Set 
 	 */
-	void setRefusal(std::string  refusal);
+	void setRefusal(std::string refusal);
 	/*! \brief Get 
 	 */
 	MessageDeltaContentImageUrlObject_image_url getImageUrl();
 
 	/*! \brief Set 
 	 */
-	void setImageUrl(MessageDeltaContentImageUrlObject_image_url  image_url);
+	void setImageUrl(MessageDeltaContentImageUrlObject_image_url image_url);
 
 
     private:

@@ -14,6 +14,8 @@ package openapi
 
 import (
 	"errors"
+	"encoding/json"
+	"fmt"
 )
 
 
@@ -27,19 +29,70 @@ type RunStepDetailsToolCallsFileSearchRankingOptionsObject struct {
 	// The score threshold for the file search. All values must be a floating point number between 0 and 1.
 	ScoreThreshold float32 `json:"score_threshold"`
 }
-
-// AssertRunStepDetailsToolCallsFileSearchRankingOptionsObjectRequired checks if the required fields are not zero-ed
-func AssertRunStepDetailsToolCallsFileSearchRankingOptionsObjectRequired(obj RunStepDetailsToolCallsFileSearchRankingOptionsObject) error {
-	elements := map[string]interface{}{
-		"ranker": obj.Ranker,
-		"score_threshold": obj.ScoreThreshold,
+// UnmarshalJSON validates required property keys then unmarshals into RunStepDetailsToolCallsFileSearchRankingOptionsObject
+func (o *RunStepDetailsToolCallsFileSearchRankingOptionsObject) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"ranker",
+		"score_threshold",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"ranker": false,
+		"score_threshold": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"ranker": {},
+		"score_threshold": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RunStepDetailsToolCallsFileSearchRankingOptionsObject
+
+	if value, exists := allProperties["ranker"]; exists {
+		if err = json.Unmarshal(value, &decoded.Ranker); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["score_threshold"]; exists {
+		if err = json.Unmarshal(value, &decoded.ScoreThreshold); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRunStepDetailsToolCallsFileSearchRankingOptionsObjectRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertRunStepDetailsToolCallsFileSearchRankingOptionsObjectRequired(obj RunStepDetailsToolCallsFileSearchRankingOptionsObject) error {
 	return nil
 }
 

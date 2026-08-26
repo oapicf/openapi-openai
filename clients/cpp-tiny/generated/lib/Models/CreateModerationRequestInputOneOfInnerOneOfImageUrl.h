@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set Either a URL of the image or the base64 encoded image data.
 	 */
-	void setUrl(std::string  url);
+	void setUrl(std::string url);
 
 
     private:

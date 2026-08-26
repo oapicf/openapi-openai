@@ -26,6 +26,8 @@ ChatCompletionResponseMessage_function_call::ChatCompletionResponseMessage_funct
     
 }
 
+ChatCompletionResponseMessage_function_call::~ChatCompletionResponseMessage_function_call() = default;
+
 void ChatCompletionResponseMessage_function_call::validate() const
 {
     std::stringstream msg;

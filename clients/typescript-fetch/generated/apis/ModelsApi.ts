@@ -12,21 +12,22 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  DeleteModelResponse,
-  ListModelsResponse,
-  Model,
-} from '../models/index';
 import {
+    type DeleteModelResponse,
     DeleteModelResponseFromJSON,
     DeleteModelResponseToJSON,
+} from '../models/DeleteModelResponse';
+import {
+    type ListModelsResponse,
     ListModelsResponseFromJSON,
     ListModelsResponseToJSON,
+} from '../models/ListModelsResponse';
+import {
+    type Model,
     ModelFromJSON,
     ModelToJSON,
-} from '../models/index';
+} from '../models/Model';
 
 export interface DeleteModelRequest {
     model: string;
@@ -42,9 +43,9 @@ export interface RetrieveModelRequest {
 export class ModelsApi extends runtime.BaseAPI {
 
     /**
-     * Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
+     * Creates request options for deleteModel without sending the request
      */
-    async deleteModelRaw(requestParameters: DeleteModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteModelResponse>> {
+    async deleteModelRequestOpts(requestParameters: DeleteModelRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['model'] == null) {
             throw new runtime.RequiredError(
                 'model',
@@ -66,14 +67,22 @@ export class ModelsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/models/{model}`;
-        urlPath = urlPath.replace(`{${"model"}}`, encodeURIComponent(String(requestParameters['model'])));
+        urlPath = urlPath.replace('{model}', encodeURIComponent(String(requestParameters['model'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
+     */
+    async deleteModelRaw(requestParameters: DeleteModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteModelResponse>> {
+        const requestOptions = await this.deleteModelRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => DeleteModelResponseFromJSON(jsonValue));
     }
@@ -87,9 +96,9 @@ export class ModelsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists the currently available models, and provides basic information about each one such as the owner and availability.
+     * Creates request options for listModels without sending the request
      */
-    async listModelsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListModelsResponse>> {
+    async listModelsRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -105,12 +114,20 @@ export class ModelsApi extends runtime.BaseAPI {
 
         let urlPath = `/models`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Lists the currently available models, and provides basic information about each one such as the owner and availability.
+     */
+    async listModelsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListModelsResponse>> {
+        const requestOptions = await this.listModelsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListModelsResponseFromJSON(jsonValue));
     }
@@ -124,9 +141,9 @@ export class ModelsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+     * Creates request options for retrieveModel without sending the request
      */
-    async retrieveModelRaw(requestParameters: RetrieveModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Model>> {
+    async retrieveModelRequestOpts(requestParameters: RetrieveModelRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['model'] == null) {
             throw new runtime.RequiredError(
                 'model',
@@ -148,14 +165,22 @@ export class ModelsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/models/{model}`;
-        urlPath = urlPath.replace(`{${"model"}}`, encodeURIComponent(String(requestParameters['model'])));
+        urlPath = urlPath.replace('{model}', encodeURIComponent(String(requestParameters['model'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+     */
+    async retrieveModelRaw(requestParameters: RetrieveModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Model>> {
+        const requestOptions = await this.retrieveModelRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ModelFromJSON(jsonValue));
     }

@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The email invited to the organization.</value>
         [JsonPropertyName("email")]
-        public string? Email { get { return this.EmailOption; } set { this.EmailOption = new(value); } }
+        public string? Email { get { return this.EmailOption.Value; } set { this.EmailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Role
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The role the email was invited to be. Is either &#x60;owner&#x60; or &#x60;member&#x60;.</value>
         [JsonPropertyName("role")]
-        public string? Role { get { return this.RoleOption; } set { this.RoleOption = new(value); } }
+        public string? Role { get { return this.RoleOption.Value; } set { this.RoleOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogInviteSentData" />
     /// </summary>
-    public class AuditLogInviteSentDataJsonConverter : JsonConverter<AuditLogInviteSentData>
+    public partial class AuditLogInviteSentDataJsonConverter : JsonConverter<AuditLogInviteSentData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogInviteSentDataJsonConverter" /> class.
+        /// </summary>
+        public AuditLogInviteSentDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogInviteSentData" />
         /// </summary>

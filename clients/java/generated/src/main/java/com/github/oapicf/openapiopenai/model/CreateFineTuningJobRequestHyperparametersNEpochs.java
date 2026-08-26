@@ -50,7 +50,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateFineTuningJobRequestHyperparametersNEpochs extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(CreateFineTuningJobRequestHyperparametersNEpochs.class.getName());
 
@@ -201,6 +201,7 @@ public class CreateFineTuningJobRequestHyperparametersNEpochs extends AbstractOp
      * @return The actual instance of `String`
      * @throws ClassCastException if the instance is not `String`
      */
+    @SuppressWarnings("unchecked")
     public String getString() throws ClassCastException {
         return (String)super.getActualInstance();
     }
@@ -212,6 +213,7 @@ public class CreateFineTuningJobRequestHyperparametersNEpochs extends AbstractOp
      * @return The actual instance of `Integer`
      * @throws ClassCastException if the instance is not `Integer`
      */
+    @SuppressWarnings("unchecked")
     public Integer getInteger() throws ClassCastException {
         return (Integer)super.getActualInstance();
     }

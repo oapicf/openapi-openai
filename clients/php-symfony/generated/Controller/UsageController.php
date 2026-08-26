@@ -74,14 +74,14 @@ class UsageController extends Controller
         $securityApiKeyAuth = $request->headers->get('authorization');
 
         // Read out all input parameter values into variables
-        $startTime = $request->query->get('startTime');
-        $endTime = $request->query->get('endTime');
-        $bucketWidth = $request->query->get('bucketWidth', '1d');
-        $projectIds = $request->query->get('projectIds');
-        $userIds = $request->query->get('userIds');
-        $apiKeyIds = $request->query->get('apiKeyIds');
+        $startTime = $request->query->get('start_time');
+        $endTime = $request->query->get('end_time');
+        $bucketWidth = $request->query->get('bucket_width', '1d');
+        $projectIds = $request->query->get('project_ids');
+        $userIds = $request->query->get('user_ids');
+        $apiKeyIds = $request->query->get('api_key_ids');
         $models = $request->query->get('models');
-        $groupBy = $request->query->get('groupBy');
+        $groupBy = $request->query->get('group_by');
         $limit = $request->query->get('limit');
         $page = $request->query->get('page');
 
@@ -106,20 +106,20 @@ class UsageController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($startTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($endTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ '1m', '1h', '1d' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($bucketWidth, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -173,13 +173,13 @@ class UsageController extends Controller
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($page, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -244,14 +244,14 @@ class UsageController extends Controller
         $securityApiKeyAuth = $request->headers->get('authorization');
 
         // Read out all input parameter values into variables
-        $startTime = $request->query->get('startTime');
-        $endTime = $request->query->get('endTime');
-        $bucketWidth = $request->query->get('bucketWidth', '1d');
-        $projectIds = $request->query->get('projectIds');
-        $userIds = $request->query->get('userIds');
-        $apiKeyIds = $request->query->get('apiKeyIds');
+        $startTime = $request->query->get('start_time');
+        $endTime = $request->query->get('end_time');
+        $bucketWidth = $request->query->get('bucket_width', '1d');
+        $projectIds = $request->query->get('project_ids');
+        $userIds = $request->query->get('user_ids');
+        $apiKeyIds = $request->query->get('api_key_ids');
         $models = $request->query->get('models');
-        $groupBy = $request->query->get('groupBy');
+        $groupBy = $request->query->get('group_by');
         $limit = $request->query->get('limit');
         $page = $request->query->get('page');
 
@@ -276,20 +276,20 @@ class UsageController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($startTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($endTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ '1m', '1h', '1d' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($bucketWidth, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -343,13 +343,13 @@ class UsageController extends Controller
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($page, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -414,11 +414,11 @@ class UsageController extends Controller
         $securityApiKeyAuth = $request->headers->get('authorization');
 
         // Read out all input parameter values into variables
-        $startTime = $request->query->get('startTime');
-        $endTime = $request->query->get('endTime');
-        $bucketWidth = $request->query->get('bucketWidth', '1d');
-        $projectIds = $request->query->get('projectIds');
-        $groupBy = $request->query->get('groupBy');
+        $startTime = $request->query->get('start_time');
+        $endTime = $request->query->get('end_time');
+        $bucketWidth = $request->query->get('bucket_width', '1d');
+        $projectIds = $request->query->get('project_ids');
+        $groupBy = $request->query->get('group_by');
         $limit = $request->query->get('limit');
         $page = $request->query->get('page');
 
@@ -440,20 +440,20 @@ class UsageController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($startTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($endTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ '1m', '1h', '1d' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($bucketWidth, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -480,13 +480,13 @@ class UsageController extends Controller
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($page, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -551,15 +551,15 @@ class UsageController extends Controller
         $securityApiKeyAuth = $request->headers->get('authorization');
 
         // Read out all input parameter values into variables
-        $startTime = $request->query->get('startTime');
-        $endTime = $request->query->get('endTime');
-        $bucketWidth = $request->query->get('bucketWidth', '1d');
-        $projectIds = $request->query->get('projectIds');
-        $userIds = $request->query->get('userIds');
-        $apiKeyIds = $request->query->get('apiKeyIds');
+        $startTime = $request->query->get('start_time');
+        $endTime = $request->query->get('end_time');
+        $bucketWidth = $request->query->get('bucket_width', '1d');
+        $projectIds = $request->query->get('project_ids');
+        $userIds = $request->query->get('user_ids');
+        $apiKeyIds = $request->query->get('api_key_ids');
         $models = $request->query->get('models');
         $batch = $request->query->get('batch');
-        $groupBy = $request->query->get('groupBy');
+        $groupBy = $request->query->get('group_by');
         $limit = $request->query->get('limit');
         $page = $request->query->get('page');
 
@@ -585,20 +585,20 @@ class UsageController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($startTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($endTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ '1m', '1h', '1d' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($bucketWidth, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -640,7 +640,7 @@ class UsageController extends Controller
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("bool");
+        $asserts[] = new Assert\Type('bool');
         $response = $this->validate($batch, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -658,13 +658,13 @@ class UsageController extends Controller
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($page, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -729,11 +729,11 @@ class UsageController extends Controller
         $securityApiKeyAuth = $request->headers->get('authorization');
 
         // Read out all input parameter values into variables
-        $startTime = $request->query->get('startTime');
-        $endTime = $request->query->get('endTime');
-        $bucketWidth = $request->query->get('bucketWidth', '1d');
-        $projectIds = $request->query->get('projectIds');
-        $groupBy = $request->query->get('groupBy');
+        $startTime = $request->query->get('start_time');
+        $endTime = $request->query->get('end_time');
+        $bucketWidth = $request->query->get('bucket_width', '1d');
+        $projectIds = $request->query->get('project_ids');
+        $groupBy = $request->query->get('group_by');
         $limit = $request->query->get('limit', 7);
         $page = $request->query->get('page');
 
@@ -755,20 +755,20 @@ class UsageController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($startTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($endTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ '1d' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($bucketWidth, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -795,13 +795,13 @@ class UsageController extends Controller
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($page, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -866,14 +866,14 @@ class UsageController extends Controller
         $securityApiKeyAuth = $request->headers->get('authorization');
 
         // Read out all input parameter values into variables
-        $startTime = $request->query->get('startTime');
-        $endTime = $request->query->get('endTime');
-        $bucketWidth = $request->query->get('bucketWidth', '1d');
-        $projectIds = $request->query->get('projectIds');
-        $userIds = $request->query->get('userIds');
-        $apiKeyIds = $request->query->get('apiKeyIds');
+        $startTime = $request->query->get('start_time');
+        $endTime = $request->query->get('end_time');
+        $bucketWidth = $request->query->get('bucket_width', '1d');
+        $projectIds = $request->query->get('project_ids');
+        $userIds = $request->query->get('user_ids');
+        $apiKeyIds = $request->query->get('api_key_ids');
         $models = $request->query->get('models');
-        $groupBy = $request->query->get('groupBy');
+        $groupBy = $request->query->get('group_by');
         $limit = $request->query->get('limit');
         $page = $request->query->get('page');
 
@@ -898,20 +898,20 @@ class UsageController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($startTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($endTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ '1m', '1h', '1d' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($bucketWidth, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -965,13 +965,13 @@ class UsageController extends Controller
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($page, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1036,16 +1036,16 @@ class UsageController extends Controller
         $securityApiKeyAuth = $request->headers->get('authorization');
 
         // Read out all input parameter values into variables
-        $startTime = $request->query->get('startTime');
-        $endTime = $request->query->get('endTime');
-        $bucketWidth = $request->query->get('bucketWidth', '1d');
+        $startTime = $request->query->get('start_time');
+        $endTime = $request->query->get('end_time');
+        $bucketWidth = $request->query->get('bucket_width', '1d');
         $sources = $request->query->get('sources');
         $sizes = $request->query->get('sizes');
-        $projectIds = $request->query->get('projectIds');
-        $userIds = $request->query->get('userIds');
-        $apiKeyIds = $request->query->get('apiKeyIds');
+        $projectIds = $request->query->get('project_ids');
+        $userIds = $request->query->get('user_ids');
+        $apiKeyIds = $request->query->get('api_key_ids');
         $models = $request->query->get('models');
-        $groupBy = $request->query->get('groupBy');
+        $groupBy = $request->query->get('group_by');
         $limit = $request->query->get('limit');
         $page = $request->query->get('page');
 
@@ -1072,20 +1072,20 @@ class UsageController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($startTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($endTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ '1m', '1h', '1d' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($bucketWidth, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1163,13 +1163,13 @@ class UsageController extends Controller
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($page, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1234,14 +1234,14 @@ class UsageController extends Controller
         $securityApiKeyAuth = $request->headers->get('authorization');
 
         // Read out all input parameter values into variables
-        $startTime = $request->query->get('startTime');
-        $endTime = $request->query->get('endTime');
-        $bucketWidth = $request->query->get('bucketWidth', '1d');
-        $projectIds = $request->query->get('projectIds');
-        $userIds = $request->query->get('userIds');
-        $apiKeyIds = $request->query->get('apiKeyIds');
+        $startTime = $request->query->get('start_time');
+        $endTime = $request->query->get('end_time');
+        $bucketWidth = $request->query->get('bucket_width', '1d');
+        $projectIds = $request->query->get('project_ids');
+        $userIds = $request->query->get('user_ids');
+        $apiKeyIds = $request->query->get('api_key_ids');
         $models = $request->query->get('models');
-        $groupBy = $request->query->get('groupBy');
+        $groupBy = $request->query->get('group_by');
         $limit = $request->query->get('limit');
         $page = $request->query->get('page');
 
@@ -1266,20 +1266,20 @@ class UsageController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($startTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($endTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ '1m', '1h', '1d' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($bucketWidth, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1333,13 +1333,13 @@ class UsageController extends Controller
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($page, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1404,11 +1404,11 @@ class UsageController extends Controller
         $securityApiKeyAuth = $request->headers->get('authorization');
 
         // Read out all input parameter values into variables
-        $startTime = $request->query->get('startTime');
-        $endTime = $request->query->get('endTime');
-        $bucketWidth = $request->query->get('bucketWidth', '1d');
-        $projectIds = $request->query->get('projectIds');
-        $groupBy = $request->query->get('groupBy');
+        $startTime = $request->query->get('start_time');
+        $endTime = $request->query->get('end_time');
+        $bucketWidth = $request->query->get('bucket_width', '1d');
+        $projectIds = $request->query->get('project_ids');
+        $groupBy = $request->query->get('group_by');
         $limit = $request->query->get('limit');
         $page = $request->query->get('page');
 
@@ -1430,20 +1430,20 @@ class UsageController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($startTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($endTime, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ '1m', '1h', '1d' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($bucketWidth, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1470,13 +1470,13 @@ class UsageController extends Controller
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($page, $asserts);
         if ($response instanceof Response) {
             return $response;

@@ -23,13 +23,15 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RunStreamEventOneOf5(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("event")
     @get:JsonProperty("event", required = true) val event: RunStreamEventOneOf5.Event,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("data")
     @get:JsonProperty("data", required = true) val `data`: RunObject
-) {
+) : RunStreamEvent {
 
     /**
     * 
@@ -44,7 +46,7 @@ data class RunStreamEventOneOf5(
             @JsonCreator
             fun forValue(value: kotlin.String): Event {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RunStreamEventOneOf5'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Event'")
             }
         }
     }

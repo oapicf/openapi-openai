@@ -51,6 +51,7 @@ pub struct CreateChatCompletionRequest {
     /// Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` 
     #[serde(rename = "modalities", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub modalities: Option<Option<Vec<Modalities>>>,
+    /// Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
     #[serde(rename = "prediction", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub prediction: Option<Option<Box<models::PredictionContent>>>,
     #[serde(rename = "audio", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]

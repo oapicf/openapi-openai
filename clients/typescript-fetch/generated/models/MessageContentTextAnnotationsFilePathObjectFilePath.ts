@@ -31,7 +31,7 @@ export interface MessageContentTextAnnotationsFilePathObjectFilePath {
  * Check if a given object implements the MessageContentTextAnnotationsFilePathObjectFilePath interface.
  */
 export function instanceOfMessageContentTextAnnotationsFilePathObjectFilePath(value: object): value is MessageContentTextAnnotationsFilePathObjectFilePath {
-    if (!('fileId' in value) || value['fileId'] === undefined) return false;
+    if ((!('fileId' in (value as Record<string, any>)) && !('file_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['fileId'] === undefined && (value as Record<string, any>)['file_id'] === undefined)) return false;
     return true;
 }
 

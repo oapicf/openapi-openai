@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The ID of the tool call in the `required_action` object within the run object the output is being submitted for.
 	 */
-	void setToolCallId(std::string  tool_call_id);
+	void setToolCallId(std::string tool_call_id);
 	/*! \brief Get The output of the tool call to be submitted to continue the run.
 	 */
 	std::string getOutput();
 
 	/*! \brief Set The output of the tool call to be submitted to continue the run.
 	 */
-	void setOutput(std::string  output);
+	void setOutput(std::string output);
 
 
     private:

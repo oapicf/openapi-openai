@@ -51,7 +51,7 @@ class MessageObject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class MessageObject
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['thread.message'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class MessageObject
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -85,7 +85,7 @@ class MessageObject
      * @var string|null
      * @SerializedName("thread_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $threadId = null;
@@ -96,7 +96,7 @@ class MessageObject
      * @var string|null
      * @SerializedName("status")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['in_progress', 'incomplete', 'completed'])]
     #[Assert\Type("string")]
@@ -106,7 +106,7 @@ class MessageObject
      * @var MessageObjectIncompleteDetails|null
      * @SerializedName("incomplete_details")
      * @Type("OpenAPI\Server\Model\MessageObjectIncompleteDetails")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\MessageObjectIncompleteDetails")]
@@ -118,7 +118,7 @@ class MessageObject
      * @var int|null
      * @SerializedName("completed_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $completedAt = null;
@@ -129,7 +129,7 @@ class MessageObject
      * @var int|null
      * @SerializedName("incomplete_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $incompleteAt = null;
@@ -140,7 +140,7 @@ class MessageObject
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['user', 'assistant'])]
     #[Assert\Type("string")]
@@ -152,7 +152,7 @@ class MessageObject
      * @var MessageObjectContentInner[]|null
      * @SerializedName("content")
      * @Type("array<OpenAPI\Server\Model\MessageObjectContentInner>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -166,7 +166,7 @@ class MessageObject
      * @var string|null
      * @SerializedName("assistant_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $assistantId = null;
@@ -177,7 +177,7 @@ class MessageObject
      * @var string|null
      * @SerializedName("run_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $runId = null;
@@ -188,7 +188,7 @@ class MessageObject
      * @var CreateMessageRequestAttachmentsInner[]|null
      * @SerializedName("attachments")
      * @Type("array<OpenAPI\Server\Model\CreateMessageRequestAttachmentsInner>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -202,7 +202,7 @@ class MessageObject
      * @var array|null
      * @SerializedName("metadata")
      * @Type("array")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("array")]
     protected ?array $metadata = null;
@@ -242,12 +242,12 @@ class MessageObject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The identifier, which can be referenced in API endpoints.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The identifier, which can be referenced in API endpoints.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -269,12 +269,12 @@ class MessageObject
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `thread.message`.
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `thread.message`.
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -296,12 +296,12 @@ class MessageObject
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) for when the message was created.
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) for when the message was created.
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -323,12 +323,12 @@ class MessageObject
     }
 
     /**
-    * Sets threadId.
-    *
-    * @param string|null $threadId  The [thread](/docs/api-reference/threads) ID that this message belongs to.
-    *
-    * @return $this
-    */
+     * Sets threadId.
+     *
+     * @param string|null $threadId  The [thread](/docs/api-reference/threads) ID that this message belongs to.
+     *
+     * @return $this
+     */
     public function setThreadId(?string $threadId): self
     {
         $this->threadId = $threadId;
@@ -350,12 +350,12 @@ class MessageObject
     }
 
     /**
-    * Sets status.
-    *
-    * @param string|null $status  The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.
-    *
-    * @return $this
-    */
+     * Sets status.
+     *
+     * @param string|null $status  The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.
+     *
+     * @return $this
+     */
     public function setStatus(?string $status): self
     {
         $this->status = $status;
@@ -377,12 +377,12 @@ class MessageObject
     }
 
     /**
-    * Sets incompleteDetails.
-    *
-    * @param MessageObjectIncompleteDetails|null $incompleteDetails
-    *
-    * @return $this
-    */
+     * Sets incompleteDetails.
+     *
+     * @param MessageObjectIncompleteDetails|null $incompleteDetails
+     *
+     * @return $this
+     */
     public function setIncompleteDetails(?MessageObjectIncompleteDetails $incompleteDetails): self
     {
         $this->incompleteDetails = $incompleteDetails;
@@ -404,12 +404,12 @@ class MessageObject
     }
 
     /**
-    * Sets completedAt.
-    *
-    * @param int|null $completedAt  The Unix timestamp (in seconds) for when the message was completed.
-    *
-    * @return $this
-    */
+     * Sets completedAt.
+     *
+     * @param int|null $completedAt  The Unix timestamp (in seconds) for when the message was completed.
+     *
+     * @return $this
+     */
     public function setCompletedAt(?int $completedAt): self
     {
         $this->completedAt = $completedAt;
@@ -431,12 +431,12 @@ class MessageObject
     }
 
     /**
-    * Sets incompleteAt.
-    *
-    * @param int|null $incompleteAt  The Unix timestamp (in seconds) for when the message was marked as incomplete.
-    *
-    * @return $this
-    */
+     * Sets incompleteAt.
+     *
+     * @param int|null $incompleteAt  The Unix timestamp (in seconds) for when the message was marked as incomplete.
+     *
+     * @return $this
+     */
     public function setIncompleteAt(?int $incompleteAt): self
     {
         $this->incompleteAt = $incompleteAt;
@@ -458,12 +458,12 @@ class MessageObject
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  The entity that produced the message. One of `user` or `assistant`.
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  The entity that produced the message. One of `user` or `assistant`.
+     *
+     * @return $this
+     */
     public function setRole(?string $role): self
     {
         $this->role = $role;
@@ -485,12 +485,12 @@ class MessageObject
     }
 
     /**
-    * Sets content.
-    *
-    * @param MessageObjectContentInner[]|null $content  The content of the message in array of text and/or images.
-    *
-    * @return $this
-    */
+     * Sets content.
+     *
+     * @param MessageObjectContentInner[]|null $content  The content of the message in array of text and/or images.
+     *
+     * @return $this
+     */
     public function setContent(?array $content): self
     {
         $this->content = $content;
@@ -512,12 +512,12 @@ class MessageObject
     }
 
     /**
-    * Sets assistantId.
-    *
-    * @param string|null $assistantId  If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message.
-    *
-    * @return $this
-    */
+     * Sets assistantId.
+     *
+     * @param string|null $assistantId  If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message.
+     *
+     * @return $this
+     */
     public function setAssistantId(?string $assistantId): self
     {
         $this->assistantId = $assistantId;
@@ -539,12 +539,12 @@ class MessageObject
     }
 
     /**
-    * Sets runId.
-    *
-    * @param string|null $runId  The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints.
-    *
-    * @return $this
-    */
+     * Sets runId.
+     *
+     * @param string|null $runId  The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints.
+     *
+     * @return $this
+     */
     public function setRunId(?string $runId): self
     {
         $this->runId = $runId;
@@ -566,12 +566,12 @@ class MessageObject
     }
 
     /**
-    * Sets attachments.
-    *
-    * @param CreateMessageRequestAttachmentsInner[]|null $attachments  A list of files attached to the message, and the tools they were added to.
-    *
-    * @return $this
-    */
+     * Sets attachments.
+     *
+     * @param CreateMessageRequestAttachmentsInner[]|null $attachments  A list of files attached to the message, and the tools they were added to.
+     *
+     * @return $this
+     */
     public function setAttachments(?array $attachments): self
     {
         $this->attachments = $attachments;
@@ -593,12 +593,12 @@ class MessageObject
     }
 
     /**
-    * Sets metadata.
-    *
-    * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
-    *
-    * @return $this
-    */
+     * Sets metadata.
+     *
+     * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
+     *
+     * @return $this
+     */
     public function setMetadata(?array $metadata): self
     {
         $this->metadata = $metadata;

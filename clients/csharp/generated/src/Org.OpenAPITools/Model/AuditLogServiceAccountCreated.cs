@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The service account ID.</value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Data
@@ -71,7 +71,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public AuditLogServiceAccountCreatedData? Data { get { return this.DataOption; } set { this.DataOption = new(value); } }
+        public AuditLogServiceAccountCreatedData? Data { get { return this.DataOption.Value; } set { this.DataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogServiceAccountCreated" />
     /// </summary>
-    public class AuditLogServiceAccountCreatedJsonConverter : JsonConverter<AuditLogServiceAccountCreated>
+    public partial class AuditLogServiceAccountCreatedJsonConverter : JsonConverter<AuditLogServiceAccountCreated>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogServiceAccountCreatedJsonConverter" /> class.
+        /// </summary>
+        public AuditLogServiceAccountCreatedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogServiceAccountCreated" />
         /// </summary>

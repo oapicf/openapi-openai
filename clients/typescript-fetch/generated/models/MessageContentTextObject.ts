@@ -29,7 +29,7 @@ import {
 export interface MessageContentTextObject {
     /**
      * Always `text`.
-     * @type {string}
+     * @type {MessageContentTextObjectTypeEnum}
      * @memberof MessageContentTextObject
      */
     type: MessageContentTextObjectTypeEnum;
@@ -56,6 +56,8 @@ export type MessageContentTextObjectTypeEnum = typeof MessageContentTextObjectTy
  */
 export function instanceOfMessageContentTextObject(value: object): value is MessageContentTextObject {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'text') return false;
+    
     if (!('text' in value) || value['text'] === undefined) return false;
     return true;
 }

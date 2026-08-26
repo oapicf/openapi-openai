@@ -34,7 +34,7 @@ class  ListVectorStoreFilesResponse
 {
 public:
     ListVectorStoreFilesResponse();
-    virtual ~ListVectorStoreFilesResponse() = default;
+    virtual ~ListVectorStoreFilesResponse();
 
 
     /// <summary>

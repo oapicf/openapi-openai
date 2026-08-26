@@ -37,7 +37,7 @@ class  CreateTranscription_200_response
 {
 public:
     CreateTranscription_200_response();
-    virtual ~CreateTranscription_200_response() = default;
+    virtual ~CreateTranscription_200_response();
 
 
     /// <summary>

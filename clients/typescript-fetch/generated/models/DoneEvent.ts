@@ -21,13 +21,13 @@ import { mapValues } from '../runtime';
 export interface DoneEvent {
     /**
      * 
-     * @type {string}
+     * @type {DoneEventEventEnum}
      * @memberof DoneEvent
      */
     event: DoneEventEventEnum;
     /**
      * 
-     * @type {string}
+     * @type {DoneEventDataEnum}
      * @memberof DoneEvent
      */
     data: DoneEventDataEnum;
@@ -56,7 +56,11 @@ export type DoneEventDataEnum = typeof DoneEventDataEnum[keyof typeof DoneEventD
  */
 export function instanceOfDoneEvent(value: object): value is DoneEvent {
     if (!('event' in value) || value['event'] === undefined) return false;
+    if (value['event'] !== 'done') return false;
+    
     if (!('data' in value) || value['data'] === undefined) return false;
+    if (value['data'] !== '[DONE]') return false;
+    
     return true;
 }
 

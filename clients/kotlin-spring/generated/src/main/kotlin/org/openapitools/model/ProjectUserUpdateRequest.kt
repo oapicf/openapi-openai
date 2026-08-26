@@ -21,7 +21,8 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ProjectUserUpdateRequest(
 
-    @Schema(example = "null", required = true, description = "`owner` or `member`")
+    @Schema(required = true, description = "`owner` or `member`")
+    @param:JsonProperty("role")
     @get:JsonProperty("role", required = true) val role: ProjectUserUpdateRequest.Role
 ) {
 
@@ -39,7 +40,7 @@ data class ProjectUserUpdateRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): Role {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ProjectUserUpdateRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Role'")
             }
         }
     }

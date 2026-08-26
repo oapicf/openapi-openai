@@ -8,20 +8,20 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Represents an individual service account in a project.
  */
 
 @Schema(name = "ProjectServiceAccount", description = "Represents an individual service account in a project.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ProjectServiceAccount {
 
   /**
@@ -133,6 +133,7 @@ public class ProjectServiceAccount {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
@@ -153,6 +154,7 @@ public class ProjectServiceAccount {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
@@ -173,6 +175,7 @@ public class ProjectServiceAccount {
     return name;
   }
 
+  @JsonProperty("name")
   public void setName(String name) {
     this.name = name;
   }
@@ -193,6 +196,7 @@ public class ProjectServiceAccount {
     return role;
   }
 
+  @JsonProperty("role")
   public void setRole(RoleEnum role) {
     this.role = role;
   }
@@ -213,6 +217,7 @@ public class ProjectServiceAccount {
     return createdAt;
   }
 
+  @JsonProperty("created_at")
   public void setCreatedAt(Integer createdAt) {
     this.createdAt = createdAt;
   }
@@ -255,11 +260,8 @@ public class ProjectServiceAccount {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

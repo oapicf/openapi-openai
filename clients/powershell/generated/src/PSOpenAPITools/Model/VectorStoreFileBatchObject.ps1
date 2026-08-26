@@ -87,12 +87,12 @@ function Initialize-VectorStoreFileBatchObject {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "created_at" = ${CreatedAt}
-            "vector_store_id" = ${VectorStoreId}
-            "status" = ${Status}
-            "file_counts" = ${FileCounts}
+            'id' = ${Id}
+            'object' = ${Object}
+            'created_at' = ${CreatedAt}
+            'vector_store_id' = ${VectorStoreId}
+            'status' = ${Status}
+            'file_counts' = ${FileCounts}
         }
 
 
@@ -130,7 +130,7 @@ function ConvertFrom-JsonToVectorStoreFileBatchObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in VectorStoreFileBatchObject
-        $AllProperties = ("id", "object", "created_at", "vector_store_id", "status", "file_counts")
+        $AllProperties = ('id', 'object', 'created_at', 'vector_store_id', 'status', 'file_counts')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -141,49 +141,49 @@ function ConvertFrom-JsonToVectorStoreFileBatchObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created_at' missing."
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vector_store_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'vector_store_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'vector_store_id' missing."
         } else {
-            $VectorStoreId = $JsonParameters.PSobject.Properties["vector_store_id"].value
+            $VectorStoreId = $JsonParameters.PSobject.Properties['vector_store_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'status'))) {
             throw "Error! JSON cannot be serialized due to the required property 'status' missing."
         } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
+            $Status = $JsonParameters.PSobject.Properties['status'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_counts"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_counts'))) {
             throw "Error! JSON cannot be serialized due to the required property 'file_counts' missing."
         } else {
-            $FileCounts = $JsonParameters.PSobject.Properties["file_counts"].value
+            $FileCounts = $JsonParameters.PSobject.Properties['file_counts'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "created_at" = ${CreatedAt}
-            "vector_store_id" = ${VectorStoreId}
-            "status" = ${Status}
-            "file_counts" = ${FileCounts}
+            'id' = ${Id}
+            'object' = ${Object}
+            'created_at' = ${CreatedAt}
+            'vector_store_id' = ${VectorStoreId}
+            'status' = ${Status}
+            'file_counts' = ${FileCounts}
         }
 
         return $PSO

@@ -190,7 +190,7 @@ UsageEmbeddingsResult::getObject()
 }
 
 void
-UsageEmbeddingsResult::setObject(std::string  object)
+UsageEmbeddingsResult::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -202,7 +202,7 @@ UsageEmbeddingsResult::getInputTokens()
 }
 
 void
-UsageEmbeddingsResult::setInputTokens(int  input_tokens)
+UsageEmbeddingsResult::setInputTokens(int input_tokens)
 {
 	this->input_tokens = input_tokens;
 }
@@ -214,7 +214,7 @@ UsageEmbeddingsResult::getNumModelRequests()
 }
 
 void
-UsageEmbeddingsResult::setNumModelRequests(int  num_model_requests)
+UsageEmbeddingsResult::setNumModelRequests(int num_model_requests)
 {
 	this->num_model_requests = num_model_requests;
 }
@@ -226,7 +226,7 @@ UsageEmbeddingsResult::getProjectId()
 }
 
 void
-UsageEmbeddingsResult::setProjectId(std::string  project_id)
+UsageEmbeddingsResult::setProjectId(std::string project_id)
 {
 	this->project_id = project_id;
 }
@@ -238,7 +238,7 @@ UsageEmbeddingsResult::getUserId()
 }
 
 void
-UsageEmbeddingsResult::setUserId(std::string  user_id)
+UsageEmbeddingsResult::setUserId(std::string user_id)
 {
 	this->user_id = user_id;
 }
@@ -250,7 +250,7 @@ UsageEmbeddingsResult::getApiKeyId()
 }
 
 void
-UsageEmbeddingsResult::setApiKeyId(std::string  api_key_id)
+UsageEmbeddingsResult::setApiKeyId(std::string api_key_id)
 {
 	this->api_key_id = api_key_id;
 }
@@ -262,7 +262,7 @@ UsageEmbeddingsResult::getModel()
 }
 
 void
-UsageEmbeddingsResult::setModel(std::string  model)
+UsageEmbeddingsResult::setModel(std::string model)
 {
 	this->model = model;
 }

@@ -107,7 +107,7 @@ MessageDeltaObject::getId()
 }
 
 void
-MessageDeltaObject::setId(std::string  id)
+MessageDeltaObject::setId(std::string id)
 {
 	this->id = id;
 }
@@ -119,7 +119,7 @@ MessageDeltaObject::getObject()
 }
 
 void
-MessageDeltaObject::setObject(std::string  object)
+MessageDeltaObject::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -131,7 +131,7 @@ MessageDeltaObject::getDelta()
 }
 
 void
-MessageDeltaObject::setDelta(MessageDeltaObject_delta  delta)
+MessageDeltaObject::setDelta(MessageDeltaObject_delta delta)
 {
 	this->delta = delta;
 }

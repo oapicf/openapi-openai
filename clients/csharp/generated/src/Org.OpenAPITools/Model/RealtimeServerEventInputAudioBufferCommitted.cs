@@ -161,8 +161,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeServerEventInputAudioBufferCommitted" />
     /// </summary>
-    public class RealtimeServerEventInputAudioBufferCommittedJsonConverter : JsonConverter<RealtimeServerEventInputAudioBufferCommitted>
+    public partial class RealtimeServerEventInputAudioBufferCommittedJsonConverter : JsonConverter<RealtimeServerEventInputAudioBufferCommitted>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeServerEventInputAudioBufferCommittedJsonConverter" /> class.
+        /// </summary>
+        public RealtimeServerEventInputAudioBufferCommittedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeServerEventInputAudioBufferCommitted" />
         /// </summary>

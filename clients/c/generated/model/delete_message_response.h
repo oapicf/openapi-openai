@@ -28,7 +28,7 @@ openai_api_delete_message_response_OBJECT_e delete_message_response_object_FromS
 
 typedef struct delete_message_response_t {
     char *id; // string
-    int deleted; //boolean
+    int *deleted; //boolean
     openai_api_delete_message_response_OBJECT_e object; //enum
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -36,7 +36,7 @@ typedef struct delete_message_response_t {
 
 __attribute__((deprecated)) delete_message_response_t *delete_message_response_create(
     char *id,
-    int deleted,
+    int *deleted,
     openai_api_delete_message_response_OBJECT_e object
 );
 

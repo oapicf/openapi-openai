@@ -1,0 +1,30 @@
+## CompletionsApi
+
+### Creates a completion for the provided prompt and parameters.
+## Creates a completion for the provided prompt and parameters.
+POST https://api.openai.com/v1/completions
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "model": "<string>",
+ "prompt": "<string>",
+ "best_of": "<number>",
+ "echo": "<string>",
+ "frequency_penalty": "<number>",
+ "logit_bias": "<string>",
+ "logprobs": "<number>",
+ "max_tokens": "<number>",
+ "n": "<number>",
+ "presence_penalty": "<number>",
+ "seed": "<number>",
+ "stop": "<string>",
+ "stream": "<string>",
+ "stream_options": "<string>",
+ "suffix": "<string>",
+ "temperature": "<number>",
+ "top_p": "<number>",
+ "user": "<string>"
+}
+

@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The numeric value of the cost.
 	 */
-	void setValue(long  value);
+	void setValue(long value);
 	/*! \brief Get Lowercase ISO-4217 currency e.g. \"usd\"
 	 */
 	std::string getCurrency();
 
 	/*! \brief Set Lowercase ISO-4217 currency e.g. \"usd\"
 	 */
-	void setCurrency(std::string  currency);
+	void setCurrency(std::string currency);
 
 
     private:

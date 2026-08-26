@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type TranscriptionSegment struct {
@@ -46,20 +51,136 @@ type TranscriptionSegment struct {
 	// Probability of no speech in the segment. If the value is higher than 1.0 and the `avg_logprob` is below -1, consider this segment silent.
 	NoSpeechProb float32 `json:"no_speech_prob"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into TranscriptionSegment
+func (o *TranscriptionSegment) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"id",
+		"seek",
+		"start",
+		"end",
+		"text",
+		"tokens",
+		"temperature",
+		"avg_logprob",
+		"compression_ratio",
+		"no_speech_prob",
+	}
 
-// AssertTranscriptionSegmentRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"id": false,
+		"seek": false,
+		"start": false,
+		"end": false,
+		"text": false,
+		"tokens": false,
+		"temperature": false,
+		"avg_logprob": false,
+		"compression_ratio": false,
+		"no_speech_prob": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"id": {},
+		"seek": {},
+		"start": {},
+		"end": {},
+		"text": {},
+		"tokens": {},
+		"temperature": {},
+		"avg_logprob": {},
+		"compression_ratio": {},
+		"no_speech_prob": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded TranscriptionSegment
+
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["seek"]; exists {
+		if err = json.Unmarshal(value, &decoded.Seek); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["start"]; exists {
+		if err = json.Unmarshal(value, &decoded.Start); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["end"]; exists {
+		if err = json.Unmarshal(value, &decoded.End); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["text"]; exists {
+		if err = json.Unmarshal(value, &decoded.Text); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["tokens"]; exists {
+		if err = json.Unmarshal(value, &decoded.Tokens); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["temperature"]; exists {
+		if err = json.Unmarshal(value, &decoded.Temperature); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["avg_logprob"]; exists {
+		if err = json.Unmarshal(value, &decoded.AvgLogprob); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["compression_ratio"]; exists {
+		if err = json.Unmarshal(value, &decoded.CompressionRatio); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["no_speech_prob"]; exists {
+		if err = json.Unmarshal(value, &decoded.NoSpeechProb); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertTranscriptionSegmentRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertTranscriptionSegmentRequired(obj TranscriptionSegment) error {
 	elements := map[string]interface{}{
-		"id": obj.Id,
-		"seek": obj.Seek,
-		"start": obj.Start,
-		"end": obj.End,
-		"text": obj.Text,
 		"tokens": obj.Tokens,
-		"temperature": obj.Temperature,
-		"avg_logprob": obj.AvgLogprob,
-		"compression_ratio": obj.CompressionRatio,
-		"no_speech_prob": obj.NoSpeechProb,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {

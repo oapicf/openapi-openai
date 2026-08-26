@@ -61,10 +61,12 @@ class RunStepDetailsToolCallsFileSearchObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepDetailsToolCallsFileSearchObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepDetailsToolCallsFileSearchObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "RunStepDetailsToolCallsFileSearchObject[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "RunStepDetailsToolCallsFileSearchObject[id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RunStepDetailsToolCallsFileSearchObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RunStepDetailsToolCallsFileSearchObject[type]" has a null value in JSON.');
+        assert(json.containsKey(r'file_search'), 'Required key "RunStepDetailsToolCallsFileSearchObject[file_search]" is missing from JSON.');
+        assert(json[r'file_search'] != null, 'Required key "RunStepDetailsToolCallsFileSearchObject[file_search]" has a null value in JSON.');
         return true;
       }());
 
@@ -126,27 +128,28 @@ class RunStepDetailsToolCallsFileSearchObject {
 }
 
 /// The type of tool call. This is always going to be `file_search` for this type of tool call.
-class RunStepDetailsToolCallsFileSearchObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepDetailsToolCallsFileSearchObjectTypeEnum._(this.value);
+enum RunStepDetailsToolCallsFileSearchObjectTypeEnum {
+  fileSearch._(r'file_search'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepDetailsToolCallsFileSearchObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const fileSearch = RunStepDetailsToolCallsFileSearchObjectTypeEnum._(r'file_search');
-
-  /// List of all possible values in this [enum][RunStepDetailsToolCallsFileSearchObjectTypeEnum].
-  static const values = <RunStepDetailsToolCallsFileSearchObjectTypeEnum>[
-    fileSearch,
-  ];
-
+  /// Returns the instance of [RunStepDetailsToolCallsFileSearchObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepDetailsToolCallsFileSearchObjectTypeEnum? fromJson(dynamic value) => RunStepDetailsToolCallsFileSearchObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepDetailsToolCallsFileSearchObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepDetailsToolCallsFileSearchObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepDetailsToolCallsFileSearchObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -168,9 +171,10 @@ class RunStepDetailsToolCallsFileSearchObjectTypeEnumTypeTransformer {
 
   const RunStepDetailsToolCallsFileSearchObjectTypeEnumTypeTransformer._();
 
-  String encode(RunStepDetailsToolCallsFileSearchObjectTypeEnum data) => data.value;
+  String encode(RunStepDetailsToolCallsFileSearchObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepDetailsToolCallsFileSearchObjectTypeEnum.
+  /// Returns the instance of [RunStepDetailsToolCallsFileSearchObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -179,6 +183,9 @@ class RunStepDetailsToolCallsFileSearchObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepDetailsToolCallsFileSearchObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepDetailsToolCallsFileSearchObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'file_search': return RunStepDetailsToolCallsFileSearchObjectTypeEnum.fileSearch;
@@ -191,7 +198,7 @@ class RunStepDetailsToolCallsFileSearchObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStepDetailsToolCallsFileSearchObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepDetailsToolCallsFileSearchObjectTypeEnumTypeTransformer? _instance;
 }
 

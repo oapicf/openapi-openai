@@ -6,7 +6,10 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
 import org.openapitools.model.OtherChunkingStrategyResponseParam
 import org.openapitools.model.StaticChunkingStrategy
-import org.openapitools.model.StaticChunkingStrategyResponseParam
+import org.openapitools.model.StaticChunkingStrategyRequestParam
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -20,37 +23,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * The strategy used to chunk the file.
- * @param type Always `static`.
- * @param static 
  */
-data class VectorStoreFileObjectChunkingStrategy(
-
-    @Schema(example = "null", required = true, description = "Always `static`.")
-    @get:JsonProperty("type", required = true) val type: VectorStoreFileObjectChunkingStrategy.Type,
-
-    @field:Valid
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("static", required = true) val static: StaticChunkingStrategy
-) {
-
-    /**
-    * Always `static`.
-    * Values: static,other
-    */
-    enum class Type(@get:JsonValue val value: kotlin.String) {
-
-        static("static"),
-        other("other");
-
-        companion object {
-            @JvmStatic
-            @JsonCreator
-            fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'VectorStoreFileObjectChunkingStrategy'")
-            }
-        }
-    }
-
+sealed interface VectorStoreFileObjectChunkingStrategy {
 }
 

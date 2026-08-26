@@ -22,7 +22,7 @@ class EmbeddingsApi : public Service {
 public:
     EmbeddingsApi() = default;
 
-    virtual ~EmbeddingsApi() = default;
+    virtual ~EmbeddingsApi();
 
     /**
     * Creates an embedding vector representing the input text..

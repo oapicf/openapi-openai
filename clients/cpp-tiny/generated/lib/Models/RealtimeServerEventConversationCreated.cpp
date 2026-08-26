@@ -107,7 +107,7 @@ RealtimeServerEventConversationCreated::getEventId()
 }
 
 void
-RealtimeServerEventConversationCreated::setEventId(std::string  event_id)
+RealtimeServerEventConversationCreated::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -119,7 +119,7 @@ RealtimeServerEventConversationCreated::getType()
 }
 
 void
-RealtimeServerEventConversationCreated::setType(std::string  type)
+RealtimeServerEventConversationCreated::setType(std::string type)
 {
 	this->type = type;
 }
@@ -131,7 +131,7 @@ RealtimeServerEventConversationCreated::getConversation()
 }
 
 void
-RealtimeServerEventConversationCreated::setConversation(RealtimeServerEventConversationCreated_conversation  conversation)
+RealtimeServerEventConversationCreated::setConversation(RealtimeServerEventConversationCreated_conversation conversation)
 {
 	this->conversation = conversation;
 }

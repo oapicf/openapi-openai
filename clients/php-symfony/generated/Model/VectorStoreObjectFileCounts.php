@@ -49,7 +49,7 @@ class VectorStoreObjectFileCounts
      * @var int|null
      * @SerializedName("in_progress")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $inProgress = null;
@@ -60,7 +60,7 @@ class VectorStoreObjectFileCounts
      * @var int|null
      * @SerializedName("completed")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $completed = null;
@@ -71,7 +71,7 @@ class VectorStoreObjectFileCounts
      * @var int|null
      * @SerializedName("failed")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $failed = null;
@@ -82,7 +82,7 @@ class VectorStoreObjectFileCounts
      * @var int|null
      * @SerializedName("cancelled")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $cancelled = null;
@@ -93,7 +93,7 @@ class VectorStoreObjectFileCounts
      * @var int|null
      * @SerializedName("total")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $total = null;
@@ -124,12 +124,12 @@ class VectorStoreObjectFileCounts
     }
 
     /**
-    * Sets inProgress.
-    *
-    * @param int|null $inProgress  The number of files that are currently being processed.
-    *
-    * @return $this
-    */
+     * Sets inProgress.
+     *
+     * @param int|null $inProgress  The number of files that are currently being processed.
+     *
+     * @return $this
+     */
     public function setInProgress(?int $inProgress): self
     {
         $this->inProgress = $inProgress;
@@ -151,12 +151,12 @@ class VectorStoreObjectFileCounts
     }
 
     /**
-    * Sets completed.
-    *
-    * @param int|null $completed  The number of files that have been successfully processed.
-    *
-    * @return $this
-    */
+     * Sets completed.
+     *
+     * @param int|null $completed  The number of files that have been successfully processed.
+     *
+     * @return $this
+     */
     public function setCompleted(?int $completed): self
     {
         $this->completed = $completed;
@@ -178,12 +178,12 @@ class VectorStoreObjectFileCounts
     }
 
     /**
-    * Sets failed.
-    *
-    * @param int|null $failed  The number of files that have failed to process.
-    *
-    * @return $this
-    */
+     * Sets failed.
+     *
+     * @param int|null $failed  The number of files that have failed to process.
+     *
+     * @return $this
+     */
     public function setFailed(?int $failed): self
     {
         $this->failed = $failed;
@@ -205,12 +205,12 @@ class VectorStoreObjectFileCounts
     }
 
     /**
-    * Sets cancelled.
-    *
-    * @param int|null $cancelled  The number of files that were cancelled.
-    *
-    * @return $this
-    */
+     * Sets cancelled.
+     *
+     * @param int|null $cancelled  The number of files that were cancelled.
+     *
+     * @return $this
+     */
     public function setCancelled(?int $cancelled): self
     {
         $this->cancelled = $cancelled;
@@ -232,12 +232,12 @@ class VectorStoreObjectFileCounts
     }
 
     /**
-    * Sets total.
-    *
-    * @param int|null $total  The total number of files.
-    *
-    * @return $this
-    */
+     * Sets total.
+     *
+     * @param int|null $total  The total number of files.
+     *
+     * @return $this
+     */
     public function setTotal(?int $total): self
     {
         $this->total = $total;

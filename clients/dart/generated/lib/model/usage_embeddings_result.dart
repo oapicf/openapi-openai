@@ -105,10 +105,12 @@ class UsageEmbeddingsResult {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UsageEmbeddingsResult[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UsageEmbeddingsResult[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "UsageEmbeddingsResult[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "UsageEmbeddingsResult[object]" has a null value in JSON.');
+        assert(json.containsKey(r'input_tokens'), 'Required key "UsageEmbeddingsResult[input_tokens]" is missing from JSON.');
+        assert(json[r'input_tokens'] != null, 'Required key "UsageEmbeddingsResult[input_tokens]" has a null value in JSON.');
+        assert(json.containsKey(r'num_model_requests'), 'Required key "UsageEmbeddingsResult[num_model_requests]" is missing from JSON.');
+        assert(json[r'num_model_requests'] != null, 'Required key "UsageEmbeddingsResult[num_model_requests]" has a null value in JSON.');
         return true;
       }());
 
@@ -174,27 +176,28 @@ class UsageEmbeddingsResult {
 }
 
 
-class UsageEmbeddingsResultObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const UsageEmbeddingsResultObjectEnum._(this.value);
+enum UsageEmbeddingsResultObjectEnum {
+  organizationPeriodUsagePeriodEmbeddingsPeriodResult._(r'organization.usage.embeddings.result'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const UsageEmbeddingsResultObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const organizationPeriodUsagePeriodEmbeddingsPeriodResult = UsageEmbeddingsResultObjectEnum._(r'organization.usage.embeddings.result');
-
-  /// List of all possible values in this [enum][UsageEmbeddingsResultObjectEnum].
-  static const values = <UsageEmbeddingsResultObjectEnum>[
-    organizationPeriodUsagePeriodEmbeddingsPeriodResult,
-  ];
-
+  /// Returns the instance of [UsageEmbeddingsResultObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static UsageEmbeddingsResultObjectEnum? fromJson(dynamic value) => UsageEmbeddingsResultObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [UsageEmbeddingsResultObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<UsageEmbeddingsResultObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <UsageEmbeddingsResultObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -216,9 +219,10 @@ class UsageEmbeddingsResultObjectEnumTypeTransformer {
 
   const UsageEmbeddingsResultObjectEnumTypeTransformer._();
 
-  String encode(UsageEmbeddingsResultObjectEnum data) => data.value;
+  String encode(UsageEmbeddingsResultObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a UsageEmbeddingsResultObjectEnum.
+  /// Returns the instance of [UsageEmbeddingsResultObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -227,6 +231,9 @@ class UsageEmbeddingsResultObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   UsageEmbeddingsResultObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is UsageEmbeddingsResultObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'organization.usage.embeddings.result': return UsageEmbeddingsResultObjectEnum.organizationPeriodUsagePeriodEmbeddingsPeriodResult;
@@ -239,7 +246,7 @@ class UsageEmbeddingsResultObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [UsageEmbeddingsResultObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static UsageEmbeddingsResultObjectEnumTypeTransformer? _instance;
 }
 

@@ -55,7 +55,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets StepDetails
         /// </summary>
         [JsonPropertyName("step_details")]
-        public RunStepDeltaObjectDeltaStepDetails? StepDetails { get { return this.StepDetailsOption; } set { this.StepDetailsOption = new(value); } }
+        public RunStepDeltaObjectDeltaStepDetails? StepDetails { get { return this.StepDetailsOption.Value; } set { this.StepDetailsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDeltaObjectDelta" />
     /// </summary>
-    public class RunStepDeltaObjectDeltaJsonConverter : JsonConverter<RunStepDeltaObjectDelta>
+    public partial class RunStepDeltaObjectDeltaJsonConverter : JsonConverter<RunStepDeltaObjectDelta>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDeltaObjectDeltaJsonConverter" /> class.
+        /// </summary>
+        public RunStepDeltaObjectDeltaJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDeltaObjectDelta" />
         /// </summary>

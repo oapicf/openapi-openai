@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIAssistantToolsFileSearchTypeOnly::OAIAssistantToolsFileSearchTypeOnly(QString json) {
+OAIAssistantToolsFileSearchTypeOnly::OAIAssistantToolsFileSearchTypeOnly(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -38,7 +38,7 @@ void OAIAssistantToolsFileSearchTypeOnly::initializeModel() {
     m_type_isValid = false;
 }
 
-void OAIAssistantToolsFileSearchTypeOnly::fromJson(QString jsonString) {
+void OAIAssistantToolsFileSearchTypeOnly::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -13,10 +13,11 @@ part 'create_fine_tuning_job_request_integrations_inner.g.dart';
 /// CreateFineTuningJobRequestIntegrationsInner
 ///
 /// Properties:
-/// * [type] 
+/// * [type] - The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
 /// * [wandb] 
 @BuiltValue()
 abstract class CreateFineTuningJobRequestIntegrationsInner implements Built<CreateFineTuningJobRequestIntegrationsInner, CreateFineTuningJobRequestIntegrationsInnerBuilder> {
+  /// The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
   @BuiltValueField(wireName: r'type')
   CreateFineTuningJobRequestIntegrationsInnerTypeEnum get type;
   // enum typeEnum {  wandb,  };
@@ -125,6 +126,7 @@ class _$CreateFineTuningJobRequestIntegrationsInnerSerializer implements Primiti
 
 class CreateFineTuningJobRequestIntegrationsInnerTypeEnum extends EnumClass {
 
+  /// The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
   @BuiltValueEnumConst(wireName: r'wandb')
   static const CreateFineTuningJobRequestIntegrationsInnerTypeEnum wandb = _$createFineTuningJobRequestIntegrationsInnerTypeEnum_wandb;
 

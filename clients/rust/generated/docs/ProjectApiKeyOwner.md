@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**r#type** | Option<**String**> | `user` or `service_account` | [optional]
+**r#type** | Option<**Type**> | `user` or `service_account` (enum: user, service_account) | [optional]
 **user** | Option<[**models::ProjectUser**](ProjectUser.md)> |  | [optional]
 **service_account** | Option<[**models::ProjectServiceAccount**](ProjectServiceAccount.md)> |  | [optional]
 

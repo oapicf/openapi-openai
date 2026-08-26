@@ -29,6 +29,8 @@ RealtimeServerEventConversationItemTruncated::RealtimeServerEventConversationIte
     
 }
 
+RealtimeServerEventConversationItemTruncated::~RealtimeServerEventConversationItemTruncated() = default;
+
 void RealtimeServerEventConversationItemTruncated::validate() const
 {
     std::stringstream msg;

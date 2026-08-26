@@ -9,18 +9,18 @@ static response_format_json_schema_json_schema_t *response_format_json_schema_js
     char *description,
     char *name,
     list_t* schema,
-    int strict
+    int *strict
     ) {
     response_format_json_schema_json_schema_t *response_format_json_schema_json_schema_local_var = malloc(sizeof(response_format_json_schema_json_schema_t));
     if (!response_format_json_schema_json_schema_local_var) {
         return NULL;
     }
+    memset(response_format_json_schema_json_schema_local_var, 0, sizeof(response_format_json_schema_json_schema_t));
+    response_format_json_schema_json_schema_local_var->_library_owned = 1;
     response_format_json_schema_json_schema_local_var->description = description;
     response_format_json_schema_json_schema_local_var->name = name;
     response_format_json_schema_json_schema_local_var->schema = schema;
     response_format_json_schema_json_schema_local_var->strict = strict;
-
-    response_format_json_schema_json_schema_local_var->_library_owned = 1;
     return response_format_json_schema_json_schema_local_var;
 }
 
@@ -28,14 +28,23 @@ __attribute__((deprecated)) response_format_json_schema_json_schema_t *response_
     char *description,
     char *name,
     list_t* schema,
-    int strict
+    int *strict
     ) {
-    return response_format_json_schema_json_schema_create_internal (
+    int *strict_copy = NULL;
+    if (strict) {
+        strict_copy = malloc(sizeof(int));
+        if (strict_copy) *strict_copy = *strict;
+    }
+    response_format_json_schema_json_schema_t *result = response_format_json_schema_json_schema_create_internal (
         description,
         name,
         schema,
-        strict
+        strict_copy
         );
+    if (!result) {
+        free(strict_copy);
+    }
+    return result;
 }
 
 void response_format_json_schema_json_schema_free(response_format_json_schema_json_schema_t *response_format_json_schema_json_schema) {
@@ -64,6 +73,10 @@ void response_format_json_schema_json_schema_free(response_format_json_schema_js
         }
         list_freeList(response_format_json_schema_json_schema->schema);
         response_format_json_schema_json_schema->schema = NULL;
+    }
+    if (response_format_json_schema_json_schema->strict) {
+        free(response_format_json_schema_json_schema->strict);
+        response_format_json_schema_json_schema->strict = NULL;
     }
     free(response_format_json_schema_json_schema);
 }
@@ -106,7 +119,7 @@ cJSON *response_format_json_schema_json_schema_convertToJSON(response_format_jso
 
     // response_format_json_schema_json_schema->strict
     if(response_format_json_schema_json_schema->strict) {
-    if(cJSON_AddBoolToObject(item, "strict", response_format_json_schema_json_schema->strict) == NULL) {
+    if(cJSON_AddBoolToObject(item, "strict", *response_format_json_schema_json_schema->strict) == NULL) {
     goto fail; //Bool
     }
     }
@@ -123,8 +136,15 @@ response_format_json_schema_json_schema_t *response_format_json_schema_json_sche
 
     response_format_json_schema_json_schema_t *response_format_json_schema_json_schema_local_var = NULL;
 
+    char *description_local_str = NULL;
+
+    char *name_local_str = NULL;
+
     // define the local map for response_format_json_schema_json_schema->schema
     list_t *schemaList = NULL;
+
+    // define the local variable for response_format_json_schema_json_schema->strict
+    int *strict_local_var = NULL;
 
     // response_format_json_schema_json_schema->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(response_format_json_schema_json_schemaJSON, "description");
@@ -186,18 +206,39 @@ response_format_json_schema_json_schema_t *response_format_json_schema_json_sche
     {
     goto end; //Bool
     }
+    strict_local_var = malloc(sizeof(int));
+    if(!strict_local_var)
+    {
+        goto end;
+    }
+    *strict_local_var = strict->valueint;
     }
 
 
+    if (description && !cJSON_IsNull(description)) description_local_str = strdup(description->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     response_format_json_schema_json_schema_local_var = response_format_json_schema_json_schema_create_internal (
-        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
-        strdup(name->valuestring),
+        description_local_str,
+        name_local_str,
         schema ? schemaList : NULL,
-        strict ? strict->valueint : 0
+        strict_local_var
         );
+
+    if (!response_format_json_schema_json_schema_local_var) {
+        goto end;
+    }
 
     return response_format_json_schema_json_schema_local_var;
 end:
+    if (description_local_str) {
+        free(description_local_str);
+        description_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
     if (schemaList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, schemaList) {
@@ -209,6 +250,10 @@ end:
         }
         list_freeList(schemaList);
         schemaList = NULL;
+    }
+    if (strict_local_var) {
+        free(strict_local_var);
+        strict_local_var = NULL;
     }
     return NULL;
 

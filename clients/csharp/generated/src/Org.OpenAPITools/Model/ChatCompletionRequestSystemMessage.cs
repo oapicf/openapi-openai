@@ -126,7 +126,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>An optional name for the participant. Provides the model information to differentiate between participants of the same role.</value>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -157,8 +157,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ChatCompletionRequestSystemMessage" />
     /// </summary>
-    public class ChatCompletionRequestSystemMessageJsonConverter : JsonConverter<ChatCompletionRequestSystemMessage>
+    public partial class ChatCompletionRequestSystemMessageJsonConverter : JsonConverter<ChatCompletionRequestSystemMessage>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChatCompletionRequestSystemMessageJsonConverter" /> class.
+        /// </summary>
+        public ChatCompletionRequestSystemMessageJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ChatCompletionRequestSystemMessage" />
         /// </summary>

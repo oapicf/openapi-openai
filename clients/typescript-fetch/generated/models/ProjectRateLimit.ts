@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface ProjectRateLimit {
     /**
      * The object type, which is always `project.rate_limit`
-     * @type {string}
+     * @type {ProjectRateLimitObjectEnum}
      * @memberof ProjectRateLimit
      */
     object: ProjectRateLimitObjectEnum;
@@ -90,10 +90,12 @@ export type ProjectRateLimitObjectEnum = typeof ProjectRateLimitObjectEnum[keyof
  */
 export function instanceOfProjectRateLimit(value: object): value is ProjectRateLimit {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'project.rate_limit') return false;
+    
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('model' in value) || value['model'] === undefined) return false;
-    if (!('maxRequestsPer1Minute' in value) || value['maxRequestsPer1Minute'] === undefined) return false;
-    if (!('maxTokensPer1Minute' in value) || value['maxTokensPer1Minute'] === undefined) return false;
+    if ((!('maxRequestsPer1Minute' in (value as Record<string, any>)) && !('max_requests_per_1_minute' in (value as Record<string, any>))) || ((value as Record<string, any>)['maxRequestsPer1Minute'] === undefined && (value as Record<string, any>)['max_requests_per_1_minute'] === undefined)) return false;
+    if ((!('maxTokensPer1Minute' in (value as Record<string, any>)) && !('max_tokens_per_1_minute' in (value as Record<string, any>))) || ((value as Record<string, any>)['maxTokensPer1Minute'] === undefined && (value as Record<string, any>)['max_tokens_per_1_minute'] === undefined)) return false;
     return true;
 }
 

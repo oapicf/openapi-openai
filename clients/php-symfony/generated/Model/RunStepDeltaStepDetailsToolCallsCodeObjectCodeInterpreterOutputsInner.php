@@ -49,7 +49,7 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
      * @var int|null
      * @SerializedName("index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $index = null;
@@ -60,7 +60,7 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['logs', 'image'])]
     #[Assert\Type("string")]
@@ -72,7 +72,7 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
      * @var string|null
      * @SerializedName("logs")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $logs = null;
 
@@ -80,7 +80,7 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
      * @var RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage|null
      * @SerializedName("image")
      * @Type("OpenAPI\Server\Model\RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage")]
     protected ?RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage $image = null;
 
@@ -109,12 +109,12 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
     }
 
     /**
-    * Sets index.
-    *
-    * @param int|null $index  The index of the output in the outputs array.
-    *
-    * @return $this
-    */
+     * Sets index.
+     *
+     * @param int|null $index  The index of the output in the outputs array.
+     *
+     * @return $this
+     */
     public function setIndex(?int $index): self
     {
         $this->index = $index;
@@ -136,12 +136,12 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `logs`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `logs`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -163,12 +163,12 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
     }
 
     /**
-    * Sets logs.
-    *
-    * @param string|null $logs  The text output from the Code Interpreter tool call.
-    *
-    * @return $this
-    */
+     * Sets logs.
+     *
+     * @param string|null $logs  The text output from the Code Interpreter tool call.
+     *
+     * @return $this
+     */
     public function setLogs(?string $logs = null): self
     {
         $this->logs = $logs;
@@ -190,12 +190,12 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
     }
 
     /**
-    * Sets image.
-    *
-    * @param RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage|null $image
-    *
-    * @return $this
-    */
+     * Sets image.
+     *
+     * @param RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage|null $image
+     *
+     * @return $this
+     */
     public function setImage(?RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage $image = null): self
     {
         $this->image = $image;

@@ -30,7 +30,7 @@ export interface RealtimeServerEventResponseFunctionCallArgumentsDone {
     /**
      * The event type, must be `response.function_call_arguments.done`.
      * 
-     * @type {string}
+     * @type {RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum}
      * @memberof RealtimeServerEventResponseFunctionCallArgumentsDone
      */
     type: RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum;
@@ -80,12 +80,14 @@ export type RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum = typeo
  * Check if a given object implements the RealtimeServerEventResponseFunctionCallArgumentsDone interface.
  */
 export function instanceOfRealtimeServerEventResponseFunctionCallArgumentsDone(value: object): value is RealtimeServerEventResponseFunctionCallArgumentsDone {
-    if (!('eventId' in value) || value['eventId'] === undefined) return false;
+    if ((!('eventId' in (value as Record<string, any>)) && !('event_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['eventId'] === undefined && (value as Record<string, any>)['event_id'] === undefined)) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('responseId' in value) || value['responseId'] === undefined) return false;
-    if (!('itemId' in value) || value['itemId'] === undefined) return false;
-    if (!('outputIndex' in value) || value['outputIndex'] === undefined) return false;
-    if (!('callId' in value) || value['callId'] === undefined) return false;
+    if (value['type'] !== 'response.function_call_arguments.done') return false;
+    
+    if ((!('responseId' in (value as Record<string, any>)) && !('response_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['responseId'] === undefined && (value as Record<string, any>)['response_id'] === undefined)) return false;
+    if ((!('itemId' in (value as Record<string, any>)) && !('item_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['itemId'] === undefined && (value as Record<string, any>)['item_id'] === undefined)) return false;
+    if ((!('outputIndex' in (value as Record<string, any>)) && !('output_index' in (value as Record<string, any>))) || ((value as Record<string, any>)['outputIndex'] === undefined && (value as Record<string, any>)['output_index'] === undefined)) return false;
+    if ((!('callId' in (value as Record<string, any>)) && !('call_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['callId'] === undefined && (value as Record<string, any>)['call_id'] === undefined)) return false;
     if (!('arguments' in value) || value['arguments'] === undefined) return false;
     return true;
 }

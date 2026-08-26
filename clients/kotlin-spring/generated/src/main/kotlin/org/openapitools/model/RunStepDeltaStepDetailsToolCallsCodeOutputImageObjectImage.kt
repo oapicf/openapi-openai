@@ -1,7 +1,10 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -19,7 +22,10 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage(
 
-    @Schema(example = "null", description = "The [file](/docs/api-reference/files) ID of the image.")
+    @Schema(description = "The [file](/docs/api-reference/files) ID of the image.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("file_id")
     @get:JsonProperty("file_id") val fileId: kotlin.String? = null
 ) {
 

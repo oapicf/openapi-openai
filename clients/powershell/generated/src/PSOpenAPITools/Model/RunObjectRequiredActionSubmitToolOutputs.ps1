@@ -40,7 +40,7 @@ function Initialize-RunObjectRequiredActionSubmitToolOutputs {
 
 
         $PSO = [PSCustomObject]@{
-            "tool_calls" = ${ToolCalls}
+            'tool_calls' = ${ToolCalls}
         }
 
 
@@ -78,7 +78,7 @@ function ConvertFrom-JsonToRunObjectRequiredActionSubmitToolOutputs {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunObjectRequiredActionSubmitToolOutputs
-        $AllProperties = ("tool_calls")
+        $AllProperties = ('tool_calls')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -89,14 +89,14 @@ function ConvertFrom-JsonToRunObjectRequiredActionSubmitToolOutputs {
             throw "Error! Empty JSON cannot be serialized due to the required property 'tool_calls' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tool_calls"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tool_calls'))) {
             throw "Error! JSON cannot be serialized due to the required property 'tool_calls' missing."
         } else {
-            $ToolCalls = $JsonParameters.PSobject.Properties["tool_calls"].value
+            $ToolCalls = $JsonParameters.PSobject.Properties['tool_calls'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "tool_calls" = ${ToolCalls}
+            'tool_calls' = ${ToolCalls}
         }
 
         return $PSO

@@ -1,4 +1,4 @@
-# # ProjectServiceAccountListResponse
+# ProjectServiceAccountListResponse
 
 ## Properties
 

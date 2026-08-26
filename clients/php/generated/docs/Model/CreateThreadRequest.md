@@ -1,4 +1,4 @@
-# # CreateThreadRequest
+# CreateThreadRequest
 
 ## Properties
 

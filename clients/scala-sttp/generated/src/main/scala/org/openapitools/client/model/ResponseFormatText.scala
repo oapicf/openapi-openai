@@ -15,7 +15,7 @@ package org.openapitools.client.model
 case class ResponseFormatText(
   /* The type of response format being defined: `text` */
   `type`: ResponseFormatTextEnums.`Type`
-)
+) extends CreateChatCompletionRequestResponseFormat
 
 object ResponseFormatTextEnums {
 

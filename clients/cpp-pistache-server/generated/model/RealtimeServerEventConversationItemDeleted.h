@@ -32,7 +32,7 @@ class  RealtimeServerEventConversationItemDeleted
 {
 public:
     RealtimeServerEventConversationItemDeleted();
-    virtual ~RealtimeServerEventConversationItemDeleted() = default;
+    virtual ~RealtimeServerEventConversationItemDeleted();
 
 
     /// <summary>

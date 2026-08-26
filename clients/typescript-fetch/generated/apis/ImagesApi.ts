@@ -12,21 +12,22 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  CreateImageEditRequestModel,
-  CreateImageRequest,
-  ImagesResponse,
-} from '../models/index';
 import {
+    type CreateImageEditRequestModel,
     CreateImageEditRequestModelFromJSON,
     CreateImageEditRequestModelToJSON,
+} from '../models/CreateImageEditRequestModel';
+import {
+    type CreateImageRequest,
     CreateImageRequestFromJSON,
     CreateImageRequestToJSON,
+} from '../models/CreateImageRequest';
+import {
+    type ImagesResponse,
     ImagesResponseFromJSON,
     ImagesResponseToJSON,
-} from '../models/index';
+} from '../models/ImagesResponse';
 
 export interface CreateImageOperationRequest {
     createImageRequest: CreateImageRequest;
@@ -58,9 +59,9 @@ export interface CreateImageVariationRequest {
 export class ImagesApi extends runtime.BaseAPI {
 
     /**
-     * Creates an image given a prompt.
+     * Creates request options for createImage without sending the request
      */
-    async createImageRaw(requestParameters: CreateImageOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImagesResponse>> {
+    async createImageRequestOpts(requestParameters: CreateImageOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createImageRequest'] == null) {
             throw new runtime.RequiredError(
                 'createImageRequest',
@@ -85,13 +86,21 @@ export class ImagesApi extends runtime.BaseAPI {
 
         let urlPath = `/images/generations`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateImageRequestToJSON(requestParameters['createImageRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates an image given a prompt.
+     */
+    async createImageRaw(requestParameters: CreateImageOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImagesResponse>> {
+        const requestOptions = await this.createImageRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImagesResponseFromJSON(jsonValue));
     }
@@ -105,9 +114,9 @@ export class ImagesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates an edited or extended image given an original image and a prompt.
+     * Creates request options for createImageEdit without sending the request
      */
-    async createImageEditRaw(requestParameters: CreateImageEditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImagesResponse>> {
+    async createImageEditRequestOpts(requestParameters: CreateImageEditRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['image'] == null) {
             throw new runtime.RequiredError(
                 'image',
@@ -187,13 +196,21 @@ export class ImagesApi extends runtime.BaseAPI {
 
         let urlPath = `/images/edits`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates an edited or extended image given an original image and a prompt.
+     */
+    async createImageEditRaw(requestParameters: CreateImageEditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImagesResponse>> {
+        const requestOptions = await this.createImageEditRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImagesResponseFromJSON(jsonValue));
     }
@@ -207,9 +224,9 @@ export class ImagesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a variation of a given image.
+     * Creates request options for createImageVariation without sending the request
      */
-    async createImageVariationRaw(requestParameters: CreateImageVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImagesResponse>> {
+    async createImageVariationRequestOpts(requestParameters: CreateImageVariationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['image'] == null) {
             throw new runtime.RequiredError(
                 'image',
@@ -272,13 +289,21 @@ export class ImagesApi extends runtime.BaseAPI {
 
         let urlPath = `/images/variations`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates a variation of a given image.
+     */
+    async createImageVariationRaw(requestParameters: CreateImageVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImagesResponse>> {
+        const requestOptions = await this.createImageVariationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImagesResponseFromJSON(jsonValue));
     }

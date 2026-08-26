@@ -1,4 +1,4 @@
-# # ListFineTuningJobEventsResponse
+# ListFineTuningJobEventsResponse
 
 ## Properties
 

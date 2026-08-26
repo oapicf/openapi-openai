@@ -24,7 +24,7 @@ import { mapValues } from '../runtime';
 export interface FileSearchRankingOptions {
     /**
      * The ranker to use for the file search. If not specified will use the `auto` ranker.
-     * @type {string}
+     * @type {FileSearchRankingOptionsRankerEnum}
      * @memberof FileSearchRankingOptions
      */
     ranker?: FileSearchRankingOptionsRankerEnum;
@@ -51,7 +51,7 @@ export type FileSearchRankingOptionsRankerEnum = typeof FileSearchRankingOptions
  * Check if a given object implements the FileSearchRankingOptions interface.
  */
 export function instanceOfFileSearchRankingOptions(value: object): value is FileSearchRankingOptions {
-    if (!('scoreThreshold' in value) || value['scoreThreshold'] === undefined) return false;
+    if ((!('scoreThreshold' in (value as Record<string, any>)) && !('score_threshold' in (value as Record<string, any>))) || ((value as Record<string, any>)['scoreThreshold'] === undefined && (value as Record<string, any>)['score_threshold'] === undefined)) return false;
     return true;
 }
 

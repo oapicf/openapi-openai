@@ -8,30 +8,39 @@
 static fine_tune_preference_request_input_input_t *fine_tune_preference_request_input_input_create_internal(
     list_t *messages,
     list_t *tools,
-    int parallel_tool_calls
+    int *parallel_tool_calls
     ) {
     fine_tune_preference_request_input_input_t *fine_tune_preference_request_input_input_local_var = malloc(sizeof(fine_tune_preference_request_input_input_t));
     if (!fine_tune_preference_request_input_input_local_var) {
         return NULL;
     }
+    memset(fine_tune_preference_request_input_input_local_var, 0, sizeof(fine_tune_preference_request_input_input_t));
+    fine_tune_preference_request_input_input_local_var->_library_owned = 1;
     fine_tune_preference_request_input_input_local_var->messages = messages;
     fine_tune_preference_request_input_input_local_var->tools = tools;
     fine_tune_preference_request_input_input_local_var->parallel_tool_calls = parallel_tool_calls;
-
-    fine_tune_preference_request_input_input_local_var->_library_owned = 1;
     return fine_tune_preference_request_input_input_local_var;
 }
 
 __attribute__((deprecated)) fine_tune_preference_request_input_input_t *fine_tune_preference_request_input_input_create(
     list_t *messages,
     list_t *tools,
-    int parallel_tool_calls
+    int *parallel_tool_calls
     ) {
-    return fine_tune_preference_request_input_input_create_internal (
+    int *parallel_tool_calls_copy = NULL;
+    if (parallel_tool_calls) {
+        parallel_tool_calls_copy = malloc(sizeof(int));
+        if (parallel_tool_calls_copy) *parallel_tool_calls_copy = *parallel_tool_calls;
+    }
+    fine_tune_preference_request_input_input_t *result = fine_tune_preference_request_input_input_create_internal (
         messages,
         tools,
-        parallel_tool_calls
+        parallel_tool_calls_copy
         );
+    if (!result) {
+        free(parallel_tool_calls_copy);
+    }
+    return result;
 }
 
 void fine_tune_preference_request_input_input_free(fine_tune_preference_request_input_input_t *fine_tune_preference_request_input_input) {
@@ -56,6 +65,10 @@ void fine_tune_preference_request_input_input_free(fine_tune_preference_request_
         }
         list_freeList(fine_tune_preference_request_input_input->tools);
         fine_tune_preference_request_input_input->tools = NULL;
+    }
+    if (fine_tune_preference_request_input_input->parallel_tool_calls) {
+        free(fine_tune_preference_request_input_input->parallel_tool_calls);
+        fine_tune_preference_request_input_input->parallel_tool_calls = NULL;
     }
     free(fine_tune_preference_request_input_input);
 }
@@ -105,7 +118,7 @@ cJSON *fine_tune_preference_request_input_input_convertToJSON(fine_tune_preferen
 
     // fine_tune_preference_request_input_input->parallel_tool_calls
     if(fine_tune_preference_request_input_input->parallel_tool_calls) {
-    if(cJSON_AddBoolToObject(item, "parallel_tool_calls", fine_tune_preference_request_input_input->parallel_tool_calls) == NULL) {
+    if(cJSON_AddBoolToObject(item, "parallel_tool_calls", *fine_tune_preference_request_input_input->parallel_tool_calls) == NULL) {
     goto fail; //Bool
     }
     }
@@ -127,6 +140,9 @@ fine_tune_preference_request_input_input_t *fine_tune_preference_request_input_i
 
     // define the local list for fine_tune_preference_request_input_input->tools
     list_t *toolsList = NULL;
+
+    // define the local variable for fine_tune_preference_request_input_input->parallel_tool_calls
+    int *parallel_tool_calls_local_var = NULL;
 
     // fine_tune_preference_request_input_input->messages
     cJSON *messages = cJSON_GetObjectItemCaseSensitive(fine_tune_preference_request_input_inputJSON, "messages");
@@ -186,14 +202,25 @@ fine_tune_preference_request_input_input_t *fine_tune_preference_request_input_i
     {
     goto end; //Bool
     }
+    parallel_tool_calls_local_var = malloc(sizeof(int));
+    if(!parallel_tool_calls_local_var)
+    {
+        goto end;
     }
+    *parallel_tool_calls_local_var = parallel_tool_calls->valueint;
+    }
+
 
 
     fine_tune_preference_request_input_input_local_var = fine_tune_preference_request_input_input_create_internal (
         messages ? messagesList : NULL,
         tools ? toolsList : NULL,
-        parallel_tool_calls ? parallel_tool_calls->valueint : 0
+        parallel_tool_calls_local_var
         );
+
+    if (!fine_tune_preference_request_input_input_local_var) {
+        goto end;
+    }
 
     return fine_tune_preference_request_input_input_local_var;
 end:
@@ -214,6 +241,10 @@ end:
         }
         list_freeList(toolsList);
         toolsList = NULL;
+    }
+    if (parallel_tool_calls_local_var) {
+        free(parallel_tool_calls_local_var);
+        parallel_tool_calls_local_var = NULL;
     }
     return NULL;
 

@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIAuditLog_organization_updated_changes_requested_settings::OAIAuditLog_organization_updated_changes_requested_settings(QString json) {
+OAIAuditLog_organization_updated_changes_requested_settings::OAIAuditLog_organization_updated_changes_requested_settings(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIAuditLog_organization_updated_changes_requested_settings::initializeMode
     m_usage_dashboard_visibility_isValid = false;
 }
 
-void OAIAuditLog_organization_updated_changes_requested_settings::fromJson(QString jsonString) {
+void OAIAuditLog_organization_updated_changes_requested_settings::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

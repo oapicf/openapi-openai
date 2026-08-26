@@ -49,7 +49,7 @@ class InviteRequestProjectsInner
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -60,7 +60,7 @@ class InviteRequestProjectsInner
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['member', 'owner'])]
     #[Assert\Type("string")]
@@ -89,12 +89,12 @@ class InviteRequestProjectsInner
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  Project's public ID
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  Project's public ID
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -116,12 +116,12 @@ class InviteRequestProjectsInner
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  Project membership role
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  Project membership role
+     *
+     * @return $this
+     */
     public function setRole(?string $role): self
     {
         $this->role = $role;

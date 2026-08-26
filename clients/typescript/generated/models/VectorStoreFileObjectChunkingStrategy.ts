@@ -11,7 +11,7 @@
  */
 
 import { OtherChunkingStrategyResponseParam } from '../models/OtherChunkingStrategyResponseParam';
-import { StaticChunkingStrategyResponseParam } from '../models/StaticChunkingStrategyResponseParam';
+import { StaticChunkingStrategyRequestParam } from '../models/StaticChunkingStrategyRequestParam';
 import { HttpFile } from '../http/http';
 
 /**
@@ -22,7 +22,7 @@ import { HttpFile } from '../http/http';
  * Type
  * @export
  */
-export type VectorStoreFileObjectChunkingStrategy = OtherChunkingStrategyResponseParam | StaticChunkingStrategyResponseParam;
+export type VectorStoreFileObjectChunkingStrategy = OtherChunkingStrategyResponseParam | StaticChunkingStrategyRequestParam;
 
 /**
 * @type VectorStoreFileObjectChunkingStrategyClass

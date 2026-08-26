@@ -71,10 +71,10 @@ class MessageDeltaContentTextObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageDeltaContentTextObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageDeltaContentTextObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'index'), 'Required key "MessageDeltaContentTextObject[index]" is missing from JSON.');
+        assert(json[r'index'] != null, 'Required key "MessageDeltaContentTextObject[index]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "MessageDeltaContentTextObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "MessageDeltaContentTextObject[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -135,27 +135,28 @@ class MessageDeltaContentTextObject {
 }
 
 /// Always `text`.
-class MessageDeltaContentTextObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageDeltaContentTextObjectTypeEnum._(this.value);
+enum MessageDeltaContentTextObjectTypeEnum {
+  text._(r'text'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageDeltaContentTextObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = MessageDeltaContentTextObjectTypeEnum._(r'text');
-
-  /// List of all possible values in this [enum][MessageDeltaContentTextObjectTypeEnum].
-  static const values = <MessageDeltaContentTextObjectTypeEnum>[
-    text,
-  ];
-
+  /// Returns the instance of [MessageDeltaContentTextObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageDeltaContentTextObjectTypeEnum? fromJson(dynamic value) => MessageDeltaContentTextObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageDeltaContentTextObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageDeltaContentTextObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageDeltaContentTextObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -177,9 +178,10 @@ class MessageDeltaContentTextObjectTypeEnumTypeTransformer {
 
   const MessageDeltaContentTextObjectTypeEnumTypeTransformer._();
 
-  String encode(MessageDeltaContentTextObjectTypeEnum data) => data.value;
+  String encode(MessageDeltaContentTextObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageDeltaContentTextObjectTypeEnum.
+  /// Returns the instance of [MessageDeltaContentTextObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -188,6 +190,9 @@ class MessageDeltaContentTextObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageDeltaContentTextObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageDeltaContentTextObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return MessageDeltaContentTextObjectTypeEnum.text;
@@ -200,7 +205,7 @@ class MessageDeltaContentTextObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageDeltaContentTextObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageDeltaContentTextObjectTypeEnumTypeTransformer? _instance;
 }
 

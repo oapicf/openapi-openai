@@ -51,7 +51,7 @@ class RealtimeServerEventResponseAudioDone
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $eventId = null;
@@ -62,7 +62,7 @@ class RealtimeServerEventResponseAudioDone
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['response.audio.done'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class RealtimeServerEventResponseAudioDone
      * @var string|null
      * @SerializedName("response_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $responseId = null;
@@ -85,7 +85,7 @@ class RealtimeServerEventResponseAudioDone
      * @var string|null
      * @SerializedName("item_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $itemId = null;
@@ -96,7 +96,7 @@ class RealtimeServerEventResponseAudioDone
      * @var int|null
      * @SerializedName("output_index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $outputIndex = null;
@@ -107,7 +107,7 @@ class RealtimeServerEventResponseAudioDone
      * @var int|null
      * @SerializedName("content_index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $contentIndex = null;
@@ -139,12 +139,12 @@ class RealtimeServerEventResponseAudioDone
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  The unique ID of the server event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  The unique ID of the server event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId): self
     {
         $this->eventId = $eventId;
@@ -166,12 +166,12 @@ class RealtimeServerEventResponseAudioDone
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `response.audio.done`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `response.audio.done`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -193,12 +193,12 @@ class RealtimeServerEventResponseAudioDone
     }
 
     /**
-    * Sets responseId.
-    *
-    * @param string|null $responseId  The ID of the response.
-    *
-    * @return $this
-    */
+     * Sets responseId.
+     *
+     * @param string|null $responseId  The ID of the response.
+     *
+     * @return $this
+     */
     public function setResponseId(?string $responseId): self
     {
         $this->responseId = $responseId;
@@ -220,12 +220,12 @@ class RealtimeServerEventResponseAudioDone
     }
 
     /**
-    * Sets itemId.
-    *
-    * @param string|null $itemId  The ID of the item.
-    *
-    * @return $this
-    */
+     * Sets itemId.
+     *
+     * @param string|null $itemId  The ID of the item.
+     *
+     * @return $this
+     */
     public function setItemId(?string $itemId): self
     {
         $this->itemId = $itemId;
@@ -247,12 +247,12 @@ class RealtimeServerEventResponseAudioDone
     }
 
     /**
-    * Sets outputIndex.
-    *
-    * @param int|null $outputIndex  The index of the output item in the response.
-    *
-    * @return $this
-    */
+     * Sets outputIndex.
+     *
+     * @param int|null $outputIndex  The index of the output item in the response.
+     *
+     * @return $this
+     */
     public function setOutputIndex(?int $outputIndex): self
     {
         $this->outputIndex = $outputIndex;
@@ -274,12 +274,12 @@ class RealtimeServerEventResponseAudioDone
     }
 
     /**
-    * Sets contentIndex.
-    *
-    * @param int|null $contentIndex  The index of the content part in the item's content array.
-    *
-    * @return $this
-    */
+     * Sets contentIndex.
+     *
+     * @param int|null $contentIndex  The index of the content part in the item's content array.
+     *
+     * @return $this
+     */
     public function setContentIndex(?int $contentIndex): self
     {
         $this->contentIndex = $contentIndex;

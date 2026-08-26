@@ -26,6 +26,8 @@ InviteRequest_projects_inner::InviteRequest_projects_inner()
     
 }
 
+InviteRequest_projects_inner::~InviteRequest_projects_inner() = default;
+
 void InviteRequest_projects_inner::validate() const
 {
     std::stringstream msg;

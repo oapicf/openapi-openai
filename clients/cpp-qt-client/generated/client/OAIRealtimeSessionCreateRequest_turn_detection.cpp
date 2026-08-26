@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRealtimeSessionCreateRequest_turn_detection::OAIRealtimeSessionCreateRequest_turn_detection(QString json) {
+OAIRealtimeSessionCreateRequest_turn_detection::OAIRealtimeSessionCreateRequest_turn_detection(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -50,7 +50,7 @@ void OAIRealtimeSessionCreateRequest_turn_detection::initializeModel() {
     m_create_response_isValid = false;
 }
 
-void OAIRealtimeSessionCreateRequest_turn_detection::fromJson(QString jsonString) {
+void OAIRealtimeSessionCreateRequest_turn_detection::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

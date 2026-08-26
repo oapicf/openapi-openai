@@ -71,10 +71,16 @@ class ProjectRateLimitListResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectRateLimitListResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectRateLimitListResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "ProjectRateLimitListResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "ProjectRateLimitListResponse[object]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "ProjectRateLimitListResponse[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "ProjectRateLimitListResponse[data]" has a null value in JSON.');
+        assert(json.containsKey(r'first_id'), 'Required key "ProjectRateLimitListResponse[first_id]" is missing from JSON.');
+        assert(json[r'first_id'] != null, 'Required key "ProjectRateLimitListResponse[first_id]" has a null value in JSON.');
+        assert(json.containsKey(r'last_id'), 'Required key "ProjectRateLimitListResponse[last_id]" is missing from JSON.');
+        assert(json[r'last_id'] != null, 'Required key "ProjectRateLimitListResponse[last_id]" has a null value in JSON.');
+        assert(json.containsKey(r'has_more'), 'Required key "ProjectRateLimitListResponse[has_more]" is missing from JSON.');
+        assert(json[r'has_more'] != null, 'Required key "ProjectRateLimitListResponse[has_more]" has a null value in JSON.');
         return true;
       }());
 
@@ -140,27 +146,28 @@ class ProjectRateLimitListResponse {
 }
 
 
-class ProjectRateLimitListResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ProjectRateLimitListResponseObjectEnum._(this.value);
+enum ProjectRateLimitListResponseObjectEnum {
+  list._(r'list'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ProjectRateLimitListResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const list = ProjectRateLimitListResponseObjectEnum._(r'list');
-
-  /// List of all possible values in this [enum][ProjectRateLimitListResponseObjectEnum].
-  static const values = <ProjectRateLimitListResponseObjectEnum>[
-    list,
-  ];
-
+  /// Returns the instance of [ProjectRateLimitListResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ProjectRateLimitListResponseObjectEnum? fromJson(dynamic value) => ProjectRateLimitListResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ProjectRateLimitListResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ProjectRateLimitListResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ProjectRateLimitListResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -182,9 +189,10 @@ class ProjectRateLimitListResponseObjectEnumTypeTransformer {
 
   const ProjectRateLimitListResponseObjectEnumTypeTransformer._();
 
-  String encode(ProjectRateLimitListResponseObjectEnum data) => data.value;
+  String encode(ProjectRateLimitListResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ProjectRateLimitListResponseObjectEnum.
+  /// Returns the instance of [ProjectRateLimitListResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -193,6 +201,9 @@ class ProjectRateLimitListResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ProjectRateLimitListResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ProjectRateLimitListResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'list': return ProjectRateLimitListResponseObjectEnum.list;
@@ -205,7 +216,7 @@ class ProjectRateLimitListResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ProjectRateLimitListResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ProjectRateLimitListResponseObjectEnumTypeTransformer? _instance;
 }
 

@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Returned when the model-generated audio is done. Also emitted when a Response is interrupted, incomplete, or cancelled. 
  */
 @ApiModel(description = "Returned when the model-generated audio is done. Also emitted when a Response is interrupted, incomplete, or cancelled. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeServerEventResponseAudioDone   {
   @JsonProperty("event_id")
   private String eventId;
@@ -211,10 +211,7 @@ public class RealtimeServerEventResponseAudioDone   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

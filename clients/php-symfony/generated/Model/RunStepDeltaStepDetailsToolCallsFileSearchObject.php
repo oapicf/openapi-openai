@@ -49,7 +49,7 @@ class RunStepDeltaStepDetailsToolCallsFileSearchObject
      * @var int|null
      * @SerializedName("index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $index = null;
@@ -60,7 +60,7 @@ class RunStepDeltaStepDetailsToolCallsFileSearchObject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -70,7 +70,7 @@ class RunStepDeltaStepDetailsToolCallsFileSearchObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['file_search'])]
     #[Assert\Type("string")]
@@ -82,7 +82,7 @@ class RunStepDeltaStepDetailsToolCallsFileSearchObject
      * @var array|null
      * @SerializedName("file_search")
      * @Type("array")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("array")]
     protected ?array $fileSearch = null;
@@ -112,12 +112,12 @@ class RunStepDeltaStepDetailsToolCallsFileSearchObject
     }
 
     /**
-    * Sets index.
-    *
-    * @param int|null $index  The index of the tool call in the tool calls array.
-    *
-    * @return $this
-    */
+     * Sets index.
+     *
+     * @param int|null $index  The index of the tool call in the tool calls array.
+     *
+     * @return $this
+     */
     public function setIndex(?int $index): self
     {
         $this->index = $index;
@@ -139,12 +139,12 @@ class RunStepDeltaStepDetailsToolCallsFileSearchObject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The ID of the tool call object.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The ID of the tool call object.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -166,12 +166,12 @@ class RunStepDeltaStepDetailsToolCallsFileSearchObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of tool call. This is always going to be `file_search` for this type of tool call.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of tool call. This is always going to be `file_search` for this type of tool call.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -193,12 +193,12 @@ class RunStepDeltaStepDetailsToolCallsFileSearchObject
     }
 
     /**
-    * Sets fileSearch.
-    *
-    * @param array|null $fileSearch  For now, this is always going to be an empty object.
-    *
-    * @return $this
-    */
+     * Sets fileSearch.
+     *
+     * @param array|null $fileSearch  For now, this is always going to be an empty object.
+     *
+     * @return $this
+     */
     public function setFileSearch(?array $fileSearch): self
     {
         $this->fileSearch = $fileSearch;

@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIChatCompletionRequestMessageContentPartAudio_input_audio : public OAIObject {
 public:
     OAIChatCompletionRequestMessageContentPartAudio_input_audio();
-    OAIChatCompletionRequestMessageContentPartAudio_input_audio(QString json);
+    OAIChatCompletionRequestMessageContentPartAudio_input_audio(const QString &json);
     ~OAIChatCompletionRequestMessageContentPartAudio_input_audio() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getData() const;
     void setData(const QString &data);

@@ -51,7 +51,7 @@ class BatchRequestOutputError
      * @var string|null
      * @SerializedName("code")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $code = null;
 
@@ -61,7 +61,7 @@ class BatchRequestOutputError
      * @var string|null
      * @SerializedName("message")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $message = null;
 
@@ -88,12 +88,12 @@ class BatchRequestOutputError
     }
 
     /**
-    * Sets code.
-    *
-    * @param string|null $code  A machine-readable error code.
-    *
-    * @return $this
-    */
+     * Sets code.
+     *
+     * @param string|null $code  A machine-readable error code.
+     *
+     * @return $this
+     */
     public function setCode(?string $code = null): self
     {
         $this->code = $code;
@@ -115,12 +115,12 @@ class BatchRequestOutputError
     }
 
     /**
-    * Sets message.
-    *
-    * @param string|null $message  A human-readable error message.
-    *
-    * @return $this
-    */
+     * Sets message.
+     *
+     * @param string|null $message  A human-readable error message.
+     *
+     * @return $this
+     */
     public function setMessage(?string $message = null): self
     {
         $this->message = $message;

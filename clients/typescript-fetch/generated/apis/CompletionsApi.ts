@@ -12,18 +12,17 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  CreateCompletionRequest,
-  CreateCompletionResponse,
-} from '../models/index';
 import {
+    type CreateCompletionRequest,
     CreateCompletionRequestFromJSON,
     CreateCompletionRequestToJSON,
+} from '../models/CreateCompletionRequest';
+import {
+    type CreateCompletionResponse,
     CreateCompletionResponseFromJSON,
     CreateCompletionResponseToJSON,
-} from '../models/index';
+} from '../models/CreateCompletionResponse';
 
 export interface CreateCompletionOperationRequest {
     createCompletionRequest: CreateCompletionRequest;
@@ -35,9 +34,9 @@ export interface CreateCompletionOperationRequest {
 export class CompletionsApi extends runtime.BaseAPI {
 
     /**
-     * Creates a completion for the provided prompt and parameters.
+     * Creates request options for createCompletion without sending the request
      */
-    async createCompletionRaw(requestParameters: CreateCompletionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCompletionResponse>> {
+    async createCompletionRequestOpts(requestParameters: CreateCompletionOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createCompletionRequest'] == null) {
             throw new runtime.RequiredError(
                 'createCompletionRequest',
@@ -62,13 +61,21 @@ export class CompletionsApi extends runtime.BaseAPI {
 
         let urlPath = `/completions`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateCompletionRequestToJSON(requestParameters['createCompletionRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates a completion for the provided prompt and parameters.
+     */
+    async createCompletionRaw(requestParameters: CreateCompletionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCompletionResponse>> {
+        const requestOptions = await this.createCompletionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateCompletionResponseFromJSON(jsonValue));
     }

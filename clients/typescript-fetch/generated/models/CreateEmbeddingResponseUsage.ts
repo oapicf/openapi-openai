@@ -37,8 +37,8 @@ export interface CreateEmbeddingResponseUsage {
  * Check if a given object implements the CreateEmbeddingResponseUsage interface.
  */
 export function instanceOfCreateEmbeddingResponseUsage(value: object): value is CreateEmbeddingResponseUsage {
-    if (!('promptTokens' in value) || value['promptTokens'] === undefined) return false;
-    if (!('totalTokens' in value) || value['totalTokens'] === undefined) return false;
+    if ((!('promptTokens' in (value as Record<string, any>)) && !('prompt_tokens' in (value as Record<string, any>))) || ((value as Record<string, any>)['promptTokens'] === undefined && (value as Record<string, any>)['prompt_tokens'] === undefined)) return false;
+    if ((!('totalTokens' in (value as Record<string, any>)) && !('total_tokens' in (value as Record<string, any>))) || ((value as Record<string, any>)['totalTokens'] === undefined && (value as Record<string, any>)['total_tokens'] === undefined)) return false;
     return true;
 }
 

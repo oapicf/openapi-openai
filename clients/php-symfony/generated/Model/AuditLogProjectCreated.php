@@ -51,7 +51,7 @@ class AuditLogProjectCreated
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -59,7 +59,7 @@ class AuditLogProjectCreated
      * @var AuditLogProjectCreatedData|null
      * @SerializedName("data")
      * @Type("OpenAPI\Server\Model\AuditLogProjectCreatedData")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogProjectCreatedData")]
     protected ?AuditLogProjectCreatedData $data = null;
 
@@ -86,12 +86,12 @@ class AuditLogProjectCreated
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The project ID.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The project ID.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -113,12 +113,12 @@ class AuditLogProjectCreated
     }
 
     /**
-    * Sets data.
-    *
-    * @param AuditLogProjectCreatedData|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param AuditLogProjectCreatedData|null $data
+     *
+     * @return $this
+     */
     public function setData(?AuditLogProjectCreatedData $data = null): self
     {
         $this->data = $data;

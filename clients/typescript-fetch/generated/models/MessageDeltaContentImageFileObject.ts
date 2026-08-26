@@ -35,7 +35,7 @@ export interface MessageDeltaContentImageFileObject {
     index: number;
     /**
      * Always `image_file`.
-     * @type {string}
+     * @type {MessageDeltaContentImageFileObjectTypeEnum}
      * @memberof MessageDeltaContentImageFileObject
      */
     type: MessageDeltaContentImageFileObjectTypeEnum;
@@ -63,6 +63,8 @@ export type MessageDeltaContentImageFileObjectTypeEnum = typeof MessageDeltaCont
 export function instanceOfMessageDeltaContentImageFileObject(value: object): value is MessageDeltaContentImageFileObject {
     if (!('index' in value) || value['index'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'image_file') return false;
+    
     return true;
 }
 

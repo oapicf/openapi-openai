@@ -30,6 +30,8 @@ RealtimeServerEventResponseContentPartAdded::RealtimeServerEventResponseContentP
     
 }
 
+RealtimeServerEventResponseContentPartAdded::~RealtimeServerEventResponseContentPartAdded() = default;
+
 void RealtimeServerEventResponseContentPartAdded::validate() const
 {
     std::stringstream msg;

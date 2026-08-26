@@ -28,6 +28,8 @@ ProjectApiKeyListResponse::ProjectApiKeyListResponse()
     
 }
 
+ProjectApiKeyListResponse::~ProjectApiKeyListResponse() = default;
+
 void ProjectApiKeyListResponse::validate() const
 {
     std::stringstream msg;

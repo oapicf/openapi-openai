@@ -25,6 +25,8 @@ ModifyAssistantRequest_tool_resources_code_interpreter::ModifyAssistantRequest_t
     
 }
 
+ModifyAssistantRequest_tool_resources_code_interpreter::~ModifyAssistantRequest_tool_resources_code_interpreter() = default;
+
 void ModifyAssistantRequest_tool_resources_code_interpreter::validate() const
 {
     std::stringstream msg;

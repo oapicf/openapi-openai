@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The ID of the specific File the citation is from.</value>
         [JsonPropertyName("file_id")]
-        public string? FileId { get { return this.FileIdOption; } set { this.FileIdOption = new(value); } }
+        public string? FileId { get { return this.FileIdOption.Value; } set { this.FileIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Quote
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The specific quote in the file.</value>
         [JsonPropertyName("quote")]
-        public string? Quote { get { return this.QuoteOption; } set { this.QuoteOption = new(value); } }
+        public string? Quote { get { return this.QuoteOption.Value; } set { this.QuoteOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation" />
     /// </summary>
-    public class MessageDeltaContentTextAnnotationsFileCitationObjectFileCitationJsonConverter : JsonConverter<MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation>
+    public partial class MessageDeltaContentTextAnnotationsFileCitationObjectFileCitationJsonConverter : JsonConverter<MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageDeltaContentTextAnnotationsFileCitationObjectFileCitationJsonConverter" /> class.
+        /// </summary>
+        public MessageDeltaContentTextAnnotationsFileCitationObjectFileCitationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation" />
         /// </summary>

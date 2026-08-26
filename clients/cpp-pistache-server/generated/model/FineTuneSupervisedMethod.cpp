@@ -25,6 +25,8 @@ FineTuneSupervisedMethod::FineTuneSupervisedMethod()
     
 }
 
+FineTuneSupervisedMethod::~FineTuneSupervisedMethod() = default;
+
 void FineTuneSupervisedMethod::validate() const
 {
     std::stringstream msg;

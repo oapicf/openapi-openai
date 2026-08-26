@@ -36,7 +36,7 @@ function Initialize-ModifyMessageRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "metadata" = ${Metadata}
+            'metadata' = ${Metadata}
         }
 
 
@@ -74,21 +74,21 @@ function ConvertFrom-JsonToModifyMessageRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ModifyMessageRequest
-        $AllProperties = ("metadata")
+        $AllProperties = ('metadata')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) { #optional property not found
             $Metadata = $null
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "metadata" = ${Metadata}
+            'metadata' = ${Metadata}
         }
 
         return $PSO

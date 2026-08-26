@@ -124,29 +124,33 @@ class _$CreateVectorStoreRequestSerializer implements PrimitiveSerializer<Create
         case r'file_ids':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.fileIds.replace(valueDes);
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'expires_after':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(VectorStoreExpirationAfter),
-          ) as VectorStoreExpirationAfter;
+            specifiedType: const FullType.nullable(VectorStoreExpirationAfter),
+          ) as VectorStoreExpirationAfter?;
+          if (valueDes == null) continue;
           result.expiresAfter.replace(valueDes);
           break;
         case r'chunking_strategy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateVectorStoreRequestChunkingStrategy),
-          ) as CreateVectorStoreRequestChunkingStrategy;
+            specifiedType: const FullType.nullable(CreateVectorStoreRequestChunkingStrategy),
+          ) as CreateVectorStoreRequestChunkingStrategy?;
+          if (valueDes == null) continue;
           result.chunkingStrategy.replace(valueDes);
           break;
         case r'metadata':

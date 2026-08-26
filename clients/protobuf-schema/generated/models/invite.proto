@@ -23,7 +23,7 @@ message Invite {
     OBJECT_ORGANIZATION_INVITE = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The identifier, which can be referenced in API endpoints
   string id = 3355;
@@ -37,7 +37,7 @@ message Invite {
     ROLE_READER = 1;
   }
 
-  Role role = 3506294;
+  string role = 3506294;
 
   // `accepted`,`expired`, or `pending`
   enum Status {
@@ -46,7 +46,7 @@ message Invite {
     STATUS_PENDING = 2;
   }
 
-  Status status = 355610639;
+  string status = 355610639;
 
   // The Unix timestamp (in seconds) of when the invite was sent.
   int32 invited_at = 124807289;

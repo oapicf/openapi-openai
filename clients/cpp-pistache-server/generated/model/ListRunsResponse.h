@@ -34,7 +34,7 @@ class  ListRunsResponse
 {
 public:
     ListRunsResponse();
-    virtual ~ListRunsResponse() = default;
+    virtual ~ListRunsResponse();
 
 
     /// <summary>

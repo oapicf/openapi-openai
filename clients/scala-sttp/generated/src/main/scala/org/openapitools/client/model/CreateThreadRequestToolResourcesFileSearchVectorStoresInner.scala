@@ -11,12 +11,13 @@
  */
 package org.openapitools.client.model
 
+import org.json4s.JValue
 
 case class CreateThreadRequestToolResourcesFileSearchVectorStoresInner(
   /* A list of [file](/docs/api-reference/files) IDs to add to the vector store. There can be a maximum of 10000 files in a vector store.  */
   fileIds: Option[Seq[String]] = None,
   chunkingStrategy: Option[CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy] = None,
   /* Set of 16 key-value pairs that can be attached to a vector store. This can be useful for storing additional information about the vector store in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  */
-  metadata: Option[Any] = None
+  metadata: Option[JValue] = None
 )
 

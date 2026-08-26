@@ -28,6 +28,8 @@ RealtimeServerEventConversationItemInputAudioTranscriptionFailed::RealtimeServer
     
 }
 
+RealtimeServerEventConversationItemInputAudioTranscriptionFailed::~RealtimeServerEventConversationItemInputAudioTranscriptionFailed() = default;
+
 void RealtimeServerEventConversationItemInputAudioTranscriptionFailed::validate() const
 {
     std::stringstream msg;

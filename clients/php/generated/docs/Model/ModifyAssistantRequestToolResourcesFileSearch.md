@@ -1,4 +1,4 @@
-# # ModifyAssistantRequestToolResourcesFileSearch
+# ModifyAssistantRequestToolResourcesFileSearch
 
 ## Properties
 

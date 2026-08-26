@@ -33,13 +33,13 @@ class OAIRealtimeSession;
 class OAIRealtimeServerEventSessionCreated : public OAIObject {
 public:
     OAIRealtimeServerEventSessionCreated();
-    OAIRealtimeServerEventSessionCreated(QString json);
+    OAIRealtimeServerEventSessionCreated(const QString &json);
     ~OAIRealtimeServerEventSessionCreated() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getEventId() const;
     void setEventId(const QString &event_id);

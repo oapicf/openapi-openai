@@ -28,6 +28,8 @@ MessageContentTextAnnotationsFileCitationObject::MessageContentTextAnnotationsFi
     
 }
 
+MessageContentTextAnnotationsFileCitationObject::~MessageContentTextAnnotationsFileCitationObject() = default;
+
 void MessageContentTextAnnotationsFileCitationObject::validate() const
 {
     std::stringstream msg;

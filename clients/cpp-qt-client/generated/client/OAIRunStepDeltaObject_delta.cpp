@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRunStepDeltaObject_delta::OAIRunStepDeltaObject_delta(QString json) {
+OAIRunStepDeltaObject_delta::OAIRunStepDeltaObject_delta(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -38,7 +38,7 @@ void OAIRunStepDeltaObject_delta::initializeModel() {
     m_step_details_isValid = false;
 }
 
-void OAIRunStepDeltaObject_delta::fromJson(QString jsonString) {
+void OAIRunStepDeltaObject_delta::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive). 
 	 */
-	void setVoice(std::string  voice);
+	void setVoice(std::string voice);
 	/*! \brief Get Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`. 
 	 */
 	std::string getFormat();
 
 	/*! \brief Set Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`. 
 	 */
-	void setFormat(std::string  format);
+	void setFormat(std::string format);
 
 
     private:

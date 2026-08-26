@@ -32,7 +32,7 @@ class  Admin_api_keys_create_request
 {
 public:
     Admin_api_keys_create_request();
-    virtual ~Admin_api_keys_create_request() = default;
+    virtual ~Admin_api_keys_create_request();
 
 
     /// <summary>

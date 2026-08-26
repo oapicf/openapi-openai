@@ -138,8 +138,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ListFineTuningJobEventsResponse" />
     /// </summary>
-    public class ListFineTuningJobEventsResponseJsonConverter : JsonConverter<ListFineTuningJobEventsResponse>
+    public partial class ListFineTuningJobEventsResponseJsonConverter : JsonConverter<ListFineTuningJobEventsResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListFineTuningJobEventsResponseJsonConverter" /> class.
+        /// </summary>
+        public ListFineTuningJobEventsResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ListFineTuningJobEventsResponse" />
         /// </summary>

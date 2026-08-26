@@ -1,0 +1,51 @@
+import { CreateChatCompletionStreamResponseUsage } from './create-chat-completion-stream-response-usage';
+import { CreateChatCompletionStreamResponseChoicesInner } from './create-chat-completion-stream-response-choices-inner';
+
+
+/**
+ * Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
+ */
+export interface CreateChatCompletionStreamResponse { 
+  /**
+   * A unique identifier for the chat completion. Each chunk has the same ID.
+   */
+  id: string;
+  /**
+   * A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. 
+   */
+  choices: Array<CreateChatCompletionStreamResponseChoicesInner>;
+  /**
+   * The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
+   */
+  created: number;
+  /**
+   * The model to generate the completion.
+   */
+  model: string;
+  /**
+   * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+   */
+  service_tier?: CreateChatCompletionStreamResponse.ServiceTierEnum | null;
+  /**
+   * This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+   */
+  system_fingerprint?: string;
+  /**
+   * The object type, which is always `chat.completion.chunk`.
+   */
+  object: CreateChatCompletionStreamResponse.ObjectEnum;
+  usage?: CreateChatCompletionStreamResponseUsage | null;
+}
+export namespace CreateChatCompletionStreamResponse {
+  export const ServiceTierEnum = {
+    Scale: 'scale',
+    Default: 'default'
+  } as const;
+  export type ServiceTierEnum = typeof ServiceTierEnum[keyof typeof ServiceTierEnum];
+  export const ObjectEnum = {
+    ChatCompletionChunk: 'chat.completion.chunk'
+  } as const;
+  export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
+}
+
+

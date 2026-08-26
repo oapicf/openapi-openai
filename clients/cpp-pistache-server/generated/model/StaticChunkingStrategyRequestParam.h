@@ -33,7 +33,7 @@ class  StaticChunkingStrategyRequestParam
 {
 public:
     StaticChunkingStrategyRequestParam();
-    virtual ~StaticChunkingStrategyRequestParam() = default;
+    virtual ~StaticChunkingStrategyRequestParam();
 
 
     /// <summary>

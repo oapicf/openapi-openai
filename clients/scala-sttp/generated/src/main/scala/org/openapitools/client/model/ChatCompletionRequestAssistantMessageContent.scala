@@ -15,6 +15,7 @@ package org.openapitools.client.model
   /**
    * The contents of the assistant message. Required unless `tool_calls` or `function_call` is specified. 
    */
-case class ChatCompletionRequestAssistantMessageContent(
-)
+trait ChatCompletionRequestAssistantMessageContent
+object ChatCompletionRequestAssistantMessageContent {
+}
 

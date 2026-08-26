@@ -33,13 +33,13 @@ class OAIChatCompletionMessageToolCallChunk_function;
 class OAIChatCompletionMessageToolCallChunk : public OAIObject {
 public:
     OAIChatCompletionMessageToolCallChunk();
-    OAIChatCompletionMessageToolCallChunk(QString json);
+    OAIChatCompletionMessageToolCallChunk(const QString &json);
     ~OAIChatCompletionMessageToolCallChunk() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getIndex() const;
     void setIndex(const qint32 &index);

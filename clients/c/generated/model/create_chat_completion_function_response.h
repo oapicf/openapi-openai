@@ -31,7 +31,7 @@ openai_api_create_chat_completion_function_response_OBJECT_e create_chat_complet
 typedef struct create_chat_completion_function_response_t {
     char *id; // string
     list_t *choices; //nonprimitive container
-    int created; //numeric
+    int *created; //numeric
     char *model; // string
     char *system_fingerprint; // string
     openai_api_create_chat_completion_function_response_OBJECT_e object; //enum
@@ -43,7 +43,7 @@ typedef struct create_chat_completion_function_response_t {
 __attribute__((deprecated)) create_chat_completion_function_response_t *create_chat_completion_function_response_create(
     char *id,
     list_t *choices,
-    int created,
+    int *created,
     char *model,
     char *system_fingerprint,
     openai_api_create_chat_completion_function_response_OBJECT_e object,

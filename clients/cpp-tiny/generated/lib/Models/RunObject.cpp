@@ -635,7 +635,7 @@ RunObject::getId()
 }
 
 void
-RunObject::setId(std::string  id)
+RunObject::setId(std::string id)
 {
 	this->id = id;
 }
@@ -647,7 +647,7 @@ RunObject::getObject()
 }
 
 void
-RunObject::setObject(std::string  object)
+RunObject::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -659,7 +659,7 @@ RunObject::getCreatedAt()
 }
 
 void
-RunObject::setCreatedAt(int  created_at)
+RunObject::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -671,7 +671,7 @@ RunObject::getThreadId()
 }
 
 void
-RunObject::setThreadId(std::string  thread_id)
+RunObject::setThreadId(std::string thread_id)
 {
 	this->thread_id = thread_id;
 }
@@ -683,7 +683,7 @@ RunObject::getAssistantId()
 }
 
 void
-RunObject::setAssistantId(std::string  assistant_id)
+RunObject::setAssistantId(std::string assistant_id)
 {
 	this->assistant_id = assistant_id;
 }
@@ -695,7 +695,7 @@ RunObject::getStatus()
 }
 
 void
-RunObject::setStatus(std::string  status)
+RunObject::setStatus(std::string status)
 {
 	this->status = status;
 }
@@ -707,7 +707,7 @@ RunObject::getRequiredAction()
 }
 
 void
-RunObject::setRequiredAction(RunObject_required_action  required_action)
+RunObject::setRequiredAction(RunObject_required_action required_action)
 {
 	this->required_action = required_action;
 }
@@ -719,7 +719,7 @@ RunObject::getLastError()
 }
 
 void
-RunObject::setLastError(RunObject_last_error  last_error)
+RunObject::setLastError(RunObject_last_error last_error)
 {
 	this->last_error = last_error;
 }
@@ -731,7 +731,7 @@ RunObject::getExpiresAt()
 }
 
 void
-RunObject::setExpiresAt(int  expires_at)
+RunObject::setExpiresAt(int expires_at)
 {
 	this->expires_at = expires_at;
 }
@@ -743,7 +743,7 @@ RunObject::getStartedAt()
 }
 
 void
-RunObject::setStartedAt(int  started_at)
+RunObject::setStartedAt(int started_at)
 {
 	this->started_at = started_at;
 }
@@ -755,7 +755,7 @@ RunObject::getCancelledAt()
 }
 
 void
-RunObject::setCancelledAt(int  cancelled_at)
+RunObject::setCancelledAt(int cancelled_at)
 {
 	this->cancelled_at = cancelled_at;
 }
@@ -767,7 +767,7 @@ RunObject::getFailedAt()
 }
 
 void
-RunObject::setFailedAt(int  failed_at)
+RunObject::setFailedAt(int failed_at)
 {
 	this->failed_at = failed_at;
 }
@@ -779,7 +779,7 @@ RunObject::getCompletedAt()
 }
 
 void
-RunObject::setCompletedAt(int  completed_at)
+RunObject::setCompletedAt(int completed_at)
 {
 	this->completed_at = completed_at;
 }
@@ -791,7 +791,7 @@ RunObject::getIncompleteDetails()
 }
 
 void
-RunObject::setIncompleteDetails(RunObject_incomplete_details  incomplete_details)
+RunObject::setIncompleteDetails(RunObject_incomplete_details incomplete_details)
 {
 	this->incomplete_details = incomplete_details;
 }
@@ -803,7 +803,7 @@ RunObject::getModel()
 }
 
 void
-RunObject::setModel(std::string  model)
+RunObject::setModel(std::string model)
 {
 	this->model = model;
 }
@@ -815,7 +815,7 @@ RunObject::getInstructions()
 }
 
 void
-RunObject::setInstructions(std::string  instructions)
+RunObject::setInstructions(std::string instructions)
 {
 	this->instructions = instructions;
 }
@@ -827,7 +827,7 @@ RunObject::getTools()
 }
 
 void
-RunObject::setTools(std::list <AssistantObject_tools_inner> tools)
+RunObject::setTools(std::list<AssistantObject_tools_inner> tools)
 {
 	this->tools = tools;
 }
@@ -839,7 +839,7 @@ RunObject::getMetadata()
 }
 
 void
-RunObject::setMetadata(Object  metadata)
+RunObject::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }
@@ -851,7 +851,7 @@ RunObject::getUsage()
 }
 
 void
-RunObject::setUsage(RunCompletionUsage  usage)
+RunObject::setUsage(RunCompletionUsage usage)
 {
 	this->usage = usage;
 }
@@ -863,7 +863,7 @@ RunObject::getTemperature()
 }
 
 void
-RunObject::setTemperature(long  temperature)
+RunObject::setTemperature(long temperature)
 {
 	this->temperature = temperature;
 }
@@ -875,7 +875,7 @@ RunObject::getTopP()
 }
 
 void
-RunObject::setTopP(long  top_p)
+RunObject::setTopP(long top_p)
 {
 	this->top_p = top_p;
 }
@@ -887,7 +887,7 @@ RunObject::getMaxPromptTokens()
 }
 
 void
-RunObject::setMaxPromptTokens(int  max_prompt_tokens)
+RunObject::setMaxPromptTokens(int max_prompt_tokens)
 {
 	this->max_prompt_tokens = max_prompt_tokens;
 }
@@ -899,7 +899,7 @@ RunObject::getMaxCompletionTokens()
 }
 
 void
-RunObject::setMaxCompletionTokens(int  max_completion_tokens)
+RunObject::setMaxCompletionTokens(int max_completion_tokens)
 {
 	this->max_completion_tokens = max_completion_tokens;
 }
@@ -911,7 +911,7 @@ RunObject::getTruncationStrategy()
 }
 
 void
-RunObject::setTruncationStrategy(TruncationObject  truncation_strategy)
+RunObject::setTruncationStrategy(TruncationObject truncation_strategy)
 {
 	this->truncation_strategy = truncation_strategy;
 }
@@ -923,7 +923,7 @@ RunObject::getToolChoice()
 }
 
 void
-RunObject::setToolChoice(AssistantsApiToolChoiceOption  tool_choice)
+RunObject::setToolChoice(AssistantsApiToolChoiceOption tool_choice)
 {
 	this->tool_choice = tool_choice;
 }
@@ -935,7 +935,7 @@ RunObject::isParallelToolCalls()
 }
 
 void
-RunObject::setParallelToolCalls(bool  parallel_tool_calls)
+RunObject::setParallelToolCalls(bool parallel_tool_calls)
 {
 	this->parallel_tool_calls = parallel_tool_calls;
 }
@@ -947,7 +947,7 @@ RunObject::getResponseFormat()
 }
 
 void
-RunObject::setResponseFormat(AssistantsApiResponseFormatOption  response_format)
+RunObject::setResponseFormat(AssistantsApiResponseFormatOption response_format)
 {
 	this->response_format = response_format;
 }

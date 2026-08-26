@@ -51,7 +51,7 @@ class FineTuningJobEvent
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['fine_tuning.job.event'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class FineTuningJobEvent
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -74,7 +74,7 @@ class FineTuningJobEvent
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -85,7 +85,7 @@ class FineTuningJobEvent
      * @var string|null
      * @SerializedName("level")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['info', 'warn', 'error'])]
     #[Assert\Type("string")]
@@ -97,7 +97,7 @@ class FineTuningJobEvent
      * @var string|null
      * @SerializedName("message")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $message = null;
@@ -108,7 +108,7 @@ class FineTuningJobEvent
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['message', 'metrics'])]
     #[Assert\Type("string")]
     protected ?string $type = null;
@@ -119,7 +119,7 @@ class FineTuningJobEvent
      * @var array|null
      * @SerializedName("data")
      * @Type("array")
-    */
+     */
     #[Assert\Type("array")]
     protected ?array $data = null;
 
@@ -151,12 +151,12 @@ class FineTuningJobEvent
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always \"fine_tuning.job.event\".
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always \"fine_tuning.job.event\".
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -178,12 +178,12 @@ class FineTuningJobEvent
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The object identifier.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The object identifier.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -205,12 +205,12 @@ class FineTuningJobEvent
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) for when the fine-tuning job was created.
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) for when the fine-tuning job was created.
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -232,12 +232,12 @@ class FineTuningJobEvent
     }
 
     /**
-    * Sets level.
-    *
-    * @param string|null $level  The log level of the event.
-    *
-    * @return $this
-    */
+     * Sets level.
+     *
+     * @param string|null $level  The log level of the event.
+     *
+     * @return $this
+     */
     public function setLevel(?string $level): self
     {
         $this->level = $level;
@@ -259,12 +259,12 @@ class FineTuningJobEvent
     }
 
     /**
-    * Sets message.
-    *
-    * @param string|null $message  The message of the event.
-    *
-    * @return $this
-    */
+     * Sets message.
+     *
+     * @param string|null $message  The message of the event.
+     *
+     * @return $this
+     */
     public function setMessage(?string $message): self
     {
         $this->message = $message;
@@ -286,12 +286,12 @@ class FineTuningJobEvent
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of event.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of event.
+     *
+     * @return $this
+     */
     public function setType(?string $type = null): self
     {
         $this->type = $type;
@@ -313,12 +313,12 @@ class FineTuningJobEvent
     }
 
     /**
-    * Sets data.
-    *
-    * @param array|null $data  The data associated with the event.
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param array|null $data  The data associated with the event.
+     *
+     * @return $this
+     */
     public function setData(?array $data = null): self
     {
         $this->data = $data;

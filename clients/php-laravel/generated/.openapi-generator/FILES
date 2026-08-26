@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 Api/AssistantsApiInterface.php
 Api/AudioApiInterface.php
 Api/AuditLogsApiInterface.php
@@ -111,7 +110,6 @@ Model/AuditLogUserAddedData.php
 Model/AuditLogUserDeleted.php
 Model/AuditLogUserUpdated.php
 Model/AuditLogUserUpdatedChangesRequested.php
-Model/AutoChunkingStrategy.php
 Model/AutoChunkingStrategyRequestParam.php
 Model/AutoChunkingStrategyRequestParamType.php
 Model/Batch.php
@@ -751,7 +749,6 @@ Model/RunToolCallObjectFunction.php
 Model/RunToolCallObjectType.php
 Model/StaticChunkingStrategy.php
 Model/StaticChunkingStrategyRequestParam.php
-Model/StaticChunkingStrategyResponseParam.php
 Model/StaticChunkingStrategyStatic.php
 Model/StaticChunkingStrategyType.php
 Model/SubmitToolOutputsRunRequest.php

@@ -27,8 +27,9 @@ namespace Org.OpenAPITools.Models
     public partial class ModifyAssistantRequest : IEquatable<ModifyAssistantRequest>
     {
         /// <summary>
-        /// Gets or Sets Model
+        /// ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
         /// </summary>
+        /// <value>ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. </value>
         [DataMember(Name="model", EmitDefaultValue=false)]
         public string Model { get; set; }
 

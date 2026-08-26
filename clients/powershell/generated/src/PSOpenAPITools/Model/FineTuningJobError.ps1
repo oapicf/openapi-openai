@@ -54,9 +54,9 @@ function Initialize-FineTuningJobError {
 
 
         $PSO = [PSCustomObject]@{
-            "code" = ${Code}
-            "message" = ${Message}
-            "param" = ${VarParam}
+            'code' = ${Code}
+            'message' = ${Message}
+            'param' = ${VarParam}
         }
 
 
@@ -94,7 +94,7 @@ function ConvertFrom-JsonToFineTuningJobError {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in FineTuningJobError
-        $AllProperties = ("code", "message", "param")
+        $AllProperties = ('code', 'message', 'param')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -105,28 +105,28 @@ function ConvertFrom-JsonToFineTuningJobError {
             throw "Error! Empty JSON cannot be serialized due to the required property 'code' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "code"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'code'))) {
             throw "Error! JSON cannot be serialized due to the required property 'code' missing."
         } else {
-            $Code = $JsonParameters.PSobject.Properties["code"].value
+            $Code = $JsonParameters.PSobject.Properties['code'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "message"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'message'))) {
             throw "Error! JSON cannot be serialized due to the required property 'message' missing."
         } else {
-            $Message = $JsonParameters.PSobject.Properties["message"].value
+            $Message = $JsonParameters.PSobject.Properties['message'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "param"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'param'))) {
             throw "Error! JSON cannot be serialized due to the required property 'param' missing."
         } else {
-            $VarParam = $JsonParameters.PSobject.Properties["param"].value
+            $VarParam = $JsonParameters.PSobject.Properties['param'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "code" = ${Code}
-            "message" = ${Message}
-            "param" = ${VarParam}
+            'code' = ${Code}
+            'message' = ${Message}
+            'param' = ${VarParam}
         }
 
         return $PSO

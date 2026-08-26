@@ -1,7 +1,10 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -21,13 +24,22 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class Image(
 
-    @Schema(example = "null", description = "The base64-encoded JSON of the generated image, if `response_format` is `b64_json`.")
+    @Schema(description = "The base64-encoded JSON of the generated image, if `response_format` is `b64_json`.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("b64_json")
     @get:JsonProperty("b64_json") val b64Json: kotlin.String? = null,
 
-    @Schema(example = "null", description = "The URL of the generated image, if `response_format` is `url` (default).")
+    @Schema(description = "The URL of the generated image, if `response_format` is `url` (default).")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("url")
     @get:JsonProperty("url") val url: kotlin.String? = null,
 
-    @Schema(example = "null", description = "The prompt that was used to generate the image, if there was any revision to the prompt.")
+    @Schema(description = "The prompt that was used to generate the image, if there was any revision to the prompt.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("revised_prompt")
     @get:JsonProperty("revised_prompt") val revisedPrompt: kotlin.String? = null
 ) {
 

@@ -5,7 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/other_chunking_strategy_response_param.dart';
-import 'package:openapi/src/model/static_chunking_strategy_response_param.dart';
+import 'package:openapi/src/model/static_chunking_strategy_request_param.dart';
 import 'package:openapi/src/model/static_chunking_strategy.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -20,7 +20,7 @@ part 'vector_store_file_object_chunking_strategy.g.dart';
 /// * [static_] 
 @BuiltValue()
 abstract class VectorStoreFileObjectChunkingStrategy implements Built<VectorStoreFileObjectChunkingStrategy, VectorStoreFileObjectChunkingStrategyBuilder> {
-  /// One Of [OtherChunkingStrategyResponseParam], [StaticChunkingStrategyResponseParam]
+  /// One Of [OtherChunkingStrategyResponseParam], [StaticChunkingStrategyRequestParam]
   OneOf get oneOf;
 
   VectorStoreFileObjectChunkingStrategy._();
@@ -66,7 +66,7 @@ class _$VectorStoreFileObjectChunkingStrategySerializer implements PrimitiveSeri
   }) {
     final result = VectorStoreFileObjectChunkingStrategyBuilder();
     Object? oneOfDataSrc;
-    final targetType = const FullType(OneOf, [FullType(StaticChunkingStrategyResponseParam), FullType(OtherChunkingStrategyResponseParam), ]);
+    final targetType = const FullType(OneOf, [FullType(StaticChunkingStrategyRequestParam), FullType(OtherChunkingStrategyResponseParam), ]);
     oneOfDataSrc = serialized;
     result.oneOf = serializers.deserialize(oneOfDataSrc, specifiedType: targetType) as OneOf;
     return result.build();

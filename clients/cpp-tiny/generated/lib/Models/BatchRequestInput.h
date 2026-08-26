@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set A developer-provided per-request id that will be used to match outputs to inputs. Must be unique for each request in a batch.
 	 */
-	void setCustomId(std::string  custom_id);
+	void setCustomId(std::string custom_id);
 	/*! \brief Get The HTTP method to be used for the request. Currently only `POST` is supported.
 	 */
 	std::string getMethod();
 
 	/*! \brief Set The HTTP method to be used for the request. Currently only `POST` is supported.
 	 */
-	void setMethod(std::string  method);
+	void setMethod(std::string method);
 	/*! \brief Get The OpenAI API relative URL to be used for the request. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported.
 	 */
 	std::string getUrl();
 
 	/*! \brief Set The OpenAI API relative URL to be used for the request. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported.
 	 */
-	void setUrl(std::string  url);
+	void setUrl(std::string url);
 
 
     private:

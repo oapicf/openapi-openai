@@ -150,8 +150,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeServerEventError" />
     /// </summary>
-    public class RealtimeServerEventErrorJsonConverter : JsonConverter<RealtimeServerEventError>
+    public partial class RealtimeServerEventErrorJsonConverter : JsonConverter<RealtimeServerEventError>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeServerEventErrorJsonConverter" /> class.
+        /// </summary>
+        public RealtimeServerEventErrorJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeServerEventError" />
         /// </summary>

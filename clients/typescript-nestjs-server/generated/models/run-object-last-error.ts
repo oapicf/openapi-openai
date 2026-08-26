@@ -1,0 +1,25 @@
+
+
+/**
+ * The last error associated with this run. Will be `null` if there are no errors.
+ */
+export interface RunObjectLastError { 
+  /**
+   * One of `server_error`, `rate_limit_exceeded`, or `invalid_prompt`.
+   */
+  code: RunObjectLastError.CodeEnum;
+  /**
+   * A human-readable description of the error.
+   */
+  message: string;
+}
+export namespace RunObjectLastError {
+  export const CodeEnum = {
+    ServerError: 'server_error',
+    RateLimitExceeded: 'rate_limit_exceeded',
+    InvalidPrompt: 'invalid_prompt'
+  } as const;
+  export type CodeEnum = typeof CodeEnum[keyof typeof CodeEnum];
+}
+
+

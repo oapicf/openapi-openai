@@ -45,9 +45,9 @@ export interface CreateChatCompletionStreamResponseUsage {
  * Check if a given object implements the CreateChatCompletionStreamResponseUsage interface.
  */
 export function instanceOfCreateChatCompletionStreamResponseUsage(value: object): value is CreateChatCompletionStreamResponseUsage {
-    if (!('completionTokens' in value) || value['completionTokens'] === undefined) return false;
-    if (!('promptTokens' in value) || value['promptTokens'] === undefined) return false;
-    if (!('totalTokens' in value) || value['totalTokens'] === undefined) return false;
+    if ((!('completionTokens' in (value as Record<string, any>)) && !('completion_tokens' in (value as Record<string, any>))) || ((value as Record<string, any>)['completionTokens'] === undefined && (value as Record<string, any>)['completion_tokens'] === undefined)) return false;
+    if ((!('promptTokens' in (value as Record<string, any>)) && !('prompt_tokens' in (value as Record<string, any>))) || ((value as Record<string, any>)['promptTokens'] === undefined && (value as Record<string, any>)['prompt_tokens'] === undefined)) return false;
+    if ((!('totalTokens' in (value as Record<string, any>)) && !('total_tokens' in (value as Record<string, any>))) || ((value as Record<string, any>)['totalTokens'] === undefined && (value as Record<string, any>)['total_tokens'] === undefined)) return false;
     return true;
 }
 

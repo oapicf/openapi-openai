@@ -25,6 +25,8 @@ AssistantsApiResponseFormatOption::AssistantsApiResponseFormatOption()
     
 }
 
+AssistantsApiResponseFormatOption::~AssistantsApiResponseFormatOption() = default;
+
 void AssistantsApiResponseFormatOption::validate() const
 {
     std::stringstream msg;

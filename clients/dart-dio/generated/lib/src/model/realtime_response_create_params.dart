@@ -201,64 +201,73 @@ class _$RealtimeResponseCreateParamsSerializer implements PrimitiveSerializer<Re
         case r'modalities':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(RealtimeResponseCreateParamsModalitiesEnum)]),
-          ) as BuiltList<RealtimeResponseCreateParamsModalitiesEnum>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(RealtimeResponseCreateParamsModalitiesEnum)]),
+          ) as BuiltList<RealtimeResponseCreateParamsModalitiesEnum>?;
+          if (valueDes == null) continue;
           result.modalities.replace(valueDes);
           break;
         case r'instructions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.instructions = valueDes;
           break;
         case r'voice':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeResponseCreateParamsVoiceEnum),
-          ) as RealtimeResponseCreateParamsVoiceEnum;
+            specifiedType: const FullType.nullable(RealtimeResponseCreateParamsVoiceEnum),
+          ) as RealtimeResponseCreateParamsVoiceEnum?;
+          if (valueDes == null) continue;
           result.voice = valueDes;
           break;
         case r'output_audio_format':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeResponseCreateParamsOutputAudioFormatEnum),
-          ) as RealtimeResponseCreateParamsOutputAudioFormatEnum;
+            specifiedType: const FullType.nullable(RealtimeResponseCreateParamsOutputAudioFormatEnum),
+          ) as RealtimeResponseCreateParamsOutputAudioFormatEnum?;
+          if (valueDes == null) continue;
           result.outputAudioFormat = valueDes;
           break;
         case r'tools':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(RealtimeResponseCreateParamsToolsInner)]),
-          ) as BuiltList<RealtimeResponseCreateParamsToolsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(RealtimeResponseCreateParamsToolsInner)]),
+          ) as BuiltList<RealtimeResponseCreateParamsToolsInner>?;
+          if (valueDes == null) continue;
           result.tools.replace(valueDes);
           break;
         case r'tool_choice':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.toolChoice = valueDes;
           break;
         case r'temperature':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.temperature = valueDes;
           break;
         case r'max_response_output_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeResponseCreateParamsMaxResponseOutputTokens),
-          ) as RealtimeResponseCreateParamsMaxResponseOutputTokens;
+            specifiedType: const FullType.nullable(RealtimeResponseCreateParamsMaxResponseOutputTokens),
+          ) as RealtimeResponseCreateParamsMaxResponseOutputTokens?;
+          if (valueDes == null) continue;
           result.maxResponseOutputTokens.replace(valueDes);
           break;
         case r'conversation':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeResponseCreateParamsConversation),
-          ) as RealtimeResponseCreateParamsConversation;
+            specifiedType: const FullType.nullable(RealtimeResponseCreateParamsConversation),
+          ) as RealtimeResponseCreateParamsConversation?;
+          if (valueDes == null) continue;
           result.conversation.replace(valueDes);
           break;
         case r'metadata':
@@ -272,8 +281,9 @@ class _$RealtimeResponseCreateParamsSerializer implements PrimitiveSerializer<Re
         case r'input':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(RealtimeConversationItem)]),
-          ) as BuiltList<RealtimeConversationItem>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(RealtimeConversationItem)]),
+          ) as BuiltList<RealtimeConversationItem>?;
+          if (valueDes == null) continue;
           result.input.replace(valueDes);
           break;
         default:

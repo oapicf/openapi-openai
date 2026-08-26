@@ -297,10 +297,6 @@ public class JsonUtil {
       return new TypeToken<List<AuditLogUserUpdatedChangesRequested>>(){}.getType();
     }
     
-    if ("AutoChunkingStrategy".equalsIgnoreCase(className)) {
-      return new TypeToken<List<AutoChunkingStrategy>>(){}.getType();
-    }
-    
     if ("AutoChunkingStrategyRequestParam".equalsIgnoreCase(className)) {
       return new TypeToken<List<AutoChunkingStrategyRequestParam>>(){}.getType();
     }
@@ -1937,10 +1933,6 @@ public class JsonUtil {
       return new TypeToken<List<StaticChunkingStrategyRequestParam>>(){}.getType();
     }
     
-    if ("StaticChunkingStrategyResponseParam".equalsIgnoreCase(className)) {
-      return new TypeToken<List<StaticChunkingStrategyResponseParam>>(){}.getType();
-    }
-    
     if ("StaticChunkingStrategyStatic".equalsIgnoreCase(className)) {
       return new TypeToken<List<StaticChunkingStrategyStatic>>(){}.getType();
     }
@@ -2321,10 +2313,6 @@ public class JsonUtil {
     
     if ("AuditLogUserUpdatedChangesRequested".equalsIgnoreCase(className)) {
       return new TypeToken<AuditLogUserUpdatedChangesRequested>(){}.getType();
-    }
-    
-    if ("AutoChunkingStrategy".equalsIgnoreCase(className)) {
-      return new TypeToken<AutoChunkingStrategy>(){}.getType();
     }
     
     if ("AutoChunkingStrategyRequestParam".equalsIgnoreCase(className)) {
@@ -3961,10 +3949,6 @@ public class JsonUtil {
     
     if ("StaticChunkingStrategyRequestParam".equalsIgnoreCase(className)) {
       return new TypeToken<StaticChunkingStrategyRequestParam>(){}.getType();
-    }
-    
-    if ("StaticChunkingStrategyResponseParam".equalsIgnoreCase(className)) {
-      return new TypeToken<StaticChunkingStrategyResponseParam>(){}.getType();
     }
     
     if ("StaticChunkingStrategyStatic".equalsIgnoreCase(className)) {

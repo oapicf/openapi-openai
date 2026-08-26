@@ -41,8 +41,8 @@ function Initialize-RunStepDetailsToolCallsFileSearchObjectFileSearch {
 
 
         $PSO = [PSCustomObject]@{
-            "ranking_options" = ${RankingOptions}
-            "results" = ${Results}
+            'ranking_options' = ${RankingOptions}
+            'results' = ${Results}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToRunStepDetailsToolCallsFileSearchObjectFileSearch {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDetailsToolCallsFileSearchObjectFileSearch
-        $AllProperties = ("ranking_options", "results")
+        $AllProperties = ('ranking_options', 'results')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ranking_options"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'ranking_options'))) { #optional property not found
             $RankingOptions = $null
         } else {
-            $RankingOptions = $JsonParameters.PSobject.Properties["ranking_options"].value
+            $RankingOptions = $JsonParameters.PSobject.Properties['ranking_options'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "results"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'results'))) { #optional property not found
             $Results = $null
         } else {
-            $Results = $JsonParameters.PSobject.Properties["results"].value
+            $Results = $JsonParameters.PSobject.Properties['results'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "ranking_options" = ${RankingOptions}
-            "results" = ${Results}
+            'ranking_options' = ${RankingOptions}
+            'results' = ${Results}
         }
 
         return $PSO

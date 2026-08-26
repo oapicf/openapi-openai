@@ -60,7 +60,7 @@ export interface Upload {
     purpose: string;
     /**
      * The status of the Upload.
-     * @type {string}
+     * @type {UploadStatusEnum}
      * @memberof Upload
      */
     status: UploadStatusEnum;
@@ -72,7 +72,7 @@ export interface Upload {
     expiresAt: number;
     /**
      * The object type, which is always "upload".
-     * @type {string}
+     * @type {UploadObjectEnum}
      * @memberof Upload
      */
     object?: UploadObjectEnum;
@@ -110,12 +110,12 @@ export type UploadObjectEnum = typeof UploadObjectEnum[keyof typeof UploadObject
  */
 export function instanceOfUpload(value: object): value is Upload {
     if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
     if (!('filename' in value) || value['filename'] === undefined) return false;
     if (!('bytes' in value) || value['bytes'] === undefined) return false;
     if (!('purpose' in value) || value['purpose'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('expiresAt' in value) || value['expiresAt'] === undefined) return false;
+    if ((!('expiresAt' in (value as Record<string, any>)) && !('expires_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['expiresAt'] === undefined && (value as Record<string, any>)['expires_at'] === undefined)) return false;
     return true;
 }
 

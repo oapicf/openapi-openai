@@ -77,8 +77,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ErrorResponse" />
     /// </summary>
-    public class ErrorResponseJsonConverter : JsonConverter<ErrorResponse>
+    public partial class ErrorResponseJsonConverter : JsonConverter<ErrorResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorResponseJsonConverter" /> class.
+        /// </summary>
+        public ErrorResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ErrorResponse" />
         /// </summary>

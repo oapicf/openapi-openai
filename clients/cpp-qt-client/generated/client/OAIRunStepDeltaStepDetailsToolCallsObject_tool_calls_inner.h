@@ -39,13 +39,13 @@ class OAIRunStepDeltaStepDetailsToolCallsFunctionObject_function;
 class OAIRunStepDeltaStepDetailsToolCallsObject_tool_calls_inner : public OAIObject {
 public:
     OAIRunStepDeltaStepDetailsToolCallsObject_tool_calls_inner();
-    OAIRunStepDeltaStepDetailsToolCallsObject_tool_calls_inner(QString json);
+    OAIRunStepDeltaStepDetailsToolCallsObject_tool_calls_inner(const QString &json);
     ~OAIRunStepDeltaStepDetailsToolCallsObject_tool_calls_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getIndex() const;
     void setIndex(const qint32 &index);

@@ -85,7 +85,7 @@ AuditLog_invite_sent_data::getEmail()
 }
 
 void
-AuditLog_invite_sent_data::setEmail(std::string  email)
+AuditLog_invite_sent_data::setEmail(std::string email)
 {
 	this->email = email;
 }
@@ -97,7 +97,7 @@ AuditLog_invite_sent_data::getRole()
 }
 
 void
-AuditLog_invite_sent_data::setRole(std::string  role)
+AuditLog_invite_sent_data::setRole(std::string role)
 {
 	this->role = role;
 }

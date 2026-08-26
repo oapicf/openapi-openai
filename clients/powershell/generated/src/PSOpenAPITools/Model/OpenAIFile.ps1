@@ -102,14 +102,14 @@ function Initialize-OpenAIFile {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "bytes" = ${Bytes}
-            "created_at" = ${CreatedAt}
-            "filename" = ${Filename}
-            "object" = ${Object}
-            "purpose" = ${Purpose}
-            "status" = ${Status}
-            "status_details" = ${StatusDetails}
+            'id' = ${Id}
+            'bytes' = ${Bytes}
+            'created_at' = ${CreatedAt}
+            'filename' = ${Filename}
+            'object' = ${Object}
+            'purpose' = ${Purpose}
+            'status' = ${Status}
+            'status_details' = ${StatusDetails}
         }
 
 
@@ -147,7 +147,7 @@ function ConvertFrom-JsonToOpenAIFile {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in OpenAIFile
-        $AllProperties = ("id", "bytes", "created_at", "filename", "object", "purpose", "status", "status_details")
+        $AllProperties = ('id', 'bytes', 'created_at', 'filename', 'object', 'purpose', 'status', 'status_details')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -158,63 +158,63 @@ function ConvertFrom-JsonToOpenAIFile {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bytes"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'bytes'))) {
             throw "Error! JSON cannot be serialized due to the required property 'bytes' missing."
         } else {
-            $Bytes = $JsonParameters.PSobject.Properties["bytes"].value
+            $Bytes = $JsonParameters.PSobject.Properties['bytes'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created_at' missing."
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filename"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'filename'))) {
             throw "Error! JSON cannot be serialized due to the required property 'filename' missing."
         } else {
-            $Filename = $JsonParameters.PSobject.Properties["filename"].value
+            $Filename = $JsonParameters.PSobject.Properties['filename'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "purpose"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'purpose'))) {
             throw "Error! JSON cannot be serialized due to the required property 'purpose' missing."
         } else {
-            $Purpose = $JsonParameters.PSobject.Properties["purpose"].value
+            $Purpose = $JsonParameters.PSobject.Properties['purpose'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'status'))) {
             throw "Error! JSON cannot be serialized due to the required property 'status' missing."
         } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
+            $Status = $JsonParameters.PSobject.Properties['status'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status_details"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'status_details'))) { #optional property not found
             $StatusDetails = $null
         } else {
-            $StatusDetails = $JsonParameters.PSobject.Properties["status_details"].value
+            $StatusDetails = $JsonParameters.PSobject.Properties['status_details'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "bytes" = ${Bytes}
-            "created_at" = ${CreatedAt}
-            "filename" = ${Filename}
-            "object" = ${Object}
-            "purpose" = ${Purpose}
-            "status" = ${Status}
-            "status_details" = ${StatusDetails}
+            'id' = ${Id}
+            'bytes' = ${Bytes}
+            'created_at' = ${CreatedAt}
+            'filename' = ${Filename}
+            'object' = ${Object}
+            'purpose' = ${Purpose}
+            'status' = ${Status}
+            'status_details' = ${StatusDetails}
         }
 
         return $PSO

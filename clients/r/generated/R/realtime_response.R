@@ -127,11 +127,11 @@ RealtimeResponse <- R6::R6Class(
       }
       if (!is.null(self$`status_details`)) {
         RealtimeResponseObject[["status_details"]] <-
-          self$`status_details`$toSimpleType()
+          self$extractSimpleType(self$`status_details`)
       }
       if (!is.null(self$`output`)) {
         RealtimeResponseObject[["output"]] <-
-          lapply(self$`output`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`output`)
       }
       if (!is.null(self$`metadata`)) {
         RealtimeResponseObject[["metadata"]] <-
@@ -139,9 +139,32 @@ RealtimeResponse <- R6::R6Class(
       }
       if (!is.null(self$`usage`)) {
         RealtimeResponseObject[["usage"]] <-
-          self$`usage`$toSimpleType()
+          self$extractSimpleType(self$`usage`)
       }
       return(RealtimeResponseObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

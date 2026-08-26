@@ -190,7 +190,7 @@ RealtimeServerEventResponseTextDelta::getEventId()
 }
 
 void
-RealtimeServerEventResponseTextDelta::setEventId(std::string  event_id)
+RealtimeServerEventResponseTextDelta::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -202,7 +202,7 @@ RealtimeServerEventResponseTextDelta::getType()
 }
 
 void
-RealtimeServerEventResponseTextDelta::setType(std::string  type)
+RealtimeServerEventResponseTextDelta::setType(std::string type)
 {
 	this->type = type;
 }
@@ -214,7 +214,7 @@ RealtimeServerEventResponseTextDelta::getResponseId()
 }
 
 void
-RealtimeServerEventResponseTextDelta::setResponseId(std::string  response_id)
+RealtimeServerEventResponseTextDelta::setResponseId(std::string response_id)
 {
 	this->response_id = response_id;
 }
@@ -226,7 +226,7 @@ RealtimeServerEventResponseTextDelta::getItemId()
 }
 
 void
-RealtimeServerEventResponseTextDelta::setItemId(std::string  item_id)
+RealtimeServerEventResponseTextDelta::setItemId(std::string item_id)
 {
 	this->item_id = item_id;
 }
@@ -238,7 +238,7 @@ RealtimeServerEventResponseTextDelta::getOutputIndex()
 }
 
 void
-RealtimeServerEventResponseTextDelta::setOutputIndex(int  output_index)
+RealtimeServerEventResponseTextDelta::setOutputIndex(int output_index)
 {
 	this->output_index = output_index;
 }
@@ -250,7 +250,7 @@ RealtimeServerEventResponseTextDelta::getContentIndex()
 }
 
 void
-RealtimeServerEventResponseTextDelta::setContentIndex(int  content_index)
+RealtimeServerEventResponseTextDelta::setContentIndex(int content_index)
 {
 	this->content_index = content_index;
 }
@@ -262,7 +262,7 @@ RealtimeServerEventResponseTextDelta::getDelta()
 }
 
 void
-RealtimeServerEventResponseTextDelta::setDelta(std::string  delta)
+RealtimeServerEventResponseTextDelta::setDelta(std::string delta)
 {
 	this->delta = delta;
 }

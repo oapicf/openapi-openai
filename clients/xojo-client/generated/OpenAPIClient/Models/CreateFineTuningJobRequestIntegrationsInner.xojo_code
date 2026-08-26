@@ -2,6 +2,9 @@
 Protected Class CreateFineTuningJobRequestIntegrationsInner
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The type of integration to enable. Currently, only "wandb" (Weights and Biases) is supported. 
+		#tag EndNote
 		type As String
 	#tag EndProperty
 

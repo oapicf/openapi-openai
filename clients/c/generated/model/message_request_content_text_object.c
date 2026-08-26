@@ -30,10 +30,10 @@ static message_request_content_text_object_t *message_request_content_text_objec
     if (!message_request_content_text_object_local_var) {
         return NULL;
     }
+    memset(message_request_content_text_object_local_var, 0, sizeof(message_request_content_text_object_t));
+    message_request_content_text_object_local_var->_library_owned = 1;
     message_request_content_text_object_local_var->type = type;
     message_request_content_text_object_local_var->text = text;
-
-    message_request_content_text_object_local_var->_library_owned = 1;
     return message_request_content_text_object_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) message_request_content_text_object_t *message_reque
     openai_api_message_request_content_text_object_TYPE_e type,
     char *text
     ) {
-    return message_request_content_text_object_create_internal (
+    message_request_content_text_object_t *result = message_request_content_text_object_create_internal (
         type,
         text
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_request_content_text_object_free(message_request_content_text_object_t *message_request_content_text_object) {
@@ -96,6 +99,8 @@ message_request_content_text_object_t *message_request_content_text_object_parse
 
     message_request_content_text_object_t *message_request_content_text_object_local_var = NULL;
 
+    char *text_local_str = NULL;
+
     // message_request_content_text_object->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(message_request_content_text_objectJSON, "type");
     if (cJSON_IsNull(type)) {
@@ -129,13 +134,23 @@ message_request_content_text_object_t *message_request_content_text_object_parse
     }
 
 
+    if (text && !cJSON_IsNull(text)) text_local_str = strdup(text->valuestring);
+
     message_request_content_text_object_local_var = message_request_content_text_object_create_internal (
         typeVariable,
-        strdup(text->valuestring)
+        text_local_str
         );
+
+    if (!message_request_content_text_object_local_var) {
+        goto end;
+    }
 
     return message_request_content_text_object_local_var;
 end:
+    if (text_local_str) {
+        free(text_local_str);
+        text_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -89,8 +89,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDeltaObjectDeltaStepDetails" />
     /// </summary>
-    public class RunStepDeltaObjectDeltaStepDetailsJsonConverter : JsonConverter<RunStepDeltaObjectDeltaStepDetails>
+    public partial class RunStepDeltaObjectDeltaStepDetailsJsonConverter : JsonConverter<RunStepDeltaObjectDeltaStepDetails>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDeltaObjectDeltaStepDetailsJsonConverter" /> class.
+        /// </summary>
+        public RunStepDeltaObjectDeltaStepDetailsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDeltaObjectDeltaStepDetails" />
         /// </summary>

@@ -25,7 +25,7 @@ message RealtimeConversationItemContentInner {
     TYPE_TEXT = 3;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // The text content, used for `input_text` and `text` content types. 
   string text = 3556653;

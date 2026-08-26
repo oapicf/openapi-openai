@@ -54,9 +54,9 @@ function Initialize-FineTunePreferenceRequestInput {
 
 
         $PSO = [PSCustomObject]@{
-            "input" = ${VarInput}
-            "preferred_completion" = ${PreferredCompletion}
-            "non_preferred_completion" = ${NonPreferredCompletion}
+            'input' = ${VarInput}
+            'preferred_completion' = ${PreferredCompletion}
+            'non_preferred_completion' = ${NonPreferredCompletion}
         }
 
 
@@ -94,35 +94,35 @@ function ConvertFrom-JsonToFineTunePreferenceRequestInput {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in FineTunePreferenceRequestInput
-        $AllProperties = ("input", "preferred_completion", "non_preferred_completion")
+        $AllProperties = ('input', 'preferred_completion', 'non_preferred_completion')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "input"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'input'))) { #optional property not found
             $VarInput = $null
         } else {
-            $VarInput = $JsonParameters.PSobject.Properties["input"].value
+            $VarInput = $JsonParameters.PSobject.Properties['input'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "preferred_completion"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'preferred_completion'))) { #optional property not found
             $PreferredCompletion = $null
         } else {
-            $PreferredCompletion = $JsonParameters.PSobject.Properties["preferred_completion"].value
+            $PreferredCompletion = $JsonParameters.PSobject.Properties['preferred_completion'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "non_preferred_completion"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'non_preferred_completion'))) { #optional property not found
             $NonPreferredCompletion = $null
         } else {
-            $NonPreferredCompletion = $JsonParameters.PSobject.Properties["non_preferred_completion"].value
+            $NonPreferredCompletion = $JsonParameters.PSobject.Properties['non_preferred_completion'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "input" = ${VarInput}
-            "preferred_completion" = ${PreferredCompletion}
-            "non_preferred_completion" = ${NonPreferredCompletion}
+            'input' = ${VarInput}
+            'preferred_completion' = ${PreferredCompletion}
+            'non_preferred_completion' = ${NonPreferredCompletion}
         }
 
         return $PSO

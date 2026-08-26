@@ -148,7 +148,7 @@ RealtimeClientEventConversationItemTruncate::getEventId()
 }
 
 void
-RealtimeClientEventConversationItemTruncate::setEventId(std::string  event_id)
+RealtimeClientEventConversationItemTruncate::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -160,7 +160,7 @@ RealtimeClientEventConversationItemTruncate::getType()
 }
 
 void
-RealtimeClientEventConversationItemTruncate::setType(std::string  type)
+RealtimeClientEventConversationItemTruncate::setType(std::string type)
 {
 	this->type = type;
 }
@@ -172,7 +172,7 @@ RealtimeClientEventConversationItemTruncate::getItemId()
 }
 
 void
-RealtimeClientEventConversationItemTruncate::setItemId(std::string  item_id)
+RealtimeClientEventConversationItemTruncate::setItemId(std::string item_id)
 {
 	this->item_id = item_id;
 }
@@ -184,7 +184,7 @@ RealtimeClientEventConversationItemTruncate::getContentIndex()
 }
 
 void
-RealtimeClientEventConversationItemTruncate::setContentIndex(int  content_index)
+RealtimeClientEventConversationItemTruncate::setContentIndex(int content_index)
 {
 	this->content_index = content_index;
 }
@@ -196,7 +196,7 @@ RealtimeClientEventConversationItemTruncate::getAudioEndMs()
 }
 
 void
-RealtimeClientEventConversationItemTruncate::setAudioEndMs(int  audio_end_ms)
+RealtimeClientEventConversationItemTruncate::setAudioEndMs(int audio_end_ms)
 {
 	this->audio_end_ms = audio_end_ms;
 }

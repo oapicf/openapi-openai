@@ -9,13 +9,13 @@ import java.math.BigDecimal;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * A list of the categories along with their scores as predicted by model.
@@ -23,7 +23,7 @@ import javax.annotation.Generated;
 
 @Schema(name = "CreateModerationResponse_results_inner_category_scores", description = "A list of the categories along with their scores as predicted by model.")
 @JsonTypeName("CreateModerationResponse_results_inner_category_scores")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateModerationResponseResultsInnerCategoryScores {
 
   private BigDecimal hate;
@@ -91,6 +91,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     return hate;
   }
 
+  @JsonProperty("hate")
   public void setHate(BigDecimal hate) {
     this.hate = hate;
   }
@@ -111,6 +112,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     return hateThreatening;
   }
 
+  @JsonProperty("hate/threatening")
   public void setHateThreatening(BigDecimal hateThreatening) {
     this.hateThreatening = hateThreatening;
   }
@@ -131,6 +133,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     return harassment;
   }
 
+  @JsonProperty("harassment")
   public void setHarassment(BigDecimal harassment) {
     this.harassment = harassment;
   }
@@ -151,6 +154,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     return harassmentThreatening;
   }
 
+  @JsonProperty("harassment/threatening")
   public void setHarassmentThreatening(BigDecimal harassmentThreatening) {
     this.harassmentThreatening = harassmentThreatening;
   }
@@ -171,6 +175,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     return illicit;
   }
 
+  @JsonProperty("illicit")
   public void setIllicit(BigDecimal illicit) {
     this.illicit = illicit;
   }
@@ -191,6 +196,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     return illicitViolent;
   }
 
+  @JsonProperty("illicit/violent")
   public void setIllicitViolent(BigDecimal illicitViolent) {
     this.illicitViolent = illicitViolent;
   }
@@ -211,6 +217,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     return selfHarm;
   }
 
+  @JsonProperty("self-harm")
   public void setSelfHarm(BigDecimal selfHarm) {
     this.selfHarm = selfHarm;
   }
@@ -231,6 +238,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     return selfHarmIntent;
   }
 
+  @JsonProperty("self-harm/intent")
   public void setSelfHarmIntent(BigDecimal selfHarmIntent) {
     this.selfHarmIntent = selfHarmIntent;
   }
@@ -251,6 +259,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     return selfHarmInstructions;
   }
 
+  @JsonProperty("self-harm/instructions")
   public void setSelfHarmInstructions(BigDecimal selfHarmInstructions) {
     this.selfHarmInstructions = selfHarmInstructions;
   }
@@ -271,6 +280,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     return sexual;
   }
 
+  @JsonProperty("sexual")
   public void setSexual(BigDecimal sexual) {
     this.sexual = sexual;
   }
@@ -291,6 +301,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     return sexualMinors;
   }
 
+  @JsonProperty("sexual/minors")
   public void setSexualMinors(BigDecimal sexualMinors) {
     this.sexualMinors = sexualMinors;
   }
@@ -311,6 +322,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     return violence;
   }
 
+  @JsonProperty("violence")
   public void setViolence(BigDecimal violence) {
     this.violence = violence;
   }
@@ -331,6 +343,7 @@ public class CreateModerationResponseResultsInnerCategoryScores {
     return violenceGraphic;
   }
 
+  @JsonProperty("violence/graphic")
   public void setViolenceGraphic(BigDecimal violenceGraphic) {
     this.violenceGraphic = violenceGraphic;
   }
@@ -389,11 +402,8 @@ public class CreateModerationResponseResultsInnerCategoryScores {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

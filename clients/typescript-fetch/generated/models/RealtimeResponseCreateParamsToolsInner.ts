@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface RealtimeResponseCreateParamsToolsInner {
     /**
      * The type of the tool, i.e. `function`.
-     * @type {string}
+     * @type {RealtimeResponseCreateParamsToolsInnerTypeEnum}
      * @memberof RealtimeResponseCreateParamsToolsInner
      */
     type?: RealtimeResponseCreateParamsToolsInnerTypeEnum;

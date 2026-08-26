@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set The friendly name of the project, this name appears in reports.
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 
 
     private:

@@ -32,7 +32,7 @@ class  ChatCompletionRequestMessageContentPartRefusal
 {
 public:
     ChatCompletionRequestMessageContentPartRefusal();
-    virtual ~ChatCompletionRequestMessageContentPartRefusal() = default;
+    virtual ~ChatCompletionRequestMessageContentPartRefusal();
 
 
     /// <summary>

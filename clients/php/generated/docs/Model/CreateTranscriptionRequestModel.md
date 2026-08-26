@@ -1,4 +1,4 @@
-# # CreateTranscriptionRequestModel
+# CreateTranscriptionRequestModel
 
 ## Properties
 

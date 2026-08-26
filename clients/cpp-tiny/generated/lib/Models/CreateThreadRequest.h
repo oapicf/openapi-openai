@@ -55,21 +55,21 @@ public:
 
 	/*! \brief Set A list of [messages](/docs/api-reference/messages) to start the thread with.
 	 */
-	void setMessages(std::list <CreateMessageRequest> messages);
+	void setMessages(std::list<CreateMessageRequest> messages);
 	/*! \brief Get 
 	 */
 	CreateThreadRequest_tool_resources getToolResources();
 
 	/*! \brief Set 
 	 */
-	void setToolResources(CreateThreadRequest_tool_resources  tool_resources);
+	void setToolResources(CreateThreadRequest_tool_resources tool_resources);
 	/*! \brief Get Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	 */
 	Object getMetadata();
 
 	/*! \brief Set Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	 */
-	void setMetadata(Object  metadata);
+	void setMetadata(Object metadata);
 
 
     private:

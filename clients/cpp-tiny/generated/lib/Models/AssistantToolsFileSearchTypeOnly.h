@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set The type of tool being defined: `file_search`
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 
 
     private:

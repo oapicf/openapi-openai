@@ -25,6 +25,8 @@ RunStepObject_step_details::RunStepObject_step_details()
     
 }
 
+RunStepObject_step_details::~RunStepObject_step_details() = default;
+
 void RunStepObject_step_details::validate() const
 {
     std::stringstream msg;

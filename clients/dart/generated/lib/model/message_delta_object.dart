@@ -61,10 +61,12 @@ class MessageDeltaObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageDeltaObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageDeltaObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "MessageDeltaObject[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "MessageDeltaObject[id]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "MessageDeltaObject[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "MessageDeltaObject[object]" has a null value in JSON.');
+        assert(json.containsKey(r'delta'), 'Required key "MessageDeltaObject[delta]" is missing from JSON.');
+        assert(json[r'delta'] != null, 'Required key "MessageDeltaObject[delta]" has a null value in JSON.');
         return true;
       }());
 
@@ -126,27 +128,28 @@ class MessageDeltaObject {
 }
 
 /// The object type, which is always `thread.message.delta`.
-class MessageDeltaObjectObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageDeltaObjectObjectEnum._(this.value);
+enum MessageDeltaObjectObjectEnum {
+  threadPeriodMessagePeriodDelta._(r'thread.message.delta'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageDeltaObjectObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodMessagePeriodDelta = MessageDeltaObjectObjectEnum._(r'thread.message.delta');
-
-  /// List of all possible values in this [enum][MessageDeltaObjectObjectEnum].
-  static const values = <MessageDeltaObjectObjectEnum>[
-    threadPeriodMessagePeriodDelta,
-  ];
-
+  /// Returns the instance of [MessageDeltaObjectObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageDeltaObjectObjectEnum? fromJson(dynamic value) => MessageDeltaObjectObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageDeltaObjectObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageDeltaObjectObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageDeltaObjectObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -168,9 +171,10 @@ class MessageDeltaObjectObjectEnumTypeTransformer {
 
   const MessageDeltaObjectObjectEnumTypeTransformer._();
 
-  String encode(MessageDeltaObjectObjectEnum data) => data.value;
+  String encode(MessageDeltaObjectObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageDeltaObjectObjectEnum.
+  /// Returns the instance of [MessageDeltaObjectObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -179,6 +183,9 @@ class MessageDeltaObjectObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageDeltaObjectObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageDeltaObjectObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.message.delta': return MessageDeltaObjectObjectEnum.threadPeriodMessagePeriodDelta;
@@ -191,7 +198,7 @@ class MessageDeltaObjectObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageDeltaObjectObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageDeltaObjectObjectEnumTypeTransformer? _instance;
 }
 

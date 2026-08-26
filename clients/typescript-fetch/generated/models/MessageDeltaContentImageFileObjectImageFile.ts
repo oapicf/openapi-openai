@@ -27,7 +27,7 @@ export interface MessageDeltaContentImageFileObjectImageFile {
     fileId?: string;
     /**
      * Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
-     * @type {string}
+     * @type {MessageDeltaContentImageFileObjectImageFileDetailEnum}
      * @memberof MessageDeltaContentImageFileObjectImageFile
      */
     detail?: MessageDeltaContentImageFileObjectImageFileDetailEnum;

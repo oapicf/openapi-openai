@@ -674,14 +674,6 @@ genAuditLogUserUpdatedChangesRequested n =
   AuditLogUserUpdatedChangesRequested
     <$> arbitraryReducedMaybe n -- auditLogUserUpdatedChangesRequestedRole :: Maybe Text
   
-instance Arbitrary AutoChunkingStrategy where
-  arbitrary = sized genAutoChunkingStrategy
-
-genAutoChunkingStrategy :: Int -> Gen AutoChunkingStrategy
-genAutoChunkingStrategy n =
-  AutoChunkingStrategy
-    <$> arbitrary -- autoChunkingStrategyType :: E'OneOf0
-  
 instance Arbitrary AutoChunkingStrategyRequestParam where
   arbitrary = sized genAutoChunkingStrategyRequestParam
 
@@ -5023,15 +5015,6 @@ genStaticChunkingStrategyRequestParam n =
   StaticChunkingStrategyRequestParam
     <$> arbitrary -- staticChunkingStrategyRequestParamType :: E'Type67
     <*> arbitraryReduced n -- staticChunkingStrategyRequestParamStatic :: StaticChunkingStrategy
-  
-instance Arbitrary StaticChunkingStrategyResponseParam where
-  arbitrary = sized genStaticChunkingStrategyResponseParam
-
-genStaticChunkingStrategyResponseParam :: Int -> Gen StaticChunkingStrategyResponseParam
-genStaticChunkingStrategyResponseParam n =
-  StaticChunkingStrategyResponseParam
-    <$> arbitrary -- staticChunkingStrategyResponseParamType :: E'Type67
-    <*> arbitraryReduced n -- staticChunkingStrategyResponseParamStatic :: StaticChunkingStrategy
   
 instance Arbitrary StaticChunkingStrategyStatic where
   arbitrary = sized genStaticChunkingStrategyStatic

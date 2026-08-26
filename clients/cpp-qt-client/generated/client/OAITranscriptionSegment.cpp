@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAITranscriptionSegment::OAITranscriptionSegment(QString json) {
+OAITranscriptionSegment::OAITranscriptionSegment(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -65,7 +65,7 @@ void OAITranscriptionSegment::initializeModel() {
     m_no_speech_prob_isValid = false;
 }
 
-void OAITranscriptionSegment::fromJson(QString jsonString) {
+void OAITranscriptionSegment::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

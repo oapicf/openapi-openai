@@ -9,20 +9,20 @@ import org.openapitools.model.FineTuningJobCheckpointMetrics;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * The &#x60;fine_tuning.job.checkpoint&#x60; object represents a model checkpoint for a fine-tuning job that is ready to use. 
  */
 
 @Schema(name = "FineTuningJobCheckpoint", description = "The `fine_tuning.job.checkpoint` object represents a model checkpoint for a fine-tuning job that is ready to use. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTuningJobCheckpoint {
 
   private String id;
@@ -105,6 +105,7 @@ public class FineTuningJobCheckpoint {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
@@ -125,6 +126,7 @@ public class FineTuningJobCheckpoint {
     return createdAt;
   }
 
+  @JsonProperty("created_at")
   public void setCreatedAt(Integer createdAt) {
     this.createdAt = createdAt;
   }
@@ -145,6 +147,7 @@ public class FineTuningJobCheckpoint {
     return fineTunedModelCheckpoint;
   }
 
+  @JsonProperty("fine_tuned_model_checkpoint")
   public void setFineTunedModelCheckpoint(String fineTunedModelCheckpoint) {
     this.fineTunedModelCheckpoint = fineTunedModelCheckpoint;
   }
@@ -165,6 +168,7 @@ public class FineTuningJobCheckpoint {
     return stepNumber;
   }
 
+  @JsonProperty("step_number")
   public void setStepNumber(Integer stepNumber) {
     this.stepNumber = stepNumber;
   }
@@ -185,6 +189,7 @@ public class FineTuningJobCheckpoint {
     return metrics;
   }
 
+  @JsonProperty("metrics")
   public void setMetrics(FineTuningJobCheckpointMetrics metrics) {
     this.metrics = metrics;
   }
@@ -205,6 +210,7 @@ public class FineTuningJobCheckpoint {
     return fineTuningJobId;
   }
 
+  @JsonProperty("fine_tuning_job_id")
   public void setFineTuningJobId(String fineTuningJobId) {
     this.fineTuningJobId = fineTuningJobId;
   }
@@ -225,6 +231,7 @@ public class FineTuningJobCheckpoint {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
@@ -271,11 +278,8 @@ public class FineTuningJobCheckpoint {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

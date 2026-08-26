@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type AssistantToolsFileSearch struct {
@@ -21,18 +26,68 @@ type AssistantToolsFileSearch struct {
 
 	FileSearch AssistantToolsFileSearchFileSearch `json:"file_search,omitempty"`
 }
-
-// AssertAssistantToolsFileSearchRequired checks if the required fields are not zero-ed
-func AssertAssistantToolsFileSearchRequired(obj AssistantToolsFileSearch) error {
-	elements := map[string]interface{}{
-		"type": obj.Type,
+// UnmarshalJSON validates required property keys then unmarshals into AssistantToolsFileSearch
+func (o *AssistantToolsFileSearch) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"type",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"type": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"type": {},
+		"file_search": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded AssistantToolsFileSearch
+
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["file_search"]; exists {
+		if err = json.Unmarshal(value, &decoded.FileSearch); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertAssistantToolsFileSearchRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertAssistantToolsFileSearchRequired(obj AssistantToolsFileSearch) error {
 	if err := AssertAssistantToolsFileSearchFileSearchRequired(obj.FileSearch); err != nil {
 		return err
 	}

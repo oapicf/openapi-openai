@@ -166,7 +166,7 @@ ChatCompletionStreamResponseDelta::getContent()
 }
 
 void
-ChatCompletionStreamResponseDelta::setContent(std::string  content)
+ChatCompletionStreamResponseDelta::setContent(std::string content)
 {
 	this->content = content;
 }
@@ -178,7 +178,7 @@ ChatCompletionStreamResponseDelta::getFunctionCall()
 }
 
 void
-ChatCompletionStreamResponseDelta::setFunctionCall(ChatCompletionStreamResponseDelta_function_call  function_call)
+ChatCompletionStreamResponseDelta::setFunctionCall(ChatCompletionStreamResponseDelta_function_call function_call)
 {
 	this->function_call = function_call;
 }
@@ -190,7 +190,7 @@ ChatCompletionStreamResponseDelta::getToolCalls()
 }
 
 void
-ChatCompletionStreamResponseDelta::setToolCalls(std::list <ChatCompletionMessageToolCallChunk> tool_calls)
+ChatCompletionStreamResponseDelta::setToolCalls(std::list<ChatCompletionMessageToolCallChunk> tool_calls)
 {
 	this->tool_calls = tool_calls;
 }
@@ -202,7 +202,7 @@ ChatCompletionStreamResponseDelta::getRole()
 }
 
 void
-ChatCompletionStreamResponseDelta::setRole(std::string  role)
+ChatCompletionStreamResponseDelta::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -214,7 +214,7 @@ ChatCompletionStreamResponseDelta::getRefusal()
 }
 
 void
-ChatCompletionStreamResponseDelta::setRefusal(std::string  refusal)
+ChatCompletionStreamResponseDelta::setRefusal(std::string refusal)
 {
 	this->refusal = refusal;
 }

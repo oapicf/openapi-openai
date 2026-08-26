@@ -115,7 +115,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Type of turn detection, only &#x60;server_vad&#x60; is currently supported. </value>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Threshold
@@ -129,7 +129,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Activation threshold for VAD (0.0 to 1.0), this defaults to 0.5. A  higher threshold will require louder audio to activate the model, and  thus might perform better in noisy environments. </value>
         [JsonPropertyName("threshold")]
-        public decimal? Threshold { get { return this.ThresholdOption; } set { this.ThresholdOption = new(value); } }
+        public decimal? Threshold { get { return this.ThresholdOption.Value; } set { this.ThresholdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PrefixPaddingMs
@@ -143,7 +143,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Amount of audio to include before the VAD detected speech (in  milliseconds). Defaults to 300ms. </value>
         [JsonPropertyName("prefix_padding_ms")]
-        public int? PrefixPaddingMs { get { return this.PrefixPaddingMsOption; } set { this.PrefixPaddingMsOption = new(value); } }
+        public int? PrefixPaddingMs { get { return this.PrefixPaddingMsOption.Value; } set { this.PrefixPaddingMsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SilenceDurationMs
@@ -157,7 +157,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Duration of silence to detect speech stop (in milliseconds). Defaults  to 500ms. With shorter values the model will respond more quickly,  but may jump in on short pauses from the user. </value>
         [JsonPropertyName("silence_duration_ms")]
-        public int? SilenceDurationMs { get { return this.SilenceDurationMsOption; } set { this.SilenceDurationMsOption = new(value); } }
+        public int? SilenceDurationMs { get { return this.SilenceDurationMsOption.Value; } set { this.SilenceDurationMsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -189,8 +189,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeSessionTurnDetection" />
     /// </summary>
-    public class RealtimeSessionTurnDetectionJsonConverter : JsonConverter<RealtimeSessionTurnDetection>
+    public partial class RealtimeSessionTurnDetectionJsonConverter : JsonConverter<RealtimeSessionTurnDetection>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeSessionTurnDetectionJsonConverter" /> class.
+        /// </summary>
+        public RealtimeSessionTurnDetectionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeSessionTurnDetection" />
         /// </summary>

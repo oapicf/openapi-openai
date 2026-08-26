@@ -12,75 +12,112 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  ErrorResponse,
-  Project,
-  ProjectApiKey,
-  ProjectApiKeyDeleteResponse,
-  ProjectApiKeyListResponse,
-  ProjectCreateRequest,
-  ProjectListResponse,
-  ProjectRateLimit,
-  ProjectRateLimitListResponse,
-  ProjectRateLimitUpdateRequest,
-  ProjectServiceAccount,
-  ProjectServiceAccountCreateRequest,
-  ProjectServiceAccountCreateResponse,
-  ProjectServiceAccountDeleteResponse,
-  ProjectServiceAccountListResponse,
-  ProjectUpdateRequest,
-  ProjectUser,
-  ProjectUserCreateRequest,
-  ProjectUserDeleteResponse,
-  ProjectUserListResponse,
-  ProjectUserUpdateRequest,
-} from '../models/index';
 import {
+    type ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+} from '../models/ErrorResponse';
+import {
+    type Project,
     ProjectFromJSON,
     ProjectToJSON,
+} from '../models/Project';
+import {
+    type ProjectApiKey,
     ProjectApiKeyFromJSON,
     ProjectApiKeyToJSON,
+} from '../models/ProjectApiKey';
+import {
+    type ProjectApiKeyDeleteResponse,
     ProjectApiKeyDeleteResponseFromJSON,
     ProjectApiKeyDeleteResponseToJSON,
+} from '../models/ProjectApiKeyDeleteResponse';
+import {
+    type ProjectApiKeyListResponse,
     ProjectApiKeyListResponseFromJSON,
     ProjectApiKeyListResponseToJSON,
+} from '../models/ProjectApiKeyListResponse';
+import {
+    type ProjectCreateRequest,
     ProjectCreateRequestFromJSON,
     ProjectCreateRequestToJSON,
+} from '../models/ProjectCreateRequest';
+import {
+    type ProjectListResponse,
     ProjectListResponseFromJSON,
     ProjectListResponseToJSON,
+} from '../models/ProjectListResponse';
+import {
+    type ProjectRateLimit,
     ProjectRateLimitFromJSON,
     ProjectRateLimitToJSON,
+} from '../models/ProjectRateLimit';
+import {
+    type ProjectRateLimitListResponse,
     ProjectRateLimitListResponseFromJSON,
     ProjectRateLimitListResponseToJSON,
+} from '../models/ProjectRateLimitListResponse';
+import {
+    type ProjectRateLimitUpdateRequest,
     ProjectRateLimitUpdateRequestFromJSON,
     ProjectRateLimitUpdateRequestToJSON,
+} from '../models/ProjectRateLimitUpdateRequest';
+import {
+    type ProjectServiceAccount,
     ProjectServiceAccountFromJSON,
     ProjectServiceAccountToJSON,
+} from '../models/ProjectServiceAccount';
+import {
+    type ProjectServiceAccountCreateRequest,
     ProjectServiceAccountCreateRequestFromJSON,
     ProjectServiceAccountCreateRequestToJSON,
+} from '../models/ProjectServiceAccountCreateRequest';
+import {
+    type ProjectServiceAccountCreateResponse,
     ProjectServiceAccountCreateResponseFromJSON,
     ProjectServiceAccountCreateResponseToJSON,
+} from '../models/ProjectServiceAccountCreateResponse';
+import {
+    type ProjectServiceAccountDeleteResponse,
     ProjectServiceAccountDeleteResponseFromJSON,
     ProjectServiceAccountDeleteResponseToJSON,
+} from '../models/ProjectServiceAccountDeleteResponse';
+import {
+    type ProjectServiceAccountListResponse,
     ProjectServiceAccountListResponseFromJSON,
     ProjectServiceAccountListResponseToJSON,
+} from '../models/ProjectServiceAccountListResponse';
+import {
+    type ProjectUpdateRequest,
     ProjectUpdateRequestFromJSON,
     ProjectUpdateRequestToJSON,
+} from '../models/ProjectUpdateRequest';
+import {
+    type ProjectUser,
     ProjectUserFromJSON,
     ProjectUserToJSON,
+} from '../models/ProjectUser';
+import {
+    type ProjectUserCreateRequest,
     ProjectUserCreateRequestFromJSON,
     ProjectUserCreateRequestToJSON,
+} from '../models/ProjectUserCreateRequest';
+import {
+    type ProjectUserDeleteResponse,
     ProjectUserDeleteResponseFromJSON,
     ProjectUserDeleteResponseToJSON,
+} from '../models/ProjectUserDeleteResponse';
+import {
+    type ProjectUserListResponse,
     ProjectUserListResponseFromJSON,
     ProjectUserListResponseToJSON,
+} from '../models/ProjectUserListResponse';
+import {
+    type ProjectUserUpdateRequest,
     ProjectUserUpdateRequestFromJSON,
     ProjectUserUpdateRequestToJSON,
-} from '../models/index';
+} from '../models/ProjectUserUpdateRequest';
 
 export interface ArchiveProjectRequest {
     projectId: string;
@@ -188,9 +225,9 @@ export interface UpdateProjectRateLimitsRequest {
 export class ProjectsApi extends runtime.BaseAPI {
 
     /**
-     * Archives a project in the organization. Archived projects cannot be used or updated.
+     * Creates request options for archiveProject without sending the request
      */
-    async archiveProjectRaw(requestParameters: ArchiveProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+    async archiveProjectRequestOpts(requestParameters: ArchiveProjectRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -212,14 +249,22 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}/archive`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Archives a project in the organization. Archived projects cannot be used or updated.
+     */
+    async archiveProjectRaw(requestParameters: ArchiveProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+        const requestOptions = await this.archiveProjectRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectFromJSON(jsonValue));
     }
@@ -233,9 +278,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
+     * Creates request options for createProject without sending the request
      */
-    async createProjectRaw(requestParameters: CreateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+    async createProjectRequestOpts(requestParameters: CreateProjectRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectCreateRequest'] == null) {
             throw new runtime.RequiredError(
                 'projectCreateRequest',
@@ -260,13 +305,21 @@ export class ProjectsApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/projects`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ProjectCreateRequestToJSON(requestParameters['projectCreateRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
+     */
+    async createProjectRaw(requestParameters: CreateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+        const requestOptions = await this.createProjectRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectFromJSON(jsonValue));
     }
@@ -280,9 +333,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a new service account in the project. This also returns an unredacted API key for the service account.
+     * Creates request options for createProjectServiceAccount without sending the request
      */
-    async createProjectServiceAccountRaw(requestParameters: CreateProjectServiceAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectServiceAccountCreateResponse>> {
+    async createProjectServiceAccountRequestOpts(requestParameters: CreateProjectServiceAccountRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -313,15 +366,23 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}/service_accounts`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ProjectServiceAccountCreateRequestToJSON(requestParameters['projectServiceAccountCreateRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates a new service account in the project. This also returns an unredacted API key for the service account.
+     */
+    async createProjectServiceAccountRaw(requestParameters: CreateProjectServiceAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectServiceAccountCreateResponse>> {
+        const requestOptions = await this.createProjectServiceAccountRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectServiceAccountCreateResponseFromJSON(jsonValue));
     }
@@ -335,9 +396,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Adds a user to the project. Users must already be members of the organization to be added to a project.
+     * Creates request options for createProjectUser without sending the request
      */
-    async createProjectUserRaw(requestParameters: CreateProjectUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectUser>> {
+    async createProjectUserRequestOpts(requestParameters: CreateProjectUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -368,15 +429,23 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}/users`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ProjectUserCreateRequestToJSON(requestParameters['projectUserCreateRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Adds a user to the project. Users must already be members of the organization to be added to a project.
+     */
+    async createProjectUserRaw(requestParameters: CreateProjectUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectUser>> {
+        const requestOptions = await this.createProjectUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectUserFromJSON(jsonValue));
     }
@@ -390,9 +459,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes an API key from the project.
+     * Creates request options for deleteProjectApiKey without sending the request
      */
-    async deleteProjectApiKeyRaw(requestParameters: DeleteProjectApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectApiKeyDeleteResponse>> {
+    async deleteProjectApiKeyRequestOpts(requestParameters: DeleteProjectApiKeyRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -421,15 +490,23 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}/api_keys/{key_id}`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"key_id"}}`, encodeURIComponent(String(requestParameters['keyId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{key_id}', encodeURIComponent(String(requestParameters['keyId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Deletes an API key from the project.
+     */
+    async deleteProjectApiKeyRaw(requestParameters: DeleteProjectApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectApiKeyDeleteResponse>> {
+        const requestOptions = await this.deleteProjectApiKeyRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectApiKeyDeleteResponseFromJSON(jsonValue));
     }
@@ -443,9 +520,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes a service account from the project.
+     * Creates request options for deleteProjectServiceAccount without sending the request
      */
-    async deleteProjectServiceAccountRaw(requestParameters: DeleteProjectServiceAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectServiceAccountDeleteResponse>> {
+    async deleteProjectServiceAccountRequestOpts(requestParameters: DeleteProjectServiceAccountRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -474,15 +551,23 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}/service_accounts/{service_account_id}`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"service_account_id"}}`, encodeURIComponent(String(requestParameters['serviceAccountId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{service_account_id}', encodeURIComponent(String(requestParameters['serviceAccountId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Deletes a service account from the project.
+     */
+    async deleteProjectServiceAccountRaw(requestParameters: DeleteProjectServiceAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectServiceAccountDeleteResponse>> {
+        const requestOptions = await this.deleteProjectServiceAccountRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectServiceAccountDeleteResponseFromJSON(jsonValue));
     }
@@ -496,9 +581,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes a user from the project.
+     * Creates request options for deleteProjectUser without sending the request
      */
-    async deleteProjectUserRaw(requestParameters: DeleteProjectUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectUserDeleteResponse>> {
+    async deleteProjectUserRequestOpts(requestParameters: DeleteProjectUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -527,15 +612,23 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}/users/{user_id}`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{user_id}', encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Deletes a user from the project.
+     */
+    async deleteProjectUserRaw(requestParameters: DeleteProjectUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectUserDeleteResponse>> {
+        const requestOptions = await this.deleteProjectUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectUserDeleteResponseFromJSON(jsonValue));
     }
@@ -549,9 +642,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of API keys in the project.
+     * Creates request options for listProjectApiKeys without sending the request
      */
-    async listProjectApiKeysRaw(requestParameters: ListProjectApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectApiKeyListResponse>> {
+    async listProjectApiKeysRequestOpts(requestParameters: ListProjectApiKeysRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -581,14 +674,22 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}/api_keys`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns a list of API keys in the project.
+     */
+    async listProjectApiKeysRaw(requestParameters: ListProjectApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectApiKeyListResponse>> {
+        const requestOptions = await this.listProjectApiKeysRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectApiKeyListResponseFromJSON(jsonValue));
     }
@@ -602,9 +703,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns the rate limits per model for a project.
+     * Creates request options for listProjectRateLimits without sending the request
      */
-    async listProjectRateLimitsRaw(requestParameters: ListProjectRateLimitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectRateLimitListResponse>> {
+    async listProjectRateLimitsRequestOpts(requestParameters: ListProjectRateLimitsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -638,14 +739,22 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}/rate_limits`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns the rate limits per model for a project.
+     */
+    async listProjectRateLimitsRaw(requestParameters: ListProjectRateLimitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectRateLimitListResponse>> {
+        const requestOptions = await this.listProjectRateLimitsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectRateLimitListResponseFromJSON(jsonValue));
     }
@@ -659,9 +768,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of service accounts in the project.
+     * Creates request options for listProjectServiceAccounts without sending the request
      */
-    async listProjectServiceAccountsRaw(requestParameters: ListProjectServiceAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectServiceAccountListResponse>> {
+    async listProjectServiceAccountsRequestOpts(requestParameters: ListProjectServiceAccountsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -691,14 +800,22 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}/service_accounts`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns a list of service accounts in the project.
+     */
+    async listProjectServiceAccountsRaw(requestParameters: ListProjectServiceAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectServiceAccountListResponse>> {
+        const requestOptions = await this.listProjectServiceAccountsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectServiceAccountListResponseFromJSON(jsonValue));
     }
@@ -712,9 +829,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of users in the project.
+     * Creates request options for listProjectUsers without sending the request
      */
-    async listProjectUsersRaw(requestParameters: ListProjectUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectUserListResponse>> {
+    async listProjectUsersRequestOpts(requestParameters: ListProjectUsersRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -744,14 +861,22 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}/users`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns a list of users in the project.
+     */
+    async listProjectUsersRaw(requestParameters: ListProjectUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectUserListResponse>> {
+        const requestOptions = await this.listProjectUsersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectUserListResponseFromJSON(jsonValue));
     }
@@ -765,9 +890,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of projects.
+     * Creates request options for listProjects without sending the request
      */
-    async listProjectsRaw(requestParameters: ListProjectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectListResponse>> {
+    async listProjectsRequestOpts(requestParameters: ListProjectsRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['limit'] != null) {
@@ -795,12 +920,20 @@ export class ProjectsApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/projects`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns a list of projects.
+     */
+    async listProjectsRaw(requestParameters: ListProjectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectListResponse>> {
+        const requestOptions = await this.listProjectsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectListResponseFromJSON(jsonValue));
     }
@@ -814,9 +947,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Modifies a project in the organization.
+     * Creates request options for modifyProject without sending the request
      */
-    async modifyProjectRaw(requestParameters: ModifyProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+    async modifyProjectRequestOpts(requestParameters: ModifyProjectRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -847,15 +980,23 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ProjectUpdateRequestToJSON(requestParameters['projectUpdateRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Modifies a project in the organization.
+     */
+    async modifyProjectRaw(requestParameters: ModifyProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+        const requestOptions = await this.modifyProjectRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectFromJSON(jsonValue));
     }
@@ -869,9 +1010,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Modifies a user\'s role in the project.
+     * Creates request options for modifyProjectUser without sending the request
      */
-    async modifyProjectUserRaw(requestParameters: ModifyProjectUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectUser>> {
+    async modifyProjectUserRequestOpts(requestParameters: ModifyProjectUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -909,16 +1050,24 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}/users/{user_id}`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{user_id}', encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ProjectUserUpdateRequestToJSON(requestParameters['projectUserUpdateRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Modifies a user\'s role in the project.
+     */
+    async modifyProjectUserRaw(requestParameters: ModifyProjectUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectUser>> {
+        const requestOptions = await this.modifyProjectUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectUserFromJSON(jsonValue));
     }
@@ -932,9 +1081,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves a project.
+     * Creates request options for retrieveProject without sending the request
      */
-    async retrieveProjectRaw(requestParameters: RetrieveProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+    async retrieveProjectRequestOpts(requestParameters: RetrieveProjectRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -956,14 +1105,22 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves a project.
+     */
+    async retrieveProjectRaw(requestParameters: RetrieveProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+        const requestOptions = await this.retrieveProjectRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectFromJSON(jsonValue));
     }
@@ -977,9 +1134,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves an API key in the project.
+     * Creates request options for retrieveProjectApiKey without sending the request
      */
-    async retrieveProjectApiKeyRaw(requestParameters: RetrieveProjectApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectApiKey>> {
+    async retrieveProjectApiKeyRequestOpts(requestParameters: RetrieveProjectApiKeyRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1008,15 +1165,23 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}/api_keys/{key_id}`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"key_id"}}`, encodeURIComponent(String(requestParameters['keyId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{key_id}', encodeURIComponent(String(requestParameters['keyId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves an API key in the project.
+     */
+    async retrieveProjectApiKeyRaw(requestParameters: RetrieveProjectApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectApiKey>> {
+        const requestOptions = await this.retrieveProjectApiKeyRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectApiKeyFromJSON(jsonValue));
     }
@@ -1030,9 +1195,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves a service account in the project.
+     * Creates request options for retrieveProjectServiceAccount without sending the request
      */
-    async retrieveProjectServiceAccountRaw(requestParameters: RetrieveProjectServiceAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectServiceAccount>> {
+    async retrieveProjectServiceAccountRequestOpts(requestParameters: RetrieveProjectServiceAccountRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1061,15 +1226,23 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}/service_accounts/{service_account_id}`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"service_account_id"}}`, encodeURIComponent(String(requestParameters['serviceAccountId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{service_account_id}', encodeURIComponent(String(requestParameters['serviceAccountId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves a service account in the project.
+     */
+    async retrieveProjectServiceAccountRaw(requestParameters: RetrieveProjectServiceAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectServiceAccount>> {
+        const requestOptions = await this.retrieveProjectServiceAccountRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectServiceAccountFromJSON(jsonValue));
     }
@@ -1083,9 +1256,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves a user in the project.
+     * Creates request options for retrieveProjectUser without sending the request
      */
-    async retrieveProjectUserRaw(requestParameters: RetrieveProjectUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectUser>> {
+    async retrieveProjectUserRequestOpts(requestParameters: RetrieveProjectUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1114,15 +1287,23 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}/users/{user_id}`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{user_id}', encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves a user in the project.
+     */
+    async retrieveProjectUserRaw(requestParameters: RetrieveProjectUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectUser>> {
+        const requestOptions = await this.retrieveProjectUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectUserFromJSON(jsonValue));
     }
@@ -1136,9 +1317,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates a project rate limit.
+     * Creates request options for updateProjectRateLimits without sending the request
      */
-    async updateProjectRateLimitsRaw(requestParameters: UpdateProjectRateLimitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectRateLimit>> {
+    async updateProjectRateLimitsRequestOpts(requestParameters: UpdateProjectRateLimitsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1176,16 +1357,24 @@ export class ProjectsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/projects/{project_id}/rate_limits/{rate_limit_id}`;
-        urlPath = urlPath.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"rate_limit_id"}}`, encodeURIComponent(String(requestParameters['rateLimitId'])));
+        urlPath = urlPath.replace('{project_id}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{rate_limit_id}', encodeURIComponent(String(requestParameters['rateLimitId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ProjectRateLimitUpdateRequestToJSON(requestParameters['projectRateLimitUpdateRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Updates a project rate limit.
+     */
+    async updateProjectRateLimitsRaw(requestParameters: UpdateProjectRateLimitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectRateLimit>> {
+        const requestOptions = await this.updateProjectRateLimitsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectRateLimitFromJSON(jsonValue));
     }

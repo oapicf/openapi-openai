@@ -36,7 +36,7 @@ function Initialize-ChatCompletionStreamOptions {
 
 
         $PSO = [PSCustomObject]@{
-            "include_usage" = ${IncludeUsage}
+            'include_usage' = ${IncludeUsage}
         }
 
 
@@ -74,21 +74,21 @@ function ConvertFrom-JsonToChatCompletionStreamOptions {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ChatCompletionStreamOptions
-        $AllProperties = ("include_usage")
+        $AllProperties = ('include_usage')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "include_usage"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'include_usage'))) { #optional property not found
             $IncludeUsage = $null
         } else {
-            $IncludeUsage = $JsonParameters.PSobject.Properties["include_usage"].value
+            $IncludeUsage = $JsonParameters.PSobject.Properties['include_usage'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "include_usage" = ${IncludeUsage}
+            'include_usage' = ${IncludeUsage}
         }
 
         return $PSO

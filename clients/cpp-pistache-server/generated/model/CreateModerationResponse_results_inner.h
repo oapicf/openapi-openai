@@ -34,7 +34,7 @@ class  CreateModerationResponse_results_inner
 {
 public:
     CreateModerationResponse_results_inner();
-    virtual ~CreateModerationResponse_results_inner() = default;
+    virtual ~CreateModerationResponse_results_inner();
 
 
     /// <summary>

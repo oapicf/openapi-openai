@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIInviteRequest_projects_inner : public OAIObject {
 public:
     OAIInviteRequest_projects_inner();
-    OAIInviteRequest_projects_inner(QString json);
+    OAIInviteRequest_projects_inner(const QString &json);
     ~OAIInviteRequest_projects_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

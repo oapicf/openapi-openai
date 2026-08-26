@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **String** |  | 
+**object** | **Object** |  (enum: organization.usage.audio_transcriptions.result) | 
 **seconds** | **i32** | The number of seconds processed. | 
 **num_model_requests** | **i32** | The count of requests made to the model. | 
 **project_id** | Option<**String**> | When `group_by=project_id`, this field provides the project ID of the grouped usage result. | [optional]

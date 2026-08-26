@@ -138,8 +138,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStreamEventOneOf8" />
     /// </summary>
-    public class RunStreamEventOneOf8JsonConverter : JsonConverter<RunStreamEventOneOf8>
+    public partial class RunStreamEventOneOf8JsonConverter : JsonConverter<RunStreamEventOneOf8>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStreamEventOneOf8JsonConverter" /> class.
+        /// </summary>
+        public RunStreamEventOneOf8JsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStreamEventOneOf8" />
         /// </summary>

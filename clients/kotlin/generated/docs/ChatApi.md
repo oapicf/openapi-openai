@@ -45,8 +45,14 @@ try {
 ### Authorization
 
 
-Configure ApiKeyAuth:
-    ApiClient.accessToken = ""
+Configure ApiKeyAuth statically:
+```kotlin
+ApiClient.accessToken = ""
+```
+Configure ApiKeyAuth dynamically:
+```kotlin
+apiInstance.accessTokenProvider = { "" }
+```
 
 ### HTTP request headers
 

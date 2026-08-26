@@ -82,10 +82,18 @@ class ProjectApiKey {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectApiKey[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectApiKey[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "ProjectApiKey[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "ProjectApiKey[object]" has a null value in JSON.');
+        assert(json.containsKey(r'redacted_value'), 'Required key "ProjectApiKey[redacted_value]" is missing from JSON.');
+        assert(json[r'redacted_value'] != null, 'Required key "ProjectApiKey[redacted_value]" has a null value in JSON.');
+        assert(json.containsKey(r'name'), 'Required key "ProjectApiKey[name]" is missing from JSON.');
+        assert(json[r'name'] != null, 'Required key "ProjectApiKey[name]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "ProjectApiKey[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "ProjectApiKey[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'id'), 'Required key "ProjectApiKey[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "ProjectApiKey[id]" has a null value in JSON.');
+        assert(json.containsKey(r'owner'), 'Required key "ProjectApiKey[owner]" is missing from JSON.');
+        assert(json[r'owner'] != null, 'Required key "ProjectApiKey[owner]" has a null value in JSON.');
         return true;
       }());
 
@@ -153,27 +161,28 @@ class ProjectApiKey {
 }
 
 /// The object type, which is always `organization.project.api_key`
-class ProjectApiKeyObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ProjectApiKeyObjectEnum._(this.value);
+enum ProjectApiKeyObjectEnum {
+  organizationPeriodProjectPeriodApiKey._(r'organization.project.api_key'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ProjectApiKeyObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const organizationPeriodProjectPeriodApiKey = ProjectApiKeyObjectEnum._(r'organization.project.api_key');
-
-  /// List of all possible values in this [enum][ProjectApiKeyObjectEnum].
-  static const values = <ProjectApiKeyObjectEnum>[
-    organizationPeriodProjectPeriodApiKey,
-  ];
-
+  /// Returns the instance of [ProjectApiKeyObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ProjectApiKeyObjectEnum? fromJson(dynamic value) => ProjectApiKeyObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ProjectApiKeyObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ProjectApiKeyObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ProjectApiKeyObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -195,9 +204,10 @@ class ProjectApiKeyObjectEnumTypeTransformer {
 
   const ProjectApiKeyObjectEnumTypeTransformer._();
 
-  String encode(ProjectApiKeyObjectEnum data) => data.value;
+  String encode(ProjectApiKeyObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ProjectApiKeyObjectEnum.
+  /// Returns the instance of [ProjectApiKeyObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -206,6 +216,9 @@ class ProjectApiKeyObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ProjectApiKeyObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ProjectApiKeyObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'organization.project.api_key': return ProjectApiKeyObjectEnum.organizationPeriodProjectPeriodApiKey;
@@ -218,7 +231,7 @@ class ProjectApiKeyObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ProjectApiKeyObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ProjectApiKeyObjectEnumTypeTransformer? _instance;
 }
 

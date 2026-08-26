@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set The model identifier, which can be referenced in the API endpoints.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The Unix timestamp (in seconds) when the model was created.
 	 */
 	int getCreated();
 
 	/*! \brief Set The Unix timestamp (in seconds) when the model was created.
 	 */
-	void setCreated(int  created);
+	void setCreated(int created);
 	/*! \brief Get The object type, which is always \"model\".
 	 */
 	std::string getObject();
 
 	/*! \brief Set The object type, which is always \"model\".
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get The organization that owns the model.
 	 */
 	std::string getOwnedBy();
 
 	/*! \brief Set The organization that owns the model.
 	 */
-	void setOwnedBy(std::string  owned_by);
+	void setOwnedBy(std::string owned_by);
 
 
     private:

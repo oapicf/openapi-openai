@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIAssistantObject_tool_resources_code_interpreter::OAIAssistantObject_tool_resources_code_interpreter(QString json) {
+OAIAssistantObject_tool_resources_code_interpreter::OAIAssistantObject_tool_resources_code_interpreter(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -38,7 +38,7 @@ void OAIAssistantObject_tool_resources_code_interpreter::initializeModel() {
     m_file_ids_isValid = false;
 }
 
-void OAIAssistantObject_tool_resources_code_interpreter::fromJson(QString jsonString) {
+void OAIAssistantObject_tool_resources_code_interpreter::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

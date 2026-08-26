@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIMessageDeltaContentTextAnnotationsFilePathObject_file_path : public OAIObject {
 public:
     OAIMessageDeltaContentTextAnnotationsFilePathObject_file_path();
-    OAIMessageDeltaContentTextAnnotationsFilePathObject_file_path(QString json);
+    OAIMessageDeltaContentTextAnnotationsFilePathObject_file_path(const QString &json);
     ~OAIMessageDeltaContentTextAnnotationsFilePathObject_file_path() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getFileId() const;
     void setFileId(const QString &file_id);

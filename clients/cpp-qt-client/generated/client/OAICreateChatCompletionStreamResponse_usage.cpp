@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateChatCompletionStreamResponse_usage::OAICreateChatCompletionStreamResponse_usage(QString json) {
+OAICreateChatCompletionStreamResponse_usage::OAICreateChatCompletionStreamResponse_usage(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAICreateChatCompletionStreamResponse_usage::initializeModel() {
     m_total_tokens_isValid = false;
 }
 
-void OAICreateChatCompletionStreamResponse_usage::fromJson(QString jsonString) {
+void OAICreateChatCompletionStreamResponse_usage::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

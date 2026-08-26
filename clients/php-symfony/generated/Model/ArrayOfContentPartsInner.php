@@ -49,7 +49,7 @@ class ArrayOfContentPartsInner
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['image_file', 'image_url', 'text'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class ArrayOfContentPartsInner
      * @var MessageContentImageFileObjectImageFile|null
      * @SerializedName("image_file")
      * @Type("OpenAPI\Server\Model\MessageContentImageFileObjectImageFile")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\MessageContentImageFileObjectImageFile")]
@@ -69,7 +69,7 @@ class ArrayOfContentPartsInner
      * @var MessageContentImageUrlObjectImageUrl|null
      * @SerializedName("image_url")
      * @Type("OpenAPI\Server\Model\MessageContentImageUrlObjectImageUrl")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\MessageContentImageUrlObjectImageUrl")]
@@ -81,7 +81,7 @@ class ArrayOfContentPartsInner
      * @var string|null
      * @SerializedName("text")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $text = null;
@@ -111,12 +111,12 @@ class ArrayOfContentPartsInner
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `image_file`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `image_file`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -138,12 +138,12 @@ class ArrayOfContentPartsInner
     }
 
     /**
-    * Sets imageFile.
-    *
-    * @param MessageContentImageFileObjectImageFile|null $imageFile
-    *
-    * @return $this
-    */
+     * Sets imageFile.
+     *
+     * @param MessageContentImageFileObjectImageFile|null $imageFile
+     *
+     * @return $this
+     */
     public function setImageFile(?MessageContentImageFileObjectImageFile $imageFile): self
     {
         $this->imageFile = $imageFile;
@@ -165,12 +165,12 @@ class ArrayOfContentPartsInner
     }
 
     /**
-    * Sets imageUrl.
-    *
-    * @param MessageContentImageUrlObjectImageUrl|null $imageUrl
-    *
-    * @return $this
-    */
+     * Sets imageUrl.
+     *
+     * @param MessageContentImageUrlObjectImageUrl|null $imageUrl
+     *
+     * @return $this
+     */
     public function setImageUrl(?MessageContentImageUrlObjectImageUrl $imageUrl): self
     {
         $this->imageUrl = $imageUrl;
@@ -192,12 +192,12 @@ class ArrayOfContentPartsInner
     }
 
     /**
-    * Sets text.
-    *
-    * @param string|null $text  Text content to be sent to the model
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param string|null $text  Text content to be sent to the model
+     *
+     * @return $this
+     */
     public function setText(?string $text): self
     {
         $this->text = $text;

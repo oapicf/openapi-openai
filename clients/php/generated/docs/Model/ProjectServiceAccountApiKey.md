@@ -1,4 +1,4 @@
-# # ProjectServiceAccountApiKey
+# ProjectServiceAccountApiKey
 
 ## Properties
 

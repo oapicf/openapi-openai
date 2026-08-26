@@ -32,7 +32,8 @@ type RealtimeConversationItemContentInner struct {
 	Transcript string `json:"transcript,omitempty"`
 }
 
-// AssertRealtimeConversationItemContentInnerRequired checks if the required fields are not zero-ed
+// AssertRealtimeConversationItemContentInnerRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeConversationItemContentInnerRequired(obj RealtimeConversationItemContentInner) error {
 	return nil
 }

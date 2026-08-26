@@ -18,7 +18,8 @@ package openapi
 type FineTuneDpoMethodHyperparametersLearningRateMultiplier struct {
 }
 
-// AssertFineTuneDpoMethodHyperparametersLearningRateMultiplierRequired checks if the required fields are not zero-ed
+// AssertFineTuneDpoMethodHyperparametersLearningRateMultiplierRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertFineTuneDpoMethodHyperparametersLearningRateMultiplierRequired(obj FineTuneDpoMethodHyperparametersLearningRateMultiplier) error {
 	return nil
 }

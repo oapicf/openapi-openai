@@ -83,7 +83,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Segments of the translated text and their corresponding details.</value>
         [JsonPropertyName("segments")]
-        public List<TranscriptionSegment>? Segments { get { return this.SegmentsOption; } set { this.SegmentsOption = new(value); } }
+        public List<TranscriptionSegment>? Segments { get { return this.SegmentsOption.Value; } set { this.SegmentsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,8 +115,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateTranslationResponseVerboseJson" />
     /// </summary>
-    public class CreateTranslationResponseVerboseJsonJsonConverter : JsonConverter<CreateTranslationResponseVerboseJson>
+    public partial class CreateTranslationResponseVerboseJsonJsonConverter : JsonConverter<CreateTranslationResponseVerboseJson>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateTranslationResponseVerboseJsonJsonConverter" /> class.
+        /// </summary>
+        public CreateTranslationResponseVerboseJsonJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateTranslationResponseVerboseJson" />
         /// </summary>

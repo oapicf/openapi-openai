@@ -33,7 +33,7 @@ class  AuditLog_organization_updated_changes_requested
 {
 public:
     AuditLog_organization_updated_changes_requested();
-    virtual ~AuditLog_organization_updated_changes_requested() = default;
+    virtual ~AuditLog_organization_updated_changes_requested();
 
 
     /// <summary>

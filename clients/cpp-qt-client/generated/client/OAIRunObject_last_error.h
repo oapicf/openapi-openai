@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIRunObject_last_error : public OAIObject {
 public:
     OAIRunObject_last_error();
-    OAIRunObject_last_error(QString json);
+    OAIRunObject_last_error(const QString &json);
     ~OAIRunObject_last_error() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getCode() const;
     void setCode(const QString &code);

@@ -19,19 +19,19 @@ typedef struct list_audit_logs_effective_at_parameter_t list_audit_logs_effectiv
 
 
 typedef struct list_audit_logs_effective_at_parameter_t {
-    int gt; //numeric
-    int gte; //numeric
-    int lt; //numeric
-    int lte; //numeric
+    int *gt; //numeric
+    int *gte; //numeric
+    int *lt; //numeric
+    int *lte; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } list_audit_logs_effective_at_parameter_t;
 
 __attribute__((deprecated)) list_audit_logs_effective_at_parameter_t *list_audit_logs_effective_at_parameter_create(
-    int gt,
-    int gte,
-    int lt,
-    int lte
+    int *gt,
+    int *gte,
+    int *lt,
+    int *lte
 );
 
 void list_audit_logs_effective_at_parameter_free(list_audit_logs_effective_at_parameter_t *list_audit_logs_effective_at_parameter);

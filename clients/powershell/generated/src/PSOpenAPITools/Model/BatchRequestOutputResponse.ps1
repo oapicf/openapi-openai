@@ -46,9 +46,9 @@ function Initialize-BatchRequestOutputResponse {
 
 
         $PSO = [PSCustomObject]@{
-            "status_code" = ${StatusCode}
-            "request_id" = ${RequestId}
-            "body" = ${Body}
+            'status_code' = ${StatusCode}
+            'request_id' = ${RequestId}
+            'body' = ${Body}
         }
 
 
@@ -86,35 +86,35 @@ function ConvertFrom-JsonToBatchRequestOutputResponse {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in BatchRequestOutputResponse
-        $AllProperties = ("status_code", "request_id", "body")
+        $AllProperties = ('status_code', 'request_id', 'body')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status_code"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'status_code'))) { #optional property not found
             $StatusCode = $null
         } else {
-            $StatusCode = $JsonParameters.PSobject.Properties["status_code"].value
+            $StatusCode = $JsonParameters.PSobject.Properties['status_code'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "request_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'request_id'))) { #optional property not found
             $RequestId = $null
         } else {
-            $RequestId = $JsonParameters.PSobject.Properties["request_id"].value
+            $RequestId = $JsonParameters.PSobject.Properties['request_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "body"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'body'))) { #optional property not found
             $Body = $null
         } else {
-            $Body = $JsonParameters.PSobject.Properties["body"].value
+            $Body = $JsonParameters.PSobject.Properties['body'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "status_code" = ${StatusCode}
-            "request_id" = ${RequestId}
-            "body" = ${Body}
+            'status_code' = ${StatusCode}
+            'request_id' = ${RequestId}
+            'body' = ${Body}
         }
 
         return $PSO

@@ -13,20 +13,22 @@ static create_thread_and_run_request_t *create_thread_and_run_request_create_int
     list_t *tools,
     create_thread_and_run_request_tool_resources_t *tool_resources,
     object_t *metadata,
-    double temperature,
-    double top_p,
-    int stream,
-    int max_prompt_tokens,
-    int max_completion_tokens,
+    double *temperature,
+    double *top_p,
+    int *stream,
+    int *max_prompt_tokens,
+    int *max_completion_tokens,
     truncation_object_t *truncation_strategy,
     assistants_api_tool_choice_option_t *tool_choice,
-    int parallel_tool_calls,
+    int *parallel_tool_calls,
     assistants_api_response_format_option_t *response_format
     ) {
     create_thread_and_run_request_t *create_thread_and_run_request_local_var = malloc(sizeof(create_thread_and_run_request_t));
     if (!create_thread_and_run_request_local_var) {
         return NULL;
     }
+    memset(create_thread_and_run_request_local_var, 0, sizeof(create_thread_and_run_request_t));
+    create_thread_and_run_request_local_var->_library_owned = 1;
     create_thread_and_run_request_local_var->assistant_id = assistant_id;
     create_thread_and_run_request_local_var->thread = thread;
     create_thread_and_run_request_local_var->model = model;
@@ -43,8 +45,6 @@ static create_thread_and_run_request_t *create_thread_and_run_request_create_int
     create_thread_and_run_request_local_var->tool_choice = tool_choice;
     create_thread_and_run_request_local_var->parallel_tool_calls = parallel_tool_calls;
     create_thread_and_run_request_local_var->response_format = response_format;
-
-    create_thread_and_run_request_local_var->_library_owned = 1;
     return create_thread_and_run_request_local_var;
 }
 
@@ -56,17 +56,47 @@ __attribute__((deprecated)) create_thread_and_run_request_t *create_thread_and_r
     list_t *tools,
     create_thread_and_run_request_tool_resources_t *tool_resources,
     object_t *metadata,
-    double temperature,
-    double top_p,
-    int stream,
-    int max_prompt_tokens,
-    int max_completion_tokens,
+    double *temperature,
+    double *top_p,
+    int *stream,
+    int *max_prompt_tokens,
+    int *max_completion_tokens,
     truncation_object_t *truncation_strategy,
     assistants_api_tool_choice_option_t *tool_choice,
-    int parallel_tool_calls,
+    int *parallel_tool_calls,
     assistants_api_response_format_option_t *response_format
     ) {
-    return create_thread_and_run_request_create_internal (
+    double *temperature_copy = NULL;
+    if (temperature) {
+        temperature_copy = malloc(sizeof(double));
+        if (temperature_copy) *temperature_copy = *temperature;
+    }
+    double *top_p_copy = NULL;
+    if (top_p) {
+        top_p_copy = malloc(sizeof(double));
+        if (top_p_copy) *top_p_copy = *top_p;
+    }
+    int *stream_copy = NULL;
+    if (stream) {
+        stream_copy = malloc(sizeof(int));
+        if (stream_copy) *stream_copy = *stream;
+    }
+    int *max_prompt_tokens_copy = NULL;
+    if (max_prompt_tokens) {
+        max_prompt_tokens_copy = malloc(sizeof(int));
+        if (max_prompt_tokens_copy) *max_prompt_tokens_copy = *max_prompt_tokens;
+    }
+    int *max_completion_tokens_copy = NULL;
+    if (max_completion_tokens) {
+        max_completion_tokens_copy = malloc(sizeof(int));
+        if (max_completion_tokens_copy) *max_completion_tokens_copy = *max_completion_tokens;
+    }
+    int *parallel_tool_calls_copy = NULL;
+    if (parallel_tool_calls) {
+        parallel_tool_calls_copy = malloc(sizeof(int));
+        if (parallel_tool_calls_copy) *parallel_tool_calls_copy = *parallel_tool_calls;
+    }
+    create_thread_and_run_request_t *result = create_thread_and_run_request_create_internal (
         assistant_id,
         thread,
         model,
@@ -74,16 +104,25 @@ __attribute__((deprecated)) create_thread_and_run_request_t *create_thread_and_r
         tools,
         tool_resources,
         metadata,
-        temperature,
-        top_p,
-        stream,
-        max_prompt_tokens,
-        max_completion_tokens,
+        temperature_copy,
+        top_p_copy,
+        stream_copy,
+        max_prompt_tokens_copy,
+        max_completion_tokens_copy,
         truncation_strategy,
         tool_choice,
-        parallel_tool_calls,
+        parallel_tool_calls_copy,
         response_format
         );
+    if (!result) {
+        free(temperature_copy);
+        free(top_p_copy);
+        free(stream_copy);
+        free(max_prompt_tokens_copy);
+        free(max_completion_tokens_copy);
+        free(parallel_tool_calls_copy);
+    }
+    return result;
 }
 
 void create_thread_and_run_request_free(create_thread_and_run_request_t *create_thread_and_run_request) {
@@ -126,6 +165,26 @@ void create_thread_and_run_request_free(create_thread_and_run_request_t *create_
         object_free(create_thread_and_run_request->metadata);
         create_thread_and_run_request->metadata = NULL;
     }
+    if (create_thread_and_run_request->temperature) {
+        free(create_thread_and_run_request->temperature);
+        create_thread_and_run_request->temperature = NULL;
+    }
+    if (create_thread_and_run_request->top_p) {
+        free(create_thread_and_run_request->top_p);
+        create_thread_and_run_request->top_p = NULL;
+    }
+    if (create_thread_and_run_request->stream) {
+        free(create_thread_and_run_request->stream);
+        create_thread_and_run_request->stream = NULL;
+    }
+    if (create_thread_and_run_request->max_prompt_tokens) {
+        free(create_thread_and_run_request->max_prompt_tokens);
+        create_thread_and_run_request->max_prompt_tokens = NULL;
+    }
+    if (create_thread_and_run_request->max_completion_tokens) {
+        free(create_thread_and_run_request->max_completion_tokens);
+        create_thread_and_run_request->max_completion_tokens = NULL;
+    }
     if (create_thread_and_run_request->truncation_strategy) {
         truncation_object_free(create_thread_and_run_request->truncation_strategy);
         create_thread_and_run_request->truncation_strategy = NULL;
@@ -133,6 +192,10 @@ void create_thread_and_run_request_free(create_thread_and_run_request_t *create_
     if (create_thread_and_run_request->tool_choice) {
         assistants_api_tool_choice_option_free(create_thread_and_run_request->tool_choice);
         create_thread_and_run_request->tool_choice = NULL;
+    }
+    if (create_thread_and_run_request->parallel_tool_calls) {
+        free(create_thread_and_run_request->parallel_tool_calls);
+        create_thread_and_run_request->parallel_tool_calls = NULL;
     }
     if (create_thread_and_run_request->response_format) {
         assistants_api_response_format_option_free(create_thread_and_run_request->response_format);
@@ -235,7 +298,7 @@ cJSON *create_thread_and_run_request_convertToJSON(create_thread_and_run_request
 
     // create_thread_and_run_request->temperature
     if(create_thread_and_run_request->temperature) {
-    if(cJSON_AddNumberToObject(item, "temperature", create_thread_and_run_request->temperature) == NULL) {
+    if(cJSON_AddNumberToObject(item, "temperature", *create_thread_and_run_request->temperature) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -243,7 +306,7 @@ cJSON *create_thread_and_run_request_convertToJSON(create_thread_and_run_request
 
     // create_thread_and_run_request->top_p
     if(create_thread_and_run_request->top_p) {
-    if(cJSON_AddNumberToObject(item, "top_p", create_thread_and_run_request->top_p) == NULL) {
+    if(cJSON_AddNumberToObject(item, "top_p", *create_thread_and_run_request->top_p) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -251,7 +314,7 @@ cJSON *create_thread_and_run_request_convertToJSON(create_thread_and_run_request
 
     // create_thread_and_run_request->stream
     if(create_thread_and_run_request->stream) {
-    if(cJSON_AddBoolToObject(item, "stream", create_thread_and_run_request->stream) == NULL) {
+    if(cJSON_AddBoolToObject(item, "stream", *create_thread_and_run_request->stream) == NULL) {
     goto fail; //Bool
     }
     }
@@ -259,7 +322,7 @@ cJSON *create_thread_and_run_request_convertToJSON(create_thread_and_run_request
 
     // create_thread_and_run_request->max_prompt_tokens
     if(create_thread_and_run_request->max_prompt_tokens) {
-    if(cJSON_AddNumberToObject(item, "max_prompt_tokens", create_thread_and_run_request->max_prompt_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "max_prompt_tokens", *create_thread_and_run_request->max_prompt_tokens) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -267,7 +330,7 @@ cJSON *create_thread_and_run_request_convertToJSON(create_thread_and_run_request
 
     // create_thread_and_run_request->max_completion_tokens
     if(create_thread_and_run_request->max_completion_tokens) {
-    if(cJSON_AddNumberToObject(item, "max_completion_tokens", create_thread_and_run_request->max_completion_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "max_completion_tokens", *create_thread_and_run_request->max_completion_tokens) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -301,7 +364,7 @@ cJSON *create_thread_and_run_request_convertToJSON(create_thread_and_run_request
 
     // create_thread_and_run_request->parallel_tool_calls
     if(create_thread_and_run_request->parallel_tool_calls) {
-    if(cJSON_AddBoolToObject(item, "parallel_tool_calls", create_thread_and_run_request->parallel_tool_calls) == NULL) {
+    if(cJSON_AddBoolToObject(item, "parallel_tool_calls", *create_thread_and_run_request->parallel_tool_calls) == NULL) {
     goto fail; //Bool
     }
     }
@@ -331,11 +394,15 @@ create_thread_and_run_request_t *create_thread_and_run_request_parseFromJSON(cJS
 
     create_thread_and_run_request_t *create_thread_and_run_request_local_var = NULL;
 
+    char *assistant_id_local_str = NULL;
+
     // define the local variable for create_thread_and_run_request->thread
     create_thread_request_t *thread_local_nonprim = NULL;
 
     // define the local variable for create_thread_and_run_request->model
     create_run_request_model_t *model_local_nonprim = NULL;
+
+    char *instructions_local_str = NULL;
 
     // define the local list for create_thread_and_run_request->tools
     list_t *toolsList = NULL;
@@ -343,11 +410,29 @@ create_thread_and_run_request_t *create_thread_and_run_request_parseFromJSON(cJS
     // define the local variable for create_thread_and_run_request->tool_resources
     create_thread_and_run_request_tool_resources_t *tool_resources_local_nonprim = NULL;
 
+    // define the local variable for create_thread_and_run_request->temperature
+    double *temperature_local_var = NULL;
+
+    // define the local variable for create_thread_and_run_request->top_p
+    double *top_p_local_var = NULL;
+
+    // define the local variable for create_thread_and_run_request->stream
+    int *stream_local_var = NULL;
+
+    // define the local variable for create_thread_and_run_request->max_prompt_tokens
+    int *max_prompt_tokens_local_var = NULL;
+
+    // define the local variable for create_thread_and_run_request->max_completion_tokens
+    int *max_completion_tokens_local_var = NULL;
+
     // define the local variable for create_thread_and_run_request->truncation_strategy
     truncation_object_t *truncation_strategy_local_nonprim = NULL;
 
     // define the local variable for create_thread_and_run_request->tool_choice
     assistants_api_tool_choice_option_t *tool_choice_local_nonprim = NULL;
+
+    // define the local variable for create_thread_and_run_request->parallel_tool_calls
+    int *parallel_tool_calls_local_var = NULL;
 
     // define the local variable for create_thread_and_run_request->response_format
     assistants_api_response_format_option_t *response_format_local_nonprim = NULL;
@@ -450,6 +535,12 @@ create_thread_and_run_request_t *create_thread_and_run_request_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    temperature_local_var = malloc(sizeof(double));
+    if(!temperature_local_var)
+    {
+        goto end;
+    }
+    *temperature_local_var = temperature->valuedouble;
     }
 
     // create_thread_and_run_request->top_p
@@ -462,6 +553,12 @@ create_thread_and_run_request_t *create_thread_and_run_request_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    top_p_local_var = malloc(sizeof(double));
+    if(!top_p_local_var)
+    {
+        goto end;
+    }
+    *top_p_local_var = top_p->valuedouble;
     }
 
     // create_thread_and_run_request->stream
@@ -474,6 +571,12 @@ create_thread_and_run_request_t *create_thread_and_run_request_parseFromJSON(cJS
     {
     goto end; //Bool
     }
+    stream_local_var = malloc(sizeof(int));
+    if(!stream_local_var)
+    {
+        goto end;
+    }
+    *stream_local_var = stream->valueint;
     }
 
     // create_thread_and_run_request->max_prompt_tokens
@@ -486,6 +589,12 @@ create_thread_and_run_request_t *create_thread_and_run_request_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    max_prompt_tokens_local_var = malloc(sizeof(int));
+    if(!max_prompt_tokens_local_var)
+    {
+        goto end;
+    }
+    *max_prompt_tokens_local_var = max_prompt_tokens->valuedouble;
     }
 
     // create_thread_and_run_request->max_completion_tokens
@@ -498,6 +607,12 @@ create_thread_and_run_request_t *create_thread_and_run_request_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    max_completion_tokens_local_var = malloc(sizeof(int));
+    if(!max_completion_tokens_local_var)
+    {
+        goto end;
+    }
+    *max_completion_tokens_local_var = max_completion_tokens->valuedouble;
     }
 
     // create_thread_and_run_request->truncation_strategy
@@ -528,6 +643,12 @@ create_thread_and_run_request_t *create_thread_and_run_request_parseFromJSON(cJS
     {
     goto end; //Bool
     }
+    parallel_tool_calls_local_var = malloc(sizeof(int));
+    if(!parallel_tool_calls_local_var)
+    {
+        goto end;
+    }
+    *parallel_tool_calls_local_var = parallel_tool_calls->valueint;
     }
 
     // create_thread_and_run_request->response_format
@@ -540,27 +661,38 @@ create_thread_and_run_request_t *create_thread_and_run_request_parseFromJSON(cJS
     }
 
 
+    if (assistant_id && !cJSON_IsNull(assistant_id)) assistant_id_local_str = strdup(assistant_id->valuestring);
+    if (instructions && !cJSON_IsNull(instructions)) instructions_local_str = strdup(instructions->valuestring);
+
     create_thread_and_run_request_local_var = create_thread_and_run_request_create_internal (
-        strdup(assistant_id->valuestring),
+        assistant_id_local_str,
         thread ? thread_local_nonprim : NULL,
         model ? model_local_nonprim : NULL,
-        instructions && !cJSON_IsNull(instructions) ? strdup(instructions->valuestring) : NULL,
+        instructions_local_str,
         tools ? toolsList : NULL,
         tool_resources ? tool_resources_local_nonprim : NULL,
         metadata ? metadata_local_object : NULL,
-        temperature ? temperature->valuedouble : 0,
-        top_p ? top_p->valuedouble : 0,
-        stream ? stream->valueint : 0,
-        max_prompt_tokens ? max_prompt_tokens->valuedouble : 0,
-        max_completion_tokens ? max_completion_tokens->valuedouble : 0,
+        temperature_local_var,
+        top_p_local_var,
+        stream_local_var,
+        max_prompt_tokens_local_var,
+        max_completion_tokens_local_var,
         truncation_strategy ? truncation_strategy_local_nonprim : NULL,
         tool_choice ? tool_choice_local_nonprim : NULL,
-        parallel_tool_calls ? parallel_tool_calls->valueint : 0,
+        parallel_tool_calls_local_var,
         response_format ? response_format_local_nonprim : NULL
         );
 
+    if (!create_thread_and_run_request_local_var) {
+        goto end;
+    }
+
     return create_thread_and_run_request_local_var;
 end:
+    if (assistant_id_local_str) {
+        free(assistant_id_local_str);
+        assistant_id_local_str = NULL;
+    }
     if (thread_local_nonprim) {
         create_thread_request_free(thread_local_nonprim);
         thread_local_nonprim = NULL;
@@ -568,6 +700,10 @@ end:
     if (model_local_nonprim) {
         create_run_request_model_free(model_local_nonprim);
         model_local_nonprim = NULL;
+    }
+    if (instructions_local_str) {
+        free(instructions_local_str);
+        instructions_local_str = NULL;
     }
     if (toolsList) {
         listEntry_t *listEntry = NULL;
@@ -582,6 +718,26 @@ end:
         create_thread_and_run_request_tool_resources_free(tool_resources_local_nonprim);
         tool_resources_local_nonprim = NULL;
     }
+    if (temperature_local_var) {
+        free(temperature_local_var);
+        temperature_local_var = NULL;
+    }
+    if (top_p_local_var) {
+        free(top_p_local_var);
+        top_p_local_var = NULL;
+    }
+    if (stream_local_var) {
+        free(stream_local_var);
+        stream_local_var = NULL;
+    }
+    if (max_prompt_tokens_local_var) {
+        free(max_prompt_tokens_local_var);
+        max_prompt_tokens_local_var = NULL;
+    }
+    if (max_completion_tokens_local_var) {
+        free(max_completion_tokens_local_var);
+        max_completion_tokens_local_var = NULL;
+    }
     if (truncation_strategy_local_nonprim) {
         truncation_object_free(truncation_strategy_local_nonprim);
         truncation_strategy_local_nonprim = NULL;
@@ -589,6 +745,10 @@ end:
     if (tool_choice_local_nonprim) {
         assistants_api_tool_choice_option_free(tool_choice_local_nonprim);
         tool_choice_local_nonprim = NULL;
+    }
+    if (parallel_tool_calls_local_var) {
+        free(parallel_tool_calls_local_var);
+        parallel_tool_calls_local_var = NULL;
     }
     if (response_format_local_nonprim) {
         assistants_api_response_format_option_free(response_format_local_nonprim);

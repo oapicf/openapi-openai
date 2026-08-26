@@ -32,7 +32,7 @@ class  Project
 {
 public:
     Project();
-    virtual ~Project() = default;
+    virtual ~Project();
 
 
     /// <summary>

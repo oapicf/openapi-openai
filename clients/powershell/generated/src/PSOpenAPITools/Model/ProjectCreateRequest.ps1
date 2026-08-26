@@ -40,7 +40,7 @@ function Initialize-ProjectCreateRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
+            'name' = ${Name}
         }
 
 
@@ -78,7 +78,7 @@ function ConvertFrom-JsonToProjectCreateRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ProjectCreateRequest
-        $AllProperties = ("name")
+        $AllProperties = ('name')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -89,14 +89,14 @@ function ConvertFrom-JsonToProjectCreateRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'name' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) {
             throw "Error! JSON cannot be serialized due to the required property 'name' missing."
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
+            'name' = ${Name}
         }
 
         return $PSO

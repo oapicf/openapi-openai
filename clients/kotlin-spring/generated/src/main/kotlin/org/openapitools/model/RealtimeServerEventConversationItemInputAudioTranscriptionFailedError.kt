@@ -1,7 +1,10 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -22,16 +25,28 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError(
 
-    @Schema(example = "null", description = "The type of error.")
+    @Schema(description = "The type of error.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("type")
     @get:JsonProperty("type") val type: kotlin.String? = null,
 
-    @Schema(example = "null", description = "Error code, if any.")
+    @Schema(description = "Error code, if any.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("code")
     @get:JsonProperty("code") val code: kotlin.String? = null,
 
-    @Schema(example = "null", description = "A human-readable error message.")
+    @Schema(description = "A human-readable error message.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("message")
     @get:JsonProperty("message") val message: kotlin.String? = null,
 
-    @Schema(example = "null", description = "Parameter related to the error, if any.")
+    @Schema(description = "Parameter related to the error, if any.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("param")
     @get:JsonProperty("param") val `param`: kotlin.String? = null
 ) {
 

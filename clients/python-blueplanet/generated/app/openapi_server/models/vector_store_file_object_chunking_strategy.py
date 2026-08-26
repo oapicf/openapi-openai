@@ -8,7 +8,7 @@ from typing import List, Dict  # noqa: F401
 from app.openapi_server.models.base_model import Model
 from app.openapi_server.models.other_chunking_strategy_response_param import OtherChunkingStrategyResponseParam  # noqa: F401,E501
 from app.openapi_server.models.static_chunking_strategy import StaticChunkingStrategy  # noqa: F401,E501
-from app.openapi_server.models.static_chunking_strategy_response_param import StaticChunkingStrategyResponseParam  # noqa: F401,E501
+from app.openapi_server.models.static_chunking_strategy_request_param import StaticChunkingStrategyRequestParam  # noqa: F401,E501
 from openapi_server import util
 
 

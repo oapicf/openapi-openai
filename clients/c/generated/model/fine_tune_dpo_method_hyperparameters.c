@@ -15,12 +15,12 @@ static fine_tune_dpo_method_hyperparameters_t *fine_tune_dpo_method_hyperparamet
     if (!fine_tune_dpo_method_hyperparameters_local_var) {
         return NULL;
     }
+    memset(fine_tune_dpo_method_hyperparameters_local_var, 0, sizeof(fine_tune_dpo_method_hyperparameters_t));
+    fine_tune_dpo_method_hyperparameters_local_var->_library_owned = 1;
     fine_tune_dpo_method_hyperparameters_local_var->beta = beta;
     fine_tune_dpo_method_hyperparameters_local_var->batch_size = batch_size;
     fine_tune_dpo_method_hyperparameters_local_var->learning_rate_multiplier = learning_rate_multiplier;
     fine_tune_dpo_method_hyperparameters_local_var->n_epochs = n_epochs;
-
-    fine_tune_dpo_method_hyperparameters_local_var->_library_owned = 1;
     return fine_tune_dpo_method_hyperparameters_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) fine_tune_dpo_method_hyperparameters_t *fine_tune_dp
     fine_tune_dpo_method_hyperparameters_learning_rate_multiplier_t *learning_rate_multiplier,
     fine_tune_dpo_method_hyperparameters_n_epochs_t *n_epochs
     ) {
-    return fine_tune_dpo_method_hyperparameters_create_internal (
+    fine_tune_dpo_method_hyperparameters_t *result = fine_tune_dpo_method_hyperparameters_create_internal (
         beta,
         batch_size,
         learning_rate_multiplier,
         n_epochs
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void fine_tune_dpo_method_hyperparameters_free(fine_tune_dpo_method_hyperparameters_t *fine_tune_dpo_method_hyperparameters) {
@@ -181,12 +184,17 @@ fine_tune_dpo_method_hyperparameters_t *fine_tune_dpo_method_hyperparameters_par
     }
 
 
+
     fine_tune_dpo_method_hyperparameters_local_var = fine_tune_dpo_method_hyperparameters_create_internal (
         beta ? beta_local_nonprim : NULL,
         batch_size ? batch_size_local_nonprim : NULL,
         learning_rate_multiplier ? learning_rate_multiplier_local_nonprim : NULL,
         n_epochs ? n_epochs_local_nonprim : NULL
         );
+
+    if (!fine_tune_dpo_method_hyperparameters_local_var) {
+        goto end;
+    }
 
     return fine_tune_dpo_method_hyperparameters_local_var;
 end:

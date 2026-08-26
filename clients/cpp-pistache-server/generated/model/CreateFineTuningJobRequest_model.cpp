@@ -24,6 +24,8 @@ CreateFineTuningJobRequest_model::CreateFineTuningJobRequest_model()
     
 }
 
+CreateFineTuningJobRequest_model::~CreateFineTuningJobRequest_model() = default;
+
 void CreateFineTuningJobRequest_model::validate() const
 {
     std::stringstream msg;

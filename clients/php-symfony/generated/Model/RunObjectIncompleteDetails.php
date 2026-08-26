@@ -51,7 +51,7 @@ class RunObjectIncompleteDetails
      * @var string|null
      * @SerializedName("reason")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['max_completion_tokens', 'max_prompt_tokens'])]
     #[Assert\Type("string")]
     protected ?string $reason = null;
@@ -78,12 +78,12 @@ class RunObjectIncompleteDetails
     }
 
     /**
-    * Sets reason.
-    *
-    * @param string|null $reason  The reason why the run is incomplete. This will point to which specific token limit was reached over the course of the run.
-    *
-    * @return $this
-    */
+     * Sets reason.
+     *
+     * @param string|null $reason  The reason why the run is incomplete. This will point to which specific token limit was reached over the course of the run.
+     *
+     * @return $this
+     */
     public function setReason(?string $reason = null): self
     {
         $this->reason = $reason;

@@ -23,7 +23,7 @@ message MessageContentImageUrlObject {
     TYPE_IMAGE_URL = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   MessageContentImageUrlObjectImageUrl image_url = 340952950;
 

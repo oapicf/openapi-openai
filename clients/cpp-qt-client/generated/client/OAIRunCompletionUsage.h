@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIRunCompletionUsage : public OAIObject {
 public:
     OAIRunCompletionUsage();
-    OAIRunCompletionUsage(QString json);
+    OAIRunCompletionUsage(const QString &json);
     ~OAIRunCompletionUsage() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getCompletionTokens() const;
     void setCompletionTokens(const qint32 &completion_tokens);

@@ -31,7 +31,7 @@ export interface CreateUploadRequest {
      * 
      * See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose).
      * 
-     * @type {string}
+     * @type {CreateUploadRequestPurposeEnum}
      * @memberof CreateUploadRequest
      */
     purpose: CreateUploadRequestPurposeEnum;
@@ -73,7 +73,7 @@ export function instanceOfCreateUploadRequest(value: object): value is CreateUpl
     if (!('filename' in value) || value['filename'] === undefined) return false;
     if (!('purpose' in value) || value['purpose'] === undefined) return false;
     if (!('bytes' in value) || value['bytes'] === undefined) return false;
-    if (!('mimeType' in value) || value['mimeType'] === undefined) return false;
+    if ((!('mimeType' in (value as Record<string, any>)) && !('mime_type' in (value as Record<string, any>))) || ((value as Record<string, any>)['mimeType'] === undefined && (value as Record<string, any>)['mime_type'] === undefined)) return false;
     return true;
 }
 

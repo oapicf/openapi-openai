@@ -27,6 +27,8 @@ DeleteFileResponse::DeleteFileResponse()
     
 }
 
+DeleteFileResponse::~DeleteFileResponse() = default;
+
 void DeleteFileResponse::validate() const
 {
     std::stringstream msg;

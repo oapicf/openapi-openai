@@ -28,6 +28,7 @@ case class CreateChatCompletionRequest (
     _n: Option[Integer],
     /* Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]`  */
     _modalities: Option[List[String]],
+    /* Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content.  */
     _prediction: Option[PredictionContent],
     _audio: Option[CreateChatCompletionRequestAudio],
     /* Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  */

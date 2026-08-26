@@ -22,8 +22,8 @@ var _ MappedNullable = &AuditLogActor{}
 type AuditLogActor struct {
 	// The type of actor. Is either `session` or `api_key`.
 	Type *string `json:"type,omitempty"`
-	Session AuditLogActorSession `json:"session,omitempty"`
-	ApiKey AuditLogActorApiKey `json:"api_key,omitempty"`
+	Session *AuditLogActorSession `json:"session,omitempty"`
+	ApiKey *AuditLogActorApiKey `json:"api_key,omitempty"`
 }
 
 // NewAuditLogActor instantiates a new AuditLogActor object
@@ -81,14 +81,14 @@ func (o *AuditLogActor) GetSession() AuditLogActorSession {
 		var ret AuditLogActorSession
 		return ret
 	}
-	return o.Session
+	return *o.Session
 }
 
 // GetSessionOk returns a tuple with the Session field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AuditLogActor) GetSessionOk() (AuditLogActorSession, bool) {
+func (o *AuditLogActor) GetSessionOk() (*AuditLogActorSession, bool) {
 	if o == nil || IsNil(o.Session) {
-		return AuditLogActorSession{}, false
+		return nil, false
 	}
 	return o.Session, true
 }
@@ -104,7 +104,7 @@ func (o *AuditLogActor) HasSession() bool {
 
 // SetSession gets a reference to the given AuditLogActorSession and assigns it to the Session field.
 func (o *AuditLogActor) SetSession(v AuditLogActorSession) {
-	o.Session = v
+	o.Session = &v
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
@@ -113,14 +113,14 @@ func (o *AuditLogActor) GetApiKey() AuditLogActorApiKey {
 		var ret AuditLogActorApiKey
 		return ret
 	}
-	return o.ApiKey
+	return *o.ApiKey
 }
 
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AuditLogActor) GetApiKeyOk() (AuditLogActorApiKey, bool) {
+func (o *AuditLogActor) GetApiKeyOk() (*AuditLogActorApiKey, bool) {
 	if o == nil || IsNil(o.ApiKey) {
-		return AuditLogActorApiKey{}, false
+		return nil, false
 	}
 	return o.ApiKey, true
 }
@@ -136,7 +136,7 @@ func (o *AuditLogActor) HasApiKey() bool {
 
 // SetApiKey gets a reference to the given AuditLogActorApiKey and assigns it to the ApiKey field.
 func (o *AuditLogActor) SetApiKey(v AuditLogActorApiKey) {
-	o.ApiKey = v
+	o.ApiKey = &v
 }
 
 func (o AuditLogActor) MarshalJSON() ([]byte, error) {

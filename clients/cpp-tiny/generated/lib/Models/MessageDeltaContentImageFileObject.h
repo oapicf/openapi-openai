@@ -52,21 +52,21 @@ public:
 
 	/*! \brief Set The index of the content part in the message.
 	 */
-	void setIndex(int  index);
+	void setIndex(int index);
 	/*! \brief Get Always `image_file`.
 	 */
 	std::string getType();
 
 	/*! \brief Set Always `image_file`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	MessageDeltaContentImageFileObject_image_file getImageFile();
 
 	/*! \brief Set 
 	 */
-	void setImageFile(MessageDeltaContentImageFileObject_image_file  image_file);
+	void setImageFile(MessageDeltaContentImageFileObject_image_file image_file);
 
 
     private:

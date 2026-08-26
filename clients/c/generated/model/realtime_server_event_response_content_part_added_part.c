@@ -32,12 +32,12 @@ static realtime_server_event_response_content_part_added_part_t *realtime_server
     if (!realtime_server_event_response_content_part_added_part_local_var) {
         return NULL;
     }
+    memset(realtime_server_event_response_content_part_added_part_local_var, 0, sizeof(realtime_server_event_response_content_part_added_part_t));
+    realtime_server_event_response_content_part_added_part_local_var->_library_owned = 1;
     realtime_server_event_response_content_part_added_part_local_var->type = type;
     realtime_server_event_response_content_part_added_part_local_var->text = text;
     realtime_server_event_response_content_part_added_part_local_var->audio = audio;
     realtime_server_event_response_content_part_added_part_local_var->transcript = transcript;
-
-    realtime_server_event_response_content_part_added_part_local_var->_library_owned = 1;
     return realtime_server_event_response_content_part_added_part_local_var;
 }
 
@@ -47,12 +47,15 @@ __attribute__((deprecated)) realtime_server_event_response_content_part_added_pa
     char *audio,
     char *transcript
     ) {
-    return realtime_server_event_response_content_part_added_part_create_internal (
+    realtime_server_event_response_content_part_added_part_t *result = realtime_server_event_response_content_part_added_part_create_internal (
         type,
         text,
         audio,
         transcript
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_server_event_response_content_part_added_part_free(realtime_server_event_response_content_part_added_part_t *realtime_server_event_response_content_part_added_part) {
@@ -126,6 +129,12 @@ realtime_server_event_response_content_part_added_part_t *realtime_server_event_
 
     realtime_server_event_response_content_part_added_part_t *realtime_server_event_response_content_part_added_part_local_var = NULL;
 
+    char *text_local_str = NULL;
+
+    char *audio_local_str = NULL;
+
+    char *transcript_local_str = NULL;
+
     // realtime_server_event_response_content_part_added_part->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(realtime_server_event_response_content_part_added_partJSON, "type");
     if (cJSON_IsNull(type)) {
@@ -177,15 +186,35 @@ realtime_server_event_response_content_part_added_part_t *realtime_server_event_
     }
 
 
+    if (text && !cJSON_IsNull(text)) text_local_str = strdup(text->valuestring);
+    if (audio && !cJSON_IsNull(audio)) audio_local_str = strdup(audio->valuestring);
+    if (transcript && !cJSON_IsNull(transcript)) transcript_local_str = strdup(transcript->valuestring);
+
     realtime_server_event_response_content_part_added_part_local_var = realtime_server_event_response_content_part_added_part_create_internal (
         type ? typeVariable : openai_api_realtime_server_event_response_content_part_added_part_TYPE_NULL,
-        text && !cJSON_IsNull(text) ? strdup(text->valuestring) : NULL,
-        audio && !cJSON_IsNull(audio) ? strdup(audio->valuestring) : NULL,
-        transcript && !cJSON_IsNull(transcript) ? strdup(transcript->valuestring) : NULL
+        text_local_str,
+        audio_local_str,
+        transcript_local_str
         );
+
+    if (!realtime_server_event_response_content_part_added_part_local_var) {
+        goto end;
+    }
 
     return realtime_server_event_response_content_part_added_part_local_var;
 end:
+    if (text_local_str) {
+        free(text_local_str);
+        text_local_str = NULL;
+    }
+    if (audio_local_str) {
+        free(audio_local_str);
+        audio_local_str = NULL;
+    }
+    if (transcript_local_str) {
+        free(transcript_local_str);
+        transcript_local_str = NULL;
+    }
     return NULL;
 
 }

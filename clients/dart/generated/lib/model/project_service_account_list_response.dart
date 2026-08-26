@@ -71,10 +71,16 @@ class ProjectServiceAccountListResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectServiceAccountListResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectServiceAccountListResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "ProjectServiceAccountListResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "ProjectServiceAccountListResponse[object]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "ProjectServiceAccountListResponse[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "ProjectServiceAccountListResponse[data]" has a null value in JSON.');
+        assert(json.containsKey(r'first_id'), 'Required key "ProjectServiceAccountListResponse[first_id]" is missing from JSON.');
+        assert(json[r'first_id'] != null, 'Required key "ProjectServiceAccountListResponse[first_id]" has a null value in JSON.');
+        assert(json.containsKey(r'last_id'), 'Required key "ProjectServiceAccountListResponse[last_id]" is missing from JSON.');
+        assert(json[r'last_id'] != null, 'Required key "ProjectServiceAccountListResponse[last_id]" has a null value in JSON.');
+        assert(json.containsKey(r'has_more'), 'Required key "ProjectServiceAccountListResponse[has_more]" is missing from JSON.');
+        assert(json[r'has_more'] != null, 'Required key "ProjectServiceAccountListResponse[has_more]" has a null value in JSON.');
         return true;
       }());
 
@@ -140,27 +146,28 @@ class ProjectServiceAccountListResponse {
 }
 
 
-class ProjectServiceAccountListResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ProjectServiceAccountListResponseObjectEnum._(this.value);
+enum ProjectServiceAccountListResponseObjectEnum {
+  list._(r'list'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ProjectServiceAccountListResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const list = ProjectServiceAccountListResponseObjectEnum._(r'list');
-
-  /// List of all possible values in this [enum][ProjectServiceAccountListResponseObjectEnum].
-  static const values = <ProjectServiceAccountListResponseObjectEnum>[
-    list,
-  ];
-
+  /// Returns the instance of [ProjectServiceAccountListResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ProjectServiceAccountListResponseObjectEnum? fromJson(dynamic value) => ProjectServiceAccountListResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ProjectServiceAccountListResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ProjectServiceAccountListResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ProjectServiceAccountListResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -182,9 +189,10 @@ class ProjectServiceAccountListResponseObjectEnumTypeTransformer {
 
   const ProjectServiceAccountListResponseObjectEnumTypeTransformer._();
 
-  String encode(ProjectServiceAccountListResponseObjectEnum data) => data.value;
+  String encode(ProjectServiceAccountListResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ProjectServiceAccountListResponseObjectEnum.
+  /// Returns the instance of [ProjectServiceAccountListResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -193,6 +201,9 @@ class ProjectServiceAccountListResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ProjectServiceAccountListResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ProjectServiceAccountListResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'list': return ProjectServiceAccountListResponseObjectEnum.list;
@@ -205,7 +216,7 @@ class ProjectServiceAccountListResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ProjectServiceAccountListResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ProjectServiceAccountListResponseObjectEnumTypeTransformer? _instance;
 }
 

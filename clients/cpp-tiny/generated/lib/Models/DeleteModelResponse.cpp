@@ -106,7 +106,7 @@ DeleteModelResponse::getId()
 }
 
 void
-DeleteModelResponse::setId(std::string  id)
+DeleteModelResponse::setId(std::string id)
 {
 	this->id = id;
 }
@@ -118,7 +118,7 @@ DeleteModelResponse::isDeleted()
 }
 
 void
-DeleteModelResponse::setDeleted(bool  deleted)
+DeleteModelResponse::setDeleted(bool deleted)
 {
 	this->deleted = deleted;
 }
@@ -130,7 +130,7 @@ DeleteModelResponse::getObject()
 }
 
 void
-DeleteModelResponse::setObject(std::string  object)
+DeleteModelResponse::setObject(std::string object)
 {
 	this->object = object;
 }

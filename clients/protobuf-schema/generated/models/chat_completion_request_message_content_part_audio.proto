@@ -23,7 +23,7 @@ message ChatCompletionRequestMessageContentPartAudio {
     TYPE_INPUT_AUDIO = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   ChatCompletionRequestMessageContentPartAudioInputAudio input_audio = 20109089;
 

@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIRealtimeResponse_status_details_error : public OAIObject {
 public:
     OAIRealtimeResponse_status_details_error();
-    OAIRealtimeResponse_status_details_error(QString json);
+    OAIRealtimeResponse_status_details_error(const QString &json);
     ~OAIRealtimeResponse_status_details_error() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

@@ -12,7 +12,7 @@
 #include <string>
 #include "bourne/json.hpp"
 #include "Helpers.h"
-#include "Auto_Chunking_Strategy.h"
+#include "AutoChunkingStrategyRequestParam.h"
 #include "Static_Chunking_Strategy.h"
 #include "Static_Chunking_Strategy_static.h"
 
@@ -54,14 +54,14 @@ public:
 
 	/*! \brief Set Always `auto`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	Static_Chunking_Strategy_static getRStatic();
 
 	/*! \brief Set 
 	 */
-	void setRStatic(Static_Chunking_Strategy_static  r_static);
+	void setRStatic(Static_Chunking_Strategy_static r_static);
 
 
     private:

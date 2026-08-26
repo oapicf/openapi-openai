@@ -23,7 +23,8 @@ type SubmitToolOutputsRunRequestToolOutputsInner struct {
 	Output string `json:"output,omitempty"`
 }
 
-// AssertSubmitToolOutputsRunRequestToolOutputsInnerRequired checks if the required fields are not zero-ed
+// AssertSubmitToolOutputsRunRequestToolOutputsInnerRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertSubmitToolOutputsRunRequestToolOutputsInnerRequired(obj SubmitToolOutputsRunRequestToolOutputsInner) error {
 	return nil
 }

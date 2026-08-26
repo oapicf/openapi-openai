@@ -1,4 +1,4 @@
-# # AuditLogActorApiKey
+# AuditLogActorApiKey
 
 ## Properties
 

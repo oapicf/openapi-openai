@@ -144,7 +144,7 @@ CreateTranslationResponseVerboseJson::getLanguage()
 }
 
 void
-CreateTranslationResponseVerboseJson::setLanguage(std::string  language)
+CreateTranslationResponseVerboseJson::setLanguage(std::string language)
 {
 	this->language = language;
 }
@@ -156,7 +156,7 @@ CreateTranslationResponseVerboseJson::getDuration()
 }
 
 void
-CreateTranslationResponseVerboseJson::setDuration(std::string  duration)
+CreateTranslationResponseVerboseJson::setDuration(std::string duration)
 {
 	this->duration = duration;
 }
@@ -168,7 +168,7 @@ CreateTranslationResponseVerboseJson::getText()
 }
 
 void
-CreateTranslationResponseVerboseJson::setText(std::string  text)
+CreateTranslationResponseVerboseJson::setText(std::string text)
 {
 	this->text = text;
 }
@@ -180,7 +180,7 @@ CreateTranslationResponseVerboseJson::getSegments()
 }
 
 void
-CreateTranslationResponseVerboseJson::setSegments(std::list <TranscriptionSegment> segments)
+CreateTranslationResponseVerboseJson::setSegments(std::list<TranscriptionSegment> segments)
 {
 	this->segments = segments;
 }

@@ -165,7 +165,7 @@ ListFineTuningJobCheckpointsResponse::getData()
 }
 
 void
-ListFineTuningJobCheckpointsResponse::setData(std::list <FineTuningJobCheckpoint> data)
+ListFineTuningJobCheckpointsResponse::setData(std::list<FineTuningJobCheckpoint> data)
 {
 	this->data = data;
 }
@@ -177,7 +177,7 @@ ListFineTuningJobCheckpointsResponse::getObject()
 }
 
 void
-ListFineTuningJobCheckpointsResponse::setObject(std::string  object)
+ListFineTuningJobCheckpointsResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -189,7 +189,7 @@ ListFineTuningJobCheckpointsResponse::getFirstId()
 }
 
 void
-ListFineTuningJobCheckpointsResponse::setFirstId(std::string  first_id)
+ListFineTuningJobCheckpointsResponse::setFirstId(std::string first_id)
 {
 	this->first_id = first_id;
 }
@@ -201,7 +201,7 @@ ListFineTuningJobCheckpointsResponse::getLastId()
 }
 
 void
-ListFineTuningJobCheckpointsResponse::setLastId(std::string  last_id)
+ListFineTuningJobCheckpointsResponse::setLastId(std::string last_id)
 {
 	this->last_id = last_id;
 }
@@ -213,7 +213,7 @@ ListFineTuningJobCheckpointsResponse::isHasMore()
 }
 
 void
-ListFineTuningJobCheckpointsResponse::setHasMore(bool  has_more)
+ListFineTuningJobCheckpointsResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }

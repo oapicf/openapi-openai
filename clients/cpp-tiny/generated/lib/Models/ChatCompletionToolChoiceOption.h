@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set The type of the tool. Currently, only `function` is supported.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	AssistantsNamedToolChoice_function getFunction();
 
 	/*! \brief Set 
 	 */
-	void setFunction(AssistantsNamedToolChoice_function  function);
+	void setFunction(AssistantsNamedToolChoice_function function);
 
 
     private:

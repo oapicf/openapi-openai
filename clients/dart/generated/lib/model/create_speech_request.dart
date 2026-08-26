@@ -78,10 +78,12 @@ class CreateSpeechRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateSpeechRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateSpeechRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'model'), 'Required key "CreateSpeechRequest[model]" is missing from JSON.');
+        assert(json[r'model'] != null, 'Required key "CreateSpeechRequest[model]" has a null value in JSON.');
+        assert(json.containsKey(r'input'), 'Required key "CreateSpeechRequest[input]" is missing from JSON.');
+        assert(json[r'input'] != null, 'Required key "CreateSpeechRequest[input]" has a null value in JSON.');
+        assert(json.containsKey(r'voice'), 'Required key "CreateSpeechRequest[voice]" is missing from JSON.');
+        assert(json[r'voice'] != null, 'Required key "CreateSpeechRequest[voice]" has a null value in JSON.');
         return true;
       }());
 
@@ -89,7 +91,7 @@ class CreateSpeechRequest {
         model: CreateSpeechRequestModel.fromJson(json[r'model'])!,
         input: mapValueOfType<String>(json, r'input')!,
         voice: CreateSpeechRequestVoiceEnum.fromJson(json[r'voice'])!,
-        responseFormat: CreateSpeechRequestResponseFormatEnum.fromJson(json[r'response_format']) ?? 'mp3',
+        responseFormat: CreateSpeechRequestResponseFormatEnum.fromJson(json[r'response_format']) ?? const CreateSpeechRequestResponseFormatEnum._('mp3'),
         speed: num.parse('${json[r'speed']}'),
       );
     }
@@ -145,37 +147,33 @@ class CreateSpeechRequest {
 }
 
 /// The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
-class CreateSpeechRequestVoiceEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateSpeechRequestVoiceEnum._(this.value);
+enum CreateSpeechRequestVoiceEnum {
+  alloy._(r'alloy'),
+  echo._(r'echo'),
+  fable._(r'fable'),
+  onyx._(r'onyx'),
+  nova._(r'nova'),
+  shimmer._(r'shimmer'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateSpeechRequestVoiceEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const alloy = CreateSpeechRequestVoiceEnum._(r'alloy');
-  static const echo = CreateSpeechRequestVoiceEnum._(r'echo');
-  static const fable = CreateSpeechRequestVoiceEnum._(r'fable');
-  static const onyx = CreateSpeechRequestVoiceEnum._(r'onyx');
-  static const nova = CreateSpeechRequestVoiceEnum._(r'nova');
-  static const shimmer = CreateSpeechRequestVoiceEnum._(r'shimmer');
-
-  /// List of all possible values in this [enum][CreateSpeechRequestVoiceEnum].
-  static const values = <CreateSpeechRequestVoiceEnum>[
-    alloy,
-    echo,
-    fable,
-    onyx,
-    nova,
-    shimmer,
-  ];
-
+  /// Returns the instance of [CreateSpeechRequestVoiceEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateSpeechRequestVoiceEnum? fromJson(dynamic value) => CreateSpeechRequestVoiceEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateSpeechRequestVoiceEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateSpeechRequestVoiceEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateSpeechRequestVoiceEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -197,9 +195,10 @@ class CreateSpeechRequestVoiceEnumTypeTransformer {
 
   const CreateSpeechRequestVoiceEnumTypeTransformer._();
 
-  String encode(CreateSpeechRequestVoiceEnum data) => data.value;
+  String encode(CreateSpeechRequestVoiceEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateSpeechRequestVoiceEnum.
+  /// Returns the instance of [CreateSpeechRequestVoiceEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -208,6 +207,9 @@ class CreateSpeechRequestVoiceEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateSpeechRequestVoiceEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateSpeechRequestVoiceEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'alloy': return CreateSpeechRequestVoiceEnum.alloy;
@@ -225,43 +227,39 @@ class CreateSpeechRequestVoiceEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateSpeechRequestVoiceEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateSpeechRequestVoiceEnumTypeTransformer? _instance;
 }
 
 
 /// The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
-class CreateSpeechRequestResponseFormatEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateSpeechRequestResponseFormatEnum._(this.value);
+enum CreateSpeechRequestResponseFormatEnum {
+  mp3._(r'mp3'),
+  opus._(r'opus'),
+  aac._(r'aac'),
+  flac._(r'flac'),
+  wav._(r'wav'),
+  pcm._(r'pcm'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateSpeechRequestResponseFormatEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const mp3 = CreateSpeechRequestResponseFormatEnum._(r'mp3');
-  static const opus = CreateSpeechRequestResponseFormatEnum._(r'opus');
-  static const aac = CreateSpeechRequestResponseFormatEnum._(r'aac');
-  static const flac = CreateSpeechRequestResponseFormatEnum._(r'flac');
-  static const wav = CreateSpeechRequestResponseFormatEnum._(r'wav');
-  static const pcm = CreateSpeechRequestResponseFormatEnum._(r'pcm');
-
-  /// List of all possible values in this [enum][CreateSpeechRequestResponseFormatEnum].
-  static const values = <CreateSpeechRequestResponseFormatEnum>[
-    mp3,
-    opus,
-    aac,
-    flac,
-    wav,
-    pcm,
-  ];
-
+  /// Returns the instance of [CreateSpeechRequestResponseFormatEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateSpeechRequestResponseFormatEnum? fromJson(dynamic value) => CreateSpeechRequestResponseFormatEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateSpeechRequestResponseFormatEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateSpeechRequestResponseFormatEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateSpeechRequestResponseFormatEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -283,9 +281,10 @@ class CreateSpeechRequestResponseFormatEnumTypeTransformer {
 
   const CreateSpeechRequestResponseFormatEnumTypeTransformer._();
 
-  String encode(CreateSpeechRequestResponseFormatEnum data) => data.value;
+  String encode(CreateSpeechRequestResponseFormatEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateSpeechRequestResponseFormatEnum.
+  /// Returns the instance of [CreateSpeechRequestResponseFormatEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -294,6 +293,9 @@ class CreateSpeechRequestResponseFormatEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateSpeechRequestResponseFormatEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateSpeechRequestResponseFormatEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'mp3': return CreateSpeechRequestResponseFormatEnum.mp3;
@@ -311,7 +313,7 @@ class CreateSpeechRequestResponseFormatEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateSpeechRequestResponseFormatEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateSpeechRequestResponseFormatEnumTypeTransformer? _instance;
 }
 

@@ -35,7 +35,8 @@ type ProjectRateLimitUpdateRequest struct {
 	Batch1DayMaxInputTokens int32 `json:"batch_1_day_max_input_tokens,omitempty"`
 }
 
-// AssertProjectRateLimitUpdateRequestRequired checks if the required fields are not zero-ed
+// AssertProjectRateLimitUpdateRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertProjectRateLimitUpdateRequestRequired(obj ProjectRateLimitUpdateRequest) error {
 	return nil
 }

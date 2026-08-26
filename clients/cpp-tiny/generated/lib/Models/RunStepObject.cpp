@@ -383,7 +383,7 @@ RunStepObject::getId()
 }
 
 void
-RunStepObject::setId(std::string  id)
+RunStepObject::setId(std::string id)
 {
 	this->id = id;
 }
@@ -395,7 +395,7 @@ RunStepObject::getObject()
 }
 
 void
-RunStepObject::setObject(std::string  object)
+RunStepObject::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -407,7 +407,7 @@ RunStepObject::getCreatedAt()
 }
 
 void
-RunStepObject::setCreatedAt(int  created_at)
+RunStepObject::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -419,7 +419,7 @@ RunStepObject::getAssistantId()
 }
 
 void
-RunStepObject::setAssistantId(std::string  assistant_id)
+RunStepObject::setAssistantId(std::string assistant_id)
 {
 	this->assistant_id = assistant_id;
 }
@@ -431,7 +431,7 @@ RunStepObject::getThreadId()
 }
 
 void
-RunStepObject::setThreadId(std::string  thread_id)
+RunStepObject::setThreadId(std::string thread_id)
 {
 	this->thread_id = thread_id;
 }
@@ -443,7 +443,7 @@ RunStepObject::getRunId()
 }
 
 void
-RunStepObject::setRunId(std::string  run_id)
+RunStepObject::setRunId(std::string run_id)
 {
 	this->run_id = run_id;
 }
@@ -455,7 +455,7 @@ RunStepObject::getType()
 }
 
 void
-RunStepObject::setType(std::string  type)
+RunStepObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -467,7 +467,7 @@ RunStepObject::getStatus()
 }
 
 void
-RunStepObject::setStatus(std::string  status)
+RunStepObject::setStatus(std::string status)
 {
 	this->status = status;
 }
@@ -479,7 +479,7 @@ RunStepObject::getStepDetails()
 }
 
 void
-RunStepObject::setStepDetails(RunStepObject_step_details  step_details)
+RunStepObject::setStepDetails(RunStepObject_step_details step_details)
 {
 	this->step_details = step_details;
 }
@@ -491,7 +491,7 @@ RunStepObject::getLastError()
 }
 
 void
-RunStepObject::setLastError(RunStepObject_last_error  last_error)
+RunStepObject::setLastError(RunStepObject_last_error last_error)
 {
 	this->last_error = last_error;
 }
@@ -503,7 +503,7 @@ RunStepObject::getExpiredAt()
 }
 
 void
-RunStepObject::setExpiredAt(int  expired_at)
+RunStepObject::setExpiredAt(int expired_at)
 {
 	this->expired_at = expired_at;
 }
@@ -515,7 +515,7 @@ RunStepObject::getCancelledAt()
 }
 
 void
-RunStepObject::setCancelledAt(int  cancelled_at)
+RunStepObject::setCancelledAt(int cancelled_at)
 {
 	this->cancelled_at = cancelled_at;
 }
@@ -527,7 +527,7 @@ RunStepObject::getFailedAt()
 }
 
 void
-RunStepObject::setFailedAt(int  failed_at)
+RunStepObject::setFailedAt(int failed_at)
 {
 	this->failed_at = failed_at;
 }
@@ -539,7 +539,7 @@ RunStepObject::getCompletedAt()
 }
 
 void
-RunStepObject::setCompletedAt(int  completed_at)
+RunStepObject::setCompletedAt(int completed_at)
 {
 	this->completed_at = completed_at;
 }
@@ -551,7 +551,7 @@ RunStepObject::getMetadata()
 }
 
 void
-RunStepObject::setMetadata(Object  metadata)
+RunStepObject::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }
@@ -563,7 +563,7 @@ RunStepObject::getUsage()
 }
 
 void
-RunStepObject::setUsage(RunStepCompletionUsage  usage)
+RunStepObject::setUsage(RunStepCompletionUsage usage)
 {
 	this->usage = usage;
 }

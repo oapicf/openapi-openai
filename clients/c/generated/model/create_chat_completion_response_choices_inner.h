@@ -30,7 +30,7 @@ openai_api_create_chat_completion_response_choices_inner_FINISHREASON_e create_c
 
 typedef struct create_chat_completion_response_choices_inner_t {
     openai_api_create_chat_completion_response_choices_inner_FINISHREASON_e finish_reason; //enum
-    int index; //numeric
+    int *index; //numeric
     struct chat_completion_response_message_t *message; //model
     struct create_chat_completion_response_choices_inner_logprobs_t *logprobs; //model
 
@@ -39,7 +39,7 @@ typedef struct create_chat_completion_response_choices_inner_t {
 
 __attribute__((deprecated)) create_chat_completion_response_choices_inner_t *create_chat_completion_response_choices_inner_create(
     openai_api_create_chat_completion_response_choices_inner_FINISHREASON_e finish_reason,
-    int index,
+    int *index,
     chat_completion_response_message_t *message,
     create_chat_completion_response_choices_inner_logprobs_t *logprobs
 );

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **String** |  | 
+**object** | **Object** |  (enum: organization.usage.images.result) | 
 **images** | **i32** | The number of images processed. | 
 **num_model_requests** | **i32** | The count of requests made to the model. | 
 **source** | Option<**String**> | When `group_by=source`, this field provides the source of the grouped usage result, possible values are `image.generation`, `image.edit`, `image.variation`. | [optional]

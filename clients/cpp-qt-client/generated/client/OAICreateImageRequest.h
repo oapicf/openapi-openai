@@ -32,13 +32,13 @@ namespace OpenAPI {
 class OAICreateImageRequest : public OAIObject {
 public:
     OAICreateImageRequest();
-    OAICreateImageRequest(QString json);
+    OAICreateImageRequest(const QString &json);
     ~OAICreateImageRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getPrompt() const;
     void setPrompt(const QString &prompt);

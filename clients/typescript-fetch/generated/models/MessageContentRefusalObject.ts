@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface MessageContentRefusalObject {
     /**
      * Always `refusal`.
-     * @type {string}
+     * @type {MessageContentRefusalObjectTypeEnum}
      * @memberof MessageContentRefusalObject
      */
     type: MessageContentRefusalObjectTypeEnum;
@@ -48,6 +48,8 @@ export type MessageContentRefusalObjectTypeEnum = typeof MessageContentRefusalOb
  */
 export function instanceOfMessageContentRefusalObject(value: object): value is MessageContentRefusalObject {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'refusal') return false;
+    
     if (!('refusal' in value) || value['refusal'] === undefined) return false;
     return true;
 }

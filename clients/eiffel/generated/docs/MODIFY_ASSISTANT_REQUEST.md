@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | [**STRING_32**](STRING_32.md) |  | [optional] [default to null]
+**model** | [**STRING_32**](STRING_32.md) | ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them.  | [optional] [default to null]
 **name** | [**STRING_32**](STRING_32.md) | The name of the assistant. The maximum length is 256 characters.  | [optional] [default to null]
 **description** | [**STRING_32**](STRING_32.md) | The description of the assistant. The maximum length is 512 characters.  | [optional] [default to null]
 **instructions** | [**STRING_32**](STRING_32.md) | The system instructions that the assistant uses. The maximum length is 256,000 characters.  | [optional] [default to null]

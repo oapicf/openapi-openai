@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set Always `text`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	MessageContentTextObject_text getText();
 
 	/*! \brief Set 
 	 */
-	void setText(MessageContentTextObject_text  text);
+	void setText(MessageContentTextObject_text text);
 
 
     private:

@@ -14,8 +14,8 @@ To see how to make this your own, look here:
 [README]((https://openapi-generator.tech))
 
 - API version: 2.3.0
-- Build date: 2026-01-29T14:15:47.567842692Z[Etc/UTC]
-- Generator version: 7.18.0
+- Build date: 2026-08-26T05:20:34.255485388Z[Etc/UTC]
+- Generator version: 7.24.0
 
 For more information, please visit [https://github.com/oapicf/openapi-openai](https://github.com/oapicf/openapi-openai)
 
@@ -67,108 +67,67 @@ You'll find the binary at `target/release/cli`.
 Run examples with:
 
 ```
-cargo run --example <example-name>
+cargo run --example openapi_client-<client|server>
 ```
 
 To pass in arguments to the examples, put them after `--`, for example:
 
 ```
-cargo run --example client -- --help
+cargo run --example openapi_client-client -- --help
 ```
 
 ### Running the example server
 To run the server, follow these simple steps:
 
 ```
-cargo run --example server
+cargo run --example openapi_client-server
 ```
 
 ### Running the example client
 To run a client, follow one of the following simple steps:
 
 ```
-cargo run --example client CreateThread
-cargo run --example client ListAssistants
-cargo run --example client DeleteAssistant
-cargo run --example client DeleteThread
-cargo run --example client GetAssistant
-cargo run --example client GetThread
-cargo run --example client ListMessages
-cargo run --example client ListRuns
-cargo run --example client CancelRun
-cargo run --example client DeleteMessage
-cargo run --example client GetMessage
-cargo run --example client GetRun
-cargo run --example client ListRunSteps
-cargo run --example client GetRunStep
-cargo run --example client ListAuditLogs
-cargo run --example client ListBatches
-cargo run --example client CancelBatch
-cargo run --example client RetrieveBatch
-cargo run --example client AdminApiKeysList
-cargo run --example client AdminApiKeysDelete
-cargo run --example client AdminApiKeysGet
-cargo run --example client CreateFile
-cargo run --example client ListFiles
-cargo run --example client DeleteFile
-cargo run --example client DownloadFile
-cargo run --example client RetrieveFile
-cargo run --example client ListPaginatedFineTuningJobs
-cargo run --example client CancelFineTuningJob
-cargo run --example client ListFineTuningEvents
-cargo run --example client ListFineTuningJobCheckpoints
-cargo run --example client RetrieveFineTuningJob
-cargo run --example client CreateImageEdit
-cargo run --example client CreateImageVariation
-cargo run --example client ListInvites
-cargo run --example client DeleteInvite
-cargo run --example client RetrieveInvite
-cargo run --example client ListModels
-cargo run --example client DeleteModel
-cargo run --example client RetrieveModel
-cargo run --example client ListProjects
-cargo run --example client ArchiveProject
-cargo run --example client ListProjectApiKeys
-cargo run --example client ListProjectRateLimits
-cargo run --example client ListProjectServiceAccounts
-cargo run --example client ListProjectUsers
-cargo run --example client RetrieveProject
-cargo run --example client DeleteProjectApiKey
-cargo run --example client DeleteProjectServiceAccount
-cargo run --example client DeleteProjectUser
-cargo run --example client RetrieveProjectApiKey
-cargo run --example client RetrieveProjectServiceAccount
-cargo run --example client RetrieveProjectUser
-cargo run --example client AddUploadPart
-cargo run --example client CancelUpload
-cargo run --example client UsageAudioSpeeches
-cargo run --example client UsageAudioTranscriptions
-cargo run --example client UsageCodeInterpreterSessions
-cargo run --example client UsageCompletions
-cargo run --example client UsageCosts
-cargo run --example client UsageEmbeddings
-cargo run --example client UsageImages
-cargo run --example client UsageModerations
-cargo run --example client UsageVectorStores
-cargo run --example client ListUsers
-cargo run --example client DeleteUser
-cargo run --example client RetrieveUser
-cargo run --example client ListVectorStores
-cargo run --example client DeleteVectorStore
-cargo run --example client GetVectorStore
-cargo run --example client ListVectorStoreFiles
-cargo run --example client CancelVectorStoreFileBatch
-cargo run --example client DeleteVectorStoreFile
-cargo run --example client GetVectorStoreFile
-cargo run --example client GetVectorStoreFileBatch
-cargo run --example client ListFilesInVectorStoreBatch
+cargo run --example openapi_client-client CreateThread
+cargo run --example openapi_client-client ListAssistants
+cargo run --example openapi_client-client ListAuditLogs
+cargo run --example openapi_client-client ListBatches
+cargo run --example openapi_client-client AdminApiKeysList
+cargo run --example openapi_client-client CreateFile
+cargo run --example openapi_client-client ListFiles
+cargo run --example openapi_client-client ListPaginatedFineTuningJobs
+cargo run --example openapi_client-client CancelFineTuningJob
+cargo run --example openapi_client-client ListFineTuningEvents
+cargo run --example openapi_client-client ListFineTuningJobCheckpoints
+cargo run --example openapi_client-client RetrieveFineTuningJob
+cargo run --example openapi_client-client CreateImageEdit
+cargo run --example openapi_client-client CreateImageVariation
+cargo run --example openapi_client-client ListInvites
+cargo run --example openapi_client-client ListModels
+cargo run --example openapi_client-client DeleteModel
+cargo run --example openapi_client-client RetrieveModel
+cargo run --example openapi_client-client ListProjects
+cargo run --example openapi_client-client AddUploadPart
+cargo run --example openapi_client-client CancelUpload
+cargo run --example openapi_client-client UsageAudioSpeeches
+cargo run --example openapi_client-client UsageAudioTranscriptions
+cargo run --example openapi_client-client UsageCodeInterpreterSessions
+cargo run --example openapi_client-client UsageCompletions
+cargo run --example openapi_client-client UsageCosts
+cargo run --example openapi_client-client UsageEmbeddings
+cargo run --example openapi_client-client UsageImages
+cargo run --example openapi_client-client UsageModerations
+cargo run --example openapi_client-client UsageVectorStores
+cargo run --example openapi_client-client ListUsers
+cargo run --example openapi_client-client ListVectorStores
+cargo run --example openapi_client-client GetVectorStoreFile
+cargo run --example openapi_client-client GetVectorStoreFileBatch
 ```
 
 ### HTTPS
 The examples can be run in HTTPS mode by passing in the flag `--https`, for example:
 
 ```
-cargo run --example server -- --https
+cargo run --example openapi_client-server -- --https
 ```
 
 This will use the keys/certificates from the examples directory. Note that the
@@ -184,6 +143,10 @@ The generated library has a few optional features that can be activated through 
 * `client`
     * This defaults to enabled and creates the basic skeleton of a client implementation based on hyper
     * The constructed client implements the API trait by making remote API call.
+* `client-tls`
+    * This default to enabled and provides HTTPS support with automatic TLS backend selection:
+        - macOS/Windows/iOS: native-tls + hyper-tls
+        - Linux/Unix/others: OpenSSL + hyper-openssl
 * `conversions`
     * This defaults to disabled and creates extra derives on models to allow "transmogrification" between objects of structurally similar types.
 * `cli`
@@ -191,6 +154,25 @@ The generated library has a few optional features that can be activated through 
 * `validate`
     * This defaults to disabled and allows JSON Schema validation of received data using `MakeService::set_validation` or `Service::set_validation`.
     * Note, enabling validation will have a performance penalty, especially if the API heavily uses regex based checks.
+
+### HTTPS/TLS Support
+
+HTTPS support is included by default. To disable it (for example, to reduce dependencies), you can:
+
+```toml
+[dependencies]
+openapi_client = { version = "2.3.0", default-features = false, features = ["client", "server"] }
+```
+
+**For server with callbacks that need HTTPS:**
+```toml
+[dependencies]
+openapi_client = { version = "2.3.0", features = ["server", "client-tls"] }
+```
+
+The TLS backend is automatically selected based on your target platform:
+- **macOS, Windows, iOS**: Uses `native-tls` (system TLS libraries)
+- **Linux, Unix, other platforms**: Uses `openssl`
 
 See https://doc.rust-lang.org/cargo/reference/manifest.html#the-features-section for how to use features in your `Cargo.toml`.
 
@@ -385,7 +367,6 @@ Method | HTTP request | Description
  - [AuditLogUserDeleted](docs/AuditLogUserDeleted.md)
  - [AuditLogUserUpdated](docs/AuditLogUserUpdated.md)
  - [AuditLogUserUpdatedChangesRequested](docs/AuditLogUserUpdatedChangesRequested.md)
- - [AutoChunkingStrategy](docs/AutoChunkingStrategy.md)
  - [AutoChunkingStrategyRequestParam](docs/AutoChunkingStrategyRequestParam.md)
  - [AutoChunkingStrategyRequestParamType](docs/AutoChunkingStrategyRequestParamType.md)
  - [Batch](docs/Batch.md)
@@ -1028,7 +1009,6 @@ Method | HTTP request | Description
  - [RunToolCallObjectType](docs/RunToolCallObjectType.md)
  - [StaticChunkingStrategy](docs/StaticChunkingStrategy.md)
  - [StaticChunkingStrategyRequestParam](docs/StaticChunkingStrategyRequestParam.md)
- - [StaticChunkingStrategyResponseParam](docs/StaticChunkingStrategyResponseParam.md)
  - [StaticChunkingStrategyStatic](docs/StaticChunkingStrategyStatic.md)
  - [StaticChunkingStrategyType](docs/StaticChunkingStrategyType.md)
  - [SubmitToolOutputsRunRequest](docs/SubmitToolOutputsRunRequest.md)

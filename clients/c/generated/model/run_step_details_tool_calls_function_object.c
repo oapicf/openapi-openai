@@ -31,11 +31,11 @@ static run_step_details_tool_calls_function_object_t *run_step_details_tool_call
     if (!run_step_details_tool_calls_function_object_local_var) {
         return NULL;
     }
+    memset(run_step_details_tool_calls_function_object_local_var, 0, sizeof(run_step_details_tool_calls_function_object_t));
+    run_step_details_tool_calls_function_object_local_var->_library_owned = 1;
     run_step_details_tool_calls_function_object_local_var->id = id;
     run_step_details_tool_calls_function_object_local_var->type = type;
     run_step_details_tool_calls_function_object_local_var->function = function;
-
-    run_step_details_tool_calls_function_object_local_var->_library_owned = 1;
     return run_step_details_tool_calls_function_object_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) run_step_details_tool_calls_function_object_t *run_s
     openai_api_run_step_details_tool_calls_function_object_TYPE_e type,
     run_step_details_tool_calls_function_object_function_t *function
     ) {
-    return run_step_details_tool_calls_function_object_create_internal (
+    run_step_details_tool_calls_function_object_t *result = run_step_details_tool_calls_function_object_create_internal (
         id,
         type,
         function
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_step_details_tool_calls_function_object_free(run_step_details_tool_calls_function_object_t *run_step_details_tool_calls_function_object) {
@@ -118,6 +121,8 @@ run_step_details_tool_calls_function_object_t *run_step_details_tool_calls_funct
 
     run_step_details_tool_calls_function_object_t *run_step_details_tool_calls_function_object_local_var = NULL;
 
+    char *id_local_str = NULL;
+
     // define the local variable for run_step_details_tool_calls_function_object->function
     run_step_details_tool_calls_function_object_function_t *function_local_nonprim = NULL;
 
@@ -166,14 +171,24 @@ run_step_details_tool_calls_function_object_t *run_step_details_tool_calls_funct
     function_local_nonprim = run_step_details_tool_calls_function_object_function_parseFromJSON(function); //nonprimitive
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     run_step_details_tool_calls_function_object_local_var = run_step_details_tool_calls_function_object_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         typeVariable,
         function_local_nonprim
         );
 
+    if (!run_step_details_tool_calls_function_object_local_var) {
+        goto end;
+    }
+
     return run_step_details_tool_calls_function_object_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     if (function_local_nonprim) {
         run_step_details_tool_calls_function_object_function_free(function_local_nonprim);
         function_local_nonprim = NULL;

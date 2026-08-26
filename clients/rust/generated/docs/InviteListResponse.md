@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **String** | The object type, which is always `list` | 
+**object** | **Object** | The object type, which is always `list` (enum: list) | 
 **data** | [**Vec<models::Invite>**](Invite.md) |  | 
 **first_id** | Option<**String**> | The first `invite_id` in the retrieved `list` | [optional]
 **last_id** | Option<**String**> | The last `invite_id` in the retrieved `list` | [optional]

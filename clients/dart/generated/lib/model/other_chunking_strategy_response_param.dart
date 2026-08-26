@@ -48,10 +48,8 @@ class OtherChunkingStrategyResponseParam {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "OtherChunkingStrategyResponseParam[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "OtherChunkingStrategyResponseParam[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "OtherChunkingStrategyResponseParam[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "OtherChunkingStrategyResponseParam[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -109,27 +107,28 @@ class OtherChunkingStrategyResponseParam {
 }
 
 /// Always `other`.
-class OtherChunkingStrategyResponseParamTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const OtherChunkingStrategyResponseParamTypeEnum._(this.value);
+enum OtherChunkingStrategyResponseParamTypeEnum {
+  other._(r'other'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const OtherChunkingStrategyResponseParamTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const other = OtherChunkingStrategyResponseParamTypeEnum._(r'other');
-
-  /// List of all possible values in this [enum][OtherChunkingStrategyResponseParamTypeEnum].
-  static const values = <OtherChunkingStrategyResponseParamTypeEnum>[
-    other,
-  ];
-
+  /// Returns the instance of [OtherChunkingStrategyResponseParamTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static OtherChunkingStrategyResponseParamTypeEnum? fromJson(dynamic value) => OtherChunkingStrategyResponseParamTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [OtherChunkingStrategyResponseParamTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<OtherChunkingStrategyResponseParamTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <OtherChunkingStrategyResponseParamTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -151,9 +150,10 @@ class OtherChunkingStrategyResponseParamTypeEnumTypeTransformer {
 
   const OtherChunkingStrategyResponseParamTypeEnumTypeTransformer._();
 
-  String encode(OtherChunkingStrategyResponseParamTypeEnum data) => data.value;
+  String encode(OtherChunkingStrategyResponseParamTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a OtherChunkingStrategyResponseParamTypeEnum.
+  /// Returns the instance of [OtherChunkingStrategyResponseParamTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -162,6 +162,9 @@ class OtherChunkingStrategyResponseParamTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   OtherChunkingStrategyResponseParamTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is OtherChunkingStrategyResponseParamTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'other': return OtherChunkingStrategyResponseParamTypeEnum.other;
@@ -174,7 +177,7 @@ class OtherChunkingStrategyResponseParamTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [OtherChunkingStrategyResponseParamTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static OtherChunkingStrategyResponseParamTypeEnumTypeTransformer? _instance;
 }
 

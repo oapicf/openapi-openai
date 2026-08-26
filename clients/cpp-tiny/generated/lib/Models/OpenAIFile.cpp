@@ -211,7 +211,7 @@ OpenAIFile::getId()
 }
 
 void
-OpenAIFile::setId(std::string  id)
+OpenAIFile::setId(std::string id)
 {
 	this->id = id;
 }
@@ -223,7 +223,7 @@ OpenAIFile::getBytes()
 }
 
 void
-OpenAIFile::setBytes(int  bytes)
+OpenAIFile::setBytes(int bytes)
 {
 	this->bytes = bytes;
 }
@@ -235,7 +235,7 @@ OpenAIFile::getCreatedAt()
 }
 
 void
-OpenAIFile::setCreatedAt(int  created_at)
+OpenAIFile::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -247,7 +247,7 @@ OpenAIFile::getFilename()
 }
 
 void
-OpenAIFile::setFilename(std::string  filename)
+OpenAIFile::setFilename(std::string filename)
 {
 	this->filename = filename;
 }
@@ -259,7 +259,7 @@ OpenAIFile::getObject()
 }
 
 void
-OpenAIFile::setObject(std::string  object)
+OpenAIFile::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -271,7 +271,7 @@ OpenAIFile::getPurpose()
 }
 
 void
-OpenAIFile::setPurpose(std::string  purpose)
+OpenAIFile::setPurpose(std::string purpose)
 {
 	this->purpose = purpose;
 }
@@ -283,7 +283,7 @@ OpenAIFile::getStatus()
 }
 
 void
-OpenAIFile::setStatus(std::string  status)
+OpenAIFile::setStatus(std::string status)
 {
 	this->status = status;
 }
@@ -295,7 +295,7 @@ OpenAIFile::getStatusDetails()
 }
 
 void
-OpenAIFile::setStatusDetails(std::string  status_details)
+OpenAIFile::setStatusDetails(std::string status_details)
 {
 	this->status_details = status_details;
 }

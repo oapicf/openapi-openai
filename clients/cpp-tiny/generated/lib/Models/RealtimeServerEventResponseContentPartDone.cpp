@@ -191,7 +191,7 @@ RealtimeServerEventResponseContentPartDone::getEventId()
 }
 
 void
-RealtimeServerEventResponseContentPartDone::setEventId(std::string  event_id)
+RealtimeServerEventResponseContentPartDone::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -203,7 +203,7 @@ RealtimeServerEventResponseContentPartDone::getType()
 }
 
 void
-RealtimeServerEventResponseContentPartDone::setType(std::string  type)
+RealtimeServerEventResponseContentPartDone::setType(std::string type)
 {
 	this->type = type;
 }
@@ -215,7 +215,7 @@ RealtimeServerEventResponseContentPartDone::getResponseId()
 }
 
 void
-RealtimeServerEventResponseContentPartDone::setResponseId(std::string  response_id)
+RealtimeServerEventResponseContentPartDone::setResponseId(std::string response_id)
 {
 	this->response_id = response_id;
 }
@@ -227,7 +227,7 @@ RealtimeServerEventResponseContentPartDone::getItemId()
 }
 
 void
-RealtimeServerEventResponseContentPartDone::setItemId(std::string  item_id)
+RealtimeServerEventResponseContentPartDone::setItemId(std::string item_id)
 {
 	this->item_id = item_id;
 }
@@ -239,7 +239,7 @@ RealtimeServerEventResponseContentPartDone::getOutputIndex()
 }
 
 void
-RealtimeServerEventResponseContentPartDone::setOutputIndex(int  output_index)
+RealtimeServerEventResponseContentPartDone::setOutputIndex(int output_index)
 {
 	this->output_index = output_index;
 }
@@ -251,7 +251,7 @@ RealtimeServerEventResponseContentPartDone::getContentIndex()
 }
 
 void
-RealtimeServerEventResponseContentPartDone::setContentIndex(int  content_index)
+RealtimeServerEventResponseContentPartDone::setContentIndex(int content_index)
 {
 	this->content_index = content_index;
 }
@@ -263,7 +263,7 @@ RealtimeServerEventResponseContentPartDone::getPart()
 }
 
 void
-RealtimeServerEventResponseContentPartDone::setPart(RealtimeServerEventResponseContentPartDone_part  part)
+RealtimeServerEventResponseContentPartDone::setPart(RealtimeServerEventResponseContentPartDone_part part)
 {
 	this->part = part;
 }

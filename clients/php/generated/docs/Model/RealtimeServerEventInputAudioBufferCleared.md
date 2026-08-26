@@ -1,4 +1,4 @@
-# # RealtimeServerEventInputAudioBufferCleared
+# RealtimeServerEventInputAudioBufferCleared
 
 ## Properties
 

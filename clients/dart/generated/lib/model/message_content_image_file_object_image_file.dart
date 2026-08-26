@@ -55,16 +55,14 @@ class MessageContentImageFileObjectImageFile {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageContentImageFileObjectImageFile[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageContentImageFileObjectImageFile[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'file_id'), 'Required key "MessageContentImageFileObjectImageFile[file_id]" is missing from JSON.');
+        assert(json[r'file_id'] != null, 'Required key "MessageContentImageFileObjectImageFile[file_id]" has a null value in JSON.');
         return true;
       }());
 
       return MessageContentImageFileObjectImageFile(
         fileId: mapValueOfType<String>(json, r'file_id')!,
-        detail: MessageContentImageFileObjectImageFileDetailEnum.fromJson(json[r'detail']) ?? 'auto',
+        detail: MessageContentImageFileObjectImageFileDetailEnum.fromJson(json[r'detail']) ?? const MessageContentImageFileObjectImageFileDetailEnum._('auto'),
       );
     }
     return null;
@@ -117,31 +115,30 @@ class MessageContentImageFileObjectImageFile {
 }
 
 /// Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
-class MessageContentImageFileObjectImageFileDetailEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageContentImageFileObjectImageFileDetailEnum._(this.value);
+enum MessageContentImageFileObjectImageFileDetailEnum {
+  auto._(r'auto'),
+  low._(r'low'),
+  high._(r'high'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageContentImageFileObjectImageFileDetailEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const auto = MessageContentImageFileObjectImageFileDetailEnum._(r'auto');
-  static const low = MessageContentImageFileObjectImageFileDetailEnum._(r'low');
-  static const high = MessageContentImageFileObjectImageFileDetailEnum._(r'high');
-
-  /// List of all possible values in this [enum][MessageContentImageFileObjectImageFileDetailEnum].
-  static const values = <MessageContentImageFileObjectImageFileDetailEnum>[
-    auto,
-    low,
-    high,
-  ];
-
+  /// Returns the instance of [MessageContentImageFileObjectImageFileDetailEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageContentImageFileObjectImageFileDetailEnum? fromJson(dynamic value) => MessageContentImageFileObjectImageFileDetailEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageContentImageFileObjectImageFileDetailEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageContentImageFileObjectImageFileDetailEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageContentImageFileObjectImageFileDetailEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -163,9 +160,10 @@ class MessageContentImageFileObjectImageFileDetailEnumTypeTransformer {
 
   const MessageContentImageFileObjectImageFileDetailEnumTypeTransformer._();
 
-  String encode(MessageContentImageFileObjectImageFileDetailEnum data) => data.value;
+  String encode(MessageContentImageFileObjectImageFileDetailEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageContentImageFileObjectImageFileDetailEnum.
+  /// Returns the instance of [MessageContentImageFileObjectImageFileDetailEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -174,6 +172,9 @@ class MessageContentImageFileObjectImageFileDetailEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageContentImageFileObjectImageFileDetailEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageContentImageFileObjectImageFileDetailEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'auto': return MessageContentImageFileObjectImageFileDetailEnum.auto;
@@ -188,7 +189,7 @@ class MessageContentImageFileObjectImageFileDetailEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageContentImageFileObjectImageFileDetailEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageContentImageFileObjectImageFileDetailEnumTypeTransformer? _instance;
 }
 

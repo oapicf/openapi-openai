@@ -82,7 +82,7 @@ ModifyThreadRequest_tool_resources_file_search::getVectorStoreIds()
 }
 
 void
-ModifyThreadRequest_tool_resources_file_search::setVectorStoreIds(std::list <std::string> vector_store_ids)
+ModifyThreadRequest_tool_resources_file_search::setVectorStoreIds(std::list<std::string> vector_store_ids)
 {
 	this->vector_store_ids = vector_store_ids;
 }

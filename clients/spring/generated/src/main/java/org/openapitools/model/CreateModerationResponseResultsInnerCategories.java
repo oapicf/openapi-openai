@@ -8,13 +8,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * A list of the categories, and whether they are flagged or not.
@@ -22,7 +22,7 @@ import javax.annotation.Generated;
 
 @Schema(name = "CreateModerationResponse_results_inner_categories", description = "A list of the categories, and whether they are flagged or not.")
 @JsonTypeName("CreateModerationResponse_results_inner_categories")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateModerationResponseResultsInnerCategories {
 
   private Boolean hate;
@@ -90,6 +90,7 @@ public class CreateModerationResponseResultsInnerCategories {
     return hate;
   }
 
+  @JsonProperty("hate")
   public void setHate(Boolean hate) {
     this.hate = hate;
   }
@@ -110,6 +111,7 @@ public class CreateModerationResponseResultsInnerCategories {
     return hateThreatening;
   }
 
+  @JsonProperty("hate/threatening")
   public void setHateThreatening(Boolean hateThreatening) {
     this.hateThreatening = hateThreatening;
   }
@@ -130,6 +132,7 @@ public class CreateModerationResponseResultsInnerCategories {
     return harassment;
   }
 
+  @JsonProperty("harassment")
   public void setHarassment(Boolean harassment) {
     this.harassment = harassment;
   }
@@ -150,6 +153,7 @@ public class CreateModerationResponseResultsInnerCategories {
     return harassmentThreatening;
   }
 
+  @JsonProperty("harassment/threatening")
   public void setHarassmentThreatening(Boolean harassmentThreatening) {
     this.harassmentThreatening = harassmentThreatening;
   }
@@ -170,6 +174,7 @@ public class CreateModerationResponseResultsInnerCategories {
     return illicit;
   }
 
+  @JsonProperty("illicit")
   public void setIllicit(Boolean illicit) {
     this.illicit = illicit;
   }
@@ -190,6 +195,7 @@ public class CreateModerationResponseResultsInnerCategories {
     return illicitViolent;
   }
 
+  @JsonProperty("illicit/violent")
   public void setIllicitViolent(Boolean illicitViolent) {
     this.illicitViolent = illicitViolent;
   }
@@ -210,6 +216,7 @@ public class CreateModerationResponseResultsInnerCategories {
     return selfHarm;
   }
 
+  @JsonProperty("self-harm")
   public void setSelfHarm(Boolean selfHarm) {
     this.selfHarm = selfHarm;
   }
@@ -230,6 +237,7 @@ public class CreateModerationResponseResultsInnerCategories {
     return selfHarmIntent;
   }
 
+  @JsonProperty("self-harm/intent")
   public void setSelfHarmIntent(Boolean selfHarmIntent) {
     this.selfHarmIntent = selfHarmIntent;
   }
@@ -250,6 +258,7 @@ public class CreateModerationResponseResultsInnerCategories {
     return selfHarmInstructions;
   }
 
+  @JsonProperty("self-harm/instructions")
   public void setSelfHarmInstructions(Boolean selfHarmInstructions) {
     this.selfHarmInstructions = selfHarmInstructions;
   }
@@ -270,6 +279,7 @@ public class CreateModerationResponseResultsInnerCategories {
     return sexual;
   }
 
+  @JsonProperty("sexual")
   public void setSexual(Boolean sexual) {
     this.sexual = sexual;
   }
@@ -290,6 +300,7 @@ public class CreateModerationResponseResultsInnerCategories {
     return sexualMinors;
   }
 
+  @JsonProperty("sexual/minors")
   public void setSexualMinors(Boolean sexualMinors) {
     this.sexualMinors = sexualMinors;
   }
@@ -310,6 +321,7 @@ public class CreateModerationResponseResultsInnerCategories {
     return violence;
   }
 
+  @JsonProperty("violence")
   public void setViolence(Boolean violence) {
     this.violence = violence;
   }
@@ -330,6 +342,7 @@ public class CreateModerationResponseResultsInnerCategories {
     return violenceGraphic;
   }
 
+  @JsonProperty("violence/graphic")
   public void setViolenceGraphic(Boolean violenceGraphic) {
     this.violenceGraphic = violenceGraphic;
   }
@@ -388,11 +401,8 @@ public class CreateModerationResponseResultsInnerCategories {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

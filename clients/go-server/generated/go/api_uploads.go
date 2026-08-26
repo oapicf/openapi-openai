@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 	"strings"
 	"os"
@@ -118,6 +119,11 @@ func (c *UploadsAPIController) CreateUpload(w http.ResponseWriter, r *http.Reque
 	d := json.NewDecoder(r.Body)
 	d.DisallowUnknownFields()
 	if err := d.Decode(&createUploadRequestParam); err != nil {
+		var requiredErr *RequiredError
+		if errors.As(err, &requiredErr) {
+			c.errorHandler(w, r, err, nil)
+			return
+		}
 		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
 		return
 	}
@@ -169,6 +175,11 @@ func (c *UploadsAPIController) CompleteUpload(w http.ResponseWriter, r *http.Req
 	d := json.NewDecoder(r.Body)
 	d.DisallowUnknownFields()
 	if err := d.Decode(&completeUploadRequestParam); err != nil {
+		var requiredErr *RequiredError
+		if errors.As(err, &requiredErr) {
+			c.errorHandler(w, r, err, nil)
+			return
+		}
 		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
 		return
 	}
@@ -211,6 +222,7 @@ func (c *UploadsAPIController) AddUploadPart(w http.ResponseWriter, r *http.Requ
 		}
 
 		dataParam = param
+		defer param.Close()
 	}
 	
 	

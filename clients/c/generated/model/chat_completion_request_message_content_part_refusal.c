@@ -30,10 +30,10 @@ static chat_completion_request_message_content_part_refusal_t *chat_completion_r
     if (!chat_completion_request_message_content_part_refusal_local_var) {
         return NULL;
     }
+    memset(chat_completion_request_message_content_part_refusal_local_var, 0, sizeof(chat_completion_request_message_content_part_refusal_t));
+    chat_completion_request_message_content_part_refusal_local_var->_library_owned = 1;
     chat_completion_request_message_content_part_refusal_local_var->type = type;
     chat_completion_request_message_content_part_refusal_local_var->refusal = refusal;
-
-    chat_completion_request_message_content_part_refusal_local_var->_library_owned = 1;
     return chat_completion_request_message_content_part_refusal_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) chat_completion_request_message_content_part_refusal
     openai_api_chat_completion_request_message_content_part_refusal_TYPE_e type,
     char *refusal
     ) {
-    return chat_completion_request_message_content_part_refusal_create_internal (
+    chat_completion_request_message_content_part_refusal_t *result = chat_completion_request_message_content_part_refusal_create_internal (
         type,
         refusal
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_request_message_content_part_refusal_free(chat_completion_request_message_content_part_refusal_t *chat_completion_request_message_content_part_refusal) {
@@ -96,6 +99,8 @@ chat_completion_request_message_content_part_refusal_t *chat_completion_request_
 
     chat_completion_request_message_content_part_refusal_t *chat_completion_request_message_content_part_refusal_local_var = NULL;
 
+    char *refusal_local_str = NULL;
+
     // chat_completion_request_message_content_part_refusal->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(chat_completion_request_message_content_part_refusalJSON, "type");
     if (cJSON_IsNull(type)) {
@@ -129,13 +134,23 @@ chat_completion_request_message_content_part_refusal_t *chat_completion_request_
     }
 
 
+    if (refusal && !cJSON_IsNull(refusal)) refusal_local_str = strdup(refusal->valuestring);
+
     chat_completion_request_message_content_part_refusal_local_var = chat_completion_request_message_content_part_refusal_create_internal (
         typeVariable,
-        strdup(refusal->valuestring)
+        refusal_local_str
         );
+
+    if (!chat_completion_request_message_content_part_refusal_local_var) {
+        goto end;
+    }
 
     return chat_completion_request_message_content_part_refusal_local_var;
 end:
+    if (refusal_local_str) {
+        free(refusal_local_str);
+        refusal_local_str = NULL;
+    }
     return NULL;
 
 }

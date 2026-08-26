@@ -5,7 +5,7 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
-from openapi_server.models.auto_chunking_strategy import AutoChunkingStrategy
+from openapi_server.models.auto_chunking_strategy_request_param import AutoChunkingStrategyRequestParam
 from openapi_server.models.static_chunking_strategy import StaticChunkingStrategy
 from openapi_server.models.static_chunking_strategy_static import StaticChunkingStrategyStatic
 from openapi_server import util

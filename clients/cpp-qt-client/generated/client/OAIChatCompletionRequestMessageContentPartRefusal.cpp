@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIChatCompletionRequestMessageContentPartRefusal::OAIChatCompletionRequestMessageContentPartRefusal(QString json) {
+OAIChatCompletionRequestMessageContentPartRefusal::OAIChatCompletionRequestMessageContentPartRefusal(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIChatCompletionRequestMessageContentPartRefusal::initializeModel() {
     m_refusal_isValid = false;
 }
 
-void OAIChatCompletionRequestMessageContentPartRefusal::fromJson(QString jsonString) {
+void OAIChatCompletionRequestMessageContentPartRefusal::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

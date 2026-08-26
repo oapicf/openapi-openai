@@ -33,7 +33,7 @@ class  CreateSpeechRequest
 {
 public:
     CreateSpeechRequest();
-    virtual ~CreateSpeechRequest() = default;
+    virtual ~CreateSpeechRequest();
 
 
     /// <summary>

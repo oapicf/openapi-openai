@@ -148,19 +148,19 @@ function Initialize-CreateModerationResponseResultsInnerCategories {
 
 
         $PSO = [PSCustomObject]@{
-            "hate" = ${Hate}
-            "hate/threatening" = ${HateThreatening}
-            "harassment" = ${Harassment}
-            "harassment/threatening" = ${HarassmentThreatening}
-            "illicit" = ${Illicit}
-            "illicit/violent" = ${IllicitViolent}
-            "self-harm" = ${SelfHarm}
-            "self-harm/intent" = ${SelfHarmIntent}
-            "self-harm/instructions" = ${SelfHarmInstructions}
-            "sexual" = ${Sexual}
-            "sexual/minors" = ${SexualMinors}
-            "violence" = ${Violence}
-            "violence/graphic" = ${ViolenceGraphic}
+            'hate' = ${Hate}
+            'hate/threatening' = ${HateThreatening}
+            'harassment' = ${Harassment}
+            'harassment/threatening' = ${HarassmentThreatening}
+            'illicit' = ${Illicit}
+            'illicit/violent' = ${IllicitViolent}
+            'self-harm' = ${SelfHarm}
+            'self-harm/intent' = ${SelfHarmIntent}
+            'self-harm/instructions' = ${SelfHarmInstructions}
+            'sexual' = ${Sexual}
+            'sexual/minors' = ${SexualMinors}
+            'violence' = ${Violence}
+            'violence/graphic' = ${ViolenceGraphic}
         }
 
 
@@ -198,7 +198,7 @@ function ConvertFrom-JsonToCreateModerationResponseResultsInnerCategories {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateModerationResponseResultsInnerCategories
-        $AllProperties = ("hate", "hate/threatening", "harassment", "harassment/threatening", "illicit", "illicit/violent", "self-harm", "self-harm/intent", "self-harm/instructions", "sexual", "sexual/minors", "violence", "violence/graphic")
+        $AllProperties = ('hate', 'hate/threatening', 'harassment', 'harassment/threatening', 'illicit', 'illicit/violent', 'self-harm', 'self-harm/intent', 'self-harm/instructions', 'sexual', 'sexual/minors', 'violence', 'violence/graphic')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -209,98 +209,98 @@ function ConvertFrom-JsonToCreateModerationResponseResultsInnerCategories {
             throw "Error! Empty JSON cannot be serialized due to the required property 'hate' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hate"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'hate'))) {
             throw "Error! JSON cannot be serialized due to the required property 'hate' missing."
         } else {
-            $Hate = $JsonParameters.PSobject.Properties["hate"].value
+            $Hate = $JsonParameters.PSobject.Properties['hate'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hate/threatening"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'hate/threatening'))) {
             throw "Error! JSON cannot be serialized due to the required property 'hate/threatening' missing."
         } else {
-            $HateThreatening = $JsonParameters.PSobject.Properties["hate/threatening"].value
+            $HateThreatening = $JsonParameters.PSobject.Properties['hate/threatening'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "harassment"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'harassment'))) {
             throw "Error! JSON cannot be serialized due to the required property 'harassment' missing."
         } else {
-            $Harassment = $JsonParameters.PSobject.Properties["harassment"].value
+            $Harassment = $JsonParameters.PSobject.Properties['harassment'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "harassment/threatening"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'harassment/threatening'))) {
             throw "Error! JSON cannot be serialized due to the required property 'harassment/threatening' missing."
         } else {
-            $HarassmentThreatening = $JsonParameters.PSobject.Properties["harassment/threatening"].value
+            $HarassmentThreatening = $JsonParameters.PSobject.Properties['harassment/threatening'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "illicit"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'illicit'))) {
             throw "Error! JSON cannot be serialized due to the required property 'illicit' missing."
         } else {
-            $Illicit = $JsonParameters.PSobject.Properties["illicit"].value
+            $Illicit = $JsonParameters.PSobject.Properties['illicit'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "illicit/violent"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'illicit/violent'))) {
             throw "Error! JSON cannot be serialized due to the required property 'illicit/violent' missing."
         } else {
-            $IllicitViolent = $JsonParameters.PSobject.Properties["illicit/violent"].value
+            $IllicitViolent = $JsonParameters.PSobject.Properties['illicit/violent'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "self-harm"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'self-harm'))) {
             throw "Error! JSON cannot be serialized due to the required property 'self-harm' missing."
         } else {
-            $SelfHarm = $JsonParameters.PSobject.Properties["self-harm"].value
+            $SelfHarm = $JsonParameters.PSobject.Properties['self-harm'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "self-harm/intent"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'self-harm/intent'))) {
             throw "Error! JSON cannot be serialized due to the required property 'self-harm/intent' missing."
         } else {
-            $SelfHarmIntent = $JsonParameters.PSobject.Properties["self-harm/intent"].value
+            $SelfHarmIntent = $JsonParameters.PSobject.Properties['self-harm/intent'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "self-harm/instructions"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'self-harm/instructions'))) {
             throw "Error! JSON cannot be serialized due to the required property 'self-harm/instructions' missing."
         } else {
-            $SelfHarmInstructions = $JsonParameters.PSobject.Properties["self-harm/instructions"].value
+            $SelfHarmInstructions = $JsonParameters.PSobject.Properties['self-harm/instructions'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sexual"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'sexual'))) {
             throw "Error! JSON cannot be serialized due to the required property 'sexual' missing."
         } else {
-            $Sexual = $JsonParameters.PSobject.Properties["sexual"].value
+            $Sexual = $JsonParameters.PSobject.Properties['sexual'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sexual/minors"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'sexual/minors'))) {
             throw "Error! JSON cannot be serialized due to the required property 'sexual/minors' missing."
         } else {
-            $SexualMinors = $JsonParameters.PSobject.Properties["sexual/minors"].value
+            $SexualMinors = $JsonParameters.PSobject.Properties['sexual/minors'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "violence"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'violence'))) {
             throw "Error! JSON cannot be serialized due to the required property 'violence' missing."
         } else {
-            $Violence = $JsonParameters.PSobject.Properties["violence"].value
+            $Violence = $JsonParameters.PSobject.Properties['violence'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "violence/graphic"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'violence/graphic'))) {
             throw "Error! JSON cannot be serialized due to the required property 'violence/graphic' missing."
         } else {
-            $ViolenceGraphic = $JsonParameters.PSobject.Properties["violence/graphic"].value
+            $ViolenceGraphic = $JsonParameters.PSobject.Properties['violence/graphic'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "hate" = ${Hate}
-            "hate/threatening" = ${HateThreatening}
-            "harassment" = ${Harassment}
-            "harassment/threatening" = ${HarassmentThreatening}
-            "illicit" = ${Illicit}
-            "illicit/violent" = ${IllicitViolent}
-            "self-harm" = ${SelfHarm}
-            "self-harm/intent" = ${SelfHarmIntent}
-            "self-harm/instructions" = ${SelfHarmInstructions}
-            "sexual" = ${Sexual}
-            "sexual/minors" = ${SexualMinors}
-            "violence" = ${Violence}
-            "violence/graphic" = ${ViolenceGraphic}
+            'hate' = ${Hate}
+            'hate/threatening' = ${HateThreatening}
+            'harassment' = ${Harassment}
+            'harassment/threatening' = ${HarassmentThreatening}
+            'illicit' = ${Illicit}
+            'illicit/violent' = ${IllicitViolent}
+            'self-harm' = ${SelfHarm}
+            'self-harm/intent' = ${SelfHarmIntent}
+            'self-harm/instructions' = ${SelfHarmInstructions}
+            'sexual' = ${Sexual}
+            'sexual/minors' = ${SexualMinors}
+            'violence' = ${Violence}
+            'violence/graphic' = ${ViolenceGraphic}
         }
 
         return $PSO

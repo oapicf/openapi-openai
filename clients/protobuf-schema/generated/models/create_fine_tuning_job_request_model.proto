@@ -22,7 +22,7 @@ message CreateFineTuningJobRequestModel {
   enum Any_of_1 {
   }
 
-  Any_of_1 string = 355114992;
+  string string = 355114992;
 
 }
 

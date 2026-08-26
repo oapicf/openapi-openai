@@ -132,9 +132,32 @@ VectorStoreFileBatchObject <- R6::R6Class(
       }
       if (!is.null(self$`file_counts`)) {
         VectorStoreFileBatchObjectObject[["file_counts"]] <-
-          self$`file_counts`$toSimpleType()
+          self$extractSimpleType(self$`file_counts`)
       }
       return(VectorStoreFileBatchObjectObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

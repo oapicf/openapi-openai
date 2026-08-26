@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIRealtimeServerEventResponseAudioTranscriptDelta : public OAIObject {
 public:
     OAIRealtimeServerEventResponseAudioTranscriptDelta();
-    OAIRealtimeServerEventResponseAudioTranscriptDelta(QString json);
+    OAIRealtimeServerEventResponseAudioTranscriptDelta(const QString &json);
     ~OAIRealtimeServerEventResponseAudioTranscriptDelta() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getEventId() const;
     void setEventId(const QString &event_id);

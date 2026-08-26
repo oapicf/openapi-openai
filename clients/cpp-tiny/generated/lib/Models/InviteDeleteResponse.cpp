@@ -106,7 +106,7 @@ InviteDeleteResponse::getObject()
 }
 
 void
-InviteDeleteResponse::setObject(std::string  object)
+InviteDeleteResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -118,7 +118,7 @@ InviteDeleteResponse::getId()
 }
 
 void
-InviteDeleteResponse::setId(std::string  id)
+InviteDeleteResponse::setId(std::string id)
 {
 	this->id = id;
 }
@@ -130,7 +130,7 @@ InviteDeleteResponse::isDeleted()
 }
 
 void
-InviteDeleteResponse::setDeleted(bool  deleted)
+InviteDeleteResponse::setDeleted(bool deleted)
 {
 	this->deleted = deleted;
 }

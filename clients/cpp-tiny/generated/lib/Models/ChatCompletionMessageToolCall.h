@@ -52,21 +52,21 @@ public:
 
 	/*! \brief Set The ID of the tool call.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The type of the tool. Currently, only `function` is supported.
 	 */
 	std::string getType();
 
 	/*! \brief Set The type of the tool. Currently, only `function` is supported.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	ChatCompletionMessageToolCall_function getFunction();
 
 	/*! \brief Set 
 	 */
-	void setFunction(ChatCompletionMessageToolCall_function  function);
+	void setFunction(ChatCompletionMessageToolCall_function function);
 
 
     private:

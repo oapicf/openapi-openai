@@ -7,12 +7,14 @@
 
 type CreateFineTuningJobRequestIntegrationsInner {
 
+  # The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. 
   type: Type
 
   wandb: CreateFineTuningJobRequestIntegrationsInnerWandb
 
 }
 
+# The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. 
 enum Type {
   wandb
 }

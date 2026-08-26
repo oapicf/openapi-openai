@@ -1,4 +1,4 @@
-# # CreateModerationRequestModel
+# CreateModerationRequestModel
 
 ## Properties
 

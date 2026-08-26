@@ -28,7 +28,7 @@ openai_api_upload_part_OBJECT_e upload_part_object_FromString(char* object);
 
 typedef struct upload_part_t {
     char *id; // string
-    int created_at; //numeric
+    int *created_at; //numeric
     char *upload_id; // string
     openai_api_upload_part_OBJECT_e object; //enum
 
@@ -37,7 +37,7 @@ typedef struct upload_part_t {
 
 __attribute__((deprecated)) upload_part_t *upload_part_create(
     char *id,
-    int created_at,
+    int *created_at,
     char *upload_id,
     openai_api_upload_part_OBJECT_e object
 );

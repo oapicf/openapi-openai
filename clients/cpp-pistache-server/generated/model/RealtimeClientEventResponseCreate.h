@@ -33,7 +33,7 @@ class  RealtimeClientEventResponseCreate
 {
 public:
     RealtimeClientEventResponseCreate();
-    virtual ~RealtimeClientEventResponseCreate() = default;
+    virtual ~RealtimeClientEventResponseCreate();
 
 
     /// <summary>

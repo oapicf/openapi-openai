@@ -1,4 +1,4 @@
-# # ChatCompletionRequestMessageContentPartImage
+# ChatCompletionRequestMessageContentPartImage
 
 ## Properties
 

@@ -24,7 +24,8 @@ type AuditLogProject struct {
 	Name string `json:"name,omitempty"`
 }
 
-// AssertAuditLogProjectRequired checks if the required fields are not zero-ed
+// AssertAuditLogProjectRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertAuditLogProjectRequired(obj AuditLogProject) error {
 	return nil
 }

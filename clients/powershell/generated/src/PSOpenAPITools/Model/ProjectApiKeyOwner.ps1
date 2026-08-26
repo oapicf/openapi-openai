@@ -47,9 +47,9 @@ function Initialize-ProjectApiKeyOwner {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "user" = ${User}
-            "service_account" = ${ServiceAccount}
+            'type' = ${Type}
+            'user' = ${User}
+            'service_account' = ${ServiceAccount}
         }
 
 
@@ -87,35 +87,35 @@ function ConvertFrom-JsonToProjectApiKeyOwner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ProjectApiKeyOwner
-        $AllProperties = ("type", "user", "service_account")
+        $AllProperties = ('type', 'user', 'service_account')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) { #optional property not found
             $Type = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'user'))) { #optional property not found
             $User = $null
         } else {
-            $User = $JsonParameters.PSobject.Properties["user"].value
+            $User = $JsonParameters.PSobject.Properties['user'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "service_account"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'service_account'))) { #optional property not found
             $ServiceAccount = $null
         } else {
-            $ServiceAccount = $JsonParameters.PSobject.Properties["service_account"].value
+            $ServiceAccount = $JsonParameters.PSobject.Properties['service_account'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "user" = ${User}
-            "service_account" = ${ServiceAccount}
+            'type' = ${Type}
+            'user' = ${User}
+            'service_account' = ${ServiceAccount}
         }
 
         return $PSO

@@ -65,10 +65,10 @@ function Initialize-CreateBatchRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "input_file_id" = ${InputFileId}
-            "endpoint" = ${Endpoint}
-            "completion_window" = ${CompletionWindow}
-            "metadata" = ${Metadata}
+            'input_file_id' = ${InputFileId}
+            'endpoint' = ${Endpoint}
+            'completion_window' = ${CompletionWindow}
+            'metadata' = ${Metadata}
         }
 
 
@@ -106,7 +106,7 @@ function ConvertFrom-JsonToCreateBatchRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateBatchRequest
-        $AllProperties = ("input_file_id", "endpoint", "completion_window", "metadata")
+        $AllProperties = ('input_file_id', 'endpoint', 'completion_window', 'metadata')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -117,35 +117,35 @@ function ConvertFrom-JsonToCreateBatchRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'input_file_id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "input_file_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'input_file_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'input_file_id' missing."
         } else {
-            $InputFileId = $JsonParameters.PSobject.Properties["input_file_id"].value
+            $InputFileId = $JsonParameters.PSobject.Properties['input_file_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "endpoint"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'endpoint'))) {
             throw "Error! JSON cannot be serialized due to the required property 'endpoint' missing."
         } else {
-            $Endpoint = $JsonParameters.PSobject.Properties["endpoint"].value
+            $Endpoint = $JsonParameters.PSobject.Properties['endpoint'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "completion_window"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'completion_window'))) {
             throw "Error! JSON cannot be serialized due to the required property 'completion_window' missing."
         } else {
-            $CompletionWindow = $JsonParameters.PSobject.Properties["completion_window"].value
+            $CompletionWindow = $JsonParameters.PSobject.Properties['completion_window'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) { #optional property not found
             $Metadata = $null
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "input_file_id" = ${InputFileId}
-            "endpoint" = ${Endpoint}
-            "completion_window" = ${CompletionWindow}
-            "metadata" = ${Metadata}
+            'input_file_id' = ${InputFileId}
+            'endpoint' = ${Endpoint}
+            'completion_window' = ${CompletionWindow}
+            'metadata' = ${Metadata}
         }
 
         return $PSO

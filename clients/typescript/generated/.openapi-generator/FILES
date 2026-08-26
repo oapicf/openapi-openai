@@ -1,6 +1,5 @@
 .gitattributes
 .gitignore
-.openapi-generator-ignore
 README.md
 apis/AssistantsApi.ts
 apis/AudioApi.ts
@@ -111,7 +110,6 @@ models/AuditLogUserAddedData.ts
 models/AuditLogUserDeleted.ts
 models/AuditLogUserUpdated.ts
 models/AuditLogUserUpdatedChangesRequested.ts
-models/AutoChunkingStrategy.ts
 models/AutoChunkingStrategyRequestParam.ts
 models/Batch.ts
 models/BatchErrors.ts
@@ -522,7 +520,6 @@ models/RunToolCallObject.ts
 models/RunToolCallObjectFunction.ts
 models/StaticChunkingStrategy.ts
 models/StaticChunkingStrategyRequestParam.ts
-models/StaticChunkingStrategyResponseParam.ts
 models/StaticChunkingStrategyStatic.ts
 models/SubmitToolOutputsRunRequest.ts
 models/SubmitToolOutputsRunRequestToolOutputsInner.ts

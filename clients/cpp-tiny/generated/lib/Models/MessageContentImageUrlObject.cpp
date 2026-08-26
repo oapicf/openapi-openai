@@ -86,7 +86,7 @@ MessageContentImageUrlObject::getType()
 }
 
 void
-MessageContentImageUrlObject::setType(std::string  type)
+MessageContentImageUrlObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ MessageContentImageUrlObject::getImageUrl()
 }
 
 void
-MessageContentImageUrlObject::setImageUrl(MessageContentImageUrlObject_image_url  image_url)
+MessageContentImageUrlObject::setImageUrl(MessageContentImageUrlObject_image_url image_url)
 {
 	this->image_url = image_url;
 }

@@ -32,10 +32,8 @@ import org.openapitools.server.models.CreateTranscriptionRequestModel
 import org.openapitools.server.models.CreateTranslation200Response
 
 fun Route.AudioApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createSpeech> {
+    post<Paths.createSpeech> { createSpeech ->
         
         val principal = null!!
         
@@ -44,9 +42,8 @@ fun Route.AudioApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createTranscription> {
+    post<Paths.createTranscription> { createTranscription ->
         
         val principal = null!!
         
@@ -64,9 +61,8 @@ fun Route.AudioApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createTranslation> {
+    post<Paths.createTranslation> { createTranslation ->
         
         val principal = null!!
         
@@ -84,5 +80,4 @@ fun Route.AudioApi() {
         
     }
     }
-
 }

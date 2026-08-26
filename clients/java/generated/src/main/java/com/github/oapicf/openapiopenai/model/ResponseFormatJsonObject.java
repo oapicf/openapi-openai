@@ -48,7 +48,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * ResponseFormatJsonObject
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ResponseFormatJsonObject {
   /**
    * The type of response format being defined: &#x60;json_object&#x60;
@@ -159,10 +159,7 @@ public class ResponseFormatJsonObject {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 

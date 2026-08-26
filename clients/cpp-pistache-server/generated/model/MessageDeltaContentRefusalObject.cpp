@@ -28,6 +28,8 @@ MessageDeltaContentRefusalObject::MessageDeltaContentRefusalObject()
     
 }
 
+MessageDeltaContentRefusalObject::~MessageDeltaContentRefusalObject() = default;
+
 void MessageDeltaContentRefusalObject::validate() const
 {
     std::stringstream msg;

@@ -79,10 +79,12 @@ class ListFineTuningJobCheckpointsResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ListFineTuningJobCheckpointsResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ListFineTuningJobCheckpointsResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'data'), 'Required key "ListFineTuningJobCheckpointsResponse[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "ListFineTuningJobCheckpointsResponse[data]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "ListFineTuningJobCheckpointsResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "ListFineTuningJobCheckpointsResponse[object]" has a null value in JSON.');
+        assert(json.containsKey(r'has_more'), 'Required key "ListFineTuningJobCheckpointsResponse[has_more]" is missing from JSON.');
+        assert(json[r'has_more'] != null, 'Required key "ListFineTuningJobCheckpointsResponse[has_more]" has a null value in JSON.');
         return true;
       }());
 
@@ -146,27 +148,28 @@ class ListFineTuningJobCheckpointsResponse {
 }
 
 
-class ListFineTuningJobCheckpointsResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ListFineTuningJobCheckpointsResponseObjectEnum._(this.value);
+enum ListFineTuningJobCheckpointsResponseObjectEnum {
+  list._(r'list'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ListFineTuningJobCheckpointsResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const list = ListFineTuningJobCheckpointsResponseObjectEnum._(r'list');
-
-  /// List of all possible values in this [enum][ListFineTuningJobCheckpointsResponseObjectEnum].
-  static const values = <ListFineTuningJobCheckpointsResponseObjectEnum>[
-    list,
-  ];
-
+  /// Returns the instance of [ListFineTuningJobCheckpointsResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ListFineTuningJobCheckpointsResponseObjectEnum? fromJson(dynamic value) => ListFineTuningJobCheckpointsResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ListFineTuningJobCheckpointsResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ListFineTuningJobCheckpointsResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ListFineTuningJobCheckpointsResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -188,9 +191,10 @@ class ListFineTuningJobCheckpointsResponseObjectEnumTypeTransformer {
 
   const ListFineTuningJobCheckpointsResponseObjectEnumTypeTransformer._();
 
-  String encode(ListFineTuningJobCheckpointsResponseObjectEnum data) => data.value;
+  String encode(ListFineTuningJobCheckpointsResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ListFineTuningJobCheckpointsResponseObjectEnum.
+  /// Returns the instance of [ListFineTuningJobCheckpointsResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -199,6 +203,9 @@ class ListFineTuningJobCheckpointsResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ListFineTuningJobCheckpointsResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ListFineTuningJobCheckpointsResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'list': return ListFineTuningJobCheckpointsResponseObjectEnum.list;
@@ -211,7 +218,7 @@ class ListFineTuningJobCheckpointsResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ListFineTuningJobCheckpointsResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ListFineTuningJobCheckpointsResponseObjectEnumTypeTransformer? _instance;
 }
 

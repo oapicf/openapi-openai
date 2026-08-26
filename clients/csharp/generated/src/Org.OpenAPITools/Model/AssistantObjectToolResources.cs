@@ -57,7 +57,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets CodeInterpreter
         /// </summary>
         [JsonPropertyName("code_interpreter")]
-        public AssistantObjectToolResourcesCodeInterpreter? CodeInterpreter { get { return this.CodeInterpreterOption; } set { this.CodeInterpreterOption = new(value); } }
+        public AssistantObjectToolResourcesCodeInterpreter? CodeInterpreter { get { return this.CodeInterpreterOption.Value; } set { this.CodeInterpreterOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FileSearch
@@ -70,7 +70,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets FileSearch
         /// </summary>
         [JsonPropertyName("file_search")]
-        public AssistantObjectToolResourcesFileSearch? FileSearch { get { return this.FileSearchOption; } set { this.FileSearchOption = new(value); } }
+        public AssistantObjectToolResourcesFileSearch? FileSearch { get { return this.FileSearchOption.Value; } set { this.FileSearchOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AssistantObjectToolResources" />
     /// </summary>
-    public class AssistantObjectToolResourcesJsonConverter : JsonConverter<AssistantObjectToolResources>
+    public partial class AssistantObjectToolResourcesJsonConverter : JsonConverter<AssistantObjectToolResources>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssistantObjectToolResourcesJsonConverter" /> class.
+        /// </summary>
+        public AssistantObjectToolResourcesJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AssistantObjectToolResources" />
         /// </summary>

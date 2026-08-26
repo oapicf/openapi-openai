@@ -51,7 +51,7 @@ class BatchRequestInput
      * @var string|null
      * @SerializedName("custom_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $customId = null;
 
@@ -61,7 +61,7 @@ class BatchRequestInput
      * @var string|null
      * @SerializedName("method")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['POST'])]
     #[Assert\Type("string")]
     protected ?string $method = null;
@@ -72,7 +72,7 @@ class BatchRequestInput
      * @var string|null
      * @SerializedName("url")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $url = null;
 
@@ -100,12 +100,12 @@ class BatchRequestInput
     }
 
     /**
-    * Sets customId.
-    *
-    * @param string|null $customId  A developer-provided per-request id that will be used to match outputs to inputs. Must be unique for each request in a batch.
-    *
-    * @return $this
-    */
+     * Sets customId.
+     *
+     * @param string|null $customId  A developer-provided per-request id that will be used to match outputs to inputs. Must be unique for each request in a batch.
+     *
+     * @return $this
+     */
     public function setCustomId(?string $customId = null): self
     {
         $this->customId = $customId;
@@ -127,12 +127,12 @@ class BatchRequestInput
     }
 
     /**
-    * Sets method.
-    *
-    * @param string|null $method  The HTTP method to be used for the request. Currently only `POST` is supported.
-    *
-    * @return $this
-    */
+     * Sets method.
+     *
+     * @param string|null $method  The HTTP method to be used for the request. Currently only `POST` is supported.
+     *
+     * @return $this
+     */
     public function setMethod(?string $method = null): self
     {
         $this->method = $method;
@@ -154,12 +154,12 @@ class BatchRequestInput
     }
 
     /**
-    * Sets url.
-    *
-    * @param string|null $url  The OpenAI API relative URL to be used for the request. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported.
-    *
-    * @return $this
-    */
+     * Sets url.
+     *
+     * @param string|null $url  The OpenAI API relative URL to be used for the request. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported.
+     *
+     * @return $this
+     */
     public function setUrl(?string $url = null): self
     {
         $this->url = $url;

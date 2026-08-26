@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIAssistantsNamedToolChoice::OAIAssistantsNamedToolChoice(QString json) {
+OAIAssistantsNamedToolChoice::OAIAssistantsNamedToolChoice(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIAssistantsNamedToolChoice::initializeModel() {
     m_function_isValid = false;
 }
 
-void OAIAssistantsNamedToolChoice::fromJson(QString jsonString) {
+void OAIAssistantsNamedToolChoice::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -130,7 +130,7 @@ CreateModerationResponse_results_inner::isFlagged()
 }
 
 void
-CreateModerationResponse_results_inner::setFlagged(bool  flagged)
+CreateModerationResponse_results_inner::setFlagged(bool flagged)
 {
 	this->flagged = flagged;
 }
@@ -142,7 +142,7 @@ CreateModerationResponse_results_inner::getCategories()
 }
 
 void
-CreateModerationResponse_results_inner::setCategories(CreateModerationResponse_results_inner_categories  categories)
+CreateModerationResponse_results_inner::setCategories(CreateModerationResponse_results_inner_categories categories)
 {
 	this->categories = categories;
 }
@@ -154,7 +154,7 @@ CreateModerationResponse_results_inner::getCategoryScores()
 }
 
 void
-CreateModerationResponse_results_inner::setCategoryScores(CreateModerationResponse_results_inner_category_scores  category_scores)
+CreateModerationResponse_results_inner::setCategoryScores(CreateModerationResponse_results_inner_category_scores category_scores)
 {
 	this->category_scores = category_scores;
 }
@@ -166,7 +166,7 @@ CreateModerationResponse_results_inner::getCategoryAppliedInputTypes()
 }
 
 void
-CreateModerationResponse_results_inner::setCategoryAppliedInputTypes(CreateModerationResponse_results_inner_category_applied_input_types  category_applied_input_types)
+CreateModerationResponse_results_inner::setCategoryAppliedInputTypes(CreateModerationResponse_results_inner_category_applied_input_types category_applied_input_types)
 {
 	this->category_applied_input_types = category_applied_input_types;
 }

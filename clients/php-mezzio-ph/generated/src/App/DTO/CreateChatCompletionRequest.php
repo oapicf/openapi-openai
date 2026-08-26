@@ -124,6 +124,7 @@ class CreateChatCompletionRequest
     public $modalities;
 
     /**
+     * Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content.
      * @DTA\Data(field="prediction", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\PredictionContent::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\PredictionContent::class})

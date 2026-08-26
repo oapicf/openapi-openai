@@ -29,7 +29,7 @@ openai_api_create_upload_request_PURPOSE_e create_upload_request_purpose_FromStr
 typedef struct create_upload_request_t {
     char *filename; // string
     openai_api_create_upload_request_PURPOSE_e purpose; //enum
-    int bytes; //numeric
+    int *bytes; //numeric
     char *mime_type; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -38,7 +38,7 @@ typedef struct create_upload_request_t {
 __attribute__((deprecated)) create_upload_request_t *create_upload_request_create(
     char *filename,
     openai_api_create_upload_request_PURPOSE_e purpose,
-    int bytes,
+    int *bytes,
     char *mime_type
 );
 

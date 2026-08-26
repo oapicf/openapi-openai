@@ -42,7 +42,7 @@ export interface VectorStoreObject {
     id: string;
     /**
      * The object type, which is always `vector_store`.
-     * @type {string}
+     * @type {VectorStoreObjectObjectEnum}
      * @memberof VectorStoreObject
      */
     object: VectorStoreObjectObjectEnum;
@@ -72,7 +72,7 @@ export interface VectorStoreObject {
     fileCounts: VectorStoreObjectFileCounts;
     /**
      * The status of the vector store, which can be either `expired`, `in_progress`, or `completed`. A status of `completed` indicates that the vector store is ready for use.
-     * @type {string}
+     * @type {VectorStoreObjectStatusEnum}
      * @memberof VectorStoreObject
      */
     status: VectorStoreObjectStatusEnum;
@@ -129,12 +129,14 @@ export type VectorStoreObjectStatusEnum = typeof VectorStoreObjectStatusEnum[key
 export function instanceOfVectorStoreObject(value: object): value is VectorStoreObject {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (value['object'] !== 'vector_store') return false;
+    
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('usageBytes' in value) || value['usageBytes'] === undefined) return false;
-    if (!('fileCounts' in value) || value['fileCounts'] === undefined) return false;
+    if ((!('usageBytes' in (value as Record<string, any>)) && !('usage_bytes' in (value as Record<string, any>))) || ((value as Record<string, any>)['usageBytes'] === undefined && (value as Record<string, any>)['usage_bytes'] === undefined)) return false;
+    if ((!('fileCounts' in (value as Record<string, any>)) && !('file_counts' in (value as Record<string, any>))) || ((value as Record<string, any>)['fileCounts'] === undefined && (value as Record<string, any>)['file_counts'] === undefined)) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('lastActiveAt' in value) || value['lastActiveAt'] === undefined) return false;
+    if ((!('lastActiveAt' in (value as Record<string, any>)) && !('last_active_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['lastActiveAt'] === undefined && (value as Record<string, any>)['last_active_at'] === undefined)) return false;
     if (!('metadata' in value) || value['metadata'] === undefined) return false;
     return true;
 }
@@ -157,7 +159,7 @@ export function VectorStoreObjectFromJSONTyped(json: any, ignoreDiscriminator: b
         'fileCounts': VectorStoreObjectFileCountsFromJSON(json['file_counts']),
         'status': json['status'],
         'expiresAfter': json['expires_after'] == null ? undefined : VectorStoreExpirationAfterFromJSON(json['expires_after']),
-        'expiresAt': json['expires_at'] == null ? undefined : json['expires_at'],
+        'expiresAt': json['expires_at'] === undefined ? undefined : json['expires_at'] === null ? null : json['expires_at'],
         'lastActiveAt': json['last_active_at'],
         'metadata': json['metadata'],
     };

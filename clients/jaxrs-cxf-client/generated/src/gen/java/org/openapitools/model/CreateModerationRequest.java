@@ -16,7 +16,7 @@ public class CreateModerationRequest  {
 
   @ApiModelProperty(value = "")
 
-  private CreateModerationRequestModel model = omni-moderation-latest;
+  private CreateModerationRequestModel model;
  /**
    * Get input
    * @return input
@@ -87,10 +87,7 @@ public class CreateModerationRequest  {
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

@@ -18,24 +18,24 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from openapiopenai.models.auto_chunking_strategy import AutoChunkingStrategy
+from openapiopenai.models.auto_chunking_strategy_request_param import AutoChunkingStrategyRequestParam
 from openapiopenai.models.static_chunking_strategy import StaticChunkingStrategy
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-CREATEASSISTANTREQUESTTOOLRESOURCESFILESEARCHVECTORSTORESINNERCHUNKINGSTRATEGY_ONE_OF_SCHEMAS = ["AutoChunkingStrategy", "StaticChunkingStrategy"]
+CREATEASSISTANTREQUESTTOOLRESOURCESFILESEARCHVECTORSTORESINNERCHUNKINGSTRATEGY_ONE_OF_SCHEMAS = ["AutoChunkingStrategyRequestParam", "StaticChunkingStrategy"]
 
 class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy(BaseModel):
     """
     The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.
     """
-    # data type: AutoChunkingStrategy
-    oneof_schema_1_validator: Optional[AutoChunkingStrategy] = None
+    # data type: AutoChunkingStrategyRequestParam
+    oneof_schema_1_validator: Optional[AutoChunkingStrategyRequestParam] = None
     # data type: StaticChunkingStrategy
     oneof_schema_2_validator: Optional[StaticChunkingStrategy] = None
-    actual_instance: Optional[Union[AutoChunkingStrategy, StaticChunkingStrategy]] = None
-    one_of_schemas: Set[str] = { "AutoChunkingStrategy", "StaticChunkingStrategy" }
+    actual_instance: Optional[Union[AutoChunkingStrategyRequestParam, StaticChunkingStrategy]] = None
+    one_of_schemas: Set[str] = { "AutoChunkingStrategyRequestParam", "StaticChunkingStrategy" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -58,9 +58,9 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
         instance = CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy.model_construct()
         error_messages = []
         match = 0
-        # validate data type: AutoChunkingStrategy
-        if not isinstance(v, AutoChunkingStrategy):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `AutoChunkingStrategy`")
+        # validate data type: AutoChunkingStrategyRequestParam
+        if not isinstance(v, AutoChunkingStrategyRequestParam):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `AutoChunkingStrategyRequestParam`")
         else:
             match += 1
         # validate data type: StaticChunkingStrategy
@@ -70,10 +70,10 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy with oneOf schemas: AutoChunkingStrategy, StaticChunkingStrategy. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy with oneOf schemas: AutoChunkingStrategyRequestParam, StaticChunkingStrategy. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy with oneOf schemas: AutoChunkingStrategy, StaticChunkingStrategy. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy with oneOf schemas: AutoChunkingStrategyRequestParam, StaticChunkingStrategy. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -88,9 +88,9 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
         error_messages = []
         match = 0
 
-        # deserialize data into AutoChunkingStrategy
+        # deserialize data into AutoChunkingStrategyRequestParam
         try:
-            instance.actual_instance = AutoChunkingStrategy.from_json(json_str)
+            instance.actual_instance = AutoChunkingStrategyRequestParam.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
@@ -103,10 +103,10 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy with oneOf schemas: AutoChunkingStrategy, StaticChunkingStrategy. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy with oneOf schemas: AutoChunkingStrategyRequestParam, StaticChunkingStrategy. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy with oneOf schemas: AutoChunkingStrategy, StaticChunkingStrategy. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy with oneOf schemas: AutoChunkingStrategyRequestParam, StaticChunkingStrategy. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -120,7 +120,7 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], AutoChunkingStrategy, StaticChunkingStrategy]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], AutoChunkingStrategyRequestParam, StaticChunkingStrategy]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

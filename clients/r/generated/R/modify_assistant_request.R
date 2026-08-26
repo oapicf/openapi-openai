@@ -7,7 +7,7 @@
 #' @title ModifyAssistantRequest
 #' @description ModifyAssistantRequest Class
 #' @format An \code{R6Class} generator object
-#' @field model  character [optional]
+#' @field model ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. character [optional]
 #' @field name The name of the assistant. The maximum length is 256 characters. character [optional]
 #' @field description The description of the assistant. The maximum length is 512 characters. character [optional]
 #' @field instructions The system instructions that the assistant uses. The maximum length is 256,000 characters. character [optional]
@@ -37,7 +37,7 @@ ModifyAssistantRequest <- R6::R6Class(
     #' @description
     #' Initialize a new ModifyAssistantRequest class.
     #'
-    #' @param model model
+    #' @param model ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them.
     #' @param name The name of the assistant. The maximum length is 256 characters.
     #' @param description The description of the assistant. The maximum length is 512 characters.
     #' @param instructions The system instructions that the assistant uses. The maximum length is 256,000 characters.
@@ -146,11 +146,11 @@ ModifyAssistantRequest <- R6::R6Class(
       }
       if (!is.null(self$`tools`)) {
         ModifyAssistantRequestObject[["tools"]] <-
-          lapply(self$`tools`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`tools`)
       }
       if (!is.null(self$`tool_resources`)) {
         ModifyAssistantRequestObject[["tool_resources"]] <-
-          self$`tool_resources`$toSimpleType()
+          self$extractSimpleType(self$`tool_resources`)
       }
       if (!is.null(self$`metadata`)) {
         ModifyAssistantRequestObject[["metadata"]] <-
@@ -166,9 +166,32 @@ ModifyAssistantRequest <- R6::R6Class(
       }
       if (!is.null(self$`response_format`)) {
         ModifyAssistantRequestObject[["response_format"]] <-
-          self$`response_format`$toSimpleType()
+          self$extractSimpleType(self$`response_format`)
       }
       return(ModifyAssistantRequestObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

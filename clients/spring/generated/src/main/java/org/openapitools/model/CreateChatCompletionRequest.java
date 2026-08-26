@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -27,26 +28,26 @@ import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * CreateChatCompletionRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateChatCompletionRequest {
 
-  @Valid
   private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
 
   private CreateChatCompletionRequestModel model;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> store = JsonNullable.<Boolean>undefined();
 
   /**
@@ -86,25 +87,32 @@ public class CreateChatCompletionRequest {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private ReasoningEffortEnum reasoningEffort = ReasoningEffortEnum.MEDIUM;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Map<String, String>> metadata = JsonNullable.<Map<String, String>>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> frequencyPenalty = JsonNullable.<BigDecimal>undefined();
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Map<String, Integer>> logitBias = JsonNullable.<Map<String, Integer>>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> logprobs = JsonNullable.<Boolean>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 0) @Max(value = 20) Integer> topLogprobs = JsonNullable.<Integer>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   @Deprecated
   private JsonNullable<Integer> maxTokens = JsonNullable.<Integer>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Integer> maxCompletionTokens = JsonNullable.<Integer>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 1) @Max(value = 128) Integer> n = JsonNullable.<Integer>undefined();
 
   /**
@@ -142,17 +150,22 @@ public class CreateChatCompletionRequest {
     }
   }
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<List<ModalitiesEnum>> modalities = JsonNullable.<List<ModalitiesEnum>>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<PredictionContent> prediction = JsonNullable.<PredictionContent>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<CreateChatCompletionRequestAudio> audio = JsonNullable.<CreateChatCompletionRequestAudio>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> presencePenalty = JsonNullable.<BigDecimal>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable CreateChatCompletionRequestResponseFormat responseFormat;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = -9223372036854776000) @Max(value = 9223372036854776000) Integer> seed = JsonNullable.<Integer>undefined();
 
   /**
@@ -190,32 +203,42 @@ public class CreateChatCompletionRequest {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<ServiceTierEnum> serviceTier = JsonNullable.<ServiceTierEnum>undefined();
 
-  private CreateChatCompletionRequestStop stop = null;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private @Nullable CreateChatCompletionRequestStop stop;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> stream = JsonNullable.<Boolean>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<ChatCompletionStreamOptions> streamOptions = JsonNullable.<ChatCompletionStreamOptions>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable ChatCompletionToolChoiceOption toolChoice;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Boolean parallelToolCalls = true;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String user;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   @Deprecated
   private @Nullable CreateChatCompletionRequestFunctionCall functionCall;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   @Deprecated
-  @Valid
   private List<@Valid ChatCompletionFunctions> functions = new ArrayList<>();
 
   public CreateChatCompletionRequest() {
@@ -254,6 +277,7 @@ public class CreateChatCompletionRequest {
     return messages;
   }
 
+  @JsonProperty("messages")
   public void setMessages(List<ChatCompletionRequestMessage> messages) {
     this.messages = messages;
   }
@@ -274,6 +298,7 @@ public class CreateChatCompletionRequest {
     return model;
   }
 
+  @JsonProperty("model")
   public void setModel(CreateChatCompletionRequestModel model) {
     this.model = model;
   }
@@ -314,6 +339,7 @@ public class CreateChatCompletionRequest {
     return reasoningEffort;
   }
 
+  @JsonProperty("reasoning_effort")
   public void setReasoningEffort(ReasoningEffortEnum reasoningEffort) {
     this.reasoningEffort = reasoningEffort;
   }
@@ -450,8 +476,8 @@ public class CreateChatCompletionRequest {
    */
   
   @Schema(name = "max_tokens", description = "The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning). ", deprecated = true, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("max_tokens")
   @Deprecated
+  @JsonProperty("max_tokens")
   public JsonNullable<Integer> getMaxTokens() {
     return maxTokens;
   }
@@ -540,11 +566,11 @@ public class CreateChatCompletionRequest {
   }
 
   /**
-   * Get prediction
+   * Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
    * @return prediction
    */
   @Valid 
-  @Schema(name = "prediction", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "prediction", description = "Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("prediction")
   public JsonNullable<PredictionContent> getPrediction() {
     return prediction;
@@ -612,6 +638,7 @@ public class CreateChatCompletionRequest {
     return responseFormat;
   }
 
+  @JsonProperty("response_format")
   public void setResponseFormat(@Nullable CreateChatCompletionRequestResponseFormat responseFormat) {
     this.responseFormat = responseFormat;
   }
@@ -658,7 +685,7 @@ public class CreateChatCompletionRequest {
     this.serviceTier = serviceTier;
   }
 
-  public CreateChatCompletionRequest stop(CreateChatCompletionRequestStop stop) {
+  public CreateChatCompletionRequest stop(@Nullable CreateChatCompletionRequestStop stop) {
     this.stop = stop;
     return this;
   }
@@ -670,11 +697,12 @@ public class CreateChatCompletionRequest {
   @Valid 
   @Schema(name = "stop", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("stop")
-  public CreateChatCompletionRequestStop getStop() {
+  public @Nullable CreateChatCompletionRequestStop getStop() {
     return stop;
   }
 
-  public void setStop(CreateChatCompletionRequestStop stop) {
+  @JsonProperty("stop")
+  public void setStop(@Nullable CreateChatCompletionRequestStop stop) {
     this.stop = stop;
   }
 
@@ -786,6 +814,7 @@ public class CreateChatCompletionRequest {
     return tools;
   }
 
+  @JsonProperty("tools")
   public void setTools(List<@Valid ChatCompletionTool> tools) {
     this.tools = tools;
   }
@@ -806,6 +835,7 @@ public class CreateChatCompletionRequest {
     return toolChoice;
   }
 
+  @JsonProperty("tool_choice")
   public void setToolChoice(@Nullable ChatCompletionToolChoiceOption toolChoice) {
     this.toolChoice = toolChoice;
   }
@@ -826,6 +856,7 @@ public class CreateChatCompletionRequest {
     return parallelToolCalls;
   }
 
+  @JsonProperty("parallel_tool_calls")
   public void setParallelToolCalls(Boolean parallelToolCalls) {
     this.parallelToolCalls = parallelToolCalls;
   }
@@ -846,6 +877,7 @@ public class CreateChatCompletionRequest {
     return user;
   }
 
+  @JsonProperty("user")
   public void setUser(@Nullable String user) {
     this.user = user;
   }
@@ -862,8 +894,8 @@ public class CreateChatCompletionRequest {
    */
   @Valid 
   @Schema(name = "function_call", deprecated = true, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("function_call")
   @Deprecated
+  @JsonProperty("function_call")
   public @Nullable CreateChatCompletionRequestFunctionCall getFunctionCall() {
     return functionCall;
   }
@@ -872,6 +904,7 @@ public class CreateChatCompletionRequest {
    * @deprecated
    */
   @Deprecated
+  @JsonProperty("function_call")
   public void setFunctionCall(@Nullable CreateChatCompletionRequestFunctionCall functionCall) {
     this.functionCall = functionCall;
   }
@@ -896,8 +929,8 @@ public class CreateChatCompletionRequest {
    */
   @Valid @Size(min = 1, max = 128) 
   @Schema(name = "functions", description = "Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for. ", deprecated = true, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("functions")
   @Deprecated
+  @JsonProperty("functions")
   public List<@Valid ChatCompletionFunctions> getFunctions() {
     return functions;
   }
@@ -906,6 +939,7 @@ public class CreateChatCompletionRequest {
    * @deprecated
    */
   @Deprecated
+  @JsonProperty("functions")
   public void setFunctions(List<@Valid ChatCompletionFunctions> functions) {
     this.functions = functions;
   }
@@ -1009,11 +1043,8 @@ public class CreateChatCompletionRequest {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

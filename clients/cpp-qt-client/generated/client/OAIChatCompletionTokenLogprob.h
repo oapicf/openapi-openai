@@ -34,13 +34,13 @@ class OAIChatCompletionTokenLogprob_top_logprobs_inner;
 class OAIChatCompletionTokenLogprob : public OAIObject {
 public:
     OAIChatCompletionTokenLogprob();
-    OAIChatCompletionTokenLogprob(QString json);
+    OAIChatCompletionTokenLogprob(const QString &json);
     ~OAIChatCompletionTokenLogprob() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getToken() const;
     void setToken(const QString &token);

@@ -195,11 +195,11 @@ CreateCompletionRequest <- R6::R6Class(
       CreateCompletionRequestObject <- list()
       if (!is.null(self$`model`)) {
         CreateCompletionRequestObject[["model"]] <-
-          self$`model`$toSimpleType()
+          self$extractSimpleType(self$`model`)
       }
       if (!is.null(self$`prompt`)) {
         CreateCompletionRequestObject[["prompt"]] <-
-          self$`prompt`$toSimpleType()
+          self$extractSimpleType(self$`prompt`)
       }
       if (!is.null(self$`best_of`)) {
         CreateCompletionRequestObject[["best_of"]] <-
@@ -239,7 +239,7 @@ CreateCompletionRequest <- R6::R6Class(
       }
       if (!is.null(self$`stop`)) {
         CreateCompletionRequestObject[["stop"]] <-
-          self$`stop`$toSimpleType()
+          self$extractSimpleType(self$`stop`)
       }
       if (!is.null(self$`stream`)) {
         CreateCompletionRequestObject[["stream"]] <-
@@ -247,7 +247,7 @@ CreateCompletionRequest <- R6::R6Class(
       }
       if (!is.null(self$`stream_options`)) {
         CreateCompletionRequestObject[["stream_options"]] <-
-          self$`stream_options`$toSimpleType()
+          self$extractSimpleType(self$`stream_options`)
       }
       if (!is.null(self$`suffix`)) {
         CreateCompletionRequestObject[["suffix"]] <-
@@ -266,6 +266,29 @@ CreateCompletionRequest <- R6::R6Class(
           self$`user`
       }
       return(CreateCompletionRequestObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

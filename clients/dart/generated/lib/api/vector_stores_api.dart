@@ -27,7 +27,7 @@ class VectorStoresApi {
   ///
   /// * [String] batchId (required):
   ///   The ID of the file batch to cancel.
-  Future<Response> cancelVectorStoreFileBatchWithHttpInfo(String vectorStoreId, String batchId,) async {
+  Future<Response> cancelVectorStoreFileBatchWithHttpInfo(String vectorStoreId, String batchId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel'
       .replaceAll('{vector_store_id}', vectorStoreId)
@@ -51,6 +51,7 @@ class VectorStoresApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -63,8 +64,8 @@ class VectorStoresApi {
   ///
   /// * [String] batchId (required):
   ///   The ID of the file batch to cancel.
-  Future<VectorStoreFileBatchObject?> cancelVectorStoreFileBatch(String vectorStoreId, String batchId,) async {
-    final response = await cancelVectorStoreFileBatchWithHttpInfo(vectorStoreId, batchId,);
+  Future<VectorStoreFileBatchObject?> cancelVectorStoreFileBatch(String vectorStoreId, String batchId, { Future<void>? abortTrigger, }) async {
+    final response = await cancelVectorStoreFileBatchWithHttpInfo(vectorStoreId, batchId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -85,7 +86,7 @@ class VectorStoresApi {
   /// Parameters:
   ///
   /// * [CreateVectorStoreRequest] createVectorStoreRequest (required):
-  Future<Response> createVectorStoreWithHttpInfo(CreateVectorStoreRequest createVectorStoreRequest,) async {
+  Future<Response> createVectorStoreWithHttpInfo(CreateVectorStoreRequest createVectorStoreRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/vector_stores';
 
@@ -107,6 +108,7 @@ class VectorStoresApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -115,8 +117,8 @@ class VectorStoresApi {
   /// Parameters:
   ///
   /// * [CreateVectorStoreRequest] createVectorStoreRequest (required):
-  Future<VectorStoreObject?> createVectorStore(CreateVectorStoreRequest createVectorStoreRequest,) async {
-    final response = await createVectorStoreWithHttpInfo(createVectorStoreRequest,);
+  Future<VectorStoreObject?> createVectorStore(CreateVectorStoreRequest createVectorStoreRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createVectorStoreWithHttpInfo(createVectorStoreRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -140,7 +142,7 @@ class VectorStoresApi {
   ///   The ID of the vector store for which to create a File. 
   ///
   /// * [CreateVectorStoreFileRequest] createVectorStoreFileRequest (required):
-  Future<Response> createVectorStoreFileWithHttpInfo(String vectorStoreId, CreateVectorStoreFileRequest createVectorStoreFileRequest,) async {
+  Future<Response> createVectorStoreFileWithHttpInfo(String vectorStoreId, CreateVectorStoreFileRequest createVectorStoreFileRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/vector_stores/{vector_store_id}/files'
       .replaceAll('{vector_store_id}', vectorStoreId);
@@ -163,6 +165,7 @@ class VectorStoresApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -174,8 +177,8 @@ class VectorStoresApi {
   ///   The ID of the vector store for which to create a File. 
   ///
   /// * [CreateVectorStoreFileRequest] createVectorStoreFileRequest (required):
-  Future<VectorStoreFileObject?> createVectorStoreFile(String vectorStoreId, CreateVectorStoreFileRequest createVectorStoreFileRequest,) async {
-    final response = await createVectorStoreFileWithHttpInfo(vectorStoreId, createVectorStoreFileRequest,);
+  Future<VectorStoreFileObject?> createVectorStoreFile(String vectorStoreId, CreateVectorStoreFileRequest createVectorStoreFileRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createVectorStoreFileWithHttpInfo(vectorStoreId, createVectorStoreFileRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -199,7 +202,7 @@ class VectorStoresApi {
   ///   The ID of the vector store for which to create a File Batch. 
   ///
   /// * [CreateVectorStoreFileBatchRequest] createVectorStoreFileBatchRequest (required):
-  Future<Response> createVectorStoreFileBatchWithHttpInfo(String vectorStoreId, CreateVectorStoreFileBatchRequest createVectorStoreFileBatchRequest,) async {
+  Future<Response> createVectorStoreFileBatchWithHttpInfo(String vectorStoreId, CreateVectorStoreFileBatchRequest createVectorStoreFileBatchRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/vector_stores/{vector_store_id}/file_batches'
       .replaceAll('{vector_store_id}', vectorStoreId);
@@ -222,6 +225,7 @@ class VectorStoresApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -233,8 +237,8 @@ class VectorStoresApi {
   ///   The ID of the vector store for which to create a File Batch. 
   ///
   /// * [CreateVectorStoreFileBatchRequest] createVectorStoreFileBatchRequest (required):
-  Future<VectorStoreFileBatchObject?> createVectorStoreFileBatch(String vectorStoreId, CreateVectorStoreFileBatchRequest createVectorStoreFileBatchRequest,) async {
-    final response = await createVectorStoreFileBatchWithHttpInfo(vectorStoreId, createVectorStoreFileBatchRequest,);
+  Future<VectorStoreFileBatchObject?> createVectorStoreFileBatch(String vectorStoreId, CreateVectorStoreFileBatchRequest createVectorStoreFileBatchRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createVectorStoreFileBatchWithHttpInfo(vectorStoreId, createVectorStoreFileBatchRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -256,7 +260,7 @@ class VectorStoresApi {
   ///
   /// * [String] vectorStoreId (required):
   ///   The ID of the vector store to delete.
-  Future<Response> deleteVectorStoreWithHttpInfo(String vectorStoreId,) async {
+  Future<Response> deleteVectorStoreWithHttpInfo(String vectorStoreId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/vector_stores/{vector_store_id}'
       .replaceAll('{vector_store_id}', vectorStoreId);
@@ -279,6 +283,7 @@ class VectorStoresApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -288,8 +293,8 @@ class VectorStoresApi {
   ///
   /// * [String] vectorStoreId (required):
   ///   The ID of the vector store to delete.
-  Future<DeleteVectorStoreResponse?> deleteVectorStore(String vectorStoreId,) async {
-    final response = await deleteVectorStoreWithHttpInfo(vectorStoreId,);
+  Future<DeleteVectorStoreResponse?> deleteVectorStore(String vectorStoreId, { Future<void>? abortTrigger, }) async {
+    final response = await deleteVectorStoreWithHttpInfo(vectorStoreId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -314,7 +319,7 @@ class VectorStoresApi {
   ///
   /// * [String] fileId (required):
   ///   The ID of the file to delete.
-  Future<Response> deleteVectorStoreFileWithHttpInfo(String vectorStoreId, String fileId,) async {
+  Future<Response> deleteVectorStoreFileWithHttpInfo(String vectorStoreId, String fileId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/vector_stores/{vector_store_id}/files/{file_id}'
       .replaceAll('{vector_store_id}', vectorStoreId)
@@ -338,6 +343,7 @@ class VectorStoresApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -350,8 +356,8 @@ class VectorStoresApi {
   ///
   /// * [String] fileId (required):
   ///   The ID of the file to delete.
-  Future<DeleteVectorStoreFileResponse?> deleteVectorStoreFile(String vectorStoreId, String fileId,) async {
-    final response = await deleteVectorStoreFileWithHttpInfo(vectorStoreId, fileId,);
+  Future<DeleteVectorStoreFileResponse?> deleteVectorStoreFile(String vectorStoreId, String fileId, { Future<void>? abortTrigger, }) async {
+    final response = await deleteVectorStoreFileWithHttpInfo(vectorStoreId, fileId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -373,7 +379,7 @@ class VectorStoresApi {
   ///
   /// * [String] vectorStoreId (required):
   ///   The ID of the vector store to retrieve.
-  Future<Response> getVectorStoreWithHttpInfo(String vectorStoreId,) async {
+  Future<Response> getVectorStoreWithHttpInfo(String vectorStoreId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/vector_stores/{vector_store_id}'
       .replaceAll('{vector_store_id}', vectorStoreId);
@@ -396,6 +402,7 @@ class VectorStoresApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -405,8 +412,8 @@ class VectorStoresApi {
   ///
   /// * [String] vectorStoreId (required):
   ///   The ID of the vector store to retrieve.
-  Future<VectorStoreObject?> getVectorStore(String vectorStoreId,) async {
-    final response = await getVectorStoreWithHttpInfo(vectorStoreId,);
+  Future<VectorStoreObject?> getVectorStore(String vectorStoreId, { Future<void>? abortTrigger, }) async {
+    final response = await getVectorStoreWithHttpInfo(vectorStoreId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -431,7 +438,7 @@ class VectorStoresApi {
   ///
   /// * [String] fileId (required):
   ///   The ID of the file being retrieved.
-  Future<Response> getVectorStoreFileWithHttpInfo(String vectorStoreId, String fileId,) async {
+  Future<Response> getVectorStoreFileWithHttpInfo(String vectorStoreId, String fileId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/vector_stores/{vector_store_id}/files/{file_id}'
       .replaceAll('{vector_store_id}', vectorStoreId)
@@ -455,6 +462,7 @@ class VectorStoresApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -467,8 +475,8 @@ class VectorStoresApi {
   ///
   /// * [String] fileId (required):
   ///   The ID of the file being retrieved.
-  Future<VectorStoreFileObject?> getVectorStoreFile(String vectorStoreId, String fileId,) async {
-    final response = await getVectorStoreFileWithHttpInfo(vectorStoreId, fileId,);
+  Future<VectorStoreFileObject?> getVectorStoreFile(String vectorStoreId, String fileId, { Future<void>? abortTrigger, }) async {
+    final response = await getVectorStoreFileWithHttpInfo(vectorStoreId, fileId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -493,7 +501,7 @@ class VectorStoresApi {
   ///
   /// * [String] batchId (required):
   ///   The ID of the file batch being retrieved.
-  Future<Response> getVectorStoreFileBatchWithHttpInfo(String vectorStoreId, String batchId,) async {
+  Future<Response> getVectorStoreFileBatchWithHttpInfo(String vectorStoreId, String batchId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/vector_stores/{vector_store_id}/file_batches/{batch_id}'
       .replaceAll('{vector_store_id}', vectorStoreId)
@@ -517,6 +525,7 @@ class VectorStoresApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -529,8 +538,8 @@ class VectorStoresApi {
   ///
   /// * [String] batchId (required):
   ///   The ID of the file batch being retrieved.
-  Future<VectorStoreFileBatchObject?> getVectorStoreFileBatch(String vectorStoreId, String batchId,) async {
-    final response = await getVectorStoreFileBatchWithHttpInfo(vectorStoreId, batchId,);
+  Future<VectorStoreFileBatchObject?> getVectorStoreFileBatch(String vectorStoreId, String batchId, { Future<void>? abortTrigger, }) async {
+    final response = await getVectorStoreFileBatchWithHttpInfo(vectorStoreId, batchId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -570,7 +579,7 @@ class VectorStoresApi {
   ///
   /// * [String] filter:
   ///   Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
-  Future<Response> listFilesInVectorStoreBatchWithHttpInfo(String vectorStoreId, String batchId, { int? limit, String? order, String? after, String? before, String? filter, }) async {
+  Future<Response> listFilesInVectorStoreBatchWithHttpInfo(String vectorStoreId, String batchId, { int? limit, String? order, String? after, String? before, String? filter, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/vector_stores/{vector_store_id}/file_batches/{batch_id}/files'
       .replaceAll('{vector_store_id}', vectorStoreId)
@@ -610,6 +619,7 @@ class VectorStoresApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -637,8 +647,8 @@ class VectorStoresApi {
   ///
   /// * [String] filter:
   ///   Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
-  Future<ListVectorStoreFilesResponse?> listFilesInVectorStoreBatch(String vectorStoreId, String batchId, { int? limit, String? order, String? after, String? before, String? filter, }) async {
-    final response = await listFilesInVectorStoreBatchWithHttpInfo(vectorStoreId, batchId,  limit: limit, order: order, after: after, before: before, filter: filter, );
+  Future<ListVectorStoreFilesResponse?> listFilesInVectorStoreBatch(String vectorStoreId, String batchId, { int? limit, String? order, String? after, String? before, String? filter, Future<void>? abortTrigger, }) async {
+    final response = await listFilesInVectorStoreBatchWithHttpInfo(vectorStoreId, batchId, limit: limit, order: order, after: after, before: before, filter: filter, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -675,7 +685,7 @@ class VectorStoresApi {
   ///
   /// * [String] filter:
   ///   Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
-  Future<Response> listVectorStoreFilesWithHttpInfo(String vectorStoreId, { int? limit, String? order, String? after, String? before, String? filter, }) async {
+  Future<Response> listVectorStoreFilesWithHttpInfo(String vectorStoreId, { int? limit, String? order, String? after, String? before, String? filter, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/vector_stores/{vector_store_id}/files'
       .replaceAll('{vector_store_id}', vectorStoreId);
@@ -714,6 +724,7 @@ class VectorStoresApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -738,8 +749,8 @@ class VectorStoresApi {
   ///
   /// * [String] filter:
   ///   Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
-  Future<ListVectorStoreFilesResponse?> listVectorStoreFiles(String vectorStoreId, { int? limit, String? order, String? after, String? before, String? filter, }) async {
-    final response = await listVectorStoreFilesWithHttpInfo(vectorStoreId,  limit: limit, order: order, after: after, before: before, filter: filter, );
+  Future<ListVectorStoreFilesResponse?> listVectorStoreFiles(String vectorStoreId, { int? limit, String? order, String? after, String? before, String? filter, Future<void>? abortTrigger, }) async {
+    final response = await listVectorStoreFilesWithHttpInfo(vectorStoreId, limit: limit, order: order, after: after, before: before, filter: filter, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -770,7 +781,7 @@ class VectorStoresApi {
   ///
   /// * [String] before:
   ///   A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-  Future<Response> listVectorStoresWithHttpInfo({ int? limit, String? order, String? after, String? before, }) async {
+  Future<Response> listVectorStoresWithHttpInfo({ int? limit, String? order, String? after, String? before, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/vector_stores';
 
@@ -805,6 +816,7 @@ class VectorStoresApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -823,8 +835,8 @@ class VectorStoresApi {
   ///
   /// * [String] before:
   ///   A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-  Future<ListVectorStoresResponse?> listVectorStores({ int? limit, String? order, String? after, String? before, }) async {
-    final response = await listVectorStoresWithHttpInfo( limit: limit, order: order, after: after, before: before, );
+  Future<ListVectorStoresResponse?> listVectorStores({ int? limit, String? order, String? after, String? before, Future<void>? abortTrigger, }) async {
+    final response = await listVectorStoresWithHttpInfo(limit: limit, order: order, after: after, before: before, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -848,7 +860,7 @@ class VectorStoresApi {
   ///   The ID of the vector store to modify.
   ///
   /// * [UpdateVectorStoreRequest] updateVectorStoreRequest (required):
-  Future<Response> modifyVectorStoreWithHttpInfo(String vectorStoreId, UpdateVectorStoreRequest updateVectorStoreRequest,) async {
+  Future<Response> modifyVectorStoreWithHttpInfo(String vectorStoreId, UpdateVectorStoreRequest updateVectorStoreRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/vector_stores/{vector_store_id}'
       .replaceAll('{vector_store_id}', vectorStoreId);
@@ -871,6 +883,7 @@ class VectorStoresApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -882,8 +895,8 @@ class VectorStoresApi {
   ///   The ID of the vector store to modify.
   ///
   /// * [UpdateVectorStoreRequest] updateVectorStoreRequest (required):
-  Future<VectorStoreObject?> modifyVectorStore(String vectorStoreId, UpdateVectorStoreRequest updateVectorStoreRequest,) async {
-    final response = await modifyVectorStoreWithHttpInfo(vectorStoreId, updateVectorStoreRequest,);
+  Future<VectorStoreObject?> modifyVectorStore(String vectorStoreId, UpdateVectorStoreRequest updateVectorStoreRequest, { Future<void>? abortTrigger, }) async {
+    final response = await modifyVectorStoreWithHttpInfo(vectorStoreId, updateVectorStoreRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

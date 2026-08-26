@@ -1,7 +1,10 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -20,10 +23,16 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class AuditLogLoginFailed(
 
-    @Schema(example = "null", description = "The error code of the failure.")
+    @Schema(description = "The error code of the failure.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("error_code")
     @get:JsonProperty("error_code") val errorCode: kotlin.String? = null,
 
-    @Schema(example = "null", description = "The error message of the failure.")
+    @Schema(description = "The error message of the failure.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("error_message")
     @get:JsonProperty("error_message") val errorMessage: kotlin.String? = null
 ) {
 

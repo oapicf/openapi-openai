@@ -1,0 +1,41 @@
+import { RealtimeServerEventResponseContentPartDonePart } from './realtime-server-event-response-content-part-done-part';
+
+
+/**
+ * Returned when a content part is done streaming in an assistant message item. Also emitted when a Response is interrupted, incomplete, or cancelled. 
+ */
+export interface RealtimeServerEventResponseContentPartDone { 
+  /**
+   * The unique ID of the server event.
+   */
+  event_id: string;
+  /**
+   * The event type, must be `response.content_part.done`.
+   */
+  type: RealtimeServerEventResponseContentPartDone.TypeEnum;
+  /**
+   * The ID of the response.
+   */
+  response_id: string;
+  /**
+   * The ID of the item.
+   */
+  item_id: string;
+  /**
+   * The index of the output item in the response.
+   */
+  output_index: number;
+  /**
+   * The index of the content part in the item\'s content array.
+   */
+  content_index: number;
+  part: RealtimeServerEventResponseContentPartDonePart;
+}
+export namespace RealtimeServerEventResponseContentPartDone {
+  export const TypeEnum = {
+    ResponseContentPartDone: 'response.content_part.done'
+  } as const;
+  export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
+}
+
+

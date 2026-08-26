@@ -49,7 +49,7 @@ class BatchRequestOutputResponse
      * @var int|null
      * @SerializedName("status_code")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $statusCode = null;
 
@@ -59,7 +59,7 @@ class BatchRequestOutputResponse
      * @var string|null
      * @SerializedName("request_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $requestId = null;
 
@@ -69,7 +69,7 @@ class BatchRequestOutputResponse
      * @var array|null
      * @SerializedName("body")
      * @Type("array")
-    */
+     */
     #[Assert\Type("array")]
     protected ?array $body = null;
 
@@ -97,12 +97,12 @@ class BatchRequestOutputResponse
     }
 
     /**
-    * Sets statusCode.
-    *
-    * @param int|null $statusCode  The HTTP status code of the response
-    *
-    * @return $this
-    */
+     * Sets statusCode.
+     *
+     * @param int|null $statusCode  The HTTP status code of the response
+     *
+     * @return $this
+     */
     public function setStatusCode(?int $statusCode = null): self
     {
         $this->statusCode = $statusCode;
@@ -124,12 +124,12 @@ class BatchRequestOutputResponse
     }
 
     /**
-    * Sets requestId.
-    *
-    * @param string|null $requestId  An unique identifier for the OpenAI API request. Please include this request ID when contacting support.
-    *
-    * @return $this
-    */
+     * Sets requestId.
+     *
+     * @param string|null $requestId  An unique identifier for the OpenAI API request. Please include this request ID when contacting support.
+     *
+     * @return $this
+     */
     public function setRequestId(?string $requestId = null): self
     {
         $this->requestId = $requestId;
@@ -151,12 +151,12 @@ class BatchRequestOutputResponse
     }
 
     /**
-    * Sets body.
-    *
-    * @param array|null $body  The JSON body of the response
-    *
-    * @return $this
-    */
+     * Sets body.
+     *
+     * @param array|null $body  The JSON body of the response
+     *
+     * @return $this
+     */
     public function setBody(?array $body = null): self
     {
         $this->body = $body;

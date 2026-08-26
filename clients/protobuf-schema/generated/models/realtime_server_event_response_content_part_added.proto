@@ -26,7 +26,7 @@ message RealtimeServerEventResponseContentPartAdded {
     TYPE_RESPONSE_CONTENT_PART_ADDED = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // The ID of the response.
   string response_id = 236939740;

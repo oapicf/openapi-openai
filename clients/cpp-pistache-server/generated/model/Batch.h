@@ -35,7 +35,7 @@ class  Batch
 {
 public:
     Batch();
-    virtual ~Batch() = default;
+    virtual ~Batch();
 
 
     /// <summary>

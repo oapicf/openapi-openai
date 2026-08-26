@@ -31,11 +31,11 @@ static realtime_client_event_conversation_item_delete_t *realtime_client_event_c
     if (!realtime_client_event_conversation_item_delete_local_var) {
         return NULL;
     }
+    memset(realtime_client_event_conversation_item_delete_local_var, 0, sizeof(realtime_client_event_conversation_item_delete_t));
+    realtime_client_event_conversation_item_delete_local_var->_library_owned = 1;
     realtime_client_event_conversation_item_delete_local_var->event_id = event_id;
     realtime_client_event_conversation_item_delete_local_var->type = type;
     realtime_client_event_conversation_item_delete_local_var->item_id = item_id;
-
-    realtime_client_event_conversation_item_delete_local_var->_library_owned = 1;
     return realtime_client_event_conversation_item_delete_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) realtime_client_event_conversation_item_delete_t *re
     openai_api_realtime_client_event_conversation_item_delete_TYPE_e type,
     char *item_id
     ) {
-    return realtime_client_event_conversation_item_delete_create_internal (
+    realtime_client_event_conversation_item_delete_t *result = realtime_client_event_conversation_item_delete_create_internal (
         event_id,
         type,
         item_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_client_event_conversation_item_delete_free(realtime_client_event_conversation_item_delete_t *realtime_client_event_conversation_item_delete) {
@@ -112,6 +115,10 @@ realtime_client_event_conversation_item_delete_t *realtime_client_event_conversa
 
     realtime_client_event_conversation_item_delete_t *realtime_client_event_conversation_item_delete_local_var = NULL;
 
+    char *event_id_local_str = NULL;
+
+    char *item_id_local_str = NULL;
+
     // realtime_client_event_conversation_item_delete->event_id
     cJSON *event_id = cJSON_GetObjectItemCaseSensitive(realtime_client_event_conversation_item_deleteJSON, "event_id");
     if (cJSON_IsNull(event_id)) {
@@ -157,14 +164,29 @@ realtime_client_event_conversation_item_delete_t *realtime_client_event_conversa
     }
 
 
+    if (event_id && !cJSON_IsNull(event_id)) event_id_local_str = strdup(event_id->valuestring);
+    if (item_id && !cJSON_IsNull(item_id)) item_id_local_str = strdup(item_id->valuestring);
+
     realtime_client_event_conversation_item_delete_local_var = realtime_client_event_conversation_item_delete_create_internal (
-        event_id && !cJSON_IsNull(event_id) ? strdup(event_id->valuestring) : NULL,
+        event_id_local_str,
         typeVariable,
-        strdup(item_id->valuestring)
+        item_id_local_str
         );
+
+    if (!realtime_client_event_conversation_item_delete_local_var) {
+        goto end;
+    }
 
     return realtime_client_event_conversation_item_delete_local_var;
 end:
+    if (event_id_local_str) {
+        free(event_id_local_str);
+        event_id_local_str = NULL;
+    }
+    if (item_id_local_str) {
+        free(item_id_local_str);
+        item_id_local_str = NULL;
+    }
     return NULL;
 
 }

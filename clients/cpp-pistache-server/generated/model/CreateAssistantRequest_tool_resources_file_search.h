@@ -34,7 +34,7 @@ class  CreateAssistantRequest_tool_resources_file_search
 {
 public:
     CreateAssistantRequest_tool_resources_file_search();
-    virtual ~CreateAssistantRequest_tool_resources_file_search() = default;
+    virtual ~CreateAssistantRequest_tool_resources_file_search();
 
 
     /// <summary>

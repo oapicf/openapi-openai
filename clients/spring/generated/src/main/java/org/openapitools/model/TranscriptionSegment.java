@@ -10,19 +10,19 @@ import java.util.List;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * TranscriptionSegment
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class TranscriptionSegment {
 
   private Integer id;
@@ -35,7 +35,6 @@ public class TranscriptionSegment {
 
   private String text;
 
-  @Valid
   private List<Integer> tokens = new ArrayList<>();
 
   private Float temperature;
@@ -82,6 +81,7 @@ public class TranscriptionSegment {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(Integer id) {
     this.id = id;
   }
@@ -102,6 +102,7 @@ public class TranscriptionSegment {
     return seek;
   }
 
+  @JsonProperty("seek")
   public void setSeek(Integer seek) {
     this.seek = seek;
   }
@@ -122,6 +123,7 @@ public class TranscriptionSegment {
     return start;
   }
 
+  @JsonProperty("start")
   public void setStart(Float start) {
     this.start = start;
   }
@@ -142,6 +144,7 @@ public class TranscriptionSegment {
     return end;
   }
 
+  @JsonProperty("end")
   public void setEnd(Float end) {
     this.end = end;
   }
@@ -162,6 +165,7 @@ public class TranscriptionSegment {
     return text;
   }
 
+  @JsonProperty("text")
   public void setText(String text) {
     this.text = text;
   }
@@ -190,6 +194,7 @@ public class TranscriptionSegment {
     return tokens;
   }
 
+  @JsonProperty("tokens")
   public void setTokens(List<Integer> tokens) {
     this.tokens = tokens;
   }
@@ -210,6 +215,7 @@ public class TranscriptionSegment {
     return temperature;
   }
 
+  @JsonProperty("temperature")
   public void setTemperature(Float temperature) {
     this.temperature = temperature;
   }
@@ -230,6 +236,7 @@ public class TranscriptionSegment {
     return avgLogprob;
   }
 
+  @JsonProperty("avg_logprob")
   public void setAvgLogprob(Float avgLogprob) {
     this.avgLogprob = avgLogprob;
   }
@@ -250,6 +257,7 @@ public class TranscriptionSegment {
     return compressionRatio;
   }
 
+  @JsonProperty("compression_ratio")
   public void setCompressionRatio(Float compressionRatio) {
     this.compressionRatio = compressionRatio;
   }
@@ -270,6 +278,7 @@ public class TranscriptionSegment {
     return noSpeechProb;
   }
 
+  @JsonProperty("no_speech_prob")
   public void setNoSpeechProb(Float noSpeechProb) {
     this.noSpeechProb = noSpeechProb;
   }
@@ -322,11 +331,8 @@ public class TranscriptionSegment {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

@@ -56,11 +56,11 @@ function Initialize-ApiKeyList {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "data" = ${VarData}
-            "has_more" = ${HasMore}
-            "first_id" = ${FirstId}
-            "last_id" = ${LastId}
+            'object' = ${Object}
+            'data' = ${VarData}
+            'has_more' = ${HasMore}
+            'first_id' = ${FirstId}
+            'last_id' = ${LastId}
         }
 
 
@@ -98,49 +98,49 @@ function ConvertFrom-JsonToApiKeyList {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ApiKeyList
-        $AllProperties = ("object", "data", "has_more", "first_id", "last_id")
+        $AllProperties = ('object', 'data', 'has_more', 'first_id', 'last_id')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) { #optional property not found
             $Object = $null
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "data"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'data'))) { #optional property not found
             $VarData = $null
         } else {
-            $VarData = $JsonParameters.PSobject.Properties["data"].value
+            $VarData = $JsonParameters.PSobject.Properties['data'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "has_more"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'has_more'))) { #optional property not found
             $HasMore = $null
         } else {
-            $HasMore = $JsonParameters.PSobject.Properties["has_more"].value
+            $HasMore = $JsonParameters.PSobject.Properties['has_more'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "first_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'first_id'))) { #optional property not found
             $FirstId = $null
         } else {
-            $FirstId = $JsonParameters.PSobject.Properties["first_id"].value
+            $FirstId = $JsonParameters.PSobject.Properties['first_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "last_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'last_id'))) { #optional property not found
             $LastId = $null
         } else {
-            $LastId = $JsonParameters.PSobject.Properties["last_id"].value
+            $LastId = $JsonParameters.PSobject.Properties['last_id'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "data" = ${VarData}
-            "has_more" = ${HasMore}
-            "first_id" = ${FirstId}
-            "last_id" = ${LastId}
+            'object' = ${Object}
+            'data' = ${VarData}
+            'has_more' = ${HasMore}
+            'first_id' = ${FirstId}
+            'last_id' = ${LastId}
         }
 
         return $PSO

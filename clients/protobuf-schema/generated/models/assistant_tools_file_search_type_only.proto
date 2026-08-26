@@ -22,7 +22,7 @@ message AssistantToolsFileSearchTypeOnly {
     TYPE_FILE_SEARCH = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
 }
 

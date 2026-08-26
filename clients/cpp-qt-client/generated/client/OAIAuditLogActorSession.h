@@ -33,13 +33,13 @@ class OAIAuditLogActorUser;
 class OAIAuditLogActorSession : public OAIObject {
 public:
     OAIAuditLogActorSession();
-    OAIAuditLogActorSession(QString json);
+    OAIAuditLogActorSession(const QString &json);
     ~OAIAuditLogActorSession() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     OAIAuditLogActorUser getUser() const;
     void setUser(const OAIAuditLogActorUser &user);

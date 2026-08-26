@@ -32,7 +32,7 @@ class  ModifyRunRequest
 {
 public:
     ModifyRunRequest();
-    virtual ~ModifyRunRequest() = default;
+    virtual ~ModifyRunRequest();
 
 
     /// <summary>

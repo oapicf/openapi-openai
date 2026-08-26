@@ -129,7 +129,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The content type (\&quot;text\&quot;, \&quot;audio\&quot;).</value>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Text
@@ -143,7 +143,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The text content (if type is \&quot;text\&quot;).</value>
         [JsonPropertyName("text")]
-        public string? Text { get { return this.TextOption; } set { this.TextOption = new(value); } }
+        public string? Text { get { return this.TextOption.Value; } set { this.TextOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Audio
@@ -157,7 +157,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Base64-encoded audio data (if type is \&quot;audio\&quot;).</value>
         [JsonPropertyName("audio")]
-        public string? Audio { get { return this.AudioOption; } set { this.AudioOption = new(value); } }
+        public string? Audio { get { return this.AudioOption.Value; } set { this.AudioOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Transcript
@@ -171,7 +171,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The transcript of the audio (if type is \&quot;audio\&quot;).</value>
         [JsonPropertyName("transcript")]
-        public string? Transcript { get { return this.TranscriptOption; } set { this.TranscriptOption = new(value); } }
+        public string? Transcript { get { return this.TranscriptOption.Value; } set { this.TranscriptOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -203,8 +203,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeServerEventResponseContentPartAddedPart" />
     /// </summary>
-    public class RealtimeServerEventResponseContentPartAddedPartJsonConverter : JsonConverter<RealtimeServerEventResponseContentPartAddedPart>
+    public partial class RealtimeServerEventResponseContentPartAddedPartJsonConverter : JsonConverter<RealtimeServerEventResponseContentPartAddedPart>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeServerEventResponseContentPartAddedPartJsonConverter" /> class.
+        /// </summary>
+        public RealtimeServerEventResponseContentPartAddedPartJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeServerEventResponseContentPartAddedPart" />
         /// </summary>

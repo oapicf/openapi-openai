@@ -34,6 +34,8 @@ CreateFineTuningJobRequest::CreateFineTuningJobRequest()
     
 }
 
+CreateFineTuningJobRequest::~CreateFineTuningJobRequest() = default;
+
 void CreateFineTuningJobRequest::validate() const
 {
     std::stringstream msg;

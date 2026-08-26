@@ -27,6 +27,8 @@ Batch_request_counts::Batch_request_counts()
     
 }
 
+Batch_request_counts::~Batch_request_counts() = default;
+
 void Batch_request_counts::validate() const
 {
     std::stringstream msg;

@@ -11,20 +11,20 @@ import org.openapitools.model.RunStepObjectStepDetails;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Represents a step in execution of a run. 
  */
 
 @Schema(name = "RunStepObject", description = "Represents a step in execution of a run. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RunStepObject {
 
   private String id;
@@ -210,6 +210,7 @@ public class RunStepObject {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
@@ -230,6 +231,7 @@ public class RunStepObject {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
@@ -250,6 +252,7 @@ public class RunStepObject {
     return createdAt;
   }
 
+  @JsonProperty("created_at")
   public void setCreatedAt(Integer createdAt) {
     this.createdAt = createdAt;
   }
@@ -270,6 +273,7 @@ public class RunStepObject {
     return assistantId;
   }
 
+  @JsonProperty("assistant_id")
   public void setAssistantId(String assistantId) {
     this.assistantId = assistantId;
   }
@@ -290,6 +294,7 @@ public class RunStepObject {
     return threadId;
   }
 
+  @JsonProperty("thread_id")
   public void setThreadId(String threadId) {
     this.threadId = threadId;
   }
@@ -310,6 +315,7 @@ public class RunStepObject {
     return runId;
   }
 
+  @JsonProperty("run_id")
   public void setRunId(String runId) {
     this.runId = runId;
   }
@@ -330,6 +336,7 @@ public class RunStepObject {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -350,6 +357,7 @@ public class RunStepObject {
     return status;
   }
 
+  @JsonProperty("status")
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -370,6 +378,7 @@ public class RunStepObject {
     return stepDetails;
   }
 
+  @JsonProperty("step_details")
   public void setStepDetails(RunStepObjectStepDetails stepDetails) {
     this.stepDetails = stepDetails;
   }
@@ -390,6 +399,7 @@ public class RunStepObject {
     return lastError;
   }
 
+  @JsonProperty("last_error")
   public void setLastError(JsonNullable<RunStepObjectLastError> lastError) {
     this.lastError = lastError;
   }
@@ -410,6 +420,7 @@ public class RunStepObject {
     return expiredAt;
   }
 
+  @JsonProperty("expired_at")
   public void setExpiredAt(JsonNullable<Integer> expiredAt) {
     this.expiredAt = expiredAt;
   }
@@ -430,6 +441,7 @@ public class RunStepObject {
     return cancelledAt;
   }
 
+  @JsonProperty("cancelled_at")
   public void setCancelledAt(JsonNullable<Integer> cancelledAt) {
     this.cancelledAt = cancelledAt;
   }
@@ -450,6 +462,7 @@ public class RunStepObject {
     return failedAt;
   }
 
+  @JsonProperty("failed_at")
   public void setFailedAt(JsonNullable<Integer> failedAt) {
     this.failedAt = failedAt;
   }
@@ -470,6 +483,7 @@ public class RunStepObject {
     return completedAt;
   }
 
+  @JsonProperty("completed_at")
   public void setCompletedAt(JsonNullable<Integer> completedAt) {
     this.completedAt = completedAt;
   }
@@ -490,6 +504,7 @@ public class RunStepObject {
     return metadata;
   }
 
+  @JsonProperty("metadata")
   public void setMetadata(JsonNullable<Object> metadata) {
     this.metadata = metadata;
   }
@@ -510,6 +525,7 @@ public class RunStepObject {
     return usage;
   }
 
+  @JsonProperty("usage")
   public void setUsage(JsonNullable<RunStepCompletionUsage> usage) {
     this.usage = usage;
   }
@@ -574,11 +590,8 @@ public class RunStepObject {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

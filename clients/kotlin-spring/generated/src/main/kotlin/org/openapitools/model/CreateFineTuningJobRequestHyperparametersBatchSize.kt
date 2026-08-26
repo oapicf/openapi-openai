@@ -1,6 +1,9 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -15,9 +18,6 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * Number of examples in each batch. A larger batch size means that model parameters are updated less frequently, but with lower variance. 
  */
-class CreateFineTuningJobRequestHyperparametersBatchSize(
-
-) {
-
+sealed interface CreateFineTuningJobRequestHyperparametersBatchSize {
 }
 

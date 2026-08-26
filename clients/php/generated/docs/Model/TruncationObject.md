@@ -1,4 +1,4 @@
-# # TruncationObject
+# TruncationObject
 
 ## Properties
 

@@ -188,7 +188,7 @@ ChatCompletionResponseMessage::getContent()
 }
 
 void
-ChatCompletionResponseMessage::setContent(std::string  content)
+ChatCompletionResponseMessage::setContent(std::string content)
 {
 	this->content = content;
 }
@@ -200,7 +200,7 @@ ChatCompletionResponseMessage::getRefusal()
 }
 
 void
-ChatCompletionResponseMessage::setRefusal(std::string  refusal)
+ChatCompletionResponseMessage::setRefusal(std::string refusal)
 {
 	this->refusal = refusal;
 }
@@ -212,7 +212,7 @@ ChatCompletionResponseMessage::getToolCalls()
 }
 
 void
-ChatCompletionResponseMessage::setToolCalls(std::list <ChatCompletionMessageToolCall> tool_calls)
+ChatCompletionResponseMessage::setToolCalls(std::list<ChatCompletionMessageToolCall> tool_calls)
 {
 	this->tool_calls = tool_calls;
 }
@@ -224,7 +224,7 @@ ChatCompletionResponseMessage::getRole()
 }
 
 void
-ChatCompletionResponseMessage::setRole(std::string  role)
+ChatCompletionResponseMessage::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -236,7 +236,7 @@ ChatCompletionResponseMessage::getFunctionCall()
 }
 
 void
-ChatCompletionResponseMessage::setFunctionCall(ChatCompletionResponseMessage_function_call  function_call)
+ChatCompletionResponseMessage::setFunctionCall(ChatCompletionResponseMessage_function_call function_call)
 {
 	this->function_call = function_call;
 }
@@ -248,7 +248,7 @@ ChatCompletionResponseMessage::getAudio()
 }
 
 void
-ChatCompletionResponseMessage::setAudio(ChatCompletionResponseMessage_audio  audio)
+ChatCompletionResponseMessage::setAudio(ChatCompletionResponseMessage_audio audio)
 {
 	this->audio = audio;
 }

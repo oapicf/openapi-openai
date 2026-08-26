@@ -466,7 +466,7 @@ Batch::getId()
 }
 
 void
-Batch::setId(std::string  id)
+Batch::setId(std::string id)
 {
 	this->id = id;
 }
@@ -478,7 +478,7 @@ Batch::getObject()
 }
 
 void
-Batch::setObject(std::string  object)
+Batch::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -490,7 +490,7 @@ Batch::getEndpoint()
 }
 
 void
-Batch::setEndpoint(std::string  endpoint)
+Batch::setEndpoint(std::string endpoint)
 {
 	this->endpoint = endpoint;
 }
@@ -502,7 +502,7 @@ Batch::getErrors()
 }
 
 void
-Batch::setErrors(Batch_errors  errors)
+Batch::setErrors(Batch_errors errors)
 {
 	this->errors = errors;
 }
@@ -514,7 +514,7 @@ Batch::getInputFileId()
 }
 
 void
-Batch::setInputFileId(std::string  input_file_id)
+Batch::setInputFileId(std::string input_file_id)
 {
 	this->input_file_id = input_file_id;
 }
@@ -526,7 +526,7 @@ Batch::getCompletionWindow()
 }
 
 void
-Batch::setCompletionWindow(std::string  completion_window)
+Batch::setCompletionWindow(std::string completion_window)
 {
 	this->completion_window = completion_window;
 }
@@ -538,7 +538,7 @@ Batch::getStatus()
 }
 
 void
-Batch::setStatus(std::string  status)
+Batch::setStatus(std::string status)
 {
 	this->status = status;
 }
@@ -550,7 +550,7 @@ Batch::getOutputFileId()
 }
 
 void
-Batch::setOutputFileId(std::string  output_file_id)
+Batch::setOutputFileId(std::string output_file_id)
 {
 	this->output_file_id = output_file_id;
 }
@@ -562,7 +562,7 @@ Batch::getErrorFileId()
 }
 
 void
-Batch::setErrorFileId(std::string  error_file_id)
+Batch::setErrorFileId(std::string error_file_id)
 {
 	this->error_file_id = error_file_id;
 }
@@ -574,7 +574,7 @@ Batch::getCreatedAt()
 }
 
 void
-Batch::setCreatedAt(int  created_at)
+Batch::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -586,7 +586,7 @@ Batch::getInProgressAt()
 }
 
 void
-Batch::setInProgressAt(int  in_progress_at)
+Batch::setInProgressAt(int in_progress_at)
 {
 	this->in_progress_at = in_progress_at;
 }
@@ -598,7 +598,7 @@ Batch::getExpiresAt()
 }
 
 void
-Batch::setExpiresAt(int  expires_at)
+Batch::setExpiresAt(int expires_at)
 {
 	this->expires_at = expires_at;
 }
@@ -610,7 +610,7 @@ Batch::getFinalizingAt()
 }
 
 void
-Batch::setFinalizingAt(int  finalizing_at)
+Batch::setFinalizingAt(int finalizing_at)
 {
 	this->finalizing_at = finalizing_at;
 }
@@ -622,7 +622,7 @@ Batch::getCompletedAt()
 }
 
 void
-Batch::setCompletedAt(int  completed_at)
+Batch::setCompletedAt(int completed_at)
 {
 	this->completed_at = completed_at;
 }
@@ -634,7 +634,7 @@ Batch::getFailedAt()
 }
 
 void
-Batch::setFailedAt(int  failed_at)
+Batch::setFailedAt(int failed_at)
 {
 	this->failed_at = failed_at;
 }
@@ -646,7 +646,7 @@ Batch::getExpiredAt()
 }
 
 void
-Batch::setExpiredAt(int  expired_at)
+Batch::setExpiredAt(int expired_at)
 {
 	this->expired_at = expired_at;
 }
@@ -658,7 +658,7 @@ Batch::getCancellingAt()
 }
 
 void
-Batch::setCancellingAt(int  cancelling_at)
+Batch::setCancellingAt(int cancelling_at)
 {
 	this->cancelling_at = cancelling_at;
 }
@@ -670,7 +670,7 @@ Batch::getCancelledAt()
 }
 
 void
-Batch::setCancelledAt(int  cancelled_at)
+Batch::setCancelledAt(int cancelled_at)
 {
 	this->cancelled_at = cancelled_at;
 }
@@ -682,7 +682,7 @@ Batch::getRequestCounts()
 }
 
 void
-Batch::setRequestCounts(Batch_request_counts  request_counts)
+Batch::setRequestCounts(Batch_request_counts request_counts)
 {
 	this->request_counts = request_counts;
 }
@@ -694,7 +694,7 @@ Batch::getMetadata()
 }
 
 void
-Batch::setMetadata(Object  metadata)
+Batch::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }

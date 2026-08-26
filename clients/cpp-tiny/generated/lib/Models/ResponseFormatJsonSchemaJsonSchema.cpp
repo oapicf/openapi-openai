@@ -119,7 +119,7 @@ ResponseFormatJsonSchema_json_schema::getDescription()
 }
 
 void
-ResponseFormatJsonSchema_json_schema::setDescription(std::string  description)
+ResponseFormatJsonSchema_json_schema::setDescription(std::string description)
 {
 	this->description = description;
 }
@@ -131,19 +131,19 @@ ResponseFormatJsonSchema_json_schema::getName()
 }
 
 void
-ResponseFormatJsonSchema_json_schema::setName(std::string  name)
+ResponseFormatJsonSchema_json_schema::setName(std::string name)
 {
 	this->name = name;
 }
 
-Map<string, string>
+std::map<std::string, AnyType>
 ResponseFormatJsonSchema_json_schema::getSchema()
 {
 	return schema;
 }
 
 void
-ResponseFormatJsonSchema_json_schema::setSchema(Map <string, string> schema)
+ResponseFormatJsonSchema_json_schema::setSchema(std::map<std::string, AnyType> schema)
 {
 	this->schema = schema;
 }
@@ -155,7 +155,7 @@ ResponseFormatJsonSchema_json_schema::isStrict()
 }
 
 void
-ResponseFormatJsonSchema_json_schema::setStrict(bool  strict)
+ResponseFormatJsonSchema_json_schema::setStrict(bool strict)
 {
 	this->strict = strict;
 }

@@ -257,7 +257,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ExpiresAfter
         /// </summary>
         [JsonPropertyName("expires_after")]
-        public VectorStoreExpirationAfter? ExpiresAfter { get { return this.ExpiresAfterOption; } set { this.ExpiresAfterOption = new(value); } }
+        public VectorStoreExpirationAfter? ExpiresAfter { get { return this.ExpiresAfterOption.Value; } set { this.ExpiresAfterOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresAt
@@ -271,7 +271,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The Unix timestamp (in seconds) for when the vector store will expire.</value>
         [JsonPropertyName("expires_at")]
-        public int? ExpiresAt { get { return this.ExpiresAtOption; } set { this.ExpiresAtOption = new(value); } }
+        public int? ExpiresAt { get { return this.ExpiresAtOption.Value; } set { this.ExpiresAtOption = new(value); } }
 
         /// <summary>
         /// The Unix timestamp (in seconds) for when the vector store was last active.
@@ -324,8 +324,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="VectorStoreObject" />
     /// </summary>
-    public class VectorStoreObjectJsonConverter : JsonConverter<VectorStoreObject>
+    public partial class VectorStoreObjectJsonConverter : JsonConverter<VectorStoreObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VectorStoreObjectJsonConverter" /> class.
+        /// </summary>
+        public VectorStoreObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="VectorStoreObject" />
         /// </summary>

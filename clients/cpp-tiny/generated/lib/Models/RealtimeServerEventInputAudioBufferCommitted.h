@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set The unique ID of the server event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `input_audio_buffer.committed`.
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `input_audio_buffer.committed`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The ID of the preceding item after which the new item will be inserted. 
 	 */
 	std::string getPreviousItemId();
 
 	/*! \brief Set The ID of the preceding item after which the new item will be inserted. 
 	 */
-	void setPreviousItemId(std::string  previous_item_id);
+	void setPreviousItemId(std::string previous_item_id);
 	/*! \brief Get The ID of the user message item that will be created.
 	 */
 	std::string getItemId();
 
 	/*! \brief Set The ID of the user message item that will be created.
 	 */
-	void setItemId(std::string  item_id);
+	void setItemId(std::string item_id);
 
 
     private:

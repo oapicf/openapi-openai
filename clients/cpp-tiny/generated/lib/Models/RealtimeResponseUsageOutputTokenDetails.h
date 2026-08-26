@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The number of text tokens used in the Response.
 	 */
-	void setTextTokens(int  text_tokens);
+	void setTextTokens(int text_tokens);
 	/*! \brief Get The number of audio tokens used in the Response.
 	 */
 	int getAudioTokens();
 
 	/*! \brief Set The number of audio tokens used in the Response.
 	 */
-	void setAudioTokens(int  audio_tokens);
+	void setAudioTokens(int audio_tokens);
 
 
     private:

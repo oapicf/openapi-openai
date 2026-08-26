@@ -55,9 +55,9 @@ function Initialize-RealtimeClientEventInputAudioBufferAppend {
 
 
         $PSO = [PSCustomObject]@{
-            "event_id" = ${EventId}
-            "type" = ${Type}
-            "audio" = ${Audio}
+            'event_id' = ${EventId}
+            'type' = ${Type}
+            'audio' = ${Audio}
         }
 
 
@@ -95,7 +95,7 @@ function ConvertFrom-JsonToRealtimeClientEventInputAudioBufferAppend {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeClientEventInputAudioBufferAppend
-        $AllProperties = ("event_id", "type", "audio")
+        $AllProperties = ('event_id', 'type', 'audio')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -106,28 +106,28 @@ function ConvertFrom-JsonToRealtimeClientEventInputAudioBufferAppend {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "audio"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'audio'))) {
             throw "Error! JSON cannot be serialized due to the required property 'audio' missing."
         } else {
-            $Audio = $JsonParameters.PSobject.Properties["audio"].value
+            $Audio = $JsonParameters.PSobject.Properties['audio'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "event_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'event_id'))) { #optional property not found
             $EventId = $null
         } else {
-            $EventId = $JsonParameters.PSobject.Properties["event_id"].value
+            $EventId = $JsonParameters.PSobject.Properties['event_id'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "event_id" = ${EventId}
-            "type" = ${Type}
-            "audio" = ${Audio}
+            'event_id' = ${EventId}
+            'type' = ${Type}
+            'audio' = ${Audio}
         }
 
         return $PSO

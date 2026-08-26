@@ -28,6 +28,8 @@ RunStepDetailsToolCallsFileSearchResultObject_content_inner::RunStepDetailsToolC
     
 }
 
+RunStepDetailsToolCallsFileSearchResultObject_content_inner::~RunStepDetailsToolCallsFileSearchResultObject_content_inner() = default;
+
 void RunStepDetailsToolCallsFileSearchResultObject_content_inner::validate() const
 {
     std::stringstream msg;

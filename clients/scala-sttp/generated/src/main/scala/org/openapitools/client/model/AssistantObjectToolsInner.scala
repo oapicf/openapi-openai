@@ -12,12 +12,9 @@
 package org.openapitools.client.model
 
 
-case class AssistantObjectToolsInner(
-  /* The type of tool being defined: `code_interpreter` */
-  `type`: AssistantObjectToolsInnerEnums.`Type`,
-  fileSearch: Option[AssistantToolsFileSearchFileSearch] = None,
-  function: FunctionObject
-)
+trait AssistantObjectToolsInner
+object AssistantObjectToolsInner {
+}
 
 object AssistantObjectToolsInnerEnums {
 

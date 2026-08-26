@@ -34,13 +34,13 @@ class OAIAssistantsNamedToolChoice_function;
 class OAIChatCompletionToolChoiceOption : public OAIObject {
 public:
     OAIChatCompletionToolChoiceOption();
-    OAIChatCompletionToolChoiceOption(QString json);
+    OAIChatCompletionToolChoiceOption(const QString &json);
     ~OAIChatCompletionToolChoiceOption() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

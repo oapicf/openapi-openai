@@ -13,10 +13,10 @@ import org.openapitools.model.CreateFineTuningJobRequestIntegrationsInnerWandb;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-26T05:15:28.776347668Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateFineTuningJobRequestIntegrationsInner   {
   /**
-   * Gets or Sets type
+   * The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
    */
   public enum TypeEnum {
     WANDB("wandb");
@@ -51,6 +51,7 @@ public class CreateFineTuningJobRequestIntegrationsInner   {
   private CreateFineTuningJobRequestIntegrationsInnerWandb wandb;
 
   /**
+   * The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
    **/
   public CreateFineTuningJobRequestIntegrationsInner type(TypeEnum type) {
     this.type = type;
@@ -58,7 +59,7 @@ public class CreateFineTuningJobRequestIntegrationsInner   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. ")
   @JsonProperty("type")
   public TypeEnum getType() {
     return type;
@@ -119,10 +120,7 @@ public class CreateFineTuningJobRequestIntegrationsInner   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

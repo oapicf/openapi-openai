@@ -1,0 +1,55 @@
+## UsageApi
+
+### Get audio speeches usage details for the organization.
+## Get audio speeches usage details for the organization.
+GET https://api.openai.com/v1/organization/usage/audio_speeches?startTime={{startTime}}&endTime={{endTime}}&bucketWidth={{bucketWidth}}&projectIds={{projectIds}}&userIds={{userIds}}&apiKeyIds={{apiKeyIds}}&models={{models}}&groupBy={{groupBy}}&limit={{limit}}&page={{page}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Get audio transcriptions usage details for the organization.
+## Get audio transcriptions usage details for the organization.
+GET https://api.openai.com/v1/organization/usage/audio_transcriptions?startTime={{startTime}}&endTime={{endTime}}&bucketWidth={{bucketWidth}}&projectIds={{projectIds}}&userIds={{userIds}}&apiKeyIds={{apiKeyIds}}&models={{models}}&groupBy={{groupBy}}&limit={{limit}}&page={{page}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Get code interpreter sessions usage details for the organization.
+## Get code interpreter sessions usage details for the organization.
+GET https://api.openai.com/v1/organization/usage/code_interpreter_sessions?startTime={{startTime}}&endTime={{endTime}}&bucketWidth={{bucketWidth}}&projectIds={{projectIds}}&groupBy={{groupBy}}&limit={{limit}}&page={{page}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Get completions usage details for the organization.
+## Get completions usage details for the organization.
+GET https://api.openai.com/v1/organization/usage/completions?startTime={{startTime}}&endTime={{endTime}}&bucketWidth={{bucketWidth}}&projectIds={{projectIds}}&userIds={{userIds}}&apiKeyIds={{apiKeyIds}}&models={{models}}&batch={{batch}}&groupBy={{groupBy}}&limit={{limit}}&page={{page}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Get costs details for the organization.
+## Get costs details for the organization.
+GET https://api.openai.com/v1/organization/costs?startTime={{startTime}}&endTime={{endTime}}&bucketWidth={{bucketWidth}}&projectIds={{projectIds}}&groupBy={{groupBy}}&limit={{limit}}&page={{page}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Get embeddings usage details for the organization.
+## Get embeddings usage details for the organization.
+GET https://api.openai.com/v1/organization/usage/embeddings?startTime={{startTime}}&endTime={{endTime}}&bucketWidth={{bucketWidth}}&projectIds={{projectIds}}&userIds={{userIds}}&apiKeyIds={{apiKeyIds}}&models={{models}}&groupBy={{groupBy}}&limit={{limit}}&page={{page}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Get images usage details for the organization.
+## Get images usage details for the organization.
+GET https://api.openai.com/v1/organization/usage/images?startTime={{startTime}}&endTime={{endTime}}&bucketWidth={{bucketWidth}}&sources={{sources}}&sizes={{sizes}}&projectIds={{projectIds}}&userIds={{userIds}}&apiKeyIds={{apiKeyIds}}&models={{models}}&groupBy={{groupBy}}&limit={{limit}}&page={{page}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Get moderations usage details for the organization.
+## Get moderations usage details for the organization.
+GET https://api.openai.com/v1/organization/usage/moderations?startTime={{startTime}}&endTime={{endTime}}&bucketWidth={{bucketWidth}}&projectIds={{projectIds}}&userIds={{userIds}}&apiKeyIds={{apiKeyIds}}&models={{models}}&groupBy={{groupBy}}&limit={{limit}}&page={{page}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Get vector stores usage details for the organization.
+## Get vector stores usage details for the organization.
+GET https://api.openai.com/v1/organization/usage/vector_stores?startTime={{startTime}}&endTime={{endTime}}&bucketWidth={{bucketWidth}}&projectIds={{projectIds}}&groupBy={{groupBy}}&limit={{limit}}&page={{page}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}

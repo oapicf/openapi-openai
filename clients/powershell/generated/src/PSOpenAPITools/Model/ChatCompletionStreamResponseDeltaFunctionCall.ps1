@@ -41,8 +41,8 @@ function Initialize-ChatCompletionStreamResponseDeltaFunctionCall {
 
 
         $PSO = [PSCustomObject]@{
-            "arguments" = ${Arguments}
-            "name" = ${Name}
+            'arguments' = ${Arguments}
+            'name' = ${Name}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToChatCompletionStreamResponseDeltaFunctionCall {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ChatCompletionStreamResponseDeltaFunctionCall
-        $AllProperties = ("arguments", "name")
+        $AllProperties = ('arguments', 'name')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "arguments"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'arguments'))) { #optional property not found
             $Arguments = $null
         } else {
-            $Arguments = $JsonParameters.PSobject.Properties["arguments"].value
+            $Arguments = $JsonParameters.PSobject.Properties['arguments'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) { #optional property not found
             $Name = $null
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "arguments" = ${Arguments}
-            "name" = ${Name}
+            'arguments' = ${Arguments}
+            'name' = ${Name}
         }
 
         return $PSO

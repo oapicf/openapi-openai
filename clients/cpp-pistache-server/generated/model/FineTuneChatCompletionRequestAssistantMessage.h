@@ -37,7 +37,7 @@ class  FineTuneChatCompletionRequestAssistantMessage
 {
 public:
     FineTuneChatCompletionRequestAssistantMessage();
-    virtual ~FineTuneChatCompletionRequestAssistantMessage() = default;
+    virtual ~FineTuneChatCompletionRequestAssistantMessage();
 
 
     /// <summary>

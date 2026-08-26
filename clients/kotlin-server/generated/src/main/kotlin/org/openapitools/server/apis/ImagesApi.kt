@@ -30,26 +30,24 @@ import org.openapitools.server.models.CreateImageRequest
 import org.openapitools.server.models.ImagesResponse
 
 fun Route.ImagesApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createImage> {
+    post<Paths.createImage> { createImage ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "created" : 0,
               "data" : [ {
-                "revised_prompt" : "revised_prompt",
                 "b64_json" : "b64_json",
-                "url" : "url"
+                "url" : "url",
+                "revised_prompt" : "revised_prompt"
               }, {
-                "revised_prompt" : "revised_prompt",
                 "b64_json" : "b64_json",
-                "url" : "url"
-              } ],
-              "created" : 0
+                "url" : "url",
+                "revised_prompt" : "revised_prompt"
+              } ]
             }"""
             
             when (exampleContentType) {
@@ -60,25 +58,24 @@ fun Route.ImagesApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createImageEdit> {
+    post<Paths.createImageEdit> { createImageEdit ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "created" : 0,
               "data" : [ {
-                "revised_prompt" : "revised_prompt",
                 "b64_json" : "b64_json",
-                "url" : "url"
+                "url" : "url",
+                "revised_prompt" : "revised_prompt"
               }, {
-                "revised_prompt" : "revised_prompt",
                 "b64_json" : "b64_json",
-                "url" : "url"
-              } ],
-              "created" : 0
+                "url" : "url",
+                "revised_prompt" : "revised_prompt"
+              } ]
             }"""
             
             when (exampleContentType) {
@@ -89,25 +86,24 @@ fun Route.ImagesApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createImageVariation> {
+    post<Paths.createImageVariation> { createImageVariation ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "created" : 0,
               "data" : [ {
-                "revised_prompt" : "revised_prompt",
                 "b64_json" : "b64_json",
-                "url" : "url"
+                "url" : "url",
+                "revised_prompt" : "revised_prompt"
               }, {
-                "revised_prompt" : "revised_prompt",
                 "b64_json" : "b64_json",
-                "url" : "url"
-              } ],
-              "created" : 0
+                "url" : "url",
+                "revised_prompt" : "revised_prompt"
+              } ]
             }"""
             
             when (exampleContentType) {
@@ -118,5 +114,4 @@ fun Route.ImagesApi() {
         
     }
     }
-
 }

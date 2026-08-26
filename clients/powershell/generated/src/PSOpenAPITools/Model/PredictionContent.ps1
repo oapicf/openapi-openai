@@ -50,8 +50,8 @@ function Initialize-PredictionContent {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "content" = ${Content}
+            'type' = ${Type}
+            'content' = ${Content}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToPredictionContent {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PredictionContent
-        $AllProperties = ("type", "content")
+        $AllProperties = ('type', 'content')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToPredictionContent {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'content'))) {
             throw "Error! JSON cannot be serialized due to the required property 'content' missing."
         } else {
-            $Content = $JsonParameters.PSobject.Properties["content"].value
+            $Content = $JsonParameters.PSobject.Properties['content'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "content" = ${Content}
+            'type' = ${Type}
+            'content' = ${Content}
         }
 
         return $PSO

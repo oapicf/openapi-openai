@@ -26,6 +26,8 @@ RunStepDetailsToolCallsObject_tool_calls_inner::RunStepDetailsToolCallsObject_to
     
 }
 
+RunStepDetailsToolCallsObject_tool_calls_inner::~RunStepDetailsToolCallsObject_tool_calls_inner() = default;
+
 void RunStepDetailsToolCallsObject_tool_calls_inner::validate() const
 {
     std::stringstream msg;

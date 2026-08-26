@@ -25,7 +25,7 @@ namespace Org.OpenAPITools.Client
     /// <summary>
     /// Provides hosting configuration for Org.OpenAPITools
     /// </summary>
-    public class HostConfiguration
+    public partial class HostConfiguration
     {
         private readonly IServiceCollection _services;
         private readonly JsonSerializerOptions _jsonOptions = new JsonSerializerOptions();
@@ -106,7 +106,6 @@ namespace Org.OpenAPITools.Client
             _jsonOptions.Converters.Add(new AuditLogUserDeletedJsonConverter());
             _jsonOptions.Converters.Add(new AuditLogUserUpdatedJsonConverter());
             _jsonOptions.Converters.Add(new AuditLogUserUpdatedChangesRequestedJsonConverter());
-            _jsonOptions.Converters.Add(new AutoChunkingStrategyJsonConverter());
             _jsonOptions.Converters.Add(new AutoChunkingStrategyRequestParamJsonConverter());
             _jsonOptions.Converters.Add(new BatchJsonConverter());
             _jsonOptions.Converters.Add(new BatchErrorsJsonConverter());
@@ -517,7 +516,6 @@ namespace Org.OpenAPITools.Client
             _jsonOptions.Converters.Add(new RunToolCallObjectFunctionJsonConverter());
             _jsonOptions.Converters.Add(new StaticChunkingStrategyJsonConverter());
             _jsonOptions.Converters.Add(new StaticChunkingStrategyRequestParamJsonConverter());
-            _jsonOptions.Converters.Add(new StaticChunkingStrategyResponseParamJsonConverter());
             _jsonOptions.Converters.Add(new StaticChunkingStrategyStaticJsonConverter());
             _jsonOptions.Converters.Add(new SubmitToolOutputsRunRequestJsonConverter());
             _jsonOptions.Converters.Add(new SubmitToolOutputsRunRequestToolOutputsInnerJsonConverter());
@@ -575,6 +573,17 @@ namespace Org.OpenAPITools.Client
             _services.AddSingleton<UsageApiEvents>();
             _services.AddSingleton<UsersApiEvents>();
             _services.AddSingleton<VectorStoresApiEvents>();
+            OnHostConfigurationCreated();
+        }
+
+        /// <summary>
+        /// Configures the HttpClients.
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <returns></returns>
+        public HostConfiguration AddApiHttpClients(Action<IHttpClientBuilder>? builder = null)
+        {
+            return AddApiHttpClients((Action<IServiceProvider, HttpClient>?)null, builder);
         }
 
         /// <summary>
@@ -583,44 +592,86 @@ namespace Org.OpenAPITools.Client
         /// <param name="client"></param>
         /// <param name="builder"></param>
         /// <returns></returns>
-        public HostConfiguration AddApiHttpClients
-        (
-            Action<HttpClient>? client = null, Action<IHttpClientBuilder>? builder = null)
+        public HostConfiguration AddApiHttpClients(
+            Action<HttpClient>? client,
+            Action<IHttpClientBuilder>? builder = null)
+        {
+            var wrapped = client != null ? new Action<IServiceProvider, HttpClient>((_, httpClient) =>
+            {
+                client(httpClient);
+            }) : null;
+            return AddApiHttpClients(wrapped, builder);
+        }
+
+        /// <summary>
+        /// Configures the HttpClients.
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="builder"></param>
+        /// <returns></returns>
+        public HostConfiguration AddApiHttpClients(
+            Action<IServiceProvider, HttpClient>? client,
+            Action<IHttpClientBuilder>? builder = null)
         {
             if (client == null)
-                client = c => c.BaseAddress = new Uri(ClientUtils.BASE_ADDRESS);
+                client = (_, c) => c.BaseAddress = new Uri(ClientUtils.BASE_ADDRESS);
 
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
-            builders.Add(_services.AddHttpClient<IAssistantsApi, AssistantsApi>(client));
-            builders.Add(_services.AddHttpClient<IAudioApi, AudioApi>(client));
-            builders.Add(_services.AddHttpClient<IAuditLogsApi, AuditLogsApi>(client));
-            builders.Add(_services.AddHttpClient<IBatchApi, BatchApi>(client));
-            builders.Add(_services.AddHttpClient<IChatApi, ChatApi>(client));
-            builders.Add(_services.AddHttpClient<ICompletionsApi, CompletionsApi>(client));
-            builders.Add(_services.AddHttpClient<IDefaultApi, DefaultApi>(client));
-            builders.Add(_services.AddHttpClient<IEmbeddingsApi, EmbeddingsApi>(client));
-            builders.Add(_services.AddHttpClient<IFilesApi, FilesApi>(client));
-            builders.Add(_services.AddHttpClient<IFineTuningApi, FineTuningApi>(client));
-            builders.Add(_services.AddHttpClient<IImagesApi, ImagesApi>(client));
-            builders.Add(_services.AddHttpClient<IInvitesApi, InvitesApi>(client));
-            builders.Add(_services.AddHttpClient<IModelsApi, ModelsApi>(client));
-            builders.Add(_services.AddHttpClient<IModerationsApi, ModerationsApi>(client));
-            builders.Add(_services.AddHttpClient<IProjectsApi, ProjectsApi>(client));
-            builders.Add(_services.AddHttpClient<IRealtimeApi, RealtimeApi>(client));
-            builders.Add(_services.AddHttpClient<IUploadsApi, UploadsApi>(client));
-            builders.Add(_services.AddHttpClient<IUsageApi, UsageApi>(client));
-            builders.Add(_services.AddHttpClient<IUsersApi, UsersApi>(client));
-            builders.Add(_services.AddHttpClient<IVectorStoresApi, VectorStoresApi>(client));
-            
-            if (builder != null)
-                foreach (IHttpClientBuilder instance in builders)
-                    builder(instance);
+            builders.Add(_services.AddHttpClient<IAssistantsApi, AssistantsApi>("Org.OpenAPITools.Api.IAssistantsApi", client));
+            builders.Add(_services.AddHttpClient<IAudioApi, AudioApi>("Org.OpenAPITools.Api.IAudioApi", client));
+            builders.Add(_services.AddHttpClient<IAuditLogsApi, AuditLogsApi>("Org.OpenAPITools.Api.IAuditLogsApi", client));
+            builders.Add(_services.AddHttpClient<IBatchApi, BatchApi>("Org.OpenAPITools.Api.IBatchApi", client));
+            builders.Add(_services.AddHttpClient<IChatApi, ChatApi>("Org.OpenAPITools.Api.IChatApi", client));
+            builders.Add(_services.AddHttpClient<ICompletionsApi, CompletionsApi>("Org.OpenAPITools.Api.ICompletionsApi", client));
+            builders.Add(_services.AddHttpClient<IDefaultApi, DefaultApi>("Org.OpenAPITools.Api.IDefaultApi", client));
+            builders.Add(_services.AddHttpClient<IEmbeddingsApi, EmbeddingsApi>("Org.OpenAPITools.Api.IEmbeddingsApi", client));
+            builders.Add(_services.AddHttpClient<IFilesApi, FilesApi>("Org.OpenAPITools.Api.IFilesApi", client));
+            builders.Add(_services.AddHttpClient<IFineTuningApi, FineTuningApi>("Org.OpenAPITools.Api.IFineTuningApi", client));
+            builders.Add(_services.AddHttpClient<IImagesApi, ImagesApi>("Org.OpenAPITools.Api.IImagesApi", client));
+            builders.Add(_services.AddHttpClient<IInvitesApi, InvitesApi>("Org.OpenAPITools.Api.IInvitesApi", client));
+            builders.Add(_services.AddHttpClient<IModelsApi, ModelsApi>("Org.OpenAPITools.Api.IModelsApi", client));
+            builders.Add(_services.AddHttpClient<IModerationsApi, ModerationsApi>("Org.OpenAPITools.Api.IModerationsApi", client));
+            builders.Add(_services.AddHttpClient<IProjectsApi, ProjectsApi>("Org.OpenAPITools.Api.IProjectsApi", client));
+            builders.Add(_services.AddHttpClient<IRealtimeApi, RealtimeApi>("Org.OpenAPITools.Api.IRealtimeApi", client));
+            builders.Add(_services.AddHttpClient<IUploadsApi, UploadsApi>("Org.OpenAPITools.Api.IUploadsApi", client));
+            builders.Add(_services.AddHttpClient<IUsageApi, UsageApi>("Org.OpenAPITools.Api.IUsageApi", client));
+            builders.Add(_services.AddHttpClient<IUsersApi, UsersApi>("Org.OpenAPITools.Api.IUsersApi", client));
+            builders.Add(_services.AddHttpClient<IVectorStoresApi, VectorStoresApi>("Org.OpenAPITools.Api.IVectorStoresApi", client));
+
+            foreach (IHttpClientBuilder instance in builders)
+            {
+                OnAddApiHttpClientBuilder(instance);
+                builder?.Invoke(instance);
+            }
 
             HttpClientsAdded = true;
 
             return this;
         }
+
+        /// <summary>
+        /// Applies configuration to each HttpClient after registration.
+        /// Implement this partial method in a separate file to provide custom defaults;
+        /// the caller's <c>builder</c> action runs after.
+        /// </summary>
+        /// <param name="builder"></param>
+        partial void OnAddApiHttpClientBuilder(IHttpClientBuilder builder);
+
+        /// <summary>
+        /// Called at the end of the constructor after all JSON converters and services are registered.
+        /// Implement this partial method to further configure <c>_jsonOptions</c> or register additional singletons via <c>_services</c>.
+        /// </summary>
+        partial void OnHostConfigurationCreated();
+
+        /// <summary>
+        /// Called after all services have been registered.
+        /// Implement this partial method to register additional services.
+        /// </summary>
+        /// <param name="services"></param>
+        partial void OnServicesAdded(IServiceCollection services);
+
+        internal void NotifyServicesAdded(IServiceCollection services) => OnServicesAdded(services);
 
         /// <summary>
         /// Configures the JsonSerializerSettings

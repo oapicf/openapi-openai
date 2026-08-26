@@ -37,6 +37,7 @@ public:
 
 	static FString EnumToString(const TypeEnum& EnumValue);
 	static bool EnumFromString(const FString& EnumAsString, TypeEnum& EnumValue);
+	/* The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported.  */
 	TypeEnum Type;
 	OpenAPICreateFineTuningJobRequestIntegrationsInnerWandb Wandb;
 };

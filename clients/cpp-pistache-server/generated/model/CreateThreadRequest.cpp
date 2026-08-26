@@ -27,6 +27,8 @@ CreateThreadRequest::CreateThreadRequest()
     
 }
 
+CreateThreadRequest::~CreateThreadRequest() = default;
+
 void CreateThreadRequest::validate() const
 {
     std::stringstream msg;

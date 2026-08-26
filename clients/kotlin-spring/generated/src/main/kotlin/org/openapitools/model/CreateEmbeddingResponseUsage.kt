@@ -20,10 +20,12 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class CreateEmbeddingResponseUsage(
 
-    @Schema(example = "null", required = true, description = "The number of tokens used by the prompt.")
+    @Schema(required = true, description = "The number of tokens used by the prompt.")
+    @param:JsonProperty("prompt_tokens")
     @get:JsonProperty("prompt_tokens", required = true) val promptTokens: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The total number of tokens used by the request.")
+    @Schema(required = true, description = "The total number of tokens used by the request.")
+    @param:JsonProperty("total_tokens")
     @get:JsonProperty("total_tokens", required = true) val totalTokens: kotlin.Int
 ) {
 

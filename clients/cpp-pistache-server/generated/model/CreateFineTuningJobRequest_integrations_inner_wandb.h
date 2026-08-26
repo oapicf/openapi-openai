@@ -33,7 +33,7 @@ class  CreateFineTuningJobRequest_integrations_inner_wandb
 {
 public:
     CreateFineTuningJobRequest_integrations_inner_wandb();
-    virtual ~CreateFineTuningJobRequest_integrations_inner_wandb() = default;
+    virtual ~CreateFineTuningJobRequest_integrations_inner_wandb();
 
 
     /// <summary>

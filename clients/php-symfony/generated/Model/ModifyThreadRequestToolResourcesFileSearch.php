@@ -49,7 +49,7 @@ class ModifyThreadRequestToolResourcesFileSearch
      * @var string[]|null
      * @SerializedName("vector_store_ids")
      * @Type("array<string>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("string"),
     ])]
@@ -78,12 +78,12 @@ class ModifyThreadRequestToolResourcesFileSearch
     }
 
     /**
-    * Sets vectorStoreIds.
-    *
-    * @param string[]|null $vectorStoreIds  The [vector store](/docs/api-reference/vector-stores/object) attached to this thread. There can be a maximum of 1 vector store attached to the thread.
-    *
-    * @return $this
-    */
+     * Sets vectorStoreIds.
+     *
+     * @param string[]|null $vectorStoreIds  The [vector store](/docs/api-reference/vector-stores/object) attached to this thread. There can be a maximum of 1 vector store attached to the thread.
+     *
+     * @return $this
+     */
     public function setVectorStoreIds(?array $vectorStoreIds = null): self
     {
         $this->vectorStoreIds = $vectorStoreIds;

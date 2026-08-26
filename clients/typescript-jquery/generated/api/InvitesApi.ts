@@ -55,7 +55,7 @@ export class InvitesApi {
     { response: JQueryXHR; body: models.InviteDeleteResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/invites/{invite_id}'.replace('{' + 'invite_id' + '}', encodeURIComponent(String(inviteId)));
+        let localVarPath = this.basePath + '/organization/invites/{invite_id}'.replace('{invite_id}', encodeURIComponent(String(inviteId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -250,7 +250,7 @@ export class InvitesApi {
     { response: JQueryXHR; body: models.Invite;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/invites/{invite_id}'.replace('{' + 'invite_id' + '}', encodeURIComponent(String(inviteId)));
+        let localVarPath = this.basePath + '/organization/invites/{invite_id}'.replace('{invite_id}', encodeURIComponent(String(inviteId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};

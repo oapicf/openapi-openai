@@ -34,7 +34,6 @@ object JsonSupport extends SttpJson4sApi {
     new EnumNameSerializer(AuditLogActorEnums.`Type`) :+
     new EnumNameSerializer(AuditLogActorApiKeyEnums.`Type`) :+
     new EnumNameSerializer(AuditLogEventType) :+
-    new EnumNameSerializer(AutoChunkingStrategyEnums.`Type`) :+
     new EnumNameSerializer(AutoChunkingStrategyRequestParamEnums.`Type`) :+
     new EnumNameSerializer(BatchEnums.`Object`) :+
     new EnumNameSerializer(BatchEnums.Status) :+
@@ -63,7 +62,6 @@ object JsonSupport extends SttpJson4sApi {
     new EnumNameSerializer(ChatCompletionToolEnums.`Type`) :+
     new EnumNameSerializer(ChatCompletionToolChoiceOptionEnums.`Type`) :+
     new EnumNameSerializer(ChunkingStrategyRequestParamEnums.`Type`) :+
-    new EnumNameSerializer(CostsResultEnums.`Object`) :+
     new EnumNameSerializer(CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyEnums.`Type`) :+
     new EnumNameSerializer(CreateBatchRequestEnums.Endpoint) :+
     new EnumNameSerializer(CreateBatchRequestEnums.CompletionWindow) :+
@@ -93,8 +91,6 @@ object JsonSupport extends SttpJson4sApi {
     new EnumNameSerializer(CreateMessageRequestEnums.Role) :+
     new EnumNameSerializer(CreateMessageRequestAttachmentsInnerToolsInnerEnums.`Type`) :+
     new EnumNameSerializer(CreateModerationRequestInputOneOfInnerEnums.`Type`) :+
-    new EnumNameSerializer(CreateModerationRequestInputOneOfInnerOneOfEnums.`Type`) :+
-    new EnumNameSerializer(CreateModerationRequestInputOneOfInnerOneOf1Enums.`Type`) :+
     new EnumNameSerializer(CreateModerationResponseResultsInnerCategoryAppliedInputTypesEnums.Hate) :+
     new EnumNameSerializer(CreateModerationResponseResultsInnerCategoryAppliedInputTypesEnums.HateThreatening) :+
     new EnumNameSerializer(CreateModerationResponseResultsInnerCategoryAppliedInputTypesEnums.Harassment) :+
@@ -130,7 +126,6 @@ object JsonSupport extends SttpJson4sApi {
     new EnumNameSerializer(FineTuneChatRequestInputMessagesInnerEnums.Weight) :+
     new EnumNameSerializer(FineTuneMethodEnums.`Type`) :+
     new EnumNameSerializer(FineTunePreferenceRequestInputPreferredCompletionInnerEnums.Role) :+
-    new EnumNameSerializer(FineTuningIntegrationEnums.`Type`) :+
     new EnumNameSerializer(FineTuningJobEnums.`Object`) :+
     new EnumNameSerializer(FineTuningJobEnums.Status) :+
     new EnumNameSerializer(FineTuningJobCheckpointEnums.`Object`) :+
@@ -157,18 +152,10 @@ object JsonSupport extends SttpJson4sApi {
     new EnumNameSerializer(MessageContentImageUrlObjectEnums.`Type`) :+
     new EnumNameSerializer(MessageContentImageUrlObjectImageUrlEnums.Detail) :+
     new EnumNameSerializer(MessageContentRefusalObjectEnums.`Type`) :+
-    new EnumNameSerializer(MessageContentTextAnnotationsFileCitationObjectEnums.`Type`) :+
-    new EnumNameSerializer(MessageContentTextAnnotationsFilePathObjectEnums.`Type`) :+
     new EnumNameSerializer(MessageContentTextObjectEnums.`Type`) :+
     new EnumNameSerializer(MessageContentTextObjectTextAnnotationsInnerEnums.`Type`) :+
-    new EnumNameSerializer(MessageDeltaContentImageFileObjectEnums.`Type`) :+
     new EnumNameSerializer(MessageDeltaContentImageFileObjectImageFileEnums.Detail) :+
-    new EnumNameSerializer(MessageDeltaContentImageUrlObjectEnums.`Type`) :+
     new EnumNameSerializer(MessageDeltaContentImageUrlObjectImageUrlEnums.Detail) :+
-    new EnumNameSerializer(MessageDeltaContentRefusalObjectEnums.`Type`) :+
-    new EnumNameSerializer(MessageDeltaContentTextAnnotationsFileCitationObjectEnums.`Type`) :+
-    new EnumNameSerializer(MessageDeltaContentTextAnnotationsFilePathObjectEnums.`Type`) :+
-    new EnumNameSerializer(MessageDeltaContentTextObjectEnums.`Type`) :+
     new EnumNameSerializer(MessageDeltaContentTextObjectTextAnnotationsInnerEnums.`Type`) :+
     new EnumNameSerializer(MessageDeltaObjectEnums.`Object`) :+
     new EnumNameSerializer(MessageDeltaObjectDeltaEnums.Role) :+
@@ -180,11 +167,6 @@ object JsonSupport extends SttpJson4sApi {
     new EnumNameSerializer(MessageObjectIncompleteDetailsEnums.Reason) :+
     new EnumNameSerializer(MessageRequestContentTextObjectEnums.`Type`) :+
     new EnumNameSerializer(MessageStreamEventEnums.Event) :+
-    new EnumNameSerializer(MessageStreamEventOneOfEnums.Event) :+
-    new EnumNameSerializer(MessageStreamEventOneOf1Enums.Event) :+
-    new EnumNameSerializer(MessageStreamEventOneOf2Enums.Event) :+
-    new EnumNameSerializer(MessageStreamEventOneOf3Enums.Event) :+
-    new EnumNameSerializer(MessageStreamEventOneOf4Enums.Event) :+
     new EnumNameSerializer(ModelEnums.`Object`) :+
     new EnumNameSerializer(OpenAIFileEnums.`Object`) :+
     new EnumNameSerializer(OpenAIFileEnums.Purpose) :+
@@ -287,25 +269,11 @@ object JsonSupport extends SttpJson4sApi {
     new EnumNameSerializer(RunObjectRequiredActionEnums.`Type`) :+
     new EnumNameSerializer(RunStepDeltaObjectEnums.`Object`) :+
     new EnumNameSerializer(RunStepDeltaObjectDeltaStepDetailsEnums.`Type`) :+
-    new EnumNameSerializer(RunStepDeltaStepDetailsMessageCreationObjectEnums.`Type`) :+
-    new EnumNameSerializer(RunStepDeltaStepDetailsToolCallsCodeObjectEnums.`Type`) :+
     new EnumNameSerializer(RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerEnums.`Type`) :+
-    new EnumNameSerializer(RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectEnums.`Type`) :+
-    new EnumNameSerializer(RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectEnums.`Type`) :+
-    new EnumNameSerializer(RunStepDeltaStepDetailsToolCallsFileSearchObjectEnums.`Type`) :+
-    new EnumNameSerializer(RunStepDeltaStepDetailsToolCallsFunctionObjectEnums.`Type`) :+
-    new EnumNameSerializer(RunStepDeltaStepDetailsToolCallsObjectEnums.`Type`) :+
     new EnumNameSerializer(RunStepDeltaStepDetailsToolCallsObjectToolCallsInnerEnums.`Type`) :+
-    new EnumNameSerializer(RunStepDetailsMessageCreationObjectEnums.`Type`) :+
-    new EnumNameSerializer(RunStepDetailsToolCallsCodeObjectEnums.`Type`) :+
     new EnumNameSerializer(RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerEnums.`Type`) :+
-    new EnumNameSerializer(RunStepDetailsToolCallsCodeOutputImageObjectEnums.`Type`) :+
-    new EnumNameSerializer(RunStepDetailsToolCallsCodeOutputLogsObjectEnums.`Type`) :+
-    new EnumNameSerializer(RunStepDetailsToolCallsFileSearchObjectEnums.`Type`) :+
     new EnumNameSerializer(RunStepDetailsToolCallsFileSearchRankingOptionsObjectEnums.Ranker) :+
     new EnumNameSerializer(RunStepDetailsToolCallsFileSearchResultObjectContentInnerEnums.`Type`) :+
-    new EnumNameSerializer(RunStepDetailsToolCallsFunctionObjectEnums.`Type`) :+
-    new EnumNameSerializer(RunStepDetailsToolCallsObjectEnums.`Type`) :+
     new EnumNameSerializer(RunStepDetailsToolCallsObjectToolCallsInnerEnums.`Type`) :+
     new EnumNameSerializer(RunStepObjectEnums.`Object`) :+
     new EnumNameSerializer(RunStepObjectEnums.`Type`) :+
@@ -313,45 +281,19 @@ object JsonSupport extends SttpJson4sApi {
     new EnumNameSerializer(RunStepObjectLastErrorEnums.Code) :+
     new EnumNameSerializer(RunStepObjectStepDetailsEnums.`Type`) :+
     new EnumNameSerializer(RunStepStreamEventEnums.Event) :+
-    new EnumNameSerializer(RunStepStreamEventOneOfEnums.Event) :+
-    new EnumNameSerializer(RunStepStreamEventOneOf1Enums.Event) :+
-    new EnumNameSerializer(RunStepStreamEventOneOf2Enums.Event) :+
-    new EnumNameSerializer(RunStepStreamEventOneOf3Enums.Event) :+
-    new EnumNameSerializer(RunStepStreamEventOneOf4Enums.Event) :+
-    new EnumNameSerializer(RunStepStreamEventOneOf5Enums.Event) :+
-    new EnumNameSerializer(RunStepStreamEventOneOf6Enums.Event) :+
     new EnumNameSerializer(RunStreamEventEnums.Event) :+
-    new EnumNameSerializer(RunStreamEventOneOfEnums.Event) :+
-    new EnumNameSerializer(RunStreamEventOneOf1Enums.Event) :+
-    new EnumNameSerializer(RunStreamEventOneOf2Enums.Event) :+
-    new EnumNameSerializer(RunStreamEventOneOf3Enums.Event) :+
-    new EnumNameSerializer(RunStreamEventOneOf4Enums.Event) :+
-    new EnumNameSerializer(RunStreamEventOneOf5Enums.Event) :+
-    new EnumNameSerializer(RunStreamEventOneOf6Enums.Event) :+
-    new EnumNameSerializer(RunStreamEventOneOf7Enums.Event) :+
-    new EnumNameSerializer(RunStreamEventOneOf8Enums.Event) :+
-    new EnumNameSerializer(RunStreamEventOneOf9Enums.Event) :+
     new EnumNameSerializer(RunToolCallObjectEnums.`Type`) :+
     new EnumNameSerializer(StaticChunkingStrategyEnums.`Type`) :+
     new EnumNameSerializer(StaticChunkingStrategyRequestParamEnums.`Type`) :+
-    new EnumNameSerializer(StaticChunkingStrategyResponseParamEnums.`Type`) :+
     new EnumNameSerializer(ThreadObjectEnums.`Object`) :+
     new EnumNameSerializer(ThreadStreamEventEnums.Event) :+
     new EnumNameSerializer(TruncationObjectEnums.`Type`) :+
     new EnumNameSerializer(UploadEnums.Status) :+
     new EnumNameSerializer(UploadEnums.`Object`) :+
     new EnumNameSerializer(UploadPartEnums.`Object`) :+
-    new EnumNameSerializer(UsageAudioSpeechesResultEnums.`Object`) :+
-    new EnumNameSerializer(UsageAudioTranscriptionsResultEnums.`Object`) :+
-    new EnumNameSerializer(UsageCodeInterpreterSessionsResultEnums.`Object`) :+
-    new EnumNameSerializer(UsageCompletionsResultEnums.`Object`) :+
-    new EnumNameSerializer(UsageEmbeddingsResultEnums.`Object`) :+
-    new EnumNameSerializer(UsageImagesResultEnums.`Object`) :+
-    new EnumNameSerializer(UsageModerationsResultEnums.`Object`) :+
     new EnumNameSerializer(UsageResponseEnums.`Object`) :+
     new EnumNameSerializer(UsageTimeBucketEnums.`Object`) :+
     new EnumNameSerializer(UsageTimeBucketResultInnerEnums.`Object`) :+
-    new EnumNameSerializer(UsageVectorStoresResultEnums.`Object`) :+
     new EnumNameSerializer(UserEnums.`Object`) :+
     new EnumNameSerializer(UserEnums.Role) :+
     new EnumNameSerializer(UserDeleteResponseEnums.`Object`) :+

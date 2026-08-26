@@ -51,7 +51,7 @@ class RealtimeClientEventResponseCreate
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $eventId = null;
 
@@ -61,7 +61,7 @@ class RealtimeClientEventResponseCreate
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['response.create'])]
     #[Assert\Type("string")]
@@ -71,7 +71,7 @@ class RealtimeClientEventResponseCreate
      * @var RealtimeResponseCreateParams|null
      * @SerializedName("response")
      * @Type("OpenAPI\Server\Model\RealtimeResponseCreateParams")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RealtimeResponseCreateParams")]
     protected ?RealtimeResponseCreateParams $response = null;
 
@@ -99,12 +99,12 @@ class RealtimeClientEventResponseCreate
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  Optional client-generated ID used to identify this event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  Optional client-generated ID used to identify this event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId = null): self
     {
         $this->eventId = $eventId;
@@ -126,12 +126,12 @@ class RealtimeClientEventResponseCreate
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `response.create`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `response.create`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -153,12 +153,12 @@ class RealtimeClientEventResponseCreate
     }
 
     /**
-    * Sets response.
-    *
-    * @param RealtimeResponseCreateParams|null $response
-    *
-    * @return $this
-    */
+     * Sets response.
+     *
+     * @param RealtimeResponseCreateParams|null $response
+     *
+     * @return $this
+     */
     public function setResponse(?RealtimeResponseCreateParams $response = null): self
     {
         $this->response = $response;

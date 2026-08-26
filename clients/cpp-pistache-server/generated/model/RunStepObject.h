@@ -36,7 +36,7 @@ class  RunStepObject
 {
 public:
     RunStepObject();
-    virtual ~RunStepObject() = default;
+    virtual ~RunStepObject();
 
 
     /// <summary>

@@ -51,7 +51,7 @@ class RunStepDeltaObject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class RunStepDeltaObject
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['thread.run.step.delta'])]
     #[Assert\Type("string")]
@@ -72,7 +72,7 @@ class RunStepDeltaObject
      * @var RunStepDeltaObjectDelta|null
      * @SerializedName("delta")
      * @Type("OpenAPI\Server\Model\RunStepDeltaObjectDelta")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunStepDeltaObjectDelta")]
@@ -102,12 +102,12 @@ class RunStepDeltaObject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The identifier of the run step, which can be referenced in API endpoints.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The identifier of the run step, which can be referenced in API endpoints.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -129,12 +129,12 @@ class RunStepDeltaObject
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `thread.run.step.delta`.
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `thread.run.step.delta`.
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -156,12 +156,12 @@ class RunStepDeltaObject
     }
 
     /**
-    * Sets delta.
-    *
-    * @param RunStepDeltaObjectDelta|null $delta
-    *
-    * @return $this
-    */
+     * Sets delta.
+     *
+     * @param RunStepDeltaObjectDelta|null $delta
+     *
+     * @return $this
+     */
     public function setDelta(?RunStepDeltaObjectDelta $delta): self
     {
         $this->delta = $delta;

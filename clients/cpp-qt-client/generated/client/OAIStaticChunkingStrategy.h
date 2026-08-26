@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIStaticChunkingStrategy : public OAIObject {
 public:
     OAIStaticChunkingStrategy();
-    OAIStaticChunkingStrategy(QString json);
+    OAIStaticChunkingStrategy(const QString &json);
     ~OAIStaticChunkingStrategy() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getMaxChunkSizeTokens() const;
     void setMaxChunkSizeTokens(const qint32 &max_chunk_size_tokens);

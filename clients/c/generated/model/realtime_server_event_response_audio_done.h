@@ -31,8 +31,8 @@ typedef struct realtime_server_event_response_audio_done_t {
     openai_api_realtime_server_event_response_audio_done_TYPE_e type; //enum
     char *response_id; // string
     char *item_id; // string
-    int output_index; //numeric
-    int content_index; //numeric
+    int *output_index; //numeric
+    int *content_index; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } realtime_server_event_response_audio_done_t;
@@ -42,8 +42,8 @@ __attribute__((deprecated)) realtime_server_event_response_audio_done_t *realtim
     openai_api_realtime_server_event_response_audio_done_TYPE_e type,
     char *response_id,
     char *item_id,
-    int output_index,
-    int content_index
+    int *output_index,
+    int *content_index
 );
 
 void realtime_server_event_response_audio_done_free(realtime_server_event_response_audio_done_t *realtime_server_event_response_audio_done);

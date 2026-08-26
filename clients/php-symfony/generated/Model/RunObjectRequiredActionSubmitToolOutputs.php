@@ -51,7 +51,7 @@ class RunObjectRequiredActionSubmitToolOutputs
      * @var RunToolCallObject[]|null
      * @SerializedName("tool_calls")
      * @Type("array<OpenAPI\Server\Model\RunToolCallObject>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -81,12 +81,12 @@ class RunObjectRequiredActionSubmitToolOutputs
     }
 
     /**
-    * Sets toolCalls.
-    *
-    * @param RunToolCallObject[]|null $toolCalls  A list of the relevant tool calls.
-    *
-    * @return $this
-    */
+     * Sets toolCalls.
+     *
+     * @param RunToolCallObject[]|null $toolCalls  A list of the relevant tool calls.
+     *
+     * @return $this
+     */
     public function setToolCalls(?array $toolCalls): self
     {
         $this->toolCalls = $toolCalls;

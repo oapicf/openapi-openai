@@ -31,7 +31,7 @@ class  CreateFineTuningJobRequest_hyperparameters_n_epochs
 {
 public:
     CreateFineTuningJobRequest_hyperparameters_n_epochs();
-    virtual ~CreateFineTuningJobRequest_hyperparameters_n_epochs() = default;
+    virtual ~CreateFineTuningJobRequest_hyperparameters_n_epochs();
 
 
     /// <summary>

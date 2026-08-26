@@ -49,7 +49,7 @@ class ResponseFormatText
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['text'])]
     #[Assert\Type("string")]
@@ -77,12 +77,12 @@ class ResponseFormatText
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of response format being defined: `text`
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of response format being defined: `text`
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;

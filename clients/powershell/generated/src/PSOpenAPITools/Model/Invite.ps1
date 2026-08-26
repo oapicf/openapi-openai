@@ -107,15 +107,15 @@ function Initialize-Invite {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "id" = ${Id}
-            "email" = ${Email}
-            "role" = ${Role}
-            "status" = ${Status}
-            "invited_at" = ${InvitedAt}
-            "expires_at" = ${ExpiresAt}
-            "accepted_at" = ${AcceptedAt}
-            "projects" = ${Projects}
+            'object' = ${Object}
+            'id' = ${Id}
+            'email' = ${Email}
+            'role' = ${Role}
+            'status' = ${Status}
+            'invited_at' = ${InvitedAt}
+            'expires_at' = ${ExpiresAt}
+            'accepted_at' = ${AcceptedAt}
+            'projects' = ${Projects}
         }
 
 
@@ -153,7 +153,7 @@ function ConvertFrom-JsonToInvite {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in Invite
-        $AllProperties = ("object", "id", "email", "role", "status", "invited_at", "expires_at", "accepted_at", "projects")
+        $AllProperties = ('object', 'id', 'email', 'role', 'status', 'invited_at', 'expires_at', 'accepted_at', 'projects')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -164,70 +164,70 @@ function ConvertFrom-JsonToInvite {
             throw "Error! Empty JSON cannot be serialized due to the required property 'object' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "email"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'email'))) {
             throw "Error! JSON cannot be serialized due to the required property 'email' missing."
         } else {
-            $Email = $JsonParameters.PSobject.Properties["email"].value
+            $Email = $JsonParameters.PSobject.Properties['email'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "role"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'role'))) {
             throw "Error! JSON cannot be serialized due to the required property 'role' missing."
         } else {
-            $Role = $JsonParameters.PSobject.Properties["role"].value
+            $Role = $JsonParameters.PSobject.Properties['role'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'status'))) {
             throw "Error! JSON cannot be serialized due to the required property 'status' missing."
         } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
+            $Status = $JsonParameters.PSobject.Properties['status'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "invited_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'invited_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'invited_at' missing."
         } else {
-            $InvitedAt = $JsonParameters.PSobject.Properties["invited_at"].value
+            $InvitedAt = $JsonParameters.PSobject.Properties['invited_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expires_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'expires_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'expires_at' missing."
         } else {
-            $ExpiresAt = $JsonParameters.PSobject.Properties["expires_at"].value
+            $ExpiresAt = $JsonParameters.PSobject.Properties['expires_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "accepted_at"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'accepted_at'))) { #optional property not found
             $AcceptedAt = $null
         } else {
-            $AcceptedAt = $JsonParameters.PSobject.Properties["accepted_at"].value
+            $AcceptedAt = $JsonParameters.PSobject.Properties['accepted_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "projects"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'projects'))) { #optional property not found
             $Projects = $null
         } else {
-            $Projects = $JsonParameters.PSobject.Properties["projects"].value
+            $Projects = $JsonParameters.PSobject.Properties['projects'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "id" = ${Id}
-            "email" = ${Email}
-            "role" = ${Role}
-            "status" = ${Status}
-            "invited_at" = ${InvitedAt}
-            "expires_at" = ${ExpiresAt}
-            "accepted_at" = ${AcceptedAt}
-            "projects" = ${Projects}
+            'object' = ${Object}
+            'id' = ${Id}
+            'email' = ${Email}
+            'role' = ${Role}
+            'status' = ${Status}
+            'invited_at' = ${InvitedAt}
+            'expires_at' = ${ExpiresAt}
+            'accepted_at' = ${AcceptedAt}
+            'projects' = ${Projects}
         }
 
         return $PSO

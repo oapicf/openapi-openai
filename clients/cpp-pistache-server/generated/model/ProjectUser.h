@@ -32,7 +32,7 @@ class  ProjectUser
 {
 public:
     ProjectUser();
-    virtual ~ProjectUser() = default;
+    virtual ~ProjectUser();
 
 
     /// <summary>

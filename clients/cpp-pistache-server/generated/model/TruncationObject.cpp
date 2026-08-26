@@ -27,6 +27,8 @@ TruncationObject::TruncationObject()
     
 }
 
+TruncationObject::~TruncationObject() = default;
+
 void TruncationObject::validate() const
 {
     std::stringstream msg;

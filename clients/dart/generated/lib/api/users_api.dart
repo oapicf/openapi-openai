@@ -24,7 +24,7 @@ class UsersApi {
   ///
   /// * [String] userId (required):
   ///   The ID of the user.
-  Future<Response> deleteUserWithHttpInfo(String userId,) async {
+  Future<Response> deleteUserWithHttpInfo(String userId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/users/{user_id}'
       .replaceAll('{user_id}', userId);
@@ -47,6 +47,7 @@ class UsersApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -56,8 +57,8 @@ class UsersApi {
   ///
   /// * [String] userId (required):
   ///   The ID of the user.
-  Future<UserDeleteResponse?> deleteUser(String userId,) async {
-    final response = await deleteUserWithHttpInfo(userId,);
+  Future<UserDeleteResponse?> deleteUser(String userId, { Future<void>? abortTrigger, }) async {
+    final response = await deleteUserWithHttpInfo(userId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -82,7 +83,7 @@ class UsersApi {
   ///
   /// * [String] after:
   ///   A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-  Future<Response> listUsersWithHttpInfo({ int? limit, String? after, }) async {
+  Future<Response> listUsersWithHttpInfo({ int? limit, String? after, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/users';
 
@@ -111,6 +112,7 @@ class UsersApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -123,8 +125,8 @@ class UsersApi {
   ///
   /// * [String] after:
   ///   A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-  Future<UserListResponse?> listUsers({ int? limit, String? after, }) async {
-    final response = await listUsersWithHttpInfo( limit: limit, after: after, );
+  Future<UserListResponse?> listUsers({ int? limit, String? after, Future<void>? abortTrigger, }) async {
+    final response = await listUsersWithHttpInfo(limit: limit, after: after, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -149,7 +151,7 @@ class UsersApi {
   ///
   /// * [UserRoleUpdateRequest] userRoleUpdateRequest (required):
   ///   The new user role to modify. This must be one of `owner` or `member`.
-  Future<Response> modifyUserWithHttpInfo(String userId, UserRoleUpdateRequest userRoleUpdateRequest,) async {
+  Future<Response> modifyUserWithHttpInfo(String userId, UserRoleUpdateRequest userRoleUpdateRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/users/{user_id}'
       .replaceAll('{user_id}', userId);
@@ -172,6 +174,7 @@ class UsersApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -184,8 +187,8 @@ class UsersApi {
   ///
   /// * [UserRoleUpdateRequest] userRoleUpdateRequest (required):
   ///   The new user role to modify. This must be one of `owner` or `member`.
-  Future<User?> modifyUser(String userId, UserRoleUpdateRequest userRoleUpdateRequest,) async {
-    final response = await modifyUserWithHttpInfo(userId, userRoleUpdateRequest,);
+  Future<User?> modifyUser(String userId, UserRoleUpdateRequest userRoleUpdateRequest, { Future<void>? abortTrigger, }) async {
+    final response = await modifyUserWithHttpInfo(userId, userRoleUpdateRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -207,7 +210,7 @@ class UsersApi {
   ///
   /// * [String] userId (required):
   ///   The ID of the user.
-  Future<Response> retrieveUserWithHttpInfo(String userId,) async {
+  Future<Response> retrieveUserWithHttpInfo(String userId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/users/{user_id}'
       .replaceAll('{user_id}', userId);
@@ -230,6 +233,7 @@ class UsersApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -239,8 +243,8 @@ class UsersApi {
   ///
   /// * [String] userId (required):
   ///   The ID of the user.
-  Future<User?> retrieveUser(String userId,) async {
-    final response = await retrieveUserWithHttpInfo(userId,);
+  Future<User?> retrieveUser(String userId, { Future<void>? abortTrigger, }) async {
+    final response = await retrieveUserWithHttpInfo(userId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

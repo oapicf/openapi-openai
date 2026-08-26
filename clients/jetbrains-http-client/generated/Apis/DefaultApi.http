@@ -1,0 +1,31 @@
+## DefaultApi
+
+### Create an organization admin API key
+## Create an organization admin API key
+POST https://api.openai.com/v1/organization/admin_api_keys
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "name": "<string>"
+}
+
+
+### Delete an organization admin API key
+## Delete an organization admin API key
+DELETE https://api.openai.com/v1/organization/admin_api_keys/{{key_id}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Retrieve a single organization API key
+## Retrieve a single organization API key
+GET https://api.openai.com/v1/organization/admin_api_keys/{{key_id}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### List organization API keys
+## List organization API keys
+GET https://api.openai.com/v1/organization/admin_api_keys?after={{after}}&order={{order}}&limit={{limit}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}

@@ -22,10 +22,12 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class SubmitToolOutputsRunRequest(
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "A list of tools for which the outputs are being submitted.")
+    @Schema(required = true, description = "A list of tools for which the outputs are being submitted.")
+    @param:JsonProperty("tool_outputs")
     @get:JsonProperty("tool_outputs", required = true) val toolOutputs: kotlin.collections.List<SubmitToolOutputsRunRequestToolOutputsInner>,
 
-    @Schema(example = "null", description = "If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. ")
+    @Schema(description = "If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. ")
+    @param:JsonProperty("stream")
     @get:JsonProperty("stream") val stream: kotlin.Boolean? = null
 ) {
 

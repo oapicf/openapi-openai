@@ -62,14 +62,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setEvent(std::string  event);
+	void setEvent(std::string event);
 	/*! \brief Get 
 	 */
 	RunObject getData();
 
 	/*! \brief Set 
 	 */
-	void setData(RunObject  data);
+	void setData(RunObject data);
 
 
     private:

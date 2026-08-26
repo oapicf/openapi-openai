@@ -1,6 +1,5 @@
 .flake8
 .gitignore
-.openapi-generator-ignore
 Dockerfile
 README.md
 docker-compose.yaml
@@ -112,7 +111,6 @@ src/openapi_server/models/audit_log_user_added_data.py
 src/openapi_server/models/audit_log_user_deleted.py
 src/openapi_server/models/audit_log_user_updated.py
 src/openapi_server/models/audit_log_user_updated_changes_requested.py
-src/openapi_server/models/auto_chunking_strategy.py
 src/openapi_server/models/auto_chunking_strategy_request_param.py
 src/openapi_server/models/batch.py
 src/openapi_server/models/batch_errors.py
@@ -523,7 +521,6 @@ src/openapi_server/models/run_tool_call_object.py
 src/openapi_server/models/run_tool_call_object_function.py
 src/openapi_server/models/static_chunking_strategy.py
 src/openapi_server/models/static_chunking_strategy_request_param.py
-src/openapi_server/models/static_chunking_strategy_response_param.py
 src/openapi_server/models/static_chunking_strategy_static.py
 src/openapi_server/models/submit_tool_outputs_run_request.py
 src/openapi_server/models/submit_tool_outputs_run_request_tool_outputs_inner.py
@@ -560,23 +557,3 @@ src/openapi_server/models/vector_store_object.py
 src/openapi_server/models/vector_store_object_file_counts.py
 src/openapi_server/security_api.py
 tests/conftest.py
-tests/test_assistants_api.py
-tests/test_audio_api.py
-tests/test_audit_logs_api.py
-tests/test_batch_api.py
-tests/test_chat_api.py
-tests/test_completions_api.py
-tests/test_default_api.py
-tests/test_embeddings_api.py
-tests/test_files_api.py
-tests/test_fine_tuning_api.py
-tests/test_images_api.py
-tests/test_invites_api.py
-tests/test_models_api.py
-tests/test_moderations_api.py
-tests/test_projects_api.py
-tests/test_realtime_api.py
-tests/test_uploads_api.py
-tests/test_usage_api.py
-tests/test_users_api.py
-tests/test_vector_stores_api.py

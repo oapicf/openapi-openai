@@ -77,11 +77,11 @@ function Initialize-RealtimeServerEventResponseOutputItemAdded {
 
 
         $PSO = [PSCustomObject]@{
-            "event_id" = ${EventId}
-            "type" = ${Type}
-            "response_id" = ${ResponseId}
-            "output_index" = ${OutputIndex}
-            "item" = ${Item}
+            'event_id' = ${EventId}
+            'type' = ${Type}
+            'response_id' = ${ResponseId}
+            'output_index' = ${OutputIndex}
+            'item' = ${Item}
         }
 
 
@@ -119,7 +119,7 @@ function ConvertFrom-JsonToRealtimeServerEventResponseOutputItemAdded {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeServerEventResponseOutputItemAdded
-        $AllProperties = ("event_id", "type", "response_id", "output_index", "item")
+        $AllProperties = ('event_id', 'type', 'response_id', 'output_index', 'item')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -130,42 +130,42 @@ function ConvertFrom-JsonToRealtimeServerEventResponseOutputItemAdded {
             throw "Error! Empty JSON cannot be serialized due to the required property 'event_id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "event_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'event_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'event_id' missing."
         } else {
-            $EventId = $JsonParameters.PSobject.Properties["event_id"].value
+            $EventId = $JsonParameters.PSobject.Properties['event_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "response_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'response_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'response_id' missing."
         } else {
-            $ResponseId = $JsonParameters.PSobject.Properties["response_id"].value
+            $ResponseId = $JsonParameters.PSobject.Properties['response_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "output_index"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'output_index'))) {
             throw "Error! JSON cannot be serialized due to the required property 'output_index' missing."
         } else {
-            $OutputIndex = $JsonParameters.PSobject.Properties["output_index"].value
+            $OutputIndex = $JsonParameters.PSobject.Properties['output_index'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "item"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'item'))) {
             throw "Error! JSON cannot be serialized due to the required property 'item' missing."
         } else {
-            $Item = $JsonParameters.PSobject.Properties["item"].value
+            $Item = $JsonParameters.PSobject.Properties['item'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "event_id" = ${EventId}
-            "type" = ${Type}
-            "response_id" = ${ResponseId}
-            "output_index" = ${OutputIndex}
-            "item" = ${Item}
+            'event_id' = ${EventId}
+            'type' = ${Type}
+            'response_id' = ${ResponseId}
+            'output_index' = ${OutputIndex}
+            'item' = ${Item}
         }
 
         return $PSO

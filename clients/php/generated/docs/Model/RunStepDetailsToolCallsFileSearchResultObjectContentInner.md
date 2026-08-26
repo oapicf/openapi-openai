@@ -1,4 +1,4 @@
-# # RunStepDetailsToolCallsFileSearchResultObjectContentInner
+# RunStepDetailsToolCallsFileSearchResultObjectContentInner
 
 ## Properties
 

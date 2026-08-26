@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface MessageRequestContentTextObject {
     /**
      * Always `text`.
-     * @type {string}
+     * @type {MessageRequestContentTextObjectTypeEnum}
      * @memberof MessageRequestContentTextObject
      */
     type: MessageRequestContentTextObjectTypeEnum;
@@ -48,6 +48,8 @@ export type MessageRequestContentTextObjectTypeEnum = typeof MessageRequestConte
  */
 export function instanceOfMessageRequestContentTextObject(value: object): value is MessageRequestContentTextObject {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'text') return false;
+    
     if (!('text' in value) || value['text'] === undefined) return false;
     return true;
 }

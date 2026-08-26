@@ -25,6 +25,8 @@ RunStepDetailsToolCallsCodeOutputImageObject_image::RunStepDetailsToolCallsCodeO
     
 }
 
+RunStepDetailsToolCallsCodeOutputImageObject_image::~RunStepDetailsToolCallsCodeOutputImageObject_image() = default;
+
 void RunStepDetailsToolCallsCodeOutputImageObject_image::validate() const
 {
     std::stringstream msg;

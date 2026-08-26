@@ -22,7 +22,7 @@ message MessageContentRefusalObject {
     TYPE_REFUSAL = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   string refusal = 11805278;
 

@@ -105,10 +105,10 @@ class InviteListResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "InviteListResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "InviteListResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "InviteListResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "InviteListResponse[object]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "InviteListResponse[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "InviteListResponse[data]" has a null value in JSON.');
         return true;
       }());
 
@@ -171,27 +171,28 @@ class InviteListResponse {
 }
 
 /// The object type, which is always `list`
-class InviteListResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const InviteListResponseObjectEnum._(this.value);
+enum InviteListResponseObjectEnum {
+  list._(r'list'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const InviteListResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const list = InviteListResponseObjectEnum._(r'list');
-
-  /// List of all possible values in this [enum][InviteListResponseObjectEnum].
-  static const values = <InviteListResponseObjectEnum>[
-    list,
-  ];
-
+  /// Returns the instance of [InviteListResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static InviteListResponseObjectEnum? fromJson(dynamic value) => InviteListResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [InviteListResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<InviteListResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <InviteListResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -213,9 +214,10 @@ class InviteListResponseObjectEnumTypeTransformer {
 
   const InviteListResponseObjectEnumTypeTransformer._();
 
-  String encode(InviteListResponseObjectEnum data) => data.value;
+  String encode(InviteListResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a InviteListResponseObjectEnum.
+  /// Returns the instance of [InviteListResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -224,6 +226,9 @@ class InviteListResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   InviteListResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is InviteListResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'list': return InviteListResponseObjectEnum.list;
@@ -236,7 +241,7 @@ class InviteListResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [InviteListResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static InviteListResponseObjectEnumTypeTransformer? _instance;
 }
 

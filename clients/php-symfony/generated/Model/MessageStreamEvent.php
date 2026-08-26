@@ -47,7 +47,7 @@ class MessageStreamEvent
      * @var string|null
      * @SerializedName("event")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['thread.message.incomplete'])]
     #[Assert\Type("string")]
@@ -57,7 +57,7 @@ class MessageStreamEvent
      * @var MessageObject|null
      * @SerializedName("data")
      * @Type("OpenAPI\Server\Model\MessageObject")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\MessageObject")]
@@ -86,12 +86,12 @@ class MessageStreamEvent
     }
 
     /**
-    * Sets event.
-    *
-    * @param string|null $event
-    *
-    * @return $this
-    */
+     * Sets event.
+     *
+     * @param string|null $event
+     *
+     * @return $this
+     */
     public function setEvent(?string $event): self
     {
         $this->event = $event;
@@ -113,12 +113,12 @@ class MessageStreamEvent
     }
 
     /**
-    * Sets data.
-    *
-    * @param MessageObject|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param MessageObject|null $data
+     *
+     * @return $this
+     */
     public function setData(?MessageObject $data): self
     {
         $this->data = $data;

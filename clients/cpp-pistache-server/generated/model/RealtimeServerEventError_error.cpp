@@ -32,6 +32,8 @@ RealtimeServerEventError_error::RealtimeServerEventError_error()
     
 }
 
+RealtimeServerEventError_error::~RealtimeServerEventError_error() = default;
+
 void RealtimeServerEventError_error::validate() const
 {
     std::stringstream msg;

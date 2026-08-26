@@ -34,7 +34,7 @@ class  ListRunStepsResponse
 {
 public:
     ListRunStepsResponse();
-    virtual ~ListRunStepsResponse() = default;
+    virtual ~ListRunStepsResponse();
 
 
     /// <summary>

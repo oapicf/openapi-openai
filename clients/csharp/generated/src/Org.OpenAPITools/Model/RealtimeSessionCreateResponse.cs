@@ -295,7 +295,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are &#x60;alloy&#x60;, &#x60;ash&#x60;, &#x60;ballad&#x60;, &#x60;coral&#x60;, &#x60;echo&#x60; &#x60;sage&#x60;,  &#x60;shimmer&#x60; and &#x60;verse&#x60;. </value>
         [JsonPropertyName("voice")]
-        public VoiceEnum? Voice { get { return this.VoiceOption; } set { this.VoiceOption = new(value); } }
+        public VoiceEnum? Voice { get { return this.VoiceOption.Value; } set { this.VoiceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ClientSecret
@@ -308,7 +308,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ClientSecret
         /// </summary>
         [JsonPropertyName("client_secret")]
-        public RealtimeSessionCreateResponseClientSecret? ClientSecret { get { return this.ClientSecretOption; } set { this.ClientSecretOption = new(value); } }
+        public RealtimeSessionCreateResponseClientSecret? ClientSecret { get { return this.ClientSecretOption.Value; } set { this.ClientSecretOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Modalities
@@ -322,7 +322,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The set of modalities the model can respond with. To disable audio, set this to [\&quot;text\&quot;]. </value>
         [JsonPropertyName("modalities")]
-        public List<RealtimeSessionCreateResponse.ModalitiesEnum>? Modalities { get { return this.ModalitiesOption; } set { this.ModalitiesOption = new(value); } }
+        public List<RealtimeSessionCreateResponse.ModalitiesEnum>? Modalities { get { return this.ModalitiesOption.Value; } set { this.ModalitiesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Instructions
@@ -336,7 +336,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The default system instructions (i.e. system message) prepended to model  calls. This field allows the client to guide the model on desired  responses. The model can be instructed on response content and format,  (e.g. \&quot;be extremely succinct\&quot;, \&quot;act friendly\&quot;, \&quot;here are examples of good  responses\&quot;) and on audio behavior (e.g. \&quot;talk quickly\&quot;, \&quot;inject emotion  into your voice\&quot;, \&quot;laugh frequently\&quot;). The instructions are not guaranteed  to be followed by the model, but they provide guidance to the model on the  desired behavior.  Note that the server sets default instructions which will be used if this  field is not set and are visible in the &#x60;session.created&#x60; event at the  start of the session. </value>
         [JsonPropertyName("instructions")]
-        public string? Instructions { get { return this.InstructionsOption; } set { this.InstructionsOption = new(value); } }
+        public string? Instructions { get { return this.InstructionsOption.Value; } set { this.InstructionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of InputAudioFormat
@@ -350,7 +350,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The format of input audio. Options are &#x60;pcm16&#x60;, &#x60;g711_ulaw&#x60;, or &#x60;g711_alaw&#x60;. </value>
         [JsonPropertyName("input_audio_format")]
-        public string? InputAudioFormat { get { return this.InputAudioFormatOption; } set { this.InputAudioFormatOption = new(value); } }
+        public string? InputAudioFormat { get { return this.InputAudioFormatOption.Value; } set { this.InputAudioFormatOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OutputAudioFormat
@@ -364,7 +364,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The format of output audio. Options are &#x60;pcm16&#x60;, &#x60;g711_ulaw&#x60;, or &#x60;g711_alaw&#x60;. </value>
         [JsonPropertyName("output_audio_format")]
-        public string? OutputAudioFormat { get { return this.OutputAudioFormatOption; } set { this.OutputAudioFormatOption = new(value); } }
+        public string? OutputAudioFormat { get { return this.OutputAudioFormatOption.Value; } set { this.OutputAudioFormatOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of InputAudioTranscription
@@ -377,7 +377,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets InputAudioTranscription
         /// </summary>
         [JsonPropertyName("input_audio_transcription")]
-        public RealtimeSessionInputAudioTranscription? InputAudioTranscription { get { return this.InputAudioTranscriptionOption; } set { this.InputAudioTranscriptionOption = new(value); } }
+        public RealtimeSessionInputAudioTranscription? InputAudioTranscription { get { return this.InputAudioTranscriptionOption.Value; } set { this.InputAudioTranscriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TurnDetection
@@ -390,7 +390,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets TurnDetection
         /// </summary>
         [JsonPropertyName("turn_detection")]
-        public RealtimeSessionCreateResponseTurnDetection? TurnDetection { get { return this.TurnDetectionOption; } set { this.TurnDetectionOption = new(value); } }
+        public RealtimeSessionCreateResponseTurnDetection? TurnDetection { get { return this.TurnDetectionOption.Value; } set { this.TurnDetectionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Tools
@@ -404,7 +404,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Tools (functions) available to the model.</value>
         [JsonPropertyName("tools")]
-        public List<RealtimeResponseCreateParamsToolsInner>? Tools { get { return this.ToolsOption; } set { this.ToolsOption = new(value); } }
+        public List<RealtimeResponseCreateParamsToolsInner>? Tools { get { return this.ToolsOption.Value; } set { this.ToolsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ToolChoice
@@ -418,7 +418,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>How the model chooses tools. Options are &#x60;auto&#x60;, &#x60;none&#x60;, &#x60;required&#x60;, or  specify a function. </value>
         [JsonPropertyName("tool_choice")]
-        public string? ToolChoice { get { return this.ToolChoiceOption; } set { this.ToolChoiceOption = new(value); } }
+        public string? ToolChoice { get { return this.ToolChoiceOption.Value; } set { this.ToolChoiceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Temperature
@@ -432,7 +432,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Sampling temperature for the model, limited to [0.6, 1.2]. Defaults to 0.8. </value>
         [JsonPropertyName("temperature")]
-        public decimal? Temperature { get { return this.TemperatureOption; } set { this.TemperatureOption = new(value); } }
+        public decimal? Temperature { get { return this.TemperatureOption.Value; } set { this.TemperatureOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxResponseOutputTokens
@@ -445,7 +445,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets MaxResponseOutputTokens
         /// </summary>
         [JsonPropertyName("max_response_output_tokens")]
-        public RealtimeResponseCreateParamsMaxResponseOutputTokens? MaxResponseOutputTokens { get { return this.MaxResponseOutputTokensOption; } set { this.MaxResponseOutputTokensOption = new(value); } }
+        public RealtimeResponseCreateParamsMaxResponseOutputTokens? MaxResponseOutputTokens { get { return this.MaxResponseOutputTokensOption.Value; } set { this.MaxResponseOutputTokensOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -485,8 +485,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeSessionCreateResponse" />
     /// </summary>
-    public class RealtimeSessionCreateResponseJsonConverter : JsonConverter<RealtimeSessionCreateResponse>
+    public partial class RealtimeSessionCreateResponseJsonConverter : JsonConverter<RealtimeSessionCreateResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeSessionCreateResponseJsonConverter" /> class.
+        /// </summary>
+        public RealtimeSessionCreateResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeSessionCreateResponse" />
         /// </summary>

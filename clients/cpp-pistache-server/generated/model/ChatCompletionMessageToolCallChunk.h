@@ -33,7 +33,7 @@ class  ChatCompletionMessageToolCallChunk
 {
 public:
     ChatCompletionMessageToolCallChunk();
-    virtual ~ChatCompletionMessageToolCallChunk() = default;
+    virtual ~ChatCompletionMessageToolCallChunk();
 
 
     /// <summary>

@@ -51,7 +51,7 @@ class AssistantToolsFileSearchFileSearch
      * @var int|null
      * @SerializedName("max_num_results")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(1)]
     #[Assert\LessThanOrEqual(50)]
@@ -61,7 +61,7 @@ class AssistantToolsFileSearchFileSearch
      * @var FileSearchRankingOptions|null
      * @SerializedName("ranking_options")
      * @Type("OpenAPI\Server\Model\FileSearchRankingOptions")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\FileSearchRankingOptions")]
     protected ?FileSearchRankingOptions $rankingOptions = null;
 
@@ -88,12 +88,12 @@ class AssistantToolsFileSearchFileSearch
     }
 
     /**
-    * Sets maxNumResults.
-    *
-    * @param int|null $maxNumResults  The maximum number of results the file search tool should output. The default is 20 for `gpt-4*` models and 5 for `gpt-3.5-turbo`. This number should be between 1 and 50 inclusive.  Note that the file search tool may output fewer than `max_num_results` results. See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.
-    *
-    * @return $this
-    */
+     * Sets maxNumResults.
+     *
+     * @param int|null $maxNumResults  The maximum number of results the file search tool should output. The default is 20 for `gpt-4*` models and 5 for `gpt-3.5-turbo`. This number should be between 1 and 50 inclusive.  Note that the file search tool may output fewer than `max_num_results` results. See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.
+     *
+     * @return $this
+     */
     public function setMaxNumResults(?int $maxNumResults = null): self
     {
         $this->maxNumResults = $maxNumResults;
@@ -115,12 +115,12 @@ class AssistantToolsFileSearchFileSearch
     }
 
     /**
-    * Sets rankingOptions.
-    *
-    * @param FileSearchRankingOptions|null $rankingOptions
-    *
-    * @return $this
-    */
+     * Sets rankingOptions.
+     *
+     * @param FileSearchRankingOptions|null $rankingOptions
+     *
+     * @return $this
+     */
     public function setRankingOptions(?FileSearchRankingOptions $rankingOptions = null): self
     {
         $this->rankingOptions = $rankingOptions;

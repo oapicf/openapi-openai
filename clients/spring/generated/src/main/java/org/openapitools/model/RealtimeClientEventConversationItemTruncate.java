@@ -2,28 +2,30 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Send this event to truncate a previous assistant message’s audio. The server  will produce audio faster than realtime, so this event is useful when the user  interrupts to truncate audio that has already been sent to the client but not  yet played. This will synchronize the server&#39;s understanding of the audio with  the client&#39;s playback.  Truncating audio will delete the server-side text transcript to ensure there  is not text in the context that hasn&#39;t been heard by the user.  If successful, the server will respond with a &#x60;conversation.item.truncated&#x60;  event.  
  */
 
 @Schema(name = "RealtimeClientEventConversationItemTruncate", description = "Send this event to truncate a previous assistant message’s audio. The server  will produce audio faster than realtime, so this event is useful when the user  interrupts to truncate audio that has already been sent to the client but not  yet played. This will synchronize the server's understanding of the audio with  the client's playback.  Truncating audio will delete the server-side text transcript to ensure there  is not text in the context that hasn't been heard by the user.  If successful, the server will respond with a `conversation.item.truncated`  event.  ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeClientEventConversationItemTruncate {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String eventId;
 
   /**
@@ -97,6 +99,7 @@ public class RealtimeClientEventConversationItemTruncate {
     return eventId;
   }
 
+  @JsonProperty("event_id")
   public void setEventId(@Nullable String eventId) {
     this.eventId = eventId;
   }
@@ -117,6 +120,7 @@ public class RealtimeClientEventConversationItemTruncate {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -137,6 +141,7 @@ public class RealtimeClientEventConversationItemTruncate {
     return itemId;
   }
 
+  @JsonProperty("item_id")
   public void setItemId(String itemId) {
     this.itemId = itemId;
   }
@@ -157,6 +162,7 @@ public class RealtimeClientEventConversationItemTruncate {
     return contentIndex;
   }
 
+  @JsonProperty("content_index")
   public void setContentIndex(Integer contentIndex) {
     this.contentIndex = contentIndex;
   }
@@ -177,6 +183,7 @@ public class RealtimeClientEventConversationItemTruncate {
     return audioEndMs;
   }
 
+  @JsonProperty("audio_end_ms")
   public void setAudioEndMs(Integer audioEndMs) {
     this.audioEndMs = audioEndMs;
   }
@@ -219,11 +226,8 @@ public class RealtimeClientEventConversationItemTruncate {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

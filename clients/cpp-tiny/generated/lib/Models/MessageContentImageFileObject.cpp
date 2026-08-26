@@ -86,7 +86,7 @@ MessageContentImageFileObject::getType()
 }
 
 void
-MessageContentImageFileObject::setType(std::string  type)
+MessageContentImageFileObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ MessageContentImageFileObject::getImageFile()
 }
 
 void
-MessageContentImageFileObject::setImageFile(MessageContentImageFileObject_image_file  image_file)
+MessageContentImageFileObject::setImageFile(MessageContentImageFileObject_image_file image_file)
 {
 	this->image_file = image_file;
 }

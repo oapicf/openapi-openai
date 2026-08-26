@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIRealtimeSessionCreateResponse_turn_detection : public OAIObject {
 public:
     OAIRealtimeSessionCreateResponse_turn_detection();
-    OAIRealtimeSessionCreateResponse_turn_detection(QString json);
+    OAIRealtimeSessionCreateResponse_turn_detection(const QString &json);
     ~OAIRealtimeSessionCreateResponse_turn_detection() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

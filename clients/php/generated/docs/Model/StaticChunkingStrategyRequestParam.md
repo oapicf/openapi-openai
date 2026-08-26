@@ -1,4 +1,4 @@
-# # StaticChunkingStrategyRequestParam
+# StaticChunkingStrategyRequestParam
 
 ## Properties
 

@@ -29,7 +29,7 @@ import {
 export interface RunStepDeltaStepDetailsToolCallsObject {
     /**
      * Always `tool_calls`.
-     * @type {string}
+     * @type {RunStepDeltaStepDetailsToolCallsObjectTypeEnum}
      * @memberof RunStepDeltaStepDetailsToolCallsObject
      */
     type: RunStepDeltaStepDetailsToolCallsObjectTypeEnum;
@@ -57,6 +57,8 @@ export type RunStepDeltaStepDetailsToolCallsObjectTypeEnum = typeof RunStepDelta
  */
 export function instanceOfRunStepDeltaStepDetailsToolCallsObject(value: object): value is RunStepDeltaStepDetailsToolCallsObject {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'tool_calls') return false;
+    
     return true;
 }
 

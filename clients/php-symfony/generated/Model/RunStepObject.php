@@ -51,7 +51,7 @@ class RunStepObject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class RunStepObject
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['thread.run.step'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class RunStepObject
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -85,7 +85,7 @@ class RunStepObject
      * @var string|null
      * @SerializedName("assistant_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $assistantId = null;
@@ -96,7 +96,7 @@ class RunStepObject
      * @var string|null
      * @SerializedName("thread_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $threadId = null;
@@ -107,7 +107,7 @@ class RunStepObject
      * @var string|null
      * @SerializedName("run_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $runId = null;
@@ -118,7 +118,7 @@ class RunStepObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['message_creation', 'tool_calls'])]
     #[Assert\Type("string")]
@@ -130,7 +130,7 @@ class RunStepObject
      * @var string|null
      * @SerializedName("status")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['in_progress', 'cancelled', 'failed', 'completed', 'expired'])]
     #[Assert\Type("string")]
@@ -140,7 +140,7 @@ class RunStepObject
      * @var RunStepObjectStepDetails|null
      * @SerializedName("step_details")
      * @Type("OpenAPI\Server\Model\RunStepObjectStepDetails")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunStepObjectStepDetails")]
@@ -150,7 +150,7 @@ class RunStepObject
      * @var RunStepObjectLastError|null
      * @SerializedName("last_error")
      * @Type("OpenAPI\Server\Model\RunStepObjectLastError")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunStepObjectLastError")]
@@ -162,7 +162,7 @@ class RunStepObject
      * @var int|null
      * @SerializedName("expired_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $expiredAt = null;
@@ -173,7 +173,7 @@ class RunStepObject
      * @var int|null
      * @SerializedName("cancelled_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $cancelledAt = null;
@@ -184,7 +184,7 @@ class RunStepObject
      * @var int|null
      * @SerializedName("failed_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $failedAt = null;
@@ -195,7 +195,7 @@ class RunStepObject
      * @var int|null
      * @SerializedName("completed_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $completedAt = null;
@@ -206,7 +206,7 @@ class RunStepObject
      * @var array|null
      * @SerializedName("metadata")
      * @Type("array")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("array")]
     protected ?array $metadata = null;
@@ -215,7 +215,7 @@ class RunStepObject
      * @var RunStepCompletionUsage|null
      * @SerializedName("usage")
      * @Type("OpenAPI\Server\Model\RunStepCompletionUsage")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunStepCompletionUsage")]
@@ -258,12 +258,12 @@ class RunStepObject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The identifier of the run step, which can be referenced in API endpoints.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The identifier of the run step, which can be referenced in API endpoints.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -285,12 +285,12 @@ class RunStepObject
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `thread.run.step`.
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `thread.run.step`.
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -312,12 +312,12 @@ class RunStepObject
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) for when the run step was created.
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) for when the run step was created.
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -339,12 +339,12 @@ class RunStepObject
     }
 
     /**
-    * Sets assistantId.
-    *
-    * @param string|null $assistantId  The ID of the [assistant](/docs/api-reference/assistants) associated with the run step.
-    *
-    * @return $this
-    */
+     * Sets assistantId.
+     *
+     * @param string|null $assistantId  The ID of the [assistant](/docs/api-reference/assistants) associated with the run step.
+     *
+     * @return $this
+     */
     public function setAssistantId(?string $assistantId): self
     {
         $this->assistantId = $assistantId;
@@ -366,12 +366,12 @@ class RunStepObject
     }
 
     /**
-    * Sets threadId.
-    *
-    * @param string|null $threadId  The ID of the [thread](/docs/api-reference/threads) that was run.
-    *
-    * @return $this
-    */
+     * Sets threadId.
+     *
+     * @param string|null $threadId  The ID of the [thread](/docs/api-reference/threads) that was run.
+     *
+     * @return $this
+     */
     public function setThreadId(?string $threadId): self
     {
         $this->threadId = $threadId;
@@ -393,12 +393,12 @@ class RunStepObject
     }
 
     /**
-    * Sets runId.
-    *
-    * @param string|null $runId  The ID of the [run](/docs/api-reference/runs) that this run step is a part of.
-    *
-    * @return $this
-    */
+     * Sets runId.
+     *
+     * @param string|null $runId  The ID of the [run](/docs/api-reference/runs) that this run step is a part of.
+     *
+     * @return $this
+     */
     public function setRunId(?string $runId): self
     {
         $this->runId = $runId;
@@ -420,12 +420,12 @@ class RunStepObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of run step, which can be either `message_creation` or `tool_calls`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of run step, which can be either `message_creation` or `tool_calls`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -447,12 +447,12 @@ class RunStepObject
     }
 
     /**
-    * Sets status.
-    *
-    * @param string|null $status  The status of the run step, which can be either `in_progress`, `cancelled`, `failed`, `completed`, or `expired`.
-    *
-    * @return $this
-    */
+     * Sets status.
+     *
+     * @param string|null $status  The status of the run step, which can be either `in_progress`, `cancelled`, `failed`, `completed`, or `expired`.
+     *
+     * @return $this
+     */
     public function setStatus(?string $status): self
     {
         $this->status = $status;
@@ -474,12 +474,12 @@ class RunStepObject
     }
 
     /**
-    * Sets stepDetails.
-    *
-    * @param RunStepObjectStepDetails|null $stepDetails
-    *
-    * @return $this
-    */
+     * Sets stepDetails.
+     *
+     * @param RunStepObjectStepDetails|null $stepDetails
+     *
+     * @return $this
+     */
     public function setStepDetails(?RunStepObjectStepDetails $stepDetails): self
     {
         $this->stepDetails = $stepDetails;
@@ -501,12 +501,12 @@ class RunStepObject
     }
 
     /**
-    * Sets lastError.
-    *
-    * @param RunStepObjectLastError|null $lastError
-    *
-    * @return $this
-    */
+     * Sets lastError.
+     *
+     * @param RunStepObjectLastError|null $lastError
+     *
+     * @return $this
+     */
     public function setLastError(?RunStepObjectLastError $lastError): self
     {
         $this->lastError = $lastError;
@@ -528,12 +528,12 @@ class RunStepObject
     }
 
     /**
-    * Sets expiredAt.
-    *
-    * @param int|null $expiredAt  The Unix timestamp (in seconds) for when the run step expired. A step is considered expired if the parent run is expired.
-    *
-    * @return $this
-    */
+     * Sets expiredAt.
+     *
+     * @param int|null $expiredAt  The Unix timestamp (in seconds) for when the run step expired. A step is considered expired if the parent run is expired.
+     *
+     * @return $this
+     */
     public function setExpiredAt(?int $expiredAt): self
     {
         $this->expiredAt = $expiredAt;
@@ -555,12 +555,12 @@ class RunStepObject
     }
 
     /**
-    * Sets cancelledAt.
-    *
-    * @param int|null $cancelledAt  The Unix timestamp (in seconds) for when the run step was cancelled.
-    *
-    * @return $this
-    */
+     * Sets cancelledAt.
+     *
+     * @param int|null $cancelledAt  The Unix timestamp (in seconds) for when the run step was cancelled.
+     *
+     * @return $this
+     */
     public function setCancelledAt(?int $cancelledAt): self
     {
         $this->cancelledAt = $cancelledAt;
@@ -582,12 +582,12 @@ class RunStepObject
     }
 
     /**
-    * Sets failedAt.
-    *
-    * @param int|null $failedAt  The Unix timestamp (in seconds) for when the run step failed.
-    *
-    * @return $this
-    */
+     * Sets failedAt.
+     *
+     * @param int|null $failedAt  The Unix timestamp (in seconds) for when the run step failed.
+     *
+     * @return $this
+     */
     public function setFailedAt(?int $failedAt): self
     {
         $this->failedAt = $failedAt;
@@ -609,12 +609,12 @@ class RunStepObject
     }
 
     /**
-    * Sets completedAt.
-    *
-    * @param int|null $completedAt  The Unix timestamp (in seconds) for when the run step completed.
-    *
-    * @return $this
-    */
+     * Sets completedAt.
+     *
+     * @param int|null $completedAt  The Unix timestamp (in seconds) for when the run step completed.
+     *
+     * @return $this
+     */
     public function setCompletedAt(?int $completedAt): self
     {
         $this->completedAt = $completedAt;
@@ -636,12 +636,12 @@ class RunStepObject
     }
 
     /**
-    * Sets metadata.
-    *
-    * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
-    *
-    * @return $this
-    */
+     * Sets metadata.
+     *
+     * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
+     *
+     * @return $this
+     */
     public function setMetadata(?array $metadata): self
     {
         $this->metadata = $metadata;
@@ -663,12 +663,12 @@ class RunStepObject
     }
 
     /**
-    * Sets usage.
-    *
-    * @param RunStepCompletionUsage|null $usage
-    *
-    * @return $this
-    */
+     * Sets usage.
+     *
+     * @param RunStepCompletionUsage|null $usage
+     *
+     * @return $this
+     */
     public function setUsage(?RunStepCompletionUsage $usage): self
     {
         $this->usage = $usage;

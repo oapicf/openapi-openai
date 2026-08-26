@@ -125,7 +125,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;project_id&#x60;, this field provides the project ID of the grouped usage result.</value>
         [JsonPropertyName("project_id")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -156,8 +156,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="UsageCodeInterpreterSessionsResult" />
     /// </summary>
-    public class UsageCodeInterpreterSessionsResultJsonConverter : JsonConverter<UsageCodeInterpreterSessionsResult>
+    public partial class UsageCodeInterpreterSessionsResultJsonConverter : JsonConverter<UsageCodeInterpreterSessionsResult>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UsageCodeInterpreterSessionsResultJsonConverter" /> class.
+        /// </summary>
+        public UsageCodeInterpreterSessionsResultJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UsageCodeInterpreterSessionsResult" />
         /// </summary>

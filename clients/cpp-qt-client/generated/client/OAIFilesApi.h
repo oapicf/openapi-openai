@@ -42,6 +42,7 @@ public:
     void initializeServerConfigs();
     int setDefaultServerValue(int serverIndex,const QString &operation, const QString &variable,const QString &val);
     void setServerIndex(const QString &operation, int serverIndex);
+    void setServerIndex(int serverIndex);
     void setApiKey(const QString &apiKeyName, const QString &apiKey);
     void setBearerToken(const QString &token);
     void setUsername(const QString &username);
@@ -91,6 +92,13 @@ public:
 
 
 private:
+    enum class OauthMethod : int {
+        INVALID_VALUE_OPENAPI_GENERATED = 0,
+        ImplicitFlow = 1,
+        AuthorizationFlow = 2,
+        ClientCredentialsFlow = 3,
+        ResourceOwnerPasswordFlow = 4
+    };
     QMap<QString,int> _serverIndices;
     QMap<QString,QList<OAIServerConfiguration>> _serverConfigs;
     QMap<QString, QString> _apiKeys;
@@ -110,7 +118,7 @@ private:
     OauthImplicit _implicitFlow;
     OauthCredentials _credentialFlow;
     OauthPassword _passwordFlow;
-    int _OauthMethod = 0;
+    OauthMethod _OauthMethod = OauthMethod::INVALID_VALUE_OPENAPI_GENERATED;
 
     void createFileCallback(OAIHttpRequestWorker *worker);
     void deleteFileCallback(OAIHttpRequestWorker *worker);
@@ -133,36 +141,16 @@ Q_SIGNALS:
     void listFilesSignalFull(OAIHttpRequestWorker *worker, OAIListFilesResponse summary);
     void retrieveFileSignalFull(OAIHttpRequestWorker *worker, OAIOpenAIFile summary);
 
-    Q_DECL_DEPRECATED_X("Use createFileSignalError() instead")
-    void createFileSignalE(OAIOpenAIFile summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createFileSignalError(OAIOpenAIFile summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteFileSignalError() instead")
-    void deleteFileSignalE(OAIDeleteFileResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteFileSignalError(OAIDeleteFileResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use downloadFileSignalError() instead")
-    void downloadFileSignalE(QString summary, QNetworkReply::NetworkError error_type, QString error_str);
     void downloadFileSignalError(QString summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listFilesSignalError() instead")
-    void listFilesSignalE(OAIListFilesResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listFilesSignalError(OAIListFilesResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use retrieveFileSignalError() instead")
-    void retrieveFileSignalE(OAIOpenAIFile summary, QNetworkReply::NetworkError error_type, QString error_str);
     void retrieveFileSignalError(OAIOpenAIFile summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
-    Q_DECL_DEPRECATED_X("Use createFileSignalErrorFull() instead")
-    void createFileSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createFileSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteFileSignalErrorFull() instead")
-    void deleteFileSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteFileSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use downloadFileSignalErrorFull() instead")
-    void downloadFileSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void downloadFileSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listFilesSignalErrorFull() instead")
-    void listFilesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listFilesSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use retrieveFileSignalErrorFull() instead")
-    void retrieveFileSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void retrieveFileSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();

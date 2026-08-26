@@ -106,7 +106,7 @@ AssistantStreamEvent::isEnabled()
 }
 
 void
-AssistantStreamEvent::setEnabled(bool  enabled)
+AssistantStreamEvent::setEnabled(bool enabled)
 {
 	this->enabled = enabled;
 }
@@ -118,7 +118,7 @@ AssistantStreamEvent::getEvent()
 }
 
 void
-AssistantStreamEvent::setEvent(std::string  event)
+AssistantStreamEvent::setEvent(std::string event)
 {
 	this->event = event;
 }
@@ -130,7 +130,7 @@ AssistantStreamEvent::getData()
 }
 
 void
-AssistantStreamEvent::setData(std::string  data)
+AssistantStreamEvent::setData(std::string data)
 {
 	this->data = data;
 }

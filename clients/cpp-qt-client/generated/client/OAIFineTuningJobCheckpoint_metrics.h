@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIFineTuningJobCheckpoint_metrics : public OAIObject {
 public:
     OAIFineTuningJobCheckpoint_metrics();
-    OAIFineTuningJobCheckpoint_metrics(QString json);
+    OAIFineTuningJobCheckpoint_metrics(const QString &json);
     ~OAIFineTuningJobCheckpoint_metrics() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     double getStep() const;
     void setStep(const double &step);

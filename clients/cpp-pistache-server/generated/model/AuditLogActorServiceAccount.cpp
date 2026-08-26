@@ -26,6 +26,8 @@ AuditLogActorServiceAccount::AuditLogActorServiceAccount()
     
 }
 
+AuditLogActorServiceAccount::~AuditLogActorServiceAccount() = default;
+
 void AuditLogActorServiceAccount::validate() const
 {
     std::stringstream msg;

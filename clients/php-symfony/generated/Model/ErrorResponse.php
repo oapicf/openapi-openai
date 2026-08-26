@@ -47,7 +47,7 @@ class ErrorResponse
      * @var Error|null
      * @SerializedName("error")
      * @Type("OpenAPI\Server\Model\Error")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\Error")]
@@ -75,12 +75,12 @@ class ErrorResponse
     }
 
     /**
-    * Sets error.
-    *
-    * @param Error|null $error
-    *
-    * @return $this
-    */
+     * Sets error.
+     *
+     * @param Error|null $error
+     *
+     * @return $this
+     */
     public function setError(?Error $error): self
     {
         $this->error = $error;

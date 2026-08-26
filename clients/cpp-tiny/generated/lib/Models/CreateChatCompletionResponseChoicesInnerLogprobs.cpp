@@ -119,7 +119,7 @@ CreateChatCompletionResponse_choices_inner_logprobs::getContent()
 }
 
 void
-CreateChatCompletionResponse_choices_inner_logprobs::setContent(std::list <ChatCompletionTokenLogprob> content)
+CreateChatCompletionResponse_choices_inner_logprobs::setContent(std::list<ChatCompletionTokenLogprob> content)
 {
 	this->content = content;
 }
@@ -131,7 +131,7 @@ CreateChatCompletionResponse_choices_inner_logprobs::getRefusal()
 }
 
 void
-CreateChatCompletionResponse_choices_inner_logprobs::setRefusal(std::list <ChatCompletionTokenLogprob> refusal)
+CreateChatCompletionResponse_choices_inner_logprobs::setRefusal(std::list<ChatCompletionTokenLogprob> refusal)
 {
 	this->refusal = refusal;
 }

@@ -62,10 +62,12 @@ class BatchRequestCounts {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "BatchRequestCounts[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "BatchRequestCounts[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'total'), 'Required key "BatchRequestCounts[total]" is missing from JSON.');
+        assert(json[r'total'] != null, 'Required key "BatchRequestCounts[total]" has a null value in JSON.');
+        assert(json.containsKey(r'completed'), 'Required key "BatchRequestCounts[completed]" is missing from JSON.');
+        assert(json[r'completed'] != null, 'Required key "BatchRequestCounts[completed]" has a null value in JSON.');
+        assert(json.containsKey(r'failed'), 'Required key "BatchRequestCounts[failed]" is missing from JSON.');
+        assert(json[r'failed'] != null, 'Required key "BatchRequestCounts[failed]" has a null value in JSON.');
         return true;
       }());
 

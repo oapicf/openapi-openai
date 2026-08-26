@@ -39,13 +39,13 @@ class OAIAssistantsApiResponseFormatOption;
 class OAIAssistantObject : public OAIObject {
 public:
     OAIAssistantObject();
-    OAIAssistantObject(QString json);
+    OAIAssistantObject(const QString &json);
     ~OAIAssistantObject() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

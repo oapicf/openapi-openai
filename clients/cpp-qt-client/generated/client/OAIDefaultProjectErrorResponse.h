@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIDefaultProjectErrorResponse : public OAIObject {
 public:
     OAIDefaultProjectErrorResponse();
-    OAIDefaultProjectErrorResponse(QString json);
+    OAIDefaultProjectErrorResponse(const QString &json);
     ~OAIDefaultProjectErrorResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getCode() const;
     void setCode(const qint32 &code);

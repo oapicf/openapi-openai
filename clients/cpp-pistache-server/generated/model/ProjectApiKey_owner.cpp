@@ -28,6 +28,8 @@ ProjectApiKey_owner::ProjectApiKey_owner()
     
 }
 
+ProjectApiKey_owner::~ProjectApiKey_owner() = default;
+
 void ProjectApiKey_owner::validate() const
 {
     std::stringstream msg;

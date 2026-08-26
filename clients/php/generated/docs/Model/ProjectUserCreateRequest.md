@@ -1,4 +1,4 @@
-# # ProjectUserCreateRequest
+# ProjectUserCreateRequest
 
 ## Properties
 

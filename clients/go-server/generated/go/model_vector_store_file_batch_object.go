@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // VectorStoreFileBatchObject - A batch of files attached to a vector store.
@@ -34,15 +39,103 @@ type VectorStoreFileBatchObject struct {
 
 	FileCounts VectorStoreFileBatchObjectFileCounts `json:"file_counts"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into VectorStoreFileBatchObject
+func (o *VectorStoreFileBatchObject) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"id",
+		"object",
+		"created_at",
+		"vector_store_id",
+		"status",
+		"file_counts",
+	}
 
-// AssertVectorStoreFileBatchObjectRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"id": false,
+		"object": false,
+		"created_at": false,
+		"vector_store_id": false,
+		"status": false,
+		"file_counts": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"id": {},
+		"object": {},
+		"created_at": {},
+		"vector_store_id": {},
+		"status": {},
+		"file_counts": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded VectorStoreFileBatchObject
+
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["created_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CreatedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["vector_store_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.VectorStoreId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["status"]; exists {
+		if err = json.Unmarshal(value, &decoded.Status); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["file_counts"]; exists {
+		if err = json.Unmarshal(value, &decoded.FileCounts); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertVectorStoreFileBatchObjectRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertVectorStoreFileBatchObjectRequired(obj VectorStoreFileBatchObject) error {
 	elements := map[string]interface{}{
-		"id": obj.Id,
-		"object": obj.Object,
-		"created_at": obj.CreatedAt,
-		"vector_store_id": obj.VectorStoreId,
-		"status": obj.Status,
 		"file_counts": obj.FileCounts,
 	}
 	for name, el := range elements {

@@ -25,6 +25,8 @@ AuditLog_api_key_created_data::AuditLog_api_key_created_data()
     
 }
 
+AuditLog_api_key_created_data::~AuditLog_api_key_created_data() = default;
+
 void AuditLog_api_key_created_data::validate() const
 {
     std::stringstream msg;

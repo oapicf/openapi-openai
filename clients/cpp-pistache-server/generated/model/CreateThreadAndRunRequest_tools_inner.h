@@ -37,7 +37,7 @@ class  CreateThreadAndRunRequest_tools_inner
 {
 public:
     CreateThreadAndRunRequest_tools_inner();
-    virtual ~CreateThreadAndRunRequest_tools_inner() = default;
+    virtual ~CreateThreadAndRunRequest_tools_inner();
 
 
     /// <summary>

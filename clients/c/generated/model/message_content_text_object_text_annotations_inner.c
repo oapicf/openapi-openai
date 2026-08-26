@@ -26,22 +26,22 @@ static message_content_text_object_text_annotations_inner_t *message_content_tex
     openai_api_message_content_text_object_text_annotations_inner_TYPE_e type,
     char *text,
     message_content_text_annotations_file_citation_object_file_citation_t *file_citation,
-    int start_index,
-    int end_index,
+    int *start_index,
+    int *end_index,
     message_content_text_annotations_file_path_object_file_path_t *file_path
     ) {
     message_content_text_object_text_annotations_inner_t *message_content_text_object_text_annotations_inner_local_var = malloc(sizeof(message_content_text_object_text_annotations_inner_t));
     if (!message_content_text_object_text_annotations_inner_local_var) {
         return NULL;
     }
+    memset(message_content_text_object_text_annotations_inner_local_var, 0, sizeof(message_content_text_object_text_annotations_inner_t));
+    message_content_text_object_text_annotations_inner_local_var->_library_owned = 1;
     message_content_text_object_text_annotations_inner_local_var->type = type;
     message_content_text_object_text_annotations_inner_local_var->text = text;
     message_content_text_object_text_annotations_inner_local_var->file_citation = file_citation;
     message_content_text_object_text_annotations_inner_local_var->start_index = start_index;
     message_content_text_object_text_annotations_inner_local_var->end_index = end_index;
     message_content_text_object_text_annotations_inner_local_var->file_path = file_path;
-
-    message_content_text_object_text_annotations_inner_local_var->_library_owned = 1;
     return message_content_text_object_text_annotations_inner_local_var;
 }
 
@@ -49,18 +49,33 @@ __attribute__((deprecated)) message_content_text_object_text_annotations_inner_t
     openai_api_message_content_text_object_text_annotations_inner_TYPE_e type,
     char *text,
     message_content_text_annotations_file_citation_object_file_citation_t *file_citation,
-    int start_index,
-    int end_index,
+    int *start_index,
+    int *end_index,
     message_content_text_annotations_file_path_object_file_path_t *file_path
     ) {
-    return message_content_text_object_text_annotations_inner_create_internal (
+    int *start_index_copy = NULL;
+    if (start_index) {
+        start_index_copy = malloc(sizeof(int));
+        if (start_index_copy) *start_index_copy = *start_index;
+    }
+    int *end_index_copy = NULL;
+    if (end_index) {
+        end_index_copy = malloc(sizeof(int));
+        if (end_index_copy) *end_index_copy = *end_index;
+    }
+    message_content_text_object_text_annotations_inner_t *result = message_content_text_object_text_annotations_inner_create_internal (
         type,
         text,
         file_citation,
-        start_index,
-        end_index,
+        start_index_copy,
+        end_index_copy,
         file_path
         );
+    if (!result) {
+        free(start_index_copy);
+        free(end_index_copy);
+    }
+    return result;
 }
 
 void message_content_text_object_text_annotations_inner_free(message_content_text_object_text_annotations_inner_t *message_content_text_object_text_annotations_inner) {
@@ -79,6 +94,14 @@ void message_content_text_object_text_annotations_inner_free(message_content_tex
     if (message_content_text_object_text_annotations_inner->file_citation) {
         message_content_text_annotations_file_citation_object_file_citation_free(message_content_text_object_text_annotations_inner->file_citation);
         message_content_text_object_text_annotations_inner->file_citation = NULL;
+    }
+    if (message_content_text_object_text_annotations_inner->start_index) {
+        free(message_content_text_object_text_annotations_inner->start_index);
+        message_content_text_object_text_annotations_inner->start_index = NULL;
+    }
+    if (message_content_text_object_text_annotations_inner->end_index) {
+        free(message_content_text_object_text_annotations_inner->end_index);
+        message_content_text_object_text_annotations_inner->end_index = NULL;
     }
     if (message_content_text_object_text_annotations_inner->file_path) {
         message_content_text_annotations_file_path_object_file_path_free(message_content_text_object_text_annotations_inner->file_path);
@@ -127,7 +150,7 @@ cJSON *message_content_text_object_text_annotations_inner_convertToJSON(message_
     if (!message_content_text_object_text_annotations_inner->start_index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "start_index", message_content_text_object_text_annotations_inner->start_index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "start_index", *message_content_text_object_text_annotations_inner->start_index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -136,7 +159,7 @@ cJSON *message_content_text_object_text_annotations_inner_convertToJSON(message_
     if (!message_content_text_object_text_annotations_inner->end_index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "end_index", message_content_text_object_text_annotations_inner->end_index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "end_index", *message_content_text_object_text_annotations_inner->end_index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -166,8 +189,16 @@ message_content_text_object_text_annotations_inner_t *message_content_text_objec
 
     message_content_text_object_text_annotations_inner_t *message_content_text_object_text_annotations_inner_local_var = NULL;
 
+    char *text_local_str = NULL;
+
     // define the local variable for message_content_text_object_text_annotations_inner->file_citation
     message_content_text_annotations_file_citation_object_file_citation_t *file_citation_local_nonprim = NULL;
+
+    // define the local variable for message_content_text_object_text_annotations_inner->start_index
+    int *start_index_local_var = NULL;
+
+    // define the local variable for message_content_text_object_text_annotations_inner->end_index
+    int *end_index_local_var = NULL;
 
     // define the local variable for message_content_text_object_text_annotations_inner->file_path
     message_content_text_annotations_file_path_object_file_path_t *file_path_local_nonprim = NULL;
@@ -230,6 +261,12 @@ message_content_text_object_text_annotations_inner_t *message_content_text_objec
     {
     goto end; //Numeric
     }
+    start_index_local_var = malloc(sizeof(int));
+    if(!start_index_local_var)
+    {
+        goto end;
+    }
+    *start_index_local_var = start_index->valuedouble;
 
     // message_content_text_object_text_annotations_inner->end_index
     cJSON *end_index = cJSON_GetObjectItemCaseSensitive(message_content_text_object_text_annotations_innerJSON, "end_index");
@@ -245,6 +282,12 @@ message_content_text_object_text_annotations_inner_t *message_content_text_objec
     {
     goto end; //Numeric
     }
+    end_index_local_var = malloc(sizeof(int));
+    if(!end_index_local_var)
+    {
+        goto end;
+    }
+    *end_index_local_var = end_index->valuedouble;
 
     // message_content_text_object_text_annotations_inner->file_path
     cJSON *file_path = cJSON_GetObjectItemCaseSensitive(message_content_text_object_text_annotations_innerJSON, "file_path");
@@ -259,20 +302,38 @@ message_content_text_object_text_annotations_inner_t *message_content_text_objec
     file_path_local_nonprim = message_content_text_annotations_file_path_object_file_path_parseFromJSON(file_path); //nonprimitive
 
 
+    if (text && !cJSON_IsNull(text)) text_local_str = strdup(text->valuestring);
+
     message_content_text_object_text_annotations_inner_local_var = message_content_text_object_text_annotations_inner_create_internal (
         typeVariable,
-        strdup(text->valuestring),
+        text_local_str,
         file_citation_local_nonprim,
-        start_index->valuedouble,
-        end_index->valuedouble,
+        start_index_local_var,
+        end_index_local_var,
         file_path_local_nonprim
         );
 
+    if (!message_content_text_object_text_annotations_inner_local_var) {
+        goto end;
+    }
+
     return message_content_text_object_text_annotations_inner_local_var;
 end:
+    if (text_local_str) {
+        free(text_local_str);
+        text_local_str = NULL;
+    }
     if (file_citation_local_nonprim) {
         message_content_text_annotations_file_citation_object_file_citation_free(file_citation_local_nonprim);
         file_citation_local_nonprim = NULL;
+    }
+    if (start_index_local_var) {
+        free(start_index_local_var);
+        start_index_local_var = NULL;
+    }
+    if (end_index_local_var) {
+        free(end_index_local_var);
+        end_index_local_var = NULL;
     }
     if (file_path_local_nonprim) {
         message_content_text_annotations_file_path_object_file_path_free(file_path_local_nonprim);

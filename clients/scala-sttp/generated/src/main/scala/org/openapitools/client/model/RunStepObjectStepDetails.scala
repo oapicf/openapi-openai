@@ -15,13 +15,23 @@ package org.openapitools.client.model
   /**
    * The details of the run step.
    */
-case class RunStepObjectStepDetails(
+sealed trait RunStepObjectStepDetails
+object RunStepObjectStepDetails {
+}
+
+case class RunStepDetailsMessageCreationObject(
   /* Always `message_creation`. */
-  `type`: RunStepObjectStepDetailsEnums.`Type`,
-  messageCreation: RunStepDetailsMessageCreationObjectMessageCreation,
+  `type`: RunStepDetailsMessageCreationObjectEnums.`Type`,
+  messageCreation: RunStepDetailsMessageCreationObjectMessageCreation
+) extends RunStepObjectStepDetails
+
+case class RunStepDetailsToolCallsObject(
+  /* Always `tool_calls`. */
+  `type`: RunStepDetailsToolCallsObjectEnums.`Type`,
   /* An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`.  */
   toolCalls: Seq[RunStepDetailsToolCallsObjectToolCallsInner]
-)
+) extends RunStepObjectStepDetails
+
 
 object RunStepObjectStepDetailsEnums {
 

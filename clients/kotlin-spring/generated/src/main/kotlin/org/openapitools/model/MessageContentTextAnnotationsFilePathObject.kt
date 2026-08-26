@@ -26,24 +26,29 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class MessageContentTextAnnotationsFilePathObject(
 
-    @Schema(example = "null", required = true, description = "Always `file_path`.")
+    @Schema(required = true, description = "Always `file_path`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: MessageContentTextAnnotationsFilePathObject.Type,
 
-    @Schema(example = "null", required = true, description = "The text in the message content that needs to be replaced.")
+    @Schema(required = true, description = "The text in the message content that needs to be replaced.")
+    @param:JsonProperty("text")
     @get:JsonProperty("text", required = true) val text: kotlin.String,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("file_path")
     @get:JsonProperty("file_path", required = true) val filePath: MessageContentTextAnnotationsFilePathObjectFilePath,
 
     @get:Min(value=0)
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("start_index")
     @get:JsonProperty("start_index", required = true) val startIndex: kotlin.Int,
 
     @get:Min(value=0)
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("end_index")
     @get:JsonProperty("end_index", required = true) val endIndex: kotlin.Int
-) {
+) : MessageContentTextObjectTextAnnotationsInner {
 
     /**
     * Always `file_path`.
@@ -58,7 +63,7 @@ data class MessageContentTextAnnotationsFilePathObject(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'MessageContentTextAnnotationsFilePathObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

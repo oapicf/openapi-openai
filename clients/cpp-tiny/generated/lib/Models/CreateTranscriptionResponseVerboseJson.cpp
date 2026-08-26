@@ -182,7 +182,7 @@ CreateTranscriptionResponseVerboseJson::getLanguage()
 }
 
 void
-CreateTranscriptionResponseVerboseJson::setLanguage(std::string  language)
+CreateTranscriptionResponseVerboseJson::setLanguage(std::string language)
 {
 	this->language = language;
 }
@@ -194,7 +194,7 @@ CreateTranscriptionResponseVerboseJson::getDuration()
 }
 
 void
-CreateTranscriptionResponseVerboseJson::setDuration(std::string  duration)
+CreateTranscriptionResponseVerboseJson::setDuration(std::string duration)
 {
 	this->duration = duration;
 }
@@ -206,7 +206,7 @@ CreateTranscriptionResponseVerboseJson::getText()
 }
 
 void
-CreateTranscriptionResponseVerboseJson::setText(std::string  text)
+CreateTranscriptionResponseVerboseJson::setText(std::string text)
 {
 	this->text = text;
 }
@@ -218,7 +218,7 @@ CreateTranscriptionResponseVerboseJson::getWords()
 }
 
 void
-CreateTranscriptionResponseVerboseJson::setWords(std::list <TranscriptionWord> words)
+CreateTranscriptionResponseVerboseJson::setWords(std::list<TranscriptionWord> words)
 {
 	this->words = words;
 }
@@ -230,7 +230,7 @@ CreateTranscriptionResponseVerboseJson::getSegments()
 }
 
 void
-CreateTranscriptionResponseVerboseJson::setSegments(std::list <TranscriptionSegment> segments)
+CreateTranscriptionResponseVerboseJson::setSegments(std::list<TranscriptionSegment> segments)
 {
 	this->segments = segments;
 }

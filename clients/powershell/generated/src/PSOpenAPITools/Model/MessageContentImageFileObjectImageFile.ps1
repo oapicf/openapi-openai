@@ -46,8 +46,8 @@ function Initialize-MessageContentImageFileObjectImageFile {
 
 
         $PSO = [PSCustomObject]@{
-            "file_id" = ${FileId}
-            "detail" = ${Detail}
+            'file_id' = ${FileId}
+            'detail' = ${Detail}
         }
 
 
@@ -85,7 +85,7 @@ function ConvertFrom-JsonToMessageContentImageFileObjectImageFile {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in MessageContentImageFileObjectImageFile
-        $AllProperties = ("file_id", "detail")
+        $AllProperties = ('file_id', 'detail')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -96,21 +96,21 @@ function ConvertFrom-JsonToMessageContentImageFileObjectImageFile {
             throw "Error! Empty JSON cannot be serialized due to the required property 'file_id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'file_id' missing."
         } else {
-            $FileId = $JsonParameters.PSobject.Properties["file_id"].value
+            $FileId = $JsonParameters.PSobject.Properties['file_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "detail"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'detail'))) { #optional property not found
             $Detail = $null
         } else {
-            $Detail = $JsonParameters.PSobject.Properties["detail"].value
+            $Detail = $JsonParameters.PSobject.Properties['detail'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "file_id" = ${FileId}
-            "detail" = ${Detail}
+            'file_id' = ${FileId}
+            'detail' = ${Detail}
         }
 
         return $PSO

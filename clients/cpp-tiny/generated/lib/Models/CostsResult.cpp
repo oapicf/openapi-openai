@@ -128,7 +128,7 @@ CostsResult::getObject()
 }
 
 void
-CostsResult::setObject(std::string  object)
+CostsResult::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -140,7 +140,7 @@ CostsResult::getAmount()
 }
 
 void
-CostsResult::setAmount(CostsResult_amount  amount)
+CostsResult::setAmount(CostsResult_amount amount)
 {
 	this->amount = amount;
 }
@@ -152,7 +152,7 @@ CostsResult::getLineItem()
 }
 
 void
-CostsResult::setLineItem(std::string  line_item)
+CostsResult::setLineItem(std::string line_item)
 {
 	this->line_item = line_item;
 }
@@ -164,7 +164,7 @@ CostsResult::getProjectId()
 }
 
 void
-CostsResult::setProjectId(std::string  project_id)
+CostsResult::setProjectId(std::string project_id)
 {
 	this->project_id = project_id;
 }

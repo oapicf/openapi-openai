@@ -30,7 +30,8 @@ type RealtimeServerEventResponseContentPartDonePart struct {
 	Transcript string `json:"transcript,omitempty"`
 }
 
-// AssertRealtimeServerEventResponseContentPartDonePartRequired checks if the required fields are not zero-ed
+// AssertRealtimeServerEventResponseContentPartDonePartRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeServerEventResponseContentPartDonePartRequired(obj RealtimeServerEventResponseContentPartDonePart) error {
 	return nil
 }

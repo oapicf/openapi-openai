@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**r#type** | Option<**String**> | The content type (`input_text`, `input_audio`, `item_reference`, `text`).  | [optional]
+**r#type** | Option<**Type**> | The content type (`input_text`, `input_audio`, `item_reference`, `text`).  (enum: input_audio, input_text, item_reference, text) | [optional]
 **text** | Option<**String**> | The text content, used for `input_text` and `text` content types.  | [optional]
 **id** | Option<**String**> | ID of a previous conversation item to reference (for `item_reference` content types in `response.create` events). These can reference both client and server created items.  | [optional]
 **audio** | Option<**String**> | Base64-encoded audio bytes, used for `input_audio` content type.  | [optional]

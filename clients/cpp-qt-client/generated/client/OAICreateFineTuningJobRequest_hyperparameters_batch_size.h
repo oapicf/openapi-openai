@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAICreateFineTuningJobRequest_hyperparameters_batch_size : public OAIObject {
 public:
     OAICreateFineTuningJobRequest_hyperparameters_batch_size();
-    OAICreateFineTuningJobRequest_hyperparameters_batch_size(QString json);
+    OAICreateFineTuningJobRequest_hyperparameters_batch_size(const QString &json);
     ~OAICreateFineTuningJobRequest_hyperparameters_batch_size() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

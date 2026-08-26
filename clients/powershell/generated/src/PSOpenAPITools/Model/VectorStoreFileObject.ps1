@@ -97,14 +97,14 @@ function Initialize-VectorStoreFileObject {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "usage_bytes" = ${UsageBytes}
-            "created_at" = ${CreatedAt}
-            "vector_store_id" = ${VectorStoreId}
-            "status" = ${Status}
-            "last_error" = ${LastError}
-            "chunking_strategy" = ${ChunkingStrategy}
+            'id' = ${Id}
+            'object' = ${Object}
+            'usage_bytes' = ${UsageBytes}
+            'created_at' = ${CreatedAt}
+            'vector_store_id' = ${VectorStoreId}
+            'status' = ${Status}
+            'last_error' = ${LastError}
+            'chunking_strategy' = ${ChunkingStrategy}
         }
 
 
@@ -142,7 +142,7 @@ function ConvertFrom-JsonToVectorStoreFileObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in VectorStoreFileObject
-        $AllProperties = ("id", "object", "usage_bytes", "created_at", "vector_store_id", "status", "last_error", "chunking_strategy")
+        $AllProperties = ('id', 'object', 'usage_bytes', 'created_at', 'vector_store_id', 'status', 'last_error', 'chunking_strategy')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -153,63 +153,63 @@ function ConvertFrom-JsonToVectorStoreFileObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "usage_bytes"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'usage_bytes'))) {
             throw "Error! JSON cannot be serialized due to the required property 'usage_bytes' missing."
         } else {
-            $UsageBytes = $JsonParameters.PSobject.Properties["usage_bytes"].value
+            $UsageBytes = $JsonParameters.PSobject.Properties['usage_bytes'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created_at' missing."
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vector_store_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'vector_store_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'vector_store_id' missing."
         } else {
-            $VectorStoreId = $JsonParameters.PSobject.Properties["vector_store_id"].value
+            $VectorStoreId = $JsonParameters.PSobject.Properties['vector_store_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'status'))) {
             throw "Error! JSON cannot be serialized due to the required property 'status' missing."
         } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
+            $Status = $JsonParameters.PSobject.Properties['status'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "last_error"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'last_error'))) {
             throw "Error! JSON cannot be serialized due to the required property 'last_error' missing."
         } else {
-            $LastError = $JsonParameters.PSobject.Properties["last_error"].value
+            $LastError = $JsonParameters.PSobject.Properties['last_error'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "chunking_strategy"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'chunking_strategy'))) { #optional property not found
             $ChunkingStrategy = $null
         } else {
-            $ChunkingStrategy = $JsonParameters.PSobject.Properties["chunking_strategy"].value
+            $ChunkingStrategy = $JsonParameters.PSobject.Properties['chunking_strategy'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "usage_bytes" = ${UsageBytes}
-            "created_at" = ${CreatedAt}
-            "vector_store_id" = ${VectorStoreId}
-            "status" = ${Status}
-            "last_error" = ${LastError}
-            "chunking_strategy" = ${ChunkingStrategy}
+            'id' = ${Id}
+            'object' = ${Object}
+            'usage_bytes' = ${UsageBytes}
+            'created_at' = ${CreatedAt}
+            'vector_store_id' = ${VectorStoreId}
+            'status' = ${Status}
+            'last_error' = ${LastError}
+            'chunking_strategy' = ${ChunkingStrategy}
         }
 
         return $PSO

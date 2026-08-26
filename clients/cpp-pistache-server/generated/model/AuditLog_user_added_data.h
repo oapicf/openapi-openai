@@ -32,7 +32,7 @@ class  AuditLog_user_added_data
 {
 public:
     AuditLog_user_added_data();
-    virtual ~AuditLog_user_added_data() = default;
+    virtual ~AuditLog_user_added_data();
 
 
     /// <summary>

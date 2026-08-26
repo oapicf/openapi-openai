@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -12,28 +13,29 @@ import org.openapitools.model.FineTunePreferenceRequestInputPreferredCompletionI
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * The per-line training example of a fine-tuning input file for chat models using the dpo method.
  */
 
 @Schema(name = "FineTunePreferenceRequestInput", description = "The per-line training example of a fine-tuning input file for chat models using the dpo method.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTunePreferenceRequestInput {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable FineTunePreferenceRequestInputInput input;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion = new ArrayList<>();
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion = new ArrayList<>();
 
   public FineTunePreferenceRequestInput input(@Nullable FineTunePreferenceRequestInputInput input) {
@@ -52,6 +54,7 @@ public class FineTunePreferenceRequestInput {
     return input;
   }
 
+  @JsonProperty("input")
   public void setInput(@Nullable FineTunePreferenceRequestInputInput input) {
     this.input = input;
   }
@@ -80,6 +83,7 @@ public class FineTunePreferenceRequestInput {
     return preferredCompletion;
   }
 
+  @JsonProperty("preferred_completion")
   public void setPreferredCompletion(List<FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion) {
     this.preferredCompletion = preferredCompletion;
   }
@@ -108,6 +112,7 @@ public class FineTunePreferenceRequestInput {
     return nonPreferredCompletion;
   }
 
+  @JsonProperty("non_preferred_completion")
   public void setNonPreferredCompletion(List<FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion) {
     this.nonPreferredCompletion = nonPreferredCompletion;
   }
@@ -146,11 +151,8 @@ public class FineTunePreferenceRequestInput {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

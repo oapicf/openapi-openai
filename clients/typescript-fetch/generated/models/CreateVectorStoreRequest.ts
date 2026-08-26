@@ -88,7 +88,7 @@ export function CreateVectorStoreRequestFromJSONTyped(json: any, ignoreDiscrimin
         'name': json['name'] == null ? undefined : json['name'],
         'expiresAfter': json['expires_after'] == null ? undefined : VectorStoreExpirationAfterFromJSON(json['expires_after']),
         'chunkingStrategy': json['chunking_strategy'] == null ? undefined : CreateVectorStoreRequestChunkingStrategyFromJSON(json['chunking_strategy']),
-        'metadata': json['metadata'] == null ? undefined : json['metadata'],
+        'metadata': json['metadata'] === undefined ? undefined : json['metadata'] === null ? null : json['metadata'],
     };
 }
 

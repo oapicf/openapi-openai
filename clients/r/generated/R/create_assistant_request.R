@@ -128,7 +128,7 @@ CreateAssistantRequest <- R6::R6Class(
       CreateAssistantRequestObject <- list()
       if (!is.null(self$`model`)) {
         CreateAssistantRequestObject[["model"]] <-
-          self$`model`$toSimpleType()
+          self$extractSimpleType(self$`model`)
       }
       if (!is.null(self$`name`)) {
         CreateAssistantRequestObject[["name"]] <-
@@ -144,11 +144,11 @@ CreateAssistantRequest <- R6::R6Class(
       }
       if (!is.null(self$`tools`)) {
         CreateAssistantRequestObject[["tools"]] <-
-          lapply(self$`tools`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`tools`)
       }
       if (!is.null(self$`tool_resources`)) {
         CreateAssistantRequestObject[["tool_resources"]] <-
-          self$`tool_resources`$toSimpleType()
+          self$extractSimpleType(self$`tool_resources`)
       }
       if (!is.null(self$`metadata`)) {
         CreateAssistantRequestObject[["metadata"]] <-
@@ -164,9 +164,32 @@ CreateAssistantRequest <- R6::R6Class(
       }
       if (!is.null(self$`response_format`)) {
         CreateAssistantRequestObject[["response_format"]] <-
-          self$`response_format`$toSimpleType()
+          self$extractSimpleType(self$`response_format`)
       }
       return(CreateAssistantRequestObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

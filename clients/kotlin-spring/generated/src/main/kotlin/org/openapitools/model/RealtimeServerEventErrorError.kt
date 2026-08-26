@@ -23,19 +23,24 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeServerEventErrorError(
 
-    @Schema(example = "null", required = true, description = "The type of error (e.g., \"invalid_request_error\", \"server_error\"). ")
+    @Schema(required = true, description = "The type of error (e.g., \"invalid_request_error\", \"server_error\"). ")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "A human-readable error message.")
+    @Schema(required = true, description = "A human-readable error message.")
+    @param:JsonProperty("message")
     @get:JsonProperty("message", required = true) val message: kotlin.String,
 
-    @Schema(example = "null", description = "Error code, if any.")
+    @Schema(description = "Error code, if any.")
+    @param:JsonProperty("code")
     @get:JsonProperty("code") val code: kotlin.String? = null,
 
-    @Schema(example = "null", description = "Parameter related to the error, if any.")
+    @Schema(description = "Parameter related to the error, if any.")
+    @param:JsonProperty("param")
     @get:JsonProperty("param") val `param`: kotlin.String? = null,
 
-    @Schema(example = "null", description = "The event_id of the client event that caused the error, if applicable. ")
+    @Schema(description = "The event_id of the client event that caused the error, if applicable. ")
+    @param:JsonProperty("event_id")
     @get:JsonProperty("event_id") val eventId: kotlin.String? = null
 ) {
 

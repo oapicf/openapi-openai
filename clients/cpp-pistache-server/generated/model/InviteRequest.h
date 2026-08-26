@@ -34,7 +34,7 @@ class  InviteRequest
 {
 public:
     InviteRequest();
-    virtual ~InviteRequest() = default;
+    virtual ~InviteRequest();
 
 
     /// <summary>

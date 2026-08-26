@@ -55,9 +55,9 @@ function Initialize-ThreadStreamEvent {
 
 
         $PSO = [PSCustomObject]@{
-            "enabled" = ${Enabled}
-            "event" = ${VarEvent}
-            "data" = ${VarData}
+            'enabled' = ${Enabled}
+            'event' = ${VarEvent}
+            'data' = ${VarData}
         }
 
 
@@ -95,7 +95,7 @@ function ConvertFrom-JsonToThreadStreamEvent {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ThreadStreamEvent
-        $AllProperties = ("enabled", "event", "data")
+        $AllProperties = ('enabled', 'event', 'data')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -106,28 +106,28 @@ function ConvertFrom-JsonToThreadStreamEvent {
             throw "Error! Empty JSON cannot be serialized due to the required property 'event' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "event"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'event'))) {
             throw "Error! JSON cannot be serialized due to the required property 'event' missing."
         } else {
-            $VarEvent = $JsonParameters.PSobject.Properties["event"].value
+            $VarEvent = $JsonParameters.PSobject.Properties['event'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "data"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'data'))) {
             throw "Error! JSON cannot be serialized due to the required property 'data' missing."
         } else {
-            $VarData = $JsonParameters.PSobject.Properties["data"].value
+            $VarData = $JsonParameters.PSobject.Properties['data'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enabled"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'enabled'))) { #optional property not found
             $Enabled = $null
         } else {
-            $Enabled = $JsonParameters.PSobject.Properties["enabled"].value
+            $Enabled = $JsonParameters.PSobject.Properties['enabled'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "enabled" = ${Enabled}
-            "event" = ${VarEvent}
-            "data" = ${VarData}
+            'enabled' = ${Enabled}
+            'event' = ${VarEvent}
+            'data' = ${VarData}
         }
 
         return $PSO

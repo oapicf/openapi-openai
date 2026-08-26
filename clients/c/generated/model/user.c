@@ -45,20 +45,20 @@ static user_t *user_create_internal(
     char *name,
     char *email,
     openai_api_user_ROLE_e role,
-    int added_at
+    int *added_at
     ) {
     user_t *user_local_var = malloc(sizeof(user_t));
     if (!user_local_var) {
         return NULL;
     }
+    memset(user_local_var, 0, sizeof(user_t));
+    user_local_var->_library_owned = 1;
     user_local_var->object = object;
     user_local_var->id = id;
     user_local_var->name = name;
     user_local_var->email = email;
     user_local_var->role = role;
     user_local_var->added_at = added_at;
-
-    user_local_var->_library_owned = 1;
     return user_local_var;
 }
 
@@ -68,16 +68,25 @@ __attribute__((deprecated)) user_t *user_create(
     char *name,
     char *email,
     openai_api_user_ROLE_e role,
-    int added_at
+    int *added_at
     ) {
-    return user_create_internal (
+    int *added_at_copy = NULL;
+    if (added_at) {
+        added_at_copy = malloc(sizeof(int));
+        if (added_at_copy) *added_at_copy = *added_at;
+    }
+    user_t *result = user_create_internal (
         object,
         id,
         name,
         email,
         role,
-        added_at
+        added_at_copy
         );
+    if (!result) {
+        free(added_at_copy);
+    }
+    return result;
 }
 
 void user_free(user_t *user) {
@@ -100,6 +109,10 @@ void user_free(user_t *user) {
     if (user->email) {
         free(user->email);
         user->email = NULL;
+    }
+    if (user->added_at) {
+        free(user->added_at);
+        user->added_at = NULL;
     }
     free(user);
 }
@@ -158,7 +171,7 @@ cJSON *user_convertToJSON(user_t *user) {
     if (!user->added_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "added_at", user->added_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "added_at", *user->added_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -173,6 +186,15 @@ fail:
 user_t *user_parseFromJSON(cJSON *userJSON){
 
     user_t *user_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    char *email_local_str = NULL;
+
+    // define the local variable for user->added_at
+    int *added_at_local_var = NULL;
 
     // user->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(userJSON, "object");
@@ -267,19 +289,49 @@ user_t *user_parseFromJSON(cJSON *userJSON){
     {
     goto end; //Numeric
     }
+    added_at_local_var = malloc(sizeof(int));
+    if(!added_at_local_var)
+    {
+        goto end;
+    }
+    *added_at_local_var = added_at->valuedouble;
 
+
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (email && !cJSON_IsNull(email)) email_local_str = strdup(email->valuestring);
 
     user_local_var = user_create_internal (
         objectVariable,
-        strdup(id->valuestring),
-        strdup(name->valuestring),
-        strdup(email->valuestring),
+        id_local_str,
+        name_local_str,
+        email_local_str,
         roleVariable,
-        added_at->valuedouble
+        added_at_local_var
         );
+
+    if (!user_local_var) {
+        goto end;
+    }
 
     return user_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (email_local_str) {
+        free(email_local_str);
+        email_local_str = NULL;
+    }
+    if (added_at_local_var) {
+        free(added_at_local_var);
+        added_at_local_var = NULL;
+    }
     return NULL;
 
 }

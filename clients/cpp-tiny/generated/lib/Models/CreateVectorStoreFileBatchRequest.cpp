@@ -104,7 +104,7 @@ CreateVectorStoreFileBatchRequest::getFileIds()
 }
 
 void
-CreateVectorStoreFileBatchRequest::setFileIds(std::list <std::string> file_ids)
+CreateVectorStoreFileBatchRequest::setFileIds(std::list<std::string> file_ids)
 {
 	this->file_ids = file_ids;
 }
@@ -116,7 +116,7 @@ CreateVectorStoreFileBatchRequest::getChunkingStrategy()
 }
 
 void
-CreateVectorStoreFileBatchRequest::setChunkingStrategy(ChunkingStrategyRequestParam  chunking_strategy)
+CreateVectorStoreFileBatchRequest::setChunkingStrategy(ChunkingStrategyRequestParam chunking_strategy)
 {
 	this->chunking_strategy = chunking_strategy;
 }

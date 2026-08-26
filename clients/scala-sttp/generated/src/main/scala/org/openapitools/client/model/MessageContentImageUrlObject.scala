@@ -20,7 +20,7 @@ case class MessageContentImageUrlObject(
   /* The type of the content part. */
   `type`: MessageContentImageUrlObjectEnums.`Type`,
   imageUrl: MessageContentImageUrlObjectImageUrl
-)
+) extends MessageObjectContentInner
 
 object MessageContentImageUrlObjectEnums {
 

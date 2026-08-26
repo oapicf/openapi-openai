@@ -1,4 +1,4 @@
-# # RealtimeResponseCreateParamsConversation
+# RealtimeResponseCreateParamsConversation
 
 ## Properties
 

@@ -140,8 +140,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunObjectRequiredAction" />
     /// </summary>
-    public class RunObjectRequiredActionJsonConverter : JsonConverter<RunObjectRequiredAction>
+    public partial class RunObjectRequiredActionJsonConverter : JsonConverter<RunObjectRequiredAction>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunObjectRequiredActionJsonConverter" /> class.
+        /// </summary>
+        public RunObjectRequiredActionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunObjectRequiredAction" />
         /// </summary>

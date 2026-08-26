@@ -11,20 +11,20 @@ import org.openapitools.model.CreateModerationResponseResultsInnerCategoryScores
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * CreateModerationResponseResultsInner
  */
 
 @JsonTypeName("CreateModerationResponse_results_inner")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateModerationResponseResultsInner {
 
   private Boolean flagged;
@@ -65,6 +65,7 @@ public class CreateModerationResponseResultsInner {
     return flagged;
   }
 
+  @JsonProperty("flagged")
   public void setFlagged(Boolean flagged) {
     this.flagged = flagged;
   }
@@ -85,6 +86,7 @@ public class CreateModerationResponseResultsInner {
     return categories;
   }
 
+  @JsonProperty("categories")
   public void setCategories(CreateModerationResponseResultsInnerCategories categories) {
     this.categories = categories;
   }
@@ -105,6 +107,7 @@ public class CreateModerationResponseResultsInner {
     return categoryScores;
   }
 
+  @JsonProperty("category_scores")
   public void setCategoryScores(CreateModerationResponseResultsInnerCategoryScores categoryScores) {
     this.categoryScores = categoryScores;
   }
@@ -125,6 +128,7 @@ public class CreateModerationResponseResultsInner {
     return categoryAppliedInputTypes;
   }
 
+  @JsonProperty("category_applied_input_types")
   public void setCategoryAppliedInputTypes(CreateModerationResponseResultsInnerCategoryAppliedInputTypes categoryAppliedInputTypes) {
     this.categoryAppliedInputTypes = categoryAppliedInputTypes;
   }
@@ -165,11 +169,8 @@ public class CreateModerationResponseResultsInner {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

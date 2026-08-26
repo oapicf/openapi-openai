@@ -89,13 +89,13 @@ function Initialize-FineTuningJobEvent {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "id" = ${Id}
-            "created_at" = ${CreatedAt}
-            "level" = ${Level}
-            "message" = ${Message}
-            "type" = ${Type}
-            "data" = ${VarData}
+            'object' = ${Object}
+            'id' = ${Id}
+            'created_at' = ${CreatedAt}
+            'level' = ${Level}
+            'message' = ${Message}
+            'type' = ${Type}
+            'data' = ${VarData}
         }
 
 
@@ -133,7 +133,7 @@ function ConvertFrom-JsonToFineTuningJobEvent {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in FineTuningJobEvent
-        $AllProperties = ("object", "id", "created_at", "level", "message", "type", "data")
+        $AllProperties = ('object', 'id', 'created_at', 'level', 'message', 'type', 'data')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -144,56 +144,56 @@ function ConvertFrom-JsonToFineTuningJobEvent {
             throw "Error! Empty JSON cannot be serialized due to the required property 'object' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created_at' missing."
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "level"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'level'))) {
             throw "Error! JSON cannot be serialized due to the required property 'level' missing."
         } else {
-            $Level = $JsonParameters.PSobject.Properties["level"].value
+            $Level = $JsonParameters.PSobject.Properties['level'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "message"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'message'))) {
             throw "Error! JSON cannot be serialized due to the required property 'message' missing."
         } else {
-            $Message = $JsonParameters.PSobject.Properties["message"].value
+            $Message = $JsonParameters.PSobject.Properties['message'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) { #optional property not found
             $Type = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "data"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'data'))) { #optional property not found
             $VarData = $null
         } else {
-            $VarData = $JsonParameters.PSobject.Properties["data"].value
+            $VarData = $JsonParameters.PSobject.Properties['data'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "id" = ${Id}
-            "created_at" = ${CreatedAt}
-            "level" = ${Level}
-            "message" = ${Message}
-            "type" = ${Type}
-            "data" = ${VarData}
+            'object' = ${Object}
+            'id' = ${Id}
+            'created_at' = ${CreatedAt}
+            'level' = ${Level}
+            'message' = ${Message}
+            'type' = ${Type}
+            'data' = ${VarData}
         }
 
         return $PSO

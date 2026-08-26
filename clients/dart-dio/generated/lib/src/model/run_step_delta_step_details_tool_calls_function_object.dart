@@ -115,8 +115,9 @@ class _$RunStepDeltaStepDetailsToolCallsFunctionObjectSerializer implements Prim
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'type':
@@ -129,8 +130,9 @@ class _$RunStepDeltaStepDetailsToolCallsFunctionObjectSerializer implements Prim
         case r'function':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RunStepDeltaStepDetailsToolCallsFunctionObjectFunction),
-          ) as RunStepDeltaStepDetailsToolCallsFunctionObjectFunction;
+            specifiedType: const FullType.nullable(RunStepDeltaStepDetailsToolCallsFunctionObjectFunction),
+          ) as RunStepDeltaStepDetailsToolCallsFunctionObjectFunction?;
+          if (valueDes == null) continue;
           result.function_.replace(valueDes);
           break;
         default:

@@ -24,6 +24,8 @@ RealtimeResponseCreateParams_conversation::RealtimeResponseCreateParams_conversa
     
 }
 
+RealtimeResponseCreateParams_conversation::~RealtimeResponseCreateParams_conversation() = default;
+
 void RealtimeResponseCreateParams_conversation::validate() const
 {
     std::stringstream msg;

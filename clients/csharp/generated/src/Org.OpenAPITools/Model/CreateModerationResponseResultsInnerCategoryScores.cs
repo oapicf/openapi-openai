@@ -198,8 +198,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateModerationResponseResultsInnerCategoryScores" />
     /// </summary>
-    public class CreateModerationResponseResultsInnerCategoryScoresJsonConverter : JsonConverter<CreateModerationResponseResultsInnerCategoryScores>
+    public partial class CreateModerationResponseResultsInnerCategoryScoresJsonConverter : JsonConverter<CreateModerationResponseResultsInnerCategoryScores>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateModerationResponseResultsInnerCategoryScoresJsonConverter" /> class.
+        /// </summary>
+        public CreateModerationResponseResultsInnerCategoryScoresJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateModerationResponseResultsInnerCategoryScores" />
         /// </summary>

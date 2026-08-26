@@ -41,7 +41,7 @@ export interface RealtimeClientEventSessionUpdate {
     eventId?: string;
     /**
      * The event type, must be `session.update`.
-     * @type {string}
+     * @type {RealtimeClientEventSessionUpdateTypeEnum}
      * @memberof RealtimeClientEventSessionUpdate
      */
     type: RealtimeClientEventSessionUpdateTypeEnum;
@@ -68,6 +68,8 @@ export type RealtimeClientEventSessionUpdateTypeEnum = typeof RealtimeClientEven
  */
 export function instanceOfRealtimeClientEventSessionUpdate(value: object): value is RealtimeClientEventSessionUpdate {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'session.update') return false;
+    
     if (!('session' in value) || value['session'] === undefined) return false;
     return true;
 }

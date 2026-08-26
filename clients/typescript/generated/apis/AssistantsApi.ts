@@ -58,8 +58,8 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/threads/{thread_id}/runs/{run_id}/cancel'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{run_id}', encodeURIComponent(String(runId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -150,7 +150,7 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/threads/{thread_id}/messages'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -207,7 +207,7 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/threads/{thread_id}/runs'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -352,7 +352,7 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/assistants/{assistant_id}'
-            .replace('{' + 'assistant_id' + '}', encodeURIComponent(String(assistantId)));
+            .replace('{assistant_id}', encodeURIComponent(String(assistantId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -396,8 +396,8 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/threads/{thread_id}/messages/{message_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'message_id' + '}', encodeURIComponent(String(messageId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{message_id}', encodeURIComponent(String(messageId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -434,7 +434,7 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/threads/{thread_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -471,7 +471,7 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/assistants/{assistant_id}'
-            .replace('{' + 'assistant_id' + '}', encodeURIComponent(String(assistantId)));
+            .replace('{assistant_id}', encodeURIComponent(String(assistantId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -515,8 +515,8 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/threads/{thread_id}/messages/{message_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'message_id' + '}', encodeURIComponent(String(messageId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{message_id}', encodeURIComponent(String(messageId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -560,8 +560,8 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/threads/{thread_id}/runs/{run_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{run_id}', encodeURIComponent(String(runId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -614,9 +614,9 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/threads/{thread_id}/runs/{run_id}/steps/{step_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)))
-            .replace('{' + 'step_id' + '}', encodeURIComponent(String(stepId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{run_id}', encodeURIComponent(String(runId)))
+            .replace('{step_id}', encodeURIComponent(String(stepId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -661,7 +661,7 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/threads/{thread_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -765,7 +765,7 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/threads/{thread_id}/messages'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -844,8 +844,8 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/threads/{thread_id}/runs/{run_id}/steps'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{run_id}', encodeURIComponent(String(runId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -918,7 +918,7 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/threads/{thread_id}/runs'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -982,7 +982,7 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/assistants/{assistant_id}'
-            .replace('{' + 'assistant_id' + '}', encodeURIComponent(String(assistantId)));
+            .replace('{assistant_id}', encodeURIComponent(String(assistantId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -1044,8 +1044,8 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/threads/{thread_id}/messages/{message_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'message_id' + '}', encodeURIComponent(String(messageId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{message_id}', encodeURIComponent(String(messageId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -1107,8 +1107,8 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/threads/{thread_id}/runs/{run_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{run_id}', encodeURIComponent(String(runId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -1163,7 +1163,7 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/threads/{thread_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -1225,8 +1225,8 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/threads/{thread_id}/runs/{run_id}/submit_tool_outputs'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{run_id}', encodeURIComponent(String(runId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);

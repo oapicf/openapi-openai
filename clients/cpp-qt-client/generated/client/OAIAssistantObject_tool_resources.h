@@ -34,13 +34,13 @@ class OAIAssistantObject_tool_resources_file_search;
 class OAIAssistantObject_tool_resources : public OAIObject {
 public:
     OAIAssistantObject_tool_resources();
-    OAIAssistantObject_tool_resources(QString json);
+    OAIAssistantObject_tool_resources(const QString &json);
     ~OAIAssistantObject_tool_resources() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     OAIAssistantObject_tool_resources_code_interpreter getCodeInterpreter() const;
     void setCodeInterpreter(const OAIAssistantObject_tool_resources_code_interpreter &code_interpreter);

@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.ChatCompletionMessageToolCallChunkFunction
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -25,17 +28,27 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ChatCompletionMessageToolCallChunk(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("index")
     @get:JsonProperty("index", required = true) val index: kotlin.Int,
 
-    @Schema(example = "null", description = "The ID of the tool call.")
+    @Schema(description = "The ID of the tool call.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("id")
     @get:JsonProperty("id") val id: kotlin.String? = null,
 
-    @Schema(example = "null", description = "The type of the tool. Currently, only `function` is supported.")
+    @Schema(description = "The type of the tool. Currently, only `function` is supported.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("type")
     @get:JsonProperty("type") val type: ChatCompletionMessageToolCallChunk.Type? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("function")
     @get:JsonProperty("function") val function: ChatCompletionMessageToolCallChunkFunction? = null
 ) {
 
@@ -52,7 +65,7 @@ data class ChatCompletionMessageToolCallChunk(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ChatCompletionMessageToolCallChunk'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

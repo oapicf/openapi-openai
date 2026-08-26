@@ -28,6 +28,8 @@ ListFilesResponse::ListFilesResponse()
     
 }
 
+ListFilesResponse::~ListFilesResponse() = default;
+
 void ListFilesResponse::validate() const
 {
     std::stringstream msg;

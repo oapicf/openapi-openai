@@ -1,4 +1,4 @@
-# # RealtimeServerEventResponseContentPartAdded
+# RealtimeServerEventResponseContentPartAdded
 
 ## Properties
 

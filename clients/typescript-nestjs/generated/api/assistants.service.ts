@@ -111,7 +111,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<RunObject>(`${this.basePath}/threads/${encodeURIComponent(String(thread_id))}/runs/${encodeURIComponent(String(run_id))}/cancel`,
+                return this.httpClient.post<RunObject>(`${this.basePath}/threads/${encodeURIComponent(String(threadId))}/runs/${encodeURIComponent(String(runId))}/cancel`,
                     null,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -232,7 +232,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<MessageObject>(`${this.basePath}/threads/${encodeURIComponent(String(thread_id))}/messages`,
+                return this.httpClient.post<MessageObject>(`${this.basePath}/threads/${encodeURIComponent(String(threadId))}/messages`,
                     createMessageRequest,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -303,7 +303,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<RunObject>(`${this.basePath}/threads/${encodeURIComponent(String(thread_id))}/runs`,
+                return this.httpClient.post<RunObject>(`${this.basePath}/threads/${encodeURIComponent(String(threadId))}/runs`,
                     createRunRequest,
                     {
                         params: queryParameters,
@@ -469,7 +469,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.delete<DeleteAssistantResponse>(`${this.basePath}/assistants/${encodeURIComponent(String(assistant_id))}`,
+                return this.httpClient.delete<DeleteAssistantResponse>(`${this.basePath}/assistants/${encodeURIComponent(String(assistantId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...deleteAssistantOpts?.config,
@@ -526,7 +526,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.delete<DeleteMessageResponse>(`${this.basePath}/threads/${encodeURIComponent(String(thread_id))}/messages/${encodeURIComponent(String(message_id))}`,
+                return this.httpClient.delete<DeleteMessageResponse>(`${this.basePath}/threads/${encodeURIComponent(String(threadId))}/messages/${encodeURIComponent(String(messageId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...deleteMessageOpts?.config,
@@ -578,7 +578,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.delete<DeleteThreadResponse>(`${this.basePath}/threads/${encodeURIComponent(String(thread_id))}`,
+                return this.httpClient.delete<DeleteThreadResponse>(`${this.basePath}/threads/${encodeURIComponent(String(threadId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...deleteThreadOpts?.config,
@@ -630,7 +630,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<AssistantObject>(`${this.basePath}/assistants/${encodeURIComponent(String(assistant_id))}`,
+                return this.httpClient.get<AssistantObject>(`${this.basePath}/assistants/${encodeURIComponent(String(assistantId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...getAssistantOpts?.config,
@@ -687,7 +687,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<MessageObject>(`${this.basePath}/threads/${encodeURIComponent(String(thread_id))}/messages/${encodeURIComponent(String(message_id))}`,
+                return this.httpClient.get<MessageObject>(`${this.basePath}/threads/${encodeURIComponent(String(threadId))}/messages/${encodeURIComponent(String(messageId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...getMessageOpts?.config,
@@ -744,7 +744,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<RunObject>(`${this.basePath}/threads/${encodeURIComponent(String(thread_id))}/runs/${encodeURIComponent(String(run_id))}`,
+                return this.httpClient.get<RunObject>(`${this.basePath}/threads/${encodeURIComponent(String(threadId))}/runs/${encodeURIComponent(String(runId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...getRunOpts?.config,
@@ -814,7 +814,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<RunStepObject>(`${this.basePath}/threads/${encodeURIComponent(String(thread_id))}/runs/${encodeURIComponent(String(run_id))}/steps/${encodeURIComponent(String(step_id))}`,
+                return this.httpClient.get<RunStepObject>(`${this.basePath}/threads/${encodeURIComponent(String(threadId))}/runs/${encodeURIComponent(String(runId))}/steps/${encodeURIComponent(String(stepId))}`,
                     {
                         params: queryParameters,
                         withCredentials: this.configuration.withCredentials,
@@ -867,7 +867,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<ThreadObject>(`${this.basePath}/threads/${encodeURIComponent(String(thread_id))}`,
+                return this.httpClient.get<ThreadObject>(`${this.basePath}/threads/${encodeURIComponent(String(threadId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...getThreadOpts?.config,
@@ -1007,7 +1007,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<ListMessagesResponse>(`${this.basePath}/threads/${encodeURIComponent(String(thread_id))}/messages`,
+                return this.httpClient.get<ListMessagesResponse>(`${this.basePath}/threads/${encodeURIComponent(String(threadId))}/messages`,
                     {
                         params: queryParameters,
                         withCredentials: this.configuration.withCredentials,
@@ -1089,7 +1089,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<ListRunStepsResponse>(`${this.basePath}/threads/${encodeURIComponent(String(thread_id))}/runs/${encodeURIComponent(String(run_id))}/steps`,
+                return this.httpClient.get<ListRunStepsResponse>(`${this.basePath}/threads/${encodeURIComponent(String(threadId))}/runs/${encodeURIComponent(String(runId))}/steps`,
                     {
                         params: queryParameters,
                         withCredentials: this.configuration.withCredentials,
@@ -1160,7 +1160,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<ListRunsResponse>(`${this.basePath}/threads/${encodeURIComponent(String(thread_id))}/runs`,
+                return this.httpClient.get<ListRunsResponse>(`${this.basePath}/threads/${encodeURIComponent(String(threadId))}/runs`,
                     {
                         params: queryParameters,
                         withCredentials: this.configuration.withCredentials,
@@ -1223,7 +1223,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<AssistantObject>(`${this.basePath}/assistants/${encodeURIComponent(String(assistant_id))}`,
+                return this.httpClient.post<AssistantObject>(`${this.basePath}/assistants/${encodeURIComponent(String(assistantId))}`,
                     modifyAssistantRequest,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -1291,7 +1291,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<MessageObject>(`${this.basePath}/threads/${encodeURIComponent(String(thread_id))}/messages/${encodeURIComponent(String(message_id))}`,
+                return this.httpClient.post<MessageObject>(`${this.basePath}/threads/${encodeURIComponent(String(threadId))}/messages/${encodeURIComponent(String(messageId))}`,
                     modifyMessageRequest,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -1359,7 +1359,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<RunObject>(`${this.basePath}/threads/${encodeURIComponent(String(thread_id))}/runs/${encodeURIComponent(String(run_id))}`,
+                return this.httpClient.post<RunObject>(`${this.basePath}/threads/${encodeURIComponent(String(threadId))}/runs/${encodeURIComponent(String(runId))}`,
                     modifyRunRequest,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -1422,7 +1422,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<ThreadObject>(`${this.basePath}/threads/${encodeURIComponent(String(thread_id))}`,
+                return this.httpClient.post<ThreadObject>(`${this.basePath}/threads/${encodeURIComponent(String(threadId))}`,
                     modifyThreadRequest,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -1490,7 +1490,7 @@ export class AssistantsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<RunObject>(`${this.basePath}/threads/${encodeURIComponent(String(thread_id))}/runs/${encodeURIComponent(String(run_id))}/submit_tool_outputs`,
+                return this.httpClient.post<RunObject>(`${this.basePath}/threads/${encodeURIComponent(String(threadId))}/runs/${encodeURIComponent(String(runId))}/submit_tool_outputs`,
                     submitToolOutputsRunRequest,
                     {
                         withCredentials: this.configuration.withCredentials,

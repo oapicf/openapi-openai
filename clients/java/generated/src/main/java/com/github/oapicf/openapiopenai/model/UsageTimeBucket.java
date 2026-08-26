@@ -51,7 +51,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * UsageTimeBucket
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class UsageTimeBucket {
   /**
    * Gets or Sets _object
@@ -248,10 +248,7 @@ public class UsageTimeBucket {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -299,16 +296,16 @@ public class UsageTimeBucket {
       }
       // validate the required field `object`
       ObjectEnum.validateJsonElement(jsonObj.get("object"));
-      // ensure the json data is an array
-      if (!jsonObj.get("result").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `result` to be an array in the JSON string but got `%s`", jsonObj.get("result").toString()));
+      if (jsonObj.get("result") != null) {
+        if (!jsonObj.get("result").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `result` to be an array in the JSON string but got `%s`", jsonObj.get("result").toString()));
+        }
+        JsonArray jsonArrayresult = jsonObj.getAsJsonArray("result");
+        // validate the required field `result` (array)
+        for (int i = 0; i < jsonArrayresult.size(); i++) {
+          UsageTimeBucketResultInner.validateJsonElement(jsonArrayresult.get(i));
+        }
       }
-
-      JsonArray jsonArrayresult = jsonObj.getAsJsonArray("result");
-      // validate the required field `result` (array)
-      for (int i = 0; i < jsonArrayresult.size(); i++) {
-        UsageTimeBucketResultInner.validateJsonElement(jsonArrayresult.get(i));
-      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

@@ -28,6 +28,8 @@ MessageContentTextObject_text_annotations_inner::MessageContentTextObject_text_a
     
 }
 
+MessageContentTextObject_text_annotations_inner::~MessageContentTextObject_text_annotations_inner() = default;
+
 void MessageContentTextObject_text_annotations_inner::validate() const
 {
     std::stringstream msg;

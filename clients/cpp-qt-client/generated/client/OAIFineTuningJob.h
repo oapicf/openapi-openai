@@ -40,13 +40,13 @@ class OAIFineTuneMethod;
 class OAIFineTuningJob : public OAIObject {
 public:
     OAIFineTuningJob();
-    OAIFineTuningJob(QString json);
+    OAIFineTuningJob(const QString &json);
     ~OAIFineTuningJob() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

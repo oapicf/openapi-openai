@@ -38,28 +38,26 @@ import org.openapitools.server.models.VectorStoreFileObject
 import org.openapitools.server.models.VectorStoreObject
 
 fun Route.VectorStoresApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    post<Paths.cancelVectorStoreFileBatch> {
+    post<Paths.cancelVectorStoreFileBatch> { cancelVectorStoreFileBatch ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "file_counts" : {
-                "in_progress" : 6,
-                "total" : 2,
-                "cancelled" : 5,
-                "completed" : 1,
-                "failed" : 5
-              },
-              "created_at" : 0,
               "id" : "id",
               "object" : "vector_store.files_batch",
+              "created_at" : 0,
               "vector_store_id" : "vector_store_id",
-              "status" : "in_progress"
+              "status" : "in_progress",
+              "file_counts" : {
+                "in_progress" : 6,
+                "completed" : 1,
+                "failed" : 5,
+                "cancelled" : 5,
+                "total" : 2
+              }
             }"""
             
             when (exampleContentType) {
@@ -70,35 +68,34 @@ fun Route.VectorStoresApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createVectorStore> {
+    post<Paths.createVectorStore> { createVectorStore ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "id" : "id",
+              "object" : "vector_store",
+              "created_at" : 0,
+              "name" : "name",
+              "usage_bytes" : 6,
               "file_counts" : {
                 "in_progress" : 1,
-                "total" : 7,
-                "cancelled" : 2,
                 "completed" : 5,
-                "failed" : 5
+                "failed" : 5,
+                "cancelled" : 2,
+                "total" : 7
               },
-              "metadata" : "{}",
-              "expires_at" : 3,
+              "status" : "expired",
               "expires_after" : {
                 "anchor" : "last_active_at",
                 "days" : 339
               },
+              "expires_at" : 3,
               "last_active_at" : 2,
-              "usage_bytes" : 6,
-              "name" : "name",
-              "created_at" : 0,
-              "id" : "id",
-              "object" : "vector_store",
-              "status" : "expired"
+              "metadata" : "{}"
             }"""
             
             when (exampleContentType) {
@@ -109,32 +106,31 @@ fun Route.VectorStoresApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createVectorStoreFile> {
+    post<Paths.createVectorStoreFile> { createVectorStoreFile ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "chunking_strategy" : {
-                "static" : {
-                  "max_chunk_size_tokens" : 685,
-                  "chunk_overlap_tokens" : 5
-                },
-                "type" : "static"
-              },
+              "id" : "id",
+              "object" : "vector_store.file",
               "usage_bytes" : 0,
               "created_at" : 6,
-              "id" : "id",
+              "vector_store_id" : "vector_store_id",
+              "status" : "in_progress",
               "last_error" : {
                 "code" : "server_error",
                 "message" : "message"
               },
-              "object" : "vector_store.file",
-              "vector_store_id" : "vector_store_id",
-              "status" : "in_progress"
+              "chunking_strategy" : {
+                "type" : "static",
+                "static" : {
+                  "max_chunk_size_tokens" : 685,
+                  "chunk_overlap_tokens" : 5
+                }
+              }
             }"""
             
             when (exampleContentType) {
@@ -145,27 +141,26 @@ fun Route.VectorStoresApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createVectorStoreFileBatch> {
+    post<Paths.createVectorStoreFileBatch> { createVectorStoreFileBatch ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "file_counts" : {
-                "in_progress" : 6,
-                "total" : 2,
-                "cancelled" : 5,
-                "completed" : 1,
-                "failed" : 5
-              },
-              "created_at" : 0,
               "id" : "id",
               "object" : "vector_store.files_batch",
+              "created_at" : 0,
               "vector_store_id" : "vector_store_id",
-              "status" : "in_progress"
+              "status" : "in_progress",
+              "file_counts" : {
+                "in_progress" : 6,
+                "completed" : 1,
+                "failed" : 5,
+                "cancelled" : 5,
+                "total" : 2
+              }
             }"""
             
             when (exampleContentType) {
@@ -176,17 +171,16 @@ fun Route.VectorStoresApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    delete<Paths.deleteVectorStore> {
+    delete<Paths.deleteVectorStore> { deleteVectorStore ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "deleted" : true,
               "id" : "id",
+              "deleted" : true,
               "object" : "vector_store.deleted"
             }"""
             
@@ -198,17 +192,16 @@ fun Route.VectorStoresApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    delete<Paths.deleteVectorStoreFile> {
+    delete<Paths.deleteVectorStoreFile> { deleteVectorStoreFile ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "deleted" : true,
               "id" : "id",
+              "deleted" : true,
               "object" : "vector_store.file.deleted"
             }"""
             
@@ -220,35 +213,34 @@ fun Route.VectorStoresApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.getVectorStore> {
+    get<Paths.getVectorStore> { getVectorStore ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "id" : "id",
+              "object" : "vector_store",
+              "created_at" : 0,
+              "name" : "name",
+              "usage_bytes" : 6,
               "file_counts" : {
                 "in_progress" : 1,
-                "total" : 7,
-                "cancelled" : 2,
                 "completed" : 5,
-                "failed" : 5
+                "failed" : 5,
+                "cancelled" : 2,
+                "total" : 7
               },
-              "metadata" : "{}",
-              "expires_at" : 3,
+              "status" : "expired",
               "expires_after" : {
                 "anchor" : "last_active_at",
                 "days" : 339
               },
+              "expires_at" : 3,
               "last_active_at" : 2,
-              "usage_bytes" : 6,
-              "name" : "name",
-              "created_at" : 0,
-              "id" : "id",
-              "object" : "vector_store",
-              "status" : "expired"
+              "metadata" : "{}"
             }"""
             
             when (exampleContentType) {
@@ -259,32 +251,31 @@ fun Route.VectorStoresApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.getVectorStoreFile> {
+    get<Paths.getVectorStoreFile> { getVectorStoreFile ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "chunking_strategy" : {
-                "static" : {
-                  "max_chunk_size_tokens" : 685,
-                  "chunk_overlap_tokens" : 5
-                },
-                "type" : "static"
-              },
+              "id" : "id",
+              "object" : "vector_store.file",
               "usage_bytes" : 0,
               "created_at" : 6,
-              "id" : "id",
+              "vector_store_id" : "vector_store_id",
+              "status" : "in_progress",
               "last_error" : {
                 "code" : "server_error",
                 "message" : "message"
               },
-              "object" : "vector_store.file",
-              "vector_store_id" : "vector_store_id",
-              "status" : "in_progress"
+              "chunking_strategy" : {
+                "type" : "static",
+                "static" : {
+                  "max_chunk_size_tokens" : 685,
+                  "chunk_overlap_tokens" : 5
+                }
+              }
             }"""
             
             when (exampleContentType) {
@@ -295,27 +286,26 @@ fun Route.VectorStoresApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.getVectorStoreFileBatch> {
+    get<Paths.getVectorStoreFileBatch> { getVectorStoreFileBatch ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "file_counts" : {
-                "in_progress" : 6,
-                "total" : 2,
-                "cancelled" : 5,
-                "completed" : 1,
-                "failed" : 5
-              },
-              "created_at" : 0,
               "id" : "id",
               "object" : "vector_store.files_batch",
+              "created_at" : 0,
               "vector_store_id" : "vector_store_id",
-              "status" : "in_progress"
+              "status" : "in_progress",
+              "file_counts" : {
+                "in_progress" : 6,
+                "completed" : 1,
+                "failed" : 5,
+                "cancelled" : 5,
+                "total" : 2
+              }
             }"""
             
             when (exampleContentType) {
@@ -326,116 +316,55 @@ fun Route.VectorStoresApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listFilesInVectorStoreBatch> {
+    get<Paths.listFilesInVectorStoreBatch> { listFilesInVectorStoreBatch ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "first_id" : "file-abc123",
+              "object" : "list",
               "data" : [ {
-                "chunking_strategy" : {
-                  "static" : {
-                    "max_chunk_size_tokens" : 685,
-                    "chunk_overlap_tokens" : 5
-                  },
-                  "type" : "static"
-                },
+                "id" : "id",
+                "object" : "vector_store.file",
                 "usage_bytes" : 0,
                 "created_at" : 6,
-                "id" : "id",
+                "vector_store_id" : "vector_store_id",
+                "status" : "in_progress",
                 "last_error" : {
                   "code" : "server_error",
                   "message" : "message"
                 },
-                "object" : "vector_store.file",
-                "vector_store_id" : "vector_store_id",
-                "status" : "in_progress"
+                "chunking_strategy" : {
+                  "type" : "static",
+                  "static" : {
+                    "max_chunk_size_tokens" : 685,
+                    "chunk_overlap_tokens" : 5
+                  }
+                }
               }, {
-                "chunking_strategy" : {
-                  "static" : {
-                    "max_chunk_size_tokens" : 685,
-                    "chunk_overlap_tokens" : 5
-                  },
-                  "type" : "static"
-                },
+                "id" : "id",
+                "object" : "vector_store.file",
                 "usage_bytes" : 0,
                 "created_at" : 6,
-                "id" : "id",
+                "vector_store_id" : "vector_store_id",
+                "status" : "in_progress",
                 "last_error" : {
                   "code" : "server_error",
                   "message" : "message"
                 },
-                "object" : "vector_store.file",
-                "vector_store_id" : "vector_store_id",
-                "status" : "in_progress"
+                "chunking_strategy" : {
+                  "type" : "static",
+                  "static" : {
+                    "max_chunk_size_tokens" : 685,
+                    "chunk_overlap_tokens" : 5
+                  }
+                }
               } ],
-              "last_id" : "file-abc456",
-              "has_more" : false,
-              "object" : "list"
-            }"""
-            
-            when (exampleContentType) {
-                "application/json" -> call.respondText(exampleContentType, ContentType.Application.Json)
-                "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
-                else -> call.respondText(exampleContentString)
-            }
-        
-    }
-    }
-
-    authenticate("ApiKeyAuth") {
-    get<Paths.listVectorStoreFiles> {
-        
-        val principal = null!!
-        
-        
-        val exampleContentType = "application/json"
-            val exampleContentString = """{
               "first_id" : "file-abc123",
-              "data" : [ {
-                "chunking_strategy" : {
-                  "static" : {
-                    "max_chunk_size_tokens" : 685,
-                    "chunk_overlap_tokens" : 5
-                  },
-                  "type" : "static"
-                },
-                "usage_bytes" : 0,
-                "created_at" : 6,
-                "id" : "id",
-                "last_error" : {
-                  "code" : "server_error",
-                  "message" : "message"
-                },
-                "object" : "vector_store.file",
-                "vector_store_id" : "vector_store_id",
-                "status" : "in_progress"
-              }, {
-                "chunking_strategy" : {
-                  "static" : {
-                    "max_chunk_size_tokens" : 685,
-                    "chunk_overlap_tokens" : 5
-                  },
-                  "type" : "static"
-                },
-                "usage_bytes" : 0,
-                "created_at" : 6,
-                "id" : "id",
-                "last_error" : {
-                  "code" : "server_error",
-                  "message" : "message"
-                },
-                "object" : "vector_store.file",
-                "vector_store_id" : "vector_store_id",
-                "status" : "in_progress"
-              } ],
               "last_id" : "file-abc456",
-              "has_more" : false,
-              "object" : "list"
+              "has_more" : false
             }"""
             
             when (exampleContentType) {
@@ -446,62 +375,120 @@ fun Route.VectorStoresApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listVectorStores> {
+    get<Paths.listVectorStoreFiles> { listVectorStoreFiles ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "object" : "list",
+              "data" : [ {
+                "id" : "id",
+                "object" : "vector_store.file",
+                "usage_bytes" : 0,
+                "created_at" : 6,
+                "vector_store_id" : "vector_store_id",
+                "status" : "in_progress",
+                "last_error" : {
+                  "code" : "server_error",
+                  "message" : "message"
+                },
+                "chunking_strategy" : {
+                  "type" : "static",
+                  "static" : {
+                    "max_chunk_size_tokens" : 685,
+                    "chunk_overlap_tokens" : 5
+                  }
+                }
+              }, {
+                "id" : "id",
+                "object" : "vector_store.file",
+                "usage_bytes" : 0,
+                "created_at" : 6,
+                "vector_store_id" : "vector_store_id",
+                "status" : "in_progress",
+                "last_error" : {
+                  "code" : "server_error",
+                  "message" : "message"
+                },
+                "chunking_strategy" : {
+                  "type" : "static",
+                  "static" : {
+                    "max_chunk_size_tokens" : 685,
+                    "chunk_overlap_tokens" : 5
+                  }
+                }
+              } ],
+              "first_id" : "file-abc123",
+              "last_id" : "file-abc456",
+              "has_more" : false
+            }"""
+            
+            when (exampleContentType) {
+                "application/json" -> call.respondText(exampleContentType, ContentType.Application.Json)
+                "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
+                else -> call.respondText(exampleContentString)
+            }
+        
+    }
+    }
+    authenticate("ApiKeyAuth") {
+    get<Paths.listVectorStores> { listVectorStores ->
+        
+        val principal = null!!
+        
+        
+        val exampleContentType = "application/json"
+            val exampleContentString = """{
+              "object" : "list",
+              "data" : [ {
+                "id" : "id",
+                "object" : "vector_store",
+                "created_at" : 0,
+                "name" : "name",
+                "usage_bytes" : 6,
+                "file_counts" : {
+                  "in_progress" : 1,
+                  "completed" : 5,
+                  "failed" : 5,
+                  "cancelled" : 2,
+                  "total" : 7
+                },
+                "status" : "expired",
+                "expires_after" : {
+                  "anchor" : "last_active_at",
+                  "days" : 339
+                },
+                "expires_at" : 3,
+                "last_active_at" : 2,
+                "metadata" : "{}"
+              }, {
+                "id" : "id",
+                "object" : "vector_store",
+                "created_at" : 0,
+                "name" : "name",
+                "usage_bytes" : 6,
+                "file_counts" : {
+                  "in_progress" : 1,
+                  "completed" : 5,
+                  "failed" : 5,
+                  "cancelled" : 2,
+                  "total" : 7
+                },
+                "status" : "expired",
+                "expires_after" : {
+                  "anchor" : "last_active_at",
+                  "days" : 339
+                },
+                "expires_at" : 3,
+                "last_active_at" : 2,
+                "metadata" : "{}"
+              } ],
               "first_id" : "vs_abc123",
-              "data" : [ {
-                "file_counts" : {
-                  "in_progress" : 1,
-                  "total" : 7,
-                  "cancelled" : 2,
-                  "completed" : 5,
-                  "failed" : 5
-                },
-                "metadata" : "{}",
-                "expires_at" : 3,
-                "expires_after" : {
-                  "anchor" : "last_active_at",
-                  "days" : 339
-                },
-                "last_active_at" : 2,
-                "usage_bytes" : 6,
-                "name" : "name",
-                "created_at" : 0,
-                "id" : "id",
-                "object" : "vector_store",
-                "status" : "expired"
-              }, {
-                "file_counts" : {
-                  "in_progress" : 1,
-                  "total" : 7,
-                  "cancelled" : 2,
-                  "completed" : 5,
-                  "failed" : 5
-                },
-                "metadata" : "{}",
-                "expires_at" : 3,
-                "expires_after" : {
-                  "anchor" : "last_active_at",
-                  "days" : 339
-                },
-                "last_active_at" : 2,
-                "usage_bytes" : 6,
-                "name" : "name",
-                "created_at" : 0,
-                "id" : "id",
-                "object" : "vector_store",
-                "status" : "expired"
-              } ],
               "last_id" : "vs_abc456",
-              "has_more" : false,
-              "object" : "list"
+              "has_more" : false
             }"""
             
             when (exampleContentType) {
@@ -512,35 +499,34 @@ fun Route.VectorStoresApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.modifyVectorStore> {
+    post<Paths.modifyVectorStore> { modifyVectorStore ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "id" : "id",
+              "object" : "vector_store",
+              "created_at" : 0,
+              "name" : "name",
+              "usage_bytes" : 6,
               "file_counts" : {
                 "in_progress" : 1,
-                "total" : 7,
-                "cancelled" : 2,
                 "completed" : 5,
-                "failed" : 5
+                "failed" : 5,
+                "cancelled" : 2,
+                "total" : 7
               },
-              "metadata" : "{}",
-              "expires_at" : 3,
+              "status" : "expired",
               "expires_after" : {
                 "anchor" : "last_active_at",
                 "days" : 339
               },
+              "expires_at" : 3,
               "last_active_at" : 2,
-              "usage_bytes" : 6,
-              "name" : "name",
-              "created_at" : 0,
-              "id" : "id",
-              "object" : "vector_store",
-              "status" : "expired"
+              "metadata" : "{}"
             }"""
             
             when (exampleContentType) {
@@ -551,5 +537,4 @@ fun Route.VectorStoresApi() {
         
     }
     }
-
 }

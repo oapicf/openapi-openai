@@ -49,7 +49,7 @@ class InviteListResponse
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['list'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class InviteListResponse
      * @var Invite[]|null
      * @SerializedName("data")
      * @Type("array<OpenAPI\Server\Model\Invite>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -73,7 +73,7 @@ class InviteListResponse
      * @var string|null
      * @SerializedName("first_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $firstId = null;
 
@@ -83,7 +83,7 @@ class InviteListResponse
      * @var string|null
      * @SerializedName("last_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $lastId = null;
 
@@ -93,7 +93,7 @@ class InviteListResponse
      * @var bool|null
      * @SerializedName("has_more")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $hasMore = null;
 
@@ -123,12 +123,12 @@ class InviteListResponse
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `list`
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `list`
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -150,12 +150,12 @@ class InviteListResponse
     }
 
     /**
-    * Sets data.
-    *
-    * @param Invite[]|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param Invite[]|null $data
+     *
+     * @return $this
+     */
     public function setData(?array $data): self
     {
         $this->data = $data;
@@ -177,12 +177,12 @@ class InviteListResponse
     }
 
     /**
-    * Sets firstId.
-    *
-    * @param string|null $firstId  The first `invite_id` in the retrieved `list`
-    *
-    * @return $this
-    */
+     * Sets firstId.
+     *
+     * @param string|null $firstId  The first `invite_id` in the retrieved `list`
+     *
+     * @return $this
+     */
     public function setFirstId(?string $firstId = null): self
     {
         $this->firstId = $firstId;
@@ -204,12 +204,12 @@ class InviteListResponse
     }
 
     /**
-    * Sets lastId.
-    *
-    * @param string|null $lastId  The last `invite_id` in the retrieved `list`
-    *
-    * @return $this
-    */
+     * Sets lastId.
+     *
+     * @param string|null $lastId  The last `invite_id` in the retrieved `list`
+     *
+     * @return $this
+     */
     public function setLastId(?string $lastId = null): self
     {
         $this->lastId = $lastId;
@@ -231,12 +231,12 @@ class InviteListResponse
     }
 
     /**
-    * Sets hasMore.
-    *
-    * @param bool|null $hasMore  The `has_more` property is used for pagination to indicate there are additional results.
-    *
-    * @return $this
-    */
+     * Sets hasMore.
+     *
+     * @param bool|null $hasMore  The `has_more` property is used for pagination to indicate there are additional results.
+     *
+     * @return $this
+     */
     public function setHasMore(?bool $hasMore = null): self
     {
         $this->hasMore = $hasMore;

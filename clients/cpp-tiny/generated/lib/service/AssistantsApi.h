@@ -42,7 +42,7 @@ class AssistantsApi : public Service {
 public:
     AssistantsApi() = default;
 
-    virtual ~AssistantsApi() = default;
+    virtual ~AssistantsApi();
 
     /**
     * Cancels a run that is `in_progress`..

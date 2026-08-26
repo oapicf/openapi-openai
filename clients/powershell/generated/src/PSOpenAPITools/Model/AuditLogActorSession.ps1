@@ -41,8 +41,8 @@ function Initialize-AuditLogActorSession {
 
 
         $PSO = [PSCustomObject]@{
-            "user" = ${User}
-            "ip_address" = ${IpAddress}
+            'user' = ${User}
+            'ip_address' = ${IpAddress}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToAuditLogActorSession {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AuditLogActorSession
-        $AllProperties = ("user", "ip_address")
+        $AllProperties = ('user', 'ip_address')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'user'))) { #optional property not found
             $User = $null
         } else {
-            $User = $JsonParameters.PSobject.Properties["user"].value
+            $User = $JsonParameters.PSobject.Properties['user'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ip_address"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'ip_address'))) { #optional property not found
             $IpAddress = $null
         } else {
-            $IpAddress = $JsonParameters.PSobject.Properties["ip_address"].value
+            $IpAddress = $JsonParameters.PSobject.Properties['ip_address'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "user" = ${User}
-            "ip_address" = ${IpAddress}
+            'user' = ${User}
+            'ip_address' = ${IpAddress}
         }
 
         return $PSO

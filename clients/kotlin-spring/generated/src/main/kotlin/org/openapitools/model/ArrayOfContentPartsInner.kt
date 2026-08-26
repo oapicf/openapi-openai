@@ -9,6 +9,9 @@ import org.openapitools.model.MessageContentImageFileObjectImageFile
 import org.openapitools.model.MessageContentImageUrlObject
 import org.openapitools.model.MessageContentImageUrlObjectImageUrl
 import org.openapitools.model.MessageRequestContentTextObject
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -22,47 +25,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param type Always `image_file`.
- * @param imageFile 
- * @param imageUrl 
- * @param text Text content to be sent to the model
  */
-data class ArrayOfContentPartsInner(
-
-    @Schema(example = "null", required = true, description = "Always `image_file`.")
-    @get:JsonProperty("type", required = true) val type: ArrayOfContentPartsInner.Type,
-
-    @field:Valid
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("image_file", required = true) val imageFile: MessageContentImageFileObjectImageFile,
-
-    @field:Valid
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("image_url", required = true) val imageUrl: MessageContentImageUrlObjectImageUrl,
-
-    @Schema(example = "null", required = true, description = "Text content to be sent to the model")
-    @get:JsonProperty("text", required = true) val text: kotlin.String
-) {
-
-    /**
-    * Always `image_file`.
-    * Values: image_file,image_url,text
-    */
-    enum class Type(@get:JsonValue val value: kotlin.String) {
-
-        image_file("image_file"),
-        image_url("image_url"),
-        text("text");
-
-        companion object {
-            @JvmStatic
-            @JsonCreator
-            fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ArrayOfContentPartsInner'")
-            }
-        }
-    }
-
+sealed interface ArrayOfContentPartsInner {
 }
 

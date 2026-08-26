@@ -37,6 +37,8 @@ ProjectRateLimit::ProjectRateLimit()
     
 }
 
+ProjectRateLimit::~ProjectRateLimit() = default;
+
 void ProjectRateLimit::validate() const
 {
     std::stringstream msg;

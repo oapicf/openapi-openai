@@ -33,7 +33,7 @@ class  RunObject_required_action
 {
 public:
     RunObject_required_action();
-    virtual ~RunObject_required_action() = default;
+    virtual ~RunObject_required_action();
 
 
     /// <summary>

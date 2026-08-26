@@ -21,7 +21,7 @@ import javax.validation.Valid;
 */
 @Path("/files")
 @Api(description = "the files API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FilesApi {
 
     @POST
@@ -34,7 +34,7 @@ public class FilesApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = OpenAIFile.class)
     })
-    public Response createFile( @FormParam(value = "file") InputStream _fileInputStream,@FormParam(value = "purpose")  String purpose) {
+    public Response createFile(@FormParam(value = "file") InputStream _fileInputStream,@FormParam(value = "purpose")  String purpose) {
         return Response.ok().entity("magic!").build();
     }
 

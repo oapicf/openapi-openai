@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url::OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url(QString json) {
+OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url::OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -38,7 +38,7 @@ void OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url::initializeMod
     m_url_isValid = false;
 }
 
-void OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url::fromJson(QString jsonString) {
+void OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

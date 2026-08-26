@@ -53,10 +53,10 @@ class RunStreamEventOneOf9 {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStreamEventOneOf9[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStreamEventOneOf9[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event'), 'Required key "RunStreamEventOneOf9[event]" is missing from JSON.');
+        assert(json[r'event'] != null, 'Required key "RunStreamEventOneOf9[event]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "RunStreamEventOneOf9[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "RunStreamEventOneOf9[data]" has a null value in JSON.');
         return true;
       }());
 
@@ -116,27 +116,28 @@ class RunStreamEventOneOf9 {
 }
 
 
-class RunStreamEventOneOf9EventEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStreamEventOneOf9EventEnum._(this.value);
+enum RunStreamEventOneOf9EventEnum {
+  threadPeriodRunPeriodExpired._(r'thread.run.expired'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStreamEventOneOf9EventEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodRunPeriodExpired = RunStreamEventOneOf9EventEnum._(r'thread.run.expired');
-
-  /// List of all possible values in this [enum][RunStreamEventOneOf9EventEnum].
-  static const values = <RunStreamEventOneOf9EventEnum>[
-    threadPeriodRunPeriodExpired,
-  ];
-
+  /// Returns the instance of [RunStreamEventOneOf9EventEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStreamEventOneOf9EventEnum? fromJson(dynamic value) => RunStreamEventOneOf9EventEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStreamEventOneOf9EventEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStreamEventOneOf9EventEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStreamEventOneOf9EventEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -158,9 +159,10 @@ class RunStreamEventOneOf9EventEnumTypeTransformer {
 
   const RunStreamEventOneOf9EventEnumTypeTransformer._();
 
-  String encode(RunStreamEventOneOf9EventEnum data) => data.value;
+  String encode(RunStreamEventOneOf9EventEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStreamEventOneOf9EventEnum.
+  /// Returns the instance of [RunStreamEventOneOf9EventEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -169,6 +171,9 @@ class RunStreamEventOneOf9EventEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStreamEventOneOf9EventEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStreamEventOneOf9EventEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.run.expired': return RunStreamEventOneOf9EventEnum.threadPeriodRunPeriodExpired;
@@ -181,7 +186,7 @@ class RunStreamEventOneOf9EventEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStreamEventOneOf9EventEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStreamEventOneOf9EventEnumTypeTransformer? _instance;
 }
 

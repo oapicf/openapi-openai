@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // RealtimeServerEventResponseAudioDone - Returned when the model-generated audio is done. Also emitted when a Response is interrupted, incomplete, or cancelled. 
@@ -35,23 +40,102 @@ type RealtimeServerEventResponseAudioDone struct {
 	// The index of the content part in the item's content array.
 	ContentIndex int32 `json:"content_index"`
 }
-
-// AssertRealtimeServerEventResponseAudioDoneRequired checks if the required fields are not zero-ed
-func AssertRealtimeServerEventResponseAudioDoneRequired(obj RealtimeServerEventResponseAudioDone) error {
-	elements := map[string]interface{}{
-		"event_id": obj.EventId,
-		"type": obj.Type,
-		"response_id": obj.ResponseId,
-		"item_id": obj.ItemId,
-		"output_index": obj.OutputIndex,
-		"content_index": obj.ContentIndex,
+// UnmarshalJSON validates required property keys then unmarshals into RealtimeServerEventResponseAudioDone
+func (o *RealtimeServerEventResponseAudioDone) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"event_id",
+		"type",
+		"response_id",
+		"item_id",
+		"output_index",
+		"content_index",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"event_id": false,
+		"type": false,
+		"response_id": false,
+		"item_id": false,
+		"output_index": false,
+		"content_index": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"event_id": {},
+		"type": {},
+		"response_id": {},
+		"item_id": {},
+		"output_index": {},
+		"content_index": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RealtimeServerEventResponseAudioDone
+
+	if value, exists := allProperties["event_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.EventId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["response_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.ResponseId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["item_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.ItemId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["output_index"]; exists {
+		if err = json.Unmarshal(value, &decoded.OutputIndex); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["content_index"]; exists {
+		if err = json.Unmarshal(value, &decoded.ContentIndex); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRealtimeServerEventResponseAudioDoneRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertRealtimeServerEventResponseAudioDoneRequired(obj RealtimeServerEventResponseAudioDone) error {
 	return nil
 }
 

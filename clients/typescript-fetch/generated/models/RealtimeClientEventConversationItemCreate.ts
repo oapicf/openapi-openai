@@ -42,7 +42,7 @@ export interface RealtimeClientEventConversationItemCreate {
     eventId?: string;
     /**
      * The event type, must be `conversation.item.create`.
-     * @type {string}
+     * @type {RealtimeClientEventConversationItemCreateTypeEnum}
      * @memberof RealtimeClientEventConversationItemCreate
      */
     type: RealtimeClientEventConversationItemCreateTypeEnum;
@@ -79,6 +79,8 @@ export type RealtimeClientEventConversationItemCreateTypeEnum = typeof RealtimeC
  */
 export function instanceOfRealtimeClientEventConversationItemCreate(value: object): value is RealtimeClientEventConversationItemCreate {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'conversation.item.create') return false;
+    
     if (!('item' in value) || value['item'] === undefined) return false;
     return true;
 }

@@ -34,13 +34,13 @@ class OAIRealtimeConversationItem_content_inner;
 class OAIRealtimeConversationItem : public OAIObject {
 public:
     OAIRealtimeConversationItem();
-    OAIRealtimeConversationItem(QString json);
+    OAIRealtimeConversationItem(const QString &json);
     ~OAIRealtimeConversationItem() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

@@ -12,18 +12,17 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  CreateModerationRequest,
-  CreateModerationResponse,
-} from '../models/index';
 import {
+    type CreateModerationRequest,
     CreateModerationRequestFromJSON,
     CreateModerationRequestToJSON,
+} from '../models/CreateModerationRequest';
+import {
+    type CreateModerationResponse,
     CreateModerationResponseFromJSON,
     CreateModerationResponseToJSON,
-} from '../models/index';
+} from '../models/CreateModerationResponse';
 
 export interface CreateModerationOperationRequest {
     createModerationRequest: CreateModerationRequest;
@@ -35,9 +34,9 @@ export interface CreateModerationOperationRequest {
 export class ModerationsApi extends runtime.BaseAPI {
 
     /**
-     * Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
+     * Creates request options for createModeration without sending the request
      */
-    async createModerationRaw(requestParameters: CreateModerationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateModerationResponse>> {
+    async createModerationRequestOpts(requestParameters: CreateModerationOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createModerationRequest'] == null) {
             throw new runtime.RequiredError(
                 'createModerationRequest',
@@ -62,13 +61,21 @@ export class ModerationsApi extends runtime.BaseAPI {
 
         let urlPath = `/moderations`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateModerationRequestToJSON(requestParameters['createModerationRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
+     */
+    async createModerationRaw(requestParameters: CreateModerationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateModerationResponse>> {
+        const requestOptions = await this.createModerationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateModerationResponseFromJSON(jsonValue));
     }

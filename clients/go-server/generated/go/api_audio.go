@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 	"strings"
 	"os"
@@ -104,6 +105,11 @@ func (c *AudioAPIController) CreateSpeech(w http.ResponseWriter, r *http.Request
 	d := json.NewDecoder(r.Body)
 	d.DisallowUnknownFields()
 	if err := d.Decode(&createSpeechRequestParam); err != nil {
+		var requiredErr *RequiredError
+		if errors.As(err, &requiredErr) {
+			c.errorHandler(w, r, err, nil)
+			return
+		}
 		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
 		return
 	}
@@ -140,6 +146,7 @@ func (c *AudioAPIController) CreateTranscription(w http.ResponseWriter, r *http.
 		}
 
 		fileParam = param
+		defer param.Close()
 	}
 	
 	
@@ -186,6 +193,7 @@ func (c *AudioAPIController) CreateTranslation(w http.ResponseWriter, r *http.Re
 		}
 
 		fileParam = param
+		defer param.Close()
 	}
 	
 	

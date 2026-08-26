@@ -64,7 +64,7 @@ CreateModerationRequest_input_oneOf_inner_oneOf_image_url::getUrl()
 }
 
 void
-CreateModerationRequest_input_oneOf_inner_oneOf_image_url::setUrl(std::string  url)
+CreateModerationRequest_input_oneOf_inner_oneOf_image_url::setUrl(std::string url)
 {
 	this->url = url;
 }

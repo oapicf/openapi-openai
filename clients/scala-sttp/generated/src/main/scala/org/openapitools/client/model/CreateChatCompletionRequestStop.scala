@@ -15,6 +15,7 @@ package org.openapitools.client.model
   /**
    * Up to 4 sequences where the API will stop generating further tokens. 
    */
-case class CreateChatCompletionRequestStop(
-)
+trait CreateChatCompletionRequestStop
+object CreateChatCompletionRequestStop {
+}
 

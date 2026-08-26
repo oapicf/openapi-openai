@@ -85,7 +85,7 @@ AuditLogActorUser::getId()
 }
 
 void
-AuditLogActorUser::setId(std::string  id)
+AuditLogActorUser::setId(std::string id)
 {
 	this->id = id;
 }
@@ -97,7 +97,7 @@ AuditLogActorUser::getEmail()
 }
 
 void
-AuditLogActorUser::setEmail(std::string  email)
+AuditLogActorUser::setEmail(std::string email)
 {
 	this->email = email;
 }

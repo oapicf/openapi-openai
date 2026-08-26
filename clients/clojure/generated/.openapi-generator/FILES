@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 git_push.sh
 project.clj
 src/open_ai_api/api/assistants.clj
@@ -83,7 +82,6 @@ src/open_ai_api/specs/audit_log_user_added_data.clj
 src/open_ai_api/specs/audit_log_user_deleted.clj
 src/open_ai_api/specs/audit_log_user_updated.clj
 src/open_ai_api/specs/audit_log_user_updated_changes_requested.clj
-src/open_ai_api/specs/auto_chunking_strategy.clj
 src/open_ai_api/specs/auto_chunking_strategy_request_param.clj
 src/open_ai_api/specs/batch.clj
 src/open_ai_api/specs/batch_errors.clj
@@ -493,7 +491,6 @@ src/open_ai_api/specs/run_tool_call_object.clj
 src/open_ai_api/specs/run_tool_call_object_function.clj
 src/open_ai_api/specs/static_chunking_strategy.clj
 src/open_ai_api/specs/static_chunking_strategy_request_param.clj
-src/open_ai_api/specs/static_chunking_strategy_response_param.clj
 src/open_ai_api/specs/static_chunking_strategy_static.clj
 src/open_ai_api/specs/submit_tool_outputs_run_request.clj
 src/open_ai_api/specs/submit_tool_outputs_run_request_tool_outputs_inner.clj

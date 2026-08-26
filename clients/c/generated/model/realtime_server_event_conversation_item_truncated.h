@@ -30,8 +30,8 @@ typedef struct realtime_server_event_conversation_item_truncated_t {
     char *event_id; // string
     openai_api_realtime_server_event_conversation_item_truncated_TYPE_e type; //enum
     char *item_id; // string
-    int content_index; //numeric
-    int audio_end_ms; //numeric
+    int *content_index; //numeric
+    int *audio_end_ms; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } realtime_server_event_conversation_item_truncated_t;
@@ -40,8 +40,8 @@ __attribute__((deprecated)) realtime_server_event_conversation_item_truncated_t 
     char *event_id,
     openai_api_realtime_server_event_conversation_item_truncated_TYPE_e type,
     char *item_id,
-    int content_index,
-    int audio_end_ms
+    int *content_index,
+    int *audio_end_ms
 );
 
 void realtime_server_event_conversation_item_truncated_free(realtime_server_event_conversation_item_truncated_t *realtime_server_event_conversation_item_truncated);

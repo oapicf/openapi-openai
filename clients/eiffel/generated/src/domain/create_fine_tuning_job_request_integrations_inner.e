@@ -20,7 +20,7 @@ class CREATE_FINE_TUNING_JOB_REQUEST_INTEGRATIONS_INNER
 feature --Access
 
     type: detachable STRING_32
-      
+      -- The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
     wandb: detachable CREATE_FINE_TUNING_JOB_REQUEST_INTEGRATIONS_INNER_WANDB
       
 

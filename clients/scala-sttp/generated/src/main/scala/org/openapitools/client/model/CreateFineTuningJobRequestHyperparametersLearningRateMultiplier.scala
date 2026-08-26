@@ -15,6 +15,7 @@ package org.openapitools.client.model
   /**
    * Scaling factor for the learning rate. A smaller learning rate may be useful to avoid overfitting. 
    */
-case class CreateFineTuningJobRequestHyperparametersLearningRateMultiplier(
-)
+trait CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+object CreateFineTuningJobRequestHyperparametersLearningRateMultiplier {
+}
 

@@ -81,6 +81,7 @@ class ModifyAssistantRequest(Model):
     def model(self):
         """Gets the model of this ModifyAssistantRequest.
 
+        ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
 
         :return: The model of this ModifyAssistantRequest.
         :rtype: str
@@ -91,6 +92,7 @@ class ModifyAssistantRequest(Model):
     def model(self, model):
         """Sets the model of this ModifyAssistantRequest.
 
+        ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
 
         :param model: The model of this ModifyAssistantRequest.
         :type model: str

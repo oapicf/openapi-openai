@@ -31,7 +31,7 @@ class  CreateImageRequest_model
 {
 public:
     CreateImageRequest_model();
-    virtual ~CreateImageRequest_model() = default;
+    virtual ~CreateImageRequest_model();
 
 
     /// <summary>

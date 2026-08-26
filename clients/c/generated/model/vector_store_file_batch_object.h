@@ -38,7 +38,7 @@ openai_api_vector_store_file_batch_object_STATUS_e vector_store_file_batch_objec
 typedef struct vector_store_file_batch_object_t {
     char *id; // string
     openai_api_vector_store_file_batch_object_OBJECT_e object; //enum
-    int created_at; //numeric
+    int *created_at; //numeric
     char *vector_store_id; // string
     openai_api_vector_store_file_batch_object_STATUS_e status; //enum
     struct vector_store_file_batch_object_file_counts_t *file_counts; //model
@@ -49,7 +49,7 @@ typedef struct vector_store_file_batch_object_t {
 __attribute__((deprecated)) vector_store_file_batch_object_t *vector_store_file_batch_object_create(
     char *id,
     openai_api_vector_store_file_batch_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     char *vector_store_id,
     openai_api_vector_store_file_batch_object_STATUS_e status,
     vector_store_file_batch_object_file_counts_t *file_counts

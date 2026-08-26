@@ -141,7 +141,7 @@ export class FilesApi {
     { response: JQueryXHR; body: models.DeleteFileResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/files/{file_id}'.replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
+        let localVarPath = this.basePath + '/files/{file_id}'.replace('{file_id}', encodeURIComponent(String(fileId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -204,7 +204,7 @@ export class FilesApi {
     { response: JQueryXHR; body: string;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/files/{file_id}/content'.replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
+        let localVarPath = this.basePath + '/files/{file_id}/content'.replace('{file_id}', encodeURIComponent(String(fileId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -340,7 +340,7 @@ export class FilesApi {
     { response: JQueryXHR; body: models.OpenAIFile;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/files/{file_id}'.replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
+        let localVarPath = this.basePath + '/files/{file_id}'.replace('{file_id}', encodeURIComponent(String(fileId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};

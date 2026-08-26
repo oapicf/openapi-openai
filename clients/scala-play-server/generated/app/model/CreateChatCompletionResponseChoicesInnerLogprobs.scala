@@ -7,7 +7,7 @@ import play.api.libs.json._
   * @param content A list of message content tokens with log probability information.
   * @param refusal A list of message refusal tokens with log probability information.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 case class CreateChatCompletionResponseChoicesInnerLogprobs(
   content: List[ChatCompletionTokenLogprob],
   refusal: List[ChatCompletionTokenLogprob]

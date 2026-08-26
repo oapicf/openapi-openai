@@ -32,13 +32,13 @@ namespace OpenAPI {
 class OAIChatCompletionTokenLogprob_top_logprobs_inner : public OAIObject {
 public:
     OAIChatCompletionTokenLogprob_top_logprobs_inner();
-    OAIChatCompletionTokenLogprob_top_logprobs_inner(QString json);
+    OAIChatCompletionTokenLogprob_top_logprobs_inner(const QString &json);
     ~OAIChatCompletionTokenLogprob_top_logprobs_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getToken() const;
     void setToken(const QString &token);

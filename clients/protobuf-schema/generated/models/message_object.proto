@@ -29,7 +29,7 @@ message MessageObject {
     OBJECT_THREAD_MESSAGE = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The Unix timestamp (in seconds) for when the message was created.
   int32 created_at = 295938284;
@@ -44,7 +44,7 @@ message MessageObject {
     STATUS_COMPLETED = 2;
   }
 
-  Status status = 355610639;
+  string status = 355610639;
 
   MessageObjectIncompleteDetails incomplete_details = 368878689;
 
@@ -60,7 +60,7 @@ message MessageObject {
     ROLE_ASSISTANT = 1;
   }
 
-  Role role = 3506294;
+  string role = 3506294;
 
   // The content of the message in array of text and/or images.
   repeated MessageObjectContentInner content = 414659706;

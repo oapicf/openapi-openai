@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type SubmitToolOutputsRunRequest struct {
@@ -22,8 +27,67 @@ type SubmitToolOutputsRunRequest struct {
 	// If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. 
 	Stream *bool `json:"stream,omitempty"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into SubmitToolOutputsRunRequest
+func (o *SubmitToolOutputsRunRequest) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"tool_outputs",
+	}
 
-// AssertSubmitToolOutputsRunRequestRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"tool_outputs": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"tool_outputs": {},
+		"stream": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded SubmitToolOutputsRunRequest
+
+	if value, exists := allProperties["tool_outputs"]; exists {
+		if err = json.Unmarshal(value, &decoded.ToolOutputs); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["stream"]; exists {
+		if err = json.Unmarshal(value, &decoded.Stream); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertSubmitToolOutputsRunRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertSubmitToolOutputsRunRequestRequired(obj SubmitToolOutputsRunRequest) error {
 	elements := map[string]interface{}{
 		"tool_outputs": obj.ToolOutputs,

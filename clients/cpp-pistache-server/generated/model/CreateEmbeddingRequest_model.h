@@ -31,7 +31,7 @@ class  CreateEmbeddingRequest_model
 {
 public:
     CreateEmbeddingRequest_model();
-    virtual ~CreateEmbeddingRequest_model() = default;
+    virtual ~CreateEmbeddingRequest_model();
 
 
     /// <summary>

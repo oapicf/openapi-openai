@@ -51,7 +51,7 @@ class VectorStoreFileObject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class VectorStoreFileObject
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['vector_store.file'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class VectorStoreFileObject
      * @var int|null
      * @SerializedName("usage_bytes")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $usageBytes = null;
@@ -85,7 +85,7 @@ class VectorStoreFileObject
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -96,7 +96,7 @@ class VectorStoreFileObject
      * @var string|null
      * @SerializedName("vector_store_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $vectorStoreId = null;
@@ -107,7 +107,7 @@ class VectorStoreFileObject
      * @var string|null
      * @SerializedName("status")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['in_progress', 'completed', 'cancelled', 'failed'])]
     #[Assert\Type("string")]
@@ -117,7 +117,7 @@ class VectorStoreFileObject
      * @var VectorStoreFileObjectLastError|null
      * @SerializedName("last_error")
      * @Type("OpenAPI\Server\Model\VectorStoreFileObjectLastError")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\VectorStoreFileObjectLastError")]
@@ -127,7 +127,7 @@ class VectorStoreFileObject
      * @var VectorStoreFileObjectChunkingStrategy|null
      * @SerializedName("chunking_strategy")
      * @Type("OpenAPI\Server\Model\VectorStoreFileObjectChunkingStrategy")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\VectorStoreFileObjectChunkingStrategy")]
     protected ?VectorStoreFileObjectChunkingStrategy $chunkingStrategy = null;
 
@@ -160,12 +160,12 @@ class VectorStoreFileObject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The identifier, which can be referenced in API endpoints.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The identifier, which can be referenced in API endpoints.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -187,12 +187,12 @@ class VectorStoreFileObject
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `vector_store.file`.
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `vector_store.file`.
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -214,12 +214,12 @@ class VectorStoreFileObject
     }
 
     /**
-    * Sets usageBytes.
-    *
-    * @param int|null $usageBytes  The total vector store usage in bytes. Note that this may be different from the original file size.
-    *
-    * @return $this
-    */
+     * Sets usageBytes.
+     *
+     * @param int|null $usageBytes  The total vector store usage in bytes. Note that this may be different from the original file size.
+     *
+     * @return $this
+     */
     public function setUsageBytes(?int $usageBytes): self
     {
         $this->usageBytes = $usageBytes;
@@ -241,12 +241,12 @@ class VectorStoreFileObject
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) for when the vector store file was created.
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) for when the vector store file was created.
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -268,12 +268,12 @@ class VectorStoreFileObject
     }
 
     /**
-    * Sets vectorStoreId.
-    *
-    * @param string|null $vectorStoreId  The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.
-    *
-    * @return $this
-    */
+     * Sets vectorStoreId.
+     *
+     * @param string|null $vectorStoreId  The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.
+     *
+     * @return $this
+     */
     public function setVectorStoreId(?string $vectorStoreId): self
     {
         $this->vectorStoreId = $vectorStoreId;
@@ -295,12 +295,12 @@ class VectorStoreFileObject
     }
 
     /**
-    * Sets status.
-    *
-    * @param string|null $status  The status of the vector store file, which can be either `in_progress`, `completed`, `cancelled`, or `failed`. The status `completed` indicates that the vector store file is ready for use.
-    *
-    * @return $this
-    */
+     * Sets status.
+     *
+     * @param string|null $status  The status of the vector store file, which can be either `in_progress`, `completed`, `cancelled`, or `failed`. The status `completed` indicates that the vector store file is ready for use.
+     *
+     * @return $this
+     */
     public function setStatus(?string $status): self
     {
         $this->status = $status;
@@ -322,12 +322,12 @@ class VectorStoreFileObject
     }
 
     /**
-    * Sets lastError.
-    *
-    * @param VectorStoreFileObjectLastError|null $lastError
-    *
-    * @return $this
-    */
+     * Sets lastError.
+     *
+     * @param VectorStoreFileObjectLastError|null $lastError
+     *
+     * @return $this
+     */
     public function setLastError(?VectorStoreFileObjectLastError $lastError): self
     {
         $this->lastError = $lastError;
@@ -349,12 +349,12 @@ class VectorStoreFileObject
     }
 
     /**
-    * Sets chunkingStrategy.
-    *
-    * @param VectorStoreFileObjectChunkingStrategy|null $chunkingStrategy
-    *
-    * @return $this
-    */
+     * Sets chunkingStrategy.
+     *
+     * @param VectorStoreFileObjectChunkingStrategy|null $chunkingStrategy
+     *
+     * @return $this
+     */
     public function setChunkingStrategy(?VectorStoreFileObjectChunkingStrategy $chunkingStrategy = null): self
     {
         $this->chunkingStrategy = $chunkingStrategy;

@@ -25,6 +25,8 @@ AssistantObject_tool_resources_code_interpreter::AssistantObject_tool_resources_
     
 }
 
+AssistantObject_tool_resources_code_interpreter::~AssistantObject_tool_resources_code_interpreter() = default;
+
 void AssistantObject_tool_resources_code_interpreter::validate() const
 {
     std::stringstream msg;

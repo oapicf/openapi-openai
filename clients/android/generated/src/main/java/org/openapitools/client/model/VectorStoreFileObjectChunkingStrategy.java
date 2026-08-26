@@ -14,7 +14,7 @@ package org.openapitools.client.model;
 
 import org.openapitools.client.model.OtherChunkingStrategyResponseParam;
 import org.openapitools.client.model.StaticChunkingStrategy;
-import org.openapitools.client.model.StaticChunkingStrategyResponseParam;
+import org.openapitools.client.model.StaticChunkingStrategyRequestParam;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 

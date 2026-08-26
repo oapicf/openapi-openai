@@ -49,8 +49,8 @@ function Initialize-AssistantToolsFileSearchFileSearch {
 
 
         $PSO = [PSCustomObject]@{
-            "max_num_results" = ${MaxNumResults}
-            "ranking_options" = ${RankingOptions}
+            'max_num_results' = ${MaxNumResults}
+            'ranking_options' = ${RankingOptions}
         }
 
 
@@ -88,28 +88,28 @@ function ConvertFrom-JsonToAssistantToolsFileSearchFileSearch {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AssistantToolsFileSearchFileSearch
-        $AllProperties = ("max_num_results", "ranking_options")
+        $AllProperties = ('max_num_results', 'ranking_options')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_num_results"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'max_num_results'))) { #optional property not found
             $MaxNumResults = $null
         } else {
-            $MaxNumResults = $JsonParameters.PSobject.Properties["max_num_results"].value
+            $MaxNumResults = $JsonParameters.PSobject.Properties['max_num_results'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ranking_options"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'ranking_options'))) { #optional property not found
             $RankingOptions = $null
         } else {
-            $RankingOptions = $JsonParameters.PSobject.Properties["ranking_options"].value
+            $RankingOptions = $JsonParameters.PSobject.Properties['ranking_options'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "max_num_results" = ${MaxNumResults}
-            "ranking_options" = ${RankingOptions}
+            'max_num_results' = ${MaxNumResults}
+            'ranking_options' = ${RankingOptions}
         }
 
         return $PSO

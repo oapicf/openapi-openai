@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIArray_of_content_parts_inner::OAIArray_of_content_parts_inner(QString json) {
+OAIArray_of_content_parts_inner::OAIArray_of_content_parts_inner(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -47,7 +47,7 @@ void OAIArray_of_content_parts_inner::initializeModel() {
     m_text_isValid = false;
 }
 
-void OAIArray_of_content_parts_inner::fromJson(QString jsonString) {
+void OAIArray_of_content_parts_inner::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

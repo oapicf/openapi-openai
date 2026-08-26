@@ -31,7 +31,7 @@ class  CompletionUsage_completion_tokens_details
 {
 public:
     CompletionUsage_completion_tokens_details();
-    virtual ~CompletionUsage_completion_tokens_details() = default;
+    virtual ~CompletionUsage_completion_tokens_details();
 
 
     /// <summary>

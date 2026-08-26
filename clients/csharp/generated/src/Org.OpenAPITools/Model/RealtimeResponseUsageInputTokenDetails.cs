@@ -60,7 +60,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The number of cached tokens used in the Response.</value>
         [JsonPropertyName("cached_tokens")]
-        public int? CachedTokens { get { return this.CachedTokensOption; } set { this.CachedTokensOption = new(value); } }
+        public int? CachedTokens { get { return this.CachedTokensOption.Value; } set { this.CachedTokensOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TextTokens
@@ -74,7 +74,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The number of text tokens used in the Response.</value>
         [JsonPropertyName("text_tokens")]
-        public int? TextTokens { get { return this.TextTokensOption; } set { this.TextTokensOption = new(value); } }
+        public int? TextTokens { get { return this.TextTokensOption.Value; } set { this.TextTokensOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AudioTokens
@@ -88,7 +88,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The number of audio tokens used in the Response.</value>
         [JsonPropertyName("audio_tokens")]
-        public int? AudioTokens { get { return this.AudioTokensOption; } set { this.AudioTokensOption = new(value); } }
+        public int? AudioTokens { get { return this.AudioTokensOption.Value; } set { this.AudioTokensOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -119,8 +119,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeResponseUsageInputTokenDetails" />
     /// </summary>
-    public class RealtimeResponseUsageInputTokenDetailsJsonConverter : JsonConverter<RealtimeResponseUsageInputTokenDetails>
+    public partial class RealtimeResponseUsageInputTokenDetailsJsonConverter : JsonConverter<RealtimeResponseUsageInputTokenDetails>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeResponseUsageInputTokenDetailsJsonConverter" /> class.
+        /// </summary>
+        public RealtimeResponseUsageInputTokenDetailsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeResponseUsageInputTokenDetails" />
         /// </summary>

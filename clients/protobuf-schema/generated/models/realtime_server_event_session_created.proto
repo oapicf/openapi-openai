@@ -26,7 +26,7 @@ message RealtimeServerEventSessionCreated {
     TYPE_SESSION_CREATED = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   RealtimeSession session = 374375065;
 

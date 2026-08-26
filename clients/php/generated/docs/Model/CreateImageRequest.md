@@ -1,4 +1,4 @@
-# # CreateImageRequest
+# CreateImageRequest
 
 ## Properties
 

@@ -32,13 +32,13 @@ namespace OpenAPI {
 class OAICreateModerationResponse_results_inner_category_applied_input_types : public OAIObject {
 public:
     OAICreateModerationResponse_results_inner_category_applied_input_types();
-    OAICreateModerationResponse_results_inner_category_applied_input_types(QString json);
+    OAICreateModerationResponse_results_inner_category_applied_input_types(const QString &json);
     ~OAICreateModerationResponse_results_inner_category_applied_input_types() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QList<QString> getHate() const;
     void setHate(const QList<QString> &hate);

@@ -51,7 +51,7 @@ class MessageContentImageFileObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['image_file'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class MessageContentImageFileObject
      * @var MessageContentImageFileObjectImageFile|null
      * @SerializedName("image_file")
      * @Type("OpenAPI\Server\Model\MessageContentImageFileObjectImageFile")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\MessageContentImageFileObjectImageFile")]
@@ -90,12 +90,12 @@ class MessageContentImageFileObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `image_file`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `image_file`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -117,12 +117,12 @@ class MessageContentImageFileObject
     }
 
     /**
-    * Sets imageFile.
-    *
-    * @param MessageContentImageFileObjectImageFile|null $imageFile
-    *
-    * @return $this
-    */
+     * Sets imageFile.
+     *
+     * @param MessageContentImageFileObjectImageFile|null $imageFile
+     *
+     * @return $this
+     */
     public function setImageFile(?MessageContentImageFileObjectImageFile $imageFile): self
     {
         $this->imageFile = $imageFile;

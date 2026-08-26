@@ -1,4 +1,4 @@
-# # AuditLogApiKeyUpdatedChangesRequested
+# AuditLogApiKeyUpdatedChangesRequested
 
 ## Properties
 

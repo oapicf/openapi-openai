@@ -27,6 +27,8 @@ ProjectApiKeyDeleteResponse::ProjectApiKeyDeleteResponse()
     
 }
 
+ProjectApiKeyDeleteResponse::~ProjectApiKeyDeleteResponse() = default;
+
 void ProjectApiKeyDeleteResponse::validate() const
 {
     std::stringstream msg;

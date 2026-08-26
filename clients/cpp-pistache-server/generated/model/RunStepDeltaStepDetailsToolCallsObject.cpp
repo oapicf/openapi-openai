@@ -26,6 +26,8 @@ RunStepDeltaStepDetailsToolCallsObject::RunStepDeltaStepDetailsToolCallsObject()
     
 }
 
+RunStepDeltaStepDetailsToolCallsObject::~RunStepDeltaStepDetailsToolCallsObject() = default;
+
 void RunStepDeltaStepDetailsToolCallsObject::validate() const
 {
     std::stringstream msg;

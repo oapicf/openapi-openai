@@ -485,7 +485,7 @@ UsageTimeBucket_result_inner::getObject()
 }
 
 void
-UsageTimeBucket_result_inner::setObject(std::string  object)
+UsageTimeBucket_result_inner::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -497,7 +497,7 @@ UsageTimeBucket_result_inner::getInputTokens()
 }
 
 void
-UsageTimeBucket_result_inner::setInputTokens(int  input_tokens)
+UsageTimeBucket_result_inner::setInputTokens(int input_tokens)
 {
 	this->input_tokens = input_tokens;
 }
@@ -509,7 +509,7 @@ UsageTimeBucket_result_inner::getInputCachedTokens()
 }
 
 void
-UsageTimeBucket_result_inner::setInputCachedTokens(int  input_cached_tokens)
+UsageTimeBucket_result_inner::setInputCachedTokens(int input_cached_tokens)
 {
 	this->input_cached_tokens = input_cached_tokens;
 }
@@ -521,7 +521,7 @@ UsageTimeBucket_result_inner::getOutputTokens()
 }
 
 void
-UsageTimeBucket_result_inner::setOutputTokens(int  output_tokens)
+UsageTimeBucket_result_inner::setOutputTokens(int output_tokens)
 {
 	this->output_tokens = output_tokens;
 }
@@ -533,7 +533,7 @@ UsageTimeBucket_result_inner::getInputAudioTokens()
 }
 
 void
-UsageTimeBucket_result_inner::setInputAudioTokens(int  input_audio_tokens)
+UsageTimeBucket_result_inner::setInputAudioTokens(int input_audio_tokens)
 {
 	this->input_audio_tokens = input_audio_tokens;
 }
@@ -545,7 +545,7 @@ UsageTimeBucket_result_inner::getOutputAudioTokens()
 }
 
 void
-UsageTimeBucket_result_inner::setOutputAudioTokens(int  output_audio_tokens)
+UsageTimeBucket_result_inner::setOutputAudioTokens(int output_audio_tokens)
 {
 	this->output_audio_tokens = output_audio_tokens;
 }
@@ -557,7 +557,7 @@ UsageTimeBucket_result_inner::getNumModelRequests()
 }
 
 void
-UsageTimeBucket_result_inner::setNumModelRequests(int  num_model_requests)
+UsageTimeBucket_result_inner::setNumModelRequests(int num_model_requests)
 {
 	this->num_model_requests = num_model_requests;
 }
@@ -569,7 +569,7 @@ UsageTimeBucket_result_inner::getProjectId()
 }
 
 void
-UsageTimeBucket_result_inner::setProjectId(std::string  project_id)
+UsageTimeBucket_result_inner::setProjectId(std::string project_id)
 {
 	this->project_id = project_id;
 }
@@ -581,7 +581,7 @@ UsageTimeBucket_result_inner::getUserId()
 }
 
 void
-UsageTimeBucket_result_inner::setUserId(std::string  user_id)
+UsageTimeBucket_result_inner::setUserId(std::string user_id)
 {
 	this->user_id = user_id;
 }
@@ -593,7 +593,7 @@ UsageTimeBucket_result_inner::getApiKeyId()
 }
 
 void
-UsageTimeBucket_result_inner::setApiKeyId(std::string  api_key_id)
+UsageTimeBucket_result_inner::setApiKeyId(std::string api_key_id)
 {
 	this->api_key_id = api_key_id;
 }
@@ -605,7 +605,7 @@ UsageTimeBucket_result_inner::getModel()
 }
 
 void
-UsageTimeBucket_result_inner::setModel(std::string  model)
+UsageTimeBucket_result_inner::setModel(std::string model)
 {
 	this->model = model;
 }
@@ -617,7 +617,7 @@ UsageTimeBucket_result_inner::isBatch()
 }
 
 void
-UsageTimeBucket_result_inner::setBatch(bool  batch)
+UsageTimeBucket_result_inner::setBatch(bool batch)
 {
 	this->batch = batch;
 }
@@ -629,7 +629,7 @@ UsageTimeBucket_result_inner::getImages()
 }
 
 void
-UsageTimeBucket_result_inner::setImages(int  images)
+UsageTimeBucket_result_inner::setImages(int images)
 {
 	this->images = images;
 }
@@ -641,7 +641,7 @@ UsageTimeBucket_result_inner::getSource()
 }
 
 void
-UsageTimeBucket_result_inner::setSource(std::string  source)
+UsageTimeBucket_result_inner::setSource(std::string source)
 {
 	this->source = source;
 }
@@ -653,7 +653,7 @@ UsageTimeBucket_result_inner::getSize()
 }
 
 void
-UsageTimeBucket_result_inner::setSize(std::string  size)
+UsageTimeBucket_result_inner::setSize(std::string size)
 {
 	this->size = size;
 }
@@ -665,7 +665,7 @@ UsageTimeBucket_result_inner::getCharacters()
 }
 
 void
-UsageTimeBucket_result_inner::setCharacters(int  characters)
+UsageTimeBucket_result_inner::setCharacters(int characters)
 {
 	this->characters = characters;
 }
@@ -677,7 +677,7 @@ UsageTimeBucket_result_inner::getSeconds()
 }
 
 void
-UsageTimeBucket_result_inner::setSeconds(int  seconds)
+UsageTimeBucket_result_inner::setSeconds(int seconds)
 {
 	this->seconds = seconds;
 }
@@ -689,7 +689,7 @@ UsageTimeBucket_result_inner::getUsageBytes()
 }
 
 void
-UsageTimeBucket_result_inner::setUsageBytes(int  usage_bytes)
+UsageTimeBucket_result_inner::setUsageBytes(int usage_bytes)
 {
 	this->usage_bytes = usage_bytes;
 }
@@ -701,7 +701,7 @@ UsageTimeBucket_result_inner::getSessions()
 }
 
 void
-UsageTimeBucket_result_inner::setSessions(int  sessions)
+UsageTimeBucket_result_inner::setSessions(int sessions)
 {
 	this->sessions = sessions;
 }
@@ -713,7 +713,7 @@ UsageTimeBucket_result_inner::getAmount()
 }
 
 void
-UsageTimeBucket_result_inner::setAmount(CostsResult_amount  amount)
+UsageTimeBucket_result_inner::setAmount(CostsResult_amount amount)
 {
 	this->amount = amount;
 }
@@ -725,7 +725,7 @@ UsageTimeBucket_result_inner::getLineItem()
 }
 
 void
-UsageTimeBucket_result_inner::setLineItem(std::string  line_item)
+UsageTimeBucket_result_inner::setLineItem(std::string line_item)
 {
 	this->line_item = line_item;
 }

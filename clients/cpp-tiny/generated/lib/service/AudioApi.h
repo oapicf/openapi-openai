@@ -25,7 +25,7 @@ class AudioApi : public Service {
 public:
     AudioApi() = default;
 
-    virtual ~AudioApi() = default;
+    virtual ~AudioApi();
 
     /**
     * Generates audio from the input text..

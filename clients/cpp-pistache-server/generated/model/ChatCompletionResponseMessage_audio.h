@@ -32,7 +32,7 @@ class  ChatCompletionResponseMessage_audio
 {
 public:
     ChatCompletionResponseMessage_audio();
-    virtual ~ChatCompletionResponseMessage_audio() = default;
+    virtual ~ChatCompletionResponseMessage_audio();
 
 
     /// <summary>

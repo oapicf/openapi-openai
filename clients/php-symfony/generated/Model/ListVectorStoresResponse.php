@@ -47,7 +47,7 @@ class ListVectorStoresResponse
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $object = null;
@@ -56,7 +56,7 @@ class ListVectorStoresResponse
      * @var VectorStoreObject[]|null
      * @SerializedName("data")
      * @Type("array<OpenAPI\Server\Model\VectorStoreObject>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -68,7 +68,7 @@ class ListVectorStoresResponse
      * @var string|null
      * @SerializedName("first_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $firstId = null;
@@ -77,7 +77,7 @@ class ListVectorStoresResponse
      * @var string|null
      * @SerializedName("last_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $lastId = null;
@@ -86,7 +86,7 @@ class ListVectorStoresResponse
      * @var bool|null
      * @SerializedName("has_more")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $hasMore = null;
@@ -117,12 +117,12 @@ class ListVectorStoresResponse
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -144,12 +144,12 @@ class ListVectorStoresResponse
     }
 
     /**
-    * Sets data.
-    *
-    * @param VectorStoreObject[]|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param VectorStoreObject[]|null $data
+     *
+     * @return $this
+     */
     public function setData(?array $data): self
     {
         $this->data = $data;
@@ -171,12 +171,12 @@ class ListVectorStoresResponse
     }
 
     /**
-    * Sets firstId.
-    *
-    * @param string|null $firstId
-    *
-    * @return $this
-    */
+     * Sets firstId.
+     *
+     * @param string|null $firstId
+     *
+     * @return $this
+     */
     public function setFirstId(?string $firstId): self
     {
         $this->firstId = $firstId;
@@ -198,12 +198,12 @@ class ListVectorStoresResponse
     }
 
     /**
-    * Sets lastId.
-    *
-    * @param string|null $lastId
-    *
-    * @return $this
-    */
+     * Sets lastId.
+     *
+     * @param string|null $lastId
+     *
+     * @return $this
+     */
     public function setLastId(?string $lastId): self
     {
         $this->lastId = $lastId;
@@ -225,12 +225,12 @@ class ListVectorStoresResponse
     }
 
     /**
-    * Sets hasMore.
-    *
-    * @param bool|null $hasMore
-    *
-    * @return $this
-    */
+     * Sets hasMore.
+     *
+     * @param bool|null $hasMore
+     *
+     * @return $this
+     */
     public function setHasMore(?bool $hasMore): self
     {
         $this->hasMore = $hasMore;

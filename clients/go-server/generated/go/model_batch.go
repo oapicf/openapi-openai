@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type Batch struct {
@@ -73,24 +78,188 @@ type Batch struct {
 	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 }
-
-// AssertBatchRequired checks if the required fields are not zero-ed
-func AssertBatchRequired(obj Batch) error {
-	elements := map[string]interface{}{
-		"id": obj.Id,
-		"object": obj.Object,
-		"endpoint": obj.Endpoint,
-		"input_file_id": obj.InputFileId,
-		"completion_window": obj.CompletionWindow,
-		"status": obj.Status,
-		"created_at": obj.CreatedAt,
+// UnmarshalJSON validates required property keys then unmarshals into Batch
+func (o *Batch) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"id",
+		"object",
+		"endpoint",
+		"input_file_id",
+		"completion_window",
+		"status",
+		"created_at",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"id": false,
+		"object": false,
+		"endpoint": false,
+		"input_file_id": false,
+		"completion_window": false,
+		"status": false,
+		"created_at": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"id": {},
+		"object": {},
+		"endpoint": {},
+		"errors": {},
+		"input_file_id": {},
+		"completion_window": {},
+		"status": {},
+		"output_file_id": {},
+		"error_file_id": {},
+		"created_at": {},
+		"in_progress_at": {},
+		"expires_at": {},
+		"finalizing_at": {},
+		"completed_at": {},
+		"failed_at": {},
+		"expired_at": {},
+		"cancelling_at": {},
+		"cancelled_at": {},
+		"request_counts": {},
+		"metadata": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded Batch
+
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["endpoint"]; exists {
+		if err = json.Unmarshal(value, &decoded.Endpoint); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["errors"]; exists {
+		if err = json.Unmarshal(value, &decoded.Errors); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["input_file_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.InputFileId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["completion_window"]; exists {
+		if err = json.Unmarshal(value, &decoded.CompletionWindow); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["status"]; exists {
+		if err = json.Unmarshal(value, &decoded.Status); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["output_file_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.OutputFileId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["error_file_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.ErrorFileId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["created_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CreatedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["in_progress_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.InProgressAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["expires_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.ExpiresAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["finalizing_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.FinalizingAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["completed_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CompletedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["failed_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.FailedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["expired_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.ExpiredAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["cancelling_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CancellingAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["cancelled_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CancelledAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["request_counts"]; exists {
+		if err = json.Unmarshal(value, &decoded.RequestCounts); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["metadata"]; exists {
+		if err = json.Unmarshal(value, &decoded.Metadata); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertBatchRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertBatchRequired(obj Batch) error {
 	if err := AssertBatchErrorsRequired(obj.Errors); err != nil {
 		return err
 	}

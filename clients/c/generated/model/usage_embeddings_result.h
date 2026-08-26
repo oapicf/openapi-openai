@@ -28,8 +28,8 @@ openai_api_usage_embeddings_result_OBJECT_e usage_embeddings_result_object_FromS
 
 typedef struct usage_embeddings_result_t {
     openai_api_usage_embeddings_result_OBJECT_e object; //enum
-    int input_tokens; //numeric
-    int num_model_requests; //numeric
+    int *input_tokens; //numeric
+    int *num_model_requests; //numeric
     char *project_id; // string
     char *user_id; // string
     char *api_key_id; // string
@@ -40,8 +40,8 @@ typedef struct usage_embeddings_result_t {
 
 __attribute__((deprecated)) usage_embeddings_result_t *usage_embeddings_result_create(
     openai_api_usage_embeddings_result_OBJECT_e object,
-    int input_tokens,
-    int num_model_requests,
+    int *input_tokens,
+    int *num_model_requests,
     char *project_id,
     char *user_id,
     char *api_key_id,

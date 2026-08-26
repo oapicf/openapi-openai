@@ -42,7 +42,7 @@ export interface Batch {
     id: string;
     /**
      * The object type, which is always `batch`.
-     * @type {string}
+     * @type {BatchObjectEnum}
      * @memberof Batch
      */
     object: BatchObjectEnum;
@@ -72,7 +72,7 @@ export interface Batch {
     completionWindow: string;
     /**
      * The current status of the batch.
-     * @type {string}
+     * @type {BatchStatusEnum}
      * @memberof Batch
      */
     status: BatchStatusEnum;
@@ -188,11 +188,13 @@ export type BatchStatusEnum = typeof BatchStatusEnum[keyof typeof BatchStatusEnu
 export function instanceOfBatch(value: object): value is Batch {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'batch') return false;
+    
     if (!('endpoint' in value) || value['endpoint'] === undefined) return false;
-    if (!('inputFileId' in value) || value['inputFileId'] === undefined) return false;
-    if (!('completionWindow' in value) || value['completionWindow'] === undefined) return false;
+    if ((!('inputFileId' in (value as Record<string, any>)) && !('input_file_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['inputFileId'] === undefined && (value as Record<string, any>)['input_file_id'] === undefined)) return false;
+    if ((!('completionWindow' in (value as Record<string, any>)) && !('completion_window' in (value as Record<string, any>))) || ((value as Record<string, any>)['completionWindow'] === undefined && (value as Record<string, any>)['completion_window'] === undefined)) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
     return true;
 }
 
@@ -225,7 +227,7 @@ export function BatchFromJSONTyped(json: any, ignoreDiscriminator: boolean): Bat
         'cancellingAt': json['cancelling_at'] == null ? undefined : json['cancelling_at'],
         'cancelledAt': json['cancelled_at'] == null ? undefined : json['cancelled_at'],
         'requestCounts': json['request_counts'] == null ? undefined : BatchRequestCountsFromJSON(json['request_counts']),
-        'metadata': json['metadata'] == null ? undefined : json['metadata'],
+        'metadata': json['metadata'] === undefined ? undefined : json['metadata'] === null ? null : json['metadata'],
     };
 }
 

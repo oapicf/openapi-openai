@@ -86,15 +86,17 @@ class _$FineTuneCompletionRequestInputSerializer implements PrimitiveSerializer<
         case r'prompt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.prompt = valueDes;
           break;
         case r'completion':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.completion = valueDes;
           break;
         default:

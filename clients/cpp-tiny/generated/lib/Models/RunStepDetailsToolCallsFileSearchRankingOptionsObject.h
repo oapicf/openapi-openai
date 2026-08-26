@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The ranker used for the file search.
 	 */
-	void setRanker(std::string  ranker);
+	void setRanker(std::string ranker);
 	/*! \brief Get The score threshold for the file search. All values must be a floating point number between 0 and 1.
 	 */
 	long getScoreThreshold();
 
 	/*! \brief Set The score threshold for the file search. All values must be a floating point number between 0 and 1.
 	 */
-	void setScoreThreshold(long  score_threshold);
+	void setScoreThreshold(long score_threshold);
 
 
     private:

@@ -27,6 +27,8 @@ Batch_errors::Batch_errors()
     
 }
 
+Batch_errors::~Batch_errors() = default;
+
 void Batch_errors::validate() const
 {
     std::stringstream msg;

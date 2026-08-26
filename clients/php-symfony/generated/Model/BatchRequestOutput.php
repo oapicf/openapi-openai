@@ -49,7 +49,7 @@ class BatchRequestOutput
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -59,7 +59,7 @@ class BatchRequestOutput
      * @var string|null
      * @SerializedName("custom_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $customId = null;
 
@@ -67,7 +67,7 @@ class BatchRequestOutput
      * @var BatchRequestOutputResponse|null
      * @SerializedName("response")
      * @Type("OpenAPI\Server\Model\BatchRequestOutputResponse")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\BatchRequestOutputResponse")]
     protected ?BatchRequestOutputResponse $response = null;
 
@@ -75,7 +75,7 @@ class BatchRequestOutput
      * @var BatchRequestOutputError|null
      * @SerializedName("error")
      * @Type("OpenAPI\Server\Model\BatchRequestOutputError")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\BatchRequestOutputError")]
     protected ?BatchRequestOutputError $error = null;
 
@@ -104,12 +104,12 @@ class BatchRequestOutput
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -131,12 +131,12 @@ class BatchRequestOutput
     }
 
     /**
-    * Sets customId.
-    *
-    * @param string|null $customId  A developer-provided per-request id that will be used to match outputs to inputs.
-    *
-    * @return $this
-    */
+     * Sets customId.
+     *
+     * @param string|null $customId  A developer-provided per-request id that will be used to match outputs to inputs.
+     *
+     * @return $this
+     */
     public function setCustomId(?string $customId = null): self
     {
         $this->customId = $customId;
@@ -158,12 +158,12 @@ class BatchRequestOutput
     }
 
     /**
-    * Sets response.
-    *
-    * @param BatchRequestOutputResponse|null $response
-    *
-    * @return $this
-    */
+     * Sets response.
+     *
+     * @param BatchRequestOutputResponse|null $response
+     *
+     * @return $this
+     */
     public function setResponse(?BatchRequestOutputResponse $response = null): self
     {
         $this->response = $response;
@@ -185,12 +185,12 @@ class BatchRequestOutput
     }
 
     /**
-    * Sets error.
-    *
-    * @param BatchRequestOutputError|null $error
-    *
-    * @return $this
-    */
+     * Sets error.
+     *
+     * @param BatchRequestOutputError|null $error
+     *
+     * @return $this
+     */
     public function setError(?BatchRequestOutputError $error = null): self
     {
         $this->error = $error;

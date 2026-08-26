@@ -20,7 +20,7 @@ typedef struct batch_request_output_response_t batch_request_output_response_t;
 
 
 typedef struct batch_request_output_response_t {
-    int status_code; //numeric
+    int *status_code; //numeric
     char *request_id; // string
     object_t *body; //object
 
@@ -28,7 +28,7 @@ typedef struct batch_request_output_response_t {
 } batch_request_output_response_t;
 
 __attribute__((deprecated)) batch_request_output_response_t *batch_request_output_response_create(
-    int status_code,
+    int *status_code,
     char *request_id,
     object_t *body
 );

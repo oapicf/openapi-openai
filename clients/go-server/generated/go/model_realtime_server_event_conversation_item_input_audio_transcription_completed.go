@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // RealtimeServerEventConversationItemInputAudioTranscriptionCompleted - This event is the output of audio transcription for user audio written to the  user audio buffer. Transcription begins when the input audio buffer is  committed by the client or server (in `server_vad` mode). Transcription runs  asynchronously with Response creation, so this event may come before or after  the Response events.  Realtime API models accept audio natively, and thus input transcription is a  separate process run on a separate ASR (Automatic Speech Recognition) model,  currently always `whisper-1`. Thus the transcript may diverge somewhat from  the model's interpretation, and should be treated as a rough guide. 
@@ -32,22 +37,94 @@ type RealtimeServerEventConversationItemInputAudioTranscriptionCompleted struct 
 	// The transcribed text.
 	Transcript string `json:"transcript"`
 }
-
-// AssertRealtimeServerEventConversationItemInputAudioTranscriptionCompletedRequired checks if the required fields are not zero-ed
-func AssertRealtimeServerEventConversationItemInputAudioTranscriptionCompletedRequired(obj RealtimeServerEventConversationItemInputAudioTranscriptionCompleted) error {
-	elements := map[string]interface{}{
-		"event_id": obj.EventId,
-		"type": obj.Type,
-		"item_id": obj.ItemId,
-		"content_index": obj.ContentIndex,
-		"transcript": obj.Transcript,
+// UnmarshalJSON validates required property keys then unmarshals into RealtimeServerEventConversationItemInputAudioTranscriptionCompleted
+func (o *RealtimeServerEventConversationItemInputAudioTranscriptionCompleted) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"event_id",
+		"type",
+		"item_id",
+		"content_index",
+		"transcript",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"event_id": false,
+		"type": false,
+		"item_id": false,
+		"content_index": false,
+		"transcript": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"event_id": {},
+		"type": {},
+		"item_id": {},
+		"content_index": {},
+		"transcript": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RealtimeServerEventConversationItemInputAudioTranscriptionCompleted
+
+	if value, exists := allProperties["event_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.EventId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["item_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.ItemId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["content_index"]; exists {
+		if err = json.Unmarshal(value, &decoded.ContentIndex); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["transcript"]; exists {
+		if err = json.Unmarshal(value, &decoded.Transcript); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRealtimeServerEventConversationItemInputAudioTranscriptionCompletedRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertRealtimeServerEventConversationItemInputAudioTranscriptionCompletedRequired(obj RealtimeServerEventConversationItemInputAudioTranscriptionCompleted) error {
 	return nil
 }
 

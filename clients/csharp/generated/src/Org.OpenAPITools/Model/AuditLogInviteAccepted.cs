@@ -56,7 +56,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The ID of the invite.</value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogInviteAccepted" />
     /// </summary>
-    public class AuditLogInviteAcceptedJsonConverter : JsonConverter<AuditLogInviteAccepted>
+    public partial class AuditLogInviteAcceptedJsonConverter : JsonConverter<AuditLogInviteAccepted>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogInviteAcceptedJsonConverter" /> class.
+        /// </summary>
+        public AuditLogInviteAcceptedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogInviteAccepted" />
         /// </summary>

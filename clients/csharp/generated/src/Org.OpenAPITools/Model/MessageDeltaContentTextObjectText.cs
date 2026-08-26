@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The data that makes up the text.</value>
         [JsonPropertyName("value")]
-        public string? Value { get { return this.ValueOption; } set { this.ValueOption = new(value); } }
+        public string? Value { get { return this.ValueOption.Value; } set { this.ValueOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Annotations
@@ -71,7 +71,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Annotations
         /// </summary>
         [JsonPropertyName("annotations")]
-        public List<MessageDeltaContentTextObjectTextAnnotationsInner>? Annotations { get { return this.AnnotationsOption; } set { this.AnnotationsOption = new(value); } }
+        public List<MessageDeltaContentTextObjectTextAnnotationsInner>? Annotations { get { return this.AnnotationsOption.Value; } set { this.AnnotationsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageDeltaContentTextObjectText" />
     /// </summary>
-    public class MessageDeltaContentTextObjectTextJsonConverter : JsonConverter<MessageDeltaContentTextObjectText>
+    public partial class MessageDeltaContentTextObjectTextJsonConverter : JsonConverter<MessageDeltaContentTextObjectText>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageDeltaContentTextObjectTextJsonConverter" /> class.
+        /// </summary>
+        public MessageDeltaContentTextObjectTextJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageDeltaContentTextObjectText" />
         /// </summary>

@@ -12,18 +12,17 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  CreateChatCompletionRequest,
-  CreateChatCompletionResponse,
-} from '../models/index';
 import {
+    type CreateChatCompletionRequest,
     CreateChatCompletionRequestFromJSON,
     CreateChatCompletionRequestToJSON,
+} from '../models/CreateChatCompletionRequest';
+import {
+    type CreateChatCompletionResponse,
     CreateChatCompletionResponseFromJSON,
     CreateChatCompletionResponseToJSON,
-} from '../models/index';
+} from '../models/CreateChatCompletionResponse';
 
 export interface CreateChatCompletionOperationRequest {
     createChatCompletionRequest: CreateChatCompletionRequest;
@@ -35,9 +34,9 @@ export interface CreateChatCompletionOperationRequest {
 export class ChatApi extends runtime.BaseAPI {
 
     /**
-     * Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning). 
+     * Creates request options for createChatCompletion without sending the request
      */
-    async createChatCompletionRaw(requestParameters: CreateChatCompletionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateChatCompletionResponse>> {
+    async createChatCompletionRequestOpts(requestParameters: CreateChatCompletionOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createChatCompletionRequest'] == null) {
             throw new runtime.RequiredError(
                 'createChatCompletionRequest',
@@ -62,13 +61,21 @@ export class ChatApi extends runtime.BaseAPI {
 
         let urlPath = `/chat/completions`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateChatCompletionRequestToJSON(requestParameters['createChatCompletionRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning). 
+     */
+    async createChatCompletionRaw(requestParameters: CreateChatCompletionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateChatCompletionResponse>> {
+        const requestOptions = await this.createChatCompletionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateChatCompletionResponseFromJSON(jsonValue));
     }

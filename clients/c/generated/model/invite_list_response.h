@@ -32,7 +32,7 @@ typedef struct invite_list_response_t {
     list_t *data; //nonprimitive container
     char *first_id; // string
     char *last_id; // string
-    int has_more; //boolean
+    int *has_more; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } invite_list_response_t;
@@ -42,7 +42,7 @@ __attribute__((deprecated)) invite_list_response_t *invite_list_response_create(
     list_t *data,
     char *first_id,
     char *last_id,
-    int has_more
+    int *has_more
 );
 
 void invite_list_response_free(invite_list_response_t *invite_list_response);

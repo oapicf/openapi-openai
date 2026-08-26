@@ -1,4 +1,4 @@
-# # AuditLogOrganizationUpdatedChangesRequestedSettings
+# AuditLogOrganizationUpdatedChangesRequestedSettings
 
 ## Properties
 

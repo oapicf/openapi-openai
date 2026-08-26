@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface RunStepDetailsToolCallsFileSearchRankingOptionsObject {
     /**
      * The ranker used for the file search.
-     * @type {string}
+     * @type {RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum}
      * @memberof RunStepDetailsToolCallsFileSearchRankingOptionsObject
      */
     ranker: RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum;
@@ -48,7 +48,9 @@ export type RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum = ty
  */
 export function instanceOfRunStepDetailsToolCallsFileSearchRankingOptionsObject(value: object): value is RunStepDetailsToolCallsFileSearchRankingOptionsObject {
     if (!('ranker' in value) || value['ranker'] === undefined) return false;
-    if (!('scoreThreshold' in value) || value['scoreThreshold'] === undefined) return false;
+    if (value['ranker'] !== 'default_2024_08_21') return false;
+    
+    if ((!('scoreThreshold' in (value as Record<string, any>)) && !('score_threshold' in (value as Record<string, any>))) || ((value as Record<string, any>)['scoreThreshold'] === undefined && (value as Record<string, any>)['score_threshold'] === undefined)) return false;
     return true;
 }
 

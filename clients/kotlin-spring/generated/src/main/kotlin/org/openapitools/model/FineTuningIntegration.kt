@@ -23,13 +23,15 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class FineTuningIntegration(
 
-    @Schema(example = "null", required = true, description = "The type of the integration being enabled for the fine-tuning job")
+    @Schema(required = true, description = "The type of the integration being enabled for the fine-tuning job")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: FineTuningIntegration.Type,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("wandb")
     @get:JsonProperty("wandb", required = true) val wandb: CreateFineTuningJobRequestIntegrationsInnerWandb
-) {
+) : FineTuningJobIntegrationsInner {
 
     /**
     * The type of the integration being enabled for the fine-tuning job
@@ -44,7 +46,7 @@ data class FineTuningIntegration(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FineTuningIntegration'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

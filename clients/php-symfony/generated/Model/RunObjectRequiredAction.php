@@ -51,7 +51,7 @@ class RunObjectRequiredAction
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['submit_tool_outputs'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class RunObjectRequiredAction
      * @var RunObjectRequiredActionSubmitToolOutputs|null
      * @SerializedName("submit_tool_outputs")
      * @Type("OpenAPI\Server\Model\RunObjectRequiredActionSubmitToolOutputs")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunObjectRequiredActionSubmitToolOutputs")]
@@ -90,12 +90,12 @@ class RunObjectRequiredAction
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  For now, this is always `submit_tool_outputs`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  For now, this is always `submit_tool_outputs`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -117,12 +117,12 @@ class RunObjectRequiredAction
     }
 
     /**
-    * Sets submitToolOutputs.
-    *
-    * @param RunObjectRequiredActionSubmitToolOutputs|null $submitToolOutputs
-    *
-    * @return $this
-    */
+     * Sets submitToolOutputs.
+     *
+     * @param RunObjectRequiredActionSubmitToolOutputs|null $submitToolOutputs
+     *
+     * @return $this
+     */
     public function setSubmitToolOutputs(?RunObjectRequiredActionSubmitToolOutputs $submitToolOutputs): self
     {
         $this->submitToolOutputs = $submitToolOutputs;

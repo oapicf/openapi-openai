@@ -125,7 +125,7 @@ CreateThreadRequest::getMessages()
 }
 
 void
-CreateThreadRequest::setMessages(std::list <CreateMessageRequest> messages)
+CreateThreadRequest::setMessages(std::list<CreateMessageRequest> messages)
 {
 	this->messages = messages;
 }
@@ -137,7 +137,7 @@ CreateThreadRequest::getToolResources()
 }
 
 void
-CreateThreadRequest::setToolResources(CreateThreadRequest_tool_resources  tool_resources)
+CreateThreadRequest::setToolResources(CreateThreadRequest_tool_resources tool_resources)
 {
 	this->tool_resources = tool_resources;
 }
@@ -149,7 +149,7 @@ CreateThreadRequest::getMetadata()
 }
 
 void
-CreateThreadRequest::setMetadata(Object  metadata)
+CreateThreadRequest::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }

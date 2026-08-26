@@ -1,4 +1,4 @@
-# # MessageDeltaContentImageFileObjectImageFile
+# MessageDeltaContentImageFileObjectImageFile
 
 ## Properties
 

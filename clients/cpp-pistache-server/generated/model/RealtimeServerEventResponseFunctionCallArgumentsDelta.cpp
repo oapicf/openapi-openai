@@ -31,6 +31,8 @@ RealtimeServerEventResponseFunctionCallArgumentsDelta::RealtimeServerEventRespon
     
 }
 
+RealtimeServerEventResponseFunctionCallArgumentsDelta::~RealtimeServerEventResponseFunctionCallArgumentsDelta() = default;
+
 void RealtimeServerEventResponseFunctionCallArgumentsDelta::validate() const
 {
     std::stringstream msg;

@@ -60,7 +60,6 @@ export * from './auditLogUserAddedData';
 export * from './auditLogUserDeleted';
 export * from './auditLogUserUpdated';
 export * from './auditLogUserUpdatedChangesRequested';
-export * from './autoChunkingStrategy';
 export * from './autoChunkingStrategyRequestParam';
 export * from './batch';
 export * from './batchErrors';
@@ -470,7 +469,6 @@ export * from './runToolCallObject';
 export * from './runToolCallObjectFunction';
 export * from './staticChunkingStrategy';
 export * from './staticChunkingStrategyRequestParam';
-export * from './staticChunkingStrategyResponseParam';
 export * from './staticChunkingStrategyStatic';
 export * from './submitToolOutputsRunRequest';
 export * from './submitToolOutputsRunRequestToolOutputsInner';
@@ -579,7 +577,6 @@ import { AuditLogUserAddedData } from './auditLogUserAddedData';
 import { AuditLogUserDeleted } from './auditLogUserDeleted';
 import { AuditLogUserUpdated } from './auditLogUserUpdated';
 import { AuditLogUserUpdatedChangesRequested } from './auditLogUserUpdatedChangesRequested';
-import { AutoChunkingStrategy } from './autoChunkingStrategy';
 import { AutoChunkingStrategyRequestParam } from './autoChunkingStrategyRequestParam';
 import { Batch } from './batch';
 import { BatchErrors } from './batchErrors';
@@ -989,7 +986,6 @@ import { RunToolCallObject } from './runToolCallObject';
 import { RunToolCallObjectFunction } from './runToolCallObjectFunction';
 import { StaticChunkingStrategy } from './staticChunkingStrategy';
 import { StaticChunkingStrategyRequestParam } from './staticChunkingStrategyRequestParam';
-import { StaticChunkingStrategyResponseParam } from './staticChunkingStrategyResponseParam';
 import { StaticChunkingStrategyStatic } from './staticChunkingStrategyStatic';
 import { SubmitToolOutputsRunRequest } from './submitToolOutputsRunRequest';
 import { SubmitToolOutputsRunRequestToolOutputsInner } from './submitToolOutputsRunRequestToolOutputsInner';
@@ -1054,7 +1050,6 @@ let enumsMap: {[index: string]: any} = {
         "AuditLogActor.TypeEnum": AuditLogActor.TypeEnum,
         "AuditLogActorApiKey.TypeEnum": AuditLogActorApiKey.TypeEnum,
         "AuditLogEventType": AuditLogEventType,
-        "AutoChunkingStrategy.TypeEnum": AutoChunkingStrategy.TypeEnum,
         "AutoChunkingStrategyRequestParam.TypeEnum": AutoChunkingStrategyRequestParam.TypeEnum,
         "Batch.ObjectEnum": Batch.ObjectEnum,
         "Batch.StatusEnum": Batch.StatusEnum,
@@ -1354,7 +1349,6 @@ let enumsMap: {[index: string]: any} = {
         "RunToolCallObject.TypeEnum": RunToolCallObject.TypeEnum,
         "StaticChunkingStrategy.TypeEnum": StaticChunkingStrategy.TypeEnum,
         "StaticChunkingStrategyRequestParam.TypeEnum": StaticChunkingStrategyRequestParam.TypeEnum,
-        "StaticChunkingStrategyResponseParam.TypeEnum": StaticChunkingStrategyResponseParam.TypeEnum,
         "ThreadObject.ObjectEnum": ThreadObject.ObjectEnum,
         "ThreadStreamEvent.EventEnum": ThreadStreamEvent.EventEnum,
         "TruncationObject.TypeEnum": TruncationObject.TypeEnum,
@@ -1447,7 +1441,6 @@ let typeMap: {[index: string]: any} = {
     "AuditLogUserDeleted": AuditLogUserDeleted,
     "AuditLogUserUpdated": AuditLogUserUpdated,
     "AuditLogUserUpdatedChangesRequested": AuditLogUserUpdatedChangesRequested,
-    "AutoChunkingStrategy": AutoChunkingStrategy,
     "AutoChunkingStrategyRequestParam": AutoChunkingStrategyRequestParam,
     "Batch": Batch,
     "BatchErrors": BatchErrors,
@@ -1856,7 +1849,6 @@ let typeMap: {[index: string]: any} = {
     "RunToolCallObjectFunction": RunToolCallObjectFunction,
     "StaticChunkingStrategy": StaticChunkingStrategy,
     "StaticChunkingStrategyRequestParam": StaticChunkingStrategyRequestParam,
-    "StaticChunkingStrategyResponseParam": StaticChunkingStrategyResponseParam,
     "StaticChunkingStrategyStatic": StaticChunkingStrategyStatic,
     "SubmitToolOutputsRunRequest": SubmitToolOutputsRunRequest,
     "SubmitToolOutputsRunRequestToolOutputsInner": SubmitToolOutputsRunRequestToolOutputsInner,

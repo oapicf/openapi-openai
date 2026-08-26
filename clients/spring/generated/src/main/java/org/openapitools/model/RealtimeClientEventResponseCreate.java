@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -9,22 +10,23 @@ import org.openapitools.model.RealtimeResponseCreateParams;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * This event instructs the server to create a Response, which means triggering  model inference. When in Server VAD mode, the server will create Responses  automatically.  A Response will include at least one Item, and may have two, in which case  the second will be a function call. These Items will be appended to the  conversation history.  The server will respond with a &#x60;response.created&#x60; event, events for Items  and content created, and finally a &#x60;response.done&#x60; event to indicate the  Response is complete.  The &#x60;response.create&#x60; event includes inference configuration like  &#x60;instructions&#x60;, and &#x60;temperature&#x60;. These fields will override the Session&#39;s  configuration for this Response only. 
  */
 
 @Schema(name = "RealtimeClientEventResponseCreate", description = "This event instructs the server to create a Response, which means triggering  model inference. When in Server VAD mode, the server will create Responses  automatically.  A Response will include at least one Item, and may have two, in which case  the second will be a function call. These Items will be appended to the  conversation history.  The server will respond with a `response.created` event, events for Items  and content created, and finally a `response.done` event to indicate the  Response is complete.  The `response.create` event includes inference configuration like  `instructions`, and `temperature`. These fields will override the Session's  configuration for this Response only. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeClientEventResponseCreate {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String eventId;
 
   /**
@@ -62,6 +64,7 @@ public class RealtimeClientEventResponseCreate {
 
   private TypeEnum type;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeResponseCreateParams response;
 
   public RealtimeClientEventResponseCreate() {
@@ -91,6 +94,7 @@ public class RealtimeClientEventResponseCreate {
     return eventId;
   }
 
+  @JsonProperty("event_id")
   public void setEventId(@Nullable String eventId) {
     this.eventId = eventId;
   }
@@ -111,6 +115,7 @@ public class RealtimeClientEventResponseCreate {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -131,6 +136,7 @@ public class RealtimeClientEventResponseCreate {
     return response;
   }
 
+  @JsonProperty("response")
   public void setResponse(@Nullable RealtimeResponseCreateParams response) {
     this.response = response;
   }
@@ -169,11 +175,8 @@ public class RealtimeClientEventResponseCreate {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

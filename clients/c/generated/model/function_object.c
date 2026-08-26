@@ -9,18 +9,18 @@ static function_object_t *function_object_create_internal(
     char *description,
     char *name,
     list_t* parameters,
-    int strict
+    int *strict
     ) {
     function_object_t *function_object_local_var = malloc(sizeof(function_object_t));
     if (!function_object_local_var) {
         return NULL;
     }
+    memset(function_object_local_var, 0, sizeof(function_object_t));
+    function_object_local_var->_library_owned = 1;
     function_object_local_var->description = description;
     function_object_local_var->name = name;
     function_object_local_var->parameters = parameters;
     function_object_local_var->strict = strict;
-
-    function_object_local_var->_library_owned = 1;
     return function_object_local_var;
 }
 
@@ -28,14 +28,23 @@ __attribute__((deprecated)) function_object_t *function_object_create(
     char *description,
     char *name,
     list_t* parameters,
-    int strict
+    int *strict
     ) {
-    return function_object_create_internal (
+    int *strict_copy = NULL;
+    if (strict) {
+        strict_copy = malloc(sizeof(int));
+        if (strict_copy) *strict_copy = *strict;
+    }
+    function_object_t *result = function_object_create_internal (
         description,
         name,
         parameters,
-        strict
+        strict_copy
         );
+    if (!result) {
+        free(strict_copy);
+    }
+    return result;
 }
 
 void function_object_free(function_object_t *function_object) {
@@ -64,6 +73,10 @@ void function_object_free(function_object_t *function_object) {
         }
         list_freeList(function_object->parameters);
         function_object->parameters = NULL;
+    }
+    if (function_object->strict) {
+        free(function_object->strict);
+        function_object->strict = NULL;
     }
     free(function_object);
 }
@@ -106,7 +119,7 @@ cJSON *function_object_convertToJSON(function_object_t *function_object) {
 
     // function_object->strict
     if(function_object->strict) {
-    if(cJSON_AddBoolToObject(item, "strict", function_object->strict) == NULL) {
+    if(cJSON_AddBoolToObject(item, "strict", *function_object->strict) == NULL) {
     goto fail; //Bool
     }
     }
@@ -123,8 +136,15 @@ function_object_t *function_object_parseFromJSON(cJSON *function_objectJSON){
 
     function_object_t *function_object_local_var = NULL;
 
+    char *description_local_str = NULL;
+
+    char *name_local_str = NULL;
+
     // define the local map for function_object->parameters
     list_t *parametersList = NULL;
+
+    // define the local variable for function_object->strict
+    int *strict_local_var = NULL;
 
     // function_object->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(function_objectJSON, "description");
@@ -186,18 +206,39 @@ function_object_t *function_object_parseFromJSON(cJSON *function_objectJSON){
     {
     goto end; //Bool
     }
+    strict_local_var = malloc(sizeof(int));
+    if(!strict_local_var)
+    {
+        goto end;
+    }
+    *strict_local_var = strict->valueint;
     }
 
 
+    if (description && !cJSON_IsNull(description)) description_local_str = strdup(description->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     function_object_local_var = function_object_create_internal (
-        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
-        strdup(name->valuestring),
+        description_local_str,
+        name_local_str,
         parameters ? parametersList : NULL,
-        strict ? strict->valueint : 0
+        strict_local_var
         );
+
+    if (!function_object_local_var) {
+        goto end;
+    }
 
     return function_object_local_var;
 end:
+    if (description_local_str) {
+        free(description_local_str);
+        description_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
     if (parametersList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, parametersList) {
@@ -209,6 +250,10 @@ end:
         }
         list_freeList(parametersList);
         parametersList = NULL;
+    }
+    if (strict_local_var) {
+        free(strict_local_var);
+        strict_local_var = NULL;
     }
     return NULL;
 

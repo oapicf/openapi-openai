@@ -34,7 +34,7 @@ class  Invite
 {
 public:
     Invite();
-    virtual ~Invite() = default;
+    virtual ~Invite();
 
 
     /// <summary>

@@ -32,7 +32,7 @@ class  UploadPart
 {
 public:
     UploadPart();
-    virtual ~UploadPart() = default;
+    virtual ~UploadPart();
 
 
     /// <summary>

@@ -71,10 +71,10 @@ class MessageDeltaContentRefusalObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageDeltaContentRefusalObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageDeltaContentRefusalObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'index'), 'Required key "MessageDeltaContentRefusalObject[index]" is missing from JSON.');
+        assert(json[r'index'] != null, 'Required key "MessageDeltaContentRefusalObject[index]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "MessageDeltaContentRefusalObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "MessageDeltaContentRefusalObject[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -135,27 +135,28 @@ class MessageDeltaContentRefusalObject {
 }
 
 /// Always `refusal`.
-class MessageDeltaContentRefusalObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageDeltaContentRefusalObjectTypeEnum._(this.value);
+enum MessageDeltaContentRefusalObjectTypeEnum {
+  refusal._(r'refusal'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageDeltaContentRefusalObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const refusal = MessageDeltaContentRefusalObjectTypeEnum._(r'refusal');
-
-  /// List of all possible values in this [enum][MessageDeltaContentRefusalObjectTypeEnum].
-  static const values = <MessageDeltaContentRefusalObjectTypeEnum>[
-    refusal,
-  ];
-
+  /// Returns the instance of [MessageDeltaContentRefusalObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageDeltaContentRefusalObjectTypeEnum? fromJson(dynamic value) => MessageDeltaContentRefusalObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageDeltaContentRefusalObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageDeltaContentRefusalObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageDeltaContentRefusalObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -177,9 +178,10 @@ class MessageDeltaContentRefusalObjectTypeEnumTypeTransformer {
 
   const MessageDeltaContentRefusalObjectTypeEnumTypeTransformer._();
 
-  String encode(MessageDeltaContentRefusalObjectTypeEnum data) => data.value;
+  String encode(MessageDeltaContentRefusalObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageDeltaContentRefusalObjectTypeEnum.
+  /// Returns the instance of [MessageDeltaContentRefusalObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -188,6 +190,9 @@ class MessageDeltaContentRefusalObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageDeltaContentRefusalObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageDeltaContentRefusalObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'refusal': return MessageDeltaContentRefusalObjectTypeEnum.refusal;
@@ -200,7 +205,7 @@ class MessageDeltaContentRefusalObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageDeltaContentRefusalObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageDeltaContentRefusalObjectTypeEnumTypeTransformer? _instance;
 }
 

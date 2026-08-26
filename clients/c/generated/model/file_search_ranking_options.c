@@ -24,27 +24,36 @@ openai_api_file_search_ranking_options_RANKER_e file_search_ranking_options_rank
 
 static file_search_ranking_options_t *file_search_ranking_options_create_internal(
     openai_api_file_search_ranking_options_RANKER_e ranker,
-    double score_threshold
+    double *score_threshold
     ) {
     file_search_ranking_options_t *file_search_ranking_options_local_var = malloc(sizeof(file_search_ranking_options_t));
     if (!file_search_ranking_options_local_var) {
         return NULL;
     }
+    memset(file_search_ranking_options_local_var, 0, sizeof(file_search_ranking_options_t));
+    file_search_ranking_options_local_var->_library_owned = 1;
     file_search_ranking_options_local_var->ranker = ranker;
     file_search_ranking_options_local_var->score_threshold = score_threshold;
-
-    file_search_ranking_options_local_var->_library_owned = 1;
     return file_search_ranking_options_local_var;
 }
 
 __attribute__((deprecated)) file_search_ranking_options_t *file_search_ranking_options_create(
     openai_api_file_search_ranking_options_RANKER_e ranker,
-    double score_threshold
+    double *score_threshold
     ) {
-    return file_search_ranking_options_create_internal (
+    double *score_threshold_copy = NULL;
+    if (score_threshold) {
+        score_threshold_copy = malloc(sizeof(double));
+        if (score_threshold_copy) *score_threshold_copy = *score_threshold;
+    }
+    file_search_ranking_options_t *result = file_search_ranking_options_create_internal (
         ranker,
-        score_threshold
+        score_threshold_copy
         );
+    if (!result) {
+        free(score_threshold_copy);
+    }
+    return result;
 }
 
 void file_search_ranking_options_free(file_search_ranking_options_t *file_search_ranking_options) {
@@ -56,6 +65,10 @@ void file_search_ranking_options_free(file_search_ranking_options_t *file_search
         return ;
     }
     listEntry_t *listEntry;
+    if (file_search_ranking_options->score_threshold) {
+        free(file_search_ranking_options->score_threshold);
+        file_search_ranking_options->score_threshold = NULL;
+    }
     free(file_search_ranking_options);
 }
 
@@ -75,7 +88,7 @@ cJSON *file_search_ranking_options_convertToJSON(file_search_ranking_options_t *
     if (!file_search_ranking_options->score_threshold) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "score_threshold", file_search_ranking_options->score_threshold) == NULL) {
+    if(cJSON_AddNumberToObject(item, "score_threshold", *file_search_ranking_options->score_threshold) == NULL) {
     goto fail; //Numeric
     }
 
@@ -90,6 +103,9 @@ fail:
 file_search_ranking_options_t *file_search_ranking_options_parseFromJSON(cJSON *file_search_ranking_optionsJSON){
 
     file_search_ranking_options_t *file_search_ranking_options_local_var = NULL;
+
+    // define the local variable for file_search_ranking_options->score_threshold
+    double *score_threshold_local_var = NULL;
 
     // file_search_ranking_options->ranker
     cJSON *ranker = cJSON_GetObjectItemCaseSensitive(file_search_ranking_optionsJSON, "ranker");
@@ -119,15 +135,30 @@ file_search_ranking_options_t *file_search_ranking_options_parseFromJSON(cJSON *
     {
     goto end; //Numeric
     }
+    score_threshold_local_var = malloc(sizeof(double));
+    if(!score_threshold_local_var)
+    {
+        goto end;
+    }
+    *score_threshold_local_var = score_threshold->valuedouble;
+
 
 
     file_search_ranking_options_local_var = file_search_ranking_options_create_internal (
         ranker ? rankerVariable : openai_api_file_search_ranking_options_RANKER_NULL,
-        score_threshold->valuedouble
+        score_threshold_local_var
         );
+
+    if (!file_search_ranking_options_local_var) {
+        goto end;
+    }
 
     return file_search_ranking_options_local_var;
 end:
+    if (score_threshold_local_var) {
+        free(score_threshold_local_var);
+        score_threshold_local_var = NULL;
+    }
     return NULL;
 
 }

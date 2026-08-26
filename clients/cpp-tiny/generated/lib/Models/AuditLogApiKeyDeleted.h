@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set The tracking ID of the API key.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 
 
     private:

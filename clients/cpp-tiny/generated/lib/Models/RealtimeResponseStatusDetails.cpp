@@ -107,7 +107,7 @@ RealtimeResponse_status_details::getType()
 }
 
 void
-RealtimeResponse_status_details::setType(std::string  type)
+RealtimeResponse_status_details::setType(std::string type)
 {
 	this->type = type;
 }
@@ -119,7 +119,7 @@ RealtimeResponse_status_details::getReason()
 }
 
 void
-RealtimeResponse_status_details::setReason(std::string  reason)
+RealtimeResponse_status_details::setReason(std::string reason)
 {
 	this->reason = reason;
 }
@@ -131,7 +131,7 @@ RealtimeResponse_status_details::getError()
 }
 
 void
-RealtimeResponse_status_details::setError(RealtimeResponse_status_details_error  error)
+RealtimeResponse_status_details::setError(RealtimeResponse_status_details_error error)
 {
 	this->error = error;
 }

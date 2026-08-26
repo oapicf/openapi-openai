@@ -12,19 +12,19 @@ import org.openapitools.model.UsageTimeBucketResultInner;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * UsageTimeBucket
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class UsageTimeBucket {
 
   /**
@@ -66,7 +66,6 @@ public class UsageTimeBucket {
 
   private Integer endTime;
 
-  @Valid
   private List<UsageTimeBucketResultInner> result = new ArrayList<>();
 
   public UsageTimeBucket() {
@@ -99,6 +98,7 @@ public class UsageTimeBucket {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
@@ -119,6 +119,7 @@ public class UsageTimeBucket {
     return startTime;
   }
 
+  @JsonProperty("start_time")
   public void setStartTime(Integer startTime) {
     this.startTime = startTime;
   }
@@ -139,6 +140,7 @@ public class UsageTimeBucket {
     return endTime;
   }
 
+  @JsonProperty("end_time")
   public void setEndTime(Integer endTime) {
     this.endTime = endTime;
   }
@@ -167,6 +169,7 @@ public class UsageTimeBucket {
     return result;
   }
 
+  @JsonProperty("result")
   public void setResult(List<UsageTimeBucketResultInner> result) {
     this.result = result;
   }
@@ -207,11 +210,8 @@ public class UsageTimeBucket {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

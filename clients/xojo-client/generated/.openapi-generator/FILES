@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 App.xojo_code
 Build Automation.xojo_code
 Mock.xojo_code
@@ -167,8 +166,6 @@ OpenAPIClient/Models/AuditLogUserUpdated.xojo_code
 OpenAPIClient/Models/AuditLogUserUpdatedChangesRequested.xojo_code
 OpenAPIClient/Models/AuditLogUserUpdatedChangesRequestedOptional.xojo_code
 OpenAPIClient/Models/AuditLogUserUpdatedOptional.xojo_code
-OpenAPIClient/Models/AutoChunkingStrategy.xojo_code
-OpenAPIClient/Models/AutoChunkingStrategyOptional.xojo_code
 OpenAPIClient/Models/AutoChunkingStrategyRequestParam.xojo_code
 OpenAPIClient/Models/AutoChunkingStrategyRequestParamOptional.xojo_code
 OpenAPIClient/Models/Batch.xojo_code
@@ -987,8 +984,6 @@ OpenAPIClient/Models/StaticChunkingStrategy.xojo_code
 OpenAPIClient/Models/StaticChunkingStrategyOptional.xojo_code
 OpenAPIClient/Models/StaticChunkingStrategyRequestParam.xojo_code
 OpenAPIClient/Models/StaticChunkingStrategyRequestParamOptional.xojo_code
-OpenAPIClient/Models/StaticChunkingStrategyResponseParam.xojo_code
-OpenAPIClient/Models/StaticChunkingStrategyResponseParamOptional.xojo_code
 OpenAPIClient/Models/StaticChunkingStrategyStatic.xojo_code
 OpenAPIClient/Models/StaticChunkingStrategyStaticOptional.xojo_code
 OpenAPIClient/Models/SubmitToolOutputsRunRequest.xojo_code

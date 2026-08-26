@@ -23,7 +23,7 @@ message RunStepDetailsToolCallsCodeOutputImageObject {
     TYPE_IMAGE = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   RunStepDetailsToolCallsCodeOutputImageObjectImage image = 100313435;
 

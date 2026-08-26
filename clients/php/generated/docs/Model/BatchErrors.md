@@ -1,4 +1,4 @@
-# # BatchErrors
+# BatchErrors
 
 ## Properties
 

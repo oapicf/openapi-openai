@@ -106,7 +106,7 @@ DeleteAssistantResponse::getId()
 }
 
 void
-DeleteAssistantResponse::setId(std::string  id)
+DeleteAssistantResponse::setId(std::string id)
 {
 	this->id = id;
 }
@@ -118,7 +118,7 @@ DeleteAssistantResponse::isDeleted()
 }
 
 void
-DeleteAssistantResponse::setDeleted(bool  deleted)
+DeleteAssistantResponse::setDeleted(bool deleted)
 {
 	this->deleted = deleted;
 }
@@ -130,7 +130,7 @@ DeleteAssistantResponse::getObject()
 }
 
 void
-DeleteAssistantResponse::setObject(std::string  object)
+DeleteAssistantResponse::setObject(std::string object)
 {
 	this->object = object;
 }

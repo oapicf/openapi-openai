@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 README.md
 build.sbt
 project/build.properties
@@ -89,7 +88,6 @@ src/main/scala/org/openapitools/server/model/AuditLogUserAddedData.scala
 src/main/scala/org/openapitools/server/model/AuditLogUserDeleted.scala
 src/main/scala/org/openapitools/server/model/AuditLogUserUpdated.scala
 src/main/scala/org/openapitools/server/model/AuditLogUserUpdatedChangesRequested.scala
-src/main/scala/org/openapitools/server/model/AutoChunkingStrategy.scala
 src/main/scala/org/openapitools/server/model/AutoChunkingStrategyRequestParam.scala
 src/main/scala/org/openapitools/server/model/Batch.scala
 src/main/scala/org/openapitools/server/model/BatchErrors.scala
@@ -499,7 +497,6 @@ src/main/scala/org/openapitools/server/model/RunToolCallObject.scala
 src/main/scala/org/openapitools/server/model/RunToolCallObjectFunction.scala
 src/main/scala/org/openapitools/server/model/StaticChunkingStrategy.scala
 src/main/scala/org/openapitools/server/model/StaticChunkingStrategyRequestParam.scala
-src/main/scala/org/openapitools/server/model/StaticChunkingStrategyResponseParam.scala
 src/main/scala/org/openapitools/server/model/StaticChunkingStrategyStatic.scala
 src/main/scala/org/openapitools/server/model/SubmitToolOutputsRunRequest.scala
 src/main/scala/org/openapitools/server/model/SubmitToolOutputsRunRequestToolOutputsInner.scala

@@ -1,4 +1,4 @@
-# # FileSearchRankingOptions
+# FileSearchRankingOptions
 
 ## Properties
 

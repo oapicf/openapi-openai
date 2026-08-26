@@ -15,6 +15,7 @@ package org.openapitools.client.model
   /**
    * Input (or inputs) to classify. Can be a single string, an array of strings, or an array of multi-modal input objects similar to other models. 
    */
-case class CreateModerationRequestInput(
-)
+trait CreateModerationRequestInput
+object CreateModerationRequestInput {
+}
 

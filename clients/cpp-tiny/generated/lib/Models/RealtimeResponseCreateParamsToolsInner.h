@@ -52,28 +52,28 @@ public:
 
 	/*! \brief Set The type of the tool, i.e. `function`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The name of the function.
 	 */
 	std::string getName();
 
 	/*! \brief Set The name of the function.
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get The description of the function, including guidance on when and how  to call it, and guidance about what to tell the user when calling  (if anything). 
 	 */
 	std::string getDescription();
 
 	/*! \brief Set The description of the function, including guidance on when and how  to call it, and guidance about what to tell the user when calling  (if anything). 
 	 */
-	void setDescription(std::string  description);
+	void setDescription(std::string description);
 	/*! \brief Get Parameters of the function in JSON Schema.
 	 */
 	Object getParameters();
 
 	/*! \brief Set Parameters of the function in JSON Schema.
 	 */
-	void setParameters(Object  parameters);
+	void setParameters(Object parameters);
 
 
     private:

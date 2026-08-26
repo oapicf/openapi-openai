@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIRealtimeServerEventInputAudioBufferSpeechStarted : public OAIObject {
 public:
     OAIRealtimeServerEventInputAudioBufferSpeechStarted();
-    OAIRealtimeServerEventInputAudioBufferSpeechStarted(QString json);
+    OAIRealtimeServerEventInputAudioBufferSpeechStarted(const QString &json);
     ~OAIRealtimeServerEventInputAudioBufferSpeechStarted() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getEventId() const;
     void setEventId(const QString &event_id);

@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.OtherChunkingStrategyResponseParam;
 import org.openapitools.model.StaticChunkingStrategy;
-import org.openapitools.model.StaticChunkingStrategyResponseParam;
+import org.openapitools.model.StaticChunkingStrategyRequestParam;
 
 
 
@@ -27,7 +27,7 @@ import org.openapitools.model.StaticChunkingStrategyResponseParam;
  */
 
 @ApiModel(description = "The strategy used to chunk the file.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-26T05:15:47.876757065Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class VectorStoreFileObjectChunkingStrategy   {
   
 
@@ -122,10 +122,7 @@ public class VectorStoreFileObjectChunkingStrategy   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

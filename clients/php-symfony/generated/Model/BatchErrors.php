@@ -49,7 +49,7 @@ class BatchErrors
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $object = null;
 
@@ -57,7 +57,7 @@ class BatchErrors
      * @var BatchErrorsDataInner[]|null
      * @SerializedName("data")
      * @Type("array<OpenAPI\Server\Model\BatchErrorsDataInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\BatchErrorsDataInner"),
     ])]
@@ -86,12 +86,12 @@ class BatchErrors
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `list`.
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `list`.
+     *
+     * @return $this
+     */
     public function setObject(?string $object = null): self
     {
         $this->object = $object;
@@ -113,12 +113,12 @@ class BatchErrors
     }
 
     /**
-    * Sets data.
-    *
-    * @param BatchErrorsDataInner[]|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param BatchErrorsDataInner[]|null $data
+     *
+     * @return $this
+     */
     public function setData(?array $data = null): self
     {
         $this->data = $data;

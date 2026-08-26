@@ -64,7 +64,7 @@ CreateTranscriptionResponseJson::getText()
 }
 
 void
-CreateTranscriptionResponseJson::setText(std::string  text)
+CreateTranscriptionResponseJson::setText(std::string text)
 {
 	this->text = text;
 }

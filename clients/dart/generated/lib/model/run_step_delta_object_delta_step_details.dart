@@ -71,10 +71,8 @@ class RunStepDeltaObjectDeltaStepDetails {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepDeltaObjectDeltaStepDetails[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepDeltaObjectDeltaStepDetails[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "RunStepDeltaObjectDeltaStepDetails[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RunStepDeltaObjectDeltaStepDetails[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -134,29 +132,29 @@ class RunStepDeltaObjectDeltaStepDetails {
 }
 
 /// Always `message_creation`.
-class RunStepDeltaObjectDeltaStepDetailsTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepDeltaObjectDeltaStepDetailsTypeEnum._(this.value);
+enum RunStepDeltaObjectDeltaStepDetailsTypeEnum {
+  messageCreation._(r'message_creation'),
+  toolCalls._(r'tool_calls'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepDeltaObjectDeltaStepDetailsTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const messageCreation = RunStepDeltaObjectDeltaStepDetailsTypeEnum._(r'message_creation');
-  static const toolCalls = RunStepDeltaObjectDeltaStepDetailsTypeEnum._(r'tool_calls');
-
-  /// List of all possible values in this [enum][RunStepDeltaObjectDeltaStepDetailsTypeEnum].
-  static const values = <RunStepDeltaObjectDeltaStepDetailsTypeEnum>[
-    messageCreation,
-    toolCalls,
-  ];
-
+  /// Returns the instance of [RunStepDeltaObjectDeltaStepDetailsTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepDeltaObjectDeltaStepDetailsTypeEnum? fromJson(dynamic value) => RunStepDeltaObjectDeltaStepDetailsTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepDeltaObjectDeltaStepDetailsTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepDeltaObjectDeltaStepDetailsTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepDeltaObjectDeltaStepDetailsTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -178,9 +176,10 @@ class RunStepDeltaObjectDeltaStepDetailsTypeEnumTypeTransformer {
 
   const RunStepDeltaObjectDeltaStepDetailsTypeEnumTypeTransformer._();
 
-  String encode(RunStepDeltaObjectDeltaStepDetailsTypeEnum data) => data.value;
+  String encode(RunStepDeltaObjectDeltaStepDetailsTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepDeltaObjectDeltaStepDetailsTypeEnum.
+  /// Returns the instance of [RunStepDeltaObjectDeltaStepDetailsTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -189,6 +188,9 @@ class RunStepDeltaObjectDeltaStepDetailsTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepDeltaObjectDeltaStepDetailsTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepDeltaObjectDeltaStepDetailsTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'message_creation': return RunStepDeltaObjectDeltaStepDetailsTypeEnum.messageCreation;
@@ -202,7 +204,7 @@ class RunStepDeltaObjectDeltaStepDetailsTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStepDeltaObjectDeltaStepDetailsTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepDeltaObjectDeltaStepDetailsTypeEnumTypeTransformer? _instance;
 }
 

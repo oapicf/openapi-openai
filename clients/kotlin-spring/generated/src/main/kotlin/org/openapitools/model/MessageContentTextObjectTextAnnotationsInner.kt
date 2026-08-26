@@ -8,6 +8,9 @@ import org.openapitools.model.MessageContentTextAnnotationsFileCitationObject
 import org.openapitools.model.MessageContentTextAnnotationsFileCitationObjectFileCitation
 import org.openapitools.model.MessageContentTextAnnotationsFilePathObject
 import org.openapitools.model.MessageContentTextAnnotationsFilePathObjectFilePath
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -21,56 +24,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param type Always `file_citation`.
- * @param text The text in the message content that needs to be replaced.
- * @param fileCitation 
- * @param startIndex 
- * @param endIndex 
- * @param filePath 
  */
-data class MessageContentTextObjectTextAnnotationsInner(
-
-    @Schema(example = "null", required = true, description = "Always `file_citation`.")
-    @get:JsonProperty("type", required = true) val type: MessageContentTextObjectTextAnnotationsInner.Type,
-
-    @Schema(example = "null", required = true, description = "The text in the message content that needs to be replaced.")
-    @get:JsonProperty("text", required = true) val text: kotlin.String,
-
-    @field:Valid
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("file_citation", required = true) val fileCitation: MessageContentTextAnnotationsFileCitationObjectFileCitation,
-
-    @get:Min(value=0)
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("start_index", required = true) val startIndex: kotlin.Int,
-
-    @get:Min(value=0)
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("end_index", required = true) val endIndex: kotlin.Int,
-
-    @field:Valid
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("file_path", required = true) val filePath: MessageContentTextAnnotationsFilePathObjectFilePath
-) {
-
-    /**
-    * Always `file_citation`.
-    * Values: file_citation,file_path
-    */
-    enum class Type(@get:JsonValue val value: kotlin.String) {
-
-        file_citation("file_citation"),
-        file_path("file_path");
-
-        companion object {
-            @JvmStatic
-            @JsonCreator
-            fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'MessageContentTextObjectTextAnnotationsInner'")
-            }
-        }
-    }
-
+sealed interface MessageContentTextObjectTextAnnotationsInner {
 }
 

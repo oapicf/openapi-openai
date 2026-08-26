@@ -55,9 +55,9 @@ function Initialize-MessageDeltaContentRefusalObject {
 
 
         $PSO = [PSCustomObject]@{
-            "index" = ${Index}
-            "type" = ${Type}
-            "refusal" = ${Refusal}
+            'index' = ${Index}
+            'type' = ${Type}
+            'refusal' = ${Refusal}
         }
 
 
@@ -95,7 +95,7 @@ function ConvertFrom-JsonToMessageDeltaContentRefusalObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in MessageDeltaContentRefusalObject
-        $AllProperties = ("index", "type", "refusal")
+        $AllProperties = ('index', 'type', 'refusal')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -106,28 +106,28 @@ function ConvertFrom-JsonToMessageDeltaContentRefusalObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'index' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "index"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'index'))) {
             throw "Error! JSON cannot be serialized due to the required property 'index' missing."
         } else {
-            $Index = $JsonParameters.PSobject.Properties["index"].value
+            $Index = $JsonParameters.PSobject.Properties['index'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "refusal"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'refusal'))) { #optional property not found
             $Refusal = $null
         } else {
-            $Refusal = $JsonParameters.PSobject.Properties["refusal"].value
+            $Refusal = $JsonParameters.PSobject.Properties['refusal'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "index" = ${Index}
-            "type" = ${Type}
-            "refusal" = ${Refusal}
+            'index' = ${Index}
+            'type' = ${Type}
+            'refusal' = ${Refusal}
         }
 
         return $PSO

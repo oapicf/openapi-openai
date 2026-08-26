@@ -29,7 +29,7 @@ import {
 export interface RunStreamEventOneOf4 {
     /**
      * 
-     * @type {string}
+     * @type {RunStreamEventOneOf4EventEnum}
      * @memberof RunStreamEventOneOf4
      */
     event: RunStreamEventOneOf4EventEnum;
@@ -56,6 +56,8 @@ export type RunStreamEventOneOf4EventEnum = typeof RunStreamEventOneOf4EventEnum
  */
 export function instanceOfRunStreamEventOneOf4(value: object): value is RunStreamEventOneOf4 {
     if (!('event' in value) || value['event'] === undefined) return false;
+    if (value['event'] !== 'thread.run.completed') return false;
+    
     if (!('data' in value) || value['data'] === undefined) return false;
     return true;
 }

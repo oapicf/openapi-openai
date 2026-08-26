@@ -1,4 +1,4 @@
-# # AuditLog
+# AuditLog
 
 ## Properties
 

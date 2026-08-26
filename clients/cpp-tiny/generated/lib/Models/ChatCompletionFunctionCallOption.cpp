@@ -64,7 +64,7 @@ ChatCompletionFunctionCallOption::getName()
 }
 
 void
-ChatCompletionFunctionCallOption::setName(std::string  name)
+ChatCompletionFunctionCallOption::setName(std::string name)
 {
 	this->name = name;
 }

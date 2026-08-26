@@ -33,13 +33,13 @@ class OAIRunToolCallObject;
 class OAIRunObject_required_action_submit_tool_outputs : public OAIObject {
 public:
     OAIRunObject_required_action_submit_tool_outputs();
-    OAIRunObject_required_action_submit_tool_outputs(QString json);
+    OAIRunObject_required_action_submit_tool_outputs(const QString &json);
     ~OAIRunObject_required_action_submit_tool_outputs() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QList<OAIRunToolCallObject> getToolCalls() const;
     void setToolCalls(const QList<OAIRunToolCallObject> &tool_calls);

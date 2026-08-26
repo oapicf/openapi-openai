@@ -32,7 +32,7 @@ class  AuditLog_project_archived
 {
 public:
     AuditLog_project_archived();
-    virtual ~AuditLog_project_archived() = default;
+    virtual ~AuditLog_project_archived();
 
 
     /// <summary>

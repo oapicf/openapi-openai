@@ -32,7 +32,7 @@ class  ChatCompletionFunctionCallOption
 {
 public:
     ChatCompletionFunctionCallOption();
-    virtual ~ChatCompletionFunctionCallOption() = default;
+    virtual ~ChatCompletionFunctionCallOption();
 
 
     /// <summary>

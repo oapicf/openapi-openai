@@ -1,4 +1,4 @@
-# # AuditLogServiceAccountUpdatedChangesRequested
+# AuditLogServiceAccountUpdatedChangesRequested
 
 ## Properties
 

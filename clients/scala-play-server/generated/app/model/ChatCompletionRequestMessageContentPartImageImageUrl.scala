@@ -8,7 +8,7 @@ import java.net.URI
   * @param url Either a URL of the image or the base64 encoded image data.
   * @param detail Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 case class ChatCompletionRequestMessageContentPartImageImageUrl(
   url: URI,
   detail: Option[ChatCompletionRequestMessageContentPartImageImageUrl.Detail.Value]

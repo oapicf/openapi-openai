@@ -42,6 +42,8 @@ export function ChatCompletionRequestUserMessageContentFromJSONTyped(json: any, 
                 return json.map(value => ChatCompletionRequestUserMessageContentPartFromJSONTyped(value, true));
             }
         }
+    }
+    if (Array.isArray(json)) {
         return json;
     }
     if (typeof json === 'string') {
@@ -64,6 +66,8 @@ export function ChatCompletionRequestUserMessageContentToJSONTyped(value?: ChatC
                 return value.map(value => ChatCompletionRequestUserMessageContentPartToJSON(value as ChatCompletionRequestUserMessageContentPart));
             }
         }
+    }
+    if (Array.isArray(value)) {
         return value;
     }
     if (typeof value === 'string') {

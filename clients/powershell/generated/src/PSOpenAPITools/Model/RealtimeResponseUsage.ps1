@@ -56,11 +56,11 @@ function Initialize-RealtimeResponseUsage {
 
 
         $PSO = [PSCustomObject]@{
-            "total_tokens" = ${TotalTokens}
-            "input_tokens" = ${InputTokens}
-            "output_tokens" = ${OutputTokens}
-            "input_token_details" = ${InputTokenDetails}
-            "output_token_details" = ${OutputTokenDetails}
+            'total_tokens' = ${TotalTokens}
+            'input_tokens' = ${InputTokens}
+            'output_tokens' = ${OutputTokens}
+            'input_token_details' = ${InputTokenDetails}
+            'output_token_details' = ${OutputTokenDetails}
         }
 
 
@@ -98,49 +98,49 @@ function ConvertFrom-JsonToRealtimeResponseUsage {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeResponseUsage
-        $AllProperties = ("total_tokens", "input_tokens", "output_tokens", "input_token_details", "output_token_details")
+        $AllProperties = ('total_tokens', 'input_tokens', 'output_tokens', 'input_token_details', 'output_token_details')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "total_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'total_tokens'))) { #optional property not found
             $TotalTokens = $null
         } else {
-            $TotalTokens = $JsonParameters.PSobject.Properties["total_tokens"].value
+            $TotalTokens = $JsonParameters.PSobject.Properties['total_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "input_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'input_tokens'))) { #optional property not found
             $InputTokens = $null
         } else {
-            $InputTokens = $JsonParameters.PSobject.Properties["input_tokens"].value
+            $InputTokens = $JsonParameters.PSobject.Properties['input_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "output_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'output_tokens'))) { #optional property not found
             $OutputTokens = $null
         } else {
-            $OutputTokens = $JsonParameters.PSobject.Properties["output_tokens"].value
+            $OutputTokens = $JsonParameters.PSobject.Properties['output_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "input_token_details"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'input_token_details'))) { #optional property not found
             $InputTokenDetails = $null
         } else {
-            $InputTokenDetails = $JsonParameters.PSobject.Properties["input_token_details"].value
+            $InputTokenDetails = $JsonParameters.PSobject.Properties['input_token_details'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "output_token_details"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'output_token_details'))) { #optional property not found
             $OutputTokenDetails = $null
         } else {
-            $OutputTokenDetails = $JsonParameters.PSobject.Properties["output_token_details"].value
+            $OutputTokenDetails = $JsonParameters.PSobject.Properties['output_token_details'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "total_tokens" = ${TotalTokens}
-            "input_tokens" = ${InputTokens}
-            "output_tokens" = ${OutputTokens}
-            "input_token_details" = ${InputTokenDetails}
-            "output_token_details" = ${OutputTokenDetails}
+            'total_tokens' = ${TotalTokens}
+            'input_tokens' = ${InputTokens}
+            'output_tokens' = ${OutputTokens}
+            'input_token_details' = ${InputTokenDetails}
+            'output_token_details' = ${OutputTokenDetails}
         }
 
         return $PSO

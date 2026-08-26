@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIRealtimeServerEventError_error : public OAIObject {
 public:
     OAIRealtimeServerEventError_error();
-    OAIRealtimeServerEventError_error(QString json);
+    OAIRealtimeServerEventError_error(const QString &json);
     ~OAIRealtimeServerEventError_error() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

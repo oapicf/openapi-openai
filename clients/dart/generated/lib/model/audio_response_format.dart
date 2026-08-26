@@ -11,35 +11,32 @@
 part of openapi.api;
 
 /// The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. 
-class AudioResponseFormat {
-  /// Instantiate a new enum with the provided [value].
-  const AudioResponseFormat._(this.value);
+enum AudioResponseFormat {
+  json._(r'json'),
+  text._(r'text'),
+  srt._(r'srt'),
+  verboseJson._(r'verbose_json'),
+  vtt._(r'vtt'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const AudioResponseFormat._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const json = AudioResponseFormat._(r'json');
-  static const text = AudioResponseFormat._(r'text');
-  static const srt = AudioResponseFormat._(r'srt');
-  static const verboseJson = AudioResponseFormat._(r'verbose_json');
-  static const vtt = AudioResponseFormat._(r'vtt');
-
-  /// List of all possible values in this [enum][AudioResponseFormat].
-  static const values = <AudioResponseFormat>[
-    json,
-    text,
-    srt,
-    verboseJson,
-    vtt,
-  ];
-
+  /// Returns the instance of [AudioResponseFormat] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static AudioResponseFormat? fromJson(dynamic value) => AudioResponseFormatTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [AudioResponseFormat]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<AudioResponseFormat> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <AudioResponseFormat>[];
     if (json is List && json.isNotEmpty) {
@@ -61,9 +58,11 @@ class AudioResponseFormatTypeTransformer {
 
   const AudioResponseFormatTypeTransformer._();
 
-  String encode(AudioResponseFormat data) => data.value;
+  /// Encodes this enum as a value suitable for JSON.
+  String encode(AudioResponseFormat data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a AudioResponseFormat.
+  /// Returns the instance of [AudioResponseFormat] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -72,6 +71,9 @@ class AudioResponseFormatTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   AudioResponseFormat? decode(dynamic data, {bool allowNull = true}) {
+    if (data is AudioResponseFormat) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'json': return AudioResponseFormat.json;
@@ -88,7 +90,7 @@ class AudioResponseFormatTypeTransformer {
     return null;
   }
 
-  /// Singleton [AudioResponseFormatTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static AudioResponseFormatTypeTransformer? _instance;
 }
 

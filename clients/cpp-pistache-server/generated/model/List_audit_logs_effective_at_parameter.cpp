@@ -32,6 +32,8 @@ List_audit_logs_effective_at_parameter::List_audit_logs_effective_at_parameter()
     
 }
 
+List_audit_logs_effective_at_parameter::~List_audit_logs_effective_at_parameter() = default;
+
 void List_audit_logs_effective_at_parameter::validate() const
 {
     std::stringstream msg;

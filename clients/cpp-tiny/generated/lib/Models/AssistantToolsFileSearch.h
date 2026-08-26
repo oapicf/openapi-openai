@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set The type of tool being defined: `file_search`
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	AssistantToolsFileSearch_file_search getFileSearch();
 
 	/*! \brief Set 
 	 */
-	void setFileSearch(AssistantToolsFileSearch_file_search  file_search);
+	void setFileSearch(AssistantToolsFileSearch_file_search file_search);
 
 
     private:

@@ -55,7 +55,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.Project;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}/archive'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}/archive'.replace('{project_id}', encodeURIComponent(String(projectId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -186,7 +186,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.ProjectServiceAccountCreateResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}/service_accounts'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}/service_accounts'.replace('{project_id}', encodeURIComponent(String(projectId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -259,7 +259,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.ProjectUser;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}/users'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}/users'.replace('{project_id}', encodeURIComponent(String(projectId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -332,7 +332,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.ProjectApiKeyDeleteResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}/api_keys/{key_id}'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId))).replace('{' + 'key_id' + '}', encodeURIComponent(String(keyId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}/api_keys/{key_id}'.replace('{project_id}', encodeURIComponent(String(projectId))).replace('{key_id}', encodeURIComponent(String(keyId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -401,7 +401,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.ProjectServiceAccountDeleteResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}/service_accounts/{service_account_id}'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId))).replace('{' + 'service_account_id' + '}', encodeURIComponent(String(serviceAccountId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}/service_accounts/{service_account_id}'.replace('{project_id}', encodeURIComponent(String(projectId))).replace('{service_account_id}', encodeURIComponent(String(serviceAccountId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -470,7 +470,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.ProjectUserDeleteResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}/users/{user_id}'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId))).replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}/users/{user_id}'.replace('{project_id}', encodeURIComponent(String(projectId))).replace('{user_id}', encodeURIComponent(String(userId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -540,7 +540,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.ProjectApiKeyListResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}/api_keys'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}/api_keys'.replace('{project_id}', encodeURIComponent(String(projectId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -612,7 +612,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.ProjectRateLimitListResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}/rate_limits'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}/rate_limits'.replace('{project_id}', encodeURIComponent(String(projectId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -686,7 +686,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.ProjectServiceAccountListResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}/service_accounts'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}/service_accounts'.replace('{project_id}', encodeURIComponent(String(projectId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -757,7 +757,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.ProjectUserListResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}/users'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}/users'.replace('{project_id}', encodeURIComponent(String(projectId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -896,7 +896,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.Project;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}'.replace('{project_id}', encodeURIComponent(String(projectId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -970,7 +970,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.ProjectUser;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}/users/{user_id}'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId))).replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}/users/{user_id}'.replace('{project_id}', encodeURIComponent(String(projectId))).replace('{user_id}', encodeURIComponent(String(userId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -1047,7 +1047,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.Project;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}'.replace('{project_id}', encodeURIComponent(String(projectId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -1111,7 +1111,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.ProjectApiKey;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}/api_keys/{key_id}'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId))).replace('{' + 'key_id' + '}', encodeURIComponent(String(keyId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}/api_keys/{key_id}'.replace('{project_id}', encodeURIComponent(String(projectId))).replace('{key_id}', encodeURIComponent(String(keyId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -1180,7 +1180,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.ProjectServiceAccount;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}/service_accounts/{service_account_id}'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId))).replace('{' + 'service_account_id' + '}', encodeURIComponent(String(serviceAccountId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}/service_accounts/{service_account_id}'.replace('{project_id}', encodeURIComponent(String(projectId))).replace('{service_account_id}', encodeURIComponent(String(serviceAccountId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -1249,7 +1249,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.ProjectUser;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}/users/{user_id}'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId))).replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}/users/{user_id}'.replace('{project_id}', encodeURIComponent(String(projectId))).replace('{user_id}', encodeURIComponent(String(userId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -1319,7 +1319,7 @@ export class ProjectsApi {
     { response: JQueryXHR; body: models.ProjectRateLimit;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/projects/{project_id}/rate_limits/{rate_limit_id}'.replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId))).replace('{' + 'rate_limit_id' + '}', encodeURIComponent(String(rateLimitId)));
+        let localVarPath = this.basePath + '/organization/projects/{project_id}/rate_limits/{rate_limit_id}'.replace('{project_id}', encodeURIComponent(String(projectId))).replace('{rate_limit_id}', encodeURIComponent(String(rateLimitId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};

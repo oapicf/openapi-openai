@@ -35,7 +35,7 @@ class  CreateThreadRequest
 {
 public:
     CreateThreadRequest();
-    virtual ~CreateThreadRequest() = default;
+    virtual ~CreateThreadRequest();
 
 
     /// <summary>

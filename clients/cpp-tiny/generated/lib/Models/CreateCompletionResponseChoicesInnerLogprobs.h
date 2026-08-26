@@ -53,35 +53,35 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setTextOffset(std::list <int> text_offset);
+	void setTextOffset(std::list<int> text_offset);
 	/*! \brief Get 
 	 */
 	std::list<long> getTokenLogprobs();
 
 	/*! \brief Set 
 	 */
-	void setTokenLogprobs(std::list <long> token_logprobs);
+	void setTokenLogprobs(std::list<long> token_logprobs);
 	/*! \brief Get 
 	 */
 	std::list<std::string> getTokens();
 
 	/*! \brief Set 
 	 */
-	void setTokens(std::list <std::string> tokens);
+	void setTokens(std::list<std::string> tokens);
 	/*! \brief Get 
 	 */
-	std::list<Map> getTopLogprobs();
+	std::list<std::map&lt;std::string, long&gt;> getTopLogprobs();
 
 	/*! \brief Set 
 	 */
-	void setTopLogprobs(std::list <Map> top_logprobs);
+	void setTopLogprobs(std::list<std::map&lt;std::string, long&gt;> top_logprobs);
 
 
     private:
     std::list<int> text_offset;
     std::list<long> token_logprobs;
     std::list<std::string> tokens;
-    std::list<Map> top_logprobs;
+    std::list<std::map&lt;std::string, long&gt;> top_logprobs;
 };
 }
 

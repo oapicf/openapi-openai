@@ -32,7 +32,7 @@ use DateTime;
 
 use WWW::OpenAPIClient::Object::OtherChunkingStrategyResponseParam;
 use WWW::OpenAPIClient::Object::StaticChunkingStrategy;
-use WWW::OpenAPIClient::Object::StaticChunkingStrategyResponseParam;
+use WWW::OpenAPIClient::Object::StaticChunkingStrategyRequestParam;
 
 use base ("Class::Accessor", "Class::Data::Inheritable");
 

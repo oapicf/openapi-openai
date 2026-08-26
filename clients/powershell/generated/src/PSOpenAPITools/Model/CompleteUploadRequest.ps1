@@ -45,8 +45,8 @@ function Initialize-CompleteUploadRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "part_ids" = ${PartIds}
-            "md5" = ${Md5}
+            'part_ids' = ${PartIds}
+            'md5' = ${Md5}
         }
 
 
@@ -84,7 +84,7 @@ function ConvertFrom-JsonToCompleteUploadRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CompleteUploadRequest
-        $AllProperties = ("part_ids", "md5")
+        $AllProperties = ('part_ids', 'md5')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -95,21 +95,21 @@ function ConvertFrom-JsonToCompleteUploadRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'part_ids' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "part_ids"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'part_ids'))) {
             throw "Error! JSON cannot be serialized due to the required property 'part_ids' missing."
         } else {
-            $PartIds = $JsonParameters.PSobject.Properties["part_ids"].value
+            $PartIds = $JsonParameters.PSobject.Properties['part_ids'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "md5"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'md5'))) { #optional property not found
             $Md5 = $null
         } else {
-            $Md5 = $JsonParameters.PSobject.Properties["md5"].value
+            $Md5 = $JsonParameters.PSobject.Properties['md5'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "part_ids" = ${PartIds}
-            "md5" = ${Md5}
+            'part_ids' = ${PartIds}
+            'md5' = ${Md5}
         }
 
         return $PSO

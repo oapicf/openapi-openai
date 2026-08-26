@@ -56,10 +56,10 @@ function Initialize-ChatCompletionMessageToolCallChunk {
 
 
         $PSO = [PSCustomObject]@{
-            "index" = ${Index}
-            "id" = ${Id}
-            "type" = ${Type}
-            "function" = ${VarFunction}
+            'index' = ${Index}
+            'id' = ${Id}
+            'type' = ${Type}
+            'function' = ${VarFunction}
         }
 
 
@@ -97,7 +97,7 @@ function ConvertFrom-JsonToChatCompletionMessageToolCallChunk {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ChatCompletionMessageToolCallChunk
-        $AllProperties = ("index", "id", "type", "function")
+        $AllProperties = ('index', 'id', 'type', 'function')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -108,35 +108,35 @@ function ConvertFrom-JsonToChatCompletionMessageToolCallChunk {
             throw "Error! Empty JSON cannot be serialized due to the required property 'index' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "index"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'index'))) {
             throw "Error! JSON cannot be serialized due to the required property 'index' missing."
         } else {
-            $Index = $JsonParameters.PSobject.Properties["index"].value
+            $Index = $JsonParameters.PSobject.Properties['index'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) { #optional property not found
             $Id = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) { #optional property not found
             $Type = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "function"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'function'))) { #optional property not found
             $VarFunction = $null
         } else {
-            $VarFunction = $JsonParameters.PSobject.Properties["function"].value
+            $VarFunction = $JsonParameters.PSobject.Properties['function'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "index" = ${Index}
-            "id" = ${Id}
-            "type" = ${Type}
-            "function" = ${VarFunction}
+            'index' = ${Index}
+            'id' = ${Id}
+            'type' = ${Type}
+            'function' = ${VarFunction}
         }
 
         return $PSO

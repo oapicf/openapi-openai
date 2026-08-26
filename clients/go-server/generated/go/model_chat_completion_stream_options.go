@@ -21,7 +21,8 @@ type ChatCompletionStreamOptions struct {
 	IncludeUsage bool `json:"include_usage,omitempty"`
 }
 
-// AssertChatCompletionStreamOptionsRequired checks if the required fields are not zero-ed
+// AssertChatCompletionStreamOptionsRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertChatCompletionStreamOptionsRequired(obj ChatCompletionStreamOptions) error {
 	return nil
 }

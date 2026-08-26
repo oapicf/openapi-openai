@@ -217,8 +217,9 @@ class _$CreateAssistantRequestSerializer implements PrimitiveSerializer<CreateAs
         case r'tools':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(AssistantObjectToolsInner)]),
-          ) as BuiltList<AssistantObjectToolsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(AssistantObjectToolsInner)]),
+          ) as BuiltList<AssistantObjectToolsInner>?;
+          if (valueDes == null) continue;
           result.tools.replace(valueDes);
           break;
         case r'tool_resources':
@@ -256,8 +257,9 @@ class _$CreateAssistantRequestSerializer implements PrimitiveSerializer<CreateAs
         case r'response_format':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AssistantsApiResponseFormatOption),
-          ) as AssistantsApiResponseFormatOption;
+            specifiedType: const FullType.nullable(AssistantsApiResponseFormatOption),
+          ) as AssistantsApiResponseFormatOption?;
+          if (valueDes == null) continue;
           result.responseFormat.replace(valueDes);
           break;
         default:

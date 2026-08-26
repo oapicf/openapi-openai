@@ -30,7 +30,7 @@ class CreateCompletionRequestStop(BaseModel):
     Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. 
     """
     # data type: str
-    oneof_schema_1_validator: Optional[StrictStr] = '<|endoftext|>'
+    oneof_schema_1_validator: Optional[StrictStr] = Field(default='<|endoftext|>', json_schema_extra={"examples": ["\n"]})
     # data type: List[str]
     oneof_schema_2_validator: Optional[Annotated[List[StrictStr], Field(min_length=1, max_length=4)]] = None
     actual_instance: Optional[Union[List[str], str]] = None

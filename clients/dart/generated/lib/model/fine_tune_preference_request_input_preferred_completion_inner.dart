@@ -113,10 +113,8 @@ class FineTunePreferenceRequestInputPreferredCompletionInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "FineTunePreferenceRequestInputPreferredCompletionInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "FineTunePreferenceRequestInputPreferredCompletionInner[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'role'), 'Required key "FineTunePreferenceRequestInputPreferredCompletionInner[role]" is missing from JSON.');
+        assert(json[r'role'] != null, 'Required key "FineTunePreferenceRequestInputPreferredCompletionInner[role]" has a null value in JSON.');
         return true;
       }());
 
@@ -180,27 +178,28 @@ class FineTunePreferenceRequestInputPreferredCompletionInner {
 }
 
 /// The role of the messages author, in this case `assistant`.
-class FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum {
-  /// Instantiate a new enum with the provided [value].
-  const FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum._(this.value);
+enum FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum {
+  assistant._(r'assistant'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const assistant = FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum._(r'assistant');
-
-  /// List of all possible values in this [enum][FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum].
-  static const values = <FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum>[
-    assistant,
-  ];
-
+  /// Returns the instance of [FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum? fromJson(dynamic value) => FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -222,9 +221,10 @@ class FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnumTypeTransfor
 
   const FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnumTypeTransformer._();
 
-  String encode(FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum data) => data.value;
+  String encode(FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum.
+  /// Returns the instance of [FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -233,6 +233,9 @@ class FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnumTypeTransfor
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'assistant': return FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum.assistant;
@@ -245,7 +248,7 @@ class FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnumTypeTransfor
     return null;
   }
 
-  /// Singleton [FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnumTypeTransformer? _instance;
 }
 

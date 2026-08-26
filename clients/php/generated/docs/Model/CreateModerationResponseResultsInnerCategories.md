@@ -1,4 +1,4 @@
-# # CreateModerationResponseResultsInnerCategories
+# CreateModerationResponseResultsInnerCategories
 
 ## Properties
 

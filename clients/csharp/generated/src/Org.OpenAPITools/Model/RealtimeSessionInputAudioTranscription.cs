@@ -56,7 +56,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The model to use for transcription, &#x60;whisper-1&#x60; is the only currently  supported model. </value>
         [JsonPropertyName("model")]
-        public string? Model { get { return this.ModelOption; } set { this.ModelOption = new(value); } }
+        public string? Model { get { return this.ModelOption.Value; } set { this.ModelOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeSessionInputAudioTranscription" />
     /// </summary>
-    public class RealtimeSessionInputAudioTranscriptionJsonConverter : JsonConverter<RealtimeSessionInputAudioTranscription>
+    public partial class RealtimeSessionInputAudioTranscriptionJsonConverter : JsonConverter<RealtimeSessionInputAudioTranscription>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeSessionInputAudioTranscriptionJsonConverter" /> class.
+        /// </summary>
+        public RealtimeSessionInputAudioTranscriptionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeSessionInputAudioTranscription" />
         /// </summary>

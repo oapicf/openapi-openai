@@ -90,10 +90,20 @@ class RealtimeServerEventResponseFunctionCallArgumentsDone {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDone[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDone[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event_id'), 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDone[event_id]" is missing from JSON.');
+        assert(json[r'event_id'] != null, 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDone[event_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDone[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDone[type]" has a null value in JSON.');
+        assert(json.containsKey(r'response_id'), 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDone[response_id]" is missing from JSON.');
+        assert(json[r'response_id'] != null, 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDone[response_id]" has a null value in JSON.');
+        assert(json.containsKey(r'item_id'), 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDone[item_id]" is missing from JSON.');
+        assert(json[r'item_id'] != null, 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDone[item_id]" has a null value in JSON.');
+        assert(json.containsKey(r'output_index'), 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDone[output_index]" is missing from JSON.');
+        assert(json[r'output_index'] != null, 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDone[output_index]" has a null value in JSON.');
+        assert(json.containsKey(r'call_id'), 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDone[call_id]" is missing from JSON.');
+        assert(json[r'call_id'] != null, 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDone[call_id]" has a null value in JSON.');
+        assert(json.containsKey(r'arguments'), 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDone[arguments]" is missing from JSON.');
+        assert(json[r'arguments'] != null, 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDone[arguments]" has a null value in JSON.');
         return true;
       }());
 
@@ -163,27 +173,28 @@ class RealtimeServerEventResponseFunctionCallArgumentsDone {
 }
 
 /// The event type, must be `response.function_call_arguments.done`. 
-class RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum._(this.value);
+enum RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum {
+  responsePeriodFunctionCallArgumentsPeriodDone._(r'response.function_call_arguments.done'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const responsePeriodFunctionCallArgumentsPeriodDone = RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum._(r'response.function_call_arguments.done');
-
-  /// List of all possible values in this [enum][RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum].
-  static const values = <RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum>[
-    responsePeriodFunctionCallArgumentsPeriodDone,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum? fromJson(dynamic value) => RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -205,9 +216,10 @@ class RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnumTypeTransforme
 
   const RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum data) => data.value;
+  String encode(RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum.
+  /// Returns the instance of [RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -216,6 +228,9 @@ class RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnumTypeTransforme
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'response.function_call_arguments.done': return RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum.responsePeriodFunctionCallArgumentsPeriodDone;
@@ -228,7 +243,7 @@ class RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnumTypeTransforme
     return null;
   }
 
-  /// Singleton [RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnumTypeTransformer? _instance;
 }
 

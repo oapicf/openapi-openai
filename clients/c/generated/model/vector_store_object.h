@@ -40,14 +40,14 @@ openai_api_vector_store_object_STATUS_e vector_store_object_status_FromString(ch
 typedef struct vector_store_object_t {
     char *id; // string
     openai_api_vector_store_object_OBJECT_e object; //enum
-    int created_at; //numeric
+    int *created_at; //numeric
     char *name; // string
-    int usage_bytes; //numeric
+    int *usage_bytes; //numeric
     struct vector_store_object_file_counts_t *file_counts; //model
     openai_api_vector_store_object_STATUS_e status; //enum
     struct vector_store_expiration_after_t *expires_after; //model
-    int expires_at; //numeric
-    int last_active_at; //numeric
+    int *expires_at; //numeric
+    int *last_active_at; //numeric
     object_t *metadata; //object
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -56,14 +56,14 @@ typedef struct vector_store_object_t {
 __attribute__((deprecated)) vector_store_object_t *vector_store_object_create(
     char *id,
     openai_api_vector_store_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     char *name,
-    int usage_bytes,
+    int *usage_bytes,
     vector_store_object_file_counts_t *file_counts,
     openai_api_vector_store_object_STATUS_e status,
     vector_store_expiration_after_t *expires_after,
-    int expires_at,
-    int last_active_at,
+    int *expires_at,
+    int *last_active_at,
     object_t *metadata
 );
 

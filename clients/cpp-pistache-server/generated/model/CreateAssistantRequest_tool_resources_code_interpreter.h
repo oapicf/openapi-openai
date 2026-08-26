@@ -33,7 +33,7 @@ class  CreateAssistantRequest_tool_resources_code_interpreter
 {
 public:
     CreateAssistantRequest_tool_resources_code_interpreter();
-    virtual ~CreateAssistantRequest_tool_resources_code_interpreter() = default;
+    virtual ~CreateAssistantRequest_tool_resources_code_interpreter();
 
 
     /// <summary>

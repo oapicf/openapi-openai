@@ -29,10 +29,8 @@ import org.openapitools.server.models.CreateEmbeddingRequest
 import org.openapitools.server.models.CreateEmbeddingResponse
 
 fun Route.EmbeddingsApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createEmbedding> {
+    post<Paths.createEmbedding> { createEmbedding ->
         
         val principal = null!!
         
@@ -48,12 +46,12 @@ fun Route.EmbeddingsApi() {
                 "embedding" : [ 6.027456183070403, 6.027456183070403 ],
                 "object" : "embedding"
               } ],
+              "model" : "model",
+              "object" : "list",
               "usage" : {
                 "prompt_tokens" : 1,
                 "total_tokens" : 5
-              },
-              "model" : "model",
-              "object" : "list"
+              }
             }"""
             
             when (exampleContentType) {
@@ -64,5 +62,4 @@ fun Route.EmbeddingsApi() {
         
     }
     }
-
 }

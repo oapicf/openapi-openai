@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.ThreadObject
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -24,16 +27,21 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ThreadStreamEvent(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("event")
     @get:JsonProperty("event", required = true) val event: ThreadStreamEvent.Event,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("data")
     @get:JsonProperty("data", required = true) val `data`: ThreadObject,
 
-    @Schema(example = "null", description = "Whether to enable input audio transcription.")
+    @Schema(description = "Whether to enable input audio transcription.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("enabled")
     @get:JsonProperty("enabled") val enabled: kotlin.Boolean? = null
-) {
+) : AssistantStreamEvent {
 
     /**
     * 
@@ -48,7 +56,7 @@ data class ThreadStreamEvent(
             @JsonCreator
             fun forValue(value: kotlin.String): Event {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ThreadStreamEvent'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Event'")
             }
         }
     }

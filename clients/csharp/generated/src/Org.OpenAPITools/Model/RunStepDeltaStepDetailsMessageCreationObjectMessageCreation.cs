@@ -56,7 +56,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The ID of the message that was created by this run step.</value>
         [JsonPropertyName("message_id")]
-        public string? MessageId { get { return this.MessageIdOption; } set { this.MessageIdOption = new(value); } }
+        public string? MessageId { get { return this.MessageIdOption.Value; } set { this.MessageIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDeltaStepDetailsMessageCreationObjectMessageCreation" />
     /// </summary>
-    public class RunStepDeltaStepDetailsMessageCreationObjectMessageCreationJsonConverter : JsonConverter<RunStepDeltaStepDetailsMessageCreationObjectMessageCreation>
+    public partial class RunStepDeltaStepDetailsMessageCreationObjectMessageCreationJsonConverter : JsonConverter<RunStepDeltaStepDetailsMessageCreationObjectMessageCreation>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDeltaStepDetailsMessageCreationObjectMessageCreationJsonConverter" /> class.
+        /// </summary>
+        public RunStepDeltaStepDetailsMessageCreationObjectMessageCreationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDeltaStepDetailsMessageCreationObjectMessageCreation" />
         /// </summary>

@@ -12,30 +12,30 @@ import tables
 import marshal
 import options
 
-import model_auto_chunking_strategy
+import model_auto_chunking_strategy_request_param
 import model_static_chunking_strategy
 import model_static_chunking_strategy_static
 
 # OneOf type
 type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyKind* {.pure.} = enum
-  AutoChunkingStrategyVariant
+  AutoChunkingStrategyRequestParamVariant
   StaticChunkingStrategyVariant
 
 type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy* = object
   ## The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.
   case kind*: CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyKind
-  of CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyKind.AutoChunkingStrategyVariant:
-    Auto_Chunking_StrategyValue*: AutoChunkingStrategy
+  of CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyKind.AutoChunkingStrategyRequestParamVariant:
+    AutoChunkingStrategyRequestParamValue*: AutoChunkingStrategyRequestParam
   of CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyKind.StaticChunkingStrategyVariant:
     Static_Chunking_StrategyValue*: StaticChunkingStrategy
 
 proc to*(node: JsonNode, T: typedesc[CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy]): CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy =
   ## Custom deserializer for oneOf type - tries each variant
   try:
-    return CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy(kind: CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyKind.AutoChunkingStrategyVariant, Auto_Chunking_StrategyValue: to(node, AutoChunkingStrategy))
+    return CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy(kind: CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyKind.AutoChunkingStrategyRequestParamVariant, AutoChunkingStrategyRequestParamValue: to(node, AutoChunkingStrategyRequestParam))
   except Exception as e:
     when defined(debug):
-      echo "Failed to deserialize as AutoChunkingStrategy: ", e.msg
+      echo "Failed to deserialize as AutoChunkingStrategyRequestParam: ", e.msg
   try:
     return CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy(kind: CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyKind.StaticChunkingStrategyVariant, Static_Chunking_StrategyValue: to(node, StaticChunkingStrategy))
   except Exception as e:

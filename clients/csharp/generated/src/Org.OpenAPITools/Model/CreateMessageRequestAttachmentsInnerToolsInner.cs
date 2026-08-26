@@ -89,8 +89,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateMessageRequestAttachmentsInnerToolsInner" />
     /// </summary>
-    public class CreateMessageRequestAttachmentsInnerToolsInnerJsonConverter : JsonConverter<CreateMessageRequestAttachmentsInnerToolsInner>
+    public partial class CreateMessageRequestAttachmentsInnerToolsInnerJsonConverter : JsonConverter<CreateMessageRequestAttachmentsInnerToolsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateMessageRequestAttachmentsInnerToolsInnerJsonConverter" /> class.
+        /// </summary>
+        public CreateMessageRequestAttachmentsInnerToolsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateMessageRequestAttachmentsInnerToolsInner" />
         /// </summary>

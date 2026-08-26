@@ -24,7 +24,7 @@ message RunObjectLastError {
     CODE_INVALID_PROMPT = 2;
   }
 
-  Code code = 3059181;
+  string code = 3059181;
 
   // A human-readable description of the error.
   string message = 418054152;

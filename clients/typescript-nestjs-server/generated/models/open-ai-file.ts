@@ -1,0 +1,65 @@
+
+
+/**
+ * The `File` object represents a document that has been uploaded to OpenAI.
+ */
+export interface OpenAIFile { 
+  /**
+   * The file identifier, which can be referenced in the API endpoints.
+   */
+  id: string;
+  /**
+   * The size of the file, in bytes.
+   */
+  bytes: number;
+  /**
+   * The Unix timestamp (in seconds) for when the file was created.
+   */
+  created_at: number;
+  /**
+   * The name of the file.
+   */
+  filename: string;
+  /**
+   * The object type, which is always `file`.
+   */
+  object: OpenAIFile.ObjectEnum;
+  /**
+   * The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
+   */
+  purpose: OpenAIFile.PurposeEnum;
+  /**
+   * Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+   * @deprecated
+   */
+  status: OpenAIFile.StatusEnum;
+  /**
+   * Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
+   * @deprecated
+   */
+  status_details?: string;
+}
+export namespace OpenAIFile {
+  export const ObjectEnum = {
+    File: 'file'
+  } as const;
+  export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
+  export const PurposeEnum = {
+    Assistants: 'assistants',
+    AssistantsOutput: 'assistants_output',
+    Batch: 'batch',
+    BatchOutput: 'batch_output',
+    FineTune: 'fine-tune',
+    FineTuneResults: 'fine-tune-results',
+    Vision: 'vision'
+  } as const;
+  export type PurposeEnum = typeof PurposeEnum[keyof typeof PurposeEnum];
+  export const StatusEnum = {
+    Uploaded: 'uploaded',
+    Processed: 'processed',
+    Error: 'error'
+  } as const;
+  export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
+}
+
+

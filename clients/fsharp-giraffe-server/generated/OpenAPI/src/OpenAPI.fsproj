@@ -55,9 +55,8 @@
     <Compile Include="model/SubmitToolOutputsRunRequestToolOutputsInner.fs" />
     <Compile Include="model/SubmitToolOutputsRunRequest.fs" />
     <Compile Include="model/StaticChunkingStrategy.fs" />
-    <Compile Include="model/StaticChunkingStrategyResponseParam.fs" />
-    <Compile Include="model/VectorStoreFileObjectChunkingStrategy.fs" />
     <Compile Include="model/StaticChunkingStrategyRequestParam.fs" />
+    <Compile Include="model/VectorStoreFileObjectChunkingStrategy.fs" />
     <Compile Include="model/RunToolCallObjectFunction.fs" />
     <Compile Include="model/RunToolCallObject.fs" />
     <Compile Include="model/ResponseFormatJsonSchemaJsonSchema.fs" />
@@ -337,7 +336,7 @@
     <Compile Include="model/CreateTranscriptionResponseJson.fs" />
     <Compile Include="model/CreateTranscriptionRequestModel.fs" />
     <Compile Include="model/CreateTranscription200Response.fs" />
-    <Compile Include="model/AutoChunkingStrategy.fs" />
+    <Compile Include="model/CreateVectorStoreFileRequest.fs" />
     <Compile Include="model/CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy.fs" />
     <Compile Include="model/CreateThreadRequestToolResourcesFileSearchVectorStoresInner.fs" />
     <Compile Include="model/MessageStreamEventOneOf.fs" />
@@ -415,7 +414,7 @@
     <Compile Include="model/CompletionUsage.fs" />
     <Compile Include="model/CreateCompletionResponse.fs" />
     <Compile Include="model/CompleteUploadRequest.fs" />
-    <Compile Include="model/CreateVectorStoreFileRequest.fs" />
+    <Compile Include="model/CreateAssistantRequestToolResources.fs" />
     <Compile Include="model/ChatCompletionNamedToolChoice.fs" />
     <Compile Include="model/ChatCompletionTool.fs" />
     <Compile Include="model/ChatCompletionTokenLogprob.fs" />
@@ -465,7 +464,6 @@
     <Compile Include="model/Batch.fs" />
     <Compile Include="model/ListBatchesResponse.fs" />
     <Compile Include="model/CreateVectorStoreFileBatchRequest.fs" />
-    <Compile Include="model/CreateAssistantRequestToolResources.fs" />
     <Compile Include="model/AuditLogUserUpdatedChangesRequested.fs" />
     <Compile Include="model/AuditLogUserUpdated.fs" />
     <Compile Include="model/AuditLogUserDeleted.fs" />

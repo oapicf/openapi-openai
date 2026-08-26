@@ -28,6 +28,8 @@ BatchRequestOutput_error::BatchRequestOutput_error()
     
 }
 
+BatchRequestOutput_error::~BatchRequestOutput_error() = default;
+
 void BatchRequestOutput_error::validate() const
 {
     std::stringstream msg;

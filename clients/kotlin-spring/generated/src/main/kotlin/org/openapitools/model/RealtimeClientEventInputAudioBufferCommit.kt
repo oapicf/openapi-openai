@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -22,10 +25,14 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeClientEventInputAudioBufferCommit(
 
-    @Schema(example = "null", required = true, description = "The event type, must be `input_audio_buffer.commit`.")
+    @Schema(required = true, description = "The event type, must be `input_audio_buffer.commit`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RealtimeClientEventInputAudioBufferCommit.Type,
 
-    @Schema(example = "null", description = "Optional client-generated ID used to identify this event.")
+    @Schema(description = "Optional client-generated ID used to identify this event.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("event_id")
     @get:JsonProperty("event_id") val eventId: kotlin.String? = null
 ) {
 
@@ -42,7 +49,7 @@ data class RealtimeClientEventInputAudioBufferCommit(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeClientEventInputAudioBufferCommit'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

@@ -64,7 +64,7 @@ MessageContentTextAnnotationsFilePathObject_file_path::getFileId()
 }
 
 void
-MessageContentTextAnnotationsFilePathObject_file_path::setFileId(std::string  file_id)
+MessageContentTextAnnotationsFilePathObject_file_path::setFileId(std::string file_id)
 {
 	this->file_id = file_id;
 }

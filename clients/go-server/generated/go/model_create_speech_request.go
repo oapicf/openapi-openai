@@ -14,6 +14,8 @@ package openapi
 
 import (
 	"errors"
+	"encoding/json"
+	"fmt"
 )
 
 
@@ -34,13 +36,92 @@ type CreateSpeechRequest struct {
 	// The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.
 	Speed float32 `json:"speed,omitempty"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into CreateSpeechRequest
+func (o *CreateSpeechRequest) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"model",
+		"input",
+		"voice",
+	}
 
-// AssertCreateSpeechRequestRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"model": false,
+		"input": false,
+		"voice": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"model": {},
+		"input": {},
+		"voice": {},
+		"response_format": {},
+		"speed": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CreateSpeechRequest
+
+	if value, exists := allProperties["model"]; exists {
+		if err = json.Unmarshal(value, &decoded.Model); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["input"]; exists {
+		if err = json.Unmarshal(value, &decoded.Input); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["voice"]; exists {
+		if err = json.Unmarshal(value, &decoded.Voice); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["response_format"]; exists {
+		if err = json.Unmarshal(value, &decoded.ResponseFormat); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["speed"]; exists {
+		if err = json.Unmarshal(value, &decoded.Speed); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCreateSpeechRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateSpeechRequestRequired(obj CreateSpeechRequest) error {
 	elements := map[string]interface{}{
 		"model": obj.Model,
-		"input": obj.Input,
-		"voice": obj.Voice,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {

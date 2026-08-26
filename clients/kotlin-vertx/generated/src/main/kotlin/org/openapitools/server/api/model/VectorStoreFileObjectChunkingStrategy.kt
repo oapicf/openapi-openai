@@ -13,7 +13,7 @@ package org.openapitools.server.api.model
 
 import org.openapitools.server.api.model.OtherChunkingStrategyResponseParam
 import org.openapitools.server.api.model.StaticChunkingStrategy
-import org.openapitools.server.api.model.StaticChunkingStrategyResponseParam
+import org.openapitools.server.api.model.StaticChunkingStrategyRequestParam
 
         
 import com.google.gson.annotations.SerializedName

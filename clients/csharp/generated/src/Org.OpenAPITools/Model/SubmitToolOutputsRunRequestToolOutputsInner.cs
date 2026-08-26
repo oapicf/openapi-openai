@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The ID of the tool call in the &#x60;required_action&#x60; object within the run object the output is being submitted for.</value>
         [JsonPropertyName("tool_call_id")]
-        public string? ToolCallId { get { return this.ToolCallIdOption; } set { this.ToolCallIdOption = new(value); } }
+        public string? ToolCallId { get { return this.ToolCallIdOption.Value; } set { this.ToolCallIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Output
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The output of the tool call to be submitted to continue the run.</value>
         [JsonPropertyName("output")]
-        public string? Output { get { return this.OutputOption; } set { this.OutputOption = new(value); } }
+        public string? Output { get { return this.OutputOption.Value; } set { this.OutputOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="SubmitToolOutputsRunRequestToolOutputsInner" />
     /// </summary>
-    public class SubmitToolOutputsRunRequestToolOutputsInnerJsonConverter : JsonConverter<SubmitToolOutputsRunRequestToolOutputsInner>
+    public partial class SubmitToolOutputsRunRequestToolOutputsInnerJsonConverter : JsonConverter<SubmitToolOutputsRunRequestToolOutputsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SubmitToolOutputsRunRequestToolOutputsInnerJsonConverter" /> class.
+        /// </summary>
+        public SubmitToolOutputsRunRequestToolOutputsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SubmitToolOutputsRunRequestToolOutputsInner" />
         /// </summary>

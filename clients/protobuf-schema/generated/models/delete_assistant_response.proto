@@ -25,7 +25,7 @@ message DeleteAssistantResponse {
     OBJECT_ASSISTANT_DELETED = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
 }
 

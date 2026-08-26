@@ -23,14 +23,17 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class Embedding(
 
-    @Schema(example = "null", required = true, description = "The index of the embedding in the list of embeddings.")
+    @Schema(required = true, description = "The index of the embedding in the list of embeddings.")
+    @param:JsonProperty("index")
     @get:JsonProperty("index", required = true) val index: kotlin.Int,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings). ")
+    @Schema(required = true, description = "The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings). ")
+    @param:JsonProperty("embedding")
     @get:JsonProperty("embedding", required = true) val embedding: kotlin.collections.List<java.math.BigDecimal>,
 
-    @Schema(example = "null", required = true, description = "The object type, which is always \"embedding\".")
+    @Schema(required = true, description = "The object type, which is always \"embedding\".")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: Embedding.`Object`
 ) {
 
@@ -47,7 +50,7 @@ data class Embedding(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Embedding'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }

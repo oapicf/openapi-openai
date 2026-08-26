@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIUserRoleUpdateRequest : public OAIObject {
 public:
     OAIUserRoleUpdateRequest();
-    OAIUserRoleUpdateRequest(QString json);
+    OAIUserRoleUpdateRequest(const QString &json);
     ~OAIUserRoleUpdateRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getRole() const;
     void setRole(const QString &role);

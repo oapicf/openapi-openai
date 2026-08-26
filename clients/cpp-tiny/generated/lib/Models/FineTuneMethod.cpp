@@ -108,7 +108,7 @@ FineTuneMethod::getType()
 }
 
 void
-FineTuneMethod::setType(std::string  type)
+FineTuneMethod::setType(std::string type)
 {
 	this->type = type;
 }
@@ -120,7 +120,7 @@ FineTuneMethod::getSupervised()
 }
 
 void
-FineTuneMethod::setSupervised(FineTuneSupervisedMethod  supervised)
+FineTuneMethod::setSupervised(FineTuneSupervisedMethod supervised)
 {
 	this->supervised = supervised;
 }
@@ -132,7 +132,7 @@ FineTuneMethod::getDpo()
 }
 
 void
-FineTuneMethod::setDpo(FineTuneDPOMethod  dpo)
+FineTuneMethod::setDpo(FineTuneDPOMethod dpo)
 {
 	this->dpo = dpo;
 }

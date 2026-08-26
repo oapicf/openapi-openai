@@ -54,7 +54,7 @@ openai_api_create_image_request_STYLE_e create_image_request_style_FromString(ch
 typedef struct create_image_request_t {
     char *prompt; // string
     struct create_image_request_model_t *model; //model
-    int n; //numeric
+    int *n; //numeric
     openai_api_create_image_request_QUALITY_e quality; //enum
     openai_api_create_image_request_RESPONSEFORMAT_e response_format; //enum
     openai_api_create_image_request_SIZE_e size; //enum
@@ -67,7 +67,7 @@ typedef struct create_image_request_t {
 __attribute__((deprecated)) create_image_request_t *create_image_request_create(
     char *prompt,
     create_image_request_model_t *model,
-    int n,
+    int *n,
     openai_api_create_image_request_QUALITY_e quality,
     openai_api_create_image_request_RESPONSEFORMAT_e response_format,
     openai_api_create_image_request_SIZE_e size,

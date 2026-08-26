@@ -48,10 +48,8 @@ class ResponseFormatText {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ResponseFormatText[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ResponseFormatText[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "ResponseFormatText[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "ResponseFormatText[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -109,27 +107,28 @@ class ResponseFormatText {
 }
 
 /// The type of response format being defined: `text`
-class ResponseFormatTextTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ResponseFormatTextTypeEnum._(this.value);
+enum ResponseFormatTextTypeEnum {
+  text._(r'text'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ResponseFormatTextTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = ResponseFormatTextTypeEnum._(r'text');
-
-  /// List of all possible values in this [enum][ResponseFormatTextTypeEnum].
-  static const values = <ResponseFormatTextTypeEnum>[
-    text,
-  ];
-
+  /// Returns the instance of [ResponseFormatTextTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ResponseFormatTextTypeEnum? fromJson(dynamic value) => ResponseFormatTextTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ResponseFormatTextTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ResponseFormatTextTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ResponseFormatTextTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -151,9 +150,10 @@ class ResponseFormatTextTypeEnumTypeTransformer {
 
   const ResponseFormatTextTypeEnumTypeTransformer._();
 
-  String encode(ResponseFormatTextTypeEnum data) => data.value;
+  String encode(ResponseFormatTextTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ResponseFormatTextTypeEnum.
+  /// Returns the instance of [ResponseFormatTextTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -162,6 +162,9 @@ class ResponseFormatTextTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ResponseFormatTextTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ResponseFormatTextTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return ResponseFormatTextTypeEnum.text;
@@ -174,7 +177,7 @@ class ResponseFormatTextTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ResponseFormatTextTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ResponseFormatTextTypeEnumTypeTransformer? _instance;
 }
 

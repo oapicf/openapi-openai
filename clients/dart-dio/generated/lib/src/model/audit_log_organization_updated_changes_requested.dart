@@ -110,29 +110,33 @@ class _$AuditLogOrganizationUpdatedChangesRequestedSerializer implements Primiti
         case r'title':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.title = valueDes;
           break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'settings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogOrganizationUpdatedChangesRequestedSettings),
-          ) as AuditLogOrganizationUpdatedChangesRequestedSettings;
+            specifiedType: const FullType.nullable(AuditLogOrganizationUpdatedChangesRequestedSettings),
+          ) as AuditLogOrganizationUpdatedChangesRequestedSettings?;
+          if (valueDes == null) continue;
           result.settings.replace(valueDes);
           break;
         default:

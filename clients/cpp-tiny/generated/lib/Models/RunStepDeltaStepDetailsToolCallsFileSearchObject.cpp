@@ -128,7 +128,7 @@ RunStepDeltaStepDetailsToolCallsFileSearchObject::getIndex()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsFileSearchObject::setIndex(int  index)
+RunStepDeltaStepDetailsToolCallsFileSearchObject::setIndex(int index)
 {
 	this->index = index;
 }
@@ -140,7 +140,7 @@ RunStepDeltaStepDetailsToolCallsFileSearchObject::getId()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsFileSearchObject::setId(std::string  id)
+RunStepDeltaStepDetailsToolCallsFileSearchObject::setId(std::string id)
 {
 	this->id = id;
 }
@@ -152,7 +152,7 @@ RunStepDeltaStepDetailsToolCallsFileSearchObject::getType()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsFileSearchObject::setType(std::string  type)
+RunStepDeltaStepDetailsToolCallsFileSearchObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -164,7 +164,7 @@ RunStepDeltaStepDetailsToolCallsFileSearchObject::getFileSearch()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsFileSearchObject::setFileSearch(Object  file_search)
+RunStepDeltaStepDetailsToolCallsFileSearchObject::setFileSearch(Object file_search)
 {
 	this->file_search = file_search;
 }

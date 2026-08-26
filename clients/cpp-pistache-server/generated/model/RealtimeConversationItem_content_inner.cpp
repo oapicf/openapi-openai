@@ -34,6 +34,8 @@ RealtimeConversationItem_content_inner::RealtimeConversationItem_content_inner()
     
 }
 
+RealtimeConversationItem_content_inner::~RealtimeConversationItem_content_inner() = default;
+
 void RealtimeConversationItem_content_inner::validate() const
 {
     std::stringstream msg;

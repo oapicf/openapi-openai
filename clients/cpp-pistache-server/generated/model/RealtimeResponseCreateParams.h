@@ -38,7 +38,7 @@ class  RealtimeResponseCreateParams
 {
 public:
     RealtimeResponseCreateParams();
-    virtual ~RealtimeResponseCreateParams() = default;
+    virtual ~RealtimeResponseCreateParams();
 
 
     /// <summary>

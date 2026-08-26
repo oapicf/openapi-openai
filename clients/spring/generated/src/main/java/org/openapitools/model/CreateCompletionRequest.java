@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.math.BigDecimal;
@@ -17,56 +18,71 @@ import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * CreateCompletionRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateCompletionRequest {
 
   private CreateCompletionRequestModel model;
 
   private JsonNullable<CreateCompletionRequestPrompt> prompt = JsonNullable.<CreateCompletionRequestPrompt>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 0) @Max(value = 20) Integer> bestOf = JsonNullable.<Integer>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> echo = JsonNullable.<Boolean>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> frequencyPenalty = JsonNullable.<BigDecimal>undefined();
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Map<String, Integer>> logitBias = JsonNullable.<Map<String, Integer>>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 0) @Max(value = 5) Integer> logprobs = JsonNullable.<Integer>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 0) Integer> maxTokens = JsonNullable.<Integer>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 1) @Max(value = 128) Integer> n = JsonNullable.<Integer>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> presencePenalty = JsonNullable.<BigDecimal>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = -9223372036854776000) @Max(value = 9223372036854776000) Integer> seed = JsonNullable.<Integer>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<CreateCompletionRequestStop> stop = JsonNullable.<CreateCompletionRequestStop>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> stream = JsonNullable.<Boolean>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<ChatCompletionStreamOptions> streamOptions = JsonNullable.<ChatCompletionStreamOptions>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> suffix = JsonNullable.<String>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String user;
 
   public CreateCompletionRequest() {
@@ -97,6 +113,7 @@ public class CreateCompletionRequest {
     return model;
   }
 
+  @JsonProperty("model")
   public void setModel(CreateCompletionRequestModel model) {
     this.model = model;
   }
@@ -117,6 +134,7 @@ public class CreateCompletionRequest {
     return prompt;
   }
 
+  @JsonProperty("prompt")
   public void setPrompt(JsonNullable<CreateCompletionRequestPrompt> prompt) {
     this.prompt = prompt;
   }
@@ -462,6 +480,7 @@ public class CreateCompletionRequest {
     return user;
   }
 
+  @JsonProperty("user")
   public void setUser(@Nullable String user) {
     this.user = user;
   }
@@ -541,11 +560,8 @@ public class CreateCompletionRequest {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

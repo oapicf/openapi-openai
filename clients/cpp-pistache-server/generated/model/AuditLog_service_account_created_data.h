@@ -32,7 +32,7 @@ class  AuditLog_service_account_created_data
 {
 public:
     AuditLog_service_account_created_data();
-    virtual ~AuditLog_service_account_created_data() = default;
+    virtual ~AuditLog_service_account_created_data();
 
 
     /// <summary>

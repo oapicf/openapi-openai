@@ -12,18 +12,21 @@ static chat_completion_request_assistant_message_audio_t *chat_completion_reques
     if (!chat_completion_request_assistant_message_audio_local_var) {
         return NULL;
     }
-    chat_completion_request_assistant_message_audio_local_var->id = id;
-
+    memset(chat_completion_request_assistant_message_audio_local_var, 0, sizeof(chat_completion_request_assistant_message_audio_t));
     chat_completion_request_assistant_message_audio_local_var->_library_owned = 1;
+    chat_completion_request_assistant_message_audio_local_var->id = id;
     return chat_completion_request_assistant_message_audio_local_var;
 }
 
 __attribute__((deprecated)) chat_completion_request_assistant_message_audio_t *chat_completion_request_assistant_message_audio_create(
     char *id
     ) {
-    return chat_completion_request_assistant_message_audio_create_internal (
+    chat_completion_request_assistant_message_audio_t *result = chat_completion_request_assistant_message_audio_create_internal (
         id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_request_assistant_message_audio_free(chat_completion_request_assistant_message_audio_t *chat_completion_request_assistant_message_audio) {
@@ -65,6 +68,8 @@ chat_completion_request_assistant_message_audio_t *chat_completion_request_assis
 
     chat_completion_request_assistant_message_audio_t *chat_completion_request_assistant_message_audio_local_var = NULL;
 
+    char *id_local_str = NULL;
+
     // chat_completion_request_assistant_message_audio->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(chat_completion_request_assistant_message_audioJSON, "id");
     if (cJSON_IsNull(id)) {
@@ -81,12 +86,22 @@ chat_completion_request_assistant_message_audio_t *chat_completion_request_assis
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     chat_completion_request_assistant_message_audio_local_var = chat_completion_request_assistant_message_audio_create_internal (
-        strdup(id->valuestring)
+        id_local_str
         );
+
+    if (!chat_completion_request_assistant_message_audio_local_var) {
+        goto end;
+    }
 
     return chat_completion_request_assistant_message_audio_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     return NULL;
 
 }

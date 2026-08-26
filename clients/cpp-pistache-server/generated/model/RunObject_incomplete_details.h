@@ -32,7 +32,7 @@ class  RunObject_incomplete_details
 {
 public:
     RunObject_incomplete_details();
-    virtual ~RunObject_incomplete_details() = default;
+    virtual ~RunObject_incomplete_details();
 
 
     /// <summary>

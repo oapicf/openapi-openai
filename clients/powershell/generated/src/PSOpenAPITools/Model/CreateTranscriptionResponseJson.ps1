@@ -40,7 +40,7 @@ function Initialize-CreateTranscriptionResponseJson {
 
 
         $PSO = [PSCustomObject]@{
-            "text" = ${Text}
+            'text' = ${Text}
         }
 
 
@@ -78,7 +78,7 @@ function ConvertFrom-JsonToCreateTranscriptionResponseJson {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateTranscriptionResponseJson
-        $AllProperties = ("text")
+        $AllProperties = ('text')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -89,14 +89,14 @@ function ConvertFrom-JsonToCreateTranscriptionResponseJson {
             throw "Error! Empty JSON cannot be serialized due to the required property 'text' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "text"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'text'))) {
             throw "Error! JSON cannot be serialized due to the required property 'text' missing."
         } else {
-            $Text = $JsonParameters.PSobject.Properties["text"].value
+            $Text = $JsonParameters.PSobject.Properties['text'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "text" = ${Text}
+            'text' = ${Text}
         }
 
         return $PSO

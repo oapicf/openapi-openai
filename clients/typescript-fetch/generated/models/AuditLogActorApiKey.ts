@@ -42,7 +42,7 @@ export interface AuditLogActorApiKey {
     id?: string;
     /**
      * The type of API key. Can be either `user` or `service_account`.
-     * @type {string}
+     * @type {AuditLogActorApiKeyTypeEnum}
      * @memberof AuditLogActorApiKey
      */
     type?: AuditLogActorApiKeyTypeEnum;

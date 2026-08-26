@@ -1,0 +1,33 @@
+import { RealtimeConversationItem } from './realtime-conversation-item';
+
+
+/**
+ * Returned when a new Item is created during Response generation.
+ */
+export interface RealtimeServerEventResponseOutputItemAdded { 
+  /**
+   * The unique ID of the server event.
+   */
+  event_id: string;
+  /**
+   * The event type, must be `response.output_item.added`.
+   */
+  type: RealtimeServerEventResponseOutputItemAdded.TypeEnum;
+  /**
+   * The ID of the Response to which the item belongs.
+   */
+  response_id: string;
+  /**
+   * The index of the output item in the Response.
+   */
+  output_index: number;
+  item: RealtimeConversationItem;
+}
+export namespace RealtimeServerEventResponseOutputItemAdded {
+  export const TypeEnum = {
+    ResponseOutputItemAdded: 'response.output_item.added'
+  } as const;
+  export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
+}
+
+

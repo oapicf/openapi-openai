@@ -1,4 +1,4 @@
-# # RealtimeServerEventResponseTextDone
+# RealtimeServerEventResponseTextDone
 
 ## Properties
 

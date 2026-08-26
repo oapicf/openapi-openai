@@ -1,4 +1,4 @@
-# # UserDeleteResponse
+# UserDeleteResponse
 
 ## Properties
 

@@ -51,7 +51,7 @@ class RunStepDeltaObjectDeltaStepDetails
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['message_creation', 'tool_calls'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class RunStepDeltaObjectDeltaStepDetails
      * @var RunStepDeltaStepDetailsMessageCreationObjectMessageCreation|null
      * @SerializedName("message_creation")
      * @Type("OpenAPI\Server\Model\RunStepDeltaStepDetailsMessageCreationObjectMessageCreation")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RunStepDeltaStepDetailsMessageCreationObjectMessageCreation")]
     protected ?RunStepDeltaStepDetailsMessageCreationObjectMessageCreation $messageCreation = null;
 
@@ -71,7 +71,7 @@ class RunStepDeltaObjectDeltaStepDetails
      * @var RunStepDeltaStepDetailsToolCallsObjectToolCallsInner[]|null
      * @SerializedName("tool_calls")
      * @Type("array<OpenAPI\Server\Model\RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\RunStepDeltaStepDetailsToolCallsObjectToolCallsInner"),
     ])]
@@ -101,12 +101,12 @@ class RunStepDeltaObjectDeltaStepDetails
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `message_creation`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `message_creation`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -128,12 +128,12 @@ class RunStepDeltaObjectDeltaStepDetails
     }
 
     /**
-    * Sets messageCreation.
-    *
-    * @param RunStepDeltaStepDetailsMessageCreationObjectMessageCreation|null $messageCreation
-    *
-    * @return $this
-    */
+     * Sets messageCreation.
+     *
+     * @param RunStepDeltaStepDetailsMessageCreationObjectMessageCreation|null $messageCreation
+     *
+     * @return $this
+     */
     public function setMessageCreation(?RunStepDeltaStepDetailsMessageCreationObjectMessageCreation $messageCreation = null): self
     {
         $this->messageCreation = $messageCreation;
@@ -155,12 +155,12 @@ class RunStepDeltaObjectDeltaStepDetails
     }
 
     /**
-    * Sets toolCalls.
-    *
-    * @param RunStepDeltaStepDetailsToolCallsObjectToolCallsInner[]|null $toolCalls  An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`.
-    *
-    * @return $this
-    */
+     * Sets toolCalls.
+     *
+     * @param RunStepDeltaStepDetailsToolCallsObjectToolCallsInner[]|null $toolCalls  An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`.
+     *
+     * @return $this
+     */
     public function setToolCalls(?array $toolCalls = null): self
     {
         $this->toolCalls = $toolCalls;

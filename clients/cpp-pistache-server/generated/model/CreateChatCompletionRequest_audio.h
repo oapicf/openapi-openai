@@ -32,7 +32,7 @@ class  CreateChatCompletionRequest_audio
 {
 public:
     CreateChatCompletionRequest_audio();
-    virtual ~CreateChatCompletionRequest_audio() = default;
+    virtual ~CreateChatCompletionRequest_audio();
 
 
     /// <summary>

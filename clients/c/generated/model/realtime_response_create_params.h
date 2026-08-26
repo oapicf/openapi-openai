@@ -54,7 +54,7 @@ typedef struct realtime_response_create_params_t {
     openai_api_realtime_response_create_params_OUTPUTAUDIOFORMAT_e output_audio_format; //enum
     list_t *tools; //nonprimitive container
     char *tool_choice; // string
-    double temperature; //numeric
+    double *temperature; //numeric
     struct realtime_response_create_params_max_response_output_tokens_t *max_response_output_tokens; //model
     struct realtime_response_create_params_conversation_t *conversation; //model
     object_t *metadata; //object
@@ -70,7 +70,7 @@ __attribute__((deprecated)) realtime_response_create_params_t *realtime_response
     openai_api_realtime_response_create_params_OUTPUTAUDIOFORMAT_e output_audio_format,
     list_t *tools,
     char *tool_choice,
-    double temperature,
+    double *temperature,
     realtime_response_create_params_max_response_output_tokens_t *max_response_output_tokens,
     realtime_response_create_params_conversation_t *conversation,
     object_t *metadata,

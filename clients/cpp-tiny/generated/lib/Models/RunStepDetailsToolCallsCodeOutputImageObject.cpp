@@ -86,7 +86,7 @@ RunStepDetailsToolCallsCodeOutputImageObject::getType()
 }
 
 void
-RunStepDetailsToolCallsCodeOutputImageObject::setType(std::string  type)
+RunStepDetailsToolCallsCodeOutputImageObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ RunStepDetailsToolCallsCodeOutputImageObject::getImage()
 }
 
 void
-RunStepDetailsToolCallsCodeOutputImageObject::setImage(RunStepDetailsToolCallsCodeOutputImageObject_image  image)
+RunStepDetailsToolCallsCodeOutputImageObject::setImage(RunStepDetailsToolCallsCodeOutputImageObject_image image)
 {
 	this->image = image;
 }

@@ -1,4 +1,4 @@
-# # ChatCompletionMessageToolCallChunk
+# ChatCompletionMessageToolCallChunk
 
 ## Properties
 

@@ -56,7 +56,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The title of the project as seen on the dashboard.</value>
         [JsonPropertyName("title")]
-        public string? Title { get { return this.TitleOption; } set { this.TitleOption = new(value); } }
+        public string? Title { get { return this.TitleOption.Value; } set { this.TitleOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogProjectUpdatedChangesRequested" />
     /// </summary>
-    public class AuditLogProjectUpdatedChangesRequestedJsonConverter : JsonConverter<AuditLogProjectUpdatedChangesRequested>
+    public partial class AuditLogProjectUpdatedChangesRequestedJsonConverter : JsonConverter<AuditLogProjectUpdatedChangesRequested>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogProjectUpdatedChangesRequestedJsonConverter" /> class.
+        /// </summary>
+        public AuditLogProjectUpdatedChangesRequestedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogProjectUpdatedChangesRequested" />
         /// </summary>

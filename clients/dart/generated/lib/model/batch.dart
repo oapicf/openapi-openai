@@ -302,10 +302,20 @@ class Batch {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Batch[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Batch[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "Batch[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "Batch[id]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "Batch[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "Batch[object]" has a null value in JSON.');
+        assert(json.containsKey(r'endpoint'), 'Required key "Batch[endpoint]" is missing from JSON.');
+        assert(json[r'endpoint'] != null, 'Required key "Batch[endpoint]" has a null value in JSON.');
+        assert(json.containsKey(r'input_file_id'), 'Required key "Batch[input_file_id]" is missing from JSON.');
+        assert(json[r'input_file_id'] != null, 'Required key "Batch[input_file_id]" has a null value in JSON.');
+        assert(json.containsKey(r'completion_window'), 'Required key "Batch[completion_window]" is missing from JSON.');
+        assert(json[r'completion_window'] != null, 'Required key "Batch[completion_window]" has a null value in JSON.');
+        assert(json.containsKey(r'status'), 'Required key "Batch[status]" is missing from JSON.');
+        assert(json[r'status'] != null, 'Required key "Batch[status]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "Batch[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "Batch[created_at]" has a null value in JSON.');
         return true;
       }());
 
@@ -388,27 +398,28 @@ class Batch {
 }
 
 /// The object type, which is always `batch`.
-class BatchObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const BatchObjectEnum._(this.value);
+enum BatchObjectEnum {
+  batch._(r'batch'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const BatchObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const batch = BatchObjectEnum._(r'batch');
-
-  /// List of all possible values in this [enum][BatchObjectEnum].
-  static const values = <BatchObjectEnum>[
-    batch,
-  ];
-
+  /// Returns the instance of [BatchObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static BatchObjectEnum? fromJson(dynamic value) => BatchObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [BatchObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<BatchObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <BatchObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -430,9 +441,10 @@ class BatchObjectEnumTypeTransformer {
 
   const BatchObjectEnumTypeTransformer._();
 
-  String encode(BatchObjectEnum data) => data.value;
+  String encode(BatchObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a BatchObjectEnum.
+  /// Returns the instance of [BatchObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -441,6 +453,9 @@ class BatchObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   BatchObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is BatchObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'batch': return BatchObjectEnum.batch;
@@ -453,47 +468,41 @@ class BatchObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [BatchObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static BatchObjectEnumTypeTransformer? _instance;
 }
 
 
 /// The current status of the batch.
-class BatchStatusEnum {
-  /// Instantiate a new enum with the provided [value].
-  const BatchStatusEnum._(this.value);
+enum BatchStatusEnum {
+  validating._(r'validating'),
+  failed._(r'failed'),
+  inProgress._(r'in_progress'),
+  finalizing._(r'finalizing'),
+  completed._(r'completed'),
+  expired._(r'expired'),
+  cancelling._(r'cancelling'),
+  cancelled._(r'cancelled'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const BatchStatusEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const validating = BatchStatusEnum._(r'validating');
-  static const failed = BatchStatusEnum._(r'failed');
-  static const inProgress = BatchStatusEnum._(r'in_progress');
-  static const finalizing = BatchStatusEnum._(r'finalizing');
-  static const completed = BatchStatusEnum._(r'completed');
-  static const expired = BatchStatusEnum._(r'expired');
-  static const cancelling = BatchStatusEnum._(r'cancelling');
-  static const cancelled = BatchStatusEnum._(r'cancelled');
-
-  /// List of all possible values in this [enum][BatchStatusEnum].
-  static const values = <BatchStatusEnum>[
-    validating,
-    failed,
-    inProgress,
-    finalizing,
-    completed,
-    expired,
-    cancelling,
-    cancelled,
-  ];
-
+  /// Returns the instance of [BatchStatusEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static BatchStatusEnum? fromJson(dynamic value) => BatchStatusEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [BatchStatusEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<BatchStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <BatchStatusEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -515,9 +524,10 @@ class BatchStatusEnumTypeTransformer {
 
   const BatchStatusEnumTypeTransformer._();
 
-  String encode(BatchStatusEnum data) => data.value;
+  String encode(BatchStatusEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a BatchStatusEnum.
+  /// Returns the instance of [BatchStatusEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -526,6 +536,9 @@ class BatchStatusEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   BatchStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is BatchStatusEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'validating': return BatchStatusEnum.validating;
@@ -545,7 +558,7 @@ class BatchStatusEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [BatchStatusEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static BatchStatusEnumTypeTransformer? _instance;
 }
 

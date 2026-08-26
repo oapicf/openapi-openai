@@ -32,7 +32,7 @@ class  MessageDeltaContentRefusalObject
 {
 public:
     MessageDeltaContentRefusalObject();
-    virtual ~MessageDeltaContentRefusalObject() = default;
+    virtual ~MessageDeltaContentRefusalObject();
 
 
     /// <summary>

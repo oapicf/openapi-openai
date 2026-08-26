@@ -484,7 +484,7 @@ pub async fn list_files_in_vector_store_batch(configuration: &configuration::Con
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_order {
-        req_builder = req_builder.query(&[("order", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("order", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_after {
         req_builder = req_builder.query(&[("after", &param_value.to_string())]);
@@ -493,7 +493,7 @@ pub async fn list_files_in_vector_store_batch(configuration: &configuration::Con
         req_builder = req_builder.query(&[("before", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_filter {
-        req_builder = req_builder.query(&[("filter", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
@@ -543,7 +543,7 @@ pub async fn list_vector_store_files(configuration: &configuration::Configuratio
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_order {
-        req_builder = req_builder.query(&[("order", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("order", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_after {
         req_builder = req_builder.query(&[("after", &param_value.to_string())]);
@@ -552,7 +552,7 @@ pub async fn list_vector_store_files(configuration: &configuration::Configuratio
         req_builder = req_builder.query(&[("before", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_filter {
-        req_builder = req_builder.query(&[("filter", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
@@ -600,7 +600,7 @@ pub async fn list_vector_stores(configuration: &configuration::Configuration, li
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_order {
-        req_builder = req_builder.query(&[("order", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("order", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_after {
         req_builder = req_builder.query(&[("after", &param_value.to_string())]);

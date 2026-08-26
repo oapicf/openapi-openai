@@ -33,7 +33,7 @@ class  AuditLog_rate_limit_updated
 {
 public:
     AuditLog_rate_limit_updated();
-    virtual ~AuditLog_rate_limit_updated() = default;
+    virtual ~AuditLog_rate_limit_updated();
 
 
     /// <summary>

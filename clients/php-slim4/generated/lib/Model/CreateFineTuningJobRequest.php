@@ -65,7 +65,8 @@ class CreateFineTuningJobRequest extends BaseModel
       "minLength" : 1,
       "type" : "string",
       "description" : "A string of up to 64 characters that will be added to your fine-tuned model name.\n\nFor example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`.\n",
-      "nullable" : true
+      "nullable" : true,
+      "default" : null
     },
     "validation_file" : {
       "type" : "string",

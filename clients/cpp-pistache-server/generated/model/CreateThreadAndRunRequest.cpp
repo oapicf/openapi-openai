@@ -47,6 +47,8 @@ CreateThreadAndRunRequest::CreateThreadAndRunRequest()
     
 }
 
+CreateThreadAndRunRequest::~CreateThreadAndRunRequest() = default;
+
 void CreateThreadAndRunRequest::validate() const
 {
     std::stringstream msg;

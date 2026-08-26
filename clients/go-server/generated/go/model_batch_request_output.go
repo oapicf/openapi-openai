@@ -27,7 +27,8 @@ type BatchRequestOutput struct {
 	Error *BatchRequestOutputError `json:"error,omitempty"`
 }
 
-// AssertBatchRequestOutputRequired checks if the required fields are not zero-ed
+// AssertBatchRequestOutputRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertBatchRequestOutputRequired(obj BatchRequestOutput) error {
 	if obj.Response != nil {
 		if err := AssertBatchRequestOutputResponseRequired(*obj.Response); err != nil {

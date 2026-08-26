@@ -13,10 +13,10 @@ static fine_tune_completion_request_input_t *fine_tune_completion_request_input_
     if (!fine_tune_completion_request_input_local_var) {
         return NULL;
     }
+    memset(fine_tune_completion_request_input_local_var, 0, sizeof(fine_tune_completion_request_input_t));
+    fine_tune_completion_request_input_local_var->_library_owned = 1;
     fine_tune_completion_request_input_local_var->prompt = prompt;
     fine_tune_completion_request_input_local_var->completion = completion;
-
-    fine_tune_completion_request_input_local_var->_library_owned = 1;
     return fine_tune_completion_request_input_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) fine_tune_completion_request_input_t *fine_tune_comp
     char *prompt,
     char *completion
     ) {
-    return fine_tune_completion_request_input_create_internal (
+    fine_tune_completion_request_input_t *result = fine_tune_completion_request_input_create_internal (
         prompt,
         completion
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void fine_tune_completion_request_input_free(fine_tune_completion_request_input_t *fine_tune_completion_request_input) {
@@ -80,6 +83,10 @@ fine_tune_completion_request_input_t *fine_tune_completion_request_input_parseFr
 
     fine_tune_completion_request_input_t *fine_tune_completion_request_input_local_var = NULL;
 
+    char *prompt_local_str = NULL;
+
+    char *completion_local_str = NULL;
+
     // fine_tune_completion_request_input->prompt
     cJSON *prompt = cJSON_GetObjectItemCaseSensitive(fine_tune_completion_request_inputJSON, "prompt");
     if (cJSON_IsNull(prompt)) {
@@ -105,13 +112,28 @@ fine_tune_completion_request_input_t *fine_tune_completion_request_input_parseFr
     }
 
 
+    if (prompt && !cJSON_IsNull(prompt)) prompt_local_str = strdup(prompt->valuestring);
+    if (completion && !cJSON_IsNull(completion)) completion_local_str = strdup(completion->valuestring);
+
     fine_tune_completion_request_input_local_var = fine_tune_completion_request_input_create_internal (
-        prompt && !cJSON_IsNull(prompt) ? strdup(prompt->valuestring) : NULL,
-        completion && !cJSON_IsNull(completion) ? strdup(completion->valuestring) : NULL
+        prompt_local_str,
+        completion_local_str
         );
+
+    if (!fine_tune_completion_request_input_local_var) {
+        goto end;
+    }
 
     return fine_tune_completion_request_input_local_var;
 end:
+    if (prompt_local_str) {
+        free(prompt_local_str);
+        prompt_local_str = NULL;
+    }
+    if (completion_local_str) {
+        free(completion_local_str);
+        completion_local_str = NULL;
+    }
     return NULL;
 
 }

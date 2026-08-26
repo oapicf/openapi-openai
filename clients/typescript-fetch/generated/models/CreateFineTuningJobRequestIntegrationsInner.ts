@@ -28,8 +28,9 @@ import {
  */
 export interface CreateFineTuningJobRequestIntegrationsInner {
     /**
+     * The type of integration to enable. Currently, only "wandb" (Weights and Biases) is supported.
      * 
-     * @type {string}
+     * @type {CreateFineTuningJobRequestIntegrationsInnerTypeEnum}
      * @memberof CreateFineTuningJobRequestIntegrationsInner
      */
     type: CreateFineTuningJobRequestIntegrationsInnerTypeEnum;
@@ -56,6 +57,8 @@ export type CreateFineTuningJobRequestIntegrationsInnerTypeEnum = typeof CreateF
  */
 export function instanceOfCreateFineTuningJobRequestIntegrationsInner(value: object): value is CreateFineTuningJobRequestIntegrationsInner {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'wandb') return false;
+    
     if (!('wandb' in value) || value['wandb'] === undefined) return false;
     return true;
 }

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.ImagesApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -33,7 +32,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.openAI.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:/v1}")
 class ImagesApiController() {
 
     @Operation(
@@ -46,7 +45,8 @@ class ImagesApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_IMAGE /* "/images/generations" */],
+        // "/images/generations"
+        value = [PATH_CREATE_IMAGE],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -66,7 +66,8 @@ class ImagesApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_IMAGE_EDIT /* "/images/edits" */],
+        // "/images/edits"
+        value = [PATH_CREATE_IMAGE_EDIT],
         produces = ["application/json"],
         consumes = ["multipart/form-data"]
     )
@@ -93,7 +94,8 @@ class ImagesApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_IMAGE_VARIATION /* "/images/variations" */],
+        // "/images/variations"
+        value = [PATH_CREATE_IMAGE_VARIATION],
         produces = ["application/json"],
         consumes = ["multipart/form-data"]
     )

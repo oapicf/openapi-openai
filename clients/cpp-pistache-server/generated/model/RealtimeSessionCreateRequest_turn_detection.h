@@ -32,7 +32,7 @@ class  RealtimeSessionCreateRequest_turn_detection
 {
 public:
     RealtimeSessionCreateRequest_turn_detection();
-    virtual ~RealtimeSessionCreateRequest_turn_detection() = default;
+    virtual ~RealtimeSessionCreateRequest_turn_detection();
 
 
     /// <summary>

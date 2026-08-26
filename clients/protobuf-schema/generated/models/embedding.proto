@@ -28,7 +28,7 @@ message Embedding {
     OBJECT_EMBEDDING = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
 }
 

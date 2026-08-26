@@ -49,7 +49,7 @@ class ProjectApiKeyOwner
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['user', 'service_account'])]
     #[Assert\Type("string")]
     protected ?string $type = null;
@@ -58,7 +58,7 @@ class ProjectApiKeyOwner
      * @var ProjectUser|null
      * @SerializedName("user")
      * @Type("OpenAPI\Server\Model\ProjectUser")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\ProjectUser")]
     protected ?ProjectUser $user = null;
 
@@ -66,7 +66,7 @@ class ProjectApiKeyOwner
      * @var ProjectServiceAccount|null
      * @SerializedName("service_account")
      * @Type("OpenAPI\Server\Model\ProjectServiceAccount")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\ProjectServiceAccount")]
     protected ?ProjectServiceAccount $serviceAccount = null;
 
@@ -94,12 +94,12 @@ class ProjectApiKeyOwner
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  `user` or `service_account`
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  `user` or `service_account`
+     *
+     * @return $this
+     */
     public function setType(?string $type = null): self
     {
         $this->type = $type;
@@ -121,12 +121,12 @@ class ProjectApiKeyOwner
     }
 
     /**
-    * Sets user.
-    *
-    * @param ProjectUser|null $user
-    *
-    * @return $this
-    */
+     * Sets user.
+     *
+     * @param ProjectUser|null $user
+     *
+     * @return $this
+     */
     public function setUser(?ProjectUser $user = null): self
     {
         $this->user = $user;
@@ -148,12 +148,12 @@ class ProjectApiKeyOwner
     }
 
     /**
-    * Sets serviceAccount.
-    *
-    * @param ProjectServiceAccount|null $serviceAccount
-    *
-    * @return $this
-    */
+     * Sets serviceAccount.
+     *
+     * @param ProjectServiceAccount|null $serviceAccount
+     *
+     * @return $this
+     */
     public function setServiceAccount(?ProjectServiceAccount $serviceAccount = null): self
     {
         $this->serviceAccount = $serviceAccount;

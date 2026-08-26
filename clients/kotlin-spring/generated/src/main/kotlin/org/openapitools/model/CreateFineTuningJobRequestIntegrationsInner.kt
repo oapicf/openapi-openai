@@ -18,21 +18,23 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param type 
+ * @param type The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
  * @param wandb 
  */
 data class CreateFineTuningJobRequestIntegrationsInner(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. ")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: CreateFineTuningJobRequestIntegrationsInner.Type,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("wandb")
     @get:JsonProperty("wandb", required = true) val wandb: CreateFineTuningJobRequestIntegrationsInnerWandb
 ) {
 
     /**
-    * 
+    * The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
     * Values: wandb
     */
     enum class Type(@get:JsonValue val value: kotlin.String) {
@@ -44,7 +46,7 @@ data class CreateFineTuningJobRequestIntegrationsInner(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateFineTuningJobRequestIntegrationsInner'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

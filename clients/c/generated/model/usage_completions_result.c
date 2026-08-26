@@ -24,22 +24,24 @@ openai_api_usage_completions_result_OBJECT_e usage_completions_result_object_Fro
 
 static usage_completions_result_t *usage_completions_result_create_internal(
     openai_api_usage_completions_result_OBJECT_e object,
-    int input_tokens,
-    int input_cached_tokens,
-    int output_tokens,
-    int input_audio_tokens,
-    int output_audio_tokens,
-    int num_model_requests,
+    int *input_tokens,
+    int *input_cached_tokens,
+    int *output_tokens,
+    int *input_audio_tokens,
+    int *output_audio_tokens,
+    int *num_model_requests,
     char *project_id,
     char *user_id,
     char *api_key_id,
     char *model,
-    int batch
+    int *batch
     ) {
     usage_completions_result_t *usage_completions_result_local_var = malloc(sizeof(usage_completions_result_t));
     if (!usage_completions_result_local_var) {
         return NULL;
     }
+    memset(usage_completions_result_local_var, 0, sizeof(usage_completions_result_t));
+    usage_completions_result_local_var->_library_owned = 1;
     usage_completions_result_local_var->object = object;
     usage_completions_result_local_var->input_tokens = input_tokens;
     usage_completions_result_local_var->input_cached_tokens = input_cached_tokens;
@@ -52,39 +54,82 @@ static usage_completions_result_t *usage_completions_result_create_internal(
     usage_completions_result_local_var->api_key_id = api_key_id;
     usage_completions_result_local_var->model = model;
     usage_completions_result_local_var->batch = batch;
-
-    usage_completions_result_local_var->_library_owned = 1;
     return usage_completions_result_local_var;
 }
 
 __attribute__((deprecated)) usage_completions_result_t *usage_completions_result_create(
     openai_api_usage_completions_result_OBJECT_e object,
-    int input_tokens,
-    int input_cached_tokens,
-    int output_tokens,
-    int input_audio_tokens,
-    int output_audio_tokens,
-    int num_model_requests,
+    int *input_tokens,
+    int *input_cached_tokens,
+    int *output_tokens,
+    int *input_audio_tokens,
+    int *output_audio_tokens,
+    int *num_model_requests,
     char *project_id,
     char *user_id,
     char *api_key_id,
     char *model,
-    int batch
+    int *batch
     ) {
-    return usage_completions_result_create_internal (
+    int *input_tokens_copy = NULL;
+    if (input_tokens) {
+        input_tokens_copy = malloc(sizeof(int));
+        if (input_tokens_copy) *input_tokens_copy = *input_tokens;
+    }
+    int *input_cached_tokens_copy = NULL;
+    if (input_cached_tokens) {
+        input_cached_tokens_copy = malloc(sizeof(int));
+        if (input_cached_tokens_copy) *input_cached_tokens_copy = *input_cached_tokens;
+    }
+    int *output_tokens_copy = NULL;
+    if (output_tokens) {
+        output_tokens_copy = malloc(sizeof(int));
+        if (output_tokens_copy) *output_tokens_copy = *output_tokens;
+    }
+    int *input_audio_tokens_copy = NULL;
+    if (input_audio_tokens) {
+        input_audio_tokens_copy = malloc(sizeof(int));
+        if (input_audio_tokens_copy) *input_audio_tokens_copy = *input_audio_tokens;
+    }
+    int *output_audio_tokens_copy = NULL;
+    if (output_audio_tokens) {
+        output_audio_tokens_copy = malloc(sizeof(int));
+        if (output_audio_tokens_copy) *output_audio_tokens_copy = *output_audio_tokens;
+    }
+    int *num_model_requests_copy = NULL;
+    if (num_model_requests) {
+        num_model_requests_copy = malloc(sizeof(int));
+        if (num_model_requests_copy) *num_model_requests_copy = *num_model_requests;
+    }
+    int *batch_copy = NULL;
+    if (batch) {
+        batch_copy = malloc(sizeof(int));
+        if (batch_copy) *batch_copy = *batch;
+    }
+    usage_completions_result_t *result = usage_completions_result_create_internal (
         object,
-        input_tokens,
-        input_cached_tokens,
-        output_tokens,
-        input_audio_tokens,
-        output_audio_tokens,
-        num_model_requests,
+        input_tokens_copy,
+        input_cached_tokens_copy,
+        output_tokens_copy,
+        input_audio_tokens_copy,
+        output_audio_tokens_copy,
+        num_model_requests_copy,
         project_id,
         user_id,
         api_key_id,
         model,
-        batch
+        batch_copy
         );
+    if (!result) {
+        free(input_tokens_copy);
+        free(input_cached_tokens_copy);
+        free(output_tokens_copy);
+        free(input_audio_tokens_copy);
+        free(output_audio_tokens_copy);
+        free(num_model_requests_copy);
+        free(batch_copy);
+    }
+    return result;
 }
 
 void usage_completions_result_free(usage_completions_result_t *usage_completions_result) {
@@ -96,6 +141,30 @@ void usage_completions_result_free(usage_completions_result_t *usage_completions
         return ;
     }
     listEntry_t *listEntry;
+    if (usage_completions_result->input_tokens) {
+        free(usage_completions_result->input_tokens);
+        usage_completions_result->input_tokens = NULL;
+    }
+    if (usage_completions_result->input_cached_tokens) {
+        free(usage_completions_result->input_cached_tokens);
+        usage_completions_result->input_cached_tokens = NULL;
+    }
+    if (usage_completions_result->output_tokens) {
+        free(usage_completions_result->output_tokens);
+        usage_completions_result->output_tokens = NULL;
+    }
+    if (usage_completions_result->input_audio_tokens) {
+        free(usage_completions_result->input_audio_tokens);
+        usage_completions_result->input_audio_tokens = NULL;
+    }
+    if (usage_completions_result->output_audio_tokens) {
+        free(usage_completions_result->output_audio_tokens);
+        usage_completions_result->output_audio_tokens = NULL;
+    }
+    if (usage_completions_result->num_model_requests) {
+        free(usage_completions_result->num_model_requests);
+        usage_completions_result->num_model_requests = NULL;
+    }
     if (usage_completions_result->project_id) {
         free(usage_completions_result->project_id);
         usage_completions_result->project_id = NULL;
@@ -111,6 +180,10 @@ void usage_completions_result_free(usage_completions_result_t *usage_completions
     if (usage_completions_result->model) {
         free(usage_completions_result->model);
         usage_completions_result->model = NULL;
+    }
+    if (usage_completions_result->batch) {
+        free(usage_completions_result->batch);
+        usage_completions_result->batch = NULL;
     }
     free(usage_completions_result);
 }
@@ -132,14 +205,14 @@ cJSON *usage_completions_result_convertToJSON(usage_completions_result_t *usage_
     if (!usage_completions_result->input_tokens) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "input_tokens", usage_completions_result->input_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "input_tokens", *usage_completions_result->input_tokens) == NULL) {
     goto fail; //Numeric
     }
 
 
     // usage_completions_result->input_cached_tokens
     if(usage_completions_result->input_cached_tokens) {
-    if(cJSON_AddNumberToObject(item, "input_cached_tokens", usage_completions_result->input_cached_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "input_cached_tokens", *usage_completions_result->input_cached_tokens) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -149,14 +222,14 @@ cJSON *usage_completions_result_convertToJSON(usage_completions_result_t *usage_
     if (!usage_completions_result->output_tokens) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "output_tokens", usage_completions_result->output_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "output_tokens", *usage_completions_result->output_tokens) == NULL) {
     goto fail; //Numeric
     }
 
 
     // usage_completions_result->input_audio_tokens
     if(usage_completions_result->input_audio_tokens) {
-    if(cJSON_AddNumberToObject(item, "input_audio_tokens", usage_completions_result->input_audio_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "input_audio_tokens", *usage_completions_result->input_audio_tokens) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -164,7 +237,7 @@ cJSON *usage_completions_result_convertToJSON(usage_completions_result_t *usage_
 
     // usage_completions_result->output_audio_tokens
     if(usage_completions_result->output_audio_tokens) {
-    if(cJSON_AddNumberToObject(item, "output_audio_tokens", usage_completions_result->output_audio_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "output_audio_tokens", *usage_completions_result->output_audio_tokens) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -174,7 +247,7 @@ cJSON *usage_completions_result_convertToJSON(usage_completions_result_t *usage_
     if (!usage_completions_result->num_model_requests) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "num_model_requests", usage_completions_result->num_model_requests) == NULL) {
+    if(cJSON_AddNumberToObject(item, "num_model_requests", *usage_completions_result->num_model_requests) == NULL) {
     goto fail; //Numeric
     }
 
@@ -213,7 +286,7 @@ cJSON *usage_completions_result_convertToJSON(usage_completions_result_t *usage_
 
     // usage_completions_result->batch
     if(usage_completions_result->batch) {
-    if(cJSON_AddBoolToObject(item, "batch", usage_completions_result->batch) == NULL) {
+    if(cJSON_AddBoolToObject(item, "batch", *usage_completions_result->batch) == NULL) {
     goto fail; //Bool
     }
     }
@@ -229,6 +302,35 @@ fail:
 usage_completions_result_t *usage_completions_result_parseFromJSON(cJSON *usage_completions_resultJSON){
 
     usage_completions_result_t *usage_completions_result_local_var = NULL;
+
+    // define the local variable for usage_completions_result->input_tokens
+    int *input_tokens_local_var = NULL;
+
+    // define the local variable for usage_completions_result->input_cached_tokens
+    int *input_cached_tokens_local_var = NULL;
+
+    // define the local variable for usage_completions_result->output_tokens
+    int *output_tokens_local_var = NULL;
+
+    // define the local variable for usage_completions_result->input_audio_tokens
+    int *input_audio_tokens_local_var = NULL;
+
+    // define the local variable for usage_completions_result->output_audio_tokens
+    int *output_audio_tokens_local_var = NULL;
+
+    // define the local variable for usage_completions_result->num_model_requests
+    int *num_model_requests_local_var = NULL;
+
+    char *project_id_local_str = NULL;
+
+    char *user_id_local_str = NULL;
+
+    char *api_key_id_local_str = NULL;
+
+    char *model_local_str = NULL;
+
+    // define the local variable for usage_completions_result->batch
+    int *batch_local_var = NULL;
 
     // usage_completions_result->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(usage_completions_resultJSON, "object");
@@ -261,6 +363,12 @@ usage_completions_result_t *usage_completions_result_parseFromJSON(cJSON *usage_
     {
     goto end; //Numeric
     }
+    input_tokens_local_var = malloc(sizeof(int));
+    if(!input_tokens_local_var)
+    {
+        goto end;
+    }
+    *input_tokens_local_var = input_tokens->valuedouble;
 
     // usage_completions_result->input_cached_tokens
     cJSON *input_cached_tokens = cJSON_GetObjectItemCaseSensitive(usage_completions_resultJSON, "input_cached_tokens");
@@ -272,6 +380,12 @@ usage_completions_result_t *usage_completions_result_parseFromJSON(cJSON *usage_
     {
     goto end; //Numeric
     }
+    input_cached_tokens_local_var = malloc(sizeof(int));
+    if(!input_cached_tokens_local_var)
+    {
+        goto end;
+    }
+    *input_cached_tokens_local_var = input_cached_tokens->valuedouble;
     }
 
     // usage_completions_result->output_tokens
@@ -288,6 +402,12 @@ usage_completions_result_t *usage_completions_result_parseFromJSON(cJSON *usage_
     {
     goto end; //Numeric
     }
+    output_tokens_local_var = malloc(sizeof(int));
+    if(!output_tokens_local_var)
+    {
+        goto end;
+    }
+    *output_tokens_local_var = output_tokens->valuedouble;
 
     // usage_completions_result->input_audio_tokens
     cJSON *input_audio_tokens = cJSON_GetObjectItemCaseSensitive(usage_completions_resultJSON, "input_audio_tokens");
@@ -299,6 +419,12 @@ usage_completions_result_t *usage_completions_result_parseFromJSON(cJSON *usage_
     {
     goto end; //Numeric
     }
+    input_audio_tokens_local_var = malloc(sizeof(int));
+    if(!input_audio_tokens_local_var)
+    {
+        goto end;
+    }
+    *input_audio_tokens_local_var = input_audio_tokens->valuedouble;
     }
 
     // usage_completions_result->output_audio_tokens
@@ -311,6 +437,12 @@ usage_completions_result_t *usage_completions_result_parseFromJSON(cJSON *usage_
     {
     goto end; //Numeric
     }
+    output_audio_tokens_local_var = malloc(sizeof(int));
+    if(!output_audio_tokens_local_var)
+    {
+        goto end;
+    }
+    *output_audio_tokens_local_var = output_audio_tokens->valuedouble;
     }
 
     // usage_completions_result->num_model_requests
@@ -327,6 +459,12 @@ usage_completions_result_t *usage_completions_result_parseFromJSON(cJSON *usage_
     {
     goto end; //Numeric
     }
+    num_model_requests_local_var = malloc(sizeof(int));
+    if(!num_model_requests_local_var)
+    {
+        goto end;
+    }
+    *num_model_requests_local_var = num_model_requests->valuedouble;
 
     // usage_completions_result->project_id
     cJSON *project_id = cJSON_GetObjectItemCaseSensitive(usage_completions_resultJSON, "project_id");
@@ -386,26 +524,85 @@ usage_completions_result_t *usage_completions_result_parseFromJSON(cJSON *usage_
     {
     goto end; //Bool
     }
+    batch_local_var = malloc(sizeof(int));
+    if(!batch_local_var)
+    {
+        goto end;
+    }
+    *batch_local_var = batch->valueint;
     }
 
 
+    if (project_id && !cJSON_IsNull(project_id)) project_id_local_str = strdup(project_id->valuestring);
+    if (user_id && !cJSON_IsNull(user_id)) user_id_local_str = strdup(user_id->valuestring);
+    if (api_key_id && !cJSON_IsNull(api_key_id)) api_key_id_local_str = strdup(api_key_id->valuestring);
+    if (model && !cJSON_IsNull(model)) model_local_str = strdup(model->valuestring);
+
     usage_completions_result_local_var = usage_completions_result_create_internal (
         objectVariable,
-        input_tokens->valuedouble,
-        input_cached_tokens ? input_cached_tokens->valuedouble : 0,
-        output_tokens->valuedouble,
-        input_audio_tokens ? input_audio_tokens->valuedouble : 0,
-        output_audio_tokens ? output_audio_tokens->valuedouble : 0,
-        num_model_requests->valuedouble,
-        project_id && !cJSON_IsNull(project_id) ? strdup(project_id->valuestring) : NULL,
-        user_id && !cJSON_IsNull(user_id) ? strdup(user_id->valuestring) : NULL,
-        api_key_id && !cJSON_IsNull(api_key_id) ? strdup(api_key_id->valuestring) : NULL,
-        model && !cJSON_IsNull(model) ? strdup(model->valuestring) : NULL,
-        batch ? batch->valueint : 0
+        input_tokens_local_var,
+        input_cached_tokens_local_var,
+        output_tokens_local_var,
+        input_audio_tokens_local_var,
+        output_audio_tokens_local_var,
+        num_model_requests_local_var,
+        project_id_local_str,
+        user_id_local_str,
+        api_key_id_local_str,
+        model_local_str,
+        batch_local_var
         );
+
+    if (!usage_completions_result_local_var) {
+        goto end;
+    }
 
     return usage_completions_result_local_var;
 end:
+    if (input_tokens_local_var) {
+        free(input_tokens_local_var);
+        input_tokens_local_var = NULL;
+    }
+    if (input_cached_tokens_local_var) {
+        free(input_cached_tokens_local_var);
+        input_cached_tokens_local_var = NULL;
+    }
+    if (output_tokens_local_var) {
+        free(output_tokens_local_var);
+        output_tokens_local_var = NULL;
+    }
+    if (input_audio_tokens_local_var) {
+        free(input_audio_tokens_local_var);
+        input_audio_tokens_local_var = NULL;
+    }
+    if (output_audio_tokens_local_var) {
+        free(output_audio_tokens_local_var);
+        output_audio_tokens_local_var = NULL;
+    }
+    if (num_model_requests_local_var) {
+        free(num_model_requests_local_var);
+        num_model_requests_local_var = NULL;
+    }
+    if (project_id_local_str) {
+        free(project_id_local_str);
+        project_id_local_str = NULL;
+    }
+    if (user_id_local_str) {
+        free(user_id_local_str);
+        user_id_local_str = NULL;
+    }
+    if (api_key_id_local_str) {
+        free(api_key_id_local_str);
+        api_key_id_local_str = NULL;
+    }
+    if (model_local_str) {
+        free(model_local_str);
+        model_local_str = NULL;
+    }
+    if (batch_local_var) {
+        free(batch_local_var);
+        batch_local_var = NULL;
+    }
     return NULL;
 
 }

@@ -12,14 +12,72 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type ErrorResponse struct {
 
 	Error Error `json:"error"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into ErrorResponse
+func (o *ErrorResponse) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"error",
+	}
 
-// AssertErrorResponseRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"error": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"error": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded ErrorResponse
+
+	if value, exists := allProperties["error"]; exists {
+		if err = json.Unmarshal(value, &decoded.Error); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertErrorResponseRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertErrorResponseRequired(obj ErrorResponse) error {
 	elements := map[string]interface{}{
 		"error": obj.Error,

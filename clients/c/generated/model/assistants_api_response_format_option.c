@@ -30,10 +30,10 @@ static assistants_api_response_format_option_t *assistants_api_response_format_o
     if (!assistants_api_response_format_option_local_var) {
         return NULL;
     }
+    memset(assistants_api_response_format_option_local_var, 0, sizeof(assistants_api_response_format_option_t));
+    assistants_api_response_format_option_local_var->_library_owned = 1;
     assistants_api_response_format_option_local_var->type = type;
     assistants_api_response_format_option_local_var->json_schema = json_schema;
-
-    assistants_api_response_format_option_local_var->_library_owned = 1;
     return assistants_api_response_format_option_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) assistants_api_response_format_option_t *assistants_
     openai_api_assistants_api_response_format_option_TYPE_e type,
     response_format_json_schema_json_schema_t *json_schema
     ) {
-    return assistants_api_response_format_option_create_internal (
+    assistants_api_response_format_option_t *result = assistants_api_response_format_option_create_internal (
         type,
         json_schema
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void assistants_api_response_format_option_free(assistants_api_response_format_option_t *assistants_api_response_format_option) {
@@ -134,10 +137,15 @@ assistants_api_response_format_option_t *assistants_api_response_format_option_p
     json_schema_local_nonprim = response_format_json_schema_json_schema_parseFromJSON(json_schema); //nonprimitive
 
 
+
     assistants_api_response_format_option_local_var = assistants_api_response_format_option_create_internal (
         typeVariable,
         json_schema_local_nonprim
         );
+
+    if (!assistants_api_response_format_option_local_var) {
+        goto end;
+    }
 
     return assistants_api_response_format_option_local_var;
 end:

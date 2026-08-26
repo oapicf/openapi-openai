@@ -1,4 +1,4 @@
-# # RealtimeSessionCreateRequest
+# RealtimeSessionCreateRequest
 
 ## Properties
 

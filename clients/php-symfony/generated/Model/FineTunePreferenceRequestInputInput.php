@@ -47,7 +47,7 @@ class FineTunePreferenceRequestInputInput
      * @var FineTuneChatRequestInputMessagesInner[]|null
      * @SerializedName("messages")
      * @Type("array<OpenAPI\Server\Model\FineTuneChatRequestInputMessagesInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\FineTuneChatRequestInputMessagesInner"),
     ])]
@@ -60,7 +60,7 @@ class FineTunePreferenceRequestInputInput
      * @var ChatCompletionTool[]|null
      * @SerializedName("tools")
      * @Type("array<OpenAPI\Server\Model\ChatCompletionTool>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\ChatCompletionTool"),
     ])]
@@ -72,7 +72,7 @@ class FineTunePreferenceRequestInputInput
      * @var bool|null
      * @SerializedName("parallel_tool_calls")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $parallelToolCalls = true;
 
@@ -100,12 +100,12 @@ class FineTunePreferenceRequestInputInput
     }
 
     /**
-    * Sets messages.
-    *
-    * @param FineTuneChatRequestInputMessagesInner[]|null $messages
-    *
-    * @return $this
-    */
+     * Sets messages.
+     *
+     * @param FineTuneChatRequestInputMessagesInner[]|null $messages
+     *
+     * @return $this
+     */
     public function setMessages(?array $messages = null): self
     {
         $this->messages = $messages;
@@ -127,12 +127,12 @@ class FineTunePreferenceRequestInputInput
     }
 
     /**
-    * Sets tools.
-    *
-    * @param ChatCompletionTool[]|null $tools  A list of tools the model may generate JSON inputs for.
-    *
-    * @return $this
-    */
+     * Sets tools.
+     *
+     * @param ChatCompletionTool[]|null $tools  A list of tools the model may generate JSON inputs for.
+     *
+     * @return $this
+     */
     public function setTools(?array $tools = null): self
     {
         $this->tools = $tools;
@@ -154,12 +154,12 @@ class FineTunePreferenceRequestInputInput
     }
 
     /**
-    * Sets parallelToolCalls.
-    *
-    * @param bool|null $parallelToolCalls  Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
-    *
-    * @return $this
-    */
+     * Sets parallelToolCalls.
+     *
+     * @param bool|null $parallelToolCalls  Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+     *
+     * @return $this
+     */
     public function setParallelToolCalls(?bool $parallelToolCalls = null): self
     {
         $this->parallelToolCalls = $parallelToolCalls;

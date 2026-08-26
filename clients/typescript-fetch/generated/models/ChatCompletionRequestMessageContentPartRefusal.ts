@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface ChatCompletionRequestMessageContentPartRefusal {
     /**
      * The type of the content part.
-     * @type {string}
+     * @type {ChatCompletionRequestMessageContentPartRefusalTypeEnum}
      * @memberof ChatCompletionRequestMessageContentPartRefusal
      */
     type: ChatCompletionRequestMessageContentPartRefusalTypeEnum;
@@ -48,6 +48,8 @@ export type ChatCompletionRequestMessageContentPartRefusalTypeEnum = typeof Chat
  */
 export function instanceOfChatCompletionRequestMessageContentPartRefusal(value: object): value is ChatCompletionRequestMessageContentPartRefusal {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'refusal') return false;
+    
     if (!('refusal' in value) || value['refusal'] === undefined) return false;
     return true;
 }

@@ -35,7 +35,7 @@ export interface InviteRequest {
     email: string;
     /**
      * `owner` or `reader`
-     * @type {string}
+     * @type {InviteRequestRoleEnum}
      * @memberof InviteRequest
      */
     role: InviteRequestRoleEnum;

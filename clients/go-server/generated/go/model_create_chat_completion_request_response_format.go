@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // CreateChatCompletionRequestResponseFormat - An object specifying the format that the model must output.  Setting to `{ \"type\": \"json_schema\", \"json_schema\": {...} }` enables Structured Outputs which ensures the model will match your supplied JSON schema. Learn more in the [Structured Outputs guide](/docs/guides/structured-outputs).  Setting to `{ \"type\": \"json_object\" }` enables JSON mode, which ensures the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \"stuck\" request. Also note that the message content may be partially cut off if `finish_reason=\"length\"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. 
@@ -22,11 +27,71 @@ type CreateChatCompletionRequestResponseFormat struct {
 
 	JsonSchema ResponseFormatJsonSchemaJsonSchema `json:"json_schema"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into CreateChatCompletionRequestResponseFormat
+func (o *CreateChatCompletionRequestResponseFormat) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"type",
+		"json_schema",
+	}
 
-// AssertCreateChatCompletionRequestResponseFormatRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"type": false,
+		"json_schema": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"type": {},
+		"json_schema": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CreateChatCompletionRequestResponseFormat
+
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["json_schema"]; exists {
+		if err = json.Unmarshal(value, &decoded.JsonSchema); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCreateChatCompletionRequestResponseFormatRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateChatCompletionRequestResponseFormatRequired(obj CreateChatCompletionRequestResponseFormat) error {
 	elements := map[string]interface{}{
-		"type": obj.Type,
 		"json_schema": obj.JsonSchema,
 	}
 	for name, el := range elements {

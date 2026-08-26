@@ -33,7 +33,7 @@ export interface DeleteThreadResponse {
     deleted: boolean;
     /**
      * 
-     * @type {string}
+     * @type {DeleteThreadResponseObjectEnum}
      * @memberof DeleteThreadResponse
      */
     object: DeleteThreadResponseObjectEnum;
@@ -56,6 +56,8 @@ export function instanceOfDeleteThreadResponse(value: object): value is DeleteTh
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('deleted' in value) || value['deleted'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'thread.deleted') return false;
+    
     return true;
 }
 

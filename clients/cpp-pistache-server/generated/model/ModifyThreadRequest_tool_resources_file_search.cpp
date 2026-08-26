@@ -25,6 +25,8 @@ ModifyThreadRequest_tool_resources_file_search::ModifyThreadRequest_tool_resourc
     
 }
 
+ModifyThreadRequest_tool_resources_file_search::~ModifyThreadRequest_tool_resources_file_search() = default;
+
 void ModifyThreadRequest_tool_resources_file_search::validate() const
 {
     std::stringstream msg;

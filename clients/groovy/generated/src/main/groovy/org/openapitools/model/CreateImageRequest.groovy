@@ -11,7 +11,7 @@ class CreateImageRequest {
     /* A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`. */
     String prompt
     
-    CreateImageRequestModel model = dall-e-2
+    CreateImageRequestModel model
     /* The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. */
     Integer n = 1
 

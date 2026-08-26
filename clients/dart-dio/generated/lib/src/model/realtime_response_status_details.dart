@@ -101,22 +101,25 @@ class _$RealtimeResponseStatusDetailsSerializer implements PrimitiveSerializer<R
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeResponseStatusDetailsTypeEnum),
-          ) as RealtimeResponseStatusDetailsTypeEnum;
+            specifiedType: const FullType.nullable(RealtimeResponseStatusDetailsTypeEnum),
+          ) as RealtimeResponseStatusDetailsTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'reason':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeResponseStatusDetailsReasonEnum),
-          ) as RealtimeResponseStatusDetailsReasonEnum;
+            specifiedType: const FullType.nullable(RealtimeResponseStatusDetailsReasonEnum),
+          ) as RealtimeResponseStatusDetailsReasonEnum?;
+          if (valueDes == null) continue;
           result.reason = valueDes;
           break;
         case r'error':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeResponseStatusDetailsError),
-          ) as RealtimeResponseStatusDetailsError;
+            specifiedType: const FullType.nullable(RealtimeResponseStatusDetailsError),
+          ) as RealtimeResponseStatusDetailsError?;
+          if (valueDes == null) continue;
           result.error.replace(valueDes);
           break;
         default:

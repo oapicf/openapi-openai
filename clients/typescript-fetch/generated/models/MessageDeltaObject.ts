@@ -36,7 +36,7 @@ export interface MessageDeltaObject {
     id: string;
     /**
      * The object type, which is always `thread.message.delta`.
-     * @type {string}
+     * @type {MessageDeltaObjectObjectEnum}
      * @memberof MessageDeltaObject
      */
     object: MessageDeltaObjectObjectEnum;
@@ -64,6 +64,8 @@ export type MessageDeltaObjectObjectEnum = typeof MessageDeltaObjectObjectEnum[k
 export function instanceOfMessageDeltaObject(value: object): value is MessageDeltaObject {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'thread.message.delta') return false;
+    
     if (!('delta' in value) || value['delta'] === undefined) return false;
     return true;
 }

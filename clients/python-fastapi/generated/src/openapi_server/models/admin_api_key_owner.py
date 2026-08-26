@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 try:
     from typing import Self
@@ -32,11 +32,11 @@ class AdminApiKeyOwner(BaseModel):
     """
     AdminApiKeyOwner
     """ # noqa: E501
-    type: Optional[StrictStr] = None
-    id: Optional[StrictStr] = None
-    name: Optional[StrictStr] = None
-    created_at: Optional[StrictInt] = None
-    role: Optional[StrictStr] = None
+    type: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["service_account"]})
+    id: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["sa_456"]})
+    name: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["My Service Account"]})
+    created_at: Optional[StrictInt] = Field(default=None, json_schema_extra={"examples": [1711471533]})
+    role: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["member"]})
     __properties: ClassVar[List[str]] = ["type", "id", "name", "created_at", "role"]
 
     model_config = {

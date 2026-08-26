@@ -128,7 +128,7 @@ AuditLog_organization_updated_changes_requested::getTitle()
 }
 
 void
-AuditLog_organization_updated_changes_requested::setTitle(std::string  title)
+AuditLog_organization_updated_changes_requested::setTitle(std::string title)
 {
 	this->title = title;
 }
@@ -140,7 +140,7 @@ AuditLog_organization_updated_changes_requested::getDescription()
 }
 
 void
-AuditLog_organization_updated_changes_requested::setDescription(std::string  description)
+AuditLog_organization_updated_changes_requested::setDescription(std::string description)
 {
 	this->description = description;
 }
@@ -152,7 +152,7 @@ AuditLog_organization_updated_changes_requested::getName()
 }
 
 void
-AuditLog_organization_updated_changes_requested::setName(std::string  name)
+AuditLog_organization_updated_changes_requested::setName(std::string name)
 {
 	this->name = name;
 }
@@ -164,7 +164,7 @@ AuditLog_organization_updated_changes_requested::getSettings()
 }
 
 void
-AuditLog_organization_updated_changes_requested::setSettings(AuditLog_organization_updated_changes_requested_settings  settings)
+AuditLog_organization_updated_changes_requested::setSettings(AuditLog_organization_updated_changes_requested_settings settings)
 {
 	this->settings = settings;
 }

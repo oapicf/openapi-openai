@@ -144,7 +144,7 @@ UsageResponse::getObject()
 }
 
 void
-UsageResponse::setObject(std::string  object)
+UsageResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -156,7 +156,7 @@ UsageResponse::getData()
 }
 
 void
-UsageResponse::setData(std::list <UsageTimeBucket> data)
+UsageResponse::setData(std::list<UsageTimeBucket> data)
 {
 	this->data = data;
 }
@@ -168,7 +168,7 @@ UsageResponse::isHasMore()
 }
 
 void
-UsageResponse::setHasMore(bool  has_more)
+UsageResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }
@@ -180,7 +180,7 @@ UsageResponse::getNextPage()
 }
 
 void
-UsageResponse::setNextPage(std::string  next_page)
+UsageResponse::setNextPage(std::string next_page)
 {
 	this->next_page = next_page;
 }

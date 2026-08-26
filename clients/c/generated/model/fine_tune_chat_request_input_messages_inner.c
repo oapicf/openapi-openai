@@ -43,7 +43,7 @@ static fine_tune_chat_request_input_messages_inner_t *fine_tune_chat_request_inp
     char *content,
     openai_api_fine_tune_chat_request_input_messages_inner_ROLE_e role,
     char *name,
-    int weight,
+    int *weight,
     char *refusal,
     chat_completion_request_assistant_message_audio_t *audio,
     list_t *tool_calls,
@@ -54,6 +54,8 @@ static fine_tune_chat_request_input_messages_inner_t *fine_tune_chat_request_inp
     if (!fine_tune_chat_request_input_messages_inner_local_var) {
         return NULL;
     }
+    memset(fine_tune_chat_request_input_messages_inner_local_var, 0, sizeof(fine_tune_chat_request_input_messages_inner_t));
+    fine_tune_chat_request_input_messages_inner_local_var->_library_owned = 1;
     fine_tune_chat_request_input_messages_inner_local_var->content = content;
     fine_tune_chat_request_input_messages_inner_local_var->role = role;
     fine_tune_chat_request_input_messages_inner_local_var->name = name;
@@ -63,8 +65,6 @@ static fine_tune_chat_request_input_messages_inner_t *fine_tune_chat_request_inp
     fine_tune_chat_request_input_messages_inner_local_var->tool_calls = tool_calls;
     fine_tune_chat_request_input_messages_inner_local_var->function_call = function_call;
     fine_tune_chat_request_input_messages_inner_local_var->tool_call_id = tool_call_id;
-
-    fine_tune_chat_request_input_messages_inner_local_var->_library_owned = 1;
     return fine_tune_chat_request_input_messages_inner_local_var;
 }
 
@@ -72,24 +72,33 @@ __attribute__((deprecated)) fine_tune_chat_request_input_messages_inner_t *fine_
     char *content,
     openai_api_fine_tune_chat_request_input_messages_inner_ROLE_e role,
     char *name,
-    int weight,
+    int *weight,
     char *refusal,
     chat_completion_request_assistant_message_audio_t *audio,
     list_t *tool_calls,
     chat_completion_request_assistant_message_function_call_t *function_call,
     char *tool_call_id
     ) {
-    return fine_tune_chat_request_input_messages_inner_create_internal (
+    int *weight_copy = NULL;
+    if (weight) {
+        weight_copy = malloc(sizeof(int));
+        if (weight_copy) *weight_copy = *weight;
+    }
+    fine_tune_chat_request_input_messages_inner_t *result = fine_tune_chat_request_input_messages_inner_create_internal (
         content,
         role,
         name,
-        weight,
+        weight_copy,
         refusal,
         audio,
         tool_calls,
         function_call,
         tool_call_id
         );
+    if (!result) {
+        free(weight_copy);
+    }
+    return result;
 }
 
 void fine_tune_chat_request_input_messages_inner_free(fine_tune_chat_request_input_messages_inner_t *fine_tune_chat_request_input_messages_inner) {
@@ -108,6 +117,10 @@ void fine_tune_chat_request_input_messages_inner_free(fine_tune_chat_request_inp
     if (fine_tune_chat_request_input_messages_inner->name) {
         free(fine_tune_chat_request_input_messages_inner->name);
         fine_tune_chat_request_input_messages_inner->name = NULL;
+    }
+    if (fine_tune_chat_request_input_messages_inner->weight) {
+        free(fine_tune_chat_request_input_messages_inner->weight);
+        fine_tune_chat_request_input_messages_inner->weight = NULL;
     }
     if (fine_tune_chat_request_input_messages_inner->refusal) {
         free(fine_tune_chat_request_input_messages_inner->refusal);
@@ -168,7 +181,7 @@ cJSON *fine_tune_chat_request_input_messages_inner_convertToJSON(fine_tune_chat_
 
     // fine_tune_chat_request_input_messages_inner->weight
     if(fine_tune_chat_request_input_messages_inner->weight != openai_api_fine_tune_chat_request_input_messages_inner_WEIGHT_NULL) {
-    if(cJSON_AddNumberToObject(item, "weight", fine_tune_chat_request_input_messages_inner->weight) == NULL) {
+    if(cJSON_AddNumberToObject(item, "weight", *fine_tune_chat_request_input_messages_inner->weight) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -248,6 +261,15 @@ fine_tune_chat_request_input_messages_inner_t *fine_tune_chat_request_input_mess
 
     fine_tune_chat_request_input_messages_inner_t *fine_tune_chat_request_input_messages_inner_local_var = NULL;
 
+    char *content_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    // define the local variable for fine_tune_chat_request_input_messages_inner->weight
+    int *weight_local_var = NULL;
+
+    char *refusal_local_str = NULL;
+
     // define the local variable for fine_tune_chat_request_input_messages_inner->audio
     chat_completion_request_assistant_message_audio_t *audio_local_nonprim = NULL;
 
@@ -256,6 +278,8 @@ fine_tune_chat_request_input_messages_inner_t *fine_tune_chat_request_input_mess
 
     // define the local variable for fine_tune_chat_request_input_messages_inner->function_call
     chat_completion_request_assistant_message_function_call_t *function_call_local_nonprim = NULL;
+
+    char *tool_call_id_local_str = NULL;
 
     // fine_tune_chat_request_input_messages_inner->content
     cJSON *content = cJSON_GetObjectItemCaseSensitive(fine_tune_chat_request_input_messages_innerJSON, "content");
@@ -314,6 +338,12 @@ fine_tune_chat_request_input_messages_inner_t *fine_tune_chat_request_input_mess
     {
     goto end; //Numeric
     }
+    weight_local_var = malloc(sizeof(int));
+    if(!weight_local_var)
+    {
+        goto end;
+    }
+    *weight_local_var = weight->valuedouble;
     }
 
     // fine_tune_chat_request_input_messages_inner->refusal
@@ -386,20 +416,45 @@ fine_tune_chat_request_input_messages_inner_t *fine_tune_chat_request_input_mess
     }
 
 
+    if (content && !cJSON_IsNull(content)) content_local_str = strdup(content->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (refusal && !cJSON_IsNull(refusal)) refusal_local_str = strdup(refusal->valuestring);
+    if (tool_call_id && !cJSON_IsNull(tool_call_id)) tool_call_id_local_str = strdup(tool_call_id->valuestring);
+
     fine_tune_chat_request_input_messages_inner_local_var = fine_tune_chat_request_input_messages_inner_create_internal (
-        strdup(content->valuestring),
+        content_local_str,
         roleVariable,
-        strdup(name->valuestring),
-        weight ? weight->valuedouble : 0,
-        refusal && !cJSON_IsNull(refusal) ? strdup(refusal->valuestring) : NULL,
+        name_local_str,
+        weight_local_var,
+        refusal_local_str,
         audio ? audio_local_nonprim : NULL,
         tool_calls ? tool_callsList : NULL,
         function_call ? function_call_local_nonprim : NULL,
-        strdup(tool_call_id->valuestring)
+        tool_call_id_local_str
         );
+
+    if (!fine_tune_chat_request_input_messages_inner_local_var) {
+        goto end;
+    }
 
     return fine_tune_chat_request_input_messages_inner_local_var;
 end:
+    if (content_local_str) {
+        free(content_local_str);
+        content_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (weight_local_var) {
+        free(weight_local_var);
+        weight_local_var = NULL;
+    }
+    if (refusal_local_str) {
+        free(refusal_local_str);
+        refusal_local_str = NULL;
+    }
     if (audio_local_nonprim) {
         chat_completion_request_assistant_message_audio_free(audio_local_nonprim);
         audio_local_nonprim = NULL;
@@ -416,6 +471,10 @@ end:
     if (function_call_local_nonprim) {
         chat_completion_request_assistant_message_function_call_free(function_call_local_nonprim);
         function_call_local_nonprim = NULL;
+    }
+    if (tool_call_id_local_str) {
+        free(tool_call_id_local_str);
+        tool_call_id_local_str = NULL;
     }
     return NULL;
 

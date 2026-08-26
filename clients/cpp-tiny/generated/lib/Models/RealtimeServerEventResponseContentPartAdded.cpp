@@ -191,7 +191,7 @@ RealtimeServerEventResponseContentPartAdded::getEventId()
 }
 
 void
-RealtimeServerEventResponseContentPartAdded::setEventId(std::string  event_id)
+RealtimeServerEventResponseContentPartAdded::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -203,7 +203,7 @@ RealtimeServerEventResponseContentPartAdded::getType()
 }
 
 void
-RealtimeServerEventResponseContentPartAdded::setType(std::string  type)
+RealtimeServerEventResponseContentPartAdded::setType(std::string type)
 {
 	this->type = type;
 }
@@ -215,7 +215,7 @@ RealtimeServerEventResponseContentPartAdded::getResponseId()
 }
 
 void
-RealtimeServerEventResponseContentPartAdded::setResponseId(std::string  response_id)
+RealtimeServerEventResponseContentPartAdded::setResponseId(std::string response_id)
 {
 	this->response_id = response_id;
 }
@@ -227,7 +227,7 @@ RealtimeServerEventResponseContentPartAdded::getItemId()
 }
 
 void
-RealtimeServerEventResponseContentPartAdded::setItemId(std::string  item_id)
+RealtimeServerEventResponseContentPartAdded::setItemId(std::string item_id)
 {
 	this->item_id = item_id;
 }
@@ -239,7 +239,7 @@ RealtimeServerEventResponseContentPartAdded::getOutputIndex()
 }
 
 void
-RealtimeServerEventResponseContentPartAdded::setOutputIndex(int  output_index)
+RealtimeServerEventResponseContentPartAdded::setOutputIndex(int output_index)
 {
 	this->output_index = output_index;
 }
@@ -251,7 +251,7 @@ RealtimeServerEventResponseContentPartAdded::getContentIndex()
 }
 
 void
-RealtimeServerEventResponseContentPartAdded::setContentIndex(int  content_index)
+RealtimeServerEventResponseContentPartAdded::setContentIndex(int content_index)
 {
 	this->content_index = content_index;
 }
@@ -263,7 +263,7 @@ RealtimeServerEventResponseContentPartAdded::getPart()
 }
 
 void
-RealtimeServerEventResponseContentPartAdded::setPart(RealtimeServerEventResponseContentPartAdded_part  part)
+RealtimeServerEventResponseContentPartAdded::setPart(RealtimeServerEventResponseContentPartAdded_part part)
 {
 	this->part = part;
 }

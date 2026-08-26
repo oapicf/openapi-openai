@@ -57,11 +57,11 @@ function Initialize-ChatCompletionStreamResponseDelta {
 
 
         $PSO = [PSCustomObject]@{
-            "content" = ${Content}
-            "function_call" = ${FunctionCall}
-            "tool_calls" = ${ToolCalls}
-            "role" = ${Role}
-            "refusal" = ${Refusal}
+            'content' = ${Content}
+            'function_call' = ${FunctionCall}
+            'tool_calls' = ${ToolCalls}
+            'role' = ${Role}
+            'refusal' = ${Refusal}
         }
 
 
@@ -99,49 +99,49 @@ function ConvertFrom-JsonToChatCompletionStreamResponseDelta {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ChatCompletionStreamResponseDelta
-        $AllProperties = ("content", "function_call", "tool_calls", "role", "refusal")
+        $AllProperties = ('content', 'function_call', 'tool_calls', 'role', 'refusal')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'content'))) { #optional property not found
             $Content = $null
         } else {
-            $Content = $JsonParameters.PSobject.Properties["content"].value
+            $Content = $JsonParameters.PSobject.Properties['content'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "function_call"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'function_call'))) { #optional property not found
             $FunctionCall = $null
         } else {
-            $FunctionCall = $JsonParameters.PSobject.Properties["function_call"].value
+            $FunctionCall = $JsonParameters.PSobject.Properties['function_call'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tool_calls"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tool_calls'))) { #optional property not found
             $ToolCalls = $null
         } else {
-            $ToolCalls = $JsonParameters.PSobject.Properties["tool_calls"].value
+            $ToolCalls = $JsonParameters.PSobject.Properties['tool_calls'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "role"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'role'))) { #optional property not found
             $Role = $null
         } else {
-            $Role = $JsonParameters.PSobject.Properties["role"].value
+            $Role = $JsonParameters.PSobject.Properties['role'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "refusal"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'refusal'))) { #optional property not found
             $Refusal = $null
         } else {
-            $Refusal = $JsonParameters.PSobject.Properties["refusal"].value
+            $Refusal = $JsonParameters.PSobject.Properties['refusal'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "content" = ${Content}
-            "function_call" = ${FunctionCall}
-            "tool_calls" = ${ToolCalls}
-            "role" = ${Role}
-            "refusal" = ${Refusal}
+            'content' = ${Content}
+            'function_call' = ${FunctionCall}
+            'tool_calls' = ${ToolCalls}
+            'role' = ${Role}
+            'refusal' = ${Refusal}
         }
 
         return $PSO

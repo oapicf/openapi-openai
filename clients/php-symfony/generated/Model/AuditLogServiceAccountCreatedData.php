@@ -51,7 +51,7 @@ class AuditLogServiceAccountCreatedData
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $role = null;
 
@@ -77,12 +77,12 @@ class AuditLogServiceAccountCreatedData
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  The role of the service account. Is either `owner` or `member`.
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  The role of the service account. Is either `owner` or `member`.
+     *
+     * @return $this
+     */
     public function setRole(?string $role = null): self
     {
         $this->role = $role;

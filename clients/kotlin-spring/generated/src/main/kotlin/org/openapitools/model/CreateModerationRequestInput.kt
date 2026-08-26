@@ -2,6 +2,9 @@ package org.openapitools.model
 
 import java.util.Objects
 import org.openapitools.model.CreateModerationRequestInputOneOfInner
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -16,9 +19,6 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * Input (or inputs) to classify. Can be a single string, an array of strings, or an array of multi-modal input objects similar to other models. 
  */
-class CreateModerationRequestInput(
-
-) {
-
+sealed interface CreateModerationRequestInput {
 }
 

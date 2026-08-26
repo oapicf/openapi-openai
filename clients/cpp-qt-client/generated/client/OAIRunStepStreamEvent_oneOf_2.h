@@ -33,13 +33,13 @@ class OAIRunStepDeltaObject;
 class OAIRunStepStreamEvent_oneOf_2 : public OAIObject {
 public:
     OAIRunStepStreamEvent_oneOf_2();
-    OAIRunStepStreamEvent_oneOf_2(QString json);
+    OAIRunStepStreamEvent_oneOf_2(const QString &json);
     ~OAIRunStepStreamEvent_oneOf_2() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getEvent() const;
     void setEvent(const QString &event);

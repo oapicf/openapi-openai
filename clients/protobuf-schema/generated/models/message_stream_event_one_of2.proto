@@ -22,7 +22,7 @@ message MessageStreamEventOneOf2 {
     EVENT_THREAD_MESSAGE_DELTA = 0;
   }
 
-  Event event = 96891546;
+  string event = 96891546;
 
   MessageDeltaObject data = 3076010;
 

@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The input to the Code Interpreter tool call.</value>
         [JsonPropertyName("input")]
-        public string? Input { get { return this.InputOption; } set { this.InputOption = new(value); } }
+        public string? Input { get { return this.InputOption.Value; } set { this.InputOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Outputs
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (&#x60;logs&#x60;) or images (&#x60;image&#x60;). Each of these are represented by a different object type.</value>
         [JsonPropertyName("outputs")]
-        public List<RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>? Outputs { get { return this.OutputsOption; } set { this.OutputsOption = new(value); } }
+        public List<RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>? Outputs { get { return this.OutputsOption.Value; } set { this.OutputsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter" />
     /// </summary>
-    public class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterJsonConverter : JsonConverter<RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter>
+    public partial class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterJsonConverter : JsonConverter<RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterJsonConverter" /> class.
+        /// </summary>
+        public RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter" />
         /// </summary>

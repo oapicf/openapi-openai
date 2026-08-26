@@ -101,22 +101,25 @@ class _$FineTunePreferenceRequestInputInputSerializer implements PrimitiveSerial
         case r'messages':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(FineTuneChatRequestInputMessagesInner)]),
-          ) as BuiltList<FineTuneChatRequestInputMessagesInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(FineTuneChatRequestInputMessagesInner)]),
+          ) as BuiltList<FineTuneChatRequestInputMessagesInner>?;
+          if (valueDes == null) continue;
           result.messages.replace(valueDes);
           break;
         case r'tools':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ChatCompletionTool)]),
-          ) as BuiltList<ChatCompletionTool>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ChatCompletionTool)]),
+          ) as BuiltList<ChatCompletionTool>?;
+          if (valueDes == null) continue;
           result.tools.replace(valueDes);
           break;
         case r'parallel_tool_calls':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.parallelToolCalls = valueDes;
           break;
         default:

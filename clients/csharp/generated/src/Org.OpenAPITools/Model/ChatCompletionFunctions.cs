@@ -67,7 +67,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A description of what the function does, used by the model to choose when and how to call the function.</value>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Parameters
@@ -81,7 +81,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list.</value>
         [JsonPropertyName("parameters")]
-        public Dictionary<string, Object>? Parameters { get { return this.ParametersOption; } set { this.ParametersOption = new(value); } }
+        public Dictionary<string, Object>? Parameters { get { return this.ParametersOption.Value; } set { this.ParametersOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -112,8 +112,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ChatCompletionFunctions" />
     /// </summary>
-    public class ChatCompletionFunctionsJsonConverter : JsonConverter<ChatCompletionFunctions>
+    public partial class ChatCompletionFunctionsJsonConverter : JsonConverter<ChatCompletionFunctions>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChatCompletionFunctionsJsonConverter" /> class.
+        /// </summary>
+        public ChatCompletionFunctionsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ChatCompletionFunctions" />
         /// </summary>

@@ -54,10 +54,10 @@ class CreateVectorStoreRequestChunkingStrategy {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateVectorStoreRequestChunkingStrategy[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateVectorStoreRequestChunkingStrategy[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "CreateVectorStoreRequestChunkingStrategy[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "CreateVectorStoreRequestChunkingStrategy[type]" has a null value in JSON.');
+        assert(json.containsKey(r'static'), 'Required key "CreateVectorStoreRequestChunkingStrategy[static]" is missing from JSON.');
+        assert(json[r'static'] != null, 'Required key "CreateVectorStoreRequestChunkingStrategy[static]" has a null value in JSON.');
         return true;
       }());
 
@@ -117,29 +117,29 @@ class CreateVectorStoreRequestChunkingStrategy {
 }
 
 /// Always `auto`.
-class CreateVectorStoreRequestChunkingStrategyTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateVectorStoreRequestChunkingStrategyTypeEnum._(this.value);
+enum CreateVectorStoreRequestChunkingStrategyTypeEnum {
+  auto._(r'auto'),
+  static_._(r'static'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateVectorStoreRequestChunkingStrategyTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const auto = CreateVectorStoreRequestChunkingStrategyTypeEnum._(r'auto');
-  static const static_ = CreateVectorStoreRequestChunkingStrategyTypeEnum._(r'static');
-
-  /// List of all possible values in this [enum][CreateVectorStoreRequestChunkingStrategyTypeEnum].
-  static const values = <CreateVectorStoreRequestChunkingStrategyTypeEnum>[
-    auto,
-    static_,
-  ];
-
+  /// Returns the instance of [CreateVectorStoreRequestChunkingStrategyTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateVectorStoreRequestChunkingStrategyTypeEnum? fromJson(dynamic value) => CreateVectorStoreRequestChunkingStrategyTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateVectorStoreRequestChunkingStrategyTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateVectorStoreRequestChunkingStrategyTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateVectorStoreRequestChunkingStrategyTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -161,9 +161,10 @@ class CreateVectorStoreRequestChunkingStrategyTypeEnumTypeTransformer {
 
   const CreateVectorStoreRequestChunkingStrategyTypeEnumTypeTransformer._();
 
-  String encode(CreateVectorStoreRequestChunkingStrategyTypeEnum data) => data.value;
+  String encode(CreateVectorStoreRequestChunkingStrategyTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateVectorStoreRequestChunkingStrategyTypeEnum.
+  /// Returns the instance of [CreateVectorStoreRequestChunkingStrategyTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -172,6 +173,9 @@ class CreateVectorStoreRequestChunkingStrategyTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateVectorStoreRequestChunkingStrategyTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateVectorStoreRequestChunkingStrategyTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'auto': return CreateVectorStoreRequestChunkingStrategyTypeEnum.auto;
@@ -185,7 +189,7 @@ class CreateVectorStoreRequestChunkingStrategyTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateVectorStoreRequestChunkingStrategyTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateVectorStoreRequestChunkingStrategyTypeEnumTypeTransformer? _instance;
 }
 

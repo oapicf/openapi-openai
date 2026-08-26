@@ -31,19 +31,17 @@ import org.openapitools.server.models.InviteListResponse
 import org.openapitools.server.models.InviteRequest
 
 fun Route.InvitesApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    delete<Paths.deleteInvite> {
+    delete<Paths.deleteInvite> { deleteInvite ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "deleted" : true,
+              "object" : "organization.invite.deleted",
               "id" : "id",
-              "object" : "organization.invite.deleted"
+              "deleted" : true
             }"""
             
             when (exampleContentType) {
@@ -54,30 +52,29 @@ fun Route.InvitesApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.inviteUser> {
+    post<Paths.inviteUser> { inviteUser ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "role" : "owner",
-              "expires_at" : 6,
-              "projects" : [ {
-                "role" : "member",
-                "id" : "id"
-              }, {
-                "role" : "member",
-                "id" : "id"
-              } ],
-              "invited_at" : 0,
-              "id" : "id",
-              "accepted_at" : 1,
-              "email" : "email",
               "object" : "organization.invite",
-              "status" : "accepted"
+              "id" : "id",
+              "email" : "email",
+              "role" : "owner",
+              "status" : "accepted",
+              "invited_at" : 0,
+              "expires_at" : 6,
+              "accepted_at" : 1,
+              "projects" : [ {
+                "id" : "id",
+                "role" : "member"
+              }, {
+                "id" : "id",
+                "role" : "member"
+              } ]
             }"""
             
             when (exampleContentType) {
@@ -88,52 +85,51 @@ fun Route.InvitesApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listInvites> {
+    get<Paths.listInvites> { listInvites ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "first_id" : "first_id",
+              "object" : "list",
               "data" : [ {
-                "role" : "owner",
-                "expires_at" : 6,
-                "projects" : [ {
-                  "role" : "member",
-                  "id" : "id"
-                }, {
-                  "role" : "member",
-                  "id" : "id"
-                } ],
-                "invited_at" : 0,
-                "id" : "id",
-                "accepted_at" : 1,
-                "email" : "email",
                 "object" : "organization.invite",
-                "status" : "accepted"
+                "id" : "id",
+                "email" : "email",
+                "role" : "owner",
+                "status" : "accepted",
+                "invited_at" : 0,
+                "expires_at" : 6,
+                "accepted_at" : 1,
+                "projects" : [ {
+                  "id" : "id",
+                  "role" : "member"
+                }, {
+                  "id" : "id",
+                  "role" : "member"
+                } ]
               }, {
-                "role" : "owner",
-                "expires_at" : 6,
-                "projects" : [ {
-                  "role" : "member",
-                  "id" : "id"
-                }, {
-                  "role" : "member",
-                  "id" : "id"
-                } ],
-                "invited_at" : 0,
-                "id" : "id",
-                "accepted_at" : 1,
-                "email" : "email",
                 "object" : "organization.invite",
-                "status" : "accepted"
+                "id" : "id",
+                "email" : "email",
+                "role" : "owner",
+                "status" : "accepted",
+                "invited_at" : 0,
+                "expires_at" : 6,
+                "accepted_at" : 1,
+                "projects" : [ {
+                  "id" : "id",
+                  "role" : "member"
+                }, {
+                  "id" : "id",
+                  "role" : "member"
+                } ]
               } ],
+              "first_id" : "first_id",
               "last_id" : "last_id",
-              "has_more" : true,
-              "object" : "list"
+              "has_more" : true
             }"""
             
             when (exampleContentType) {
@@ -144,30 +140,29 @@ fun Route.InvitesApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.retrieveInvite> {
+    get<Paths.retrieveInvite> { retrieveInvite ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "role" : "owner",
-              "expires_at" : 6,
-              "projects" : [ {
-                "role" : "member",
-                "id" : "id"
-              }, {
-                "role" : "member",
-                "id" : "id"
-              } ],
-              "invited_at" : 0,
-              "id" : "id",
-              "accepted_at" : 1,
-              "email" : "email",
               "object" : "organization.invite",
-              "status" : "accepted"
+              "id" : "id",
+              "email" : "email",
+              "role" : "owner",
+              "status" : "accepted",
+              "invited_at" : 0,
+              "expires_at" : 6,
+              "accepted_at" : 1,
+              "projects" : [ {
+                "id" : "id",
+                "role" : "member"
+              }, {
+                "id" : "id",
+                "role" : "member"
+              } ]
             }"""
             
             when (exampleContentType) {
@@ -178,5 +173,4 @@ fun Route.InvitesApi() {
         
     }
     }
-
 }

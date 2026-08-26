@@ -20,7 +20,8 @@ type ModifyAssistantRequestToolResourcesCodeInterpreter struct {
 	FileIds []string `json:"file_ids,omitempty"`
 }
 
-// AssertModifyAssistantRequestToolResourcesCodeInterpreterRequired checks if the required fields are not zero-ed
+// AssertModifyAssistantRequestToolResourcesCodeInterpreterRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertModifyAssistantRequestToolResourcesCodeInterpreterRequired(obj ModifyAssistantRequestToolResourcesCodeInterpreter) error {
 	return nil
 }

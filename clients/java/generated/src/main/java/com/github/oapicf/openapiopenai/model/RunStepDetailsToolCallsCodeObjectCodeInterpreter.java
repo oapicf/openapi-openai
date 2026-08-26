@@ -51,7 +51,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * The Code Interpreter tool call definition.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RunStepDetailsToolCallsCodeObjectCodeInterpreter {
   public static final String SERIALIZED_NAME_INPUT = "input";
   @SerializedName(SERIALIZED_NAME_INPUT)
@@ -146,10 +146,7 @@ public class RunStepDetailsToolCallsCodeObjectCodeInterpreter {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -195,16 +192,16 @@ public class RunStepDetailsToolCallsCodeObjectCodeInterpreter {
       if (!jsonObj.get("input").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `input` to be a primitive type in the JSON string but got `%s`", jsonObj.get("input").toString()));
       }
-      // ensure the json data is an array
-      if (!jsonObj.get("outputs").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `outputs` to be an array in the JSON string but got `%s`", jsonObj.get("outputs").toString()));
+      if (jsonObj.get("outputs") != null) {
+        if (!jsonObj.get("outputs").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `outputs` to be an array in the JSON string but got `%s`", jsonObj.get("outputs").toString()));
+        }
+        JsonArray jsonArrayoutputs = jsonObj.getAsJsonArray("outputs");
+        // validate the required field `outputs` (array)
+        for (int i = 0; i < jsonArrayoutputs.size(); i++) {
+          RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner.validateJsonElement(jsonArrayoutputs.get(i));
+        }
       }
-
-      JsonArray jsonArrayoutputs = jsonObj.getAsJsonArray("outputs");
-      // validate the required field `outputs` (array)
-      for (int i = 0; i < jsonArrayoutputs.size(); i++) {
-        RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner.validateJsonElement(jsonArrayoutputs.get(i));
-      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

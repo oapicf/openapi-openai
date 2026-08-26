@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.AuditLogActorServiceAccount
 import org.openapitools.model.AuditLogActorUser
 import javax.validation.constraints.DecimalMax
@@ -26,18 +29,30 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class AuditLogActorApiKey(
 
-    @Schema(example = "null", description = "The tracking id of the API key.")
+    @Schema(description = "The tracking id of the API key.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("id")
     @get:JsonProperty("id") val id: kotlin.String? = null,
 
-    @Schema(example = "null", description = "The type of API key. Can be either `user` or `service_account`.")
+    @Schema(description = "The type of API key. Can be either `user` or `service_account`.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("type")
     @get:JsonProperty("type") val type: AuditLogActorApiKey.Type? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("user")
     @get:JsonProperty("user") val user: AuditLogActorUser? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("service_account")
     @get:JsonProperty("service_account") val serviceAccount: AuditLogActorServiceAccount? = null
 ) {
 
@@ -55,7 +70,7 @@ data class AuditLogActorApiKey(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AuditLogActorApiKey'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

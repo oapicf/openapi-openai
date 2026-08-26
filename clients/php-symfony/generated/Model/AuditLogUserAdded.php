@@ -51,7 +51,7 @@ class AuditLogUserAdded
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -59,7 +59,7 @@ class AuditLogUserAdded
      * @var AuditLogUserAddedData|null
      * @SerializedName("data")
      * @Type("OpenAPI\Server\Model\AuditLogUserAddedData")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogUserAddedData")]
     protected ?AuditLogUserAddedData $data = null;
 
@@ -86,12 +86,12 @@ class AuditLogUserAdded
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The user ID.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The user ID.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -113,12 +113,12 @@ class AuditLogUserAdded
     }
 
     /**
-    * Sets data.
-    *
-    * @param AuditLogUserAddedData|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param AuditLogUserAddedData|null $data
+     *
+     * @return $this
+     */
     public function setData(?AuditLogUserAddedData $data = null): self
     {
         $this->data = $data;

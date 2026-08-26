@@ -33,7 +33,7 @@ class  ModifyAssistantRequest_tool_resources_code_interpreter
 {
 public:
     ModifyAssistantRequest_tool_resources_code_interpreter();
-    virtual ~ModifyAssistantRequest_tool_resources_code_interpreter() = default;
+    virtual ~ModifyAssistantRequest_tool_resources_code_interpreter();
 
 
     /// <summary>

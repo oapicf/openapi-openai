@@ -1,4 +1,4 @@
-# # RunStreamEventOneOf4
+# RunStreamEventOneOf4
 
 ## Properties
 

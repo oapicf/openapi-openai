@@ -29,20 +29,203 @@ import org.openapitools.server.models.CreateChatCompletionRequest
 import org.openapitools.server.models.CreateChatCompletionResponse
 
 fun Route.ChatApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createChatCompletion> {
+    post<Paths.createChatCompletion> { createChatCompletion ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "id" : "id",
+              "choices" : [ {
+                "finish_reason" : "stop",
+                "index" : 0,
+                "message" : {
+                  "content" : "content",
+                  "refusal" : "refusal",
+                  "tool_calls" : [ {
+                    "id" : "id",
+                    "type" : "function",
+                    "function" : {
+                      "name" : "name",
+                      "arguments" : "arguments"
+                    }
+                  }, {
+                    "id" : "id",
+                    "type" : "function",
+                    "function" : {
+                      "name" : "name",
+                      "arguments" : "arguments"
+                    }
+                  } ],
+                  "role" : "assistant",
+                  "function_call" : {
+                    "arguments" : "arguments",
+                    "name" : "name"
+                  },
+                  "audio" : {
+                    "id" : "id",
+                    "expires_at" : 6,
+                    "data" : "data",
+                    "transcript" : "transcript"
+                  }
+                },
+                "logprobs" : {
+                  "content" : [ {
+                    "token" : "token",
+                    "logprob" : 1.4658129805029452,
+                    "bytes" : [ 5, 5 ],
+                    "top_logprobs" : [ {
+                      "token" : "token",
+                      "logprob" : 5.637376656633329,
+                      "bytes" : [ 2, 2 ]
+                    }, {
+                      "token" : "token",
+                      "logprob" : 5.637376656633329,
+                      "bytes" : [ 2, 2 ]
+                    } ]
+                  }, {
+                    "token" : "token",
+                    "logprob" : 1.4658129805029452,
+                    "bytes" : [ 5, 5 ],
+                    "top_logprobs" : [ {
+                      "token" : "token",
+                      "logprob" : 5.637376656633329,
+                      "bytes" : [ 2, 2 ]
+                    }, {
+                      "token" : "token",
+                      "logprob" : 5.637376656633329,
+                      "bytes" : [ 2, 2 ]
+                    } ]
+                  } ],
+                  "refusal" : [ {
+                    "token" : "token",
+                    "logprob" : 1.4658129805029452,
+                    "bytes" : [ 5, 5 ],
+                    "top_logprobs" : [ {
+                      "token" : "token",
+                      "logprob" : 5.637376656633329,
+                      "bytes" : [ 2, 2 ]
+                    }, {
+                      "token" : "token",
+                      "logprob" : 5.637376656633329,
+                      "bytes" : [ 2, 2 ]
+                    } ]
+                  }, {
+                    "token" : "token",
+                    "logprob" : 1.4658129805029452,
+                    "bytes" : [ 5, 5 ],
+                    "top_logprobs" : [ {
+                      "token" : "token",
+                      "logprob" : 5.637376656633329,
+                      "bytes" : [ 2, 2 ]
+                    }, {
+                      "token" : "token",
+                      "logprob" : 5.637376656633329,
+                      "bytes" : [ 2, 2 ]
+                    } ]
+                  } ]
+                }
+              }, {
+                "finish_reason" : "stop",
+                "index" : 0,
+                "message" : {
+                  "content" : "content",
+                  "refusal" : "refusal",
+                  "tool_calls" : [ {
+                    "id" : "id",
+                    "type" : "function",
+                    "function" : {
+                      "name" : "name",
+                      "arguments" : "arguments"
+                    }
+                  }, {
+                    "id" : "id",
+                    "type" : "function",
+                    "function" : {
+                      "name" : "name",
+                      "arguments" : "arguments"
+                    }
+                  } ],
+                  "role" : "assistant",
+                  "function_call" : {
+                    "arguments" : "arguments",
+                    "name" : "name"
+                  },
+                  "audio" : {
+                    "id" : "id",
+                    "expires_at" : 6,
+                    "data" : "data",
+                    "transcript" : "transcript"
+                  }
+                },
+                "logprobs" : {
+                  "content" : [ {
+                    "token" : "token",
+                    "logprob" : 1.4658129805029452,
+                    "bytes" : [ 5, 5 ],
+                    "top_logprobs" : [ {
+                      "token" : "token",
+                      "logprob" : 5.637376656633329,
+                      "bytes" : [ 2, 2 ]
+                    }, {
+                      "token" : "token",
+                      "logprob" : 5.637376656633329,
+                      "bytes" : [ 2, 2 ]
+                    } ]
+                  }, {
+                    "token" : "token",
+                    "logprob" : 1.4658129805029452,
+                    "bytes" : [ 5, 5 ],
+                    "top_logprobs" : [ {
+                      "token" : "token",
+                      "logprob" : 5.637376656633329,
+                      "bytes" : [ 2, 2 ]
+                    }, {
+                      "token" : "token",
+                      "logprob" : 5.637376656633329,
+                      "bytes" : [ 2, 2 ]
+                    } ]
+                  } ],
+                  "refusal" : [ {
+                    "token" : "token",
+                    "logprob" : 1.4658129805029452,
+                    "bytes" : [ 5, 5 ],
+                    "top_logprobs" : [ {
+                      "token" : "token",
+                      "logprob" : 5.637376656633329,
+                      "bytes" : [ 2, 2 ]
+                    }, {
+                      "token" : "token",
+                      "logprob" : 5.637376656633329,
+                      "bytes" : [ 2, 2 ]
+                    } ]
+                  }, {
+                    "token" : "token",
+                    "logprob" : 1.4658129805029452,
+                    "bytes" : [ 5, 5 ],
+                    "top_logprobs" : [ {
+                      "token" : "token",
+                      "logprob" : 5.637376656633329,
+                      "bytes" : [ 2, 2 ]
+                    }, {
+                      "token" : "token",
+                      "logprob" : 5.637376656633329,
+                      "bytes" : [ 2, 2 ]
+                    } ]
+                  } ]
+                }
+              } ],
               "created" : 7,
+              "model" : "model",
+              "service_tier" : "scale",
+              "system_fingerprint" : "system_fingerprint",
+              "object" : "chat.completion",
               "usage" : {
                 "completion_tokens" : 9,
                 "prompt_tokens" : 3,
+                "total_tokens" : 2,
                 "completion_tokens_details" : {
                   "accepted_prediction_tokens" : 4,
                   "audio_tokens" : 7,
@@ -52,193 +235,8 @@ fun Route.ChatApi() {
                 "prompt_tokens_details" : {
                   "audio_tokens" : 1,
                   "cached_tokens" : 6
-                },
-                "total_tokens" : 2
-              },
-              "model" : "model",
-              "service_tier" : "scale",
-              "id" : "id",
-              "choices" : [ {
-                "finish_reason" : "stop",
-                "index" : 0,
-                "message" : {
-                  "role" : "assistant",
-                  "function_call" : {
-                    "name" : "name",
-                    "arguments" : "arguments"
-                  },
-                  "refusal" : "refusal",
-                  "tool_calls" : [ {
-                    "function" : {
-                      "name" : "name",
-                      "arguments" : "arguments"
-                    },
-                    "id" : "id",
-                    "type" : "function"
-                  }, {
-                    "function" : {
-                      "name" : "name",
-                      "arguments" : "arguments"
-                    },
-                    "id" : "id",
-                    "type" : "function"
-                  } ],
-                  "audio" : {
-                    "expires_at" : 6,
-                    "transcript" : "transcript",
-                    "data" : "data",
-                    "id" : "id"
-                  },
-                  "content" : "content"
-                },
-                "logprobs" : {
-                  "refusal" : [ {
-                    "top_logprobs" : [ {
-                      "logprob" : 5.637376656633329,
-                      "bytes" : [ 2, 2 ],
-                      "token" : "token"
-                    }, {
-                      "logprob" : 5.637376656633329,
-                      "bytes" : [ 2, 2 ],
-                      "token" : "token"
-                    } ],
-                    "logprob" : 1.4658129805029452,
-                    "bytes" : [ 5, 5 ],
-                    "token" : "token"
-                  }, {
-                    "top_logprobs" : [ {
-                      "logprob" : 5.637376656633329,
-                      "bytes" : [ 2, 2 ],
-                      "token" : "token"
-                    }, {
-                      "logprob" : 5.637376656633329,
-                      "bytes" : [ 2, 2 ],
-                      "token" : "token"
-                    } ],
-                    "logprob" : 1.4658129805029452,
-                    "bytes" : [ 5, 5 ],
-                    "token" : "token"
-                  } ],
-                  "content" : [ {
-                    "top_logprobs" : [ {
-                      "logprob" : 5.637376656633329,
-                      "bytes" : [ 2, 2 ],
-                      "token" : "token"
-                    }, {
-                      "logprob" : 5.637376656633329,
-                      "bytes" : [ 2, 2 ],
-                      "token" : "token"
-                    } ],
-                    "logprob" : 1.4658129805029452,
-                    "bytes" : [ 5, 5 ],
-                    "token" : "token"
-                  }, {
-                    "top_logprobs" : [ {
-                      "logprob" : 5.637376656633329,
-                      "bytes" : [ 2, 2 ],
-                      "token" : "token"
-                    }, {
-                      "logprob" : 5.637376656633329,
-                      "bytes" : [ 2, 2 ],
-                      "token" : "token"
-                    } ],
-                    "logprob" : 1.4658129805029452,
-                    "bytes" : [ 5, 5 ],
-                    "token" : "token"
-                  } ]
                 }
-              }, {
-                "finish_reason" : "stop",
-                "index" : 0,
-                "message" : {
-                  "role" : "assistant",
-                  "function_call" : {
-                    "name" : "name",
-                    "arguments" : "arguments"
-                  },
-                  "refusal" : "refusal",
-                  "tool_calls" : [ {
-                    "function" : {
-                      "name" : "name",
-                      "arguments" : "arguments"
-                    },
-                    "id" : "id",
-                    "type" : "function"
-                  }, {
-                    "function" : {
-                      "name" : "name",
-                      "arguments" : "arguments"
-                    },
-                    "id" : "id",
-                    "type" : "function"
-                  } ],
-                  "audio" : {
-                    "expires_at" : 6,
-                    "transcript" : "transcript",
-                    "data" : "data",
-                    "id" : "id"
-                  },
-                  "content" : "content"
-                },
-                "logprobs" : {
-                  "refusal" : [ {
-                    "top_logprobs" : [ {
-                      "logprob" : 5.637376656633329,
-                      "bytes" : [ 2, 2 ],
-                      "token" : "token"
-                    }, {
-                      "logprob" : 5.637376656633329,
-                      "bytes" : [ 2, 2 ],
-                      "token" : "token"
-                    } ],
-                    "logprob" : 1.4658129805029452,
-                    "bytes" : [ 5, 5 ],
-                    "token" : "token"
-                  }, {
-                    "top_logprobs" : [ {
-                      "logprob" : 5.637376656633329,
-                      "bytes" : [ 2, 2 ],
-                      "token" : "token"
-                    }, {
-                      "logprob" : 5.637376656633329,
-                      "bytes" : [ 2, 2 ],
-                      "token" : "token"
-                    } ],
-                    "logprob" : 1.4658129805029452,
-                    "bytes" : [ 5, 5 ],
-                    "token" : "token"
-                  } ],
-                  "content" : [ {
-                    "top_logprobs" : [ {
-                      "logprob" : 5.637376656633329,
-                      "bytes" : [ 2, 2 ],
-                      "token" : "token"
-                    }, {
-                      "logprob" : 5.637376656633329,
-                      "bytes" : [ 2, 2 ],
-                      "token" : "token"
-                    } ],
-                    "logprob" : 1.4658129805029452,
-                    "bytes" : [ 5, 5 ],
-                    "token" : "token"
-                  }, {
-                    "top_logprobs" : [ {
-                      "logprob" : 5.637376656633329,
-                      "bytes" : [ 2, 2 ],
-                      "token" : "token"
-                    }, {
-                      "logprob" : 5.637376656633329,
-                      "bytes" : [ 2, 2 ],
-                      "token" : "token"
-                    } ],
-                    "logprob" : 1.4658129805029452,
-                    "bytes" : [ 5, 5 ],
-                    "token" : "token"
-                  } ]
-                }
-              } ],
-              "system_fingerprint" : "system_fingerprint",
-              "object" : "chat.completion"
+              }
             }"""
             
             when (exampleContentType) {
@@ -249,5 +247,4 @@ fun Route.ChatApi() {
         
     }
     }
-
 }

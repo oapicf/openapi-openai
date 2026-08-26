@@ -55,9 +55,9 @@ function Initialize-UsageCodeInterpreterSessionsResult {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "sessions" = ${Sessions}
-            "project_id" = ${ProjectId}
+            'object' = ${Object}
+            'sessions' = ${Sessions}
+            'project_id' = ${ProjectId}
         }
 
 
@@ -95,7 +95,7 @@ function ConvertFrom-JsonToUsageCodeInterpreterSessionsResult {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in UsageCodeInterpreterSessionsResult
-        $AllProperties = ("object", "sessions", "project_id")
+        $AllProperties = ('object', 'sessions', 'project_id')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -106,28 +106,28 @@ function ConvertFrom-JsonToUsageCodeInterpreterSessionsResult {
             throw "Error! Empty JSON cannot be serialized due to the required property 'object' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sessions"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'sessions'))) {
             throw "Error! JSON cannot be serialized due to the required property 'sessions' missing."
         } else {
-            $Sessions = $JsonParameters.PSobject.Properties["sessions"].value
+            $Sessions = $JsonParameters.PSobject.Properties['sessions'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "project_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'project_id'))) { #optional property not found
             $ProjectId = $null
         } else {
-            $ProjectId = $JsonParameters.PSobject.Properties["project_id"].value
+            $ProjectId = $JsonParameters.PSobject.Properties['project_id'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "sessions" = ${Sessions}
-            "project_id" = ${ProjectId}
+            'object' = ${Object}
+            'sessions' = ${Sessions}
+            'project_id' = ${ProjectId}
         }
 
         return $PSO

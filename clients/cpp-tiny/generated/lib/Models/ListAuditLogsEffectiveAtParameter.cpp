@@ -127,7 +127,7 @@ List_audit_logs_effective_at_parameter::getGt()
 }
 
 void
-List_audit_logs_effective_at_parameter::setGt(int  gt)
+List_audit_logs_effective_at_parameter::setGt(int gt)
 {
 	this->gt = gt;
 }
@@ -139,7 +139,7 @@ List_audit_logs_effective_at_parameter::getGte()
 }
 
 void
-List_audit_logs_effective_at_parameter::setGte(int  gte)
+List_audit_logs_effective_at_parameter::setGte(int gte)
 {
 	this->gte = gte;
 }
@@ -151,7 +151,7 @@ List_audit_logs_effective_at_parameter::getLt()
 }
 
 void
-List_audit_logs_effective_at_parameter::setLt(int  lt)
+List_audit_logs_effective_at_parameter::setLt(int lt)
 {
 	this->lt = lt;
 }
@@ -163,7 +163,7 @@ List_audit_logs_effective_at_parameter::getLte()
 }
 
 void
-List_audit_logs_effective_at_parameter::setLte(int  lte)
+List_audit_logs_effective_at_parameter::setLte(int lte)
 {
 	this->lte = lte;
 }

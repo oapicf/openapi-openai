@@ -24,10 +24,11 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("CreateFineTuningJobRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateFineTuningJobRequest   {
   private CreateFineTuningJobRequestModel model;
   private String trainingFile;
+  @Deprecated
   private CreateFineTuningJobRequestHyperparameters hyperparameters;
   private String suffix;
   private String validationFile;
@@ -87,12 +88,18 @@ public class CreateFineTuningJobRequest   {
   }
 
   /**
+   * @deprecated
    **/
+  @Deprecated
   public CreateFineTuningJobRequest hyperparameters(CreateFineTuningJobRequestHyperparameters hyperparameters) {
     this.hyperparameters = hyperparameters;
     return this;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   
   @ApiModelProperty(value = "")
   @JsonProperty("hyperparameters")
@@ -100,6 +107,10 @@ public class CreateFineTuningJobRequest   {
     return hyperparameters;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @JsonProperty("hyperparameters")
   public void setHyperparameters(CreateFineTuningJobRequestHyperparameters hyperparameters) {
     this.hyperparameters = hyperparameters;
@@ -269,12 +280,8 @@ public class CreateFineTuningJobRequest   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
 }
-

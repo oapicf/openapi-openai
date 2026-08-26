@@ -51,7 +51,7 @@ class MessageContentTextObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['text'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class MessageContentTextObject
      * @var MessageContentTextObjectText|null
      * @SerializedName("text")
      * @Type("OpenAPI\Server\Model\MessageContentTextObjectText")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\MessageContentTextObjectText")]
@@ -90,12 +90,12 @@ class MessageContentTextObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `text`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `text`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -117,12 +117,12 @@ class MessageContentTextObject
     }
 
     /**
-    * Sets text.
-    *
-    * @param MessageContentTextObjectText|null $text
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param MessageContentTextObjectText|null $text
+     *
+     * @return $this
+     */
     public function setText(?MessageContentTextObjectText $text): self
     {
         $this->text = $text;

@@ -32,7 +32,7 @@ class  ErrorResponse
 {
 public:
     ErrorResponse();
-    virtual ~ErrorResponse() = default;
+    virtual ~ErrorResponse();
 
 
     /// <summary>

@@ -37,7 +37,7 @@ class  FineTuningJob
 {
 public:
     FineTuningJob();
-    virtual ~FineTuningJob() = default;
+    virtual ~FineTuningJob();
 
 
     /// <summary>

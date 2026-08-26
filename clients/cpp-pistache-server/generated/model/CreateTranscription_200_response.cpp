@@ -29,6 +29,8 @@ CreateTranscription_200_response::CreateTranscription_200_response()
     
 }
 
+CreateTranscription_200_response::~CreateTranscription_200_response() = default;
+
 void CreateTranscription_200_response::validate() const
 {
     std::stringstream msg;

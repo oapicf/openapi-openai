@@ -179,7 +179,7 @@ export interface CreateThreadAndRunRequest {
  * Check if a given object implements the CreateThreadAndRunRequest interface.
  */
 export function instanceOfCreateThreadAndRunRequest(value: object): value is CreateThreadAndRunRequest {
-    if (!('assistantId' in value) || value['assistantId'] === undefined) return false;
+    if ((!('assistantId' in (value as Record<string, any>)) && !('assistant_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['assistantId'] === undefined && (value as Record<string, any>)['assistant_id'] === undefined)) return false;
     return true;
 }
 
@@ -195,16 +195,16 @@ export function CreateThreadAndRunRequestFromJSONTyped(json: any, ignoreDiscrimi
         
         'assistantId': json['assistant_id'],
         'thread': json['thread'] == null ? undefined : CreateThreadRequestFromJSON(json['thread']),
-        'model': json['model'] == null ? undefined : CreateRunRequestModelFromJSON(json['model']),
-        'instructions': json['instructions'] == null ? undefined : json['instructions'],
-        'tools': json['tools'] == null ? undefined : ((json['tools'] as Array<any>).map(CreateThreadAndRunRequestToolsInnerFromJSON)),
-        'toolResources': json['tool_resources'] == null ? undefined : CreateThreadAndRunRequestToolResourcesFromJSON(json['tool_resources']),
-        'metadata': json['metadata'] == null ? undefined : json['metadata'],
-        'temperature': json['temperature'] == null ? undefined : json['temperature'],
-        'topP': json['top_p'] == null ? undefined : json['top_p'],
-        'stream': json['stream'] == null ? undefined : json['stream'],
-        'maxPromptTokens': json['max_prompt_tokens'] == null ? undefined : json['max_prompt_tokens'],
-        'maxCompletionTokens': json['max_completion_tokens'] == null ? undefined : json['max_completion_tokens'],
+        'model': json['model'] === undefined ? undefined : json['model'] === null ? null : CreateRunRequestModelFromJSON(json['model']),
+        'instructions': json['instructions'] === undefined ? undefined : json['instructions'] === null ? null : json['instructions'],
+        'tools': json['tools'] === undefined ? undefined : json['tools'] === null ? null : ((json['tools'] as Array<any>).map(CreateThreadAndRunRequestToolsInnerFromJSON)),
+        'toolResources': json['tool_resources'] === undefined ? undefined : json['tool_resources'] === null ? null : CreateThreadAndRunRequestToolResourcesFromJSON(json['tool_resources']),
+        'metadata': json['metadata'] === undefined ? undefined : json['metadata'] === null ? null : json['metadata'],
+        'temperature': json['temperature'] === undefined ? undefined : json['temperature'] === null ? null : json['temperature'],
+        'topP': json['top_p'] === undefined ? undefined : json['top_p'] === null ? null : json['top_p'],
+        'stream': json['stream'] === undefined ? undefined : json['stream'] === null ? null : json['stream'],
+        'maxPromptTokens': json['max_prompt_tokens'] === undefined ? undefined : json['max_prompt_tokens'] === null ? null : json['max_prompt_tokens'],
+        'maxCompletionTokens': json['max_completion_tokens'] === undefined ? undefined : json['max_completion_tokens'] === null ? null : json['max_completion_tokens'],
         'truncationStrategy': json['truncation_strategy'] == null ? undefined : TruncationObjectFromJSON(json['truncation_strategy']),
         'toolChoice': json['tool_choice'] == null ? undefined : AssistantsApiToolChoiceOptionFromJSON(json['tool_choice']),
         'parallelToolCalls': json['parallel_tool_calls'] == null ? undefined : json['parallel_tool_calls'],

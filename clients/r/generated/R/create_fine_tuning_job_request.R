@@ -119,7 +119,7 @@ CreateFineTuningJobRequest <- R6::R6Class(
       CreateFineTuningJobRequestObject <- list()
       if (!is.null(self$`model`)) {
         CreateFineTuningJobRequestObject[["model"]] <-
-          self$`model`$toSimpleType()
+          self$extractSimpleType(self$`model`)
       }
       if (!is.null(self$`training_file`)) {
         CreateFineTuningJobRequestObject[["training_file"]] <-
@@ -127,7 +127,7 @@ CreateFineTuningJobRequest <- R6::R6Class(
       }
       if (!is.null(self$`hyperparameters`)) {
         CreateFineTuningJobRequestObject[["hyperparameters"]] <-
-          self$`hyperparameters`$toSimpleType()
+          self$extractSimpleType(self$`hyperparameters`)
       }
       if (!is.null(self$`suffix`)) {
         CreateFineTuningJobRequestObject[["suffix"]] <-
@@ -139,7 +139,7 @@ CreateFineTuningJobRequest <- R6::R6Class(
       }
       if (!is.null(self$`integrations`)) {
         CreateFineTuningJobRequestObject[["integrations"]] <-
-          lapply(self$`integrations`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`integrations`)
       }
       if (!is.null(self$`seed`)) {
         CreateFineTuningJobRequestObject[["seed"]] <-
@@ -147,9 +147,32 @@ CreateFineTuningJobRequest <- R6::R6Class(
       }
       if (!is.null(self$`method`)) {
         CreateFineTuningJobRequestObject[["method"]] <-
-          self$`method`$toSimpleType()
+          self$extractSimpleType(self$`method`)
       }
       return(CreateFineTuningJobRequestObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

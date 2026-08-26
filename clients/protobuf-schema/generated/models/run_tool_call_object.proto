@@ -26,7 +26,7 @@ message RunToolCallObject {
     TYPE_FUNCTION = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   RunToolCallObjectFunction function = 307196890;
 

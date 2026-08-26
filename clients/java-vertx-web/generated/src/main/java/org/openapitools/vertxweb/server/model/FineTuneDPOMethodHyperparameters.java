@@ -14,10 +14,10 @@ import org.openapitools.vertxweb.server.model.FineTuneDPOMethodHyperparametersNE
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FineTuneDPOMethodHyperparameters   {
   
-  private FineTuneDPOMethodHyperparametersBeta beta = auto;
-  private FineTuneDPOMethodHyperparametersBatchSize batchSize = auto;
-  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
-  private FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto;
+  private FineTuneDPOMethodHyperparametersBeta beta;
+  private FineTuneDPOMethodHyperparametersBatchSize batchSize;
+  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier;
+  private FineTuneDPOMethodHyperparametersNEpochs nEpochs;
 
   public FineTuneDPOMethodHyperparameters () {
 
@@ -105,9 +105,6 @@ public class FineTuneDPOMethodHyperparameters   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }

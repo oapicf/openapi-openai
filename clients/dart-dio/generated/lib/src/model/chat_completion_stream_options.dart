@@ -74,8 +74,9 @@ class _$ChatCompletionStreamOptionsSerializer implements PrimitiveSerializer<Cha
         case r'include_usage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.includeUsage = valueDes;
           break;
         default:

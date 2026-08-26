@@ -85,7 +85,7 @@ RealtimeClientEventInputAudioBufferCommit::getEventId()
 }
 
 void
-RealtimeClientEventInputAudioBufferCommit::setEventId(std::string  event_id)
+RealtimeClientEventInputAudioBufferCommit::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -97,7 +97,7 @@ RealtimeClientEventInputAudioBufferCommit::getType()
 }
 
 void
-RealtimeClientEventInputAudioBufferCommit::setType(std::string  type)
+RealtimeClientEventInputAudioBufferCommit::setType(std::string type)
 {
 	this->type = type;
 }

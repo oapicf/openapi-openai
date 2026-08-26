@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.AssistantsNamedToolChoiceFunction
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -23,13 +26,17 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class AssistantsNamedToolChoice(
 
-    @Schema(example = "null", required = true, description = "The type of the tool. If type is `function`, the function name must be set")
+    @Schema(required = true, description = "The type of the tool. If type is `function`, the function name must be set")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: AssistantsNamedToolChoice.Type,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("function")
     @get:JsonProperty("function") val function: AssistantsNamedToolChoiceFunction? = null
-) {
+) : AssistantsApiToolChoiceOption {
 
     /**
     * The type of the tool. If type is `function`, the function name must be set
@@ -46,7 +53,7 @@ data class AssistantsNamedToolChoice(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssistantsNamedToolChoice'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

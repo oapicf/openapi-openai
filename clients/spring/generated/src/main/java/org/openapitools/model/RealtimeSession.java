@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -19,22 +20,23 @@ import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Realtime session object configuration.
  */
 
 @Schema(name = "RealtimeSession", description = "Realtime session object configuration.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeSession {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String id;
 
   /**
@@ -72,11 +74,13 @@ public class RealtimeSession {
     }
   }
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<ModalitiesEnum> modalities = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeSessionModel model;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String instructions;
 
   /**
@@ -126,6 +130,7 @@ public class RealtimeSession {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable VoiceEnum voice;
 
   /**
@@ -165,6 +170,7 @@ public class RealtimeSession {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable InputAudioFormatEnum inputAudioFormat;
 
   /**
@@ -204,19 +210,25 @@ public class RealtimeSession {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable OutputAudioFormatEnum outputAudioFormat;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeSessionInputAudioTranscription inputAudioTranscription;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<RealtimeSessionTurnDetection> turnDetection = JsonNullable.<RealtimeSessionTurnDetection>undefined();
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid RealtimeResponseCreateParamsToolsInner> tools = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String toolChoice;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BigDecimal temperature;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeResponseCreateParamsMaxResponseOutputTokens maxResponseOutputTokens;
 
   public RealtimeSession id(@Nullable String id) {
@@ -235,6 +247,7 @@ public class RealtimeSession {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(@Nullable String id) {
     this.id = id;
   }
@@ -263,6 +276,7 @@ public class RealtimeSession {
     return modalities;
   }
 
+  @JsonProperty("modalities")
   public void setModalities(List<ModalitiesEnum> modalities) {
     this.modalities = modalities;
   }
@@ -283,6 +297,7 @@ public class RealtimeSession {
     return model;
   }
 
+  @JsonProperty("model")
   public void setModel(@Nullable RealtimeSessionModel model) {
     this.model = model;
   }
@@ -303,6 +318,7 @@ public class RealtimeSession {
     return instructions;
   }
 
+  @JsonProperty("instructions")
   public void setInstructions(@Nullable String instructions) {
     this.instructions = instructions;
   }
@@ -323,6 +339,7 @@ public class RealtimeSession {
     return voice;
   }
 
+  @JsonProperty("voice")
   public void setVoice(@Nullable VoiceEnum voice) {
     this.voice = voice;
   }
@@ -343,6 +360,7 @@ public class RealtimeSession {
     return inputAudioFormat;
   }
 
+  @JsonProperty("input_audio_format")
   public void setInputAudioFormat(@Nullable InputAudioFormatEnum inputAudioFormat) {
     this.inputAudioFormat = inputAudioFormat;
   }
@@ -363,6 +381,7 @@ public class RealtimeSession {
     return outputAudioFormat;
   }
 
+  @JsonProperty("output_audio_format")
   public void setOutputAudioFormat(@Nullable OutputAudioFormatEnum outputAudioFormat) {
     this.outputAudioFormat = outputAudioFormat;
   }
@@ -383,6 +402,7 @@ public class RealtimeSession {
     return inputAudioTranscription;
   }
 
+  @JsonProperty("input_audio_transcription")
   public void setInputAudioTranscription(@Nullable RealtimeSessionInputAudioTranscription inputAudioTranscription) {
     this.inputAudioTranscription = inputAudioTranscription;
   }
@@ -431,6 +451,7 @@ public class RealtimeSession {
     return tools;
   }
 
+  @JsonProperty("tools")
   public void setTools(List<@Valid RealtimeResponseCreateParamsToolsInner> tools) {
     this.tools = tools;
   }
@@ -451,6 +472,7 @@ public class RealtimeSession {
     return toolChoice;
   }
 
+  @JsonProperty("tool_choice")
   public void setToolChoice(@Nullable String toolChoice) {
     this.toolChoice = toolChoice;
   }
@@ -471,6 +493,7 @@ public class RealtimeSession {
     return temperature;
   }
 
+  @JsonProperty("temperature")
   public void setTemperature(@Nullable BigDecimal temperature) {
     this.temperature = temperature;
   }
@@ -491,6 +514,7 @@ public class RealtimeSession {
     return maxResponseOutputTokens;
   }
 
+  @JsonProperty("max_response_output_tokens")
   public void setMaxResponseOutputTokens(@Nullable RealtimeResponseCreateParamsMaxResponseOutputTokens maxResponseOutputTokens) {
     this.maxResponseOutputTokens = maxResponseOutputTokens;
   }
@@ -560,11 +584,8 @@ public class RealtimeSession {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

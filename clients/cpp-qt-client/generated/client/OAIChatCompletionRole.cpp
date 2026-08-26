@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIChatCompletionRole::OAIChatCompletionRole(QString json) {
+OAIChatCompletionRole::OAIChatCompletionRole(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -39,7 +39,7 @@ void OAIChatCompletionRole::initializeModel() {
     m_value = eOAIChatCompletionRole::INVALID_VALUE_OPENAPI_GENERATED;
 }
 
-void OAIChatCompletionRole::fromJson(QString jsonString) {
+void OAIChatCompletionRole::fromJson(const QString &jsonString) {
     
     if ( jsonString.compare("system", Qt::CaseInsensitive) == 0) {
         m_value = eOAIChatCompletionRole::SYSTEM;

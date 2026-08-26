@@ -30,6 +30,8 @@ Image::Image()
     
 }
 
+Image::~Image() = default;
+
 void Image::validate() const
 {
     std::stringstream msg;

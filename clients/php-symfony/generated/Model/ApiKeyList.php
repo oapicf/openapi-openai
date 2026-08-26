@@ -47,7 +47,7 @@ class ApiKeyList
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $object = null;
 
@@ -55,7 +55,7 @@ class ApiKeyList
      * @var AdminApiKey[]|null
      * @SerializedName("data")
      * @Type("array<OpenAPI\Server\Model\AdminApiKey>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\AdminApiKey"),
     ])]
@@ -65,7 +65,7 @@ class ApiKeyList
      * @var bool|null
      * @SerializedName("has_more")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $hasMore = null;
 
@@ -73,7 +73,7 @@ class ApiKeyList
      * @var string|null
      * @SerializedName("first_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $firstId = null;
 
@@ -81,7 +81,7 @@ class ApiKeyList
      * @var string|null
      * @SerializedName("last_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $lastId = null;
 
@@ -111,12 +111,12 @@ class ApiKeyList
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object = null): self
     {
         $this->object = $object;
@@ -138,12 +138,12 @@ class ApiKeyList
     }
 
     /**
-    * Sets data.
-    *
-    * @param AdminApiKey[]|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param AdminApiKey[]|null $data
+     *
+     * @return $this
+     */
     public function setData(?array $data = null): self
     {
         $this->data = $data;
@@ -165,12 +165,12 @@ class ApiKeyList
     }
 
     /**
-    * Sets hasMore.
-    *
-    * @param bool|null $hasMore
-    *
-    * @return $this
-    */
+     * Sets hasMore.
+     *
+     * @param bool|null $hasMore
+     *
+     * @return $this
+     */
     public function setHasMore(?bool $hasMore = null): self
     {
         $this->hasMore = $hasMore;
@@ -192,12 +192,12 @@ class ApiKeyList
     }
 
     /**
-    * Sets firstId.
-    *
-    * @param string|null $firstId
-    *
-    * @return $this
-    */
+     * Sets firstId.
+     *
+     * @param string|null $firstId
+     *
+     * @return $this
+     */
     public function setFirstId(?string $firstId = null): self
     {
         $this->firstId = $firstId;
@@ -219,12 +219,12 @@ class ApiKeyList
     }
 
     /**
-    * Sets lastId.
-    *
-    * @param string|null $lastId
-    *
-    * @return $this
-    */
+     * Sets lastId.
+     *
+     * @param string|null $lastId
+     *
+     * @return $this
+     */
     public function setLastId(?string $lastId = null): self
     {
         $this->lastId = $lastId;

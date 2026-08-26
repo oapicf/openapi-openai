@@ -24,7 +24,7 @@ typedef struct project_user_list_response_t {
     list_t *data; //nonprimitive container
     char *first_id; // string
     char *last_id; // string
-    int has_more; //boolean
+    int *has_more; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } project_user_list_response_t;
@@ -34,7 +34,7 @@ __attribute__((deprecated)) project_user_list_response_t *project_user_list_resp
     list_t *data,
     char *first_id,
     char *last_id,
-    int has_more
+    int *has_more
 );
 
 void project_user_list_response_free(project_user_list_response_t *project_user_list_response);

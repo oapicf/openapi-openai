@@ -49,7 +49,7 @@ class MessageObjectContentInner
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['image_file', 'image_url', 'text', 'refusal'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class MessageObjectContentInner
      * @var MessageContentImageFileObjectImageFile|null
      * @SerializedName("image_file")
      * @Type("OpenAPI\Server\Model\MessageContentImageFileObjectImageFile")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\MessageContentImageFileObjectImageFile")]
@@ -69,7 +69,7 @@ class MessageObjectContentInner
      * @var MessageContentImageUrlObjectImageUrl|null
      * @SerializedName("image_url")
      * @Type("OpenAPI\Server\Model\MessageContentImageUrlObjectImageUrl")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\MessageContentImageUrlObjectImageUrl")]
@@ -79,7 +79,7 @@ class MessageObjectContentInner
      * @var MessageContentTextObjectText|null
      * @SerializedName("text")
      * @Type("OpenAPI\Server\Model\MessageContentTextObjectText")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\MessageContentTextObjectText")]
@@ -89,7 +89,7 @@ class MessageObjectContentInner
      * @var string|null
      * @SerializedName("refusal")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $refusal = null;
@@ -120,12 +120,12 @@ class MessageObjectContentInner
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `image_file`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `image_file`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -147,12 +147,12 @@ class MessageObjectContentInner
     }
 
     /**
-    * Sets imageFile.
-    *
-    * @param MessageContentImageFileObjectImageFile|null $imageFile
-    *
-    * @return $this
-    */
+     * Sets imageFile.
+     *
+     * @param MessageContentImageFileObjectImageFile|null $imageFile
+     *
+     * @return $this
+     */
     public function setImageFile(?MessageContentImageFileObjectImageFile $imageFile): self
     {
         $this->imageFile = $imageFile;
@@ -174,12 +174,12 @@ class MessageObjectContentInner
     }
 
     /**
-    * Sets imageUrl.
-    *
-    * @param MessageContentImageUrlObjectImageUrl|null $imageUrl
-    *
-    * @return $this
-    */
+     * Sets imageUrl.
+     *
+     * @param MessageContentImageUrlObjectImageUrl|null $imageUrl
+     *
+     * @return $this
+     */
     public function setImageUrl(?MessageContentImageUrlObjectImageUrl $imageUrl): self
     {
         $this->imageUrl = $imageUrl;
@@ -201,12 +201,12 @@ class MessageObjectContentInner
     }
 
     /**
-    * Sets text.
-    *
-    * @param MessageContentTextObjectText|null $text
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param MessageContentTextObjectText|null $text
+     *
+     * @return $this
+     */
     public function setText(?MessageContentTextObjectText $text): self
     {
         $this->text = $text;
@@ -228,12 +228,12 @@ class MessageObjectContentInner
     }
 
     /**
-    * Sets refusal.
-    *
-    * @param string|null $refusal
-    *
-    * @return $this
-    */
+     * Sets refusal.
+     *
+     * @param string|null $refusal
+     *
+     * @return $this
+     */
     public function setRefusal(?string $refusal): self
     {
         $this->refusal = $refusal;

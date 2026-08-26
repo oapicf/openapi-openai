@@ -1,4 +1,4 @@
-# # ThreadObject
+# ThreadObject
 
 ## Properties
 

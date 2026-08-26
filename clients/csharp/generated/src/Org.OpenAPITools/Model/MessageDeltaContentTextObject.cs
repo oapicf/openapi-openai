@@ -126,7 +126,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Text
         /// </summary>
         [JsonPropertyName("text")]
-        public MessageDeltaContentTextObjectText? Text { get { return this.TextOption; } set { this.TextOption = new(value); } }
+        public MessageDeltaContentTextObjectText? Text { get { return this.TextOption.Value; } set { this.TextOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -157,8 +157,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageDeltaContentTextObject" />
     /// </summary>
-    public class MessageDeltaContentTextObjectJsonConverter : JsonConverter<MessageDeltaContentTextObject>
+    public partial class MessageDeltaContentTextObjectJsonConverter : JsonConverter<MessageDeltaContentTextObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageDeltaContentTextObjectJsonConverter" /> class.
+        /// </summary>
+        public MessageDeltaContentTextObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageDeltaContentTextObject" />
         /// </summary>

@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The number of tokens used by the prompt.
 	 */
-	void setPromptTokens(int  prompt_tokens);
+	void setPromptTokens(int prompt_tokens);
 	/*! \brief Get The total number of tokens used by the request.
 	 */
 	int getTotalTokens();
 
 	/*! \brief Set The total number of tokens used by the request.
 	 */
-	void setTotalTokens(int  total_tokens);
+	void setTotalTokens(int total_tokens);
 
 
     private:

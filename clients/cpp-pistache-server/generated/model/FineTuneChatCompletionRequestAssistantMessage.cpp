@@ -35,6 +35,8 @@ FineTuneChatCompletionRequestAssistantMessage::FineTuneChatCompletionRequestAssi
     
 }
 
+FineTuneChatCompletionRequestAssistantMessage::~FineTuneChatCompletionRequestAssistantMessage() = default;
+
 void FineTuneChatCompletionRequestAssistantMessage::validate() const
 {
     std::stringstream msg;

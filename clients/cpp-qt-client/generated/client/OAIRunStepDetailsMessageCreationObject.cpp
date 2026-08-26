@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRunStepDetailsMessageCreationObject::OAIRunStepDetailsMessageCreationObject(QString json) {
+OAIRunStepDetailsMessageCreationObject::OAIRunStepDetailsMessageCreationObject(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIRunStepDetailsMessageCreationObject::initializeModel() {
     m_message_creation_isValid = false;
 }
 
-void OAIRunStepDetailsMessageCreationObject::fromJson(QString jsonString) {
+void OAIRunStepDetailsMessageCreationObject::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

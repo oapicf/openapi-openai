@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAITruncationObject::OAITruncationObject(QString json) {
+OAITruncationObject::OAITruncationObject(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAITruncationObject::initializeModel() {
     m_last_messages_isValid = false;
 }
 
-void OAITruncationObject::fromJson(QString jsonString) {
+void OAITruncationObject::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

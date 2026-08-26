@@ -25,6 +25,8 @@ OtherChunkingStrategyResponseParam::OtherChunkingStrategyResponseParam()
     
 }
 
+OtherChunkingStrategyResponseParam::~OtherChunkingStrategyResponseParam() = default;
+
 void OtherChunkingStrategyResponseParam::validate() const
 {
     std::stringstream msg;

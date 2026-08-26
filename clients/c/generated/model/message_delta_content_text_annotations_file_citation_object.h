@@ -28,23 +28,23 @@ openai_api_message_delta_content_text_annotations_file_citation_object_TYPE_e me
 
 
 typedef struct message_delta_content_text_annotations_file_citation_object_t {
-    int index; //numeric
+    int *index; //numeric
     openai_api_message_delta_content_text_annotations_file_citation_object_TYPE_e type; //enum
     char *text; // string
     struct message_delta_content_text_annotations_file_citation_object_file_citation_t *file_citation; //model
-    int start_index; //numeric
-    int end_index; //numeric
+    int *start_index; //numeric
+    int *end_index; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } message_delta_content_text_annotations_file_citation_object_t;
 
 __attribute__((deprecated)) message_delta_content_text_annotations_file_citation_object_t *message_delta_content_text_annotations_file_citation_object_create(
-    int index,
+    int *index,
     openai_api_message_delta_content_text_annotations_file_citation_object_TYPE_e type,
     char *text,
     message_delta_content_text_annotations_file_citation_object_file_citation_t *file_citation,
-    int start_index,
-    int end_index
+    int *start_index,
+    int *end_index
 );
 
 void message_delta_content_text_annotations_file_citation_object_free(message_delta_content_text_annotations_file_citation_object_t *message_delta_content_text_annotations_file_citation_object);

@@ -51,7 +51,7 @@ class AssistantsApiToolChoiceOption
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['function', 'code_interpreter', 'file_search'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class AssistantsApiToolChoiceOption
      * @var AssistantsNamedToolChoiceFunction|null
      * @SerializedName("function")
      * @Type("OpenAPI\Server\Model\AssistantsNamedToolChoiceFunction")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AssistantsNamedToolChoiceFunction")]
     protected ?AssistantsNamedToolChoiceFunction $function = null;
 
@@ -88,12 +88,12 @@ class AssistantsApiToolChoiceOption
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of the tool. If type is `function`, the function name must be set
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of the tool. If type is `function`, the function name must be set
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -115,12 +115,12 @@ class AssistantsApiToolChoiceOption
     }
 
     /**
-    * Sets function.
-    *
-    * @param AssistantsNamedToolChoiceFunction|null $function
-    *
-    * @return $this
-    */
+     * Sets function.
+     *
+     * @param AssistantsNamedToolChoiceFunction|null $function
+     *
+     * @return $this
+     */
     public function setFunction(?AssistantsNamedToolChoiceFunction $function = null): self
     {
         $this->function = $function;

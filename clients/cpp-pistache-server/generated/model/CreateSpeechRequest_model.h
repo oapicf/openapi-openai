@@ -31,7 +31,7 @@ class  CreateSpeechRequest_model
 {
 public:
     CreateSpeechRequest_model();
-    virtual ~CreateSpeechRequest_model() = default;
+    virtual ~CreateSpeechRequest_model();
 
 
     /// <summary>

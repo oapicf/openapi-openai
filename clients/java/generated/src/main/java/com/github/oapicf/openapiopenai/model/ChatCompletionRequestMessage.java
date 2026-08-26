@@ -69,7 +69,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ChatCompletionRequestMessage extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(ChatCompletionRequestMessage.class.getName());
 
@@ -316,6 +316,7 @@ public class ChatCompletionRequestMessage extends AbstractOpenApiSchema {
      * @return The actual instance of `ChatCompletionRequestDeveloperMessage`
      * @throws ClassCastException if the instance is not `ChatCompletionRequestDeveloperMessage`
      */
+    @SuppressWarnings("unchecked")
     public ChatCompletionRequestDeveloperMessage getChatCompletionRequestDeveloperMessage() throws ClassCastException {
         return (ChatCompletionRequestDeveloperMessage)super.getActualInstance();
     }
@@ -327,6 +328,7 @@ public class ChatCompletionRequestMessage extends AbstractOpenApiSchema {
      * @return The actual instance of `ChatCompletionRequestSystemMessage`
      * @throws ClassCastException if the instance is not `ChatCompletionRequestSystemMessage`
      */
+    @SuppressWarnings("unchecked")
     public ChatCompletionRequestSystemMessage getChatCompletionRequestSystemMessage() throws ClassCastException {
         return (ChatCompletionRequestSystemMessage)super.getActualInstance();
     }
@@ -338,6 +340,7 @@ public class ChatCompletionRequestMessage extends AbstractOpenApiSchema {
      * @return The actual instance of `ChatCompletionRequestUserMessage`
      * @throws ClassCastException if the instance is not `ChatCompletionRequestUserMessage`
      */
+    @SuppressWarnings("unchecked")
     public ChatCompletionRequestUserMessage getChatCompletionRequestUserMessage() throws ClassCastException {
         return (ChatCompletionRequestUserMessage)super.getActualInstance();
     }
@@ -349,6 +352,7 @@ public class ChatCompletionRequestMessage extends AbstractOpenApiSchema {
      * @return The actual instance of `ChatCompletionRequestAssistantMessage`
      * @throws ClassCastException if the instance is not `ChatCompletionRequestAssistantMessage`
      */
+    @SuppressWarnings("unchecked")
     public ChatCompletionRequestAssistantMessage getChatCompletionRequestAssistantMessage() throws ClassCastException {
         return (ChatCompletionRequestAssistantMessage)super.getActualInstance();
     }
@@ -360,6 +364,7 @@ public class ChatCompletionRequestMessage extends AbstractOpenApiSchema {
      * @return The actual instance of `ChatCompletionRequestToolMessage`
      * @throws ClassCastException if the instance is not `ChatCompletionRequestToolMessage`
      */
+    @SuppressWarnings("unchecked")
     public ChatCompletionRequestToolMessage getChatCompletionRequestToolMessage() throws ClassCastException {
         return (ChatCompletionRequestToolMessage)super.getActualInstance();
     }
@@ -371,6 +376,7 @@ public class ChatCompletionRequestMessage extends AbstractOpenApiSchema {
      * @return The actual instance of `ChatCompletionRequestFunctionMessage`
      * @throws ClassCastException if the instance is not `ChatCompletionRequestFunctionMessage`
      */
+    @SuppressWarnings("unchecked")
     public ChatCompletionRequestFunctionMessage getChatCompletionRequestFunctionMessage() throws ClassCastException {
         return (ChatCompletionRequestFunctionMessage)super.getActualInstance();
     }

@@ -23,13 +23,15 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class StaticChunkingStrategyRequestParam(
 
-    @Schema(example = "null", required = true, description = "Always `static`.")
+    @Schema(required = true, description = "Always `static`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: StaticChunkingStrategyRequestParam.Type,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("static")
     @get:JsonProperty("static", required = true) val static: StaticChunkingStrategy
-) {
+) : ChunkingStrategyRequestParam, CreateVectorStoreRequestChunkingStrategy, VectorStoreFileObjectChunkingStrategy {
 
     /**
     * Always `static`.
@@ -44,7 +46,7 @@ data class StaticChunkingStrategyRequestParam(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'StaticChunkingStrategyRequestParam'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

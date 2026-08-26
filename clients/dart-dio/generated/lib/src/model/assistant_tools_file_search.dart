@@ -93,8 +93,9 @@ class _$AssistantToolsFileSearchSerializer implements PrimitiveSerializer<Assist
         case r'file_search':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AssistantToolsFileSearchFileSearch),
-          ) as AssistantToolsFileSearchFileSearch;
+            specifiedType: const FullType.nullable(AssistantToolsFileSearchFileSearch),
+          ) as AssistantToolsFileSearchFileSearch?;
+          if (valueDes == null) continue;
           result.fileSearch.replace(valueDes);
           break;
         default:

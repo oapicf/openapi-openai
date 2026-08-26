@@ -182,7 +182,7 @@ CreateTranscription_200_response::getText()
 }
 
 void
-CreateTranscription_200_response::setText(std::string  text)
+CreateTranscription_200_response::setText(std::string text)
 {
 	this->text = text;
 }
@@ -194,7 +194,7 @@ CreateTranscription_200_response::getLanguage()
 }
 
 void
-CreateTranscription_200_response::setLanguage(std::string  language)
+CreateTranscription_200_response::setLanguage(std::string language)
 {
 	this->language = language;
 }
@@ -206,7 +206,7 @@ CreateTranscription_200_response::getDuration()
 }
 
 void
-CreateTranscription_200_response::setDuration(std::string  duration)
+CreateTranscription_200_response::setDuration(std::string duration)
 {
 	this->duration = duration;
 }
@@ -218,7 +218,7 @@ CreateTranscription_200_response::getWords()
 }
 
 void
-CreateTranscription_200_response::setWords(std::list <TranscriptionWord> words)
+CreateTranscription_200_response::setWords(std::list<TranscriptionWord> words)
 {
 	this->words = words;
 }
@@ -230,7 +230,7 @@ CreateTranscription_200_response::getSegments()
 }
 
 void
-CreateTranscription_200_response::setSegments(std::list <TranscriptionSegment> segments)
+CreateTranscription_200_response::setSegments(std::list<TranscriptionSegment> segments)
 {
 	this->segments = segments;
 }

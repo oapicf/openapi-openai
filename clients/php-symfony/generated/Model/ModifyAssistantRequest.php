@@ -44,10 +44,12 @@ use JMS\Serializer\Annotation\SerializedName;
 class ModifyAssistantRequest 
 {
         /**
+     * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them.
+     *
      * @var string|null
      * @SerializedName("model")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $model = null;
 
@@ -57,7 +59,7 @@ class ModifyAssistantRequest
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     #[Assert\Length(max: 256)]
     protected ?string $name = null;
@@ -68,7 +70,7 @@ class ModifyAssistantRequest
      * @var string|null
      * @SerializedName("description")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     #[Assert\Length(max: 512)]
     protected ?string $description = null;
@@ -79,7 +81,7 @@ class ModifyAssistantRequest
      * @var string|null
      * @SerializedName("instructions")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     #[Assert\Length(max: 256000)]
     protected ?string $instructions = null;
@@ -90,7 +92,7 @@ class ModifyAssistantRequest
      * @var AssistantObjectToolsInner[]|null
      * @SerializedName("tools")
      * @Type("array<OpenAPI\Server\Model\AssistantObjectToolsInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\AssistantObjectToolsInner"),
     ])]
@@ -101,7 +103,7 @@ class ModifyAssistantRequest
      * @var ModifyAssistantRequestToolResources|null
      * @SerializedName("tool_resources")
      * @Type("OpenAPI\Server\Model\ModifyAssistantRequestToolResources")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\ModifyAssistantRequestToolResources")]
     protected ?ModifyAssistantRequestToolResources $toolResources = null;
 
@@ -111,7 +113,7 @@ class ModifyAssistantRequest
      * @var array|null
      * @SerializedName("metadata")
      * @Type("array")
-    */
+     */
     #[Assert\Type("array")]
     protected ?array $metadata = null;
 
@@ -121,7 +123,7 @@ class ModifyAssistantRequest
      * @var float|null
      * @SerializedName("temperature")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(0)]
     #[Assert\LessThanOrEqual(2)]
@@ -133,7 +135,7 @@ class ModifyAssistantRequest
      * @var float|null
      * @SerializedName("top_p")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(0)]
     #[Assert\LessThanOrEqual(1)]
@@ -143,7 +145,7 @@ class ModifyAssistantRequest
      * @var AssistantsApiResponseFormatOption|null
      * @SerializedName("response_format")
      * @Type("OpenAPI\Server\Model\AssistantsApiResponseFormatOption")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AssistantsApiResponseFormatOption")]
     protected ?AssistantsApiResponseFormatOption $responseFormat = null;
 
@@ -178,12 +180,12 @@ class ModifyAssistantRequest
     }
 
     /**
-    * Sets model.
-    *
-    * @param string|null $model
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param string|null $model  ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them.
+     *
+     * @return $this
+     */
     public function setModel(?string $model = null): self
     {
         $this->model = $model;
@@ -205,12 +207,12 @@ class ModifyAssistantRequest
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the assistant. The maximum length is 256 characters.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the assistant. The maximum length is 256 characters.
+     *
+     * @return $this
+     */
     public function setName(?string $name = null): self
     {
         $this->name = $name;
@@ -232,12 +234,12 @@ class ModifyAssistantRequest
     }
 
     /**
-    * Sets description.
-    *
-    * @param string|null $description  The description of the assistant. The maximum length is 512 characters.
-    *
-    * @return $this
-    */
+     * Sets description.
+     *
+     * @param string|null $description  The description of the assistant. The maximum length is 512 characters.
+     *
+     * @return $this
+     */
     public function setDescription(?string $description = null): self
     {
         $this->description = $description;
@@ -259,12 +261,12 @@ class ModifyAssistantRequest
     }
 
     /**
-    * Sets instructions.
-    *
-    * @param string|null $instructions  The system instructions that the assistant uses. The maximum length is 256,000 characters.
-    *
-    * @return $this
-    */
+     * Sets instructions.
+     *
+     * @param string|null $instructions  The system instructions that the assistant uses. The maximum length is 256,000 characters.
+     *
+     * @return $this
+     */
     public function setInstructions(?string $instructions = null): self
     {
         $this->instructions = $instructions;
@@ -286,12 +288,12 @@ class ModifyAssistantRequest
     }
 
     /**
-    * Sets tools.
-    *
-    * @param AssistantObjectToolsInner[]|null $tools  A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`.
-    *
-    * @return $this
-    */
+     * Sets tools.
+     *
+     * @param AssistantObjectToolsInner[]|null $tools  A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`.
+     *
+     * @return $this
+     */
     public function setTools(?array $tools = null): self
     {
         $this->tools = $tools;
@@ -313,12 +315,12 @@ class ModifyAssistantRequest
     }
 
     /**
-    * Sets toolResources.
-    *
-    * @param ModifyAssistantRequestToolResources|null $toolResources
-    *
-    * @return $this
-    */
+     * Sets toolResources.
+     *
+     * @param ModifyAssistantRequestToolResources|null $toolResources
+     *
+     * @return $this
+     */
     public function setToolResources(?ModifyAssistantRequestToolResources $toolResources = null): self
     {
         $this->toolResources = $toolResources;
@@ -340,12 +342,12 @@ class ModifyAssistantRequest
     }
 
     /**
-    * Sets metadata.
-    *
-    * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
-    *
-    * @return $this
-    */
+     * Sets metadata.
+     *
+     * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
+     *
+     * @return $this
+     */
     public function setMetadata(?array $metadata = null): self
     {
         $this->metadata = $metadata;
@@ -367,12 +369,12 @@ class ModifyAssistantRequest
     }
 
     /**
-    * Sets temperature.
-    *
-    * @param float|null $temperature  What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
-    *
-    * @return $this
-    */
+     * Sets temperature.
+     *
+     * @param float|null $temperature  What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+     *
+     * @return $this
+     */
     public function setTemperature(?float $temperature = null): self
     {
         $this->temperature = $temperature;
@@ -394,12 +396,12 @@ class ModifyAssistantRequest
     }
 
     /**
-    * Sets topP.
-    *
-    * @param float|null $topP  An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both.
-    *
-    * @return $this
-    */
+     * Sets topP.
+     *
+     * @param float|null $topP  An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both.
+     *
+     * @return $this
+     */
     public function setTopP(?float $topP = null): self
     {
         $this->topP = $topP;
@@ -421,12 +423,12 @@ class ModifyAssistantRequest
     }
 
     /**
-    * Sets responseFormat.
-    *
-    * @param AssistantsApiResponseFormatOption|null $responseFormat
-    *
-    * @return $this
-    */
+     * Sets responseFormat.
+     *
+     * @param AssistantsApiResponseFormatOption|null $responseFormat
+     *
+     * @return $this
+     */
     public function setResponseFormat(?AssistantsApiResponseFormatOption $responseFormat = null): self
     {
         $this->responseFormat = $responseFormat;

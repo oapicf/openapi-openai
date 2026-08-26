@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAICreateModerationRequest_input : public OAIObject {
 public:
     OAICreateModerationRequest_input();
-    OAICreateModerationRequest_input(QString json);
+    OAICreateModerationRequest_input(const QString &json);
     ~OAICreateModerationRequest_input() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

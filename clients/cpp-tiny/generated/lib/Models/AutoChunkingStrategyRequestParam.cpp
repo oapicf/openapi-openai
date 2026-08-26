@@ -64,7 +64,7 @@ AutoChunkingStrategyRequestParam::getType()
 }
 
 void
-AutoChunkingStrategyRequestParam::setType(std::string  type)
+AutoChunkingStrategyRequestParam::setType(std::string type)
 {
 	this->type = type;
 }

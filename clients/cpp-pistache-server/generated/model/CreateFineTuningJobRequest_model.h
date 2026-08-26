@@ -31,7 +31,7 @@ class  CreateFineTuningJobRequest_model
 {
 public:
     CreateFineTuningJobRequest_model();
-    virtual ~CreateFineTuningJobRequest_model() = default;
+    virtual ~CreateFineTuningJobRequest_model();
 
 
     /// <summary>

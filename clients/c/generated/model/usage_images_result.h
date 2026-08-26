@@ -28,8 +28,8 @@ openai_api_usage_images_result_OBJECT_e usage_images_result_object_FromString(ch
 
 typedef struct usage_images_result_t {
     openai_api_usage_images_result_OBJECT_e object; //enum
-    int images; //numeric
-    int num_model_requests; //numeric
+    int *images; //numeric
+    int *num_model_requests; //numeric
     char *source; // string
     char *size; // string
     char *project_id; // string
@@ -42,8 +42,8 @@ typedef struct usage_images_result_t {
 
 __attribute__((deprecated)) usage_images_result_t *usage_images_result_create(
     openai_api_usage_images_result_OBJECT_e object,
-    int images,
-    int num_model_requests,
+    int *images,
+    int *num_model_requests,
     char *source,
     char *size,
     char *project_id,

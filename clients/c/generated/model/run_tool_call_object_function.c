@@ -13,10 +13,10 @@ static run_tool_call_object_function_t *run_tool_call_object_function_create_int
     if (!run_tool_call_object_function_local_var) {
         return NULL;
     }
+    memset(run_tool_call_object_function_local_var, 0, sizeof(run_tool_call_object_function_t));
+    run_tool_call_object_function_local_var->_library_owned = 1;
     run_tool_call_object_function_local_var->name = name;
     run_tool_call_object_function_local_var->arguments = arguments;
-
-    run_tool_call_object_function_local_var->_library_owned = 1;
     return run_tool_call_object_function_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) run_tool_call_object_function_t *run_tool_call_objec
     char *name,
     char *arguments
     ) {
-    return run_tool_call_object_function_create_internal (
+    run_tool_call_object_function_t *result = run_tool_call_object_function_create_internal (
         name,
         arguments
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_tool_call_object_function_free(run_tool_call_object_function_t *run_tool_call_object_function) {
@@ -82,6 +85,10 @@ run_tool_call_object_function_t *run_tool_call_object_function_parseFromJSON(cJS
 
     run_tool_call_object_function_t *run_tool_call_object_function_local_var = NULL;
 
+    char *name_local_str = NULL;
+
+    char *arguments_local_str = NULL;
+
     // run_tool_call_object_function->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(run_tool_call_object_functionJSON, "name");
     if (cJSON_IsNull(name)) {
@@ -113,13 +120,28 @@ run_tool_call_object_function_t *run_tool_call_object_function_parseFromJSON(cJS
     }
 
 
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (arguments && !cJSON_IsNull(arguments)) arguments_local_str = strdup(arguments->valuestring);
+
     run_tool_call_object_function_local_var = run_tool_call_object_function_create_internal (
-        strdup(name->valuestring),
-        strdup(arguments->valuestring)
+        name_local_str,
+        arguments_local_str
         );
+
+    if (!run_tool_call_object_function_local_var) {
+        goto end;
+    }
 
     return run_tool_call_object_function_local_var;
 end:
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (arguments_local_str) {
+        free(arguments_local_str);
+        arguments_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -150,22 +150,22 @@ function Initialize-RunStepObject {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "created_at" = ${CreatedAt}
-            "assistant_id" = ${AssistantId}
-            "thread_id" = ${ThreadId}
-            "run_id" = ${RunId}
-            "type" = ${Type}
-            "status" = ${Status}
-            "step_details" = ${StepDetails}
-            "last_error" = ${LastError}
-            "expired_at" = ${ExpiredAt}
-            "cancelled_at" = ${CancelledAt}
-            "failed_at" = ${FailedAt}
-            "completed_at" = ${CompletedAt}
-            "metadata" = ${Metadata}
-            "usage" = ${Usage}
+            'id' = ${Id}
+            'object' = ${Object}
+            'created_at' = ${CreatedAt}
+            'assistant_id' = ${AssistantId}
+            'thread_id' = ${ThreadId}
+            'run_id' = ${RunId}
+            'type' = ${Type}
+            'status' = ${Status}
+            'step_details' = ${StepDetails}
+            'last_error' = ${LastError}
+            'expired_at' = ${ExpiredAt}
+            'cancelled_at' = ${CancelledAt}
+            'failed_at' = ${FailedAt}
+            'completed_at' = ${CompletedAt}
+            'metadata' = ${Metadata}
+            'usage' = ${Usage}
         }
 
 
@@ -203,7 +203,7 @@ function ConvertFrom-JsonToRunStepObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepObject
-        $AllProperties = ("id", "object", "created_at", "assistant_id", "thread_id", "run_id", "type", "status", "step_details", "last_error", "expired_at", "cancelled_at", "failed_at", "completed_at", "metadata", "usage")
+        $AllProperties = ('id', 'object', 'created_at', 'assistant_id', 'thread_id', 'run_id', 'type', 'status', 'step_details', 'last_error', 'expired_at', 'cancelled_at', 'failed_at', 'completed_at', 'metadata', 'usage')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -214,119 +214,119 @@ function ConvertFrom-JsonToRunStepObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created_at' missing."
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "assistant_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'assistant_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'assistant_id' missing."
         } else {
-            $AssistantId = $JsonParameters.PSobject.Properties["assistant_id"].value
+            $AssistantId = $JsonParameters.PSobject.Properties['assistant_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "thread_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'thread_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'thread_id' missing."
         } else {
-            $ThreadId = $JsonParameters.PSobject.Properties["thread_id"].value
+            $ThreadId = $JsonParameters.PSobject.Properties['thread_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "run_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'run_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'run_id' missing."
         } else {
-            $RunId = $JsonParameters.PSobject.Properties["run_id"].value
+            $RunId = $JsonParameters.PSobject.Properties['run_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'status'))) {
             throw "Error! JSON cannot be serialized due to the required property 'status' missing."
         } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
+            $Status = $JsonParameters.PSobject.Properties['status'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "step_details"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'step_details'))) {
             throw "Error! JSON cannot be serialized due to the required property 'step_details' missing."
         } else {
-            $StepDetails = $JsonParameters.PSobject.Properties["step_details"].value
+            $StepDetails = $JsonParameters.PSobject.Properties['step_details'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "last_error"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'last_error'))) {
             throw "Error! JSON cannot be serialized due to the required property 'last_error' missing."
         } else {
-            $LastError = $JsonParameters.PSobject.Properties["last_error"].value
+            $LastError = $JsonParameters.PSobject.Properties['last_error'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expired_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'expired_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'expired_at' missing."
         } else {
-            $ExpiredAt = $JsonParameters.PSobject.Properties["expired_at"].value
+            $ExpiredAt = $JsonParameters.PSobject.Properties['expired_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cancelled_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'cancelled_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'cancelled_at' missing."
         } else {
-            $CancelledAt = $JsonParameters.PSobject.Properties["cancelled_at"].value
+            $CancelledAt = $JsonParameters.PSobject.Properties['cancelled_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "failed_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'failed_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'failed_at' missing."
         } else {
-            $FailedAt = $JsonParameters.PSobject.Properties["failed_at"].value
+            $FailedAt = $JsonParameters.PSobject.Properties['failed_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "completed_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'completed_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'completed_at' missing."
         } else {
-            $CompletedAt = $JsonParameters.PSobject.Properties["completed_at"].value
+            $CompletedAt = $JsonParameters.PSobject.Properties['completed_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) {
             throw "Error! JSON cannot be serialized due to the required property 'metadata' missing."
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "usage"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'usage'))) {
             throw "Error! JSON cannot be serialized due to the required property 'usage' missing."
         } else {
-            $Usage = $JsonParameters.PSobject.Properties["usage"].value
+            $Usage = $JsonParameters.PSobject.Properties['usage'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "created_at" = ${CreatedAt}
-            "assistant_id" = ${AssistantId}
-            "thread_id" = ${ThreadId}
-            "run_id" = ${RunId}
-            "type" = ${Type}
-            "status" = ${Status}
-            "step_details" = ${StepDetails}
-            "last_error" = ${LastError}
-            "expired_at" = ${ExpiredAt}
-            "cancelled_at" = ${CancelledAt}
-            "failed_at" = ${FailedAt}
-            "completed_at" = ${CompletedAt}
-            "metadata" = ${Metadata}
-            "usage" = ${Usage}
+            'id' = ${Id}
+            'object' = ${Object}
+            'created_at' = ${CreatedAt}
+            'assistant_id' = ${AssistantId}
+            'thread_id' = ${ThreadId}
+            'run_id' = ${RunId}
+            'type' = ${Type}
+            'status' = ${Status}
+            'step_details' = ${StepDetails}
+            'last_error' = ${LastError}
+            'expired_at' = ${ExpiredAt}
+            'cancelled_at' = ${CancelledAt}
+            'failed_at' = ${FailedAt}
+            'completed_at' = ${CompletedAt}
+            'metadata' = ${Metadata}
+            'usage' = ${Usage}
         }
 
         return $PSO

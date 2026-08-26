@@ -79,10 +79,12 @@ class RunStepDeltaStepDetailsToolCallsFileSearchObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepDeltaStepDetailsToolCallsFileSearchObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepDeltaStepDetailsToolCallsFileSearchObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'index'), 'Required key "RunStepDeltaStepDetailsToolCallsFileSearchObject[index]" is missing from JSON.');
+        assert(json[r'index'] != null, 'Required key "RunStepDeltaStepDetailsToolCallsFileSearchObject[index]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RunStepDeltaStepDetailsToolCallsFileSearchObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RunStepDeltaStepDetailsToolCallsFileSearchObject[type]" has a null value in JSON.');
+        assert(json.containsKey(r'file_search'), 'Required key "RunStepDeltaStepDetailsToolCallsFileSearchObject[file_search]" is missing from JSON.');
+        assert(json[r'file_search'] != null, 'Required key "RunStepDeltaStepDetailsToolCallsFileSearchObject[file_search]" has a null value in JSON.');
         return true;
       }());
 
@@ -145,27 +147,28 @@ class RunStepDeltaStepDetailsToolCallsFileSearchObject {
 }
 
 /// The type of tool call. This is always going to be `file_search` for this type of tool call.
-class RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum._(this.value);
+enum RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum {
+  fileSearch._(r'file_search'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const fileSearch = RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum._(r'file_search');
-
-  /// List of all possible values in this [enum][RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum].
-  static const values = <RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum>[
-    fileSearch,
-  ];
-
+  /// Returns the instance of [RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum? fromJson(dynamic value) => RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -187,9 +190,10 @@ class RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnumTypeTransformer {
 
   const RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnumTypeTransformer._();
 
-  String encode(RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum data) => data.value;
+  String encode(RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum.
+  /// Returns the instance of [RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -198,6 +202,9 @@ class RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'file_search': return RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum.fileSearch;
@@ -210,7 +217,7 @@ class RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnumTypeTransformer? _instance;
 }
 

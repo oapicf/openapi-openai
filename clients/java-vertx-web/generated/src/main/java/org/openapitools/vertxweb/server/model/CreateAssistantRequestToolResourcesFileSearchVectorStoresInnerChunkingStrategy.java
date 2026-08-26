@@ -4,7 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
-import org.openapitools.vertxweb.server.model.AutoChunkingStrategy;
+import org.openapitools.vertxweb.server.model.AutoChunkingStrategyRequestParam;
 import org.openapitools.vertxweb.server.model.StaticChunkingStrategy;
 import org.openapitools.vertxweb.server.model.StaticChunkingStrategyStatic;
 
@@ -98,9 +98,6 @@ public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunk
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }

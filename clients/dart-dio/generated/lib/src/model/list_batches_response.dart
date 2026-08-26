@@ -121,15 +121,17 @@ class _$ListBatchesResponseSerializer implements PrimitiveSerializer<ListBatches
         case r'first_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.firstId = valueDes;
           break;
         case r'last_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.lastId = valueDes;
           break;
         case r'has_more':

@@ -15,7 +15,7 @@ import org.openapitools.model.CreateImageRequest;
 import java.io.File;
 import org.openapitools.model.ImagesResponse;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-26T05:15:28.776347668Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ImagesController  {
   /**
    * Uncomment and implement as you see fit.  These operations will map

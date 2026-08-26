@@ -52,10 +52,6 @@ class RunObjectIncompleteDetails {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunObjectIncompleteDetails[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunObjectIncompleteDetails[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
@@ -112,29 +108,29 @@ class RunObjectIncompleteDetails {
 }
 
 /// The reason why the run is incomplete. This will point to which specific token limit was reached over the course of the run.
-class RunObjectIncompleteDetailsReasonEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunObjectIncompleteDetailsReasonEnum._(this.value);
+enum RunObjectIncompleteDetailsReasonEnum {
+  maxCompletionTokens._(r'max_completion_tokens'),
+  maxPromptTokens._(r'max_prompt_tokens'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunObjectIncompleteDetailsReasonEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const maxCompletionTokens = RunObjectIncompleteDetailsReasonEnum._(r'max_completion_tokens');
-  static const maxPromptTokens = RunObjectIncompleteDetailsReasonEnum._(r'max_prompt_tokens');
-
-  /// List of all possible values in this [enum][RunObjectIncompleteDetailsReasonEnum].
-  static const values = <RunObjectIncompleteDetailsReasonEnum>[
-    maxCompletionTokens,
-    maxPromptTokens,
-  ];
-
+  /// Returns the instance of [RunObjectIncompleteDetailsReasonEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunObjectIncompleteDetailsReasonEnum? fromJson(dynamic value) => RunObjectIncompleteDetailsReasonEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunObjectIncompleteDetailsReasonEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunObjectIncompleteDetailsReasonEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunObjectIncompleteDetailsReasonEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -156,9 +152,10 @@ class RunObjectIncompleteDetailsReasonEnumTypeTransformer {
 
   const RunObjectIncompleteDetailsReasonEnumTypeTransformer._();
 
-  String encode(RunObjectIncompleteDetailsReasonEnum data) => data.value;
+  String encode(RunObjectIncompleteDetailsReasonEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunObjectIncompleteDetailsReasonEnum.
+  /// Returns the instance of [RunObjectIncompleteDetailsReasonEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -167,6 +164,9 @@ class RunObjectIncompleteDetailsReasonEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunObjectIncompleteDetailsReasonEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunObjectIncompleteDetailsReasonEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'max_completion_tokens': return RunObjectIncompleteDetailsReasonEnum.maxCompletionTokens;
@@ -180,7 +180,7 @@ class RunObjectIncompleteDetailsReasonEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunObjectIncompleteDetailsReasonEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunObjectIncompleteDetailsReasonEnumTypeTransformer? _instance;
 }
 

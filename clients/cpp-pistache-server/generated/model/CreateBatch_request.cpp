@@ -28,6 +28,8 @@ CreateBatch_request::CreateBatch_request()
     
 }
 
+CreateBatch_request::~CreateBatch_request() = default;
+
 void CreateBatch_request::validate() const
 {
     std::stringstream msg;

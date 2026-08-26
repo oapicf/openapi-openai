@@ -28,7 +28,7 @@ class CreateFineTuningJobRequestIntegrationsInner {
         }
     }
 
-    
+    /* The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported.  */
     TypeEnum type
     
     CreateFineTuningJobRequestIntegrationsInnerWandb wandb

@@ -109,10 +109,16 @@ class CreateCompletionResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateCompletionResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateCompletionResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "CreateCompletionResponse[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "CreateCompletionResponse[id]" has a null value in JSON.');
+        assert(json.containsKey(r'choices'), 'Required key "CreateCompletionResponse[choices]" is missing from JSON.');
+        assert(json[r'choices'] != null, 'Required key "CreateCompletionResponse[choices]" has a null value in JSON.');
+        assert(json.containsKey(r'created'), 'Required key "CreateCompletionResponse[created]" is missing from JSON.');
+        assert(json[r'created'] != null, 'Required key "CreateCompletionResponse[created]" has a null value in JSON.');
+        assert(json.containsKey(r'model'), 'Required key "CreateCompletionResponse[model]" is missing from JSON.');
+        assert(json[r'model'] != null, 'Required key "CreateCompletionResponse[model]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "CreateCompletionResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "CreateCompletionResponse[object]" has a null value in JSON.');
         return true;
       }());
 
@@ -180,27 +186,28 @@ class CreateCompletionResponse {
 }
 
 /// The object type, which is always \"text_completion\"
-class CreateCompletionResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateCompletionResponseObjectEnum._(this.value);
+enum CreateCompletionResponseObjectEnum {
+  textCompletion._(r'text_completion'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateCompletionResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const textCompletion = CreateCompletionResponseObjectEnum._(r'text_completion');
-
-  /// List of all possible values in this [enum][CreateCompletionResponseObjectEnum].
-  static const values = <CreateCompletionResponseObjectEnum>[
-    textCompletion,
-  ];
-
+  /// Returns the instance of [CreateCompletionResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateCompletionResponseObjectEnum? fromJson(dynamic value) => CreateCompletionResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateCompletionResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateCompletionResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateCompletionResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -222,9 +229,10 @@ class CreateCompletionResponseObjectEnumTypeTransformer {
 
   const CreateCompletionResponseObjectEnumTypeTransformer._();
 
-  String encode(CreateCompletionResponseObjectEnum data) => data.value;
+  String encode(CreateCompletionResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateCompletionResponseObjectEnum.
+  /// Returns the instance of [CreateCompletionResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -233,6 +241,9 @@ class CreateCompletionResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateCompletionResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateCompletionResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text_completion': return CreateCompletionResponseObjectEnum.textCompletion;
@@ -245,7 +256,7 @@ class CreateCompletionResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateCompletionResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateCompletionResponseObjectEnumTypeTransformer? _instance;
 }
 

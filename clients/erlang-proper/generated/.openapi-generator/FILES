@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 README.md
 rebar.config
 src/model/openapi_admin_api_key.erl
@@ -61,7 +60,6 @@ src/model/openapi_audit_log_user_added_data.erl
 src/model/openapi_audit_log_user_deleted.erl
 src/model/openapi_audit_log_user_updated.erl
 src/model/openapi_audit_log_user_updated_changes_requested.erl
-src/model/openapi_auto_chunking_strategy.erl
 src/model/openapi_auto_chunking_strategy_request_param.erl
 src/model/openapi_batch.erl
 src/model/openapi_batch_errors.erl
@@ -471,7 +469,6 @@ src/model/openapi_run_tool_call_object.erl
 src/model/openapi_run_tool_call_object_function.erl
 src/model/openapi_static_chunking_strategy.erl
 src/model/openapi_static_chunking_strategy_request_param.erl
-src/model/openapi_static_chunking_strategy_response_param.erl
 src/model/openapi_static_chunking_strategy_static.erl
 src/model/openapi_submit_tool_outputs_run_request.erl
 src/model/openapi_submit_tool_outputs_run_request_tool_outputs_inner.erl

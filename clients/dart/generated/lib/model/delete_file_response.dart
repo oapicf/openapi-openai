@@ -59,10 +59,12 @@ class DeleteFileResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "DeleteFileResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "DeleteFileResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "DeleteFileResponse[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "DeleteFileResponse[id]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "DeleteFileResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "DeleteFileResponse[object]" has a null value in JSON.');
+        assert(json.containsKey(r'deleted'), 'Required key "DeleteFileResponse[deleted]" is missing from JSON.');
+        assert(json[r'deleted'] != null, 'Required key "DeleteFileResponse[deleted]" has a null value in JSON.');
         return true;
       }());
 
@@ -124,27 +126,28 @@ class DeleteFileResponse {
 }
 
 
-class DeleteFileResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const DeleteFileResponseObjectEnum._(this.value);
+enum DeleteFileResponseObjectEnum {
+  file._(r'file'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const DeleteFileResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const file = DeleteFileResponseObjectEnum._(r'file');
-
-  /// List of all possible values in this [enum][DeleteFileResponseObjectEnum].
-  static const values = <DeleteFileResponseObjectEnum>[
-    file,
-  ];
-
+  /// Returns the instance of [DeleteFileResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static DeleteFileResponseObjectEnum? fromJson(dynamic value) => DeleteFileResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [DeleteFileResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<DeleteFileResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <DeleteFileResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -166,9 +169,10 @@ class DeleteFileResponseObjectEnumTypeTransformer {
 
   const DeleteFileResponseObjectEnumTypeTransformer._();
 
-  String encode(DeleteFileResponseObjectEnum data) => data.value;
+  String encode(DeleteFileResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a DeleteFileResponseObjectEnum.
+  /// Returns the instance of [DeleteFileResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -177,6 +181,9 @@ class DeleteFileResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   DeleteFileResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is DeleteFileResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'file': return DeleteFileResponseObjectEnum.file;
@@ -189,7 +196,7 @@ class DeleteFileResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [DeleteFileResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static DeleteFileResponseObjectEnumTypeTransformer? _instance;
 }
 

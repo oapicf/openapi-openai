@@ -1,4 +1,4 @@
-# # RunStepStreamEventOneOf2
+# RunStepStreamEventOneOf2
 
 ## Properties
 

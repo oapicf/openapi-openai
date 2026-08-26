@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIChatCompletionNamedToolChoice::OAIChatCompletionNamedToolChoice(QString json) {
+OAIChatCompletionNamedToolChoice::OAIChatCompletionNamedToolChoice(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIChatCompletionNamedToolChoice::initializeModel() {
     m_function_isValid = false;
 }
 
-void OAIChatCompletionNamedToolChoice::fromJson(QString jsonString) {
+void OAIChatCompletionNamedToolChoice::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

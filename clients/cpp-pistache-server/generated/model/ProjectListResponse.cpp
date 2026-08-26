@@ -28,6 +28,8 @@ ProjectListResponse::ProjectListResponse()
     
 }
 
+ProjectListResponse::~ProjectListResponse() = default;
+
 void ProjectListResponse::validate() const
 {
     std::stringstream msg;

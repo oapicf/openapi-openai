@@ -34,7 +34,7 @@ class  CreateVectorStoreFileBatchRequest
 {
 public:
     CreateVectorStoreFileBatchRequest();
-    virtual ~CreateVectorStoreFileBatchRequest() = default;
+    virtual ~CreateVectorStoreFileBatchRequest();
 
 
     /// <summary>

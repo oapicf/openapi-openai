@@ -278,10 +278,11 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return UsageResponse
-    UsageAudioSpeeches = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ...) {
-      local_var_response <- self$UsageAudioSpeechesWithHttpInfo(start_time, end_time, bucket_width, project_ids, user_ids, api_key_ids, models, group_by, limit, page, data_file = data_file, ...)
+    UsageAudioSpeeches = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$UsageAudioSpeechesWithHttpInfo(start_time, end_time, bucket_width, project_ids, user_ids, api_key_ids, models, group_by, limit, page, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -308,9 +309,10 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (UsageResponse) with additional information such as HTTP status code, headers
-    UsageAudioSpeechesWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ...) {
+    UsageAudioSpeechesWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -436,6 +438,10 @@ UsageApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "UsageResponse"),
@@ -449,11 +455,15 @@ UsageApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -475,10 +485,11 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return UsageResponse
-    UsageAudioTranscriptions = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ...) {
-      local_var_response <- self$UsageAudioTranscriptionsWithHttpInfo(start_time, end_time, bucket_width, project_ids, user_ids, api_key_ids, models, group_by, limit, page, data_file = data_file, ...)
+    UsageAudioTranscriptions = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$UsageAudioTranscriptionsWithHttpInfo(start_time, end_time, bucket_width, project_ids, user_ids, api_key_ids, models, group_by, limit, page, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -505,9 +516,10 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (UsageResponse) with additional information such as HTTP status code, headers
-    UsageAudioTranscriptionsWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ...) {
+    UsageAudioTranscriptionsWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -633,6 +645,10 @@ UsageApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "UsageResponse"),
@@ -646,11 +662,15 @@ UsageApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -669,10 +689,11 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return UsageResponse
-    UsageCodeInterpreterSessions = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ...) {
-      local_var_response <- self$UsageCodeInterpreterSessionsWithHttpInfo(start_time, end_time, bucket_width, project_ids, group_by, limit, page, data_file = data_file, ...)
+    UsageCodeInterpreterSessions = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$UsageCodeInterpreterSessionsWithHttpInfo(start_time, end_time, bucket_width, project_ids, group_by, limit, page, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -696,9 +717,10 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (UsageResponse) with additional information such as HTTP status code, headers
-    UsageCodeInterpreterSessionsWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ...) {
+    UsageCodeInterpreterSessionsWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -797,6 +819,10 @@ UsageApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "UsageResponse"),
@@ -810,11 +836,15 @@ UsageApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -837,10 +867,11 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return UsageResponse
-    UsageCompletions = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, batch = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ...) {
-      local_var_response <- self$UsageCompletionsWithHttpInfo(start_time, end_time, bucket_width, project_ids, user_ids, api_key_ids, models, batch, group_by, limit, page, data_file = data_file, ...)
+    UsageCompletions = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, batch = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$UsageCompletionsWithHttpInfo(start_time, end_time, bucket_width, project_ids, user_ids, api_key_ids, models, batch, group_by, limit, page, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -868,9 +899,10 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (UsageResponse) with additional information such as HTTP status code, headers
-    UsageCompletionsWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, batch = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ...) {
+    UsageCompletionsWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, batch = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -1002,6 +1034,10 @@ UsageApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "UsageResponse"),
@@ -1015,11 +1051,15 @@ UsageApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -1038,10 +1078,11 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return UsageResponse
-    UsageCosts = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, group_by = NULL, limit = 7, page = NULL, data_file = NULL, ...) {
-      local_var_response <- self$UsageCostsWithHttpInfo(start_time, end_time, bucket_width, project_ids, group_by, limit, page, data_file = data_file, ...)
+    UsageCosts = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, group_by = NULL, limit = 7, page = NULL, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$UsageCostsWithHttpInfo(start_time, end_time, bucket_width, project_ids, group_by, limit, page, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -1065,9 +1106,10 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (UsageResponse) with additional information such as HTTP status code, headers
-    UsageCostsWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, group_by = NULL, limit = 7, page = NULL, data_file = NULL, ...) {
+    UsageCostsWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, group_by = NULL, limit = 7, page = NULL, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -1166,6 +1208,10 @@ UsageApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "UsageResponse"),
@@ -1179,11 +1225,15 @@ UsageApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -1205,10 +1255,11 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return UsageResponse
-    UsageEmbeddings = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ...) {
-      local_var_response <- self$UsageEmbeddingsWithHttpInfo(start_time, end_time, bucket_width, project_ids, user_ids, api_key_ids, models, group_by, limit, page, data_file = data_file, ...)
+    UsageEmbeddings = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$UsageEmbeddingsWithHttpInfo(start_time, end_time, bucket_width, project_ids, user_ids, api_key_ids, models, group_by, limit, page, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -1235,9 +1286,10 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (UsageResponse) with additional information such as HTTP status code, headers
-    UsageEmbeddingsWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ...) {
+    UsageEmbeddingsWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -1363,6 +1415,10 @@ UsageApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "UsageResponse"),
@@ -1376,11 +1432,15 @@ UsageApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -1404,10 +1464,11 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return UsageResponse
-    UsageImages = function(start_time, end_time = NULL, bucket_width = "1d", sources = NULL, sizes = NULL, project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ...) {
-      local_var_response <- self$UsageImagesWithHttpInfo(start_time, end_time, bucket_width, sources, sizes, project_ids, user_ids, api_key_ids, models, group_by, limit, page, data_file = data_file, ...)
+    UsageImages = function(start_time, end_time = NULL, bucket_width = "1d", sources = NULL, sizes = NULL, project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$UsageImagesWithHttpInfo(start_time, end_time, bucket_width, sources, sizes, project_ids, user_ids, api_key_ids, models, group_by, limit, page, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -1436,9 +1497,10 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (UsageResponse) with additional information such as HTTP status code, headers
-    UsageImagesWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", sources = NULL, sizes = NULL, project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ...) {
+    UsageImagesWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", sources = NULL, sizes = NULL, project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -1590,6 +1652,10 @@ UsageApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "UsageResponse"),
@@ -1603,11 +1669,15 @@ UsageApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -1629,10 +1699,11 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return UsageResponse
-    UsageModerations = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ...) {
-      local_var_response <- self$UsageModerationsWithHttpInfo(start_time, end_time, bucket_width, project_ids, user_ids, api_key_ids, models, group_by, limit, page, data_file = data_file, ...)
+    UsageModerations = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$UsageModerationsWithHttpInfo(start_time, end_time, bucket_width, project_ids, user_ids, api_key_ids, models, group_by, limit, page, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -1659,9 +1730,10 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (UsageResponse) with additional information such as HTTP status code, headers
-    UsageModerationsWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ...) {
+    UsageModerationsWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, user_ids = NULL, api_key_ids = NULL, models = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -1787,6 +1859,10 @@ UsageApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "UsageResponse"),
@@ -1800,11 +1876,15 @@ UsageApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -1823,10 +1903,11 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return UsageResponse
-    UsageVectorStores = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ...) {
-      local_var_response <- self$UsageVectorStoresWithHttpInfo(start_time, end_time, bucket_width, project_ids, group_by, limit, page, data_file = data_file, ...)
+    UsageVectorStores = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$UsageVectorStoresWithHttpInfo(start_time, end_time, bucket_width, project_ids, group_by, limit, page, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -1850,9 +1931,10 @@ UsageApi <- R6::R6Class(
     #' @param page (optional) A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (UsageResponse) with additional information such as HTTP status code, headers
-    UsageVectorStoresWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ...) {
+    UsageVectorStoresWithHttpInfo = function(start_time, end_time = NULL, bucket_width = "1d", project_ids = NULL, group_by = NULL, limit = NULL, page = NULL, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -1951,6 +2033,10 @@ UsageApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "UsageResponse"),
@@ -1964,11 +2050,15 @@ UsageApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)

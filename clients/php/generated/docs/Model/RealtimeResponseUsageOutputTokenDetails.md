@@ -1,4 +1,4 @@
-# # RealtimeResponseUsageOutputTokenDetails
+# RealtimeResponseUsageOutputTokenDetails
 
 ## Properties
 

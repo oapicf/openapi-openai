@@ -28,6 +28,8 @@ ListThreadsResponse::ListThreadsResponse()
     
 }
 
+ListThreadsResponse::~ListThreadsResponse() = default;
+
 void ListThreadsResponse::validate() const
 {
     std::stringstream msg;

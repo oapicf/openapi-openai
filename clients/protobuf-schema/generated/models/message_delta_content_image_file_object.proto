@@ -26,7 +26,7 @@ message MessageDeltaContentImageFileObject {
     TYPE_IMAGE_FILE = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   MessageDeltaContentImageFileObjectImageFile image_file = 369449506;
 

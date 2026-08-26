@@ -89,10 +89,20 @@ class RealtimeServerEventResponseContentPartAdded {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventResponseContentPartAdded[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventResponseContentPartAdded[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event_id'), 'Required key "RealtimeServerEventResponseContentPartAdded[event_id]" is missing from JSON.');
+        assert(json[r'event_id'] != null, 'Required key "RealtimeServerEventResponseContentPartAdded[event_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RealtimeServerEventResponseContentPartAdded[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeServerEventResponseContentPartAdded[type]" has a null value in JSON.');
+        assert(json.containsKey(r'response_id'), 'Required key "RealtimeServerEventResponseContentPartAdded[response_id]" is missing from JSON.');
+        assert(json[r'response_id'] != null, 'Required key "RealtimeServerEventResponseContentPartAdded[response_id]" has a null value in JSON.');
+        assert(json.containsKey(r'item_id'), 'Required key "RealtimeServerEventResponseContentPartAdded[item_id]" is missing from JSON.');
+        assert(json[r'item_id'] != null, 'Required key "RealtimeServerEventResponseContentPartAdded[item_id]" has a null value in JSON.');
+        assert(json.containsKey(r'output_index'), 'Required key "RealtimeServerEventResponseContentPartAdded[output_index]" is missing from JSON.');
+        assert(json[r'output_index'] != null, 'Required key "RealtimeServerEventResponseContentPartAdded[output_index]" has a null value in JSON.');
+        assert(json.containsKey(r'content_index'), 'Required key "RealtimeServerEventResponseContentPartAdded[content_index]" is missing from JSON.');
+        assert(json[r'content_index'] != null, 'Required key "RealtimeServerEventResponseContentPartAdded[content_index]" has a null value in JSON.');
+        assert(json.containsKey(r'part'), 'Required key "RealtimeServerEventResponseContentPartAdded[part]" is missing from JSON.');
+        assert(json[r'part'] != null, 'Required key "RealtimeServerEventResponseContentPartAdded[part]" has a null value in JSON.');
         return true;
       }());
 
@@ -162,27 +172,28 @@ class RealtimeServerEventResponseContentPartAdded {
 }
 
 /// The event type, must be `response.content_part.added`.
-class RealtimeServerEventResponseContentPartAddedTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventResponseContentPartAddedTypeEnum._(this.value);
+enum RealtimeServerEventResponseContentPartAddedTypeEnum {
+  responsePeriodContentPartPeriodAdded._(r'response.content_part.added'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventResponseContentPartAddedTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const responsePeriodContentPartPeriodAdded = RealtimeServerEventResponseContentPartAddedTypeEnum._(r'response.content_part.added');
-
-  /// List of all possible values in this [enum][RealtimeServerEventResponseContentPartAddedTypeEnum].
-  static const values = <RealtimeServerEventResponseContentPartAddedTypeEnum>[
-    responsePeriodContentPartPeriodAdded,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventResponseContentPartAddedTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventResponseContentPartAddedTypeEnum? fromJson(dynamic value) => RealtimeServerEventResponseContentPartAddedTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventResponseContentPartAddedTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventResponseContentPartAddedTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventResponseContentPartAddedTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -204,9 +215,10 @@ class RealtimeServerEventResponseContentPartAddedTypeEnumTypeTransformer {
 
   const RealtimeServerEventResponseContentPartAddedTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventResponseContentPartAddedTypeEnum data) => data.value;
+  String encode(RealtimeServerEventResponseContentPartAddedTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventResponseContentPartAddedTypeEnum.
+  /// Returns the instance of [RealtimeServerEventResponseContentPartAddedTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -215,6 +227,9 @@ class RealtimeServerEventResponseContentPartAddedTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventResponseContentPartAddedTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventResponseContentPartAddedTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'response.content_part.added': return RealtimeServerEventResponseContentPartAddedTypeEnum.responsePeriodContentPartPeriodAdded;
@@ -227,7 +242,7 @@ class RealtimeServerEventResponseContentPartAddedTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeServerEventResponseContentPartAddedTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventResponseContentPartAddedTypeEnumTypeTransformer? _instance;
 }
 

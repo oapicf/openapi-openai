@@ -34,14 +34,14 @@ typedef struct create_thread_and_run_request_t {
     list_t *tools; //nonprimitive container
     struct create_thread_and_run_request_tool_resources_t *tool_resources; //model
     object_t *metadata; //object
-    double temperature; //numeric
-    double top_p; //numeric
-    int stream; //boolean
-    int max_prompt_tokens; //numeric
-    int max_completion_tokens; //numeric
+    double *temperature; //numeric
+    double *top_p; //numeric
+    int *stream; //boolean
+    int *max_prompt_tokens; //numeric
+    int *max_completion_tokens; //numeric
     struct truncation_object_t *truncation_strategy; //model
     struct assistants_api_tool_choice_option_t *tool_choice; //model
-    int parallel_tool_calls; //boolean
+    int *parallel_tool_calls; //boolean
     struct assistants_api_response_format_option_t *response_format; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -55,14 +55,14 @@ __attribute__((deprecated)) create_thread_and_run_request_t *create_thread_and_r
     list_t *tools,
     create_thread_and_run_request_tool_resources_t *tool_resources,
     object_t *metadata,
-    double temperature,
-    double top_p,
-    int stream,
-    int max_prompt_tokens,
-    int max_completion_tokens,
+    double *temperature,
+    double *top_p,
+    int *stream,
+    int *max_prompt_tokens,
+    int *max_completion_tokens,
     truncation_object_t *truncation_strategy,
     assistants_api_tool_choice_option_t *tool_choice,
-    int parallel_tool_calls,
+    int *parallel_tool_calls,
     assistants_api_response_format_option_t *response_format
 );
 

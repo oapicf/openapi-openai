@@ -77,11 +77,11 @@ function Initialize-ProjectServiceAccountListResponse {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "data" = ${VarData}
-            "first_id" = ${FirstId}
-            "last_id" = ${LastId}
-            "has_more" = ${HasMore}
+            'object' = ${Object}
+            'data' = ${VarData}
+            'first_id' = ${FirstId}
+            'last_id' = ${LastId}
+            'has_more' = ${HasMore}
         }
 
 
@@ -119,7 +119,7 @@ function ConvertFrom-JsonToProjectServiceAccountListResponse {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ProjectServiceAccountListResponse
-        $AllProperties = ("object", "data", "first_id", "last_id", "has_more")
+        $AllProperties = ('object', 'data', 'first_id', 'last_id', 'has_more')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -130,42 +130,42 @@ function ConvertFrom-JsonToProjectServiceAccountListResponse {
             throw "Error! Empty JSON cannot be serialized due to the required property 'object' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "data"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'data'))) {
             throw "Error! JSON cannot be serialized due to the required property 'data' missing."
         } else {
-            $VarData = $JsonParameters.PSobject.Properties["data"].value
+            $VarData = $JsonParameters.PSobject.Properties['data'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "first_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'first_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'first_id' missing."
         } else {
-            $FirstId = $JsonParameters.PSobject.Properties["first_id"].value
+            $FirstId = $JsonParameters.PSobject.Properties['first_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "last_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'last_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'last_id' missing."
         } else {
-            $LastId = $JsonParameters.PSobject.Properties["last_id"].value
+            $LastId = $JsonParameters.PSobject.Properties['last_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "has_more"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'has_more'))) {
             throw "Error! JSON cannot be serialized due to the required property 'has_more' missing."
         } else {
-            $HasMore = $JsonParameters.PSobject.Properties["has_more"].value
+            $HasMore = $JsonParameters.PSobject.Properties['has_more'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "data" = ${VarData}
-            "first_id" = ${FirstId}
-            "last_id" = ${LastId}
-            "has_more" = ${HasMore}
+            'object' = ${Object}
+            'data' = ${VarData}
+            'first_id' = ${FirstId}
+            'last_id' = ${LastId}
+            'has_more' = ${HasMore}
         }
 
         return $PSO

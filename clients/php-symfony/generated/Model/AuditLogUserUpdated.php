@@ -51,7 +51,7 @@ class AuditLogUserUpdated
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -59,7 +59,7 @@ class AuditLogUserUpdated
      * @var AuditLogUserUpdatedChangesRequested|null
      * @SerializedName("changes_requested")
      * @Type("OpenAPI\Server\Model\AuditLogUserUpdatedChangesRequested")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogUserUpdatedChangesRequested")]
     protected ?AuditLogUserUpdatedChangesRequested $changesRequested = null;
 
@@ -86,12 +86,12 @@ class AuditLogUserUpdated
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The project ID.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The project ID.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -113,12 +113,12 @@ class AuditLogUserUpdated
     }
 
     /**
-    * Sets changesRequested.
-    *
-    * @param AuditLogUserUpdatedChangesRequested|null $changesRequested
-    *
-    * @return $this
-    */
+     * Sets changesRequested.
+     *
+     * @param AuditLogUserUpdatedChangesRequested|null $changesRequested
+     *
+     * @return $this
+     */
     public function setChangesRequested(?AuditLogUserUpdatedChangesRequested $changesRequested = null): self
     {
         $this->changesRequested = $changesRequested;

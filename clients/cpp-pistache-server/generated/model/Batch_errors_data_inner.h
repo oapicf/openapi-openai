@@ -32,7 +32,7 @@ class  Batch_errors_data_inner
 {
 public:
     Batch_errors_data_inner();
-    virtual ~Batch_errors_data_inner() = default;
+    virtual ~Batch_errors_data_inner();
 
 
     /// <summary>

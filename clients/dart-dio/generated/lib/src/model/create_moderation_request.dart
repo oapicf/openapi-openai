@@ -91,8 +91,9 @@ class _$CreateModerationRequestSerializer implements PrimitiveSerializer<CreateM
         case r'model':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateModerationRequestModel),
-          ) as CreateModerationRequestModel;
+            specifiedType: const FullType.nullable(CreateModerationRequestModel),
+          ) as CreateModerationRequestModel?;
+          if (valueDes == null) continue;
           result.model.replace(valueDes);
           break;
         default:

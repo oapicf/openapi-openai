@@ -59,10 +59,12 @@ class ProjectUserDeleteResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectUserDeleteResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectUserDeleteResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "ProjectUserDeleteResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "ProjectUserDeleteResponse[object]" has a null value in JSON.');
+        assert(json.containsKey(r'id'), 'Required key "ProjectUserDeleteResponse[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "ProjectUserDeleteResponse[id]" has a null value in JSON.');
+        assert(json.containsKey(r'deleted'), 'Required key "ProjectUserDeleteResponse[deleted]" is missing from JSON.');
+        assert(json[r'deleted'] != null, 'Required key "ProjectUserDeleteResponse[deleted]" has a null value in JSON.');
         return true;
       }());
 
@@ -124,27 +126,28 @@ class ProjectUserDeleteResponse {
 }
 
 
-class ProjectUserDeleteResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ProjectUserDeleteResponseObjectEnum._(this.value);
+enum ProjectUserDeleteResponseObjectEnum {
+  organizationPeriodProjectPeriodUserPeriodDeleted._(r'organization.project.user.deleted'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ProjectUserDeleteResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const organizationPeriodProjectPeriodUserPeriodDeleted = ProjectUserDeleteResponseObjectEnum._(r'organization.project.user.deleted');
-
-  /// List of all possible values in this [enum][ProjectUserDeleteResponseObjectEnum].
-  static const values = <ProjectUserDeleteResponseObjectEnum>[
-    organizationPeriodProjectPeriodUserPeriodDeleted,
-  ];
-
+  /// Returns the instance of [ProjectUserDeleteResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ProjectUserDeleteResponseObjectEnum? fromJson(dynamic value) => ProjectUserDeleteResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ProjectUserDeleteResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ProjectUserDeleteResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ProjectUserDeleteResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -166,9 +169,10 @@ class ProjectUserDeleteResponseObjectEnumTypeTransformer {
 
   const ProjectUserDeleteResponseObjectEnumTypeTransformer._();
 
-  String encode(ProjectUserDeleteResponseObjectEnum data) => data.value;
+  String encode(ProjectUserDeleteResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ProjectUserDeleteResponseObjectEnum.
+  /// Returns the instance of [ProjectUserDeleteResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -177,6 +181,9 @@ class ProjectUserDeleteResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ProjectUserDeleteResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ProjectUserDeleteResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'organization.project.user.deleted': return ProjectUserDeleteResponseObjectEnum.organizationPeriodProjectPeriodUserPeriodDeleted;
@@ -189,7 +196,7 @@ class ProjectUserDeleteResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ProjectUserDeleteResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ProjectUserDeleteResponseObjectEnumTypeTransformer? _instance;
 }
 

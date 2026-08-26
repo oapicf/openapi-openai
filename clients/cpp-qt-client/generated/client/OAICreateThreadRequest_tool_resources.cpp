@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateThreadRequest_tool_resources::OAICreateThreadRequest_tool_resources(QString json) {
+OAICreateThreadRequest_tool_resources::OAICreateThreadRequest_tool_resources(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAICreateThreadRequest_tool_resources::initializeModel() {
     m_file_search_isValid = false;
 }
 
-void OAICreateThreadRequest_tool_resources::fromJson(QString jsonString) {
+void OAICreateThreadRequest_tool_resources::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

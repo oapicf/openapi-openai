@@ -109,10 +109,19 @@ class VectorStoreFileObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "VectorStoreFileObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "VectorStoreFileObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "VectorStoreFileObject[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "VectorStoreFileObject[id]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "VectorStoreFileObject[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "VectorStoreFileObject[object]" has a null value in JSON.');
+        assert(json.containsKey(r'usage_bytes'), 'Required key "VectorStoreFileObject[usage_bytes]" is missing from JSON.');
+        assert(json[r'usage_bytes'] != null, 'Required key "VectorStoreFileObject[usage_bytes]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "VectorStoreFileObject[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "VectorStoreFileObject[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'vector_store_id'), 'Required key "VectorStoreFileObject[vector_store_id]" is missing from JSON.');
+        assert(json[r'vector_store_id'] != null, 'Required key "VectorStoreFileObject[vector_store_id]" has a null value in JSON.');
+        assert(json.containsKey(r'status'), 'Required key "VectorStoreFileObject[status]" is missing from JSON.');
+        assert(json[r'status'] != null, 'Required key "VectorStoreFileObject[status]" has a null value in JSON.');
+        assert(json.containsKey(r'last_error'), 'Required key "VectorStoreFileObject[last_error]" is missing from JSON.');
         return true;
       }());
 
@@ -183,27 +192,28 @@ class VectorStoreFileObject {
 }
 
 /// The object type, which is always `vector_store.file`.
-class VectorStoreFileObjectObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const VectorStoreFileObjectObjectEnum._(this.value);
+enum VectorStoreFileObjectObjectEnum {
+  vectorStorePeriodFile._(r'vector_store.file'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const VectorStoreFileObjectObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const vectorStorePeriodFile = VectorStoreFileObjectObjectEnum._(r'vector_store.file');
-
-  /// List of all possible values in this [enum][VectorStoreFileObjectObjectEnum].
-  static const values = <VectorStoreFileObjectObjectEnum>[
-    vectorStorePeriodFile,
-  ];
-
+  /// Returns the instance of [VectorStoreFileObjectObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static VectorStoreFileObjectObjectEnum? fromJson(dynamic value) => VectorStoreFileObjectObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [VectorStoreFileObjectObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<VectorStoreFileObjectObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <VectorStoreFileObjectObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -225,9 +235,10 @@ class VectorStoreFileObjectObjectEnumTypeTransformer {
 
   const VectorStoreFileObjectObjectEnumTypeTransformer._();
 
-  String encode(VectorStoreFileObjectObjectEnum data) => data.value;
+  String encode(VectorStoreFileObjectObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a VectorStoreFileObjectObjectEnum.
+  /// Returns the instance of [VectorStoreFileObjectObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -236,6 +247,9 @@ class VectorStoreFileObjectObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   VectorStoreFileObjectObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is VectorStoreFileObjectObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'vector_store.file': return VectorStoreFileObjectObjectEnum.vectorStorePeriodFile;
@@ -248,39 +262,37 @@ class VectorStoreFileObjectObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [VectorStoreFileObjectObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static VectorStoreFileObjectObjectEnumTypeTransformer? _instance;
 }
 
 
 /// The status of the vector store file, which can be either `in_progress`, `completed`, `cancelled`, or `failed`. The status `completed` indicates that the vector store file is ready for use.
-class VectorStoreFileObjectStatusEnum {
-  /// Instantiate a new enum with the provided [value].
-  const VectorStoreFileObjectStatusEnum._(this.value);
+enum VectorStoreFileObjectStatusEnum {
+  inProgress._(r'in_progress'),
+  completed._(r'completed'),
+  cancelled._(r'cancelled'),
+  failed._(r'failed'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const VectorStoreFileObjectStatusEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const inProgress = VectorStoreFileObjectStatusEnum._(r'in_progress');
-  static const completed = VectorStoreFileObjectStatusEnum._(r'completed');
-  static const cancelled = VectorStoreFileObjectStatusEnum._(r'cancelled');
-  static const failed = VectorStoreFileObjectStatusEnum._(r'failed');
-
-  /// List of all possible values in this [enum][VectorStoreFileObjectStatusEnum].
-  static const values = <VectorStoreFileObjectStatusEnum>[
-    inProgress,
-    completed,
-    cancelled,
-    failed,
-  ];
-
+  /// Returns the instance of [VectorStoreFileObjectStatusEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static VectorStoreFileObjectStatusEnum? fromJson(dynamic value) => VectorStoreFileObjectStatusEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [VectorStoreFileObjectStatusEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<VectorStoreFileObjectStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <VectorStoreFileObjectStatusEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -302,9 +314,10 @@ class VectorStoreFileObjectStatusEnumTypeTransformer {
 
   const VectorStoreFileObjectStatusEnumTypeTransformer._();
 
-  String encode(VectorStoreFileObjectStatusEnum data) => data.value;
+  String encode(VectorStoreFileObjectStatusEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a VectorStoreFileObjectStatusEnum.
+  /// Returns the instance of [VectorStoreFileObjectStatusEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -313,6 +326,9 @@ class VectorStoreFileObjectStatusEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   VectorStoreFileObjectStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is VectorStoreFileObjectStatusEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'in_progress': return VectorStoreFileObjectStatusEnum.inProgress;
@@ -328,7 +344,7 @@ class VectorStoreFileObjectStatusEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [VectorStoreFileObjectStatusEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static VectorStoreFileObjectStatusEnumTypeTransformer? _instance;
 }
 

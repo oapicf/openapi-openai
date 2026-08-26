@@ -29,8 +29,8 @@ openai_api_usage_time_bucket_OBJECT_e usage_time_bucket_object_FromString(char* 
 
 typedef struct usage_time_bucket_t {
     openai_api_usage_time_bucket_OBJECT_e object; //enum
-    int start_time; //numeric
-    int end_time; //numeric
+    int *start_time; //numeric
+    int *end_time; //numeric
     list_t *result; //nonprimitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -38,8 +38,8 @@ typedef struct usage_time_bucket_t {
 
 __attribute__((deprecated)) usage_time_bucket_t *usage_time_bucket_create(
     openai_api_usage_time_bucket_OBJECT_e object,
-    int start_time,
-    int end_time,
+    int *start_time,
+    int *end_time,
     list_t *result
 );
 

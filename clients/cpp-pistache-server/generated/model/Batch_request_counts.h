@@ -31,7 +31,7 @@ class  Batch_request_counts
 {
 public:
     Batch_request_counts();
-    virtual ~Batch_request_counts() = default;
+    virtual ~Batch_request_counts();
 
 
     /// <summary>

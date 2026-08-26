@@ -28,7 +28,7 @@ message Model {
     OBJECT_MODEL = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The organization that owns the model.
   string owned_by = 52117556;

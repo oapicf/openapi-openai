@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from openapi_server.models.admin_api_key import AdminApiKey
 try:
@@ -33,11 +33,11 @@ class ApiKeyList(BaseModel):
     """
     ApiKeyList
     """ # noqa: E501
-    object: Optional[StrictStr] = None
+    object: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["list"]})
     data: Optional[List[AdminApiKey]] = None
-    has_more: Optional[StrictBool] = None
-    first_id: Optional[StrictStr] = None
-    last_id: Optional[StrictStr] = None
+    has_more: Optional[StrictBool] = Field(default=None, json_schema_extra={"examples": [False]})
+    first_id: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["key_abc"]})
+    last_id: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["key_xyz"]})
     __properties: ClassVar[List[str]] = ["object", "data", "has_more", "first_id", "last_id"]
 
     model_config = {

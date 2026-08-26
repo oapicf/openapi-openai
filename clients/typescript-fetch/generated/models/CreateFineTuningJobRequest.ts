@@ -128,7 +128,7 @@ export interface CreateFineTuningJobRequest {
  */
 export function instanceOfCreateFineTuningJobRequest(value: object): value is CreateFineTuningJobRequest {
     if (!('model' in value) || value['model'] === undefined) return false;
-    if (!('trainingFile' in value) || value['trainingFile'] === undefined) return false;
+    if ((!('trainingFile' in (value as Record<string, any>)) && !('training_file' in (value as Record<string, any>))) || ((value as Record<string, any>)['trainingFile'] === undefined && (value as Record<string, any>)['training_file'] === undefined)) return false;
     return true;
 }
 
@@ -145,10 +145,10 @@ export function CreateFineTuningJobRequestFromJSONTyped(json: any, ignoreDiscrim
         'model': CreateFineTuningJobRequestModelFromJSON(json['model']),
         'trainingFile': json['training_file'],
         'hyperparameters': json['hyperparameters'] == null ? undefined : CreateFineTuningJobRequestHyperparametersFromJSON(json['hyperparameters']),
-        'suffix': json['suffix'] == null ? undefined : json['suffix'],
-        'validationFile': json['validation_file'] == null ? undefined : json['validation_file'],
-        'integrations': json['integrations'] == null ? undefined : ((json['integrations'] as Array<any>).map(CreateFineTuningJobRequestIntegrationsInnerFromJSON)),
-        'seed': json['seed'] == null ? undefined : json['seed'],
+        'suffix': json['suffix'] === undefined ? undefined : json['suffix'] === null ? null : json['suffix'],
+        'validationFile': json['validation_file'] === undefined ? undefined : json['validation_file'] === null ? null : json['validation_file'],
+        'integrations': json['integrations'] === undefined ? undefined : json['integrations'] === null ? null : ((json['integrations'] as Array<any>).map(CreateFineTuningJobRequestIntegrationsInnerFromJSON)),
+        'seed': json['seed'] === undefined ? undefined : json['seed'] === null ? null : json['seed'],
         'method': json['method'] == null ? undefined : FineTuneMethodFromJSON(json['method']),
     };
 }

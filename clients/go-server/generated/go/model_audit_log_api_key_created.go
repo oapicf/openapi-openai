@@ -23,7 +23,8 @@ type AuditLogApiKeyCreated struct {
 	Data AuditLogApiKeyCreatedData `json:"data,omitempty"`
 }
 
-// AssertAuditLogApiKeyCreatedRequired checks if the required fields are not zero-ed
+// AssertAuditLogApiKeyCreatedRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertAuditLogApiKeyCreatedRequired(obj AuditLogApiKeyCreated) error {
 	if err := AssertAuditLogApiKeyCreatedDataRequired(obj.Data); err != nil {
 		return err

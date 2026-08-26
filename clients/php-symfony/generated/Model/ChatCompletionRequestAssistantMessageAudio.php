@@ -51,7 +51,7 @@ class ChatCompletionRequestAssistantMessageAudio
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -78,12 +78,12 @@ class ChatCompletionRequestAssistantMessageAudio
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  Unique identifier for a previous audio response from the model.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  Unique identifier for a previous audio response from the model.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;

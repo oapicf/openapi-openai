@@ -1,0 +1,19 @@
+## ModelsApi
+
+### Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
+## Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
+DELETE https://api.openai.com/v1/models/{{model}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Lists the currently available models, and provides basic information about each one such as the owner and availability.
+## Lists the currently available models, and provides basic information about each one such as the owner and availability.
+GET https://api.openai.com/v1/models
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+## Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+GET https://api.openai.com/v1/models/{{model}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}

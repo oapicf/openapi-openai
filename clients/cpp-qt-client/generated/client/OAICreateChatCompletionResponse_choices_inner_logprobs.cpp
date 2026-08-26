@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateChatCompletionResponse_choices_inner_logprobs::OAICreateChatCompletionResponse_choices_inner_logprobs(QString json) {
+OAICreateChatCompletionResponse_choices_inner_logprobs::OAICreateChatCompletionResponse_choices_inner_logprobs(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAICreateChatCompletionResponse_choices_inner_logprobs::initializeModel() {
     m_refusal_isValid = false;
 }
 
-void OAICreateChatCompletionResponse_choices_inner_logprobs::fromJson(QString jsonString) {
+void OAICreateChatCompletionResponse_choices_inner_logprobs::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

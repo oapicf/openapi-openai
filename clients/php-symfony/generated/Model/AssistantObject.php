@@ -51,7 +51,7 @@ class AssistantObject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class AssistantObject
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['assistant'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class AssistantObject
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -85,7 +85,7 @@ class AssistantObject
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     #[Assert\Length(max: 256)]
@@ -97,7 +97,7 @@ class AssistantObject
      * @var string|null
      * @SerializedName("description")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     #[Assert\Length(max: 512)]
@@ -109,7 +109,7 @@ class AssistantObject
      * @var string|null
      * @SerializedName("model")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $model = null;
@@ -120,7 +120,7 @@ class AssistantObject
      * @var string|null
      * @SerializedName("instructions")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     #[Assert\Length(max: 256000)]
@@ -132,7 +132,7 @@ class AssistantObject
      * @var AssistantObjectToolsInner[]|null
      * @SerializedName("tools")
      * @Type("array<OpenAPI\Server\Model\AssistantObjectToolsInner>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -145,7 +145,7 @@ class AssistantObject
      * @var AssistantObjectToolResources|null
      * @SerializedName("tool_resources")
      * @Type("OpenAPI\Server\Model\AssistantObjectToolResources")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AssistantObjectToolResources")]
     protected ?AssistantObjectToolResources $toolResources = null;
 
@@ -155,7 +155,7 @@ class AssistantObject
      * @var array|null
      * @SerializedName("metadata")
      * @Type("array")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("array")]
     protected ?array $metadata = null;
@@ -166,7 +166,7 @@ class AssistantObject
      * @var float|null
      * @SerializedName("temperature")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(0)]
     #[Assert\LessThanOrEqual(2)]
@@ -178,7 +178,7 @@ class AssistantObject
      * @var float|null
      * @SerializedName("top_p")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(0)]
     #[Assert\LessThanOrEqual(1)]
@@ -188,7 +188,7 @@ class AssistantObject
      * @var AssistantsApiResponseFormatOption|null
      * @SerializedName("response_format")
      * @Type("OpenAPI\Server\Model\AssistantsApiResponseFormatOption")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AssistantsApiResponseFormatOption")]
     protected ?AssistantsApiResponseFormatOption $responseFormat = null;
 
@@ -226,12 +226,12 @@ class AssistantObject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The identifier, which can be referenced in API endpoints.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The identifier, which can be referenced in API endpoints.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -253,12 +253,12 @@ class AssistantObject
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `assistant`.
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `assistant`.
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -280,12 +280,12 @@ class AssistantObject
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) for when the assistant was created.
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) for when the assistant was created.
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -307,12 +307,12 @@ class AssistantObject
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the assistant. The maximum length is 256 characters.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the assistant. The maximum length is 256 characters.
+     *
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -334,12 +334,12 @@ class AssistantObject
     }
 
     /**
-    * Sets description.
-    *
-    * @param string|null $description  The description of the assistant. The maximum length is 512 characters.
-    *
-    * @return $this
-    */
+     * Sets description.
+     *
+     * @param string|null $description  The description of the assistant. The maximum length is 512 characters.
+     *
+     * @return $this
+     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -361,12 +361,12 @@ class AssistantObject
     }
 
     /**
-    * Sets model.
-    *
-    * @param string|null $model  ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them.
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param string|null $model  ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them.
+     *
+     * @return $this
+     */
     public function setModel(?string $model): self
     {
         $this->model = $model;
@@ -388,12 +388,12 @@ class AssistantObject
     }
 
     /**
-    * Sets instructions.
-    *
-    * @param string|null $instructions  The system instructions that the assistant uses. The maximum length is 256,000 characters.
-    *
-    * @return $this
-    */
+     * Sets instructions.
+     *
+     * @param string|null $instructions  The system instructions that the assistant uses. The maximum length is 256,000 characters.
+     *
+     * @return $this
+     */
     public function setInstructions(?string $instructions): self
     {
         $this->instructions = $instructions;
@@ -415,12 +415,12 @@ class AssistantObject
     }
 
     /**
-    * Sets tools.
-    *
-    * @param AssistantObjectToolsInner[]|null $tools  A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`.
-    *
-    * @return $this
-    */
+     * Sets tools.
+     *
+     * @param AssistantObjectToolsInner[]|null $tools  A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`.
+     *
+     * @return $this
+     */
     public function setTools(?array $tools): self
     {
         $this->tools = $tools;
@@ -442,12 +442,12 @@ class AssistantObject
     }
 
     /**
-    * Sets toolResources.
-    *
-    * @param AssistantObjectToolResources|null $toolResources
-    *
-    * @return $this
-    */
+     * Sets toolResources.
+     *
+     * @param AssistantObjectToolResources|null $toolResources
+     *
+     * @return $this
+     */
     public function setToolResources(?AssistantObjectToolResources $toolResources = null): self
     {
         $this->toolResources = $toolResources;
@@ -469,12 +469,12 @@ class AssistantObject
     }
 
     /**
-    * Sets metadata.
-    *
-    * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
-    *
-    * @return $this
-    */
+     * Sets metadata.
+     *
+     * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
+     *
+     * @return $this
+     */
     public function setMetadata(?array $metadata): self
     {
         $this->metadata = $metadata;
@@ -496,12 +496,12 @@ class AssistantObject
     }
 
     /**
-    * Sets temperature.
-    *
-    * @param float|null $temperature  What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
-    *
-    * @return $this
-    */
+     * Sets temperature.
+     *
+     * @param float|null $temperature  What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+     *
+     * @return $this
+     */
     public function setTemperature(?float $temperature = null): self
     {
         $this->temperature = $temperature;
@@ -523,12 +523,12 @@ class AssistantObject
     }
 
     /**
-    * Sets topP.
-    *
-    * @param float|null $topP  An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both.
-    *
-    * @return $this
-    */
+     * Sets topP.
+     *
+     * @param float|null $topP  An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both.
+     *
+     * @return $this
+     */
     public function setTopP(?float $topP = null): self
     {
         $this->topP = $topP;
@@ -550,12 +550,12 @@ class AssistantObject
     }
 
     /**
-    * Sets responseFormat.
-    *
-    * @param AssistantsApiResponseFormatOption|null $responseFormat
-    *
-    * @return $this
-    */
+     * Sets responseFormat.
+     *
+     * @param AssistantsApiResponseFormatOption|null $responseFormat
+     *
+     * @return $this
+     */
     public function setResponseFormat(?AssistantsApiResponseFormatOption $responseFormat = null): self
     {
         $this->responseFormat = $responseFormat;

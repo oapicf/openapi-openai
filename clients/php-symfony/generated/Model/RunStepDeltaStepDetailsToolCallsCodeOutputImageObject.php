@@ -49,7 +49,7 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
      * @var int|null
      * @SerializedName("index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $index = null;
@@ -60,7 +60,7 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['image'])]
     #[Assert\Type("string")]
@@ -70,7 +70,7 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
      * @var RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage|null
      * @SerializedName("image")
      * @Type("OpenAPI\Server\Model\RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage")]
     protected ?RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage $image = null;
 
@@ -98,12 +98,12 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
     }
 
     /**
-    * Sets index.
-    *
-    * @param int|null $index  The index of the output in the outputs array.
-    *
-    * @return $this
-    */
+     * Sets index.
+     *
+     * @param int|null $index  The index of the output in the outputs array.
+     *
+     * @return $this
+     */
     public function setIndex(?int $index): self
     {
         $this->index = $index;
@@ -125,12 +125,12 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `image`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `image`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -152,12 +152,12 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
     }
 
     /**
-    * Sets image.
-    *
-    * @param RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage|null $image
-    *
-    * @return $this
-    */
+     * Sets image.
+     *
+     * @param RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage|null $image
+     *
+     * @return $this
+     */
     public function setImage(?RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage $image = null): self
     {
         $this->image = $image;

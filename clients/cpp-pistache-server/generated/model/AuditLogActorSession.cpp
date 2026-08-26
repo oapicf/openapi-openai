@@ -27,6 +27,8 @@ AuditLogActorSession::AuditLogActorSession()
     
 }
 
+AuditLogActorSession::~AuditLogActorSession() = default;
+
 void AuditLogActorSession::validate() const
 {
     std::stringstream msg;

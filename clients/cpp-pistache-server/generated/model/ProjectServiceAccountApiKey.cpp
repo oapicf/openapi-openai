@@ -29,6 +29,8 @@ ProjectServiceAccountApiKey::ProjectServiceAccountApiKey()
     
 }
 
+ProjectServiceAccountApiKey::~ProjectServiceAccountApiKey() = default;
+
 void ProjectServiceAccountApiKey::validate() const
 {
     std::stringstream msg;

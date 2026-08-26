@@ -33,7 +33,7 @@ class  BatchRequestOutput_response
 {
 public:
     BatchRequestOutput_response();
-    virtual ~BatchRequestOutput_response() = default;
+    virtual ~BatchRequestOutput_response();
 
 
     /// <summary>

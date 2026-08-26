@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 api.ts
 api/apis.ts
 api/assistantsApi.ts
@@ -83,7 +82,6 @@ model/auditLogUserAddedData.ts
 model/auditLogUserDeleted.ts
 model/auditLogUserUpdated.ts
 model/auditLogUserUpdatedChangesRequested.ts
-model/autoChunkingStrategy.ts
 model/autoChunkingStrategyRequestParam.ts
 model/batch.ts
 model/batchErrors.ts
@@ -494,7 +492,6 @@ model/runToolCallObject.ts
 model/runToolCallObjectFunction.ts
 model/staticChunkingStrategy.ts
 model/staticChunkingStrategyRequestParam.ts
-model/staticChunkingStrategyResponseParam.ts
 model/staticChunkingStrategyStatic.ts
 model/submitToolOutputsRunRequest.ts
 model/submitToolOutputsRunRequestToolOutputsInner.ts

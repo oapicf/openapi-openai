@@ -33,7 +33,7 @@ class  AuditLogActorSession
 {
 public:
     AuditLogActorSession();
-    virtual ~AuditLogActorSession() = default;
+    virtual ~AuditLogActorSession();
 
 
     /// <summary>

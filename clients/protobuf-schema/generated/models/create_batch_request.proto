@@ -27,14 +27,14 @@ message CreateBatchRequest {
     ENDPOINT__V1_COMPLETIONS = 2;
   }
 
-  Endpoint endpoint = 130489752;
+  string endpoint = 130489752;
 
   // The time frame within which the batch should be processed. Currently only `24h` is supported.
   enum Completion_window {
     COMPLETION_WINDOW__24H = 0;
   }
 
-  Completion_window completion_window = 462740046;
+  string completion_window = 462740046;
 
   // Optional custom metadata for the batch.
   optional map<string, string> metadata = 450004177;

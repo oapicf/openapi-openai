@@ -2,19 +2,20 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * For requests that failed with a non-HTTP error, this will contain more information on the cause of the failure.
@@ -22,11 +23,13 @@ import javax.annotation.Generated;
 
 @Schema(name = "BatchRequestOutput_error", description = "For requests that failed with a non-HTTP error, this will contain more information on the cause of the failure.")
 @JsonTypeName("BatchRequestOutput_error")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class BatchRequestOutputError {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String code;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String message;
 
   public BatchRequestOutputError code(@Nullable String code) {
@@ -45,6 +48,7 @@ public class BatchRequestOutputError {
     return code;
   }
 
+  @JsonProperty("code")
   public void setCode(@Nullable String code) {
     this.code = code;
   }
@@ -65,6 +69,7 @@ public class BatchRequestOutputError {
     return message;
   }
 
+  @JsonProperty("message")
   public void setMessage(@Nullable String message) {
     this.message = message;
   }
@@ -102,10 +107,7 @@ public class BatchRequestOutputError {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

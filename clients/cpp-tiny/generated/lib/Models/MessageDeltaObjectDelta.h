@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set The entity that produced the message. One of `user` or `assistant`.
 	 */
-	void setRole(std::string  role);
+	void setRole(std::string role);
 	/*! \brief Get The content of the message in array of text and/or images.
 	 */
 	std::list<MessageDeltaObject_delta_content_inner> getContent();
 
 	/*! \brief Set The content of the message in array of text and/or images.
 	 */
-	void setContent(std::list <MessageDeltaObject_delta_content_inner> content);
+	void setContent(std::list<MessageDeltaObject_delta_content_inner> content);
 
 
     private:

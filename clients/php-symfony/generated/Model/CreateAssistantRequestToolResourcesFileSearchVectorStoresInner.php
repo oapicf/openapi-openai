@@ -49,7 +49,7 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInner
      * @var string[]|null
      * @SerializedName("file_ids")
      * @Type("array<string>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("string"),
     ])]
@@ -60,7 +60,7 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInner
      * @var CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy|null
      * @SerializedName("chunking_strategy")
      * @Type("OpenAPI\Server\Model\CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy")]
     protected ?CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy $chunkingStrategy = null;
 
@@ -70,7 +70,7 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInner
      * @var array|null
      * @SerializedName("metadata")
      * @Type("array")
-    */
+     */
     #[Assert\Type("array")]
     protected ?array $metadata = null;
 
@@ -98,12 +98,12 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInner
     }
 
     /**
-    * Sets fileIds.
-    *
-    * @param string[]|null $fileIds  A list of [file](/docs/api-reference/files) IDs to add to the vector store. There can be a maximum of 10000 files in a vector store.
-    *
-    * @return $this
-    */
+     * Sets fileIds.
+     *
+     * @param string[]|null $fileIds  A list of [file](/docs/api-reference/files) IDs to add to the vector store. There can be a maximum of 10000 files in a vector store.
+     *
+     * @return $this
+     */
     public function setFileIds(?array $fileIds = null): self
     {
         $this->fileIds = $fileIds;
@@ -125,12 +125,12 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInner
     }
 
     /**
-    * Sets chunkingStrategy.
-    *
-    * @param CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy|null $chunkingStrategy
-    *
-    * @return $this
-    */
+     * Sets chunkingStrategy.
+     *
+     * @param CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy|null $chunkingStrategy
+     *
+     * @return $this
+     */
     public function setChunkingStrategy(?CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy $chunkingStrategy = null): self
     {
         $this->chunkingStrategy = $chunkingStrategy;
@@ -152,12 +152,12 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInner
     }
 
     /**
-    * Sets metadata.
-    *
-    * @param array|null $metadata  Set of 16 key-value pairs that can be attached to a vector store. This can be useful for storing additional information about the vector store in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
-    *
-    * @return $this
-    */
+     * Sets metadata.
+     *
+     * @param array|null $metadata  Set of 16 key-value pairs that can be attached to a vector store. This can be useful for storing additional information about the vector store in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
+     *
+     * @return $this
+     */
     public function setMetadata(?array $metadata = null): self
     {
         $this->metadata = $metadata;

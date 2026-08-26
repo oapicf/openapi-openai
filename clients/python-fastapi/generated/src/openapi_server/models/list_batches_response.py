@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from openapi_server.models.batch import Batch
 try:
@@ -34,8 +34,8 @@ class ListBatchesResponse(BaseModel):
     ListBatchesResponse
     """ # noqa: E501
     data: List[Batch]
-    first_id: Optional[StrictStr] = None
-    last_id: Optional[StrictStr] = None
+    first_id: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["batch_abc123"]})
+    last_id: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["batch_abc456"]})
     has_more: StrictBool
     object: StrictStr
     __properties: ClassVar[List[str]] = ["data", "first_id", "last_id", "has_more", "object"]

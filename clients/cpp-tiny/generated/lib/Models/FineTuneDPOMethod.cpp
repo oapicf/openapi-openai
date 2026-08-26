@@ -65,7 +65,7 @@ FineTuneDPOMethod::getHyperparameters()
 }
 
 void
-FineTuneDPOMethod::setHyperparameters(FineTuneDPOMethod_hyperparameters  hyperparameters)
+FineTuneDPOMethod::setHyperparameters(FineTuneDPOMethod_hyperparameters hyperparameters)
 {
 	this->hyperparameters = hyperparameters;
 }

@@ -20,14 +20,14 @@ typedef struct realtime_session_create_response_client_secret_t realtime_session
 
 typedef struct realtime_session_create_response_client_secret_t {
     char *value; // string
-    int expires_at; //numeric
+    int *expires_at; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } realtime_session_create_response_client_secret_t;
 
 __attribute__((deprecated)) realtime_session_create_response_client_secret_t *realtime_session_create_response_client_secret_create(
     char *value,
-    int expires_at
+    int *expires_at
 );
 
 void realtime_session_create_response_client_secret_free(realtime_session_create_response_client_secret_t *realtime_session_create_response_client_secret);

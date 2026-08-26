@@ -26,6 +26,8 @@ AssistantObject_tools_inner::AssistantObject_tools_inner()
     
 }
 
+AssistantObject_tools_inner::~AssistantObject_tools_inner() = default;
+
 void AssistantObject_tools_inner::validate() const
 {
     std::stringstream msg;

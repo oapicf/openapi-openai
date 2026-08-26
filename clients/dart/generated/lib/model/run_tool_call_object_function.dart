@@ -55,10 +55,10 @@ class RunToolCallObjectFunction {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunToolCallObjectFunction[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunToolCallObjectFunction[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'name'), 'Required key "RunToolCallObjectFunction[name]" is missing from JSON.');
+        assert(json[r'name'] != null, 'Required key "RunToolCallObjectFunction[name]" has a null value in JSON.');
+        assert(json.containsKey(r'arguments'), 'Required key "RunToolCallObjectFunction[arguments]" is missing from JSON.');
+        assert(json[r'arguments'] != null, 'Required key "RunToolCallObjectFunction[arguments]" has a null value in JSON.');
         return true;
       }());
 

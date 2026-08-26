@@ -60,7 +60,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * Represents an execution run on a [thread](/docs/api-reference/threads).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RunObject {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -934,10 +934,7 @@ public class RunObject {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -999,30 +996,38 @@ public class RunObject {
       }
       // validate the required field `status`
       StatusEnum.validateJsonElement(jsonObj.get("status"));
+      if (jsonObj.get("required_action") != null && !jsonObj.get("required_action").isJsonNull()) {
       // validate the required field `required_action`
       RunObjectRequiredAction.validateJsonElement(jsonObj.get("required_action"));
+      }
+      if (jsonObj.get("last_error") != null && !jsonObj.get("last_error").isJsonNull()) {
       // validate the required field `last_error`
       RunObjectLastError.validateJsonElement(jsonObj.get("last_error"));
+      }
+      if (jsonObj.get("incomplete_details") != null && !jsonObj.get("incomplete_details").isJsonNull()) {
       // validate the required field `incomplete_details`
       RunObjectIncompleteDetails.validateJsonElement(jsonObj.get("incomplete_details"));
+      }
       if (!jsonObj.get("model").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `model` to be a primitive type in the JSON string but got `%s`", jsonObj.get("model").toString()));
       }
       if (!jsonObj.get("instructions").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `instructions` to be a primitive type in the JSON string but got `%s`", jsonObj.get("instructions").toString()));
       }
-      // ensure the json data is an array
-      if (!jsonObj.get("tools").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `tools` to be an array in the JSON string but got `%s`", jsonObj.get("tools").toString()));
+      if (jsonObj.get("tools") != null) {
+        if (!jsonObj.get("tools").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `tools` to be an array in the JSON string but got `%s`", jsonObj.get("tools").toString()));
+        }
+        JsonArray jsonArraytools = jsonObj.getAsJsonArray("tools");
+        // validate the required field `tools` (array)
+        for (int i = 0; i < jsonArraytools.size(); i++) {
+          AssistantObjectToolsInner.validateJsonElement(jsonArraytools.get(i));
+        }
       }
-
-      JsonArray jsonArraytools = jsonObj.getAsJsonArray("tools");
-      // validate the required field `tools` (array)
-      for (int i = 0; i < jsonArraytools.size(); i++) {
-        AssistantObjectToolsInner.validateJsonElement(jsonArraytools.get(i));
-      };
+      if (jsonObj.get("usage") != null && !jsonObj.get("usage").isJsonNull()) {
       // validate the required field `usage`
       RunCompletionUsage.validateJsonElement(jsonObj.get("usage"));
+      }
       // validate the required field `truncation_strategy`
       TruncationObject.validateJsonElement(jsonObj.get("truncation_strategy"));
       // validate the required field `tool_choice`

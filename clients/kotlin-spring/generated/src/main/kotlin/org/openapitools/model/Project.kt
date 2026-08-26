@@ -26,22 +26,28 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class Project(
 
-    @Schema(example = "null", required = true, description = "The identifier, which can be referenced in API endpoints")
+    @Schema(required = true, description = "The identifier, which can be referenced in API endpoints")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The object type, which is always `organization.project`")
+    @Schema(required = true, description = "The object type, which is always `organization.project`")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: Project.`Object`,
 
-    @Schema(example = "null", required = true, description = "The name of the project. This appears in reporting.")
+    @Schema(required = true, description = "The name of the project. This appears in reporting.")
+    @param:JsonProperty("name")
     @get:JsonProperty("name", required = true) val name: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The Unix timestamp (in seconds) of when the project was created.")
+    @Schema(required = true, description = "The Unix timestamp (in seconds) of when the project was created.")
+    @param:JsonProperty("created_at")
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "`active` or `archived`")
+    @Schema(required = true, description = "`active` or `archived`")
+    @param:JsonProperty("status")
     @get:JsonProperty("status", required = true) val status: Project.Status,
 
-    @Schema(example = "null", description = "The Unix timestamp (in seconds) of when the project was archived or `null`.")
+    @Schema(description = "The Unix timestamp (in seconds) of when the project was archived or `null`.")
+    @param:JsonProperty("archived_at")
     @get:JsonProperty("archived_at") val archivedAt: kotlin.Int? = null
 ) {
 
@@ -58,7 +64,7 @@ data class Project(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Project'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }
@@ -77,7 +83,7 @@ data class Project(
             @JsonCreator
             fun forValue(value: kotlin.String): Status {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Project'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Status'")
             }
         }
     }

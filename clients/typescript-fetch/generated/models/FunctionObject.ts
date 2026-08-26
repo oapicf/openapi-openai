@@ -68,7 +68,7 @@ export function FunctionObjectFromJSONTyped(json: any, ignoreDiscriminator: bool
         'description': json['description'] == null ? undefined : json['description'],
         'name': json['name'],
         'parameters': json['parameters'] == null ? undefined : json['parameters'],
-        'strict': json['strict'] == null ? undefined : json['strict'],
+        'strict': json['strict'] === undefined ? undefined : json['strict'] === null ? null : json['strict'],
     };
 }
 

@@ -51,35 +51,35 @@ public:
 
 	/*! \brief Set The unique ID of the server event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `conversation.item.input_audio_transcription.completed`. 
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `conversation.item.input_audio_transcription.completed`. 
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The ID of the user message item containing the audio.
 	 */
 	std::string getItemId();
 
 	/*! \brief Set The ID of the user message item containing the audio.
 	 */
-	void setItemId(std::string  item_id);
+	void setItemId(std::string item_id);
 	/*! \brief Get The index of the content part containing the audio.
 	 */
 	int getContentIndex();
 
 	/*! \brief Set The index of the content part containing the audio.
 	 */
-	void setContentIndex(int  content_index);
+	void setContentIndex(int content_index);
 	/*! \brief Get The transcribed text.
 	 */
 	std::string getTranscript();
 
 	/*! \brief Set The transcribed text.
 	 */
-	void setTranscript(std::string  transcript);
+	void setTranscript(std::string transcript);
 
 
     private:

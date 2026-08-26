@@ -23,13 +23,15 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ChatCompletionRequestMessageContentPartAudio(
 
-    @Schema(example = "null", required = true, description = "The type of the content part. Always `input_audio`.")
+    @Schema(required = true, description = "The type of the content part. Always `input_audio`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: ChatCompletionRequestMessageContentPartAudio.Type,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("input_audio")
     @get:JsonProperty("input_audio", required = true) val inputAudio: ChatCompletionRequestMessageContentPartAudioInputAudio
-) {
+) : ChatCompletionRequestUserMessageContentPart {
 
     /**
     * The type of the content part. Always `input_audio`.
@@ -44,7 +46,7 @@ data class ChatCompletionRequestMessageContentPartAudio(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ChatCompletionRequestMessageContentPartAudio'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

@@ -49,7 +49,7 @@ class ResponseFormatJsonObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['json_object'])]
     #[Assert\Type("string")]
@@ -77,12 +77,12 @@ class ResponseFormatJsonObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of response format being defined: `json_object`
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of response format being defined: `json_object`
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;

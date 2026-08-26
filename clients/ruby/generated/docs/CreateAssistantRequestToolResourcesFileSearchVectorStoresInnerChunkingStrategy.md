@@ -14,7 +14,7 @@ require 'openapi_openai'
 OpenApiOpenAIClient::CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy.openapi_one_of
 # =>
 # [
-#   :'AutoChunkingStrategy',
+#   :'AutoChunkingStrategyRequestParam',
 #   :'StaticChunkingStrategy'
 # ]
 ```
@@ -29,7 +29,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'openapi_openai'
 
 OpenApiOpenAIClient::CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy.build(data)
-# => #<AutoChunkingStrategy:0x00007fdd4aab02a0>
+# => #<AutoChunkingStrategyRequestParam:0x00007fdd4aab02a0>
 
 OpenApiOpenAIClient::CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy.build(data_that_doesnt_match)
 # => nil
@@ -43,7 +43,7 @@ OpenApiOpenAIClient::CreateAssistantRequestToolResourcesFileSearchVectorStoresIn
 
 #### Return type
 
-- `AutoChunkingStrategy`
+- `AutoChunkingStrategyRequestParam`
 - `StaticChunkingStrategy`
 - `nil` (if no type matches)
 

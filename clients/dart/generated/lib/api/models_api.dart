@@ -24,7 +24,7 @@ class ModelsApi {
   ///
   /// * [String] model (required):
   ///   The model to delete
-  Future<Response> deleteModelWithHttpInfo(String model,) async {
+  Future<Response> deleteModelWithHttpInfo(String model, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/models/{model}'
       .replaceAll('{model}', model);
@@ -47,6 +47,7 @@ class ModelsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -56,8 +57,8 @@ class ModelsApi {
   ///
   /// * [String] model (required):
   ///   The model to delete
-  Future<DeleteModelResponse?> deleteModel(String model,) async {
-    final response = await deleteModelWithHttpInfo(model,);
+  Future<DeleteModelResponse?> deleteModel(String model, { Future<void>? abortTrigger, }) async {
+    final response = await deleteModelWithHttpInfo(model, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -74,7 +75,7 @@ class ModelsApi {
   /// Lists the currently available models, and provides basic information about each one such as the owner and availability.
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> listModelsWithHttpInfo() async {
+  Future<Response> listModelsWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/models';
 
@@ -96,12 +97,13 @@ class ModelsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Lists the currently available models, and provides basic information about each one such as the owner and availability.
-  Future<ListModelsResponse?> listModels() async {
-    final response = await listModelsWithHttpInfo();
+  Future<ListModelsResponse?> listModels({ Future<void>? abortTrigger, }) async {
+    final response = await listModelsWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -123,7 +125,7 @@ class ModelsApi {
   ///
   /// * [String] model (required):
   ///   The ID of the model to use for this request
-  Future<Response> retrieveModelWithHttpInfo(String model,) async {
+  Future<Response> retrieveModelWithHttpInfo(String model, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/models/{model}'
       .replaceAll('{model}', model);
@@ -146,6 +148,7 @@ class ModelsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -155,8 +158,8 @@ class ModelsApi {
   ///
   /// * [String] model (required):
   ///   The ID of the model to use for this request
-  Future<Model?> retrieveModel(String model,) async {
-    final response = await retrieveModelWithHttpInfo(model,);
+  Future<Model?> retrieveModel(String model, { Future<void>? abortTrigger, }) async {
+    final response = await retrieveModelWithHttpInfo(model, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

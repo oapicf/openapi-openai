@@ -15,7 +15,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 
 @ApiModel(description = "The aggregated completions usage details of the specific time bucket.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-26T05:15:28.776347668Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class UsageCompletionsResult   {
   /**
    * Gets or Sets _object
@@ -352,10 +352,7 @@ public class UsageCompletionsResult   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

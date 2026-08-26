@@ -53,28 +53,28 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get 
 	 */
 	std::list<UsageTimeBucket> getData();
 
 	/*! \brief Set 
 	 */
-	void setData(std::list <UsageTimeBucket> data);
+	void setData(std::list<UsageTimeBucket> data);
 	/*! \brief Get 
 	 */
 	bool isHasMore();
 
 	/*! \brief Set 
 	 */
-	void setHasMore(bool  has_more);
+	void setHasMore(bool has_more);
 	/*! \brief Get 
 	 */
 	std::string getNextPage();
 
 	/*! \brief Set 
 	 */
-	void setNextPage(std::string  next_page);
+	void setNextPage(std::string next_page);
 
 
     private:

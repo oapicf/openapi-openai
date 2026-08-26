@@ -24,6 +24,8 @@ CreateCompletionRequest_model::CreateCompletionRequest_model()
     
 }
 
+CreateCompletionRequest_model::~CreateCompletionRequest_model() = default;
+
 void CreateCompletionRequest_model::validate() const
 {
     std::stringstream msg;

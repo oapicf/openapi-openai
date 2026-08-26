@@ -75,10 +75,16 @@ class MessageContentTextAnnotationsFileCitationObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageContentTextAnnotationsFileCitationObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageContentTextAnnotationsFileCitationObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "MessageContentTextAnnotationsFileCitationObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "MessageContentTextAnnotationsFileCitationObject[type]" has a null value in JSON.');
+        assert(json.containsKey(r'text'), 'Required key "MessageContentTextAnnotationsFileCitationObject[text]" is missing from JSON.');
+        assert(json[r'text'] != null, 'Required key "MessageContentTextAnnotationsFileCitationObject[text]" has a null value in JSON.');
+        assert(json.containsKey(r'file_citation'), 'Required key "MessageContentTextAnnotationsFileCitationObject[file_citation]" is missing from JSON.');
+        assert(json[r'file_citation'] != null, 'Required key "MessageContentTextAnnotationsFileCitationObject[file_citation]" has a null value in JSON.');
+        assert(json.containsKey(r'start_index'), 'Required key "MessageContentTextAnnotationsFileCitationObject[start_index]" is missing from JSON.');
+        assert(json[r'start_index'] != null, 'Required key "MessageContentTextAnnotationsFileCitationObject[start_index]" has a null value in JSON.');
+        assert(json.containsKey(r'end_index'), 'Required key "MessageContentTextAnnotationsFileCitationObject[end_index]" is missing from JSON.');
+        assert(json[r'end_index'] != null, 'Required key "MessageContentTextAnnotationsFileCitationObject[end_index]" has a null value in JSON.');
         return true;
       }());
 
@@ -144,27 +150,28 @@ class MessageContentTextAnnotationsFileCitationObject {
 }
 
 /// Always `file_citation`.
-class MessageContentTextAnnotationsFileCitationObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageContentTextAnnotationsFileCitationObjectTypeEnum._(this.value);
+enum MessageContentTextAnnotationsFileCitationObjectTypeEnum {
+  fileCitation._(r'file_citation'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageContentTextAnnotationsFileCitationObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const fileCitation = MessageContentTextAnnotationsFileCitationObjectTypeEnum._(r'file_citation');
-
-  /// List of all possible values in this [enum][MessageContentTextAnnotationsFileCitationObjectTypeEnum].
-  static const values = <MessageContentTextAnnotationsFileCitationObjectTypeEnum>[
-    fileCitation,
-  ];
-
+  /// Returns the instance of [MessageContentTextAnnotationsFileCitationObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageContentTextAnnotationsFileCitationObjectTypeEnum? fromJson(dynamic value) => MessageContentTextAnnotationsFileCitationObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageContentTextAnnotationsFileCitationObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageContentTextAnnotationsFileCitationObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageContentTextAnnotationsFileCitationObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -186,9 +193,10 @@ class MessageContentTextAnnotationsFileCitationObjectTypeEnumTypeTransformer {
 
   const MessageContentTextAnnotationsFileCitationObjectTypeEnumTypeTransformer._();
 
-  String encode(MessageContentTextAnnotationsFileCitationObjectTypeEnum data) => data.value;
+  String encode(MessageContentTextAnnotationsFileCitationObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageContentTextAnnotationsFileCitationObjectTypeEnum.
+  /// Returns the instance of [MessageContentTextAnnotationsFileCitationObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -197,6 +205,9 @@ class MessageContentTextAnnotationsFileCitationObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageContentTextAnnotationsFileCitationObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageContentTextAnnotationsFileCitationObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'file_citation': return MessageContentTextAnnotationsFileCitationObjectTypeEnum.fileCitation;
@@ -209,7 +220,7 @@ class MessageContentTextAnnotationsFileCitationObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageContentTextAnnotationsFileCitationObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageContentTextAnnotationsFileCitationObjectTypeEnumTypeTransformer? _instance;
 }
 

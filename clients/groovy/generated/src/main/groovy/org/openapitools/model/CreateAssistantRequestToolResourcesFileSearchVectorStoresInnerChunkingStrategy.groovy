@@ -3,7 +3,7 @@ package org.openapitools.model;
 import groovy.transform.Canonical
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.model.AutoChunkingStrategy;
+import org.openapitools.model.AutoChunkingStrategyRequestParam;
 import org.openapitools.model.StaticChunkingStrategy;
 import org.openapitools.model.StaticChunkingStrategyStatic;
 

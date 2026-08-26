@@ -34,13 +34,13 @@ class OAIProject;
 class OAIProjectListResponse : public OAIObject {
 public:
     OAIProjectListResponse();
-    OAIProjectListResponse(QString json);
+    OAIProjectListResponse(const QString &json);
     ~OAIProjectListResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getObject() const;
     void setObject(const QString &object);

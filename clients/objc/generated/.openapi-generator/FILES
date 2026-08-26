@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 OpenAPIClient.podspec
 OpenAPIClient/Api/OAIAssistantsApi.h
 OpenAPIClient/Api/OAIAssistantsApi.m
@@ -183,8 +182,6 @@ OpenAPIClient/Model/OAIAuditLogUserUpdated.h
 OpenAPIClient/Model/OAIAuditLogUserUpdated.m
 OpenAPIClient/Model/OAIAuditLogUserUpdatedChangesRequested.h
 OpenAPIClient/Model/OAIAuditLogUserUpdatedChangesRequested.m
-OpenAPIClient/Model/OAIAutoChunkingStrategy.h
-OpenAPIClient/Model/OAIAutoChunkingStrategy.m
 OpenAPIClient/Model/OAIAutoChunkingStrategyRequestParam.h
 OpenAPIClient/Model/OAIAutoChunkingStrategyRequestParam.m
 OpenAPIClient/Model/OAIBatch.h
@@ -1003,8 +1000,6 @@ OpenAPIClient/Model/OAIStaticChunkingStrategy.h
 OpenAPIClient/Model/OAIStaticChunkingStrategy.m
 OpenAPIClient/Model/OAIStaticChunkingStrategyRequestParam.h
 OpenAPIClient/Model/OAIStaticChunkingStrategyRequestParam.m
-OpenAPIClient/Model/OAIStaticChunkingStrategyResponseParam.h
-OpenAPIClient/Model/OAIStaticChunkingStrategyResponseParam.m
 OpenAPIClient/Model/OAIStaticChunkingStrategyStatic.h
 OpenAPIClient/Model/OAIStaticChunkingStrategyStatic.m
 OpenAPIClient/Model/OAISubmitToolOutputsRunRequest.h
@@ -1137,7 +1132,6 @@ docs/OAIAuditLogUserDeleted.md
 docs/OAIAuditLogUserUpdated.md
 docs/OAIAuditLogUserUpdatedChangesRequested.md
 docs/OAIAuditLogsApi.md
-docs/OAIAutoChunkingStrategy.md
 docs/OAIAutoChunkingStrategyRequestParam.md
 docs/OAIBatch.md
 docs/OAIBatchApi.md
@@ -1560,7 +1554,6 @@ docs/OAIRunToolCallObject.md
 docs/OAIRunToolCallObjectFunction.md
 docs/OAIStaticChunkingStrategy.md
 docs/OAIStaticChunkingStrategyRequestParam.md
-docs/OAIStaticChunkingStrategyResponseParam.md
 docs/OAIStaticChunkingStrategyStatic.md
 docs/OAISubmitToolOutputsRunRequest.md
 docs/OAISubmitToolOutputsRunRequestToolOutputsInner.md

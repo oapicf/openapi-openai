@@ -85,7 +85,7 @@ ChatCompletionRequestMessageContentPartAudio_input_audio::getData()
 }
 
 void
-ChatCompletionRequestMessageContentPartAudio_input_audio::setData(std::string  data)
+ChatCompletionRequestMessageContentPartAudio_input_audio::setData(std::string data)
 {
 	this->data = data;
 }
@@ -97,7 +97,7 @@ ChatCompletionRequestMessageContentPartAudio_input_audio::getFormat()
 }
 
 void
-ChatCompletionRequestMessageContentPartAudio_input_audio::setFormat(std::string  format)
+ChatCompletionRequestMessageContentPartAudio_input_audio::setFormat(std::string format)
 {
 	this->format = format;
 }

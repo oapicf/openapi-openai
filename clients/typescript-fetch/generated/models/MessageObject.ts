@@ -49,7 +49,7 @@ export interface MessageObject {
     id: string;
     /**
      * The object type, which is always `thread.message`.
-     * @type {string}
+     * @type {MessageObjectObjectEnum}
      * @memberof MessageObject
      */
     object: MessageObjectObjectEnum;
@@ -67,7 +67,7 @@ export interface MessageObject {
     threadId: string;
     /**
      * The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.
-     * @type {string}
+     * @type {MessageObjectStatusEnum}
      * @memberof MessageObject
      */
     status: MessageObjectStatusEnum;
@@ -91,7 +91,7 @@ export interface MessageObject {
     incompleteAt: number | null;
     /**
      * The entity that produced the message. One of `user` or `assistant`.
-     * @type {string}
+     * @type {MessageObjectRoleEnum}
      * @memberof MessageObject
      */
     role: MessageObjectRoleEnum;
@@ -163,16 +163,18 @@ export type MessageObjectRoleEnum = typeof MessageObjectRoleEnum[keyof typeof Me
 export function instanceOfMessageObject(value: object): value is MessageObject {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-    if (!('threadId' in value) || value['threadId'] === undefined) return false;
+    if (value['object'] !== 'thread.message') return false;
+    
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
+    if ((!('threadId' in (value as Record<string, any>)) && !('thread_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['threadId'] === undefined && (value as Record<string, any>)['thread_id'] === undefined)) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('incompleteDetails' in value) || value['incompleteDetails'] === undefined) return false;
-    if (!('completedAt' in value) || value['completedAt'] === undefined) return false;
-    if (!('incompleteAt' in value) || value['incompleteAt'] === undefined) return false;
+    if ((!('incompleteDetails' in (value as Record<string, any>)) && !('incomplete_details' in (value as Record<string, any>))) || ((value as Record<string, any>)['incompleteDetails'] === undefined && (value as Record<string, any>)['incomplete_details'] === undefined)) return false;
+    if ((!('completedAt' in (value as Record<string, any>)) && !('completed_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['completedAt'] === undefined && (value as Record<string, any>)['completed_at'] === undefined)) return false;
+    if ((!('incompleteAt' in (value as Record<string, any>)) && !('incomplete_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['incompleteAt'] === undefined && (value as Record<string, any>)['incomplete_at'] === undefined)) return false;
     if (!('role' in value) || value['role'] === undefined) return false;
     if (!('content' in value) || value['content'] === undefined) return false;
-    if (!('assistantId' in value) || value['assistantId'] === undefined) return false;
-    if (!('runId' in value) || value['runId'] === undefined) return false;
+    if ((!('assistantId' in (value as Record<string, any>)) && !('assistant_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['assistantId'] === undefined && (value as Record<string, any>)['assistant_id'] === undefined)) return false;
+    if ((!('runId' in (value as Record<string, any>)) && !('run_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['runId'] === undefined && (value as Record<string, any>)['run_id'] === undefined)) return false;
     if (!('attachments' in value) || value['attachments'] === undefined) return false;
     if (!('metadata' in value) || value['metadata'] === undefined) return false;
     return true;

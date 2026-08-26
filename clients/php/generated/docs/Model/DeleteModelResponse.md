@@ -1,4 +1,4 @@
-# # DeleteModelResponse
+# DeleteModelResponse
 
 ## Properties
 

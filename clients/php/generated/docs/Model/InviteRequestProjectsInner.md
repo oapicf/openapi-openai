@@ -1,4 +1,4 @@
-# # InviteRequestProjectsInner
+# InviteRequestProjectsInner
 
 ## Properties
 

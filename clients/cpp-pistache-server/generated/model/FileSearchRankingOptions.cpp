@@ -27,6 +27,8 @@ FileSearchRankingOptions::FileSearchRankingOptions()
     
 }
 
+FileSearchRankingOptions::~FileSearchRankingOptions() = default;
+
 void FileSearchRankingOptions::validate() const
 {
     std::stringstream msg;

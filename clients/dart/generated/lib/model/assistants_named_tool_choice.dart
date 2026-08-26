@@ -64,10 +64,8 @@ class AssistantsNamedToolChoice {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AssistantsNamedToolChoice[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AssistantsNamedToolChoice[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "AssistantsNamedToolChoice[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "AssistantsNamedToolChoice[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -126,31 +124,30 @@ class AssistantsNamedToolChoice {
 }
 
 /// The type of the tool. If type is `function`, the function name must be set
-class AssistantsNamedToolChoiceTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const AssistantsNamedToolChoiceTypeEnum._(this.value);
+enum AssistantsNamedToolChoiceTypeEnum {
+  function_._(r'function'),
+  codeInterpreter._(r'code_interpreter'),
+  fileSearch._(r'file_search'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const AssistantsNamedToolChoiceTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const function_ = AssistantsNamedToolChoiceTypeEnum._(r'function');
-  static const codeInterpreter = AssistantsNamedToolChoiceTypeEnum._(r'code_interpreter');
-  static const fileSearch = AssistantsNamedToolChoiceTypeEnum._(r'file_search');
-
-  /// List of all possible values in this [enum][AssistantsNamedToolChoiceTypeEnum].
-  static const values = <AssistantsNamedToolChoiceTypeEnum>[
-    function_,
-    codeInterpreter,
-    fileSearch,
-  ];
-
+  /// Returns the instance of [AssistantsNamedToolChoiceTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static AssistantsNamedToolChoiceTypeEnum? fromJson(dynamic value) => AssistantsNamedToolChoiceTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [AssistantsNamedToolChoiceTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<AssistantsNamedToolChoiceTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <AssistantsNamedToolChoiceTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -172,9 +169,10 @@ class AssistantsNamedToolChoiceTypeEnumTypeTransformer {
 
   const AssistantsNamedToolChoiceTypeEnumTypeTransformer._();
 
-  String encode(AssistantsNamedToolChoiceTypeEnum data) => data.value;
+  String encode(AssistantsNamedToolChoiceTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a AssistantsNamedToolChoiceTypeEnum.
+  /// Returns the instance of [AssistantsNamedToolChoiceTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -183,6 +181,9 @@ class AssistantsNamedToolChoiceTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   AssistantsNamedToolChoiceTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is AssistantsNamedToolChoiceTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'function': return AssistantsNamedToolChoiceTypeEnum.function_;
@@ -197,7 +198,7 @@ class AssistantsNamedToolChoiceTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [AssistantsNamedToolChoiceTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static AssistantsNamedToolChoiceTypeEnumTypeTransformer? _instance;
 }
 

@@ -86,7 +86,7 @@ AuditLog_api_key_created::getId()
 }
 
 void
-AuditLog_api_key_created::setId(std::string  id)
+AuditLog_api_key_created::setId(std::string id)
 {
 	this->id = id;
 }
@@ -98,7 +98,7 @@ AuditLog_api_key_created::getData()
 }
 
 void
-AuditLog_api_key_created::setData(AuditLog_api_key_created_data  data)
+AuditLog_api_key_created::setData(AuditLog_api_key_created_data data)
 {
 	this->data = data;
 }

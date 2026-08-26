@@ -31,7 +31,7 @@ typedef struct project_api_key_t {
     openai_api_project_api_key_OBJECT_e object; //enum
     char *redacted_value; // string
     char *name; // string
-    int created_at; //numeric
+    int *created_at; //numeric
     char *id; // string
     struct project_api_key_owner_t *owner; //model
 
@@ -42,7 +42,7 @@ __attribute__((deprecated)) project_api_key_t *project_api_key_create(
     openai_api_project_api_key_OBJECT_e object,
     char *redacted_value,
     char *name,
-    int created_at,
+    int *created_at,
     char *id,
     project_api_key_owner_t *owner
 );

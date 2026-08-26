@@ -12,20 +12,20 @@ import org.openapitools.model.RealtimeServerEventRateLimitsUpdatedRateLimitsInne
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Emitted at the beginning of a Response to indicate the updated rate limits.  When a Response is created some tokens will be \&quot;reserved\&quot; for the output  tokens, the rate limits shown here reflect that reservation, which is then  adjusted accordingly once the Response is completed. 
  */
 
 @Schema(name = "RealtimeServerEventRateLimitsUpdated", description = "Emitted at the beginning of a Response to indicate the updated rate limits.  When a Response is created some tokens will be \"reserved\" for the output  tokens, the rate limits shown here reflect that reservation, which is then  adjusted accordingly once the Response is completed. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeServerEventRateLimitsUpdated {
 
   private String eventId;
@@ -65,7 +65,6 @@ public class RealtimeServerEventRateLimitsUpdated {
 
   private TypeEnum type;
 
-  @Valid
   private List<@Valid RealtimeServerEventRateLimitsUpdatedRateLimitsInner> rateLimits = new ArrayList<>();
 
   public RealtimeServerEventRateLimitsUpdated() {
@@ -97,6 +96,7 @@ public class RealtimeServerEventRateLimitsUpdated {
     return eventId;
   }
 
+  @JsonProperty("event_id")
   public void setEventId(String eventId) {
     this.eventId = eventId;
   }
@@ -117,6 +117,7 @@ public class RealtimeServerEventRateLimitsUpdated {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -145,6 +146,7 @@ public class RealtimeServerEventRateLimitsUpdated {
     return rateLimits;
   }
 
+  @JsonProperty("rate_limits")
   public void setRateLimits(List<@Valid RealtimeServerEventRateLimitsUpdatedRateLimitsInner> rateLimits) {
     this.rateLimits = rateLimits;
   }
@@ -183,11 +185,8 @@ public class RealtimeServerEventRateLimitsUpdated {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

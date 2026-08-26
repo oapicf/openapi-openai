@@ -51,7 +51,7 @@ class MessageDeltaContentImageUrlObject
      * @var int|null
      * @SerializedName("index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $index = null;
@@ -62,7 +62,7 @@ class MessageDeltaContentImageUrlObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['image_url'])]
     #[Assert\Type("string")]
@@ -72,7 +72,7 @@ class MessageDeltaContentImageUrlObject
      * @var MessageDeltaContentImageUrlObjectImageUrl|null
      * @SerializedName("image_url")
      * @Type("OpenAPI\Server\Model\MessageDeltaContentImageUrlObjectImageUrl")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\MessageDeltaContentImageUrlObjectImageUrl")]
     protected ?MessageDeltaContentImageUrlObjectImageUrl $imageUrl = null;
 
@@ -100,12 +100,12 @@ class MessageDeltaContentImageUrlObject
     }
 
     /**
-    * Sets index.
-    *
-    * @param int|null $index  The index of the content part in the message.
-    *
-    * @return $this
-    */
+     * Sets index.
+     *
+     * @param int|null $index  The index of the content part in the message.
+     *
+     * @return $this
+     */
     public function setIndex(?int $index): self
     {
         $this->index = $index;
@@ -127,12 +127,12 @@ class MessageDeltaContentImageUrlObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `image_url`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `image_url`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -154,12 +154,12 @@ class MessageDeltaContentImageUrlObject
     }
 
     /**
-    * Sets imageUrl.
-    *
-    * @param MessageDeltaContentImageUrlObjectImageUrl|null $imageUrl
-    *
-    * @return $this
-    */
+     * Sets imageUrl.
+     *
+     * @param MessageDeltaContentImageUrlObjectImageUrl|null $imageUrl
+     *
+     * @return $this
+     */
     public function setImageUrl(?MessageDeltaContentImageUrlObjectImageUrl $imageUrl = null): self
     {
         $this->imageUrl = $imageUrl;

@@ -23,7 +23,7 @@ message AssistantToolsFileSearch {
     TYPE_FILE_SEARCH = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   AssistantToolsFileSearchFileSearch file_search = 425626062;
 

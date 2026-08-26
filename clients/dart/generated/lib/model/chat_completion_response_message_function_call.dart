@@ -55,10 +55,10 @@ class ChatCompletionResponseMessageFunctionCall {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ChatCompletionResponseMessageFunctionCall[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ChatCompletionResponseMessageFunctionCall[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'arguments'), 'Required key "ChatCompletionResponseMessageFunctionCall[arguments]" is missing from JSON.');
+        assert(json[r'arguments'] != null, 'Required key "ChatCompletionResponseMessageFunctionCall[arguments]" has a null value in JSON.');
+        assert(json.containsKey(r'name'), 'Required key "ChatCompletionResponseMessageFunctionCall[name]" is missing from JSON.');
+        assert(json[r'name'] != null, 'Required key "ChatCompletionResponseMessageFunctionCall[name]" has a null value in JSON.');
         return true;
       }());
 

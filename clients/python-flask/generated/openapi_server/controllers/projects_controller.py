@@ -1,4 +1,4 @@
-import connexion
+import flask
 from typing import Dict
 from typing import Tuple
 from typing import Union
@@ -51,8 +51,8 @@ def create_project(body):  # noqa: E501
     :rtype: Union[Project, Tuple[Project, int], Tuple[Project, int, Dict[str, str]]
     """
     project_create_request = body
-    if connexion.request.is_json:
-        project_create_request = ProjectCreateRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        project_create_request = ProjectCreateRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -69,8 +69,8 @@ def create_project_service_account(project_id, body):  # noqa: E501
     :rtype: Union[ProjectServiceAccountCreateResponse, Tuple[ProjectServiceAccountCreateResponse, int], Tuple[ProjectServiceAccountCreateResponse, int, Dict[str, str]]
     """
     project_service_account_create_request = body
-    if connexion.request.is_json:
-        project_service_account_create_request = ProjectServiceAccountCreateRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        project_service_account_create_request = ProjectServiceAccountCreateRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -87,8 +87,8 @@ def create_project_user(project_id, body):  # noqa: E501
     :rtype: Union[ProjectUser, Tuple[ProjectUser, int], Tuple[ProjectUser, int, Dict[str, str]]
     """
     project_user_create_request = body
-    if connexion.request.is_json:
-        project_user_create_request = ProjectUserCreateRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        project_user_create_request = ProjectUserCreateRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -237,8 +237,8 @@ def modify_project(project_id, body):  # noqa: E501
     :rtype: Union[Project, Tuple[Project, int], Tuple[Project, int, Dict[str, str]]
     """
     project_update_request = body
-    if connexion.request.is_json:
-        project_update_request = ProjectUpdateRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        project_update_request = ProjectUpdateRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -257,8 +257,8 @@ def modify_project_user(project_id, user_id, body):  # noqa: E501
     :rtype: Union[ProjectUser, Tuple[ProjectUser, int], Tuple[ProjectUser, int, Dict[str, str]]
     """
     project_user_update_request = body
-    if connexion.request.is_json:
-        project_user_update_request = ProjectUserUpdateRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        project_user_update_request = ProjectUserUpdateRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -335,6 +335,6 @@ def update_project_rate_limits(project_id, rate_limit_id, body):  # noqa: E501
     :rtype: Union[ProjectRateLimit, Tuple[ProjectRateLimit, int], Tuple[ProjectRateLimit, int, Dict[str, str]]
     """
     project_rate_limit_update_request = body
-    if connexion.request.is_json:
-        project_rate_limit_update_request = ProjectRateLimitUpdateRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        project_rate_limit_update_request = ProjectRateLimitUpdateRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'

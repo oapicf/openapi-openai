@@ -55,7 +55,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * The &#x60;fine_tuning.job&#x60; object represents a fine-tuning job that has been created through the API. 
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTuningJob {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -695,10 +695,7 @@ public class FineTuningJob {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -744,8 +741,10 @@ public class FineTuningJob {
       if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
+      if (jsonObj.get("error") != null && !jsonObj.get("error").isJsonNull()) {
       // validate the required field `error`
       FineTuningJobError.validateJsonElement(jsonObj.get("error"));
+      }
       if ((jsonObj.get("fine_tuned_model") != null && !jsonObj.get("fine_tuned_model").isJsonNull()) && !jsonObj.get("fine_tuned_model").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `fine_tuned_model` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fine_tuned_model").toString()));
       }

@@ -51,7 +51,7 @@ class ProjectServiceAccount
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['organization.project.service_account'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class ProjectServiceAccount
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -74,7 +74,7 @@ class ProjectServiceAccount
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $name = null;
@@ -85,7 +85,7 @@ class ProjectServiceAccount
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['owner', 'member'])]
     #[Assert\Type("string")]
@@ -97,7 +97,7 @@ class ProjectServiceAccount
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -128,12 +128,12 @@ class ProjectServiceAccount
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `organization.project.service_account`
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `organization.project.service_account`
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -155,12 +155,12 @@ class ProjectServiceAccount
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The identifier, which can be referenced in API endpoints
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The identifier, which can be referenced in API endpoints
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -182,12 +182,12 @@ class ProjectServiceAccount
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the service account
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the service account
+     *
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -209,12 +209,12 @@ class ProjectServiceAccount
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  `owner` or `member`
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  `owner` or `member`
+     *
+     * @return $this
+     */
     public function setRole(?string $role): self
     {
         $this->role = $role;
@@ -236,12 +236,12 @@ class ProjectServiceAccount
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) of when the service account was created
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) of when the service account was created
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;

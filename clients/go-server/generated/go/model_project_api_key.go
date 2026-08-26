@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // ProjectApiKey - Represents an individual API key in a project.
@@ -34,15 +39,103 @@ type ProjectApiKey struct {
 
 	Owner ProjectApiKeyOwner `json:"owner"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into ProjectApiKey
+func (o *ProjectApiKey) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"object",
+		"redacted_value",
+		"name",
+		"created_at",
+		"id",
+		"owner",
+	}
 
-// AssertProjectApiKeyRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"object": false,
+		"redacted_value": false,
+		"name": false,
+		"created_at": false,
+		"id": false,
+		"owner": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"object": {},
+		"redacted_value": {},
+		"name": {},
+		"created_at": {},
+		"id": {},
+		"owner": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded ProjectApiKey
+
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["redacted_value"]; exists {
+		if err = json.Unmarshal(value, &decoded.RedactedValue); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["name"]; exists {
+		if err = json.Unmarshal(value, &decoded.Name); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["created_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CreatedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["owner"]; exists {
+		if err = json.Unmarshal(value, &decoded.Owner); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertProjectApiKeyRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertProjectApiKeyRequired(obj ProjectApiKey) error {
 	elements := map[string]interface{}{
-		"object": obj.Object,
-		"redacted_value": obj.RedactedValue,
-		"name": obj.Name,
-		"created_at": obj.CreatedAt,
-		"id": obj.Id,
 		"owner": obj.Owner,
 	}
 	for name, el := range elements {

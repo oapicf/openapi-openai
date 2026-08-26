@@ -13,6 +13,8 @@ use reqwest;
 use serde::{Deserialize, Serialize, de::Error as _};
 use crate::{apis::ResponseContent, models};
 use super::{Error, configuration, ContentType};
+use tokio::fs::File as TokioFile;
+use tokio_util::codec::{BytesCodec, FramedRead};
 
 
 /// struct for typed errors of method [`create_speech`]
@@ -86,7 +88,11 @@ pub async fn create_transcription(configuration: &configuration::Configuration, 
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
     let mut multipart_form = reqwest::multipart::Form::new();
-    multipart_form = multipart_form.file("file", p_form_file.as_os_str()).await?;
+    let file = TokioFile::open(&p_form_file).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    let file_name = p_form_file.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
+    let file_part = reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
+    multipart_form = multipart_form.part("file", file_part);
     multipart_form = multipart_form.text("model", p_form_model.to_string());
     if let Some(param_value) = p_form_language {
         multipart_form = multipart_form.text("language", param_value.to_string());
@@ -148,7 +154,11 @@ pub async fn create_translation(configuration: &configuration::Configuration, fi
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
     let mut multipart_form = reqwest::multipart::Form::new();
-    multipart_form = multipart_form.file("file", p_form_file.as_os_str()).await?;
+    let file = TokioFile::open(&p_form_file).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    let file_name = p_form_file.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
+    let file_part = reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
+    multipart_form = multipart_form.part("file", file_part);
     multipart_form = multipart_form.text("model", p_form_model.to_string());
     if let Some(param_value) = p_form_prompt {
         multipart_form = multipart_form.text("prompt", param_value.to_string());

@@ -192,7 +192,7 @@ MessageDeltaContentTextObject_text_annotations_inner::getIndex()
 }
 
 void
-MessageDeltaContentTextObject_text_annotations_inner::setIndex(int  index)
+MessageDeltaContentTextObject_text_annotations_inner::setIndex(int index)
 {
 	this->index = index;
 }
@@ -204,7 +204,7 @@ MessageDeltaContentTextObject_text_annotations_inner::getType()
 }
 
 void
-MessageDeltaContentTextObject_text_annotations_inner::setType(std::string  type)
+MessageDeltaContentTextObject_text_annotations_inner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -216,7 +216,7 @@ MessageDeltaContentTextObject_text_annotations_inner::getText()
 }
 
 void
-MessageDeltaContentTextObject_text_annotations_inner::setText(std::string  text)
+MessageDeltaContentTextObject_text_annotations_inner::setText(std::string text)
 {
 	this->text = text;
 }
@@ -228,7 +228,7 @@ MessageDeltaContentTextObject_text_annotations_inner::getFileCitation()
 }
 
 void
-MessageDeltaContentTextObject_text_annotations_inner::setFileCitation(MessageDeltaContentTextAnnotationsFileCitationObject_file_citation  file_citation)
+MessageDeltaContentTextObject_text_annotations_inner::setFileCitation(MessageDeltaContentTextAnnotationsFileCitationObject_file_citation file_citation)
 {
 	this->file_citation = file_citation;
 }
@@ -240,7 +240,7 @@ MessageDeltaContentTextObject_text_annotations_inner::getStartIndex()
 }
 
 void
-MessageDeltaContentTextObject_text_annotations_inner::setStartIndex(int  start_index)
+MessageDeltaContentTextObject_text_annotations_inner::setStartIndex(int start_index)
 {
 	this->start_index = start_index;
 }
@@ -252,7 +252,7 @@ MessageDeltaContentTextObject_text_annotations_inner::getEndIndex()
 }
 
 void
-MessageDeltaContentTextObject_text_annotations_inner::setEndIndex(int  end_index)
+MessageDeltaContentTextObject_text_annotations_inner::setEndIndex(int end_index)
 {
 	this->end_index = end_index;
 }
@@ -264,7 +264,7 @@ MessageDeltaContentTextObject_text_annotations_inner::getFilePath()
 }
 
 void
-MessageDeltaContentTextObject_text_annotations_inner::setFilePath(MessageDeltaContentTextAnnotationsFilePathObject_file_path  file_path)
+MessageDeltaContentTextObject_text_annotations_inner::setFilePath(MessageDeltaContentTextAnnotationsFilePathObject_file_path file_path)
 {
 	this->file_path = file_path;
 }

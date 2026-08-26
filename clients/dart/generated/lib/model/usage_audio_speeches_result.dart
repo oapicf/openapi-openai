@@ -105,10 +105,12 @@ class UsageAudioSpeechesResult {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UsageAudioSpeechesResult[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UsageAudioSpeechesResult[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "UsageAudioSpeechesResult[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "UsageAudioSpeechesResult[object]" has a null value in JSON.');
+        assert(json.containsKey(r'characters'), 'Required key "UsageAudioSpeechesResult[characters]" is missing from JSON.');
+        assert(json[r'characters'] != null, 'Required key "UsageAudioSpeechesResult[characters]" has a null value in JSON.');
+        assert(json.containsKey(r'num_model_requests'), 'Required key "UsageAudioSpeechesResult[num_model_requests]" is missing from JSON.');
+        assert(json[r'num_model_requests'] != null, 'Required key "UsageAudioSpeechesResult[num_model_requests]" has a null value in JSON.');
         return true;
       }());
 
@@ -174,27 +176,28 @@ class UsageAudioSpeechesResult {
 }
 
 
-class UsageAudioSpeechesResultObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const UsageAudioSpeechesResultObjectEnum._(this.value);
+enum UsageAudioSpeechesResultObjectEnum {
+  organizationPeriodUsagePeriodAudioSpeechesPeriodResult._(r'organization.usage.audio_speeches.result'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const UsageAudioSpeechesResultObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const organizationPeriodUsagePeriodAudioSpeechesPeriodResult = UsageAudioSpeechesResultObjectEnum._(r'organization.usage.audio_speeches.result');
-
-  /// List of all possible values in this [enum][UsageAudioSpeechesResultObjectEnum].
-  static const values = <UsageAudioSpeechesResultObjectEnum>[
-    organizationPeriodUsagePeriodAudioSpeechesPeriodResult,
-  ];
-
+  /// Returns the instance of [UsageAudioSpeechesResultObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static UsageAudioSpeechesResultObjectEnum? fromJson(dynamic value) => UsageAudioSpeechesResultObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [UsageAudioSpeechesResultObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<UsageAudioSpeechesResultObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <UsageAudioSpeechesResultObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -216,9 +219,10 @@ class UsageAudioSpeechesResultObjectEnumTypeTransformer {
 
   const UsageAudioSpeechesResultObjectEnumTypeTransformer._();
 
-  String encode(UsageAudioSpeechesResultObjectEnum data) => data.value;
+  String encode(UsageAudioSpeechesResultObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a UsageAudioSpeechesResultObjectEnum.
+  /// Returns the instance of [UsageAudioSpeechesResultObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -227,6 +231,9 @@ class UsageAudioSpeechesResultObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   UsageAudioSpeechesResultObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is UsageAudioSpeechesResultObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'organization.usage.audio_speeches.result': return UsageAudioSpeechesResultObjectEnum.organizationPeriodUsagePeriodAudioSpeechesPeriodResult;
@@ -239,7 +246,7 @@ class UsageAudioSpeechesResultObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [UsageAudioSpeechesResultObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static UsageAudioSpeechesResultObjectEnumTypeTransformer? _instance;
 }
 

@@ -52,35 +52,35 @@ public:
 
 	/*! \brief Set The unique ID of the server event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `conversation.item.input_audio_transcription.failed`. 
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `conversation.item.input_audio_transcription.failed`. 
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The ID of the user message item.
 	 */
 	std::string getItemId();
 
 	/*! \brief Set The ID of the user message item.
 	 */
-	void setItemId(std::string  item_id);
+	void setItemId(std::string item_id);
 	/*! \brief Get The index of the content part containing the audio.
 	 */
 	int getContentIndex();
 
 	/*! \brief Set The index of the content part containing the audio.
 	 */
-	void setContentIndex(int  content_index);
+	void setContentIndex(int content_index);
 	/*! \brief Get 
 	 */
 	RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error getError();
 
 	/*! \brief Set 
 	 */
-	void setError(RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error  error);
+	void setError(RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error error);
 
 
     private:

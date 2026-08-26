@@ -27,6 +27,8 @@ ThreadObject::ThreadObject()
     
 }
 
+ThreadObject::~ThreadObject() = default;
+
 void ThreadObject::validate() const
 {
     std::stringstream msg;

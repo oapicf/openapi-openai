@@ -90,10 +90,20 @@ class RealtimeServerEventResponseTextDone {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventResponseTextDone[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventResponseTextDone[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event_id'), 'Required key "RealtimeServerEventResponseTextDone[event_id]" is missing from JSON.');
+        assert(json[r'event_id'] != null, 'Required key "RealtimeServerEventResponseTextDone[event_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RealtimeServerEventResponseTextDone[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeServerEventResponseTextDone[type]" has a null value in JSON.');
+        assert(json.containsKey(r'response_id'), 'Required key "RealtimeServerEventResponseTextDone[response_id]" is missing from JSON.');
+        assert(json[r'response_id'] != null, 'Required key "RealtimeServerEventResponseTextDone[response_id]" has a null value in JSON.');
+        assert(json.containsKey(r'item_id'), 'Required key "RealtimeServerEventResponseTextDone[item_id]" is missing from JSON.');
+        assert(json[r'item_id'] != null, 'Required key "RealtimeServerEventResponseTextDone[item_id]" has a null value in JSON.');
+        assert(json.containsKey(r'output_index'), 'Required key "RealtimeServerEventResponseTextDone[output_index]" is missing from JSON.');
+        assert(json[r'output_index'] != null, 'Required key "RealtimeServerEventResponseTextDone[output_index]" has a null value in JSON.');
+        assert(json.containsKey(r'content_index'), 'Required key "RealtimeServerEventResponseTextDone[content_index]" is missing from JSON.');
+        assert(json[r'content_index'] != null, 'Required key "RealtimeServerEventResponseTextDone[content_index]" has a null value in JSON.');
+        assert(json.containsKey(r'text'), 'Required key "RealtimeServerEventResponseTextDone[text]" is missing from JSON.');
+        assert(json[r'text'] != null, 'Required key "RealtimeServerEventResponseTextDone[text]" has a null value in JSON.');
         return true;
       }());
 
@@ -163,27 +173,28 @@ class RealtimeServerEventResponseTextDone {
 }
 
 /// The event type, must be `response.text.done`.
-class RealtimeServerEventResponseTextDoneTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventResponseTextDoneTypeEnum._(this.value);
+enum RealtimeServerEventResponseTextDoneTypeEnum {
+  responsePeriodTextPeriodDone._(r'response.text.done'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventResponseTextDoneTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const responsePeriodTextPeriodDone = RealtimeServerEventResponseTextDoneTypeEnum._(r'response.text.done');
-
-  /// List of all possible values in this [enum][RealtimeServerEventResponseTextDoneTypeEnum].
-  static const values = <RealtimeServerEventResponseTextDoneTypeEnum>[
-    responsePeriodTextPeriodDone,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventResponseTextDoneTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventResponseTextDoneTypeEnum? fromJson(dynamic value) => RealtimeServerEventResponseTextDoneTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventResponseTextDoneTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventResponseTextDoneTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventResponseTextDoneTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -205,9 +216,10 @@ class RealtimeServerEventResponseTextDoneTypeEnumTypeTransformer {
 
   const RealtimeServerEventResponseTextDoneTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventResponseTextDoneTypeEnum data) => data.value;
+  String encode(RealtimeServerEventResponseTextDoneTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventResponseTextDoneTypeEnum.
+  /// Returns the instance of [RealtimeServerEventResponseTextDoneTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -216,6 +228,9 @@ class RealtimeServerEventResponseTextDoneTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventResponseTextDoneTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventResponseTextDoneTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'response.text.done': return RealtimeServerEventResponseTextDoneTypeEnum.responsePeriodTextPeriodDone;
@@ -228,7 +243,7 @@ class RealtimeServerEventResponseTextDoneTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeServerEventResponseTextDoneTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventResponseTextDoneTypeEnumTypeTransformer? _instance;
 }
 

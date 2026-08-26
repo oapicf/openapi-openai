@@ -41,7 +41,7 @@ export interface ListPaginatedFineTuningJobsResponse {
     hasMore: boolean;
     /**
      * 
-     * @type {string}
+     * @type {ListPaginatedFineTuningJobsResponseObjectEnum}
      * @memberof ListPaginatedFineTuningJobsResponse
      */
     object: ListPaginatedFineTuningJobsResponseObjectEnum;
@@ -62,8 +62,10 @@ export type ListPaginatedFineTuningJobsResponseObjectEnum = typeof ListPaginated
  */
 export function instanceOfListPaginatedFineTuningJobsResponse(value: object): value is ListPaginatedFineTuningJobsResponse {
     if (!('data' in value) || value['data'] === undefined) return false;
-    if (!('hasMore' in value) || value['hasMore'] === undefined) return false;
+    if ((!('hasMore' in (value as Record<string, any>)) && !('has_more' in (value as Record<string, any>))) || ((value as Record<string, any>)['hasMore'] === undefined && (value as Record<string, any>)['has_more'] === undefined)) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'list') return false;
+    
     return true;
 }
 

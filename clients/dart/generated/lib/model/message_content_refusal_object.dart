@@ -54,10 +54,10 @@ class MessageContentRefusalObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageContentRefusalObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageContentRefusalObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "MessageContentRefusalObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "MessageContentRefusalObject[type]" has a null value in JSON.');
+        assert(json.containsKey(r'refusal'), 'Required key "MessageContentRefusalObject[refusal]" is missing from JSON.');
+        assert(json[r'refusal'] != null, 'Required key "MessageContentRefusalObject[refusal]" has a null value in JSON.');
         return true;
       }());
 
@@ -117,27 +117,28 @@ class MessageContentRefusalObject {
 }
 
 /// Always `refusal`.
-class MessageContentRefusalObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageContentRefusalObjectTypeEnum._(this.value);
+enum MessageContentRefusalObjectTypeEnum {
+  refusal._(r'refusal'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageContentRefusalObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const refusal = MessageContentRefusalObjectTypeEnum._(r'refusal');
-
-  /// List of all possible values in this [enum][MessageContentRefusalObjectTypeEnum].
-  static const values = <MessageContentRefusalObjectTypeEnum>[
-    refusal,
-  ];
-
+  /// Returns the instance of [MessageContentRefusalObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageContentRefusalObjectTypeEnum? fromJson(dynamic value) => MessageContentRefusalObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageContentRefusalObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageContentRefusalObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageContentRefusalObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -159,9 +160,10 @@ class MessageContentRefusalObjectTypeEnumTypeTransformer {
 
   const MessageContentRefusalObjectTypeEnumTypeTransformer._();
 
-  String encode(MessageContentRefusalObjectTypeEnum data) => data.value;
+  String encode(MessageContentRefusalObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageContentRefusalObjectTypeEnum.
+  /// Returns the instance of [MessageContentRefusalObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -170,6 +172,9 @@ class MessageContentRefusalObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageContentRefusalObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageContentRefusalObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'refusal': return MessageContentRefusalObjectTypeEnum.refusal;
@@ -182,7 +187,7 @@ class MessageContentRefusalObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageContentRefusalObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageContentRefusalObjectTypeEnumTypeTransformer? _instance;
 }
 

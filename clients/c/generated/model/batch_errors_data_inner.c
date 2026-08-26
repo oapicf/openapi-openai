@@ -9,18 +9,18 @@ static batch_errors_data_inner_t *batch_errors_data_inner_create_internal(
     char *code,
     char *message,
     char *param,
-    int line
+    int *line
     ) {
     batch_errors_data_inner_t *batch_errors_data_inner_local_var = malloc(sizeof(batch_errors_data_inner_t));
     if (!batch_errors_data_inner_local_var) {
         return NULL;
     }
+    memset(batch_errors_data_inner_local_var, 0, sizeof(batch_errors_data_inner_t));
+    batch_errors_data_inner_local_var->_library_owned = 1;
     batch_errors_data_inner_local_var->code = code;
     batch_errors_data_inner_local_var->message = message;
     batch_errors_data_inner_local_var->param = param;
     batch_errors_data_inner_local_var->line = line;
-
-    batch_errors_data_inner_local_var->_library_owned = 1;
     return batch_errors_data_inner_local_var;
 }
 
@@ -28,14 +28,23 @@ __attribute__((deprecated)) batch_errors_data_inner_t *batch_errors_data_inner_c
     char *code,
     char *message,
     char *param,
-    int line
+    int *line
     ) {
-    return batch_errors_data_inner_create_internal (
+    int *line_copy = NULL;
+    if (line) {
+        line_copy = malloc(sizeof(int));
+        if (line_copy) *line_copy = *line;
+    }
+    batch_errors_data_inner_t *result = batch_errors_data_inner_create_internal (
         code,
         message,
         param,
-        line
+        line_copy
         );
+    if (!result) {
+        free(line_copy);
+    }
+    return result;
 }
 
 void batch_errors_data_inner_free(batch_errors_data_inner_t *batch_errors_data_inner) {
@@ -58,6 +67,10 @@ void batch_errors_data_inner_free(batch_errors_data_inner_t *batch_errors_data_i
     if (batch_errors_data_inner->param) {
         free(batch_errors_data_inner->param);
         batch_errors_data_inner->param = NULL;
+    }
+    if (batch_errors_data_inner->line) {
+        free(batch_errors_data_inner->line);
+        batch_errors_data_inner->line = NULL;
     }
     free(batch_errors_data_inner);
 }
@@ -91,7 +104,7 @@ cJSON *batch_errors_data_inner_convertToJSON(batch_errors_data_inner_t *batch_er
 
     // batch_errors_data_inner->line
     if(batch_errors_data_inner->line) {
-    if(cJSON_AddNumberToObject(item, "line", batch_errors_data_inner->line) == NULL) {
+    if(cJSON_AddNumberToObject(item, "line", *batch_errors_data_inner->line) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -107,6 +120,15 @@ fail:
 batch_errors_data_inner_t *batch_errors_data_inner_parseFromJSON(cJSON *batch_errors_data_innerJSON){
 
     batch_errors_data_inner_t *batch_errors_data_inner_local_var = NULL;
+
+    char *code_local_str = NULL;
+
+    char *message_local_str = NULL;
+
+    char *param_local_str = NULL;
+
+    // define the local variable for batch_errors_data_inner->line
+    int *line_local_var = NULL;
 
     // batch_errors_data_inner->code
     cJSON *code = cJSON_GetObjectItemCaseSensitive(batch_errors_data_innerJSON, "code");
@@ -154,18 +176,48 @@ batch_errors_data_inner_t *batch_errors_data_inner_parseFromJSON(cJSON *batch_er
     {
     goto end; //Numeric
     }
+    line_local_var = malloc(sizeof(int));
+    if(!line_local_var)
+    {
+        goto end;
+    }
+    *line_local_var = line->valuedouble;
     }
 
 
+    if (code && !cJSON_IsNull(code)) code_local_str = strdup(code->valuestring);
+    if (message && !cJSON_IsNull(message)) message_local_str = strdup(message->valuestring);
+    if (param && !cJSON_IsNull(param)) param_local_str = strdup(param->valuestring);
+
     batch_errors_data_inner_local_var = batch_errors_data_inner_create_internal (
-        code && !cJSON_IsNull(code) ? strdup(code->valuestring) : NULL,
-        message && !cJSON_IsNull(message) ? strdup(message->valuestring) : NULL,
-        param && !cJSON_IsNull(param) ? strdup(param->valuestring) : NULL,
-        line ? line->valuedouble : 0
+        code_local_str,
+        message_local_str,
+        param_local_str,
+        line_local_var
         );
+
+    if (!batch_errors_data_inner_local_var) {
+        goto end;
+    }
 
     return batch_errors_data_inner_local_var;
 end:
+    if (code_local_str) {
+        free(code_local_str);
+        code_local_str = NULL;
+    }
+    if (message_local_str) {
+        free(message_local_str);
+        message_local_str = NULL;
+    }
+    if (param_local_str) {
+        free(param_local_str);
+        param_local_str = NULL;
+    }
+    if (line_local_var) {
+        free(line_local_var);
+        line_local_var = NULL;
+    }
     return NULL;
 
 }

@@ -21,15 +21,15 @@ public class FineTuneSupervisedMethodHyperparameters  {
   
   @ApiModelProperty(value = "")
   @Valid
-  private FineTuneDPOMethodHyperparametersBatchSize batchSize = auto;
+  private FineTuneDPOMethodHyperparametersBatchSize batchSize;
 
   @ApiModelProperty(value = "")
   @Valid
-  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier;
 
   @ApiModelProperty(value = "")
   @Valid
-  private FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto;
+  private FineTuneDPOMethodHyperparametersNEpochs nEpochs;
  /**
   * Get batchSize
   * @return batchSize
@@ -139,10 +139,7 @@ public class FineTuneSupervisedMethodHyperparameters  {
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

@@ -37,13 +37,13 @@ class OAIChatCompletionStreamOptions;
 class OAICreateCompletionRequest : public OAIObject {
 public:
     OAICreateCompletionRequest();
-    OAICreateCompletionRequest(QString json);
+    OAICreateCompletionRequest(const QString &json);
     ~OAICreateCompletionRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     OAICreateCompletionRequest_model getModel() const;
     void setModel(const OAICreateCompletionRequest_model &model);

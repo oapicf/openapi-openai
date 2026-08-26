@@ -1,4 +1,4 @@
-# # AssistantObjectToolResources
+# AssistantObjectToolResources
 
 ## Properties
 

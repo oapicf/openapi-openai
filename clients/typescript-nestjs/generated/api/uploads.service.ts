@@ -114,7 +114,7 @@ export class UploadsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<UploadPart>(`${this.basePath}/uploads/${encodeURIComponent(String(upload_id))}/parts`,
+                return this.httpClient.post<UploadPart>(`${this.basePath}/uploads/${encodeURIComponent(String(uploadId))}/parts`,
                     convertFormParamsToString ? formParams!.toString() : formParams!,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -167,7 +167,7 @@ export class UploadsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<Upload>(`${this.basePath}/uploads/${encodeURIComponent(String(upload_id))}/cancel`,
+                return this.httpClient.post<Upload>(`${this.basePath}/uploads/${encodeURIComponent(String(uploadId))}/cancel`,
                     null,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -230,7 +230,7 @@ export class UploadsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<Upload>(`${this.basePath}/uploads/${encodeURIComponent(String(upload_id))}/complete`,
+                return this.httpClient.post<Upload>(`${this.basePath}/uploads/${encodeURIComponent(String(uploadId))}/complete`,
                     completeUploadRequest,
                     {
                         withCredentials: this.configuration.withCredentials,

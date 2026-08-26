@@ -12,6 +12,12 @@ import org.openapitools.model.RunStepStreamEventOneOf3
 import org.openapitools.model.RunStepStreamEventOneOf4
 import org.openapitools.model.RunStepStreamEventOneOf5
 import org.openapitools.model.RunStepStreamEventOneOf6
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -25,36 +31,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param event 
- * @param &#x60;data&#x60; 
  */
-data class RunStepStreamEvent(
-
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("event", required = true) val event: RunStepStreamEvent.Event,
-
-    @field:Valid
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("data", required = true) val `data`: RunStepObject
-) {
-
-    /**
-    * 
-    * Values: threadPeriodRunPeriodStepPeriodExpired
-    */
-    enum class Event(@get:JsonValue val value: kotlin.String) {
-
-        threadPeriodRunPeriodStepPeriodExpired("thread.run.step.expired");
-
-        companion object {
-            @JvmStatic
-            @JsonCreator
-            fun forValue(value: kotlin.String): Event {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RunStepStreamEvent'")
-            }
-        }
-    }
-
+sealed interface RunStepStreamEvent : AssistantStreamEvent {
 }
 

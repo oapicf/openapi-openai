@@ -25,34 +25,43 @@ openai_api_usage_response_OBJECT_e usage_response_object_FromString(char* object
 static usage_response_t *usage_response_create_internal(
     openai_api_usage_response_OBJECT_e object,
     list_t *data,
-    int has_more,
+    int *has_more,
     char *next_page
     ) {
     usage_response_t *usage_response_local_var = malloc(sizeof(usage_response_t));
     if (!usage_response_local_var) {
         return NULL;
     }
+    memset(usage_response_local_var, 0, sizeof(usage_response_t));
+    usage_response_local_var->_library_owned = 1;
     usage_response_local_var->object = object;
     usage_response_local_var->data = data;
     usage_response_local_var->has_more = has_more;
     usage_response_local_var->next_page = next_page;
-
-    usage_response_local_var->_library_owned = 1;
     return usage_response_local_var;
 }
 
 __attribute__((deprecated)) usage_response_t *usage_response_create(
     openai_api_usage_response_OBJECT_e object,
     list_t *data,
-    int has_more,
+    int *has_more,
     char *next_page
     ) {
-    return usage_response_create_internal (
+    int *has_more_copy = NULL;
+    if (has_more) {
+        has_more_copy = malloc(sizeof(int));
+        if (has_more_copy) *has_more_copy = *has_more;
+    }
+    usage_response_t *result = usage_response_create_internal (
         object,
         data,
-        has_more,
+        has_more_copy,
         next_page
         );
+    if (!result) {
+        free(has_more_copy);
+    }
+    return result;
 }
 
 void usage_response_free(usage_response_t *usage_response) {
@@ -70,6 +79,10 @@ void usage_response_free(usage_response_t *usage_response) {
         }
         list_freeList(usage_response->data);
         usage_response->data = NULL;
+    }
+    if (usage_response->has_more) {
+        free(usage_response->has_more);
+        usage_response->has_more = NULL;
     }
     if (usage_response->next_page) {
         free(usage_response->next_page);
@@ -116,7 +129,7 @@ cJSON *usage_response_convertToJSON(usage_response_t *usage_response) {
     if (!usage_response->has_more) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "has_more", usage_response->has_more) == NULL) {
+    if(cJSON_AddBoolToObject(item, "has_more", *usage_response->has_more) == NULL) {
     goto fail; //Bool
     }
 
@@ -143,6 +156,11 @@ usage_response_t *usage_response_parseFromJSON(cJSON *usage_responseJSON){
 
     // define the local list for usage_response->data
     list_t *dataList = NULL;
+
+    // define the local variable for usage_response->has_more
+    int *has_more_local_var = NULL;
+
+    char *next_page_local_str = NULL;
 
     // usage_response->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(usage_responseJSON, "object");
@@ -202,6 +220,12 @@ usage_response_t *usage_response_parseFromJSON(cJSON *usage_responseJSON){
     {
     goto end; //Bool
     }
+    has_more_local_var = malloc(sizeof(int));
+    if(!has_more_local_var)
+    {
+        goto end;
+    }
+    *has_more_local_var = has_more->valueint;
 
     // usage_response->next_page
     cJSON *next_page = cJSON_GetObjectItemCaseSensitive(usage_responseJSON, "next_page");
@@ -219,12 +243,18 @@ usage_response_t *usage_response_parseFromJSON(cJSON *usage_responseJSON){
     }
 
 
+    if (next_page && !cJSON_IsNull(next_page)) next_page_local_str = strdup(next_page->valuestring);
+
     usage_response_local_var = usage_response_create_internal (
         objectVariable,
         dataList,
-        has_more->valueint,
-        strdup(next_page->valuestring)
+        has_more_local_var,
+        next_page_local_str
         );
+
+    if (!usage_response_local_var) {
+        goto end;
+    }
 
     return usage_response_local_var;
 end:
@@ -236,6 +266,14 @@ end:
         }
         list_freeList(dataList);
         dataList = NULL;
+    }
+    if (has_more_local_var) {
+        free(has_more_local_var);
+        has_more_local_var = NULL;
+    }
+    if (next_page_local_str) {
+        free(next_page_local_str);
+        next_page_local_str = NULL;
     }
     return NULL;
 

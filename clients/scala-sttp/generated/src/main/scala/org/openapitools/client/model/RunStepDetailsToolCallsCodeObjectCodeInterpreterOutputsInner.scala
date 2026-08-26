@@ -12,13 +12,23 @@
 package org.openapitools.client.model
 
 
-case class RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner(
-  /* Always `logs`. */
-  `type`: RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerEnums.`Type`,
-  /* The text output from the Code Interpreter tool call. */
-  logs: String,
+sealed trait RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
+object RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner {
+}
+
+case class RunStepDetailsToolCallsCodeOutputImageObject(
+  /* Always `image`. */
+  `type`: RunStepDetailsToolCallsCodeOutputImageObjectEnums.`Type`,
   image: RunStepDetailsToolCallsCodeOutputImageObjectImage
-)
+) extends RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
+
+case class RunStepDetailsToolCallsCodeOutputLogsObject(
+  /* Always `logs`. */
+  `type`: RunStepDetailsToolCallsCodeOutputLogsObjectEnums.`Type`,
+  /* The text output from the Code Interpreter tool call. */
+  logs: String
+) extends RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
+
 
 object RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerEnums {
 

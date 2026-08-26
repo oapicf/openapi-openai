@@ -34,13 +34,13 @@ namespace OpenAPI {
 class OAIFineTuneDPOMethod_hyperparameters : public OAIObject {
 public:
     OAIFineTuneDPOMethod_hyperparameters();
-    OAIFineTuneDPOMethod_hyperparameters(QString json);
+    OAIFineTuneDPOMethod_hyperparameters(const QString &json);
     ~OAIFineTuneDPOMethod_hyperparameters() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     OAIFineTuneDPOMethod_hyperparameters_beta getBeta() const;
     void setBeta(const OAIFineTuneDPOMethod_hyperparameters_beta &beta);

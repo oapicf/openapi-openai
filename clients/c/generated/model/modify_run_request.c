@@ -12,18 +12,21 @@ static modify_run_request_t *modify_run_request_create_internal(
     if (!modify_run_request_local_var) {
         return NULL;
     }
-    modify_run_request_local_var->metadata = metadata;
-
+    memset(modify_run_request_local_var, 0, sizeof(modify_run_request_t));
     modify_run_request_local_var->_library_owned = 1;
+    modify_run_request_local_var->metadata = metadata;
     return modify_run_request_local_var;
 }
 
 __attribute__((deprecated)) modify_run_request_t *modify_run_request_create(
     object_t *metadata
     ) {
-    return modify_run_request_create_internal (
+    modify_run_request_t *result = modify_run_request_create_internal (
         metadata
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void modify_run_request_free(modify_run_request_t *modify_run_request) {
@@ -80,9 +83,14 @@ modify_run_request_t *modify_run_request_parseFromJSON(cJSON *modify_run_request
     }
 
 
+
     modify_run_request_local_var = modify_run_request_create_internal (
         metadata ? metadata_local_object : NULL
         );
+
+    if (!modify_run_request_local_var) {
+        goto end;
+    }
 
     return modify_run_request_local_var;
 end:

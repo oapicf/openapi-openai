@@ -29,6 +29,7 @@ from openapiopenai.models.create_run_request_model import CreateRunRequestModel
 from openapiopenai.models.truncation_object import TruncationObject
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class CreateRunRequest(BaseModel):
     """
@@ -41,8 +42,8 @@ class CreateRunRequest(BaseModel):
     additional_messages: Optional[List[CreateMessageRequest]] = Field(default=None, description="Adds additional messages to the thread before creating the run.")
     tools: Optional[Annotated[List[AssistantObjectToolsInner], Field(max_length=20)]] = Field(default=None, description="Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.")
     metadata: Optional[Dict[str, Any]] = Field(default=None, description="Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
-    temperature: Optional[Union[Annotated[float, Field(le=2, strict=True, ge=0)], Annotated[int, Field(le=2, strict=True, ge=0)]]] = Field(default=1, description="What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. ")
-    top_p: Optional[Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]] = Field(default=1, description="An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ")
+    temperature: Optional[Union[Annotated[float, Field(le=2, strict=True, ge=0)], Annotated[int, Field(le=2, strict=True, ge=0)]]] = Field(default=1, description="What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. ", json_schema_extra={"examples": [1]})
+    top_p: Optional[Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]] = Field(default=1, description="An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ", json_schema_extra={"examples": [1]})
     stream: Optional[StrictBool] = Field(default=None, description="If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. ")
     max_prompt_tokens: Optional[Annotated[int, Field(strict=True, ge=256)]] = Field(default=None, description="The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. ")
     max_completion_tokens: Optional[Annotated[int, Field(strict=True, ge=256)]] = Field(default=None, description="The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. ")
@@ -53,7 +54,8 @@ class CreateRunRequest(BaseModel):
     __properties: ClassVar[List[str]] = ["assistant_id", "model", "instructions", "additional_instructions", "additional_messages", "tools", "metadata", "temperature", "top_p", "stream", "max_prompt_tokens", "max_completion_tokens", "truncation_strategy", "tool_choice", "parallel_tool_calls", "response_format"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -65,8 +67,7 @@ class CreateRunRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

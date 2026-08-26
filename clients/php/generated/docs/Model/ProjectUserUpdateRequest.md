@@ -1,4 +1,4 @@
-# # ProjectUserUpdateRequest
+# ProjectUserUpdateRequest
 
 ## Properties
 

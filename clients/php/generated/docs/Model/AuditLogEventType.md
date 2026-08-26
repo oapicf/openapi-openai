@@ -1,4 +1,4 @@
-# # AuditLogEventType
+# AuditLogEventType
 
 ## Properties
 

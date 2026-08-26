@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type RunStepDeltaStepDetailsToolCallsObjectToolCallsInner struct {
@@ -32,20 +37,96 @@ type RunStepDeltaStepDetailsToolCallsObjectToolCallsInner struct {
 
 	Function RunStepDeltaStepDetailsToolCallsFunctionObjectFunction `json:"function,omitempty"`
 }
-
-// AssertRunStepDeltaStepDetailsToolCallsObjectToolCallsInnerRequired checks if the required fields are not zero-ed
-func AssertRunStepDeltaStepDetailsToolCallsObjectToolCallsInnerRequired(obj RunStepDeltaStepDetailsToolCallsObjectToolCallsInner) error {
-	elements := map[string]interface{}{
-		"index": obj.Index,
-		"type": obj.Type,
-		"file_search": obj.FileSearch,
+// UnmarshalJSON validates required property keys then unmarshals into RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
+func (o *RunStepDeltaStepDetailsToolCallsObjectToolCallsInner) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"index",
+		"type",
+		"file_search",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"index": false,
+		"type": false,
+		"file_search": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"index": {},
+		"id": {},
+		"type": {},
+		"code_interpreter": {},
+		"file_search": {},
+		"function": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
+
+	if value, exists := allProperties["index"]; exists {
+		if err = json.Unmarshal(value, &decoded.Index); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["code_interpreter"]; exists {
+		if err = json.Unmarshal(value, &decoded.CodeInterpreter); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["file_search"]; exists {
+		if err = json.Unmarshal(value, &decoded.FileSearch); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["function"]; exists {
+		if err = json.Unmarshal(value, &decoded.Function); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRunStepDeltaStepDetailsToolCallsObjectToolCallsInnerRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertRunStepDeltaStepDetailsToolCallsObjectToolCallsInnerRequired(obj RunStepDeltaStepDetailsToolCallsObjectToolCallsInner) error {
 	if err := AssertRunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterRequired(obj.CodeInterpreter); err != nil {
 		return err
 	}

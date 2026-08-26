@@ -1,4 +1,4 @@
-# # AuditLogActorUser
+# AuditLogActorUser
 
 ## Properties
 

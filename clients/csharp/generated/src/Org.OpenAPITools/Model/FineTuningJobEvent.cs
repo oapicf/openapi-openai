@@ -283,7 +283,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The type of event.</value>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// The object identifier.
@@ -318,7 +318,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The data associated with the event.</value>
         [JsonPropertyName("data")]
-        public Object? Data { get { return this.DataOption; } set { this.DataOption = new(value); } }
+        public Object? Data { get { return this.DataOption.Value; } set { this.DataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -353,8 +353,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTuningJobEvent" />
     /// </summary>
-    public class FineTuningJobEventJsonConverter : JsonConverter<FineTuningJobEvent>
+    public partial class FineTuningJobEventJsonConverter : JsonConverter<FineTuningJobEvent>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTuningJobEventJsonConverter" /> class.
+        /// </summary>
+        public FineTuningJobEventJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTuningJobEvent" />
         /// </summary>

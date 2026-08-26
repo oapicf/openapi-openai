@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The [vector store](/docs/api-reference/vector-stores/object) attached to this assistant. There can be a maximum of 1 vector store attached to the assistant. </value>
         [JsonPropertyName("vector_store_ids")]
-        public List<string>? VectorStoreIds { get { return this.VectorStoreIdsOption; } set { this.VectorStoreIdsOption = new(value); } }
+        public List<string>? VectorStoreIds { get { return this.VectorStoreIdsOption.Value; } set { this.VectorStoreIdsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of VectorStores
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this assistant. There can be a maximum of 1 vector store attached to the assistant. </value>
         [JsonPropertyName("vector_stores")]
-        public List<CreateAssistantRequestToolResourcesFileSearchVectorStoresInner>? VectorStores { get { return this.VectorStoresOption; } set { this.VectorStoresOption = new(value); } }
+        public List<CreateAssistantRequestToolResourcesFileSearchVectorStoresInner>? VectorStores { get { return this.VectorStoresOption.Value; } set { this.VectorStoresOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateAssistantRequestToolResourcesFileSearch" />
     /// </summary>
-    public class CreateAssistantRequestToolResourcesFileSearchJsonConverter : JsonConverter<CreateAssistantRequestToolResourcesFileSearch>
+    public partial class CreateAssistantRequestToolResourcesFileSearchJsonConverter : JsonConverter<CreateAssistantRequestToolResourcesFileSearch>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateAssistantRequestToolResourcesFileSearchJsonConverter" /> class.
+        /// </summary>
+        public CreateAssistantRequestToolResourcesFileSearchJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateAssistantRequestToolResourcesFileSearch" />
         /// </summary>

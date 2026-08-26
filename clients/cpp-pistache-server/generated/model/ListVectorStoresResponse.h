@@ -34,7 +34,7 @@ class  ListVectorStoresResponse
 {
 public:
     ListVectorStoresResponse();
-    virtual ~ListVectorStoresResponse() = default;
+    virtual ~ListVectorStoresResponse();
 
 
     /// <summary>

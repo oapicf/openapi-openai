@@ -51,7 +51,7 @@ class RealtimeClientEventSessionUpdate
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $eventId = null;
 
@@ -61,7 +61,7 @@ class RealtimeClientEventSessionUpdate
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['session.update'])]
     #[Assert\Type("string")]
@@ -71,7 +71,7 @@ class RealtimeClientEventSessionUpdate
      * @var RealtimeSessionCreateRequest|null
      * @SerializedName("session")
      * @Type("OpenAPI\Server\Model\RealtimeSessionCreateRequest")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RealtimeSessionCreateRequest")]
@@ -101,12 +101,12 @@ class RealtimeClientEventSessionUpdate
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  Optional client-generated ID used to identify this event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  Optional client-generated ID used to identify this event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId = null): self
     {
         $this->eventId = $eventId;
@@ -128,12 +128,12 @@ class RealtimeClientEventSessionUpdate
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `session.update`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `session.update`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -155,12 +155,12 @@ class RealtimeClientEventSessionUpdate
     }
 
     /**
-    * Sets session.
-    *
-    * @param RealtimeSessionCreateRequest|null $session
-    *
-    * @return $this
-    */
+     * Sets session.
+     *
+     * @param RealtimeSessionCreateRequest|null $session
+     *
+     * @return $this
+     */
     public function setSession(?RealtimeSessionCreateRequest $session): self
     {
         $this->session = $session;

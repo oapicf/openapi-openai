@@ -24,7 +24,8 @@ type AuditLogLoginFailed struct {
 	ErrorMessage string `json:"error_message,omitempty"`
 }
 
-// AssertAuditLogLoginFailedRequired checks if the required fields are not zero-ed
+// AssertAuditLogLoginFailedRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertAuditLogLoginFailedRequired(obj AuditLogLoginFailed) error {
 	return nil
 }

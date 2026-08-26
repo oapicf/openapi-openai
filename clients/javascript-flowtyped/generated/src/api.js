@@ -1448,21 +1448,6 @@ export type AuditLogUserUpdatedChangesRequested = {
 }
 
 
-            export type AutoChunkingStrategyTypeEnum = 'auto';
-/**
- * The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`.
- * @export
- */
-export type AutoChunkingStrategy = {
-    /**
-     * Always `auto`.
-     * @type {string}
-     * @memberof AutoChunkingStrategy
-     */
-    type: AutoChunkingStrategyTypeEnum;
-}
-
-
             export type AutoChunkingStrategyRequestParamTypeEnum = 'auto';
 /**
  * The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`.
@@ -3262,7 +3247,7 @@ export type CreateChatCompletionRequest = {
      */
     modalities?: Array<CreateChatCompletionRequestModalitiesEnum>;
     /**
-     * 
+     * Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
      * @type {PredictionContent}
      * @memberof CreateChatCompletionRequest
      */
@@ -4129,7 +4114,7 @@ export type CreateFineTuningJobRequestHyperparametersNEpochs = {
  */
 export type CreateFineTuningJobRequestIntegrationsInner = {
     /**
-     * 
+     * The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
      * @type {string}
      * @memberof CreateFineTuningJobRequestIntegrationsInner
      */
@@ -8452,7 +8437,7 @@ export type Model = {
  */
 export type ModifyAssistantRequest = {
     /**
-     * 
+     * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
      * @type {string}
      * @memberof ModifyAssistantRequest
      */
@@ -13639,27 +13624,6 @@ export type StaticChunkingStrategyRequestParam = {
     _static: StaticChunkingStrategy;
 }
 
-
-            export type StaticChunkingStrategyResponseParamTypeEnum = 'static';
-/**
- * 
- * @export
- */
-export type StaticChunkingStrategyResponseParam = {
-    /**
-     * Always `static`.
-     * @type {string}
-     * @memberof StaticChunkingStrategyResponseParam
-     */
-    type: StaticChunkingStrategyResponseParamTypeEnum;
-    /**
-     * 
-     * @type {StaticChunkingStrategy}
-     * @memberof StaticChunkingStrategyResponseParam
-     */
-    _static: StaticChunkingStrategy;
-}
-
 /**
  * 
  * @export
@@ -15093,8 +15057,8 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('runId','Required parameter runId was null or undefined when calling cancelRun.');
             }
             const localVarPath = `/threads/{thread_id}/runs/{run_id}/cancel`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{run_id}', encodeURIComponent(String(runId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -15159,7 +15123,7 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('createMessageRequest','Required parameter createMessageRequest was null or undefined when calling createMessage.');
             }
             const localVarPath = `/threads/{thread_id}/messages`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -15196,7 +15160,7 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('createRunRequest','Required parameter createRunRequest was null or undefined when calling createRun.');
             }
             const localVarPath = `/threads/{thread_id}/runs`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -15293,7 +15257,7 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('assistantId','Required parameter assistantId was null or undefined when calling deleteAssistant.');
             }
             const localVarPath = `/assistants/{assistant_id}`
-                .replace(`{${"assistant_id"}}`, encodeURIComponent(String(assistantId)));
+                .replace('{assistant_id}', encodeURIComponent(String(assistantId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'DELETE' }, options);
             const localVarHeaderParameter = {};
@@ -15326,8 +15290,8 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('messageId','Required parameter messageId was null or undefined when calling deleteMessage.');
             }
             const localVarPath = `/threads/{thread_id}/messages/{message_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"message_id"}}`, encodeURIComponent(String(messageId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{message_id}', encodeURIComponent(String(messageId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'DELETE' }, options);
             const localVarHeaderParameter = {};
@@ -15356,7 +15320,7 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('threadId','Required parameter threadId was null or undefined when calling deleteThread.');
             }
             const localVarPath = `/threads/{thread_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'DELETE' }, options);
             const localVarHeaderParameter = {};
@@ -15385,7 +15349,7 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('assistantId','Required parameter assistantId was null or undefined when calling getAssistant.');
             }
             const localVarPath = `/assistants/{assistant_id}`
-                .replace(`{${"assistant_id"}}`, encodeURIComponent(String(assistantId)));
+                .replace('{assistant_id}', encodeURIComponent(String(assistantId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -15418,8 +15382,8 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('messageId','Required parameter messageId was null or undefined when calling getMessage.');
             }
             const localVarPath = `/threads/{thread_id}/messages/{message_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"message_id"}}`, encodeURIComponent(String(messageId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{message_id}', encodeURIComponent(String(messageId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -15452,8 +15416,8 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('runId','Required parameter runId was null or undefined when calling getRun.');
             }
             const localVarPath = `/threads/{thread_id}/runs/{run_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{run_id}', encodeURIComponent(String(runId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -15490,9 +15454,9 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('stepId','Required parameter stepId was null or undefined when calling getRunStep.');
             }
             const localVarPath = `/threads/{thread_id}/runs/{run_id}/steps/{step_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)))
-                .replace(`{${"step_id"}}`, encodeURIComponent(String(stepId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{run_id}', encodeURIComponent(String(runId)))
+                .replace('{step_id}', encodeURIComponent(String(stepId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -15525,7 +15489,7 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('threadId','Required parameter threadId was null or undefined when calling getThread.');
             }
             const localVarPath = `/threads/{thread_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -15594,7 +15558,7 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('threadId','Required parameter threadId was null or undefined when calling listMessages.');
             }
             const localVarPath = `/threads/{thread_id}/messages`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -15647,8 +15611,8 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('runId','Required parameter runId was null or undefined when calling listRunSteps.');
             }
             const localVarPath = `/threads/{thread_id}/runs/{run_id}/steps`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{run_id}', encodeURIComponent(String(runId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -15697,7 +15661,7 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('threadId','Required parameter threadId was null or undefined when calling listRuns.');
             }
             const localVarPath = `/threads/{thread_id}/runs`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -15746,7 +15710,7 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('modifyAssistantRequest','Required parameter modifyAssistantRequest was null or undefined when calling modifyAssistant.');
             }
             const localVarPath = `/assistants/{assistant_id}`
-                .replace(`{${"assistant_id"}}`, encodeURIComponent(String(assistantId)));
+                .replace('{assistant_id}', encodeURIComponent(String(assistantId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -15787,8 +15751,8 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('modifyMessageRequest','Required parameter modifyMessageRequest was null or undefined when calling modifyMessage.');
             }
             const localVarPath = `/threads/{thread_id}/messages/{message_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"message_id"}}`, encodeURIComponent(String(messageId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{message_id}', encodeURIComponent(String(messageId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -15829,8 +15793,8 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('modifyRunRequest','Required parameter modifyRunRequest was null or undefined when calling modifyRun.');
             }
             const localVarPath = `/threads/{thread_id}/runs/{run_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{run_id}', encodeURIComponent(String(runId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -15867,7 +15831,7 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('modifyThreadRequest','Required parameter modifyThreadRequest was null or undefined when calling modifyThread.');
             }
             const localVarPath = `/threads/{thread_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -15908,8 +15872,8 @@ export const AssistantsApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('submitToolOutputsRunRequest','Required parameter submitToolOutputsRunRequest was null or undefined when calling submitToolOuputsToRun.');
             }
             const localVarPath = `/threads/{thread_id}/runs/{run_id}/submit_tool_outputs`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{run_id}', encodeURIComponent(String(runId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -16675,7 +16639,7 @@ export const BatchApiFetchParamCreator = function (configuration?: Configuration
                 throw new RequiredError('batchId','Required parameter batchId was null or undefined when calling cancelBatch.');
             }
             const localVarPath = `/batches/{batch_id}/cancel`
-                .replace(`{${"batch_id"}}`, encodeURIComponent(String(batchId)));
+                .replace('{batch_id}', encodeURIComponent(String(batchId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -16768,7 +16732,7 @@ export const BatchApiFetchParamCreator = function (configuration?: Configuration
                 throw new RequiredError('batchId','Required parameter batchId was null or undefined when calling retrieveBatch.');
             }
             const localVarPath = `/batches/{batch_id}`
-                .replace(`{${"batch_id"}}`, encodeURIComponent(String(batchId)));
+                .replace('{batch_id}', encodeURIComponent(String(batchId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -17061,7 +17025,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 throw new RequiredError('keyId','Required parameter keyId was null or undefined when calling adminApiKeysDelete.');
             }
             const localVarPath = `/organization/admin_api_keys/{key_id}`
-                .replace(`{${"key_id"}}`, encodeURIComponent(String(keyId)));
+                .replace('{key_id}', encodeURIComponent(String(keyId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'DELETE' }, options);
             const localVarHeaderParameter = {};
@@ -17090,7 +17054,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 throw new RequiredError('keyId','Required parameter keyId was null or undefined when calling adminApiKeysGet.');
             }
             const localVarPath = `/organization/admin_api_keys/{key_id}`
-                .replace(`{${"key_id"}}`, encodeURIComponent(String(keyId)));
+                .replace('{key_id}', encodeURIComponent(String(keyId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -17358,7 +17322,7 @@ export const FilesApiFetchParamCreator = function (configuration?: Configuration
                 throw new RequiredError('fileId','Required parameter fileId was null or undefined when calling deleteFile.');
             }
             const localVarPath = `/files/{file_id}`
-                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+                .replace('{file_id}', encodeURIComponent(String(fileId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'DELETE' }, options);
             const localVarHeaderParameter = {};
@@ -17387,7 +17351,7 @@ export const FilesApiFetchParamCreator = function (configuration?: Configuration
                 throw new RequiredError('fileId','Required parameter fileId was null or undefined when calling downloadFile.');
             }
             const localVarPath = `/files/{file_id}/content`
-                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+                .replace('{file_id}', encodeURIComponent(String(fileId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -17456,7 +17420,7 @@ export const FilesApiFetchParamCreator = function (configuration?: Configuration
                 throw new RequiredError('fileId','Required parameter fileId was null or undefined when calling retrieveFile.');
             }
             const localVarPath = `/files/{file_id}`
-                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+                .replace('{file_id}', encodeURIComponent(String(fileId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -17592,7 +17556,7 @@ export const FineTuningApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('fineTuningJobId','Required parameter fineTuningJobId was null or undefined when calling cancelFineTuningJob.');
             }
             const localVarPath = `/fine_tuning/jobs/{fine_tuning_job_id}/cancel`
-                .replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(fineTuningJobId)));
+                .replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -17653,7 +17617,7 @@ export const FineTuningApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('fineTuningJobId','Required parameter fineTuningJobId was null or undefined when calling listFineTuningEvents.');
             }
             const localVarPath = `/fine_tuning/jobs/{fine_tuning_job_id}/events`
-                .replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(fineTuningJobId)));
+                .replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -17690,7 +17654,7 @@ export const FineTuningApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('fineTuningJobId','Required parameter fineTuningJobId was null or undefined when calling listFineTuningJobCheckpoints.');
             }
             const localVarPath = `/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints`
-                .replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(fineTuningJobId)));
+                .replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -17759,7 +17723,7 @@ export const FineTuningApiFetchParamCreator = function (configuration?: Configur
                 throw new RequiredError('fineTuningJobId','Required parameter fineTuningJobId was null or undefined when calling retrieveFineTuningJob.');
             }
             const localVarPath = `/fine_tuning/jobs/{fine_tuning_job_id}`
-                .replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(fineTuningJobId)));
+                .replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -18137,7 +18101,7 @@ export const InvitesApiFetchParamCreator = function (configuration?: Configurati
                 throw new RequiredError('inviteId','Required parameter inviteId was null or undefined when calling deleteInvite.');
             }
             const localVarPath = `/organization/invites/{invite_id}`
-                .replace(`{${"invite_id"}}`, encodeURIComponent(String(inviteId)));
+                .replace('{invite_id}', encodeURIComponent(String(inviteId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'DELETE' }, options);
             const localVarHeaderParameter = {};
@@ -18230,7 +18194,7 @@ export const InvitesApiFetchParamCreator = function (configuration?: Configurati
                 throw new RequiredError('inviteId','Required parameter inviteId was null or undefined when calling retrieveInvite.');
             }
             const localVarPath = `/organization/invites/{invite_id}`
-                .replace(`{${"invite_id"}}`, encodeURIComponent(String(inviteId)));
+                .replace('{invite_id}', encodeURIComponent(String(inviteId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -18349,7 +18313,7 @@ export const ModelsApiFetchParamCreator = function (configuration?: Configuratio
                 throw new RequiredError('model','Required parameter model was null or undefined when calling deleteModel.');
             }
             const localVarPath = `/models/{model}`
-                .replace(`{${"model"}}`, encodeURIComponent(String(model)));
+                .replace('{model}', encodeURIComponent(String(model)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'DELETE' }, options);
             const localVarHeaderParameter = {};
@@ -18402,7 +18366,7 @@ export const ModelsApiFetchParamCreator = function (configuration?: Configuratio
                 throw new RequiredError('model','Required parameter model was null or undefined when calling retrieveModel.');
             }
             const localVarPath = `/models/{model}`
-                .replace(`{${"model"}}`, encodeURIComponent(String(model)));
+                .replace('{model}', encodeURIComponent(String(model)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -18575,7 +18539,7 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('projectId','Required parameter projectId was null or undefined when calling archiveProject.');
             }
             const localVarPath = `/organization/projects/{project_id}/archive`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -18640,7 +18604,7 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('projectServiceAccountCreateRequest','Required parameter projectServiceAccountCreateRequest was null or undefined when calling createProjectServiceAccount.');
             }
             const localVarPath = `/organization/projects/{project_id}/service_accounts`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -18677,7 +18641,7 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('projectUserCreateRequest','Required parameter projectUserCreateRequest was null or undefined when calling createProjectUser.');
             }
             const localVarPath = `/organization/projects/{project_id}/users`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -18714,8 +18678,8 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('keyId','Required parameter keyId was null or undefined when calling deleteProjectApiKey.');
             }
             const localVarPath = `/organization/projects/{project_id}/api_keys/{key_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"key_id"}}`, encodeURIComponent(String(keyId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)))
+                .replace('{key_id}', encodeURIComponent(String(keyId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'DELETE' }, options);
             const localVarHeaderParameter = {};
@@ -18748,8 +18712,8 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('serviceAccountId','Required parameter serviceAccountId was null or undefined when calling deleteProjectServiceAccount.');
             }
             const localVarPath = `/organization/projects/{project_id}/service_accounts/{service_account_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"service_account_id"}}`, encodeURIComponent(String(serviceAccountId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)))
+                .replace('{service_account_id}', encodeURIComponent(String(serviceAccountId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'DELETE' }, options);
             const localVarHeaderParameter = {};
@@ -18782,8 +18746,8 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('userId','Required parameter userId was null or undefined when calling deleteProjectUser.');
             }
             const localVarPath = `/organization/projects/{project_id}/users/{user_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)))
+                .replace('{user_id}', encodeURIComponent(String(userId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'DELETE' }, options);
             const localVarHeaderParameter = {};
@@ -18812,7 +18776,7 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('projectId','Required parameter projectId was null or undefined when calling listProjectApiKeys.');
             }
             const localVarPath = `/organization/projects/{project_id}/api_keys`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -18849,7 +18813,7 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('projectId','Required parameter projectId was null or undefined when calling listProjectRateLimits.');
             }
             const localVarPath = `/organization/projects/{project_id}/rate_limits`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -18890,7 +18854,7 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('projectId','Required parameter projectId was null or undefined when calling listProjectServiceAccounts.');
             }
             const localVarPath = `/organization/projects/{project_id}/service_accounts`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -18927,7 +18891,7 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('projectId','Required parameter projectId was null or undefined when calling listProjectUsers.');
             }
             const localVarPath = `/organization/projects/{project_id}/users`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -19004,7 +18968,7 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('projectUpdateRequest','Required parameter projectUpdateRequest was null or undefined when calling modifyProject.');
             }
             const localVarPath = `/organization/projects/{project_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -19045,8 +19009,8 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('projectUserUpdateRequest','Required parameter projectUserUpdateRequest was null or undefined when calling modifyProjectUser.');
             }
             const localVarPath = `/organization/projects/{project_id}/users/{user_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)))
+                .replace('{user_id}', encodeURIComponent(String(userId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -19079,7 +19043,7 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('projectId','Required parameter projectId was null or undefined when calling retrieveProject.');
             }
             const localVarPath = `/organization/projects/{project_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -19112,8 +19076,8 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('keyId','Required parameter keyId was null or undefined when calling retrieveProjectApiKey.');
             }
             const localVarPath = `/organization/projects/{project_id}/api_keys/{key_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"key_id"}}`, encodeURIComponent(String(keyId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)))
+                .replace('{key_id}', encodeURIComponent(String(keyId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -19146,8 +19110,8 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('serviceAccountId','Required parameter serviceAccountId was null or undefined when calling retrieveProjectServiceAccount.');
             }
             const localVarPath = `/organization/projects/{project_id}/service_accounts/{service_account_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"service_account_id"}}`, encodeURIComponent(String(serviceAccountId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)))
+                .replace('{service_account_id}', encodeURIComponent(String(serviceAccountId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -19180,8 +19144,8 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('userId','Required parameter userId was null or undefined when calling retrieveProjectUser.');
             }
             const localVarPath = `/organization/projects/{project_id}/users/{user_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)))
+                .replace('{user_id}', encodeURIComponent(String(userId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -19218,8 +19182,8 @@ export const ProjectsApiFetchParamCreator = function (configuration?: Configurat
                 throw new RequiredError('projectRateLimitUpdateRequest','Required parameter projectRateLimitUpdateRequest was null or undefined when calling updateProjectRateLimits.');
             }
             const localVarPath = `/organization/projects/{project_id}/rate_limits/{rate_limit_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"rate_limit_id"}}`, encodeURIComponent(String(rateLimitId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)))
+                .replace('{rate_limit_id}', encodeURIComponent(String(rateLimitId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -19672,7 +19636,7 @@ export const UploadsApiFetchParamCreator = function (configuration?: Configurati
                 throw new RequiredError('data','Required parameter data was null or undefined when calling addUploadPart.');
             }
             const localVarPath = `/uploads/{upload_id}/parts`
-                .replace(`{${"upload_id"}}`, encodeURIComponent(String(uploadId)));
+                .replace('{upload_id}', encodeURIComponent(String(uploadId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -19707,7 +19671,7 @@ export const UploadsApiFetchParamCreator = function (configuration?: Configurati
                 throw new RequiredError('uploadId','Required parameter uploadId was null or undefined when calling cancelUpload.');
             }
             const localVarPath = `/uploads/{upload_id}/cancel`
-                .replace(`{${"upload_id"}}`, encodeURIComponent(String(uploadId)));
+                .replace('{upload_id}', encodeURIComponent(String(uploadId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -19740,7 +19704,7 @@ export const UploadsApiFetchParamCreator = function (configuration?: Configurati
                 throw new RequiredError('completeUploadRequest','Required parameter completeUploadRequest was null or undefined when calling completeUpload.');
             }
             const localVarPath = `/uploads/{upload_id}/complete`
-                .replace(`{${"upload_id"}}`, encodeURIComponent(String(uploadId)));
+                .replace('{upload_id}', encodeURIComponent(String(uploadId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -20658,7 +20622,7 @@ export const UsersApiFetchParamCreator = function (configuration?: Configuration
                 throw new RequiredError('userId','Required parameter userId was null or undefined when calling deleteUser.');
             }
             const localVarPath = `/organization/users/{user_id}`
-                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+                .replace('{user_id}', encodeURIComponent(String(userId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'DELETE' }, options);
             const localVarHeaderParameter = {};
@@ -20723,7 +20687,7 @@ export const UsersApiFetchParamCreator = function (configuration?: Configuration
                 throw new RequiredError('userRoleUpdateRequest','Required parameter userRoleUpdateRequest was null or undefined when calling modifyUser.');
             }
             const localVarPath = `/organization/users/{user_id}`
-                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+                .replace('{user_id}', encodeURIComponent(String(userId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -20756,7 +20720,7 @@ export const UsersApiFetchParamCreator = function (configuration?: Configuration
                 throw new RequiredError('userId','Required parameter userId was null or undefined when calling retrieveUser.');
             }
             const localVarPath = `/organization/users/{user_id}`
-                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+                .replace('{user_id}', encodeURIComponent(String(userId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -20879,8 +20843,8 @@ export const VectorStoresApiFetchParamCreator = function (configuration?: Config
                 throw new RequiredError('batchId','Required parameter batchId was null or undefined when calling cancelVectorStoreFileBatch.');
             }
             const localVarPath = `/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)))
-                .replace(`{${"batch_id"}}`, encodeURIComponent(String(batchId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+                .replace('{batch_id}', encodeURIComponent(String(batchId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -20945,7 +20909,7 @@ export const VectorStoresApiFetchParamCreator = function (configuration?: Config
                 throw new RequiredError('createVectorStoreFileRequest','Required parameter createVectorStoreFileRequest was null or undefined when calling createVectorStoreFile.');
             }
             const localVarPath = `/vector_stores/{vector_store_id}/files`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -20982,7 +20946,7 @@ export const VectorStoresApiFetchParamCreator = function (configuration?: Config
                 throw new RequiredError('createVectorStoreFileBatchRequest','Required parameter createVectorStoreFileBatchRequest was null or undefined when calling createVectorStoreFileBatch.');
             }
             const localVarPath = `/vector_stores/{vector_store_id}/file_batches`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -21015,7 +20979,7 @@ export const VectorStoresApiFetchParamCreator = function (configuration?: Config
                 throw new RequiredError('vectorStoreId','Required parameter vectorStoreId was null or undefined when calling deleteVectorStore.');
             }
             const localVarPath = `/vector_stores/{vector_store_id}`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'DELETE' }, options);
             const localVarHeaderParameter = {};
@@ -21048,8 +21012,8 @@ export const VectorStoresApiFetchParamCreator = function (configuration?: Config
                 throw new RequiredError('fileId','Required parameter fileId was null or undefined when calling deleteVectorStoreFile.');
             }
             const localVarPath = `/vector_stores/{vector_store_id}/files/{file_id}`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)))
-                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+                .replace('{file_id}', encodeURIComponent(String(fileId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'DELETE' }, options);
             const localVarHeaderParameter = {};
@@ -21078,7 +21042,7 @@ export const VectorStoresApiFetchParamCreator = function (configuration?: Config
                 throw new RequiredError('vectorStoreId','Required parameter vectorStoreId was null or undefined when calling getVectorStore.');
             }
             const localVarPath = `/vector_stores/{vector_store_id}`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -21111,8 +21075,8 @@ export const VectorStoresApiFetchParamCreator = function (configuration?: Config
                 throw new RequiredError('fileId','Required parameter fileId was null or undefined when calling getVectorStoreFile.');
             }
             const localVarPath = `/vector_stores/{vector_store_id}/files/{file_id}`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)))
-                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+                .replace('{file_id}', encodeURIComponent(String(fileId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -21145,8 +21109,8 @@ export const VectorStoresApiFetchParamCreator = function (configuration?: Config
                 throw new RequiredError('batchId','Required parameter batchId was null or undefined when calling getVectorStoreFileBatch.');
             }
             const localVarPath = `/vector_stores/{vector_store_id}/file_batches/{batch_id}`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)))
-                .replace(`{${"batch_id"}}`, encodeURIComponent(String(batchId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+                .replace('{batch_id}', encodeURIComponent(String(batchId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -21179,8 +21143,8 @@ export const VectorStoresApiFetchParamCreator = function (configuration?: Config
                 throw new RequiredError('batchId','Required parameter batchId was null or undefined when calling listFilesInVectorStoreBatch.');
             }
             const localVarPath = `/vector_stores/{vector_store_id}/file_batches/{batch_id}/files`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)))
-                .replace(`{${"batch_id"}}`, encodeURIComponent(String(batchId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+                .replace('{batch_id}', encodeURIComponent(String(batchId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -21229,7 +21193,7 @@ export const VectorStoresApiFetchParamCreator = function (configuration?: Config
                 throw new RequiredError('vectorStoreId','Required parameter vectorStoreId was null or undefined when calling listVectorStoreFiles.');
             }
             const localVarPath = `/vector_stores/{vector_store_id}/files`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -21322,7 +21286,7 @@ export const VectorStoresApiFetchParamCreator = function (configuration?: Config
                 throw new RequiredError('updateVectorStoreRequest','Required parameter updateVectorStoreRequest was null or undefined when calling modifyVectorStore.');
             }
             const localVarPath = `/vector_stores/{vector_store_id}`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};

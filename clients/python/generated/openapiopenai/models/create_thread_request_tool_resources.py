@@ -24,6 +24,7 @@ from openapiopenai.models.create_assistant_request_tool_resources_code_interpret
 from openapiopenai.models.create_thread_request_tool_resources_file_search import CreateThreadRequestToolResourcesFileSearch
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class CreateThreadRequestToolResources(BaseModel):
     """
@@ -34,7 +35,8 @@ class CreateThreadRequestToolResources(BaseModel):
     __properties: ClassVar[List[str]] = ["code_interpreter", "file_search"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -46,8 +48,7 @@ class CreateThreadRequestToolResources(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

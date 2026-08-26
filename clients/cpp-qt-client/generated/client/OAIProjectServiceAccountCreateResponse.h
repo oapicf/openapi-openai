@@ -33,13 +33,13 @@ class OAIProjectServiceAccountApiKey;
 class OAIProjectServiceAccountCreateResponse : public OAIObject {
 public:
     OAIProjectServiceAccountCreateResponse();
-    OAIProjectServiceAccountCreateResponse(QString json);
+    OAIProjectServiceAccountCreateResponse(const QString &json);
     ~OAIProjectServiceAccountCreateResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getObject() const;
     void setObject(const QString &object);

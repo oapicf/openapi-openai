@@ -147,8 +147,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="DeleteVectorStoreResponse" />
     /// </summary>
-    public class DeleteVectorStoreResponseJsonConverter : JsonConverter<DeleteVectorStoreResponse>
+    public partial class DeleteVectorStoreResponseJsonConverter : JsonConverter<DeleteVectorStoreResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeleteVectorStoreResponseJsonConverter" /> class.
+        /// </summary>
+        public DeleteVectorStoreResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DeleteVectorStoreResponse" />
         /// </summary>

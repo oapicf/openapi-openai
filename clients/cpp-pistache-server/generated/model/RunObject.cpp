@@ -44,6 +44,8 @@ RunObject::RunObject()
     
 }
 
+RunObject::~RunObject() = default;
+
 void RunObject::validate() const
 {
     std::stringstream msg;

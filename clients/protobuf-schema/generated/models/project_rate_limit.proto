@@ -22,7 +22,7 @@ message ProjectRateLimit {
     OBJECT_PROJECT_RATE_LIMIT = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The identifier, which can be referenced in API endpoints.
   string id = 3355;

@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -13,19 +14,19 @@ import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Batch
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class Batch {
 
   private String id;
@@ -67,6 +68,7 @@ public class Batch {
 
   private String endpoint;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BatchErrors errors;
 
   private String inputFileId;
@@ -122,30 +124,42 @@ public class Batch {
 
   private StatusEnum status;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String outputFileId;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String errorFileId;
 
   private Integer createdAt;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer inProgressAt;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer expiresAt;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer finalizingAt;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer completedAt;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer failedAt;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer expiredAt;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer cancellingAt;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer cancelledAt;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BatchRequestCounts requestCounts;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
   public Batch() {
@@ -181,6 +195,7 @@ public class Batch {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
@@ -201,6 +216,7 @@ public class Batch {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
@@ -221,6 +237,7 @@ public class Batch {
     return endpoint;
   }
 
+  @JsonProperty("endpoint")
   public void setEndpoint(String endpoint) {
     this.endpoint = endpoint;
   }
@@ -241,6 +258,7 @@ public class Batch {
     return errors;
   }
 
+  @JsonProperty("errors")
   public void setErrors(@Nullable BatchErrors errors) {
     this.errors = errors;
   }
@@ -261,6 +279,7 @@ public class Batch {
     return inputFileId;
   }
 
+  @JsonProperty("input_file_id")
   public void setInputFileId(String inputFileId) {
     this.inputFileId = inputFileId;
   }
@@ -281,6 +300,7 @@ public class Batch {
     return completionWindow;
   }
 
+  @JsonProperty("completion_window")
   public void setCompletionWindow(String completionWindow) {
     this.completionWindow = completionWindow;
   }
@@ -301,6 +321,7 @@ public class Batch {
     return status;
   }
 
+  @JsonProperty("status")
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -321,6 +342,7 @@ public class Batch {
     return outputFileId;
   }
 
+  @JsonProperty("output_file_id")
   public void setOutputFileId(@Nullable String outputFileId) {
     this.outputFileId = outputFileId;
   }
@@ -341,6 +363,7 @@ public class Batch {
     return errorFileId;
   }
 
+  @JsonProperty("error_file_id")
   public void setErrorFileId(@Nullable String errorFileId) {
     this.errorFileId = errorFileId;
   }
@@ -361,6 +384,7 @@ public class Batch {
     return createdAt;
   }
 
+  @JsonProperty("created_at")
   public void setCreatedAt(Integer createdAt) {
     this.createdAt = createdAt;
   }
@@ -381,6 +405,7 @@ public class Batch {
     return inProgressAt;
   }
 
+  @JsonProperty("in_progress_at")
   public void setInProgressAt(@Nullable Integer inProgressAt) {
     this.inProgressAt = inProgressAt;
   }
@@ -401,6 +426,7 @@ public class Batch {
     return expiresAt;
   }
 
+  @JsonProperty("expires_at")
   public void setExpiresAt(@Nullable Integer expiresAt) {
     this.expiresAt = expiresAt;
   }
@@ -421,6 +447,7 @@ public class Batch {
     return finalizingAt;
   }
 
+  @JsonProperty("finalizing_at")
   public void setFinalizingAt(@Nullable Integer finalizingAt) {
     this.finalizingAt = finalizingAt;
   }
@@ -441,6 +468,7 @@ public class Batch {
     return completedAt;
   }
 
+  @JsonProperty("completed_at")
   public void setCompletedAt(@Nullable Integer completedAt) {
     this.completedAt = completedAt;
   }
@@ -461,6 +489,7 @@ public class Batch {
     return failedAt;
   }
 
+  @JsonProperty("failed_at")
   public void setFailedAt(@Nullable Integer failedAt) {
     this.failedAt = failedAt;
   }
@@ -481,6 +510,7 @@ public class Batch {
     return expiredAt;
   }
 
+  @JsonProperty("expired_at")
   public void setExpiredAt(@Nullable Integer expiredAt) {
     this.expiredAt = expiredAt;
   }
@@ -501,6 +531,7 @@ public class Batch {
     return cancellingAt;
   }
 
+  @JsonProperty("cancelling_at")
   public void setCancellingAt(@Nullable Integer cancellingAt) {
     this.cancellingAt = cancellingAt;
   }
@@ -521,6 +552,7 @@ public class Batch {
     return cancelledAt;
   }
 
+  @JsonProperty("cancelled_at")
   public void setCancelledAt(@Nullable Integer cancelledAt) {
     this.cancelledAt = cancelledAt;
   }
@@ -541,6 +573,7 @@ public class Batch {
     return requestCounts;
   }
 
+  @JsonProperty("request_counts")
   public void setRequestCounts(@Nullable BatchRequestCounts requestCounts) {
     this.requestCounts = requestCounts;
   }
@@ -644,11 +677,8 @@ public class Batch {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

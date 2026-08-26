@@ -1,4 +1,4 @@
-import connexion
+import flask
 from typing import Dict
 from typing import Tuple
 from typing import Union
@@ -19,6 +19,6 @@ def create_realtime_session(body):  # noqa: E501
     :rtype: Union[RealtimeSessionCreateResponse, Tuple[RealtimeSessionCreateResponse, int], Tuple[RealtimeSessionCreateResponse, int, Dict[str, str]]
     """
     realtime_session_create_request = body
-    if connexion.request.is_json:
-        realtime_session_create_request = RealtimeSessionCreateRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        realtime_session_create_request = RealtimeSessionCreateRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'

@@ -68,10 +68,14 @@ class CreateEmbeddingResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateEmbeddingResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateEmbeddingResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'data'), 'Required key "CreateEmbeddingResponse[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "CreateEmbeddingResponse[data]" has a null value in JSON.');
+        assert(json.containsKey(r'model'), 'Required key "CreateEmbeddingResponse[model]" is missing from JSON.');
+        assert(json[r'model'] != null, 'Required key "CreateEmbeddingResponse[model]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "CreateEmbeddingResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "CreateEmbeddingResponse[object]" has a null value in JSON.');
+        assert(json.containsKey(r'usage'), 'Required key "CreateEmbeddingResponse[usage]" is missing from JSON.');
+        assert(json[r'usage'] != null, 'Required key "CreateEmbeddingResponse[usage]" has a null value in JSON.');
         return true;
       }());
 
@@ -135,27 +139,28 @@ class CreateEmbeddingResponse {
 }
 
 /// The object type, which is always \"list\".
-class CreateEmbeddingResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateEmbeddingResponseObjectEnum._(this.value);
+enum CreateEmbeddingResponseObjectEnum {
+  list._(r'list'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateEmbeddingResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const list = CreateEmbeddingResponseObjectEnum._(r'list');
-
-  /// List of all possible values in this [enum][CreateEmbeddingResponseObjectEnum].
-  static const values = <CreateEmbeddingResponseObjectEnum>[
-    list,
-  ];
-
+  /// Returns the instance of [CreateEmbeddingResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateEmbeddingResponseObjectEnum? fromJson(dynamic value) => CreateEmbeddingResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateEmbeddingResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateEmbeddingResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateEmbeddingResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -177,9 +182,10 @@ class CreateEmbeddingResponseObjectEnumTypeTransformer {
 
   const CreateEmbeddingResponseObjectEnumTypeTransformer._();
 
-  String encode(CreateEmbeddingResponseObjectEnum data) => data.value;
+  String encode(CreateEmbeddingResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateEmbeddingResponseObjectEnum.
+  /// Returns the instance of [CreateEmbeddingResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -188,6 +194,9 @@ class CreateEmbeddingResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateEmbeddingResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateEmbeddingResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'list': return CreateEmbeddingResponseObjectEnum.list;
@@ -200,7 +209,7 @@ class CreateEmbeddingResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateEmbeddingResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateEmbeddingResponseObjectEnumTypeTransformer? _instance;
 }
 

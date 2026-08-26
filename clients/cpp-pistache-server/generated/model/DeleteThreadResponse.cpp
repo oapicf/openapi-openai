@@ -27,6 +27,8 @@ DeleteThreadResponse::DeleteThreadResponse()
     
 }
 
+DeleteThreadResponse::~DeleteThreadResponse() = default;
+
 void DeleteThreadResponse::validate() const
 {
     std::stringstream msg;

@@ -30,10 +30,10 @@ static assistant_tools_file_search_t *assistant_tools_file_search_create_interna
     if (!assistant_tools_file_search_local_var) {
         return NULL;
     }
+    memset(assistant_tools_file_search_local_var, 0, sizeof(assistant_tools_file_search_t));
+    assistant_tools_file_search_local_var->_library_owned = 1;
     assistant_tools_file_search_local_var->type = type;
     assistant_tools_file_search_local_var->file_search = file_search;
-
-    assistant_tools_file_search_local_var->_library_owned = 1;
     return assistant_tools_file_search_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) assistant_tools_file_search_t *assistant_tools_file_
     openai_api_assistant_tools_file_search_TYPE_e type,
     assistant_tools_file_search_file_search_t *file_search
     ) {
-    return assistant_tools_file_search_create_internal (
+    assistant_tools_file_search_t *result = assistant_tools_file_search_create_internal (
         type,
         file_search
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void assistant_tools_file_search_free(assistant_tools_file_search_t *assistant_tools_file_search) {
@@ -130,10 +133,15 @@ assistant_tools_file_search_t *assistant_tools_file_search_parseFromJSON(cJSON *
     }
 
 
+
     assistant_tools_file_search_local_var = assistant_tools_file_search_create_internal (
         typeVariable,
         file_search ? file_search_local_nonprim : NULL
         );
+
+    if (!assistant_tools_file_search_local_var) {
+        goto end;
+    }
 
     return assistant_tools_file_search_local_var;
 end:

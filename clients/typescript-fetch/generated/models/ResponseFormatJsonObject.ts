@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface ResponseFormatJsonObject {
     /**
      * The type of response format being defined: `json_object`
-     * @type {string}
+     * @type {ResponseFormatJsonObjectTypeEnum}
      * @memberof ResponseFormatJsonObject
      */
     type: ResponseFormatJsonObjectTypeEnum;
@@ -42,6 +42,8 @@ export type ResponseFormatJsonObjectTypeEnum = typeof ResponseFormatJsonObjectTy
  */
 export function instanceOfResponseFormatJsonObject(value: object): value is ResponseFormatJsonObject {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'json_object') return false;
+    
     return true;
 }
 

@@ -33,7 +33,7 @@ export interface DeleteVectorStoreResponse {
     deleted: boolean;
     /**
      * 
-     * @type {string}
+     * @type {DeleteVectorStoreResponseObjectEnum}
      * @memberof DeleteVectorStoreResponse
      */
     object: DeleteVectorStoreResponseObjectEnum;
@@ -56,6 +56,8 @@ export function instanceOfDeleteVectorStoreResponse(value: object): value is Del
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('deleted' in value) || value['deleted'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'vector_store.deleted') return false;
+    
     return true;
 }
 

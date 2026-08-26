@@ -54,10 +54,10 @@ class RunStepDetailsMessageCreationObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepDetailsMessageCreationObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepDetailsMessageCreationObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "RunStepDetailsMessageCreationObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RunStepDetailsMessageCreationObject[type]" has a null value in JSON.');
+        assert(json.containsKey(r'message_creation'), 'Required key "RunStepDetailsMessageCreationObject[message_creation]" is missing from JSON.');
+        assert(json[r'message_creation'] != null, 'Required key "RunStepDetailsMessageCreationObject[message_creation]" has a null value in JSON.');
         return true;
       }());
 
@@ -117,27 +117,28 @@ class RunStepDetailsMessageCreationObject {
 }
 
 /// Always `message_creation`.
-class RunStepDetailsMessageCreationObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepDetailsMessageCreationObjectTypeEnum._(this.value);
+enum RunStepDetailsMessageCreationObjectTypeEnum {
+  messageCreation._(r'message_creation'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepDetailsMessageCreationObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const messageCreation = RunStepDetailsMessageCreationObjectTypeEnum._(r'message_creation');
-
-  /// List of all possible values in this [enum][RunStepDetailsMessageCreationObjectTypeEnum].
-  static const values = <RunStepDetailsMessageCreationObjectTypeEnum>[
-    messageCreation,
-  ];
-
+  /// Returns the instance of [RunStepDetailsMessageCreationObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepDetailsMessageCreationObjectTypeEnum? fromJson(dynamic value) => RunStepDetailsMessageCreationObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepDetailsMessageCreationObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepDetailsMessageCreationObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepDetailsMessageCreationObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -159,9 +160,10 @@ class RunStepDetailsMessageCreationObjectTypeEnumTypeTransformer {
 
   const RunStepDetailsMessageCreationObjectTypeEnumTypeTransformer._();
 
-  String encode(RunStepDetailsMessageCreationObjectTypeEnum data) => data.value;
+  String encode(RunStepDetailsMessageCreationObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepDetailsMessageCreationObjectTypeEnum.
+  /// Returns the instance of [RunStepDetailsMessageCreationObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -170,6 +172,9 @@ class RunStepDetailsMessageCreationObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepDetailsMessageCreationObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepDetailsMessageCreationObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'message_creation': return RunStepDetailsMessageCreationObjectTypeEnum.messageCreation;
@@ -182,7 +187,7 @@ class RunStepDetailsMessageCreationObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStepDetailsMessageCreationObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepDetailsMessageCreationObjectTypeEnumTypeTransformer? _instance;
 }
 

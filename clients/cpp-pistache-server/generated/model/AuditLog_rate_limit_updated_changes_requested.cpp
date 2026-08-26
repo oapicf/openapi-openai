@@ -36,6 +36,8 @@ AuditLog_rate_limit_updated_changes_requested::AuditLog_rate_limit_updated_chang
     
 }
 
+AuditLog_rate_limit_updated_changes_requested::~AuditLog_rate_limit_updated_changes_requested() = default;
+
 void AuditLog_rate_limit_updated_changes_requested::validate() const
 {
     std::stringstream msg;

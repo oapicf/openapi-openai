@@ -27,7 +27,7 @@ export interface Project {
     id: string;
     /**
      * The object type, which is always `organization.project`
-     * @type {string}
+     * @type {ProjectObjectEnum}
      * @memberof Project
      */
     object: ProjectObjectEnum;
@@ -51,7 +51,7 @@ export interface Project {
     archivedAt?: number | null;
     /**
      * `active` or `archived`
-     * @type {string}
+     * @type {ProjectStatusEnum}
      * @memberof Project
      */
     status: ProjectStatusEnum;
@@ -82,8 +82,10 @@ export type ProjectStatusEnum = typeof ProjectStatusEnum[keyof typeof ProjectSta
 export function instanceOfProject(value: object): value is Project {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'organization.project') return false;
+    
     if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }
@@ -102,7 +104,7 @@ export function ProjectFromJSONTyped(json: any, ignoreDiscriminator: boolean): P
         'object': json['object'],
         'name': json['name'],
         'createdAt': json['created_at'],
-        'archivedAt': json['archived_at'] == null ? undefined : json['archived_at'],
+        'archivedAt': json['archived_at'] === undefined ? undefined : json['archived_at'] === null ? null : json['archived_at'],
         'status': json['status'],
     };
 }

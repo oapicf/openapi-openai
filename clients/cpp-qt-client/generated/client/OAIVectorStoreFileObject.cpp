@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIVectorStoreFileObject::OAIVectorStoreFileObject(QString json) {
+OAIVectorStoreFileObject::OAIVectorStoreFileObject(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -59,7 +59,7 @@ void OAIVectorStoreFileObject::initializeModel() {
     m_chunking_strategy_isValid = false;
 }
 
-void OAIVectorStoreFileObject::fromJson(QString jsonString) {
+void OAIVectorStoreFileObject::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

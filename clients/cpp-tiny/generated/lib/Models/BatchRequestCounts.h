@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set Total number of requests in the batch.
 	 */
-	void setTotal(int  total);
+	void setTotal(int total);
 	/*! \brief Get Number of requests that have been completed successfully.
 	 */
 	int getCompleted();
 
 	/*! \brief Set Number of requests that have been completed successfully.
 	 */
-	void setCompleted(int  completed);
+	void setCompleted(int completed);
 	/*! \brief Get Number of requests that have failed.
 	 */
 	int getFailed();
 
 	/*! \brief Set Number of requests that have failed.
 	 */
-	void setFailed(int  failed);
+	void setFailed(int failed);
 
 
     private:

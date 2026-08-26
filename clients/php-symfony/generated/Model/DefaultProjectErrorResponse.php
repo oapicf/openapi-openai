@@ -47,7 +47,7 @@ class DefaultProjectErrorResponse
      * @var int|null
      * @SerializedName("code")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $code = null;
@@ -56,7 +56,7 @@ class DefaultProjectErrorResponse
      * @var string|null
      * @SerializedName("message")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $message = null;
@@ -84,12 +84,12 @@ class DefaultProjectErrorResponse
     }
 
     /**
-    * Sets code.
-    *
-    * @param int|null $code
-    *
-    * @return $this
-    */
+     * Sets code.
+     *
+     * @param int|null $code
+     *
+     * @return $this
+     */
     public function setCode(?int $code): self
     {
         $this->code = $code;
@@ -111,12 +111,12 @@ class DefaultProjectErrorResponse
     }
 
     /**
-    * Sets message.
-    *
-    * @param string|null $message
-    *
-    * @return $this
-    */
+     * Sets message.
+     *
+     * @param string|null $message
+     *
+     * @return $this
+     */
     public function setMessage(?string $message): self
     {
         $this->message = $message;

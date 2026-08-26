@@ -37,6 +37,8 @@ AdminApiKey::AdminApiKey()
     
 }
 
+AdminApiKey::~AdminApiKey() = default;
+
 void AdminApiKey::validate() const
 {
     std::stringstream msg;

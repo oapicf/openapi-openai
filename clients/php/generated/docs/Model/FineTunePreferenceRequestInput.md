@@ -1,4 +1,4 @@
-# # FineTunePreferenceRequestInput
+# FineTunePreferenceRequestInput
 
 ## Properties
 

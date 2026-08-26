@@ -35,6 +35,8 @@ UsageAudioTranscriptionsResult::UsageAudioTranscriptionsResult()
     
 }
 
+UsageAudioTranscriptionsResult::~UsageAudioTranscriptionsResult() = default;
+
 void UsageAudioTranscriptionsResult::validate() const
 {
     std::stringstream msg;

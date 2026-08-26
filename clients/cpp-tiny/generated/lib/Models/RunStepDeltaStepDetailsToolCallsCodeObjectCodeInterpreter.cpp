@@ -102,7 +102,7 @@ RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter::getInput()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter::setInput(std::string  input)
+RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter::setInput(std::string input)
 {
 	this->input = input;
 }
@@ -114,7 +114,7 @@ RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter::getOutputs()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter::setOutputs(std::list <RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner> outputs)
+RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter::setOutputs(std::list<RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner> outputs)
 {
 	this->outputs = outputs;
 }

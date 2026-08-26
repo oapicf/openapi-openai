@@ -33,6 +33,8 @@ OpenAIFile::OpenAIFile()
     
 }
 
+OpenAIFile::~OpenAIFile() = default;
+
 void OpenAIFile::validate() const
 {
     std::stringstream msg;

@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 CMakeLists.txt
 FindRestbedAndBoost.cmake
 README.md
@@ -166,8 +165,6 @@ model/AuditLog_user_updated_changes_requested.cpp
 model/AuditLog_user_updated_changes_requested.h
 model/AutoChunkingStrategyRequestParam.cpp
 model/AutoChunkingStrategyRequestParam.h
-model/Auto_Chunking_Strategy.cpp
-model/Auto_Chunking_Strategy.h
 model/Batch.cpp
 model/Batch.h
 model/BatchRequestInput.cpp
@@ -984,8 +981,6 @@ model/StaticChunkingStrategy.cpp
 model/StaticChunkingStrategy.h
 model/StaticChunkingStrategyRequestParam.cpp
 model/StaticChunkingStrategyRequestParam.h
-model/StaticChunkingStrategyResponseParam.cpp
-model/StaticChunkingStrategyResponseParam.h
 model/Static_Chunking_Strategy.cpp
 model/Static_Chunking_Strategy.h
 model/Static_Chunking_Strategy_static.cpp

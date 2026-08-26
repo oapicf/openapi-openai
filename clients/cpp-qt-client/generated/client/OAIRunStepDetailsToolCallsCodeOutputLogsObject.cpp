@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRunStepDetailsToolCallsCodeOutputLogsObject::OAIRunStepDetailsToolCallsCodeOutputLogsObject(QString json) {
+OAIRunStepDetailsToolCallsCodeOutputLogsObject::OAIRunStepDetailsToolCallsCodeOutputLogsObject(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIRunStepDetailsToolCallsCodeOutputLogsObject::initializeModel() {
     m_logs_isValid = false;
 }
 
-void OAIRunStepDetailsToolCallsCodeOutputLogsObject::fromJson(QString jsonString) {
+void OAIRunStepDetailsToolCallsCodeOutputLogsObject::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -25,6 +25,8 @@ FineTuneDPOMethod::FineTuneDPOMethod()
     
 }
 
+FineTuneDPOMethod::~FineTuneDPOMethod() = default;
+
 void FineTuneDPOMethod::validate() const
 {
     std::stringstream msg;

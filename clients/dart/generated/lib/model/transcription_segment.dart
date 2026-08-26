@@ -111,10 +111,26 @@ class TranscriptionSegment {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TranscriptionSegment[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TranscriptionSegment[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "TranscriptionSegment[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "TranscriptionSegment[id]" has a null value in JSON.');
+        assert(json.containsKey(r'seek'), 'Required key "TranscriptionSegment[seek]" is missing from JSON.');
+        assert(json[r'seek'] != null, 'Required key "TranscriptionSegment[seek]" has a null value in JSON.');
+        assert(json.containsKey(r'start'), 'Required key "TranscriptionSegment[start]" is missing from JSON.');
+        assert(json[r'start'] != null, 'Required key "TranscriptionSegment[start]" has a null value in JSON.');
+        assert(json.containsKey(r'end'), 'Required key "TranscriptionSegment[end]" is missing from JSON.');
+        assert(json[r'end'] != null, 'Required key "TranscriptionSegment[end]" has a null value in JSON.');
+        assert(json.containsKey(r'text'), 'Required key "TranscriptionSegment[text]" is missing from JSON.');
+        assert(json[r'text'] != null, 'Required key "TranscriptionSegment[text]" has a null value in JSON.');
+        assert(json.containsKey(r'tokens'), 'Required key "TranscriptionSegment[tokens]" is missing from JSON.');
+        assert(json[r'tokens'] != null, 'Required key "TranscriptionSegment[tokens]" has a null value in JSON.');
+        assert(json.containsKey(r'temperature'), 'Required key "TranscriptionSegment[temperature]" is missing from JSON.');
+        assert(json[r'temperature'] != null, 'Required key "TranscriptionSegment[temperature]" has a null value in JSON.');
+        assert(json.containsKey(r'avg_logprob'), 'Required key "TranscriptionSegment[avg_logprob]" is missing from JSON.');
+        assert(json[r'avg_logprob'] != null, 'Required key "TranscriptionSegment[avg_logprob]" has a null value in JSON.');
+        assert(json.containsKey(r'compression_ratio'), 'Required key "TranscriptionSegment[compression_ratio]" is missing from JSON.');
+        assert(json[r'compression_ratio'] != null, 'Required key "TranscriptionSegment[compression_ratio]" has a null value in JSON.');
+        assert(json.containsKey(r'no_speech_prob'), 'Required key "TranscriptionSegment[no_speech_prob]" is missing from JSON.');
+        assert(json[r'no_speech_prob'] != null, 'Required key "TranscriptionSegment[no_speech_prob]" has a null value in JSON.');
         return true;
       }());
 

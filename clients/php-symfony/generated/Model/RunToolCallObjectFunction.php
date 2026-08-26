@@ -51,7 +51,7 @@ class RunToolCallObjectFunction
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $name = null;
@@ -62,7 +62,7 @@ class RunToolCallObjectFunction
      * @var string|null
      * @SerializedName("arguments")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $arguments = null;
@@ -90,12 +90,12 @@ class RunToolCallObjectFunction
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the function.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the function.
+     *
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -117,12 +117,12 @@ class RunToolCallObjectFunction
     }
 
     /**
-    * Sets arguments.
-    *
-    * @param string|null $arguments  The arguments that the model expects you to pass to the function.
-    *
-    * @return $this
-    */
+     * Sets arguments.
+     *
+     * @param string|null $arguments  The arguments that the model expects you to pass to the function.
+     *
+     * @return $this
+     */
     public function setArguments(?string $arguments): self
     {
         $this->arguments = $arguments;

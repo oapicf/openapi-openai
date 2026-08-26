@@ -31,7 +31,7 @@ export interface RealtimeServerEventInputAudioBufferCommitted {
     eventId: string;
     /**
      * The event type, must be `input_audio_buffer.committed`.
-     * @type {string}
+     * @type {RealtimeServerEventInputAudioBufferCommittedTypeEnum}
      * @memberof RealtimeServerEventInputAudioBufferCommitted
      */
     type: RealtimeServerEventInputAudioBufferCommittedTypeEnum;
@@ -64,10 +64,12 @@ export type RealtimeServerEventInputAudioBufferCommittedTypeEnum = typeof Realti
  * Check if a given object implements the RealtimeServerEventInputAudioBufferCommitted interface.
  */
 export function instanceOfRealtimeServerEventInputAudioBufferCommitted(value: object): value is RealtimeServerEventInputAudioBufferCommitted {
-    if (!('eventId' in value) || value['eventId'] === undefined) return false;
+    if ((!('eventId' in (value as Record<string, any>)) && !('event_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['eventId'] === undefined && (value as Record<string, any>)['event_id'] === undefined)) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('previousItemId' in value) || value['previousItemId'] === undefined) return false;
-    if (!('itemId' in value) || value['itemId'] === undefined) return false;
+    if (value['type'] !== 'input_audio_buffer.committed') return false;
+    
+    if ((!('previousItemId' in (value as Record<string, any>)) && !('previous_item_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['previousItemId'] === undefined && (value as Record<string, any>)['previous_item_id'] === undefined)) return false;
+    if ((!('itemId' in (value as Record<string, any>)) && !('item_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['itemId'] === undefined && (value as Record<string, any>)['item_id'] === undefined)) return false;
     return true;
 }
 

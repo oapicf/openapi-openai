@@ -97,7 +97,7 @@ class ChatController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateChatCompletionRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateChatCompletionRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($createChatCompletionRequest, $asserts);
         if ($response instanceof Response) {

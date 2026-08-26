@@ -23,7 +23,7 @@ openai_api_run_step_delta_step_details_tool_calls_function_object_TYPE_e run_ste
 }
 
 static run_step_delta_step_details_tool_calls_function_object_t *run_step_delta_step_details_tool_calls_function_object_create_internal(
-    int index,
+    int *index,
     char *id,
     openai_api_run_step_delta_step_details_tool_calls_function_object_TYPE_e type,
     run_step_delta_step_details_tool_calls_function_object_function_t *function
@@ -32,27 +32,36 @@ static run_step_delta_step_details_tool_calls_function_object_t *run_step_delta_
     if (!run_step_delta_step_details_tool_calls_function_object_local_var) {
         return NULL;
     }
+    memset(run_step_delta_step_details_tool_calls_function_object_local_var, 0, sizeof(run_step_delta_step_details_tool_calls_function_object_t));
+    run_step_delta_step_details_tool_calls_function_object_local_var->_library_owned = 1;
     run_step_delta_step_details_tool_calls_function_object_local_var->index = index;
     run_step_delta_step_details_tool_calls_function_object_local_var->id = id;
     run_step_delta_step_details_tool_calls_function_object_local_var->type = type;
     run_step_delta_step_details_tool_calls_function_object_local_var->function = function;
-
-    run_step_delta_step_details_tool_calls_function_object_local_var->_library_owned = 1;
     return run_step_delta_step_details_tool_calls_function_object_local_var;
 }
 
 __attribute__((deprecated)) run_step_delta_step_details_tool_calls_function_object_t *run_step_delta_step_details_tool_calls_function_object_create(
-    int index,
+    int *index,
     char *id,
     openai_api_run_step_delta_step_details_tool_calls_function_object_TYPE_e type,
     run_step_delta_step_details_tool_calls_function_object_function_t *function
     ) {
-    return run_step_delta_step_details_tool_calls_function_object_create_internal (
-        index,
+    int *index_copy = NULL;
+    if (index) {
+        index_copy = malloc(sizeof(int));
+        if (index_copy) *index_copy = *index;
+    }
+    run_step_delta_step_details_tool_calls_function_object_t *result = run_step_delta_step_details_tool_calls_function_object_create_internal (
+        index_copy,
         id,
         type,
         function
         );
+    if (!result) {
+        free(index_copy);
+    }
+    return result;
 }
 
 void run_step_delta_step_details_tool_calls_function_object_free(run_step_delta_step_details_tool_calls_function_object_t *run_step_delta_step_details_tool_calls_function_object) {
@@ -64,6 +73,10 @@ void run_step_delta_step_details_tool_calls_function_object_free(run_step_delta_
         return ;
     }
     listEntry_t *listEntry;
+    if (run_step_delta_step_details_tool_calls_function_object->index) {
+        free(run_step_delta_step_details_tool_calls_function_object->index);
+        run_step_delta_step_details_tool_calls_function_object->index = NULL;
+    }
     if (run_step_delta_step_details_tool_calls_function_object->id) {
         free(run_step_delta_step_details_tool_calls_function_object->id);
         run_step_delta_step_details_tool_calls_function_object->id = NULL;
@@ -82,7 +95,7 @@ cJSON *run_step_delta_step_details_tool_calls_function_object_convertToJSON(run_
     if (!run_step_delta_step_details_tool_calls_function_object->index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "index", run_step_delta_step_details_tool_calls_function_object->index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "index", *run_step_delta_step_details_tool_calls_function_object->index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -129,6 +142,11 @@ run_step_delta_step_details_tool_calls_function_object_t *run_step_delta_step_de
 
     run_step_delta_step_details_tool_calls_function_object_t *run_step_delta_step_details_tool_calls_function_object_local_var = NULL;
 
+    // define the local variable for run_step_delta_step_details_tool_calls_function_object->index
+    int *index_local_var = NULL;
+
+    char *id_local_str = NULL;
+
     // define the local variable for run_step_delta_step_details_tool_calls_function_object->function
     run_step_delta_step_details_tool_calls_function_object_function_t *function_local_nonprim = NULL;
 
@@ -146,6 +164,12 @@ run_step_delta_step_details_tool_calls_function_object_t *run_step_delta_step_de
     {
     goto end; //Numeric
     }
+    index_local_var = malloc(sizeof(int));
+    if(!index_local_var)
+    {
+        goto end;
+    }
+    *index_local_var = index->valuedouble;
 
     // run_step_delta_step_details_tool_calls_function_object->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(run_step_delta_step_details_tool_calls_function_objectJSON, "id");
@@ -186,15 +210,29 @@ run_step_delta_step_details_tool_calls_function_object_t *run_step_delta_step_de
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     run_step_delta_step_details_tool_calls_function_object_local_var = run_step_delta_step_details_tool_calls_function_object_create_internal (
-        index->valuedouble,
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
+        index_local_var,
+        id_local_str,
         typeVariable,
         function ? function_local_nonprim : NULL
         );
 
+    if (!run_step_delta_step_details_tool_calls_function_object_local_var) {
+        goto end;
+    }
+
     return run_step_delta_step_details_tool_calls_function_object_local_var;
 end:
+    if (index_local_var) {
+        free(index_local_var);
+        index_local_var = NULL;
+    }
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     if (function_local_nonprim) {
         run_step_delta_step_details_tool_calls_function_object_function_free(function_local_nonprim);
         function_local_nonprim = NULL;

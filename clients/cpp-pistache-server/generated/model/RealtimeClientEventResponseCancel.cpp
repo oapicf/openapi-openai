@@ -29,6 +29,8 @@ RealtimeClientEventResponseCancel::RealtimeClientEventResponseCancel()
     
 }
 
+RealtimeClientEventResponseCancel::~RealtimeClientEventResponseCancel() = default;
+
 void RealtimeClientEventResponseCancel::validate() const
 {
     std::stringstream msg;

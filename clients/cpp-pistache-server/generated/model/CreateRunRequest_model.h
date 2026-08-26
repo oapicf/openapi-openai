@@ -31,7 +31,7 @@ class  CreateRunRequest_model
 {
 public:
     CreateRunRequest_model();
-    virtual ~CreateRunRequest_model() = default;
+    virtual ~CreateRunRequest_model();
 
 
     /// <summary>

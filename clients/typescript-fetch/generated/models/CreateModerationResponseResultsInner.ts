@@ -73,8 +73,8 @@ export interface CreateModerationResponseResultsInner {
 export function instanceOfCreateModerationResponseResultsInner(value: object): value is CreateModerationResponseResultsInner {
     if (!('flagged' in value) || value['flagged'] === undefined) return false;
     if (!('categories' in value) || value['categories'] === undefined) return false;
-    if (!('categoryScores' in value) || value['categoryScores'] === undefined) return false;
-    if (!('categoryAppliedInputTypes' in value) || value['categoryAppliedInputTypes'] === undefined) return false;
+    if ((!('categoryScores' in (value as Record<string, any>)) && !('category_scores' in (value as Record<string, any>))) || ((value as Record<string, any>)['categoryScores'] === undefined && (value as Record<string, any>)['category_scores'] === undefined)) return false;
+    if ((!('categoryAppliedInputTypes' in (value as Record<string, any>)) && !('category_applied_input_types' in (value as Record<string, any>))) || ((value as Record<string, any>)['categoryAppliedInputTypes'] === undefined && (value as Record<string, any>)['category_applied_input_types'] === undefined)) return false;
     return true;
 }
 

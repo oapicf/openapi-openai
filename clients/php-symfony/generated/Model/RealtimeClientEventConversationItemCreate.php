@@ -51,7 +51,7 @@ class RealtimeClientEventConversationItemCreate
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $eventId = null;
 
@@ -61,7 +61,7 @@ class RealtimeClientEventConversationItemCreate
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['conversation.item.create'])]
     #[Assert\Type("string")]
@@ -73,7 +73,7 @@ class RealtimeClientEventConversationItemCreate
      * @var string|null
      * @SerializedName("previous_item_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $previousItemId = null;
 
@@ -81,7 +81,7 @@ class RealtimeClientEventConversationItemCreate
      * @var RealtimeConversationItem|null
      * @SerializedName("item")
      * @Type("OpenAPI\Server\Model\RealtimeConversationItem")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RealtimeConversationItem")]
@@ -112,12 +112,12 @@ class RealtimeClientEventConversationItemCreate
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  Optional client-generated ID used to identify this event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  Optional client-generated ID used to identify this event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId = null): self
     {
         $this->eventId = $eventId;
@@ -139,12 +139,12 @@ class RealtimeClientEventConversationItemCreate
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `conversation.item.create`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `conversation.item.create`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -166,12 +166,12 @@ class RealtimeClientEventConversationItemCreate
     }
 
     /**
-    * Sets previousItemId.
-    *
-    * @param string|null $previousItemId  The ID of the preceding item after which the new item will be inserted.  If not set, the new item will be appended to the end of the conversation.  If set, it allows an item to be inserted mid-conversation. If the ID  cannot be found, an error will be returned and the item will not be added.
-    *
-    * @return $this
-    */
+     * Sets previousItemId.
+     *
+     * @param string|null $previousItemId  The ID of the preceding item after which the new item will be inserted.  If not set, the new item will be appended to the end of the conversation.  If set, it allows an item to be inserted mid-conversation. If the ID  cannot be found, an error will be returned and the item will not be added.
+     *
+     * @return $this
+     */
     public function setPreviousItemId(?string $previousItemId = null): self
     {
         $this->previousItemId = $previousItemId;
@@ -193,12 +193,12 @@ class RealtimeClientEventConversationItemCreate
     }
 
     /**
-    * Sets item.
-    *
-    * @param RealtimeConversationItem|null $item
-    *
-    * @return $this
-    */
+     * Sets item.
+     *
+     * @param RealtimeConversationItem|null $item
+     *
+     * @return $this
+     */
     public function setItem(?RealtimeConversationItem $item): self
     {
         $this->item = $item;

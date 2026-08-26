@@ -1,4 +1,4 @@
-# # ProjectUserDeleteResponse
+# ProjectUserDeleteResponse
 
 ## Properties
 

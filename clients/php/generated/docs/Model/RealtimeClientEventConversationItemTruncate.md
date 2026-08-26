@@ -1,4 +1,4 @@
-# # RealtimeClientEventConversationItemTruncate
+# RealtimeClientEventConversationItemTruncate
 
 ## Properties
 

@@ -49,7 +49,7 @@ class UserRoleUpdateRequest
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['owner', 'reader'])]
     #[Assert\Type("string")]
@@ -77,12 +77,12 @@ class UserRoleUpdateRequest
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  `owner` or `reader`
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  `owner` or `reader`
+     *
+     * @return $this
+     */
     public function setRole(?string $role): self
     {
         $this->role = $role;

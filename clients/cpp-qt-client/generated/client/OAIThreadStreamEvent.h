@@ -33,13 +33,13 @@ class OAIThreadObject;
 class OAIThreadStreamEvent : public OAIObject {
 public:
     OAIThreadStreamEvent();
-    OAIThreadStreamEvent(QString json);
+    OAIThreadStreamEvent(const QString &json);
     ~OAIThreadStreamEvent() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     bool isEnabled() const;
     void setEnabled(const bool &enabled);

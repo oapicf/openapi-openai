@@ -72,10 +72,16 @@ class MessageObjectContentInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageObjectContentInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageObjectContentInner[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "MessageObjectContentInner[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "MessageObjectContentInner[type]" has a null value in JSON.');
+        assert(json.containsKey(r'image_file'), 'Required key "MessageObjectContentInner[image_file]" is missing from JSON.');
+        assert(json[r'image_file'] != null, 'Required key "MessageObjectContentInner[image_file]" has a null value in JSON.');
+        assert(json.containsKey(r'image_url'), 'Required key "MessageObjectContentInner[image_url]" is missing from JSON.');
+        assert(json[r'image_url'] != null, 'Required key "MessageObjectContentInner[image_url]" has a null value in JSON.');
+        assert(json.containsKey(r'text'), 'Required key "MessageObjectContentInner[text]" is missing from JSON.');
+        assert(json[r'text'] != null, 'Required key "MessageObjectContentInner[text]" has a null value in JSON.');
+        assert(json.containsKey(r'refusal'), 'Required key "MessageObjectContentInner[refusal]" is missing from JSON.');
+        assert(json[r'refusal'] != null, 'Required key "MessageObjectContentInner[refusal]" has a null value in JSON.');
         return true;
       }());
 
@@ -141,33 +147,31 @@ class MessageObjectContentInner {
 }
 
 /// Always `image_file`.
-class MessageObjectContentInnerTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageObjectContentInnerTypeEnum._(this.value);
+enum MessageObjectContentInnerTypeEnum {
+  imageFile._(r'image_file'),
+  imageUrl._(r'image_url'),
+  text._(r'text'),
+  refusal._(r'refusal'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageObjectContentInnerTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const imageFile = MessageObjectContentInnerTypeEnum._(r'image_file');
-  static const imageUrl = MessageObjectContentInnerTypeEnum._(r'image_url');
-  static const text = MessageObjectContentInnerTypeEnum._(r'text');
-  static const refusal = MessageObjectContentInnerTypeEnum._(r'refusal');
-
-  /// List of all possible values in this [enum][MessageObjectContentInnerTypeEnum].
-  static const values = <MessageObjectContentInnerTypeEnum>[
-    imageFile,
-    imageUrl,
-    text,
-    refusal,
-  ];
-
+  /// Returns the instance of [MessageObjectContentInnerTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageObjectContentInnerTypeEnum? fromJson(dynamic value) => MessageObjectContentInnerTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageObjectContentInnerTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageObjectContentInnerTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageObjectContentInnerTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -189,9 +193,10 @@ class MessageObjectContentInnerTypeEnumTypeTransformer {
 
   const MessageObjectContentInnerTypeEnumTypeTransformer._();
 
-  String encode(MessageObjectContentInnerTypeEnum data) => data.value;
+  String encode(MessageObjectContentInnerTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageObjectContentInnerTypeEnum.
+  /// Returns the instance of [MessageObjectContentInnerTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -200,6 +205,9 @@ class MessageObjectContentInnerTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageObjectContentInnerTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageObjectContentInnerTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'image_file': return MessageObjectContentInnerTypeEnum.imageFile;
@@ -215,7 +223,7 @@ class MessageObjectContentInnerTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageObjectContentInnerTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageObjectContentInnerTypeEnumTypeTransformer? _instance;
 }
 

@@ -11,6 +11,7 @@
  */
 package org.openapitools.client.model
 
+import org.json4s.JValue
 
 case class RealtimeResponseCreateParamsToolsInner(
   /* The type of the tool, i.e. `function`. */
@@ -20,7 +21,7 @@ case class RealtimeResponseCreateParamsToolsInner(
   /* The description of the function, including guidance on when and how  to call it, and guidance about what to tell the user when calling  (if anything).  */
   description: Option[String] = None,
   /* Parameters of the function in JSON Schema. */
-  parameters: Option[Any] = None
+  parameters: Option[JValue] = None
 )
 
 object RealtimeResponseCreateParamsToolsInnerEnums {

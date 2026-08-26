@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface ErrorEvent {
     /**
      * 
-     * @type {string}
+     * @type {ErrorEventEventEnum}
      * @memberof ErrorEvent
      */
     event: ErrorEventEventEnum;
@@ -48,6 +48,8 @@ export type ErrorEventEventEnum = typeof ErrorEventEventEnum[keyof typeof ErrorE
  */
 export function instanceOfErrorEvent(value: object): value is ErrorEvent {
     if (!('event' in value) || value['event'] === undefined) return false;
+    if (value['event'] !== 'error') return false;
+    
     if (!('data' in value) || value['data'] === undefined) return false;
     return true;
 }

@@ -1,4 +1,4 @@
-# # ChatCompletionTokenLogprob
+# ChatCompletionTokenLogprob
 
 ## Properties
 

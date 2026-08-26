@@ -32,7 +32,7 @@ class  AuditLog_rate_limit_deleted
 {
 public:
     AuditLog_rate_limit_deleted();
-    virtual ~AuditLog_rate_limit_deleted() = default;
+    virtual ~AuditLog_rate_limit_deleted();
 
 
     /// <summary>

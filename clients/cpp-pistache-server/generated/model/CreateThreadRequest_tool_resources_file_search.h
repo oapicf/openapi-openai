@@ -34,7 +34,7 @@ class  CreateThreadRequest_tool_resources_file_search
 {
 public:
     CreateThreadRequest_tool_resources_file_search();
-    virtual ~CreateThreadRequest_tool_resources_file_search() = default;
+    virtual ~CreateThreadRequest_tool_resources_file_search();
 
 
     /// <summary>

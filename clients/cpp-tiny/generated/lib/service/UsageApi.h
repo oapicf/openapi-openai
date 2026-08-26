@@ -21,7 +21,7 @@ class UsageApi : public Service {
 public:
     UsageApi() = default;
 
-    virtual ~UsageApi() = default;
+    virtual ~UsageApi();
 
     /**
     * Get audio speeches usage details for the organization..

@@ -1,4 +1,4 @@
-# # AutoChunkingStrategyRequestParam
+# AutoChunkingStrategyRequestParam
 
 ## Properties
 

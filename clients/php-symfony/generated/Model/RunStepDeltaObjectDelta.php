@@ -49,7 +49,7 @@ class RunStepDeltaObjectDelta
      * @var RunStepDeltaObjectDeltaStepDetails|null
      * @SerializedName("step_details")
      * @Type("OpenAPI\Server\Model\RunStepDeltaObjectDeltaStepDetails")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RunStepDeltaObjectDeltaStepDetails")]
     protected ?RunStepDeltaObjectDeltaStepDetails $stepDetails = null;
 
@@ -75,12 +75,12 @@ class RunStepDeltaObjectDelta
     }
 
     /**
-    * Sets stepDetails.
-    *
-    * @param RunStepDeltaObjectDeltaStepDetails|null $stepDetails
-    *
-    * @return $this
-    */
+     * Sets stepDetails.
+     *
+     * @param RunStepDeltaObjectDeltaStepDetails|null $stepDetails
+     *
+     * @return $this
+     */
     public function setStepDetails(?RunStepDeltaObjectDeltaStepDetails $stepDetails = null): self
     {
         $this->stepDetails = $stepDetails;

@@ -1,4 +1,4 @@
-# # RealtimeClientEventConversationItemDelete
+# RealtimeClientEventConversationItemDelete
 
 ## Properties
 

@@ -25,34 +25,43 @@ openai_api_realtime_server_event_input_audio_buffer_speech_stopped_TYPE_e realti
 static realtime_server_event_input_audio_buffer_speech_stopped_t *realtime_server_event_input_audio_buffer_speech_stopped_create_internal(
     char *event_id,
     openai_api_realtime_server_event_input_audio_buffer_speech_stopped_TYPE_e type,
-    int audio_end_ms,
+    int *audio_end_ms,
     char *item_id
     ) {
     realtime_server_event_input_audio_buffer_speech_stopped_t *realtime_server_event_input_audio_buffer_speech_stopped_local_var = malloc(sizeof(realtime_server_event_input_audio_buffer_speech_stopped_t));
     if (!realtime_server_event_input_audio_buffer_speech_stopped_local_var) {
         return NULL;
     }
+    memset(realtime_server_event_input_audio_buffer_speech_stopped_local_var, 0, sizeof(realtime_server_event_input_audio_buffer_speech_stopped_t));
+    realtime_server_event_input_audio_buffer_speech_stopped_local_var->_library_owned = 1;
     realtime_server_event_input_audio_buffer_speech_stopped_local_var->event_id = event_id;
     realtime_server_event_input_audio_buffer_speech_stopped_local_var->type = type;
     realtime_server_event_input_audio_buffer_speech_stopped_local_var->audio_end_ms = audio_end_ms;
     realtime_server_event_input_audio_buffer_speech_stopped_local_var->item_id = item_id;
-
-    realtime_server_event_input_audio_buffer_speech_stopped_local_var->_library_owned = 1;
     return realtime_server_event_input_audio_buffer_speech_stopped_local_var;
 }
 
 __attribute__((deprecated)) realtime_server_event_input_audio_buffer_speech_stopped_t *realtime_server_event_input_audio_buffer_speech_stopped_create(
     char *event_id,
     openai_api_realtime_server_event_input_audio_buffer_speech_stopped_TYPE_e type,
-    int audio_end_ms,
+    int *audio_end_ms,
     char *item_id
     ) {
-    return realtime_server_event_input_audio_buffer_speech_stopped_create_internal (
+    int *audio_end_ms_copy = NULL;
+    if (audio_end_ms) {
+        audio_end_ms_copy = malloc(sizeof(int));
+        if (audio_end_ms_copy) *audio_end_ms_copy = *audio_end_ms;
+    }
+    realtime_server_event_input_audio_buffer_speech_stopped_t *result = realtime_server_event_input_audio_buffer_speech_stopped_create_internal (
         event_id,
         type,
-        audio_end_ms,
+        audio_end_ms_copy,
         item_id
         );
+    if (!result) {
+        free(audio_end_ms_copy);
+    }
+    return result;
 }
 
 void realtime_server_event_input_audio_buffer_speech_stopped_free(realtime_server_event_input_audio_buffer_speech_stopped_t *realtime_server_event_input_audio_buffer_speech_stopped) {
@@ -67,6 +76,10 @@ void realtime_server_event_input_audio_buffer_speech_stopped_free(realtime_serve
     if (realtime_server_event_input_audio_buffer_speech_stopped->event_id) {
         free(realtime_server_event_input_audio_buffer_speech_stopped->event_id);
         realtime_server_event_input_audio_buffer_speech_stopped->event_id = NULL;
+    }
+    if (realtime_server_event_input_audio_buffer_speech_stopped->audio_end_ms) {
+        free(realtime_server_event_input_audio_buffer_speech_stopped->audio_end_ms);
+        realtime_server_event_input_audio_buffer_speech_stopped->audio_end_ms = NULL;
     }
     if (realtime_server_event_input_audio_buffer_speech_stopped->item_id) {
         free(realtime_server_event_input_audio_buffer_speech_stopped->item_id);
@@ -101,7 +114,7 @@ cJSON *realtime_server_event_input_audio_buffer_speech_stopped_convertToJSON(rea
     if (!realtime_server_event_input_audio_buffer_speech_stopped->audio_end_ms) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "audio_end_ms", realtime_server_event_input_audio_buffer_speech_stopped->audio_end_ms) == NULL) {
+    if(cJSON_AddNumberToObject(item, "audio_end_ms", *realtime_server_event_input_audio_buffer_speech_stopped->audio_end_ms) == NULL) {
     goto fail; //Numeric
     }
 
@@ -125,6 +138,13 @@ fail:
 realtime_server_event_input_audio_buffer_speech_stopped_t *realtime_server_event_input_audio_buffer_speech_stopped_parseFromJSON(cJSON *realtime_server_event_input_audio_buffer_speech_stoppedJSON){
 
     realtime_server_event_input_audio_buffer_speech_stopped_t *realtime_server_event_input_audio_buffer_speech_stopped_local_var = NULL;
+
+    char *event_id_local_str = NULL;
+
+    // define the local variable for realtime_server_event_input_audio_buffer_speech_stopped->audio_end_ms
+    int *audio_end_ms_local_var = NULL;
+
+    char *item_id_local_str = NULL;
 
     // realtime_server_event_input_audio_buffer_speech_stopped->event_id
     cJSON *event_id = cJSON_GetObjectItemCaseSensitive(realtime_server_event_input_audio_buffer_speech_stoppedJSON, "event_id");
@@ -172,6 +192,12 @@ realtime_server_event_input_audio_buffer_speech_stopped_t *realtime_server_event
     {
     goto end; //Numeric
     }
+    audio_end_ms_local_var = malloc(sizeof(int));
+    if(!audio_end_ms_local_var)
+    {
+        goto end;
+    }
+    *audio_end_ms_local_var = audio_end_ms->valuedouble;
 
     // realtime_server_event_input_audio_buffer_speech_stopped->item_id
     cJSON *item_id = cJSON_GetObjectItemCaseSensitive(realtime_server_event_input_audio_buffer_speech_stoppedJSON, "item_id");
@@ -189,15 +215,34 @@ realtime_server_event_input_audio_buffer_speech_stopped_t *realtime_server_event
     }
 
 
+    if (event_id && !cJSON_IsNull(event_id)) event_id_local_str = strdup(event_id->valuestring);
+    if (item_id && !cJSON_IsNull(item_id)) item_id_local_str = strdup(item_id->valuestring);
+
     realtime_server_event_input_audio_buffer_speech_stopped_local_var = realtime_server_event_input_audio_buffer_speech_stopped_create_internal (
-        strdup(event_id->valuestring),
+        event_id_local_str,
         typeVariable,
-        audio_end_ms->valuedouble,
-        strdup(item_id->valuestring)
+        audio_end_ms_local_var,
+        item_id_local_str
         );
+
+    if (!realtime_server_event_input_audio_buffer_speech_stopped_local_var) {
+        goto end;
+    }
 
     return realtime_server_event_input_audio_buffer_speech_stopped_local_var;
 end:
+    if (event_id_local_str) {
+        free(event_id_local_str);
+        event_id_local_str = NULL;
+    }
+    if (audio_end_ms_local_var) {
+        free(audio_end_ms_local_var);
+        audio_end_ms_local_var = NULL;
+    }
+    if (item_id_local_str) {
+        free(item_id_local_str);
+        item_id_local_str = NULL;
+    }
     return NULL;
 
 }

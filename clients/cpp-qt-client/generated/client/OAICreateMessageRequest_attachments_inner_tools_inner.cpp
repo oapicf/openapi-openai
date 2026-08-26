@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateMessageRequest_attachments_inner_tools_inner::OAICreateMessageRequest_attachments_inner_tools_inner(QString json) {
+OAICreateMessageRequest_attachments_inner_tools_inner::OAICreateMessageRequest_attachments_inner_tools_inner(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -38,7 +38,7 @@ void OAICreateMessageRequest_attachments_inner_tools_inner::initializeModel() {
     m_type_isValid = false;
 }
 
-void OAICreateMessageRequest_attachments_inner_tools_inner::fromJson(QString jsonString) {
+void OAICreateMessageRequest_attachments_inner_tools_inner::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

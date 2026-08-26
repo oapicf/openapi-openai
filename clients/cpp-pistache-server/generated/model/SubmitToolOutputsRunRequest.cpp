@@ -26,6 +26,8 @@ SubmitToolOutputsRunRequest::SubmitToolOutputsRunRequest()
     
 }
 
+SubmitToolOutputsRunRequest::~SubmitToolOutputsRunRequest() = default;
+
 void SubmitToolOutputsRunRequest::validate() const
 {
     std::stringstream msg;

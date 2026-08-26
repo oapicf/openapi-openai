@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -23,15 +26,20 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class MessageDeltaContentRefusalObject(
 
-    @Schema(example = "null", required = true, description = "The index of the refusal part in the message.")
+    @Schema(required = true, description = "The index of the refusal part in the message.")
+    @param:JsonProperty("index")
     @get:JsonProperty("index", required = true) val index: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "Always `refusal`.")
+    @Schema(required = true, description = "Always `refusal`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: MessageDeltaContentRefusalObject.Type,
 
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("refusal")
     @get:JsonProperty("refusal") val refusal: kotlin.String? = null
-) {
+) : MessageDeltaObjectDeltaContentInner {
 
     /**
     * Always `refusal`.
@@ -46,7 +54,7 @@ data class MessageDeltaContentRefusalObject(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'MessageDeltaContentRefusalObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

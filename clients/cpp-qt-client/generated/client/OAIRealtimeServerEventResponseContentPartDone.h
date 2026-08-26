@@ -33,13 +33,13 @@ class OAIRealtimeServerEventResponseContentPartDone_part;
 class OAIRealtimeServerEventResponseContentPartDone : public OAIObject {
 public:
     OAIRealtimeServerEventResponseContentPartDone();
-    OAIRealtimeServerEventResponseContentPartDone(QString json);
+    OAIRealtimeServerEventResponseContentPartDone(const QString &json);
     ~OAIRealtimeServerEventResponseContentPartDone() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getEventId() const;
     void setEventId(const QString &event_id);

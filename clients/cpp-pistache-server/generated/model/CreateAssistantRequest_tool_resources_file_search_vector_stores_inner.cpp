@@ -27,6 +27,8 @@ CreateAssistantRequest_tool_resources_file_search_vector_stores_inner::CreateAss
     
 }
 
+CreateAssistantRequest_tool_resources_file_search_vector_stores_inner::~CreateAssistantRequest_tool_resources_file_search_vector_stores_inner() = default;
+
 void CreateAssistantRequest_tool_resources_file_search_vector_stores_inner::validate() const
 {
     std::stringstream msg;

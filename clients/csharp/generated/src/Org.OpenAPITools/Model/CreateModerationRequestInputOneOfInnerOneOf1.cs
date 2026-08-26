@@ -142,8 +142,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateModerationRequestInputOneOfInnerOneOf1" />
     /// </summary>
-    public class CreateModerationRequestInputOneOfInnerOneOf1JsonConverter : JsonConverter<CreateModerationRequestInputOneOfInnerOneOf1>
+    public partial class CreateModerationRequestInputOneOfInnerOneOf1JsonConverter : JsonConverter<CreateModerationRequestInputOneOfInnerOneOf1>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateModerationRequestInputOneOfInnerOneOf1JsonConverter" /> class.
+        /// </summary>
+        public CreateModerationRequestInputOneOfInnerOneOf1JsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateModerationRequestInputOneOfInnerOneOf1" />
         /// </summary>

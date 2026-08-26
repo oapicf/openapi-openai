@@ -12,13 +12,23 @@
 package org.openapitools.client.model
 
 
-case class CreateModerationRequestInputOneOfInner(
+sealed trait CreateModerationRequestInputOneOfInner
+object CreateModerationRequestInputOneOfInner {
+}
+
+case class CreateModerationRequestInputOneOfInnerOneOf(
   /* Always `image_url`. */
-  `type`: CreateModerationRequestInputOneOfInnerEnums.`Type`,
-  imageUrl: CreateModerationRequestInputOneOfInnerOneOfImageUrl,
+  `type`: CreateModerationRequestInputOneOfInnerOneOfEnums.`Type`,
+  imageUrl: CreateModerationRequestInputOneOfInnerOneOfImageUrl
+) extends CreateModerationRequestInputOneOfInner
+
+case class CreateModerationRequestInputOneOfInnerOneOf1(
+  /* Always `text`. */
+  `type`: CreateModerationRequestInputOneOfInnerOneOf1Enums.`Type`,
   /* A string of text to classify. */
   text: String
-)
+) extends CreateModerationRequestInputOneOfInner
+
 
 object CreateModerationRequestInputOneOfInnerEnums {
 

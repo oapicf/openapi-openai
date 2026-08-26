@@ -49,7 +49,7 @@ class RunStreamEventOneOf1
      * @var string|null
      * @SerializedName("event")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['thread.run.queued'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class RunStreamEventOneOf1
      * @var RunObject|null
      * @SerializedName("data")
      * @Type("OpenAPI\Server\Model\RunObject")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunObject")]
@@ -88,12 +88,12 @@ class RunStreamEventOneOf1
     }
 
     /**
-    * Sets event.
-    *
-    * @param string|null $event
-    *
-    * @return $this
-    */
+     * Sets event.
+     *
+     * @param string|null $event
+     *
+     * @return $this
+     */
     public function setEvent(?string $event): self
     {
         $this->event = $event;
@@ -115,12 +115,12 @@ class RunStreamEventOneOf1
     }
 
     /**
-    * Sets data.
-    *
-    * @param RunObject|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param RunObject|null $data
+     *
+     * @return $this
+     */
     public function setData(?RunObject $data): self
     {
         $this->data = $data;

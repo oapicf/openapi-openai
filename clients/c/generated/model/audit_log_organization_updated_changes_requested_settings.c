@@ -13,10 +13,10 @@ static audit_log_organization_updated_changes_requested_settings_t *audit_log_or
     if (!audit_log_organization_updated_changes_requested_settings_local_var) {
         return NULL;
     }
+    memset(audit_log_organization_updated_changes_requested_settings_local_var, 0, sizeof(audit_log_organization_updated_changes_requested_settings_t));
+    audit_log_organization_updated_changes_requested_settings_local_var->_library_owned = 1;
     audit_log_organization_updated_changes_requested_settings_local_var->threads_ui_visibility = threads_ui_visibility;
     audit_log_organization_updated_changes_requested_settings_local_var->usage_dashboard_visibility = usage_dashboard_visibility;
-
-    audit_log_organization_updated_changes_requested_settings_local_var->_library_owned = 1;
     return audit_log_organization_updated_changes_requested_settings_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) audit_log_organization_updated_changes_requested_set
     char *threads_ui_visibility,
     char *usage_dashboard_visibility
     ) {
-    return audit_log_organization_updated_changes_requested_settings_create_internal (
+    audit_log_organization_updated_changes_requested_settings_t *result = audit_log_organization_updated_changes_requested_settings_create_internal (
         threads_ui_visibility,
         usage_dashboard_visibility
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void audit_log_organization_updated_changes_requested_settings_free(audit_log_organization_updated_changes_requested_settings_t *audit_log_organization_updated_changes_requested_settings) {
@@ -80,6 +83,10 @@ audit_log_organization_updated_changes_requested_settings_t *audit_log_organizat
 
     audit_log_organization_updated_changes_requested_settings_t *audit_log_organization_updated_changes_requested_settings_local_var = NULL;
 
+    char *threads_ui_visibility_local_str = NULL;
+
+    char *usage_dashboard_visibility_local_str = NULL;
+
     // audit_log_organization_updated_changes_requested_settings->threads_ui_visibility
     cJSON *threads_ui_visibility = cJSON_GetObjectItemCaseSensitive(audit_log_organization_updated_changes_requested_settingsJSON, "threads_ui_visibility");
     if (cJSON_IsNull(threads_ui_visibility)) {
@@ -105,13 +112,28 @@ audit_log_organization_updated_changes_requested_settings_t *audit_log_organizat
     }
 
 
+    if (threads_ui_visibility && !cJSON_IsNull(threads_ui_visibility)) threads_ui_visibility_local_str = strdup(threads_ui_visibility->valuestring);
+    if (usage_dashboard_visibility && !cJSON_IsNull(usage_dashboard_visibility)) usage_dashboard_visibility_local_str = strdup(usage_dashboard_visibility->valuestring);
+
     audit_log_organization_updated_changes_requested_settings_local_var = audit_log_organization_updated_changes_requested_settings_create_internal (
-        threads_ui_visibility && !cJSON_IsNull(threads_ui_visibility) ? strdup(threads_ui_visibility->valuestring) : NULL,
-        usage_dashboard_visibility && !cJSON_IsNull(usage_dashboard_visibility) ? strdup(usage_dashboard_visibility->valuestring) : NULL
+        threads_ui_visibility_local_str,
+        usage_dashboard_visibility_local_str
         );
+
+    if (!audit_log_organization_updated_changes_requested_settings_local_var) {
+        goto end;
+    }
 
     return audit_log_organization_updated_changes_requested_settings_local_var;
 end:
+    if (threads_ui_visibility_local_str) {
+        free(threads_ui_visibility_local_str);
+        threads_ui_visibility_local_str = NULL;
+    }
+    if (usage_dashboard_visibility_local_str) {
+        free(usage_dashboard_visibility_local_str);
+        usage_dashboard_visibility_local_str = NULL;
+    }
     return NULL;
 
 }

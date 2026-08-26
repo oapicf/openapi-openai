@@ -25,19 +25,24 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ProjectServiceAccount(
 
-    @Schema(example = "null", required = true, description = "The object type, which is always `organization.project.service_account`")
+    @Schema(required = true, description = "The object type, which is always `organization.project.service_account`")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: ProjectServiceAccount.`Object`,
 
-    @Schema(example = "null", required = true, description = "The identifier, which can be referenced in API endpoints")
+    @Schema(required = true, description = "The identifier, which can be referenced in API endpoints")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The name of the service account")
+    @Schema(required = true, description = "The name of the service account")
+    @param:JsonProperty("name")
     @get:JsonProperty("name", required = true) val name: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "`owner` or `member`")
+    @Schema(required = true, description = "`owner` or `member`")
+    @param:JsonProperty("role")
     @get:JsonProperty("role", required = true) val role: ProjectServiceAccount.Role,
 
-    @Schema(example = "null", required = true, description = "The Unix timestamp (in seconds) of when the service account was created")
+    @Schema(required = true, description = "The Unix timestamp (in seconds) of when the service account was created")
+    @param:JsonProperty("created_at")
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int
 ) {
 
@@ -54,7 +59,7 @@ data class ProjectServiceAccount(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ProjectServiceAccount'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }
@@ -73,7 +78,7 @@ data class ProjectServiceAccount(
             @JsonCreator
             fun forValue(value: kotlin.String): Role {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ProjectServiceAccount'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Role'")
             }
         }
     }

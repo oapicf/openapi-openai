@@ -38,13 +38,13 @@ class OAIMessageContentImageUrlObject_image_url;
 class OAIArray_of_content_parts_inner : public OAIObject {
 public:
     OAIArray_of_content_parts_inner();
-    OAIArray_of_content_parts_inner(QString json);
+    OAIArray_of_content_parts_inner(const QString &json);
     ~OAIArray_of_content_parts_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

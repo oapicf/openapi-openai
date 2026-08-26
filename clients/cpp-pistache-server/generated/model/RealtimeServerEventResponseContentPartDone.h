@@ -33,7 +33,7 @@ class  RealtimeServerEventResponseContentPartDone
 {
 public:
     RealtimeServerEventResponseContentPartDone();
-    virtual ~RealtimeServerEventResponseContentPartDone() = default;
+    virtual ~RealtimeServerEventResponseContentPartDone();
 
 
     /// <summary>

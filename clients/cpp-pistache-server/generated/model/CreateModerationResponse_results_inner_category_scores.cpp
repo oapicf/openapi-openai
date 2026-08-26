@@ -37,6 +37,8 @@ CreateModerationResponse_results_inner_category_scores::CreateModerationResponse
     
 }
 
+CreateModerationResponse_results_inner_category_scores::~CreateModerationResponse_results_inner_category_scores() = default;
+
 void CreateModerationResponse_results_inner_category_scores::validate() const
 {
     std::stringstream msg;

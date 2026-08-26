@@ -34,7 +34,7 @@ class  ListAuditLogsResponse
 {
 public:
     ListAuditLogsResponse();
-    virtual ~ListAuditLogsResponse() = default;
+    virtual ~ListAuditLogsResponse();
 
 
     /// <summary>

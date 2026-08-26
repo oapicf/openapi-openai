@@ -41,8 +41,8 @@ function Initialize-RealtimeSessionCreateResponseClientSecret {
 
 
         $PSO = [PSCustomObject]@{
-            "value" = ${Value}
-            "expires_at" = ${ExpiresAt}
+            'value' = ${Value}
+            'expires_at' = ${ExpiresAt}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToRealtimeSessionCreateResponseClientSecret {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeSessionCreateResponseClientSecret
-        $AllProperties = ("value", "expires_at")
+        $AllProperties = ('value', 'expires_at')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "value"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'value'))) { #optional property not found
             $Value = $null
         } else {
-            $Value = $JsonParameters.PSobject.Properties["value"].value
+            $Value = $JsonParameters.PSobject.Properties['value'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expires_at"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'expires_at'))) { #optional property not found
             $ExpiresAt = $null
         } else {
-            $ExpiresAt = $JsonParameters.PSobject.Properties["expires_at"].value
+            $ExpiresAt = $JsonParameters.PSobject.Properties['expires_at'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "value" = ${Value}
-            "expires_at" = ${ExpiresAt}
+            'value' = ${Value}
+            'expires_at' = ${ExpiresAt}
         }
 
         return $PSO

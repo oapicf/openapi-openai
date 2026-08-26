@@ -85,7 +85,7 @@ VectorStoreFileObject_last_error::getCode()
 }
 
 void
-VectorStoreFileObject_last_error::setCode(std::string  code)
+VectorStoreFileObject_last_error::setCode(std::string code)
 {
 	this->code = code;
 }
@@ -97,7 +97,7 @@ VectorStoreFileObject_last_error::getMessage()
 }
 
 void
-VectorStoreFileObject_last_error::setMessage(std::string  message)
+VectorStoreFileObject_last_error::setMessage(std::string message)
 {
 	this->message = message;
 }

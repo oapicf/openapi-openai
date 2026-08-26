@@ -25,6 +25,8 @@ ChunkingStrategyRequestParam::ChunkingStrategyRequestParam()
     
 }
 
+ChunkingStrategyRequestParam::~ChunkingStrategyRequestParam() = default;
+
 void ChunkingStrategyRequestParam::validate() const
 {
     std::stringstream msg;

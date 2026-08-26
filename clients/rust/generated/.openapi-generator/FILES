@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 Cargo.toml
 README.md
@@ -66,7 +65,6 @@ docs/AuditLogUserDeleted.md
 docs/AuditLogUserUpdated.md
 docs/AuditLogUserUpdatedChangesRequested.md
 docs/AuditLogsApi.md
-docs/AutoChunkingStrategy.md
 docs/AutoChunkingStrategyRequestParam.md
 docs/Batch.md
 docs/BatchApi.md
@@ -489,7 +487,6 @@ docs/RunToolCallObject.md
 docs/RunToolCallObjectFunction.md
 docs/StaticChunkingStrategy.md
 docs/StaticChunkingStrategyRequestParam.md
-docs/StaticChunkingStrategyResponseParam.md
 docs/StaticChunkingStrategyStatic.md
 docs/SubmitToolOutputsRunRequest.md
 docs/SubmitToolOutputsRunRequestToolOutputsInner.md
@@ -612,7 +609,6 @@ src/models/audit_log_user_added_data.rs
 src/models/audit_log_user_deleted.rs
 src/models/audit_log_user_updated.rs
 src/models/audit_log_user_updated_changes_requested.rs
-src/models/auto_chunking_strategy.rs
 src/models/auto_chunking_strategy_request_param.rs
 src/models/batch.rs
 src/models/batch_errors.rs
@@ -1023,7 +1019,6 @@ src/models/run_tool_call_object.rs
 src/models/run_tool_call_object_function.rs
 src/models/static_chunking_strategy.rs
 src/models/static_chunking_strategy_request_param.rs
-src/models/static_chunking_strategy_response_param.rs
 src/models/static_chunking_strategy_static.rs
 src/models/submit_tool_outputs_run_request.rs
 src/models/submit_tool_outputs_run_request_tool_outputs_inner.rs

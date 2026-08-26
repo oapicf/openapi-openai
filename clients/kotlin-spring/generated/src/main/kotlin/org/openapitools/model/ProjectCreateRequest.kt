@@ -19,7 +19,8 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ProjectCreateRequest(
 
-    @Schema(example = "null", required = true, description = "The friendly name of the project, this name appears in reports.")
+    @Schema(required = true, description = "The friendly name of the project, this name appears in reports.")
+    @param:JsonProperty("name")
     @get:JsonProperty("name", required = true) val name: kotlin.String
 ) {
 

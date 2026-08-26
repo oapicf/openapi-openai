@@ -26,20 +26,20 @@ static create_embedding_request_t *create_embedding_request_create_internal(
     create_embedding_request_input_t *input,
     create_embedding_request_model_t *model,
     openai_api_create_embedding_request_ENCODINGFORMAT_e encoding_format,
-    int dimensions,
+    int *dimensions,
     char *user
     ) {
     create_embedding_request_t *create_embedding_request_local_var = malloc(sizeof(create_embedding_request_t));
     if (!create_embedding_request_local_var) {
         return NULL;
     }
+    memset(create_embedding_request_local_var, 0, sizeof(create_embedding_request_t));
+    create_embedding_request_local_var->_library_owned = 1;
     create_embedding_request_local_var->input = input;
     create_embedding_request_local_var->model = model;
     create_embedding_request_local_var->encoding_format = encoding_format;
     create_embedding_request_local_var->dimensions = dimensions;
     create_embedding_request_local_var->user = user;
-
-    create_embedding_request_local_var->_library_owned = 1;
     return create_embedding_request_local_var;
 }
 
@@ -47,16 +47,25 @@ __attribute__((deprecated)) create_embedding_request_t *create_embedding_request
     create_embedding_request_input_t *input,
     create_embedding_request_model_t *model,
     openai_api_create_embedding_request_ENCODINGFORMAT_e encoding_format,
-    int dimensions,
+    int *dimensions,
     char *user
     ) {
-    return create_embedding_request_create_internal (
+    int *dimensions_copy = NULL;
+    if (dimensions) {
+        dimensions_copy = malloc(sizeof(int));
+        if (dimensions_copy) *dimensions_copy = *dimensions;
+    }
+    create_embedding_request_t *result = create_embedding_request_create_internal (
         input,
         model,
         encoding_format,
-        dimensions,
+        dimensions_copy,
         user
         );
+    if (!result) {
+        free(dimensions_copy);
+    }
+    return result;
 }
 
 void create_embedding_request_free(create_embedding_request_t *create_embedding_request) {
@@ -75,6 +84,10 @@ void create_embedding_request_free(create_embedding_request_t *create_embedding_
     if (create_embedding_request->model) {
         create_embedding_request_model_free(create_embedding_request->model);
         create_embedding_request->model = NULL;
+    }
+    if (create_embedding_request->dimensions) {
+        free(create_embedding_request->dimensions);
+        create_embedding_request->dimensions = NULL;
     }
     if (create_embedding_request->user) {
         free(create_embedding_request->user);
@@ -125,7 +138,7 @@ cJSON *create_embedding_request_convertToJSON(create_embedding_request_t *create
 
     // create_embedding_request->dimensions
     if(create_embedding_request->dimensions) {
-    if(cJSON_AddNumberToObject(item, "dimensions", create_embedding_request->dimensions) == NULL) {
+    if(cJSON_AddNumberToObject(item, "dimensions", *create_embedding_request->dimensions) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -155,6 +168,11 @@ create_embedding_request_t *create_embedding_request_parseFromJSON(cJSON *create
 
     // define the local variable for create_embedding_request->model
     create_embedding_request_model_t *model_local_nonprim = NULL;
+
+    // define the local variable for create_embedding_request->dimensions
+    int *dimensions_local_var = NULL;
+
+    char *user_local_str = NULL;
 
     // create_embedding_request->input
     cJSON *input = cJSON_GetObjectItemCaseSensitive(create_embedding_requestJSON, "input");
@@ -204,6 +222,12 @@ create_embedding_request_t *create_embedding_request_parseFromJSON(cJSON *create
     {
     goto end; //Numeric
     }
+    dimensions_local_var = malloc(sizeof(int));
+    if(!dimensions_local_var)
+    {
+        goto end;
+    }
+    *dimensions_local_var = dimensions->valuedouble;
     }
 
     // create_embedding_request->user
@@ -219,13 +243,19 @@ create_embedding_request_t *create_embedding_request_parseFromJSON(cJSON *create
     }
 
 
+    if (user && !cJSON_IsNull(user)) user_local_str = strdup(user->valuestring);
+
     create_embedding_request_local_var = create_embedding_request_create_internal (
         input_local_nonprim,
         model_local_nonprim,
         encoding_format ? encoding_formatVariable : openai_api_create_embedding_request_ENCODINGFORMAT_NULL,
-        dimensions ? dimensions->valuedouble : 0,
-        user && !cJSON_IsNull(user) ? strdup(user->valuestring) : NULL
+        dimensions_local_var,
+        user_local_str
         );
+
+    if (!create_embedding_request_local_var) {
+        goto end;
+    }
 
     return create_embedding_request_local_var;
 end:
@@ -236,6 +266,14 @@ end:
     if (model_local_nonprim) {
         create_embedding_request_model_free(model_local_nonprim);
         model_local_nonprim = NULL;
+    }
+    if (dimensions_local_var) {
+        free(dimensions_local_var);
+        dimensions_local_var = NULL;
+    }
+    if (user_local_str) {
+        free(user_local_str);
+        user_local_str = NULL;
     }
     return NULL;
 

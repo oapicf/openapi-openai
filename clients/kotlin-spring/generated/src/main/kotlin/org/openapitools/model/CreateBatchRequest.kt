@@ -24,16 +24,20 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class CreateBatchRequest(
 
-    @Schema(example = "null", required = true, description = "The ID of an uploaded file that contains requests for the new batch.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your input file must be formatted as a [JSONL file](/docs/api-reference/batch/request-input), and must be uploaded with the purpose `batch`. The file can contain up to 50,000 requests, and can be up to 200 MB in size. ")
+    @Schema(required = true, description = "The ID of an uploaded file that contains requests for the new batch.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your input file must be formatted as a [JSONL file](/docs/api-reference/batch/request-input), and must be uploaded with the purpose `batch`. The file can contain up to 50,000 requests, and can be up to 200 MB in size. ")
+    @param:JsonProperty("input_file_id")
     @get:JsonProperty("input_file_id", required = true) val inputFileId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The endpoint to be used for all requests in the batch. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported. Note that `/v1/embeddings` batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.")
+    @Schema(required = true, description = "The endpoint to be used for all requests in the batch. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported. Note that `/v1/embeddings` batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.")
+    @param:JsonProperty("endpoint")
     @get:JsonProperty("endpoint", required = true) val endpoint: CreateBatchRequest.Endpoint,
 
-    @Schema(example = "null", required = true, description = "The time frame within which the batch should be processed. Currently only `24h` is supported.")
+    @Schema(required = true, description = "The time frame within which the batch should be processed. Currently only `24h` is supported.")
+    @param:JsonProperty("completion_window")
     @get:JsonProperty("completion_window", required = true) val completionWindow: CreateBatchRequest.CompletionWindow,
 
-    @Schema(example = "null", description = "Optional custom metadata for the batch.")
+    @Schema(description = "Optional custom metadata for the batch.")
+    @param:JsonProperty("metadata")
     @get:JsonProperty("metadata") val metadata: kotlin.collections.Map<kotlin.String, kotlin.String>? = null
 ) {
 
@@ -52,7 +56,7 @@ data class CreateBatchRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): Endpoint {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateBatchRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Endpoint'")
             }
         }
     }
@@ -70,7 +74,7 @@ data class CreateBatchRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): CompletionWindow {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateBatchRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CompletionWindow'")
             }
         }
     }

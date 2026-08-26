@@ -23,7 +23,7 @@ class CompletionsApi {
   /// Parameters:
   ///
   /// * [CreateCompletionRequest] createCompletionRequest (required):
-  Future<Response> createCompletionWithHttpInfo(CreateCompletionRequest createCompletionRequest,) async {
+  Future<Response> createCompletionWithHttpInfo(CreateCompletionRequest createCompletionRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/completions';
 
@@ -45,6 +45,7 @@ class CompletionsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -53,8 +54,8 @@ class CompletionsApi {
   /// Parameters:
   ///
   /// * [CreateCompletionRequest] createCompletionRequest (required):
-  Future<CreateCompletionResponse?> createCompletion(CreateCompletionRequest createCompletionRequest,) async {
-    final response = await createCompletionWithHttpInfo(createCompletionRequest,);
+  Future<CreateCompletionResponse?> createCompletion(CreateCompletionRequest createCompletionRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createCompletionWithHttpInfo(createCompletionRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

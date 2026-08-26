@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type TranscriptionWord struct {
@@ -25,20 +30,78 @@ type TranscriptionWord struct {
 	// End time of the word in seconds.
 	End float32 `json:"end"`
 }
-
-// AssertTranscriptionWordRequired checks if the required fields are not zero-ed
-func AssertTranscriptionWordRequired(obj TranscriptionWord) error {
-	elements := map[string]interface{}{
-		"word": obj.Word,
-		"start": obj.Start,
-		"end": obj.End,
+// UnmarshalJSON validates required property keys then unmarshals into TranscriptionWord
+func (o *TranscriptionWord) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"word",
+		"start",
+		"end",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"word": false,
+		"start": false,
+		"end": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"word": {},
+		"start": {},
+		"end": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded TranscriptionWord
+
+	if value, exists := allProperties["word"]; exists {
+		if err = json.Unmarshal(value, &decoded.Word); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["start"]; exists {
+		if err = json.Unmarshal(value, &decoded.Start); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["end"]; exists {
+		if err = json.Unmarshal(value, &decoded.End); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertTranscriptionWordRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertTranscriptionWordRequired(obj TranscriptionWord) error {
 	return nil
 }
 

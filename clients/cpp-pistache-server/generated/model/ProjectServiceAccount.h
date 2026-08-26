@@ -32,7 +32,7 @@ class  ProjectServiceAccount
 {
 public:
     ProjectServiceAccount();
-    virtual ~ProjectServiceAccount() = default;
+    virtual ~ProjectServiceAccount();
 
 
     /// <summary>

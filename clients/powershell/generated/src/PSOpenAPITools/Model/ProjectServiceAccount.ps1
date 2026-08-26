@@ -78,11 +78,11 @@ function Initialize-ProjectServiceAccount {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "id" = ${Id}
-            "name" = ${Name}
-            "role" = ${Role}
-            "created_at" = ${CreatedAt}
+            'object' = ${Object}
+            'id' = ${Id}
+            'name' = ${Name}
+            'role' = ${Role}
+            'created_at' = ${CreatedAt}
         }
 
 
@@ -120,7 +120,7 @@ function ConvertFrom-JsonToProjectServiceAccount {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ProjectServiceAccount
-        $AllProperties = ("object", "id", "name", "role", "created_at")
+        $AllProperties = ('object', 'id', 'name', 'role', 'created_at')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -131,42 +131,42 @@ function ConvertFrom-JsonToProjectServiceAccount {
             throw "Error! Empty JSON cannot be serialized due to the required property 'object' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) {
             throw "Error! JSON cannot be serialized due to the required property 'name' missing."
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "role"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'role'))) {
             throw "Error! JSON cannot be serialized due to the required property 'role' missing."
         } else {
-            $Role = $JsonParameters.PSobject.Properties["role"].value
+            $Role = $JsonParameters.PSobject.Properties['role'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created_at' missing."
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "id" = ${Id}
-            "name" = ${Name}
-            "role" = ${Role}
-            "created_at" = ${CreatedAt}
+            'object' = ${Object}
+            'id' = ${Id}
+            'name' = ${Name}
+            'role' = ${Role}
+            'created_at' = ${CreatedAt}
         }
 
         return $PSO

@@ -12,18 +12,17 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  CreateEmbeddingRequest,
-  CreateEmbeddingResponse,
-} from '../models/index';
 import {
+    type CreateEmbeddingRequest,
     CreateEmbeddingRequestFromJSON,
     CreateEmbeddingRequestToJSON,
+} from '../models/CreateEmbeddingRequest';
+import {
+    type CreateEmbeddingResponse,
     CreateEmbeddingResponseFromJSON,
     CreateEmbeddingResponseToJSON,
-} from '../models/index';
+} from '../models/CreateEmbeddingResponse';
 
 export interface CreateEmbeddingOperationRequest {
     createEmbeddingRequest: CreateEmbeddingRequest;
@@ -35,9 +34,9 @@ export interface CreateEmbeddingOperationRequest {
 export class EmbeddingsApi extends runtime.BaseAPI {
 
     /**
-     * Creates an embedding vector representing the input text.
+     * Creates request options for createEmbedding without sending the request
      */
-    async createEmbeddingRaw(requestParameters: CreateEmbeddingOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateEmbeddingResponse>> {
+    async createEmbeddingRequestOpts(requestParameters: CreateEmbeddingOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createEmbeddingRequest'] == null) {
             throw new runtime.RequiredError(
                 'createEmbeddingRequest',
@@ -62,13 +61,21 @@ export class EmbeddingsApi extends runtime.BaseAPI {
 
         let urlPath = `/embeddings`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateEmbeddingRequestToJSON(requestParameters['createEmbeddingRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates an embedding vector representing the input text.
+     */
+    async createEmbeddingRaw(requestParameters: CreateEmbeddingOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateEmbeddingResponse>> {
+        const requestOptions = await this.createEmbeddingRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateEmbeddingResponseFromJSON(jsonValue));
     }

@@ -39,6 +39,8 @@ UsageImagesResult::UsageImagesResult()
     
 }
 
+UsageImagesResult::~UsageImagesResult() = default;
+
 void UsageImagesResult::validate() const
 {
     std::stringstream msg;

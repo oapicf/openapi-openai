@@ -51,7 +51,7 @@ class AuditLogApiKeyCreated
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -59,7 +59,7 @@ class AuditLogApiKeyCreated
      * @var AuditLogApiKeyCreatedData|null
      * @SerializedName("data")
      * @Type("OpenAPI\Server\Model\AuditLogApiKeyCreatedData")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogApiKeyCreatedData")]
     protected ?AuditLogApiKeyCreatedData $data = null;
 
@@ -86,12 +86,12 @@ class AuditLogApiKeyCreated
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The tracking ID of the API key.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The tracking ID of the API key.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -113,12 +113,12 @@ class AuditLogApiKeyCreated
     }
 
     /**
-    * Sets data.
-    *
-    * @param AuditLogApiKeyCreatedData|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param AuditLogApiKeyCreatedData|null $data
+     *
+     * @return $this
+     */
     public function setData(?AuditLogApiKeyCreatedData $data = null): self
     {
         $this->data = $data;

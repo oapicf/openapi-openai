@@ -23,11 +23,13 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RunObjectRequiredAction(
 
-    @Schema(example = "null", required = true, description = "For now, this is always `submit_tool_outputs`.")
+    @Schema(required = true, description = "For now, this is always `submit_tool_outputs`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RunObjectRequiredAction.Type,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("submit_tool_outputs")
     @get:JsonProperty("submit_tool_outputs", required = true) val submitToolOutputs: RunObjectRequiredActionSubmitToolOutputs
 ) {
 
@@ -44,7 +46,7 @@ data class RunObjectRequiredAction(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RunObjectRequiredAction'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

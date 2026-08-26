@@ -85,7 +85,7 @@ AuditLog_project::getId()
 }
 
 void
-AuditLog_project::setId(std::string  id)
+AuditLog_project::setId(std::string id)
 {
 	this->id = id;
 }
@@ -97,7 +97,7 @@ AuditLog_project::getName()
 }
 
 void
-AuditLog_project::setName(std::string  name)
+AuditLog_project::setName(std::string name)
 {
 	this->name = name;
 }

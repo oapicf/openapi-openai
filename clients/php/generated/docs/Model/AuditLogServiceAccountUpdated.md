@@ -1,4 +1,4 @@
-# # AuditLogServiceAccountUpdated
+# AuditLogServiceAccountUpdated
 
 ## Properties
 

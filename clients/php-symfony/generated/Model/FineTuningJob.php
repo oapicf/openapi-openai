@@ -51,7 +51,7 @@ class FineTuningJob
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class FineTuningJob
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -71,7 +71,7 @@ class FineTuningJob
      * @var FineTuningJobError|null
      * @SerializedName("error")
      * @Type("OpenAPI\Server\Model\FineTuningJobError")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\FineTuningJobError")]
@@ -83,7 +83,7 @@ class FineTuningJob
      * @var string|null
      * @SerializedName("fine_tuned_model")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $fineTunedModel = null;
@@ -94,7 +94,7 @@ class FineTuningJob
      * @var int|null
      * @SerializedName("finished_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $finishedAt = null;
@@ -103,7 +103,7 @@ class FineTuningJob
      * @var FineTuningJobHyperparameters|null
      * @SerializedName("hyperparameters")
      * @Type("OpenAPI\Server\Model\FineTuningJobHyperparameters")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\FineTuningJobHyperparameters")]
@@ -115,7 +115,7 @@ class FineTuningJob
      * @var string|null
      * @SerializedName("model")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $model = null;
@@ -126,7 +126,7 @@ class FineTuningJob
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['fine_tuning.job'])]
     #[Assert\Type("string")]
@@ -138,7 +138,7 @@ class FineTuningJob
      * @var string|null
      * @SerializedName("organization_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $organizationId = null;
@@ -149,7 +149,7 @@ class FineTuningJob
      * @var string[]|null
      * @SerializedName("result_files")
      * @Type("array<string>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Type("string"),
@@ -162,7 +162,7 @@ class FineTuningJob
      * @var string|null
      * @SerializedName("status")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['validating_files', 'queued', 'running', 'succeeded', 'failed', 'cancelled'])]
     #[Assert\Type("string")]
@@ -174,7 +174,7 @@ class FineTuningJob
      * @var int|null
      * @SerializedName("trained_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $trainedTokens = null;
@@ -185,7 +185,7 @@ class FineTuningJob
      * @var string|null
      * @SerializedName("training_file")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $trainingFile = null;
@@ -196,7 +196,7 @@ class FineTuningJob
      * @var string|null
      * @SerializedName("validation_file")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $validationFile = null;
@@ -207,7 +207,7 @@ class FineTuningJob
      * @var FineTuningJobIntegrationsInner[]|null
      * @SerializedName("integrations")
      * @Type("array<OpenAPI\Server\Model\FineTuningJobIntegrationsInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\FineTuningJobIntegrationsInner"),
     ])]
@@ -220,7 +220,7 @@ class FineTuningJob
      * @var int|null
      * @SerializedName("seed")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $seed = null;
@@ -231,7 +231,7 @@ class FineTuningJob
      * @var int|null
      * @SerializedName("estimated_finish")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $estimatedFinish = null;
 
@@ -239,7 +239,7 @@ class FineTuningJob
      * @var FineTuneMethod|null
      * @SerializedName("method")
      * @Type("OpenAPI\Server\Model\FineTuneMethod")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\FineTuneMethod")]
     protected ?FineTuneMethod $method = null;
 
@@ -282,12 +282,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The object identifier, which can be referenced in the API endpoints.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The object identifier, which can be referenced in the API endpoints.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -309,12 +309,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) for when the fine-tuning job was created.
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) for when the fine-tuning job was created.
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -336,12 +336,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets error.
-    *
-    * @param FineTuningJobError|null $error
-    *
-    * @return $this
-    */
+     * Sets error.
+     *
+     * @param FineTuningJobError|null $error
+     *
+     * @return $this
+     */
     public function setError(?FineTuningJobError $error): self
     {
         $this->error = $error;
@@ -363,12 +363,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets fineTunedModel.
-    *
-    * @param string|null $fineTunedModel  The name of the fine-tuned model that is being created. The value will be null if the fine-tuning job is still running.
-    *
-    * @return $this
-    */
+     * Sets fineTunedModel.
+     *
+     * @param string|null $fineTunedModel  The name of the fine-tuned model that is being created. The value will be null if the fine-tuning job is still running.
+     *
+     * @return $this
+     */
     public function setFineTunedModel(?string $fineTunedModel): self
     {
         $this->fineTunedModel = $fineTunedModel;
@@ -390,12 +390,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets finishedAt.
-    *
-    * @param int|null $finishedAt  The Unix timestamp (in seconds) for when the fine-tuning job was finished. The value will be null if the fine-tuning job is still running.
-    *
-    * @return $this
-    */
+     * Sets finishedAt.
+     *
+     * @param int|null $finishedAt  The Unix timestamp (in seconds) for when the fine-tuning job was finished. The value will be null if the fine-tuning job is still running.
+     *
+     * @return $this
+     */
     public function setFinishedAt(?int $finishedAt): self
     {
         $this->finishedAt = $finishedAt;
@@ -417,12 +417,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets hyperparameters.
-    *
-    * @param FineTuningJobHyperparameters|null $hyperparameters
-    *
-    * @return $this
-    */
+     * Sets hyperparameters.
+     *
+     * @param FineTuningJobHyperparameters|null $hyperparameters
+     *
+     * @return $this
+     */
     public function setHyperparameters(?FineTuningJobHyperparameters $hyperparameters): self
     {
         $this->hyperparameters = $hyperparameters;
@@ -444,12 +444,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets model.
-    *
-    * @param string|null $model  The base model that is being fine-tuned.
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param string|null $model  The base model that is being fine-tuned.
+     *
+     * @return $this
+     */
     public function setModel(?string $model): self
     {
         $this->model = $model;
@@ -471,12 +471,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always \"fine_tuning.job\".
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always \"fine_tuning.job\".
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -498,12 +498,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets organizationId.
-    *
-    * @param string|null $organizationId  The organization that owns the fine-tuning job.
-    *
-    * @return $this
-    */
+     * Sets organizationId.
+     *
+     * @param string|null $organizationId  The organization that owns the fine-tuning job.
+     *
+     * @return $this
+     */
     public function setOrganizationId(?string $organizationId): self
     {
         $this->organizationId = $organizationId;
@@ -525,12 +525,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets resultFiles.
-    *
-    * @param string[]|null $resultFiles  The compiled results file ID(s) for the fine-tuning job. You can retrieve the results with the [Files API](/docs/api-reference/files/retrieve-contents).
-    *
-    * @return $this
-    */
+     * Sets resultFiles.
+     *
+     * @param string[]|null $resultFiles  The compiled results file ID(s) for the fine-tuning job. You can retrieve the results with the [Files API](/docs/api-reference/files/retrieve-contents).
+     *
+     * @return $this
+     */
     public function setResultFiles(?array $resultFiles): self
     {
         $this->resultFiles = $resultFiles;
@@ -552,12 +552,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets status.
-    *
-    * @param string|null $status  The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.
-    *
-    * @return $this
-    */
+     * Sets status.
+     *
+     * @param string|null $status  The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.
+     *
+     * @return $this
+     */
     public function setStatus(?string $status): self
     {
         $this->status = $status;
@@ -579,12 +579,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets trainedTokens.
-    *
-    * @param int|null $trainedTokens  The total number of billable tokens processed by this fine-tuning job. The value will be null if the fine-tuning job is still running.
-    *
-    * @return $this
-    */
+     * Sets trainedTokens.
+     *
+     * @param int|null $trainedTokens  The total number of billable tokens processed by this fine-tuning job. The value will be null if the fine-tuning job is still running.
+     *
+     * @return $this
+     */
     public function setTrainedTokens(?int $trainedTokens): self
     {
         $this->trainedTokens = $trainedTokens;
@@ -606,12 +606,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets trainingFile.
-    *
-    * @param string|null $trainingFile  The file ID used for training. You can retrieve the training data with the [Files API](/docs/api-reference/files/retrieve-contents).
-    *
-    * @return $this
-    */
+     * Sets trainingFile.
+     *
+     * @param string|null $trainingFile  The file ID used for training. You can retrieve the training data with the [Files API](/docs/api-reference/files/retrieve-contents).
+     *
+     * @return $this
+     */
     public function setTrainingFile(?string $trainingFile): self
     {
         $this->trainingFile = $trainingFile;
@@ -633,12 +633,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets validationFile.
-    *
-    * @param string|null $validationFile  The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents).
-    *
-    * @return $this
-    */
+     * Sets validationFile.
+     *
+     * @param string|null $validationFile  The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents).
+     *
+     * @return $this
+     */
     public function setValidationFile(?string $validationFile): self
     {
         $this->validationFile = $validationFile;
@@ -660,12 +660,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets integrations.
-    *
-    * @param FineTuningJobIntegrationsInner[]|null $integrations  A list of integrations to enable for this fine-tuning job.
-    *
-    * @return $this
-    */
+     * Sets integrations.
+     *
+     * @param FineTuningJobIntegrationsInner[]|null $integrations  A list of integrations to enable for this fine-tuning job.
+     *
+     * @return $this
+     */
     public function setIntegrations(?array $integrations = null): self
     {
         $this->integrations = $integrations;
@@ -687,12 +687,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets seed.
-    *
-    * @param int|null $seed  The seed used for the fine-tuning job.
-    *
-    * @return $this
-    */
+     * Sets seed.
+     *
+     * @param int|null $seed  The seed used for the fine-tuning job.
+     *
+     * @return $this
+     */
     public function setSeed(?int $seed): self
     {
         $this->seed = $seed;
@@ -714,12 +714,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets estimatedFinish.
-    *
-    * @param int|null $estimatedFinish  The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
-    *
-    * @return $this
-    */
+     * Sets estimatedFinish.
+     *
+     * @param int|null $estimatedFinish  The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+     *
+     * @return $this
+     */
     public function setEstimatedFinish(?int $estimatedFinish = null): self
     {
         $this->estimatedFinish = $estimatedFinish;
@@ -741,12 +741,12 @@ class FineTuningJob
     }
 
     /**
-    * Sets method.
-    *
-    * @param FineTuneMethod|null $method
-    *
-    * @return $this
-    */
+     * Sets method.
+     *
+     * @param FineTuneMethod|null $method
+     *
+     * @return $this
+     */
     public function setMethod(?FineTuneMethod $method = null): self
     {
         $this->method = $method;

@@ -67,10 +67,10 @@ function Initialize-ChatCompletionResponseMessageAudio {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "expires_at" = ${ExpiresAt}
-            "data" = ${VarData}
-            "transcript" = ${Transcript}
+            'id' = ${Id}
+            'expires_at' = ${ExpiresAt}
+            'data' = ${VarData}
+            'transcript' = ${Transcript}
         }
 
 
@@ -108,7 +108,7 @@ function ConvertFrom-JsonToChatCompletionResponseMessageAudio {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ChatCompletionResponseMessageAudio
-        $AllProperties = ("id", "expires_at", "data", "transcript")
+        $AllProperties = ('id', 'expires_at', 'data', 'transcript')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -119,35 +119,35 @@ function ConvertFrom-JsonToChatCompletionResponseMessageAudio {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expires_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'expires_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'expires_at' missing."
         } else {
-            $ExpiresAt = $JsonParameters.PSobject.Properties["expires_at"].value
+            $ExpiresAt = $JsonParameters.PSobject.Properties['expires_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "data"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'data'))) {
             throw "Error! JSON cannot be serialized due to the required property 'data' missing."
         } else {
-            $VarData = $JsonParameters.PSobject.Properties["data"].value
+            $VarData = $JsonParameters.PSobject.Properties['data'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "transcript"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'transcript'))) {
             throw "Error! JSON cannot be serialized due to the required property 'transcript' missing."
         } else {
-            $Transcript = $JsonParameters.PSobject.Properties["transcript"].value
+            $Transcript = $JsonParameters.PSobject.Properties['transcript'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "expires_at" = ${ExpiresAt}
-            "data" = ${VarData}
-            "transcript" = ${Transcript}
+            'id' = ${Id}
+            'expires_at' = ${ExpiresAt}
+            'data' = ${VarData}
+            'transcript' = ${Transcript}
         }
 
         return $PSO

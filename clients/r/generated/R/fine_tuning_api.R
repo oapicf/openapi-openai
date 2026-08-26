@@ -148,10 +148,11 @@ FineTuningApi <- R6::R6Class(
     #' @param fine_tuning_job_id The ID of the fine-tuning job to cancel. 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return FineTuningJob
-    CancelFineTuningJob = function(fine_tuning_job_id, data_file = NULL, ...) {
-      local_var_response <- self$CancelFineTuningJobWithHttpInfo(fine_tuning_job_id, data_file = data_file, ...)
+    CancelFineTuningJob = function(fine_tuning_job_id, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$CancelFineTuningJobWithHttpInfo(fine_tuning_job_id, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -169,9 +170,10 @@ FineTuningApi <- R6::R6Class(
     #' @param fine_tuning_job_id The ID of the fine-tuning job to cancel. 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (FineTuningJob) with additional information such as HTTP status code, headers
-    CancelFineTuningJobWithHttpInfo = function(fine_tuning_job_id, data_file = NULL, ...) {
+    CancelFineTuningJobWithHttpInfo = function(fine_tuning_job_id, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -223,6 +225,10 @@ FineTuningApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "FineTuningJob"),
@@ -236,11 +242,15 @@ FineTuningApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -253,10 +263,11 @@ FineTuningApi <- R6::R6Class(
     #' @param create_fine_tuning_job_request 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return FineTuningJob
-    CreateFineTuningJob = function(create_fine_tuning_job_request, data_file = NULL, ...) {
-      local_var_response <- self$CreateFineTuningJobWithHttpInfo(create_fine_tuning_job_request, data_file = data_file, ...)
+    CreateFineTuningJob = function(create_fine_tuning_job_request, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$CreateFineTuningJobWithHttpInfo(create_fine_tuning_job_request, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -274,9 +285,10 @@ FineTuningApi <- R6::R6Class(
     #' @param create_fine_tuning_job_request 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (FineTuningJob) with additional information such as HTTP status code, headers
-    CreateFineTuningJobWithHttpInfo = function(create_fine_tuning_job_request, data_file = NULL, ...) {
+    CreateFineTuningJobWithHttpInfo = function(create_fine_tuning_job_request, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -330,6 +342,10 @@ FineTuningApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "FineTuningJob"),
@@ -343,11 +359,15 @@ FineTuningApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -362,10 +382,11 @@ FineTuningApi <- R6::R6Class(
     #' @param limit (optional) Number of events to retrieve. (default value: 20)
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return ListFineTuningJobEventsResponse
-    ListFineTuningEvents = function(fine_tuning_job_id, after = NULL, limit = 20, data_file = NULL, ...) {
-      local_var_response <- self$ListFineTuningEventsWithHttpInfo(fine_tuning_job_id, after, limit, data_file = data_file, ...)
+    ListFineTuningEvents = function(fine_tuning_job_id, after = NULL, limit = 20, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$ListFineTuningEventsWithHttpInfo(fine_tuning_job_id, after, limit, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -385,9 +406,10 @@ FineTuningApi <- R6::R6Class(
     #' @param limit (optional) Number of events to retrieve. (default value: 20)
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (ListFineTuningJobEventsResponse) with additional information such as HTTP status code, headers
-    ListFineTuningEventsWithHttpInfo = function(fine_tuning_job_id, after = NULL, limit = 20, data_file = NULL, ...) {
+    ListFineTuningEventsWithHttpInfo = function(fine_tuning_job_id, after = NULL, limit = 20, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -451,6 +473,10 @@ FineTuningApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "ListFineTuningJobEventsResponse"),
@@ -464,11 +490,15 @@ FineTuningApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -483,10 +513,11 @@ FineTuningApi <- R6::R6Class(
     #' @param limit (optional) Number of checkpoints to retrieve. (default value: 10)
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return ListFineTuningJobCheckpointsResponse
-    ListFineTuningJobCheckpoints = function(fine_tuning_job_id, after = NULL, limit = 10, data_file = NULL, ...) {
-      local_var_response <- self$ListFineTuningJobCheckpointsWithHttpInfo(fine_tuning_job_id, after, limit, data_file = data_file, ...)
+    ListFineTuningJobCheckpoints = function(fine_tuning_job_id, after = NULL, limit = 10, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$ListFineTuningJobCheckpointsWithHttpInfo(fine_tuning_job_id, after, limit, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -506,9 +537,10 @@ FineTuningApi <- R6::R6Class(
     #' @param limit (optional) Number of checkpoints to retrieve. (default value: 10)
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (ListFineTuningJobCheckpointsResponse) with additional information such as HTTP status code, headers
-    ListFineTuningJobCheckpointsWithHttpInfo = function(fine_tuning_job_id, after = NULL, limit = 10, data_file = NULL, ...) {
+    ListFineTuningJobCheckpointsWithHttpInfo = function(fine_tuning_job_id, after = NULL, limit = 10, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -572,6 +604,10 @@ FineTuningApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "ListFineTuningJobCheckpointsResponse"),
@@ -585,11 +621,15 @@ FineTuningApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -603,10 +643,11 @@ FineTuningApi <- R6::R6Class(
     #' @param limit (optional) Number of fine-tuning jobs to retrieve. (default value: 20)
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return ListPaginatedFineTuningJobsResponse
-    ListPaginatedFineTuningJobs = function(after = NULL, limit = 20, data_file = NULL, ...) {
-      local_var_response <- self$ListPaginatedFineTuningJobsWithHttpInfo(after, limit, data_file = data_file, ...)
+    ListPaginatedFineTuningJobs = function(after = NULL, limit = 20, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$ListPaginatedFineTuningJobsWithHttpInfo(after, limit, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -625,9 +666,10 @@ FineTuningApi <- R6::R6Class(
     #' @param limit (optional) Number of fine-tuning jobs to retrieve. (default value: 20)
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (ListPaginatedFineTuningJobsResponse) with additional information such as HTTP status code, headers
-    ListPaginatedFineTuningJobsWithHttpInfo = function(after = NULL, limit = 20, data_file = NULL, ...) {
+    ListPaginatedFineTuningJobsWithHttpInfo = function(after = NULL, limit = 20, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -679,6 +721,10 @@ FineTuningApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "ListPaginatedFineTuningJobsResponse"),
@@ -692,11 +738,15 @@ FineTuningApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -709,10 +759,11 @@ FineTuningApi <- R6::R6Class(
     #' @param fine_tuning_job_id The ID of the fine-tuning job. 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return FineTuningJob
-    RetrieveFineTuningJob = function(fine_tuning_job_id, data_file = NULL, ...) {
-      local_var_response <- self$RetrieveFineTuningJobWithHttpInfo(fine_tuning_job_id, data_file = data_file, ...)
+    RetrieveFineTuningJob = function(fine_tuning_job_id, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$RetrieveFineTuningJobWithHttpInfo(fine_tuning_job_id, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -730,9 +781,10 @@ FineTuningApi <- R6::R6Class(
     #' @param fine_tuning_job_id The ID of the fine-tuning job. 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (FineTuningJob) with additional information such as HTTP status code, headers
-    RetrieveFineTuningJobWithHttpInfo = function(fine_tuning_job_id, data_file = NULL, ...) {
+    RetrieveFineTuningJobWithHttpInfo = function(fine_tuning_job_id, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -784,6 +836,10 @@ FineTuningApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "FineTuningJob"),
@@ -797,11 +853,15 @@ FineTuningApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)

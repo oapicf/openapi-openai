@@ -24,7 +24,7 @@ openai_api_upload_part_OBJECT_e upload_part_object_FromString(char* object){
 
 static upload_part_t *upload_part_create_internal(
     char *id,
-    int created_at,
+    int *created_at,
     char *upload_id,
     openai_api_upload_part_OBJECT_e object
     ) {
@@ -32,27 +32,36 @@ static upload_part_t *upload_part_create_internal(
     if (!upload_part_local_var) {
         return NULL;
     }
+    memset(upload_part_local_var, 0, sizeof(upload_part_t));
+    upload_part_local_var->_library_owned = 1;
     upload_part_local_var->id = id;
     upload_part_local_var->created_at = created_at;
     upload_part_local_var->upload_id = upload_id;
     upload_part_local_var->object = object;
-
-    upload_part_local_var->_library_owned = 1;
     return upload_part_local_var;
 }
 
 __attribute__((deprecated)) upload_part_t *upload_part_create(
     char *id,
-    int created_at,
+    int *created_at,
     char *upload_id,
     openai_api_upload_part_OBJECT_e object
     ) {
-    return upload_part_create_internal (
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    upload_part_t *result = upload_part_create_internal (
         id,
-        created_at,
+        created_at_copy,
         upload_id,
         object
         );
+    if (!result) {
+        free(created_at_copy);
+    }
+    return result;
 }
 
 void upload_part_free(upload_part_t *upload_part) {
@@ -67,6 +76,10 @@ void upload_part_free(upload_part_t *upload_part) {
     if (upload_part->id) {
         free(upload_part->id);
         upload_part->id = NULL;
+    }
+    if (upload_part->created_at) {
+        free(upload_part->created_at);
+        upload_part->created_at = NULL;
     }
     if (upload_part->upload_id) {
         free(upload_part->upload_id);
@@ -91,7 +104,7 @@ cJSON *upload_part_convertToJSON(upload_part_t *upload_part) {
     if (!upload_part->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", upload_part->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *upload_part->created_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -126,6 +139,13 @@ upload_part_t *upload_part_parseFromJSON(cJSON *upload_partJSON){
 
     upload_part_t *upload_part_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    // define the local variable for upload_part->created_at
+    int *created_at_local_var = NULL;
+
+    char *upload_id_local_str = NULL;
+
     // upload_part->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(upload_partJSON, "id");
     if (cJSON_IsNull(id)) {
@@ -155,6 +175,12 @@ upload_part_t *upload_part_parseFromJSON(cJSON *upload_partJSON){
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
     // upload_part->upload_id
     cJSON *upload_id = cJSON_GetObjectItemCaseSensitive(upload_partJSON, "upload_id");
@@ -189,15 +215,34 @@ upload_part_t *upload_part_parseFromJSON(cJSON *upload_partJSON){
     objectVariable = upload_part_object_FromString(object->valuestring);
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (upload_id && !cJSON_IsNull(upload_id)) upload_id_local_str = strdup(upload_id->valuestring);
+
     upload_part_local_var = upload_part_create_internal (
-        strdup(id->valuestring),
-        created_at->valuedouble,
-        strdup(upload_id->valuestring),
+        id_local_str,
+        created_at_local_var,
+        upload_id_local_str,
         objectVariable
         );
 
+    if (!upload_part_local_var) {
+        goto end;
+    }
+
     return upload_part_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
+    if (upload_id_local_str) {
+        free(upload_id_local_str);
+        upload_id_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -215,8 +215,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateChatCompletionResponseChoicesInner" />
     /// </summary>
-    public class CreateChatCompletionResponseChoicesInnerJsonConverter : JsonConverter<CreateChatCompletionResponseChoicesInner>
+    public partial class CreateChatCompletionResponseChoicesInnerJsonConverter : JsonConverter<CreateChatCompletionResponseChoicesInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateChatCompletionResponseChoicesInnerJsonConverter" /> class.
+        /// </summary>
+        public CreateChatCompletionResponseChoicesInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateChatCompletionResponseChoicesInner" />
         /// </summary>

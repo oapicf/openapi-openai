@@ -108,7 +108,7 @@ MessageContentTextAnnotationsFileCitationObject <- R6::R6Class(
       }
       if (!is.null(self$`file_citation`)) {
         MessageContentTextAnnotationsFileCitationObjectObject[["file_citation"]] <-
-          self$`file_citation`$toSimpleType()
+          self$extractSimpleType(self$`file_citation`)
       }
       if (!is.null(self$`start_index`)) {
         MessageContentTextAnnotationsFileCitationObjectObject[["start_index"]] <-
@@ -119,6 +119,29 @@ MessageContentTextAnnotationsFileCitationObject <- R6::R6Class(
           self$`end_index`
       }
       return(MessageContentTextAnnotationsFileCitationObjectObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

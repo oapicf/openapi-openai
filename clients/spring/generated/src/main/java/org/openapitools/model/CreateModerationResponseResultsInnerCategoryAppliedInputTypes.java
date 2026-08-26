@@ -12,13 +12,13 @@ import java.util.List;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * A list of the categories along with the input type(s) that the score applies to.
@@ -26,7 +26,7 @@ import javax.annotation.Generated;
 
 @Schema(name = "CreateModerationResponse_results_inner_category_applied_input_types", description = "A list of the categories along with the input type(s) that the score applies to.")
 @JsonTypeName("CreateModerationResponse_results_inner_category_applied_input_types")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
 
   /**
@@ -62,7 +62,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<HateEnum> hate = new ArrayList<>();
 
   /**
@@ -98,7 +97,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<HateThreateningEnum> hateThreatening = new ArrayList<>();
 
   /**
@@ -134,7 +132,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<HarassmentEnum> harassment = new ArrayList<>();
 
   /**
@@ -170,7 +167,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<HarassmentThreateningEnum> harassmentThreatening = new ArrayList<>();
 
   /**
@@ -206,7 +202,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<IllicitEnum> illicit = new ArrayList<>();
 
   /**
@@ -242,7 +237,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<IllicitViolentEnum> illicitViolent = new ArrayList<>();
 
   /**
@@ -280,7 +274,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<SelfHarmEnum> selfHarm = new ArrayList<>();
 
   /**
@@ -318,7 +311,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<SelfHarmIntentEnum> selfHarmIntent = new ArrayList<>();
 
   /**
@@ -356,7 +348,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<SelfHarmInstructionsEnum> selfHarmInstructions = new ArrayList<>();
 
   /**
@@ -394,7 +385,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<SexualEnum> sexual = new ArrayList<>();
 
   /**
@@ -430,7 +420,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<SexualMinorsEnum> sexualMinors = new ArrayList<>();
 
   /**
@@ -468,7 +457,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<ViolenceEnum> violence = new ArrayList<>();
 
   /**
@@ -506,7 +494,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<ViolenceGraphicEnum> violenceGraphic = new ArrayList<>();
 
   public CreateModerationResponseResultsInnerCategoryAppliedInputTypes() {
@@ -556,6 +543,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     return hate;
   }
 
+  @JsonProperty("hate")
   public void setHate(List<HateEnum> hate) {
     this.hate = hate;
   }
@@ -584,6 +572,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     return hateThreatening;
   }
 
+  @JsonProperty("hate/threatening")
   public void setHateThreatening(List<HateThreateningEnum> hateThreatening) {
     this.hateThreatening = hateThreatening;
   }
@@ -612,6 +601,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     return harassment;
   }
 
+  @JsonProperty("harassment")
   public void setHarassment(List<HarassmentEnum> harassment) {
     this.harassment = harassment;
   }
@@ -640,6 +630,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     return harassmentThreatening;
   }
 
+  @JsonProperty("harassment/threatening")
   public void setHarassmentThreatening(List<HarassmentThreateningEnum> harassmentThreatening) {
     this.harassmentThreatening = harassmentThreatening;
   }
@@ -668,6 +659,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     return illicit;
   }
 
+  @JsonProperty("illicit")
   public void setIllicit(List<IllicitEnum> illicit) {
     this.illicit = illicit;
   }
@@ -696,6 +688,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     return illicitViolent;
   }
 
+  @JsonProperty("illicit/violent")
   public void setIllicitViolent(List<IllicitViolentEnum> illicitViolent) {
     this.illicitViolent = illicitViolent;
   }
@@ -724,6 +717,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     return selfHarm;
   }
 
+  @JsonProperty("self-harm")
   public void setSelfHarm(List<SelfHarmEnum> selfHarm) {
     this.selfHarm = selfHarm;
   }
@@ -752,6 +746,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     return selfHarmIntent;
   }
 
+  @JsonProperty("self-harm/intent")
   public void setSelfHarmIntent(List<SelfHarmIntentEnum> selfHarmIntent) {
     this.selfHarmIntent = selfHarmIntent;
   }
@@ -780,6 +775,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     return selfHarmInstructions;
   }
 
+  @JsonProperty("self-harm/instructions")
   public void setSelfHarmInstructions(List<SelfHarmInstructionsEnum> selfHarmInstructions) {
     this.selfHarmInstructions = selfHarmInstructions;
   }
@@ -808,6 +804,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     return sexual;
   }
 
+  @JsonProperty("sexual")
   public void setSexual(List<SexualEnum> sexual) {
     this.sexual = sexual;
   }
@@ -836,6 +833,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     return sexualMinors;
   }
 
+  @JsonProperty("sexual/minors")
   public void setSexualMinors(List<SexualMinorsEnum> sexualMinors) {
     this.sexualMinors = sexualMinors;
   }
@@ -864,6 +862,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     return violence;
   }
 
+  @JsonProperty("violence")
   public void setViolence(List<ViolenceEnum> violence) {
     this.violence = violence;
   }
@@ -892,6 +891,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     return violenceGraphic;
   }
 
+  @JsonProperty("violence/graphic")
   public void setViolenceGraphic(List<ViolenceGraphicEnum> violenceGraphic) {
     this.violenceGraphic = violenceGraphic;
   }
@@ -950,11 +950,8 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

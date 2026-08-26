@@ -63,10 +63,10 @@ function Initialize-FineTuneChatRequestInput {
 
 
         $PSO = [PSCustomObject]@{
-            "messages" = ${Messages}
-            "tools" = ${Tools}
-            "parallel_tool_calls" = ${ParallelToolCalls}
-            "functions" = ${Functions}
+            'messages' = ${Messages}
+            'tools' = ${Tools}
+            'parallel_tool_calls' = ${ParallelToolCalls}
+            'functions' = ${Functions}
         }
 
 
@@ -104,42 +104,42 @@ function ConvertFrom-JsonToFineTuneChatRequestInput {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in FineTuneChatRequestInput
-        $AllProperties = ("messages", "tools", "parallel_tool_calls", "functions")
+        $AllProperties = ('messages', 'tools', 'parallel_tool_calls', 'functions')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "messages"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'messages'))) { #optional property not found
             $Messages = $null
         } else {
-            $Messages = $JsonParameters.PSobject.Properties["messages"].value
+            $Messages = $JsonParameters.PSobject.Properties['messages'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tools"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tools'))) { #optional property not found
             $Tools = $null
         } else {
-            $Tools = $JsonParameters.PSobject.Properties["tools"].value
+            $Tools = $JsonParameters.PSobject.Properties['tools'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "parallel_tool_calls"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'parallel_tool_calls'))) { #optional property not found
             $ParallelToolCalls = $null
         } else {
-            $ParallelToolCalls = $JsonParameters.PSobject.Properties["parallel_tool_calls"].value
+            $ParallelToolCalls = $JsonParameters.PSobject.Properties['parallel_tool_calls'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "functions"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'functions'))) { #optional property not found
             $Functions = $null
         } else {
-            $Functions = $JsonParameters.PSobject.Properties["functions"].value
+            $Functions = $JsonParameters.PSobject.Properties['functions'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "messages" = ${Messages}
-            "tools" = ${Tools}
-            "parallel_tool_calls" = ${ParallelToolCalls}
-            "functions" = ${Functions}
+            'messages' = ${Messages}
+            'tools' = ${Tools}
+            'parallel_tool_calls' = ${ParallelToolCalls}
+            'functions' = ${Functions}
         }
 
         return $PSO

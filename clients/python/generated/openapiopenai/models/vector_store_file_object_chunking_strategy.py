@@ -19,23 +19,23 @@ import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
 from openapiopenai.models.other_chunking_strategy_response_param import OtherChunkingStrategyResponseParam
-from openapiopenai.models.static_chunking_strategy_response_param import StaticChunkingStrategyResponseParam
+from openapiopenai.models.static_chunking_strategy_request_param import StaticChunkingStrategyRequestParam
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-VECTORSTOREFILEOBJECTCHUNKINGSTRATEGY_ONE_OF_SCHEMAS = ["OtherChunkingStrategyResponseParam", "StaticChunkingStrategyResponseParam"]
+VECTORSTOREFILEOBJECTCHUNKINGSTRATEGY_ONE_OF_SCHEMAS = ["OtherChunkingStrategyResponseParam", "StaticChunkingStrategyRequestParam"]
 
 class VectorStoreFileObjectChunkingStrategy(BaseModel):
     """
     The strategy used to chunk the file.
     """
-    # data type: StaticChunkingStrategyResponseParam
-    oneof_schema_1_validator: Optional[StaticChunkingStrategyResponseParam] = None
+    # data type: StaticChunkingStrategyRequestParam
+    oneof_schema_1_validator: Optional[StaticChunkingStrategyRequestParam] = None
     # data type: OtherChunkingStrategyResponseParam
     oneof_schema_2_validator: Optional[OtherChunkingStrategyResponseParam] = None
-    actual_instance: Optional[Union[OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam]] = None
-    one_of_schemas: Set[str] = { "OtherChunkingStrategyResponseParam", "StaticChunkingStrategyResponseParam" }
+    actual_instance: Optional[Union[OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam]] = None
+    one_of_schemas: Set[str] = { "OtherChunkingStrategyResponseParam", "StaticChunkingStrategyRequestParam" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -58,9 +58,9 @@ class VectorStoreFileObjectChunkingStrategy(BaseModel):
         instance = VectorStoreFileObjectChunkingStrategy.model_construct()
         error_messages = []
         match = 0
-        # validate data type: StaticChunkingStrategyResponseParam
-        if not isinstance(v, StaticChunkingStrategyResponseParam):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `StaticChunkingStrategyResponseParam`")
+        # validate data type: StaticChunkingStrategyRequestParam
+        if not isinstance(v, StaticChunkingStrategyRequestParam):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `StaticChunkingStrategyRequestParam`")
         else:
             match += 1
         # validate data type: OtherChunkingStrategyResponseParam
@@ -70,10 +70,10 @@ class VectorStoreFileObjectChunkingStrategy(BaseModel):
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in VectorStoreFileObjectChunkingStrategy with oneOf schemas: OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in VectorStoreFileObjectChunkingStrategy with oneOf schemas: OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in VectorStoreFileObjectChunkingStrategy with oneOf schemas: OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in VectorStoreFileObjectChunkingStrategy with oneOf schemas: OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -88,9 +88,9 @@ class VectorStoreFileObjectChunkingStrategy(BaseModel):
         error_messages = []
         match = 0
 
-        # deserialize data into StaticChunkingStrategyResponseParam
+        # deserialize data into StaticChunkingStrategyRequestParam
         try:
-            instance.actual_instance = StaticChunkingStrategyResponseParam.from_json(json_str)
+            instance.actual_instance = StaticChunkingStrategyRequestParam.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
@@ -103,10 +103,10 @@ class VectorStoreFileObjectChunkingStrategy(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into VectorStoreFileObjectChunkingStrategy with oneOf schemas: OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into VectorStoreFileObjectChunkingStrategy with oneOf schemas: OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into VectorStoreFileObjectChunkingStrategy with oneOf schemas: OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into VectorStoreFileObjectChunkingStrategy with oneOf schemas: OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -120,7 +120,7 @@ class VectorStoreFileObjectChunkingStrategy(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

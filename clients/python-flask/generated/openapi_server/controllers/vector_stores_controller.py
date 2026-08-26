@@ -1,4 +1,4 @@
-import connexion
+import flask
 from typing import Dict
 from typing import Tuple
 from typing import Union
@@ -43,8 +43,8 @@ def create_vector_store(body):  # noqa: E501
     :rtype: Union[VectorStoreObject, Tuple[VectorStoreObject, int], Tuple[VectorStoreObject, int, Dict[str, str]]
     """
     create_vector_store_request = body
-    if connexion.request.is_json:
-        create_vector_store_request = CreateVectorStoreRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        create_vector_store_request = CreateVectorStoreRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -61,8 +61,8 @@ def create_vector_store_file(vector_store_id, body):  # noqa: E501
     :rtype: Union[VectorStoreFileObject, Tuple[VectorStoreFileObject, int], Tuple[VectorStoreFileObject, int, Dict[str, str]]
     """
     create_vector_store_file_request = body
-    if connexion.request.is_json:
-        create_vector_store_file_request = CreateVectorStoreFileRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        create_vector_store_file_request = CreateVectorStoreFileRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -79,8 +79,8 @@ def create_vector_store_file_batch(vector_store_id, body):  # noqa: E501
     :rtype: Union[VectorStoreFileBatchObject, Tuple[VectorStoreFileBatchObject, int], Tuple[VectorStoreFileBatchObject, int, Dict[str, str]]
     """
     create_vector_store_file_batch_request = body
-    if connexion.request.is_json:
-        create_vector_store_file_batch_request = CreateVectorStoreFileBatchRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        create_vector_store_file_batch_request = CreateVectorStoreFileBatchRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -235,6 +235,6 @@ def modify_vector_store(vector_store_id, body):  # noqa: E501
     :rtype: Union[VectorStoreObject, Tuple[VectorStoreObject, int], Tuple[VectorStoreObject, int, Dict[str, str]]
     """
     update_vector_store_request = body
-    if connexion.request.is_json:
-        update_vector_store_request = UpdateVectorStoreRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        update_vector_store_request = UpdateVectorStoreRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'

@@ -51,42 +51,42 @@ public:
 
 	/*! \brief Set The object type, which is always `organization.project.user`
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get The identifier, which can be referenced in API endpoints
 	 */
 	std::string getId();
 
 	/*! \brief Set The identifier, which can be referenced in API endpoints
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The name of the user
 	 */
 	std::string getName();
 
 	/*! \brief Set The name of the user
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get The email address of the user
 	 */
 	std::string getEmail();
 
 	/*! \brief Set The email address of the user
 	 */
-	void setEmail(std::string  email);
+	void setEmail(std::string email);
 	/*! \brief Get `owner` or `member`
 	 */
 	std::string getRole();
 
 	/*! \brief Set `owner` or `member`
 	 */
-	void setRole(std::string  role);
+	void setRole(std::string role);
 	/*! \brief Get The Unix timestamp (in seconds) of when the project was added.
 	 */
 	int getAddedAt();
 
 	/*! \brief Set The Unix timestamp (in seconds) of when the project was added.
 	 */
-	void setAddedAt(int  added_at);
+	void setAddedAt(int added_at);
 
 
     private:

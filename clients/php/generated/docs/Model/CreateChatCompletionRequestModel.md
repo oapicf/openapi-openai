@@ -1,4 +1,4 @@
-# # CreateChatCompletionRequestModel
+# CreateChatCompletionRequestModel
 
 ## Properties
 

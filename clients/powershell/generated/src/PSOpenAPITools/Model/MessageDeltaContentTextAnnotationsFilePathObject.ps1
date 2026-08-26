@@ -78,12 +78,12 @@ function Initialize-MessageDeltaContentTextAnnotationsFilePathObject {
 
 
         $PSO = [PSCustomObject]@{
-            "index" = ${Index}
-            "type" = ${Type}
-            "text" = ${Text}
-            "file_path" = ${FilePath}
-            "start_index" = ${StartIndex}
-            "end_index" = ${EndIndex}
+            'index' = ${Index}
+            'type' = ${Type}
+            'text' = ${Text}
+            'file_path' = ${FilePath}
+            'start_index' = ${StartIndex}
+            'end_index' = ${EndIndex}
         }
 
 
@@ -121,7 +121,7 @@ function ConvertFrom-JsonToMessageDeltaContentTextAnnotationsFilePathObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in MessageDeltaContentTextAnnotationsFilePathObject
-        $AllProperties = ("index", "type", "text", "file_path", "start_index", "end_index")
+        $AllProperties = ('index', 'type', 'text', 'file_path', 'start_index', 'end_index')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -132,49 +132,49 @@ function ConvertFrom-JsonToMessageDeltaContentTextAnnotationsFilePathObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'index' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "index"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'index'))) {
             throw "Error! JSON cannot be serialized due to the required property 'index' missing."
         } else {
-            $Index = $JsonParameters.PSobject.Properties["index"].value
+            $Index = $JsonParameters.PSobject.Properties['index'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "text"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'text'))) { #optional property not found
             $Text = $null
         } else {
-            $Text = $JsonParameters.PSobject.Properties["text"].value
+            $Text = $JsonParameters.PSobject.Properties['text'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_path"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_path'))) { #optional property not found
             $FilePath = $null
         } else {
-            $FilePath = $JsonParameters.PSobject.Properties["file_path"].value
+            $FilePath = $JsonParameters.PSobject.Properties['file_path'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "start_index"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'start_index'))) { #optional property not found
             $StartIndex = $null
         } else {
-            $StartIndex = $JsonParameters.PSobject.Properties["start_index"].value
+            $StartIndex = $JsonParameters.PSobject.Properties['start_index'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "end_index"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'end_index'))) { #optional property not found
             $EndIndex = $null
         } else {
-            $EndIndex = $JsonParameters.PSobject.Properties["end_index"].value
+            $EndIndex = $JsonParameters.PSobject.Properties['end_index'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "index" = ${Index}
-            "type" = ${Type}
-            "text" = ${Text}
-            "file_path" = ${FilePath}
-            "start_index" = ${StartIndex}
-            "end_index" = ${EndIndex}
+            'index' = ${Index}
+            'type' = ${Type}
+            'text' = ${Text}
+            'file_path' = ${FilePath}
+            'start_index' = ${StartIndex}
+            'end_index' = ${EndIndex}
         }
 
         return $PSO

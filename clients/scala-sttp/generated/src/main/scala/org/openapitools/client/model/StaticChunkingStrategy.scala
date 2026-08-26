@@ -16,7 +16,7 @@ case class StaticChunkingStrategy(
   /* Always `static`. */
   `type`: StaticChunkingStrategyEnums.`Type`,
   static: StaticChunkingStrategyStatic
-)
+) extends CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
 
 object StaticChunkingStrategyEnums {
 

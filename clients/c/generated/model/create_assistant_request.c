@@ -13,14 +13,16 @@ static create_assistant_request_t *create_assistant_request_create_internal(
     list_t *tools,
     create_assistant_request_tool_resources_t *tool_resources,
     object_t *metadata,
-    double temperature,
-    double top_p,
+    double *temperature,
+    double *top_p,
     assistants_api_response_format_option_t *response_format
     ) {
     create_assistant_request_t *create_assistant_request_local_var = malloc(sizeof(create_assistant_request_t));
     if (!create_assistant_request_local_var) {
         return NULL;
     }
+    memset(create_assistant_request_local_var, 0, sizeof(create_assistant_request_t));
+    create_assistant_request_local_var->_library_owned = 1;
     create_assistant_request_local_var->model = model;
     create_assistant_request_local_var->name = name;
     create_assistant_request_local_var->description = description;
@@ -31,8 +33,6 @@ static create_assistant_request_t *create_assistant_request_create_internal(
     create_assistant_request_local_var->temperature = temperature;
     create_assistant_request_local_var->top_p = top_p;
     create_assistant_request_local_var->response_format = response_format;
-
-    create_assistant_request_local_var->_library_owned = 1;
     return create_assistant_request_local_var;
 }
 
@@ -44,11 +44,21 @@ __attribute__((deprecated)) create_assistant_request_t *create_assistant_request
     list_t *tools,
     create_assistant_request_tool_resources_t *tool_resources,
     object_t *metadata,
-    double temperature,
-    double top_p,
+    double *temperature,
+    double *top_p,
     assistants_api_response_format_option_t *response_format
     ) {
-    return create_assistant_request_create_internal (
+    double *temperature_copy = NULL;
+    if (temperature) {
+        temperature_copy = malloc(sizeof(double));
+        if (temperature_copy) *temperature_copy = *temperature;
+    }
+    double *top_p_copy = NULL;
+    if (top_p) {
+        top_p_copy = malloc(sizeof(double));
+        if (top_p_copy) *top_p_copy = *top_p;
+    }
+    create_assistant_request_t *result = create_assistant_request_create_internal (
         model,
         name,
         description,
@@ -56,10 +66,15 @@ __attribute__((deprecated)) create_assistant_request_t *create_assistant_request
         tools,
         tool_resources,
         metadata,
-        temperature,
-        top_p,
+        temperature_copy,
+        top_p_copy,
         response_format
         );
+    if (!result) {
+        free(temperature_copy);
+        free(top_p_copy);
+    }
+    return result;
 }
 
 void create_assistant_request_free(create_assistant_request_t *create_assistant_request) {
@@ -101,6 +116,14 @@ void create_assistant_request_free(create_assistant_request_t *create_assistant_
     if (create_assistant_request->metadata) {
         object_free(create_assistant_request->metadata);
         create_assistant_request->metadata = NULL;
+    }
+    if (create_assistant_request->temperature) {
+        free(create_assistant_request->temperature);
+        create_assistant_request->temperature = NULL;
+    }
+    if (create_assistant_request->top_p) {
+        free(create_assistant_request->top_p);
+        create_assistant_request->top_p = NULL;
     }
     if (create_assistant_request->response_format) {
         assistants_api_response_format_option_free(create_assistant_request->response_format);
@@ -198,7 +221,7 @@ cJSON *create_assistant_request_convertToJSON(create_assistant_request_t *create
 
     // create_assistant_request->temperature
     if(create_assistant_request->temperature) {
-    if(cJSON_AddNumberToObject(item, "temperature", create_assistant_request->temperature) == NULL) {
+    if(cJSON_AddNumberToObject(item, "temperature", *create_assistant_request->temperature) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -206,7 +229,7 @@ cJSON *create_assistant_request_convertToJSON(create_assistant_request_t *create
 
     // create_assistant_request->top_p
     if(create_assistant_request->top_p) {
-    if(cJSON_AddNumberToObject(item, "top_p", create_assistant_request->top_p) == NULL) {
+    if(cJSON_AddNumberToObject(item, "top_p", *create_assistant_request->top_p) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -239,11 +262,23 @@ create_assistant_request_t *create_assistant_request_parseFromJSON(cJSON *create
     // define the local variable for create_assistant_request->model
     create_assistant_request_model_t *model_local_nonprim = NULL;
 
+    char *name_local_str = NULL;
+
+    char *description_local_str = NULL;
+
+    char *instructions_local_str = NULL;
+
     // define the local list for create_assistant_request->tools
     list_t *toolsList = NULL;
 
     // define the local variable for create_assistant_request->tool_resources
     create_assistant_request_tool_resources_t *tool_resources_local_nonprim = NULL;
+
+    // define the local variable for create_assistant_request->temperature
+    double *temperature_local_var = NULL;
+
+    // define the local variable for create_assistant_request->top_p
+    double *top_p_local_var = NULL;
 
     // define the local variable for create_assistant_request->response_format
     assistants_api_response_format_option_t *response_format_local_nonprim = NULL;
@@ -349,6 +384,12 @@ create_assistant_request_t *create_assistant_request_parseFromJSON(cJSON *create
     {
     goto end; //Numeric
     }
+    temperature_local_var = malloc(sizeof(double));
+    if(!temperature_local_var)
+    {
+        goto end;
+    }
+    *temperature_local_var = temperature->valuedouble;
     }
 
     // create_assistant_request->top_p
@@ -361,6 +402,12 @@ create_assistant_request_t *create_assistant_request_parseFromJSON(cJSON *create
     {
     goto end; //Numeric
     }
+    top_p_local_var = malloc(sizeof(double));
+    if(!top_p_local_var)
+    {
+        goto end;
+    }
+    *top_p_local_var = top_p->valuedouble;
     }
 
     // create_assistant_request->response_format
@@ -373,24 +420,44 @@ create_assistant_request_t *create_assistant_request_parseFromJSON(cJSON *create
     }
 
 
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (description && !cJSON_IsNull(description)) description_local_str = strdup(description->valuestring);
+    if (instructions && !cJSON_IsNull(instructions)) instructions_local_str = strdup(instructions->valuestring);
+
     create_assistant_request_local_var = create_assistant_request_create_internal (
         model_local_nonprim,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
-        instructions && !cJSON_IsNull(instructions) ? strdup(instructions->valuestring) : NULL,
+        name_local_str,
+        description_local_str,
+        instructions_local_str,
         tools ? toolsList : NULL,
         tool_resources ? tool_resources_local_nonprim : NULL,
         metadata ? metadata_local_object : NULL,
-        temperature ? temperature->valuedouble : 0,
-        top_p ? top_p->valuedouble : 0,
+        temperature_local_var,
+        top_p_local_var,
         response_format ? response_format_local_nonprim : NULL
         );
+
+    if (!create_assistant_request_local_var) {
+        goto end;
+    }
 
     return create_assistant_request_local_var;
 end:
     if (model_local_nonprim) {
         create_assistant_request_model_free(model_local_nonprim);
         model_local_nonprim = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (description_local_str) {
+        free(description_local_str);
+        description_local_str = NULL;
+    }
+    if (instructions_local_str) {
+        free(instructions_local_str);
+        instructions_local_str = NULL;
     }
     if (toolsList) {
         listEntry_t *listEntry = NULL;
@@ -404,6 +471,14 @@ end:
     if (tool_resources_local_nonprim) {
         create_assistant_request_tool_resources_free(tool_resources_local_nonprim);
         tool_resources_local_nonprim = NULL;
+    }
+    if (temperature_local_var) {
+        free(temperature_local_var);
+        temperature_local_var = NULL;
+    }
+    if (top_p_local_var) {
+        free(top_p_local_var);
+        top_p_local_var = NULL;
     }
     if (response_format_local_nonprim) {
         assistants_api_response_format_option_free(response_format_local_nonprim);

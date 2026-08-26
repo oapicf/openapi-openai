@@ -68,10 +68,10 @@ function Initialize-CreateUploadRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "filename" = ${Filename}
-            "purpose" = ${Purpose}
-            "bytes" = ${Bytes}
-            "mime_type" = ${MimeType}
+            'filename' = ${Filename}
+            'purpose' = ${Purpose}
+            'bytes' = ${Bytes}
+            'mime_type' = ${MimeType}
         }
 
 
@@ -109,7 +109,7 @@ function ConvertFrom-JsonToCreateUploadRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateUploadRequest
-        $AllProperties = ("filename", "purpose", "bytes", "mime_type")
+        $AllProperties = ('filename', 'purpose', 'bytes', 'mime_type')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -120,35 +120,35 @@ function ConvertFrom-JsonToCreateUploadRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'filename' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filename"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'filename'))) {
             throw "Error! JSON cannot be serialized due to the required property 'filename' missing."
         } else {
-            $Filename = $JsonParameters.PSobject.Properties["filename"].value
+            $Filename = $JsonParameters.PSobject.Properties['filename'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "purpose"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'purpose'))) {
             throw "Error! JSON cannot be serialized due to the required property 'purpose' missing."
         } else {
-            $Purpose = $JsonParameters.PSobject.Properties["purpose"].value
+            $Purpose = $JsonParameters.PSobject.Properties['purpose'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bytes"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'bytes'))) {
             throw "Error! JSON cannot be serialized due to the required property 'bytes' missing."
         } else {
-            $Bytes = $JsonParameters.PSobject.Properties["bytes"].value
+            $Bytes = $JsonParameters.PSobject.Properties['bytes'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mime_type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'mime_type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'mime_type' missing."
         } else {
-            $MimeType = $JsonParameters.PSobject.Properties["mime_type"].value
+            $MimeType = $JsonParameters.PSobject.Properties['mime_type'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "filename" = ${Filename}
-            "purpose" = ${Purpose}
-            "bytes" = ${Bytes}
-            "mime_type" = ${MimeType}
+            'filename' = ${Filename}
+            'purpose' = ${Purpose}
+            'bytes' = ${Bytes}
+            'mime_type' = ${MimeType}
         }
 
         return $PSO

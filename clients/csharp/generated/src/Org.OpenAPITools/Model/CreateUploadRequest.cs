@@ -203,8 +203,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateUploadRequest" />
     /// </summary>
-    public class CreateUploadRequestJsonConverter : JsonConverter<CreateUploadRequest>
+    public partial class CreateUploadRequestJsonConverter : JsonConverter<CreateUploadRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateUploadRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateUploadRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateUploadRequest" />
         /// </summary>

@@ -25,7 +25,8 @@ type CreateCompletionResponseChoicesInnerLogprobs struct {
 	TopLogprobs []map[string]float32 `json:"top_logprobs,omitempty"`
 }
 
-// AssertCreateCompletionResponseChoicesInnerLogprobsRequired checks if the required fields are not zero-ed
+// AssertCreateCompletionResponseChoicesInnerLogprobsRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateCompletionResponseChoicesInnerLogprobsRequired(obj CreateCompletionResponseChoicesInnerLogprobs) error {
 	return nil
 }

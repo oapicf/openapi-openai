@@ -85,7 +85,7 @@ MessageContentImageUrlObject_image_url::getUrl()
 }
 
 void
-MessageContentImageUrlObject_image_url::setUrl(std::string  url)
+MessageContentImageUrlObject_image_url::setUrl(std::string url)
 {
 	this->url = url;
 }
@@ -97,7 +97,7 @@ MessageContentImageUrlObject_image_url::getDetail()
 }
 
 void
-MessageContentImageUrlObject_image_url::setDetail(std::string  detail)
+MessageContentImageUrlObject_image_url::setDetail(std::string detail)
 {
 	this->detail = detail;
 }

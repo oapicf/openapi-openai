@@ -32,7 +32,7 @@ class  RealtimeServerEventInputAudioBufferSpeechStarted
 {
 public:
     RealtimeServerEventInputAudioBufferSpeechStarted();
-    virtual ~RealtimeServerEventInputAudioBufferSpeechStarted() = default;
+    virtual ~RealtimeServerEventInputAudioBufferSpeechStarted();
 
 
     /// <summary>

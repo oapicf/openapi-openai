@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set Optional client-generated ID used to identify this event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `response.cancel`.
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `response.cancel`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get A specific response ID to cancel - if not provided, will cancel an  in-progress response in the default conversation. 
 	 */
 	std::string getResponseId();
 
 	/*! \brief Set A specific response ID to cancel - if not provided, will cancel an  in-progress response in the default conversation. 
 	 */
-	void setResponseId(std::string  response_id);
+	void setResponseId(std::string response_id);
 
 
     private:

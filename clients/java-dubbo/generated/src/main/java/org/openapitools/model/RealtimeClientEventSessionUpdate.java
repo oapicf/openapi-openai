@@ -1,0 +1,108 @@
+package org.openapitools.model;
+
+import org.openapitools.model.RealtimeSessionCreateRequest;
+import java.util.Objects;
+import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.annotation.Generated;
+import java.time.*;
+import java.math.*;
+@Generated(value = "org.openapitools.codegen.languages.JavaDubboServerCodegen", comments = "Generator version: 7.24.0")
+
+/**
+ * Send this event to update the session’s default configuration. The client may  send this event at any time to update the session configuration, and any  field may be updated at any time, except for \&quot;voice\&quot;. The server will respond  with a &#x60;session.updated&#x60; event that shows the full effective configuration.  Only fields that are present are updated, thus the correct way to clear a  field like \&quot;instructions\&quot; is to pass an empty string. 
+ */
+public class RealtimeClientEventSessionUpdate implements Serializable {
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * Optional client-generated ID used to identify this event.
+   */
+  @JsonProperty("event_id")
+  private String eventId;
+
+  /**
+   * The event type, must be &#x60;session.update&#x60;.
+   */
+  @JsonProperty("type")
+  private String type;
+
+  @JsonProperty("session")
+  private RealtimeSessionCreateRequest session;
+
+  /**
+   * Optional client-generated ID used to identify this event.
+   * @return eventId
+   */
+  public String getEventId() {
+    return eventId;
+  }
+
+  public void setEventId(String eventId) {
+    this.eventId = eventId;
+  }
+
+  /**
+   * The event type, must be &#x60;session.update&#x60;.
+   * @return type
+   */
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+  /**
+   * 
+   * @return session
+   */
+  public RealtimeSessionCreateRequest getSession() {
+    return session;
+  }
+
+  public void setSession(RealtimeSessionCreateRequest session) {
+    this.session = session;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    RealtimeClientEventSessionUpdate realtimeClientEventSessionUpdate = (RealtimeClientEventSessionUpdate) o;
+    return Objects.equals(this.eventId, realtimeClientEventSessionUpdate.eventId) &&
+        Objects.equals(this.type, realtimeClientEventSessionUpdate.type) &&
+        Objects.equals(this.session, realtimeClientEventSessionUpdate.session);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(eventId, type, session);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class RealtimeClientEventSessionUpdate {\n");
+    
+    sb.append("    eventId: ").append(toIndentedString(eventId)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    session: ").append(toIndentedString(session)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
+  }
+}

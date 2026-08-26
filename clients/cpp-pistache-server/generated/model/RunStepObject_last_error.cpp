@@ -26,6 +26,8 @@ RunStepObject_last_error::RunStepObject_last_error()
     
 }
 
+RunStepObject_last_error::~RunStepObject_last_error() = default;
+
 void RunStepObject_last_error::validate() const
 {
     std::stringstream msg;

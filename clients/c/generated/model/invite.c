@@ -62,15 +62,17 @@ static invite_t *invite_create_internal(
     char *email,
     openai_api_invite_ROLE_e role,
     openai_api_invite_STATUS_e status,
-    int invited_at,
-    int expires_at,
-    int accepted_at,
+    int *invited_at,
+    int *expires_at,
+    int *accepted_at,
     list_t *projects
     ) {
     invite_t *invite_local_var = malloc(sizeof(invite_t));
     if (!invite_local_var) {
         return NULL;
     }
+    memset(invite_local_var, 0, sizeof(invite_t));
+    invite_local_var->_library_owned = 1;
     invite_local_var->object = object;
     invite_local_var->id = id;
     invite_local_var->email = email;
@@ -80,8 +82,6 @@ static invite_t *invite_create_internal(
     invite_local_var->expires_at = expires_at;
     invite_local_var->accepted_at = accepted_at;
     invite_local_var->projects = projects;
-
-    invite_local_var->_library_owned = 1;
     return invite_local_var;
 }
 
@@ -91,22 +91,43 @@ __attribute__((deprecated)) invite_t *invite_create(
     char *email,
     openai_api_invite_ROLE_e role,
     openai_api_invite_STATUS_e status,
-    int invited_at,
-    int expires_at,
-    int accepted_at,
+    int *invited_at,
+    int *expires_at,
+    int *accepted_at,
     list_t *projects
     ) {
-    return invite_create_internal (
+    int *invited_at_copy = NULL;
+    if (invited_at) {
+        invited_at_copy = malloc(sizeof(int));
+        if (invited_at_copy) *invited_at_copy = *invited_at;
+    }
+    int *expires_at_copy = NULL;
+    if (expires_at) {
+        expires_at_copy = malloc(sizeof(int));
+        if (expires_at_copy) *expires_at_copy = *expires_at;
+    }
+    int *accepted_at_copy = NULL;
+    if (accepted_at) {
+        accepted_at_copy = malloc(sizeof(int));
+        if (accepted_at_copy) *accepted_at_copy = *accepted_at;
+    }
+    invite_t *result = invite_create_internal (
         object,
         id,
         email,
         role,
         status,
-        invited_at,
-        expires_at,
-        accepted_at,
+        invited_at_copy,
+        expires_at_copy,
+        accepted_at_copy,
         projects
         );
+    if (!result) {
+        free(invited_at_copy);
+        free(expires_at_copy);
+        free(accepted_at_copy);
+    }
+    return result;
 }
 
 void invite_free(invite_t *invite) {
@@ -125,6 +146,18 @@ void invite_free(invite_t *invite) {
     if (invite->email) {
         free(invite->email);
         invite->email = NULL;
+    }
+    if (invite->invited_at) {
+        free(invite->invited_at);
+        invite->invited_at = NULL;
+    }
+    if (invite->expires_at) {
+        free(invite->expires_at);
+        invite->expires_at = NULL;
+    }
+    if (invite->accepted_at) {
+        free(invite->accepted_at);
+        invite->accepted_at = NULL;
     }
     if (invite->projects) {
         list_ForEach(listEntry, invite->projects) {
@@ -191,7 +224,7 @@ cJSON *invite_convertToJSON(invite_t *invite) {
     if (!invite->invited_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "invited_at", invite->invited_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "invited_at", *invite->invited_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -200,14 +233,14 @@ cJSON *invite_convertToJSON(invite_t *invite) {
     if (!invite->expires_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "expires_at", invite->expires_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "expires_at", *invite->expires_at) == NULL) {
     goto fail; //Numeric
     }
 
 
     // invite->accepted_at
     if(invite->accepted_at) {
-    if(cJSON_AddNumberToObject(item, "accepted_at", invite->accepted_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "accepted_at", *invite->accepted_at) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -243,6 +276,19 @@ fail:
 invite_t *invite_parseFromJSON(cJSON *inviteJSON){
 
     invite_t *invite_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    char *email_local_str = NULL;
+
+    // define the local variable for invite->invited_at
+    int *invited_at_local_var = NULL;
+
+    // define the local variable for invite->expires_at
+    int *expires_at_local_var = NULL;
+
+    // define the local variable for invite->accepted_at
+    int *accepted_at_local_var = NULL;
 
     // define the local list for invite->projects
     list_t *projectsList = NULL;
@@ -342,6 +388,12 @@ invite_t *invite_parseFromJSON(cJSON *inviteJSON){
     {
     goto end; //Numeric
     }
+    invited_at_local_var = malloc(sizeof(int));
+    if(!invited_at_local_var)
+    {
+        goto end;
+    }
+    *invited_at_local_var = invited_at->valuedouble;
 
     // invite->expires_at
     cJSON *expires_at = cJSON_GetObjectItemCaseSensitive(inviteJSON, "expires_at");
@@ -357,6 +409,12 @@ invite_t *invite_parseFromJSON(cJSON *inviteJSON){
     {
     goto end; //Numeric
     }
+    expires_at_local_var = malloc(sizeof(int));
+    if(!expires_at_local_var)
+    {
+        goto end;
+    }
+    *expires_at_local_var = expires_at->valuedouble;
 
     // invite->accepted_at
     cJSON *accepted_at = cJSON_GetObjectItemCaseSensitive(inviteJSON, "accepted_at");
@@ -368,6 +426,12 @@ invite_t *invite_parseFromJSON(cJSON *inviteJSON){
     {
     goto end; //Numeric
     }
+    accepted_at_local_var = malloc(sizeof(int));
+    if(!accepted_at_local_var)
+    {
+        goto end;
+    }
+    *accepted_at_local_var = accepted_at->valuedouble;
     }
 
     // invite->projects
@@ -395,20 +459,47 @@ invite_t *invite_parseFromJSON(cJSON *inviteJSON){
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (email && !cJSON_IsNull(email)) email_local_str = strdup(email->valuestring);
+
     invite_local_var = invite_create_internal (
         objectVariable,
-        strdup(id->valuestring),
-        strdup(email->valuestring),
+        id_local_str,
+        email_local_str,
         roleVariable,
         statusVariable,
-        invited_at->valuedouble,
-        expires_at->valuedouble,
-        accepted_at ? accepted_at->valuedouble : 0,
+        invited_at_local_var,
+        expires_at_local_var,
+        accepted_at_local_var,
         projects ? projectsList : NULL
         );
 
+    if (!invite_local_var) {
+        goto end;
+    }
+
     return invite_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (email_local_str) {
+        free(email_local_str);
+        email_local_str = NULL;
+    }
+    if (invited_at_local_var) {
+        free(invited_at_local_var);
+        invited_at_local_var = NULL;
+    }
+    if (expires_at_local_var) {
+        free(expires_at_local_var);
+        expires_at_local_var = NULL;
+    }
+    if (accepted_at_local_var) {
+        free(accepted_at_local_var);
+        accepted_at_local_var = NULL;
+    }
     if (projectsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, projectsList) {

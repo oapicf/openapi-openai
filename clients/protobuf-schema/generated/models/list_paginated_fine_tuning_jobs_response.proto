@@ -26,7 +26,7 @@ message ListPaginatedFineTuningJobsResponse {
     OBJECT_LIST = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
 }
 

@@ -51,7 +51,7 @@ class AuditLogActor
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['session', 'api_key'])]
     #[Assert\Type("string")]
     protected ?string $type = null;
@@ -60,7 +60,7 @@ class AuditLogActor
      * @var AuditLogActorSession|null
      * @SerializedName("session")
      * @Type("OpenAPI\Server\Model\AuditLogActorSession")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogActorSession")]
     protected ?AuditLogActorSession $session = null;
 
@@ -68,7 +68,7 @@ class AuditLogActor
      * @var AuditLogActorApiKey|null
      * @SerializedName("api_key")
      * @Type("OpenAPI\Server\Model\AuditLogActorApiKey")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogActorApiKey")]
     protected ?AuditLogActorApiKey $apiKey = null;
 
@@ -96,12 +96,12 @@ class AuditLogActor
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of actor. Is either `session` or `api_key`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of actor. Is either `session` or `api_key`.
+     *
+     * @return $this
+     */
     public function setType(?string $type = null): self
     {
         $this->type = $type;
@@ -123,12 +123,12 @@ class AuditLogActor
     }
 
     /**
-    * Sets session.
-    *
-    * @param AuditLogActorSession|null $session
-    *
-    * @return $this
-    */
+     * Sets session.
+     *
+     * @param AuditLogActorSession|null $session
+     *
+     * @return $this
+     */
     public function setSession(?AuditLogActorSession $session = null): self
     {
         $this->session = $session;
@@ -150,12 +150,12 @@ class AuditLogActor
     }
 
     /**
-    * Sets apiKey.
-    *
-    * @param AuditLogActorApiKey|null $apiKey
-    *
-    * @return $this
-    */
+     * Sets apiKey.
+     *
+     * @param AuditLogActorApiKey|null $apiKey
+     *
+     * @return $this
+     */
     public function setApiKey(?AuditLogActorApiKey $apiKey = null): self
     {
         $this->apiKey = $apiKey;

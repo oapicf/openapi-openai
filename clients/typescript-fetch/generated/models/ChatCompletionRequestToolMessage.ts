@@ -29,7 +29,7 @@ import {
 export interface ChatCompletionRequestToolMessage {
     /**
      * The role of the messages author, in this case `tool`.
-     * @type {string}
+     * @type {ChatCompletionRequestToolMessageRoleEnum}
      * @memberof ChatCompletionRequestToolMessage
      */
     role: ChatCompletionRequestToolMessageRoleEnum;
@@ -62,8 +62,10 @@ export type ChatCompletionRequestToolMessageRoleEnum = typeof ChatCompletionRequ
  */
 export function instanceOfChatCompletionRequestToolMessage(value: object): value is ChatCompletionRequestToolMessage {
     if (!('role' in value) || value['role'] === undefined) return false;
+    if (value['role'] !== 'tool') return false;
+    
     if (!('content' in value) || value['content'] === undefined) return false;
-    if (!('toolCallId' in value) || value['toolCallId'] === undefined) return false;
+    if ((!('toolCallId' in (value as Record<string, any>)) && !('tool_call_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['toolCallId'] === undefined && (value as Record<string, any>)['tool_call_id'] === undefined)) return false;
     return true;
 }
 

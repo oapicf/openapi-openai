@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The number of text tokens used in the Response.</value>
         [JsonPropertyName("text_tokens")]
-        public int? TextTokens { get { return this.TextTokensOption; } set { this.TextTokensOption = new(value); } }
+        public int? TextTokens { get { return this.TextTokensOption.Value; } set { this.TextTokensOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AudioTokens
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The number of audio tokens used in the Response.</value>
         [JsonPropertyName("audio_tokens")]
-        public int? AudioTokens { get { return this.AudioTokensOption; } set { this.AudioTokensOption = new(value); } }
+        public int? AudioTokens { get { return this.AudioTokensOption.Value; } set { this.AudioTokensOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeResponseUsageOutputTokenDetails" />
     /// </summary>
-    public class RealtimeResponseUsageOutputTokenDetailsJsonConverter : JsonConverter<RealtimeResponseUsageOutputTokenDetails>
+    public partial class RealtimeResponseUsageOutputTokenDetailsJsonConverter : JsonConverter<RealtimeResponseUsageOutputTokenDetails>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeResponseUsageOutputTokenDetailsJsonConverter" /> class.
+        /// </summary>
+        public RealtimeResponseUsageOutputTokenDetailsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeResponseUsageOutputTokenDetails" />
         /// </summary>

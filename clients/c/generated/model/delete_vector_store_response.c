@@ -24,31 +24,40 @@ openai_api_delete_vector_store_response_OBJECT_e delete_vector_store_response_ob
 
 static delete_vector_store_response_t *delete_vector_store_response_create_internal(
     char *id,
-    int deleted,
+    int *deleted,
     openai_api_delete_vector_store_response_OBJECT_e object
     ) {
     delete_vector_store_response_t *delete_vector_store_response_local_var = malloc(sizeof(delete_vector_store_response_t));
     if (!delete_vector_store_response_local_var) {
         return NULL;
     }
+    memset(delete_vector_store_response_local_var, 0, sizeof(delete_vector_store_response_t));
+    delete_vector_store_response_local_var->_library_owned = 1;
     delete_vector_store_response_local_var->id = id;
     delete_vector_store_response_local_var->deleted = deleted;
     delete_vector_store_response_local_var->object = object;
-
-    delete_vector_store_response_local_var->_library_owned = 1;
     return delete_vector_store_response_local_var;
 }
 
 __attribute__((deprecated)) delete_vector_store_response_t *delete_vector_store_response_create(
     char *id,
-    int deleted,
+    int *deleted,
     openai_api_delete_vector_store_response_OBJECT_e object
     ) {
-    return delete_vector_store_response_create_internal (
+    int *deleted_copy = NULL;
+    if (deleted) {
+        deleted_copy = malloc(sizeof(int));
+        if (deleted_copy) *deleted_copy = *deleted;
+    }
+    delete_vector_store_response_t *result = delete_vector_store_response_create_internal (
         id,
-        deleted,
+        deleted_copy,
         object
         );
+    if (!result) {
+        free(deleted_copy);
+    }
+    return result;
 }
 
 void delete_vector_store_response_free(delete_vector_store_response_t *delete_vector_store_response) {
@@ -63,6 +72,10 @@ void delete_vector_store_response_free(delete_vector_store_response_t *delete_ve
     if (delete_vector_store_response->id) {
         free(delete_vector_store_response->id);
         delete_vector_store_response->id = NULL;
+    }
+    if (delete_vector_store_response->deleted) {
+        free(delete_vector_store_response->deleted);
+        delete_vector_store_response->deleted = NULL;
     }
     free(delete_vector_store_response);
 }
@@ -83,7 +96,7 @@ cJSON *delete_vector_store_response_convertToJSON(delete_vector_store_response_t
     if (!delete_vector_store_response->deleted) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "deleted", delete_vector_store_response->deleted) == NULL) {
+    if(cJSON_AddBoolToObject(item, "deleted", *delete_vector_store_response->deleted) == NULL) {
     goto fail; //Bool
     }
 
@@ -108,6 +121,11 @@ fail:
 delete_vector_store_response_t *delete_vector_store_response_parseFromJSON(cJSON *delete_vector_store_responseJSON){
 
     delete_vector_store_response_t *delete_vector_store_response_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    // define the local variable for delete_vector_store_response->deleted
+    int *deleted_local_var = NULL;
 
     // delete_vector_store_response->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(delete_vector_store_responseJSON, "id");
@@ -138,6 +156,12 @@ delete_vector_store_response_t *delete_vector_store_response_parseFromJSON(cJSON
     {
     goto end; //Bool
     }
+    deleted_local_var = malloc(sizeof(int));
+    if(!deleted_local_var)
+    {
+        goto end;
+    }
+    *deleted_local_var = deleted->valueint;
 
     // delete_vector_store_response->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(delete_vector_store_responseJSON, "object");
@@ -157,14 +181,28 @@ delete_vector_store_response_t *delete_vector_store_response_parseFromJSON(cJSON
     objectVariable = delete_vector_store_response_object_FromString(object->valuestring);
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     delete_vector_store_response_local_var = delete_vector_store_response_create_internal (
-        strdup(id->valuestring),
-        deleted->valueint,
+        id_local_str,
+        deleted_local_var,
         objectVariable
         );
 
+    if (!delete_vector_store_response_local_var) {
+        goto end;
+    }
+
     return delete_vector_store_response_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (deleted_local_var) {
+        free(deleted_local_var);
+        deleted_local_var = NULL;
+    }
     return NULL;
 
 }

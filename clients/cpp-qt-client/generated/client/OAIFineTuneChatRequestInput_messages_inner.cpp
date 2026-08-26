@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIFineTuneChatRequestInput_messages_inner::OAIFineTuneChatRequestInput_messages_inner(QString json) {
+OAIFineTuneChatRequestInput_messages_inner::OAIFineTuneChatRequestInput_messages_inner(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -62,7 +62,7 @@ void OAIFineTuneChatRequestInput_messages_inner::initializeModel() {
     m_tool_call_id_isValid = false;
 }
 
-void OAIFineTuneChatRequestInput_messages_inner::fromJson(QString jsonString) {
+void OAIFineTuneChatRequestInput_messages_inner::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

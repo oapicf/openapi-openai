@@ -1,0 +1,254 @@
+## AssistantsApi
+
+### Cancels a run that is &#x60;in_progress&#x60;.
+## Cancels a run that is &#x60;in_progress&#x60;.
+POST https://api.openai.com/v1/threads/{{thread_id}}/runs/{{run_id}}/cancel
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Create an assistant with a model and instructions.
+## Create an assistant with a model and instructions.
+POST https://api.openai.com/v1/assistants
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "model": "<string>",
+ "name": "<string>",
+ "description": "<string>",
+ "instructions": "<string>",
+ "tools": "<string>",
+ "tool_resources": "<string>",
+ "metadata": "<string>",
+ "temperature": "<number>",
+ "top_p": "<number>",
+ "response_format": "<string>"
+}
+
+
+### Create a message.
+## Create a message.
+POST https://api.openai.com/v1/threads/{{thread_id}}/messages
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "role": "<string>",
+ "content": "<string>",
+ "attachments": "<string>",
+ "metadata": "<string>"
+}
+
+
+### Create a run.
+## Create a run.
+POST https://api.openai.com/v1/threads/{{thread_id}}/runs?includeLeft_Square_BracketRight_Square_Bracket={{includeLeft_Square_BracketRight_Square_Bracket}}
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "assistant_id": "<string>",
+ "model": "<string>",
+ "instructions": "<string>",
+ "additional_instructions": "<string>",
+ "additional_messages": "<string>",
+ "tools": "<string>",
+ "metadata": "<string>",
+ "temperature": "<number>",
+ "top_p": "<number>",
+ "stream": "<string>",
+ "max_prompt_tokens": "<number>",
+ "max_completion_tokens": "<number>",
+ "truncation_strategy": "<string>",
+ "tool_choice": "<string>",
+ "parallel_tool_calls": "<string>",
+ "response_format": "<string>"
+}
+
+
+### Create a thread.
+## Create a thread.
+POST https://api.openai.com/v1/threads
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "messages": "<string>",
+ "tool_resources": "<string>",
+ "metadata": "<string>"
+}
+
+
+### Create a thread and run it in one request.
+## Create a thread and run it in one request.
+POST https://api.openai.com/v1/threads/runs
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "assistant_id": "<string>",
+ "thread": "<string>",
+ "model": "<string>",
+ "instructions": "<string>",
+ "tools": "<string>",
+ "tool_resources": "<string>",
+ "metadata": "<string>",
+ "temperature": "<number>",
+ "top_p": "<number>",
+ "stream": "<string>",
+ "max_prompt_tokens": "<number>",
+ "max_completion_tokens": "<number>",
+ "truncation_strategy": "<string>",
+ "tool_choice": "<string>",
+ "parallel_tool_calls": "<string>",
+ "response_format": "<string>"
+}
+
+
+### Delete an assistant.
+## Delete an assistant.
+DELETE https://api.openai.com/v1/assistants/{{assistant_id}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Deletes a message.
+## Deletes a message.
+DELETE https://api.openai.com/v1/threads/{{thread_id}}/messages/{{message_id}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Delete a thread.
+## Delete a thread.
+DELETE https://api.openai.com/v1/threads/{{thread_id}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Retrieves an assistant.
+## Retrieves an assistant.
+GET https://api.openai.com/v1/assistants/{{assistant_id}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Retrieve a message.
+## Retrieve a message.
+GET https://api.openai.com/v1/threads/{{thread_id}}/messages/{{message_id}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Retrieves a run.
+## Retrieves a run.
+GET https://api.openai.com/v1/threads/{{thread_id}}/runs/{{run_id}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Retrieves a run step.
+## Retrieves a run step.
+GET https://api.openai.com/v1/threads/{{thread_id}}/runs/{{run_id}}/steps/{{step_id}}?includeLeft_Square_BracketRight_Square_Bracket={{includeLeft_Square_BracketRight_Square_Bracket}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Retrieves a thread.
+## Retrieves a thread.
+GET https://api.openai.com/v1/threads/{{thread_id}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Returns a list of assistants.
+## Returns a list of assistants.
+GET https://api.openai.com/v1/assistants?limit={{limit}}&order={{order}}&after={{after}}&before={{before}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Returns a list of messages for a given thread.
+## Returns a list of messages for a given thread.
+GET https://api.openai.com/v1/threads/{{thread_id}}/messages?limit={{limit}}&order={{order}}&after={{after}}&before={{before}}&runId={{runId}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Returns a list of run steps belonging to a run.
+## Returns a list of run steps belonging to a run.
+GET https://api.openai.com/v1/threads/{{thread_id}}/runs/{{run_id}}/steps?limit={{limit}}&order={{order}}&after={{after}}&before={{before}}&includeLeft_Square_BracketRight_Square_Bracket={{includeLeft_Square_BracketRight_Square_Bracket}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Returns a list of runs belonging to a thread.
+## Returns a list of runs belonging to a thread.
+GET https://api.openai.com/v1/threads/{{thread_id}}/runs?limit={{limit}}&order={{order}}&after={{after}}&before={{before}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Modifies an assistant.
+## Modifies an assistant.
+POST https://api.openai.com/v1/assistants/{{assistant_id}}
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "model": "<string>",
+ "name": "<string>",
+ "description": "<string>",
+ "instructions": "<string>",
+ "tools": "<string>",
+ "tool_resources": "<string>",
+ "metadata": "<string>",
+ "temperature": "<number>",
+ "top_p": "<number>",
+ "response_format": "<string>"
+}
+
+
+### Modifies a message.
+## Modifies a message.
+POST https://api.openai.com/v1/threads/{{thread_id}}/messages/{{message_id}}
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "metadata": "<string>"
+}
+
+
+### Modifies a run.
+## Modifies a run.
+POST https://api.openai.com/v1/threads/{{thread_id}}/runs/{{run_id}}
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "metadata": "<string>"
+}
+
+
+### Modifies a thread.
+## Modifies a thread.
+POST https://api.openai.com/v1/threads/{{thread_id}}
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "tool_resources": "<string>",
+ "metadata": "<string>"
+}
+
+
+### When a run has the &#x60;status: \&quot;requires_action\&quot;&#x60; and &#x60;required_action.type&#x60; is &#x60;submit_tool_outputs&#x60;, this endpoint can be used to submit the outputs from the tool calls once they&#39;re all completed. All outputs must be submitted in a single request. 
+## When a run has the &#x60;status: \&quot;requires_action\&quot;&#x60; and &#x60;required_action.type&#x60; is &#x60;submit_tool_outputs&#x60;, this endpoint can be used to submit the outputs from the tool calls once they&#39;re all completed. All outputs must be submitted in a single request. 
+POST https://api.openai.com/v1/threads/{{thread_id}}/runs/{{run_id}}/submit_tool_outputs
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "tool_outputs": "<string>",
+ "stream": "<string>"
+}
+

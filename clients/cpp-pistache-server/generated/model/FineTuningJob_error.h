@@ -32,7 +32,7 @@ class  FineTuningJob_error
 {
 public:
     FineTuningJob_error();
-    virtual ~FineTuningJob_error() = default;
+    virtual ~FineTuningJob_error();
 
 
     /// <summary>

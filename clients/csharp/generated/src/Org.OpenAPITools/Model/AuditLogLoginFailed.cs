@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The error code of the failure.</value>
         [JsonPropertyName("error_code")]
-        public string? ErrorCode { get { return this.ErrorCodeOption; } set { this.ErrorCodeOption = new(value); } }
+        public string? ErrorCode { get { return this.ErrorCodeOption.Value; } set { this.ErrorCodeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ErrorMessage
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The error message of the failure.</value>
         [JsonPropertyName("error_message")]
-        public string? ErrorMessage { get { return this.ErrorMessageOption; } set { this.ErrorMessageOption = new(value); } }
+        public string? ErrorMessage { get { return this.ErrorMessageOption.Value; } set { this.ErrorMessageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogLoginFailed" />
     /// </summary>
-    public class AuditLogLoginFailedJsonConverter : JsonConverter<AuditLogLoginFailed>
+    public partial class AuditLogLoginFailedJsonConverter : JsonConverter<AuditLogLoginFailed>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogLoginFailedJsonConverter" /> class.
+        /// </summary>
+        public AuditLogLoginFailedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogLoginFailed" />
         /// </summary>

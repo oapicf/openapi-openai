@@ -56,31 +56,31 @@ openai_api_create_chat_completion_request_SERVICETIER_e create_chat_completion_r
 typedef struct create_chat_completion_request_t {
     list_t *messages; //nonprimitive container
     struct create_chat_completion_request_model_t *model; //model
-    int store; //boolean
+    int *store; //boolean
     openai_api_create_chat_completion_request_REASONINGEFFORT_e reasoning_effort; //enum
     list_t* metadata; //map
-    double frequency_penalty; //numeric
+    double *frequency_penalty; //numeric
     list_t* logit_bias; //map
-    int logprobs; //boolean
-    int top_logprobs; //numeric
-    int max_tokens; //numeric
-    int max_completion_tokens; //numeric
-    int n; //numeric
+    int *logprobs; //boolean
+    int *top_logprobs; //numeric
+    int *max_tokens; //numeric
+    int *max_completion_tokens; //numeric
+    int *n; //numeric
     list_t *modalities; //primitive container
     struct prediction_content_t *prediction; //model
     struct create_chat_completion_request_audio_t *audio; //model
-    double presence_penalty; //numeric
+    double *presence_penalty; //numeric
     struct create_chat_completion_request_response_format_t *response_format; //model
-    int seed; //numeric
+    int *seed; //numeric
     openai_api_create_chat_completion_request_SERVICETIER_e service_tier; //enum
     struct create_chat_completion_request_stop_t *stop; //model
-    int stream; //boolean
+    int *stream; //boolean
     struct chat_completion_stream_options_t *stream_options; //model
-    double temperature; //numeric
-    double top_p; //numeric
+    double *temperature; //numeric
+    double *top_p; //numeric
     list_t *tools; //nonprimitive container
     struct chat_completion_tool_choice_option_t *tool_choice; //model
-    int parallel_tool_calls; //boolean
+    int *parallel_tool_calls; //boolean
     char *user; // string
     struct create_chat_completion_request_function_call_t *function_call; //model
     list_t *functions; //nonprimitive container
@@ -91,31 +91,31 @@ typedef struct create_chat_completion_request_t {
 __attribute__((deprecated)) create_chat_completion_request_t *create_chat_completion_request_create(
     list_t *messages,
     create_chat_completion_request_model_t *model,
-    int store,
+    int *store,
     openai_api_create_chat_completion_request_REASONINGEFFORT_e reasoning_effort,
     list_t* metadata,
-    double frequency_penalty,
+    double *frequency_penalty,
     list_t* logit_bias,
-    int logprobs,
-    int top_logprobs,
-    int max_tokens,
-    int max_completion_tokens,
-    int n,
+    int *logprobs,
+    int *top_logprobs,
+    int *max_tokens,
+    int *max_completion_tokens,
+    int *n,
     list_t *modalities,
     prediction_content_t *prediction,
     create_chat_completion_request_audio_t *audio,
-    double presence_penalty,
+    double *presence_penalty,
     create_chat_completion_request_response_format_t *response_format,
-    int seed,
+    int *seed,
     openai_api_create_chat_completion_request_SERVICETIER_e service_tier,
     create_chat_completion_request_stop_t *stop,
-    int stream,
+    int *stream,
     chat_completion_stream_options_t *stream_options,
-    double temperature,
-    double top_p,
+    double *temperature,
+    double *top_p,
     list_t *tools,
     chat_completion_tool_choice_option_t *tool_choice,
-    int parallel_tool_calls,
+    int *parallel_tool_calls,
     char *user,
     create_chat_completion_request_function_call_t *function_call,
     list_t *functions

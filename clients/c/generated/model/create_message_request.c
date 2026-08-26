@@ -32,12 +32,12 @@ static create_message_request_t *create_message_request_create_internal(
     if (!create_message_request_local_var) {
         return NULL;
     }
+    memset(create_message_request_local_var, 0, sizeof(create_message_request_t));
+    create_message_request_local_var->_library_owned = 1;
     create_message_request_local_var->role = role;
     create_message_request_local_var->content = content;
     create_message_request_local_var->attachments = attachments;
     create_message_request_local_var->metadata = metadata;
-
-    create_message_request_local_var->_library_owned = 1;
     return create_message_request_local_var;
 }
 
@@ -47,12 +47,15 @@ __attribute__((deprecated)) create_message_request_t *create_message_request_cre
     list_t *attachments,
     object_t *metadata
     ) {
-    return create_message_request_create_internal (
+    create_message_request_t *result = create_message_request_create_internal (
         role,
         content,
         attachments,
         metadata
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_message_request_free(create_message_request_t *create_message_request) {
@@ -223,12 +226,17 @@ create_message_request_t *create_message_request_parseFromJSON(cJSON *create_mes
     }
 
 
+
     create_message_request_local_var = create_message_request_create_internal (
         roleVariable,
         content_local_nonprim,
         attachments ? attachmentsList : NULL,
         metadata ? metadata_local_object : NULL
         );
+
+    if (!create_message_request_local_var) {
+        goto end;
+    }
 
     return create_message_request_local_var;
 end:

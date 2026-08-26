@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -12,20 +13,20 @@ import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * The aggregated completions usage details of the specific time bucket.
  */
 
 @Schema(name = "UsageCompletionsResult", description = "The aggregated completions usage details of the specific time bucket.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class UsageCompletionsResult implements UsageTimeBucketResultInner {
 
   /**
@@ -65,24 +66,32 @@ public class UsageCompletionsResult implements UsageTimeBucketResultInner {
 
   private Integer inputTokens;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer inputCachedTokens;
 
   private Integer outputTokens;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer inputAudioTokens;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer outputAudioTokens;
 
   private Integer numModelRequests;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> projectId = JsonNullable.<String>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> userId = JsonNullable.<String>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> apiKeyId = JsonNullable.<String>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> model = JsonNullable.<String>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> batch = JsonNullable.<Boolean>undefined();
 
   public UsageCompletionsResult() {
@@ -115,6 +124,7 @@ public class UsageCompletionsResult implements UsageTimeBucketResultInner {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
@@ -135,6 +145,7 @@ public class UsageCompletionsResult implements UsageTimeBucketResultInner {
     return inputTokens;
   }
 
+  @JsonProperty("input_tokens")
   public void setInputTokens(Integer inputTokens) {
     this.inputTokens = inputTokens;
   }
@@ -155,6 +166,7 @@ public class UsageCompletionsResult implements UsageTimeBucketResultInner {
     return inputCachedTokens;
   }
 
+  @JsonProperty("input_cached_tokens")
   public void setInputCachedTokens(@Nullable Integer inputCachedTokens) {
     this.inputCachedTokens = inputCachedTokens;
   }
@@ -175,6 +187,7 @@ public class UsageCompletionsResult implements UsageTimeBucketResultInner {
     return outputTokens;
   }
 
+  @JsonProperty("output_tokens")
   public void setOutputTokens(Integer outputTokens) {
     this.outputTokens = outputTokens;
   }
@@ -195,6 +208,7 @@ public class UsageCompletionsResult implements UsageTimeBucketResultInner {
     return inputAudioTokens;
   }
 
+  @JsonProperty("input_audio_tokens")
   public void setInputAudioTokens(@Nullable Integer inputAudioTokens) {
     this.inputAudioTokens = inputAudioTokens;
   }
@@ -215,6 +229,7 @@ public class UsageCompletionsResult implements UsageTimeBucketResultInner {
     return outputAudioTokens;
   }
 
+  @JsonProperty("output_audio_tokens")
   public void setOutputAudioTokens(@Nullable Integer outputAudioTokens) {
     this.outputAudioTokens = outputAudioTokens;
   }
@@ -235,6 +250,7 @@ public class UsageCompletionsResult implements UsageTimeBucketResultInner {
     return numModelRequests;
   }
 
+  @JsonProperty("num_model_requests")
   public void setNumModelRequests(Integer numModelRequests) {
     this.numModelRequests = numModelRequests;
   }
@@ -402,11 +418,8 @@ public class UsageCompletionsResult implements UsageTimeBucketResultInner {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

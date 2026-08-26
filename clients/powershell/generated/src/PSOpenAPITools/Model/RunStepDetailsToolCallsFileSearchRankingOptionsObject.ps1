@@ -58,8 +58,8 @@ function Initialize-RunStepDetailsToolCallsFileSearchRankingOptionsObject {
 
 
         $PSO = [PSCustomObject]@{
-            "ranker" = ${Ranker}
-            "score_threshold" = ${ScoreThreshold}
+            'ranker' = ${Ranker}
+            'score_threshold' = ${ScoreThreshold}
         }
 
 
@@ -97,7 +97,7 @@ function ConvertFrom-JsonToRunStepDetailsToolCallsFileSearchRankingOptionsObject
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDetailsToolCallsFileSearchRankingOptionsObject
-        $AllProperties = ("ranker", "score_threshold")
+        $AllProperties = ('ranker', 'score_threshold')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -108,21 +108,21 @@ function ConvertFrom-JsonToRunStepDetailsToolCallsFileSearchRankingOptionsObject
             throw "Error! Empty JSON cannot be serialized due to the required property 'ranker' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ranker"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'ranker'))) {
             throw "Error! JSON cannot be serialized due to the required property 'ranker' missing."
         } else {
-            $Ranker = $JsonParameters.PSobject.Properties["ranker"].value
+            $Ranker = $JsonParameters.PSobject.Properties['ranker'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "score_threshold"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'score_threshold'))) {
             throw "Error! JSON cannot be serialized due to the required property 'score_threshold' missing."
         } else {
-            $ScoreThreshold = $JsonParameters.PSobject.Properties["score_threshold"].value
+            $ScoreThreshold = $JsonParameters.PSobject.Properties['score_threshold'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "ranker" = ${Ranker}
-            "score_threshold" = ${ScoreThreshold}
+            'ranker' = ${Ranker}
+            'score_threshold' = ${ScoreThreshold}
         }
 
         return $PSO

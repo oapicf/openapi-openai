@@ -65,9 +65,9 @@ export function UpdateVectorStoreRequestFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'name': json['name'] == null ? undefined : json['name'],
+        'name': json['name'] === undefined ? undefined : json['name'] === null ? null : json['name'],
         'expiresAfter': json['expires_after'] == null ? undefined : VectorStoreExpirationAfterFromJSON(json['expires_after']),
-        'metadata': json['metadata'] == null ? undefined : json['metadata'],
+        'metadata': json['metadata'] === undefined ? undefined : json['metadata'] === null ? null : json['metadata'],
     };
 }
 

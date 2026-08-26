@@ -86,15 +86,17 @@ class _$AuditLogServiceAccountCreatedSerializer implements PrimitiveSerializer<A
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogServiceAccountCreatedData),
-          ) as AuditLogServiceAccountCreatedData;
+            specifiedType: const FullType.nullable(AuditLogServiceAccountCreatedData),
+          ) as AuditLogServiceAccountCreatedData?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

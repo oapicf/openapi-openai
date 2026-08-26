@@ -153,8 +153,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDetailsToolCallsFileSearchRankingOptionsObject" />
     /// </summary>
-    public class RunStepDetailsToolCallsFileSearchRankingOptionsObjectJsonConverter : JsonConverter<RunStepDetailsToolCallsFileSearchRankingOptionsObject>
+    public partial class RunStepDetailsToolCallsFileSearchRankingOptionsObjectJsonConverter : JsonConverter<RunStepDetailsToolCallsFileSearchRankingOptionsObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDetailsToolCallsFileSearchRankingOptionsObjectJsonConverter" /> class.
+        /// </summary>
+        public RunStepDetailsToolCallsFileSearchRankingOptionsObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDetailsToolCallsFileSearchRankingOptionsObject" />
         /// </summary>

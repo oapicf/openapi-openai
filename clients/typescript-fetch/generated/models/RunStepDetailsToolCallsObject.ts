@@ -29,7 +29,7 @@ import {
 export interface RunStepDetailsToolCallsObject {
     /**
      * Always `tool_calls`.
-     * @type {string}
+     * @type {RunStepDetailsToolCallsObjectTypeEnum}
      * @memberof RunStepDetailsToolCallsObject
      */
     type: RunStepDetailsToolCallsObjectTypeEnum;
@@ -57,7 +57,9 @@ export type RunStepDetailsToolCallsObjectTypeEnum = typeof RunStepDetailsToolCal
  */
 export function instanceOfRunStepDetailsToolCallsObject(value: object): value is RunStepDetailsToolCallsObject {
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('toolCalls' in value) || value['toolCalls'] === undefined) return false;
+    if (value['type'] !== 'tool_calls') return false;
+    
+    if ((!('toolCalls' in (value as Record<string, any>)) && !('tool_calls' in (value as Record<string, any>))) || ((value as Record<string, any>)['toolCalls'] === undefined && (value as Record<string, any>)['tool_calls'] === undefined)) return false;
     return true;
 }
 

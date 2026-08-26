@@ -29,18 +29,21 @@ static user_role_update_request_t *user_role_update_request_create_internal(
     if (!user_role_update_request_local_var) {
         return NULL;
     }
-    user_role_update_request_local_var->role = role;
-
+    memset(user_role_update_request_local_var, 0, sizeof(user_role_update_request_t));
     user_role_update_request_local_var->_library_owned = 1;
+    user_role_update_request_local_var->role = role;
     return user_role_update_request_local_var;
 }
 
 __attribute__((deprecated)) user_role_update_request_t *user_role_update_request_create(
     openai_api_user_role_update_request_ROLE_e role
     ) {
-    return user_role_update_request_create_internal (
+    user_role_update_request_t *result = user_role_update_request_create_internal (
         role
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void user_role_update_request_free(user_role_update_request_t *user_role_update_request) {
@@ -97,9 +100,14 @@ user_role_update_request_t *user_role_update_request_parseFromJSON(cJSON *user_r
     roleVariable = user_role_update_request_role_FromString(role->valuestring);
 
 
+
     user_role_update_request_local_var = user_role_update_request_create_internal (
         roleVariable
         );
+
+    if (!user_role_update_request_local_var) {
+        goto end;
+    }
 
     return user_role_update_request_local_var;
 end:

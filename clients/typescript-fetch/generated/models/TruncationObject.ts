@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface TruncationObject {
     /**
      * The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.
-     * @type {string}
+     * @type {TruncationObjectTypeEnum}
      * @memberof TruncationObject
      */
     type: TruncationObjectTypeEnum;
@@ -63,7 +63,7 @@ export function TruncationObjectFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'type': json['type'],
-        'lastMessages': json['last_messages'] == null ? undefined : json['last_messages'],
+        'lastMessages': json['last_messages'] === undefined ? undefined : json['last_messages'] === null ? null : json['last_messages'],
     };
 }
 

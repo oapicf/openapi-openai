@@ -8,14 +8,22 @@
 
 @file:Suppress(
     "ArrayInDataClass",
+    "DuplicatedCode",
     "EnumEntryName",
     "RemoveRedundantQualifierName",
-    "UnusedImport"
+    "RemoveRedundantCallsOfConversionMethods",
+    "REDUNDANT_CALL_OF_CONVERSION_METHOD",
+    "RedundantUnitReturnType",
+    "RemoveEmptyClassBody",
+    "UnnecessaryVariable",
+    "UnusedImport",
+    "UnnecessaryVariable",
+    "unused"
 )
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AutoChunkingStrategy
+import org.openapitools.client.models.AutoChunkingStrategyRequestParam
 import org.openapitools.client.models.StaticChunkingStrategy
 import org.openapitools.client.models.StaticChunkingStrategyStatic
 

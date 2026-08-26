@@ -98,8 +98,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ChatCompletionTokenLogprobTopLogprobsInner" />
     /// </summary>
-    public class ChatCompletionTokenLogprobTopLogprobsInnerJsonConverter : JsonConverter<ChatCompletionTokenLogprobTopLogprobsInner>
+    public partial class ChatCompletionTokenLogprobTopLogprobsInnerJsonConverter : JsonConverter<ChatCompletionTokenLogprobTopLogprobsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChatCompletionTokenLogprobTopLogprobsInnerJsonConverter" /> class.
+        /// </summary>
+        public ChatCompletionTokenLogprobTopLogprobsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ChatCompletionTokenLogprobTopLogprobsInner" />
         /// </summary>

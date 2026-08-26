@@ -24,7 +24,8 @@ type RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter struct {
 	Outputs []RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner `json:"outputs,omitempty"`
 }
 
-// AssertRunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterRequired checks if the required fields are not zero-ed
+// AssertRunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterRequired(obj RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter) error {
 	for _, el := range obj.Outputs {
 		if err := AssertRunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerRequired(el); err != nil {

@@ -1,4 +1,4 @@
-# # RunStepDetailsToolCallsFunctionObjectFunction
+# RunStepDetailsToolCallsFunctionObjectFunction
 
 ## Properties
 

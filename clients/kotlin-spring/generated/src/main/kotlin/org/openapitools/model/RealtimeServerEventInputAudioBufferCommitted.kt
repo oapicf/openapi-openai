@@ -24,16 +24,20 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeServerEventInputAudioBufferCommitted(
 
-    @Schema(example = "null", required = true, description = "The unique ID of the server event.")
+    @Schema(required = true, description = "The unique ID of the server event.")
+    @param:JsonProperty("event_id")
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The event type, must be `input_audio_buffer.committed`.")
+    @Schema(required = true, description = "The event type, must be `input_audio_buffer.committed`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventInputAudioBufferCommitted.Type,
 
-    @Schema(example = "null", required = true, description = "The ID of the preceding item after which the new item will be inserted. ")
+    @Schema(required = true, description = "The ID of the preceding item after which the new item will be inserted. ")
+    @param:JsonProperty("previous_item_id")
     @get:JsonProperty("previous_item_id", required = true) val previousItemId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The ID of the user message item that will be created.")
+    @Schema(required = true, description = "The ID of the user message item that will be created.")
+    @param:JsonProperty("item_id")
     @get:JsonProperty("item_id", required = true) val itemId: kotlin.String
 ) {
 
@@ -50,7 +54,7 @@ data class RealtimeServerEventInputAudioBufferCommitted(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeServerEventInputAudioBufferCommitted'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

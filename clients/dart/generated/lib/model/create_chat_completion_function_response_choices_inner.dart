@@ -61,10 +61,12 @@ class CreateChatCompletionFunctionResponseChoicesInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateChatCompletionFunctionResponseChoicesInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateChatCompletionFunctionResponseChoicesInner[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'finish_reason'), 'Required key "CreateChatCompletionFunctionResponseChoicesInner[finish_reason]" is missing from JSON.');
+        assert(json[r'finish_reason'] != null, 'Required key "CreateChatCompletionFunctionResponseChoicesInner[finish_reason]" has a null value in JSON.');
+        assert(json.containsKey(r'index'), 'Required key "CreateChatCompletionFunctionResponseChoicesInner[index]" is missing from JSON.');
+        assert(json[r'index'] != null, 'Required key "CreateChatCompletionFunctionResponseChoicesInner[index]" has a null value in JSON.');
+        assert(json.containsKey(r'message'), 'Required key "CreateChatCompletionFunctionResponseChoicesInner[message]" is missing from JSON.');
+        assert(json[r'message'] != null, 'Required key "CreateChatCompletionFunctionResponseChoicesInner[message]" has a null value in JSON.');
         return true;
       }());
 
@@ -126,33 +128,31 @@ class CreateChatCompletionFunctionResponseChoicesInner {
 }
 
 /// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, or `function_call` if the model called a function. 
-class CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum._(this.value);
+enum CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum {
+  stop._(r'stop'),
+  length._(r'length'),
+  functionCall._(r'function_call'),
+  contentFilter._(r'content_filter'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const stop = CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum._(r'stop');
-  static const length = CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum._(r'length');
-  static const functionCall = CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum._(r'function_call');
-  static const contentFilter = CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum._(r'content_filter');
-
-  /// List of all possible values in this [enum][CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum].
-  static const values = <CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum>[
-    stop,
-    length,
-    functionCall,
-    contentFilter,
-  ];
-
+  /// Returns the instance of [CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum? fromJson(dynamic value) => CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -174,9 +174,10 @@ class CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnumTypeTransf
 
   const CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnumTypeTransformer._();
 
-  String encode(CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum data) => data.value;
+  String encode(CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum.
+  /// Returns the instance of [CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -185,6 +186,9 @@ class CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnumTypeTransf
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'stop': return CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum.stop;
@@ -200,7 +204,7 @@ class CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnumTypeTransf
     return null;
   }
 
-  /// Singleton [CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnumTypeTransformer? _instance;
 }
 

@@ -1,4 +1,4 @@
-# # RealtimeSessionCreateRequestTurnDetection
+# RealtimeSessionCreateRequestTurnDetection
 
 ## Properties
 

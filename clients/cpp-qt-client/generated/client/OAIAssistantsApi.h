@@ -60,6 +60,7 @@ public:
     void initializeServerConfigs();
     int setDefaultServerValue(int serverIndex,const QString &operation, const QString &variable,const QString &val);
     void setServerIndex(const QString &operation, int serverIndex);
+    void setServerIndex(int serverIndex);
     void setApiKey(const QString &apiKeyName, const QString &apiKey);
     void setBearerToken(const QString &token);
     void setUsername(const QString &username);
@@ -231,6 +232,13 @@ public:
 
 
 private:
+    enum class OauthMethod : int {
+        INVALID_VALUE_OPENAPI_GENERATED = 0,
+        ImplicitFlow = 1,
+        AuthorizationFlow = 2,
+        ClientCredentialsFlow = 3,
+        ResourceOwnerPasswordFlow = 4
+    };
     QMap<QString,int> _serverIndices;
     QMap<QString,QList<OAIServerConfiguration>> _serverConfigs;
     QMap<QString, QString> _apiKeys;
@@ -250,7 +258,7 @@ private:
     OauthImplicit _implicitFlow;
     OauthCredentials _credentialFlow;
     OauthPassword _passwordFlow;
-    int _OauthMethod = 0;
+    OauthMethod _OauthMethod = OauthMethod::INVALID_VALUE_OPENAPI_GENERATED;
 
     void cancelRunCallback(OAIHttpRequestWorker *worker);
     void createAssistantCallback(OAIHttpRequestWorker *worker);
@@ -327,144 +335,52 @@ Q_SIGNALS:
     void modifyThreadSignalFull(OAIHttpRequestWorker *worker, OAIThreadObject summary);
     void submitToolOuputsToRunSignalFull(OAIHttpRequestWorker *worker, OAIRunObject summary);
 
-    Q_DECL_DEPRECATED_X("Use cancelRunSignalError() instead")
-    void cancelRunSignalE(OAIRunObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void cancelRunSignalError(OAIRunObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createAssistantSignalError() instead")
-    void createAssistantSignalE(OAIAssistantObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createAssistantSignalError(OAIAssistantObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createMessageSignalError() instead")
-    void createMessageSignalE(OAIMessageObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createMessageSignalError(OAIMessageObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createRunSignalError() instead")
-    void createRunSignalE(OAIRunObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createRunSignalError(OAIRunObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createThreadSignalError() instead")
-    void createThreadSignalE(OAIThreadObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createThreadSignalError(OAIThreadObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createThreadAndRunSignalError() instead")
-    void createThreadAndRunSignalE(OAIRunObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createThreadAndRunSignalError(OAIRunObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteAssistantSignalError() instead")
-    void deleteAssistantSignalE(OAIDeleteAssistantResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteAssistantSignalError(OAIDeleteAssistantResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteMessageSignalError() instead")
-    void deleteMessageSignalE(OAIDeleteMessageResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteMessageSignalError(OAIDeleteMessageResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteThreadSignalError() instead")
-    void deleteThreadSignalE(OAIDeleteThreadResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteThreadSignalError(OAIDeleteThreadResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getAssistantSignalError() instead")
-    void getAssistantSignalE(OAIAssistantObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getAssistantSignalError(OAIAssistantObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getMessageSignalError() instead")
-    void getMessageSignalE(OAIMessageObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getMessageSignalError(OAIMessageObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getRunSignalError() instead")
-    void getRunSignalE(OAIRunObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getRunSignalError(OAIRunObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getRunStepSignalError() instead")
-    void getRunStepSignalE(OAIRunStepObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getRunStepSignalError(OAIRunStepObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getThreadSignalError() instead")
-    void getThreadSignalE(OAIThreadObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getThreadSignalError(OAIThreadObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listAssistantsSignalError() instead")
-    void listAssistantsSignalE(OAIListAssistantsResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listAssistantsSignalError(OAIListAssistantsResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listMessagesSignalError() instead")
-    void listMessagesSignalE(OAIListMessagesResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listMessagesSignalError(OAIListMessagesResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listRunStepsSignalError() instead")
-    void listRunStepsSignalE(OAIListRunStepsResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listRunStepsSignalError(OAIListRunStepsResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listRunsSignalError() instead")
-    void listRunsSignalE(OAIListRunsResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listRunsSignalError(OAIListRunsResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use modifyAssistantSignalError() instead")
-    void modifyAssistantSignalE(OAIAssistantObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void modifyAssistantSignalError(OAIAssistantObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use modifyMessageSignalError() instead")
-    void modifyMessageSignalE(OAIMessageObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void modifyMessageSignalError(OAIMessageObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use modifyRunSignalError() instead")
-    void modifyRunSignalE(OAIRunObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void modifyRunSignalError(OAIRunObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use modifyThreadSignalError() instead")
-    void modifyThreadSignalE(OAIThreadObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void modifyThreadSignalError(OAIThreadObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use submitToolOuputsToRunSignalError() instead")
-    void submitToolOuputsToRunSignalE(OAIRunObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void submitToolOuputsToRunSignalError(OAIRunObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
-    Q_DECL_DEPRECATED_X("Use cancelRunSignalErrorFull() instead")
-    void cancelRunSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void cancelRunSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createAssistantSignalErrorFull() instead")
-    void createAssistantSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createAssistantSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createMessageSignalErrorFull() instead")
-    void createMessageSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createMessageSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createRunSignalErrorFull() instead")
-    void createRunSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createRunSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createThreadSignalErrorFull() instead")
-    void createThreadSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createThreadSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createThreadAndRunSignalErrorFull() instead")
-    void createThreadAndRunSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createThreadAndRunSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteAssistantSignalErrorFull() instead")
-    void deleteAssistantSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteAssistantSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteMessageSignalErrorFull() instead")
-    void deleteMessageSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteMessageSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteThreadSignalErrorFull() instead")
-    void deleteThreadSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteThreadSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getAssistantSignalErrorFull() instead")
-    void getAssistantSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getAssistantSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getMessageSignalErrorFull() instead")
-    void getMessageSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getMessageSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getRunSignalErrorFull() instead")
-    void getRunSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getRunSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getRunStepSignalErrorFull() instead")
-    void getRunStepSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getRunStepSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getThreadSignalErrorFull() instead")
-    void getThreadSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getThreadSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listAssistantsSignalErrorFull() instead")
-    void listAssistantsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listAssistantsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listMessagesSignalErrorFull() instead")
-    void listMessagesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listMessagesSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listRunStepsSignalErrorFull() instead")
-    void listRunStepsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listRunStepsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listRunsSignalErrorFull() instead")
-    void listRunsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listRunsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use modifyAssistantSignalErrorFull() instead")
-    void modifyAssistantSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void modifyAssistantSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use modifyMessageSignalErrorFull() instead")
-    void modifyMessageSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void modifyMessageSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use modifyRunSignalErrorFull() instead")
-    void modifyRunSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void modifyRunSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use modifyThreadSignalErrorFull() instead")
-    void modifyThreadSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void modifyThreadSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use submitToolOuputsToRunSignalErrorFull() instead")
-    void submitToolOuputsToRunSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void submitToolOuputsToRunSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();

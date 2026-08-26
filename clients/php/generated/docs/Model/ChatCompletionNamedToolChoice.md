@@ -1,4 +1,4 @@
-# # ChatCompletionNamedToolChoice
+# ChatCompletionNamedToolChoice
 
 ## Properties
 

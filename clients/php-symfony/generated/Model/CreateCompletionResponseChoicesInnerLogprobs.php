@@ -47,7 +47,7 @@ class CreateCompletionResponseChoicesInnerLogprobs
      * @var int[]|null
      * @SerializedName("text_offset")
      * @Type("array<int>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("int"),
     ])]
@@ -57,7 +57,7 @@ class CreateCompletionResponseChoicesInnerLogprobs
      * @var float[]|null
      * @SerializedName("token_logprobs")
      * @Type("array<float>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("float"),
     ])]
@@ -67,7 +67,7 @@ class CreateCompletionResponseChoicesInnerLogprobs
      * @var string[]|null
      * @SerializedName("tokens")
      * @Type("array<string>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("string"),
     ])]
@@ -77,7 +77,7 @@ class CreateCompletionResponseChoicesInnerLogprobs
      * @var float[]|null
      * @SerializedName("top_logprobs")
      * @Type("array<float>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("float"),
     ])]
@@ -108,12 +108,12 @@ class CreateCompletionResponseChoicesInnerLogprobs
     }
 
     /**
-    * Sets textOffset.
-    *
-    * @param int[]|null $textOffset
-    *
-    * @return $this
-    */
+     * Sets textOffset.
+     *
+     * @param int[]|null $textOffset
+     *
+     * @return $this
+     */
     public function setTextOffset(?array $textOffset = null): self
     {
         $this->textOffset = $textOffset;
@@ -135,12 +135,12 @@ class CreateCompletionResponseChoicesInnerLogprobs
     }
 
     /**
-    * Sets tokenLogprobs.
-    *
-    * @param float[]|null $tokenLogprobs
-    *
-    * @return $this
-    */
+     * Sets tokenLogprobs.
+     *
+     * @param float[]|null $tokenLogprobs
+     *
+     * @return $this
+     */
     public function setTokenLogprobs(?array $tokenLogprobs = null): self
     {
         $this->tokenLogprobs = $tokenLogprobs;
@@ -162,12 +162,12 @@ class CreateCompletionResponseChoicesInnerLogprobs
     }
 
     /**
-    * Sets tokens.
-    *
-    * @param string[]|null $tokens
-    *
-    * @return $this
-    */
+     * Sets tokens.
+     *
+     * @param string[]|null $tokens
+     *
+     * @return $this
+     */
     public function setTokens(?array $tokens = null): self
     {
         $this->tokens = $tokens;
@@ -189,12 +189,12 @@ class CreateCompletionResponseChoicesInnerLogprobs
     }
 
     /**
-    * Sets topLogprobs.
-    *
-    * @param float[]|null $topLogprobs
-    *
-    * @return $this
-    */
+     * Sets topLogprobs.
+     *
+     * @param float[]|null $topLogprobs
+     *
+     * @return $this
+     */
     public function setTopLogprobs(?array $topLogprobs = null): self
     {
         $this->topLogprobs = $topLogprobs;

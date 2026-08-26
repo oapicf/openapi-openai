@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data** | [**Vec<models::FineTuningJobCheckpoint>**](FineTuningJobCheckpoint.md) |  | 
-**object** | **String** |  | 
+**object** | **Object** |  (enum: list) | 
 **first_id** | Option<**String**> |  | [optional]
 **last_id** | Option<**String**> |  | [optional]
 **has_more** | **bool** |  | 

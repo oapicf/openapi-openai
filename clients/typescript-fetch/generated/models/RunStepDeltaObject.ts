@@ -36,7 +36,7 @@ export interface RunStepDeltaObject {
     id: string;
     /**
      * The object type, which is always `thread.run.step.delta`.
-     * @type {string}
+     * @type {RunStepDeltaObjectObjectEnum}
      * @memberof RunStepDeltaObject
      */
     object: RunStepDeltaObjectObjectEnum;
@@ -64,6 +64,8 @@ export type RunStepDeltaObjectObjectEnum = typeof RunStepDeltaObjectObjectEnum[k
 export function instanceOfRunStepDeltaObject(value: object): value is RunStepDeltaObject {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'thread.run.step.delta') return false;
+    
     if (!('delta' in value) || value['delta'] === undefined) return false;
     return true;
 }

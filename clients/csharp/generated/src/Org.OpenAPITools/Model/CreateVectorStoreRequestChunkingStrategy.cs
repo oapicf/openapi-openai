@@ -89,8 +89,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateVectorStoreRequestChunkingStrategy" />
     /// </summary>
-    public class CreateVectorStoreRequestChunkingStrategyJsonConverter : JsonConverter<CreateVectorStoreRequestChunkingStrategy>
+    public partial class CreateVectorStoreRequestChunkingStrategyJsonConverter : JsonConverter<CreateVectorStoreRequestChunkingStrategy>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateVectorStoreRequestChunkingStrategyJsonConverter" /> class.
+        /// </summary>
+        public CreateVectorStoreRequestChunkingStrategyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateVectorStoreRequestChunkingStrategy" />
         /// </summary>

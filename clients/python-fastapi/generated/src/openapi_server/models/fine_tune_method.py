@@ -23,6 +23,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from openapi_server.models.fine_tune_dpo_method import FineTuneDPOMethod
+from openapi_server.models.fine_tune_supervised_method import FineTuneSupervisedMethod
 try:
     from typing import Self
 except ImportError:
@@ -33,8 +35,8 @@ class FineTuneMethod(BaseModel):
     The method used for fine-tuning.
     """ # noqa: E501
     type: Optional[StrictStr] = Field(default=None, description="The type of method. Is either `supervised` or `dpo`.")
-    supervised: Optional[Dict[str, Any]] = None
-    dpo: Optional[Dict[str, Any]] = None
+    supervised: Optional[FineTuneSupervisedMethod] = None
+    dpo: Optional[FineTuneDPOMethod] = None
     __properties: ClassVar[List[str]] = ["type", "supervised", "dpo"]
 
     @field_validator('type')

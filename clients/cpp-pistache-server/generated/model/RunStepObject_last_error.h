@@ -32,7 +32,7 @@ class  RunStepObject_last_error
 {
 public:
     RunStepObject_last_error();
-    virtual ~RunStepObject_last_error() = default;
+    virtual ~RunStepObject_last_error();
 
 
     /// <summary>

@@ -64,7 +64,7 @@ ChatCompletionStreamOptions::isIncludeUsage()
 }
 
 void
-ChatCompletionStreamOptions::setIncludeUsage(bool  include_usage)
+ChatCompletionStreamOptions::setIncludeUsage(bool include_usage)
 {
 	this->include_usage = include_usage;
 }

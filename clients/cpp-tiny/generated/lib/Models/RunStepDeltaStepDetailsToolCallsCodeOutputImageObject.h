@@ -52,21 +52,21 @@ public:
 
 	/*! \brief Set The index of the output in the outputs array.
 	 */
-	void setIndex(int  index);
+	void setIndex(int index);
 	/*! \brief Get Always `image`.
 	 */
 	std::string getType();
 
 	/*! \brief Set Always `image`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image getImage();
 
 	/*! \brief Set 
 	 */
-	void setImage(RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image  image);
+	void setImage(RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image image);
 
 
     private:

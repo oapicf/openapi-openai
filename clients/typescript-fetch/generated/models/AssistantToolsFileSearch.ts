@@ -29,7 +29,7 @@ import {
 export interface AssistantToolsFileSearch {
     /**
      * The type of tool being defined: `file_search`
-     * @type {string}
+     * @type {AssistantToolsFileSearchTypeEnum}
      * @memberof AssistantToolsFileSearch
      */
     type: AssistantToolsFileSearchTypeEnum;
@@ -56,6 +56,8 @@ export type AssistantToolsFileSearchTypeEnum = typeof AssistantToolsFileSearchTy
  */
 export function instanceOfAssistantToolsFileSearch(value: object): value is AssistantToolsFileSearch {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'file_search') return false;
+    
     return true;
 }
 

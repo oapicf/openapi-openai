@@ -30,6 +30,8 @@ FunctionObject::FunctionObject()
     
 }
 
+FunctionObject::~FunctionObject() = default;
+
 void FunctionObject::validate() const
 {
     std::stringstream msg;

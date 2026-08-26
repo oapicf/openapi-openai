@@ -32,13 +32,13 @@ namespace OpenAPI {
 class OAIRunStepDeltaStepDetailsToolCallsFileSearchObject : public OAIObject {
 public:
     OAIRunStepDeltaStepDetailsToolCallsFileSearchObject();
-    OAIRunStepDeltaStepDetailsToolCallsFileSearchObject(QString json);
+    OAIRunStepDeltaStepDetailsToolCallsFileSearchObject(const QString &json);
     ~OAIRunStepDeltaStepDetailsToolCallsFileSearchObject() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getIndex() const;
     void setIndex(const qint32 &index);

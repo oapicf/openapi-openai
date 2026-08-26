@@ -28,6 +28,8 @@ CreateCompletionResponse_choices_inner_logprobs::CreateCompletionResponse_choice
     
 }
 
+CreateCompletionResponse_choices_inner_logprobs::~CreateCompletionResponse_choices_inner_logprobs() = default;
+
 void CreateCompletionResponse_choices_inner_logprobs::validate() const
 {
     std::stringstream msg;

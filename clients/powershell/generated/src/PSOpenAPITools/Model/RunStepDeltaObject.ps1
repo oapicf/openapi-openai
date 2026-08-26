@@ -59,9 +59,9 @@ function Initialize-RunStepDeltaObject {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "delta" = ${Delta}
+            'id' = ${Id}
+            'object' = ${Object}
+            'delta' = ${Delta}
         }
 
 
@@ -99,7 +99,7 @@ function ConvertFrom-JsonToRunStepDeltaObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDeltaObject
-        $AllProperties = ("id", "object", "delta")
+        $AllProperties = ('id', 'object', 'delta')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -110,28 +110,28 @@ function ConvertFrom-JsonToRunStepDeltaObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delta"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'delta'))) {
             throw "Error! JSON cannot be serialized due to the required property 'delta' missing."
         } else {
-            $Delta = $JsonParameters.PSobject.Properties["delta"].value
+            $Delta = $JsonParameters.PSobject.Properties['delta'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "delta" = ${Delta}
+            'id' = ${Id}
+            'object' = ${Object}
+            'delta' = ${Delta}
         }
 
         return $PSO

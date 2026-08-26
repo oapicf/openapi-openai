@@ -28,6 +28,8 @@ RealtimeServerEventInputAudioBufferSpeechStopped::RealtimeServerEventInputAudioB
     
 }
 
+RealtimeServerEventInputAudioBufferSpeechStopped::~RealtimeServerEventInputAudioBufferSpeechStopped() = default;
+
 void RealtimeServerEventInputAudioBufferSpeechStopped::validate() const
 {
     std::stringstream msg;

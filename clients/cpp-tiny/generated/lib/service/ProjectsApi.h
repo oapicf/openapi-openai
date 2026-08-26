@@ -41,7 +41,7 @@ class ProjectsApi : public Service {
 public:
     ProjectsApi() = default;
 
-    virtual ~ProjectsApi() = default;
+    virtual ~ProjectsApi();
 
     /**
     * Archives a project in the organization. Archived projects cannot be used or updated..

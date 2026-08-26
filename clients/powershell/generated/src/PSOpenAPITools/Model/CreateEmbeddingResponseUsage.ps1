@@ -49,8 +49,8 @@ function Initialize-CreateEmbeddingResponseUsage {
 
 
         $PSO = [PSCustomObject]@{
-            "prompt_tokens" = ${PromptTokens}
-            "total_tokens" = ${TotalTokens}
+            'prompt_tokens' = ${PromptTokens}
+            'total_tokens' = ${TotalTokens}
         }
 
 
@@ -88,7 +88,7 @@ function ConvertFrom-JsonToCreateEmbeddingResponseUsage {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateEmbeddingResponseUsage
-        $AllProperties = ("prompt_tokens", "total_tokens")
+        $AllProperties = ('prompt_tokens', 'total_tokens')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -99,21 +99,21 @@ function ConvertFrom-JsonToCreateEmbeddingResponseUsage {
             throw "Error! Empty JSON cannot be serialized due to the required property 'prompt_tokens' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prompt_tokens"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'prompt_tokens'))) {
             throw "Error! JSON cannot be serialized due to the required property 'prompt_tokens' missing."
         } else {
-            $PromptTokens = $JsonParameters.PSobject.Properties["prompt_tokens"].value
+            $PromptTokens = $JsonParameters.PSobject.Properties['prompt_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "total_tokens"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'total_tokens'))) {
             throw "Error! JSON cannot be serialized due to the required property 'total_tokens' missing."
         } else {
-            $TotalTokens = $JsonParameters.PSobject.Properties["total_tokens"].value
+            $TotalTokens = $JsonParameters.PSobject.Properties['total_tokens'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "prompt_tokens" = ${PromptTokens}
-            "total_tokens" = ${TotalTokens}
+            'prompt_tokens' = ${PromptTokens}
+            'total_tokens' = ${TotalTokens}
         }
 
         return $PSO

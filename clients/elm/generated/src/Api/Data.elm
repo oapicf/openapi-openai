@@ -75,7 +75,6 @@ module Api.Data exposing
     , AuditLogUserDeleted
     , AuditLogUserUpdated
     , AuditLogUserUpdatedChangesRequested
-    , AutoChunkingStrategy, AutoChunkingStrategyType(..), autoChunkingStrategyTypeVariants
     , AutoChunkingStrategyRequestParam, AutoChunkingStrategyRequestParamType(..), autoChunkingStrategyRequestParamTypeVariants
     , Batch, BatchObject(..), batchObjectVariants, BatchStatus(..), batchStatusVariants
     , BatchErrors
@@ -488,7 +487,6 @@ module Api.Data exposing
     , RunToolCallObjectFunction
     , StaticChunkingStrategy, StaticChunkingStrategyType(..), staticChunkingStrategyTypeVariants
     , StaticChunkingStrategyRequestParam, StaticChunkingStrategyRequestParamType(..), staticChunkingStrategyRequestParamTypeVariants
-    , StaticChunkingStrategyResponseParam, StaticChunkingStrategyResponseParamType(..), staticChunkingStrategyResponseParamTypeVariants
     , StaticChunkingStrategyStatic
     , SubmitToolOutputsRunRequest
     , SubmitToolOutputsRunRequestToolOutputsInner
@@ -583,7 +581,6 @@ module Api.Data exposing
     , encodeAuditLogUserDeleted
     , encodeAuditLogUserUpdated
     , encodeAuditLogUserUpdatedChangesRequested
-    , encodeAutoChunkingStrategy
     , encodeAutoChunkingStrategyRequestParam
     , encodeBatch
     , encodeBatchErrors
@@ -996,7 +993,6 @@ module Api.Data exposing
     , encodeRunToolCallObjectFunction
     , encodeStaticChunkingStrategy
     , encodeStaticChunkingStrategyRequestParam
-    , encodeStaticChunkingStrategyResponseParam
     , encodeStaticChunkingStrategyStatic
     , encodeSubmitToolOutputsRunRequest
     , encodeSubmitToolOutputsRunRequestToolOutputsInner
@@ -1094,7 +1090,6 @@ module Api.Data exposing
     , auditLogUserDeletedDecoder
     , auditLogUserUpdatedDecoder
     , auditLogUserUpdatedChangesRequestedDecoder
-    , autoChunkingStrategyDecoder
     , autoChunkingStrategyRequestParamDecoder
     , batchDecoder
     , batchErrorsDecoder
@@ -1507,7 +1502,6 @@ module Api.Data exposing
     , runToolCallObjectFunctionDecoder
     , staticChunkingStrategyDecoder
     , staticChunkingStrategyRequestParamDecoder
-    , staticChunkingStrategyResponseParamDecoder
     , staticChunkingStrategyStaticDecoder
     , submitToolOutputsRunRequestDecoder
     , submitToolOutputsRunRequestToolOutputsInnerDecoder
@@ -2190,23 +2184,6 @@ type alias AuditLogUserUpdated =
 type alias AuditLogUserUpdatedChangesRequested =
     { role : Maybe String
     }
-
-
-{-| The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`.
--}
-type alias AutoChunkingStrategy =
-    { type_ : AutoChunkingStrategyType
-    }
-
-
-type AutoChunkingStrategyType
-    = AutoChunkingStrategyTypeAuto
-
-
-autoChunkingStrategyTypeVariants : List AutoChunkingStrategyType
-autoChunkingStrategyTypeVariants =
-    [ AutoChunkingStrategyTypeAuto
-    ]
 
 
 {-| The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`.
@@ -3001,7 +2978,7 @@ type alias CreateAssistantRequestToolResourcesFileSearchVectorStoresInner =
 {-| The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.
 -}
 type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
-    = CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyAutoChunkingStrategy AutoChunkingStrategy
+    = CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyAutoChunkingStrategyRequestParam AutoChunkingStrategyRequestParam
     | CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyStaticChunkingStrategy StaticChunkingStrategy
 
 
@@ -8941,22 +8918,6 @@ staticChunkingStrategyRequestParamTypeVariants =
     ]
 
 
-type alias StaticChunkingStrategyResponseParam =
-    { type_ : StaticChunkingStrategyResponseParamType
-    , static : StaticChunkingStrategy
-    }
-
-
-type StaticChunkingStrategyResponseParamType
-    = StaticChunkingStrategyResponseParamTypeStatic
-
-
-staticChunkingStrategyResponseParamTypeVariants : List StaticChunkingStrategyResponseParamType
-staticChunkingStrategyResponseParamTypeVariants =
-    [ StaticChunkingStrategyResponseParamTypeStatic
-    ]
-
-
 type alias StaticChunkingStrategyStatic =
     { maxChunkSizeTokens : Int
     , chunkOverlapTokens : Int
@@ -9552,7 +9513,7 @@ vectorStoreFileObjectStatusVariants =
 -}
 type VectorStoreFileObjectChunkingStrategy
     = VectorStoreFileObjectChunkingStrategyOtherChunkingStrategyResponseParam OtherChunkingStrategyResponseParam
-    | VectorStoreFileObjectChunkingStrategyStaticChunkingStrategyResponseParam StaticChunkingStrategyResponseParam
+    | VectorStoreFileObjectChunkingStrategyStaticChunkingStrategyRequestParam StaticChunkingStrategyRequestParam
 
 
 
@@ -11081,38 +11042,6 @@ encodeAuditLogUserUpdatedChangesRequestedPairs model =
             ]
     in
     pairs
-
-
-encodeAutoChunkingStrategy : AutoChunkingStrategy -> Json.Encode.Value
-encodeAutoChunkingStrategy =
-    encodeObject << encodeAutoChunkingStrategyPairs
-
-
-encodeAutoChunkingStrategyWithTag : ( String, String ) -> AutoChunkingStrategy -> Json.Encode.Value
-encodeAutoChunkingStrategyWithTag (tagField, tag) model =
-    encodeObject (encodeAutoChunkingStrategyPairs model ++ [ encode tagField Json.Encode.string tag ])
-
-
-encodeAutoChunkingStrategyPairs : AutoChunkingStrategy -> List EncodedField
-encodeAutoChunkingStrategyPairs model =
-    let
-        pairs =
-            [ encode "type" encodeAutoChunkingStrategyType model.type_
-            ]
-    in
-    pairs
-
-stringFromAutoChunkingStrategyType : AutoChunkingStrategyType -> String
-stringFromAutoChunkingStrategyType model =
-    case model of
-        AutoChunkingStrategyTypeAuto ->
-            "auto"
-
-
-encodeAutoChunkingStrategyType : AutoChunkingStrategyType -> Json.Encode.Value
-encodeAutoChunkingStrategyType =
-    Json.Encode.string << stringFromAutoChunkingStrategyType
-
 
 
 encodeAutoChunkingStrategyRequestParam : AutoChunkingStrategyRequestParam -> Json.Encode.Value
@@ -12776,8 +12705,8 @@ encodeCreateAssistantRequestToolResourcesFileSearchVectorStoresInnerPairs model 
 encodeCreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy : CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy -> Json.Encode.Value
 encodeCreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy model =
     case model of
-        CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyAutoChunkingStrategy subModel ->
-            encodeAutoChunkingStrategy subModel
+        CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyAutoChunkingStrategyRequestParam subModel ->
+            encodeAutoChunkingStrategyRequestParam subModel
 
 
         CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyStaticChunkingStrategy subModel ->
@@ -23943,39 +23872,6 @@ encodeStaticChunkingStrategyRequestParamType =
 
 
 
-encodeStaticChunkingStrategyResponseParam : StaticChunkingStrategyResponseParam -> Json.Encode.Value
-encodeStaticChunkingStrategyResponseParam =
-    encodeObject << encodeStaticChunkingStrategyResponseParamPairs
-
-
-encodeStaticChunkingStrategyResponseParamWithTag : ( String, String ) -> StaticChunkingStrategyResponseParam -> Json.Encode.Value
-encodeStaticChunkingStrategyResponseParamWithTag (tagField, tag) model =
-    encodeObject (encodeStaticChunkingStrategyResponseParamPairs model ++ [ encode tagField Json.Encode.string tag ])
-
-
-encodeStaticChunkingStrategyResponseParamPairs : StaticChunkingStrategyResponseParam -> List EncodedField
-encodeStaticChunkingStrategyResponseParamPairs model =
-    let
-        pairs =
-            [ encode "type" encodeStaticChunkingStrategyResponseParamType model.type_
-            , encode "static" encodeStaticChunkingStrategy model.static
-            ]
-    in
-    pairs
-
-stringFromStaticChunkingStrategyResponseParamType : StaticChunkingStrategyResponseParamType -> String
-stringFromStaticChunkingStrategyResponseParamType model =
-    case model of
-        StaticChunkingStrategyResponseParamTypeStatic ->
-            "static"
-
-
-encodeStaticChunkingStrategyResponseParamType : StaticChunkingStrategyResponseParamType -> Json.Encode.Value
-encodeStaticChunkingStrategyResponseParamType =
-    Json.Encode.string << stringFromStaticChunkingStrategyResponseParamType
-
-
-
 encodeStaticChunkingStrategyStatic : StaticChunkingStrategyStatic -> Json.Encode.Value
 encodeStaticChunkingStrategyStatic =
     encodeObject << encodeStaticChunkingStrategyStaticPairs
@@ -25067,8 +24963,8 @@ encodeVectorStoreFileObjectChunkingStrategy model =
             encodeOtherChunkingStrategyResponseParam subModel
 
 
-        VectorStoreFileObjectChunkingStrategyStaticChunkingStrategyResponseParam subModel ->
-            encodeStaticChunkingStrategyResponseParam subModel
+        VectorStoreFileObjectChunkingStrategyStaticChunkingStrategyRequestParam subModel ->
+            encodeStaticChunkingStrategyRequestParam subModel
 
 
 
@@ -25891,27 +25787,6 @@ auditLogUserUpdatedChangesRequestedDecoder : Json.Decode.Decoder AuditLogUserUpd
 auditLogUserUpdatedChangesRequestedDecoder =
     Json.Decode.succeed AuditLogUserUpdatedChangesRequested
         |> maybeDecode "role" Json.Decode.string Nothing
-
-
-autoChunkingStrategyDecoder : Json.Decode.Decoder AutoChunkingStrategy
-autoChunkingStrategyDecoder =
-    Json.Decode.succeed AutoChunkingStrategy
-        |> decode "type" autoChunkingStrategyTypeDecoder 
-
-
-autoChunkingStrategyTypeDecoder : Json.Decode.Decoder AutoChunkingStrategyType
-autoChunkingStrategyTypeDecoder =
-    Json.Decode.string
-        |> Json.Decode.andThen
-            (\value ->
-                case value of
-                    "auto" ->
-                        Json.Decode.succeed AutoChunkingStrategyTypeAuto
-
-                    other ->
-                        Json.Decode.fail <| "Unknown type: " ++ other
-            )
-
 
 
 autoChunkingStrategyRequestParamDecoder : Json.Decode.Decoder AutoChunkingStrategyRequestParam
@@ -26849,7 +26724,7 @@ createAssistantRequestToolResourcesFileSearchVectorStoresInnerDecoder =
 createAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyDecoder : Json.Decode.Decoder CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
 createAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyDecoder =
     Json.Decode.oneOf
-        [ Json.Decode.map CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyAutoChunkingStrategy autoChunkingStrategyDecoder
+        [ Json.Decode.map CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyAutoChunkingStrategyRequestParam autoChunkingStrategyRequestParamDecoder
         , Json.Decode.map CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyStaticChunkingStrategy staticChunkingStrategyDecoder
         ]
 
@@ -34224,28 +34099,6 @@ staticChunkingStrategyRequestParamTypeDecoder =
 
 
 
-staticChunkingStrategyResponseParamDecoder : Json.Decode.Decoder StaticChunkingStrategyResponseParam
-staticChunkingStrategyResponseParamDecoder =
-    Json.Decode.succeed StaticChunkingStrategyResponseParam
-        |> decode "type" staticChunkingStrategyResponseParamTypeDecoder 
-        |> decode "static" staticChunkingStrategyDecoder 
-
-
-staticChunkingStrategyResponseParamTypeDecoder : Json.Decode.Decoder StaticChunkingStrategyResponseParamType
-staticChunkingStrategyResponseParamTypeDecoder =
-    Json.Decode.string
-        |> Json.Decode.andThen
-            (\value ->
-                case value of
-                    "static" ->
-                        Json.Decode.succeed StaticChunkingStrategyResponseParamTypeStatic
-
-                    other ->
-                        Json.Decode.fail <| "Unknown type: " ++ other
-            )
-
-
-
 staticChunkingStrategyStaticDecoder : Json.Decode.Decoder StaticChunkingStrategyStatic
 staticChunkingStrategyStaticDecoder =
     Json.Decode.succeed StaticChunkingStrategyStatic
@@ -34981,7 +34834,7 @@ vectorStoreFileObjectChunkingStrategyDecoder : Json.Decode.Decoder VectorStoreFi
 vectorStoreFileObjectChunkingStrategyDecoder =
     Json.Decode.oneOf
         [ Json.Decode.map VectorStoreFileObjectChunkingStrategyOtherChunkingStrategyResponseParam otherChunkingStrategyResponseParamDecoder
-        , Json.Decode.map VectorStoreFileObjectChunkingStrategyStaticChunkingStrategyResponseParam staticChunkingStrategyResponseParamDecoder
+        , Json.Decode.map VectorStoreFileObjectChunkingStrategyStaticChunkingStrategyRequestParam staticChunkingStrategyRequestParamDecoder
         ]
 
 

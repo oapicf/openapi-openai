@@ -26,7 +26,8 @@ type FineTunePreferenceRequestInput struct {
 	NonPreferredCompletion []FineTunePreferenceRequestInputPreferredCompletionInner `json:"non_preferred_completion,omitempty"`
 }
 
-// AssertFineTunePreferenceRequestInputRequired checks if the required fields are not zero-ed
+// AssertFineTunePreferenceRequestInputRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertFineTunePreferenceRequestInputRequired(obj FineTunePreferenceRequestInput) error {
 	if err := AssertFineTunePreferenceRequestInputInputRequired(obj.Input); err != nil {
 		return err

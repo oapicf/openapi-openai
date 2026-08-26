@@ -7,7 +7,7 @@ import play.api.libs.json._
   * @param role The role of the messages author, in this case `system`.
   * @param name An optional name for the participant. Provides the model information to differentiate between participants of the same role.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 case class ChatCompletionRequestSystemMessage(
   content: ChatCompletionRequestSystemMessageContent,
   role: ChatCompletionRequestSystemMessage.Role.Value,

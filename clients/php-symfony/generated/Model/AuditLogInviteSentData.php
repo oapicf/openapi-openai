@@ -51,7 +51,7 @@ class AuditLogInviteSentData
      * @var string|null
      * @SerializedName("email")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $email = null;
 
@@ -61,7 +61,7 @@ class AuditLogInviteSentData
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $role = null;
 
@@ -88,12 +88,12 @@ class AuditLogInviteSentData
     }
 
     /**
-    * Sets email.
-    *
-    * @param string|null $email  The email invited to the organization.
-    *
-    * @return $this
-    */
+     * Sets email.
+     *
+     * @param string|null $email  The email invited to the organization.
+     *
+     * @return $this
+     */
     public function setEmail(?string $email = null): self
     {
         $this->email = $email;
@@ -115,12 +115,12 @@ class AuditLogInviteSentData
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  The role the email was invited to be. Is either `owner` or `member`.
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  The role the email was invited to be. Is either `owner` or `member`.
+     *
+     * @return $this
+     */
     public function setRole(?string $role = null): self
     {
         $this->role = $role;

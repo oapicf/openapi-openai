@@ -25,7 +25,7 @@ message CreateCompletionResponseChoicesInner {
     FINISH_REASON_CONTENT_FILTER = 2;
   }
 
-  Finish_reason finish_reason = 194820243;
+  string finish_reason = 194820243;
 
   int32 index = 100346066;
 

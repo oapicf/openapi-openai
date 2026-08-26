@@ -32,7 +32,7 @@ class  AdminApiKey_owner
 {
 public:
     AdminApiKey_owner();
-    virtual ~AdminApiKey_owner() = default;
+    virtual ~AdminApiKey_owner();
 
 
     /// <summary>

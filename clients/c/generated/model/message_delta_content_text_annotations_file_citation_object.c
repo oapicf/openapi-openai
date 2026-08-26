@@ -23,44 +23,65 @@ openai_api_message_delta_content_text_annotations_file_citation_object_TYPE_e me
 }
 
 static message_delta_content_text_annotations_file_citation_object_t *message_delta_content_text_annotations_file_citation_object_create_internal(
-    int index,
+    int *index,
     openai_api_message_delta_content_text_annotations_file_citation_object_TYPE_e type,
     char *text,
     message_delta_content_text_annotations_file_citation_object_file_citation_t *file_citation,
-    int start_index,
-    int end_index
+    int *start_index,
+    int *end_index
     ) {
     message_delta_content_text_annotations_file_citation_object_t *message_delta_content_text_annotations_file_citation_object_local_var = malloc(sizeof(message_delta_content_text_annotations_file_citation_object_t));
     if (!message_delta_content_text_annotations_file_citation_object_local_var) {
         return NULL;
     }
+    memset(message_delta_content_text_annotations_file_citation_object_local_var, 0, sizeof(message_delta_content_text_annotations_file_citation_object_t));
+    message_delta_content_text_annotations_file_citation_object_local_var->_library_owned = 1;
     message_delta_content_text_annotations_file_citation_object_local_var->index = index;
     message_delta_content_text_annotations_file_citation_object_local_var->type = type;
     message_delta_content_text_annotations_file_citation_object_local_var->text = text;
     message_delta_content_text_annotations_file_citation_object_local_var->file_citation = file_citation;
     message_delta_content_text_annotations_file_citation_object_local_var->start_index = start_index;
     message_delta_content_text_annotations_file_citation_object_local_var->end_index = end_index;
-
-    message_delta_content_text_annotations_file_citation_object_local_var->_library_owned = 1;
     return message_delta_content_text_annotations_file_citation_object_local_var;
 }
 
 __attribute__((deprecated)) message_delta_content_text_annotations_file_citation_object_t *message_delta_content_text_annotations_file_citation_object_create(
-    int index,
+    int *index,
     openai_api_message_delta_content_text_annotations_file_citation_object_TYPE_e type,
     char *text,
     message_delta_content_text_annotations_file_citation_object_file_citation_t *file_citation,
-    int start_index,
-    int end_index
+    int *start_index,
+    int *end_index
     ) {
-    return message_delta_content_text_annotations_file_citation_object_create_internal (
-        index,
+    int *index_copy = NULL;
+    if (index) {
+        index_copy = malloc(sizeof(int));
+        if (index_copy) *index_copy = *index;
+    }
+    int *start_index_copy = NULL;
+    if (start_index) {
+        start_index_copy = malloc(sizeof(int));
+        if (start_index_copy) *start_index_copy = *start_index;
+    }
+    int *end_index_copy = NULL;
+    if (end_index) {
+        end_index_copy = malloc(sizeof(int));
+        if (end_index_copy) *end_index_copy = *end_index;
+    }
+    message_delta_content_text_annotations_file_citation_object_t *result = message_delta_content_text_annotations_file_citation_object_create_internal (
+        index_copy,
         type,
         text,
         file_citation,
-        start_index,
-        end_index
+        start_index_copy,
+        end_index_copy
         );
+    if (!result) {
+        free(index_copy);
+        free(start_index_copy);
+        free(end_index_copy);
+    }
+    return result;
 }
 
 void message_delta_content_text_annotations_file_citation_object_free(message_delta_content_text_annotations_file_citation_object_t *message_delta_content_text_annotations_file_citation_object) {
@@ -72,6 +93,10 @@ void message_delta_content_text_annotations_file_citation_object_free(message_de
         return ;
     }
     listEntry_t *listEntry;
+    if (message_delta_content_text_annotations_file_citation_object->index) {
+        free(message_delta_content_text_annotations_file_citation_object->index);
+        message_delta_content_text_annotations_file_citation_object->index = NULL;
+    }
     if (message_delta_content_text_annotations_file_citation_object->text) {
         free(message_delta_content_text_annotations_file_citation_object->text);
         message_delta_content_text_annotations_file_citation_object->text = NULL;
@@ -79,6 +104,14 @@ void message_delta_content_text_annotations_file_citation_object_free(message_de
     if (message_delta_content_text_annotations_file_citation_object->file_citation) {
         message_delta_content_text_annotations_file_citation_object_file_citation_free(message_delta_content_text_annotations_file_citation_object->file_citation);
         message_delta_content_text_annotations_file_citation_object->file_citation = NULL;
+    }
+    if (message_delta_content_text_annotations_file_citation_object->start_index) {
+        free(message_delta_content_text_annotations_file_citation_object->start_index);
+        message_delta_content_text_annotations_file_citation_object->start_index = NULL;
+    }
+    if (message_delta_content_text_annotations_file_citation_object->end_index) {
+        free(message_delta_content_text_annotations_file_citation_object->end_index);
+        message_delta_content_text_annotations_file_citation_object->end_index = NULL;
     }
     free(message_delta_content_text_annotations_file_citation_object);
 }
@@ -90,7 +123,7 @@ cJSON *message_delta_content_text_annotations_file_citation_object_convertToJSON
     if (!message_delta_content_text_annotations_file_citation_object->index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "index", message_delta_content_text_annotations_file_citation_object->index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "index", *message_delta_content_text_annotations_file_citation_object->index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -128,7 +161,7 @@ cJSON *message_delta_content_text_annotations_file_citation_object_convertToJSON
 
     // message_delta_content_text_annotations_file_citation_object->start_index
     if(message_delta_content_text_annotations_file_citation_object->start_index) {
-    if(cJSON_AddNumberToObject(item, "start_index", message_delta_content_text_annotations_file_citation_object->start_index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "start_index", *message_delta_content_text_annotations_file_citation_object->start_index) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -136,7 +169,7 @@ cJSON *message_delta_content_text_annotations_file_citation_object_convertToJSON
 
     // message_delta_content_text_annotations_file_citation_object->end_index
     if(message_delta_content_text_annotations_file_citation_object->end_index) {
-    if(cJSON_AddNumberToObject(item, "end_index", message_delta_content_text_annotations_file_citation_object->end_index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "end_index", *message_delta_content_text_annotations_file_citation_object->end_index) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -153,8 +186,19 @@ message_delta_content_text_annotations_file_citation_object_t *message_delta_con
 
     message_delta_content_text_annotations_file_citation_object_t *message_delta_content_text_annotations_file_citation_object_local_var = NULL;
 
+    // define the local variable for message_delta_content_text_annotations_file_citation_object->index
+    int *index_local_var = NULL;
+
+    char *text_local_str = NULL;
+
     // define the local variable for message_delta_content_text_annotations_file_citation_object->file_citation
     message_delta_content_text_annotations_file_citation_object_file_citation_t *file_citation_local_nonprim = NULL;
+
+    // define the local variable for message_delta_content_text_annotations_file_citation_object->start_index
+    int *start_index_local_var = NULL;
+
+    // define the local variable for message_delta_content_text_annotations_file_citation_object->end_index
+    int *end_index_local_var = NULL;
 
     // message_delta_content_text_annotations_file_citation_object->index
     cJSON *index = cJSON_GetObjectItemCaseSensitive(message_delta_content_text_annotations_file_citation_objectJSON, "index");
@@ -170,6 +214,12 @@ message_delta_content_text_annotations_file_citation_object_t *message_delta_con
     {
     goto end; //Numeric
     }
+    index_local_var = malloc(sizeof(int));
+    if(!index_local_var)
+    {
+        goto end;
+    }
+    *index_local_var = index->valuedouble;
 
     // message_delta_content_text_annotations_file_citation_object->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(message_delta_content_text_annotations_file_citation_objectJSON, "type");
@@ -219,6 +269,12 @@ message_delta_content_text_annotations_file_citation_object_t *message_delta_con
     {
     goto end; //Numeric
     }
+    start_index_local_var = malloc(sizeof(int));
+    if(!start_index_local_var)
+    {
+        goto end;
+    }
+    *start_index_local_var = start_index->valuedouble;
     }
 
     // message_delta_content_text_annotations_file_citation_object->end_index
@@ -231,23 +287,51 @@ message_delta_content_text_annotations_file_citation_object_t *message_delta_con
     {
     goto end; //Numeric
     }
+    end_index_local_var = malloc(sizeof(int));
+    if(!end_index_local_var)
+    {
+        goto end;
+    }
+    *end_index_local_var = end_index->valuedouble;
     }
 
 
+    if (text && !cJSON_IsNull(text)) text_local_str = strdup(text->valuestring);
+
     message_delta_content_text_annotations_file_citation_object_local_var = message_delta_content_text_annotations_file_citation_object_create_internal (
-        index->valuedouble,
+        index_local_var,
         typeVariable,
-        text && !cJSON_IsNull(text) ? strdup(text->valuestring) : NULL,
+        text_local_str,
         file_citation ? file_citation_local_nonprim : NULL,
-        start_index ? start_index->valuedouble : 0,
-        end_index ? end_index->valuedouble : 0
+        start_index_local_var,
+        end_index_local_var
         );
+
+    if (!message_delta_content_text_annotations_file_citation_object_local_var) {
+        goto end;
+    }
 
     return message_delta_content_text_annotations_file_citation_object_local_var;
 end:
+    if (index_local_var) {
+        free(index_local_var);
+        index_local_var = NULL;
+    }
+    if (text_local_str) {
+        free(text_local_str);
+        text_local_str = NULL;
+    }
     if (file_citation_local_nonprim) {
         message_delta_content_text_annotations_file_citation_object_file_citation_free(file_citation_local_nonprim);
         file_citation_local_nonprim = NULL;
+    }
+    if (start_index_local_var) {
+        free(start_index_local_var);
+        start_index_local_var = NULL;
+    }
+    if (end_index_local_var) {
+        free(end_index_local_var);
+        end_index_local_var = NULL;
     }
     return NULL;
 

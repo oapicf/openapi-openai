@@ -1,4 +1,4 @@
-# # Embedding
+# Embedding
 
 ## Properties
 

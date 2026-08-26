@@ -61,7 +61,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CustomId
@@ -75,7 +75,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A developer-provided per-request id that will be used to match outputs to inputs.</value>
         [JsonPropertyName("custom_id")]
-        public string? CustomId { get { return this.CustomIdOption; } set { this.CustomIdOption = new(value); } }
+        public string? CustomId { get { return this.CustomIdOption.Value; } set { this.CustomIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Response
@@ -88,7 +88,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Response
         /// </summary>
         [JsonPropertyName("response")]
-        public BatchRequestOutputResponse? Response { get { return this.ResponseOption; } set { this.ResponseOption = new(value); } }
+        public BatchRequestOutputResponse? Response { get { return this.ResponseOption.Value; } set { this.ResponseOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Error
@@ -101,7 +101,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Error
         /// </summary>
         [JsonPropertyName("error")]
-        public BatchRequestOutputError? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public BatchRequestOutputError? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -133,8 +133,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="BatchRequestOutput" />
     /// </summary>
-    public class BatchRequestOutputJsonConverter : JsonConverter<BatchRequestOutput>
+    public partial class BatchRequestOutputJsonConverter : JsonConverter<BatchRequestOutput>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BatchRequestOutputJsonConverter" /> class.
+        /// </summary>
+        public BatchRequestOutputJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="BatchRequestOutput" />
         /// </summary>

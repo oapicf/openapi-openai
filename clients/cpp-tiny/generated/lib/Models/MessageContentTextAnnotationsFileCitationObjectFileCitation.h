@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set The ID of the specific File the citation is from.
 	 */
-	void setFileId(std::string  file_id);
+	void setFileId(std::string file_id);
 
 
     private:

@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIAudioResponseFormat : public OAIEnum {
 public:
     OAIAudioResponseFormat();
-    OAIAudioResponseFormat(QString json);
+    OAIAudioResponseFormat(const QString &json);
     ~OAIAudioResponseFormat() override;
 
     QString asJson() const override;
     QJsonValue asJsonValue() const override;
     void fromJsonValue(QJsonValue json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     enum class eOAIAudioResponseFormat {
         INVALID_VALUE_OPENAPI_GENERATED = 0,

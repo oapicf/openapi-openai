@@ -88,15 +88,17 @@ class _$RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterSerializer impl
         case r'input':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.input = valueDes;
           break;
         case r'outputs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner)]),
-          ) as BuiltList<RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner)]),
+          ) as BuiltList<RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>?;
+          if (valueDes == null) continue;
           result.outputs.replace(valueDes);
           break;
         default:

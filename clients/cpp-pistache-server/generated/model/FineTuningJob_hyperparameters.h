@@ -34,7 +34,7 @@ class  FineTuningJob_hyperparameters
 {
 public:
     FineTuningJob_hyperparameters();
-    virtual ~FineTuningJob_hyperparameters() = default;
+    virtual ~FineTuningJob_hyperparameters();
 
 
     /// <summary>

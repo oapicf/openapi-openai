@@ -29,20 +29,52 @@ import org.openapitools.server.models.CreateCompletionRequest
 import org.openapitools.server.models.CreateCompletionResponse
 
 fun Route.CompletionsApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createCompletion> {
+    post<Paths.createCompletion> { createCompletion ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "id" : "id",
+              "choices" : [ {
+                "finish_reason" : "stop",
+                "index" : 0,
+                "logprobs" : {
+                  "text_offset" : [ 6, 6 ],
+                  "token_logprobs" : [ 1.4658129805029452, 1.4658129805029452 ],
+                  "tokens" : [ "tokens", "tokens" ],
+                  "top_logprobs" : [ {
+                    "key" : 5.962133916683182
+                  }, {
+                    "key" : 5.962133916683182
+                  } ]
+                },
+                "text" : "text"
+              }, {
+                "finish_reason" : "stop",
+                "index" : 0,
+                "logprobs" : {
+                  "text_offset" : [ 6, 6 ],
+                  "token_logprobs" : [ 1.4658129805029452, 1.4658129805029452 ],
+                  "tokens" : [ "tokens", "tokens" ],
+                  "top_logprobs" : [ {
+                    "key" : 5.962133916683182
+                  }, {
+                    "key" : 5.962133916683182
+                  } ]
+                },
+                "text" : "text"
+              } ],
               "created" : 5,
+              "model" : "model",
+              "system_fingerprint" : "system_fingerprint",
+              "object" : "text_completion",
               "usage" : {
                 "completion_tokens" : 9,
                 "prompt_tokens" : 3,
+                "total_tokens" : 2,
                 "completion_tokens_details" : {
                   "accepted_prediction_tokens" : 4,
                   "audio_tokens" : 7,
@@ -52,42 +84,8 @@ fun Route.CompletionsApi() {
                 "prompt_tokens_details" : {
                   "audio_tokens" : 1,
                   "cached_tokens" : 6
-                },
-                "total_tokens" : 2
-              },
-              "model" : "model",
-              "id" : "id",
-              "choices" : [ {
-                "finish_reason" : "stop",
-                "index" : 0,
-                "text" : "text",
-                "logprobs" : {
-                  "top_logprobs" : [ {
-                    "key" : 5.962133916683182
-                  }, {
-                    "key" : 5.962133916683182
-                  } ],
-                  "token_logprobs" : [ 1.4658129805029452, 1.4658129805029452 ],
-                  "tokens" : [ "tokens", "tokens" ],
-                  "text_offset" : [ 6, 6 ]
                 }
-              }, {
-                "finish_reason" : "stop",
-                "index" : 0,
-                "text" : "text",
-                "logprobs" : {
-                  "top_logprobs" : [ {
-                    "key" : 5.962133916683182
-                  }, {
-                    "key" : 5.962133916683182
-                  } ],
-                  "token_logprobs" : [ 1.4658129805029452, 1.4658129805029452 ],
-                  "tokens" : [ "tokens", "tokens" ],
-                  "text_offset" : [ 6, 6 ]
-                }
-              } ],
-              "system_fingerprint" : "system_fingerprint",
-              "object" : "text_completion"
+              }
             }"""
             
             when (exampleContentType) {
@@ -98,5 +96,4 @@ fun Route.CompletionsApi() {
         
     }
     }
-
 }

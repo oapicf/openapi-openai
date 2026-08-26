@@ -13,10 +13,10 @@ static realtime_server_event_conversation_created_conversation_t *realtime_serve
     if (!realtime_server_event_conversation_created_conversation_local_var) {
         return NULL;
     }
+    memset(realtime_server_event_conversation_created_conversation_local_var, 0, sizeof(realtime_server_event_conversation_created_conversation_t));
+    realtime_server_event_conversation_created_conversation_local_var->_library_owned = 1;
     realtime_server_event_conversation_created_conversation_local_var->id = id;
     realtime_server_event_conversation_created_conversation_local_var->object = object;
-
-    realtime_server_event_conversation_created_conversation_local_var->_library_owned = 1;
     return realtime_server_event_conversation_created_conversation_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) realtime_server_event_conversation_created_conversat
     char *id,
     char *object
     ) {
-    return realtime_server_event_conversation_created_conversation_create_internal (
+    realtime_server_event_conversation_created_conversation_t *result = realtime_server_event_conversation_created_conversation_create_internal (
         id,
         object
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_server_event_conversation_created_conversation_free(realtime_server_event_conversation_created_conversation_t *realtime_server_event_conversation_created_conversation) {
@@ -80,6 +83,10 @@ realtime_server_event_conversation_created_conversation_t *realtime_server_event
 
     realtime_server_event_conversation_created_conversation_t *realtime_server_event_conversation_created_conversation_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    char *object_local_str = NULL;
+
     // realtime_server_event_conversation_created_conversation->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(realtime_server_event_conversation_created_conversationJSON, "id");
     if (cJSON_IsNull(id)) {
@@ -105,13 +112,28 @@ realtime_server_event_conversation_created_conversation_t *realtime_server_event
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (object && !cJSON_IsNull(object)) object_local_str = strdup(object->valuestring);
+
     realtime_server_event_conversation_created_conversation_local_var = realtime_server_event_conversation_created_conversation_create_internal (
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        object && !cJSON_IsNull(object) ? strdup(object->valuestring) : NULL
+        id_local_str,
+        object_local_str
         );
+
+    if (!realtime_server_event_conversation_created_conversation_local_var) {
+        goto end;
+    }
 
     return realtime_server_event_conversation_created_conversation_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (object_local_str) {
+        free(object_local_str);
+        object_local_str = NULL;
+    }
     return NULL;
 
 }

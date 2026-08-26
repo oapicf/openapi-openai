@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIUsageTimeBucket_result_inner::OAIUsageTimeBucket_result_inner(QString json) {
+OAIUsageTimeBucket_result_inner::OAIUsageTimeBucket_result_inner(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -98,7 +98,7 @@ void OAIUsageTimeBucket_result_inner::initializeModel() {
     m_line_item_isValid = false;
 }
 
-void OAIUsageTimeBucket_result_inner::fromJson(QString jsonString) {
+void OAIUsageTimeBucket_result_inner::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

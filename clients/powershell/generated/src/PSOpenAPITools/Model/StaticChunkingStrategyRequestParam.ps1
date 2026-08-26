@@ -50,8 +50,8 @@ function Initialize-StaticChunkingStrategyRequestParam {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "static" = ${Static}
+            'type' = ${Type}
+            'static' = ${Static}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToStaticChunkingStrategyRequestParam {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in StaticChunkingStrategyRequestParam
-        $AllProperties = ("type", "static")
+        $AllProperties = ('type', 'static')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToStaticChunkingStrategyRequestParam {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "static"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'static'))) {
             throw "Error! JSON cannot be serialized due to the required property 'static' missing."
         } else {
-            $Static = $JsonParameters.PSobject.Properties["static"].value
+            $Static = $JsonParameters.PSobject.Properties['static'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "static" = ${Static}
+            'type' = ${Type}
+            'static' = ${Static}
         }
 
         return $PSO

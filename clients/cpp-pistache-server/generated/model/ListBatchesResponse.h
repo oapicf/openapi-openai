@@ -34,7 +34,7 @@ class  ListBatchesResponse
 {
 public:
     ListBatchesResponse();
-    virtual ~ListBatchesResponse() = default;
+    virtual ~ListBatchesResponse();
 
 
     /// <summary>

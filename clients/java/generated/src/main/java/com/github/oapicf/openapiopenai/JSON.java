@@ -154,7 +154,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.github.oapicf.openapiopenai.model.AuditLogUserDeleted.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.github.oapicf.openapiopenai.model.AuditLogUserUpdated.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.github.oapicf.openapiopenai.model.AuditLogUserUpdatedChangesRequested.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.github.oapicf.openapiopenai.model.AutoChunkingStrategy.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.github.oapicf.openapiopenai.model.AutoChunkingStrategyRequestParam.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.github.oapicf.openapiopenai.model.Batch.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.github.oapicf.openapiopenai.model.BatchErrors.CustomTypeAdapterFactory());
@@ -563,7 +562,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.github.oapicf.openapiopenai.model.RunToolCallObjectFunction.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.github.oapicf.openapiopenai.model.StaticChunkingStrategy.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.github.oapicf.openapiopenai.model.StaticChunkingStrategyRequestParam.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.github.oapicf.openapiopenai.model.StaticChunkingStrategyResponseParam.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.github.oapicf.openapiopenai.model.StaticChunkingStrategyStatic.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.github.oapicf.openapiopenai.model.SubmitToolOutputsRunRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.github.oapicf.openapiopenai.model.SubmitToolOutputsRunRequestToolOutputsInner.CustomTypeAdapterFactory());

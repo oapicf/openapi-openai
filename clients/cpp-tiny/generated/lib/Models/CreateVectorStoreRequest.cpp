@@ -169,7 +169,7 @@ CreateVectorStoreRequest::getFileIds()
 }
 
 void
-CreateVectorStoreRequest::setFileIds(std::list <std::string> file_ids)
+CreateVectorStoreRequest::setFileIds(std::list<std::string> file_ids)
 {
 	this->file_ids = file_ids;
 }
@@ -181,7 +181,7 @@ CreateVectorStoreRequest::getName()
 }
 
 void
-CreateVectorStoreRequest::setName(std::string  name)
+CreateVectorStoreRequest::setName(std::string name)
 {
 	this->name = name;
 }
@@ -193,7 +193,7 @@ CreateVectorStoreRequest::getExpiresAfter()
 }
 
 void
-CreateVectorStoreRequest::setExpiresAfter(VectorStoreExpirationAfter  expires_after)
+CreateVectorStoreRequest::setExpiresAfter(VectorStoreExpirationAfter expires_after)
 {
 	this->expires_after = expires_after;
 }
@@ -205,7 +205,7 @@ CreateVectorStoreRequest::getChunkingStrategy()
 }
 
 void
-CreateVectorStoreRequest::setChunkingStrategy(CreateVectorStoreRequest_chunking_strategy  chunking_strategy)
+CreateVectorStoreRequest::setChunkingStrategy(CreateVectorStoreRequest_chunking_strategy chunking_strategy)
 {
 	this->chunking_strategy = chunking_strategy;
 }
@@ -217,7 +217,7 @@ CreateVectorStoreRequest::getMetadata()
 }
 
 void
-CreateVectorStoreRequest::setMetadata(Object  metadata)
+CreateVectorStoreRequest::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }

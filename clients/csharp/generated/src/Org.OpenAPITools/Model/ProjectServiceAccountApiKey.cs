@@ -167,8 +167,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectServiceAccountApiKey" />
     /// </summary>
-    public class ProjectServiceAccountApiKeyJsonConverter : JsonConverter<ProjectServiceAccountApiKey>
+    public partial class ProjectServiceAccountApiKeyJsonConverter : JsonConverter<ProjectServiceAccountApiKey>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectServiceAccountApiKeyJsonConverter" /> class.
+        /// </summary>
+        public ProjectServiceAccountApiKeyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProjectServiceAccountApiKey" />
         /// </summary>

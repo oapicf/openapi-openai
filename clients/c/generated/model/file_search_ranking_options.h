@@ -28,14 +28,14 @@ openai_api_file_search_ranking_options_RANKER_e file_search_ranking_options_rank
 
 typedef struct file_search_ranking_options_t {
     openai_api_file_search_ranking_options_RANKER_e ranker; //enum
-    double score_threshold; //numeric
+    double *score_threshold; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } file_search_ranking_options_t;
 
 __attribute__((deprecated)) file_search_ranking_options_t *file_search_ranking_options_create(
     openai_api_file_search_ranking_options_RANKER_e ranker,
-    double score_threshold
+    double *score_threshold
 );
 
 void file_search_ranking_options_free(file_search_ranking_options_t *file_search_ranking_options);

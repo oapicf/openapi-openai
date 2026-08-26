@@ -89,8 +89,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateFineTuningJobRequestHyperparametersNEpochs" />
     /// </summary>
-    public class CreateFineTuningJobRequestHyperparametersNEpochsJsonConverter : JsonConverter<CreateFineTuningJobRequestHyperparametersNEpochs>
+    public partial class CreateFineTuningJobRequestHyperparametersNEpochsJsonConverter : JsonConverter<CreateFineTuningJobRequestHyperparametersNEpochs>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateFineTuningJobRequestHyperparametersNEpochsJsonConverter" /> class.
+        /// </summary>
+        public CreateFineTuningJobRequestHyperparametersNEpochsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateFineTuningJobRequestHyperparametersNEpochs" />
         /// </summary>

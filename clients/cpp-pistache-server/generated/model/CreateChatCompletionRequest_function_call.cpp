@@ -25,6 +25,8 @@ CreateChatCompletionRequest_function_call::CreateChatCompletionRequest_function_
     
 }
 
+CreateChatCompletionRequest_function_call::~CreateChatCompletionRequest_function_call() = default;
+
 void CreateChatCompletionRequest_function_call::validate() const
 {
     std::stringstream msg;

@@ -50,8 +50,8 @@ function Initialize-MessageStreamEventOneOf1 {
 
 
         $PSO = [PSCustomObject]@{
-            "event" = ${VarEvent}
-            "data" = ${VarData}
+            'event' = ${VarEvent}
+            'data' = ${VarData}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToMessageStreamEventOneOf1 {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in MessageStreamEventOneOf1
-        $AllProperties = ("event", "data")
+        $AllProperties = ('event', 'data')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToMessageStreamEventOneOf1 {
             throw "Error! Empty JSON cannot be serialized due to the required property 'event' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "event"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'event'))) {
             throw "Error! JSON cannot be serialized due to the required property 'event' missing."
         } else {
-            $VarEvent = $JsonParameters.PSobject.Properties["event"].value
+            $VarEvent = $JsonParameters.PSobject.Properties['event'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "data"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'data'))) {
             throw "Error! JSON cannot be serialized due to the required property 'data' missing."
         } else {
-            $VarData = $JsonParameters.PSobject.Properties["data"].value
+            $VarData = $JsonParameters.PSobject.Properties['data'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "event" = ${VarEvent}
-            "data" = ${VarData}
+            'event' = ${VarEvent}
+            'data' = ${VarData}
         }
 
         return $PSO

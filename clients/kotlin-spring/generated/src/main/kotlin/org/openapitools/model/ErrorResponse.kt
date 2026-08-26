@@ -21,7 +21,8 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ErrorResponse(
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("error")
     @get:JsonProperty("error", required = true) val error: Error
 ) {
 

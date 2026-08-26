@@ -64,7 +64,6 @@ module OpenAIAPI.Types (
   AuditLogUserDeleted (..),
   AuditLogUserUpdated (..),
   AuditLogUserUpdatedChangesRequested (..),
-  AutoChunkingStrategy (..),
   AutoChunkingStrategyRequestParam (..),
   Batch (..),
   BatchErrors (..),
@@ -474,7 +473,6 @@ module OpenAIAPI.Types (
   RunToolCallObjectFunction (..),
   StaticChunkingStrategy (..),
   StaticChunkingStrategyRequestParam (..),
-  StaticChunkingStrategyResponseParam (..),
   StaticChunkingStrategyStatic (..),
   SubmitToolOutputsRunRequest (..),
   SubmitToolOutputsRunRequestToolOutputsInner (..),
@@ -2034,28 +2032,6 @@ optionsAuditLogUserUpdatedChangesRequested =
   where
     table =
       [ ("auditLogUserUpdatedChangesRequestedRole", "role")
-      ]
-
-
--- | The default strategy. This strategy currently uses a &#x60;max_chunk_size_tokens&#x60; of &#x60;800&#x60; and &#x60;chunk_overlap_tokens&#x60; of &#x60;400&#x60;.
-data AutoChunkingStrategy = AutoChunkingStrategy
-  { autoChunkingStrategyType :: Text -- ^ Always `auto`.
-  } deriving (Show, Eq, Generic)
-
-instance FromJSON AutoChunkingStrategy where
-  parseJSON = genericParseJSON optionsAutoChunkingStrategy
-instance ToJSON AutoChunkingStrategy where
-  toJSON = genericToJSON optionsAutoChunkingStrategy
-
-optionsAutoChunkingStrategy :: Options
-optionsAutoChunkingStrategy =
-  defaultOptions
-    { omitNothingFields  = True
-    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
-    }
-  where
-    table =
-      [ ("autoChunkingStrategyType", "type")
       ]
 
 
@@ -3802,7 +3778,7 @@ data CreateChatCompletionRequest = CreateChatCompletionRequest
   , createChatCompletionRequestMaxUnderscorecompletionUnderscoretokens :: Maybe Int -- ^ An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). 
   , createChatCompletionRequestN :: Maybe Int -- ^ How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.
   , createChatCompletionRequestModalities :: Maybe [Text] -- ^ Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` 
-  , createChatCompletionRequestPrediction :: Maybe PredictionContent -- ^ 
+  , createChatCompletionRequestPrediction :: Maybe PredictionContent -- ^ Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
   , createChatCompletionRequestAudio :: Maybe CreateChatCompletionRequestAudio -- ^ 
   , createChatCompletionRequestPresenceUnderscorepenalty :: Maybe Double -- ^ Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. 
   , createChatCompletionRequestResponseUnderscoreformat :: Maybe CreateChatCompletionRequestResponseFormat -- ^ 
@@ -4627,7 +4603,7 @@ optionsCreateFineTuningJobRequestHyperparametersNEpochs =
 
 -- | 
 data CreateFineTuningJobRequestIntegrationsInner = CreateFineTuningJobRequestIntegrationsInner
-  { createFineTuningJobRequestIntegrationsInnerType :: Text -- ^ 
+  { createFineTuningJobRequestIntegrationsInnerType :: Text -- ^ The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
   , createFineTuningJobRequestIntegrationsInnerWandb :: CreateFineTuningJobRequestIntegrationsInnerWandb -- ^ 
   } deriving (Show, Eq, Generic)
 
@@ -8589,7 +8565,7 @@ optionsModel =
 
 -- | 
 data ModifyAssistantRequest = ModifyAssistantRequest
-  { modifyAssistantRequestModel :: Maybe Text -- ^ 
+  { modifyAssistantRequestModel :: Maybe Text -- ^ ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
   , modifyAssistantRequestName :: Maybe Text -- ^ The name of the assistant. The maximum length is 256 characters. 
   , modifyAssistantRequestDescription :: Maybe Text -- ^ The description of the assistant. The maximum length is 512 characters. 
   , modifyAssistantRequestInstructions :: Maybe Text -- ^ The system instructions that the assistant uses. The maximum length is 256,000 characters. 
@@ -13210,30 +13186,6 @@ optionsStaticChunkingStrategyRequestParam =
     table =
       [ ("staticChunkingStrategyRequestParamType", "type")
       , ("staticChunkingStrategyRequestParamStatic", "static")
-      ]
-
-
--- | 
-data StaticChunkingStrategyResponseParam = StaticChunkingStrategyResponseParam
-  { staticChunkingStrategyResponseParamType :: Text -- ^ Always `static`.
-  , staticChunkingStrategyResponseParamStatic :: StaticChunkingStrategy -- ^ 
-  } deriving (Show, Eq, Generic)
-
-instance FromJSON StaticChunkingStrategyResponseParam where
-  parseJSON = genericParseJSON optionsStaticChunkingStrategyResponseParam
-instance ToJSON StaticChunkingStrategyResponseParam where
-  toJSON = genericToJSON optionsStaticChunkingStrategyResponseParam
-
-optionsStaticChunkingStrategyResponseParam :: Options
-optionsStaticChunkingStrategyResponseParam =
-  defaultOptions
-    { omitNothingFields  = True
-    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
-    }
-  where
-    table =
-      [ ("staticChunkingStrategyResponseParamType", "type")
-      , ("staticChunkingStrategyResponseParamStatic", "static")
       ]
 
 

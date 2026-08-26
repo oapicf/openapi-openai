@@ -16,23 +16,23 @@ VectorStoreFileObjectChunkingStrategy <- R6::R6Class(
     #' @field actual_type the type of the object stored in this instance.
     actual_type = NULL,
     #' @field one_of  a list of types defined in the oneOf schema.
-    one_of = list("OtherChunkingStrategyResponseParam", "StaticChunkingStrategyResponseParam"),
+    one_of = list("OtherChunkingStrategyResponseParam", "StaticChunkingStrategyRequestParam"),
 
     #' @description
     #' Initialize a new VectorStoreFileObjectChunkingStrategy.
     #'
-    #' @param instance an instance of the object defined in the oneOf schemas: "OtherChunkingStrategyResponseParam", "StaticChunkingStrategyResponseParam"
+    #' @param instance an instance of the object defined in the oneOf schemas: "OtherChunkingStrategyResponseParam", "StaticChunkingStrategyRequestParam"
     initialize = function(instance = NULL) {
       if (is.null(instance)) {
         # do nothing
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "OtherChunkingStrategyResponseParam") {
         self$actual_instance <- instance
         self$actual_type <- "OtherChunkingStrategyResponseParam"
-      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "StaticChunkingStrategyResponseParam") {
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "StaticChunkingStrategyRequestParam") {
         self$actual_instance <- instance
-        self$actual_type <- "StaticChunkingStrategyResponseParam"
+        self$actual_type <- "StaticChunkingStrategyRequestParam"
       } else {
-        stop(paste("Failed to initialize VectorStoreFileObjectChunkingStrategy with oneOf schemas OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam. Provided class name: ",
+        stop(paste("Failed to initialize VectorStoreFileObjectChunkingStrategy with oneOf schemas OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam. Provided class name: ",
                    get(class(instance)[[1]], pos = -1)$classname))
       }
     },
@@ -60,19 +60,19 @@ VectorStoreFileObjectChunkingStrategy <- R6::R6Class(
       error_messages <- list()
       instance <- NULL
 
-      `StaticChunkingStrategyResponseParam_result` <- tryCatch({
-          `StaticChunkingStrategyResponseParam`$public_methods$validateJSON(input)
-          `StaticChunkingStrategyResponseParam_instance` <- `StaticChunkingStrategyResponseParam`$new()
-          instance <- `StaticChunkingStrategyResponseParam_instance`$fromJSON(input)
-          instance_type <- "StaticChunkingStrategyResponseParam"
-          matched_schemas <- append(matched_schemas, "StaticChunkingStrategyResponseParam")
+      `StaticChunkingStrategyRequestParam_result` <- tryCatch({
+          `StaticChunkingStrategyRequestParam`$public_methods$validateJSON(input)
+          `StaticChunkingStrategyRequestParam_instance` <- `StaticChunkingStrategyRequestParam`$new()
+          instance <- `StaticChunkingStrategyRequestParam_instance`$fromJSON(input)
+          instance_type <- "StaticChunkingStrategyRequestParam"
+          matched_schemas <- append(matched_schemas, "StaticChunkingStrategyRequestParam")
           matched <- matched + 1
         },
         error = function(err) err
       )
 
-      if (!is.null(`StaticChunkingStrategyResponseParam_result`["error"])) {
-        error_messages <- append(error_messages, `StaticChunkingStrategyResponseParam_result`["message"])
+      if (!is.null(`StaticChunkingStrategyRequestParam_result`["error"])) {
+        error_messages <- append(error_messages, `StaticChunkingStrategyRequestParam_result`["message"])
       }
 
       `OtherChunkingStrategyResponseParam_result` <- tryCatch({
@@ -96,11 +96,11 @@ VectorStoreFileObjectChunkingStrategy <- R6::R6Class(
         self$actual_type <- instance_type
       } else if (matched > 1) {
         # more than 1 match
-        stop(paste("Multiple matches found when deserializing the input into VectorStoreFileObjectChunkingStrategy with oneOf schemas OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam. Matched schemas: ",
+        stop(paste("Multiple matches found when deserializing the input into VectorStoreFileObjectChunkingStrategy with oneOf schemas OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam. Matched schemas: ",
                    paste(matched_schemas, collapse = ", ")))
       } else {
         # no match
-        stop(paste("No match found when deserializing the input into VectorStoreFileObjectChunkingStrategy with oneOf schemas OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam. Details: >>",
+        stop(paste("No match found when deserializing the input into VectorStoreFileObjectChunkingStrategy with oneOf schemas OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam. Details: >>",
                    paste(error_messages, collapse = " >> ")))
       }
 

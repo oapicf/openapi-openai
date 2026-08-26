@@ -122,7 +122,7 @@ export class DefaultApi {
     { response: JQueryXHR; body: models.AdminApiKeysDelete200Response;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/admin_api_keys/{key_id}'.replace('{' + 'key_id' + '}', encodeURIComponent(String(keyId)));
+        let localVarPath = this.basePath + '/organization/admin_api_keys/{key_id}'.replace('{key_id}', encodeURIComponent(String(keyId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -185,7 +185,7 @@ export class DefaultApi {
     { response: JQueryXHR; body: models.AdminApiKey;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/admin_api_keys/{key_id}'.replace('{' + 'key_id' + '}', encodeURIComponent(String(keyId)));
+        let localVarPath = this.basePath + '/organization/admin_api_keys/{key_id}'.replace('{key_id}', encodeURIComponent(String(keyId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};

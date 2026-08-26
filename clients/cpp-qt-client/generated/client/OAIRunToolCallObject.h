@@ -33,13 +33,13 @@ class OAIRunToolCallObject_function;
 class OAIRunToolCallObject : public OAIObject {
 public:
     OAIRunToolCallObject();
-    OAIRunToolCallObject(QString json);
+    OAIRunToolCallObject(const QString &json);
     ~OAIRunToolCallObject() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

@@ -31,11 +31,11 @@ static message_delta_object_t *message_delta_object_create_internal(
     if (!message_delta_object_local_var) {
         return NULL;
     }
+    memset(message_delta_object_local_var, 0, sizeof(message_delta_object_t));
+    message_delta_object_local_var->_library_owned = 1;
     message_delta_object_local_var->id = id;
     message_delta_object_local_var->object = object;
     message_delta_object_local_var->delta = delta;
-
-    message_delta_object_local_var->_library_owned = 1;
     return message_delta_object_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) message_delta_object_t *message_delta_object_create(
     openai_api_message_delta_object_OBJECT_e object,
     message_delta_object_delta_t *delta
     ) {
-    return message_delta_object_create_internal (
+    message_delta_object_t *result = message_delta_object_create_internal (
         id,
         object,
         delta
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_delta_object_free(message_delta_object_t *message_delta_object) {
@@ -118,6 +121,8 @@ message_delta_object_t *message_delta_object_parseFromJSON(cJSON *message_delta_
 
     message_delta_object_t *message_delta_object_local_var = NULL;
 
+    char *id_local_str = NULL;
+
     // define the local variable for message_delta_object->delta
     message_delta_object_delta_t *delta_local_nonprim = NULL;
 
@@ -166,14 +171,24 @@ message_delta_object_t *message_delta_object_parseFromJSON(cJSON *message_delta_
     delta_local_nonprim = message_delta_object_delta_parseFromJSON(delta); //nonprimitive
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     message_delta_object_local_var = message_delta_object_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         objectVariable,
         delta_local_nonprim
         );
 
+    if (!message_delta_object_local_var) {
+        goto end;
+    }
+
     return message_delta_object_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     if (delta_local_nonprim) {
         message_delta_object_delta_free(delta_local_nonprim);
         delta_local_nonprim = NULL;

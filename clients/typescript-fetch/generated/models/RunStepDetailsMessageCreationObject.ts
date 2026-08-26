@@ -29,7 +29,7 @@ import {
 export interface RunStepDetailsMessageCreationObject {
     /**
      * Always `message_creation`.
-     * @type {string}
+     * @type {RunStepDetailsMessageCreationObjectTypeEnum}
      * @memberof RunStepDetailsMessageCreationObject
      */
     type: RunStepDetailsMessageCreationObjectTypeEnum;
@@ -56,7 +56,9 @@ export type RunStepDetailsMessageCreationObjectTypeEnum = typeof RunStepDetailsM
  */
 export function instanceOfRunStepDetailsMessageCreationObject(value: object): value is RunStepDetailsMessageCreationObject {
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('messageCreation' in value) || value['messageCreation'] === undefined) return false;
+    if (value['type'] !== 'message_creation') return false;
+    
+    if ((!('messageCreation' in (value as Record<string, any>)) && !('message_creation' in (value as Record<string, any>))) || ((value as Record<string, any>)['messageCreation'] === undefined && (value as Record<string, any>)['message_creation'] === undefined)) return false;
     return true;
 }
 

@@ -30,7 +30,7 @@ export interface CreateChatCompletionFunctionResponseChoicesInner {
     /**
      * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, or `function_call` if the model called a function.
      * 
-     * @type {string}
+     * @type {CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum}
      * @memberof CreateChatCompletionFunctionResponseChoicesInner
      */
     finishReason: CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum;
@@ -65,7 +65,7 @@ export type CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum = t
  * Check if a given object implements the CreateChatCompletionFunctionResponseChoicesInner interface.
  */
 export function instanceOfCreateChatCompletionFunctionResponseChoicesInner(value: object): value is CreateChatCompletionFunctionResponseChoicesInner {
-    if (!('finishReason' in value) || value['finishReason'] === undefined) return false;
+    if ((!('finishReason' in (value as Record<string, any>)) && !('finish_reason' in (value as Record<string, any>))) || ((value as Record<string, any>)['finishReason'] === undefined && (value as Record<string, any>)['finish_reason'] === undefined)) return false;
     if (!('index' in value) || value['index'] === undefined) return false;
     if (!('message' in value) || value['message'] === undefined) return false;
     return true;

@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIFileSearchRankingOptions : public OAIObject {
 public:
     OAIFileSearchRankingOptions();
-    OAIFileSearchRankingOptions(QString json);
+    OAIFileSearchRankingOptions(const QString &json);
     ~OAIFileSearchRankingOptions() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getRanker() const;
     void setRanker(const QString &ranker);

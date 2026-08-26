@@ -29,7 +29,7 @@ import {
 export interface MessageStreamEventOneOf1 {
     /**
      * 
-     * @type {string}
+     * @type {MessageStreamEventOneOf1EventEnum}
      * @memberof MessageStreamEventOneOf1
      */
     event: MessageStreamEventOneOf1EventEnum;
@@ -56,6 +56,8 @@ export type MessageStreamEventOneOf1EventEnum = typeof MessageStreamEventOneOf1E
  */
 export function instanceOfMessageStreamEventOneOf1(value: object): value is MessageStreamEventOneOf1 {
     if (!('event' in value) || value['event'] === undefined) return false;
+    if (value['event'] !== 'thread.message.in_progress') return false;
+    
     if (!('data' in value) || value['data'] === undefined) return false;
     return true;
 }

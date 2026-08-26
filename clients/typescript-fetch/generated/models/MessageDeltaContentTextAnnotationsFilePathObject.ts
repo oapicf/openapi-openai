@@ -35,7 +35,7 @@ export interface MessageDeltaContentTextAnnotationsFilePathObject {
     index: number;
     /**
      * Always `file_path`.
-     * @type {string}
+     * @type {MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum}
      * @memberof MessageDeltaContentTextAnnotationsFilePathObject
      */
     type: MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum;
@@ -81,6 +81,8 @@ export type MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum = typeof Me
 export function instanceOfMessageDeltaContentTextAnnotationsFilePathObject(value: object): value is MessageDeltaContentTextAnnotationsFilePathObject {
     if (!('index' in value) || value['index'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'file_path') return false;
+    
     return true;
 }
 

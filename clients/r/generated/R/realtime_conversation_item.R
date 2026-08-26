@@ -175,7 +175,7 @@ RealtimeConversationItem <- R6::R6Class(
       }
       if (!is.null(self$`content`)) {
         RealtimeConversationItemObject[["content"]] <-
-          lapply(self$`content`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`content`)
       }
       if (!is.null(self$`call_id`)) {
         RealtimeConversationItemObject[["call_id"]] <-
@@ -194,6 +194,29 @@ RealtimeConversationItem <- R6::R6Class(
           self$`output`
       }
       return(RealtimeConversationItemObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

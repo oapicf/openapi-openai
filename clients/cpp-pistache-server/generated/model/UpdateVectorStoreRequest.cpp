@@ -28,6 +28,8 @@ UpdateVectorStoreRequest::UpdateVectorStoreRequest()
     
 }
 
+UpdateVectorStoreRequest::~UpdateVectorStoreRequest() = default;
+
 void UpdateVectorStoreRequest::validate() const
 {
     std::stringstream msg;

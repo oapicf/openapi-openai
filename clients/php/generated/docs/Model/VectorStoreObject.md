@@ -1,4 +1,4 @@
-# # VectorStoreObject
+# VectorStoreObject
 
 ## Properties
 

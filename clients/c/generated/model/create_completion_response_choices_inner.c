@@ -24,7 +24,7 @@ openai_api_create_completion_response_choices_inner_FINISHREASON_e create_comple
 
 static create_completion_response_choices_inner_t *create_completion_response_choices_inner_create_internal(
     openai_api_create_completion_response_choices_inner_FINISHREASON_e finish_reason,
-    int index,
+    int *index,
     create_completion_response_choices_inner_logprobs_t *logprobs,
     char *text
     ) {
@@ -32,27 +32,36 @@ static create_completion_response_choices_inner_t *create_completion_response_ch
     if (!create_completion_response_choices_inner_local_var) {
         return NULL;
     }
+    memset(create_completion_response_choices_inner_local_var, 0, sizeof(create_completion_response_choices_inner_t));
+    create_completion_response_choices_inner_local_var->_library_owned = 1;
     create_completion_response_choices_inner_local_var->finish_reason = finish_reason;
     create_completion_response_choices_inner_local_var->index = index;
     create_completion_response_choices_inner_local_var->logprobs = logprobs;
     create_completion_response_choices_inner_local_var->text = text;
-
-    create_completion_response_choices_inner_local_var->_library_owned = 1;
     return create_completion_response_choices_inner_local_var;
 }
 
 __attribute__((deprecated)) create_completion_response_choices_inner_t *create_completion_response_choices_inner_create(
     openai_api_create_completion_response_choices_inner_FINISHREASON_e finish_reason,
-    int index,
+    int *index,
     create_completion_response_choices_inner_logprobs_t *logprobs,
     char *text
     ) {
-    return create_completion_response_choices_inner_create_internal (
+    int *index_copy = NULL;
+    if (index) {
+        index_copy = malloc(sizeof(int));
+        if (index_copy) *index_copy = *index;
+    }
+    create_completion_response_choices_inner_t *result = create_completion_response_choices_inner_create_internal (
         finish_reason,
-        index,
+        index_copy,
         logprobs,
         text
         );
+    if (!result) {
+        free(index_copy);
+    }
+    return result;
 }
 
 void create_completion_response_choices_inner_free(create_completion_response_choices_inner_t *create_completion_response_choices_inner) {
@@ -64,6 +73,10 @@ void create_completion_response_choices_inner_free(create_completion_response_ch
         return ;
     }
     listEntry_t *listEntry;
+    if (create_completion_response_choices_inner->index) {
+        free(create_completion_response_choices_inner->index);
+        create_completion_response_choices_inner->index = NULL;
+    }
     if (create_completion_response_choices_inner->logprobs) {
         create_completion_response_choices_inner_logprobs_free(create_completion_response_choices_inner->logprobs);
         create_completion_response_choices_inner->logprobs = NULL;
@@ -92,7 +105,7 @@ cJSON *create_completion_response_choices_inner_convertToJSON(create_completion_
     if (!create_completion_response_choices_inner->index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "index", create_completion_response_choices_inner->index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "index", *create_completion_response_choices_inner->index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -131,8 +144,13 @@ create_completion_response_choices_inner_t *create_completion_response_choices_i
 
     create_completion_response_choices_inner_t *create_completion_response_choices_inner_local_var = NULL;
 
+    // define the local variable for create_completion_response_choices_inner->index
+    int *index_local_var = NULL;
+
     // define the local variable for create_completion_response_choices_inner->logprobs
     create_completion_response_choices_inner_logprobs_t *logprobs_local_nonprim = NULL;
+
+    char *text_local_str = NULL;
 
     // create_completion_response_choices_inner->finish_reason
     cJSON *finish_reason = cJSON_GetObjectItemCaseSensitive(create_completion_response_choices_innerJSON, "finish_reason");
@@ -165,6 +183,12 @@ create_completion_response_choices_inner_t *create_completion_response_choices_i
     {
     goto end; //Numeric
     }
+    index_local_var = malloc(sizeof(int));
+    if(!index_local_var)
+    {
+        goto end;
+    }
+    *index_local_var = index->valuedouble;
 
     // create_completion_response_choices_inner->logprobs
     cJSON *logprobs = cJSON_GetObjectItemCaseSensitive(create_completion_response_choices_innerJSON, "logprobs");
@@ -194,18 +218,32 @@ create_completion_response_choices_inner_t *create_completion_response_choices_i
     }
 
 
+    if (text && !cJSON_IsNull(text)) text_local_str = strdup(text->valuestring);
+
     create_completion_response_choices_inner_local_var = create_completion_response_choices_inner_create_internal (
         finish_reasonVariable,
-        index->valuedouble,
+        index_local_var,
         logprobs_local_nonprim,
-        strdup(text->valuestring)
+        text_local_str
         );
+
+    if (!create_completion_response_choices_inner_local_var) {
+        goto end;
+    }
 
     return create_completion_response_choices_inner_local_var;
 end:
+    if (index_local_var) {
+        free(index_local_var);
+        index_local_var = NULL;
+    }
     if (logprobs_local_nonprim) {
         create_completion_response_choices_inner_logprobs_free(logprobs_local_nonprim);
         logprobs_local_nonprim = NULL;
+    }
+    if (text_local_str) {
+        free(text_local_str);
+        text_local_str = NULL;
     }
     return NULL;
 

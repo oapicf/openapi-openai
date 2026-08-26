@@ -65,10 +65,8 @@ class RealtimeClientEventInputAudioBufferClear {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeClientEventInputAudioBufferClear[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeClientEventInputAudioBufferClear[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "RealtimeClientEventInputAudioBufferClear[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeClientEventInputAudioBufferClear[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -127,27 +125,28 @@ class RealtimeClientEventInputAudioBufferClear {
 }
 
 /// The event type, must be `input_audio_buffer.clear`.
-class RealtimeClientEventInputAudioBufferClearTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeClientEventInputAudioBufferClearTypeEnum._(this.value);
+enum RealtimeClientEventInputAudioBufferClearTypeEnum {
+  inputAudioBufferPeriodClear._(r'input_audio_buffer.clear'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeClientEventInputAudioBufferClearTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const inputAudioBufferPeriodClear = RealtimeClientEventInputAudioBufferClearTypeEnum._(r'input_audio_buffer.clear');
-
-  /// List of all possible values in this [enum][RealtimeClientEventInputAudioBufferClearTypeEnum].
-  static const values = <RealtimeClientEventInputAudioBufferClearTypeEnum>[
-    inputAudioBufferPeriodClear,
-  ];
-
+  /// Returns the instance of [RealtimeClientEventInputAudioBufferClearTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeClientEventInputAudioBufferClearTypeEnum? fromJson(dynamic value) => RealtimeClientEventInputAudioBufferClearTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeClientEventInputAudioBufferClearTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeClientEventInputAudioBufferClearTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeClientEventInputAudioBufferClearTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -169,9 +168,10 @@ class RealtimeClientEventInputAudioBufferClearTypeEnumTypeTransformer {
 
   const RealtimeClientEventInputAudioBufferClearTypeEnumTypeTransformer._();
 
-  String encode(RealtimeClientEventInputAudioBufferClearTypeEnum data) => data.value;
+  String encode(RealtimeClientEventInputAudioBufferClearTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeClientEventInputAudioBufferClearTypeEnum.
+  /// Returns the instance of [RealtimeClientEventInputAudioBufferClearTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -180,6 +180,9 @@ class RealtimeClientEventInputAudioBufferClearTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeClientEventInputAudioBufferClearTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeClientEventInputAudioBufferClearTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'input_audio_buffer.clear': return RealtimeClientEventInputAudioBufferClearTypeEnum.inputAudioBufferPeriodClear;
@@ -192,7 +195,7 @@ class RealtimeClientEventInputAudioBufferClearTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeClientEventInputAudioBufferClearTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeClientEventInputAudioBufferClearTypeEnumTypeTransformer? _instance;
 }
 

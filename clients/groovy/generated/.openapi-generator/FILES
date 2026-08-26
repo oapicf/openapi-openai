@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 README.md
 build.gradle
 src/main/groovy/org/openapitools/api/ApiUtils.groovy
@@ -82,7 +81,6 @@ src/main/groovy/org/openapitools/model/AuditLogUserAddedData.groovy
 src/main/groovy/org/openapitools/model/AuditLogUserDeleted.groovy
 src/main/groovy/org/openapitools/model/AuditLogUserUpdated.groovy
 src/main/groovy/org/openapitools/model/AuditLogUserUpdatedChangesRequested.groovy
-src/main/groovy/org/openapitools/model/AutoChunkingStrategy.groovy
 src/main/groovy/org/openapitools/model/AutoChunkingStrategyRequestParam.groovy
 src/main/groovy/org/openapitools/model/Batch.groovy
 src/main/groovy/org/openapitools/model/BatchErrors.groovy
@@ -492,7 +490,6 @@ src/main/groovy/org/openapitools/model/RunToolCallObject.groovy
 src/main/groovy/org/openapitools/model/RunToolCallObjectFunction.groovy
 src/main/groovy/org/openapitools/model/StaticChunkingStrategy.groovy
 src/main/groovy/org/openapitools/model/StaticChunkingStrategyRequestParam.groovy
-src/main/groovy/org/openapitools/model/StaticChunkingStrategyResponseParam.groovy
 src/main/groovy/org/openapitools/model/StaticChunkingStrategyStatic.groovy
 src/main/groovy/org/openapitools/model/SubmitToolOutputsRunRequest.groovy
 src/main/groovy/org/openapitools/model/SubmitToolOutputsRunRequestToolOutputsInner.groovy

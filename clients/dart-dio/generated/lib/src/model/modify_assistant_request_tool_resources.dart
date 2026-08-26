@@ -86,15 +86,17 @@ class _$ModifyAssistantRequestToolResourcesSerializer implements PrimitiveSerial
         case r'code_interpreter':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ModifyAssistantRequestToolResourcesCodeInterpreter),
-          ) as ModifyAssistantRequestToolResourcesCodeInterpreter;
+            specifiedType: const FullType.nullable(ModifyAssistantRequestToolResourcesCodeInterpreter),
+          ) as ModifyAssistantRequestToolResourcesCodeInterpreter?;
+          if (valueDes == null) continue;
           result.codeInterpreter.replace(valueDes);
           break;
         case r'file_search':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ModifyAssistantRequestToolResourcesFileSearch),
-          ) as ModifyAssistantRequestToolResourcesFileSearch;
+            specifiedType: const FullType.nullable(ModifyAssistantRequestToolResourcesFileSearch),
+          ) as ModifyAssistantRequestToolResourcesFileSearch?;
+          if (valueDes == null) continue;
           result.fileSearch.replace(valueDes);
           break;
         default:

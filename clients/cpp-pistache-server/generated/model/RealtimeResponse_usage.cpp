@@ -32,6 +32,8 @@ RealtimeResponse_usage::RealtimeResponse_usage()
     
 }
 
+RealtimeResponse_usage::~RealtimeResponse_usage() = default;
+
 void RealtimeResponse_usage::validate() const
 {
     std::stringstream msg;

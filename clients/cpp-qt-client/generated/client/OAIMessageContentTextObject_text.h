@@ -34,13 +34,13 @@ class OAIMessageContentTextObject_text_annotations_inner;
 class OAIMessageContentTextObject_text : public OAIObject {
 public:
     OAIMessageContentTextObject_text();
-    OAIMessageContentTextObject_text(QString json);
+    OAIMessageContentTextObject_text(const QString &json);
     ~OAIMessageContentTextObject_text() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getValue() const;
     void setValue(const QString &value);

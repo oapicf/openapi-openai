@@ -12,7 +12,7 @@
  */
 
 import type {
-    AutoChunkingStrategy,
+    AutoChunkingStrategyRequestParam,
     StaticChunkingStrategy,
     StaticChunkingStrategyStatic,
 } from './';
@@ -22,4 +22,4 @@ import type {
  * The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.
  * @export
  */
-export type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = AutoChunkingStrategy | StaticChunkingStrategy;
+export type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = AutoChunkingStrategyRequestParam | StaticChunkingStrategy;

@@ -33,13 +33,13 @@ class OAIError;
 class OAIErrorEvent : public OAIObject {
 public:
     OAIErrorEvent();
-    OAIErrorEvent(QString json);
+    OAIErrorEvent(const QString &json);
     ~OAIErrorEvent() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getEvent() const;
     void setEvent(const QString &event);

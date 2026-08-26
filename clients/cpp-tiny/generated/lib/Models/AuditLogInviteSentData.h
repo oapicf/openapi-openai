@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The email invited to the organization.
 	 */
-	void setEmail(std::string  email);
+	void setEmail(std::string email);
 	/*! \brief Get The role the email was invited to be. Is either `owner` or `member`.
 	 */
 	std::string getRole();
 
 	/*! \brief Set The role the email was invited to be. Is either `owner` or `member`.
 	 */
-	void setRole(std::string  role);
+	void setRole(std::string role);
 
 
     private:

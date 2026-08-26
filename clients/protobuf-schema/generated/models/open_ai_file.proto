@@ -34,7 +34,7 @@ message OpenAIFile {
     OBJECT_FILE = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
   enum Purpose {
@@ -47,7 +47,7 @@ message OpenAIFile {
     PURPOSE_VISION = 6;
   }
 
-  Purpose purpose = 220463842;
+  string purpose = 220463842;
 
   // Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
   enum Status {
@@ -56,7 +56,7 @@ message OpenAIFile {
     STATUS_ERROR = 2;
   }
 
-  Status status = 355610639;
+  string status = 355610639;
 
   // Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
   string status_details = 363353845;

@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set Number of completion tokens used over the course of the run step.
 	 */
-	void setCompletionTokens(int  completion_tokens);
+	void setCompletionTokens(int completion_tokens);
 	/*! \brief Get Number of prompt tokens used over the course of the run step.
 	 */
 	int getPromptTokens();
 
 	/*! \brief Set Number of prompt tokens used over the course of the run step.
 	 */
-	void setPromptTokens(int  prompt_tokens);
+	void setPromptTokens(int prompt_tokens);
 	/*! \brief Get Total number of tokens used (prompt + completion).
 	 */
 	int getTotalTokens();
 
 	/*! \brief Set Total number of tokens used (prompt + completion).
 	 */
-	void setTotalTokens(int  total_tokens);
+	void setTotalTokens(int total_tokens);
 
 
     private:

@@ -106,7 +106,7 @@ TranscriptionWord::getWord()
 }
 
 void
-TranscriptionWord::setWord(std::string  word)
+TranscriptionWord::setWord(std::string word)
 {
 	this->word = word;
 }
@@ -118,7 +118,7 @@ TranscriptionWord::getStart()
 }
 
 void
-TranscriptionWord::setStart(float  start)
+TranscriptionWord::setStart(float start)
 {
 	this->start = start;
 }
@@ -130,7 +130,7 @@ TranscriptionWord::getEnd()
 }
 
 void
-TranscriptionWord::setEnd(float  end)
+TranscriptionWord::setEnd(float end)
 {
 	this->end = end;
 }

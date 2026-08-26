@@ -115,29 +115,33 @@ class _$FineTuneChatRequestInputSerializer implements PrimitiveSerializer<FineTu
         case r'messages':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(FineTuneChatRequestInputMessagesInner)]),
-          ) as BuiltList<FineTuneChatRequestInputMessagesInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(FineTuneChatRequestInputMessagesInner)]),
+          ) as BuiltList<FineTuneChatRequestInputMessagesInner>?;
+          if (valueDes == null) continue;
           result.messages.replace(valueDes);
           break;
         case r'tools':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ChatCompletionTool)]),
-          ) as BuiltList<ChatCompletionTool>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ChatCompletionTool)]),
+          ) as BuiltList<ChatCompletionTool>?;
+          if (valueDes == null) continue;
           result.tools.replace(valueDes);
           break;
         case r'parallel_tool_calls':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.parallelToolCalls = valueDes;
           break;
         case r'functions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ChatCompletionFunctions)]),
-          ) as BuiltList<ChatCompletionFunctions>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ChatCompletionFunctions)]),
+          ) as BuiltList<ChatCompletionFunctions>?;
+          if (valueDes == null) continue;
           result.functions.replace(valueDes);
           break;
         default:

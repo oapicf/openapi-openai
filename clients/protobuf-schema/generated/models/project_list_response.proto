@@ -22,7 +22,7 @@ message ProjectListResponse {
     OBJECT_LIST = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   repeated Project data = 3076010;
 

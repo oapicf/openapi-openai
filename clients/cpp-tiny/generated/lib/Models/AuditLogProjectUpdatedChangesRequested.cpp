@@ -64,7 +64,7 @@ AuditLog_project_updated_changes_requested::getTitle()
 }
 
 void
-AuditLog_project_updated_changes_requested::setTitle(std::string  title)
+AuditLog_project_updated_changes_requested::setTitle(std::string title)
 {
 	this->title = title;
 }

@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAICreateCompletionRequest_stop : public OAIObject {
 public:
     OAICreateCompletionRequest_stop();
-    OAICreateCompletionRequest_stop(QString json);
+    OAICreateCompletionRequest_stop(const QString &json);
     ~OAICreateCompletionRequest_stop() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

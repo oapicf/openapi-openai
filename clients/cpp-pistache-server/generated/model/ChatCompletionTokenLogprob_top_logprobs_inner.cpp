@@ -26,6 +26,8 @@ ChatCompletionTokenLogprob_top_logprobs_inner::ChatCompletionTokenLogprob_top_lo
     
 }
 
+ChatCompletionTokenLogprob_top_logprobs_inner::~ChatCompletionTokenLogprob_top_logprobs_inner() = default;
+
 void ChatCompletionTokenLogprob_top_logprobs_inner::validate() const
 {
     std::stringstream msg;

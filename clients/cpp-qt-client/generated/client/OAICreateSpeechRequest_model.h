@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAICreateSpeechRequest_model : public OAIObject {
 public:
     OAICreateSpeechRequest_model();
-    OAICreateSpeechRequest_model(QString json);
+    OAICreateSpeechRequest_model(const QString &json);
     ~OAICreateSpeechRequest_model() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

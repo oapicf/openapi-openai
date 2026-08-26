@@ -36,7 +36,7 @@ import javax.validation.Valid;
   MessageDeltaObjectDelta.JSON_PROPERTY_ROLE,
   MessageDeltaObjectDelta.JSON_PROPERTY_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-01-29T14:09:10.882541726Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class MessageDeltaObjectDelta   {
   /**
    * The entity that produced the message. One of &#x60;user&#x60; or &#x60;assistant&#x60;.
@@ -164,10 +164,7 @@ public class MessageDeltaObjectDelta   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

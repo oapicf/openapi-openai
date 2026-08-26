@@ -48,10 +48,8 @@ class CreateMessageRequestAttachmentsInnerToolsInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateMessageRequestAttachmentsInnerToolsInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateMessageRequestAttachmentsInnerToolsInner[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "CreateMessageRequestAttachmentsInnerToolsInner[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "CreateMessageRequestAttachmentsInnerToolsInner[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -109,29 +107,29 @@ class CreateMessageRequestAttachmentsInnerToolsInner {
 }
 
 /// The type of tool being defined: `code_interpreter`
-class CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum._(this.value);
+enum CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum {
+  codeInterpreter._(r'code_interpreter'),
+  fileSearch._(r'file_search'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const codeInterpreter = CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum._(r'code_interpreter');
-  static const fileSearch = CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum._(r'file_search');
-
-  /// List of all possible values in this [enum][CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum].
-  static const values = <CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum>[
-    codeInterpreter,
-    fileSearch,
-  ];
-
+  /// Returns the instance of [CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum? fromJson(dynamic value) => CreateMessageRequestAttachmentsInnerToolsInnerTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -153,9 +151,10 @@ class CreateMessageRequestAttachmentsInnerToolsInnerTypeEnumTypeTransformer {
 
   const CreateMessageRequestAttachmentsInnerToolsInnerTypeEnumTypeTransformer._();
 
-  String encode(CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum data) => data.value;
+  String encode(CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum.
+  /// Returns the instance of [CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -164,6 +163,9 @@ class CreateMessageRequestAttachmentsInnerToolsInnerTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'code_interpreter': return CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum.codeInterpreter;
@@ -177,7 +179,7 @@ class CreateMessageRequestAttachmentsInnerToolsInnerTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateMessageRequestAttachmentsInnerToolsInnerTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateMessageRequestAttachmentsInnerToolsInnerTypeEnumTypeTransformer? _instance;
 }
 

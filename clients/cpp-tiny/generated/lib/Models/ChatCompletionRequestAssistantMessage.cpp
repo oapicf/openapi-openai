@@ -210,7 +210,7 @@ ChatCompletionRequestAssistantMessage::getContent()
 }
 
 void
-ChatCompletionRequestAssistantMessage::setContent(ChatCompletionRequestAssistantMessage_content  content)
+ChatCompletionRequestAssistantMessage::setContent(ChatCompletionRequestAssistantMessage_content content)
 {
 	this->content = content;
 }
@@ -222,7 +222,7 @@ ChatCompletionRequestAssistantMessage::getRefusal()
 }
 
 void
-ChatCompletionRequestAssistantMessage::setRefusal(std::string  refusal)
+ChatCompletionRequestAssistantMessage::setRefusal(std::string refusal)
 {
 	this->refusal = refusal;
 }
@@ -234,7 +234,7 @@ ChatCompletionRequestAssistantMessage::getRole()
 }
 
 void
-ChatCompletionRequestAssistantMessage::setRole(std::string  role)
+ChatCompletionRequestAssistantMessage::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -246,7 +246,7 @@ ChatCompletionRequestAssistantMessage::getName()
 }
 
 void
-ChatCompletionRequestAssistantMessage::setName(std::string  name)
+ChatCompletionRequestAssistantMessage::setName(std::string name)
 {
 	this->name = name;
 }
@@ -258,7 +258,7 @@ ChatCompletionRequestAssistantMessage::getAudio()
 }
 
 void
-ChatCompletionRequestAssistantMessage::setAudio(ChatCompletionRequestAssistantMessage_audio  audio)
+ChatCompletionRequestAssistantMessage::setAudio(ChatCompletionRequestAssistantMessage_audio audio)
 {
 	this->audio = audio;
 }
@@ -270,7 +270,7 @@ ChatCompletionRequestAssistantMessage::getToolCalls()
 }
 
 void
-ChatCompletionRequestAssistantMessage::setToolCalls(std::list <ChatCompletionMessageToolCall> tool_calls)
+ChatCompletionRequestAssistantMessage::setToolCalls(std::list<ChatCompletionMessageToolCall> tool_calls)
 {
 	this->tool_calls = tool_calls;
 }
@@ -282,7 +282,7 @@ ChatCompletionRequestAssistantMessage::getFunctionCall()
 }
 
 void
-ChatCompletionRequestAssistantMessage::setFunctionCall(ChatCompletionRequestAssistantMessage_function_call  function_call)
+ChatCompletionRequestAssistantMessage::setFunctionCall(ChatCompletionRequestAssistantMessage_function_call function_call)
 {
 	this->function_call = function_call;
 }

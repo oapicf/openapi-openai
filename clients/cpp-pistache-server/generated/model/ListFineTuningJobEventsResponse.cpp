@@ -25,6 +25,8 @@ ListFineTuningJobEventsResponse::ListFineTuningJobEventsResponse()
     
 }
 
+ListFineTuningJobEventsResponse::~ListFineTuningJobEventsResponse() = default;
+
 void ListFineTuningJobEventsResponse::validate() const
 {
     std::stringstream msg;

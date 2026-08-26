@@ -51,7 +51,7 @@ class RealtimeServerEventConversationCreatedConversation
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -61,7 +61,7 @@ class RealtimeServerEventConversationCreatedConversation
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $object = null;
 
@@ -88,12 +88,12 @@ class RealtimeServerEventConversationCreatedConversation
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The unique ID of the conversation.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The unique ID of the conversation.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -115,12 +115,12 @@ class RealtimeServerEventConversationCreatedConversation
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, must be `realtime.conversation`.
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, must be `realtime.conversation`.
+     *
+     * @return $this
+     */
     public function setObject(?string $object = null): self
     {
         $this->object = $object;

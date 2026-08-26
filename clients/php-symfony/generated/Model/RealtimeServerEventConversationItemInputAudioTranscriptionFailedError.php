@@ -51,7 +51,7 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $type = null;
 
@@ -61,7 +61,7 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
      * @var string|null
      * @SerializedName("code")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $code = null;
 
@@ -71,7 +71,7 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
      * @var string|null
      * @SerializedName("message")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $message = null;
 
@@ -81,7 +81,7 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
      * @var string|null
      * @SerializedName("param")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $param = null;
 
@@ -110,12 +110,12 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of error.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of error.
+     *
+     * @return $this
+     */
     public function setType(?string $type = null): self
     {
         $this->type = $type;
@@ -137,12 +137,12 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
     }
 
     /**
-    * Sets code.
-    *
-    * @param string|null $code  Error code, if any.
-    *
-    * @return $this
-    */
+     * Sets code.
+     *
+     * @param string|null $code  Error code, if any.
+     *
+     * @return $this
+     */
     public function setCode(?string $code = null): self
     {
         $this->code = $code;
@@ -164,12 +164,12 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
     }
 
     /**
-    * Sets message.
-    *
-    * @param string|null $message  A human-readable error message.
-    *
-    * @return $this
-    */
+     * Sets message.
+     *
+     * @param string|null $message  A human-readable error message.
+     *
+     * @return $this
+     */
     public function setMessage(?string $message = null): self
     {
         $this->message = $message;
@@ -191,12 +191,12 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
     }
 
     /**
-    * Sets param.
-    *
-    * @param string|null $param  Parameter related to the error, if any.
-    *
-    * @return $this
-    */
+     * Sets param.
+     *
+     * @param string|null $param  Parameter related to the error, if any.
+     *
+     * @return $this
+     */
     public function setParam(?string $param = null): self
     {
         $this->param = $param;

@@ -374,8 +374,9 @@ class _$AuditLogSerializer implements PrimitiveSerializer<AuditLog> {
         case r'project':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogProject),
-          ) as AuditLogProject;
+            specifiedType: const FullType.nullable(AuditLogProject),
+          ) as AuditLogProject?;
+          if (valueDes == null) continue;
           result.project.replace(valueDes);
           break;
         case r'actor':
@@ -388,141 +389,161 @@ class _$AuditLogSerializer implements PrimitiveSerializer<AuditLog> {
         case r'api_key.created':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogApiKeyCreated),
-          ) as AuditLogApiKeyCreated;
+            specifiedType: const FullType.nullable(AuditLogApiKeyCreated),
+          ) as AuditLogApiKeyCreated?;
+          if (valueDes == null) continue;
           result.apiKeyPeriodCreated.replace(valueDes);
           break;
         case r'api_key.updated':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogApiKeyUpdated),
-          ) as AuditLogApiKeyUpdated;
+            specifiedType: const FullType.nullable(AuditLogApiKeyUpdated),
+          ) as AuditLogApiKeyUpdated?;
+          if (valueDes == null) continue;
           result.apiKeyPeriodUpdated.replace(valueDes);
           break;
         case r'api_key.deleted':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogApiKeyDeleted),
-          ) as AuditLogApiKeyDeleted;
+            specifiedType: const FullType.nullable(AuditLogApiKeyDeleted),
+          ) as AuditLogApiKeyDeleted?;
+          if (valueDes == null) continue;
           result.apiKeyPeriodDeleted.replace(valueDes);
           break;
         case r'invite.sent':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogInviteSent),
-          ) as AuditLogInviteSent;
+            specifiedType: const FullType.nullable(AuditLogInviteSent),
+          ) as AuditLogInviteSent?;
+          if (valueDes == null) continue;
           result.invitePeriodSent.replace(valueDes);
           break;
         case r'invite.accepted':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogInviteAccepted),
-          ) as AuditLogInviteAccepted;
+            specifiedType: const FullType.nullable(AuditLogInviteAccepted),
+          ) as AuditLogInviteAccepted?;
+          if (valueDes == null) continue;
           result.invitePeriodAccepted.replace(valueDes);
           break;
         case r'invite.deleted':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogInviteAccepted),
-          ) as AuditLogInviteAccepted;
+            specifiedType: const FullType.nullable(AuditLogInviteAccepted),
+          ) as AuditLogInviteAccepted?;
+          if (valueDes == null) continue;
           result.invitePeriodDeleted.replace(valueDes);
           break;
         case r'login.failed':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogLoginFailed),
-          ) as AuditLogLoginFailed;
+            specifiedType: const FullType.nullable(AuditLogLoginFailed),
+          ) as AuditLogLoginFailed?;
+          if (valueDes == null) continue;
           result.loginPeriodFailed.replace(valueDes);
           break;
         case r'logout.failed':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogLoginFailed),
-          ) as AuditLogLoginFailed;
+            specifiedType: const FullType.nullable(AuditLogLoginFailed),
+          ) as AuditLogLoginFailed?;
+          if (valueDes == null) continue;
           result.logoutPeriodFailed.replace(valueDes);
           break;
         case r'organization.updated':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogOrganizationUpdated),
-          ) as AuditLogOrganizationUpdated;
+            specifiedType: const FullType.nullable(AuditLogOrganizationUpdated),
+          ) as AuditLogOrganizationUpdated?;
+          if (valueDes == null) continue;
           result.organizationPeriodUpdated.replace(valueDes);
           break;
         case r'project.created':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogProjectCreated),
-          ) as AuditLogProjectCreated;
+            specifiedType: const FullType.nullable(AuditLogProjectCreated),
+          ) as AuditLogProjectCreated?;
+          if (valueDes == null) continue;
           result.projectPeriodCreated.replace(valueDes);
           break;
         case r'project.updated':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogProjectUpdated),
-          ) as AuditLogProjectUpdated;
+            specifiedType: const FullType.nullable(AuditLogProjectUpdated),
+          ) as AuditLogProjectUpdated?;
+          if (valueDes == null) continue;
           result.projectPeriodUpdated.replace(valueDes);
           break;
         case r'project.archived':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogProjectArchived),
-          ) as AuditLogProjectArchived;
+            specifiedType: const FullType.nullable(AuditLogProjectArchived),
+          ) as AuditLogProjectArchived?;
+          if (valueDes == null) continue;
           result.projectPeriodArchived.replace(valueDes);
           break;
         case r'rate_limit.updated':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogRateLimitUpdated),
-          ) as AuditLogRateLimitUpdated;
+            specifiedType: const FullType.nullable(AuditLogRateLimitUpdated),
+          ) as AuditLogRateLimitUpdated?;
+          if (valueDes == null) continue;
           result.rateLimitPeriodUpdated.replace(valueDes);
           break;
         case r'rate_limit.deleted':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogRateLimitDeleted),
-          ) as AuditLogRateLimitDeleted;
+            specifiedType: const FullType.nullable(AuditLogRateLimitDeleted),
+          ) as AuditLogRateLimitDeleted?;
+          if (valueDes == null) continue;
           result.rateLimitPeriodDeleted.replace(valueDes);
           break;
         case r'service_account.created':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogServiceAccountCreated),
-          ) as AuditLogServiceAccountCreated;
+            specifiedType: const FullType.nullable(AuditLogServiceAccountCreated),
+          ) as AuditLogServiceAccountCreated?;
+          if (valueDes == null) continue;
           result.serviceAccountPeriodCreated.replace(valueDes);
           break;
         case r'service_account.updated':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogServiceAccountUpdated),
-          ) as AuditLogServiceAccountUpdated;
+            specifiedType: const FullType.nullable(AuditLogServiceAccountUpdated),
+          ) as AuditLogServiceAccountUpdated?;
+          if (valueDes == null) continue;
           result.serviceAccountPeriodUpdated.replace(valueDes);
           break;
         case r'service_account.deleted':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogServiceAccountDeleted),
-          ) as AuditLogServiceAccountDeleted;
+            specifiedType: const FullType.nullable(AuditLogServiceAccountDeleted),
+          ) as AuditLogServiceAccountDeleted?;
+          if (valueDes == null) continue;
           result.serviceAccountPeriodDeleted.replace(valueDes);
           break;
         case r'user.added':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogUserAdded),
-          ) as AuditLogUserAdded;
+            specifiedType: const FullType.nullable(AuditLogUserAdded),
+          ) as AuditLogUserAdded?;
+          if (valueDes == null) continue;
           result.userPeriodAdded.replace(valueDes);
           break;
         case r'user.updated':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogUserUpdated),
-          ) as AuditLogUserUpdated;
+            specifiedType: const FullType.nullable(AuditLogUserUpdated),
+          ) as AuditLogUserUpdated?;
+          if (valueDes == null) continue;
           result.userPeriodUpdated.replace(valueDes);
           break;
         case r'user.deleted':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogUserDeleted),
-          ) as AuditLogUserDeleted;
+            specifiedType: const FullType.nullable(AuditLogUserDeleted),
+          ) as AuditLogUserDeleted?;
+          if (valueDes == null) continue;
           result.userPeriodDeleted.replace(valueDes);
           break;
         default:

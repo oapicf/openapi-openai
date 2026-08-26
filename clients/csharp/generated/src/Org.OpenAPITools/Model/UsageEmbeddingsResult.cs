@@ -140,7 +140,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;project_id&#x60;, this field provides the project ID of the grouped usage result.</value>
         [JsonPropertyName("project_id")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UserId
@@ -154,7 +154,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;user_id&#x60;, this field provides the user ID of the grouped usage result.</value>
         [JsonPropertyName("user_id")]
-        public string? UserId { get { return this.UserIdOption; } set { this.UserIdOption = new(value); } }
+        public string? UserId { get { return this.UserIdOption.Value; } set { this.UserIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ApiKeyId
@@ -168,7 +168,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;api_key_id&#x60;, this field provides the API key ID of the grouped usage result.</value>
         [JsonPropertyName("api_key_id")]
-        public string? ApiKeyId { get { return this.ApiKeyIdOption; } set { this.ApiKeyIdOption = new(value); } }
+        public string? ApiKeyId { get { return this.ApiKeyIdOption.Value; } set { this.ApiKeyIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Model
@@ -182,7 +182,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;model&#x60;, this field provides the model name of the grouped usage result.</value>
         [JsonPropertyName("model")]
-        public string? Model { get { return this.ModelOption; } set { this.ModelOption = new(value); } }
+        public string? Model { get { return this.ModelOption.Value; } set { this.ModelOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -217,8 +217,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="UsageEmbeddingsResult" />
     /// </summary>
-    public class UsageEmbeddingsResultJsonConverter : JsonConverter<UsageEmbeddingsResult>
+    public partial class UsageEmbeddingsResultJsonConverter : JsonConverter<UsageEmbeddingsResult>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UsageEmbeddingsResultJsonConverter" /> class.
+        /// </summary>
+        public UsageEmbeddingsResultJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UsageEmbeddingsResult" />
         /// </summary>

@@ -32,7 +32,7 @@ class  SubmitToolOutputsRunRequest_tool_outputs_inner
 {
 public:
     SubmitToolOutputsRunRequest_tool_outputs_inner();
-    virtual ~SubmitToolOutputsRunRequest_tool_outputs_inner() = default;
+    virtual ~SubmitToolOutputsRunRequest_tool_outputs_inner();
 
 
     /// <summary>

@@ -30,10 +30,10 @@ static run_step_details_tool_calls_code_output_logs_object_t *run_step_details_t
     if (!run_step_details_tool_calls_code_output_logs_object_local_var) {
         return NULL;
     }
+    memset(run_step_details_tool_calls_code_output_logs_object_local_var, 0, sizeof(run_step_details_tool_calls_code_output_logs_object_t));
+    run_step_details_tool_calls_code_output_logs_object_local_var->_library_owned = 1;
     run_step_details_tool_calls_code_output_logs_object_local_var->type = type;
     run_step_details_tool_calls_code_output_logs_object_local_var->logs = logs;
-
-    run_step_details_tool_calls_code_output_logs_object_local_var->_library_owned = 1;
     return run_step_details_tool_calls_code_output_logs_object_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) run_step_details_tool_calls_code_output_logs_object_
     openai_api_run_step_details_tool_calls_code_output_logs_object_TYPE_e type,
     char *logs
     ) {
-    return run_step_details_tool_calls_code_output_logs_object_create_internal (
+    run_step_details_tool_calls_code_output_logs_object_t *result = run_step_details_tool_calls_code_output_logs_object_create_internal (
         type,
         logs
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_step_details_tool_calls_code_output_logs_object_free(run_step_details_tool_calls_code_output_logs_object_t *run_step_details_tool_calls_code_output_logs_object) {
@@ -96,6 +99,8 @@ run_step_details_tool_calls_code_output_logs_object_t *run_step_details_tool_cal
 
     run_step_details_tool_calls_code_output_logs_object_t *run_step_details_tool_calls_code_output_logs_object_local_var = NULL;
 
+    char *logs_local_str = NULL;
+
     // run_step_details_tool_calls_code_output_logs_object->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(run_step_details_tool_calls_code_output_logs_objectJSON, "type");
     if (cJSON_IsNull(type)) {
@@ -129,13 +134,23 @@ run_step_details_tool_calls_code_output_logs_object_t *run_step_details_tool_cal
     }
 
 
+    if (logs && !cJSON_IsNull(logs)) logs_local_str = strdup(logs->valuestring);
+
     run_step_details_tool_calls_code_output_logs_object_local_var = run_step_details_tool_calls_code_output_logs_object_create_internal (
         typeVariable,
-        strdup(logs->valuestring)
+        logs_local_str
         );
+
+    if (!run_step_details_tool_calls_code_output_logs_object_local_var) {
+        goto end;
+    }
 
     return run_step_details_tool_calls_code_output_logs_object_local_var;
 end:
+    if (logs_local_str) {
+        free(logs_local_str);
+        logs_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -29,6 +29,8 @@ VectorStoreFileBatchObject_file_counts::VectorStoreFileBatchObject_file_counts()
     
 }
 
+VectorStoreFileBatchObject_file_counts::~VectorStoreFileBatchObject_file_counts() = default;
+
 void VectorStoreFileBatchObject_file_counts::validate() const
 {
     std::stringstream msg;

@@ -31,6 +31,8 @@ RealtimeServerEventResponseAudioTranscriptDone::RealtimeServerEventResponseAudio
     
 }
 
+RealtimeServerEventResponseAudioTranscriptDone::~RealtimeServerEventResponseAudioTranscriptDone() = default;
+
 void RealtimeServerEventResponseAudioTranscriptDone::validate() const
 {
     std::stringstream msg;

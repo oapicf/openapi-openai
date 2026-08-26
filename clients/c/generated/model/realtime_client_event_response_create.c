@@ -31,11 +31,11 @@ static realtime_client_event_response_create_t *realtime_client_event_response_c
     if (!realtime_client_event_response_create_local_var) {
         return NULL;
     }
+    memset(realtime_client_event_response_create_local_var, 0, sizeof(realtime_client_event_response_create_t));
+    realtime_client_event_response_create_local_var->_library_owned = 1;
     realtime_client_event_response_create_local_var->event_id = event_id;
     realtime_client_event_response_create_local_var->type = type;
     realtime_client_event_response_create_local_var->response = response;
-
-    realtime_client_event_response_create_local_var->_library_owned = 1;
     return realtime_client_event_response_create_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) realtime_client_event_response_create_t *realtime_cl
     openai_api_realtime_client_event_response_create_TYPE_e type,
     realtime_response_create_params_t *response
     ) {
-    return realtime_client_event_response_create_create_internal (
+    realtime_client_event_response_create_t *result = realtime_client_event_response_create_create_internal (
         event_id,
         type,
         response
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_client_event_response_create_free(realtime_client_event_response_create_t *realtime_client_event_response_create) {
@@ -116,6 +119,8 @@ realtime_client_event_response_create_t *realtime_client_event_response_create_p
 
     realtime_client_event_response_create_t *realtime_client_event_response_create_local_var = NULL;
 
+    char *event_id_local_str = NULL;
+
     // define the local variable for realtime_client_event_response_create->response
     realtime_response_create_params_t *response_local_nonprim = NULL;
 
@@ -158,14 +163,24 @@ realtime_client_event_response_create_t *realtime_client_event_response_create_p
     }
 
 
+    if (event_id && !cJSON_IsNull(event_id)) event_id_local_str = strdup(event_id->valuestring);
+
     realtime_client_event_response_create_local_var = realtime_client_event_response_create_create_internal (
-        event_id && !cJSON_IsNull(event_id) ? strdup(event_id->valuestring) : NULL,
+        event_id_local_str,
         typeVariable,
         response ? response_local_nonprim : NULL
         );
 
+    if (!realtime_client_event_response_create_local_var) {
+        goto end;
+    }
+
     return realtime_client_event_response_create_local_var;
 end:
+    if (event_id_local_str) {
+        free(event_id_local_str);
+        event_id_local_str = NULL;
+    }
     if (response_local_nonprim) {
         realtime_response_create_params_free(response_local_nonprim);
         response_local_nonprim = NULL;

@@ -50,7 +50,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * The actor who performed the audit logged action.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class AuditLogActor {
   /**
    * The type of actor. Is either &#x60;session&#x60; or &#x60;api_key&#x60;.
@@ -215,10 +215,7 @@ public class AuditLogActor {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -260,6 +257,14 @@ public class AuditLogActor {
       // validate the optional field `type`
       if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
         TypeEnum.validateJsonElement(jsonObj.get("type"));
+      }
+      // validate the optional field `session`
+      if (jsonObj.get("session") != null && !jsonObj.get("session").isJsonNull()) {
+        AuditLogActorSession.validateJsonElement(jsonObj.get("session"));
+      }
+      // validate the optional field `api_key`
+      if (jsonObj.get("api_key") != null && !jsonObj.get("api_key").isJsonNull()) {
+        AuditLogActorApiKey.validateJsonElement(jsonObj.get("api_key"));
       }
   }
 

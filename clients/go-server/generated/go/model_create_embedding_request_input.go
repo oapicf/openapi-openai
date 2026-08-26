@@ -18,7 +18,8 @@ package openapi
 type CreateEmbeddingRequestInput struct {
 }
 
-// AssertCreateEmbeddingRequestInputRequired checks if the required fields are not zero-ed
+// AssertCreateEmbeddingRequestInputRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateEmbeddingRequestInputRequired(obj CreateEmbeddingRequestInput) error {
 	return nil
 }

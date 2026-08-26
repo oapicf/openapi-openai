@@ -1,4 +1,4 @@
-# # MessageObject
+# MessageObject
 
 ## Properties
 

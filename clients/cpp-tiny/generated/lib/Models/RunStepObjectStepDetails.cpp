@@ -124,7 +124,7 @@ RunStepObject_step_details::getType()
 }
 
 void
-RunStepObject_step_details::setType(std::string  type)
+RunStepObject_step_details::setType(std::string type)
 {
 	this->type = type;
 }
@@ -136,7 +136,7 @@ RunStepObject_step_details::getMessageCreation()
 }
 
 void
-RunStepObject_step_details::setMessageCreation(RunStepDetailsMessageCreationObject_message_creation  message_creation)
+RunStepObject_step_details::setMessageCreation(RunStepDetailsMessageCreationObject_message_creation message_creation)
 {
 	this->message_creation = message_creation;
 }
@@ -148,7 +148,7 @@ RunStepObject_step_details::getToolCalls()
 }
 
 void
-RunStepObject_step_details::setToolCalls(std::list <RunStepDetailsToolCallsObject_tool_calls_inner> tool_calls)
+RunStepObject_step_details::setToolCalls(std::list<RunStepDetailsToolCallsObject_tool_calls_inner> tool_calls)
 {
 	this->tool_calls = tool_calls;
 }

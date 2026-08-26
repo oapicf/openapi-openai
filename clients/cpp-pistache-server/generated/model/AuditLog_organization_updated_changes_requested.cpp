@@ -31,6 +31,8 @@ AuditLog_organization_updated_changes_requested::AuditLog_organization_updated_c
     
 }
 
+AuditLog_organization_updated_changes_requested::~AuditLog_organization_updated_changes_requested() = default;
+
 void AuditLog_organization_updated_changes_requested::validate() const
 {
     std::stringstream msg;

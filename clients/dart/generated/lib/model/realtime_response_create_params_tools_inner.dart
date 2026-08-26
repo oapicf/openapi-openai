@@ -103,10 +103,6 @@ class RealtimeResponseCreateParamsToolsInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeResponseCreateParamsToolsInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeResponseCreateParamsToolsInner[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
@@ -166,27 +162,28 @@ class RealtimeResponseCreateParamsToolsInner {
 }
 
 /// The type of the tool, i.e. `function`.
-class RealtimeResponseCreateParamsToolsInnerTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeResponseCreateParamsToolsInnerTypeEnum._(this.value);
+enum RealtimeResponseCreateParamsToolsInnerTypeEnum {
+  function_._(r'function'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeResponseCreateParamsToolsInnerTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const function_ = RealtimeResponseCreateParamsToolsInnerTypeEnum._(r'function');
-
-  /// List of all possible values in this [enum][RealtimeResponseCreateParamsToolsInnerTypeEnum].
-  static const values = <RealtimeResponseCreateParamsToolsInnerTypeEnum>[
-    function_,
-  ];
-
+  /// Returns the instance of [RealtimeResponseCreateParamsToolsInnerTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeResponseCreateParamsToolsInnerTypeEnum? fromJson(dynamic value) => RealtimeResponseCreateParamsToolsInnerTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeResponseCreateParamsToolsInnerTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeResponseCreateParamsToolsInnerTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeResponseCreateParamsToolsInnerTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -208,9 +205,10 @@ class RealtimeResponseCreateParamsToolsInnerTypeEnumTypeTransformer {
 
   const RealtimeResponseCreateParamsToolsInnerTypeEnumTypeTransformer._();
 
-  String encode(RealtimeResponseCreateParamsToolsInnerTypeEnum data) => data.value;
+  String encode(RealtimeResponseCreateParamsToolsInnerTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeResponseCreateParamsToolsInnerTypeEnum.
+  /// Returns the instance of [RealtimeResponseCreateParamsToolsInnerTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -219,6 +217,9 @@ class RealtimeResponseCreateParamsToolsInnerTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeResponseCreateParamsToolsInnerTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeResponseCreateParamsToolsInnerTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'function': return RealtimeResponseCreateParamsToolsInnerTypeEnum.function_;
@@ -231,7 +232,7 @@ class RealtimeResponseCreateParamsToolsInnerTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeResponseCreateParamsToolsInnerTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeResponseCreateParamsToolsInnerTypeEnumTypeTransformer? _instance;
 }
 

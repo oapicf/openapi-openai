@@ -1,4 +1,4 @@
-# # BatchRequestOutputError
+# BatchRequestOutputError
 
 ## Properties
 

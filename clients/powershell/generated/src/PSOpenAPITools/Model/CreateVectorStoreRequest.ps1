@@ -60,11 +60,11 @@ function Initialize-CreateVectorStoreRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "file_ids" = ${FileIds}
-            "name" = ${Name}
-            "expires_after" = ${ExpiresAfter}
-            "chunking_strategy" = ${ChunkingStrategy}
-            "metadata" = ${Metadata}
+            'file_ids' = ${FileIds}
+            'name' = ${Name}
+            'expires_after' = ${ExpiresAfter}
+            'chunking_strategy' = ${ChunkingStrategy}
+            'metadata' = ${Metadata}
         }
 
 
@@ -102,49 +102,49 @@ function ConvertFrom-JsonToCreateVectorStoreRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateVectorStoreRequest
-        $AllProperties = ("file_ids", "name", "expires_after", "chunking_strategy", "metadata")
+        $AllProperties = ('file_ids', 'name', 'expires_after', 'chunking_strategy', 'metadata')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_ids"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_ids'))) { #optional property not found
             $FileIds = $null
         } else {
-            $FileIds = $JsonParameters.PSobject.Properties["file_ids"].value
+            $FileIds = $JsonParameters.PSobject.Properties['file_ids'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) { #optional property not found
             $Name = $null
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expires_after"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'expires_after'))) { #optional property not found
             $ExpiresAfter = $null
         } else {
-            $ExpiresAfter = $JsonParameters.PSobject.Properties["expires_after"].value
+            $ExpiresAfter = $JsonParameters.PSobject.Properties['expires_after'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "chunking_strategy"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'chunking_strategy'))) { #optional property not found
             $ChunkingStrategy = $null
         } else {
-            $ChunkingStrategy = $JsonParameters.PSobject.Properties["chunking_strategy"].value
+            $ChunkingStrategy = $JsonParameters.PSobject.Properties['chunking_strategy'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) { #optional property not found
             $Metadata = $null
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "file_ids" = ${FileIds}
-            "name" = ${Name}
-            "expires_after" = ${ExpiresAfter}
-            "chunking_strategy" = ${ChunkingStrategy}
-            "metadata" = ${Metadata}
+            'file_ids' = ${FileIds}
+            'name' = ${Name}
+            'expires_after' = ${ExpiresAfter}
+            'chunking_strategy' = ${ChunkingStrategy}
+            'metadata' = ${Metadata}
         }
 
         return $PSO

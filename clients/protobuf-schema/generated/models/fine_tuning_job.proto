@@ -45,7 +45,7 @@ message FineTuningJob {
     OBJECT_FINE_TUNING_JOB = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The organization that owns the fine-tuning job.
   string organization_id = 252744617;
@@ -63,7 +63,7 @@ message FineTuningJob {
     STATUS_CANCELLED = 5;
   }
 
-  Status status = 355610639;
+  string status = 355610639;
 
   // The total number of billable tokens processed by this fine-tuning job. The value will be null if the fine-tuning job is still running.
   optional int32 trained_tokens = 53062706;

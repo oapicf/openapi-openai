@@ -52,28 +52,28 @@ public:
 
 	/*! \brief Set Optional client-generated ID used to identify this event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `conversation.item.create`.
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `conversation.item.create`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The ID of the preceding item after which the new item will be inserted.  If not set, the new item will be appended to the end of the conversation.  If set, it allows an item to be inserted mid-conversation. If the ID  cannot be found, an error will be returned and the item will not be added. 
 	 */
 	std::string getPreviousItemId();
 
 	/*! \brief Set The ID of the preceding item after which the new item will be inserted.  If not set, the new item will be appended to the end of the conversation.  If set, it allows an item to be inserted mid-conversation. If the ID  cannot be found, an error will be returned and the item will not be added. 
 	 */
-	void setPreviousItemId(std::string  previous_item_id);
+	void setPreviousItemId(std::string previous_item_id);
 	/*! \brief Get 
 	 */
 	RealtimeConversationItem getItem();
 
 	/*! \brief Set 
 	 */
-	void setItem(RealtimeConversationItem  item);
+	void setItem(RealtimeConversationItem item);
 
 
     private:

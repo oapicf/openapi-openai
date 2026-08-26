@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set The role of the messages author, in this case `function`.
 	 */
-	void setRole(std::string  role);
+	void setRole(std::string role);
 	/*! \brief Get The contents of the function message.
 	 */
 	std::string getContent();
 
 	/*! \brief Set The contents of the function message.
 	 */
-	void setContent(std::string  content);
+	void setContent(std::string content);
 	/*! \brief Get The name of the function to call.
 	 */
 	std::string getName();
 
 	/*! \brief Set The name of the function to call.
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 
 
     private:

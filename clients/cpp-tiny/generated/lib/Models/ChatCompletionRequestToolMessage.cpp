@@ -107,7 +107,7 @@ ChatCompletionRequestToolMessage::getRole()
 }
 
 void
-ChatCompletionRequestToolMessage::setRole(std::string  role)
+ChatCompletionRequestToolMessage::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -119,7 +119,7 @@ ChatCompletionRequestToolMessage::getContent()
 }
 
 void
-ChatCompletionRequestToolMessage::setContent(ChatCompletionRequestToolMessage_content  content)
+ChatCompletionRequestToolMessage::setContent(ChatCompletionRequestToolMessage_content content)
 {
 	this->content = content;
 }
@@ -131,7 +131,7 @@ ChatCompletionRequestToolMessage::getToolCallId()
 }
 
 void
-ChatCompletionRequestToolMessage::setToolCallId(std::string  tool_call_id)
+ChatCompletionRequestToolMessage::setToolCallId(std::string tool_call_id)
 {
 	this->tool_call_id = tool_call_id;
 }

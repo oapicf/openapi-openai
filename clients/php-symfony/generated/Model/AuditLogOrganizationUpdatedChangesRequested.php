@@ -51,7 +51,7 @@ class AuditLogOrganizationUpdatedChangesRequested
      * @var string|null
      * @SerializedName("title")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $title = null;
 
@@ -61,7 +61,7 @@ class AuditLogOrganizationUpdatedChangesRequested
      * @var string|null
      * @SerializedName("description")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $description = null;
 
@@ -71,7 +71,7 @@ class AuditLogOrganizationUpdatedChangesRequested
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $name = null;
 
@@ -79,7 +79,7 @@ class AuditLogOrganizationUpdatedChangesRequested
      * @var AuditLogOrganizationUpdatedChangesRequestedSettings|null
      * @SerializedName("settings")
      * @Type("OpenAPI\Server\Model\AuditLogOrganizationUpdatedChangesRequestedSettings")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogOrganizationUpdatedChangesRequestedSettings")]
     protected ?AuditLogOrganizationUpdatedChangesRequestedSettings $settings = null;
 
@@ -108,12 +108,12 @@ class AuditLogOrganizationUpdatedChangesRequested
     }
 
     /**
-    * Sets title.
-    *
-    * @param string|null $title  The organization title.
-    *
-    * @return $this
-    */
+     * Sets title.
+     *
+     * @param string|null $title  The organization title.
+     *
+     * @return $this
+     */
     public function setTitle(?string $title = null): self
     {
         $this->title = $title;
@@ -135,12 +135,12 @@ class AuditLogOrganizationUpdatedChangesRequested
     }
 
     /**
-    * Sets description.
-    *
-    * @param string|null $description  The organization description.
-    *
-    * @return $this
-    */
+     * Sets description.
+     *
+     * @param string|null $description  The organization description.
+     *
+     * @return $this
+     */
     public function setDescription(?string $description = null): self
     {
         $this->description = $description;
@@ -162,12 +162,12 @@ class AuditLogOrganizationUpdatedChangesRequested
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The organization name.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The organization name.
+     *
+     * @return $this
+     */
     public function setName(?string $name = null): self
     {
         $this->name = $name;
@@ -189,12 +189,12 @@ class AuditLogOrganizationUpdatedChangesRequested
     }
 
     /**
-    * Sets settings.
-    *
-    * @param AuditLogOrganizationUpdatedChangesRequestedSettings|null $settings
-    *
-    * @return $this
-    */
+     * Sets settings.
+     *
+     * @param AuditLogOrganizationUpdatedChangesRequestedSettings|null $settings
+     *
+     * @return $this
+     */
     public function setSettings(?AuditLogOrganizationUpdatedChangesRequestedSettings $settings = null): self
     {
         $this->settings = $settings;

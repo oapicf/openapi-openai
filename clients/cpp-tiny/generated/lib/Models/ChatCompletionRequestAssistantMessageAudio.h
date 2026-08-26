@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set Unique identifier for a previous audio response from the model. 
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 
 
     private:

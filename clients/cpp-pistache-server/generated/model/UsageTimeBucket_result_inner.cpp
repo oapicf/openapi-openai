@@ -56,6 +56,8 @@ UsageTimeBucket_result_inner::UsageTimeBucket_result_inner()
     
 }
 
+UsageTimeBucket_result_inner::~UsageTimeBucket_result_inner() = default;
+
 void UsageTimeBucket_result_inner::validate() const
 {
     std::stringstream msg;

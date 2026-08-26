@@ -102,7 +102,7 @@ RunStepDetailsToolCallsCodeObject_code_interpreter::getInput()
 }
 
 void
-RunStepDetailsToolCallsCodeObject_code_interpreter::setInput(std::string  input)
+RunStepDetailsToolCallsCodeObject_code_interpreter::setInput(std::string input)
 {
 	this->input = input;
 }
@@ -114,7 +114,7 @@ RunStepDetailsToolCallsCodeObject_code_interpreter::getOutputs()
 }
 
 void
-RunStepDetailsToolCallsCodeObject_code_interpreter::setOutputs(std::list <RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner> outputs)
+RunStepDetailsToolCallsCodeObject_code_interpreter::setOutputs(std::list<RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner> outputs)
 {
 	this->outputs = outputs;
 }

@@ -64,7 +64,7 @@ AuditLog_project_archived::getId()
 }
 
 void
-AuditLog_project_archived::setId(std::string  id)
+AuditLog_project_archived::setId(std::string id)
 {
 	this->id = id;
 }

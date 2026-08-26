@@ -2357,38 +2357,6 @@ mkAuditLogUserUpdatedChangesRequested =
   { auditLogUserUpdatedChangesRequestedRole = Nothing
   }
 
--- ** AutoChunkingStrategy
--- | AutoChunkingStrategy
--- Auto Chunking Strategy
--- 
--- The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`.
-data AutoChunkingStrategy = AutoChunkingStrategy
-  { autoChunkingStrategyType :: !(E'OneOf0) -- ^ /Required/ "type" - Always &#x60;auto&#x60;.
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON AutoChunkingStrategy
-instance A.FromJSON AutoChunkingStrategy where
-  parseJSON = A.withObject "AutoChunkingStrategy" $ \o ->
-    AutoChunkingStrategy
-      <$> (o .:  "type")
-
--- | ToJSON AutoChunkingStrategy
-instance A.ToJSON AutoChunkingStrategy where
-  toJSON AutoChunkingStrategy {..} =
-   _omitNulls
-      [ "type" .= autoChunkingStrategyType
-      ]
-
-
--- | Construct a value of type 'AutoChunkingStrategy' (by applying it's required fields, if any)
-mkAutoChunkingStrategy
-  :: E'OneOf0 -- ^ 'autoChunkingStrategyType': Always `auto`.
-  -> AutoChunkingStrategy
-mkAutoChunkingStrategy autoChunkingStrategyType =
-  AutoChunkingStrategy
-  { autoChunkingStrategyType
-  }
-
 -- ** AutoChunkingStrategyRequestParam
 -- | AutoChunkingStrategyRequestParam
 -- Auto Chunking Strategy
@@ -4938,7 +4906,7 @@ data CreateChatCompletionRequest = CreateChatCompletionRequest
   , createChatCompletionRequestMaxCompletionTokens :: !(Maybe Int) -- ^ "max_completion_tokens" - An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). 
   , createChatCompletionRequestN :: !(Maybe Int) -- ^ "n" - How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep &#x60;n&#x60; as &#x60;1&#x60; to minimize costs.
   , createChatCompletionRequestModalities :: !(Maybe [E'Modalities]) -- ^ "modalities" - Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  &#x60;[\&quot;text\&quot;]&#x60;  The &#x60;gpt-4o-audio-preview&#x60; model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  &#x60;[\&quot;text\&quot;, \&quot;audio\&quot;]&#x60; 
-  , createChatCompletionRequestPrediction :: !(Maybe PredictionContent) -- ^ "prediction"
+  , createChatCompletionRequestPrediction :: !(Maybe PredictionContent) -- ^ "prediction" - Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
   , createChatCompletionRequestAudio :: !(Maybe CreateChatCompletionRequestAudio) -- ^ "audio"
   , createChatCompletionRequestPresencePenalty :: !(Maybe Double) -- ^ "presence_penalty" - Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics. 
   , createChatCompletionRequestResponseFormat :: !(Maybe CreateChatCompletionRequestResponseFormat) -- ^ "response_format"
@@ -6207,7 +6175,7 @@ mkCreateFineTuningJobRequestHyperparametersNEpochs =
 -- ** CreateFineTuningJobRequestIntegrationsInner
 -- | CreateFineTuningJobRequestIntegrationsInner
 data CreateFineTuningJobRequestIntegrationsInner = CreateFineTuningJobRequestIntegrationsInner
-  { createFineTuningJobRequestIntegrationsInnerType :: !(E'Type16) -- ^ /Required/ "type"
+  { createFineTuningJobRequestIntegrationsInnerType :: !(E'Type16) -- ^ /Required/ "type" - The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. 
   , createFineTuningJobRequestIntegrationsInnerWandb :: !(CreateFineTuningJobRequestIntegrationsInnerWandb) -- ^ /Required/ "wandb"
   } deriving (P.Show, P.Eq, P.Typeable)
 
@@ -6229,7 +6197,7 @@ instance A.ToJSON CreateFineTuningJobRequestIntegrationsInner where
 
 -- | Construct a value of type 'CreateFineTuningJobRequestIntegrationsInner' (by applying it's required fields, if any)
 mkCreateFineTuningJobRequestIntegrationsInner
-  :: E'Type16 -- ^ 'createFineTuningJobRequestIntegrationsInnerType' 
+  :: E'Type16 -- ^ 'createFineTuningJobRequestIntegrationsInnerType': The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
   -> CreateFineTuningJobRequestIntegrationsInnerWandb -- ^ 'createFineTuningJobRequestIntegrationsInnerWandb' 
   -> CreateFineTuningJobRequestIntegrationsInner
 mkCreateFineTuningJobRequestIntegrationsInner createFineTuningJobRequestIntegrationsInnerType createFineTuningJobRequestIntegrationsInnerWandb =
@@ -12250,7 +12218,7 @@ mkModel modelId modelCreated modelObject modelOwnedBy =
 -- ** ModifyAssistantRequest
 -- | ModifyAssistantRequest
 data ModifyAssistantRequest = ModifyAssistantRequest
-  { modifyAssistantRequestModel :: !(Maybe Text) -- ^ "model"
+  { modifyAssistantRequestModel :: !(Maybe Text) -- ^ "model" - ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
   , modifyAssistantRequestName :: !(Maybe Text) -- ^ "name" - The name of the assistant. The maximum length is 256 characters. 
   , modifyAssistantRequestDescription :: !(Maybe Text) -- ^ "description" - The description of the assistant. The maximum length is 512 characters. 
   , modifyAssistantRequestInstructions :: !(Maybe Text) -- ^ "instructions" - The system instructions that the assistant uses. The maximum length is 256,000 characters. 
@@ -19371,42 +19339,6 @@ mkStaticChunkingStrategyRequestParam staticChunkingStrategyRequestParamType stat
   StaticChunkingStrategyRequestParam
   { staticChunkingStrategyRequestParamType
   , staticChunkingStrategyRequestParamStatic
-  }
-
--- ** StaticChunkingStrategyResponseParam
--- | StaticChunkingStrategyResponseParam
--- Static Chunking Strategy
--- 
-data StaticChunkingStrategyResponseParam = StaticChunkingStrategyResponseParam
-  { staticChunkingStrategyResponseParamType :: !(E'Type67) -- ^ /Required/ "type" - Always &#x60;static&#x60;.
-  , staticChunkingStrategyResponseParamStatic :: !(StaticChunkingStrategy) -- ^ /Required/ "static"
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON StaticChunkingStrategyResponseParam
-instance A.FromJSON StaticChunkingStrategyResponseParam where
-  parseJSON = A.withObject "StaticChunkingStrategyResponseParam" $ \o ->
-    StaticChunkingStrategyResponseParam
-      <$> (o .:  "type")
-      <*> (o .:  "static")
-
--- | ToJSON StaticChunkingStrategyResponseParam
-instance A.ToJSON StaticChunkingStrategyResponseParam where
-  toJSON StaticChunkingStrategyResponseParam {..} =
-   _omitNulls
-      [ "type" .= staticChunkingStrategyResponseParamType
-      , "static" .= staticChunkingStrategyResponseParamStatic
-      ]
-
-
--- | Construct a value of type 'StaticChunkingStrategyResponseParam' (by applying it's required fields, if any)
-mkStaticChunkingStrategyResponseParam
-  :: E'Type67 -- ^ 'staticChunkingStrategyResponseParamType': Always `static`.
-  -> StaticChunkingStrategy -- ^ 'staticChunkingStrategyResponseParamStatic' 
-  -> StaticChunkingStrategyResponseParam
-mkStaticChunkingStrategyResponseParam staticChunkingStrategyResponseParamType staticChunkingStrategyResponseParamStatic =
-  StaticChunkingStrategyResponseParam
-  { staticChunkingStrategyResponseParamType
-  , staticChunkingStrategyResponseParamStatic
   }
 
 -- ** StaticChunkingStrategyStatic

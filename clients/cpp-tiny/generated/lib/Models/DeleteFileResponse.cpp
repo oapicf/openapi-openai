@@ -106,7 +106,7 @@ DeleteFileResponse::getId()
 }
 
 void
-DeleteFileResponse::setId(std::string  id)
+DeleteFileResponse::setId(std::string id)
 {
 	this->id = id;
 }
@@ -118,7 +118,7 @@ DeleteFileResponse::getObject()
 }
 
 void
-DeleteFileResponse::setObject(std::string  object)
+DeleteFileResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -130,7 +130,7 @@ DeleteFileResponse::isDeleted()
 }
 
 void
-DeleteFileResponse::setDeleted(bool  deleted)
+DeleteFileResponse::setDeleted(bool deleted)
 {
 	this->deleted = deleted;
 }

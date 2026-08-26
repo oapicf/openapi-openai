@@ -1,4 +1,4 @@
-# # MessageContentImageFileObject
+# MessageContentImageFileObject
 
 ## Properties
 

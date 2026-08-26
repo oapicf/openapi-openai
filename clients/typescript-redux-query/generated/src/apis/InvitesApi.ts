@@ -65,7 +65,7 @@ function deleteInviteRaw<T>(requestParameters: DeleteInviteRequest, requestConfi
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/invites/{invite_id}`.replace(`{${"invite_id"}}`, encodeURIComponent(String(requestParameters.inviteId))),
+        url: `${runtime.Configuration.basePath}/organization/invites/{invite_id}`.replace('{invite_id}', encodeURIComponent(String(requestParameters.inviteId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -215,7 +215,7 @@ function retrieveInviteRaw<T>(requestParameters: RetrieveInviteRequest, requestC
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/invites/{invite_id}`.replace(`{${"invite_id"}}`, encodeURIComponent(String(requestParameters.inviteId))),
+        url: `${runtime.Configuration.basePath}/organization/invites/{invite_id}`.replace('{invite_id}', encodeURIComponent(String(requestParameters.inviteId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,

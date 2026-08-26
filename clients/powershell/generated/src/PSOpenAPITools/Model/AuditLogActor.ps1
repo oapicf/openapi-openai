@@ -47,9 +47,9 @@ function Initialize-AuditLogActor {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "session" = ${Session}
-            "api_key" = ${ApiKey}
+            'type' = ${Type}
+            'session' = ${Session}
+            'api_key' = ${ApiKey}
         }
 
 
@@ -87,35 +87,35 @@ function ConvertFrom-JsonToAuditLogActor {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AuditLogActor
-        $AllProperties = ("type", "session", "api_key")
+        $AllProperties = ('type', 'session', 'api_key')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) { #optional property not found
             $Type = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "session"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'session'))) { #optional property not found
             $Session = $null
         } else {
-            $Session = $JsonParameters.PSobject.Properties["session"].value
+            $Session = $JsonParameters.PSobject.Properties['session'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "api_key"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'api_key'))) { #optional property not found
             $ApiKey = $null
         } else {
-            $ApiKey = $JsonParameters.PSobject.Properties["api_key"].value
+            $ApiKey = $JsonParameters.PSobject.Properties['api_key'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "session" = ${Session}
-            "api_key" = ${ApiKey}
+            'type' = ${Type}
+            'session' = ${Session}
+            'api_key' = ${ApiKey}
         }
 
         return $PSO

@@ -159,7 +159,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The content type (&#x60;input_text&#x60;, &#x60;input_audio&#x60;, &#x60;item_reference&#x60;, &#x60;text&#x60;). </value>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Text
@@ -173,7 +173,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The text content, used for &#x60;input_text&#x60; and &#x60;text&#x60; content types. </value>
         [JsonPropertyName("text")]
-        public string? Text { get { return this.TextOption; } set { this.TextOption = new(value); } }
+        public string? Text { get { return this.TextOption.Value; } set { this.TextOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -187,7 +187,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>ID of a previous conversation item to reference (for &#x60;item_reference&#x60; content types in &#x60;response.create&#x60; events). These can reference both client and server created items. </value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Audio
@@ -201,7 +201,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Base64-encoded audio bytes, used for &#x60;input_audio&#x60; content type. </value>
         [JsonPropertyName("audio")]
-        public string? Audio { get { return this.AudioOption; } set { this.AudioOption = new(value); } }
+        public string? Audio { get { return this.AudioOption.Value; } set { this.AudioOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Transcript
@@ -215,7 +215,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The transcript of the audio, used for &#x60;input_audio&#x60; content type. </value>
         [JsonPropertyName("transcript")]
-        public string? Transcript { get { return this.TranscriptOption; } set { this.TranscriptOption = new(value); } }
+        public string? Transcript { get { return this.TranscriptOption.Value; } set { this.TranscriptOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -248,8 +248,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeConversationItemContentInner" />
     /// </summary>
-    public class RealtimeConversationItemContentInnerJsonConverter : JsonConverter<RealtimeConversationItemContentInner>
+    public partial class RealtimeConversationItemContentInnerJsonConverter : JsonConverter<RealtimeConversationItemContentInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeConversationItemContentInnerJsonConverter" /> class.
+        /// </summary>
+        public RealtimeConversationItemContentInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeConversationItemContentInner" />
         /// </summary>

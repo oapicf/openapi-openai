@@ -15,14 +15,16 @@ module.exports = {
                     'api_key',
                 ],
             },
+            ...AuditLogActorSession.fields(`${keyPrefix}session`, isInput),
+            ...AuditLogActorApiKey.fields(`${keyPrefix}api_key`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'type': bundle.inputData?.[`${keyPrefix}type`],
-            'session': utils.removeIfEmpty(.mapping(bundle, `${keyPrefix}session`)),
-            'api_key': utils.removeIfEmpty(.mapping(bundle, `${keyPrefix}api_key`)),
+            'session': utils.removeIfEmpty(AuditLogActorSession.mapping(bundle, `${keyPrefix}session`)),
+            'api_key': utils.removeIfEmpty(AuditLogActorApiKey.mapping(bundle, `${keyPrefix}api_key`)),
         }
     },
 }

@@ -33,13 +33,13 @@ class OAIRunStepObject;
 class OAIRunStepStreamEvent_oneOf_5 : public OAIObject {
 public:
     OAIRunStepStreamEvent_oneOf_5();
-    OAIRunStepStreamEvent_oneOf_5(QString json);
+    OAIRunStepStreamEvent_oneOf_5(const QString &json);
     ~OAIRunStepStreamEvent_oneOf_5() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getEvent() const;
     void setEvent(const QString &event);

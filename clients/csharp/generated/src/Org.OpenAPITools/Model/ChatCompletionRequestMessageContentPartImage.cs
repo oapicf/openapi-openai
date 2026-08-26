@@ -140,8 +140,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ChatCompletionRequestMessageContentPartImage" />
     /// </summary>
-    public class ChatCompletionRequestMessageContentPartImageJsonConverter : JsonConverter<ChatCompletionRequestMessageContentPartImage>
+    public partial class ChatCompletionRequestMessageContentPartImageJsonConverter : JsonConverter<ChatCompletionRequestMessageContentPartImage>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChatCompletionRequestMessageContentPartImageJsonConverter" /> class.
+        /// </summary>
+        public ChatCompletionRequestMessageContentPartImageJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ChatCompletionRequestMessageContentPartImage" />
         /// </summary>

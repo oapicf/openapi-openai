@@ -30,10 +30,10 @@ static invite_projects_inner_t *invite_projects_inner_create_internal(
     if (!invite_projects_inner_local_var) {
         return NULL;
     }
+    memset(invite_projects_inner_local_var, 0, sizeof(invite_projects_inner_t));
+    invite_projects_inner_local_var->_library_owned = 1;
     invite_projects_inner_local_var->id = id;
     invite_projects_inner_local_var->role = role;
-
-    invite_projects_inner_local_var->_library_owned = 1;
     return invite_projects_inner_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) invite_projects_inner_t *invite_projects_inner_creat
     char *id,
     openai_api_invite_projects_inner_ROLE_e role
     ) {
-    return invite_projects_inner_create_internal (
+    invite_projects_inner_t *result = invite_projects_inner_create_internal (
         id,
         role
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void invite_projects_inner_free(invite_projects_inner_t *invite_projects_inner) {
@@ -94,6 +97,8 @@ invite_projects_inner_t *invite_projects_inner_parseFromJSON(cJSON *invite_proje
 
     invite_projects_inner_t *invite_projects_inner_local_var = NULL;
 
+    char *id_local_str = NULL;
+
     // invite_projects_inner->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(invite_projects_innerJSON, "id");
     if (cJSON_IsNull(id)) {
@@ -121,13 +126,23 @@ invite_projects_inner_t *invite_projects_inner_parseFromJSON(cJSON *invite_proje
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     invite_projects_inner_local_var = invite_projects_inner_create_internal (
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
+        id_local_str,
         role ? roleVariable : openai_api_invite_projects_inner_ROLE_NULL
         );
 
+    if (!invite_projects_inner_local_var) {
+        goto end;
+    }
+
     return invite_projects_inner_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     return NULL;
 
 }

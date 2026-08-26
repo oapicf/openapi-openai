@@ -108,7 +108,7 @@ AssistantObject_tools_inner::getType()
 }
 
 void
-AssistantObject_tools_inner::setType(std::string  type)
+AssistantObject_tools_inner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -120,7 +120,7 @@ AssistantObject_tools_inner::getFileSearch()
 }
 
 void
-AssistantObject_tools_inner::setFileSearch(AssistantToolsFileSearch_file_search  file_search)
+AssistantObject_tools_inner::setFileSearch(AssistantToolsFileSearch_file_search file_search)
 {
 	this->file_search = file_search;
 }
@@ -132,7 +132,7 @@ AssistantObject_tools_inner::getFunction()
 }
 
 void
-AssistantObject_tools_inner::setFunction(FunctionObject  function)
+AssistantObject_tools_inner::setFunction(FunctionObject function)
 {
 	this->function = function;
 }

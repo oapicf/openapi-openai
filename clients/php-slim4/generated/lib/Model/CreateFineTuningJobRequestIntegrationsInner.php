@@ -51,6 +51,7 @@ class CreateFineTuningJobRequestIntegrationsInner extends BaseModel
   "properties" : {
     "type" : {
       "type" : "string",
+      "description" : "The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported.\n",
       "enum" : [ "wandb" ]
     },
     "wandb" : {

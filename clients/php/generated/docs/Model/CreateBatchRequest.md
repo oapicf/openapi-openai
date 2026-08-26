@@ -1,4 +1,4 @@
-# # CreateBatchRequest
+# CreateBatchRequest
 
 ## Properties
 

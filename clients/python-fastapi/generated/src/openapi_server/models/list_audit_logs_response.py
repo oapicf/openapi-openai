@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from openapi_server.models.audit_log import AuditLog
 try:
@@ -35,8 +35,8 @@ class ListAuditLogsResponse(BaseModel):
     """ # noqa: E501
     object: StrictStr
     data: List[AuditLog]
-    first_id: StrictStr
-    last_id: StrictStr
+    first_id: StrictStr = Field(json_schema_extra={"examples": ["audit_log-defb456h8dks"]})
+    last_id: StrictStr = Field(json_schema_extra={"examples": ["audit_log-hnbkd8s93s"]})
     has_more: StrictBool
     __properties: ClassVar[List[str]] = ["object", "data", "first_id", "last_id", "has_more"]
 

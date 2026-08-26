@@ -49,6 +49,7 @@ public:
     void initializeServerConfigs();
     int setDefaultServerValue(int serverIndex,const QString &operation, const QString &variable,const QString &val);
     void setServerIndex(const QString &operation, int serverIndex);
+    void setServerIndex(int serverIndex);
     void setApiKey(const QString &apiKeyName, const QString &apiKey);
     void setBearerToken(const QString &token);
     void setUsername(const QString &username);
@@ -155,6 +156,13 @@ public:
 
 
 private:
+    enum class OauthMethod : int {
+        INVALID_VALUE_OPENAPI_GENERATED = 0,
+        ImplicitFlow = 1,
+        AuthorizationFlow = 2,
+        ClientCredentialsFlow = 3,
+        ResourceOwnerPasswordFlow = 4
+    };
     QMap<QString,int> _serverIndices;
     QMap<QString,QList<OAIServerConfiguration>> _serverConfigs;
     QMap<QString, QString> _apiKeys;
@@ -174,7 +182,7 @@ private:
     OauthImplicit _implicitFlow;
     OauthCredentials _credentialFlow;
     OauthPassword _passwordFlow;
-    int _OauthMethod = 0;
+    OauthMethod _OauthMethod = OauthMethod::INVALID_VALUE_OPENAPI_GENERATED;
 
     void cancelVectorStoreFileBatchCallback(OAIHttpRequestWorker *worker);
     void createVectorStoreCallback(OAIHttpRequestWorker *worker);
@@ -221,84 +229,32 @@ Q_SIGNALS:
     void listVectorStoresSignalFull(OAIHttpRequestWorker *worker, OAIListVectorStoresResponse summary);
     void modifyVectorStoreSignalFull(OAIHttpRequestWorker *worker, OAIVectorStoreObject summary);
 
-    Q_DECL_DEPRECATED_X("Use cancelVectorStoreFileBatchSignalError() instead")
-    void cancelVectorStoreFileBatchSignalE(OAIVectorStoreFileBatchObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void cancelVectorStoreFileBatchSignalError(OAIVectorStoreFileBatchObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createVectorStoreSignalError() instead")
-    void createVectorStoreSignalE(OAIVectorStoreObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createVectorStoreSignalError(OAIVectorStoreObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createVectorStoreFileSignalError() instead")
-    void createVectorStoreFileSignalE(OAIVectorStoreFileObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createVectorStoreFileSignalError(OAIVectorStoreFileObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createVectorStoreFileBatchSignalError() instead")
-    void createVectorStoreFileBatchSignalE(OAIVectorStoreFileBatchObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createVectorStoreFileBatchSignalError(OAIVectorStoreFileBatchObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteVectorStoreSignalError() instead")
-    void deleteVectorStoreSignalE(OAIDeleteVectorStoreResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteVectorStoreSignalError(OAIDeleteVectorStoreResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteVectorStoreFileSignalError() instead")
-    void deleteVectorStoreFileSignalE(OAIDeleteVectorStoreFileResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteVectorStoreFileSignalError(OAIDeleteVectorStoreFileResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getVectorStoreSignalError() instead")
-    void getVectorStoreSignalE(OAIVectorStoreObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getVectorStoreSignalError(OAIVectorStoreObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getVectorStoreFileSignalError() instead")
-    void getVectorStoreFileSignalE(OAIVectorStoreFileObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getVectorStoreFileSignalError(OAIVectorStoreFileObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getVectorStoreFileBatchSignalError() instead")
-    void getVectorStoreFileBatchSignalE(OAIVectorStoreFileBatchObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getVectorStoreFileBatchSignalError(OAIVectorStoreFileBatchObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listFilesInVectorStoreBatchSignalError() instead")
-    void listFilesInVectorStoreBatchSignalE(OAIListVectorStoreFilesResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listFilesInVectorStoreBatchSignalError(OAIListVectorStoreFilesResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listVectorStoreFilesSignalError() instead")
-    void listVectorStoreFilesSignalE(OAIListVectorStoreFilesResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listVectorStoreFilesSignalError(OAIListVectorStoreFilesResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listVectorStoresSignalError() instead")
-    void listVectorStoresSignalE(OAIListVectorStoresResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listVectorStoresSignalError(OAIListVectorStoresResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use modifyVectorStoreSignalError() instead")
-    void modifyVectorStoreSignalE(OAIVectorStoreObject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void modifyVectorStoreSignalError(OAIVectorStoreObject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
-    Q_DECL_DEPRECATED_X("Use cancelVectorStoreFileBatchSignalErrorFull() instead")
-    void cancelVectorStoreFileBatchSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void cancelVectorStoreFileBatchSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createVectorStoreSignalErrorFull() instead")
-    void createVectorStoreSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createVectorStoreSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createVectorStoreFileSignalErrorFull() instead")
-    void createVectorStoreFileSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createVectorStoreFileSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createVectorStoreFileBatchSignalErrorFull() instead")
-    void createVectorStoreFileBatchSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createVectorStoreFileBatchSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteVectorStoreSignalErrorFull() instead")
-    void deleteVectorStoreSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteVectorStoreSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteVectorStoreFileSignalErrorFull() instead")
-    void deleteVectorStoreFileSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteVectorStoreFileSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getVectorStoreSignalErrorFull() instead")
-    void getVectorStoreSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getVectorStoreSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getVectorStoreFileSignalErrorFull() instead")
-    void getVectorStoreFileSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getVectorStoreFileSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getVectorStoreFileBatchSignalErrorFull() instead")
-    void getVectorStoreFileBatchSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getVectorStoreFileBatchSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listFilesInVectorStoreBatchSignalErrorFull() instead")
-    void listFilesInVectorStoreBatchSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listFilesInVectorStoreBatchSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listVectorStoreFilesSignalErrorFull() instead")
-    void listVectorStoreFilesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listVectorStoreFilesSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listVectorStoresSignalErrorFull() instead")
-    void listVectorStoresSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listVectorStoresSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use modifyVectorStoreSignalErrorFull() instead")
-    void modifyVectorStoreSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void modifyVectorStoreSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();

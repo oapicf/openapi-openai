@@ -85,7 +85,7 @@ RunStepDetailsToolCallsFileSearchRankingOptionsObject::getRanker()
 }
 
 void
-RunStepDetailsToolCallsFileSearchRankingOptionsObject::setRanker(std::string  ranker)
+RunStepDetailsToolCallsFileSearchRankingOptionsObject::setRanker(std::string ranker)
 {
 	this->ranker = ranker;
 }
@@ -97,7 +97,7 @@ RunStepDetailsToolCallsFileSearchRankingOptionsObject::getScoreThreshold()
 }
 
 void
-RunStepDetailsToolCallsFileSearchRankingOptionsObject::setScoreThreshold(long  score_threshold)
+RunStepDetailsToolCallsFileSearchRankingOptionsObject::setScoreThreshold(long score_threshold)
 {
 	this->score_threshold = score_threshold;
 }

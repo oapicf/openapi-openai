@@ -33,7 +33,7 @@ class  RunStepStreamEvent_oneOf_5
 {
 public:
     RunStepStreamEvent_oneOf_5();
-    virtual ~RunStepStreamEvent_oneOf_5() = default;
+    virtual ~RunStepStreamEvent_oneOf_5();
 
 
     /// <summary>

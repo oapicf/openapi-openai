@@ -52,21 +52,21 @@ public:
 
 	/*! \brief Set The unique ID of the server event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `response.done`.
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `response.done`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	RealtimeResponse getResponse();
 
 	/*! \brief Set 
 	 */
-	void setResponse(RealtimeResponse  response);
+	void setResponse(RealtimeResponse response);
 
 
     private:

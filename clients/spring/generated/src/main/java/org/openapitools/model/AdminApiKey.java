@@ -2,39 +2,47 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.AdminApiKeyOwner;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * AdminApiKey
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class AdminApiKey {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String _object;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String id;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String name;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String redactedValue;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String value;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Long createdAt;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AdminApiKeyOwner owner;
 
   public AdminApiKey _object(@Nullable String _object) {
@@ -53,6 +61,7 @@ public class AdminApiKey {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(@Nullable String _object) {
     this._object = _object;
   }
@@ -73,6 +82,7 @@ public class AdminApiKey {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(@Nullable String id) {
     this.id = id;
   }
@@ -93,6 +103,7 @@ public class AdminApiKey {
     return name;
   }
 
+  @JsonProperty("name")
   public void setName(@Nullable String name) {
     this.name = name;
   }
@@ -113,6 +124,7 @@ public class AdminApiKey {
     return redactedValue;
   }
 
+  @JsonProperty("redacted_value")
   public void setRedactedValue(@Nullable String redactedValue) {
     this.redactedValue = redactedValue;
   }
@@ -133,6 +145,7 @@ public class AdminApiKey {
     return value;
   }
 
+  @JsonProperty("value")
   public void setValue(@Nullable String value) {
     this.value = value;
   }
@@ -153,6 +166,7 @@ public class AdminApiKey {
     return createdAt;
   }
 
+  @JsonProperty("created_at")
   public void setCreatedAt(@Nullable Long createdAt) {
     this.createdAt = createdAt;
   }
@@ -173,6 +187,7 @@ public class AdminApiKey {
     return owner;
   }
 
+  @JsonProperty("owner")
   public void setOwner(@Nullable AdminApiKeyOwner owner) {
     this.owner = owner;
   }
@@ -219,11 +234,8 @@ public class AdminApiKey {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

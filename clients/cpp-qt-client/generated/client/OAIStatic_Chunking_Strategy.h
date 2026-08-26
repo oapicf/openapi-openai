@@ -33,13 +33,13 @@ class OAIStatic_Chunking_Strategy_static;
 class OAIStatic_Chunking_Strategy : public OAIObject {
 public:
     OAIStatic_Chunking_Strategy();
-    OAIStatic_Chunking_Strategy(QString json);
+    OAIStatic_Chunking_Strategy(const QString &json);
     ~OAIStatic_Chunking_Strategy() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

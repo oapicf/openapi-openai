@@ -40,7 +40,7 @@ typedef struct create_speech_request_t {
     char *input; // string
     openai_api_create_speech_request_VOICE_e voice; //enum
     openai_api_create_speech_request_RESPONSEFORMAT_e response_format; //enum
-    double speed; //numeric
+    double *speed; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } create_speech_request_t;
@@ -50,7 +50,7 @@ __attribute__((deprecated)) create_speech_request_t *create_speech_request_creat
     char *input,
     openai_api_create_speech_request_VOICE_e voice,
     openai_api_create_speech_request_RESPONSEFORMAT_e response_format,
-    double speed
+    double *speed
 );
 
 void create_speech_request_free(create_speech_request_t *create_speech_request);

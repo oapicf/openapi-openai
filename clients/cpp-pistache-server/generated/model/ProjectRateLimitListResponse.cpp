@@ -28,6 +28,8 @@ ProjectRateLimitListResponse::ProjectRateLimitListResponse()
     
 }
 
+ProjectRateLimitListResponse::~ProjectRateLimitListResponse() = default;
+
 void ProjectRateLimitListResponse::validate() const
 {
     std::stringstream msg;

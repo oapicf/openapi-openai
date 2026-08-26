@@ -32,7 +32,7 @@ class  BatchRequestOutput_error
 {
 public:
     BatchRequestOutput_error();
-    virtual ~BatchRequestOutput_error() = default;
+    virtual ~BatchRequestOutput_error();
 
 
     /// <summary>

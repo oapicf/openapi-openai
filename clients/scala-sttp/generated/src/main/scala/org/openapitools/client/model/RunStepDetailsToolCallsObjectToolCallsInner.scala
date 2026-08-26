@@ -12,15 +12,34 @@
 package org.openapitools.client.model
 
 
-case class RunStepDetailsToolCallsObjectToolCallsInner(
-  /* The ID of the tool call object. */
+sealed trait RunStepDetailsToolCallsObjectToolCallsInner
+object RunStepDetailsToolCallsObjectToolCallsInner {
+}
+
+case class RunStepDetailsToolCallsCodeObject(
+  /* The ID of the tool call. */
   id: String,
   /* The type of tool call. This is always going to be `code_interpreter` for this type of tool call. */
-  `type`: RunStepDetailsToolCallsObjectToolCallsInnerEnums.`Type`,
-  codeInterpreter: RunStepDetailsToolCallsCodeObjectCodeInterpreter,
-  fileSearch: RunStepDetailsToolCallsFileSearchObjectFileSearch,
+  `type`: RunStepDetailsToolCallsCodeObjectEnums.`Type`,
+  codeInterpreter: RunStepDetailsToolCallsCodeObjectCodeInterpreter
+) extends RunStepDetailsToolCallsObjectToolCallsInner
+
+case class RunStepDetailsToolCallsFileSearchObject(
+  /* The ID of the tool call object. */
+  id: String,
+  /* The type of tool call. This is always going to be `file_search` for this type of tool call. */
+  `type`: RunStepDetailsToolCallsFileSearchObjectEnums.`Type`,
+  fileSearch: RunStepDetailsToolCallsFileSearchObjectFileSearch
+) extends RunStepDetailsToolCallsObjectToolCallsInner
+
+case class RunStepDetailsToolCallsFunctionObject(
+  /* The ID of the tool call object. */
+  id: String,
+  /* The type of tool call. This is always going to be `function` for this type of tool call. */
+  `type`: RunStepDetailsToolCallsFunctionObjectEnums.`Type`,
   function: RunStepDetailsToolCallsFunctionObjectFunction
-)
+) extends RunStepDetailsToolCallsObjectToolCallsInner
+
 
 object RunStepDetailsToolCallsObjectToolCallsInnerEnums {
 

@@ -50,8 +50,8 @@ function Initialize-RunObjectRequiredAction {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "submit_tool_outputs" = ${SubmitToolOutputs}
+            'type' = ${Type}
+            'submit_tool_outputs' = ${SubmitToolOutputs}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToRunObjectRequiredAction {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunObjectRequiredAction
-        $AllProperties = ("type", "submit_tool_outputs")
+        $AllProperties = ('type', 'submit_tool_outputs')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToRunObjectRequiredAction {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "submit_tool_outputs"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'submit_tool_outputs'))) {
             throw "Error! JSON cannot be serialized due to the required property 'submit_tool_outputs' missing."
         } else {
-            $SubmitToolOutputs = $JsonParameters.PSobject.Properties["submit_tool_outputs"].value
+            $SubmitToolOutputs = $JsonParameters.PSobject.Properties['submit_tool_outputs'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "submit_tool_outputs" = ${SubmitToolOutputs}
+            'type' = ${Type}
+            'submit_tool_outputs' = ${SubmitToolOutputs}
         }
 
         return $PSO

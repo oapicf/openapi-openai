@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.ChatCompletionRequestSystemMessageContent
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -25,15 +28,20 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ChatCompletionRequestSystemMessage(
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("content")
     @get:JsonProperty("content", required = true) val content: ChatCompletionRequestSystemMessageContent,
 
-    @Schema(example = "null", required = true, description = "The role of the messages author, in this case `system`.")
+    @Schema(required = true, description = "The role of the messages author, in this case `system`.")
+    @param:JsonProperty("role")
     @get:JsonProperty("role", required = true) val role: ChatCompletionRequestSystemMessage.Role,
 
-    @Schema(example = "null", description = "An optional name for the participant. Provides the model information to differentiate between participants of the same role.")
+    @Schema(description = "An optional name for the participant. Provides the model information to differentiate between participants of the same role.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("name")
     @get:JsonProperty("name") val name: kotlin.String? = null
-) {
+) : ChatCompletionRequestMessage, FineTuneChatRequestInputMessagesInner {
 
     /**
     * The role of the messages author, in this case `system`.
@@ -48,7 +56,7 @@ data class ChatCompletionRequestSystemMessage(
             @JsonCreator
             fun forValue(value: kotlin.String): Role {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ChatCompletionRequestSystemMessage'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Role'")
             }
         }
     }

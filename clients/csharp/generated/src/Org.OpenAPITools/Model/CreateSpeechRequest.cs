@@ -317,7 +317,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The format to audio in. Supported formats are &#x60;mp3&#x60;, &#x60;opus&#x60;, &#x60;aac&#x60;, &#x60;flac&#x60;, &#x60;wav&#x60;, and &#x60;pcm&#x60;.</value>
         [JsonPropertyName("response_format")]
-        public ResponseFormatEnum? ResponseFormat { get { return this.ResponseFormatOption; } set { this.ResponseFormatOption = new(value); } }
+        public ResponseFormatEnum? ResponseFormat { get { return this.ResponseFormatOption.Value; } set { this.ResponseFormatOption = new(value); } }
 
         /// <summary>
         /// Gets or Sets Model
@@ -344,7 +344,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The speed of the generated audio. Select a value from &#x60;0.25&#x60; to &#x60;4.0&#x60;. &#x60;1.0&#x60; is the default.</value>
         [JsonPropertyName("speed")]
-        public decimal? Speed { get { return this.SpeedOption; } set { this.SpeedOption = new(value); } }
+        public decimal? Speed { get { return this.SpeedOption.Value; } set { this.SpeedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -395,8 +395,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateSpeechRequest" />
     /// </summary>
-    public class CreateSpeechRequestJsonConverter : JsonConverter<CreateSpeechRequest>
+    public partial class CreateSpeechRequestJsonConverter : JsonConverter<CreateSpeechRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateSpeechRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateSpeechRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateSpeechRequest" />
         /// </summary>

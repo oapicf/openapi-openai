@@ -15,11 +15,9 @@ package org.openapitools.client.model
   /**
    * The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy. Only applicable if `file_ids` is non-empty.
    */
-case class CreateVectorStoreRequestChunkingStrategy(
-  /* Always `auto`. */
-  `type`: CreateVectorStoreRequestChunkingStrategyEnums.`Type`,
-  static: StaticChunkingStrategy
-)
+trait CreateVectorStoreRequestChunkingStrategy
+object CreateVectorStoreRequestChunkingStrategy {
+}
 
 object CreateVectorStoreRequestChunkingStrategyEnums {
 

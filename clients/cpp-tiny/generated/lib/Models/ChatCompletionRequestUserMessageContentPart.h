@@ -56,28 +56,28 @@ public:
 
 	/*! \brief Set The type of the content part.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The text content.
 	 */
 	std::string getText();
 
 	/*! \brief Set The text content.
 	 */
-	void setText(std::string  text);
+	void setText(std::string text);
 	/*! \brief Get 
 	 */
 	ChatCompletionRequestMessageContentPartImage_image_url getImageUrl();
 
 	/*! \brief Set 
 	 */
-	void setImageUrl(ChatCompletionRequestMessageContentPartImage_image_url  image_url);
+	void setImageUrl(ChatCompletionRequestMessageContentPartImage_image_url image_url);
 	/*! \brief Get 
 	 */
 	ChatCompletionRequestMessageContentPartAudio_input_audio getInputAudio();
 
 	/*! \brief Set 
 	 */
-	void setInputAudio(ChatCompletionRequestMessageContentPartAudio_input_audio  input_audio);
+	void setInputAudio(ChatCompletionRequestMessageContentPartAudio_input_audio input_audio);
 
 
     private:

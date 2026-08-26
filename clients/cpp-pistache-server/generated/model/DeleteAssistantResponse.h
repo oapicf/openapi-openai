@@ -32,7 +32,7 @@ class  DeleteAssistantResponse
 {
 public:
     DeleteAssistantResponse();
-    virtual ~DeleteAssistantResponse() = default;
+    virtual ~DeleteAssistantResponse();
 
 
     /// <summary>

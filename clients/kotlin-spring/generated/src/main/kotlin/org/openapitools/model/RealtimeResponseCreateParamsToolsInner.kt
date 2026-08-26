@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -24,17 +27,29 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeResponseCreateParamsToolsInner(
 
-    @Schema(example = "null", description = "The type of the tool, i.e. `function`.")
+    @Schema(description = "The type of the tool, i.e. `function`.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("type")
     @get:JsonProperty("type") val type: RealtimeResponseCreateParamsToolsInner.Type? = null,
 
-    @Schema(example = "null", description = "The name of the function.")
+    @Schema(description = "The name of the function.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("name")
     @get:JsonProperty("name") val name: kotlin.String? = null,
 
-    @Schema(example = "null", description = "The description of the function, including guidance on when and how  to call it, and guidance about what to tell the user when calling  (if anything). ")
+    @Schema(description = "The description of the function, including guidance on when and how  to call it, and guidance about what to tell the user when calling  (if anything). ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("description")
     @get:JsonProperty("description") val description: kotlin.String? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "Parameters of the function in JSON Schema.")
+    @Schema(description = "Parameters of the function in JSON Schema.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("parameters")
     @get:JsonProperty("parameters") val parameters: kotlin.Any? = null
 ) {
 
@@ -51,7 +66,7 @@ data class RealtimeResponseCreateParamsToolsInner(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeResponseCreateParamsToolsInner'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

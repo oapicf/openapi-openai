@@ -21,7 +21,7 @@ message UsageAudioTranscriptionsResult {
     OBJECT_ORGANIZATION_USAGE_AUDIO_TRANSCRIPTIONS_RESULT = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The number of seconds processed.
   int32 seconds = 359484034;

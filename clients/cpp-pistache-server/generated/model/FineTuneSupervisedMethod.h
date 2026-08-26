@@ -32,7 +32,7 @@ class  FineTuneSupervisedMethod
 {
 public:
     FineTuneSupervisedMethod();
-    virtual ~FineTuneSupervisedMethod() = default;
+    virtual ~FineTuneSupervisedMethod();
 
 
     /// <summary>

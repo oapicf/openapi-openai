@@ -82,7 +82,7 @@ ChatCompletionRequestSystemMessage <- R6::R6Class(
       ChatCompletionRequestSystemMessageObject <- list()
       if (!is.null(self$`content`)) {
         ChatCompletionRequestSystemMessageObject[["content"]] <-
-          self$`content`$toSimpleType()
+          self$extractSimpleType(self$`content`)
       }
       if (!is.null(self$`role`)) {
         ChatCompletionRequestSystemMessageObject[["role"]] <-
@@ -93,6 +93,29 @@ ChatCompletionRequestSystemMessage <- R6::R6Class(
           self$`name`
       }
       return(ChatCompletionRequestSystemMessageObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

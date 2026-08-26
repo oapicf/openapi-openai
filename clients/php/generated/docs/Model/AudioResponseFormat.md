@@ -1,4 +1,4 @@
-# # AudioResponseFormat
+# AudioResponseFormat
 
 ## Properties
 

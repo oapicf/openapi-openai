@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 README.md
 client/CMakeLists.txt
 client/Config.cmake.in
@@ -130,8 +129,6 @@ client/OAIAuditLogsApi.cpp
 client/OAIAuditLogsApi.h
 client/OAIAutoChunkingStrategyRequestParam.cpp
 client/OAIAutoChunkingStrategyRequestParam.h
-client/OAIAuto_Chunking_Strategy.cpp
-client/OAIAuto_Chunking_Strategy.h
 client/OAIBatch.cpp
 client/OAIBatch.h
 client/OAIBatchApi.cpp
@@ -986,8 +983,6 @@ client/OAIStaticChunkingStrategy.cpp
 client/OAIStaticChunkingStrategy.h
 client/OAIStaticChunkingStrategyRequestParam.cpp
 client/OAIStaticChunkingStrategyRequestParam.h
-client/OAIStaticChunkingStrategyResponseParam.cpp
-client/OAIStaticChunkingStrategyResponseParam.h
 client/OAIStatic_Chunking_Strategy.cpp
 client/OAIStatic_Chunking_Strategy.h
 client/OAIStatic_Chunking_Strategy_static.cpp

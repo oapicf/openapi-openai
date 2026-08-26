@@ -36,7 +36,7 @@ part 'create_chat_completion_request.g.dart';
 /// * [maxCompletionTokens] - An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). 
 /// * [n] - How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.
 /// * [modalities] - Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` 
-/// * [prediction] 
+/// * [prediction] - Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
 /// * [audio] 
 /// * [presencePenalty] - Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. 
 /// * [responseFormat] 
@@ -109,6 +109,7 @@ abstract class CreateChatCompletionRequest implements Built<CreateChatCompletion
   BuiltList<CreateChatCompletionRequestModalitiesEnum>? get modalities;
   // enum modalitiesEnum {  text,  audio,  };
 
+  /// Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
   @BuiltValueField(wireName: r'prediction')
   PredictionContent? get prediction;
 
@@ -461,8 +462,9 @@ class _$CreateChatCompletionRequestSerializer implements PrimitiveSerializer<Cre
         case r'reasoning_effort':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateChatCompletionRequestReasoningEffortEnum),
-          ) as CreateChatCompletionRequestReasoningEffortEnum;
+            specifiedType: const FullType.nullable(CreateChatCompletionRequestReasoningEffortEnum),
+          ) as CreateChatCompletionRequestReasoningEffortEnum?;
+          if (valueDes == null) continue;
           result.reasoningEffort = valueDes;
           break;
         case r'metadata':
@@ -564,8 +566,9 @@ class _$CreateChatCompletionRequestSerializer implements PrimitiveSerializer<Cre
         case r'response_format':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateChatCompletionRequestResponseFormat),
-          ) as CreateChatCompletionRequestResponseFormat;
+            specifiedType: const FullType.nullable(CreateChatCompletionRequestResponseFormat),
+          ) as CreateChatCompletionRequestResponseFormat?;
+          if (valueDes == null) continue;
           result.responseFormat.replace(valueDes);
           break;
         case r'seed':
@@ -587,8 +590,9 @@ class _$CreateChatCompletionRequestSerializer implements PrimitiveSerializer<Cre
         case r'stop':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateChatCompletionRequestStop),
-          ) as CreateChatCompletionRequestStop;
+            specifiedType: const FullType.nullable(CreateChatCompletionRequestStop),
+          ) as CreateChatCompletionRequestStop?;
+          if (valueDes == null) continue;
           result.stop.replace(valueDes);
           break;
         case r'stream':
@@ -626,43 +630,49 @@ class _$CreateChatCompletionRequestSerializer implements PrimitiveSerializer<Cre
         case r'tools':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ChatCompletionTool)]),
-          ) as BuiltList<ChatCompletionTool>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ChatCompletionTool)]),
+          ) as BuiltList<ChatCompletionTool>?;
+          if (valueDes == null) continue;
           result.tools.replace(valueDes);
           break;
         case r'tool_choice':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ChatCompletionToolChoiceOption),
-          ) as ChatCompletionToolChoiceOption;
+            specifiedType: const FullType.nullable(ChatCompletionToolChoiceOption),
+          ) as ChatCompletionToolChoiceOption?;
+          if (valueDes == null) continue;
           result.toolChoice.replace(valueDes);
           break;
         case r'parallel_tool_calls':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.parallelToolCalls = valueDes;
           break;
         case r'user':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.user = valueDes;
           break;
         case r'function_call':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateChatCompletionRequestFunctionCall),
-          ) as CreateChatCompletionRequestFunctionCall;
+            specifiedType: const FullType.nullable(CreateChatCompletionRequestFunctionCall),
+          ) as CreateChatCompletionRequestFunctionCall?;
+          if (valueDes == null) continue;
           result.functionCall.replace(valueDes);
           break;
         case r'functions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ChatCompletionFunctions)]),
-          ) as BuiltList<ChatCompletionFunctions>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ChatCompletionFunctions)]),
+          ) as BuiltList<ChatCompletionFunctions>?;
+          if (valueDes == null) continue;
           result.functions.replace(valueDes);
           break;
         default:

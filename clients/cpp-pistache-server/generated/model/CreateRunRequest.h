@@ -40,7 +40,7 @@ class  CreateRunRequest
 {
 public:
     CreateRunRequest();
-    virtual ~CreateRunRequest() = default;
+    virtual ~CreateRunRequest();
 
 
     /// <summary>

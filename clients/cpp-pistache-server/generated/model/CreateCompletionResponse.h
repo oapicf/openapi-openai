@@ -35,7 +35,7 @@ class  CreateCompletionResponse
 {
 public:
     CreateCompletionResponse();
-    virtual ~CreateCompletionResponse() = default;
+    virtual ~CreateCompletionResponse();
 
 
     /// <summary>

@@ -51,7 +51,7 @@ class AuditLogServiceAccountCreated
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -59,7 +59,7 @@ class AuditLogServiceAccountCreated
      * @var AuditLogServiceAccountCreatedData|null
      * @SerializedName("data")
      * @Type("OpenAPI\Server\Model\AuditLogServiceAccountCreatedData")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogServiceAccountCreatedData")]
     protected ?AuditLogServiceAccountCreatedData $data = null;
 
@@ -86,12 +86,12 @@ class AuditLogServiceAccountCreated
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The service account ID.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The service account ID.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -113,12 +113,12 @@ class AuditLogServiceAccountCreated
     }
 
     /**
-    * Sets data.
-    *
-    * @param AuditLogServiceAccountCreatedData|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param AuditLogServiceAccountCreatedData|null $data
+     *
+     * @return $this
+     */
     public function setData(?AuditLogServiceAccountCreatedData $data = null): self
     {
         $this->data = $data;

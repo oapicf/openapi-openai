@@ -108,7 +108,7 @@ AuditLogActor::getType()
 }
 
 void
-AuditLogActor::setType(std::string  type)
+AuditLogActor::setType(std::string type)
 {
 	this->type = type;
 }
@@ -120,7 +120,7 @@ AuditLogActor::getSession()
 }
 
 void
-AuditLogActor::setSession(AuditLogActorSession  session)
+AuditLogActor::setSession(AuditLogActorSession session)
 {
 	this->session = session;
 }
@@ -132,7 +132,7 @@ AuditLogActor::getApiKey()
 }
 
 void
-AuditLogActor::setApiKey(AuditLogActorApiKey  api_key)
+AuditLogActor::setApiKey(AuditLogActorApiKey api_key)
 {
 	this->api_key = api_key;
 }

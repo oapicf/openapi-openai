@@ -33,7 +33,7 @@ class  Static_Chunking_Strategy
 {
 public:
     Static_Chunking_Strategy();
-    virtual ~Static_Chunking_Strategy() = default;
+    virtual ~Static_Chunking_Strategy();
 
 
     /// <summary>

@@ -86,7 +86,7 @@ AuditLogActorSession::getUser()
 }
 
 void
-AuditLogActorSession::setUser(AuditLogActorUser  user)
+AuditLogActorSession::setUser(AuditLogActorUser user)
 {
 	this->user = user;
 }
@@ -98,7 +98,7 @@ AuditLogActorSession::getIpAddress()
 }
 
 void
-AuditLogActorSession::setIpAddress(std::string  ip_address)
+AuditLogActorSession::setIpAddress(std::string ip_address)
 {
 	this->ip_address = ip_address;
 }

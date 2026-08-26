@@ -33,7 +33,7 @@ class  ChatCompletionRequestMessageContentPartAudio
 {
 public:
     ChatCompletionRequestMessageContentPartAudio();
-    virtual ~ChatCompletionRequestMessageContentPartAudio() = default;
+    virtual ~ChatCompletionRequestMessageContentPartAudio();
 
 
     /// <summary>

@@ -67,7 +67,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Step
         /// </summary>
         [JsonPropertyName("step")]
-        public decimal? Step { get { return this.StepOption; } set { this.StepOption = new(value); } }
+        public decimal? Step { get { return this.StepOption.Value; } set { this.StepOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TrainLoss
@@ -80,7 +80,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets TrainLoss
         /// </summary>
         [JsonPropertyName("train_loss")]
-        public decimal? TrainLoss { get { return this.TrainLossOption; } set { this.TrainLossOption = new(value); } }
+        public decimal? TrainLoss { get { return this.TrainLossOption.Value; } set { this.TrainLossOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TrainMeanTokenAccuracy
@@ -93,7 +93,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets TrainMeanTokenAccuracy
         /// </summary>
         [JsonPropertyName("train_mean_token_accuracy")]
-        public decimal? TrainMeanTokenAccuracy { get { return this.TrainMeanTokenAccuracyOption; } set { this.TrainMeanTokenAccuracyOption = new(value); } }
+        public decimal? TrainMeanTokenAccuracy { get { return this.TrainMeanTokenAccuracyOption.Value; } set { this.TrainMeanTokenAccuracyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ValidLoss
@@ -106,7 +106,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ValidLoss
         /// </summary>
         [JsonPropertyName("valid_loss")]
-        public decimal? ValidLoss { get { return this.ValidLossOption; } set { this.ValidLossOption = new(value); } }
+        public decimal? ValidLoss { get { return this.ValidLossOption.Value; } set { this.ValidLossOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ValidMeanTokenAccuracy
@@ -119,7 +119,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ValidMeanTokenAccuracy
         /// </summary>
         [JsonPropertyName("valid_mean_token_accuracy")]
-        public decimal? ValidMeanTokenAccuracy { get { return this.ValidMeanTokenAccuracyOption; } set { this.ValidMeanTokenAccuracyOption = new(value); } }
+        public decimal? ValidMeanTokenAccuracy { get { return this.ValidMeanTokenAccuracyOption.Value; } set { this.ValidMeanTokenAccuracyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FullValidLoss
@@ -132,7 +132,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets FullValidLoss
         /// </summary>
         [JsonPropertyName("full_valid_loss")]
-        public decimal? FullValidLoss { get { return this.FullValidLossOption; } set { this.FullValidLossOption = new(value); } }
+        public decimal? FullValidLoss { get { return this.FullValidLossOption.Value; } set { this.FullValidLossOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FullValidMeanTokenAccuracy
@@ -145,7 +145,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets FullValidMeanTokenAccuracy
         /// </summary>
         [JsonPropertyName("full_valid_mean_token_accuracy")]
-        public decimal? FullValidMeanTokenAccuracy { get { return this.FullValidMeanTokenAccuracyOption; } set { this.FullValidMeanTokenAccuracyOption = new(value); } }
+        public decimal? FullValidMeanTokenAccuracy { get { return this.FullValidMeanTokenAccuracyOption.Value; } set { this.FullValidMeanTokenAccuracyOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -180,8 +180,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTuningJobCheckpointMetrics" />
     /// </summary>
-    public class FineTuningJobCheckpointMetricsJsonConverter : JsonConverter<FineTuningJobCheckpointMetrics>
+    public partial class FineTuningJobCheckpointMetricsJsonConverter : JsonConverter<FineTuningJobCheckpointMetrics>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTuningJobCheckpointMetricsJsonConverter" /> class.
+        /// </summary>
+        public FineTuningJobCheckpointMetricsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTuningJobCheckpointMetrics" />
         /// </summary>

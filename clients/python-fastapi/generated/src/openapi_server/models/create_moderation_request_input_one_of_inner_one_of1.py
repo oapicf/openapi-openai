@@ -33,7 +33,7 @@ class CreateModerationRequestInputOneOfInnerOneOf1(BaseModel):
     An object describing text to classify.
     """ # noqa: E501
     type: StrictStr = Field(description="Always `text`.")
-    text: StrictStr = Field(description="A string of text to classify.")
+    text: StrictStr = Field(description="A string of text to classify.", json_schema_extra={"examples": ["I want to kill them"]})
     __properties: ClassVar[List[str]] = ["type", "text"]
 
     @field_validator('type')

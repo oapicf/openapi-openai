@@ -48,7 +48,8 @@ type RealtimeConversationItem struct {
 	Output string `json:"output,omitempty"`
 }
 
-// AssertRealtimeConversationItemRequired checks if the required fields are not zero-ed
+// AssertRealtimeConversationItemRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeConversationItemRequired(obj RealtimeConversationItem) error {
 	for _, el := range obj.Content {
 		if err := AssertRealtimeConversationItemContentInnerRequired(el); err != nil {

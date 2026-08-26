@@ -85,7 +85,7 @@ MessageDeltaContentImageFileObject_image_file::getFileId()
 }
 
 void
-MessageDeltaContentImageFileObject_image_file::setFileId(std::string  file_id)
+MessageDeltaContentImageFileObject_image_file::setFileId(std::string file_id)
 {
 	this->file_id = file_id;
 }
@@ -97,7 +97,7 @@ MessageDeltaContentImageFileObject_image_file::getDetail()
 }
 
 void
-MessageDeltaContentImageFileObject_image_file::setDetail(std::string  detail)
+MessageDeltaContentImageFileObject_image_file::setDetail(std::string detail)
 {
 	this->detail = detail;
 }

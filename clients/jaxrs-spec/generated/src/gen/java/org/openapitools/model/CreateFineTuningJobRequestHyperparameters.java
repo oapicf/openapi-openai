@@ -19,14 +19,17 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of &#x60;method&#x60;, and should be passed in under the &#x60;method&#x60; parameter. 
+ * @deprecated
  **/
+@Deprecated
+
 @ApiModel(description = "The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of `method`, and should be passed in under the `method` parameter. ")
 @JsonTypeName("CreateFineTuningJobRequest_hyperparameters")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateFineTuningJobRequestHyperparameters   {
-  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
-  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
-  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
+  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
+  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
+  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
 
   public CreateFineTuningJobRequestHyperparameters() {
   }
@@ -125,12 +128,8 @@ public class CreateFineTuningJobRequestHyperparameters   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
 }
-

@@ -33,6 +33,8 @@ TranscriptionSegment::TranscriptionSegment()
     
 }
 
+TranscriptionSegment::~TranscriptionSegment() = default;
+
 void TranscriptionSegment::validate() const
 {
     std::stringstream msg;

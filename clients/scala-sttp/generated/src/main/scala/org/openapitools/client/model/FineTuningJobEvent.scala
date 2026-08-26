@@ -11,6 +11,7 @@
  */
 package org.openapitools.client.model
 
+import org.json4s.JValue
 
   /**
    * Fine-tuning job event object
@@ -29,7 +30,7 @@ case class FineTuningJobEvent(
   /* The type of event. */
   `type`: Option[FineTuningJobEventEnums.`Type`] = None,
   /* The data associated with the event. */
-  data: Option[Any] = None
+  data: Option[JValue] = None
 )
 
 object FineTuningJobEventEnums {

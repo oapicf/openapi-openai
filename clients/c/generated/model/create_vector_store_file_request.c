@@ -13,10 +13,10 @@ static create_vector_store_file_request_t *create_vector_store_file_request_crea
     if (!create_vector_store_file_request_local_var) {
         return NULL;
     }
+    memset(create_vector_store_file_request_local_var, 0, sizeof(create_vector_store_file_request_t));
+    create_vector_store_file_request_local_var->_library_owned = 1;
     create_vector_store_file_request_local_var->file_id = file_id;
     create_vector_store_file_request_local_var->chunking_strategy = chunking_strategy;
-
-    create_vector_store_file_request_local_var->_library_owned = 1;
     return create_vector_store_file_request_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) create_vector_store_file_request_t *create_vector_st
     char *file_id,
     chunking_strategy_request_param_t *chunking_strategy
     ) {
-    return create_vector_store_file_request_create_internal (
+    create_vector_store_file_request_t *result = create_vector_store_file_request_create_internal (
         file_id,
         chunking_strategy
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_vector_store_file_request_free(create_vector_store_file_request_t *create_vector_store_file_request) {
@@ -86,6 +89,8 @@ create_vector_store_file_request_t *create_vector_store_file_request_parseFromJS
 
     create_vector_store_file_request_t *create_vector_store_file_request_local_var = NULL;
 
+    char *file_id_local_str = NULL;
+
     // define the local variable for create_vector_store_file_request->chunking_strategy
     chunking_strategy_request_param_t *chunking_strategy_local_nonprim = NULL;
 
@@ -114,13 +119,23 @@ create_vector_store_file_request_t *create_vector_store_file_request_parseFromJS
     }
 
 
+    if (file_id && !cJSON_IsNull(file_id)) file_id_local_str = strdup(file_id->valuestring);
+
     create_vector_store_file_request_local_var = create_vector_store_file_request_create_internal (
-        strdup(file_id->valuestring),
+        file_id_local_str,
         chunking_strategy ? chunking_strategy_local_nonprim : NULL
         );
 
+    if (!create_vector_store_file_request_local_var) {
+        goto end;
+    }
+
     return create_vector_store_file_request_local_var;
 end:
+    if (file_id_local_str) {
+        free(file_id_local_str);
+        file_id_local_str = NULL;
+    }
     if (chunking_strategy_local_nonprim) {
         chunking_strategy_request_param_free(chunking_strategy_local_nonprim);
         chunking_strategy_local_nonprim = NULL;

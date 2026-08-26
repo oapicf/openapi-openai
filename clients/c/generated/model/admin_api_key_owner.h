@@ -22,7 +22,7 @@ typedef struct admin_api_key_owner_t {
     char *type; // string
     char *id; // string
     char *name; // string
-    long created_at; //numeric
+    long *created_at; //numeric
     char *role; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -32,7 +32,7 @@ __attribute__((deprecated)) admin_api_key_owner_t *admin_api_key_owner_create(
     char *type,
     char *id,
     char *name,
-    long created_at,
+    long *created_at,
     char *role
 );
 

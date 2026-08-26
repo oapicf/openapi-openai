@@ -51,7 +51,7 @@ class MessageDeltaContentTextObject
      * @var int|null
      * @SerializedName("index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $index = null;
@@ -62,7 +62,7 @@ class MessageDeltaContentTextObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['text'])]
     #[Assert\Type("string")]
@@ -72,7 +72,7 @@ class MessageDeltaContentTextObject
      * @var MessageDeltaContentTextObjectText|null
      * @SerializedName("text")
      * @Type("OpenAPI\Server\Model\MessageDeltaContentTextObjectText")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\MessageDeltaContentTextObjectText")]
     protected ?MessageDeltaContentTextObjectText $text = null;
 
@@ -100,12 +100,12 @@ class MessageDeltaContentTextObject
     }
 
     /**
-    * Sets index.
-    *
-    * @param int|null $index  The index of the content part in the message.
-    *
-    * @return $this
-    */
+     * Sets index.
+     *
+     * @param int|null $index  The index of the content part in the message.
+     *
+     * @return $this
+     */
     public function setIndex(?int $index): self
     {
         $this->index = $index;
@@ -127,12 +127,12 @@ class MessageDeltaContentTextObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `text`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `text`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -154,12 +154,12 @@ class MessageDeltaContentTextObject
     }
 
     /**
-    * Sets text.
-    *
-    * @param MessageDeltaContentTextObjectText|null $text
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param MessageDeltaContentTextObjectText|null $text
+     *
+     * @return $this
+     */
     public function setText(?MessageDeltaContentTextObjectText $text = null): self
     {
         $this->text = $text;

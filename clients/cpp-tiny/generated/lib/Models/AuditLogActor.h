@@ -53,21 +53,21 @@ public:
 
 	/*! \brief Set The type of actor. Is either `session` or `api_key`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	AuditLogActorSession getSession();
 
 	/*! \brief Set 
 	 */
-	void setSession(AuditLogActorSession  session);
+	void setSession(AuditLogActorSession session);
 	/*! \brief Get 
 	 */
 	AuditLogActorApiKey getApiKey();
 
 	/*! \brief Set 
 	 */
-	void setApiKey(AuditLogActorApiKey  api_key);
+	void setApiKey(AuditLogActorApiKey api_key);
 
 
     private:

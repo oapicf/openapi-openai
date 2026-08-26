@@ -33,7 +33,7 @@ class  CreateVectorStoreFileRequest
 {
 public:
     CreateVectorStoreFileRequest();
-    virtual ~CreateVectorStoreFileRequest() = default;
+    virtual ~CreateVectorStoreFileRequest();
 
 
     /// <summary>

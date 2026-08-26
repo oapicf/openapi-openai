@@ -107,7 +107,7 @@ RunStepDeltaObject::getId()
 }
 
 void
-RunStepDeltaObject::setId(std::string  id)
+RunStepDeltaObject::setId(std::string id)
 {
 	this->id = id;
 }
@@ -119,7 +119,7 @@ RunStepDeltaObject::getObject()
 }
 
 void
-RunStepDeltaObject::setObject(std::string  object)
+RunStepDeltaObject::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -131,7 +131,7 @@ RunStepDeltaObject::getDelta()
 }
 
 void
-RunStepDeltaObject::setDelta(RunStepDeltaObject_delta  delta)
+RunStepDeltaObject::setDelta(RunStepDeltaObject_delta delta)
 {
 	this->delta = delta;
 }

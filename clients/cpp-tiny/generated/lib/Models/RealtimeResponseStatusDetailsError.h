@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The type of error.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get Error code, if any.
 	 */
 	std::string getCode();
 
 	/*! \brief Set Error code, if any.
 	 */
-	void setCode(std::string  code);
+	void setCode(std::string code);
 
 
     private:

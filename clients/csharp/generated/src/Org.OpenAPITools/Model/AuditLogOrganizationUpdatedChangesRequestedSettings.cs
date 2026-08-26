@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Visibility of the threads page which shows messages created with the Assistants API and Playground. One of &#x60;ANY_ROLE&#x60;, &#x60;OWNERS&#x60;, or &#x60;NONE&#x60;.</value>
         [JsonPropertyName("threads_ui_visibility")]
-        public string? ThreadsUiVisibility { get { return this.ThreadsUiVisibilityOption; } set { this.ThreadsUiVisibilityOption = new(value); } }
+        public string? ThreadsUiVisibility { get { return this.ThreadsUiVisibilityOption.Value; } set { this.ThreadsUiVisibilityOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UsageDashboardVisibility
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Visibility of the usage dashboard which shows activity and costs for your organization. One of &#x60;ANY_ROLE&#x60; or &#x60;OWNERS&#x60;.</value>
         [JsonPropertyName("usage_dashboard_visibility")]
-        public string? UsageDashboardVisibility { get { return this.UsageDashboardVisibilityOption; } set { this.UsageDashboardVisibilityOption = new(value); } }
+        public string? UsageDashboardVisibility { get { return this.UsageDashboardVisibilityOption.Value; } set { this.UsageDashboardVisibilityOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogOrganizationUpdatedChangesRequestedSettings" />
     /// </summary>
-    public class AuditLogOrganizationUpdatedChangesRequestedSettingsJsonConverter : JsonConverter<AuditLogOrganizationUpdatedChangesRequestedSettings>
+    public partial class AuditLogOrganizationUpdatedChangesRequestedSettingsJsonConverter : JsonConverter<AuditLogOrganizationUpdatedChangesRequestedSettings>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogOrganizationUpdatedChangesRequestedSettingsJsonConverter" /> class.
+        /// </summary>
+        public AuditLogOrganizationUpdatedChangesRequestedSettingsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogOrganizationUpdatedChangesRequestedSettings" />
         /// </summary>

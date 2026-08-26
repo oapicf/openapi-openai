@@ -22,7 +22,7 @@ message ProjectUser {
     OBJECT_ORGANIZATION_PROJECT_USER = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The identifier, which can be referenced in API endpoints
   string id = 3355;
@@ -39,7 +39,7 @@ message ProjectUser {
     ROLE_MEMBER = 1;
   }
 
-  Role role = 3506294;
+  string role = 3506294;
 
   // The Unix timestamp (in seconds) of when the project was added.
   int32 added_at = 157028400;

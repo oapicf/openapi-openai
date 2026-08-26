@@ -49,7 +49,7 @@ Transcribes audio into the input language.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **file** | **std::path::PathBuf** | The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  | [required] |
-**model** | [**models::CreateTranscriptionRequestModel**](CreateTranscriptionRequest_model.md) |  | [required] |
+**model** | [**models::CreateTranscriptionRequestModel**](CreateTranscriptionRequestModel.md) |  | [required] |
 **language** | Option<**String**> | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.  |  |
 **prompt** | Option<**String**> | An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language.  |  |
 **response_format** | Option<[**models::AudioResponseFormat**](AudioResponseFormat.md)> |  |  |
@@ -83,7 +83,7 @@ Translates audio into English.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **file** | **std::path::PathBuf** | The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  | [required] |
-**model** | [**models::CreateTranscriptionRequestModel**](CreateTranscriptionRequest_model.md) |  | [required] |
+**model** | [**models::CreateTranscriptionRequestModel**](CreateTranscriptionRequestModel.md) |  | [required] |
 **prompt** | Option<**String**> | An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English.  |  |
 **response_format** | Option<[**models::AudioResponseFormat**](AudioResponseFormat.md)> |  |  |
 **temperature** | Option<**f64**> | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  |  |[default to 0]

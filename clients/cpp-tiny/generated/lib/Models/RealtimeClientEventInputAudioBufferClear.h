@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set Optional client-generated ID used to identify this event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `input_audio_buffer.clear`.
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `input_audio_buffer.clear`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 
 
     private:

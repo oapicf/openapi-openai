@@ -23,7 +23,7 @@ openai_api_embedding_OBJECT_e embedding_object_FromString(char* object){
 }
 
 static embedding_t *embedding_create_internal(
-    int index,
+    int *index,
     list_t *embedding,
     openai_api_embedding_OBJECT_e object
     ) {
@@ -31,24 +31,33 @@ static embedding_t *embedding_create_internal(
     if (!embedding_local_var) {
         return NULL;
     }
+    memset(embedding_local_var, 0, sizeof(embedding_t));
+    embedding_local_var->_library_owned = 1;
     embedding_local_var->index = index;
     embedding_local_var->embedding = embedding;
     embedding_local_var->object = object;
-
-    embedding_local_var->_library_owned = 1;
     return embedding_local_var;
 }
 
 __attribute__((deprecated)) embedding_t *embedding_create(
-    int index,
+    int *index,
     list_t *embedding,
     openai_api_embedding_OBJECT_e object
     ) {
-    return embedding_create_internal (
-        index,
+    int *index_copy = NULL;
+    if (index) {
+        index_copy = malloc(sizeof(int));
+        if (index_copy) *index_copy = *index;
+    }
+    embedding_t *result = embedding_create_internal (
+        index_copy,
         embedding,
         object
         );
+    if (!result) {
+        free(index_copy);
+    }
+    return result;
 }
 
 void embedding_free(embedding_t *embedding) {
@@ -60,6 +69,10 @@ void embedding_free(embedding_t *embedding) {
         return ;
     }
     listEntry_t *listEntry;
+    if (embedding->index) {
+        free(embedding->index);
+        embedding->index = NULL;
+    }
     if (embedding->embedding) {
         list_ForEach(listEntry, embedding->embedding) {
             free(listEntry->data);
@@ -77,7 +90,7 @@ cJSON *embedding_convertToJSON(embedding_t *embedding) {
     if (!embedding->index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "index", embedding->index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "index", *embedding->index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -121,6 +134,9 @@ embedding_t *embedding_parseFromJSON(cJSON *embeddingJSON){
 
     embedding_t *embedding_local_var = NULL;
 
+    // define the local variable for embedding->index
+    int *index_local_var = NULL;
+
     // define the local list for embedding->embedding
     list_t *embeddingList = NULL;
 
@@ -138,6 +154,12 @@ embedding_t *embedding_parseFromJSON(cJSON *embeddingJSON){
     {
     goto end; //Numeric
     }
+    index_local_var = malloc(sizeof(int));
+    if(!index_local_var)
+    {
+        goto end;
+    }
+    *index_local_var = index->valuedouble;
 
     // embedding->embedding
     cJSON *embedding = cJSON_GetObjectItemCaseSensitive(embeddingJSON, "embedding");
@@ -188,14 +210,23 @@ embedding_t *embedding_parseFromJSON(cJSON *embeddingJSON){
     objectVariable = embedding_object_FromString(object->valuestring);
 
 
+
     embedding_local_var = embedding_create_internal (
-        index->valuedouble,
+        index_local_var,
         embeddingList,
         objectVariable
         );
 
+    if (!embedding_local_var) {
+        goto end;
+    }
+
     return embedding_local_var;
 end:
+    if (index_local_var) {
+        free(index_local_var);
+        index_local_var = NULL;
+    }
     if (embeddingList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, embeddingList) {

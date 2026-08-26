@@ -61,10 +61,12 @@ class RealtimeServerEventSessionCreated {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventSessionCreated[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventSessionCreated[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event_id'), 'Required key "RealtimeServerEventSessionCreated[event_id]" is missing from JSON.');
+        assert(json[r'event_id'] != null, 'Required key "RealtimeServerEventSessionCreated[event_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RealtimeServerEventSessionCreated[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeServerEventSessionCreated[type]" has a null value in JSON.');
+        assert(json.containsKey(r'session'), 'Required key "RealtimeServerEventSessionCreated[session]" is missing from JSON.');
+        assert(json[r'session'] != null, 'Required key "RealtimeServerEventSessionCreated[session]" has a null value in JSON.');
         return true;
       }());
 
@@ -126,27 +128,28 @@ class RealtimeServerEventSessionCreated {
 }
 
 /// The event type, must be `session.created`.
-class RealtimeServerEventSessionCreatedTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventSessionCreatedTypeEnum._(this.value);
+enum RealtimeServerEventSessionCreatedTypeEnum {
+  sessionPeriodCreated._(r'session.created'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventSessionCreatedTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const sessionPeriodCreated = RealtimeServerEventSessionCreatedTypeEnum._(r'session.created');
-
-  /// List of all possible values in this [enum][RealtimeServerEventSessionCreatedTypeEnum].
-  static const values = <RealtimeServerEventSessionCreatedTypeEnum>[
-    sessionPeriodCreated,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventSessionCreatedTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventSessionCreatedTypeEnum? fromJson(dynamic value) => RealtimeServerEventSessionCreatedTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventSessionCreatedTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventSessionCreatedTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventSessionCreatedTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -168,9 +171,10 @@ class RealtimeServerEventSessionCreatedTypeEnumTypeTransformer {
 
   const RealtimeServerEventSessionCreatedTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventSessionCreatedTypeEnum data) => data.value;
+  String encode(RealtimeServerEventSessionCreatedTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventSessionCreatedTypeEnum.
+  /// Returns the instance of [RealtimeServerEventSessionCreatedTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -179,6 +183,9 @@ class RealtimeServerEventSessionCreatedTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventSessionCreatedTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventSessionCreatedTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'session.created': return RealtimeServerEventSessionCreatedTypeEnum.sessionPeriodCreated;
@@ -191,7 +198,7 @@ class RealtimeServerEventSessionCreatedTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeServerEventSessionCreatedTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventSessionCreatedTypeEnumTypeTransformer? _instance;
 }
 

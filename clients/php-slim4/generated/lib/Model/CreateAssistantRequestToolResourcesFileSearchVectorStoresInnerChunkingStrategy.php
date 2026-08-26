@@ -49,7 +49,7 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
   "type" : "object",
   "description" : "The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.",
   "oneOf" : [ {
-    "$ref" : "#/components/schemas/Auto_Chunking_Strategy"
+    "$ref" : "#/components/schemas/AutoChunkingStrategyRequestParam"
   }, {
     "$ref" : "#/components/schemas/Static_Chunking_Strategy"
   } ],

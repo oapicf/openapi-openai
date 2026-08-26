@@ -82,11 +82,11 @@ function Initialize-CreateSpeechRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "model" = ${Model}
-            "input" = ${VarInput}
-            "voice" = ${Voice}
-            "response_format" = ${ResponseFormat}
-            "speed" = ${Speed}
+            'model' = ${Model}
+            'input' = ${VarInput}
+            'voice' = ${Voice}
+            'response_format' = ${ResponseFormat}
+            'speed' = ${Speed}
         }
 
 
@@ -124,7 +124,7 @@ function ConvertFrom-JsonToCreateSpeechRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateSpeechRequest
-        $AllProperties = ("model", "input", "voice", "response_format", "speed")
+        $AllProperties = ('model', 'input', 'voice', 'response_format', 'speed')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -135,42 +135,42 @@ function ConvertFrom-JsonToCreateSpeechRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'model' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) {
             throw "Error! JSON cannot be serialized due to the required property 'model' missing."
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "input"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'input'))) {
             throw "Error! JSON cannot be serialized due to the required property 'input' missing."
         } else {
-            $VarInput = $JsonParameters.PSobject.Properties["input"].value
+            $VarInput = $JsonParameters.PSobject.Properties['input'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "voice"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'voice'))) {
             throw "Error! JSON cannot be serialized due to the required property 'voice' missing."
         } else {
-            $Voice = $JsonParameters.PSobject.Properties["voice"].value
+            $Voice = $JsonParameters.PSobject.Properties['voice'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "response_format"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'response_format'))) { #optional property not found
             $ResponseFormat = $null
         } else {
-            $ResponseFormat = $JsonParameters.PSobject.Properties["response_format"].value
+            $ResponseFormat = $JsonParameters.PSobject.Properties['response_format'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "speed"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'speed'))) { #optional property not found
             $Speed = $null
         } else {
-            $Speed = $JsonParameters.PSobject.Properties["speed"].value
+            $Speed = $JsonParameters.PSobject.Properties['speed'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "model" = ${Model}
-            "input" = ${VarInput}
-            "voice" = ${Voice}
-            "response_format" = ${ResponseFormat}
-            "speed" = ${Speed}
+            'model' = ${Model}
+            'input' = ${VarInput}
+            'voice' = ${Voice}
+            'response_format' = ${ResponseFormat}
+            'speed' = ${Speed}
         }
 
         return $PSO

@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // RealtimeServerEventErrorError - Details of the error.
@@ -32,19 +37,88 @@ type RealtimeServerEventErrorError struct {
 	// The event_id of the client event that caused the error, if applicable. 
 	EventId *string `json:"event_id,omitempty"`
 }
-
-// AssertRealtimeServerEventErrorErrorRequired checks if the required fields are not zero-ed
-func AssertRealtimeServerEventErrorErrorRequired(obj RealtimeServerEventErrorError) error {
-	elements := map[string]interface{}{
-		"type": obj.Type,
-		"message": obj.Message,
+// UnmarshalJSON validates required property keys then unmarshals into RealtimeServerEventErrorError
+func (o *RealtimeServerEventErrorError) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"type",
+		"message",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"type": false,
+		"message": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"type": {},
+		"code": {},
+		"message": {},
+		"param": {},
+		"event_id": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RealtimeServerEventErrorError
+
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["code"]; exists {
+		if err = json.Unmarshal(value, &decoded.Code); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["message"]; exists {
+		if err = json.Unmarshal(value, &decoded.Message); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["param"]; exists {
+		if err = json.Unmarshal(value, &decoded.Param); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["event_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.EventId); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRealtimeServerEventErrorErrorRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertRealtimeServerEventErrorErrorRequired(obj RealtimeServerEventErrorError) error {
 	return nil
 }
 

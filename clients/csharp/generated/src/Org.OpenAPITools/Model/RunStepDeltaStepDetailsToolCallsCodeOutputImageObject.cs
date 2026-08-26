@@ -126,7 +126,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Image
         /// </summary>
         [JsonPropertyName("image")]
-        public RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage? Image { get { return this.ImageOption; } set { this.ImageOption = new(value); } }
+        public RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage? Image { get { return this.ImageOption.Value; } set { this.ImageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -157,8 +157,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDeltaStepDetailsToolCallsCodeOutputImageObject" />
     /// </summary>
-    public class RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectJsonConverter : JsonConverter<RunStepDeltaStepDetailsToolCallsCodeOutputImageObject>
+    public partial class RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectJsonConverter : JsonConverter<RunStepDeltaStepDetailsToolCallsCodeOutputImageObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectJsonConverter" /> class.
+        /// </summary>
+        public RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDeltaStepDetailsToolCallsCodeOutputImageObject" />
         /// </summary>

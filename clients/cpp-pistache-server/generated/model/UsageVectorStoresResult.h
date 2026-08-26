@@ -32,7 +32,7 @@ class  UsageVectorStoresResult
 {
 public:
     UsageVectorStoresResult();
-    virtual ~UsageVectorStoresResult() = default;
+    virtual ~UsageVectorStoresResult();
 
 
     /// <summary>

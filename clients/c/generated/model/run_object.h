@@ -46,30 +46,30 @@ openai_api_run_object_STATUS_e run_object_status_FromString(char* status);
 typedef struct run_object_t {
     char *id; // string
     openai_api_run_object_OBJECT_e object; //enum
-    int created_at; //numeric
+    int *created_at; //numeric
     char *thread_id; // string
     char *assistant_id; // string
     openai_api_run_object_STATUS_e status; //enum
     struct run_object_required_action_t *required_action; //model
     struct run_object_last_error_t *last_error; //model
-    int expires_at; //numeric
-    int started_at; //numeric
-    int cancelled_at; //numeric
-    int failed_at; //numeric
-    int completed_at; //numeric
+    int *expires_at; //numeric
+    int *started_at; //numeric
+    int *cancelled_at; //numeric
+    int *failed_at; //numeric
+    int *completed_at; //numeric
     struct run_object_incomplete_details_t *incomplete_details; //model
     char *model; // string
     char *instructions; // string
     list_t *tools; //nonprimitive container
     object_t *metadata; //object
     struct run_completion_usage_t *usage; //model
-    double temperature; //numeric
-    double top_p; //numeric
-    int max_prompt_tokens; //numeric
-    int max_completion_tokens; //numeric
+    double *temperature; //numeric
+    double *top_p; //numeric
+    int *max_prompt_tokens; //numeric
+    int *max_completion_tokens; //numeric
     struct truncation_object_t *truncation_strategy; //model
     struct assistants_api_tool_choice_option_t *tool_choice; //model
-    int parallel_tool_calls; //boolean
+    int *parallel_tool_calls; //boolean
     struct assistants_api_response_format_option_t *response_format; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -78,30 +78,30 @@ typedef struct run_object_t {
 __attribute__((deprecated)) run_object_t *run_object_create(
     char *id,
     openai_api_run_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     char *thread_id,
     char *assistant_id,
     openai_api_run_object_STATUS_e status,
     run_object_required_action_t *required_action,
     run_object_last_error_t *last_error,
-    int expires_at,
-    int started_at,
-    int cancelled_at,
-    int failed_at,
-    int completed_at,
+    int *expires_at,
+    int *started_at,
+    int *cancelled_at,
+    int *failed_at,
+    int *completed_at,
     run_object_incomplete_details_t *incomplete_details,
     char *model,
     char *instructions,
     list_t *tools,
     object_t *metadata,
     run_completion_usage_t *usage,
-    double temperature,
-    double top_p,
-    int max_prompt_tokens,
-    int max_completion_tokens,
+    double *temperature,
+    double *top_p,
+    int *max_prompt_tokens,
+    int *max_completion_tokens,
     truncation_object_t *truncation_strategy,
     assistants_api_tool_choice_option_t *tool_choice,
-    int parallel_tool_calls,
+    int *parallel_tool_calls,
     assistants_api_response_format_option_t *response_format
 );
 

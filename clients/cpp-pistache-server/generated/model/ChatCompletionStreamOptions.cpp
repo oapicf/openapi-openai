@@ -26,6 +26,8 @@ ChatCompletionStreamOptions::ChatCompletionStreamOptions()
     
 }
 
+ChatCompletionStreamOptions::~ChatCompletionStreamOptions() = default;
+
 void ChatCompletionStreamOptions::validate() const
 {
     std::stringstream msg;

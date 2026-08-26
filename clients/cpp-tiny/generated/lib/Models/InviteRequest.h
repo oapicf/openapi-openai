@@ -53,21 +53,21 @@ public:
 
 	/*! \brief Set Send an email to this address
 	 */
-	void setEmail(std::string  email);
+	void setEmail(std::string email);
 	/*! \brief Get `owner` or `reader`
 	 */
 	std::string getRole();
 
 	/*! \brief Set `owner` or `reader`
 	 */
-	void setRole(std::string  role);
+	void setRole(std::string role);
 	/*! \brief Get An array of projects to which membership is granted at the same time the org invite is accepted. If omitted, the user will be invited to the default project for compatibility with legacy behavior.
 	 */
 	std::list<InviteRequest_projects_inner> getProjects();
 
 	/*! \brief Set An array of projects to which membership is granted at the same time the org invite is accepted. If omitted, the user will be invited to the default project for compatibility with legacy behavior.
 	 */
-	void setProjects(std::list <InviteRequest_projects_inner> projects);
+	void setProjects(std::list<InviteRequest_projects_inner> projects);
 
 
     private:

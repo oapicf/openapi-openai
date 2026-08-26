@@ -27,7 +27,7 @@ message VectorStoreFileObject {
     OBJECT_VECTOR_STORE_FILE = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The total vector store usage in bytes. Note that this may be different from the original file size.
   int32 usage_bytes = 161096783;
@@ -46,7 +46,7 @@ message VectorStoreFileObject {
     STATUS_FAILED = 3;
   }
 
-  Status status = 355610639;
+  string status = 355610639;
 
   VectorStoreFileObjectLastError last_error = 414908644;
 

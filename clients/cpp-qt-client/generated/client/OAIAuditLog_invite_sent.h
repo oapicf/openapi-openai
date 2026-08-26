@@ -33,13 +33,13 @@ class OAIAuditLog_invite_sent_data;
 class OAIAuditLog_invite_sent : public OAIObject {
 public:
     OAIAuditLog_invite_sent();
-    OAIAuditLog_invite_sent(QString json);
+    OAIAuditLog_invite_sent(const QString &json);
     ~OAIAuditLog_invite_sent() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.math.BigDecimal;
@@ -17,40 +18,48 @@ import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * CreateAssistantRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateAssistantRequest {
 
   private CreateAssistantRequestModel model;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Size(max = 256) String> name = JsonNullable.<String>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Size(max = 512) String> description = JsonNullable.<String>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Size(max = 256000) String> instructions = JsonNullable.<String>undefined();
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<AssistantObjectToolsInner> tools = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<CreateAssistantRequestToolResources> toolResources = JsonNullable.<CreateAssistantRequestToolResources>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AssistantsApiResponseFormatOption responseFormat;
 
   public CreateAssistantRequest() {
@@ -80,6 +89,7 @@ public class CreateAssistantRequest {
     return model;
   }
 
+  @JsonProperty("model")
   public void setModel(CreateAssistantRequestModel model) {
     this.model = model;
   }
@@ -168,6 +178,7 @@ public class CreateAssistantRequest {
     return tools;
   }
 
+  @JsonProperty("tools")
   public void setTools(List<AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
@@ -272,6 +283,7 @@ public class CreateAssistantRequest {
     return responseFormat;
   }
 
+  @JsonProperty("response_format")
   public void setResponseFormat(@Nullable AssistantsApiResponseFormatOption responseFormat) {
     this.responseFormat = responseFormat;
   }
@@ -335,11 +347,8 @@ public class CreateAssistantRequest {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

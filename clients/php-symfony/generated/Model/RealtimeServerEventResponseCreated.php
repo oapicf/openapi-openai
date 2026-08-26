@@ -51,7 +51,7 @@ class RealtimeServerEventResponseCreated
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $eventId = null;
@@ -62,7 +62,7 @@ class RealtimeServerEventResponseCreated
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['response.created'])]
     #[Assert\Type("string")]
@@ -72,7 +72,7 @@ class RealtimeServerEventResponseCreated
      * @var RealtimeResponse|null
      * @SerializedName("response")
      * @Type("OpenAPI\Server\Model\RealtimeResponse")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RealtimeResponse")]
@@ -102,12 +102,12 @@ class RealtimeServerEventResponseCreated
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  The unique ID of the server event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  The unique ID of the server event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId): self
     {
         $this->eventId = $eventId;
@@ -129,12 +129,12 @@ class RealtimeServerEventResponseCreated
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `response.created`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `response.created`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -156,12 +156,12 @@ class RealtimeServerEventResponseCreated
     }
 
     /**
-    * Sets response.
-    *
-    * @param RealtimeResponse|null $response
-    *
-    * @return $this
-    */
+     * Sets response.
+     *
+     * @param RealtimeResponse|null $response
+     *
+     * @return $this
+     */
     public function setResponse(?RealtimeResponse $response): self
     {
         $this->response = $response;

@@ -32,7 +32,7 @@ class  CreateModerationRequest_input_oneOf_inner_oneOf_1
 {
 public:
     CreateModerationRequest_input_oneOf_inner_oneOf_1();
-    virtual ~CreateModerationRequest_input_oneOf_inner_oneOf_1() = default;
+    virtual ~CreateModerationRequest_input_oneOf_inner_oneOf_1();
 
 
     /// <summary>

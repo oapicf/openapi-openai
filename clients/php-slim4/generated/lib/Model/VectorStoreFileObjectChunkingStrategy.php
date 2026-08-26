@@ -49,7 +49,7 @@ class VectorStoreFileObjectChunkingStrategy extends BaseModel
   "type" : "object",
   "description" : "The strategy used to chunk the file.",
   "oneOf" : [ {
-    "$ref" : "#/components/schemas/StaticChunkingStrategyResponseParam"
+    "$ref" : "#/components/schemas/StaticChunkingStrategyRequestParam"
   }, {
     "$ref" : "#/components/schemas/OtherChunkingStrategyResponseParam"
   } ],

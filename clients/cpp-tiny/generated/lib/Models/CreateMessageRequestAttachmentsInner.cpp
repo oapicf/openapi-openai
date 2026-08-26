@@ -102,7 +102,7 @@ CreateMessageRequest_attachments_inner::getFileId()
 }
 
 void
-CreateMessageRequest_attachments_inner::setFileId(std::string  file_id)
+CreateMessageRequest_attachments_inner::setFileId(std::string file_id)
 {
 	this->file_id = file_id;
 }
@@ -114,7 +114,7 @@ CreateMessageRequest_attachments_inner::getTools()
 }
 
 void
-CreateMessageRequest_attachments_inner::setTools(std::list <CreateMessageRequest_attachments_inner_tools_inner> tools)
+CreateMessageRequest_attachments_inner::setTools(std::list<CreateMessageRequest_attachments_inner_tools_inner> tools)
 {
 	this->tools = tools;
 }

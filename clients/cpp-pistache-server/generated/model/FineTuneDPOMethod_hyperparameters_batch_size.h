@@ -31,7 +31,7 @@ class  FineTuneDPOMethod_hyperparameters_batch_size
 {
 public:
     FineTuneDPOMethod_hyperparameters_batch_size();
-    virtual ~FineTuneDPOMethod_hyperparameters_batch_size() = default;
+    virtual ~FineTuneDPOMethod_hyperparameters_batch_size();
 
 
     /// <summary>

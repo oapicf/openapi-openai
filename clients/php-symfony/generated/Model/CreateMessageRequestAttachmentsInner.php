@@ -49,7 +49,7 @@ class CreateMessageRequestAttachmentsInner
      * @var string|null
      * @SerializedName("file_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $fileId = null;
 
@@ -59,7 +59,7 @@ class CreateMessageRequestAttachmentsInner
      * @var CreateMessageRequestAttachmentsInnerToolsInner[]|null
      * @SerializedName("tools")
      * @Type("array<OpenAPI\Server\Model\CreateMessageRequestAttachmentsInnerToolsInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\CreateMessageRequestAttachmentsInnerToolsInner"),
     ])]
@@ -88,12 +88,12 @@ class CreateMessageRequestAttachmentsInner
     }
 
     /**
-    * Sets fileId.
-    *
-    * @param string|null $fileId  The ID of the file to attach to the message.
-    *
-    * @return $this
-    */
+     * Sets fileId.
+     *
+     * @param string|null $fileId  The ID of the file to attach to the message.
+     *
+     * @return $this
+     */
     public function setFileId(?string $fileId = null): self
     {
         $this->fileId = $fileId;
@@ -115,12 +115,12 @@ class CreateMessageRequestAttachmentsInner
     }
 
     /**
-    * Sets tools.
-    *
-    * @param CreateMessageRequestAttachmentsInnerToolsInner[]|null $tools  The tools to add this file to.
-    *
-    * @return $this
-    */
+     * Sets tools.
+     *
+     * @param CreateMessageRequestAttachmentsInnerToolsInner[]|null $tools  The tools to add this file to.
+     *
+     * @return $this
+     */
     public function setTools(?array $tools = null): self
     {
         $this->tools = $tools;

@@ -20,7 +20,7 @@ case class ThreadStreamEvent(
   enabled: Option[Boolean] = None,
   event: ThreadStreamEventEnums.Event,
   data: ThreadObject
-)
+) extends AssistantStreamEvent
 
 object ThreadStreamEventEnums {
 

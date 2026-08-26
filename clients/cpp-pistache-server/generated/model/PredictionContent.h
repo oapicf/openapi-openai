@@ -33,7 +33,7 @@ class  PredictionContent
 {
 public:
     PredictionContent();
-    virtual ~PredictionContent() = default;
+    virtual ~PredictionContent();
 
 
     /// <summary>

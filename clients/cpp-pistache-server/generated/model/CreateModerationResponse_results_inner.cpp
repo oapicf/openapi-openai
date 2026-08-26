@@ -25,6 +25,8 @@ CreateModerationResponse_results_inner::CreateModerationResponse_results_inner()
     
 }
 
+CreateModerationResponse_results_inner::~CreateModerationResponse_results_inner() = default;
+
 void CreateModerationResponse_results_inner::validate() const
 {
     std::stringstream msg;

@@ -26,6 +26,8 @@ Embedding::Embedding()
     
 }
 
+Embedding::~Embedding() = default;
+
 void Embedding::validate() const
 {
     std::stringstream msg;

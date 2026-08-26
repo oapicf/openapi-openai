@@ -1,0 +1,13 @@
+# AuditLogRateLimitUpdated
+
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**`id`** | **`String`** | The rate limit ID | [optional] [default to nothing]
+**`changes_requested`** | [**`*AuditLogRateLimitUpdatedChangesRequested`**](AuditLogRateLimitUpdatedChangesRequested.md) |  | [optional] [default to nothing]
+
+
+[[Back to Model list]](../README.md#models) [[Back to API list]](../README.md#api-endpoints) [[Back to README]](../README.md)
+
+

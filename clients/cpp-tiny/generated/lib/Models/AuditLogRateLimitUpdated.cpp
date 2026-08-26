@@ -86,7 +86,7 @@ AuditLog_rate_limit_updated::getId()
 }
 
 void
-AuditLog_rate_limit_updated::setId(std::string  id)
+AuditLog_rate_limit_updated::setId(std::string id)
 {
 	this->id = id;
 }
@@ -98,7 +98,7 @@ AuditLog_rate_limit_updated::getChangesRequested()
 }
 
 void
-AuditLog_rate_limit_updated::setChangesRequested(AuditLog_rate_limit_updated_changes_requested  changes_requested)
+AuditLog_rate_limit_updated::setChangesRequested(AuditLog_rate_limit_updated_changes_requested changes_requested)
 {
 	this->changes_requested = changes_requested;
 }

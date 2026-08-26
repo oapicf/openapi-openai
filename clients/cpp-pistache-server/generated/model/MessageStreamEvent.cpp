@@ -25,6 +25,8 @@ MessageStreamEvent::MessageStreamEvent()
     
 }
 
+MessageStreamEvent::~MessageStreamEvent() = default;
+
 void MessageStreamEvent::validate() const
 {
     std::stringstream msg;

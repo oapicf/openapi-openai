@@ -28,6 +28,8 @@ ListMessagesResponse::ListMessagesResponse()
     
 }
 
+ListMessagesResponse::~ListMessagesResponse() = default;
+
 void ListMessagesResponse::validate() const
 {
     std::stringstream msg;

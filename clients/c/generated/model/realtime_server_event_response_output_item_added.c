@@ -26,20 +26,20 @@ static realtime_server_event_response_output_item_added_t *realtime_server_event
     char *event_id,
     openai_api_realtime_server_event_response_output_item_added_TYPE_e type,
     char *response_id,
-    int output_index,
+    int *output_index,
     realtime_conversation_item_t *item
     ) {
     realtime_server_event_response_output_item_added_t *realtime_server_event_response_output_item_added_local_var = malloc(sizeof(realtime_server_event_response_output_item_added_t));
     if (!realtime_server_event_response_output_item_added_local_var) {
         return NULL;
     }
+    memset(realtime_server_event_response_output_item_added_local_var, 0, sizeof(realtime_server_event_response_output_item_added_t));
+    realtime_server_event_response_output_item_added_local_var->_library_owned = 1;
     realtime_server_event_response_output_item_added_local_var->event_id = event_id;
     realtime_server_event_response_output_item_added_local_var->type = type;
     realtime_server_event_response_output_item_added_local_var->response_id = response_id;
     realtime_server_event_response_output_item_added_local_var->output_index = output_index;
     realtime_server_event_response_output_item_added_local_var->item = item;
-
-    realtime_server_event_response_output_item_added_local_var->_library_owned = 1;
     return realtime_server_event_response_output_item_added_local_var;
 }
 
@@ -47,16 +47,25 @@ __attribute__((deprecated)) realtime_server_event_response_output_item_added_t *
     char *event_id,
     openai_api_realtime_server_event_response_output_item_added_TYPE_e type,
     char *response_id,
-    int output_index,
+    int *output_index,
     realtime_conversation_item_t *item
     ) {
-    return realtime_server_event_response_output_item_added_create_internal (
+    int *output_index_copy = NULL;
+    if (output_index) {
+        output_index_copy = malloc(sizeof(int));
+        if (output_index_copy) *output_index_copy = *output_index;
+    }
+    realtime_server_event_response_output_item_added_t *result = realtime_server_event_response_output_item_added_create_internal (
         event_id,
         type,
         response_id,
-        output_index,
+        output_index_copy,
         item
         );
+    if (!result) {
+        free(output_index_copy);
+    }
+    return result;
 }
 
 void realtime_server_event_response_output_item_added_free(realtime_server_event_response_output_item_added_t *realtime_server_event_response_output_item_added) {
@@ -75,6 +84,10 @@ void realtime_server_event_response_output_item_added_free(realtime_server_event
     if (realtime_server_event_response_output_item_added->response_id) {
         free(realtime_server_event_response_output_item_added->response_id);
         realtime_server_event_response_output_item_added->response_id = NULL;
+    }
+    if (realtime_server_event_response_output_item_added->output_index) {
+        free(realtime_server_event_response_output_item_added->output_index);
+        realtime_server_event_response_output_item_added->output_index = NULL;
     }
     if (realtime_server_event_response_output_item_added->item) {
         realtime_conversation_item_free(realtime_server_event_response_output_item_added->item);
@@ -118,7 +131,7 @@ cJSON *realtime_server_event_response_output_item_added_convertToJSON(realtime_s
     if (!realtime_server_event_response_output_item_added->output_index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "output_index", realtime_server_event_response_output_item_added->output_index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "output_index", *realtime_server_event_response_output_item_added->output_index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -147,6 +160,13 @@ fail:
 realtime_server_event_response_output_item_added_t *realtime_server_event_response_output_item_added_parseFromJSON(cJSON *realtime_server_event_response_output_item_addedJSON){
 
     realtime_server_event_response_output_item_added_t *realtime_server_event_response_output_item_added_local_var = NULL;
+
+    char *event_id_local_str = NULL;
+
+    char *response_id_local_str = NULL;
+
+    // define the local variable for realtime_server_event_response_output_item_added->output_index
+    int *output_index_local_var = NULL;
 
     // define the local variable for realtime_server_event_response_output_item_added->item
     realtime_conversation_item_t *item_local_nonprim = NULL;
@@ -212,6 +232,12 @@ realtime_server_event_response_output_item_added_t *realtime_server_event_respon
     {
     goto end; //Numeric
     }
+    output_index_local_var = malloc(sizeof(int));
+    if(!output_index_local_var)
+    {
+        goto end;
+    }
+    *output_index_local_var = output_index->valuedouble;
 
     // realtime_server_event_response_output_item_added->item
     cJSON *item = cJSON_GetObjectItemCaseSensitive(realtime_server_event_response_output_item_addedJSON, "item");
@@ -226,16 +252,35 @@ realtime_server_event_response_output_item_added_t *realtime_server_event_respon
     item_local_nonprim = realtime_conversation_item_parseFromJSON(item); //nonprimitive
 
 
+    if (event_id && !cJSON_IsNull(event_id)) event_id_local_str = strdup(event_id->valuestring);
+    if (response_id && !cJSON_IsNull(response_id)) response_id_local_str = strdup(response_id->valuestring);
+
     realtime_server_event_response_output_item_added_local_var = realtime_server_event_response_output_item_added_create_internal (
-        strdup(event_id->valuestring),
+        event_id_local_str,
         typeVariable,
-        strdup(response_id->valuestring),
-        output_index->valuedouble,
+        response_id_local_str,
+        output_index_local_var,
         item_local_nonprim
         );
 
+    if (!realtime_server_event_response_output_item_added_local_var) {
+        goto end;
+    }
+
     return realtime_server_event_response_output_item_added_local_var;
 end:
+    if (event_id_local_str) {
+        free(event_id_local_str);
+        event_id_local_str = NULL;
+    }
+    if (response_id_local_str) {
+        free(response_id_local_str);
+        response_id_local_str = NULL;
+    }
+    if (output_index_local_var) {
+        free(output_index_local_var);
+        output_index_local_var = NULL;
+    }
     if (item_local_nonprim) {
         realtime_conversation_item_free(item_local_nonprim);
         item_local_nonprim = NULL;

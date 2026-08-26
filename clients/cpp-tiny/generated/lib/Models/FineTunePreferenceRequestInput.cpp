@@ -141,7 +141,7 @@ FineTunePreferenceRequestInput::getInput()
 }
 
 void
-FineTunePreferenceRequestInput::setInput(FineTunePreferenceRequestInput_input  input)
+FineTunePreferenceRequestInput::setInput(FineTunePreferenceRequestInput_input input)
 {
 	this->input = input;
 }
@@ -153,7 +153,7 @@ FineTunePreferenceRequestInput::getPreferredCompletion()
 }
 
 void
-FineTunePreferenceRequestInput::setPreferredCompletion(std::list <FineTunePreferenceRequestInput_preferred_completion_inner> preferred_completion)
+FineTunePreferenceRequestInput::setPreferredCompletion(std::list<FineTunePreferenceRequestInput_preferred_completion_inner> preferred_completion)
 {
 	this->preferred_completion = preferred_completion;
 }
@@ -165,7 +165,7 @@ FineTunePreferenceRequestInput::getNonPreferredCompletion()
 }
 
 void
-FineTunePreferenceRequestInput::setNonPreferredCompletion(std::list <FineTunePreferenceRequestInput_preferred_completion_inner> non_preferred_completion)
+FineTunePreferenceRequestInput::setNonPreferredCompletion(std::list<FineTunePreferenceRequestInput_preferred_completion_inner> non_preferred_completion)
 {
 	this->non_preferred_completion = non_preferred_completion;
 }

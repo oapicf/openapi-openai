@@ -52,21 +52,21 @@ public:
 
 	/*! \brief Set The ID of the tool call object.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The type of tool call. This is always going to be `function` for this type of tool call.
 	 */
 	std::string getType();
 
 	/*! \brief Set The type of tool call. This is always going to be `function` for this type of tool call.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	RunStepDetailsToolCallsFunctionObject_function getFunction();
 
 	/*! \brief Set 
 	 */
-	void setFunction(RunStepDetailsToolCallsFunctionObject_function  function);
+	void setFunction(RunStepDetailsToolCallsFunctionObject_function function);
 
 
     private:

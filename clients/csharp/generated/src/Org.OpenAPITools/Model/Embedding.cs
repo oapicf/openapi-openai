@@ -151,8 +151,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="Embedding" />
     /// </summary>
-    public class EmbeddingJsonConverter : JsonConverter<Embedding>
+    public partial class EmbeddingJsonConverter : JsonConverter<Embedding>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EmbeddingJsonConverter" /> class.
+        /// </summary>
+        public EmbeddingJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="Embedding" />
         /// </summary>

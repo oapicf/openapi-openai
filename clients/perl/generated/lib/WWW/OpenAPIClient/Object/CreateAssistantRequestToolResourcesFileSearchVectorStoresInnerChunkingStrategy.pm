@@ -30,7 +30,7 @@ use Log::Any qw($log);
 use Date::Parse;
 use DateTime;
 
-use WWW::OpenAPIClient::Object::AutoChunkingStrategy;
+use WWW::OpenAPIClient::Object::AutoChunkingStrategyRequestParam;
 use WWW::OpenAPIClient::Object::StaticChunkingStrategy;
 use WWW::OpenAPIClient::Object::StaticChunkingStrategyStatic;
 

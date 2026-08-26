@@ -1,4 +1,4 @@
-# # CreateThreadRequestToolResourcesFileSearchVectorStoresInner
+# CreateThreadRequestToolResourcesFileSearchVectorStoresInner
 
 ## Properties
 

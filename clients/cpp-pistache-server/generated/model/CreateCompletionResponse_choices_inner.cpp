@@ -27,6 +27,8 @@ CreateCompletionResponse_choices_inner::CreateCompletionResponse_choices_inner()
     
 }
 
+CreateCompletionResponse_choices_inner::~CreateCompletionResponse_choices_inner() = default;
+
 void CreateCompletionResponse_choices_inner::validate() const
 {
     std::stringstream msg;

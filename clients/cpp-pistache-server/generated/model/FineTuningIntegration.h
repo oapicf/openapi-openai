@@ -33,7 +33,7 @@ class  FineTuningIntegration
 {
 public:
     FineTuningIntegration();
-    virtual ~FineTuningIntegration() = default;
+    virtual ~FineTuningIntegration();
 
 
     /// <summary>

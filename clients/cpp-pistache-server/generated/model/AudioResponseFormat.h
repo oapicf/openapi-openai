@@ -31,7 +31,7 @@ class  AudioResponseFormat
 {
 public:
     AudioResponseFormat();
-    virtual ~AudioResponseFormat() = default;
+    virtual ~AudioResponseFormat();
 
     enum class eAudioResponseFormat {
     // To have a valid default value.

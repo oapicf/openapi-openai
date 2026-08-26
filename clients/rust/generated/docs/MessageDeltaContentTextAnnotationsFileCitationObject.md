@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **index** | **i32** | The index of the annotation in the text content part. | 
-**r#type** | **String** | Always `file_citation`. | 
+**r#type** | **Type** | Always `file_citation`. (enum: file_citation) | 
 **text** | Option<**String**> | The text in the message content that needs to be replaced. | [optional]
-**file_citation** | Option<[**models::MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation**](MessageDeltaContentTextAnnotationsFileCitationObject_file_citation.md)> |  | [optional]
+**file_citation** | Option<[**models::MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation**](MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation.md)> |  | [optional]
 **start_index** | Option<**i32**> |  | [optional]
 **end_index** | Option<**i32**> |  | [optional]
 

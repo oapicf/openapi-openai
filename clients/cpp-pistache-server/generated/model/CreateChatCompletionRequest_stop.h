@@ -32,7 +32,7 @@ class  CreateChatCompletionRequest_stop
 {
 public:
     CreateChatCompletionRequest_stop();
-    virtual ~CreateChatCompletionRequest_stop() = default;
+    virtual ~CreateChatCompletionRequest_stop();
 
 
     /// <summary>

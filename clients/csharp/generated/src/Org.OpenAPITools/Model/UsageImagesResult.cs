@@ -144,7 +144,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;source&#x60;, this field provides the source of the grouped usage result, possible values are &#x60;image.generation&#x60;, &#x60;image.edit&#x60;, &#x60;image.variation&#x60;.</value>
         [JsonPropertyName("source")]
-        public string? Source { get { return this.SourceOption; } set { this.SourceOption = new(value); } }
+        public string? Source { get { return this.SourceOption.Value; } set { this.SourceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Size
@@ -158,7 +158,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;size&#x60;, this field provides the image size of the grouped usage result.</value>
         [JsonPropertyName("size")]
-        public string? Size { get { return this.SizeOption; } set { this.SizeOption = new(value); } }
+        public string? Size { get { return this.SizeOption.Value; } set { this.SizeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectId
@@ -172,7 +172,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;project_id&#x60;, this field provides the project ID of the grouped usage result.</value>
         [JsonPropertyName("project_id")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UserId
@@ -186,7 +186,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;user_id&#x60;, this field provides the user ID of the grouped usage result.</value>
         [JsonPropertyName("user_id")]
-        public string? UserId { get { return this.UserIdOption; } set { this.UserIdOption = new(value); } }
+        public string? UserId { get { return this.UserIdOption.Value; } set { this.UserIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ApiKeyId
@@ -200,7 +200,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;api_key_id&#x60;, this field provides the API key ID of the grouped usage result.</value>
         [JsonPropertyName("api_key_id")]
-        public string? ApiKeyId { get { return this.ApiKeyIdOption; } set { this.ApiKeyIdOption = new(value); } }
+        public string? ApiKeyId { get { return this.ApiKeyIdOption.Value; } set { this.ApiKeyIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Model
@@ -214,7 +214,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;model&#x60;, this field provides the model name of the grouped usage result.</value>
         [JsonPropertyName("model")]
-        public string? Model { get { return this.ModelOption; } set { this.ModelOption = new(value); } }
+        public string? Model { get { return this.ModelOption.Value; } set { this.ModelOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -251,8 +251,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="UsageImagesResult" />
     /// </summary>
-    public class UsageImagesResultJsonConverter : JsonConverter<UsageImagesResult>
+    public partial class UsageImagesResultJsonConverter : JsonConverter<UsageImagesResult>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UsageImagesResultJsonConverter" /> class.
+        /// </summary>
+        public UsageImagesResultJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UsageImagesResult" />
         /// </summary>

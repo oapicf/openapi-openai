@@ -24,6 +24,8 @@ CreateCompletionRequest_prompt::CreateCompletionRequest_prompt()
     
 }
 
+CreateCompletionRequest_prompt::~CreateCompletionRequest_prompt() = default;
+
 void CreateCompletionRequest_prompt::validate() const
 {
     std::stringstream msg;

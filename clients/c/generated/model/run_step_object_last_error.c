@@ -30,10 +30,10 @@ static run_step_object_last_error_t *run_step_object_last_error_create_internal(
     if (!run_step_object_last_error_local_var) {
         return NULL;
     }
+    memset(run_step_object_last_error_local_var, 0, sizeof(run_step_object_last_error_t));
+    run_step_object_last_error_local_var->_library_owned = 1;
     run_step_object_last_error_local_var->code = code;
     run_step_object_last_error_local_var->message = message;
-
-    run_step_object_last_error_local_var->_library_owned = 1;
     return run_step_object_last_error_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) run_step_object_last_error_t *run_step_object_last_e
     openai_api_run_step_object_last_error_CODE_e code,
     char *message
     ) {
-    return run_step_object_last_error_create_internal (
+    run_step_object_last_error_t *result = run_step_object_last_error_create_internal (
         code,
         message
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_step_object_last_error_free(run_step_object_last_error_t *run_step_object_last_error) {
@@ -96,6 +99,8 @@ run_step_object_last_error_t *run_step_object_last_error_parseFromJSON(cJSON *ru
 
     run_step_object_last_error_t *run_step_object_last_error_local_var = NULL;
 
+    char *message_local_str = NULL;
+
     // run_step_object_last_error->code
     cJSON *code = cJSON_GetObjectItemCaseSensitive(run_step_object_last_errorJSON, "code");
     if (cJSON_IsNull(code)) {
@@ -129,13 +134,23 @@ run_step_object_last_error_t *run_step_object_last_error_parseFromJSON(cJSON *ru
     }
 
 
+    if (message && !cJSON_IsNull(message)) message_local_str = strdup(message->valuestring);
+
     run_step_object_last_error_local_var = run_step_object_last_error_create_internal (
         codeVariable,
-        strdup(message->valuestring)
+        message_local_str
         );
+
+    if (!run_step_object_last_error_local_var) {
+        goto end;
+    }
 
     return run_step_object_last_error_local_var;
 end:
+    if (message_local_str) {
+        free(message_local_str);
+        message_local_str = NULL;
+    }
     return NULL;
 
 }

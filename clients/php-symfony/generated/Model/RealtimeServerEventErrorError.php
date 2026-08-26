@@ -51,7 +51,7 @@ class RealtimeServerEventErrorError
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $type = null;
@@ -62,7 +62,7 @@ class RealtimeServerEventErrorError
      * @var string|null
      * @SerializedName("code")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $code = null;
 
@@ -72,7 +72,7 @@ class RealtimeServerEventErrorError
      * @var string|null
      * @SerializedName("message")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $message = null;
@@ -83,7 +83,7 @@ class RealtimeServerEventErrorError
      * @var string|null
      * @SerializedName("param")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $param = null;
 
@@ -93,7 +93,7 @@ class RealtimeServerEventErrorError
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $eventId = null;
 
@@ -123,12 +123,12 @@ class RealtimeServerEventErrorError
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of error (e.g., \"invalid_request_error\", \"server_error\").
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of error (e.g., \"invalid_request_error\", \"server_error\").
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -150,12 +150,12 @@ class RealtimeServerEventErrorError
     }
 
     /**
-    * Sets code.
-    *
-    * @param string|null $code  Error code, if any.
-    *
-    * @return $this
-    */
+     * Sets code.
+     *
+     * @param string|null $code  Error code, if any.
+     *
+     * @return $this
+     */
     public function setCode(?string $code = null): self
     {
         $this->code = $code;
@@ -177,12 +177,12 @@ class RealtimeServerEventErrorError
     }
 
     /**
-    * Sets message.
-    *
-    * @param string|null $message  A human-readable error message.
-    *
-    * @return $this
-    */
+     * Sets message.
+     *
+     * @param string|null $message  A human-readable error message.
+     *
+     * @return $this
+     */
     public function setMessage(?string $message): self
     {
         $this->message = $message;
@@ -204,12 +204,12 @@ class RealtimeServerEventErrorError
     }
 
     /**
-    * Sets param.
-    *
-    * @param string|null $param  Parameter related to the error, if any.
-    *
-    * @return $this
-    */
+     * Sets param.
+     *
+     * @param string|null $param  Parameter related to the error, if any.
+     *
+     * @return $this
+     */
     public function setParam(?string $param = null): self
     {
         $this->param = $param;
@@ -231,12 +231,12 @@ class RealtimeServerEventErrorError
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  The event_id of the client event that caused the error, if applicable.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  The event_id of the client event that caused the error, if applicable.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId = null): self
     {
         $this->eventId = $eventId;

@@ -59,9 +59,9 @@ function Initialize-RealtimeServerEventRateLimitsUpdated {
 
 
         $PSO = [PSCustomObject]@{
-            "event_id" = ${EventId}
-            "type" = ${Type}
-            "rate_limits" = ${RateLimits}
+            'event_id' = ${EventId}
+            'type' = ${Type}
+            'rate_limits' = ${RateLimits}
         }
 
 
@@ -99,7 +99,7 @@ function ConvertFrom-JsonToRealtimeServerEventRateLimitsUpdated {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeServerEventRateLimitsUpdated
-        $AllProperties = ("event_id", "type", "rate_limits")
+        $AllProperties = ('event_id', 'type', 'rate_limits')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -110,28 +110,28 @@ function ConvertFrom-JsonToRealtimeServerEventRateLimitsUpdated {
             throw "Error! Empty JSON cannot be serialized due to the required property 'event_id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "event_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'event_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'event_id' missing."
         } else {
-            $EventId = $JsonParameters.PSobject.Properties["event_id"].value
+            $EventId = $JsonParameters.PSobject.Properties['event_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rate_limits"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'rate_limits'))) {
             throw "Error! JSON cannot be serialized due to the required property 'rate_limits' missing."
         } else {
-            $RateLimits = $JsonParameters.PSobject.Properties["rate_limits"].value
+            $RateLimits = $JsonParameters.PSobject.Properties['rate_limits'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "event_id" = ${EventId}
-            "type" = ${Type}
-            "rate_limits" = ${RateLimits}
+            'event_id' = ${EventId}
+            'type' = ${Type}
+            'rate_limits' = ${RateLimits}
         }
 
         return $PSO

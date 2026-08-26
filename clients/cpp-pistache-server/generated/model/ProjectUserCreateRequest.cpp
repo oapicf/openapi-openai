@@ -26,6 +26,8 @@ ProjectUserCreateRequest::ProjectUserCreateRequest()
     
 }
 
+ProjectUserCreateRequest::~ProjectUserCreateRequest() = default;
+
 void ProjectUserCreateRequest::validate() const
 {
     std::stringstream msg;

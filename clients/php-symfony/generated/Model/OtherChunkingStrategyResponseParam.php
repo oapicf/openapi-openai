@@ -51,7 +51,7 @@ class OtherChunkingStrategyResponseParam
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['other'])]
     #[Assert\Type("string")]
@@ -79,12 +79,12 @@ class OtherChunkingStrategyResponseParam
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `other`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `other`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;

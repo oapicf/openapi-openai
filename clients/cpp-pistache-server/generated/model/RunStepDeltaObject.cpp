@@ -26,6 +26,8 @@ RunStepDeltaObject::RunStepDeltaObject()
     
 }
 
+RunStepDeltaObject::~RunStepDeltaObject() = default;
+
 void RunStepDeltaObject::validate() const
 {
     std::stringstream msg;

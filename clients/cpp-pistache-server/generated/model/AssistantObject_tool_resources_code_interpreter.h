@@ -33,7 +33,7 @@ class  AssistantObject_tool_resources_code_interpreter
 {
 public:
     AssistantObject_tool_resources_code_interpreter();
-    virtual ~AssistantObject_tool_resources_code_interpreter() = default;
+    virtual ~AssistantObject_tool_resources_code_interpreter();
 
 
     /// <summary>

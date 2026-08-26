@@ -37,9 +37,9 @@ class CreateEmbeddingRequest(BaseModel):
     """ # noqa: E501
     input: CreateEmbeddingRequestInput
     model: CreateEmbeddingRequestModel
-    encoding_format: Optional[StrictStr] = Field(default='float', description="The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).")
+    encoding_format: Optional[StrictStr] = Field(default='float', description="The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).", json_schema_extra={"examples": ["float"]})
     dimensions: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(default=None, description="The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. ")
-    user: Optional[StrictStr] = Field(default=None, description="A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ")
+    user: Optional[StrictStr] = Field(default=None, description="A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ", json_schema_extra={"examples": ["user-1234"]})
     __properties: ClassVar[List[str]] = ["input", "model", "encoding_format", "dimensions", "user"]
 
     @field_validator('encoding_format')

@@ -28,6 +28,8 @@ ProjectUserListResponse::ProjectUserListResponse()
     
 }
 
+ProjectUserListResponse::~ProjectUserListResponse() = default;
+
 void ProjectUserListResponse::validate() const
 {
     std::stringstream msg;

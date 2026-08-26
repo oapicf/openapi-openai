@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -15,20 +16,20 @@ import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use &#x60;developer&#x60; messages for this purpose instead. 
  */
 
 @Schema(name = "ChatCompletionRequestSystemMessage", description = "Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ChatCompletionRequestSystemMessage implements ChatCompletionRequestMessage, FineTuneChatRequestInputMessagesInner {
 
   private ChatCompletionRequestSystemMessageContent content;
@@ -68,6 +69,7 @@ public class ChatCompletionRequestSystemMessage implements ChatCompletionRequest
 
   private RoleEnum role;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String name;
 
   public ChatCompletionRequestSystemMessage() {
@@ -98,6 +100,7 @@ public class ChatCompletionRequestSystemMessage implements ChatCompletionRequest
     return content;
   }
 
+  @JsonProperty("content")
   public void setContent(ChatCompletionRequestSystemMessageContent content) {
     this.content = content;
   }
@@ -118,6 +121,7 @@ public class ChatCompletionRequestSystemMessage implements ChatCompletionRequest
     return role;
   }
 
+  @JsonProperty("role")
   public void setRole(RoleEnum role) {
     this.role = role;
   }
@@ -138,6 +142,7 @@ public class ChatCompletionRequestSystemMessage implements ChatCompletionRequest
     return name;
   }
 
+  @JsonProperty("name")
   public void setName(@Nullable String name) {
     this.name = name;
   }
@@ -176,11 +181,8 @@ public class ChatCompletionRequestSystemMessage implements ChatCompletionRequest
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

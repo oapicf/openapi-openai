@@ -18,7 +18,7 @@ case class ChatCompletionRequestToolMessage(
   content: ChatCompletionRequestToolMessageContent,
   /* Tool call that this message is responding to. */
   toolCallId: String
-)
+) extends FineTuneChatRequestInputMessagesInner
 
 object ChatCompletionRequestToolMessageEnums {
 

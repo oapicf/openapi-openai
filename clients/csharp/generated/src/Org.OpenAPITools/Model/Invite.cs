@@ -322,7 +322,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The Unix timestamp (in seconds) of when the invite was accepted.</value>
         [JsonPropertyName("accepted_at")]
-        public int? AcceptedAt { get { return this.AcceptedAtOption; } set { this.AcceptedAtOption = new(value); } }
+        public int? AcceptedAt { get { return this.AcceptedAtOption.Value; } set { this.AcceptedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Projects
@@ -336,7 +336,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The projects that were granted membership upon acceptance of the invite.</value>
         [JsonPropertyName("projects")]
-        public List<InviteProjectsInner>? Projects { get { return this.ProjectsOption; } set { this.ProjectsOption = new(value); } }
+        public List<InviteProjectsInner>? Projects { get { return this.ProjectsOption.Value; } set { this.ProjectsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -373,8 +373,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="Invite" />
     /// </summary>
-    public class InviteJsonConverter : JsonConverter<Invite>
+    public partial class InviteJsonConverter : JsonConverter<Invite>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InviteJsonConverter" /> class.
+        /// </summary>
+        public InviteJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="Invite" />
         /// </summary>

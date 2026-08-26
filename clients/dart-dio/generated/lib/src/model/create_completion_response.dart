@@ -167,8 +167,9 @@ class _$CreateCompletionResponseSerializer implements PrimitiveSerializer<Create
         case r'system_fingerprint':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.systemFingerprint = valueDes;
           break;
         case r'object':
@@ -181,8 +182,9 @@ class _$CreateCompletionResponseSerializer implements PrimitiveSerializer<Create
         case r'usage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CompletionUsage),
-          ) as CompletionUsage;
+            specifiedType: const FullType.nullable(CompletionUsage),
+          ) as CompletionUsage?;
+          if (valueDes == null) continue;
           result.usage.replace(valueDes);
           break;
         default:

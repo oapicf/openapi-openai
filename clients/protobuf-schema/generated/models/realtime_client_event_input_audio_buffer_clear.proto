@@ -25,7 +25,7 @@ message RealtimeClientEventInputAudioBufferClear {
     TYPE_INPUT_AUDIO_BUFFER_CLEAR = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
 }
 

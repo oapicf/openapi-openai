@@ -47,7 +47,7 @@ class CreateFineTuningJobRequest
      * @var CreateFineTuningJobRequestModel|null
      * @SerializedName("model")
      * @Type("OpenAPI\Server\Model\CreateFineTuningJobRequestModel")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\CreateFineTuningJobRequestModel")]
@@ -59,7 +59,7 @@ class CreateFineTuningJobRequest
      * @var string|null
      * @SerializedName("training_file")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $trainingFile = null;
@@ -68,7 +68,7 @@ class CreateFineTuningJobRequest
      * @var CreateFineTuningJobRequestHyperparameters|null
      * @SerializedName("hyperparameters")
      * @Type("OpenAPI\Server\Model\CreateFineTuningJobRequestHyperparameters")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateFineTuningJobRequestHyperparameters")]
     protected ?CreateFineTuningJobRequestHyperparameters $hyperparameters = null;
 
@@ -78,7 +78,7 @@ class CreateFineTuningJobRequest
      * @var string|null
      * @SerializedName("suffix")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     #[Assert\Length(max: 64)]
     #[Assert\Length(min: 1)]
@@ -90,7 +90,7 @@ class CreateFineTuningJobRequest
      * @var string|null
      * @SerializedName("validation_file")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $validationFile = null;
 
@@ -100,7 +100,7 @@ class CreateFineTuningJobRequest
      * @var CreateFineTuningJobRequestIntegrationsInner[]|null
      * @SerializedName("integrations")
      * @Type("array<OpenAPI\Server\Model\CreateFineTuningJobRequestIntegrationsInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\CreateFineTuningJobRequestIntegrationsInner"),
     ])]
@@ -112,7 +112,7 @@ class CreateFineTuningJobRequest
      * @var int|null
      * @SerializedName("seed")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(0)]
     #[Assert\LessThanOrEqual(2147483647)]
@@ -122,7 +122,7 @@ class CreateFineTuningJobRequest
      * @var FineTuneMethod|null
      * @SerializedName("method")
      * @Type("OpenAPI\Server\Model\FineTuneMethod")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\FineTuneMethod")]
     protected ?FineTuneMethod $method = null;
 
@@ -155,12 +155,12 @@ class CreateFineTuningJobRequest
     }
 
     /**
-    * Sets model.
-    *
-    * @param CreateFineTuningJobRequestModel|null $model
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param CreateFineTuningJobRequestModel|null $model
+     *
+     * @return $this
+     */
     public function setModel(?CreateFineTuningJobRequestModel $model): self
     {
         $this->model = $model;
@@ -182,12 +182,12 @@ class CreateFineTuningJobRequest
     }
 
     /**
-    * Sets trainingFile.
-    *
-    * @param string|null $trainingFile  The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
-    *
-    * @return $this
-    */
+     * Sets trainingFile.
+     *
+     * @param string|null $trainingFile  The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+     *
+     * @return $this
+     */
     public function setTrainingFile(?string $trainingFile): self
     {
         $this->trainingFile = $trainingFile;
@@ -209,12 +209,12 @@ class CreateFineTuningJobRequest
     }
 
     /**
-    * Sets hyperparameters.
-    *
-    * @param CreateFineTuningJobRequestHyperparameters|null $hyperparameters
-    *
-    * @return $this
-    */
+     * Sets hyperparameters.
+     *
+     * @param CreateFineTuningJobRequestHyperparameters|null $hyperparameters
+     *
+     * @return $this
+     */
     public function setHyperparameters(?CreateFineTuningJobRequestHyperparameters $hyperparameters = null): self
     {
         $this->hyperparameters = $hyperparameters;
@@ -236,12 +236,12 @@ class CreateFineTuningJobRequest
     }
 
     /**
-    * Sets suffix.
-    *
-    * @param string|null $suffix  A string of up to 64 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`.
-    *
-    * @return $this
-    */
+     * Sets suffix.
+     *
+     * @param string|null $suffix  A string of up to 64 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`.
+     *
+     * @return $this
+     */
     public function setSuffix(?string $suffix = null): self
     {
         $this->suffix = $suffix;
@@ -263,12 +263,12 @@ class CreateFineTuningJobRequest
     }
 
     /**
-    * Sets validationFile.
-    *
-    * @param string|null $validationFile  The ID of an uploaded file that contains validation data.  If you provide this file, the data is used to generate validation metrics periodically during fine-tuning. These metrics can be viewed in the fine-tuning results file. The same data should not be present in both train and validation files.  Your dataset must be formatted as a JSONL file. You must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
-    *
-    * @return $this
-    */
+     * Sets validationFile.
+     *
+     * @param string|null $validationFile  The ID of an uploaded file that contains validation data.  If you provide this file, the data is used to generate validation metrics periodically during fine-tuning. These metrics can be viewed in the fine-tuning results file. The same data should not be present in both train and validation files.  Your dataset must be formatted as a JSONL file. You must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+     *
+     * @return $this
+     */
     public function setValidationFile(?string $validationFile = null): self
     {
         $this->validationFile = $validationFile;
@@ -290,12 +290,12 @@ class CreateFineTuningJobRequest
     }
 
     /**
-    * Sets integrations.
-    *
-    * @param CreateFineTuningJobRequestIntegrationsInner[]|null $integrations  A list of integrations to enable for your fine-tuning job.
-    *
-    * @return $this
-    */
+     * Sets integrations.
+     *
+     * @param CreateFineTuningJobRequestIntegrationsInner[]|null $integrations  A list of integrations to enable for your fine-tuning job.
+     *
+     * @return $this
+     */
     public function setIntegrations(?array $integrations = null): self
     {
         $this->integrations = $integrations;
@@ -317,12 +317,12 @@ class CreateFineTuningJobRequest
     }
 
     /**
-    * Sets seed.
-    *
-    * @param int|null $seed  The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed is not specified, one will be generated for you.
-    *
-    * @return $this
-    */
+     * Sets seed.
+     *
+     * @param int|null $seed  The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed is not specified, one will be generated for you.
+     *
+     * @return $this
+     */
     public function setSeed(?int $seed = null): self
     {
         $this->seed = $seed;
@@ -344,12 +344,12 @@ class CreateFineTuningJobRequest
     }
 
     /**
-    * Sets method.
-    *
-    * @param FineTuneMethod|null $method
-    *
-    * @return $this
-    */
+     * Sets method.
+     *
+     * @param FineTuneMethod|null $method
+     *
+     * @return $this
+     */
     public function setMethod(?FineTuneMethod $method = null): self
     {
         $this->method = $method;

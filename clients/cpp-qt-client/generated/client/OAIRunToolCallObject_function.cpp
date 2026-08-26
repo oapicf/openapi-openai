@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRunToolCallObject_function::OAIRunToolCallObject_function(QString json) {
+OAIRunToolCallObject_function::OAIRunToolCallObject_function(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIRunToolCallObject_function::initializeModel() {
     m_arguments_isValid = false;
 }
 
-void OAIRunToolCallObject_function::fromJson(QString jsonString) {
+void OAIRunToolCallObject_function::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

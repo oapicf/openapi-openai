@@ -37,7 +37,7 @@ class  AssistantObject
 {
 public:
     AssistantObject();
-    virtual ~AssistantObject() = default;
+    virtual ~AssistantObject();
 
 
     /// <summary>

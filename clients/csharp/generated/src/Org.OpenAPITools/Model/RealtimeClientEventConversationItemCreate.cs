@@ -128,7 +128,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Optional client-generated ID used to identify this event.</value>
         [JsonPropertyName("event_id")]
-        public string? EventId { get { return this.EventIdOption; } set { this.EventIdOption = new(value); } }
+        public string? EventId { get { return this.EventIdOption.Value; } set { this.EventIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PreviousItemId
@@ -142,7 +142,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The ID of the preceding item after which the new item will be inserted.  If not set, the new item will be appended to the end of the conversation.  If set, it allows an item to be inserted mid-conversation. If the ID  cannot be found, an error will be returned and the item will not be added. </value>
         [JsonPropertyName("previous_item_id")]
-        public string? PreviousItemId { get { return this.PreviousItemIdOption; } set { this.PreviousItemIdOption = new(value); } }
+        public string? PreviousItemId { get { return this.PreviousItemIdOption.Value; } set { this.PreviousItemIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -174,8 +174,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeClientEventConversationItemCreate" />
     /// </summary>
-    public class RealtimeClientEventConversationItemCreateJsonConverter : JsonConverter<RealtimeClientEventConversationItemCreate>
+    public partial class RealtimeClientEventConversationItemCreateJsonConverter : JsonConverter<RealtimeClientEventConversationItemCreate>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeClientEventConversationItemCreateJsonConverter" /> class.
+        /// </summary>
+        public RealtimeClientEventConversationItemCreateJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeClientEventConversationItemCreate" />
         /// </summary>

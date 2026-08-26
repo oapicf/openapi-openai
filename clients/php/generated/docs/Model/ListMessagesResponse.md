@@ -1,4 +1,4 @@
-# # ListMessagesResponse
+# ListMessagesResponse
 
 ## Properties
 

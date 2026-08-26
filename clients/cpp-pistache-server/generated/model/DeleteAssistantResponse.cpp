@@ -27,6 +27,8 @@ DeleteAssistantResponse::DeleteAssistantResponse()
     
 }
 
+DeleteAssistantResponse::~DeleteAssistantResponse() = default;
+
 void DeleteAssistantResponse::validate() const
 {
     std::stringstream msg;

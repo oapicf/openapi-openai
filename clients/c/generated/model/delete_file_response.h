@@ -29,7 +29,7 @@ openai_api_delete_file_response_OBJECT_e delete_file_response_object_FromString(
 typedef struct delete_file_response_t {
     char *id; // string
     openai_api_delete_file_response_OBJECT_e object; //enum
-    int deleted; //boolean
+    int *deleted; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } delete_file_response_t;
@@ -37,7 +37,7 @@ typedef struct delete_file_response_t {
 __attribute__((deprecated)) delete_file_response_t *delete_file_response_create(
     char *id,
     openai_api_delete_file_response_OBJECT_e object,
-    int deleted
+    int *deleted
 );
 
 void delete_file_response_free(delete_file_response_t *delete_file_response);

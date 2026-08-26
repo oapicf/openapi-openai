@@ -89,8 +89,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ChunkingStrategyRequestParam" />
     /// </summary>
-    public class ChunkingStrategyRequestParamJsonConverter : JsonConverter<ChunkingStrategyRequestParam>
+    public partial class ChunkingStrategyRequestParamJsonConverter : JsonConverter<ChunkingStrategyRequestParam>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChunkingStrategyRequestParamJsonConverter" /> class.
+        /// </summary>
+        public ChunkingStrategyRequestParamJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ChunkingStrategyRequestParam" />
         /// </summary>

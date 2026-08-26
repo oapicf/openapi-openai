@@ -49,12 +49,12 @@ static create_batch_request_t *create_batch_request_create_internal(
     if (!create_batch_request_local_var) {
         return NULL;
     }
+    memset(create_batch_request_local_var, 0, sizeof(create_batch_request_t));
+    create_batch_request_local_var->_library_owned = 1;
     create_batch_request_local_var->input_file_id = input_file_id;
     create_batch_request_local_var->endpoint = endpoint;
     create_batch_request_local_var->completion_window = completion_window;
     create_batch_request_local_var->metadata = metadata;
-
-    create_batch_request_local_var->_library_owned = 1;
     return create_batch_request_local_var;
 }
 
@@ -64,12 +64,15 @@ __attribute__((deprecated)) create_batch_request_t *create_batch_request_create(
     openai_api_create_batch_request_COMPLETIONWINDOW_e completion_window,
     list_t* metadata
     ) {
-    return create_batch_request_create_internal (
+    create_batch_request_t *result = create_batch_request_create_internal (
         input_file_id,
         endpoint,
         completion_window,
         metadata
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_batch_request_free(create_batch_request_t *create_batch_request) {
@@ -161,6 +164,8 @@ create_batch_request_t *create_batch_request_parseFromJSON(cJSON *create_batch_r
 
     create_batch_request_t *create_batch_request_local_var = NULL;
 
+    char *input_file_id_local_str = NULL;
+
     // define the local map for create_batch_request->metadata
     list_t *metadataList = NULL;
 
@@ -242,15 +247,25 @@ create_batch_request_t *create_batch_request_parseFromJSON(cJSON *create_batch_r
     }
 
 
+    if (input_file_id && !cJSON_IsNull(input_file_id)) input_file_id_local_str = strdup(input_file_id->valuestring);
+
     create_batch_request_local_var = create_batch_request_create_internal (
-        strdup(input_file_id->valuestring),
+        input_file_id_local_str,
         endpointVariable,
         completion_windowVariable,
         metadata ? metadataList : NULL
         );
 
+    if (!create_batch_request_local_var) {
+        goto end;
+    }
+
     return create_batch_request_local_var;
 end:
+    if (input_file_id_local_str) {
+        free(input_file_id_local_str);
+        input_file_id_local_str = NULL;
+    }
     if (metadataList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, metadataList) {

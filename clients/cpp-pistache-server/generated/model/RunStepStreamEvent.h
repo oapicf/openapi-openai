@@ -40,7 +40,7 @@ class  RunStepStreamEvent
 {
 public:
     RunStepStreamEvent();
-    virtual ~RunStepStreamEvent() = default;
+    virtual ~RunStepStreamEvent();
 
 
     /// <summary>

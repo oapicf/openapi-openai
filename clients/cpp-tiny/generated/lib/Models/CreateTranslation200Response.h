@@ -55,28 +55,28 @@ public:
 
 	/*! \brief Set The translated text.
 	 */
-	void setText(std::string  text);
+	void setText(std::string text);
 	/*! \brief Get The language of the output translation (always `english`).
 	 */
 	std::string getLanguage();
 
 	/*! \brief Set The language of the output translation (always `english`).
 	 */
-	void setLanguage(std::string  language);
+	void setLanguage(std::string language);
 	/*! \brief Get The duration of the input audio.
 	 */
 	std::string getDuration();
 
 	/*! \brief Set The duration of the input audio.
 	 */
-	void setDuration(std::string  duration);
+	void setDuration(std::string duration);
 	/*! \brief Get Segments of the translated text and their corresponding details.
 	 */
 	std::list<TranscriptionSegment> getSegments();
 
 	/*! \brief Set Segments of the translated text and their corresponding details.
 	 */
-	void setSegments(std::list <TranscriptionSegment> segments);
+	void setSegments(std::list<TranscriptionSegment> segments);
 
 
     private:

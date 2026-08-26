@@ -86,7 +86,7 @@ CreateVectorStoreRequest_chunking_strategy::getType()
 }
 
 void
-CreateVectorStoreRequest_chunking_strategy::setType(std::string  type)
+CreateVectorStoreRequest_chunking_strategy::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ CreateVectorStoreRequest_chunking_strategy::getRStatic()
 }
 
 void
-CreateVectorStoreRequest_chunking_strategy::setRStatic(StaticChunkingStrategy  r_static)
+CreateVectorStoreRequest_chunking_strategy::setRStatic(StaticChunkingStrategy r_static)
 {
 	this->r_static = r_static;
 }

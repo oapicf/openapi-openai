@@ -1,6 +1,9 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -15,9 +18,6 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * Scaling factor for the learning rate. A smaller learning rate may be useful to avoid overfitting. 
  */
-class CreateFineTuningJobRequestHyperparametersLearningRateMultiplier(
-
-) {
-
+sealed interface CreateFineTuningJobRequestHyperparametersLearningRateMultiplier {
 }
 

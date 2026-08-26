@@ -29,7 +29,7 @@ import {
 export interface ResponseFormatJsonSchema {
     /**
      * The type of response format being defined: `json_schema`
-     * @type {string}
+     * @type {ResponseFormatJsonSchemaTypeEnum}
      * @memberof ResponseFormatJsonSchema
      */
     type: ResponseFormatJsonSchemaTypeEnum;
@@ -56,7 +56,9 @@ export type ResponseFormatJsonSchemaTypeEnum = typeof ResponseFormatJsonSchemaTy
  */
 export function instanceOfResponseFormatJsonSchema(value: object): value is ResponseFormatJsonSchema {
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('jsonSchema' in value) || value['jsonSchema'] === undefined) return false;
+    if (value['type'] !== 'json_schema') return false;
+    
+    if ((!('jsonSchema' in (value as Record<string, any>)) && !('json_schema' in (value as Record<string, any>))) || ((value as Record<string, any>)['jsonSchema'] === undefined && (value as Record<string, any>)['json_schema'] === undefined)) return false;
     return true;
 }
 

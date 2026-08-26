@@ -132,7 +132,7 @@ namespace Org.OpenAPITools.Model
         /// <value>The format to return the embeddings in. Can be either &#x60;float&#x60; or [&#x60;base64&#x60;](https://pypi.org/project/pybase64/).</value>
         /* <example>float</example> */
         [JsonPropertyName("encoding_format")]
-        public EncodingFormatEnum? EncodingFormat { get { return this.EncodingFormatOption; } set { this.EncodingFormatOption = new(value); } }
+        public EncodingFormatEnum? EncodingFormat { get { return this.EncodingFormatOption.Value; } set { this.EncodingFormatOption = new(value); } }
 
         /// <summary>
         /// Gets or Sets Input
@@ -158,7 +158,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The number of dimensions the resulting output embeddings should have. Only supported in &#x60;text-embedding-3&#x60; and later models. </value>
         [JsonPropertyName("dimensions")]
-        public int? Dimensions { get { return this.DimensionsOption; } set { this.DimensionsOption = new(value); } }
+        public int? Dimensions { get { return this.DimensionsOption.Value; } set { this.DimensionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of User
@@ -173,7 +173,7 @@ namespace Org.OpenAPITools.Model
         /// <value>A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). </value>
         /* <example>user-1234</example> */
         [JsonPropertyName("user")]
-        public string? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public string? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -212,8 +212,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateEmbeddingRequest" />
     /// </summary>
-    public class CreateEmbeddingRequestJsonConverter : JsonConverter<CreateEmbeddingRequest>
+    public partial class CreateEmbeddingRequestJsonConverter : JsonConverter<CreateEmbeddingRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateEmbeddingRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateEmbeddingRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateEmbeddingRequest" />
         /// </summary>

@@ -32,7 +32,7 @@ class  Error
 {
 public:
     Error();
-    virtual ~Error() = default;
+    virtual ~Error();
 
 
     /// <summary>

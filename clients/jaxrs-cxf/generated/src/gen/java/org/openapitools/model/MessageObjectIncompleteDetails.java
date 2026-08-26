@@ -110,10 +110,7 @@ CONTENT_FILTER(String.valueOf("content_filter")), MAX_TOKENS(String.valueOf("max
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

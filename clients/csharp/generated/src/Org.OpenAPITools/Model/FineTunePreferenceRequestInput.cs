@@ -59,7 +59,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Input
         /// </summary>
         [JsonPropertyName("input")]
-        public FineTunePreferenceRequestInputInput? Input { get { return this.InputOption; } set { this.InputOption = new(value); } }
+        public FineTunePreferenceRequestInputInput? Input { get { return this.InputOption.Value; } set { this.InputOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PreferredCompletion
@@ -73,7 +73,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The preferred completion message for the output.</value>
         [JsonPropertyName("preferred_completion")]
-        public List<FineTunePreferenceRequestInputPreferredCompletionInner>? PreferredCompletion { get { return this.PreferredCompletionOption; } set { this.PreferredCompletionOption = new(value); } }
+        public List<FineTunePreferenceRequestInputPreferredCompletionInner>? PreferredCompletion { get { return this.PreferredCompletionOption.Value; } set { this.PreferredCompletionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of NonPreferredCompletion
@@ -87,7 +87,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The non-preferred completion message for the output.</value>
         [JsonPropertyName("non_preferred_completion")]
-        public List<FineTunePreferenceRequestInputPreferredCompletionInner>? NonPreferredCompletion { get { return this.NonPreferredCompletionOption; } set { this.NonPreferredCompletionOption = new(value); } }
+        public List<FineTunePreferenceRequestInputPreferredCompletionInner>? NonPreferredCompletion { get { return this.NonPreferredCompletionOption.Value; } set { this.NonPreferredCompletionOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,8 +118,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTunePreferenceRequestInput" />
     /// </summary>
-    public class FineTunePreferenceRequestInputJsonConverter : JsonConverter<FineTunePreferenceRequestInput>
+    public partial class FineTunePreferenceRequestInputJsonConverter : JsonConverter<FineTunePreferenceRequestInput>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTunePreferenceRequestInputJsonConverter" /> class.
+        /// </summary>
+        public FineTunePreferenceRequestInputJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTunePreferenceRequestInput" />
         /// </summary>

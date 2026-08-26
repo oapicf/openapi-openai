@@ -71,10 +71,10 @@ function Initialize-RunStepDetailsToolCallsFileSearchResultObject {
 
 
         $PSO = [PSCustomObject]@{
-            "file_id" = ${FileId}
-            "file_name" = ${FileName}
-            "score" = ${Score}
-            "content" = ${Content}
+            'file_id' = ${FileId}
+            'file_name' = ${FileName}
+            'score' = ${Score}
+            'content' = ${Content}
         }
 
 
@@ -112,7 +112,7 @@ function ConvertFrom-JsonToRunStepDetailsToolCallsFileSearchResultObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDetailsToolCallsFileSearchResultObject
-        $AllProperties = ("file_id", "file_name", "score", "content")
+        $AllProperties = ('file_id', 'file_name', 'score', 'content')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -123,35 +123,35 @@ function ConvertFrom-JsonToRunStepDetailsToolCallsFileSearchResultObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'file_id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'file_id' missing."
         } else {
-            $FileId = $JsonParameters.PSobject.Properties["file_id"].value
+            $FileId = $JsonParameters.PSobject.Properties['file_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_name"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_name'))) {
             throw "Error! JSON cannot be serialized due to the required property 'file_name' missing."
         } else {
-            $FileName = $JsonParameters.PSobject.Properties["file_name"].value
+            $FileName = $JsonParameters.PSobject.Properties['file_name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "score"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'score'))) {
             throw "Error! JSON cannot be serialized due to the required property 'score' missing."
         } else {
-            $Score = $JsonParameters.PSobject.Properties["score"].value
+            $Score = $JsonParameters.PSobject.Properties['score'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'content'))) { #optional property not found
             $Content = $null
         } else {
-            $Content = $JsonParameters.PSobject.Properties["content"].value
+            $Content = $JsonParameters.PSobject.Properties['content'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "file_id" = ${FileId}
-            "file_name" = ${FileName}
-            "score" = ${Score}
-            "content" = ${Content}
+            'file_id' = ${FileId}
+            'file_name' = ${FileName}
+            'score' = ${Score}
+            'content' = ${Content}
         }
 
         return $PSO

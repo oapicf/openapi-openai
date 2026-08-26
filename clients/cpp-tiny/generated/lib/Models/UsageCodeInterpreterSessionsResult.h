@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get The number of code interpreter sessions.
 	 */
 	int getSessions();
 
 	/*! \brief Set The number of code interpreter sessions.
 	 */
-	void setSessions(int  sessions);
+	void setSessions(int sessions);
 	/*! \brief Get When `group_by=project_id`, this field provides the project ID of the grouped usage result.
 	 */
 	std::string getProjectId();
 
 	/*! \brief Set When `group_by=project_id`, this field provides the project ID of the grouped usage result.
 	 */
-	void setProjectId(std::string  project_id);
+	void setProjectId(std::string project_id);
 
 
     private:

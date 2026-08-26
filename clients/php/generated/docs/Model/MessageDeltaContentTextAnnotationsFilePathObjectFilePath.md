@@ -1,4 +1,4 @@
-# # MessageDeltaContentTextAnnotationsFilePathObjectFilePath
+# MessageDeltaContentTextAnnotationsFilePathObjectFilePath
 
 ## Properties
 

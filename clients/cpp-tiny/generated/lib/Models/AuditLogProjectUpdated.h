@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set The project ID.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	AuditLog_project_updated_changes_requested getChangesRequested();
 
 	/*! \brief Set 
 	 */
-	void setChangesRequested(AuditLog_project_updated_changes_requested  changes_requested);
+	void setChangesRequested(AuditLog_project_updated_changes_requested changes_requested);
 
 
     private:

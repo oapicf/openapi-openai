@@ -8,7 +8,7 @@
 static audit_log_t *audit_log_create_internal(
     char *id,
     openai_api_audit_log_event_type__e type,
-    int effective_at,
+    int *effective_at,
     audit_log_project_t *project,
     audit_log_actor_t *actor,
     audit_log_api_key_created_t *api_key_created,
@@ -36,6 +36,8 @@ static audit_log_t *audit_log_create_internal(
     if (!audit_log_local_var) {
         return NULL;
     }
+    memset(audit_log_local_var, 0, sizeof(audit_log_t));
+    audit_log_local_var->_library_owned = 1;
     audit_log_local_var->id = id;
     audit_log_local_var->type = type;
     audit_log_local_var->effective_at = effective_at;
@@ -61,15 +63,13 @@ static audit_log_t *audit_log_create_internal(
     audit_log_local_var->user_added = user_added;
     audit_log_local_var->user_updated = user_updated;
     audit_log_local_var->user_deleted = user_deleted;
-
-    audit_log_local_var->_library_owned = 1;
     return audit_log_local_var;
 }
 
 __attribute__((deprecated)) audit_log_t *audit_log_create(
     char *id,
     openai_api_audit_log_event_type__e type,
-    int effective_at,
+    int *effective_at,
     audit_log_project_t *project,
     audit_log_actor_t *actor,
     audit_log_api_key_created_t *api_key_created,
@@ -93,10 +93,15 @@ __attribute__((deprecated)) audit_log_t *audit_log_create(
     audit_log_user_updated_t *user_updated,
     audit_log_user_deleted_t *user_deleted
     ) {
-    return audit_log_create_internal (
+    int *effective_at_copy = NULL;
+    if (effective_at) {
+        effective_at_copy = malloc(sizeof(int));
+        if (effective_at_copy) *effective_at_copy = *effective_at;
+    }
+    audit_log_t *result = audit_log_create_internal (
         id,
         type,
-        effective_at,
+        effective_at_copy,
         project,
         actor,
         api_key_created,
@@ -120,6 +125,10 @@ __attribute__((deprecated)) audit_log_t *audit_log_create(
         user_updated,
         user_deleted
         );
+    if (!result) {
+        free(effective_at_copy);
+    }
+    return result;
 }
 
 void audit_log_free(audit_log_t *audit_log) {
@@ -134,6 +143,10 @@ void audit_log_free(audit_log_t *audit_log) {
     if (audit_log->id) {
         free(audit_log->id);
         audit_log->id = NULL;
+    }
+    if (audit_log->effective_at) {
+        free(audit_log->effective_at);
+        audit_log->effective_at = NULL;
     }
     if (audit_log->project) {
         audit_log_project_free(audit_log->project);
@@ -256,7 +269,7 @@ cJSON *audit_log_convertToJSON(audit_log_t *audit_log) {
     if (!audit_log->effective_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "effective_at", audit_log->effective_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "effective_at", *audit_log->effective_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -559,8 +572,13 @@ audit_log_t *audit_log_parseFromJSON(cJSON *audit_logJSON){
 
     audit_log_t *audit_log_local_var = NULL;
 
+    char *id_local_str = NULL;
+
     // define the local variable for audit_log->type
     openai_api_audit_log_event_type__e type_local_nonprim = 0;
+
+    // define the local variable for audit_log->effective_at
+    int *effective_at_local_var = NULL;
 
     // define the local variable for audit_log->project
     audit_log_project_t *project_local_nonprim = NULL;
@@ -669,6 +687,12 @@ audit_log_t *audit_log_parseFromJSON(cJSON *audit_logJSON){
     {
     goto end; //Numeric
     }
+    effective_at_local_var = malloc(sizeof(int));
+    if(!effective_at_local_var)
+    {
+        goto end;
+    }
+    *effective_at_local_var = effective_at->valuedouble;
 
     // audit_log->project
     cJSON *project = cJSON_GetObjectItemCaseSensitive(audit_logJSON, "project");
@@ -872,10 +896,12 @@ audit_log_t *audit_log_parseFromJSON(cJSON *audit_logJSON){
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     audit_log_local_var = audit_log_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         type_local_nonprim,
-        effective_at->valuedouble,
+        effective_at_local_var,
         project ? project_local_nonprim : NULL,
         actor_local_nonprim,
         api_key_created ? api_key_created_local_nonprim : NULL,
@@ -900,10 +926,22 @@ audit_log_t *audit_log_parseFromJSON(cJSON *audit_logJSON){
         user_deleted ? user_deleted_local_nonprim : NULL
         );
 
+    if (!audit_log_local_var) {
+        goto end;
+    }
+
     return audit_log_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     if (type_local_nonprim) {
         type_local_nonprim = 0;
+    }
+    if (effective_at_local_var) {
+        free(effective_at_local_var);
+        effective_at_local_var = NULL;
     }
     if (project_local_nonprim) {
         audit_log_project_free(project_local_nonprim);

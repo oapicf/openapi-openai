@@ -62,7 +62,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ChatCompletionRequestUserMessageContentPart extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(ChatCompletionRequestUserMessageContentPart.class.getName());
 
@@ -234,6 +234,7 @@ public class ChatCompletionRequestUserMessageContentPart extends AbstractOpenApi
      * @return The actual instance of `ChatCompletionRequestMessageContentPartText`
      * @throws ClassCastException if the instance is not `ChatCompletionRequestMessageContentPartText`
      */
+    @SuppressWarnings("unchecked")
     public ChatCompletionRequestMessageContentPartText getChatCompletionRequestMessageContentPartText() throws ClassCastException {
         return (ChatCompletionRequestMessageContentPartText)super.getActualInstance();
     }
@@ -245,6 +246,7 @@ public class ChatCompletionRequestUserMessageContentPart extends AbstractOpenApi
      * @return The actual instance of `ChatCompletionRequestMessageContentPartImage`
      * @throws ClassCastException if the instance is not `ChatCompletionRequestMessageContentPartImage`
      */
+    @SuppressWarnings("unchecked")
     public ChatCompletionRequestMessageContentPartImage getChatCompletionRequestMessageContentPartImage() throws ClassCastException {
         return (ChatCompletionRequestMessageContentPartImage)super.getActualInstance();
     }
@@ -256,6 +258,7 @@ public class ChatCompletionRequestUserMessageContentPart extends AbstractOpenApi
      * @return The actual instance of `ChatCompletionRequestMessageContentPartAudio`
      * @throws ClassCastException if the instance is not `ChatCompletionRequestMessageContentPartAudio`
      */
+    @SuppressWarnings("unchecked")
     public ChatCompletionRequestMessageContentPartAudio getChatCompletionRequestMessageContentPartAudio() throws ClassCastException {
         return (ChatCompletionRequestMessageContentPartAudio)super.getActualInstance();
     }

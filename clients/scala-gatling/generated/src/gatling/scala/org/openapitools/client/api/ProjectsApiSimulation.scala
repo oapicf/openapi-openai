@@ -207,8 +207,8 @@ class ProjectsApiSimulation extends Simulation {
         .feed(list-project-api-keysPATHFeeder)
         .exec(http("listProjectApiKeys")
         .httpRequest("GET","/organization/projects/${project_id}/api_keys")
-        .queryParam("limit","${limit}")
         .queryParam("after","${after}")
+        .queryParam("limit","${limit}")
 )
 
     // Run scnlistProjectApiKeys with warm up and reach a constant rate for entire duration
@@ -224,9 +224,9 @@ class ProjectsApiSimulation extends Simulation {
         .feed(list-project-rate-limitsPATHFeeder)
         .exec(http("listProjectRateLimits")
         .httpRequest("GET","/organization/projects/${project_id}/rate_limits")
-        .queryParam("before","${before}")
         .queryParam("after","${after}")
         .queryParam("limit","${limit}")
+        .queryParam("before","${before}")
 )
 
     // Run scnlistProjectRateLimits with warm up and reach a constant rate for entire duration
@@ -242,8 +242,8 @@ class ProjectsApiSimulation extends Simulation {
         .feed(list-project-service-accountsPATHFeeder)
         .exec(http("listProjectServiceAccounts")
         .httpRequest("GET","/organization/projects/${project_id}/service_accounts")
-        .queryParam("limit","${limit}")
         .queryParam("after","${after}")
+        .queryParam("limit","${limit}")
 )
 
     // Run scnlistProjectServiceAccounts with warm up and reach a constant rate for entire duration
@@ -259,8 +259,8 @@ class ProjectsApiSimulation extends Simulation {
         .feed(list-project-usersPATHFeeder)
         .exec(http("listProjectUsers")
         .httpRequest("GET","/organization/projects/${project_id}/users")
-        .queryParam("limit","${limit}")
         .queryParam("after","${after}")
+        .queryParam("limit","${limit}")
 )
 
     // Run scnlistProjectUsers with warm up and reach a constant rate for entire duration
@@ -275,9 +275,9 @@ class ProjectsApiSimulation extends Simulation {
         .feed(list-projectsQUERYFeeder)
         .exec(http("listProjects")
         .httpRequest("GET","/organization/projects")
-        .queryParam("limit","${limit}")
-        .queryParam("include_archived","${include_archived}")
         .queryParam("after","${after}")
+        .queryParam("include_archived","${include_archived}")
+        .queryParam("limit","${limit}")
 )
 
     // Run scnlistProjects with warm up and reach a constant rate for entire duration

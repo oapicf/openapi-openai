@@ -23,7 +23,8 @@ type RunStepDetailsToolCallsFileSearchObjectFileSearch struct {
 	Results []RunStepDetailsToolCallsFileSearchResultObject `json:"results,omitempty"`
 }
 
-// AssertRunStepDetailsToolCallsFileSearchObjectFileSearchRequired checks if the required fields are not zero-ed
+// AssertRunStepDetailsToolCallsFileSearchObjectFileSearchRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRunStepDetailsToolCallsFileSearchObjectFileSearchRequired(obj RunStepDetailsToolCallsFileSearchObjectFileSearch) error {
 	if err := AssertRunStepDetailsToolCallsFileSearchRankingOptionsObjectRequired(obj.RankingOptions); err != nil {
 		return err

@@ -49,7 +49,7 @@ class RunStepDetailsToolCallsFileSearchObject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -60,7 +60,7 @@ class RunStepDetailsToolCallsFileSearchObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['file_search'])]
     #[Assert\Type("string")]
@@ -70,7 +70,7 @@ class RunStepDetailsToolCallsFileSearchObject
      * @var RunStepDetailsToolCallsFileSearchObjectFileSearch|null
      * @SerializedName("file_search")
      * @Type("OpenAPI\Server\Model\RunStepDetailsToolCallsFileSearchObjectFileSearch")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunStepDetailsToolCallsFileSearchObjectFileSearch")]
@@ -100,12 +100,12 @@ class RunStepDetailsToolCallsFileSearchObject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The ID of the tool call object.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The ID of the tool call object.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -127,12 +127,12 @@ class RunStepDetailsToolCallsFileSearchObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of tool call. This is always going to be `file_search` for this type of tool call.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of tool call. This is always going to be `file_search` for this type of tool call.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -154,12 +154,12 @@ class RunStepDetailsToolCallsFileSearchObject
     }
 
     /**
-    * Sets fileSearch.
-    *
-    * @param RunStepDetailsToolCallsFileSearchObjectFileSearch|null $fileSearch
-    *
-    * @return $this
-    */
+     * Sets fileSearch.
+     *
+     * @param RunStepDetailsToolCallsFileSearchObjectFileSearch|null $fileSearch
+     *
+     * @return $this
+     */
     public function setFileSearch(?RunStepDetailsToolCallsFileSearchObjectFileSearch $fileSearch): self
     {
         $this->fileSearch = $fileSearch;

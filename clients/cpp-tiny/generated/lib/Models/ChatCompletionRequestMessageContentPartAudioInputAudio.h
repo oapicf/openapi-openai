@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set Base64 encoded audio data.
 	 */
-	void setData(std::string  data);
+	void setData(std::string data);
 	/*! \brief Get The format of the encoded audio data. Currently supports \"wav\" and \"mp3\". 
 	 */
 	std::string getFormat();
 
 	/*! \brief Set The format of the encoded audio data. Currently supports \"wav\" and \"mp3\". 
 	 */
-	void setFormat(std::string  format);
+	void setFormat(std::string format);
 
 
     private:

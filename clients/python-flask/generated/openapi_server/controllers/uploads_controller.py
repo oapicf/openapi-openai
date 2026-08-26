@@ -1,4 +1,4 @@
-import connexion
+import flask
 from typing import Dict
 from typing import Tuple
 from typing import Union
@@ -51,8 +51,8 @@ def complete_upload(upload_id, body):  # noqa: E501
     :rtype: Union[Upload, Tuple[Upload, int], Tuple[Upload, int, Dict[str, str]]
     """
     complete_upload_request = body
-    if connexion.request.is_json:
-        complete_upload_request = CompleteUploadRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        complete_upload_request = CompleteUploadRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -67,6 +67,6 @@ def create_upload(body):  # noqa: E501
     :rtype: Union[Upload, Tuple[Upload, int], Tuple[Upload, int, Dict[str, str]]
     """
     create_upload_request = body
-    if connexion.request.is_json:
-        create_upload_request = CreateUploadRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        create_upload_request = CreateUploadRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'

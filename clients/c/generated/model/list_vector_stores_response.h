@@ -24,7 +24,7 @@ typedef struct list_vector_stores_response_t {
     list_t *data; //nonprimitive container
     char *first_id; // string
     char *last_id; // string
-    int has_more; //boolean
+    int *has_more; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } list_vector_stores_response_t;
@@ -34,7 +34,7 @@ __attribute__((deprecated)) list_vector_stores_response_t *list_vector_stores_re
     list_t *data,
     char *first_id,
     char *last_id,
-    int has_more
+    int *has_more
 );
 
 void list_vector_stores_response_free(list_vector_stores_response_t *list_vector_stores_response);

@@ -106,7 +106,7 @@ DeleteVectorStoreFileResponse::getId()
 }
 
 void
-DeleteVectorStoreFileResponse::setId(std::string  id)
+DeleteVectorStoreFileResponse::setId(std::string id)
 {
 	this->id = id;
 }
@@ -118,7 +118,7 @@ DeleteVectorStoreFileResponse::isDeleted()
 }
 
 void
-DeleteVectorStoreFileResponse::setDeleted(bool  deleted)
+DeleteVectorStoreFileResponse::setDeleted(bool deleted)
 {
 	this->deleted = deleted;
 }
@@ -130,7 +130,7 @@ DeleteVectorStoreFileResponse::getObject()
 }
 
 void
-DeleteVectorStoreFileResponse::setObject(std::string  object)
+DeleteVectorStoreFileResponse::setObject(std::string object)
 {
 	this->object = object;
 }

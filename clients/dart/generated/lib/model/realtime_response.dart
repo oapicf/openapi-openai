@@ -130,10 +130,6 @@ class RealtimeResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeResponse[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
@@ -196,27 +192,28 @@ class RealtimeResponse {
 }
 
 /// The object type, must be `realtime.response`.
-class RealtimeResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeResponseObjectEnum._(this.value);
+enum RealtimeResponseObjectEnum {
+  realtimePeriodResponse._(r'realtime.response'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const realtimePeriodResponse = RealtimeResponseObjectEnum._(r'realtime.response');
-
-  /// List of all possible values in this [enum][RealtimeResponseObjectEnum].
-  static const values = <RealtimeResponseObjectEnum>[
-    realtimePeriodResponse,
-  ];
-
+  /// Returns the instance of [RealtimeResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeResponseObjectEnum? fromJson(dynamic value) => RealtimeResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -238,9 +235,10 @@ class RealtimeResponseObjectEnumTypeTransformer {
 
   const RealtimeResponseObjectEnumTypeTransformer._();
 
-  String encode(RealtimeResponseObjectEnum data) => data.value;
+  String encode(RealtimeResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeResponseObjectEnum.
+  /// Returns the instance of [RealtimeResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -249,6 +247,9 @@ class RealtimeResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'realtime.response': return RealtimeResponseObjectEnum.realtimePeriodResponse;
@@ -261,39 +262,37 @@ class RealtimeResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeResponseObjectEnumTypeTransformer? _instance;
 }
 
 
 /// The final status of the response (`completed`, `cancelled`, `failed`, or  `incomplete`). 
-class RealtimeResponseStatusEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeResponseStatusEnum._(this.value);
+enum RealtimeResponseStatusEnum {
+  completed._(r'completed'),
+  cancelled._(r'cancelled'),
+  failed._(r'failed'),
+  incomplete._(r'incomplete'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeResponseStatusEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const completed = RealtimeResponseStatusEnum._(r'completed');
-  static const cancelled = RealtimeResponseStatusEnum._(r'cancelled');
-  static const failed = RealtimeResponseStatusEnum._(r'failed');
-  static const incomplete = RealtimeResponseStatusEnum._(r'incomplete');
-
-  /// List of all possible values in this [enum][RealtimeResponseStatusEnum].
-  static const values = <RealtimeResponseStatusEnum>[
-    completed,
-    cancelled,
-    failed,
-    incomplete,
-  ];
-
+  /// Returns the instance of [RealtimeResponseStatusEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeResponseStatusEnum? fromJson(dynamic value) => RealtimeResponseStatusEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeResponseStatusEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeResponseStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeResponseStatusEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -315,9 +314,10 @@ class RealtimeResponseStatusEnumTypeTransformer {
 
   const RealtimeResponseStatusEnumTypeTransformer._();
 
-  String encode(RealtimeResponseStatusEnum data) => data.value;
+  String encode(RealtimeResponseStatusEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeResponseStatusEnum.
+  /// Returns the instance of [RealtimeResponseStatusEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -326,6 +326,9 @@ class RealtimeResponseStatusEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeResponseStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeResponseStatusEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'completed': return RealtimeResponseStatusEnum.completed;
@@ -341,7 +344,7 @@ class RealtimeResponseStatusEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeResponseStatusEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeResponseStatusEnumTypeTransformer? _instance;
 }
 

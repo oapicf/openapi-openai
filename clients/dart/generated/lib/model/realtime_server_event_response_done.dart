@@ -61,10 +61,12 @@ class RealtimeServerEventResponseDone {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventResponseDone[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventResponseDone[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event_id'), 'Required key "RealtimeServerEventResponseDone[event_id]" is missing from JSON.');
+        assert(json[r'event_id'] != null, 'Required key "RealtimeServerEventResponseDone[event_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RealtimeServerEventResponseDone[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeServerEventResponseDone[type]" has a null value in JSON.');
+        assert(json.containsKey(r'response'), 'Required key "RealtimeServerEventResponseDone[response]" is missing from JSON.');
+        assert(json[r'response'] != null, 'Required key "RealtimeServerEventResponseDone[response]" has a null value in JSON.');
         return true;
       }());
 
@@ -126,27 +128,28 @@ class RealtimeServerEventResponseDone {
 }
 
 /// The event type, must be `response.done`.
-class RealtimeServerEventResponseDoneTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventResponseDoneTypeEnum._(this.value);
+enum RealtimeServerEventResponseDoneTypeEnum {
+  responsePeriodDone._(r'response.done'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventResponseDoneTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const responsePeriodDone = RealtimeServerEventResponseDoneTypeEnum._(r'response.done');
-
-  /// List of all possible values in this [enum][RealtimeServerEventResponseDoneTypeEnum].
-  static const values = <RealtimeServerEventResponseDoneTypeEnum>[
-    responsePeriodDone,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventResponseDoneTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventResponseDoneTypeEnum? fromJson(dynamic value) => RealtimeServerEventResponseDoneTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventResponseDoneTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventResponseDoneTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventResponseDoneTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -168,9 +171,10 @@ class RealtimeServerEventResponseDoneTypeEnumTypeTransformer {
 
   const RealtimeServerEventResponseDoneTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventResponseDoneTypeEnum data) => data.value;
+  String encode(RealtimeServerEventResponseDoneTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventResponseDoneTypeEnum.
+  /// Returns the instance of [RealtimeServerEventResponseDoneTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -179,6 +183,9 @@ class RealtimeServerEventResponseDoneTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventResponseDoneTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventResponseDoneTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'response.done': return RealtimeServerEventResponseDoneTypeEnum.responsePeriodDone;
@@ -191,7 +198,7 @@ class RealtimeServerEventResponseDoneTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeServerEventResponseDoneTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventResponseDoneTypeEnumTypeTransformer? _instance;
 }
 

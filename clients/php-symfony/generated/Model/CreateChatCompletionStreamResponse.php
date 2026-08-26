@@ -51,7 +51,7 @@ class CreateChatCompletionStreamResponse
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class CreateChatCompletionStreamResponse
      * @var CreateChatCompletionStreamResponseChoicesInner[]|null
      * @SerializedName("choices")
      * @Type("array<OpenAPI\Server\Model\CreateChatCompletionStreamResponseChoicesInner>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -76,7 +76,7 @@ class CreateChatCompletionStreamResponse
      * @var int|null
      * @SerializedName("created")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $created = null;
@@ -87,7 +87,7 @@ class CreateChatCompletionStreamResponse
      * @var string|null
      * @SerializedName("model")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $model = null;
@@ -98,7 +98,7 @@ class CreateChatCompletionStreamResponse
      * @var string|null
      * @SerializedName("service_tier")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['scale', 'default'])]
     #[Assert\Type("string")]
     protected ?string $serviceTier = null;
@@ -109,7 +109,7 @@ class CreateChatCompletionStreamResponse
      * @var string|null
      * @SerializedName("system_fingerprint")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $systemFingerprint = null;
 
@@ -119,7 +119,7 @@ class CreateChatCompletionStreamResponse
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['chat.completion.chunk'])]
     #[Assert\Type("string")]
@@ -129,7 +129,7 @@ class CreateChatCompletionStreamResponse
      * @var CreateChatCompletionStreamResponseUsage|null
      * @SerializedName("usage")
      * @Type("OpenAPI\Server\Model\CreateChatCompletionStreamResponseUsage")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateChatCompletionStreamResponseUsage")]
     protected ?CreateChatCompletionStreamResponseUsage $usage = null;
 
@@ -162,12 +162,12 @@ class CreateChatCompletionStreamResponse
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  A unique identifier for the chat completion. Each chunk has the same ID.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  A unique identifier for the chat completion. Each chunk has the same ID.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -189,12 +189,12 @@ class CreateChatCompletionStreamResponse
     }
 
     /**
-    * Sets choices.
-    *
-    * @param CreateChatCompletionStreamResponseChoicesInner[]|null $choices  A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`.
-    *
-    * @return $this
-    */
+     * Sets choices.
+     *
+     * @param CreateChatCompletionStreamResponseChoicesInner[]|null $choices  A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`.
+     *
+     * @return $this
+     */
     public function setChoices(?array $choices): self
     {
         $this->choices = $choices;
@@ -216,12 +216,12 @@ class CreateChatCompletionStreamResponse
     }
 
     /**
-    * Sets created.
-    *
-    * @param int|null $created  The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
-    *
-    * @return $this
-    */
+     * Sets created.
+     *
+     * @param int|null $created  The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
+     *
+     * @return $this
+     */
     public function setCreated(?int $created): self
     {
         $this->created = $created;
@@ -243,12 +243,12 @@ class CreateChatCompletionStreamResponse
     }
 
     /**
-    * Sets model.
-    *
-    * @param string|null $model  The model to generate the completion.
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param string|null $model  The model to generate the completion.
+     *
+     * @return $this
+     */
     public function setModel(?string $model): self
     {
         $this->model = $model;
@@ -270,12 +270,12 @@ class CreateChatCompletionStreamResponse
     }
 
     /**
-    * Sets serviceTier.
-    *
-    * @param string|null $serviceTier  The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
-    *
-    * @return $this
-    */
+     * Sets serviceTier.
+     *
+     * @param string|null $serviceTier  The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+     *
+     * @return $this
+     */
     public function setServiceTier(?string $serviceTier = null): self
     {
         $this->serviceTier = $serviceTier;
@@ -297,12 +297,12 @@ class CreateChatCompletionStreamResponse
     }
 
     /**
-    * Sets systemFingerprint.
-    *
-    * @param string|null $systemFingerprint  This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.
-    *
-    * @return $this
-    */
+     * Sets systemFingerprint.
+     *
+     * @param string|null $systemFingerprint  This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.
+     *
+     * @return $this
+     */
     public function setSystemFingerprint(?string $systemFingerprint = null): self
     {
         $this->systemFingerprint = $systemFingerprint;
@@ -324,12 +324,12 @@ class CreateChatCompletionStreamResponse
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `chat.completion.chunk`.
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `chat.completion.chunk`.
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -351,12 +351,12 @@ class CreateChatCompletionStreamResponse
     }
 
     /**
-    * Sets usage.
-    *
-    * @param CreateChatCompletionStreamResponseUsage|null $usage
-    *
-    * @return $this
-    */
+     * Sets usage.
+     *
+     * @param CreateChatCompletionStreamResponseUsage|null $usage
+     *
+     * @return $this
+     */
     public function setUsage(?CreateChatCompletionStreamResponseUsage $usage = null): self
     {
         $this->usage = $usage;

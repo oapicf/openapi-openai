@@ -17,6 +17,7 @@ class CreateFineTuningJobRequestIntegrationsInner {
     required this.wandb,
   });
 
+  /// The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
   CreateFineTuningJobRequestIntegrationsInnerTypeEnum type;
 
   CreateFineTuningJobRequestIntegrationsInnerWandb wandb;
@@ -53,10 +54,10 @@ class CreateFineTuningJobRequestIntegrationsInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateFineTuningJobRequestIntegrationsInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateFineTuningJobRequestIntegrationsInner[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "CreateFineTuningJobRequestIntegrationsInner[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "CreateFineTuningJobRequestIntegrationsInner[type]" has a null value in JSON.');
+        assert(json.containsKey(r'wandb'), 'Required key "CreateFineTuningJobRequestIntegrationsInner[wandb]" is missing from JSON.');
+        assert(json[r'wandb'] != null, 'Required key "CreateFineTuningJobRequestIntegrationsInner[wandb]" has a null value in JSON.');
         return true;
       }());
 
@@ -115,28 +116,29 @@ class CreateFineTuningJobRequestIntegrationsInner {
   };
 }
 
+/// The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
+enum CreateFineTuningJobRequestIntegrationsInnerTypeEnum {
+  wandb._(r'wandb'),
+  ;
 
-class CreateFineTuningJobRequestIntegrationsInnerTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateFineTuningJobRequestIntegrationsInnerTypeEnum._(this.value);
+  /// Instantiate a new enum with the provided value.
+  const CreateFineTuningJobRequestIntegrationsInnerTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const wandb = CreateFineTuningJobRequestIntegrationsInnerTypeEnum._(r'wandb');
-
-  /// List of all possible values in this [enum][CreateFineTuningJobRequestIntegrationsInnerTypeEnum].
-  static const values = <CreateFineTuningJobRequestIntegrationsInnerTypeEnum>[
-    wandb,
-  ];
-
+  /// Returns the instance of [CreateFineTuningJobRequestIntegrationsInnerTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateFineTuningJobRequestIntegrationsInnerTypeEnum? fromJson(dynamic value) => CreateFineTuningJobRequestIntegrationsInnerTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateFineTuningJobRequestIntegrationsInnerTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateFineTuningJobRequestIntegrationsInnerTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateFineTuningJobRequestIntegrationsInnerTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -158,9 +160,10 @@ class CreateFineTuningJobRequestIntegrationsInnerTypeEnumTypeTransformer {
 
   const CreateFineTuningJobRequestIntegrationsInnerTypeEnumTypeTransformer._();
 
-  String encode(CreateFineTuningJobRequestIntegrationsInnerTypeEnum data) => data.value;
+  String encode(CreateFineTuningJobRequestIntegrationsInnerTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateFineTuningJobRequestIntegrationsInnerTypeEnum.
+  /// Returns the instance of [CreateFineTuningJobRequestIntegrationsInnerTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -169,6 +172,9 @@ class CreateFineTuningJobRequestIntegrationsInnerTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateFineTuningJobRequestIntegrationsInnerTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateFineTuningJobRequestIntegrationsInnerTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'wandb': return CreateFineTuningJobRequestIntegrationsInnerTypeEnum.wandb;
@@ -181,7 +187,7 @@ class CreateFineTuningJobRequestIntegrationsInnerTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateFineTuningJobRequestIntegrationsInnerTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateFineTuningJobRequestIntegrationsInnerTypeEnumTypeTransformer? _instance;
 }
 

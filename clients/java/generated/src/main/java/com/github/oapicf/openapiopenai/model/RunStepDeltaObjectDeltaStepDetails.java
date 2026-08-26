@@ -63,7 +63,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RunStepDeltaObjectDeltaStepDetails extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(RunStepDeltaObjectDeltaStepDetails.class.getName());
 
@@ -210,6 +210,7 @@ public class RunStepDeltaObjectDeltaStepDetails extends AbstractOpenApiSchema {
      * @return The actual instance of `RunStepDeltaStepDetailsMessageCreationObject`
      * @throws ClassCastException if the instance is not `RunStepDeltaStepDetailsMessageCreationObject`
      */
+    @SuppressWarnings("unchecked")
     public RunStepDeltaStepDetailsMessageCreationObject getRunStepDeltaStepDetailsMessageCreationObject() throws ClassCastException {
         return (RunStepDeltaStepDetailsMessageCreationObject)super.getActualInstance();
     }
@@ -221,6 +222,7 @@ public class RunStepDeltaObjectDeltaStepDetails extends AbstractOpenApiSchema {
      * @return The actual instance of `RunStepDeltaStepDetailsToolCallsObject`
      * @throws ClassCastException if the instance is not `RunStepDeltaStepDetailsToolCallsObject`
      */
+    @SuppressWarnings("unchecked")
     public RunStepDeltaStepDetailsToolCallsObject getRunStepDeltaStepDetailsToolCallsObject() throws ClassCastException {
         return (RunStepDeltaStepDetailsToolCallsObject)super.getActualInstance();
     }

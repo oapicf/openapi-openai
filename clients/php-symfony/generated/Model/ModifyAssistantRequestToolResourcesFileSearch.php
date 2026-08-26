@@ -49,7 +49,7 @@ class ModifyAssistantRequestToolResourcesFileSearch
      * @var string[]|null
      * @SerializedName("vector_store_ids")
      * @Type("array<string>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("string"),
     ])]
@@ -78,12 +78,12 @@ class ModifyAssistantRequestToolResourcesFileSearch
     }
 
     /**
-    * Sets vectorStoreIds.
-    *
-    * @param string[]|null $vectorStoreIds  Overrides the [vector store](/docs/api-reference/vector-stores/object) attached to this assistant. There can be a maximum of 1 vector store attached to the assistant.
-    *
-    * @return $this
-    */
+     * Sets vectorStoreIds.
+     *
+     * @param string[]|null $vectorStoreIds  Overrides the [vector store](/docs/api-reference/vector-stores/object) attached to this assistant. There can be a maximum of 1 vector store attached to the assistant.
+     *
+     * @return $this
+     */
     public function setVectorStoreIds(?array $vectorStoreIds = null): self
     {
         $this->vectorStoreIds = $vectorStoreIds;

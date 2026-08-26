@@ -84,7 +84,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [JsonPropertyName("hyperparameters")]
         [Obsolete]
-        public CreateFineTuningJobRequestHyperparameters? Hyperparameters { get { return this.HyperparametersOption; } set { this.HyperparametersOption = new(value); } }
+        public CreateFineTuningJobRequestHyperparameters? Hyperparameters { get { return this.HyperparametersOption.Value; } set { this.HyperparametersOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Suffix
@@ -98,7 +98,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A string of up to 64 characters that will be added to your fine-tuned model name.  For example, a &#x60;suffix&#x60; of \&quot;custom-model-name\&quot; would produce a model name like &#x60;ft:gpt-4o-mini:openai:custom-model-name:7p4lURel&#x60;. </value>
         [JsonPropertyName("suffix")]
-        public string? Suffix { get { return this.SuffixOption; } set { this.SuffixOption = new(value); } }
+        public string? Suffix { get { return this.SuffixOption.Value; } set { this.SuffixOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ValidationFile
@@ -113,7 +113,7 @@ namespace Org.OpenAPITools.Model
         /// <value>The ID of an uploaded file that contains validation data.  If you provide this file, the data is used to generate validation metrics periodically during fine-tuning. These metrics can be viewed in the fine-tuning results file. The same data should not be present in both train and validation files.  Your dataset must be formatted as a JSONL file. You must upload your file with the purpose &#x60;fine-tune&#x60;.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. </value>
         /* <example>file-abc123</example> */
         [JsonPropertyName("validation_file")]
-        public string? ValidationFile { get { return this.ValidationFileOption; } set { this.ValidationFileOption = new(value); } }
+        public string? ValidationFile { get { return this.ValidationFileOption.Value; } set { this.ValidationFileOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Integrations
@@ -127,7 +127,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A list of integrations to enable for your fine-tuning job.</value>
         [JsonPropertyName("integrations")]
-        public List<CreateFineTuningJobRequestIntegrationsInner>? Integrations { get { return this.IntegrationsOption; } set { this.IntegrationsOption = new(value); } }
+        public List<CreateFineTuningJobRequestIntegrationsInner>? Integrations { get { return this.IntegrationsOption.Value; } set { this.IntegrationsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Seed
@@ -142,7 +142,7 @@ namespace Org.OpenAPITools.Model
         /// <value>The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed is not specified, one will be generated for you. </value>
         /* <example>42</example> */
         [JsonPropertyName("seed")]
-        public int? Seed { get { return this.SeedOption; } set { this.SeedOption = new(value); } }
+        public int? Seed { get { return this.SeedOption.Value; } set { this.SeedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Method
@@ -155,7 +155,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Method
         /// </summary>
         [JsonPropertyName("method")]
-        public FineTuneMethod? Method { get { return this.MethodOption; } set { this.MethodOption = new(value); } }
+        public FineTuneMethod? Method { get { return this.MethodOption.Value; } set { this.MethodOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -215,8 +215,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateFineTuningJobRequest" />
     /// </summary>
-    public class CreateFineTuningJobRequestJsonConverter : JsonConverter<CreateFineTuningJobRequest>
+    public partial class CreateFineTuningJobRequestJsonConverter : JsonConverter<CreateFineTuningJobRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateFineTuningJobRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateFineTuningJobRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateFineTuningJobRequest" />
         /// </summary>

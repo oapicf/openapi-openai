@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setData(std::list <FineTuningJobEvent> data);
+	void setData(std::list<FineTuningJobEvent> data);
 	/*! \brief Get 
 	 */
 	std::string getObject();
 
 	/*! \brief Set 
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 
 
     private:

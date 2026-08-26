@@ -31,7 +31,7 @@ class  CreateFineTuningJobRequest_hyperparameters_batch_size
 {
 public:
     CreateFineTuningJobRequest_hyperparameters_batch_size();
-    virtual ~CreateFineTuningJobRequest_hyperparameters_batch_size() = default;
+    virtual ~CreateFineTuningJobRequest_hyperparameters_batch_size();
 
 
     /// <summary>

@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 
 
     private:

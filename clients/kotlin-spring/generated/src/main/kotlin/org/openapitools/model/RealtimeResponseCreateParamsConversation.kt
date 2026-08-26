@@ -1,6 +1,9 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -15,9 +18,6 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * Controls which conversation the response is added to. Currently supports `auto` and `none`, with `auto` as the default value. The `auto` value means that the contents of the response will be added to the default conversation. Set this to `none` to create an out-of-band response which  will not add items to default conversation. 
  */
-class RealtimeResponseCreateParamsConversation(
-
-) {
-
+sealed interface RealtimeResponseCreateParamsConversation {
 }
 

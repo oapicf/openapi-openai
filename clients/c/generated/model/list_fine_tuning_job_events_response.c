@@ -30,10 +30,10 @@ static list_fine_tuning_job_events_response_t *list_fine_tuning_job_events_respo
     if (!list_fine_tuning_job_events_response_local_var) {
         return NULL;
     }
+    memset(list_fine_tuning_job_events_response_local_var, 0, sizeof(list_fine_tuning_job_events_response_t));
+    list_fine_tuning_job_events_response_local_var->_library_owned = 1;
     list_fine_tuning_job_events_response_local_var->data = data;
     list_fine_tuning_job_events_response_local_var->object = object;
-
-    list_fine_tuning_job_events_response_local_var->_library_owned = 1;
     return list_fine_tuning_job_events_response_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) list_fine_tuning_job_events_response_t *list_fine_tu
     list_t *data,
     openai_api_list_fine_tuning_job_events_response_OBJECT_e object
     ) {
-    return list_fine_tuning_job_events_response_create_internal (
+    list_fine_tuning_job_events_response_t *result = list_fine_tuning_job_events_response_create_internal (
         data,
         object
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void list_fine_tuning_job_events_response_free(list_fine_tuning_job_events_response_t *list_fine_tuning_job_events_response) {
@@ -159,10 +162,15 @@ list_fine_tuning_job_events_response_t *list_fine_tuning_job_events_response_par
     objectVariable = list_fine_tuning_job_events_response_object_FromString(object->valuestring);
 
 
+
     list_fine_tuning_job_events_response_local_var = list_fine_tuning_job_events_response_create_internal (
         dataList,
         objectVariable
         );
+
+    if (!list_fine_tuning_job_events_response_local_var) {
+        goto end;
+    }
 
     return list_fine_tuning_job_events_response_local_var;
 end:

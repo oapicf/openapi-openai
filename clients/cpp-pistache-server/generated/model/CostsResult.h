@@ -33,7 +33,7 @@ class  CostsResult
 {
 public:
     CostsResult();
-    virtual ~CostsResult() = default;
+    virtual ~CostsResult();
 
 
     /// <summary>

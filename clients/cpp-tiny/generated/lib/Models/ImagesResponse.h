@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setCreated(int  created);
+	void setCreated(int created);
 	/*! \brief Get 
 	 */
 	std::list<Image> getData();
 
 	/*! \brief Set 
 	 */
-	void setData(std::list <Image> data);
+	void setData(std::list<Image> data);
 
 
     private:

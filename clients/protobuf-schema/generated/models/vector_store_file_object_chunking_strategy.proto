@@ -16,13 +16,13 @@ package openapitools;
 
 import public "models/other_chunking_strategy_response_param.proto";
 import public "models/static_chunking_strategy.proto";
-import public "models/static_chunking_strategy_response_param.proto";
+import public "models/static_chunking_strategy_request_param.proto";
 import public "models/todo_object_mapping.proto";
 
 message VectorStoreFileObjectChunkingStrategy {
 
     oneof vector_store_file_object_chunking_strategy {
-        StaticChunkingStrategyResponseParam static_chunking_strategy_response_param = 140573407;
+        StaticChunkingStrategyRequestParam static_chunking_strategy_request_param = 78941804;
         OtherChunkingStrategyResponseParam other_chunking_strategy_response_param = 511020866;
     }
 }

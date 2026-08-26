@@ -30,10 +30,10 @@ static chat_completion_request_message_content_part_image_image_url_t *chat_comp
     if (!chat_completion_request_message_content_part_image_image_url_local_var) {
         return NULL;
     }
+    memset(chat_completion_request_message_content_part_image_image_url_local_var, 0, sizeof(chat_completion_request_message_content_part_image_image_url_t));
+    chat_completion_request_message_content_part_image_image_url_local_var->_library_owned = 1;
     chat_completion_request_message_content_part_image_image_url_local_var->url = url;
     chat_completion_request_message_content_part_image_image_url_local_var->detail = detail;
-
-    chat_completion_request_message_content_part_image_image_url_local_var->_library_owned = 1;
     return chat_completion_request_message_content_part_image_image_url_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) chat_completion_request_message_content_part_image_i
     char *url,
     openai_api_chat_completion_request_message_content_part_image_image_url_DETAIL_e detail
     ) {
-    return chat_completion_request_message_content_part_image_image_url_create_internal (
+    chat_completion_request_message_content_part_image_image_url_t *result = chat_completion_request_message_content_part_image_image_url_create_internal (
         url,
         detail
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_request_message_content_part_image_image_url_free(chat_completion_request_message_content_part_image_image_url_t *chat_completion_request_message_content_part_image_image_url) {
@@ -95,6 +98,8 @@ chat_completion_request_message_content_part_image_image_url_t *chat_completion_
 
     chat_completion_request_message_content_part_image_image_url_t *chat_completion_request_message_content_part_image_image_url_local_var = NULL;
 
+    char *url_local_str = NULL;
+
     // chat_completion_request_message_content_part_image_image_url->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(chat_completion_request_message_content_part_image_image_urlJSON, "url");
     if (cJSON_IsNull(url)) {
@@ -125,13 +130,23 @@ chat_completion_request_message_content_part_image_image_url_t *chat_completion_
     }
 
 
+    if (url && !cJSON_IsNull(url)) url_local_str = strdup(url->valuestring);
+
     chat_completion_request_message_content_part_image_image_url_local_var = chat_completion_request_message_content_part_image_image_url_create_internal (
-        strdup(url->valuestring),
+        url_local_str,
         detail ? detailVariable : openai_api_chat_completion_request_message_content_part_image_image_url_DETAIL_NULL
         );
 
+    if (!chat_completion_request_message_content_part_image_image_url_local_var) {
+        goto end;
+    }
+
     return chat_completion_request_message_content_part_image_image_url_local_var;
 end:
+    if (url_local_str) {
+        free(url_local_str);
+        url_local_str = NULL;
+    }
     return NULL;
 
 }

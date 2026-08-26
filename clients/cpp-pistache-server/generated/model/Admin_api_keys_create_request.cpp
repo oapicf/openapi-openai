@@ -25,6 +25,8 @@ Admin_api_keys_create_request::Admin_api_keys_create_request()
     
 }
 
+Admin_api_keys_create_request::~Admin_api_keys_create_request() = default;
+
 void Admin_api_keys_create_request::validate() const
 {
     std::stringstream msg;

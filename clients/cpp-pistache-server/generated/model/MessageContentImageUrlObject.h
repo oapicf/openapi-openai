@@ -33,7 +33,7 @@ class  MessageContentImageUrlObject
 {
 public:
     MessageContentImageUrlObject();
-    virtual ~MessageContentImageUrlObject() = default;
+    virtual ~MessageContentImageUrlObject();
 
 
     /// <summary>

@@ -24,7 +24,7 @@ import org.openapitools.model.CreateThreadRequestToolResourcesFileSearchVectorSt
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-26T05:15:47.876757065Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateThreadRequestToolResourcesFileSearch   {
   
   private List<String> vectorStoreIds = new ArrayList<>();
@@ -101,10 +101,7 @@ public class CreateThreadRequestToolResourcesFileSearch   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

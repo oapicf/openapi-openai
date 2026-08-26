@@ -25,6 +25,8 @@ FineTuningIntegration::FineTuningIntegration()
     
 }
 
+FineTuningIntegration::~FineTuningIntegration() = default;
+
 void FineTuningIntegration::validate() const
 {
     std::stringstream msg;

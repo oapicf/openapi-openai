@@ -11,7 +11,7 @@
 */
 package org.openapitools.server.models
 
-import org.openapitools.server.models.AutoChunkingStrategy
+import org.openapitools.server.models.AutoChunkingStrategyRequestParam
 import org.openapitools.server.models.StaticChunkingStrategy
 import org.openapitools.server.models.StaticChunkingStrategyStatic
 

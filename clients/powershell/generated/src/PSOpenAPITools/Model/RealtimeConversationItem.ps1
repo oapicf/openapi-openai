@@ -85,16 +85,16 @@ function Initialize-RealtimeConversationItem {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "type" = ${Type}
-            "object" = ${Object}
-            "status" = ${Status}
-            "role" = ${Role}
-            "content" = ${Content}
-            "call_id" = ${CallId}
-            "name" = ${Name}
-            "arguments" = ${Arguments}
-            "output" = ${Output}
+            'id' = ${Id}
+            'type' = ${Type}
+            'object' = ${Object}
+            'status' = ${Status}
+            'role' = ${Role}
+            'content' = ${Content}
+            'call_id' = ${CallId}
+            'name' = ${Name}
+            'arguments' = ${Arguments}
+            'output' = ${Output}
         }
 
 
@@ -132,84 +132,84 @@ function ConvertFrom-JsonToRealtimeConversationItem {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeConversationItem
-        $AllProperties = ("id", "type", "object", "status", "role", "content", "call_id", "name", "arguments", "output")
+        $AllProperties = ('id', 'type', 'object', 'status', 'role', 'content', 'call_id', 'name', 'arguments', 'output')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) { #optional property not found
             $Id = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) { #optional property not found
             $Type = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) { #optional property not found
             $Object = $null
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'status'))) { #optional property not found
             $Status = $null
         } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
+            $Status = $JsonParameters.PSobject.Properties['status'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "role"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'role'))) { #optional property not found
             $Role = $null
         } else {
-            $Role = $JsonParameters.PSobject.Properties["role"].value
+            $Role = $JsonParameters.PSobject.Properties['role'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'content'))) { #optional property not found
             $Content = $null
         } else {
-            $Content = $JsonParameters.PSobject.Properties["content"].value
+            $Content = $JsonParameters.PSobject.Properties['content'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "call_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'call_id'))) { #optional property not found
             $CallId = $null
         } else {
-            $CallId = $JsonParameters.PSobject.Properties["call_id"].value
+            $CallId = $JsonParameters.PSobject.Properties['call_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) { #optional property not found
             $Name = $null
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "arguments"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'arguments'))) { #optional property not found
             $Arguments = $null
         } else {
-            $Arguments = $JsonParameters.PSobject.Properties["arguments"].value
+            $Arguments = $JsonParameters.PSobject.Properties['arguments'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "output"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'output'))) { #optional property not found
             $Output = $null
         } else {
-            $Output = $JsonParameters.PSobject.Properties["output"].value
+            $Output = $JsonParameters.PSobject.Properties['output'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "type" = ${Type}
-            "object" = ${Object}
-            "status" = ${Status}
-            "role" = ${Role}
-            "content" = ${Content}
-            "call_id" = ${CallId}
-            "name" = ${Name}
-            "arguments" = ${Arguments}
-            "output" = ${Output}
+            'id' = ${Id}
+            'type' = ${Type}
+            'object' = ${Object}
+            'status' = ${Status}
+            'role' = ${Role}
+            'content' = ${Content}
+            'call_id' = ${CallId}
+            'name' = ${Name}
+            'arguments' = ${Arguments}
+            'output' = ${Output}
         }
 
         return $PSO

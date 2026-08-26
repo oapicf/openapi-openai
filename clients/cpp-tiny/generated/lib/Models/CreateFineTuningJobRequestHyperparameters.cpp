@@ -109,7 +109,7 @@ CreateFineTuningJobRequest_hyperparameters::getBatchSize()
 }
 
 void
-CreateFineTuningJobRequest_hyperparameters::setBatchSize(CreateFineTuningJobRequest_hyperparameters_batch_size  batch_size)
+CreateFineTuningJobRequest_hyperparameters::setBatchSize(CreateFineTuningJobRequest_hyperparameters_batch_size batch_size)
 {
 	this->batch_size = batch_size;
 }
@@ -121,7 +121,7 @@ CreateFineTuningJobRequest_hyperparameters::getLearningRateMultiplier()
 }
 
 void
-CreateFineTuningJobRequest_hyperparameters::setLearningRateMultiplier(CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier  learning_rate_multiplier)
+CreateFineTuningJobRequest_hyperparameters::setLearningRateMultiplier(CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier learning_rate_multiplier)
 {
 	this->learning_rate_multiplier = learning_rate_multiplier;
 }
@@ -133,7 +133,7 @@ CreateFineTuningJobRequest_hyperparameters::getNEpochs()
 }
 
 void
-CreateFineTuningJobRequest_hyperparameters::setNEpochs(CreateFineTuningJobRequest_hyperparameters_n_epochs  n_epochs)
+CreateFineTuningJobRequest_hyperparameters::setNEpochs(CreateFineTuningJobRequest_hyperparameters_n_epochs n_epochs)
 {
 	this->n_epochs = n_epochs;
 }

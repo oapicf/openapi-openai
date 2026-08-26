@@ -54,56 +54,56 @@ public:
 
 	/*! \brief Set A unique identifier for the chat completion.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get A list of chat completion choices. Can be more than one if `n` is greater than 1.
 	 */
 	std::list<CreateChatCompletionResponse_choices_inner> getChoices();
 
 	/*! \brief Set A list of chat completion choices. Can be more than one if `n` is greater than 1.
 	 */
-	void setChoices(std::list <CreateChatCompletionResponse_choices_inner> choices);
+	void setChoices(std::list<CreateChatCompletionResponse_choices_inner> choices);
 	/*! \brief Get The Unix timestamp (in seconds) of when the chat completion was created.
 	 */
 	int getCreated();
 
 	/*! \brief Set The Unix timestamp (in seconds) of when the chat completion was created.
 	 */
-	void setCreated(int  created);
+	void setCreated(int created);
 	/*! \brief Get The model used for the chat completion.
 	 */
 	std::string getModel();
 
 	/*! \brief Set The model used for the chat completion.
 	 */
-	void setModel(std::string  model);
+	void setModel(std::string model);
 	/*! \brief Get The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
 	 */
 	std::string getServiceTier();
 
 	/*! \brief Set The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
 	 */
-	void setServiceTier(std::string  service_tier);
+	void setServiceTier(std::string service_tier);
 	/*! \brief Get This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
 	 */
 	std::string getSystemFingerprint();
 
 	/*! \brief Set This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
 	 */
-	void setSystemFingerprint(std::string  system_fingerprint);
+	void setSystemFingerprint(std::string system_fingerprint);
 	/*! \brief Get The object type, which is always `chat.completion`.
 	 */
 	std::string getObject();
 
 	/*! \brief Set The object type, which is always `chat.completion`.
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get 
 	 */
 	CompletionUsage getUsage();
 
 	/*! \brief Set 
 	 */
-	void setUsage(CompletionUsage  usage);
+	void setUsage(CompletionUsage usage);
 
 
     private:

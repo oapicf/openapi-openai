@@ -14,6 +14,8 @@ package openapi
 
 import (
 	"errors"
+	"encoding/json"
+	"fmt"
 )
 
 
@@ -95,34 +97,270 @@ type RunObject struct {
 
 	ResponseFormat AssistantsApiResponseFormatOption `json:"response_format"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into RunObject
+func (o *RunObject) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"id",
+		"object",
+		"created_at",
+		"thread_id",
+		"assistant_id",
+		"status",
+		"required_action",
+		"last_error",
+		"expires_at",
+		"started_at",
+		"cancelled_at",
+		"failed_at",
+		"completed_at",
+		"incomplete_details",
+		"model",
+		"instructions",
+		"tools",
+		"metadata",
+		"usage",
+		"max_prompt_tokens",
+		"max_completion_tokens",
+		"truncation_strategy",
+		"tool_choice",
+		"parallel_tool_calls",
+		"response_format",
+	}
 
-// AssertRunObjectRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"id": false,
+		"object": false,
+		"created_at": false,
+		"thread_id": false,
+		"assistant_id": false,
+		"status": false,
+		"required_action": true,
+		"last_error": true,
+		"expires_at": true,
+		"started_at": true,
+		"cancelled_at": true,
+		"failed_at": true,
+		"completed_at": true,
+		"incomplete_details": true,
+		"model": false,
+		"instructions": false,
+		"tools": false,
+		"metadata": true,
+		"usage": true,
+		"max_prompt_tokens": true,
+		"max_completion_tokens": true,
+		"truncation_strategy": false,
+		"tool_choice": false,
+		"parallel_tool_calls": false,
+		"response_format": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"id": {},
+		"object": {},
+		"created_at": {},
+		"thread_id": {},
+		"assistant_id": {},
+		"status": {},
+		"required_action": {},
+		"last_error": {},
+		"expires_at": {},
+		"started_at": {},
+		"cancelled_at": {},
+		"failed_at": {},
+		"completed_at": {},
+		"incomplete_details": {},
+		"model": {},
+		"instructions": {},
+		"tools": {},
+		"metadata": {},
+		"usage": {},
+		"temperature": {},
+		"top_p": {},
+		"max_prompt_tokens": {},
+		"max_completion_tokens": {},
+		"truncation_strategy": {},
+		"tool_choice": {},
+		"parallel_tool_calls": {},
+		"response_format": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RunObject
+
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["created_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CreatedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["thread_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.ThreadId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["assistant_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.AssistantId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["status"]; exists {
+		if err = json.Unmarshal(value, &decoded.Status); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["required_action"]; exists {
+		if err = json.Unmarshal(value, &decoded.RequiredAction); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["last_error"]; exists {
+		if err = json.Unmarshal(value, &decoded.LastError); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["expires_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.ExpiresAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["started_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.StartedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["cancelled_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CancelledAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["failed_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.FailedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["completed_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CompletedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["incomplete_details"]; exists {
+		if err = json.Unmarshal(value, &decoded.IncompleteDetails); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["model"]; exists {
+		if err = json.Unmarshal(value, &decoded.Model); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["instructions"]; exists {
+		if err = json.Unmarshal(value, &decoded.Instructions); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["tools"]; exists {
+		if err = json.Unmarshal(value, &decoded.Tools); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["metadata"]; exists {
+		if err = json.Unmarshal(value, &decoded.Metadata); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["usage"]; exists {
+		if err = json.Unmarshal(value, &decoded.Usage); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["temperature"]; exists {
+		if err = json.Unmarshal(value, &decoded.Temperature); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["top_p"]; exists {
+		if err = json.Unmarshal(value, &decoded.TopP); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["max_prompt_tokens"]; exists {
+		if err = json.Unmarshal(value, &decoded.MaxPromptTokens); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["max_completion_tokens"]; exists {
+		if err = json.Unmarshal(value, &decoded.MaxCompletionTokens); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["truncation_strategy"]; exists {
+		if err = json.Unmarshal(value, &decoded.TruncationStrategy); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["tool_choice"]; exists {
+		if err = json.Unmarshal(value, &decoded.ToolChoice); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["parallel_tool_calls"]; exists {
+		if err = json.Unmarshal(value, &decoded.ParallelToolCalls); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["response_format"]; exists {
+		if err = json.Unmarshal(value, &decoded.ResponseFormat); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRunObjectRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRunObjectRequired(obj RunObject) error {
 	elements := map[string]interface{}{
-		"id": obj.Id,
-		"object": obj.Object,
-		"created_at": obj.CreatedAt,
-		"thread_id": obj.ThreadId,
-		"assistant_id": obj.AssistantId,
-		"status": obj.Status,
-		"required_action": obj.RequiredAction,
-		"last_error": obj.LastError,
-		"expires_at": obj.ExpiresAt,
-		"started_at": obj.StartedAt,
-		"cancelled_at": obj.CancelledAt,
-		"failed_at": obj.FailedAt,
-		"completed_at": obj.CompletedAt,
-		"incomplete_details": obj.IncompleteDetails,
-		"model": obj.Model,
-		"instructions": obj.Instructions,
 		"tools": obj.Tools,
-		"metadata": obj.Metadata,
-		"usage": obj.Usage,
-		"max_prompt_tokens": obj.MaxPromptTokens,
-		"max_completion_tokens": obj.MaxCompletionTokens,
 		"truncation_strategy": obj.TruncationStrategy,
 		"tool_choice": obj.ToolChoice,
-		"parallel_tool_calls": obj.ParallelToolCalls,
 		"response_format": obj.ResponseFormat,
 	}
 	for name, el := range elements {

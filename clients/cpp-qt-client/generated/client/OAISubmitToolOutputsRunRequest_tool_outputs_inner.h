@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAISubmitToolOutputsRunRequest_tool_outputs_inner : public OAIObject {
 public:
     OAISubmitToolOutputsRunRequest_tool_outputs_inner();
-    OAISubmitToolOutputsRunRequest_tool_outputs_inner(QString json);
+    OAISubmitToolOutputsRunRequest_tool_outputs_inner(const QString &json);
     ~OAISubmitToolOutputsRunRequest_tool_outputs_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getToolCallId() const;
     void setToolCallId(const QString &tool_call_id);

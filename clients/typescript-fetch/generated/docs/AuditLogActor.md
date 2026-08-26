@@ -8,8 +8,8 @@ The actor who performed the audit logged action.
 Name | Type
 ------------ | -------------
 `type` | string
-`session` | [AuditLogActorSession](.md)
-`apiKey` | [AuditLogActorApiKey](.md)
+`session` | [AuditLogActorSession](AuditLogActorSession.md)
+`apiKey` | [AuditLogActorApiKey](AuditLogActorApiKey.md)
 
 ## Example
 

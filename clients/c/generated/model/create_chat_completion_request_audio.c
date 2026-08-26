@@ -47,10 +47,10 @@ static create_chat_completion_request_audio_t *create_chat_completion_request_au
     if (!create_chat_completion_request_audio_local_var) {
         return NULL;
     }
+    memset(create_chat_completion_request_audio_local_var, 0, sizeof(create_chat_completion_request_audio_t));
+    create_chat_completion_request_audio_local_var->_library_owned = 1;
     create_chat_completion_request_audio_local_var->voice = voice;
     create_chat_completion_request_audio_local_var->format = format;
-
-    create_chat_completion_request_audio_local_var->_library_owned = 1;
     return create_chat_completion_request_audio_local_var;
 }
 
@@ -58,10 +58,13 @@ __attribute__((deprecated)) create_chat_completion_request_audio_t *create_chat_
     openai_api_create_chat_completion_request_audio_VOICE_e voice,
     openai_api_create_chat_completion_request_audio_FORMAT_e format
     ) {
-    return create_chat_completion_request_audio_create_internal (
+    create_chat_completion_request_audio_t *result = create_chat_completion_request_audio_create_internal (
         voice,
         format
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_chat_completion_request_audio_free(create_chat_completion_request_audio_t *create_chat_completion_request_audio) {
@@ -145,10 +148,15 @@ create_chat_completion_request_audio_t *create_chat_completion_request_audio_par
     formatVariable = create_chat_completion_request_audio_format_FromString(format->valuestring);
 
 
+
     create_chat_completion_request_audio_local_var = create_chat_completion_request_audio_create_internal (
         voiceVariable,
         formatVariable
         );
+
+    if (!create_chat_completion_request_audio_local_var) {
+        goto end;
+    }
 
     return create_chat_completion_request_audio_local_var;
 end:

@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIDoneEvent : public OAIObject {
 public:
     OAIDoneEvent();
-    OAIDoneEvent(QString json);
+    OAIDoneEvent(const QString &json);
     ~OAIDoneEvent() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getEvent() const;
     void setEvent(const QString &event);

@@ -27,6 +27,8 @@ DeleteVectorStoreFileResponse::DeleteVectorStoreFileResponse()
     
 }
 
+DeleteVectorStoreFileResponse::~DeleteVectorStoreFileResponse() = default;
+
 void DeleteVectorStoreFileResponse::validate() const
 {
     std::stringstream msg;

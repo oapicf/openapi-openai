@@ -126,7 +126,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Refusal
         /// </summary>
         [JsonPropertyName("refusal")]
-        public string? Refusal { get { return this.RefusalOption; } set { this.RefusalOption = new(value); } }
+        public string? Refusal { get { return this.RefusalOption.Value; } set { this.RefusalOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -157,8 +157,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageDeltaContentRefusalObject" />
     /// </summary>
-    public class MessageDeltaContentRefusalObjectJsonConverter : JsonConverter<MessageDeltaContentRefusalObject>
+    public partial class MessageDeltaContentRefusalObjectJsonConverter : JsonConverter<MessageDeltaContentRefusalObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageDeltaContentRefusalObjectJsonConverter" /> class.
+        /// </summary>
+        public MessageDeltaContentRefusalObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageDeltaContentRefusalObject" />
         /// </summary>

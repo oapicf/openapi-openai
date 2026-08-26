@@ -1,4 +1,4 @@
-# # CreateVectorStoreFileBatchRequest
+# CreateVectorStoreFileBatchRequest
 
 ## Properties
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**r#type** | Option<**String**> | The content type (\"text\", \"audio\"). | [optional]
+**r#type** | Option<**Type**> | The content type (\"text\", \"audio\"). (enum: audio, text) | [optional]
 **text** | Option<**String**> | The text content (if type is \"text\"). | [optional]
 **audio** | Option<**String**> | Base64-encoded audio data (if type is \"audio\"). | [optional]
 **transcript** | Option<**String**> | The transcript of the audio (if type is \"audio\"). | [optional]

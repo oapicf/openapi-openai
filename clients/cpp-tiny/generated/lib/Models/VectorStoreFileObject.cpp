@@ -213,7 +213,7 @@ VectorStoreFileObject::getId()
 }
 
 void
-VectorStoreFileObject::setId(std::string  id)
+VectorStoreFileObject::setId(std::string id)
 {
 	this->id = id;
 }
@@ -225,7 +225,7 @@ VectorStoreFileObject::getObject()
 }
 
 void
-VectorStoreFileObject::setObject(std::string  object)
+VectorStoreFileObject::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -237,7 +237,7 @@ VectorStoreFileObject::getUsageBytes()
 }
 
 void
-VectorStoreFileObject::setUsageBytes(int  usage_bytes)
+VectorStoreFileObject::setUsageBytes(int usage_bytes)
 {
 	this->usage_bytes = usage_bytes;
 }
@@ -249,7 +249,7 @@ VectorStoreFileObject::getCreatedAt()
 }
 
 void
-VectorStoreFileObject::setCreatedAt(int  created_at)
+VectorStoreFileObject::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -261,7 +261,7 @@ VectorStoreFileObject::getVectorStoreId()
 }
 
 void
-VectorStoreFileObject::setVectorStoreId(std::string  vector_store_id)
+VectorStoreFileObject::setVectorStoreId(std::string vector_store_id)
 {
 	this->vector_store_id = vector_store_id;
 }
@@ -273,7 +273,7 @@ VectorStoreFileObject::getStatus()
 }
 
 void
-VectorStoreFileObject::setStatus(std::string  status)
+VectorStoreFileObject::setStatus(std::string status)
 {
 	this->status = status;
 }
@@ -285,7 +285,7 @@ VectorStoreFileObject::getLastError()
 }
 
 void
-VectorStoreFileObject::setLastError(VectorStoreFileObject_last_error  last_error)
+VectorStoreFileObject::setLastError(VectorStoreFileObject_last_error last_error)
 {
 	this->last_error = last_error;
 }
@@ -297,7 +297,7 @@ VectorStoreFileObject::getChunkingStrategy()
 }
 
 void
-VectorStoreFileObject::setChunkingStrategy(VectorStoreFileObject_chunking_strategy  chunking_strategy)
+VectorStoreFileObject::setChunkingStrategy(VectorStoreFileObject_chunking_strategy chunking_strategy)
 {
 	this->chunking_strategy = chunking_strategy;
 }

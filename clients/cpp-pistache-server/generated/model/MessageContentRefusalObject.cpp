@@ -26,6 +26,8 @@ MessageContentRefusalObject::MessageContentRefusalObject()
     
 }
 
+MessageContentRefusalObject::~MessageContentRefusalObject() = default;
+
 void MessageContentRefusalObject::validate() const
 {
     std::stringstream msg;

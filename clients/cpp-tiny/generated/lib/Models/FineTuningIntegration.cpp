@@ -86,7 +86,7 @@ FineTuningIntegration::getType()
 }
 
 void
-FineTuningIntegration::setType(std::string  type)
+FineTuningIntegration::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ FineTuningIntegration::getWandb()
 }
 
 void
-FineTuningIntegration::setWandb(CreateFineTuningJobRequest_integrations_inner_wandb  wandb)
+FineTuningIntegration::setWandb(CreateFineTuningJobRequest_integrations_inner_wandb wandb)
 {
 	this->wandb = wandb;
 }

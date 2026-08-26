@@ -97,7 +97,7 @@ class ModerationsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateModerationRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateModerationRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($createModerationRequest, $asserts);
         if ($response instanceof Response) {

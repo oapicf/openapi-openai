@@ -64,7 +64,7 @@ AssistantToolsCode::getType()
 }
 
 void
-AssistantToolsCode::setType(std::string  type)
+AssistantToolsCode::setType(std::string type)
 {
 	this->type = type;
 }

@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
  **prompt** | **String**| A text description of the desired image(s). The maximum length is 1000 characters. | 
  **mask** | **swagger::ByteArray**| An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as `image`. | 
  **model** | [**CreateImageEditRequest_model**](CreateImageEditRequest_model.md)|  | 
- **n** | **swagger::Nullable<i32>**| The number of images to generate. Must be between 1 and 10. | [default to swagger::Nullable::Present(1)]
+ **n** | **u8**| The number of images to generate. Must be between 1 and 10. | [default to swagger::Nullable::Present(1)]
  **size** | [**CreateImageEditRequest_size**](CreateImageEditRequest_size.md)|  | 
  **response_format** | [**CreateImageEditRequest_response_format**](CreateImageEditRequest_response_format.md)|  | 
  **user** | **String**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  | 
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **image** | **swagger::ByteArray**| The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square. | 
  **model** | [**CreateImageEditRequest_model**](CreateImageEditRequest_model.md)|  | 
- **n** | **swagger::Nullable<i32>**| The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. | [default to swagger::Nullable::Present(1)]
+ **n** | **u8**| The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. | [default to swagger::Nullable::Present(1)]
  **response_format** | [**CreateImageEditRequest_response_format**](CreateImageEditRequest_response_format.md)|  | 
  **size** | [**CreateImageEditRequest_size**](CreateImageEditRequest_size.md)|  | 
  **user** | **String**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  | 

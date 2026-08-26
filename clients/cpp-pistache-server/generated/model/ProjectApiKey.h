@@ -33,7 +33,7 @@ class  ProjectApiKey
 {
 public:
     ProjectApiKey();
-    virtual ~ProjectApiKey() = default;
+    virtual ~ProjectApiKey();
 
 
     /// <summary>

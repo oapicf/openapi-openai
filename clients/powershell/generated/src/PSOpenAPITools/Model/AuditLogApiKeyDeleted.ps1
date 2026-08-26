@@ -36,7 +36,7 @@ function Initialize-AuditLogApiKeyDeleted {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
+            'id' = ${Id}
         }
 
 
@@ -74,21 +74,21 @@ function ConvertFrom-JsonToAuditLogApiKeyDeleted {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AuditLogApiKeyDeleted
-        $AllProperties = ("id")
+        $AllProperties = ('id')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) { #optional property not found
             $Id = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
+            'id' = ${Id}
         }
 
         return $PSO

@@ -33,7 +33,7 @@ class  AssistantToolsFunction
 {
 public:
     AssistantToolsFunction();
-    virtual ~AssistantToolsFunction() = default;
+    virtual ~AssistantToolsFunction();
 
 
     /// <summary>

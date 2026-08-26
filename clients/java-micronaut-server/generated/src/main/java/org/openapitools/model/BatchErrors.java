@@ -35,7 +35,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   BatchErrors.JSON_PROPERTY_DATA
 })
 @JsonTypeName("Batch_errors")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-01-29T14:08:04.353155660Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class BatchErrors {
     public static final String JSON_PROPERTY_OBJECT = "object";
@@ -134,10 +134,7 @@ public class BatchErrors {
      * (except the first line).
      */
     private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
+        return o == null ? "null" : o.toString().replace("\n", "\n    ");
     }
 
 }

@@ -46,7 +46,7 @@ feature --Access
     modalities: detachable LIST [STRING_32]
       -- Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` 
     prediction: detachable PREDICTION_CONTENT
-      
+      -- Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
     audio: detachable CREATE_CHAT_COMPLETION_REQUEST_AUDIO
       
     presence_penalty: REAL_32

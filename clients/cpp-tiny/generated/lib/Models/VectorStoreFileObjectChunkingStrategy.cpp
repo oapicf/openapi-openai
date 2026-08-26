@@ -86,7 +86,7 @@ VectorStoreFileObject_chunking_strategy::getType()
 }
 
 void
-VectorStoreFileObject_chunking_strategy::setType(std::string  type)
+VectorStoreFileObject_chunking_strategy::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ VectorStoreFileObject_chunking_strategy::getRStatic()
 }
 
 void
-VectorStoreFileObject_chunking_strategy::setRStatic(StaticChunkingStrategy  r_static)
+VectorStoreFileObject_chunking_strategy::setRStatic(StaticChunkingStrategy r_static)
 {
 	this->r_static = r_static;
 }

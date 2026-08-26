@@ -27,6 +27,8 @@ FineTuningJob_hyperparameters::FineTuningJob_hyperparameters()
     
 }
 
+FineTuningJob_hyperparameters::~FineTuningJob_hyperparameters() = default;
+
 void FineTuningJob_hyperparameters::validate() const
 {
     std::stringstream msg;

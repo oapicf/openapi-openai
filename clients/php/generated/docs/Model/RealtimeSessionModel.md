@@ -1,4 +1,4 @@
-# # RealtimeSessionModel
+# RealtimeSessionModel
 
 ## Properties
 

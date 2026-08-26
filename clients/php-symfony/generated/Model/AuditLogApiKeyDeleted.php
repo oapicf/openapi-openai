@@ -51,7 +51,7 @@ class AuditLogApiKeyDeleted
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -77,12 +77,12 @@ class AuditLogApiKeyDeleted
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The tracking ID of the API key.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The tracking ID of the API key.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;

@@ -1,4 +1,4 @@
-# # MessageDeltaContentImageUrlObjectImageUrl
+# MessageDeltaContentImageUrlObjectImageUrl
 
 ## Properties
 

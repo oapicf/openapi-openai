@@ -64,7 +64,7 @@ Admin_api_keys_create_request::getName()
 }
 
 void
-Admin_api_keys_create_request::setName(std::string  name)
+Admin_api_keys_create_request::setName(std::string name)
 {
 	this->name = name;
 }

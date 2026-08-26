@@ -258,10 +258,24 @@ class UsageTimeBucketResultInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UsageTimeBucketResultInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UsageTimeBucketResultInner[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "UsageTimeBucketResultInner[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "UsageTimeBucketResultInner[object]" has a null value in JSON.');
+        assert(json.containsKey(r'input_tokens'), 'Required key "UsageTimeBucketResultInner[input_tokens]" is missing from JSON.');
+        assert(json[r'input_tokens'] != null, 'Required key "UsageTimeBucketResultInner[input_tokens]" has a null value in JSON.');
+        assert(json.containsKey(r'output_tokens'), 'Required key "UsageTimeBucketResultInner[output_tokens]" is missing from JSON.');
+        assert(json[r'output_tokens'] != null, 'Required key "UsageTimeBucketResultInner[output_tokens]" has a null value in JSON.');
+        assert(json.containsKey(r'num_model_requests'), 'Required key "UsageTimeBucketResultInner[num_model_requests]" is missing from JSON.');
+        assert(json[r'num_model_requests'] != null, 'Required key "UsageTimeBucketResultInner[num_model_requests]" has a null value in JSON.');
+        assert(json.containsKey(r'images'), 'Required key "UsageTimeBucketResultInner[images]" is missing from JSON.');
+        assert(json[r'images'] != null, 'Required key "UsageTimeBucketResultInner[images]" has a null value in JSON.');
+        assert(json.containsKey(r'characters'), 'Required key "UsageTimeBucketResultInner[characters]" is missing from JSON.');
+        assert(json[r'characters'] != null, 'Required key "UsageTimeBucketResultInner[characters]" has a null value in JSON.');
+        assert(json.containsKey(r'seconds'), 'Required key "UsageTimeBucketResultInner[seconds]" is missing from JSON.');
+        assert(json[r'seconds'] != null, 'Required key "UsageTimeBucketResultInner[seconds]" has a null value in JSON.');
+        assert(json.containsKey(r'usage_bytes'), 'Required key "UsageTimeBucketResultInner[usage_bytes]" is missing from JSON.');
+        assert(json[r'usage_bytes'] != null, 'Required key "UsageTimeBucketResultInner[usage_bytes]" has a null value in JSON.');
+        assert(json.containsKey(r'sessions'), 'Required key "UsageTimeBucketResultInner[sessions]" is missing from JSON.');
+        assert(json[r'sessions'] != null, 'Required key "UsageTimeBucketResultInner[sessions]" has a null value in JSON.');
         return true;
       }());
 
@@ -347,27 +361,28 @@ class UsageTimeBucketResultInner {
 }
 
 
-class UsageTimeBucketResultInnerObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const UsageTimeBucketResultInnerObjectEnum._(this.value);
+enum UsageTimeBucketResultInnerObjectEnum {
+  organizationPeriodCostsPeriodResult._(r'organization.costs.result'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const UsageTimeBucketResultInnerObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const organizationPeriodCostsPeriodResult = UsageTimeBucketResultInnerObjectEnum._(r'organization.costs.result');
-
-  /// List of all possible values in this [enum][UsageTimeBucketResultInnerObjectEnum].
-  static const values = <UsageTimeBucketResultInnerObjectEnum>[
-    organizationPeriodCostsPeriodResult,
-  ];
-
+  /// Returns the instance of [UsageTimeBucketResultInnerObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static UsageTimeBucketResultInnerObjectEnum? fromJson(dynamic value) => UsageTimeBucketResultInnerObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [UsageTimeBucketResultInnerObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<UsageTimeBucketResultInnerObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <UsageTimeBucketResultInnerObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -389,9 +404,10 @@ class UsageTimeBucketResultInnerObjectEnumTypeTransformer {
 
   const UsageTimeBucketResultInnerObjectEnumTypeTransformer._();
 
-  String encode(UsageTimeBucketResultInnerObjectEnum data) => data.value;
+  String encode(UsageTimeBucketResultInnerObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a UsageTimeBucketResultInnerObjectEnum.
+  /// Returns the instance of [UsageTimeBucketResultInnerObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -400,6 +416,9 @@ class UsageTimeBucketResultInnerObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   UsageTimeBucketResultInnerObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is UsageTimeBucketResultInnerObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'organization.costs.result': return UsageTimeBucketResultInnerObjectEnum.organizationPeriodCostsPeriodResult;
@@ -412,7 +431,7 @@ class UsageTimeBucketResultInnerObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [UsageTimeBucketResultInnerObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static UsageTimeBucketResultInnerObjectEnumTypeTransformer? _instance;
 }
 

@@ -50,8 +50,8 @@ function Initialize-RunStepDetailsToolCallsCodeOutputImageObject {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "image" = ${Image}
+            'type' = ${Type}
+            'image' = ${Image}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToRunStepDetailsToolCallsCodeOutputImageObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDetailsToolCallsCodeOutputImageObject
-        $AllProperties = ("type", "image")
+        $AllProperties = ('type', 'image')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToRunStepDetailsToolCallsCodeOutputImageObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "image"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'image'))) {
             throw "Error! JSON cannot be serialized due to the required property 'image' missing."
         } else {
-            $Image = $JsonParameters.PSobject.Properties["image"].value
+            $Image = $JsonParameters.PSobject.Properties['image'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "image" = ${Image}
+            'type' = ${Type}
+            'image' = ${Image}
         }
 
         return $PSO

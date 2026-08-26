@@ -12,13 +12,15 @@ static create_fine_tuning_job_request_t *create_fine_tuning_job_request_create_i
     char *suffix,
     char *validation_file,
     list_t *integrations,
-    int seed,
+    int *seed,
     fine_tune_method_t *method
     ) {
     create_fine_tuning_job_request_t *create_fine_tuning_job_request_local_var = malloc(sizeof(create_fine_tuning_job_request_t));
     if (!create_fine_tuning_job_request_local_var) {
         return NULL;
     }
+    memset(create_fine_tuning_job_request_local_var, 0, sizeof(create_fine_tuning_job_request_t));
+    create_fine_tuning_job_request_local_var->_library_owned = 1;
     create_fine_tuning_job_request_local_var->model = model;
     create_fine_tuning_job_request_local_var->training_file = training_file;
     create_fine_tuning_job_request_local_var->hyperparameters = hyperparameters;
@@ -27,8 +29,6 @@ static create_fine_tuning_job_request_t *create_fine_tuning_job_request_create_i
     create_fine_tuning_job_request_local_var->integrations = integrations;
     create_fine_tuning_job_request_local_var->seed = seed;
     create_fine_tuning_job_request_local_var->method = method;
-
-    create_fine_tuning_job_request_local_var->_library_owned = 1;
     return create_fine_tuning_job_request_local_var;
 }
 
@@ -39,19 +39,28 @@ __attribute__((deprecated)) create_fine_tuning_job_request_t *create_fine_tuning
     char *suffix,
     char *validation_file,
     list_t *integrations,
-    int seed,
+    int *seed,
     fine_tune_method_t *method
     ) {
-    return create_fine_tuning_job_request_create_internal (
+    int *seed_copy = NULL;
+    if (seed) {
+        seed_copy = malloc(sizeof(int));
+        if (seed_copy) *seed_copy = *seed;
+    }
+    create_fine_tuning_job_request_t *result = create_fine_tuning_job_request_create_internal (
         model,
         training_file,
         hyperparameters,
         suffix,
         validation_file,
         integrations,
-        seed,
+        seed_copy,
         method
         );
+    if (!result) {
+        free(seed_copy);
+    }
+    return result;
 }
 
 void create_fine_tuning_job_request_free(create_fine_tuning_job_request_t *create_fine_tuning_job_request) {
@@ -89,6 +98,10 @@ void create_fine_tuning_job_request_free(create_fine_tuning_job_request_t *creat
         }
         list_freeList(create_fine_tuning_job_request->integrations);
         create_fine_tuning_job_request->integrations = NULL;
+    }
+    if (create_fine_tuning_job_request->seed) {
+        free(create_fine_tuning_job_request->seed);
+        create_fine_tuning_job_request->seed = NULL;
     }
     if (create_fine_tuning_job_request->method) {
         fine_tune_method_free(create_fine_tuning_job_request->method);
@@ -174,7 +187,7 @@ cJSON *create_fine_tuning_job_request_convertToJSON(create_fine_tuning_job_reque
 
     // create_fine_tuning_job_request->seed
     if(create_fine_tuning_job_request->seed) {
-    if(cJSON_AddNumberToObject(item, "seed", create_fine_tuning_job_request->seed) == NULL) {
+    if(cJSON_AddNumberToObject(item, "seed", *create_fine_tuning_job_request->seed) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -207,11 +220,20 @@ create_fine_tuning_job_request_t *create_fine_tuning_job_request_parseFromJSON(c
     // define the local variable for create_fine_tuning_job_request->model
     create_fine_tuning_job_request_model_t *model_local_nonprim = NULL;
 
+    char *training_file_local_str = NULL;
+
     // define the local variable for create_fine_tuning_job_request->hyperparameters
     create_fine_tuning_job_request_hyperparameters_t *hyperparameters_local_nonprim = NULL;
 
+    char *suffix_local_str = NULL;
+
+    char *validation_file_local_str = NULL;
+
     // define the local list for create_fine_tuning_job_request->integrations
     list_t *integrationsList = NULL;
+
+    // define the local variable for create_fine_tuning_job_request->seed
+    int *seed_local_var = NULL;
 
     // define the local variable for create_fine_tuning_job_request->method
     fine_tune_method_t *method_local_nonprim = NULL;
@@ -310,6 +332,12 @@ create_fine_tuning_job_request_t *create_fine_tuning_job_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    seed_local_var = malloc(sizeof(int));
+    if(!seed_local_var)
+    {
+        goto end;
+    }
+    *seed_local_var = seed->valuedouble;
     }
 
     // create_fine_tuning_job_request->method
@@ -322,16 +350,24 @@ create_fine_tuning_job_request_t *create_fine_tuning_job_request_parseFromJSON(c
     }
 
 
+    if (training_file && !cJSON_IsNull(training_file)) training_file_local_str = strdup(training_file->valuestring);
+    if (suffix && !cJSON_IsNull(suffix)) suffix_local_str = strdup(suffix->valuestring);
+    if (validation_file && !cJSON_IsNull(validation_file)) validation_file_local_str = strdup(validation_file->valuestring);
+
     create_fine_tuning_job_request_local_var = create_fine_tuning_job_request_create_internal (
         model_local_nonprim,
-        strdup(training_file->valuestring),
+        training_file_local_str,
         hyperparameters ? hyperparameters_local_nonprim : NULL,
-        suffix && !cJSON_IsNull(suffix) ? strdup(suffix->valuestring) : NULL,
-        validation_file && !cJSON_IsNull(validation_file) ? strdup(validation_file->valuestring) : NULL,
+        suffix_local_str,
+        validation_file_local_str,
         integrations ? integrationsList : NULL,
-        seed ? seed->valuedouble : 0,
+        seed_local_var,
         method ? method_local_nonprim : NULL
         );
+
+    if (!create_fine_tuning_job_request_local_var) {
+        goto end;
+    }
 
     return create_fine_tuning_job_request_local_var;
 end:
@@ -339,9 +375,21 @@ end:
         create_fine_tuning_job_request_model_free(model_local_nonprim);
         model_local_nonprim = NULL;
     }
+    if (training_file_local_str) {
+        free(training_file_local_str);
+        training_file_local_str = NULL;
+    }
     if (hyperparameters_local_nonprim) {
         create_fine_tuning_job_request_hyperparameters_free(hyperparameters_local_nonprim);
         hyperparameters_local_nonprim = NULL;
+    }
+    if (suffix_local_str) {
+        free(suffix_local_str);
+        suffix_local_str = NULL;
+    }
+    if (validation_file_local_str) {
+        free(validation_file_local_str);
+        validation_file_local_str = NULL;
     }
     if (integrationsList) {
         listEntry_t *listEntry = NULL;
@@ -351,6 +399,10 @@ end:
         }
         list_freeList(integrationsList);
         integrationsList = NULL;
+    }
+    if (seed_local_var) {
+        free(seed_local_var);
+        seed_local_var = NULL;
     }
     if (method_local_nonprim) {
         fine_tune_method_free(method_local_nonprim);

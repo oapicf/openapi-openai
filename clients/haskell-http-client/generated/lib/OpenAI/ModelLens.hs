@@ -1052,15 +1052,6 @@ auditLogUserUpdatedChangesRequestedRoleL f AuditLogUserUpdatedChangesRequested{.
 
 
 
--- * AutoChunkingStrategy
-
--- | 'autoChunkingStrategyType' Lens
-autoChunkingStrategyTypeL :: Lens_' AutoChunkingStrategy (E'OneOf0)
-autoChunkingStrategyTypeL f AutoChunkingStrategy{..} = (\autoChunkingStrategyType -> AutoChunkingStrategy { autoChunkingStrategyType, ..} ) <$> f autoChunkingStrategyType
-{-# INLINE autoChunkingStrategyTypeL #-}
-
-
-
 -- * AutoChunkingStrategyRequestParam
 
 -- | 'autoChunkingStrategyRequestParamType' Lens
@@ -9959,20 +9950,6 @@ staticChunkingStrategyRequestParamTypeL f StaticChunkingStrategyRequestParam{..}
 staticChunkingStrategyRequestParamStaticL :: Lens_' StaticChunkingStrategyRequestParam (StaticChunkingStrategy)
 staticChunkingStrategyRequestParamStaticL f StaticChunkingStrategyRequestParam{..} = (\staticChunkingStrategyRequestParamStatic -> StaticChunkingStrategyRequestParam { staticChunkingStrategyRequestParamStatic, ..} ) <$> f staticChunkingStrategyRequestParamStatic
 {-# INLINE staticChunkingStrategyRequestParamStaticL #-}
-
-
-
--- * StaticChunkingStrategyResponseParam
-
--- | 'staticChunkingStrategyResponseParamType' Lens
-staticChunkingStrategyResponseParamTypeL :: Lens_' StaticChunkingStrategyResponseParam (E'Type67)
-staticChunkingStrategyResponseParamTypeL f StaticChunkingStrategyResponseParam{..} = (\staticChunkingStrategyResponseParamType -> StaticChunkingStrategyResponseParam { staticChunkingStrategyResponseParamType, ..} ) <$> f staticChunkingStrategyResponseParamType
-{-# INLINE staticChunkingStrategyResponseParamTypeL #-}
-
--- | 'staticChunkingStrategyResponseParamStatic' Lens
-staticChunkingStrategyResponseParamStaticL :: Lens_' StaticChunkingStrategyResponseParam (StaticChunkingStrategy)
-staticChunkingStrategyResponseParamStaticL f StaticChunkingStrategyResponseParam{..} = (\staticChunkingStrategyResponseParamStatic -> StaticChunkingStrategyResponseParam { staticChunkingStrategyResponseParamStatic, ..} ) <$> f staticChunkingStrategyResponseParamStatic
-{-# INLINE staticChunkingStrategyResponseParamStaticL #-}
 
 
 

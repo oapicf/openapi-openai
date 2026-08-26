@@ -165,7 +165,7 @@ ListBatchesResponse::getData()
 }
 
 void
-ListBatchesResponse::setData(std::list <Batch> data)
+ListBatchesResponse::setData(std::list<Batch> data)
 {
 	this->data = data;
 }
@@ -177,7 +177,7 @@ ListBatchesResponse::getFirstId()
 }
 
 void
-ListBatchesResponse::setFirstId(std::string  first_id)
+ListBatchesResponse::setFirstId(std::string first_id)
 {
 	this->first_id = first_id;
 }
@@ -189,7 +189,7 @@ ListBatchesResponse::getLastId()
 }
 
 void
-ListBatchesResponse::setLastId(std::string  last_id)
+ListBatchesResponse::setLastId(std::string last_id)
 {
 	this->last_id = last_id;
 }
@@ -201,7 +201,7 @@ ListBatchesResponse::isHasMore()
 }
 
 void
-ListBatchesResponse::setHasMore(bool  has_more)
+ListBatchesResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }
@@ -213,7 +213,7 @@ ListBatchesResponse::getObject()
 }
 
 void
-ListBatchesResponse::setObject(std::string  object)
+ListBatchesResponse::setObject(std::string object)
 {
 	this->object = object;
 }

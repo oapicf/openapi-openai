@@ -51,7 +51,7 @@ class MessageObjectIncompleteDetails
      * @var string|null
      * @SerializedName("reason")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['content_filter', 'max_tokens', 'run_cancelled', 'run_expired', 'run_failed'])]
     #[Assert\Type("string")]
@@ -79,12 +79,12 @@ class MessageObjectIncompleteDetails
     }
 
     /**
-    * Sets reason.
-    *
-    * @param string|null $reason  The reason the message is incomplete.
-    *
-    * @return $this
-    */
+     * Sets reason.
+     *
+     * @param string|null $reason  The reason the message is incomplete.
+     *
+     * @return $this
+     */
     public function setReason(?string $reason): self
     {
         $this->reason = $reason;

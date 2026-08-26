@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { AutoChunkingStrategy } from '../models/AutoChunkingStrategy';
+import { AutoChunkingStrategyRequestParam } from '../models/AutoChunkingStrategyRequestParam';
 import { StaticChunkingStrategy } from '../models/StaticChunkingStrategy';
 import { HttpFile } from '../http/http';
 
@@ -22,7 +22,7 @@ import { HttpFile } from '../http/http';
  * Type
  * @export
  */
-export type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = AutoChunkingStrategy | StaticChunkingStrategy;
+export type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = AutoChunkingStrategyRequestParam | StaticChunkingStrategy;
 
 /**
 * @type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyClass

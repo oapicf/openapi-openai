@@ -47,7 +47,7 @@ class ListModelsResponse
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['list'])]
     #[Assert\Type("string")]
@@ -57,7 +57,7 @@ class ListModelsResponse
      * @var Model[]|null
      * @SerializedName("data")
      * @Type("array<OpenAPI\Server\Model\Model>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -88,12 +88,12 @@ class ListModelsResponse
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -115,12 +115,12 @@ class ListModelsResponse
     }
 
     /**
-    * Sets data.
-    *
-    * @param Model[]|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param Model[]|null $data
+     *
+     * @return $this
+     */
     public function setData(?array $data): self
     {
         $this->data = $data;

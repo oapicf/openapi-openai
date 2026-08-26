@@ -86,7 +86,7 @@ AuditLog_project_created::getId()
 }
 
 void
-AuditLog_project_created::setId(std::string  id)
+AuditLog_project_created::setId(std::string id)
 {
 	this->id = id;
 }
@@ -98,7 +98,7 @@ AuditLog_project_created::getData()
 }
 
 void
-AuditLog_project_created::setData(AuditLog_project_created_data  data)
+AuditLog_project_created::setData(AuditLog_project_created_data data)
 {
 	this->data = data;
 }

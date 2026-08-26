@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // UsageVectorStoresResult - The aggregated vector stores usage details of the specific time bucket.
@@ -25,19 +30,76 @@ type UsageVectorStoresResult struct {
 	// When `group_by=project_id`, this field provides the project ID of the grouped usage result.
 	ProjectId *string `json:"project_id,omitempty"`
 }
-
-// AssertUsageVectorStoresResultRequired checks if the required fields are not zero-ed
-func AssertUsageVectorStoresResultRequired(obj UsageVectorStoresResult) error {
-	elements := map[string]interface{}{
-		"object": obj.Object,
-		"usage_bytes": obj.UsageBytes,
+// UnmarshalJSON validates required property keys then unmarshals into UsageVectorStoresResult
+func (o *UsageVectorStoresResult) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"object",
+		"usage_bytes",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"object": false,
+		"usage_bytes": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"object": {},
+		"usage_bytes": {},
+		"project_id": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded UsageVectorStoresResult
+
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["usage_bytes"]; exists {
+		if err = json.Unmarshal(value, &decoded.UsageBytes); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["project_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.ProjectId); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertUsageVectorStoresResultRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertUsageVectorStoresResultRequired(obj UsageVectorStoresResult) error {
 	return nil
 }
 

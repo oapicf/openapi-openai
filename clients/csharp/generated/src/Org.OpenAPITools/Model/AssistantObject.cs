@@ -188,7 +188,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ToolResources
         /// </summary>
         [JsonPropertyName("tool_resources")]
-        public AssistantObjectToolResources? ToolResources { get { return this.ToolResourcesOption; } set { this.ToolResourcesOption = new(value); } }
+        public AssistantObjectToolResources? ToolResources { get { return this.ToolResourcesOption.Value; } set { this.ToolResourcesOption = new(value); } }
 
         /// <summary>
         /// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
@@ -210,7 +210,7 @@ namespace Org.OpenAPITools.Model
         /// <value>What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. </value>
         /* <example>1</example> */
         [JsonPropertyName("temperature")]
-        public decimal? Temperature { get { return this.TemperatureOption; } set { this.TemperatureOption = new(value); } }
+        public decimal? Temperature { get { return this.TemperatureOption.Value; } set { this.TemperatureOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TopP
@@ -225,7 +225,7 @@ namespace Org.OpenAPITools.Model
         /// <value>An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. </value>
         /* <example>1</example> */
         [JsonPropertyName("top_p")]
-        public decimal? TopP { get { return this.TopPOption; } set { this.TopPOption = new(value); } }
+        public decimal? TopP { get { return this.TopPOption.Value; } set { this.TopPOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ResponseFormat
@@ -238,7 +238,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ResponseFormat
         /// </summary>
         [JsonPropertyName("response_format")]
-        public AssistantsApiResponseFormatOption? ResponseFormat { get { return this.ResponseFormatOption; } set { this.ResponseFormatOption = new(value); } }
+        public AssistantsApiResponseFormatOption? ResponseFormat { get { return this.ResponseFormatOption.Value; } set { this.ResponseFormatOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -321,8 +321,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AssistantObject" />
     /// </summary>
-    public class AssistantObjectJsonConverter : JsonConverter<AssistantObject>
+    public partial class AssistantObjectJsonConverter : JsonConverter<AssistantObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssistantObjectJsonConverter" /> class.
+        /// </summary>
+        public AssistantObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AssistantObject" />
         /// </summary>

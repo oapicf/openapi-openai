@@ -69,10 +69,14 @@ class ChatCompletionResponseMessageAudio {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ChatCompletionResponseMessageAudio[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ChatCompletionResponseMessageAudio[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "ChatCompletionResponseMessageAudio[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "ChatCompletionResponseMessageAudio[id]" has a null value in JSON.');
+        assert(json.containsKey(r'expires_at'), 'Required key "ChatCompletionResponseMessageAudio[expires_at]" is missing from JSON.');
+        assert(json[r'expires_at'] != null, 'Required key "ChatCompletionResponseMessageAudio[expires_at]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "ChatCompletionResponseMessageAudio[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "ChatCompletionResponseMessageAudio[data]" has a null value in JSON.');
+        assert(json.containsKey(r'transcript'), 'Required key "ChatCompletionResponseMessageAudio[transcript]" is missing from JSON.');
+        assert(json[r'transcript'] != null, 'Required key "ChatCompletionResponseMessageAudio[transcript]" has a null value in JSON.');
         return true;
       }());
 

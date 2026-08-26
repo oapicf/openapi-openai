@@ -90,10 +90,20 @@ class RealtimeServerEventResponseAudioDelta {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventResponseAudioDelta[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventResponseAudioDelta[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event_id'), 'Required key "RealtimeServerEventResponseAudioDelta[event_id]" is missing from JSON.');
+        assert(json[r'event_id'] != null, 'Required key "RealtimeServerEventResponseAudioDelta[event_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RealtimeServerEventResponseAudioDelta[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeServerEventResponseAudioDelta[type]" has a null value in JSON.');
+        assert(json.containsKey(r'response_id'), 'Required key "RealtimeServerEventResponseAudioDelta[response_id]" is missing from JSON.');
+        assert(json[r'response_id'] != null, 'Required key "RealtimeServerEventResponseAudioDelta[response_id]" has a null value in JSON.');
+        assert(json.containsKey(r'item_id'), 'Required key "RealtimeServerEventResponseAudioDelta[item_id]" is missing from JSON.');
+        assert(json[r'item_id'] != null, 'Required key "RealtimeServerEventResponseAudioDelta[item_id]" has a null value in JSON.');
+        assert(json.containsKey(r'output_index'), 'Required key "RealtimeServerEventResponseAudioDelta[output_index]" is missing from JSON.');
+        assert(json[r'output_index'] != null, 'Required key "RealtimeServerEventResponseAudioDelta[output_index]" has a null value in JSON.');
+        assert(json.containsKey(r'content_index'), 'Required key "RealtimeServerEventResponseAudioDelta[content_index]" is missing from JSON.');
+        assert(json[r'content_index'] != null, 'Required key "RealtimeServerEventResponseAudioDelta[content_index]" has a null value in JSON.');
+        assert(json.containsKey(r'delta'), 'Required key "RealtimeServerEventResponseAudioDelta[delta]" is missing from JSON.');
+        assert(json[r'delta'] != null, 'Required key "RealtimeServerEventResponseAudioDelta[delta]" has a null value in JSON.');
         return true;
       }());
 
@@ -163,27 +173,28 @@ class RealtimeServerEventResponseAudioDelta {
 }
 
 /// The event type, must be `response.audio.delta`.
-class RealtimeServerEventResponseAudioDeltaTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventResponseAudioDeltaTypeEnum._(this.value);
+enum RealtimeServerEventResponseAudioDeltaTypeEnum {
+  responsePeriodAudioPeriodDelta._(r'response.audio.delta'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventResponseAudioDeltaTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const responsePeriodAudioPeriodDelta = RealtimeServerEventResponseAudioDeltaTypeEnum._(r'response.audio.delta');
-
-  /// List of all possible values in this [enum][RealtimeServerEventResponseAudioDeltaTypeEnum].
-  static const values = <RealtimeServerEventResponseAudioDeltaTypeEnum>[
-    responsePeriodAudioPeriodDelta,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventResponseAudioDeltaTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventResponseAudioDeltaTypeEnum? fromJson(dynamic value) => RealtimeServerEventResponseAudioDeltaTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventResponseAudioDeltaTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventResponseAudioDeltaTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventResponseAudioDeltaTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -205,9 +216,10 @@ class RealtimeServerEventResponseAudioDeltaTypeEnumTypeTransformer {
 
   const RealtimeServerEventResponseAudioDeltaTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventResponseAudioDeltaTypeEnum data) => data.value;
+  String encode(RealtimeServerEventResponseAudioDeltaTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventResponseAudioDeltaTypeEnum.
+  /// Returns the instance of [RealtimeServerEventResponseAudioDeltaTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -216,6 +228,9 @@ class RealtimeServerEventResponseAudioDeltaTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventResponseAudioDeltaTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventResponseAudioDeltaTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'response.audio.delta': return RealtimeServerEventResponseAudioDeltaTypeEnum.responsePeriodAudioPeriodDelta;
@@ -228,7 +243,7 @@ class RealtimeServerEventResponseAudioDeltaTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeServerEventResponseAudioDeltaTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventResponseAudioDeltaTypeEnumTypeTransformer? _instance;
 }
 

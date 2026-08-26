@@ -1,5 +1,5 @@
 const utils = require('../utils/utils');
-const Auto_Chunking_Strategy = require('../models/Auto_Chunking_Strategy');
+const AutoChunkingStrategyRequestParam = require('../models/AutoChunkingStrategyRequestParam');
 const Static_Chunking_Strategy = require('../models/Static_Chunking_Strategy');
 const Static_Chunking_Strategy_static = require('../models/Static_Chunking_Strategy_static');
 

@@ -32,6 +32,8 @@ ChatCompletionStreamResponseDelta::ChatCompletionStreamResponseDelta()
     
 }
 
+ChatCompletionStreamResponseDelta::~ChatCompletionStreamResponseDelta() = default;
+
 void ChatCompletionStreamResponseDelta::validate() const
 {
     std::stringstream msg;

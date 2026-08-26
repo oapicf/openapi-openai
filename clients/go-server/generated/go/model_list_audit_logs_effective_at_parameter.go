@@ -29,7 +29,8 @@ type ListAuditLogsEffectiveAtParameter struct {
 	Lte int32 `json:"lte,omitempty"`
 }
 
-// AssertListAuditLogsEffectiveAtParameterRequired checks if the required fields are not zero-ed
+// AssertListAuditLogsEffectiveAtParameterRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertListAuditLogsEffectiveAtParameterRequired(obj ListAuditLogsEffectiveAtParameter) error {
 	return nil
 }

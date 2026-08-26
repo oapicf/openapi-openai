@@ -32,7 +32,7 @@ class  OpenAIFile
 {
 public:
     OpenAIFile();
-    virtual ~OpenAIFile() = default;
+    virtual ~OpenAIFile();
 
 
     /// <summary>

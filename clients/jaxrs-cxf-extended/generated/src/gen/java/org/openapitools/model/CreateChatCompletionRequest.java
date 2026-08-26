@@ -169,7 +169,10 @@ public enum ModalitiesEnum {
   @ApiModelProperty(value = "Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` ")
   private List<ModalitiesEnum> modalities;
 
-  @ApiModelProperty(value = "")
+ /**
+  * Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
+  */
+  @ApiModelProperty(value = "Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. ")
   @Valid
   private PredictionContent prediction;
 
@@ -232,7 +235,7 @@ public enum ServiceTierEnum {
 
   @ApiModelProperty(value = "")
   @Valid
-  private CreateChatCompletionRequestStop stop = null;
+  private CreateChatCompletionRequestStop stop;
 
  /**
   * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). 
@@ -644,7 +647,7 @@ public enum ServiceTierEnum {
   }
 
  /**
-  * Get prediction
+  * Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
   * @return prediction
   */
   @JsonProperty("prediction")
@@ -1166,10 +1169,7 @@ public enum ServiceTierEnum {
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

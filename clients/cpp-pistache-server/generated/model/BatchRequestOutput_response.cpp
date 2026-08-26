@@ -29,6 +29,8 @@ BatchRequestOutput_response::BatchRequestOutput_response()
     
 }
 
+BatchRequestOutput_response::~BatchRequestOutput_response() = default;
+
 void BatchRequestOutput_response::validate() const
 {
     std::stringstream msg;

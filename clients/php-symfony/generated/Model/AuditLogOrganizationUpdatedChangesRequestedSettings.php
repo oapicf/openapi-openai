@@ -49,7 +49,7 @@ class AuditLogOrganizationUpdatedChangesRequestedSettings
      * @var string|null
      * @SerializedName("threads_ui_visibility")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $threadsUiVisibility = null;
 
@@ -59,7 +59,7 @@ class AuditLogOrganizationUpdatedChangesRequestedSettings
      * @var string|null
      * @SerializedName("usage_dashboard_visibility")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $usageDashboardVisibility = null;
 
@@ -86,12 +86,12 @@ class AuditLogOrganizationUpdatedChangesRequestedSettings
     }
 
     /**
-    * Sets threadsUiVisibility.
-    *
-    * @param string|null $threadsUiVisibility  Visibility of the threads page which shows messages created with the Assistants API and Playground. One of `ANY_ROLE`, `OWNERS`, or `NONE`.
-    *
-    * @return $this
-    */
+     * Sets threadsUiVisibility.
+     *
+     * @param string|null $threadsUiVisibility  Visibility of the threads page which shows messages created with the Assistants API and Playground. One of `ANY_ROLE`, `OWNERS`, or `NONE`.
+     *
+     * @return $this
+     */
     public function setThreadsUiVisibility(?string $threadsUiVisibility = null): self
     {
         $this->threadsUiVisibility = $threadsUiVisibility;
@@ -113,12 +113,12 @@ class AuditLogOrganizationUpdatedChangesRequestedSettings
     }
 
     /**
-    * Sets usageDashboardVisibility.
-    *
-    * @param string|null $usageDashboardVisibility  Visibility of the usage dashboard which shows activity and costs for your organization. One of `ANY_ROLE` or `OWNERS`.
-    *
-    * @return $this
-    */
+     * Sets usageDashboardVisibility.
+     *
+     * @param string|null $usageDashboardVisibility  Visibility of the usage dashboard which shows activity and costs for your organization. One of `ANY_ROLE` or `OWNERS`.
+     *
+     * @return $this
+     */
     public function setUsageDashboardVisibility(?string $usageDashboardVisibility = null): self
     {
         $this->usageDashboardVisibility = $usageDashboardVisibility;

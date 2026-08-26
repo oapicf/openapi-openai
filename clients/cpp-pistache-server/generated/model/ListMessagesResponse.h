@@ -34,7 +34,7 @@ class  ListMessagesResponse
 {
 public:
     ListMessagesResponse();
-    virtual ~ListMessagesResponse() = default;
+    virtual ~ListMessagesResponse();
 
 
     /// <summary>

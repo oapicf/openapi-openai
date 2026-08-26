@@ -70,10 +70,10 @@ class ThreadStreamEvent {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ThreadStreamEvent[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ThreadStreamEvent[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event'), 'Required key "ThreadStreamEvent[event]" is missing from JSON.');
+        assert(json[r'event'] != null, 'Required key "ThreadStreamEvent[event]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "ThreadStreamEvent[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "ThreadStreamEvent[data]" has a null value in JSON.');
         return true;
       }());
 
@@ -134,27 +134,28 @@ class ThreadStreamEvent {
 }
 
 
-class ThreadStreamEventEventEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ThreadStreamEventEventEnum._(this.value);
+enum ThreadStreamEventEventEnum {
+  threadPeriodCreated._(r'thread.created'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ThreadStreamEventEventEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodCreated = ThreadStreamEventEventEnum._(r'thread.created');
-
-  /// List of all possible values in this [enum][ThreadStreamEventEventEnum].
-  static const values = <ThreadStreamEventEventEnum>[
-    threadPeriodCreated,
-  ];
-
+  /// Returns the instance of [ThreadStreamEventEventEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ThreadStreamEventEventEnum? fromJson(dynamic value) => ThreadStreamEventEventEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ThreadStreamEventEventEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ThreadStreamEventEventEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ThreadStreamEventEventEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -176,9 +177,10 @@ class ThreadStreamEventEventEnumTypeTransformer {
 
   const ThreadStreamEventEventEnumTypeTransformer._();
 
-  String encode(ThreadStreamEventEventEnum data) => data.value;
+  String encode(ThreadStreamEventEventEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ThreadStreamEventEventEnum.
+  /// Returns the instance of [ThreadStreamEventEventEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -187,6 +189,9 @@ class ThreadStreamEventEventEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ThreadStreamEventEventEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ThreadStreamEventEventEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.created': return ThreadStreamEventEventEnum.threadPeriodCreated;
@@ -199,7 +204,7 @@ class ThreadStreamEventEventEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ThreadStreamEventEventEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ThreadStreamEventEventEnumTypeTransformer? _instance;
 }
 

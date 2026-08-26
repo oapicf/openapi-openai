@@ -82,10 +82,8 @@ class RealtimeClientEventResponseCancel {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeClientEventResponseCancel[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeClientEventResponseCancel[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "RealtimeClientEventResponseCancel[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeClientEventResponseCancel[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -145,27 +143,28 @@ class RealtimeClientEventResponseCancel {
 }
 
 /// The event type, must be `response.cancel`.
-class RealtimeClientEventResponseCancelTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeClientEventResponseCancelTypeEnum._(this.value);
+enum RealtimeClientEventResponseCancelTypeEnum {
+  responsePeriodCancel._(r'response.cancel'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeClientEventResponseCancelTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const responsePeriodCancel = RealtimeClientEventResponseCancelTypeEnum._(r'response.cancel');
-
-  /// List of all possible values in this [enum][RealtimeClientEventResponseCancelTypeEnum].
-  static const values = <RealtimeClientEventResponseCancelTypeEnum>[
-    responsePeriodCancel,
-  ];
-
+  /// Returns the instance of [RealtimeClientEventResponseCancelTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeClientEventResponseCancelTypeEnum? fromJson(dynamic value) => RealtimeClientEventResponseCancelTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeClientEventResponseCancelTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeClientEventResponseCancelTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeClientEventResponseCancelTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -187,9 +186,10 @@ class RealtimeClientEventResponseCancelTypeEnumTypeTransformer {
 
   const RealtimeClientEventResponseCancelTypeEnumTypeTransformer._();
 
-  String encode(RealtimeClientEventResponseCancelTypeEnum data) => data.value;
+  String encode(RealtimeClientEventResponseCancelTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeClientEventResponseCancelTypeEnum.
+  /// Returns the instance of [RealtimeClientEventResponseCancelTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -198,6 +198,9 @@ class RealtimeClientEventResponseCancelTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeClientEventResponseCancelTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeClientEventResponseCancelTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'response.cancel': return RealtimeClientEventResponseCancelTypeEnum.responsePeriodCancel;
@@ -210,7 +213,7 @@ class RealtimeClientEventResponseCancelTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeClientEventResponseCancelTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeClientEventResponseCancelTypeEnumTypeTransformer? _instance;
 }
 

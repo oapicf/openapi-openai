@@ -49,7 +49,7 @@ class UsageVectorStoresResult
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['organization.usage.vector_stores.result'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class UsageVectorStoresResult
      * @var int|null
      * @SerializedName("usage_bytes")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $usageBytes = null;
@@ -72,7 +72,7 @@ class UsageVectorStoresResult
      * @var string|null
      * @SerializedName("project_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $projectId = null;
 
@@ -100,12 +100,12 @@ class UsageVectorStoresResult
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -127,12 +127,12 @@ class UsageVectorStoresResult
     }
 
     /**
-    * Sets usageBytes.
-    *
-    * @param int|null $usageBytes  The vector stores usage in bytes.
-    *
-    * @return $this
-    */
+     * Sets usageBytes.
+     *
+     * @param int|null $usageBytes  The vector stores usage in bytes.
+     *
+     * @return $this
+     */
     public function setUsageBytes(?int $usageBytes): self
     {
         $this->usageBytes = $usageBytes;
@@ -154,12 +154,12 @@ class UsageVectorStoresResult
     }
 
     /**
-    * Sets projectId.
-    *
-    * @param string|null $projectId  When `group_by=project_id`, this field provides the project ID of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets projectId.
+     *
+     * @param string|null $projectId  When `group_by=project_id`, this field provides the project ID of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setProjectId(?string $projectId = null): self
     {
         $this->projectId = $projectId;

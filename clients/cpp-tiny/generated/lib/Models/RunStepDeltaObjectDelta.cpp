@@ -65,7 +65,7 @@ RunStepDeltaObject_delta::getStepDetails()
 }
 
 void
-RunStepDeltaObject_delta::setStepDetails(RunStepDeltaObject_delta_step_details  step_details)
+RunStepDeltaObject_delta::setStepDetails(RunStepDeltaObject_delta_step_details step_details)
 {
 	this->step_details = step_details;
 }

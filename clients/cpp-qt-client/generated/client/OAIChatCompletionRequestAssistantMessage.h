@@ -39,13 +39,13 @@ class OAIChatCompletionRequestAssistantMessage_function_call;
 class OAIChatCompletionRequestAssistantMessage : public OAIObject {
 public:
     OAIChatCompletionRequestAssistantMessage();
-    OAIChatCompletionRequestAssistantMessage(QString json);
+    OAIChatCompletionRequestAssistantMessage(const QString &json);
     ~OAIChatCompletionRequestAssistantMessage() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     OAIChatCompletionRequestAssistantMessage_content getContent() const;
     void setContent(const OAIChatCompletionRequestAssistantMessage_content &content);

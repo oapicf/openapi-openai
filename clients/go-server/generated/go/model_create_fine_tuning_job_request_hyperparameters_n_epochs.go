@@ -18,7 +18,8 @@ package openapi
 type CreateFineTuningJobRequestHyperparametersNEpochs struct {
 }
 
-// AssertCreateFineTuningJobRequestHyperparametersNEpochsRequired checks if the required fields are not zero-ed
+// AssertCreateFineTuningJobRequestHyperparametersNEpochsRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateFineTuningJobRequestHyperparametersNEpochsRequired(obj CreateFineTuningJobRequestHyperparametersNEpochs) error {
 	return nil
 }

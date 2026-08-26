@@ -102,7 +102,7 @@ ListFineTuningJobEventsResponse::getData()
 }
 
 void
-ListFineTuningJobEventsResponse::setData(std::list <FineTuningJobEvent> data)
+ListFineTuningJobEventsResponse::setData(std::list<FineTuningJobEvent> data)
 {
 	this->data = data;
 }
@@ -114,7 +114,7 @@ ListFineTuningJobEventsResponse::getObject()
 }
 
 void
-ListFineTuningJobEventsResponse::setObject(std::string  object)
+ListFineTuningJobEventsResponse::setObject(std::string object)
 {
 	this->object = object;
 }

@@ -49,7 +49,7 @@ class MessageDeltaContentTextObjectText
      * @var string|null
      * @SerializedName("value")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $value = null;
 
@@ -57,7 +57,7 @@ class MessageDeltaContentTextObjectText
      * @var MessageDeltaContentTextObjectTextAnnotationsInner[]|null
      * @SerializedName("annotations")
      * @Type("array<OpenAPI\Server\Model\MessageDeltaContentTextObjectTextAnnotationsInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\MessageDeltaContentTextObjectTextAnnotationsInner"),
     ])]
@@ -86,12 +86,12 @@ class MessageDeltaContentTextObjectText
     }
 
     /**
-    * Sets value.
-    *
-    * @param string|null $value  The data that makes up the text.
-    *
-    * @return $this
-    */
+     * Sets value.
+     *
+     * @param string|null $value  The data that makes up the text.
+     *
+     * @return $this
+     */
     public function setValue(?string $value = null): self
     {
         $this->value = $value;
@@ -113,12 +113,12 @@ class MessageDeltaContentTextObjectText
     }
 
     /**
-    * Sets annotations.
-    *
-    * @param MessageDeltaContentTextObjectTextAnnotationsInner[]|null $annotations
-    *
-    * @return $this
-    */
+     * Sets annotations.
+     *
+     * @param MessageDeltaContentTextObjectTextAnnotationsInner[]|null $annotations
+     *
+     * @return $this
+     */
     public function setAnnotations(?array $annotations = null): self
     {
         $this->annotations = $annotations;

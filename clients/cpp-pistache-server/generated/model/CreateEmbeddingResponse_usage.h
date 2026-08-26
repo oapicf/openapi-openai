@@ -31,7 +31,7 @@ class  CreateEmbeddingResponse_usage
 {
 public:
     CreateEmbeddingResponse_usage();
-    virtual ~CreateEmbeddingResponse_usage() = default;
+    virtual ~CreateEmbeddingResponse_usage();
 
 
     /// <summary>

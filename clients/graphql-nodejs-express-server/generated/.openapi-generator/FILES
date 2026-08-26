@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 docs/AdminApiKey.md
 docs/AdminApiKeyOwner.md
 docs/AdminApiKeysCreateRequest.md
@@ -59,7 +58,6 @@ docs/AuditLogUserAddedData.md
 docs/AuditLogUserDeleted.md
 docs/AuditLogUserUpdated.md
 docs/AuditLogUserUpdatedChangesRequested.md
-docs/AutoChunkingStrategy.md
 docs/AutoChunkingStrategyRequestParam.md
 docs/Batch.md
 docs/BatchErrors.md
@@ -469,7 +467,6 @@ docs/RunToolCallObject.md
 docs/RunToolCallObjectFunction.md
 docs/StaticChunkingStrategy.md
 docs/StaticChunkingStrategyRequestParam.md
-docs/StaticChunkingStrategyResponseParam.md
 docs/StaticChunkingStrategyStatic.md
 docs/SubmitToolOutputsRunRequest.md
 docs/SubmitToolOutputsRunRequestToolOutputsInner.md
@@ -626,7 +623,6 @@ openapi3graphql-server/model/audit_log_user_added_data.graphql
 openapi3graphql-server/model/audit_log_user_deleted.graphql
 openapi3graphql-server/model/audit_log_user_updated.graphql
 openapi3graphql-server/model/audit_log_user_updated_changes_requested.graphql
-openapi3graphql-server/model/auto_chunking_strategy.graphql
 openapi3graphql-server/model/auto_chunking_strategy_request_param.graphql
 openapi3graphql-server/model/batch.graphql
 openapi3graphql-server/model/batch_errors.graphql
@@ -1036,7 +1032,6 @@ openapi3graphql-server/model/run_tool_call_object.graphql
 openapi3graphql-server/model/run_tool_call_object_function.graphql
 openapi3graphql-server/model/static_chunking_strategy.graphql
 openapi3graphql-server/model/static_chunking_strategy_request_param.graphql
-openapi3graphql-server/model/static_chunking_strategy_response_param.graphql
 openapi3graphql-server/model/static_chunking_strategy_static.graphql
 openapi3graphql-server/model/submit_tool_outputs_run_request.graphql
 openapi3graphql-server/model/submit_tool_outputs_run_request_tool_outputs_inner.graphql

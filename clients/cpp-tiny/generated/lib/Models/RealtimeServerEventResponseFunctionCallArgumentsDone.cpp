@@ -190,7 +190,7 @@ RealtimeServerEventResponseFunctionCallArgumentsDone::getEventId()
 }
 
 void
-RealtimeServerEventResponseFunctionCallArgumentsDone::setEventId(std::string  event_id)
+RealtimeServerEventResponseFunctionCallArgumentsDone::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -202,7 +202,7 @@ RealtimeServerEventResponseFunctionCallArgumentsDone::getType()
 }
 
 void
-RealtimeServerEventResponseFunctionCallArgumentsDone::setType(std::string  type)
+RealtimeServerEventResponseFunctionCallArgumentsDone::setType(std::string type)
 {
 	this->type = type;
 }
@@ -214,7 +214,7 @@ RealtimeServerEventResponseFunctionCallArgumentsDone::getResponseId()
 }
 
 void
-RealtimeServerEventResponseFunctionCallArgumentsDone::setResponseId(std::string  response_id)
+RealtimeServerEventResponseFunctionCallArgumentsDone::setResponseId(std::string response_id)
 {
 	this->response_id = response_id;
 }
@@ -226,7 +226,7 @@ RealtimeServerEventResponseFunctionCallArgumentsDone::getItemId()
 }
 
 void
-RealtimeServerEventResponseFunctionCallArgumentsDone::setItemId(std::string  item_id)
+RealtimeServerEventResponseFunctionCallArgumentsDone::setItemId(std::string item_id)
 {
 	this->item_id = item_id;
 }
@@ -238,7 +238,7 @@ RealtimeServerEventResponseFunctionCallArgumentsDone::getOutputIndex()
 }
 
 void
-RealtimeServerEventResponseFunctionCallArgumentsDone::setOutputIndex(int  output_index)
+RealtimeServerEventResponseFunctionCallArgumentsDone::setOutputIndex(int output_index)
 {
 	this->output_index = output_index;
 }
@@ -250,7 +250,7 @@ RealtimeServerEventResponseFunctionCallArgumentsDone::getCallId()
 }
 
 void
-RealtimeServerEventResponseFunctionCallArgumentsDone::setCallId(std::string  call_id)
+RealtimeServerEventResponseFunctionCallArgumentsDone::setCallId(std::string call_id)
 {
 	this->call_id = call_id;
 }
@@ -262,7 +262,7 @@ RealtimeServerEventResponseFunctionCallArgumentsDone::getArguments()
 }
 
 void
-RealtimeServerEventResponseFunctionCallArgumentsDone::setArguments(std::string  arguments)
+RealtimeServerEventResponseFunctionCallArgumentsDone::setArguments(std::string arguments)
 {
 	this->arguments = arguments;
 }

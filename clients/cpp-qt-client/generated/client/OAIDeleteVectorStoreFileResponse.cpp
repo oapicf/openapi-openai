@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIDeleteVectorStoreFileResponse::OAIDeleteVectorStoreFileResponse(QString json) {
+OAIDeleteVectorStoreFileResponse::OAIDeleteVectorStoreFileResponse(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIDeleteVectorStoreFileResponse::initializeModel() {
     m_object_isValid = false;
 }
 
-void OAIDeleteVectorStoreFileResponse::fromJson(QString jsonString) {
+void OAIDeleteVectorStoreFileResponse::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -26,6 +26,8 @@ AuditLog_project_archived::AuditLog_project_archived()
     
 }
 
+AuditLog_project_archived::~AuditLog_project_archived() = default;
+
 void AuditLog_project_archived::validate() const
 {
     std::stringstream msg;

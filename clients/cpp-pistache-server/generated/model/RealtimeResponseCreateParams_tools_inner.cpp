@@ -31,6 +31,8 @@ RealtimeResponseCreateParams_tools_inner::RealtimeResponseCreateParams_tools_inn
     
 }
 
+RealtimeResponseCreateParams_tools_inner::~RealtimeResponseCreateParams_tools_inner() = default;
+
 void RealtimeResponseCreateParams_tools_inner::validate() const
 {
     std::stringstream msg;

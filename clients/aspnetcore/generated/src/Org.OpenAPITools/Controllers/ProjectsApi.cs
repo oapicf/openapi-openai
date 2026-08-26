@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"archived_at\" : 6,\n  \"name\" : \"name\",\n  \"created_at\" : 0,\n  \"id\" : \"id\",\n  \"object\" : \"organization.project\",\n  \"status\" : \"active\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"object\" : \"organization.project\",\n  \"name\" : \"name\",\n  \"created_at\" : 0,\n  \"archived_at\" : 6,\n  \"status\" : \"active\"\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<Project>(exampleJson)
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"archived_at\" : 6,\n  \"name\" : \"name\",\n  \"created_at\" : 0,\n  \"id\" : \"id\",\n  \"object\" : \"organization.project\",\n  \"status\" : \"active\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"object\" : \"organization.project\",\n  \"name\" : \"name\",\n  \"created_at\" : 0,\n  \"archived_at\" : 6,\n  \"status\" : \"active\"\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<Project>(exampleJson)
@@ -104,8 +104,8 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(400, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"role\" : \"member\",\n  \"api_key\" : {\n    \"name\" : \"name\",\n    \"created_at\" : 6,\n    \"id\" : \"id\",\n    \"value\" : \"value\",\n    \"object\" : \"organization.project.service_account.api_key\"\n  },\n  \"name\" : \"name\",\n  \"created_at\" : 0,\n  \"id\" : \"id\",\n  \"object\" : \"organization.project.service_account\"\n}";
-            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"param\" : \"param\",\n    \"message\" : \"message\",\n    \"type\" : \"type\"\n  }\n}";
+            exampleJson = "{\n  \"object\" : \"organization.project.service_account\",\n  \"id\" : \"id\",\n  \"name\" : \"name\",\n  \"role\" : \"member\",\n  \"created_at\" : 0,\n  \"api_key\" : {\n    \"object\" : \"organization.project.service_account.api_key\",\n    \"value\" : \"value\",\n    \"name\" : \"name\",\n    \"created_at\" : 6,\n    \"id\" : \"id\"\n  }\n}";
+            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"message\" : \"message\",\n    \"param\" : \"param\",\n    \"type\" : \"type\"\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ProjectServiceAccountCreateResponse>(exampleJson)
@@ -137,8 +137,8 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(400, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"added_at\" : 6,\n  \"role\" : \"owner\",\n  \"name\" : \"name\",\n  \"id\" : \"id\",\n  \"email\" : \"email\",\n  \"object\" : \"organization.project.user\"\n}";
-            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"param\" : \"param\",\n    \"message\" : \"message\",\n    \"type\" : \"type\"\n  }\n}";
+            exampleJson = "{\n  \"object\" : \"organization.project.user\",\n  \"id\" : \"id\",\n  \"name\" : \"name\",\n  \"email\" : \"email\",\n  \"role\" : \"owner\",\n  \"added_at\" : 6\n}";
+            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"message\" : \"message\",\n    \"param\" : \"param\",\n    \"type\" : \"type\"\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ProjectUser>(exampleJson)
@@ -169,8 +169,8 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(400, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"deleted\" : true,\n  \"id\" : \"id\",\n  \"object\" : \"organization.project.api_key.deleted\"\n}";
-            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"param\" : \"param\",\n    \"message\" : \"message\",\n    \"type\" : \"type\"\n  }\n}";
+            exampleJson = "{\n  \"object\" : \"organization.project.api_key.deleted\",\n  \"id\" : \"id\",\n  \"deleted\" : true\n}";
+            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"message\" : \"message\",\n    \"param\" : \"param\",\n    \"type\" : \"type\"\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ProjectApiKeyDeleteResponse>(exampleJson)
@@ -197,7 +197,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"deleted\" : true,\n  \"id\" : \"id\",\n  \"object\" : \"organization.project.service_account.deleted\"\n}";
+            exampleJson = "{\n  \"object\" : \"organization.project.service_account.deleted\",\n  \"id\" : \"id\",\n  \"deleted\" : true\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ProjectServiceAccountDeleteResponse>(exampleJson)
@@ -228,8 +228,8 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(400, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"deleted\" : true,\n  \"id\" : \"id\",\n  \"object\" : \"organization.project.user.deleted\"\n}";
-            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"param\" : \"param\",\n    \"message\" : \"message\",\n    \"type\" : \"type\"\n  }\n}";
+            exampleJson = "{\n  \"object\" : \"organization.project.user.deleted\",\n  \"id\" : \"id\",\n  \"deleted\" : true\n}";
+            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"message\" : \"message\",\n    \"param\" : \"param\",\n    \"type\" : \"type\"\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ProjectUserDeleteResponse>(exampleJson)
@@ -257,7 +257,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"first_id\" : \"first_id\",\n  \"data\" : [ {\n    \"owner\" : {\n      \"service_account\" : {\n        \"role\" : \"owner\",\n        \"name\" : \"name\",\n        \"created_at\" : 1,\n        \"id\" : \"id\",\n        \"object\" : \"organization.project.service_account\"\n      },\n      \"type\" : \"user\",\n      \"user\" : {\n        \"added_at\" : 6,\n        \"role\" : \"owner\",\n        \"name\" : \"name\",\n        \"id\" : \"id\",\n        \"email\" : \"email\",\n        \"object\" : \"organization.project.user\"\n      }\n    },\n    \"name\" : \"name\",\n    \"created_at\" : 0,\n    \"redacted_value\" : \"redacted_value\",\n    \"id\" : \"id\",\n    \"object\" : \"organization.project.api_key\"\n  }, {\n    \"owner\" : {\n      \"service_account\" : {\n        \"role\" : \"owner\",\n        \"name\" : \"name\",\n        \"created_at\" : 1,\n        \"id\" : \"id\",\n        \"object\" : \"organization.project.service_account\"\n      },\n      \"type\" : \"user\",\n      \"user\" : {\n        \"added_at\" : 6,\n        \"role\" : \"owner\",\n        \"name\" : \"name\",\n        \"id\" : \"id\",\n        \"email\" : \"email\",\n        \"object\" : \"organization.project.user\"\n      }\n    },\n    \"name\" : \"name\",\n    \"created_at\" : 0,\n    \"redacted_value\" : \"redacted_value\",\n    \"id\" : \"id\",\n    \"object\" : \"organization.project.api_key\"\n  } ],\n  \"last_id\" : \"last_id\",\n  \"has_more\" : true,\n  \"object\" : \"list\"\n}";
+            exampleJson = "{\n  \"object\" : \"list\",\n  \"data\" : [ {\n    \"object\" : \"organization.project.api_key\",\n    \"redacted_value\" : \"redacted_value\",\n    \"name\" : \"name\",\n    \"created_at\" : 0,\n    \"id\" : \"id\",\n    \"owner\" : {\n      \"type\" : \"user\",\n      \"user\" : {\n        \"object\" : \"organization.project.user\",\n        \"id\" : \"id\",\n        \"name\" : \"name\",\n        \"email\" : \"email\",\n        \"role\" : \"owner\",\n        \"added_at\" : 6\n      },\n      \"service_account\" : {\n        \"object\" : \"organization.project.service_account\",\n        \"id\" : \"id\",\n        \"name\" : \"name\",\n        \"role\" : \"owner\",\n        \"created_at\" : 1\n      }\n    }\n  }, {\n    \"object\" : \"organization.project.api_key\",\n    \"redacted_value\" : \"redacted_value\",\n    \"name\" : \"name\",\n    \"created_at\" : 0,\n    \"id\" : \"id\",\n    \"owner\" : {\n      \"type\" : \"user\",\n      \"user\" : {\n        \"object\" : \"organization.project.user\",\n        \"id\" : \"id\",\n        \"name\" : \"name\",\n        \"email\" : \"email\",\n        \"role\" : \"owner\",\n        \"added_at\" : 6\n      },\n      \"service_account\" : {\n        \"object\" : \"organization.project.service_account\",\n        \"id\" : \"id\",\n        \"name\" : \"name\",\n        \"role\" : \"owner\",\n        \"created_at\" : 1\n      }\n    }\n  } ],\n  \"first_id\" : \"first_id\",\n  \"last_id\" : \"last_id\",\n  \"has_more\" : true\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ProjectApiKeyListResponse>(exampleJson)
@@ -286,7 +286,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"first_id\" : \"first_id\",\n  \"data\" : [ {\n    \"batch_1_day_max_input_tokens\" : 2,\n    \"max_tokens_per_1_minute\" : 6,\n    \"model\" : \"model\",\n    \"id\" : \"id\",\n    \"max_images_per_1_minute\" : 1,\n    \"max_audio_megabytes_per_1_minute\" : 5,\n    \"max_requests_per_1_minute\" : 0,\n    \"object\" : \"project.rate_limit\",\n    \"max_requests_per_1_day\" : 5\n  }, {\n    \"batch_1_day_max_input_tokens\" : 2,\n    \"max_tokens_per_1_minute\" : 6,\n    \"model\" : \"model\",\n    \"id\" : \"id\",\n    \"max_images_per_1_minute\" : 1,\n    \"max_audio_megabytes_per_1_minute\" : 5,\n    \"max_requests_per_1_minute\" : 0,\n    \"object\" : \"project.rate_limit\",\n    \"max_requests_per_1_day\" : 5\n  } ],\n  \"last_id\" : \"last_id\",\n  \"has_more\" : true,\n  \"object\" : \"list\"\n}";
+            exampleJson = "{\n  \"object\" : \"list\",\n  \"data\" : [ {\n    \"object\" : \"project.rate_limit\",\n    \"id\" : \"id\",\n    \"model\" : \"model\",\n    \"max_requests_per_1_minute\" : 0,\n    \"max_tokens_per_1_minute\" : 6,\n    \"max_images_per_1_minute\" : 1,\n    \"max_audio_megabytes_per_1_minute\" : 5,\n    \"max_requests_per_1_day\" : 5,\n    \"batch_1_day_max_input_tokens\" : 2\n  }, {\n    \"object\" : \"project.rate_limit\",\n    \"id\" : \"id\",\n    \"model\" : \"model\",\n    \"max_requests_per_1_minute\" : 0,\n    \"max_tokens_per_1_minute\" : 6,\n    \"max_images_per_1_minute\" : 1,\n    \"max_audio_megabytes_per_1_minute\" : 5,\n    \"max_requests_per_1_day\" : 5,\n    \"batch_1_day_max_input_tokens\" : 2\n  } ],\n  \"first_id\" : \"first_id\",\n  \"last_id\" : \"last_id\",\n  \"has_more\" : true\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ProjectRateLimitListResponse>(exampleJson)
@@ -318,8 +318,8 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(400, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"first_id\" : \"first_id\",\n  \"data\" : [ {\n    \"role\" : \"owner\",\n    \"name\" : \"name\",\n    \"created_at\" : 1,\n    \"id\" : \"id\",\n    \"object\" : \"organization.project.service_account\"\n  }, {\n    \"role\" : \"owner\",\n    \"name\" : \"name\",\n    \"created_at\" : 1,\n    \"id\" : \"id\",\n    \"object\" : \"organization.project.service_account\"\n  } ],\n  \"last_id\" : \"last_id\",\n  \"has_more\" : true,\n  \"object\" : \"list\"\n}";
-            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"param\" : \"param\",\n    \"message\" : \"message\",\n    \"type\" : \"type\"\n  }\n}";
+            exampleJson = "{\n  \"object\" : \"list\",\n  \"data\" : [ {\n    \"object\" : \"organization.project.service_account\",\n    \"id\" : \"id\",\n    \"name\" : \"name\",\n    \"role\" : \"owner\",\n    \"created_at\" : 1\n  }, {\n    \"object\" : \"organization.project.service_account\",\n    \"id\" : \"id\",\n    \"name\" : \"name\",\n    \"role\" : \"owner\",\n    \"created_at\" : 1\n  } ],\n  \"first_id\" : \"first_id\",\n  \"last_id\" : \"last_id\",\n  \"has_more\" : true\n}";
+            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"message\" : \"message\",\n    \"param\" : \"param\",\n    \"type\" : \"type\"\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ProjectServiceAccountListResponse>(exampleJson)
@@ -351,8 +351,8 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(400, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"first_id\" : \"first_id\",\n  \"data\" : [ {\n    \"added_at\" : 6,\n    \"role\" : \"owner\",\n    \"name\" : \"name\",\n    \"id\" : \"id\",\n    \"email\" : \"email\",\n    \"object\" : \"organization.project.user\"\n  }, {\n    \"added_at\" : 6,\n    \"role\" : \"owner\",\n    \"name\" : \"name\",\n    \"id\" : \"id\",\n    \"email\" : \"email\",\n    \"object\" : \"organization.project.user\"\n  } ],\n  \"last_id\" : \"last_id\",\n  \"has_more\" : true,\n  \"object\" : \"object\"\n}";
-            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"param\" : \"param\",\n    \"message\" : \"message\",\n    \"type\" : \"type\"\n  }\n}";
+            exampleJson = "{\n  \"object\" : \"object\",\n  \"data\" : [ {\n    \"object\" : \"organization.project.user\",\n    \"id\" : \"id\",\n    \"name\" : \"name\",\n    \"email\" : \"email\",\n    \"role\" : \"owner\",\n    \"added_at\" : 6\n  }, {\n    \"object\" : \"organization.project.user\",\n    \"id\" : \"id\",\n    \"name\" : \"name\",\n    \"email\" : \"email\",\n    \"role\" : \"owner\",\n    \"added_at\" : 6\n  } ],\n  \"first_id\" : \"first_id\",\n  \"last_id\" : \"last_id\",\n  \"has_more\" : true\n}";
+            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"message\" : \"message\",\n    \"param\" : \"param\",\n    \"type\" : \"type\"\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ProjectUserListResponse>(exampleJson)
@@ -380,7 +380,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"first_id\" : \"first_id\",\n  \"data\" : [ {\n    \"archived_at\" : 6,\n    \"name\" : \"name\",\n    \"created_at\" : 0,\n    \"id\" : \"id\",\n    \"object\" : \"organization.project\",\n    \"status\" : \"active\"\n  }, {\n    \"archived_at\" : 6,\n    \"name\" : \"name\",\n    \"created_at\" : 0,\n    \"id\" : \"id\",\n    \"object\" : \"organization.project\",\n    \"status\" : \"active\"\n  } ],\n  \"last_id\" : \"last_id\",\n  \"has_more\" : true,\n  \"object\" : \"list\"\n}";
+            exampleJson = "{\n  \"object\" : \"list\",\n  \"data\" : [ {\n    \"id\" : \"id\",\n    \"object\" : \"organization.project\",\n    \"name\" : \"name\",\n    \"created_at\" : 0,\n    \"archived_at\" : 6,\n    \"status\" : \"active\"\n  }, {\n    \"id\" : \"id\",\n    \"object\" : \"organization.project\",\n    \"name\" : \"name\",\n    \"created_at\" : 0,\n    \"archived_at\" : 6,\n    \"status\" : \"active\"\n  } ],\n  \"first_id\" : \"first_id\",\n  \"last_id\" : \"last_id\",\n  \"has_more\" : true\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ProjectListResponse>(exampleJson)
@@ -412,8 +412,8 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(400, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"archived_at\" : 6,\n  \"name\" : \"name\",\n  \"created_at\" : 0,\n  \"id\" : \"id\",\n  \"object\" : \"organization.project\",\n  \"status\" : \"active\"\n}";
-            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"param\" : \"param\",\n    \"message\" : \"message\",\n    \"type\" : \"type\"\n  }\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"object\" : \"organization.project\",\n  \"name\" : \"name\",\n  \"created_at\" : 0,\n  \"archived_at\" : 6,\n  \"status\" : \"active\"\n}";
+            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"message\" : \"message\",\n    \"param\" : \"param\",\n    \"type\" : \"type\"\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<Project>(exampleJson)
@@ -446,8 +446,8 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(400, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"added_at\" : 6,\n  \"role\" : \"owner\",\n  \"name\" : \"name\",\n  \"id\" : \"id\",\n  \"email\" : \"email\",\n  \"object\" : \"organization.project.user\"\n}";
-            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"param\" : \"param\",\n    \"message\" : \"message\",\n    \"type\" : \"type\"\n  }\n}";
+            exampleJson = "{\n  \"object\" : \"organization.project.user\",\n  \"id\" : \"id\",\n  \"name\" : \"name\",\n  \"email\" : \"email\",\n  \"role\" : \"owner\",\n  \"added_at\" : 6\n}";
+            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"message\" : \"message\",\n    \"param\" : \"param\",\n    \"type\" : \"type\"\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ProjectUser>(exampleJson)
@@ -473,7 +473,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"archived_at\" : 6,\n  \"name\" : \"name\",\n  \"created_at\" : 0,\n  \"id\" : \"id\",\n  \"object\" : \"organization.project\",\n  \"status\" : \"active\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"object\" : \"organization.project\",\n  \"name\" : \"name\",\n  \"created_at\" : 0,\n  \"archived_at\" : 6,\n  \"status\" : \"active\"\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<Project>(exampleJson)
@@ -500,7 +500,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"owner\" : {\n    \"service_account\" : {\n      \"role\" : \"owner\",\n      \"name\" : \"name\",\n      \"created_at\" : 1,\n      \"id\" : \"id\",\n      \"object\" : \"organization.project.service_account\"\n    },\n    \"type\" : \"user\",\n    \"user\" : {\n      \"added_at\" : 6,\n      \"role\" : \"owner\",\n      \"name\" : \"name\",\n      \"id\" : \"id\",\n      \"email\" : \"email\",\n      \"object\" : \"organization.project.user\"\n    }\n  },\n  \"name\" : \"name\",\n  \"created_at\" : 0,\n  \"redacted_value\" : \"redacted_value\",\n  \"id\" : \"id\",\n  \"object\" : \"organization.project.api_key\"\n}";
+            exampleJson = "{\n  \"object\" : \"organization.project.api_key\",\n  \"redacted_value\" : \"redacted_value\",\n  \"name\" : \"name\",\n  \"created_at\" : 0,\n  \"id\" : \"id\",\n  \"owner\" : {\n    \"type\" : \"user\",\n    \"user\" : {\n      \"object\" : \"organization.project.user\",\n      \"id\" : \"id\",\n      \"name\" : \"name\",\n      \"email\" : \"email\",\n      \"role\" : \"owner\",\n      \"added_at\" : 6\n    },\n    \"service_account\" : {\n      \"object\" : \"organization.project.service_account\",\n      \"id\" : \"id\",\n      \"name\" : \"name\",\n      \"role\" : \"owner\",\n      \"created_at\" : 1\n    }\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ProjectApiKey>(exampleJson)
@@ -527,7 +527,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"role\" : \"owner\",\n  \"name\" : \"name\",\n  \"created_at\" : 1,\n  \"id\" : \"id\",\n  \"object\" : \"organization.project.service_account\"\n}";
+            exampleJson = "{\n  \"object\" : \"organization.project.service_account\",\n  \"id\" : \"id\",\n  \"name\" : \"name\",\n  \"role\" : \"owner\",\n  \"created_at\" : 1\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ProjectServiceAccount>(exampleJson)
@@ -554,7 +554,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"added_at\" : 6,\n  \"role\" : \"owner\",\n  \"name\" : \"name\",\n  \"id\" : \"id\",\n  \"email\" : \"email\",\n  \"object\" : \"organization.project.user\"\n}";
+            exampleJson = "{\n  \"object\" : \"organization.project.user\",\n  \"id\" : \"id\",\n  \"name\" : \"name\",\n  \"email\" : \"email\",\n  \"role\" : \"owner\",\n  \"added_at\" : 6\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ProjectUser>(exampleJson)
@@ -587,8 +587,8 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(400, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"batch_1_day_max_input_tokens\" : 2,\n  \"max_tokens_per_1_minute\" : 6,\n  \"model\" : \"model\",\n  \"id\" : \"id\",\n  \"max_images_per_1_minute\" : 1,\n  \"max_audio_megabytes_per_1_minute\" : 5,\n  \"max_requests_per_1_minute\" : 0,\n  \"object\" : \"project.rate_limit\",\n  \"max_requests_per_1_day\" : 5\n}";
-            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"param\" : \"param\",\n    \"message\" : \"message\",\n    \"type\" : \"type\"\n  }\n}";
+            exampleJson = "{\n  \"object\" : \"project.rate_limit\",\n  \"id\" : \"id\",\n  \"model\" : \"model\",\n  \"max_requests_per_1_minute\" : 0,\n  \"max_tokens_per_1_minute\" : 6,\n  \"max_images_per_1_minute\" : 1,\n  \"max_audio_megabytes_per_1_minute\" : 5,\n  \"max_requests_per_1_day\" : 5,\n  \"batch_1_day_max_input_tokens\" : 2\n}";
+            exampleJson = "{\n  \"error\" : {\n    \"code\" : \"code\",\n    \"message\" : \"message\",\n    \"param\" : \"param\",\n    \"type\" : \"type\"\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ProjectRateLimit>(exampleJson)

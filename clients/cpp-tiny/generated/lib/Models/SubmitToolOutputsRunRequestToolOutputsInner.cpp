@@ -85,7 +85,7 @@ SubmitToolOutputsRunRequest_tool_outputs_inner::getToolCallId()
 }
 
 void
-SubmitToolOutputsRunRequest_tool_outputs_inner::setToolCallId(std::string  tool_call_id)
+SubmitToolOutputsRunRequest_tool_outputs_inner::setToolCallId(std::string tool_call_id)
 {
 	this->tool_call_id = tool_call_id;
 }
@@ -97,7 +97,7 @@ SubmitToolOutputsRunRequest_tool_outputs_inner::getOutput()
 }
 
 void
-SubmitToolOutputsRunRequest_tool_outputs_inner::setOutput(std::string  output)
+SubmitToolOutputsRunRequest_tool_outputs_inner::setOutput(std::string output)
 {
 	this->output = output;
 }

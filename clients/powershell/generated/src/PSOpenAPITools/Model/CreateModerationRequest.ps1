@@ -45,8 +45,8 @@ function Initialize-CreateModerationRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "input" = ${VarInput}
-            "model" = ${Model}
+            'input' = ${VarInput}
+            'model' = ${Model}
         }
 
 
@@ -84,7 +84,7 @@ function ConvertFrom-JsonToCreateModerationRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateModerationRequest
-        $AllProperties = ("input", "model")
+        $AllProperties = ('input', 'model')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -95,21 +95,21 @@ function ConvertFrom-JsonToCreateModerationRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'input' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "input"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'input'))) {
             throw "Error! JSON cannot be serialized due to the required property 'input' missing."
         } else {
-            $VarInput = $JsonParameters.PSobject.Properties["input"].value
+            $VarInput = $JsonParameters.PSobject.Properties['input'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) { #optional property not found
             $Model = $null
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "input" = ${VarInput}
-            "model" = ${Model}
+            'input' = ${VarInput}
+            'model' = ${Model}
         }
 
         return $PSO

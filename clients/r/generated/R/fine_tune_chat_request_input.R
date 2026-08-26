@@ -87,11 +87,11 @@ FineTuneChatRequestInput <- R6::R6Class(
       FineTuneChatRequestInputObject <- list()
       if (!is.null(self$`messages`)) {
         FineTuneChatRequestInputObject[["messages"]] <-
-          lapply(self$`messages`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`messages`)
       }
       if (!is.null(self$`tools`)) {
         FineTuneChatRequestInputObject[["tools"]] <-
-          lapply(self$`tools`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`tools`)
       }
       if (!is.null(self$`parallel_tool_calls`)) {
         FineTuneChatRequestInputObject[["parallel_tool_calls"]] <-
@@ -99,9 +99,32 @@ FineTuneChatRequestInput <- R6::R6Class(
       }
       if (!is.null(self$`functions`)) {
         FineTuneChatRequestInputObject[["functions"]] <-
-          lapply(self$`functions`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`functions`)
       }
       return(FineTuneChatRequestInputObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

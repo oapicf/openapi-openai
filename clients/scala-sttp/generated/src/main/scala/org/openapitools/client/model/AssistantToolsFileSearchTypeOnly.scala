@@ -15,7 +15,7 @@ package org.openapitools.client.model
 case class AssistantToolsFileSearchTypeOnly(
   /* The type of tool being defined: `file_search` */
   `type`: AssistantToolsFileSearchTypeOnlyEnums.`Type`
-)
+) extends CreateMessageRequestAttachmentsInnerToolsInner
 
 object AssistantToolsFileSearchTypeOnlyEnums {
 

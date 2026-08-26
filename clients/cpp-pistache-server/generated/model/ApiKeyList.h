@@ -34,7 +34,7 @@ class  ApiKeyList
 {
 public:
     ApiKeyList();
-    virtual ~ApiKeyList() = default;
+    virtual ~ApiKeyList();
 
 
     /// <summary>

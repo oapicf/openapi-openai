@@ -41,8 +41,8 @@ function Initialize-SubmitToolOutputsRunRequestToolOutputsInner {
 
 
         $PSO = [PSCustomObject]@{
-            "tool_call_id" = ${ToolCallId}
-            "output" = ${Output}
+            'tool_call_id' = ${ToolCallId}
+            'output' = ${Output}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToSubmitToolOutputsRunRequestToolOutputsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in SubmitToolOutputsRunRequestToolOutputsInner
-        $AllProperties = ("tool_call_id", "output")
+        $AllProperties = ('tool_call_id', 'output')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tool_call_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tool_call_id'))) { #optional property not found
             $ToolCallId = $null
         } else {
-            $ToolCallId = $JsonParameters.PSobject.Properties["tool_call_id"].value
+            $ToolCallId = $JsonParameters.PSobject.Properties['tool_call_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "output"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'output'))) { #optional property not found
             $Output = $null
         } else {
-            $Output = $JsonParameters.PSobject.Properties["output"].value
+            $Output = $JsonParameters.PSobject.Properties['output'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "tool_call_id" = ${ToolCallId}
-            "output" = ${Output}
+            'tool_call_id' = ${ToolCallId}
+            'output' = ${Output}
         }
 
         return $PSO

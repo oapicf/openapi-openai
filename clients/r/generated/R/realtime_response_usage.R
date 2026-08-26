@@ -107,13 +107,36 @@ RealtimeResponseUsage <- R6::R6Class(
       }
       if (!is.null(self$`input_token_details`)) {
         RealtimeResponseUsageObject[["input_token_details"]] <-
-          self$`input_token_details`$toSimpleType()
+          self$extractSimpleType(self$`input_token_details`)
       }
       if (!is.null(self$`output_token_details`)) {
         RealtimeResponseUsageObject[["output_token_details"]] <-
-          self$`output_token_details`$toSimpleType()
+          self$extractSimpleType(self$`output_token_details`)
       }
       return(RealtimeResponseUsageObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

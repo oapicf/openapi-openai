@@ -121,16 +121,16 @@ function Initialize-TranscriptionSegment {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "seek" = ${Seek}
-            "start" = ${Start}
-            "end" = ${VarEnd}
-            "text" = ${Text}
-            "tokens" = ${Tokens}
-            "temperature" = ${Temperature}
-            "avg_logprob" = ${AvgLogprob}
-            "compression_ratio" = ${CompressionRatio}
-            "no_speech_prob" = ${NoSpeechProb}
+            'id' = ${Id}
+            'seek' = ${Seek}
+            'start' = ${Start}
+            'end' = ${VarEnd}
+            'text' = ${Text}
+            'tokens' = ${Tokens}
+            'temperature' = ${Temperature}
+            'avg_logprob' = ${AvgLogprob}
+            'compression_ratio' = ${CompressionRatio}
+            'no_speech_prob' = ${NoSpeechProb}
         }
 
 
@@ -168,7 +168,7 @@ function ConvertFrom-JsonToTranscriptionSegment {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in TranscriptionSegment
-        $AllProperties = ("id", "seek", "start", "end", "text", "tokens", "temperature", "avg_logprob", "compression_ratio", "no_speech_prob")
+        $AllProperties = ('id', 'seek', 'start', 'end', 'text', 'tokens', 'temperature', 'avg_logprob', 'compression_ratio', 'no_speech_prob')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -179,77 +179,77 @@ function ConvertFrom-JsonToTranscriptionSegment {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "seek"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'seek'))) {
             throw "Error! JSON cannot be serialized due to the required property 'seek' missing."
         } else {
-            $Seek = $JsonParameters.PSobject.Properties["seek"].value
+            $Seek = $JsonParameters.PSobject.Properties['seek'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "start"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'start'))) {
             throw "Error! JSON cannot be serialized due to the required property 'start' missing."
         } else {
-            $Start = $JsonParameters.PSobject.Properties["start"].value
+            $Start = $JsonParameters.PSobject.Properties['start'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "end"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'end'))) {
             throw "Error! JSON cannot be serialized due to the required property 'end' missing."
         } else {
-            $VarEnd = $JsonParameters.PSobject.Properties["end"].value
+            $VarEnd = $JsonParameters.PSobject.Properties['end'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "text"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'text'))) {
             throw "Error! JSON cannot be serialized due to the required property 'text' missing."
         } else {
-            $Text = $JsonParameters.PSobject.Properties["text"].value
+            $Text = $JsonParameters.PSobject.Properties['text'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tokens"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tokens'))) {
             throw "Error! JSON cannot be serialized due to the required property 'tokens' missing."
         } else {
-            $Tokens = $JsonParameters.PSobject.Properties["tokens"].value
+            $Tokens = $JsonParameters.PSobject.Properties['tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "temperature"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'temperature'))) {
             throw "Error! JSON cannot be serialized due to the required property 'temperature' missing."
         } else {
-            $Temperature = $JsonParameters.PSobject.Properties["temperature"].value
+            $Temperature = $JsonParameters.PSobject.Properties['temperature'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "avg_logprob"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'avg_logprob'))) {
             throw "Error! JSON cannot be serialized due to the required property 'avg_logprob' missing."
         } else {
-            $AvgLogprob = $JsonParameters.PSobject.Properties["avg_logprob"].value
+            $AvgLogprob = $JsonParameters.PSobject.Properties['avg_logprob'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "compression_ratio"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'compression_ratio'))) {
             throw "Error! JSON cannot be serialized due to the required property 'compression_ratio' missing."
         } else {
-            $CompressionRatio = $JsonParameters.PSobject.Properties["compression_ratio"].value
+            $CompressionRatio = $JsonParameters.PSobject.Properties['compression_ratio'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "no_speech_prob"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'no_speech_prob'))) {
             throw "Error! JSON cannot be serialized due to the required property 'no_speech_prob' missing."
         } else {
-            $NoSpeechProb = $JsonParameters.PSobject.Properties["no_speech_prob"].value
+            $NoSpeechProb = $JsonParameters.PSobject.Properties['no_speech_prob'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "seek" = ${Seek}
-            "start" = ${Start}
-            "end" = ${VarEnd}
-            "text" = ${Text}
-            "tokens" = ${Tokens}
-            "temperature" = ${Temperature}
-            "avg_logprob" = ${AvgLogprob}
-            "compression_ratio" = ${CompressionRatio}
-            "no_speech_prob" = ${NoSpeechProb}
+            'id' = ${Id}
+            'seek' = ${Seek}
+            'start' = ${Start}
+            'end' = ${VarEnd}
+            'text' = ${Text}
+            'tokens' = ${Tokens}
+            'temperature' = ${Temperature}
+            'avg_logprob' = ${AvgLogprob}
+            'compression_ratio' = ${CompressionRatio}
+            'no_speech_prob' = ${NoSpeechProb}
         }
 
         return $PSO

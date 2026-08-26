@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 server/CMakeLists.txt
 server/Dockerfile
 server/LICENSE.txt
@@ -170,8 +169,6 @@ server/src/models/OAIAuditLog_user_updated_changes_requested.cpp
 server/src/models/OAIAuditLog_user_updated_changes_requested.h
 server/src/models/OAIAutoChunkingStrategyRequestParam.cpp
 server/src/models/OAIAutoChunkingStrategyRequestParam.h
-server/src/models/OAIAuto_Chunking_Strategy.cpp
-server/src/models/OAIAuto_Chunking_Strategy.h
 server/src/models/OAIBatch.cpp
 server/src/models/OAIBatch.h
 server/src/models/OAIBatchRequestInput.cpp
@@ -994,8 +991,6 @@ server/src/models/OAIStaticChunkingStrategy.cpp
 server/src/models/OAIStaticChunkingStrategy.h
 server/src/models/OAIStaticChunkingStrategyRequestParam.cpp
 server/src/models/OAIStaticChunkingStrategyRequestParam.h
-server/src/models/OAIStaticChunkingStrategyResponseParam.cpp
-server/src/models/OAIStaticChunkingStrategyResponseParam.h
 server/src/models/OAIStatic_Chunking_Strategy.cpp
 server/src/models/OAIStatic_Chunking_Strategy.h
 server/src/models/OAIStatic_Chunking_Strategy_static.cpp

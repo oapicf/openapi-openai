@@ -1,7 +1,10 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -24,22 +27,40 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class AuditLogRateLimitUpdatedChangesRequested(
 
-    @Schema(example = "null", description = "The maximum requests per minute.")
+    @Schema(description = "The maximum requests per minute.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("max_requests_per_1_minute")
     @get:JsonProperty("max_requests_per_1_minute") val maxRequestsPer1Minute: kotlin.Int? = null,
 
-    @Schema(example = "null", description = "The maximum tokens per minute.")
+    @Schema(description = "The maximum tokens per minute.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("max_tokens_per_1_minute")
     @get:JsonProperty("max_tokens_per_1_minute") val maxTokensPer1Minute: kotlin.Int? = null,
 
-    @Schema(example = "null", description = "The maximum images per minute. Only relevant for certain models.")
+    @Schema(description = "The maximum images per minute. Only relevant for certain models.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("max_images_per_1_minute")
     @get:JsonProperty("max_images_per_1_minute") val maxImagesPer1Minute: kotlin.Int? = null,
 
-    @Schema(example = "null", description = "The maximum audio megabytes per minute. Only relevant for certain models.")
+    @Schema(description = "The maximum audio megabytes per minute. Only relevant for certain models.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("max_audio_megabytes_per_1_minute")
     @get:JsonProperty("max_audio_megabytes_per_1_minute") val maxAudioMegabytesPer1Minute: kotlin.Int? = null,
 
-    @Schema(example = "null", description = "The maximum requests per day. Only relevant for certain models.")
+    @Schema(description = "The maximum requests per day. Only relevant for certain models.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("max_requests_per_1_day")
     @get:JsonProperty("max_requests_per_1_day") val maxRequestsPer1Day: kotlin.Int? = null,
 
-    @Schema(example = "null", description = "The maximum batch input tokens per day. Only relevant for certain models.")
+    @Schema(description = "The maximum batch input tokens per day. Only relevant for certain models.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("batch_1_day_max_input_tokens")
     @get:JsonProperty("batch_1_day_max_input_tokens") val batch1DayMaxInputTokens: kotlin.Int? = null
 ) {
 

@@ -85,7 +85,7 @@ CostsResult_amount::getValue()
 }
 
 void
-CostsResult_amount::setValue(long  value)
+CostsResult_amount::setValue(long value)
 {
 	this->value = value;
 }
@@ -97,7 +97,7 @@ CostsResult_amount::getCurrency()
 }
 
 void
-CostsResult_amount::setCurrency(std::string  currency)
+CostsResult_amount::setCurrency(std::string currency)
 {
 	this->currency = currency;
 }

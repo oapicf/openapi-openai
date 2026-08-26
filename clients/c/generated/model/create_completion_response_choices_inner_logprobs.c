@@ -15,12 +15,12 @@ static create_completion_response_choices_inner_logprobs_t *create_completion_re
     if (!create_completion_response_choices_inner_logprobs_local_var) {
         return NULL;
     }
+    memset(create_completion_response_choices_inner_logprobs_local_var, 0, sizeof(create_completion_response_choices_inner_logprobs_t));
+    create_completion_response_choices_inner_logprobs_local_var->_library_owned = 1;
     create_completion_response_choices_inner_logprobs_local_var->text_offset = text_offset;
     create_completion_response_choices_inner_logprobs_local_var->token_logprobs = token_logprobs;
     create_completion_response_choices_inner_logprobs_local_var->tokens = tokens;
     create_completion_response_choices_inner_logprobs_local_var->top_logprobs = top_logprobs;
-
-    create_completion_response_choices_inner_logprobs_local_var->_library_owned = 1;
     return create_completion_response_choices_inner_logprobs_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) create_completion_response_choices_inner_logprobs_t 
     list_t *tokens,
     list_t *top_logprobs
     ) {
-    return create_completion_response_choices_inner_logprobs_create_internal (
+    create_completion_response_choices_inner_logprobs_t *result = create_completion_response_choices_inner_logprobs_create_internal (
         text_offset,
         token_logprobs,
         tokens,
         top_logprobs
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_completion_response_choices_inner_logprobs_free(create_completion_response_choices_inner_logprobs_t *create_completion_response_choices_inner_logprobs) {
@@ -264,12 +267,17 @@ create_completion_response_choices_inner_logprobs_t *create_completion_response_
     }
 
 
+
     create_completion_response_choices_inner_logprobs_local_var = create_completion_response_choices_inner_logprobs_create_internal (
         text_offset ? text_offsetList : NULL,
         token_logprobs ? token_logprobsList : NULL,
         tokens ? tokensList : NULL,
         top_logprobs ? top_logprobsList : NULL
         );
+
+    if (!create_completion_response_choices_inner_logprobs_local_var) {
+        goto end;
+    }
 
     return create_completion_response_choices_inner_logprobs_local_var;
 end:

@@ -21,7 +21,8 @@ type AuditLogInviteAccepted struct {
 	Id string `json:"id,omitempty"`
 }
 
-// AssertAuditLogInviteAcceptedRequired checks if the required fields are not zero-ed
+// AssertAuditLogInviteAcceptedRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertAuditLogInviteAcceptedRequired(obj AuditLogInviteAccepted) error {
 	return nil
 }

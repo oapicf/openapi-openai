@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set Always `logs`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The text output from the Code Interpreter tool call.
 	 */
 	std::string getLogs();
 
 	/*! \brief Set The text output from the Code Interpreter tool call.
 	 */
-	void setLogs(std::string  logs);
+	void setLogs(std::string logs);
 
 
     private:

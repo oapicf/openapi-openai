@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.CreateImageRequestModel
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -30,30 +33,42 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class CreateImageRequest(
 
     @Schema(example = "A cute baby sea otter", required = true, description = "A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`.")
+    @param:JsonProperty("prompt")
     @get:JsonProperty("prompt", required = true) val prompt: kotlin.String,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @param:JsonProperty("model")
     @get:JsonProperty("model") val model: CreateImageRequestModel? = null,
 
     @get:Min(value=1)
     @get:Max(value=10)
     @Schema(example = "1", description = "The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.")
+    @param:JsonProperty("n")
     @get:JsonProperty("n") val n: kotlin.Int? = 1,
 
     @Schema(example = "standard", description = "The quality of the image that will be generated. `hd` creates images with finer details and greater consistency across the image. This param is only supported for `dall-e-3`.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("quality")
     @get:JsonProperty("quality") val quality: CreateImageRequest.Quality? = Quality.standard,
 
     @Schema(example = "url", description = "The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.")
+    @param:JsonProperty("response_format")
     @get:JsonProperty("response_format") val responseFormat: CreateImageRequest.ResponseFormat? = ResponseFormat.url,
 
     @Schema(example = "1024x1024", description = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3` models.")
+    @param:JsonProperty("size")
     @get:JsonProperty("size") val propertySize: CreateImageRequest.PropertySize? = PropertySize._1024x1024,
 
     @Schema(example = "vivid", description = "The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`.")
+    @param:JsonProperty("style")
     @get:JsonProperty("style") val style: CreateImageRequest.Style? = Style.vivid,
 
     @Schema(example = "user-1234", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("user")
     @get:JsonProperty("user") val user: kotlin.String? = null
 ) {
 
@@ -71,7 +86,7 @@ data class CreateImageRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): Quality {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateImageRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Quality'")
             }
         }
     }
@@ -90,7 +105,7 @@ data class CreateImageRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): ResponseFormat {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateImageRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ResponseFormat'")
             }
         }
     }
@@ -112,7 +127,7 @@ data class CreateImageRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): PropertySize {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateImageRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'PropertySize'")
             }
         }
     }
@@ -131,7 +146,7 @@ data class CreateImageRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): Style {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateImageRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Style'")
             }
         }
     }

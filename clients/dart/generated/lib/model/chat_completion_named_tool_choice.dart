@@ -54,10 +54,10 @@ class ChatCompletionNamedToolChoice {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ChatCompletionNamedToolChoice[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ChatCompletionNamedToolChoice[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "ChatCompletionNamedToolChoice[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "ChatCompletionNamedToolChoice[type]" has a null value in JSON.');
+        assert(json.containsKey(r'function'), 'Required key "ChatCompletionNamedToolChoice[function]" is missing from JSON.');
+        assert(json[r'function'] != null, 'Required key "ChatCompletionNamedToolChoice[function]" has a null value in JSON.');
         return true;
       }());
 
@@ -117,27 +117,28 @@ class ChatCompletionNamedToolChoice {
 }
 
 /// The type of the tool. Currently, only `function` is supported.
-class ChatCompletionNamedToolChoiceTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ChatCompletionNamedToolChoiceTypeEnum._(this.value);
+enum ChatCompletionNamedToolChoiceTypeEnum {
+  function_._(r'function'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ChatCompletionNamedToolChoiceTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const function_ = ChatCompletionNamedToolChoiceTypeEnum._(r'function');
-
-  /// List of all possible values in this [enum][ChatCompletionNamedToolChoiceTypeEnum].
-  static const values = <ChatCompletionNamedToolChoiceTypeEnum>[
-    function_,
-  ];
-
+  /// Returns the instance of [ChatCompletionNamedToolChoiceTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ChatCompletionNamedToolChoiceTypeEnum? fromJson(dynamic value) => ChatCompletionNamedToolChoiceTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ChatCompletionNamedToolChoiceTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ChatCompletionNamedToolChoiceTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ChatCompletionNamedToolChoiceTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -159,9 +160,10 @@ class ChatCompletionNamedToolChoiceTypeEnumTypeTransformer {
 
   const ChatCompletionNamedToolChoiceTypeEnumTypeTransformer._();
 
-  String encode(ChatCompletionNamedToolChoiceTypeEnum data) => data.value;
+  String encode(ChatCompletionNamedToolChoiceTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ChatCompletionNamedToolChoiceTypeEnum.
+  /// Returns the instance of [ChatCompletionNamedToolChoiceTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -170,6 +172,9 @@ class ChatCompletionNamedToolChoiceTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ChatCompletionNamedToolChoiceTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ChatCompletionNamedToolChoiceTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'function': return ChatCompletionNamedToolChoiceTypeEnum.function_;
@@ -182,7 +187,7 @@ class ChatCompletionNamedToolChoiceTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ChatCompletionNamedToolChoiceTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ChatCompletionNamedToolChoiceTypeEnumTypeTransformer? _instance;
 }
 

@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from openapiopenai.models.run_step_delta_step_details_tool_calls_code_object_code_interpreter_outputs_inner import RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter(BaseModel):
     """
@@ -33,7 +34,8 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter(BaseModel):
     __properties: ClassVar[List[str]] = ["input", "outputs"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -45,8 +47,7 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

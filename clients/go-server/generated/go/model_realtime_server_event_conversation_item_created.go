@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // RealtimeServerEventConversationItemCreated - Returned when a conversation item is created. There are several scenarios that  produce this event:   - The server is generating a Response, which if successful will produce      either one or two Items, which will be of type `message`      (role `assistant`) or type `function_call`.   - The input audio buffer has been committed, either by the client or the      server (in `server_vad` mode). The server will take the content of the      input audio buffer and add it to a new user message Item.   - The client has sent a `conversation.item.create` event to add a new Item      to the Conversation. 
@@ -28,13 +33,87 @@ type RealtimeServerEventConversationItemCreated struct {
 
 	Item RealtimeConversationItem `json:"item"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into RealtimeServerEventConversationItemCreated
+func (o *RealtimeServerEventConversationItemCreated) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"event_id",
+		"type",
+		"previous_item_id",
+		"item",
+	}
 
-// AssertRealtimeServerEventConversationItemCreatedRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"event_id": false,
+		"type": false,
+		"previous_item_id": false,
+		"item": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"event_id": {},
+		"type": {},
+		"previous_item_id": {},
+		"item": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RealtimeServerEventConversationItemCreated
+
+	if value, exists := allProperties["event_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.EventId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["previous_item_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.PreviousItemId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["item"]; exists {
+		if err = json.Unmarshal(value, &decoded.Item); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRealtimeServerEventConversationItemCreatedRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeServerEventConversationItemCreatedRequired(obj RealtimeServerEventConversationItemCreated) error {
 	elements := map[string]interface{}{
-		"event_id": obj.EventId,
-		"type": obj.Type,
-		"previous_item_id": obj.PreviousItemId,
 		"item": obj.Item,
 	}
 	for name, el := range elements {

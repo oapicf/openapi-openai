@@ -38,7 +38,7 @@ class CreateChatCompletionResponse(BaseModel):
     choices: List[CreateChatCompletionResponseChoicesInner] = Field(description="A list of chat completion choices. Can be more than one if `n` is greater than 1.")
     created: StrictInt = Field(description="The Unix timestamp (in seconds) of when the chat completion was created.")
     model: StrictStr = Field(description="The model used for the chat completion.")
-    service_tier: Optional[StrictStr] = Field(default=None, description="The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.")
+    service_tier: Optional[StrictStr] = Field(default=None, description="The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.", json_schema_extra={"examples": ["scale"]})
     system_fingerprint: Optional[StrictStr] = Field(default=None, description="This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. ")
     object: StrictStr = Field(description="The object type, which is always `chat.completion`.")
     usage: Optional[CompletionUsage] = None

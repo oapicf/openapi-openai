@@ -37,6 +37,8 @@ AssistantObject::AssistantObject()
     
 }
 
+AssistantObject::~AssistantObject() = default;
+
 void AssistantObject::validate() const
 {
     std::stringstream msg;

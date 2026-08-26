@@ -57,8 +57,8 @@ export interface RunStepDetailsToolCallsFileSearchResultObject {
  * Check if a given object implements the RunStepDetailsToolCallsFileSearchResultObject interface.
  */
 export function instanceOfRunStepDetailsToolCallsFileSearchResultObject(value: object): value is RunStepDetailsToolCallsFileSearchResultObject {
-    if (!('fileId' in value) || value['fileId'] === undefined) return false;
-    if (!('fileName' in value) || value['fileName'] === undefined) return false;
+    if ((!('fileId' in (value as Record<string, any>)) && !('file_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['fileId'] === undefined && (value as Record<string, any>)['file_id'] === undefined)) return false;
+    if ((!('fileName' in (value as Record<string, any>)) && !('file_name' in (value as Record<string, any>))) || ((value as Record<string, any>)['fileName'] === undefined && (value as Record<string, any>)['file_name'] === undefined)) return false;
     if (!('score' in value) || value['score'] === undefined) return false;
     return true;
 }

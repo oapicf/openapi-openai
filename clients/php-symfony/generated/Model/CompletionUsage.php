@@ -51,7 +51,7 @@ class CompletionUsage
      * @var int|null
      * @SerializedName("completion_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $completionTokens = null;
@@ -62,7 +62,7 @@ class CompletionUsage
      * @var int|null
      * @SerializedName("prompt_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $promptTokens = null;
@@ -73,7 +73,7 @@ class CompletionUsage
      * @var int|null
      * @SerializedName("total_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $totalTokens = null;
@@ -82,7 +82,7 @@ class CompletionUsage
      * @var CompletionUsageCompletionTokensDetails|null
      * @SerializedName("completion_tokens_details")
      * @Type("OpenAPI\Server\Model\CompletionUsageCompletionTokensDetails")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CompletionUsageCompletionTokensDetails")]
     protected ?CompletionUsageCompletionTokensDetails $completionTokensDetails = null;
 
@@ -90,7 +90,7 @@ class CompletionUsage
      * @var CompletionUsagePromptTokensDetails|null
      * @SerializedName("prompt_tokens_details")
      * @Type("OpenAPI\Server\Model\CompletionUsagePromptTokensDetails")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CompletionUsagePromptTokensDetails")]
     protected ?CompletionUsagePromptTokensDetails $promptTokensDetails = null;
 
@@ -120,12 +120,12 @@ class CompletionUsage
     }
 
     /**
-    * Sets completionTokens.
-    *
-    * @param int|null $completionTokens  Number of tokens in the generated completion.
-    *
-    * @return $this
-    */
+     * Sets completionTokens.
+     *
+     * @param int|null $completionTokens  Number of tokens in the generated completion.
+     *
+     * @return $this
+     */
     public function setCompletionTokens(?int $completionTokens): self
     {
         $this->completionTokens = $completionTokens;
@@ -147,12 +147,12 @@ class CompletionUsage
     }
 
     /**
-    * Sets promptTokens.
-    *
-    * @param int|null $promptTokens  Number of tokens in the prompt.
-    *
-    * @return $this
-    */
+     * Sets promptTokens.
+     *
+     * @param int|null $promptTokens  Number of tokens in the prompt.
+     *
+     * @return $this
+     */
     public function setPromptTokens(?int $promptTokens): self
     {
         $this->promptTokens = $promptTokens;
@@ -174,12 +174,12 @@ class CompletionUsage
     }
 
     /**
-    * Sets totalTokens.
-    *
-    * @param int|null $totalTokens  Total number of tokens used in the request (prompt + completion).
-    *
-    * @return $this
-    */
+     * Sets totalTokens.
+     *
+     * @param int|null $totalTokens  Total number of tokens used in the request (prompt + completion).
+     *
+     * @return $this
+     */
     public function setTotalTokens(?int $totalTokens): self
     {
         $this->totalTokens = $totalTokens;
@@ -201,12 +201,12 @@ class CompletionUsage
     }
 
     /**
-    * Sets completionTokensDetails.
-    *
-    * @param CompletionUsageCompletionTokensDetails|null $completionTokensDetails
-    *
-    * @return $this
-    */
+     * Sets completionTokensDetails.
+     *
+     * @param CompletionUsageCompletionTokensDetails|null $completionTokensDetails
+     *
+     * @return $this
+     */
     public function setCompletionTokensDetails(?CompletionUsageCompletionTokensDetails $completionTokensDetails = null): self
     {
         $this->completionTokensDetails = $completionTokensDetails;
@@ -228,12 +228,12 @@ class CompletionUsage
     }
 
     /**
-    * Sets promptTokensDetails.
-    *
-    * @param CompletionUsagePromptTokensDetails|null $promptTokensDetails
-    *
-    * @return $this
-    */
+     * Sets promptTokensDetails.
+     *
+     * @param CompletionUsagePromptTokensDetails|null $promptTokensDetails
+     *
+     * @return $this
+     */
     public function setPromptTokensDetails(?CompletionUsagePromptTokensDetails $promptTokensDetails = null): self
     {
         $this->promptTokensDetails = $promptTokensDetails;

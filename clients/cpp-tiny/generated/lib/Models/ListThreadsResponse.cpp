@@ -165,7 +165,7 @@ ListThreadsResponse::getObject()
 }
 
 void
-ListThreadsResponse::setObject(std::string  object)
+ListThreadsResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -177,7 +177,7 @@ ListThreadsResponse::getData()
 }
 
 void
-ListThreadsResponse::setData(std::list <ThreadObject> data)
+ListThreadsResponse::setData(std::list<ThreadObject> data)
 {
 	this->data = data;
 }
@@ -189,7 +189,7 @@ ListThreadsResponse::getFirstId()
 }
 
 void
-ListThreadsResponse::setFirstId(std::string  first_id)
+ListThreadsResponse::setFirstId(std::string first_id)
 {
 	this->first_id = first_id;
 }
@@ -201,7 +201,7 @@ ListThreadsResponse::getLastId()
 }
 
 void
-ListThreadsResponse::setLastId(std::string  last_id)
+ListThreadsResponse::setLastId(std::string last_id)
 {
 	this->last_id = last_id;
 }
@@ -213,7 +213,7 @@ ListThreadsResponse::isHasMore()
 }
 
 void
-ListThreadsResponse::setHasMore(bool  has_more)
+ListThreadsResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }

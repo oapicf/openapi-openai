@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set Always `image`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	RunStepDetailsToolCallsCodeOutputImageObject_image getImage();
 
 	/*! \brief Set 
 	 */
-	void setImage(RunStepDetailsToolCallsCodeOutputImageObject_image  image);
+	void setImage(RunStepDetailsToolCallsCodeOutputImageObject_image image);
 
 
     private:

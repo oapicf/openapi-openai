@@ -26,6 +26,8 @@ MessageRequestContentTextObject::MessageRequestContentTextObject()
     
 }
 
+MessageRequestContentTextObject::~MessageRequestContentTextObject() = default;
+
 void MessageRequestContentTextObject::validate() const
 {
     std::stringstream msg;

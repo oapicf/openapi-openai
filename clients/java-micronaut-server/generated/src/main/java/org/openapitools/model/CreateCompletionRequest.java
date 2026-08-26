@@ -54,14 +54,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
   CreateCompletionRequest.JSON_PROPERTY_USER
 })
 @JsonTypeName("CreateCompletionRequest")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-01-29T14:08:04.353155660Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class CreateCompletionRequest {
     public static final String JSON_PROPERTY_MODEL = "model";
     private CreateCompletionRequestModel model;
 
     public static final String JSON_PROPERTY_PROMPT = "prompt";
-    private CreateCompletionRequestPrompt prompt = <|endoftext|>;
+    private CreateCompletionRequestPrompt prompt;
 
     public static final String JSON_PROPERTY_BEST_OF = "best_of";
     private Integer bestOf = 1;
@@ -91,7 +91,7 @@ public class CreateCompletionRequest {
     private Integer seed;
 
     public static final String JSON_PROPERTY_STOP = "stop";
-    private CreateCompletionRequestStop stop = null;
+    private CreateCompletionRequestStop stop;
 
     public static final String JSON_PROPERTY_STREAM = "stream";
     private Boolean stream = false;
@@ -641,10 +641,7 @@ public class CreateCompletionRequest {
      * (except the first line).
      */
     private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
+        return o == null ? "null" : o.toString().replace("\n", "\n    ");
     }
 
 }

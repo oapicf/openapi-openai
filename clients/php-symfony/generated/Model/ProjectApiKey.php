@@ -51,7 +51,7 @@ class ProjectApiKey
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['organization.project.api_key'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class ProjectApiKey
      * @var string|null
      * @SerializedName("redacted_value")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $redactedValue = null;
@@ -74,7 +74,7 @@ class ProjectApiKey
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $name = null;
@@ -85,7 +85,7 @@ class ProjectApiKey
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -96,7 +96,7 @@ class ProjectApiKey
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -105,7 +105,7 @@ class ProjectApiKey
      * @var ProjectApiKeyOwner|null
      * @SerializedName("owner")
      * @Type("OpenAPI\Server\Model\ProjectApiKeyOwner")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\ProjectApiKeyOwner")]
@@ -138,12 +138,12 @@ class ProjectApiKey
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `organization.project.api_key`
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `organization.project.api_key`
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -165,12 +165,12 @@ class ProjectApiKey
     }
 
     /**
-    * Sets redactedValue.
-    *
-    * @param string|null $redactedValue  The redacted value of the API key
-    *
-    * @return $this
-    */
+     * Sets redactedValue.
+     *
+     * @param string|null $redactedValue  The redacted value of the API key
+     *
+     * @return $this
+     */
     public function setRedactedValue(?string $redactedValue): self
     {
         $this->redactedValue = $redactedValue;
@@ -192,12 +192,12 @@ class ProjectApiKey
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the API key
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the API key
+     *
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -219,12 +219,12 @@ class ProjectApiKey
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) of when the API key was created
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) of when the API key was created
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -246,12 +246,12 @@ class ProjectApiKey
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The identifier, which can be referenced in API endpoints
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The identifier, which can be referenced in API endpoints
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -273,12 +273,12 @@ class ProjectApiKey
     }
 
     /**
-    * Sets owner.
-    *
-    * @param ProjectApiKeyOwner|null $owner
-    *
-    * @return $this
-    */
+     * Sets owner.
+     *
+     * @param ProjectApiKeyOwner|null $owner
+     *
+     * @return $this
+     */
     public function setOwner(?ProjectApiKeyOwner $owner): self
     {
         $this->owner = $owner;

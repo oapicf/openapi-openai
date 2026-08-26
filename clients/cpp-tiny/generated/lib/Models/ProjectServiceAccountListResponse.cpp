@@ -165,7 +165,7 @@ ProjectServiceAccountListResponse::getObject()
 }
 
 void
-ProjectServiceAccountListResponse::setObject(std::string  object)
+ProjectServiceAccountListResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -177,7 +177,7 @@ ProjectServiceAccountListResponse::getData()
 }
 
 void
-ProjectServiceAccountListResponse::setData(std::list <ProjectServiceAccount> data)
+ProjectServiceAccountListResponse::setData(std::list<ProjectServiceAccount> data)
 {
 	this->data = data;
 }
@@ -189,7 +189,7 @@ ProjectServiceAccountListResponse::getFirstId()
 }
 
 void
-ProjectServiceAccountListResponse::setFirstId(std::string  first_id)
+ProjectServiceAccountListResponse::setFirstId(std::string first_id)
 {
 	this->first_id = first_id;
 }
@@ -201,7 +201,7 @@ ProjectServiceAccountListResponse::getLastId()
 }
 
 void
-ProjectServiceAccountListResponse::setLastId(std::string  last_id)
+ProjectServiceAccountListResponse::setLastId(std::string last_id)
 {
 	this->last_id = last_id;
 }
@@ -213,7 +213,7 @@ ProjectServiceAccountListResponse::isHasMore()
 }
 
 void
-ProjectServiceAccountListResponse::setHasMore(bool  has_more)
+ProjectServiceAccountListResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }

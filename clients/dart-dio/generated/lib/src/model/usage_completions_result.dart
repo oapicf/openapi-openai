@@ -213,8 +213,9 @@ class _$UsageCompletionsResultSerializer implements PrimitiveSerializer<UsageCom
         case r'input_cached_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.inputCachedTokens = valueDes;
           break;
         case r'output_tokens':
@@ -227,15 +228,17 @@ class _$UsageCompletionsResultSerializer implements PrimitiveSerializer<UsageCom
         case r'input_audio_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.inputAudioTokens = valueDes;
           break;
         case r'output_audio_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.outputAudioTokens = valueDes;
           break;
         case r'num_model_requests':

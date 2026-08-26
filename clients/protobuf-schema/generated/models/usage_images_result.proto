@@ -21,7 +21,7 @@ message UsageImagesResult {
     OBJECT_ORGANIZATION_USAGE_IMAGES_RESULT = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The number of images processed.
   int32 images = 111508874;

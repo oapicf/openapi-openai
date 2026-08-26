@@ -88,10 +88,10 @@ class RunStepDeltaStepDetailsToolCallsCodeObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepDeltaStepDetailsToolCallsCodeObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepDeltaStepDetailsToolCallsCodeObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'index'), 'Required key "RunStepDeltaStepDetailsToolCallsCodeObject[index]" is missing from JSON.');
+        assert(json[r'index'] != null, 'Required key "RunStepDeltaStepDetailsToolCallsCodeObject[index]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RunStepDeltaStepDetailsToolCallsCodeObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RunStepDeltaStepDetailsToolCallsCodeObject[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -153,27 +153,28 @@ class RunStepDeltaStepDetailsToolCallsCodeObject {
 }
 
 /// The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
-class RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum._(this.value);
+enum RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum {
+  codeInterpreter._(r'code_interpreter'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const codeInterpreter = RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum._(r'code_interpreter');
-
-  /// List of all possible values in this [enum][RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum].
-  static const values = <RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum>[
-    codeInterpreter,
-  ];
-
+  /// Returns the instance of [RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum? fromJson(dynamic value) => RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -195,9 +196,10 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnumTypeTransformer {
 
   const RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnumTypeTransformer._();
 
-  String encode(RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum data) => data.value;
+  String encode(RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum.
+  /// Returns the instance of [RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -206,6 +208,9 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'code_interpreter': return RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum.codeInterpreter;
@@ -218,7 +223,7 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnumTypeTransformer? _instance;
 }
 

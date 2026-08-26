@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateSpeechRequest_model::OAICreateSpeechRequest_model(QString json) {
+OAICreateSpeechRequest_model::OAICreateSpeechRequest_model(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -36,7 +36,7 @@ void OAICreateSpeechRequest_model::initializeModel() {
 
 }
 
-void OAICreateSpeechRequest_model::fromJson(QString jsonString) {
+void OAICreateSpeechRequest_model::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

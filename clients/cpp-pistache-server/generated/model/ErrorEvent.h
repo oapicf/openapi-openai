@@ -33,7 +33,7 @@ class  ErrorEvent
 {
 public:
     ErrorEvent();
-    virtual ~ErrorEvent() = default;
+    virtual ~ErrorEvent();
 
 
     /// <summary>

@@ -68,7 +68,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTuneChatRequestInputMessagesInner extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(FineTuneChatRequestInputMessagesInner.class.getName());
 
@@ -290,6 +290,7 @@ public class FineTuneChatRequestInputMessagesInner extends AbstractOpenApiSchema
      * @return The actual instance of `ChatCompletionRequestSystemMessage`
      * @throws ClassCastException if the instance is not `ChatCompletionRequestSystemMessage`
      */
+    @SuppressWarnings("unchecked")
     public ChatCompletionRequestSystemMessage getChatCompletionRequestSystemMessage() throws ClassCastException {
         return (ChatCompletionRequestSystemMessage)super.getActualInstance();
     }
@@ -301,6 +302,7 @@ public class FineTuneChatRequestInputMessagesInner extends AbstractOpenApiSchema
      * @return The actual instance of `ChatCompletionRequestUserMessage`
      * @throws ClassCastException if the instance is not `ChatCompletionRequestUserMessage`
      */
+    @SuppressWarnings("unchecked")
     public ChatCompletionRequestUserMessage getChatCompletionRequestUserMessage() throws ClassCastException {
         return (ChatCompletionRequestUserMessage)super.getActualInstance();
     }
@@ -312,6 +314,7 @@ public class FineTuneChatRequestInputMessagesInner extends AbstractOpenApiSchema
      * @return The actual instance of `FineTuneChatCompletionRequestAssistantMessage`
      * @throws ClassCastException if the instance is not `FineTuneChatCompletionRequestAssistantMessage`
      */
+    @SuppressWarnings("unchecked")
     public FineTuneChatCompletionRequestAssistantMessage getFineTuneChatCompletionRequestAssistantMessage() throws ClassCastException {
         return (FineTuneChatCompletionRequestAssistantMessage)super.getActualInstance();
     }
@@ -323,6 +326,7 @@ public class FineTuneChatRequestInputMessagesInner extends AbstractOpenApiSchema
      * @return The actual instance of `ChatCompletionRequestToolMessage`
      * @throws ClassCastException if the instance is not `ChatCompletionRequestToolMessage`
      */
+    @SuppressWarnings("unchecked")
     public ChatCompletionRequestToolMessage getChatCompletionRequestToolMessage() throws ClassCastException {
         return (ChatCompletionRequestToolMessage)super.getActualInstance();
     }
@@ -334,6 +338,7 @@ public class FineTuneChatRequestInputMessagesInner extends AbstractOpenApiSchema
      * @return The actual instance of `ChatCompletionRequestFunctionMessage`
      * @throws ClassCastException if the instance is not `ChatCompletionRequestFunctionMessage`
      */
+    @SuppressWarnings("unchecked")
     public ChatCompletionRequestFunctionMessage getChatCompletionRequestFunctionMessage() throws ClassCastException {
         return (ChatCompletionRequestFunctionMessage)super.getActualInstance();
     }

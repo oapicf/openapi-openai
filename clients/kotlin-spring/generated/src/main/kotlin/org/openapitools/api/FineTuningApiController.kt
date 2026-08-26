@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.FineTuningApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -35,7 +34,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.openAI.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:/v1}")
 class FineTuningApiController() {
 
     @Operation(
@@ -48,7 +47,8 @@ class FineTuningApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CANCEL_FINE_TUNING_JOB /* "/fine_tuning/jobs/{fine_tuning_job_id}/cancel" */],
+        // "/fine_tuning/jobs/{fine_tuning_job_id}/cancel"
+        value = [PATH_CANCEL_FINE_TUNING_JOB],
         produces = ["application/json"]
     )
     fun cancelFineTuningJob(
@@ -67,7 +67,8 @@ class FineTuningApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_FINE_TUNING_JOB /* "/fine_tuning/jobs" */],
+        // "/fine_tuning/jobs"
+        value = [PATH_CREATE_FINE_TUNING_JOB],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -87,7 +88,8 @@ class FineTuningApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_FINE_TUNING_EVENTS /* "/fine_tuning/jobs/{fine_tuning_job_id}/events" */],
+        // "/fine_tuning/jobs/{fine_tuning_job_id}/events"
+        value = [PATH_LIST_FINE_TUNING_EVENTS],
         produces = ["application/json"]
     )
     fun listFineTuningEvents(
@@ -108,7 +110,8 @@ class FineTuningApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_FINE_TUNING_JOB_CHECKPOINTS /* "/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints" */],
+        // "/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints"
+        value = [PATH_LIST_FINE_TUNING_JOB_CHECKPOINTS],
         produces = ["application/json"]
     )
     fun listFineTuningJobCheckpoints(
@@ -129,7 +132,8 @@ class FineTuningApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_PAGINATED_FINE_TUNING_JOBS /* "/fine_tuning/jobs" */],
+        // "/fine_tuning/jobs"
+        value = [PATH_LIST_PAGINATED_FINE_TUNING_JOBS],
         produces = ["application/json"]
     )
     fun listPaginatedFineTuningJobs(
@@ -149,7 +153,8 @@ class FineTuningApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_RETRIEVE_FINE_TUNING_JOB /* "/fine_tuning/jobs/{fine_tuning_job_id}" */],
+        // "/fine_tuning/jobs/{fine_tuning_job_id}"
+        value = [PATH_RETRIEVE_FINE_TUNING_JOB],
         produces = ["application/json"]
     )
     fun retrieveFineTuningJob(

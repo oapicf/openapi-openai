@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set The rate limit ID
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	AuditLog_rate_limit_updated_changes_requested getChangesRequested();
 
 	/*! \brief Set 
 	 */
-	void setChangesRequested(AuditLog_rate_limit_updated_changes_requested  changes_requested);
+	void setChangesRequested(AuditLog_rate_limit_updated_changes_requested changes_requested);
 
 
     private:

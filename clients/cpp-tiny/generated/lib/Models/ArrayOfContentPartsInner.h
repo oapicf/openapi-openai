@@ -56,28 +56,28 @@ public:
 
 	/*! \brief Set Always `image_file`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	MessageContentImageFileObject_image_file getImageFile();
 
 	/*! \brief Set 
 	 */
-	void setImageFile(MessageContentImageFileObject_image_file  image_file);
+	void setImageFile(MessageContentImageFileObject_image_file image_file);
 	/*! \brief Get 
 	 */
 	MessageContentImageUrlObject_image_url getImageUrl();
 
 	/*! \brief Set 
 	 */
-	void setImageUrl(MessageContentImageUrlObject_image_url  image_url);
+	void setImageUrl(MessageContentImageUrlObject_image_url image_url);
 	/*! \brief Get Text content to be sent to the model
 	 */
 	std::string getText();
 
 	/*! \brief Set Text content to be sent to the model
 	 */
-	void setText(std::string  text);
+	void setText(std::string text);
 
 
     private:

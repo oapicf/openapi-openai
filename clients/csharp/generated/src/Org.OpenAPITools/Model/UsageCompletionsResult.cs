@@ -157,7 +157,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The aggregated number of text input tokens that has been cached from previous requests. For customers subscribe to scale tier, this includes scale tier tokens.</value>
         [JsonPropertyName("input_cached_tokens")]
-        public int? InputCachedTokens { get { return this.InputCachedTokensOption; } set { this.InputCachedTokensOption = new(value); } }
+        public int? InputCachedTokens { get { return this.InputCachedTokensOption.Value; } set { this.InputCachedTokensOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of InputAudioTokens
@@ -171,7 +171,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The aggregated number of audio input tokens used, including cached tokens.</value>
         [JsonPropertyName("input_audio_tokens")]
-        public int? InputAudioTokens { get { return this.InputAudioTokensOption; } set { this.InputAudioTokensOption = new(value); } }
+        public int? InputAudioTokens { get { return this.InputAudioTokensOption.Value; } set { this.InputAudioTokensOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OutputAudioTokens
@@ -185,7 +185,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The aggregated number of audio output tokens used.</value>
         [JsonPropertyName("output_audio_tokens")]
-        public int? OutputAudioTokens { get { return this.OutputAudioTokensOption; } set { this.OutputAudioTokensOption = new(value); } }
+        public int? OutputAudioTokens { get { return this.OutputAudioTokensOption.Value; } set { this.OutputAudioTokensOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectId
@@ -199,7 +199,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;project_id&#x60;, this field provides the project ID of the grouped usage result.</value>
         [JsonPropertyName("project_id")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UserId
@@ -213,7 +213,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;user_id&#x60;, this field provides the user ID of the grouped usage result.</value>
         [JsonPropertyName("user_id")]
-        public string? UserId { get { return this.UserIdOption; } set { this.UserIdOption = new(value); } }
+        public string? UserId { get { return this.UserIdOption.Value; } set { this.UserIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ApiKeyId
@@ -227,7 +227,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;api_key_id&#x60;, this field provides the API key ID of the grouped usage result.</value>
         [JsonPropertyName("api_key_id")]
-        public string? ApiKeyId { get { return this.ApiKeyIdOption; } set { this.ApiKeyIdOption = new(value); } }
+        public string? ApiKeyId { get { return this.ApiKeyIdOption.Value; } set { this.ApiKeyIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Model
@@ -241,7 +241,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;model&#x60;, this field provides the model name of the grouped usage result.</value>
         [JsonPropertyName("model")]
-        public string? Model { get { return this.ModelOption; } set { this.ModelOption = new(value); } }
+        public string? Model { get { return this.ModelOption.Value; } set { this.ModelOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Batch
@@ -255,7 +255,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;batch&#x60;, this field tells whether the grouped usage result is batch or not.</value>
         [JsonPropertyName("batch")]
-        public bool? Batch { get { return this.BatchOption; } set { this.BatchOption = new(value); } }
+        public bool? Batch { get { return this.BatchOption.Value; } set { this.BatchOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -295,8 +295,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="UsageCompletionsResult" />
     /// </summary>
-    public class UsageCompletionsResultJsonConverter : JsonConverter<UsageCompletionsResult>
+    public partial class UsageCompletionsResultJsonConverter : JsonConverter<UsageCompletionsResult>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UsageCompletionsResultJsonConverter" /> class.
+        /// </summary>
+        public UsageCompletionsResultJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UsageCompletionsResult" />
         /// </summary>

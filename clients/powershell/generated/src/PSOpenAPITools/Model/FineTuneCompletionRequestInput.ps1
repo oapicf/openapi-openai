@@ -41,8 +41,8 @@ function Initialize-FineTuneCompletionRequestInput {
 
 
         $PSO = [PSCustomObject]@{
-            "prompt" = ${Prompt}
-            "completion" = ${Completion}
+            'prompt' = ${Prompt}
+            'completion' = ${Completion}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToFineTuneCompletionRequestInput {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in FineTuneCompletionRequestInput
-        $AllProperties = ("prompt", "completion")
+        $AllProperties = ('prompt', 'completion')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prompt"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'prompt'))) { #optional property not found
             $Prompt = $null
         } else {
-            $Prompt = $JsonParameters.PSobject.Properties["prompt"].value
+            $Prompt = $JsonParameters.PSobject.Properties['prompt'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "completion"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'completion'))) { #optional property not found
             $Completion = $null
         } else {
-            $Completion = $JsonParameters.PSobject.Properties["completion"].value
+            $Completion = $JsonParameters.PSobject.Properties['completion'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "prompt" = ${Prompt}
-            "completion" = ${Completion}
+            'prompt' = ${Prompt}
+            'completion' = ${Completion}
         }
 
         return $PSO

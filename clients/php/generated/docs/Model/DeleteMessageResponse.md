@@ -1,4 +1,4 @@
-# # DeleteMessageResponse
+# DeleteMessageResponse
 
 ## Properties
 

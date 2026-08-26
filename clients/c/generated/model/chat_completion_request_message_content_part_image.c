@@ -30,10 +30,10 @@ static chat_completion_request_message_content_part_image_t *chat_completion_req
     if (!chat_completion_request_message_content_part_image_local_var) {
         return NULL;
     }
+    memset(chat_completion_request_message_content_part_image_local_var, 0, sizeof(chat_completion_request_message_content_part_image_t));
+    chat_completion_request_message_content_part_image_local_var->_library_owned = 1;
     chat_completion_request_message_content_part_image_local_var->type = type;
     chat_completion_request_message_content_part_image_local_var->image_url = image_url;
-
-    chat_completion_request_message_content_part_image_local_var->_library_owned = 1;
     return chat_completion_request_message_content_part_image_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) chat_completion_request_message_content_part_image_t
     openai_api_chat_completion_request_message_content_part_image_TYPE_e type,
     chat_completion_request_message_content_part_image_image_url_t *image_url
     ) {
-    return chat_completion_request_message_content_part_image_create_internal (
+    chat_completion_request_message_content_part_image_t *result = chat_completion_request_message_content_part_image_create_internal (
         type,
         image_url
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_request_message_content_part_image_free(chat_completion_request_message_content_part_image_t *chat_completion_request_message_content_part_image) {
@@ -134,10 +137,15 @@ chat_completion_request_message_content_part_image_t *chat_completion_request_me
     image_url_local_nonprim = chat_completion_request_message_content_part_image_image_url_parseFromJSON(image_url); //nonprimitive
 
 
+
     chat_completion_request_message_content_part_image_local_var = chat_completion_request_message_content_part_image_create_internal (
         typeVariable,
         image_url_local_nonprim
         );
+
+    if (!chat_completion_request_message_content_part_image_local_var) {
+        goto end;
+    }
 
     return chat_completion_request_message_content_part_image_local_var;
 end:

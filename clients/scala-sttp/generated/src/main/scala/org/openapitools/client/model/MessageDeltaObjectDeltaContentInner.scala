@@ -12,16 +12,42 @@
 package org.openapitools.client.model
 
 
-case class MessageDeltaObjectDeltaContentInner(
+sealed trait MessageDeltaObjectDeltaContentInner
+object MessageDeltaObjectDeltaContentInner {
+}
+
+case class MessageDeltaContentImageFileObject(
   /* The index of the content part in the message. */
   index: Int,
   /* Always `image_file`. */
-  `type`: MessageDeltaObjectDeltaContentInnerEnums.`Type`,
-  imageFile: Option[MessageDeltaContentImageFileObjectImageFile] = None,
-  text: Option[MessageDeltaContentTextObjectText] = None,
-  refusal: Option[String] = None,
+  `type`: MessageDeltaContentImageFileObjectEnums.`Type`,
+  imageFile: Option[MessageDeltaContentImageFileObjectImageFile] = None
+) extends MessageDeltaObjectDeltaContentInner
+
+case class MessageDeltaContentImageUrlObject(
+  /* The index of the content part in the message. */
+  index: Int,
+  /* Always `image_url`. */
+  `type`: MessageDeltaContentImageUrlObjectEnums.`Type`,
   imageUrl: Option[MessageDeltaContentImageUrlObjectImageUrl] = None
-)
+) extends MessageDeltaObjectDeltaContentInner
+
+case class MessageDeltaContentRefusalObject(
+  /* The index of the refusal part in the message. */
+  index: Int,
+  /* Always `refusal`. */
+  `type`: MessageDeltaContentRefusalObjectEnums.`Type`,
+  refusal: Option[String] = None
+) extends MessageDeltaObjectDeltaContentInner
+
+case class MessageDeltaContentTextObject(
+  /* The index of the content part in the message. */
+  index: Int,
+  /* Always `text`. */
+  `type`: MessageDeltaContentTextObjectEnums.`Type`,
+  text: Option[MessageDeltaContentTextObjectText] = None
+) extends MessageDeltaObjectDeltaContentInner
+
 
 object MessageDeltaObjectDeltaContentInnerEnums {
 

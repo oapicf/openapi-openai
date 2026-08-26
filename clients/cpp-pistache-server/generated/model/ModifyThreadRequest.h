@@ -33,7 +33,7 @@ class  ModifyThreadRequest
 {
 public:
     ModifyThreadRequest();
-    virtual ~ModifyThreadRequest() = default;
+    virtual ~ModifyThreadRequest();
 
 
     /// <summary>

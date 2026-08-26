@@ -67,7 +67,7 @@ export interface RealtimeSessionCreateResponse {
      * The set of modalities the model can respond with. To disable audio,
      * set this to ["text"].
      * 
-     * @type {Array<string>}
+     * @type {Array<RealtimeSessionCreateResponseModalitiesEnum>}
      * @memberof RealtimeSessionCreateResponse
      */
     modalities?: Array<RealtimeSessionCreateResponseModalitiesEnum>;
@@ -95,7 +95,7 @@ export interface RealtimeSessionCreateResponse {
      * voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`, 
      * `shimmer` and `verse`.
      * 
-     * @type {string}
+     * @type {RealtimeSessionCreateResponseVoiceEnum}
      * @memberof RealtimeSessionCreateResponse
      */
     voice?: RealtimeSessionCreateResponseVoiceEnum;

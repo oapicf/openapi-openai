@@ -123,7 +123,7 @@ CreateModerationResponse::getId()
 }
 
 void
-CreateModerationResponse::setId(std::string  id)
+CreateModerationResponse::setId(std::string id)
 {
 	this->id = id;
 }
@@ -135,7 +135,7 @@ CreateModerationResponse::getModel()
 }
 
 void
-CreateModerationResponse::setModel(std::string  model)
+CreateModerationResponse::setModel(std::string model)
 {
 	this->model = model;
 }
@@ -147,7 +147,7 @@ CreateModerationResponse::getResults()
 }
 
 void
-CreateModerationResponse::setResults(std::list <CreateModerationResponse_results_inner> results)
+CreateModerationResponse::setResults(std::list<CreateModerationResponse_results_inner> results)
 {
 	this->results = results;
 }

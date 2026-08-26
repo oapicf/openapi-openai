@@ -82,7 +82,7 @@ AuditLog_api_key_created_data::getScopes()
 }
 
 void
-AuditLog_api_key_created_data::setScopes(std::list <std::string> scopes)
+AuditLog_api_key_created_data::setScopes(std::list<std::string> scopes)
 {
 	this->scopes = scopes;
 }

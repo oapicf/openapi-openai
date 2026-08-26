@@ -151,7 +151,7 @@ MessageObject_content_inner::getType()
 }
 
 void
-MessageObject_content_inner::setType(std::string  type)
+MessageObject_content_inner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -163,7 +163,7 @@ MessageObject_content_inner::getImageFile()
 }
 
 void
-MessageObject_content_inner::setImageFile(MessageContentImageFileObject_image_file  image_file)
+MessageObject_content_inner::setImageFile(MessageContentImageFileObject_image_file image_file)
 {
 	this->image_file = image_file;
 }
@@ -175,7 +175,7 @@ MessageObject_content_inner::getImageUrl()
 }
 
 void
-MessageObject_content_inner::setImageUrl(MessageContentImageUrlObject_image_url  image_url)
+MessageObject_content_inner::setImageUrl(MessageContentImageUrlObject_image_url image_url)
 {
 	this->image_url = image_url;
 }
@@ -187,7 +187,7 @@ MessageObject_content_inner::getText()
 }
 
 void
-MessageObject_content_inner::setText(MessageContentTextObject_text  text)
+MessageObject_content_inner::setText(MessageContentTextObject_text text)
 {
 	this->text = text;
 }
@@ -199,7 +199,7 @@ MessageObject_content_inner::getRefusal()
 }
 
 void
-MessageObject_content_inner::setRefusal(std::string  refusal)
+MessageObject_content_inner::setRefusal(std::string refusal)
 {
 	this->refusal = refusal;
 }

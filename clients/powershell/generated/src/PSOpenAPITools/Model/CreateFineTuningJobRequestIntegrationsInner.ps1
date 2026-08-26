@@ -16,7 +16,7 @@ No summary available.
 No description available.
 
 .PARAMETER Type
-No description available.
+The type of integration to enable. Currently, only ""wandb"" (Weights and Biases) is supported. 
 .PARAMETER Wandb
 No description available.
 .OUTPUTS
@@ -50,8 +50,8 @@ function Initialize-CreateFineTuningJobRequestIntegrationsInner {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "wandb" = ${Wandb}
+            'type' = ${Type}
+            'wandb' = ${Wandb}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToCreateFineTuningJobRequestIntegrationsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateFineTuningJobRequestIntegrationsInner
-        $AllProperties = ("type", "wandb")
+        $AllProperties = ('type', 'wandb')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToCreateFineTuningJobRequestIntegrationsInner {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "wandb"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'wandb'))) {
             throw "Error! JSON cannot be serialized due to the required property 'wandb' missing."
         } else {
-            $Wandb = $JsonParameters.PSobject.Properties["wandb"].value
+            $Wandb = $JsonParameters.PSobject.Properties['wandb'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "wandb" = ${Wandb}
+            'type' = ${Type}
+            'wandb' = ${Wandb}
         }
 
         return $PSO

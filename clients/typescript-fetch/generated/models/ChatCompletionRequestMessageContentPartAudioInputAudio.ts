@@ -28,7 +28,7 @@ export interface ChatCompletionRequestMessageContentPartAudioInputAudio {
     /**
      * The format of the encoded audio data. Currently supports "wav" and "mp3".
      * 
-     * @type {string}
+     * @type {ChatCompletionRequestMessageContentPartAudioInputAudioFormatEnum}
      * @memberof ChatCompletionRequestMessageContentPartAudioInputAudio
      */
     format: ChatCompletionRequestMessageContentPartAudioInputAudioFormatEnum;

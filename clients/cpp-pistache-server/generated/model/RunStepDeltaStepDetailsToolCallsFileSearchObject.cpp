@@ -28,6 +28,8 @@ RunStepDeltaStepDetailsToolCallsFileSearchObject::RunStepDeltaStepDetailsToolCal
     
 }
 
+RunStepDeltaStepDetailsToolCallsFileSearchObject::~RunStepDeltaStepDetailsToolCallsFileSearchObject() = default;
+
 void RunStepDeltaStepDetailsToolCallsFileSearchObject::validate() const
 {
     std::stringstream msg;

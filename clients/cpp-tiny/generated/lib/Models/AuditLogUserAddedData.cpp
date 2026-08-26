@@ -64,7 +64,7 @@ AuditLog_user_added_data::getRole()
 }
 
 void
-AuditLog_user_added_data::setRole(std::string  role)
+AuditLog_user_added_data::setRole(std::string role)
 {
 	this->role = role;
 }

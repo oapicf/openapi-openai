@@ -53,35 +53,35 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get 
 	 */
 	std::list<ProjectApiKey> getData();
 
 	/*! \brief Set 
 	 */
-	void setData(std::list <ProjectApiKey> data);
+	void setData(std::list<ProjectApiKey> data);
 	/*! \brief Get 
 	 */
 	std::string getFirstId();
 
 	/*! \brief Set 
 	 */
-	void setFirstId(std::string  first_id);
+	void setFirstId(std::string first_id);
 	/*! \brief Get 
 	 */
 	std::string getLastId();
 
 	/*! \brief Set 
 	 */
-	void setLastId(std::string  last_id);
+	void setLastId(std::string last_id);
 	/*! \brief Get 
 	 */
 	bool isHasMore();
 
 	/*! \brief Set 
 	 */
-	void setHasMore(bool  has_more);
+	void setHasMore(bool has_more);
 
 
     private:

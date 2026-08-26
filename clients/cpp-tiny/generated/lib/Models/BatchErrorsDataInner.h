@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set An error code identifying the error type.
 	 */
-	void setCode(std::string  code);
+	void setCode(std::string code);
 	/*! \brief Get A human-readable message providing more details about the error.
 	 */
 	std::string getMessage();
 
 	/*! \brief Set A human-readable message providing more details about the error.
 	 */
-	void setMessage(std::string  message);
+	void setMessage(std::string message);
 	/*! \brief Get The name of the parameter that caused the error, if applicable.
 	 */
 	std::string getParam();
 
 	/*! \brief Set The name of the parameter that caused the error, if applicable.
 	 */
-	void setParam(std::string  param);
+	void setParam(std::string param);
 	/*! \brief Get The line number of the input file where the error occurred, if applicable.
 	 */
 	int getLine();
 
 	/*! \brief Set The line number of the input file where the error occurred, if applicable.
 	 */
-	void setLine(int  line);
+	void setLine(int line);
 
 
     private:

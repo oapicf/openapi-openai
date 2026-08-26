@@ -13,10 +13,10 @@ static audit_log_invite_sent_data_t *audit_log_invite_sent_data_create_internal(
     if (!audit_log_invite_sent_data_local_var) {
         return NULL;
     }
+    memset(audit_log_invite_sent_data_local_var, 0, sizeof(audit_log_invite_sent_data_t));
+    audit_log_invite_sent_data_local_var->_library_owned = 1;
     audit_log_invite_sent_data_local_var->email = email;
     audit_log_invite_sent_data_local_var->role = role;
-
-    audit_log_invite_sent_data_local_var->_library_owned = 1;
     return audit_log_invite_sent_data_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) audit_log_invite_sent_data_t *audit_log_invite_sent_
     char *email,
     char *role
     ) {
-    return audit_log_invite_sent_data_create_internal (
+    audit_log_invite_sent_data_t *result = audit_log_invite_sent_data_create_internal (
         email,
         role
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void audit_log_invite_sent_data_free(audit_log_invite_sent_data_t *audit_log_invite_sent_data) {
@@ -80,6 +83,10 @@ audit_log_invite_sent_data_t *audit_log_invite_sent_data_parseFromJSON(cJSON *au
 
     audit_log_invite_sent_data_t *audit_log_invite_sent_data_local_var = NULL;
 
+    char *email_local_str = NULL;
+
+    char *role_local_str = NULL;
+
     // audit_log_invite_sent_data->email
     cJSON *email = cJSON_GetObjectItemCaseSensitive(audit_log_invite_sent_dataJSON, "email");
     if (cJSON_IsNull(email)) {
@@ -105,13 +112,28 @@ audit_log_invite_sent_data_t *audit_log_invite_sent_data_parseFromJSON(cJSON *au
     }
 
 
+    if (email && !cJSON_IsNull(email)) email_local_str = strdup(email->valuestring);
+    if (role && !cJSON_IsNull(role)) role_local_str = strdup(role->valuestring);
+
     audit_log_invite_sent_data_local_var = audit_log_invite_sent_data_create_internal (
-        email && !cJSON_IsNull(email) ? strdup(email->valuestring) : NULL,
-        role && !cJSON_IsNull(role) ? strdup(role->valuestring) : NULL
+        email_local_str,
+        role_local_str
         );
+
+    if (!audit_log_invite_sent_data_local_var) {
+        goto end;
+    }
 
     return audit_log_invite_sent_data_local_var;
 end:
+    if (email_local_str) {
+        free(email_local_str);
+        email_local_str = NULL;
+    }
+    if (role_local_str) {
+        free(role_local_str);
+        role_local_str = NULL;
+    }
     return NULL;
 
 }

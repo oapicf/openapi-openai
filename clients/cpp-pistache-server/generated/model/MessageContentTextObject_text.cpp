@@ -25,6 +25,8 @@ MessageContentTextObject_text::MessageContentTextObject_text()
     
 }
 
+MessageContentTextObject_text::~MessageContentTextObject_text() = default;
+
 void MessageContentTextObject_text::validate() const
 {
     std::stringstream msg;

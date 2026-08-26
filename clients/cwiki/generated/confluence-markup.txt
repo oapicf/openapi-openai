@@ -5531,15 +5531,6 @@ Specifying a particular tool like `\{"type": "file_search"\}` or `\{"type": "fun
         ||Field Name||Required||Type||Description||Enum||Example||
          |role |(x) |{noformat:nopanel=true}String{noformat} | The role of the user. Is either &#x60;owner&#x60; or &#x60;member&#x60;. |  | null
          
-        {anchor:AutoChunkingStrategyModelAnchor}
-        h3. AutoChunkingStrategy
-
-        The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`.
-
-        
-        ||Field Name||Required||Type||Description||Enum||Example||
-         |type |(/) |{noformat:nopanel=true}String{noformat} | Always &#x60;auto&#x60;. |  [auto]  | null
-         
         {anchor:AutoChunkingStrategyRequestParamModelAnchor}
         h3. AutoChunkingStrategyRequestParam
 
@@ -6360,7 +6351,10 @@ request that this model generate both text and audio responses, you can
 use:
 
 &#x60;[&quot;text&quot;, &quot;audio&quot;\]&#x60; |    | null
-         |prediction |(x) |{noformat:nopanel=true}PredictionContent{noformat} |  |  | null
+         |prediction |(x) |{noformat:nopanel=true}PredictionContent{noformat} | Configuration for a [Predicted Output\](/docs/guides/predicted-outputs),
+which can greatly improve response times when large parts of the model
+response are known ahead of time. This is most common when you are
+regenerating a file with only minor changes to most of the content. |  | null
          |audio |(x) |{noformat:nopanel=true}CreateChatCompletionRequest_audio{noformat} |  |  | null
          |presence_penalty |(x) |{noformat:nopanel=true}BigDecimal{noformat} | Number between -2.0 and 2.0. Positive values penalize new tokens based on
 whether they appear in the text so far, increasing the model&#39;s likelihood
@@ -6816,7 +6810,7 @@ through the training dataset.
 
         
         ||Field Name||Required||Type||Description||Enum||Example||
-         |type |(/) |{noformat:nopanel=true}String{noformat} |  |  [wandb]  | null
+         |type |(/) |{noformat:nopanel=true}String{noformat} | The type of integration to enable. Currently, only &quot;wandb&quot; (Weights and Biases) is supported. |  [wandb]  | null
          |wandb |(/) |{noformat:nopanel=true}CreateFineTuningJobRequest_integrations_inner_wandb{noformat} |  |  | null
          
         {anchor:CreateFineTuningJobRequestIntegrationsInnerWandbModelAnchor}
@@ -8516,7 +8510,7 @@ Omitting &#x60;parameters&#x60; defines a function with an empty parameter list.
 
         
         ||Field Name||Required||Type||Description||Enum||Example||
-         |model |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |model |(x) |{noformat:nopanel=true}String{noformat} | ID of the model to use. You can use the [List models\](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview\](/docs/models) for descriptions of them. |  | null
          |name |(x) |{noformat:nopanel=true}String{noformat} | The name of the assistant. The maximum length is 256 characters. |  | null
          |description |(x) |{noformat:nopanel=true}String{noformat} | The description of the assistant. The maximum length is 512 characters. |  | null
          |instructions |(x) |{noformat:nopanel=true}String{noformat} | The system instructions that the assistant uses. The maximum length is 256,000 characters. |  | null
@@ -10751,16 +10745,6 @@ but may jump in on short pauses from the user. |  | null
          
         {anchor:StaticChunkingStrategyRequestParamModelAnchor}
         h3. StaticChunkingStrategyRequestParam
-
-        
-
-        
-        ||Field Name||Required||Type||Description||Enum||Example||
-         |type |(/) |{noformat:nopanel=true}String{noformat} | Always &#x60;static&#x60;. |  [static]  | null
-         |static |(/) |{noformat:nopanel=true}StaticChunkingStrategy{noformat} |  |  | null
-         
-        {anchor:StaticChunkingStrategyResponseParamModelAnchor}
-        h3. StaticChunkingStrategyResponseParam
 
         
 

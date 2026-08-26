@@ -53,10 +53,10 @@ class ListFineTuningJobEventsResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ListFineTuningJobEventsResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ListFineTuningJobEventsResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'data'), 'Required key "ListFineTuningJobEventsResponse[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "ListFineTuningJobEventsResponse[data]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "ListFineTuningJobEventsResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "ListFineTuningJobEventsResponse[object]" has a null value in JSON.');
         return true;
       }());
 
@@ -116,27 +116,28 @@ class ListFineTuningJobEventsResponse {
 }
 
 
-class ListFineTuningJobEventsResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ListFineTuningJobEventsResponseObjectEnum._(this.value);
+enum ListFineTuningJobEventsResponseObjectEnum {
+  list._(r'list'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ListFineTuningJobEventsResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const list = ListFineTuningJobEventsResponseObjectEnum._(r'list');
-
-  /// List of all possible values in this [enum][ListFineTuningJobEventsResponseObjectEnum].
-  static const values = <ListFineTuningJobEventsResponseObjectEnum>[
-    list,
-  ];
-
+  /// Returns the instance of [ListFineTuningJobEventsResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ListFineTuningJobEventsResponseObjectEnum? fromJson(dynamic value) => ListFineTuningJobEventsResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ListFineTuningJobEventsResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ListFineTuningJobEventsResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ListFineTuningJobEventsResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -158,9 +159,10 @@ class ListFineTuningJobEventsResponseObjectEnumTypeTransformer {
 
   const ListFineTuningJobEventsResponseObjectEnumTypeTransformer._();
 
-  String encode(ListFineTuningJobEventsResponseObjectEnum data) => data.value;
+  String encode(ListFineTuningJobEventsResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ListFineTuningJobEventsResponseObjectEnum.
+  /// Returns the instance of [ListFineTuningJobEventsResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -169,6 +171,9 @@ class ListFineTuningJobEventsResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ListFineTuningJobEventsResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ListFineTuningJobEventsResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'list': return ListFineTuningJobEventsResponseObjectEnum.list;
@@ -181,7 +186,7 @@ class ListFineTuningJobEventsResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ListFineTuningJobEventsResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ListFineTuningJobEventsResponseObjectEnumTypeTransformer? _instance;
 }
 

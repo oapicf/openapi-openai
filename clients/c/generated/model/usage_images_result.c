@@ -24,8 +24,8 @@ openai_api_usage_images_result_OBJECT_e usage_images_result_object_FromString(ch
 
 static usage_images_result_t *usage_images_result_create_internal(
     openai_api_usage_images_result_OBJECT_e object,
-    int images,
-    int num_model_requests,
+    int *images,
+    int *num_model_requests,
     char *source,
     char *size,
     char *project_id,
@@ -37,6 +37,8 @@ static usage_images_result_t *usage_images_result_create_internal(
     if (!usage_images_result_local_var) {
         return NULL;
     }
+    memset(usage_images_result_local_var, 0, sizeof(usage_images_result_t));
+    usage_images_result_local_var->_library_owned = 1;
     usage_images_result_local_var->object = object;
     usage_images_result_local_var->images = images;
     usage_images_result_local_var->num_model_requests = num_model_requests;
@@ -46,15 +48,13 @@ static usage_images_result_t *usage_images_result_create_internal(
     usage_images_result_local_var->user_id = user_id;
     usage_images_result_local_var->api_key_id = api_key_id;
     usage_images_result_local_var->model = model;
-
-    usage_images_result_local_var->_library_owned = 1;
     return usage_images_result_local_var;
 }
 
 __attribute__((deprecated)) usage_images_result_t *usage_images_result_create(
     openai_api_usage_images_result_OBJECT_e object,
-    int images,
-    int num_model_requests,
+    int *images,
+    int *num_model_requests,
     char *source,
     char *size,
     char *project_id,
@@ -62,10 +62,20 @@ __attribute__((deprecated)) usage_images_result_t *usage_images_result_create(
     char *api_key_id,
     char *model
     ) {
-    return usage_images_result_create_internal (
+    int *images_copy = NULL;
+    if (images) {
+        images_copy = malloc(sizeof(int));
+        if (images_copy) *images_copy = *images;
+    }
+    int *num_model_requests_copy = NULL;
+    if (num_model_requests) {
+        num_model_requests_copy = malloc(sizeof(int));
+        if (num_model_requests_copy) *num_model_requests_copy = *num_model_requests;
+    }
+    usage_images_result_t *result = usage_images_result_create_internal (
         object,
-        images,
-        num_model_requests,
+        images_copy,
+        num_model_requests_copy,
         source,
         size,
         project_id,
@@ -73,6 +83,11 @@ __attribute__((deprecated)) usage_images_result_t *usage_images_result_create(
         api_key_id,
         model
         );
+    if (!result) {
+        free(images_copy);
+        free(num_model_requests_copy);
+    }
+    return result;
 }
 
 void usage_images_result_free(usage_images_result_t *usage_images_result) {
@@ -84,6 +99,14 @@ void usage_images_result_free(usage_images_result_t *usage_images_result) {
         return ;
     }
     listEntry_t *listEntry;
+    if (usage_images_result->images) {
+        free(usage_images_result->images);
+        usage_images_result->images = NULL;
+    }
+    if (usage_images_result->num_model_requests) {
+        free(usage_images_result->num_model_requests);
+        usage_images_result->num_model_requests = NULL;
+    }
     if (usage_images_result->source) {
         free(usage_images_result->source);
         usage_images_result->source = NULL;
@@ -128,7 +151,7 @@ cJSON *usage_images_result_convertToJSON(usage_images_result_t *usage_images_res
     if (!usage_images_result->images) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "images", usage_images_result->images) == NULL) {
+    if(cJSON_AddNumberToObject(item, "images", *usage_images_result->images) == NULL) {
     goto fail; //Numeric
     }
 
@@ -137,7 +160,7 @@ cJSON *usage_images_result_convertToJSON(usage_images_result_t *usage_images_res
     if (!usage_images_result->num_model_requests) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "num_model_requests", usage_images_result->num_model_requests) == NULL) {
+    if(cJSON_AddNumberToObject(item, "num_model_requests", *usage_images_result->num_model_requests) == NULL) {
     goto fail; //Numeric
     }
 
@@ -201,6 +224,24 @@ usage_images_result_t *usage_images_result_parseFromJSON(cJSON *usage_images_res
 
     usage_images_result_t *usage_images_result_local_var = NULL;
 
+    // define the local variable for usage_images_result->images
+    int *images_local_var = NULL;
+
+    // define the local variable for usage_images_result->num_model_requests
+    int *num_model_requests_local_var = NULL;
+
+    char *source_local_str = NULL;
+
+    char *size_local_str = NULL;
+
+    char *project_id_local_str = NULL;
+
+    char *user_id_local_str = NULL;
+
+    char *api_key_id_local_str = NULL;
+
+    char *model_local_str = NULL;
+
     // usage_images_result->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(usage_images_resultJSON, "object");
     if (cJSON_IsNull(object)) {
@@ -232,6 +273,12 @@ usage_images_result_t *usage_images_result_parseFromJSON(cJSON *usage_images_res
     {
     goto end; //Numeric
     }
+    images_local_var = malloc(sizeof(int));
+    if(!images_local_var)
+    {
+        goto end;
+    }
+    *images_local_var = images->valuedouble;
 
     // usage_images_result->num_model_requests
     cJSON *num_model_requests = cJSON_GetObjectItemCaseSensitive(usage_images_resultJSON, "num_model_requests");
@@ -247,6 +294,12 @@ usage_images_result_t *usage_images_result_parseFromJSON(cJSON *usage_images_res
     {
     goto end; //Numeric
     }
+    num_model_requests_local_var = malloc(sizeof(int));
+    if(!num_model_requests_local_var)
+    {
+        goto end;
+    }
+    *num_model_requests_local_var = num_model_requests->valuedouble;
 
     // usage_images_result->source
     cJSON *source = cJSON_GetObjectItemCaseSensitive(usage_images_resultJSON, "source");
@@ -321,20 +374,63 @@ usage_images_result_t *usage_images_result_parseFromJSON(cJSON *usage_images_res
     }
 
 
+    if (source && !cJSON_IsNull(source)) source_local_str = strdup(source->valuestring);
+    if (size && !cJSON_IsNull(size)) size_local_str = strdup(size->valuestring);
+    if (project_id && !cJSON_IsNull(project_id)) project_id_local_str = strdup(project_id->valuestring);
+    if (user_id && !cJSON_IsNull(user_id)) user_id_local_str = strdup(user_id->valuestring);
+    if (api_key_id && !cJSON_IsNull(api_key_id)) api_key_id_local_str = strdup(api_key_id->valuestring);
+    if (model && !cJSON_IsNull(model)) model_local_str = strdup(model->valuestring);
+
     usage_images_result_local_var = usage_images_result_create_internal (
         objectVariable,
-        images->valuedouble,
-        num_model_requests->valuedouble,
-        source && !cJSON_IsNull(source) ? strdup(source->valuestring) : NULL,
-        size && !cJSON_IsNull(size) ? strdup(size->valuestring) : NULL,
-        project_id && !cJSON_IsNull(project_id) ? strdup(project_id->valuestring) : NULL,
-        user_id && !cJSON_IsNull(user_id) ? strdup(user_id->valuestring) : NULL,
-        api_key_id && !cJSON_IsNull(api_key_id) ? strdup(api_key_id->valuestring) : NULL,
-        model && !cJSON_IsNull(model) ? strdup(model->valuestring) : NULL
+        images_local_var,
+        num_model_requests_local_var,
+        source_local_str,
+        size_local_str,
+        project_id_local_str,
+        user_id_local_str,
+        api_key_id_local_str,
+        model_local_str
         );
+
+    if (!usage_images_result_local_var) {
+        goto end;
+    }
 
     return usage_images_result_local_var;
 end:
+    if (images_local_var) {
+        free(images_local_var);
+        images_local_var = NULL;
+    }
+    if (num_model_requests_local_var) {
+        free(num_model_requests_local_var);
+        num_model_requests_local_var = NULL;
+    }
+    if (source_local_str) {
+        free(source_local_str);
+        source_local_str = NULL;
+    }
+    if (size_local_str) {
+        free(size_local_str);
+        size_local_str = NULL;
+    }
+    if (project_id_local_str) {
+        free(project_id_local_str);
+        project_id_local_str = NULL;
+    }
+    if (user_id_local_str) {
+        free(user_id_local_str);
+        user_id_local_str = NULL;
+    }
+    if (api_key_id_local_str) {
+        free(api_key_id_local_str);
+        api_key_id_local_str = NULL;
+    }
+    if (model_local_str) {
+        free(model_local_str);
+        model_local_str = NULL;
+    }
     return NULL;
 
 }

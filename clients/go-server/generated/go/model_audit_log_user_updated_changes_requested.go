@@ -21,7 +21,8 @@ type AuditLogUserUpdatedChangesRequested struct {
 	Role string `json:"role,omitempty"`
 }
 
-// AssertAuditLogUserUpdatedChangesRequestedRequired checks if the required fields are not zero-ed
+// AssertAuditLogUserUpdatedChangesRequestedRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertAuditLogUserUpdatedChangesRequestedRequired(obj AuditLogUserUpdatedChangesRequested) error {
 	return nil
 }

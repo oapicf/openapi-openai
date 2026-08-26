@@ -33,7 +33,7 @@ export interface PredictionContent {
      * The type of the predicted content you want to provide. This type is
      * currently always `content`.
      * 
-     * @type {string}
+     * @type {PredictionContentTypeEnum}
      * @memberof PredictionContent
      */
     type: PredictionContentTypeEnum;
@@ -60,6 +60,8 @@ export type PredictionContentTypeEnum = typeof PredictionContentTypeEnum[keyof t
  */
 export function instanceOfPredictionContent(value: object): value is PredictionContent {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'content') return false;
+    
     if (!('content' in value) || value['content'] === undefined) return false;
     return true;
 }

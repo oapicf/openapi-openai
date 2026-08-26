@@ -110,8 +110,9 @@ class _$MessageDeltaContentTextObjectSerializer implements PrimitiveSerializer<M
         case r'text':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MessageDeltaContentTextObjectText),
-          ) as MessageDeltaContentTextObjectText;
+            specifiedType: const FullType.nullable(MessageDeltaContentTextObjectText),
+          ) as MessageDeltaContentTextObjectText?;
+          if (valueDes == null) continue;
           result.text.replace(valueDes);
           break;
         default:

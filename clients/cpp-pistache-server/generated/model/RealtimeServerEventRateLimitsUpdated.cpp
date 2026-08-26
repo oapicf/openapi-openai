@@ -26,6 +26,8 @@ RealtimeServerEventRateLimitsUpdated::RealtimeServerEventRateLimitsUpdated()
     
 }
 
+RealtimeServerEventRateLimitsUpdated::~RealtimeServerEventRateLimitsUpdated() = default;
+
 void RealtimeServerEventRateLimitsUpdated::validate() const
 {
     std::stringstream msg;

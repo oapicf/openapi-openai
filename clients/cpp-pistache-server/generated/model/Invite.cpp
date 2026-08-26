@@ -34,6 +34,8 @@ Invite::Invite()
     
 }
 
+Invite::~Invite() = default;
+
 void Invite::validate() const
 {
     std::stringstream msg;

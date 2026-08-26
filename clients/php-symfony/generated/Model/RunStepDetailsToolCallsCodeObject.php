@@ -51,7 +51,7 @@ class RunStepDetailsToolCallsCodeObject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class RunStepDetailsToolCallsCodeObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['code_interpreter'])]
     #[Assert\Type("string")]
@@ -72,7 +72,7 @@ class RunStepDetailsToolCallsCodeObject
      * @var RunStepDetailsToolCallsCodeObjectCodeInterpreter|null
      * @SerializedName("code_interpreter")
      * @Type("OpenAPI\Server\Model\RunStepDetailsToolCallsCodeObjectCodeInterpreter")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunStepDetailsToolCallsCodeObjectCodeInterpreter")]
@@ -102,12 +102,12 @@ class RunStepDetailsToolCallsCodeObject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The ID of the tool call.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The ID of the tool call.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -129,12 +129,12 @@ class RunStepDetailsToolCallsCodeObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -156,12 +156,12 @@ class RunStepDetailsToolCallsCodeObject
     }
 
     /**
-    * Sets codeInterpreter.
-    *
-    * @param RunStepDetailsToolCallsCodeObjectCodeInterpreter|null $codeInterpreter
-    *
-    * @return $this
-    */
+     * Sets codeInterpreter.
+     *
+     * @param RunStepDetailsToolCallsCodeObjectCodeInterpreter|null $codeInterpreter
+     *
+     * @return $this
+     */
     public function setCodeInterpreter(?RunStepDetailsToolCallsCodeObjectCodeInterpreter $codeInterpreter): self
     {
         $this->codeInterpreter = $codeInterpreter;

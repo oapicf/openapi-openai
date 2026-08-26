@@ -29,7 +29,7 @@ openai_api_invite_delete_response_OBJECT_e invite_delete_response_object_FromStr
 typedef struct invite_delete_response_t {
     openai_api_invite_delete_response_OBJECT_e object; //enum
     char *id; // string
-    int deleted; //boolean
+    int *deleted; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } invite_delete_response_t;
@@ -37,7 +37,7 @@ typedef struct invite_delete_response_t {
 __attribute__((deprecated)) invite_delete_response_t *invite_delete_response_create(
     openai_api_invite_delete_response_OBJECT_e object,
     char *id,
-    int deleted
+    int *deleted
 );
 
 void invite_delete_response_free(invite_delete_response_t *invite_delete_response);

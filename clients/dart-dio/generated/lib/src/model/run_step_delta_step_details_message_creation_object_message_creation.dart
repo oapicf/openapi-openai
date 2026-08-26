@@ -74,8 +74,9 @@ class _$RunStepDeltaStepDetailsMessageCreationObjectMessageCreationSerializer im
         case r'message_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.messageId = valueDes;
           break;
         default:

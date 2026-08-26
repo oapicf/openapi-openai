@@ -24,7 +24,7 @@ class BatchApi {
   ///
   /// * [String] batchId (required):
   ///   The ID of the batch to cancel.
-  Future<Response> cancelBatchWithHttpInfo(String batchId,) async {
+  Future<Response> cancelBatchWithHttpInfo(String batchId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/batches/{batch_id}/cancel'
       .replaceAll('{batch_id}', batchId);
@@ -47,6 +47,7 @@ class BatchApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -56,8 +57,8 @@ class BatchApi {
   ///
   /// * [String] batchId (required):
   ///   The ID of the batch to cancel.
-  Future<Batch?> cancelBatch(String batchId,) async {
-    final response = await cancelBatchWithHttpInfo(batchId,);
+  Future<Batch?> cancelBatch(String batchId, { Future<void>? abortTrigger, }) async {
+    final response = await cancelBatchWithHttpInfo(batchId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -78,7 +79,7 @@ class BatchApi {
   /// Parameters:
   ///
   /// * [CreateBatchRequest] createBatchRequest (required):
-  Future<Response> createBatchWithHttpInfo(CreateBatchRequest createBatchRequest,) async {
+  Future<Response> createBatchWithHttpInfo(CreateBatchRequest createBatchRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/batches';
 
@@ -100,6 +101,7 @@ class BatchApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -108,8 +110,8 @@ class BatchApi {
   /// Parameters:
   ///
   /// * [CreateBatchRequest] createBatchRequest (required):
-  Future<Batch?> createBatch(CreateBatchRequest createBatchRequest,) async {
-    final response = await createBatchWithHttpInfo(createBatchRequest,);
+  Future<Batch?> createBatch(CreateBatchRequest createBatchRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createBatchWithHttpInfo(createBatchRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -134,7 +136,7 @@ class BatchApi {
   ///
   /// * [int] limit:
   ///   A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-  Future<Response> listBatchesWithHttpInfo({ String? after, int? limit, }) async {
+  Future<Response> listBatchesWithHttpInfo({ String? after, int? limit, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/batches';
 
@@ -163,6 +165,7 @@ class BatchApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -175,8 +178,8 @@ class BatchApi {
   ///
   /// * [int] limit:
   ///   A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-  Future<ListBatchesResponse?> listBatches({ String? after, int? limit, }) async {
-    final response = await listBatchesWithHttpInfo( after: after, limit: limit, );
+  Future<ListBatchesResponse?> listBatches({ String? after, int? limit, Future<void>? abortTrigger, }) async {
+    final response = await listBatchesWithHttpInfo(after: after, limit: limit, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -198,7 +201,7 @@ class BatchApi {
   ///
   /// * [String] batchId (required):
   ///   The ID of the batch to retrieve.
-  Future<Response> retrieveBatchWithHttpInfo(String batchId,) async {
+  Future<Response> retrieveBatchWithHttpInfo(String batchId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/batches/{batch_id}'
       .replaceAll('{batch_id}', batchId);
@@ -221,6 +224,7 @@ class BatchApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -230,8 +234,8 @@ class BatchApi {
   ///
   /// * [String] batchId (required):
   ///   The ID of the batch to retrieve.
-  Future<Batch?> retrieveBatch(String batchId,) async {
-    final response = await retrieveBatchWithHttpInfo(batchId,);
+  Future<Batch?> retrieveBatch(String batchId, { Future<void>? abortTrigger, }) async {
+    final response = await retrieveBatchWithHttpInfo(batchId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

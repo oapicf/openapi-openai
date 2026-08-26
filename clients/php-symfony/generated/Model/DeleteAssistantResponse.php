@@ -47,7 +47,7 @@ class DeleteAssistantResponse
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -56,7 +56,7 @@ class DeleteAssistantResponse
      * @var bool|null
      * @SerializedName("deleted")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $deleted = null;
@@ -65,7 +65,7 @@ class DeleteAssistantResponse
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['assistant.deleted'])]
     #[Assert\Type("string")]
@@ -95,12 +95,12 @@ class DeleteAssistantResponse
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -122,12 +122,12 @@ class DeleteAssistantResponse
     }
 
     /**
-    * Sets deleted.
-    *
-    * @param bool|null $deleted
-    *
-    * @return $this
-    */
+     * Sets deleted.
+     *
+     * @param bool|null $deleted
+     *
+     * @return $this
+     */
     public function setDeleted(?bool $deleted): self
     {
         $this->deleted = $deleted;
@@ -149,12 +149,12 @@ class DeleteAssistantResponse
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;

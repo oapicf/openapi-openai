@@ -30,10 +30,10 @@ static run_step_details_tool_calls_file_search_result_object_content_inner_t *ru
     if (!run_step_details_tool_calls_file_search_result_object_content_inner_local_var) {
         return NULL;
     }
+    memset(run_step_details_tool_calls_file_search_result_object_content_inner_local_var, 0, sizeof(run_step_details_tool_calls_file_search_result_object_content_inner_t));
+    run_step_details_tool_calls_file_search_result_object_content_inner_local_var->_library_owned = 1;
     run_step_details_tool_calls_file_search_result_object_content_inner_local_var->type = type;
     run_step_details_tool_calls_file_search_result_object_content_inner_local_var->text = text;
-
-    run_step_details_tool_calls_file_search_result_object_content_inner_local_var->_library_owned = 1;
     return run_step_details_tool_calls_file_search_result_object_content_inner_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) run_step_details_tool_calls_file_search_result_objec
     openai_api_run_step_details_tool_calls_file_search_result_object_content_inner_TYPE_e type,
     char *text
     ) {
-    return run_step_details_tool_calls_file_search_result_object_content_inner_create_internal (
+    run_step_details_tool_calls_file_search_result_object_content_inner_t *result = run_step_details_tool_calls_file_search_result_object_content_inner_create_internal (
         type,
         text
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_step_details_tool_calls_file_search_result_object_content_inner_free(run_step_details_tool_calls_file_search_result_object_content_inner_t *run_step_details_tool_calls_file_search_result_object_content_inner) {
@@ -94,6 +97,8 @@ run_step_details_tool_calls_file_search_result_object_content_inner_t *run_step_
 
     run_step_details_tool_calls_file_search_result_object_content_inner_t *run_step_details_tool_calls_file_search_result_object_content_inner_local_var = NULL;
 
+    char *text_local_str = NULL;
+
     // run_step_details_tool_calls_file_search_result_object_content_inner->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(run_step_details_tool_calls_file_search_result_object_content_innerJSON, "type");
     if (cJSON_IsNull(type)) {
@@ -121,13 +126,23 @@ run_step_details_tool_calls_file_search_result_object_content_inner_t *run_step_
     }
 
 
+    if (text && !cJSON_IsNull(text)) text_local_str = strdup(text->valuestring);
+
     run_step_details_tool_calls_file_search_result_object_content_inner_local_var = run_step_details_tool_calls_file_search_result_object_content_inner_create_internal (
         type ? typeVariable : openai_api_run_step_details_tool_calls_file_search_result_object_content_inner_TYPE_NULL,
-        text && !cJSON_IsNull(text) ? strdup(text->valuestring) : NULL
+        text_local_str
         );
+
+    if (!run_step_details_tool_calls_file_search_result_object_content_inner_local_var) {
+        goto end;
+    }
 
     return run_step_details_tool_calls_file_search_result_object_content_inner_local_var;
 end:
+    if (text_local_str) {
+        free(text_local_str);
+        text_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -81,7 +81,7 @@ RunObject_required_action_submit_tool_outputs::getToolCalls()
 }
 
 void
-RunObject_required_action_submit_tool_outputs::setToolCalls(std::list <RunToolCallObject> tool_calls)
+RunObject_required_action_submit_tool_outputs::setToolCalls(std::list<RunToolCallObject> tool_calls)
 {
 	this->tool_calls = tool_calls;
 }

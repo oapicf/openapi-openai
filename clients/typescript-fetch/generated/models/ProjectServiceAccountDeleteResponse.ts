@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface ProjectServiceAccountDeleteResponse {
     /**
      * 
-     * @type {string}
+     * @type {ProjectServiceAccountDeleteResponseObjectEnum}
      * @memberof ProjectServiceAccountDeleteResponse
      */
     object: ProjectServiceAccountDeleteResponseObjectEnum;
@@ -54,6 +54,8 @@ export type ProjectServiceAccountDeleteResponseObjectEnum = typeof ProjectServic
  */
 export function instanceOfProjectServiceAccountDeleteResponse(value: object): value is ProjectServiceAccountDeleteResponse {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'organization.project.service_account.deleted') return false;
+    
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('deleted' in value) || value['deleted'] === undefined) return false;
     return true;

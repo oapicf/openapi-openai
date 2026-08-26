@@ -40,7 +40,7 @@ function Initialize-RunStepDetailsMessageCreationObjectMessageCreation {
 
 
         $PSO = [PSCustomObject]@{
-            "message_id" = ${MessageId}
+            'message_id' = ${MessageId}
         }
 
 
@@ -78,7 +78,7 @@ function ConvertFrom-JsonToRunStepDetailsMessageCreationObjectMessageCreation {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDetailsMessageCreationObjectMessageCreation
-        $AllProperties = ("message_id")
+        $AllProperties = ('message_id')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -89,14 +89,14 @@ function ConvertFrom-JsonToRunStepDetailsMessageCreationObjectMessageCreation {
             throw "Error! Empty JSON cannot be serialized due to the required property 'message_id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "message_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'message_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'message_id' missing."
         } else {
-            $MessageId = $JsonParameters.PSobject.Properties["message_id"].value
+            $MessageId = $JsonParameters.PSobject.Properties['message_id'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "message_id" = ${MessageId}
+            'message_id' = ${MessageId}
         }
 
         return $PSO

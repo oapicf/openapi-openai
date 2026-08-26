@@ -23,7 +23,7 @@ message MessageContentImageFileObject {
     TYPE_IMAGE_FILE = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   MessageContentImageFileObjectImageFile image_file = 369449506;
 

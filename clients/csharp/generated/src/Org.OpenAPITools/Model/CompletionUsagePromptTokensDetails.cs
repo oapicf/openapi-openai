@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Audio input tokens present in the prompt.</value>
         [JsonPropertyName("audio_tokens")]
-        public int? AudioTokens { get { return this.AudioTokensOption; } set { this.AudioTokensOption = new(value); } }
+        public int? AudioTokens { get { return this.AudioTokensOption.Value; } set { this.AudioTokensOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CachedTokens
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Cached tokens present in the prompt.</value>
         [JsonPropertyName("cached_tokens")]
-        public int? CachedTokens { get { return this.CachedTokensOption; } set { this.CachedTokensOption = new(value); } }
+        public int? CachedTokens { get { return this.CachedTokensOption.Value; } set { this.CachedTokensOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CompletionUsagePromptTokensDetails" />
     /// </summary>
-    public class CompletionUsagePromptTokensDetailsJsonConverter : JsonConverter<CompletionUsagePromptTokensDetails>
+    public partial class CompletionUsagePromptTokensDetailsJsonConverter : JsonConverter<CompletionUsagePromptTokensDetails>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CompletionUsagePromptTokensDetailsJsonConverter" /> class.
+        /// </summary>
+        public CompletionUsagePromptTokensDetailsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CompletionUsagePromptTokensDetails" />
         /// </summary>

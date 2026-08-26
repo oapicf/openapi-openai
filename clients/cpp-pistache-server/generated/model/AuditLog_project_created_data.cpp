@@ -28,6 +28,8 @@ AuditLog_project_created_data::AuditLog_project_created_data()
     
 }
 
+AuditLog_project_created_data::~AuditLog_project_created_data() = default;
+
 void AuditLog_project_created_data::validate() const
 {
     std::stringstream msg;

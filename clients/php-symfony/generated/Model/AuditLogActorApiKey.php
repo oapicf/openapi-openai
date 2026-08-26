@@ -51,7 +51,7 @@ class AuditLogActorApiKey
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -61,7 +61,7 @@ class AuditLogActorApiKey
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['user', 'service_account'])]
     #[Assert\Type("string")]
     protected ?string $type = null;
@@ -70,7 +70,7 @@ class AuditLogActorApiKey
      * @var AuditLogActorUser|null
      * @SerializedName("user")
      * @Type("OpenAPI\Server\Model\AuditLogActorUser")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogActorUser")]
     protected ?AuditLogActorUser $user = null;
 
@@ -78,7 +78,7 @@ class AuditLogActorApiKey
      * @var AuditLogActorServiceAccount|null
      * @SerializedName("service_account")
      * @Type("OpenAPI\Server\Model\AuditLogActorServiceAccount")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogActorServiceAccount")]
     protected ?AuditLogActorServiceAccount $serviceAccount = null;
 
@@ -107,12 +107,12 @@ class AuditLogActorApiKey
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The tracking id of the API key.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The tracking id of the API key.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -134,12 +134,12 @@ class AuditLogActorApiKey
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of API key. Can be either `user` or `service_account`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of API key. Can be either `user` or `service_account`.
+     *
+     * @return $this
+     */
     public function setType(?string $type = null): self
     {
         $this->type = $type;
@@ -161,12 +161,12 @@ class AuditLogActorApiKey
     }
 
     /**
-    * Sets user.
-    *
-    * @param AuditLogActorUser|null $user
-    *
-    * @return $this
-    */
+     * Sets user.
+     *
+     * @param AuditLogActorUser|null $user
+     *
+     * @return $this
+     */
     public function setUser(?AuditLogActorUser $user = null): self
     {
         $this->user = $user;
@@ -188,12 +188,12 @@ class AuditLogActorApiKey
     }
 
     /**
-    * Sets serviceAccount.
-    *
-    * @param AuditLogActorServiceAccount|null $serviceAccount
-    *
-    * @return $this
-    */
+     * Sets serviceAccount.
+     *
+     * @param AuditLogActorServiceAccount|null $serviceAccount
+     *
+     * @return $this
+     */
     public function setServiceAccount(?AuditLogActorServiceAccount $serviceAccount = null): self
     {
         $this->serviceAccount = $serviceAccount;

@@ -33,7 +33,7 @@ class  CreateCompletionResponse_choices_inner
 {
 public:
     CreateCompletionResponse_choices_inner();
-    virtual ~CreateCompletionResponse_choices_inner() = default;
+    virtual ~CreateCompletionResponse_choices_inner();
 
 
     /// <summary>

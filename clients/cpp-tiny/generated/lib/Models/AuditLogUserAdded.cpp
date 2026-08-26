@@ -86,7 +86,7 @@ AuditLog_user_added::getId()
 }
 
 void
-AuditLog_user_added::setId(std::string  id)
+AuditLog_user_added::setId(std::string id)
 {
 	this->id = id;
 }
@@ -98,7 +98,7 @@ AuditLog_user_added::getData()
 }
 
 void
-AuditLog_user_added::setData(AuditLog_user_added_data  data)
+AuditLog_user_added::setData(AuditLog_user_added_data data)
 {
 	this->data = data;
 }

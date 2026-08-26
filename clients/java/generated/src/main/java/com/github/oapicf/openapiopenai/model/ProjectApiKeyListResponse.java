@@ -51,7 +51,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * ProjectApiKeyListResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ProjectApiKeyListResponse {
   /**
    * Gets or Sets _object
@@ -274,10 +274,7 @@ public class ProjectApiKeyListResponse {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -325,16 +322,16 @@ public class ProjectApiKeyListResponse {
       }
       // validate the required field `object`
       ObjectEnum.validateJsonElement(jsonObj.get("object"));
-      // ensure the json data is an array
-      if (!jsonObj.get("data").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
+      if (jsonObj.get("data") != null) {
+        if (!jsonObj.get("data").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `data` to be an array in the JSON string but got `%s`", jsonObj.get("data").toString()));
+        }
+        JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
+        // validate the required field `data` (array)
+        for (int i = 0; i < jsonArraydata.size(); i++) {
+          ProjectApiKey.validateJsonElement(jsonArraydata.get(i));
+        }
       }
-
-      JsonArray jsonArraydata = jsonObj.getAsJsonArray("data");
-      // validate the required field `data` (array)
-      for (int i = 0; i < jsonArraydata.size(); i++) {
-        ProjectApiKey.validateJsonElement(jsonArraydata.get(i));
-      };
       if (!jsonObj.get("first_id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `first_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("first_id").toString()));
       }

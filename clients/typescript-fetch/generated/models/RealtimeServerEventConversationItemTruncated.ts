@@ -33,7 +33,7 @@ export interface RealtimeServerEventConversationItemTruncated {
     eventId: string;
     /**
      * The event type, must be `conversation.item.truncated`.
-     * @type {string}
+     * @type {RealtimeServerEventConversationItemTruncatedTypeEnum}
      * @memberof RealtimeServerEventConversationItemTruncated
      */
     type: RealtimeServerEventConversationItemTruncatedTypeEnum;
@@ -72,11 +72,13 @@ export type RealtimeServerEventConversationItemTruncatedTypeEnum = typeof Realti
  * Check if a given object implements the RealtimeServerEventConversationItemTruncated interface.
  */
 export function instanceOfRealtimeServerEventConversationItemTruncated(value: object): value is RealtimeServerEventConversationItemTruncated {
-    if (!('eventId' in value) || value['eventId'] === undefined) return false;
+    if ((!('eventId' in (value as Record<string, any>)) && !('event_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['eventId'] === undefined && (value as Record<string, any>)['event_id'] === undefined)) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('itemId' in value) || value['itemId'] === undefined) return false;
-    if (!('contentIndex' in value) || value['contentIndex'] === undefined) return false;
-    if (!('audioEndMs' in value) || value['audioEndMs'] === undefined) return false;
+    if (value['type'] !== 'conversation.item.truncated') return false;
+    
+    if ((!('itemId' in (value as Record<string, any>)) && !('item_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['itemId'] === undefined && (value as Record<string, any>)['item_id'] === undefined)) return false;
+    if ((!('contentIndex' in (value as Record<string, any>)) && !('content_index' in (value as Record<string, any>))) || ((value as Record<string, any>)['contentIndex'] === undefined && (value as Record<string, any>)['content_index'] === undefined)) return false;
+    if ((!('audioEndMs' in (value as Record<string, any>)) && !('audio_end_ms' in (value as Record<string, any>))) || ((value as Record<string, any>)['audioEndMs'] === undefined && (value as Record<string, any>)['audio_end_ms'] === undefined)) return false;
     return true;
 }
 

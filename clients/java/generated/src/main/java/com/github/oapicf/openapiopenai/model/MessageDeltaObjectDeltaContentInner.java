@@ -64,7 +64,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class MessageDeltaObjectDeltaContentInner extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(MessageDeltaObjectDeltaContentInner.class.getName());
 
@@ -261,6 +261,7 @@ public class MessageDeltaObjectDeltaContentInner extends AbstractOpenApiSchema {
      * @return The actual instance of `MessageDeltaContentImageFileObject`
      * @throws ClassCastException if the instance is not `MessageDeltaContentImageFileObject`
      */
+    @SuppressWarnings("unchecked")
     public MessageDeltaContentImageFileObject getMessageDeltaContentImageFileObject() throws ClassCastException {
         return (MessageDeltaContentImageFileObject)super.getActualInstance();
     }
@@ -272,6 +273,7 @@ public class MessageDeltaObjectDeltaContentInner extends AbstractOpenApiSchema {
      * @return The actual instance of `MessageDeltaContentTextObject`
      * @throws ClassCastException if the instance is not `MessageDeltaContentTextObject`
      */
+    @SuppressWarnings("unchecked")
     public MessageDeltaContentTextObject getMessageDeltaContentTextObject() throws ClassCastException {
         return (MessageDeltaContentTextObject)super.getActualInstance();
     }
@@ -283,6 +285,7 @@ public class MessageDeltaObjectDeltaContentInner extends AbstractOpenApiSchema {
      * @return The actual instance of `MessageDeltaContentRefusalObject`
      * @throws ClassCastException if the instance is not `MessageDeltaContentRefusalObject`
      */
+    @SuppressWarnings("unchecked")
     public MessageDeltaContentRefusalObject getMessageDeltaContentRefusalObject() throws ClassCastException {
         return (MessageDeltaContentRefusalObject)super.getActualInstance();
     }
@@ -294,6 +297,7 @@ public class MessageDeltaObjectDeltaContentInner extends AbstractOpenApiSchema {
      * @return The actual instance of `MessageDeltaContentImageUrlObject`
      * @throws ClassCastException if the instance is not `MessageDeltaContentImageUrlObject`
      */
+    @SuppressWarnings("unchecked")
     public MessageDeltaContentImageUrlObject getMessageDeltaContentImageUrlObject() throws ClassCastException {
         return (MessageDeltaContentImageUrlObject)super.getActualInstance();
     }

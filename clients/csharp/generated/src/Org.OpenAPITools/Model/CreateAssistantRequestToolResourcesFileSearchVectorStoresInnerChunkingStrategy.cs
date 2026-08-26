@@ -34,10 +34,10 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy" /> class.
         /// </summary>
-        /// <param name="autoChunkingStrategy"></param>
-        public CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy(AutoChunkingStrategy autoChunkingStrategy)
+        /// <param name="autoChunkingStrategyRequestParam"></param>
+        public CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy(AutoChunkingStrategyRequestParam autoChunkingStrategyRequestParam)
         {
-            AutoChunkingStrategy = autoChunkingStrategy;
+            AutoChunkingStrategyRequestParam = autoChunkingStrategyRequestParam;
             OnCreated();
         }
 
@@ -54,9 +54,9 @@ namespace Org.OpenAPITools.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets AutoChunkingStrategy
+        /// Gets or Sets AutoChunkingStrategyRequestParam
         /// </summary>
-        public AutoChunkingStrategy? AutoChunkingStrategy { get; set; }
+        public AutoChunkingStrategyRequestParam? AutoChunkingStrategyRequestParam { get; set; }
 
         /// <summary>
         /// Gets or Sets StaticChunkingStrategy
@@ -89,8 +89,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy" />
     /// </summary>
-    public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyJsonConverter : JsonConverter<CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy>
+    public partial class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyJsonConverter : JsonConverter<CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyJsonConverter" /> class.
+        /// </summary>
+        public CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy" />
         /// </summary>
@@ -108,7 +118,7 @@ namespace Org.OpenAPITools.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            AutoChunkingStrategy? autoChunkingStrategy = default;
+            AutoChunkingStrategyRequestParam? autoChunkingStrategyRequestParam = default;
             StaticChunkingStrategy? staticChunkingStrategy = default;
 
             Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
@@ -122,8 +132,8 @@ namespace Org.OpenAPITools.Model
 
                 if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
                 {
-                    Utf8JsonReader utf8JsonReaderAutoChunkingStrategy = utf8JsonReader;
-                    ClientUtils.TryDeserialize<AutoChunkingStrategy?>(ref utf8JsonReaderAutoChunkingStrategy, jsonSerializerOptions, out autoChunkingStrategy);
+                    Utf8JsonReader utf8JsonReaderAutoChunkingStrategyRequestParam = utf8JsonReader;
+                    ClientUtils.TryDeserialize<AutoChunkingStrategyRequestParam?>(ref utf8JsonReaderAutoChunkingStrategyRequestParam, jsonSerializerOptions, out autoChunkingStrategyRequestParam);
 
                     Utf8JsonReader utf8JsonReaderStaticChunkingStrategy = utf8JsonReader;
                     ClientUtils.TryDeserialize<StaticChunkingStrategy?>(ref utf8JsonReaderStaticChunkingStrategy, jsonSerializerOptions, out staticChunkingStrategy);
@@ -151,8 +161,8 @@ namespace Org.OpenAPITools.Model
                 }
             }
 
-            if (autoChunkingStrategy != null)
-                return new CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy(autoChunkingStrategy);
+            if (autoChunkingStrategyRequestParam != null)
+                return new CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy(autoChunkingStrategyRequestParam);
 
             if (staticChunkingStrategy != null)
                 return new CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy(staticChunkingStrategy);

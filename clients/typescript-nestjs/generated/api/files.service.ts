@@ -170,7 +170,7 @@ export class FilesService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.delete<DeleteFileResponse>(`${this.basePath}/files/${encodeURIComponent(String(file_id))}`,
+                return this.httpClient.delete<DeleteFileResponse>(`${this.basePath}/files/${encodeURIComponent(String(fileId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...deleteFileOpts?.config,
@@ -222,7 +222,7 @@ export class FilesService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<string>(`${this.basePath}/files/${encodeURIComponent(String(file_id))}/content`,
+                return this.httpClient.get<string>(`${this.basePath}/files/${encodeURIComponent(String(fileId))}/content`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...downloadFileOpts?.config,
@@ -340,7 +340,7 @@ export class FilesService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<OpenAIFile>(`${this.basePath}/files/${encodeURIComponent(String(file_id))}`,
+                return this.httpClient.get<OpenAIFile>(`${this.basePath}/files/${encodeURIComponent(String(fileId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...retrieveFileOpts?.config,

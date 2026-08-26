@@ -127,7 +127,7 @@ ChatCompletionResponseMessage_audio::getId()
 }
 
 void
-ChatCompletionResponseMessage_audio::setId(std::string  id)
+ChatCompletionResponseMessage_audio::setId(std::string id)
 {
 	this->id = id;
 }
@@ -139,7 +139,7 @@ ChatCompletionResponseMessage_audio::getExpiresAt()
 }
 
 void
-ChatCompletionResponseMessage_audio::setExpiresAt(int  expires_at)
+ChatCompletionResponseMessage_audio::setExpiresAt(int expires_at)
 {
 	this->expires_at = expires_at;
 }
@@ -151,7 +151,7 @@ ChatCompletionResponseMessage_audio::getData()
 }
 
 void
-ChatCompletionResponseMessage_audio::setData(std::string  data)
+ChatCompletionResponseMessage_audio::setData(std::string data)
 {
 	this->data = data;
 }
@@ -163,7 +163,7 @@ ChatCompletionResponseMessage_audio::getTranscript()
 }
 
 void
-ChatCompletionResponseMessage_audio::setTranscript(std::string  transcript)
+ChatCompletionResponseMessage_audio::setTranscript(std::string transcript)
 {
 	this->transcript = transcript;
 }

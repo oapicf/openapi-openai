@@ -30,6 +30,8 @@ RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::RunStepDeltaStepDetails
     
 }
 
+RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::~RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner() = default;
+
 void RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::validate() const
 {
     std::stringstream msg;

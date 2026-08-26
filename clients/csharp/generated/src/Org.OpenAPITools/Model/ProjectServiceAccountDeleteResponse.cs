@@ -147,8 +147,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectServiceAccountDeleteResponse" />
     /// </summary>
-    public class ProjectServiceAccountDeleteResponseJsonConverter : JsonConverter<ProjectServiceAccountDeleteResponse>
+    public partial class ProjectServiceAccountDeleteResponseJsonConverter : JsonConverter<ProjectServiceAccountDeleteResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectServiceAccountDeleteResponseJsonConverter" /> class.
+        /// </summary>
+        public ProjectServiceAccountDeleteResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProjectServiceAccountDeleteResponse" />
         /// </summary>

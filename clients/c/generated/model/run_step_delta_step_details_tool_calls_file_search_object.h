@@ -28,7 +28,7 @@ openai_api_run_step_delta_step_details_tool_calls_file_search_object_TYPE_e run_
 
 
 typedef struct run_step_delta_step_details_tool_calls_file_search_object_t {
-    int index; //numeric
+    int *index; //numeric
     char *id; // string
     openai_api_run_step_delta_step_details_tool_calls_file_search_object_TYPE_e type; //enum
     object_t *file_search; //object
@@ -37,7 +37,7 @@ typedef struct run_step_delta_step_details_tool_calls_file_search_object_t {
 } run_step_delta_step_details_tool_calls_file_search_object_t;
 
 __attribute__((deprecated)) run_step_delta_step_details_tool_calls_file_search_object_t *run_step_delta_step_details_tool_calls_file_search_object_create(
-    int index,
+    int *index,
     char *id,
     openai_api_run_step_delta_step_details_tool_calls_file_search_object_TYPE_e type,
     object_t *file_search

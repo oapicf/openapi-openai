@@ -1,4 +1,4 @@
-# # MessageObjectIncompleteDetails
+# MessageObjectIncompleteDetails
 
 ## Properties
 

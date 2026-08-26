@@ -31,19 +31,17 @@ import org.openapitools.server.models.Upload
 import org.openapitools.server.models.UploadPart
 
 fun Route.UploadsApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    post<Paths.addUploadPart> {
+    post<Paths.addUploadPart> { addUploadPart ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "upload_id" : "upload_id",
-              "created_at" : 0,
               "id" : "id",
+              "created_at" : 0,
+              "upload_id" : "upload_id",
               "object" : "upload.part"
             }"""
             
@@ -55,33 +53,32 @@ fun Route.UploadsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.cancelUpload> {
+    post<Paths.cancelUpload> { cancelUpload ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "id" : "id",
+              "created_at" : 0,
               "filename" : "filename",
+              "bytes" : 6,
+              "purpose" : "purpose",
+              "status" : "pending",
               "expires_at" : 1,
+              "object" : "upload",
               "file" : {
-                "filename" : "filename",
-                "purpose" : "assistants",
+                "id" : "id",
                 "bytes" : 0,
                 "created_at" : 6,
-                "id" : "id",
-                "status_details" : "status_details",
+                "filename" : "filename",
                 "object" : "file",
-                "status" : "uploaded"
-              },
-              "purpose" : "purpose",
-              "bytes" : 6,
-              "created_at" : 0,
-              "id" : "id",
-              "status" : "pending",
-              "object" : "upload"
+                "purpose" : "assistants",
+                "status" : "uploaded",
+                "status_details" : "status_details"
+              }
             }"""
             
             when (exampleContentType) {
@@ -92,33 +89,32 @@ fun Route.UploadsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.completeUpload> {
+    post<Paths.completeUpload> { completeUpload ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "id" : "id",
+              "created_at" : 0,
               "filename" : "filename",
+              "bytes" : 6,
+              "purpose" : "purpose",
+              "status" : "pending",
               "expires_at" : 1,
+              "object" : "upload",
               "file" : {
-                "filename" : "filename",
-                "purpose" : "assistants",
+                "id" : "id",
                 "bytes" : 0,
                 "created_at" : 6,
-                "id" : "id",
-                "status_details" : "status_details",
+                "filename" : "filename",
                 "object" : "file",
-                "status" : "uploaded"
-              },
-              "purpose" : "purpose",
-              "bytes" : 6,
-              "created_at" : 0,
-              "id" : "id",
-              "status" : "pending",
-              "object" : "upload"
+                "purpose" : "assistants",
+                "status" : "uploaded",
+                "status_details" : "status_details"
+              }
             }"""
             
             when (exampleContentType) {
@@ -129,33 +125,32 @@ fun Route.UploadsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createUpload> {
+    post<Paths.createUpload> { createUpload ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "id" : "id",
+              "created_at" : 0,
               "filename" : "filename",
+              "bytes" : 6,
+              "purpose" : "purpose",
+              "status" : "pending",
               "expires_at" : 1,
+              "object" : "upload",
               "file" : {
-                "filename" : "filename",
-                "purpose" : "assistants",
+                "id" : "id",
                 "bytes" : 0,
                 "created_at" : 6,
-                "id" : "id",
-                "status_details" : "status_details",
+                "filename" : "filename",
                 "object" : "file",
-                "status" : "uploaded"
-              },
-              "purpose" : "purpose",
-              "bytes" : 6,
-              "created_at" : 0,
-              "id" : "id",
-              "status" : "pending",
-              "object" : "upload"
+                "purpose" : "assistants",
+                "status" : "uploaded",
+                "status_details" : "status_details"
+              }
             }"""
             
             when (exampleContentType) {
@@ -166,5 +161,4 @@ fun Route.UploadsApi() {
         
     }
     }
-
 }

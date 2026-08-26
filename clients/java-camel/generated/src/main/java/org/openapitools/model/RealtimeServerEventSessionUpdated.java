@@ -8,20 +8,20 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.model.RealtimeSession;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Returned when a session is updated with a &#x60;session.update&#x60; event, unless  there is an error. 
  */
 
 @Schema(name = "RealtimeServerEventSessionUpdated", description = "Returned when a session is updated with a `session.update` event, unless  there is an error. ")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeServerEventSessionUpdated {
 
   private String eventId;
@@ -171,10 +171,7 @@ public class RealtimeServerEventSessionUpdated {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

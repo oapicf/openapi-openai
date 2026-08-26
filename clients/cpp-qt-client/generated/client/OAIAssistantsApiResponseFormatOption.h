@@ -36,13 +36,13 @@ class OAIResponseFormatJsonSchema_json_schema;
 class OAIAssistantsApiResponseFormatOption : public OAIObject {
 public:
     OAIAssistantsApiResponseFormatOption();
-    OAIAssistantsApiResponseFormatOption(QString json);
+    OAIAssistantsApiResponseFormatOption(const QString &json);
     ~OAIAssistantsApiResponseFormatOption() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

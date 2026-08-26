@@ -327,7 +327,7 @@ export interface AuditLog {
 export function instanceOfAuditLog(value: object): value is AuditLog {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('effectiveAt' in value) || value['effectiveAt'] === undefined) return false;
+    if ((!('effectiveAt' in (value as Record<string, any>)) && !('effective_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['effectiveAt'] === undefined && (value as Record<string, any>)['effective_at'] === undefined)) return false;
     if (!('actor' in value) || value['actor'] === undefined) return false;
     return true;
 }

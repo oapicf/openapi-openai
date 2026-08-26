@@ -1,0 +1,122 @@
+package org.openapitools.server.model;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+
+/**
+ * Returned when the input audio buffer is cleared by the client with a  `input_audio_buffer.clear` event. 
+ */
+public class RealtimeServerEventInputAudioBufferCleared   {
+
+    private String eventId;
+
+    /**
+    * The event type, must be `input_audio_buffer.cleared`.
+    */
+    public enum TypeEnum {
+        INPUT_AUDIO_BUFFER_CLEARED("input_audio_buffer.cleared");
+
+        private String value;
+
+        TypeEnum(String value) {
+            this.value = value;
+        }
+
+        @JsonValue
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+
+        @JsonCreator
+        public static TypeEnum fromValue(String text) {
+            for (TypeEnum b : TypeEnum.values()) {
+                if (String.valueOf(b.value).equals(text)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + text + "'");
+        }
+    }
+
+
+    private TypeEnum type;
+
+    /**
+     * Default constructor.
+     */
+    public RealtimeServerEventInputAudioBufferCleared() {
+    // JSON-B / Jackson
+    }
+
+    /**
+     * Create RealtimeServerEventInputAudioBufferCleared.
+     *
+     * @param eventId The unique ID of the server event.
+     * @param type The event type, must be &#x60;input_audio_buffer.cleared&#x60;.
+     */
+    public RealtimeServerEventInputAudioBufferCleared(
+        String eventId, 
+        TypeEnum type
+    ) {
+        this.eventId = eventId;
+        this.type = type;
+    }
+
+
+
+    /**
+     * The unique ID of the server event.
+     * @return eventId
+     */
+    public String getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
+    }
+
+    /**
+     * The event type, must be `input_audio_buffer.cleared`.
+     * @return type
+     */
+    public TypeEnum getType() {
+        return type;
+    }
+
+    public void setType(TypeEnum type) {
+        this.type = type;
+    }
+
+    /**
+      * Create a string representation of this pojo.
+    **/
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class RealtimeServerEventInputAudioBufferCleared {\n");
+        
+        sb.append("    eventId: ").append(toIndentedString(eventId)).append("\n");
+        sb.append("    type: ").append(toIndentedString(type)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+    */
+    private static String toIndentedString(Object o) {
+        return o == null ? "null" : o.toString().replace("\n", "\n    ");
+    }
+}
+

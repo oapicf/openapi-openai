@@ -52,35 +52,35 @@ public:
 
 	/*! \brief Set The unique ID of the server event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `response.output_item.added`.
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `response.output_item.added`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The ID of the Response to which the item belongs.
 	 */
 	std::string getResponseId();
 
 	/*! \brief Set The ID of the Response to which the item belongs.
 	 */
-	void setResponseId(std::string  response_id);
+	void setResponseId(std::string response_id);
 	/*! \brief Get The index of the output item in the Response.
 	 */
 	int getOutputIndex();
 
 	/*! \brief Set The index of the output item in the Response.
 	 */
-	void setOutputIndex(int  output_index);
+	void setOutputIndex(int output_index);
 	/*! \brief Get 
 	 */
 	RealtimeConversationItem getItem();
 
 	/*! \brief Set 
 	 */
-	void setItem(RealtimeConversationItem  item);
+	void setItem(RealtimeConversationItem item);
 
 
     private:

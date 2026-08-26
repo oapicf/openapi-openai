@@ -51,10 +51,10 @@ function Initialize-RealtimeSessionCreateResponseTurnDetection {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "threshold" = ${Threshold}
-            "prefix_padding_ms" = ${PrefixPaddingMs}
-            "silence_duration_ms" = ${SilenceDurationMs}
+            'type' = ${Type}
+            'threshold' = ${Threshold}
+            'prefix_padding_ms' = ${PrefixPaddingMs}
+            'silence_duration_ms' = ${SilenceDurationMs}
         }
 
 
@@ -92,42 +92,42 @@ function ConvertFrom-JsonToRealtimeSessionCreateResponseTurnDetection {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeSessionCreateResponseTurnDetection
-        $AllProperties = ("type", "threshold", "prefix_padding_ms", "silence_duration_ms")
+        $AllProperties = ('type', 'threshold', 'prefix_padding_ms', 'silence_duration_ms')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) { #optional property not found
             $Type = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "threshold"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'threshold'))) { #optional property not found
             $Threshold = $null
         } else {
-            $Threshold = $JsonParameters.PSobject.Properties["threshold"].value
+            $Threshold = $JsonParameters.PSobject.Properties['threshold'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prefix_padding_ms"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'prefix_padding_ms'))) { #optional property not found
             $PrefixPaddingMs = $null
         } else {
-            $PrefixPaddingMs = $JsonParameters.PSobject.Properties["prefix_padding_ms"].value
+            $PrefixPaddingMs = $JsonParameters.PSobject.Properties['prefix_padding_ms'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "silence_duration_ms"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'silence_duration_ms'))) { #optional property not found
             $SilenceDurationMs = $null
         } else {
-            $SilenceDurationMs = $JsonParameters.PSobject.Properties["silence_duration_ms"].value
+            $SilenceDurationMs = $JsonParameters.PSobject.Properties['silence_duration_ms'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "threshold" = ${Threshold}
-            "prefix_padding_ms" = ${PrefixPaddingMs}
-            "silence_duration_ms" = ${SilenceDurationMs}
+            'type' = ${Type}
+            'threshold' = ${Threshold}
+            'prefix_padding_ms' = ${PrefixPaddingMs}
+            'silence_duration_ms' = ${SilenceDurationMs}
         }
 
         return $PSO

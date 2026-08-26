@@ -52,7 +52,7 @@ export interface CreateChatCompletionStreamResponseChoicesInner {
      * `content_filter` if content was omitted due to a flag from our content filters,
      * `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.
      * 
-     * @type {string}
+     * @type {CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum}
      * @memberof CreateChatCompletionStreamResponseChoicesInner
      */
     finishReason: CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum | null;
@@ -83,7 +83,7 @@ export type CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum = typ
  */
 export function instanceOfCreateChatCompletionStreamResponseChoicesInner(value: object): value is CreateChatCompletionStreamResponseChoicesInner {
     if (!('delta' in value) || value['delta'] === undefined) return false;
-    if (!('finishReason' in value) || value['finishReason'] === undefined) return false;
+    if ((!('finishReason' in (value as Record<string, any>)) && !('finish_reason' in (value as Record<string, any>))) || ((value as Record<string, any>)['finishReason'] === undefined && (value as Record<string, any>)['finish_reason'] === undefined)) return false;
     if (!('index' in value) || value['index'] === undefined) return false;
     return true;
 }
@@ -99,7 +99,7 @@ export function CreateChatCompletionStreamResponseChoicesInnerFromJSONTyped(json
     return {
         
         'delta': ChatCompletionStreamResponseDeltaFromJSON(json['delta']),
-        'logprobs': json['logprobs'] == null ? undefined : CreateChatCompletionResponseChoicesInnerLogprobsFromJSON(json['logprobs']),
+        'logprobs': json['logprobs'] === undefined ? undefined : json['logprobs'] === null ? null : CreateChatCompletionResponseChoicesInnerLogprobsFromJSON(json['logprobs']),
         'finishReason': json['finish_reason'],
         'index': json['index'],
     };

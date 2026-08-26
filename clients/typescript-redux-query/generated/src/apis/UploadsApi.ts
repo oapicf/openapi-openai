@@ -75,7 +75,7 @@ function addUploadPartRaw<T>(requestParameters: AddUploadPartRequest, requestCon
     }
 
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/uploads/{upload_id}/parts`.replace(`{${"upload_id"}}`, encodeURIComponent(String(requestParameters.uploadId))),
+        url: `${runtime.Configuration.basePath}/uploads/{upload_id}/parts`.replace('{upload_id}', encodeURIComponent(String(requestParameters.uploadId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -122,7 +122,7 @@ function cancelUploadRaw<T>(requestParameters: CancelUploadRequest, requestConfi
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/uploads/{upload_id}/cancel`.replace(`{${"upload_id"}}`, encodeURIComponent(String(requestParameters.uploadId))),
+        url: `${runtime.Configuration.basePath}/uploads/{upload_id}/cancel`.replace('{upload_id}', encodeURIComponent(String(requestParameters.uploadId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -175,7 +175,7 @@ function completeUploadRaw<T>(requestParameters: CompleteUploadRequest, requestC
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/uploads/{upload_id}/complete`.replace(`{${"upload_id"}}`, encodeURIComponent(String(requestParameters.uploadId))),
+        url: `${runtime.Configuration.basePath}/uploads/{upload_id}/complete`.replace('{upload_id}', encodeURIComponent(String(requestParameters.uploadId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,

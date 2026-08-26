@@ -49,7 +49,7 @@ class UsageCompletionsResult
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['organization.usage.completions.result'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class UsageCompletionsResult
      * @var int|null
      * @SerializedName("input_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $inputTokens = null;
@@ -72,7 +72,7 @@ class UsageCompletionsResult
      * @var int|null
      * @SerializedName("input_cached_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $inputCachedTokens = null;
 
@@ -82,7 +82,7 @@ class UsageCompletionsResult
      * @var int|null
      * @SerializedName("output_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $outputTokens = null;
@@ -93,7 +93,7 @@ class UsageCompletionsResult
      * @var int|null
      * @SerializedName("input_audio_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $inputAudioTokens = null;
 
@@ -103,7 +103,7 @@ class UsageCompletionsResult
      * @var int|null
      * @SerializedName("output_audio_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $outputAudioTokens = null;
 
@@ -113,7 +113,7 @@ class UsageCompletionsResult
      * @var int|null
      * @SerializedName("num_model_requests")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $numModelRequests = null;
@@ -124,7 +124,7 @@ class UsageCompletionsResult
      * @var string|null
      * @SerializedName("project_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $projectId = null;
 
@@ -134,7 +134,7 @@ class UsageCompletionsResult
      * @var string|null
      * @SerializedName("user_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $userId = null;
 
@@ -144,7 +144,7 @@ class UsageCompletionsResult
      * @var string|null
      * @SerializedName("api_key_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $apiKeyId = null;
 
@@ -154,7 +154,7 @@ class UsageCompletionsResult
      * @var string|null
      * @SerializedName("model")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $model = null;
 
@@ -164,7 +164,7 @@ class UsageCompletionsResult
      * @var bool|null
      * @SerializedName("batch")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $batch = null;
 
@@ -201,12 +201,12 @@ class UsageCompletionsResult
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -228,12 +228,12 @@ class UsageCompletionsResult
     }
 
     /**
-    * Sets inputTokens.
-    *
-    * @param int|null $inputTokens  The aggregated number of text input tokens used, including cached tokens. For customers subscribe to scale tier, this includes scale tier tokens.
-    *
-    * @return $this
-    */
+     * Sets inputTokens.
+     *
+     * @param int|null $inputTokens  The aggregated number of text input tokens used, including cached tokens. For customers subscribe to scale tier, this includes scale tier tokens.
+     *
+     * @return $this
+     */
     public function setInputTokens(?int $inputTokens): self
     {
         $this->inputTokens = $inputTokens;
@@ -255,12 +255,12 @@ class UsageCompletionsResult
     }
 
     /**
-    * Sets inputCachedTokens.
-    *
-    * @param int|null $inputCachedTokens  The aggregated number of text input tokens that has been cached from previous requests. For customers subscribe to scale tier, this includes scale tier tokens.
-    *
-    * @return $this
-    */
+     * Sets inputCachedTokens.
+     *
+     * @param int|null $inputCachedTokens  The aggregated number of text input tokens that has been cached from previous requests. For customers subscribe to scale tier, this includes scale tier tokens.
+     *
+     * @return $this
+     */
     public function setInputCachedTokens(?int $inputCachedTokens = null): self
     {
         $this->inputCachedTokens = $inputCachedTokens;
@@ -282,12 +282,12 @@ class UsageCompletionsResult
     }
 
     /**
-    * Sets outputTokens.
-    *
-    * @param int|null $outputTokens  The aggregated number of text output tokens used. For customers subscribe to scale tier, this includes scale tier tokens.
-    *
-    * @return $this
-    */
+     * Sets outputTokens.
+     *
+     * @param int|null $outputTokens  The aggregated number of text output tokens used. For customers subscribe to scale tier, this includes scale tier tokens.
+     *
+     * @return $this
+     */
     public function setOutputTokens(?int $outputTokens): self
     {
         $this->outputTokens = $outputTokens;
@@ -309,12 +309,12 @@ class UsageCompletionsResult
     }
 
     /**
-    * Sets inputAudioTokens.
-    *
-    * @param int|null $inputAudioTokens  The aggregated number of audio input tokens used, including cached tokens.
-    *
-    * @return $this
-    */
+     * Sets inputAudioTokens.
+     *
+     * @param int|null $inputAudioTokens  The aggregated number of audio input tokens used, including cached tokens.
+     *
+     * @return $this
+     */
     public function setInputAudioTokens(?int $inputAudioTokens = null): self
     {
         $this->inputAudioTokens = $inputAudioTokens;
@@ -336,12 +336,12 @@ class UsageCompletionsResult
     }
 
     /**
-    * Sets outputAudioTokens.
-    *
-    * @param int|null $outputAudioTokens  The aggregated number of audio output tokens used.
-    *
-    * @return $this
-    */
+     * Sets outputAudioTokens.
+     *
+     * @param int|null $outputAudioTokens  The aggregated number of audio output tokens used.
+     *
+     * @return $this
+     */
     public function setOutputAudioTokens(?int $outputAudioTokens = null): self
     {
         $this->outputAudioTokens = $outputAudioTokens;
@@ -363,12 +363,12 @@ class UsageCompletionsResult
     }
 
     /**
-    * Sets numModelRequests.
-    *
-    * @param int|null $numModelRequests  The count of requests made to the model.
-    *
-    * @return $this
-    */
+     * Sets numModelRequests.
+     *
+     * @param int|null $numModelRequests  The count of requests made to the model.
+     *
+     * @return $this
+     */
     public function setNumModelRequests(?int $numModelRequests): self
     {
         $this->numModelRequests = $numModelRequests;
@@ -390,12 +390,12 @@ class UsageCompletionsResult
     }
 
     /**
-    * Sets projectId.
-    *
-    * @param string|null $projectId  When `group_by=project_id`, this field provides the project ID of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets projectId.
+     *
+     * @param string|null $projectId  When `group_by=project_id`, this field provides the project ID of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setProjectId(?string $projectId = null): self
     {
         $this->projectId = $projectId;
@@ -417,12 +417,12 @@ class UsageCompletionsResult
     }
 
     /**
-    * Sets userId.
-    *
-    * @param string|null $userId  When `group_by=user_id`, this field provides the user ID of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets userId.
+     *
+     * @param string|null $userId  When `group_by=user_id`, this field provides the user ID of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setUserId(?string $userId = null): self
     {
         $this->userId = $userId;
@@ -444,12 +444,12 @@ class UsageCompletionsResult
     }
 
     /**
-    * Sets apiKeyId.
-    *
-    * @param string|null $apiKeyId  When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets apiKeyId.
+     *
+     * @param string|null $apiKeyId  When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setApiKeyId(?string $apiKeyId = null): self
     {
         $this->apiKeyId = $apiKeyId;
@@ -471,12 +471,12 @@ class UsageCompletionsResult
     }
 
     /**
-    * Sets model.
-    *
-    * @param string|null $model  When `group_by=model`, this field provides the model name of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param string|null $model  When `group_by=model`, this field provides the model name of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setModel(?string $model = null): self
     {
         $this->model = $model;
@@ -498,12 +498,12 @@ class UsageCompletionsResult
     }
 
     /**
-    * Sets batch.
-    *
-    * @param bool|null $batch  When `group_by=batch`, this field tells whether the grouped usage result is batch or not.
-    *
-    * @return $this
-    */
+     * Sets batch.
+     *
+     * @param bool|null $batch  When `group_by=batch`, this field tells whether the grouped usage result is batch or not.
+     *
+     * @return $this
+     */
     public function setBatch(?bool $batch = null): self
     {
         $this->batch = $batch;

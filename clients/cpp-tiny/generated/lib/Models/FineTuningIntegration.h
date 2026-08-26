@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set The type of the integration being enabled for the fine-tuning job
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	CreateFineTuningJobRequest_integrations_inner_wandb getWandb();
 
 	/*! \brief Set 
 	 */
-	void setWandb(CreateFineTuningJobRequest_integrations_inner_wandb  wandb);
+	void setWandb(CreateFineTuningJobRequest_integrations_inner_wandb wandb);
 
 
     private:

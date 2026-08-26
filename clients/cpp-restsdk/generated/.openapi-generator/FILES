@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 CMakeLists.txt
 Config.cmake.in
 README.md
@@ -95,7 +94,6 @@ include/CppRestOpenAPIClient/model/AuditLog_user_deleted.h
 include/CppRestOpenAPIClient/model/AuditLog_user_updated.h
 include/CppRestOpenAPIClient/model/AuditLog_user_updated_changes_requested.h
 include/CppRestOpenAPIClient/model/AutoChunkingStrategyRequestParam.h
-include/CppRestOpenAPIClient/model/Auto_Chunking_Strategy.h
 include/CppRestOpenAPIClient/model/Batch.h
 include/CppRestOpenAPIClient/model/BatchRequestInput.h
 include/CppRestOpenAPIClient/model/BatchRequestOutput.h
@@ -504,7 +502,6 @@ include/CppRestOpenAPIClient/model/RunToolCallObject.h
 include/CppRestOpenAPIClient/model/RunToolCallObject_function.h
 include/CppRestOpenAPIClient/model/StaticChunkingStrategy.h
 include/CppRestOpenAPIClient/model/StaticChunkingStrategyRequestParam.h
-include/CppRestOpenAPIClient/model/StaticChunkingStrategyResponseParam.h
 include/CppRestOpenAPIClient/model/Static_Chunking_Strategy.h
 include/CppRestOpenAPIClient/model/Static_Chunking_Strategy_static.h
 include/CppRestOpenAPIClient/model/SubmitToolOutputsRunRequest.h
@@ -630,7 +627,6 @@ src/model/AuditLog_user_deleted.cpp
 src/model/AuditLog_user_updated.cpp
 src/model/AuditLog_user_updated_changes_requested.cpp
 src/model/AutoChunkingStrategyRequestParam.cpp
-src/model/Auto_Chunking_Strategy.cpp
 src/model/Batch.cpp
 src/model/BatchRequestInput.cpp
 src/model/BatchRequestOutput.cpp
@@ -1039,7 +1035,6 @@ src/model/RunToolCallObject.cpp
 src/model/RunToolCallObject_function.cpp
 src/model/StaticChunkingStrategy.cpp
 src/model/StaticChunkingStrategyRequestParam.cpp
-src/model/StaticChunkingStrategyResponseParam.cpp
 src/model/Static_Chunking_Strategy.cpp
 src/model/Static_Chunking_Strategy_static.cpp
 src/model/SubmitToolOutputsRunRequest.cpp

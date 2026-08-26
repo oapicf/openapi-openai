@@ -51,35 +51,35 @@ public:
 
 	/*! \brief Set The object type, which is always `organization.project.service_account.api_key`
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get 
 	 */
 	std::string getValue();
 
 	/*! \brief Set 
 	 */
-	void setValue(std::string  value);
+	void setValue(std::string value);
 	/*! \brief Get 
 	 */
 	std::string getName();
 
 	/*! \brief Set 
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get 
 	 */
 	int getCreatedAt();
 
 	/*! \brief Set 
 	 */
-	void setCreatedAt(int  created_at);
+	void setCreatedAt(int created_at);
 	/*! \brief Get 
 	 */
 	std::string getId();
 
 	/*! \brief Set 
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 
 
     private:

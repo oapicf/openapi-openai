@@ -36,7 +36,7 @@ class  CreateMessageRequest
 {
 public:
     CreateMessageRequest();
-    virtual ~CreateMessageRequest() = default;
+    virtual ~CreateMessageRequest();
 
 
     /// <summary>

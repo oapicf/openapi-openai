@@ -64,7 +64,7 @@ AuditLog_invite_accepted::getId()
 }
 
 void
-AuditLog_invite_accepted::setId(std::string  id)
+AuditLog_invite_accepted::setId(std::string id)
 {
 	this->id = id;
 }

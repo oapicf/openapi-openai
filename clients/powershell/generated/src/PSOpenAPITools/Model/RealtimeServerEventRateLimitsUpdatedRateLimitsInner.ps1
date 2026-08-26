@@ -52,10 +52,10 @@ function Initialize-RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
 
 
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
-            "limit" = ${Limit}
-            "remaining" = ${Remaining}
-            "reset_seconds" = ${ResetSeconds}
+            'name' = ${Name}
+            'limit' = ${Limit}
+            'remaining' = ${Remaining}
+            'reset_seconds' = ${ResetSeconds}
         }
 
 
@@ -93,42 +93,42 @@ function ConvertFrom-JsonToRealtimeServerEventRateLimitsUpdatedRateLimitsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeServerEventRateLimitsUpdatedRateLimitsInner
-        $AllProperties = ("name", "limit", "remaining", "reset_seconds")
+        $AllProperties = ('name', 'limit', 'remaining', 'reset_seconds')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) { #optional property not found
             $Name = $null
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "limit"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'limit'))) { #optional property not found
             $Limit = $null
         } else {
-            $Limit = $JsonParameters.PSobject.Properties["limit"].value
+            $Limit = $JsonParameters.PSobject.Properties['limit'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "remaining"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'remaining'))) { #optional property not found
             $Remaining = $null
         } else {
-            $Remaining = $JsonParameters.PSobject.Properties["remaining"].value
+            $Remaining = $JsonParameters.PSobject.Properties['remaining'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "reset_seconds"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'reset_seconds'))) { #optional property not found
             $ResetSeconds = $null
         } else {
-            $ResetSeconds = $JsonParameters.PSobject.Properties["reset_seconds"].value
+            $ResetSeconds = $JsonParameters.PSobject.Properties['reset_seconds'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
-            "limit" = ${Limit}
-            "remaining" = ${Remaining}
-            "reset_seconds" = ${ResetSeconds}
+            'name' = ${Name}
+            'limit' = ${Limit}
+            'remaining' = ${Remaining}
+            'reset_seconds' = ${ResetSeconds}
         }
 
         return $PSO

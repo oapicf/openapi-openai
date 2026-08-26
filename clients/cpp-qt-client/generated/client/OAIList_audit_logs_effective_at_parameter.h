@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIList_audit_logs_effective_at_parameter : public OAIObject {
 public:
     OAIList_audit_logs_effective_at_parameter();
-    OAIList_audit_logs_effective_at_parameter(QString json);
+    OAIList_audit_logs_effective_at_parameter(const QString &json);
     ~OAIList_audit_logs_effective_at_parameter() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getGt() const;
     void setGt(const qint32 &gt);

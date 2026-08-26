@@ -1,4 +1,4 @@
-# # RealtimeServerEventSessionUpdated
+# RealtimeServerEventSessionUpdated
 
 ## Properties
 

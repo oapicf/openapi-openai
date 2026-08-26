@@ -49,7 +49,7 @@ class StaticChunkingStrategyRequestParam
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['static'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class StaticChunkingStrategyRequestParam
      * @var StaticChunkingStrategy|null
      * @SerializedName("static")
      * @Type("OpenAPI\Server\Model\StaticChunkingStrategy")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\StaticChunkingStrategy")]
@@ -88,12 +88,12 @@ class StaticChunkingStrategyRequestParam
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `static`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `static`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -115,12 +115,12 @@ class StaticChunkingStrategyRequestParam
     }
 
     /**
-    * Sets static.
-    *
-    * @param StaticChunkingStrategy|null $static
-    *
-    * @return $this
-    */
+     * Sets static.
+     *
+     * @param StaticChunkingStrategy|null $static
+     *
+     * @return $this
+     */
     public function setStatic(?StaticChunkingStrategy $static): self
     {
         $this->static = $static;

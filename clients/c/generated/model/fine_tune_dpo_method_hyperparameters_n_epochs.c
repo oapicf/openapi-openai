@@ -11,15 +11,18 @@ static fine_tune_dpo_method_hyperparameters_n_epochs_t *fine_tune_dpo_method_hyp
     if (!fine_tune_dpo_method_hyperparameters_n_epochs_local_var) {
         return NULL;
     }
-
+    memset(fine_tune_dpo_method_hyperparameters_n_epochs_local_var, 0, sizeof(fine_tune_dpo_method_hyperparameters_n_epochs_t));
     fine_tune_dpo_method_hyperparameters_n_epochs_local_var->_library_owned = 1;
     return fine_tune_dpo_method_hyperparameters_n_epochs_local_var;
 }
 
 __attribute__((deprecated)) fine_tune_dpo_method_hyperparameters_n_epochs_t *fine_tune_dpo_method_hyperparameters_n_epochs_create(
     ) {
-    return fine_tune_dpo_method_hyperparameters_n_epochs_create_internal (
+    fine_tune_dpo_method_hyperparameters_n_epochs_t *result = fine_tune_dpo_method_hyperparameters_n_epochs_create_internal (
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void fine_tune_dpo_method_hyperparameters_n_epochs_free(fine_tune_dpo_method_hyperparameters_n_epochs_t *fine_tune_dpo_method_hyperparameters_n_epochs) {
@@ -49,8 +52,13 @@ fine_tune_dpo_method_hyperparameters_n_epochs_t *fine_tune_dpo_method_hyperparam
     fine_tune_dpo_method_hyperparameters_n_epochs_t *fine_tune_dpo_method_hyperparameters_n_epochs_local_var = NULL;
 
 
+
     fine_tune_dpo_method_hyperparameters_n_epochs_local_var = fine_tune_dpo_method_hyperparameters_n_epochs_create_internal (
         );
+
+    if (!fine_tune_dpo_method_hyperparameters_n_epochs_local_var) {
+        goto end;
+    }
 
     return fine_tune_dpo_method_hyperparameters_n_epochs_local_var;
 end:

@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIModifyMessageRequest : public OAIObject {
 public:
     OAIModifyMessageRequest();
-    OAIModifyMessageRequest(QString json);
+    OAIModifyMessageRequest(const QString &json);
     ~OAIModifyMessageRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     OAIObject getMetadata() const;
     void setMetadata(const OAIObject &metadata);

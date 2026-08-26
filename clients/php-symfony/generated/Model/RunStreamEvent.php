@@ -47,7 +47,7 @@ class RunStreamEvent
      * @var string|null
      * @SerializedName("event")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['thread.run.expired'])]
     #[Assert\Type("string")]
@@ -57,7 +57,7 @@ class RunStreamEvent
      * @var RunObject|null
      * @SerializedName("data")
      * @Type("OpenAPI\Server\Model\RunObject")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunObject")]
@@ -86,12 +86,12 @@ class RunStreamEvent
     }
 
     /**
-    * Sets event.
-    *
-    * @param string|null $event
-    *
-    * @return $this
-    */
+     * Sets event.
+     *
+     * @param string|null $event
+     *
+     * @return $this
+     */
     public function setEvent(?string $event): self
     {
         $this->event = $event;
@@ -113,12 +113,12 @@ class RunStreamEvent
     }
 
     /**
-    * Sets data.
-    *
-    * @param RunObject|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param RunObject|null $data
+     *
+     * @return $this
+     */
     public function setData(?RunObject $data): self
     {
         $this->data = $data;

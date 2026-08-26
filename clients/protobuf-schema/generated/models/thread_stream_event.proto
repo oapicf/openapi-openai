@@ -25,7 +25,7 @@ message ThreadStreamEvent {
     EVENT_THREAD_CREATED = 0;
   }
 
-  Event event = 96891546;
+  string event = 96891546;
 
   ThreadObject data = 3076010;
 

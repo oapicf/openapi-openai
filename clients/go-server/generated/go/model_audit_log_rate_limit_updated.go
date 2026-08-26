@@ -23,7 +23,8 @@ type AuditLogRateLimitUpdated struct {
 	ChangesRequested AuditLogRateLimitUpdatedChangesRequested `json:"changes_requested,omitempty"`
 }
 
-// AssertAuditLogRateLimitUpdatedRequired checks if the required fields are not zero-ed
+// AssertAuditLogRateLimitUpdatedRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertAuditLogRateLimitUpdatedRequired(obj AuditLogRateLimitUpdated) error {
 	if err := AssertAuditLogRateLimitUpdatedChangesRequestedRequired(obj.ChangesRequested); err != nil {
 		return err

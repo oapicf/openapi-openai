@@ -33,7 +33,7 @@ class  ChatCompletionMessageToolCall
 {
 public:
     ChatCompletionMessageToolCall();
-    virtual ~ChatCompletionMessageToolCall() = default;
+    virtual ~ChatCompletionMessageToolCall();
 
 
     /// <summary>

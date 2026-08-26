@@ -40,6 +40,8 @@ RealtimeResponseCreateParams::RealtimeResponseCreateParams()
     
 }
 
+RealtimeResponseCreateParams::~RealtimeResponseCreateParams() = default;
+
 void RealtimeResponseCreateParams::validate() const
 {
     std::stringstream msg;

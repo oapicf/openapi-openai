@@ -33,7 +33,7 @@ class  AuditLog_api_key_created
 {
 public:
     AuditLog_api_key_created();
-    virtual ~AuditLog_api_key_created() = default;
+    virtual ~AuditLog_api_key_created();
 
 
     /// <summary>

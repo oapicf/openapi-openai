@@ -56,7 +56,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The [vector store](/docs/api-reference/vector-stores/object) attached to this thread. There can be a maximum of 1 vector store attached to the thread. </value>
         [JsonPropertyName("vector_store_ids")]
-        public List<string>? VectorStoreIds { get { return this.VectorStoreIdsOption; } set { this.VectorStoreIdsOption = new(value); } }
+        public List<string>? VectorStoreIds { get { return this.VectorStoreIdsOption.Value; } set { this.VectorStoreIdsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ModifyThreadRequestToolResourcesFileSearch" />
     /// </summary>
-    public class ModifyThreadRequestToolResourcesFileSearchJsonConverter : JsonConverter<ModifyThreadRequestToolResourcesFileSearch>
+    public partial class ModifyThreadRequestToolResourcesFileSearchJsonConverter : JsonConverter<ModifyThreadRequestToolResourcesFileSearch>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ModifyThreadRequestToolResourcesFileSearchJsonConverter" /> class.
+        /// </summary>
+        public ModifyThreadRequestToolResourcesFileSearchJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ModifyThreadRequestToolResourcesFileSearch" />
         /// </summary>

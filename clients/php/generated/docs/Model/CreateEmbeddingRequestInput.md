@@ -1,4 +1,4 @@
-# # CreateEmbeddingRequestInput
+# CreateEmbeddingRequestInput
 
 ## Properties
 

@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface ProjectUser {
     /**
      * The object type, which is always `organization.project.user`
-     * @type {string}
+     * @type {ProjectUserObjectEnum}
      * @memberof ProjectUser
      */
     object: ProjectUserObjectEnum;
@@ -45,7 +45,7 @@ export interface ProjectUser {
     email: string;
     /**
      * `owner` or `member`
-     * @type {string}
+     * @type {ProjectUserRoleEnum}
      * @memberof ProjectUser
      */
     role: ProjectUserRoleEnum;
@@ -81,11 +81,13 @@ export type ProjectUserRoleEnum = typeof ProjectUserRoleEnum[keyof typeof Projec
  */
 export function instanceOfProjectUser(value: object): value is ProjectUser {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'organization.project.user') return false;
+    
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('email' in value) || value['email'] === undefined) return false;
     if (!('role' in value) || value['role'] === undefined) return false;
-    if (!('addedAt' in value) || value['addedAt'] === undefined) return false;
+    if ((!('addedAt' in (value as Record<string, any>)) && !('added_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['addedAt'] === undefined && (value as Record<string, any>)['added_at'] === undefined)) return false;
     return true;
 }
 

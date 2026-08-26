@@ -1,4 +1,4 @@
-# # ListRunsResponse
+# ListRunsResponse
 
 ## Properties
 

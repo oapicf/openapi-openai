@@ -45,7 +45,7 @@ export interface RealtimeServerEventConversationItemCreated {
     eventId: string;
     /**
      * The event type, must be `conversation.item.created`.
-     * @type {string}
+     * @type {RealtimeServerEventConversationItemCreatedTypeEnum}
      * @memberof RealtimeServerEventConversationItemCreated
      */
     type: RealtimeServerEventConversationItemCreatedTypeEnum;
@@ -79,9 +79,11 @@ export type RealtimeServerEventConversationItemCreatedTypeEnum = typeof Realtime
  * Check if a given object implements the RealtimeServerEventConversationItemCreated interface.
  */
 export function instanceOfRealtimeServerEventConversationItemCreated(value: object): value is RealtimeServerEventConversationItemCreated {
-    if (!('eventId' in value) || value['eventId'] === undefined) return false;
+    if ((!('eventId' in (value as Record<string, any>)) && !('event_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['eventId'] === undefined && (value as Record<string, any>)['event_id'] === undefined)) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('previousItemId' in value) || value['previousItemId'] === undefined) return false;
+    if (value['type'] !== 'conversation.item.created') return false;
+    
+    if ((!('previousItemId' in (value as Record<string, any>)) && !('previous_item_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['previousItemId'] === undefined && (value as Record<string, any>)['previous_item_id'] === undefined)) return false;
     if (!('item' in value) || value['item'] === undefined) return false;
     return true;
 }

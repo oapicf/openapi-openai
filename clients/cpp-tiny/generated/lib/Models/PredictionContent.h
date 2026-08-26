@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set The type of the predicted content you want to provide. This type is currently always `content`. 
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	PredictionContent_content getContent();
 
 	/*! \brief Set 
 	 */
-	void setContent(PredictionContent_content  content);
+	void setContent(PredictionContent_content content);
 
 
     private:

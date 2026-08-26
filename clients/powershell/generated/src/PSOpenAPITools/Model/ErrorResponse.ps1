@@ -40,7 +40,7 @@ function Initialize-ErrorResponse {
 
 
         $PSO = [PSCustomObject]@{
-            "error" = ${VarError}
+            'error' = ${VarError}
         }
 
 
@@ -78,7 +78,7 @@ function ConvertFrom-JsonToErrorResponse {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ErrorResponse
-        $AllProperties = ("error")
+        $AllProperties = ('error')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -89,14 +89,14 @@ function ConvertFrom-JsonToErrorResponse {
             throw "Error! Empty JSON cannot be serialized due to the required property 'error' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "error"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'error'))) {
             throw "Error! JSON cannot be serialized due to the required property 'error' missing."
         } else {
-            $VarError = $JsonParameters.PSobject.Properties["error"].value
+            $VarError = $JsonParameters.PSobject.Properties['error'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "error" = ${VarError}
+            'error' = ${VarError}
         }
 
         return $PSO

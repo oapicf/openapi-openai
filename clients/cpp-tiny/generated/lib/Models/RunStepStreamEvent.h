@@ -59,14 +59,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setEvent(std::string  event);
+	void setEvent(std::string event);
 	/*! \brief Get 
 	 */
 	RunStepObject getData();
 
 	/*! \brief Set 
 	 */
-	void setData(RunStepObject  data);
+	void setData(RunStepObject data);
 
 
     private:

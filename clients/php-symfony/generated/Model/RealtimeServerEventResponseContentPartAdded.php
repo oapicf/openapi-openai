@@ -51,7 +51,7 @@ class RealtimeServerEventResponseContentPartAdded
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $eventId = null;
@@ -62,7 +62,7 @@ class RealtimeServerEventResponseContentPartAdded
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['response.content_part.added'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class RealtimeServerEventResponseContentPartAdded
      * @var string|null
      * @SerializedName("response_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $responseId = null;
@@ -85,7 +85,7 @@ class RealtimeServerEventResponseContentPartAdded
      * @var string|null
      * @SerializedName("item_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $itemId = null;
@@ -96,7 +96,7 @@ class RealtimeServerEventResponseContentPartAdded
      * @var int|null
      * @SerializedName("output_index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $outputIndex = null;
@@ -107,7 +107,7 @@ class RealtimeServerEventResponseContentPartAdded
      * @var int|null
      * @SerializedName("content_index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $contentIndex = null;
@@ -116,7 +116,7 @@ class RealtimeServerEventResponseContentPartAdded
      * @var RealtimeServerEventResponseContentPartAddedPart|null
      * @SerializedName("part")
      * @Type("OpenAPI\Server\Model\RealtimeServerEventResponseContentPartAddedPart")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RealtimeServerEventResponseContentPartAddedPart")]
@@ -150,12 +150,12 @@ class RealtimeServerEventResponseContentPartAdded
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  The unique ID of the server event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  The unique ID of the server event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId): self
     {
         $this->eventId = $eventId;
@@ -177,12 +177,12 @@ class RealtimeServerEventResponseContentPartAdded
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `response.content_part.added`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `response.content_part.added`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -204,12 +204,12 @@ class RealtimeServerEventResponseContentPartAdded
     }
 
     /**
-    * Sets responseId.
-    *
-    * @param string|null $responseId  The ID of the response.
-    *
-    * @return $this
-    */
+     * Sets responseId.
+     *
+     * @param string|null $responseId  The ID of the response.
+     *
+     * @return $this
+     */
     public function setResponseId(?string $responseId): self
     {
         $this->responseId = $responseId;
@@ -231,12 +231,12 @@ class RealtimeServerEventResponseContentPartAdded
     }
 
     /**
-    * Sets itemId.
-    *
-    * @param string|null $itemId  The ID of the item to which the content part was added.
-    *
-    * @return $this
-    */
+     * Sets itemId.
+     *
+     * @param string|null $itemId  The ID of the item to which the content part was added.
+     *
+     * @return $this
+     */
     public function setItemId(?string $itemId): self
     {
         $this->itemId = $itemId;
@@ -258,12 +258,12 @@ class RealtimeServerEventResponseContentPartAdded
     }
 
     /**
-    * Sets outputIndex.
-    *
-    * @param int|null $outputIndex  The index of the output item in the response.
-    *
-    * @return $this
-    */
+     * Sets outputIndex.
+     *
+     * @param int|null $outputIndex  The index of the output item in the response.
+     *
+     * @return $this
+     */
     public function setOutputIndex(?int $outputIndex): self
     {
         $this->outputIndex = $outputIndex;
@@ -285,12 +285,12 @@ class RealtimeServerEventResponseContentPartAdded
     }
 
     /**
-    * Sets contentIndex.
-    *
-    * @param int|null $contentIndex  The index of the content part in the item's content array.
-    *
-    * @return $this
-    */
+     * Sets contentIndex.
+     *
+     * @param int|null $contentIndex  The index of the content part in the item's content array.
+     *
+     * @return $this
+     */
     public function setContentIndex(?int $contentIndex): self
     {
         $this->contentIndex = $contentIndex;
@@ -312,12 +312,12 @@ class RealtimeServerEventResponseContentPartAdded
     }
 
     /**
-    * Sets part.
-    *
-    * @param RealtimeServerEventResponseContentPartAddedPart|null $part
-    *
-    * @return $this
-    */
+     * Sets part.
+     *
+     * @param RealtimeServerEventResponseContentPartAddedPart|null $part
+     *
+     * @return $this
+     */
     public function setPart(?RealtimeServerEventResponseContentPartAddedPart $part): self
     {
         $this->part = $part;

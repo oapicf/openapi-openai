@@ -1,4 +1,4 @@
-# # AuditLogUserAdded
+# AuditLogUserAdded
 
 ## Properties
 

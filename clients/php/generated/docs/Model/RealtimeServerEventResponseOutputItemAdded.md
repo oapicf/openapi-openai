@@ -1,4 +1,4 @@
-# # RealtimeServerEventResponseOutputItemAdded
+# RealtimeServerEventResponseOutputItemAdded
 
 ## Properties
 

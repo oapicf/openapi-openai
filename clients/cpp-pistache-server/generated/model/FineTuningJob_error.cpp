@@ -27,6 +27,8 @@ FineTuningJob_error::FineTuningJob_error()
     
 }
 
+FineTuningJob_error::~FineTuningJob_error() = default;
+
 void FineTuningJob_error::validate() const
 {
     std::stringstream msg;

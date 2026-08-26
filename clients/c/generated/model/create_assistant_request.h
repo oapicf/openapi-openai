@@ -31,8 +31,8 @@ typedef struct create_assistant_request_t {
     list_t *tools; //nonprimitive container
     struct create_assistant_request_tool_resources_t *tool_resources; //model
     object_t *metadata; //object
-    double temperature; //numeric
-    double top_p; //numeric
+    double *temperature; //numeric
+    double *top_p; //numeric
     struct assistants_api_response_format_option_t *response_format; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -46,8 +46,8 @@ __attribute__((deprecated)) create_assistant_request_t *create_assistant_request
     list_t *tools,
     create_assistant_request_tool_resources_t *tool_resources,
     object_t *metadata,
-    double temperature,
-    double top_p,
+    double *temperature,
+    double *top_p,
     assistants_api_response_format_option_t *response_format
 );
 

@@ -58,9 +58,9 @@ function Initialize-TranscriptionWord {
 
 
         $PSO = [PSCustomObject]@{
-            "word" = ${Word}
-            "start" = ${Start}
-            "end" = ${VarEnd}
+            'word' = ${Word}
+            'start' = ${Start}
+            'end' = ${VarEnd}
         }
 
 
@@ -98,7 +98,7 @@ function ConvertFrom-JsonToTranscriptionWord {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in TranscriptionWord
-        $AllProperties = ("word", "start", "end")
+        $AllProperties = ('word', 'start', 'end')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -109,28 +109,28 @@ function ConvertFrom-JsonToTranscriptionWord {
             throw "Error! Empty JSON cannot be serialized due to the required property 'word' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "word"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'word'))) {
             throw "Error! JSON cannot be serialized due to the required property 'word' missing."
         } else {
-            $Word = $JsonParameters.PSobject.Properties["word"].value
+            $Word = $JsonParameters.PSobject.Properties['word'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "start"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'start'))) {
             throw "Error! JSON cannot be serialized due to the required property 'start' missing."
         } else {
-            $Start = $JsonParameters.PSobject.Properties["start"].value
+            $Start = $JsonParameters.PSobject.Properties['start'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "end"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'end'))) {
             throw "Error! JSON cannot be serialized due to the required property 'end' missing."
         } else {
-            $VarEnd = $JsonParameters.PSobject.Properties["end"].value
+            $VarEnd = $JsonParameters.PSobject.Properties['end'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "word" = ${Word}
-            "start" = ${Start}
-            "end" = ${VarEnd}
+            'word' = ${Word}
+            'start' = ${Start}
+            'end' = ${VarEnd}
         }
 
         return $PSO

@@ -106,7 +106,7 @@ ProjectServiceAccountDeleteResponse::getObject()
 }
 
 void
-ProjectServiceAccountDeleteResponse::setObject(std::string  object)
+ProjectServiceAccountDeleteResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -118,7 +118,7 @@ ProjectServiceAccountDeleteResponse::getId()
 }
 
 void
-ProjectServiceAccountDeleteResponse::setId(std::string  id)
+ProjectServiceAccountDeleteResponse::setId(std::string id)
 {
 	this->id = id;
 }
@@ -130,7 +130,7 @@ ProjectServiceAccountDeleteResponse::isDeleted()
 }
 
 void
-ProjectServiceAccountDeleteResponse::setDeleted(bool  deleted)
+ProjectServiceAccountDeleteResponse::setDeleted(bool deleted)
 {
 	this->deleted = deleted;
 }

@@ -31,14 +31,14 @@ import javax.annotation.Generated;
   CreateModerationRequest.JSON_PROPERTY_MODEL
 })
 @JsonTypeName("CreateModerationRequest")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-01-29T14:07:53.155657246Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class CreateModerationRequest {
     public static final String JSON_PROPERTY_INPUT = "input";
     private CreateModerationRequestInput input;
 
     public static final String JSON_PROPERTY_MODEL = "model";
-    private CreateModerationRequestModel model = omni-moderation-latest;
+    private CreateModerationRequestModel model;
 
     public CreateModerationRequest(CreateModerationRequestInput input) {
         this.input = input;
@@ -123,10 +123,7 @@ public class CreateModerationRequest {
      * (except the first line).
      */
     private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
+        return o == null ? "null" : o.toString().replace("\n", "\n    ");
     }
 
 }

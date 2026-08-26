@@ -86,7 +86,7 @@ MessageStreamEvent_oneOf_2::getEvent()
 }
 
 void
-MessageStreamEvent_oneOf_2::setEvent(std::string  event)
+MessageStreamEvent_oneOf_2::setEvent(std::string event)
 {
 	this->event = event;
 }
@@ -98,7 +98,7 @@ MessageStreamEvent_oneOf_2::getData()
 }
 
 void
-MessageStreamEvent_oneOf_2::setData(MessageDeltaObject  data)
+MessageStreamEvent_oneOf_2::setData(MessageDeltaObject data)
 {
 	this->data = data;
 }

@@ -32,6 +32,8 @@ Batch_errors_data_inner::Batch_errors_data_inner()
     
 }
 
+Batch_errors_data_inner::~Batch_errors_data_inner() = default;
+
 void Batch_errors_data_inner::validate() const
 {
     std::stringstream msg;

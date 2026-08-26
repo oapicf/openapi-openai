@@ -1,7 +1,10 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -23,19 +26,34 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeSessionCreateRequestTurnDetection(
 
-    @Schema(example = "null", description = "Type of turn detection, only `server_vad` is currently supported. ")
+    @Schema(description = "Type of turn detection, only `server_vad` is currently supported. ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("type")
     @get:JsonProperty("type") val type: kotlin.String? = null,
 
-    @Schema(example = "null", description = "Activation threshold for VAD (0.0 to 1.0), this defaults to 0.5. A  higher threshold will require louder audio to activate the model, and  thus might perform better in noisy environments. ")
+    @Schema(description = "Activation threshold for VAD (0.0 to 1.0), this defaults to 0.5. A  higher threshold will require louder audio to activate the model, and  thus might perform better in noisy environments. ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("threshold")
     @get:JsonProperty("threshold") val threshold: java.math.BigDecimal? = null,
 
-    @Schema(example = "null", description = "Amount of audio to include before the VAD detected speech (in  milliseconds). Defaults to 300ms. ")
+    @Schema(description = "Amount of audio to include before the VAD detected speech (in  milliseconds). Defaults to 300ms. ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("prefix_padding_ms")
     @get:JsonProperty("prefix_padding_ms") val prefixPaddingMs: kotlin.Int? = null,
 
-    @Schema(example = "null", description = "Duration of silence to detect speech stop (in milliseconds). Defaults  to 500ms. With shorter values the model will respond more quickly,  but may jump in on short pauses from the user. ")
+    @Schema(description = "Duration of silence to detect speech stop (in milliseconds). Defaults  to 500ms. With shorter values the model will respond more quickly,  but may jump in on short pauses from the user. ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("silence_duration_ms")
     @get:JsonProperty("silence_duration_ms") val silenceDurationMs: kotlin.Int? = null,
 
-    @Schema(example = "null", description = "Whether or not to automatically generate a response when VAD is enabled. `true` by default. ")
+    @Schema(description = "Whether or not to automatically generate a response when VAD is enabled. `true` by default. ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("create_response")
     @get:JsonProperty("create_response") val createResponse: kotlin.Boolean? = true
 ) {
 

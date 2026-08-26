@@ -62,7 +62,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(RunStepDeltaStepDetailsToolCallsObjectToolCallsInner.class.getName());
 
@@ -234,6 +234,7 @@ public class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner extends Abstra
      * @return The actual instance of `RunStepDeltaStepDetailsToolCallsCodeObject`
      * @throws ClassCastException if the instance is not `RunStepDeltaStepDetailsToolCallsCodeObject`
      */
+    @SuppressWarnings("unchecked")
     public RunStepDeltaStepDetailsToolCallsCodeObject getRunStepDeltaStepDetailsToolCallsCodeObject() throws ClassCastException {
         return (RunStepDeltaStepDetailsToolCallsCodeObject)super.getActualInstance();
     }
@@ -245,6 +246,7 @@ public class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner extends Abstra
      * @return The actual instance of `RunStepDeltaStepDetailsToolCallsFileSearchObject`
      * @throws ClassCastException if the instance is not `RunStepDeltaStepDetailsToolCallsFileSearchObject`
      */
+    @SuppressWarnings("unchecked")
     public RunStepDeltaStepDetailsToolCallsFileSearchObject getRunStepDeltaStepDetailsToolCallsFileSearchObject() throws ClassCastException {
         return (RunStepDeltaStepDetailsToolCallsFileSearchObject)super.getActualInstance();
     }
@@ -256,6 +258,7 @@ public class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner extends Abstra
      * @return The actual instance of `RunStepDeltaStepDetailsToolCallsFunctionObject`
      * @throws ClassCastException if the instance is not `RunStepDeltaStepDetailsToolCallsFunctionObject`
      */
+    @SuppressWarnings("unchecked")
     public RunStepDeltaStepDetailsToolCallsFunctionObject getRunStepDeltaStepDetailsToolCallsFunctionObject() throws ClassCastException {
         return (RunStepDeltaStepDetailsToolCallsFunctionObject)super.getActualInstance();
     }

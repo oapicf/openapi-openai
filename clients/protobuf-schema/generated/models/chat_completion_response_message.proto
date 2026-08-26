@@ -34,7 +34,7 @@ message ChatCompletionResponseMessage {
     ROLE_ASSISTANT = 0;
   }
 
-  Role role = 3506294;
+  string role = 3506294;
 
   ChatCompletionResponseMessageFunctionCall function_call = 442525288;
 

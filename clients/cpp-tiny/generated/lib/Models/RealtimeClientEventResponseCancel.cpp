@@ -106,7 +106,7 @@ RealtimeClientEventResponseCancel::getEventId()
 }
 
 void
-RealtimeClientEventResponseCancel::setEventId(std::string  event_id)
+RealtimeClientEventResponseCancel::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -118,7 +118,7 @@ RealtimeClientEventResponseCancel::getType()
 }
 
 void
-RealtimeClientEventResponseCancel::setType(std::string  type)
+RealtimeClientEventResponseCancel::setType(std::string type)
 {
 	this->type = type;
 }
@@ -130,7 +130,7 @@ RealtimeClientEventResponseCancel::getResponseId()
 }
 
 void
-RealtimeClientEventResponseCancel::setResponseId(std::string  response_id)
+RealtimeClientEventResponseCancel::setResponseId(std::string response_id)
 {
 	this->response_id = response_id;
 }

@@ -1,4 +1,4 @@
-# # RunStepDetailsToolCallsFileSearchRankingOptionsObject
+# RunStepDetailsToolCallsFileSearchRankingOptionsObject
 
 ## Properties
 

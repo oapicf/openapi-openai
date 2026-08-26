@@ -85,7 +85,7 @@ RunStepObject_last_error::getCode()
 }
 
 void
-RunStepObject_last_error::setCode(std::string  code)
+RunStepObject_last_error::setCode(std::string code)
 {
 	this->code = code;
 }
@@ -97,7 +97,7 @@ RunStepObject_last_error::getMessage()
 }
 
 void
-RunStepObject_last_error::setMessage(std::string  message)
+RunStepObject_last_error::setMessage(std::string message)
 {
 	this->message = message;
 }

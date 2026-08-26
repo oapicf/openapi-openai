@@ -24,7 +24,7 @@ class RealtimeApi {
   ///
   /// * [RealtimeSessionCreateRequest] realtimeSessionCreateRequest (required):
   ///   Create an ephemeral API key with the given session configuration.
-  Future<Response> createRealtimeSessionWithHttpInfo(RealtimeSessionCreateRequest realtimeSessionCreateRequest,) async {
+  Future<Response> createRealtimeSessionWithHttpInfo(RealtimeSessionCreateRequest realtimeSessionCreateRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/realtime/sessions';
 
@@ -46,6 +46,7 @@ class RealtimeApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -55,8 +56,8 @@ class RealtimeApi {
   ///
   /// * [RealtimeSessionCreateRequest] realtimeSessionCreateRequest (required):
   ///   Create an ephemeral API key with the given session configuration.
-  Future<RealtimeSessionCreateResponse?> createRealtimeSession(RealtimeSessionCreateRequest realtimeSessionCreateRequest,) async {
-    final response = await createRealtimeSessionWithHttpInfo(realtimeSessionCreateRequest,);
+  Future<RealtimeSessionCreateResponse?> createRealtimeSession(RealtimeSessionCreateRequest realtimeSessionCreateRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createRealtimeSessionWithHttpInfo(realtimeSessionCreateRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

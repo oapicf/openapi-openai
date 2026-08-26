@@ -32,7 +32,7 @@ export class ModelsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/models/{model}'
-            .replace('{' + 'model' + '}', encodeURIComponent(String(model)));
+            .replace('{model}', encodeURIComponent(String(model)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -98,7 +98,7 @@ export class ModelsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/models/{model}'
-            .replace('{' + 'model' + '}', encodeURIComponent(String(model)));
+            .replace('{model}', encodeURIComponent(String(model)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

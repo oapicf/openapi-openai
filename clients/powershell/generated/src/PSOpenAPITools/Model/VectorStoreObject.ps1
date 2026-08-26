@@ -116,17 +116,17 @@ function Initialize-VectorStoreObject {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "created_at" = ${CreatedAt}
-            "name" = ${Name}
-            "usage_bytes" = ${UsageBytes}
-            "file_counts" = ${FileCounts}
-            "status" = ${Status}
-            "expires_after" = ${ExpiresAfter}
-            "expires_at" = ${ExpiresAt}
-            "last_active_at" = ${LastActiveAt}
-            "metadata" = ${Metadata}
+            'id' = ${Id}
+            'object' = ${Object}
+            'created_at' = ${CreatedAt}
+            'name' = ${Name}
+            'usage_bytes' = ${UsageBytes}
+            'file_counts' = ${FileCounts}
+            'status' = ${Status}
+            'expires_after' = ${ExpiresAfter}
+            'expires_at' = ${ExpiresAt}
+            'last_active_at' = ${LastActiveAt}
+            'metadata' = ${Metadata}
         }
 
 
@@ -164,7 +164,7 @@ function ConvertFrom-JsonToVectorStoreObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in VectorStoreObject
-        $AllProperties = ("id", "object", "created_at", "name", "usage_bytes", "file_counts", "status", "expires_after", "expires_at", "last_active_at", "metadata")
+        $AllProperties = ('id', 'object', 'created_at', 'name', 'usage_bytes', 'file_counts', 'status', 'expires_after', 'expires_at', 'last_active_at', 'metadata')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -175,84 +175,84 @@ function ConvertFrom-JsonToVectorStoreObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created_at' missing."
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) {
             throw "Error! JSON cannot be serialized due to the required property 'name' missing."
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "usage_bytes"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'usage_bytes'))) {
             throw "Error! JSON cannot be serialized due to the required property 'usage_bytes' missing."
         } else {
-            $UsageBytes = $JsonParameters.PSobject.Properties["usage_bytes"].value
+            $UsageBytes = $JsonParameters.PSobject.Properties['usage_bytes'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_counts"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_counts'))) {
             throw "Error! JSON cannot be serialized due to the required property 'file_counts' missing."
         } else {
-            $FileCounts = $JsonParameters.PSobject.Properties["file_counts"].value
+            $FileCounts = $JsonParameters.PSobject.Properties['file_counts'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'status'))) {
             throw "Error! JSON cannot be serialized due to the required property 'status' missing."
         } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
+            $Status = $JsonParameters.PSobject.Properties['status'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "last_active_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'last_active_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'last_active_at' missing."
         } else {
-            $LastActiveAt = $JsonParameters.PSobject.Properties["last_active_at"].value
+            $LastActiveAt = $JsonParameters.PSobject.Properties['last_active_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) {
             throw "Error! JSON cannot be serialized due to the required property 'metadata' missing."
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expires_after"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'expires_after'))) { #optional property not found
             $ExpiresAfter = $null
         } else {
-            $ExpiresAfter = $JsonParameters.PSobject.Properties["expires_after"].value
+            $ExpiresAfter = $JsonParameters.PSobject.Properties['expires_after'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expires_at"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'expires_at'))) { #optional property not found
             $ExpiresAt = $null
         } else {
-            $ExpiresAt = $JsonParameters.PSobject.Properties["expires_at"].value
+            $ExpiresAt = $JsonParameters.PSobject.Properties['expires_at'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "created_at" = ${CreatedAt}
-            "name" = ${Name}
-            "usage_bytes" = ${UsageBytes}
-            "file_counts" = ${FileCounts}
-            "status" = ${Status}
-            "expires_after" = ${ExpiresAfter}
-            "expires_at" = ${ExpiresAt}
-            "last_active_at" = ${LastActiveAt}
-            "metadata" = ${Metadata}
+            'id' = ${Id}
+            'object' = ${Object}
+            'created_at' = ${CreatedAt}
+            'name' = ${Name}
+            'usage_bytes' = ${UsageBytes}
+            'file_counts' = ${FileCounts}
+            'status' = ${Status}
+            'expires_after' = ${ExpiresAfter}
+            'expires_at' = ${ExpiresAt}
+            'last_active_at' = ${LastActiveAt}
+            'metadata' = ${Metadata}
         }
 
         return $PSO

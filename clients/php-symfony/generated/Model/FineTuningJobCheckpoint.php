@@ -51,7 +51,7 @@ class FineTuningJobCheckpoint
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class FineTuningJobCheckpoint
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -73,7 +73,7 @@ class FineTuningJobCheckpoint
      * @var string|null
      * @SerializedName("fine_tuned_model_checkpoint")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $fineTunedModelCheckpoint = null;
@@ -84,7 +84,7 @@ class FineTuningJobCheckpoint
      * @var int|null
      * @SerializedName("step_number")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $stepNumber = null;
@@ -93,7 +93,7 @@ class FineTuningJobCheckpoint
      * @var FineTuningJobCheckpointMetrics|null
      * @SerializedName("metrics")
      * @Type("OpenAPI\Server\Model\FineTuningJobCheckpointMetrics")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\FineTuningJobCheckpointMetrics")]
@@ -105,7 +105,7 @@ class FineTuningJobCheckpoint
      * @var string|null
      * @SerializedName("fine_tuning_job_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $fineTuningJobId = null;
@@ -116,7 +116,7 @@ class FineTuningJobCheckpoint
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['fine_tuning.job.checkpoint'])]
     #[Assert\Type("string")]
@@ -150,12 +150,12 @@ class FineTuningJobCheckpoint
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The checkpoint identifier, which can be referenced in the API endpoints.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The checkpoint identifier, which can be referenced in the API endpoints.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -177,12 +177,12 @@ class FineTuningJobCheckpoint
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) for when the checkpoint was created.
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) for when the checkpoint was created.
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -204,12 +204,12 @@ class FineTuningJobCheckpoint
     }
 
     /**
-    * Sets fineTunedModelCheckpoint.
-    *
-    * @param string|null $fineTunedModelCheckpoint  The name of the fine-tuned checkpoint model that is created.
-    *
-    * @return $this
-    */
+     * Sets fineTunedModelCheckpoint.
+     *
+     * @param string|null $fineTunedModelCheckpoint  The name of the fine-tuned checkpoint model that is created.
+     *
+     * @return $this
+     */
     public function setFineTunedModelCheckpoint(?string $fineTunedModelCheckpoint): self
     {
         $this->fineTunedModelCheckpoint = $fineTunedModelCheckpoint;
@@ -231,12 +231,12 @@ class FineTuningJobCheckpoint
     }
 
     /**
-    * Sets stepNumber.
-    *
-    * @param int|null $stepNumber  The step number that the checkpoint was created at.
-    *
-    * @return $this
-    */
+     * Sets stepNumber.
+     *
+     * @param int|null $stepNumber  The step number that the checkpoint was created at.
+     *
+     * @return $this
+     */
     public function setStepNumber(?int $stepNumber): self
     {
         $this->stepNumber = $stepNumber;
@@ -258,12 +258,12 @@ class FineTuningJobCheckpoint
     }
 
     /**
-    * Sets metrics.
-    *
-    * @param FineTuningJobCheckpointMetrics|null $metrics
-    *
-    * @return $this
-    */
+     * Sets metrics.
+     *
+     * @param FineTuningJobCheckpointMetrics|null $metrics
+     *
+     * @return $this
+     */
     public function setMetrics(?FineTuningJobCheckpointMetrics $metrics): self
     {
         $this->metrics = $metrics;
@@ -285,12 +285,12 @@ class FineTuningJobCheckpoint
     }
 
     /**
-    * Sets fineTuningJobId.
-    *
-    * @param string|null $fineTuningJobId  The name of the fine-tuning job that this checkpoint was created from.
-    *
-    * @return $this
-    */
+     * Sets fineTuningJobId.
+     *
+     * @param string|null $fineTuningJobId  The name of the fine-tuning job that this checkpoint was created from.
+     *
+     * @return $this
+     */
     public function setFineTuningJobId(?string $fineTuningJobId): self
     {
         $this->fineTuningJobId = $fineTuningJobId;
@@ -312,12 +312,12 @@ class FineTuningJobCheckpoint
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always \"fine_tuning.job.checkpoint\".
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always \"fine_tuning.job.checkpoint\".
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;

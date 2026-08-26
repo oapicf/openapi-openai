@@ -51,7 +51,7 @@ class AuditLogInviteSent
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -59,7 +59,7 @@ class AuditLogInviteSent
      * @var AuditLogInviteSentData|null
      * @SerializedName("data")
      * @Type("OpenAPI\Server\Model\AuditLogInviteSentData")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogInviteSentData")]
     protected ?AuditLogInviteSentData $data = null;
 
@@ -86,12 +86,12 @@ class AuditLogInviteSent
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The ID of the invite.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The ID of the invite.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -113,12 +113,12 @@ class AuditLogInviteSent
     }
 
     /**
-    * Sets data.
-    *
-    * @param AuditLogInviteSentData|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param AuditLogInviteSentData|null $data
+     *
+     * @return $this
+     */
     public function setData(?AuditLogInviteSentData $data = null): self
     {
         $this->data = $data;

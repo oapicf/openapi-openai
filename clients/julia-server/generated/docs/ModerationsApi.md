@@ -1,0 +1,36 @@
+# ModerationsApi
+
+All URIs are relative to *https://api.openai.com/v1*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**create_moderation**](ModerationsApi.md#create_moderation) | **POST** /moderations | Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
+
+
+# **create_moderation**
+> `create_moderation`(req::`HTTP.Request`, `create_moderation_request`::`CreateModerationRequest`;) -> `CreateModerationResponse`
+
+Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **req** | **`HTTP.Request`** | The HTTP Request object | 
+**`create_moderation_request`** | [**`CreateModerationRequest`**](CreateModerationRequest.md)|  |
+
+### Return type
+
+[**`CreateModerationResponse`**](CreateModerationResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

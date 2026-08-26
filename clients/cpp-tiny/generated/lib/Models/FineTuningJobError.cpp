@@ -106,7 +106,7 @@ FineTuningJob_error::getCode()
 }
 
 void
-FineTuningJob_error::setCode(std::string  code)
+FineTuningJob_error::setCode(std::string code)
 {
 	this->code = code;
 }
@@ -118,7 +118,7 @@ FineTuningJob_error::getMessage()
 }
 
 void
-FineTuningJob_error::setMessage(std::string  message)
+FineTuningJob_error::setMessage(std::string message)
 {
 	this->message = message;
 }
@@ -130,7 +130,7 @@ FineTuningJob_error::getParam()
 }
 
 void
-FineTuningJob_error::setParam(std::string  param)
+FineTuningJob_error::setParam(std::string param)
 {
 	this->param = param;
 }

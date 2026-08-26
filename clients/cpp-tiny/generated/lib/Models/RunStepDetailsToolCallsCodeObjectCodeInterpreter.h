@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set The input to the Code Interpreter tool call.
 	 */
-	void setInput(std::string  input);
+	void setInput(std::string input);
 	/*! \brief Get The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.
 	 */
 	std::list<RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner> getOutputs();
 
 	/*! \brief Set The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.
 	 */
-	void setOutputs(std::list <RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner> outputs);
+	void setOutputs(std::list<RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner> outputs);
 
 
     private:

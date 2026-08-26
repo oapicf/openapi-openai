@@ -14,11 +14,11 @@ static update_vector_store_request_t *update_vector_store_request_create_interna
     if (!update_vector_store_request_local_var) {
         return NULL;
     }
+    memset(update_vector_store_request_local_var, 0, sizeof(update_vector_store_request_t));
+    update_vector_store_request_local_var->_library_owned = 1;
     update_vector_store_request_local_var->name = name;
     update_vector_store_request_local_var->expires_after = expires_after;
     update_vector_store_request_local_var->metadata = metadata;
-
-    update_vector_store_request_local_var->_library_owned = 1;
     return update_vector_store_request_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) update_vector_store_request_t *update_vector_store_r
     vector_store_expiration_after_t *expires_after,
     object_t *metadata
     ) {
-    return update_vector_store_request_create_internal (
+    update_vector_store_request_t *result = update_vector_store_request_create_internal (
         name,
         expires_after,
         metadata
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void update_vector_store_request_free(update_vector_store_request_t *update_vector_store_request) {
@@ -106,6 +109,8 @@ update_vector_store_request_t *update_vector_store_request_parseFromJSON(cJSON *
 
     update_vector_store_request_t *update_vector_store_request_local_var = NULL;
 
+    char *name_local_str = NULL;
+
     // define the local variable for update_vector_store_request->expires_after
     vector_store_expiration_after_t *expires_after_local_nonprim = NULL;
 
@@ -141,14 +146,24 @@ update_vector_store_request_t *update_vector_store_request_parseFromJSON(cJSON *
     }
 
 
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     update_vector_store_request_local_var = update_vector_store_request_create_internal (
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
+        name_local_str,
         expires_after ? expires_after_local_nonprim : NULL,
         metadata ? metadata_local_object : NULL
         );
 
+    if (!update_vector_store_request_local_var) {
+        goto end;
+    }
+
     return update_vector_store_request_local_var;
 end:
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
     if (expires_after_local_nonprim) {
         vector_store_expiration_after_free(expires_after_local_nonprim);
         expires_after_local_nonprim = NULL;

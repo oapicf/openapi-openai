@@ -33,13 +33,13 @@ class OAIRealtimeResponse_status_details_error;
 class OAIRealtimeResponse_status_details : public OAIObject {
 public:
     OAIRealtimeResponse_status_details();
-    OAIRealtimeResponse_status_details(QString json);
+    OAIRealtimeResponse_status_details(const QString &json);
     ~OAIRealtimeResponse_status_details() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

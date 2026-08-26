@@ -124,7 +124,7 @@ ChatCompletionTokenLogprob_top_logprobs_inner::getToken()
 }
 
 void
-ChatCompletionTokenLogprob_top_logprobs_inner::setToken(std::string  token)
+ChatCompletionTokenLogprob_top_logprobs_inner::setToken(std::string token)
 {
 	this->token = token;
 }
@@ -136,7 +136,7 @@ ChatCompletionTokenLogprob_top_logprobs_inner::getLogprob()
 }
 
 void
-ChatCompletionTokenLogprob_top_logprobs_inner::setLogprob(long  logprob)
+ChatCompletionTokenLogprob_top_logprobs_inner::setLogprob(long logprob)
 {
 	this->logprob = logprob;
 }
@@ -148,7 +148,7 @@ ChatCompletionTokenLogprob_top_logprobs_inner::getBytes()
 }
 
 void
-ChatCompletionTokenLogprob_top_logprobs_inner::setBytes(std::list <int> bytes)
+ChatCompletionTokenLogprob_top_logprobs_inner::setBytes(std::list<int> bytes)
 {
 	this->bytes = bytes;
 }

@@ -51,7 +51,7 @@ class CreateChatCompletionRequestResponseFormat
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['text', 'json_object', 'json_schema'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class CreateChatCompletionRequestResponseFormat
      * @var ResponseFormatJsonSchemaJsonSchema|null
      * @SerializedName("json_schema")
      * @Type("OpenAPI\Server\Model\ResponseFormatJsonSchemaJsonSchema")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\ResponseFormatJsonSchemaJsonSchema")]
@@ -90,12 +90,12 @@ class CreateChatCompletionRequestResponseFormat
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of response format being defined: `text`
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of response format being defined: `text`
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -117,12 +117,12 @@ class CreateChatCompletionRequestResponseFormat
     }
 
     /**
-    * Sets jsonSchema.
-    *
-    * @param ResponseFormatJsonSchemaJsonSchema|null $jsonSchema
-    *
-    * @return $this
-    */
+     * Sets jsonSchema.
+     *
+     * @param ResponseFormatJsonSchemaJsonSchema|null $jsonSchema
+     *
+     * @return $this
+     */
     public function setJsonSchema(?ResponseFormatJsonSchemaJsonSchema $jsonSchema): self
     {
         $this->jsonSchema = $jsonSchema;

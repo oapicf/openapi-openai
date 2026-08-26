@@ -32,7 +32,7 @@ class  AuditLogActorServiceAccount
 {
 public:
     AuditLogActorServiceAccount();
-    virtual ~AuditLogActorServiceAccount() = default;
+    virtual ~AuditLogActorServiceAccount();
 
 
     /// <summary>

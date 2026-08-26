@@ -27,7 +27,7 @@ export interface MessageContentImageUrlObjectImageUrl {
     url: string;
     /**
      * Specifies the detail level of the image. `low` uses fewer tokens, you can opt in to high resolution using `high`. Default value is `auto`
-     * @type {string}
+     * @type {MessageContentImageUrlObjectImageUrlDetailEnum}
      * @memberof MessageContentImageUrlObjectImageUrl
      */
     detail?: MessageContentImageUrlObjectImageUrlDetailEnum;

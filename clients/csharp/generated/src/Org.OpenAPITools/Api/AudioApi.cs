@@ -13,13 +13,16 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Logging;
 using Org.OpenAPITools.Model;
 using System.Diagnostics.CodeAnalysis;
 
@@ -75,7 +78,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="timestampGranularities">The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateTranscriptionApiResponse"/>&gt;</returns>
-        Task<ICreateTranscriptionApiResponse> CreateTranscriptionAsync(System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> language = default, Option<string> prompt = default, Option<AudioResponseFormat> responseFormat = default, Option<decimal> temperature = default, Option<List<string>> timestampGranularities = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateTranscriptionApiResponse> CreateTranscriptionAsync(Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> language = default, Option<string> prompt = default, Option<AudioResponseFormat> responseFormat = default, Option<decimal> temperature = default, Option<List<string>> timestampGranularities = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Transcribes audio into the input language.
@@ -92,7 +95,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="timestampGranularities">The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateTranscriptionApiResponse"/>?&gt;</returns>
-        Task<ICreateTranscriptionApiResponse?> CreateTranscriptionOrDefaultAsync(System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> language = default, Option<string> prompt = default, Option<AudioResponseFormat> responseFormat = default, Option<decimal> temperature = default, Option<List<string>> timestampGranularities = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateTranscriptionApiResponse?> CreateTranscriptionOrDefaultAsync(Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> language = default, Option<string> prompt = default, Option<AudioResponseFormat> responseFormat = default, Option<decimal> temperature = default, Option<List<string>> timestampGranularities = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Translates audio into English.
@@ -108,7 +111,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="temperature">The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0M)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateTranslationApiResponse"/>&gt;</returns>
-        Task<ICreateTranslationApiResponse> CreateTranslationAsync(System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> prompt = default, Option<AudioResponseFormat> responseFormat = default, Option<decimal> temperature = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateTranslationApiResponse> CreateTranslationAsync(Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> prompt = default, Option<AudioResponseFormat> responseFormat = default, Option<decimal> temperature = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Translates audio into English.
@@ -123,7 +126,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="temperature">The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0M)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateTranslationApiResponse"/>?&gt;</returns>
-        Task<ICreateTranslationApiResponse?> CreateTranslationOrDefaultAsync(System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> prompt = default, Option<AudioResponseFormat> responseFormat = default, Option<decimal> temperature = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateTranslationApiResponse?> CreateTranslationOrDefaultAsync(Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> prompt = default, Option<AudioResponseFormat> responseFormat = default, Option<decimal> temperature = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -236,11 +239,6 @@ namespace Org.OpenAPITools.Api
         private JsonSerializerOptions _jsonSerializerOptions;
 
         /// <summary>
-        /// The logger factory
-        /// </summary>
-        public ILoggerFactory LoggerFactory { get; }
-
-        /// <summary>
         /// The logger
         /// </summary>
         public ILogger<AudioApi> Logger { get; }
@@ -264,12 +262,11 @@ namespace Org.OpenAPITools.Api
         /// Initializes a new instance of the <see cref="AudioApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public AudioApi(ILogger<AudioApi> logger, ILoggerFactory loggerFactory, HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, AudioApiEvents audioApiEvents,
+        public AudioApi(ILogger<AudioApi> logger, HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, AudioApiEvents audioApiEvents,
             TokenProvider<BearerToken> bearerTokenProvider)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
-            LoggerFactory = loggerFactory;
-            Logger = LoggerFactory.CreateLogger<AudioApi>();
+            Logger = logger;
             HttpClient = httpClient;
             Events = audioApiEvents;
             BearerTokenProvider = bearerTokenProvider;
@@ -298,7 +295,7 @@ namespace Org.OpenAPITools.Api
             bool suppressDefaultLog = false;
             AfterCreateSpeech(ref suppressDefaultLog, apiResponseLocalVar, createSpeechRequest);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -321,7 +318,7 @@ namespace Org.OpenAPITools.Api
             bool suppressDefaultLogLocalVar = false;
             OnErrorCreateSpeech(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, createSpeechRequest);
             if (!suppressDefaultLogLocalVar)
-                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
 
         /// <summary>
@@ -376,10 +373,10 @@ namespace Org.OpenAPITools.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/audio/speech"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/audio/speech");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/audio/speech");
 
-                    httpRequestMessageLocalVar.Content = (createSpeechRequest as object) is System.IO.Stream stream
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
+                    httpRequestMessageLocalVar.Content = (createSpeechRequest as object) is Org.OpenAPITools.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(createSpeechRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -404,10 +401,10 @@ namespace Org.OpenAPITools.Api
                         "application/octet-stream"
                     };
 
-                    string? acceptLocalVar = ClientUtils.SelectHeaderAccept(acceptLocalVars);
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
 
-                    if (acceptLocalVar != null)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(acceptLocalVar));
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
                     httpRequestMessageLocalVar.Method = HttpMethod.Post;
 
@@ -415,7 +412,6 @@ namespace Org.OpenAPITools.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<CreateSpeechApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<CreateSpeechApiResponse>();
                         CreateSpeechApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
@@ -423,13 +419,13 @@ namespace Org.OpenAPITools.Api
                             {
                                 byte[] responseBytesArrayLocalVar = await httpResponseMessageLocalVar.Content.ReadAsByteArrayAsync(cancellationToken).ConfigureAwait(false);
                                 System.IO.Stream responseContentStreamLocalVar = new System.IO.MemoryStream(responseBytesArrayLocalVar);
-                                apiResponseLocalVar = new(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentStreamLocalVar, "/audio/speech", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentStreamLocalVar, "/audio/speech", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/audio/speech", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/audio/speech", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
@@ -463,7 +459,7 @@ namespace Org.OpenAPITools.Api
             /// <summary>
             /// The logger
             /// </summary>
-            public ILogger<CreateSpeechApiResponse> Logger { get; }
+            public ILogger<AudioApi> Logger { get; }
 
             /// <summary>
             /// The <see cref="CreateSpeechApiResponse"/>
@@ -475,7 +471,7 @@ namespace Org.OpenAPITools.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateSpeechApiResponse(ILogger<CreateSpeechApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public CreateSpeechApiResponse(ILogger<AudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -491,7 +487,7 @@ namespace Org.OpenAPITools.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateSpeechApiResponse(ILogger<CreateSpeechApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public CreateSpeechApiResponse(ILogger<AudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -542,13 +538,13 @@ namespace Org.OpenAPITools.Api
                 bool suppressDefaultLog = false;
                 OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
                 if (!suppressDefaultLog)
-                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
             }
 
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatCreateTranscription(ref System.IO.Stream file, CreateTranscriptionRequestModel model, ref Option<string> language, ref Option<string> prompt, ref Option<AudioResponseFormat> responseFormat, ref Option<decimal> temperature, Option<List<string>> timestampGranularities);
+        partial void FormatCreateTranscription(ref Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, ref Option<string> language, ref Option<string> prompt, ref Option<AudioResponseFormat> responseFormat, ref Option<decimal> temperature, Option<List<string>> timestampGranularities);
 
         /// <summary>
         /// Validates the request parameters
@@ -559,7 +555,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="prompt"></param>
         /// <param name="timestampGranularities"></param>
         /// <returns></returns>
-        private void ValidateCreateTranscription(System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> language, Option<string> prompt, Option<List<string>> timestampGranularities)
+        private void ValidateCreateTranscription(Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> language, Option<string> prompt, Option<List<string>> timestampGranularities)
         {
             if (file == null)
                 throw new ArgumentNullException(nameof(file));
@@ -588,12 +584,12 @@ namespace Org.OpenAPITools.Api
         /// <param name="responseFormat"></param>
         /// <param name="temperature"></param>
         /// <param name="timestampGranularities"></param>
-        private void AfterCreateTranscriptionDefaultImplementation(ICreateTranscriptionApiResponse apiResponseLocalVar, System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> language, Option<string> prompt, Option<AudioResponseFormat> responseFormat, Option<decimal> temperature, Option<List<string>> timestampGranularities)
+        private void AfterCreateTranscriptionDefaultImplementation(ICreateTranscriptionApiResponse apiResponseLocalVar, Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> language, Option<string> prompt, Option<AudioResponseFormat> responseFormat, Option<decimal> temperature, Option<List<string>> timestampGranularities)
         {
             bool suppressDefaultLog = false;
             AfterCreateTranscription(ref suppressDefaultLog, apiResponseLocalVar, file, model, language, prompt, responseFormat, temperature, timestampGranularities);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -608,7 +604,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="responseFormat"></param>
         /// <param name="temperature"></param>
         /// <param name="timestampGranularities"></param>
-        partial void AfterCreateTranscription(ref bool suppressDefaultLog, ICreateTranscriptionApiResponse apiResponseLocalVar, System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> language, Option<string> prompt, Option<AudioResponseFormat> responseFormat, Option<decimal> temperature, Option<List<string>> timestampGranularities);
+        partial void AfterCreateTranscription(ref bool suppressDefaultLog, ICreateTranscriptionApiResponse apiResponseLocalVar, Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> language, Option<string> prompt, Option<AudioResponseFormat> responseFormat, Option<decimal> temperature, Option<List<string>> timestampGranularities);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -623,12 +619,12 @@ namespace Org.OpenAPITools.Api
         /// <param name="responseFormat"></param>
         /// <param name="temperature"></param>
         /// <param name="timestampGranularities"></param>
-        private void OnErrorCreateTranscriptionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> language, Option<string> prompt, Option<AudioResponseFormat> responseFormat, Option<decimal> temperature, Option<List<string>> timestampGranularities)
+        private void OnErrorCreateTranscriptionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> language, Option<string> prompt, Option<AudioResponseFormat> responseFormat, Option<decimal> temperature, Option<List<string>> timestampGranularities)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorCreateTranscription(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, file, model, language, prompt, responseFormat, temperature, timestampGranularities);
             if (!suppressDefaultLogLocalVar)
-                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
 
         /// <summary>
@@ -645,7 +641,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="responseFormat"></param>
         /// <param name="temperature"></param>
         /// <param name="timestampGranularities"></param>
-        partial void OnErrorCreateTranscription(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> language, Option<string> prompt, Option<AudioResponseFormat> responseFormat, Option<decimal> temperature, Option<List<string>> timestampGranularities);
+        partial void OnErrorCreateTranscription(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> language, Option<string> prompt, Option<AudioResponseFormat> responseFormat, Option<decimal> temperature, Option<List<string>> timestampGranularities);
 
         /// <summary>
         /// Transcribes audio into the input language. 
@@ -659,7 +655,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="timestampGranularities">The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateTranscriptionApiResponse"/>&gt;</returns>
-        public async Task<ICreateTranscriptionApiResponse?> CreateTranscriptionOrDefaultAsync(System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> language = default, Option<string> prompt = default, Option<AudioResponseFormat> responseFormat = default, Option<decimal> temperature = default, Option<List<string>> timestampGranularities = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateTranscriptionApiResponse?> CreateTranscriptionOrDefaultAsync(Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> language = default, Option<string> prompt = default, Option<AudioResponseFormat> responseFormat = default, Option<decimal> temperature = default, Option<List<string>> timestampGranularities = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -684,7 +680,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="timestampGranularities">The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateTranscriptionApiResponse"/>&gt;</returns>
-        public async Task<ICreateTranscriptionApiResponse> CreateTranscriptionAsync(System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> language = default, Option<string> prompt = default, Option<AudioResponseFormat> responseFormat = default, Option<decimal> temperature = default, Option<List<string>> timestampGranularities = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateTranscriptionApiResponse> CreateTranscriptionAsync(Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> language = default, Option<string> prompt = default, Option<AudioResponseFormat> responseFormat = default, Option<decimal> temperature = default, Option<List<string>> timestampGranularities = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -701,32 +697,39 @@ namespace Org.OpenAPITools.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/audio/transcriptions"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/audio/transcriptions");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/audio/transcriptions");
 
-                    MultipartContent multipartContentLocalVar = new MultipartContent();
+                    MultipartFormDataContent multipartContentLocalVar = new MultipartFormDataContent();
 
                     httpRequestMessageLocalVar.Content = multipartContentLocalVar;
 
-                    List<KeyValuePair<string?, string?>> formParameterLocalVars = new List<KeyValuePair<string?, string?>>();
+                    List<KeyValuePair<string, string?>> formParameterLocalVars = new List<KeyValuePair<string, string?>>();
 
-                    multipartContentLocalVar.Add(new FormUrlEncodedContent(formParameterLocalVars));                    multipartContentLocalVar.Add(new StreamContent(file));
+                    {
+                        var streamContentLocalVar = new StreamContent(file.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "file", file.FileName ?? "file");
+                    }
 
-                    formParameterLocalVars.Add(new KeyValuePair<string?, string?>("model", ClientUtils.ParameterToString(model)));
+                    formParameterLocalVars.Add(new KeyValuePair<string, string?>("model", ClientUtils.ParameterToString(model)));
 
                     if (language.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("language", ClientUtils.ParameterToString(language.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("language", ClientUtils.ParameterToString(language.Value)));
 
                     if (prompt.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("prompt", ClientUtils.ParameterToString(prompt.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("prompt", ClientUtils.ParameterToString(prompt.Value)));
 
                     if (responseFormat.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("response_format", ClientUtils.ParameterToString(responseFormat.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("response_format", ClientUtils.ParameterToString(responseFormat.Value)));
 
                     if (temperature.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("temperature", ClientUtils.ParameterToString(temperature.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("temperature", ClientUtils.ParameterToString(temperature.Value)));
 
                     if (timestampGranularities.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("timestamp_granularities[]", ClientUtils.ParameterToString(timestampGranularities.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("timestamp_granularities[]", ClientUtils.ParameterToString(timestampGranularities.Value)));
+
+                    foreach (var formParamLocalVar in formParameterLocalVars)
+                        multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
@@ -741,19 +744,14 @@ namespace Org.OpenAPITools.Api
                         "multipart/form-data"
                     };
 
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
                     string[] acceptLocalVars = new string[] {
                         "application/json"
                     };
 
-                    string? acceptLocalVar = ClientUtils.SelectHeaderAccept(acceptLocalVars);
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
 
-                    if (acceptLocalVar != null)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(acceptLocalVar));
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
                     httpRequestMessageLocalVar.Method = HttpMethod.Post;
 
@@ -761,13 +759,12 @@ namespace Org.OpenAPITools.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<CreateTranscriptionApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<CreateTranscriptionApiResponse>();
                         CreateTranscriptionApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/audio/transcriptions", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/audio/transcriptions", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
@@ -801,7 +798,7 @@ namespace Org.OpenAPITools.Api
             /// <summary>
             /// The logger
             /// </summary>
-            public ILogger<CreateTranscriptionApiResponse> Logger { get; }
+            public ILogger<AudioApi> Logger { get; }
 
             /// <summary>
             /// The <see cref="CreateTranscriptionApiResponse"/>
@@ -813,7 +810,7 @@ namespace Org.OpenAPITools.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateTranscriptionApiResponse(ILogger<CreateTranscriptionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public CreateTranscriptionApiResponse(ILogger<AudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -829,7 +826,7 @@ namespace Org.OpenAPITools.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateTranscriptionApiResponse(ILogger<CreateTranscriptionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public CreateTranscriptionApiResponse(ILogger<AudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -880,13 +877,13 @@ namespace Org.OpenAPITools.Api
                 bool suppressDefaultLog = false;
                 OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
                 if (!suppressDefaultLog)
-                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
             }
 
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatCreateTranslation(ref System.IO.Stream file, CreateTranscriptionRequestModel model, ref Option<string> prompt, ref Option<AudioResponseFormat> responseFormat, ref Option<decimal> temperature);
+        partial void FormatCreateTranslation(ref Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, ref Option<string> prompt, ref Option<AudioResponseFormat> responseFormat, ref Option<decimal> temperature);
 
         /// <summary>
         /// Validates the request parameters
@@ -895,7 +892,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="model"></param>
         /// <param name="prompt"></param>
         /// <returns></returns>
-        private void ValidateCreateTranslation(System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> prompt)
+        private void ValidateCreateTranslation(Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> prompt)
         {
             if (file == null)
                 throw new ArgumentNullException(nameof(file));
@@ -916,12 +913,12 @@ namespace Org.OpenAPITools.Api
         /// <param name="prompt"></param>
         /// <param name="responseFormat"></param>
         /// <param name="temperature"></param>
-        private void AfterCreateTranslationDefaultImplementation(ICreateTranslationApiResponse apiResponseLocalVar, System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> prompt, Option<AudioResponseFormat> responseFormat, Option<decimal> temperature)
+        private void AfterCreateTranslationDefaultImplementation(ICreateTranslationApiResponse apiResponseLocalVar, Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> prompt, Option<AudioResponseFormat> responseFormat, Option<decimal> temperature)
         {
             bool suppressDefaultLog = false;
             AfterCreateTranslation(ref suppressDefaultLog, apiResponseLocalVar, file, model, prompt, responseFormat, temperature);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -934,7 +931,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="prompt"></param>
         /// <param name="responseFormat"></param>
         /// <param name="temperature"></param>
-        partial void AfterCreateTranslation(ref bool suppressDefaultLog, ICreateTranslationApiResponse apiResponseLocalVar, System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> prompt, Option<AudioResponseFormat> responseFormat, Option<decimal> temperature);
+        partial void AfterCreateTranslation(ref bool suppressDefaultLog, ICreateTranslationApiResponse apiResponseLocalVar, Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> prompt, Option<AudioResponseFormat> responseFormat, Option<decimal> temperature);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -947,12 +944,12 @@ namespace Org.OpenAPITools.Api
         /// <param name="prompt"></param>
         /// <param name="responseFormat"></param>
         /// <param name="temperature"></param>
-        private void OnErrorCreateTranslationDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> prompt, Option<AudioResponseFormat> responseFormat, Option<decimal> temperature)
+        private void OnErrorCreateTranslationDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> prompt, Option<AudioResponseFormat> responseFormat, Option<decimal> temperature)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorCreateTranslation(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, file, model, prompt, responseFormat, temperature);
             if (!suppressDefaultLogLocalVar)
-                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
 
         /// <summary>
@@ -967,7 +964,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="prompt"></param>
         /// <param name="responseFormat"></param>
         /// <param name="temperature"></param>
-        partial void OnErrorCreateTranslation(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> prompt, Option<AudioResponseFormat> responseFormat, Option<decimal> temperature);
+        partial void OnErrorCreateTranslation(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> prompt, Option<AudioResponseFormat> responseFormat, Option<decimal> temperature);
 
         /// <summary>
         /// Translates audio into English. 
@@ -979,7 +976,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="temperature">The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0M)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateTranslationApiResponse"/>&gt;</returns>
-        public async Task<ICreateTranslationApiResponse?> CreateTranslationOrDefaultAsync(System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> prompt = default, Option<AudioResponseFormat> responseFormat = default, Option<decimal> temperature = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateTranslationApiResponse?> CreateTranslationOrDefaultAsync(Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> prompt = default, Option<AudioResponseFormat> responseFormat = default, Option<decimal> temperature = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -1002,7 +999,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="temperature">The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0M)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateTranslationApiResponse"/>&gt;</returns>
-        public async Task<ICreateTranslationApiResponse> CreateTranslationAsync(System.IO.Stream file, CreateTranscriptionRequestModel model, Option<string> prompt = default, Option<AudioResponseFormat> responseFormat = default, Option<decimal> temperature = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateTranslationApiResponse> CreateTranslationAsync(Org.OpenAPITools.Client.FileParameter file, CreateTranscriptionRequestModel model, Option<string> prompt = default, Option<AudioResponseFormat> responseFormat = default, Option<decimal> temperature = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -1019,26 +1016,33 @@ namespace Org.OpenAPITools.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/audio/translations"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/audio/translations");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/audio/translations");
 
-                    MultipartContent multipartContentLocalVar = new MultipartContent();
+                    MultipartFormDataContent multipartContentLocalVar = new MultipartFormDataContent();
 
                     httpRequestMessageLocalVar.Content = multipartContentLocalVar;
 
-                    List<KeyValuePair<string?, string?>> formParameterLocalVars = new List<KeyValuePair<string?, string?>>();
+                    List<KeyValuePair<string, string?>> formParameterLocalVars = new List<KeyValuePair<string, string?>>();
 
-                    multipartContentLocalVar.Add(new FormUrlEncodedContent(formParameterLocalVars));                    multipartContentLocalVar.Add(new StreamContent(file));
+                    {
+                        var streamContentLocalVar = new StreamContent(file.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "file", file.FileName ?? "file");
+                    }
 
-                    formParameterLocalVars.Add(new KeyValuePair<string?, string?>("model", ClientUtils.ParameterToString(model)));
+                    formParameterLocalVars.Add(new KeyValuePair<string, string?>("model", ClientUtils.ParameterToString(model)));
 
                     if (prompt.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("prompt", ClientUtils.ParameterToString(prompt.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("prompt", ClientUtils.ParameterToString(prompt.Value)));
 
                     if (responseFormat.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("response_format", ClientUtils.ParameterToString(responseFormat.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("response_format", ClientUtils.ParameterToString(responseFormat.Value)));
 
                     if (temperature.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("temperature", ClientUtils.ParameterToString(temperature.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("temperature", ClientUtils.ParameterToString(temperature.Value)));
+
+                    foreach (var formParamLocalVar in formParameterLocalVars)
+                        multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
@@ -1053,19 +1057,14 @@ namespace Org.OpenAPITools.Api
                         "multipart/form-data"
                     };
 
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
                     string[] acceptLocalVars = new string[] {
                         "application/json"
                     };
 
-                    string? acceptLocalVar = ClientUtils.SelectHeaderAccept(acceptLocalVars);
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
 
-                    if (acceptLocalVar != null)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(acceptLocalVar));
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
                     httpRequestMessageLocalVar.Method = HttpMethod.Post;
 
@@ -1073,13 +1072,12 @@ namespace Org.OpenAPITools.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<CreateTranslationApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<CreateTranslationApiResponse>();
                         CreateTranslationApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/audio/translations", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/audio/translations", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
@@ -1113,7 +1111,7 @@ namespace Org.OpenAPITools.Api
             /// <summary>
             /// The logger
             /// </summary>
-            public ILogger<CreateTranslationApiResponse> Logger { get; }
+            public ILogger<AudioApi> Logger { get; }
 
             /// <summary>
             /// The <see cref="CreateTranslationApiResponse"/>
@@ -1125,7 +1123,7 @@ namespace Org.OpenAPITools.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateTranslationApiResponse(ILogger<CreateTranslationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public CreateTranslationApiResponse(ILogger<AudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1141,7 +1139,7 @@ namespace Org.OpenAPITools.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateTranslationApiResponse(ILogger<CreateTranslationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public CreateTranslationApiResponse(ILogger<AudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1192,7 +1190,7 @@ namespace Org.OpenAPITools.Api
                 bool suppressDefaultLog = false;
                 OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
                 if (!suppressDefaultLog)
-                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
             }
 
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);

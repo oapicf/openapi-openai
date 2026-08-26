@@ -59,9 +59,9 @@ function Initialize-ChatCompletionRequestToolMessage {
 
 
         $PSO = [PSCustomObject]@{
-            "role" = ${Role}
-            "content" = ${Content}
-            "tool_call_id" = ${ToolCallId}
+            'role' = ${Role}
+            'content' = ${Content}
+            'tool_call_id' = ${ToolCallId}
         }
 
 
@@ -99,7 +99,7 @@ function ConvertFrom-JsonToChatCompletionRequestToolMessage {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ChatCompletionRequestToolMessage
-        $AllProperties = ("role", "content", "tool_call_id")
+        $AllProperties = ('role', 'content', 'tool_call_id')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -110,28 +110,28 @@ function ConvertFrom-JsonToChatCompletionRequestToolMessage {
             throw "Error! Empty JSON cannot be serialized due to the required property 'role' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "role"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'role'))) {
             throw "Error! JSON cannot be serialized due to the required property 'role' missing."
         } else {
-            $Role = $JsonParameters.PSobject.Properties["role"].value
+            $Role = $JsonParameters.PSobject.Properties['role'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'content'))) {
             throw "Error! JSON cannot be serialized due to the required property 'content' missing."
         } else {
-            $Content = $JsonParameters.PSobject.Properties["content"].value
+            $Content = $JsonParameters.PSobject.Properties['content'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tool_call_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tool_call_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'tool_call_id' missing."
         } else {
-            $ToolCallId = $JsonParameters.PSobject.Properties["tool_call_id"].value
+            $ToolCallId = $JsonParameters.PSobject.Properties['tool_call_id'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "role" = ${Role}
-            "content" = ${Content}
-            "tool_call_id" = ${ToolCallId}
+            'role' = ${Role}
+            'content' = ${Content}
+            'tool_call_id' = ${ToolCallId}
         }
 
         return $PSO

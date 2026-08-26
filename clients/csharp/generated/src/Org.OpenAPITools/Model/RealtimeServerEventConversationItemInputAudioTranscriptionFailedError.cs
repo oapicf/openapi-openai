@@ -62,7 +62,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The type of error.</value>
         [JsonPropertyName("type")]
-        public string? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public string? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Code
@@ -76,7 +76,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Error code, if any.</value>
         [JsonPropertyName("code")]
-        public string? Code { get { return this.CodeOption; } set { this.CodeOption = new(value); } }
+        public string? Code { get { return this.CodeOption.Value; } set { this.CodeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Message
@@ -90,7 +90,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A human-readable error message.</value>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Param
@@ -104,7 +104,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Parameter related to the error, if any.</value>
         [JsonPropertyName("param")]
-        public string? Param { get { return this.ParamOption; } set { this.ParamOption = new(value); } }
+        public string? Param { get { return this.ParamOption.Value; } set { this.ParamOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -136,8 +136,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeServerEventConversationItemInputAudioTranscriptionFailedError" />
     /// </summary>
-    public class RealtimeServerEventConversationItemInputAudioTranscriptionFailedErrorJsonConverter : JsonConverter<RealtimeServerEventConversationItemInputAudioTranscriptionFailedError>
+    public partial class RealtimeServerEventConversationItemInputAudioTranscriptionFailedErrorJsonConverter : JsonConverter<RealtimeServerEventConversationItemInputAudioTranscriptionFailedError>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeServerEventConversationItemInputAudioTranscriptionFailedErrorJsonConverter" /> class.
+        /// </summary>
+        public RealtimeServerEventConversationItemInputAudioTranscriptionFailedErrorJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeServerEventConversationItemInputAudioTranscriptionFailedError" />
         /// </summary>

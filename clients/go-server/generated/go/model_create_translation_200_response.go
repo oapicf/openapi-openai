@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type CreateTranslation200Response struct {
@@ -28,20 +33,84 @@ type CreateTranslation200Response struct {
 	// Segments of the translated text and their corresponding details.
 	Segments []TranscriptionSegment `json:"segments,omitempty"`
 }
-
-// AssertCreateTranslation200ResponseRequired checks if the required fields are not zero-ed
-func AssertCreateTranslation200ResponseRequired(obj CreateTranslation200Response) error {
-	elements := map[string]interface{}{
-		"text": obj.Text,
-		"language": obj.Language,
-		"duration": obj.Duration,
+// UnmarshalJSON validates required property keys then unmarshals into CreateTranslation200Response
+func (o *CreateTranslation200Response) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"text",
+		"language",
+		"duration",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"text": false,
+		"language": false,
+		"duration": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"text": {},
+		"language": {},
+		"duration": {},
+		"segments": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CreateTranslation200Response
+
+	if value, exists := allProperties["text"]; exists {
+		if err = json.Unmarshal(value, &decoded.Text); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["language"]; exists {
+		if err = json.Unmarshal(value, &decoded.Language); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["duration"]; exists {
+		if err = json.Unmarshal(value, &decoded.Duration); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["segments"]; exists {
+		if err = json.Unmarshal(value, &decoded.Segments); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCreateTranslation200ResponseRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertCreateTranslation200ResponseRequired(obj CreateTranslation200Response) error {
 	for _, el := range obj.Segments {
 		if err := AssertTranscriptionSegmentRequired(el); err != nil {
 			return err

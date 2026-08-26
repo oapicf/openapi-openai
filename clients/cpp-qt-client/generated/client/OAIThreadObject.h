@@ -34,13 +34,13 @@ class OAIModifyThreadRequest_tool_resources;
 class OAIThreadObject : public OAIObject {
 public:
     OAIThreadObject();
-    OAIThreadObject(QString json);
+    OAIThreadObject(const QString &json);
     ~OAIThreadObject() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

@@ -100,22 +100,25 @@ class _$BatchRequestInputSerializer implements PrimitiveSerializer<BatchRequestI
         case r'custom_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.customId = valueDes;
           break;
         case r'method':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BatchRequestInputMethodEnum),
-          ) as BatchRequestInputMethodEnum;
+            specifiedType: const FullType.nullable(BatchRequestInputMethodEnum),
+          ) as BatchRequestInputMethodEnum?;
+          if (valueDes == null) continue;
           result.method = valueDes;
           break;
         case r'url':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.url = valueDes;
           break;
         default:

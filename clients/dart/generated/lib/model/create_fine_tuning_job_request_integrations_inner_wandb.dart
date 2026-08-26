@@ -77,10 +77,8 @@ class CreateFineTuningJobRequestIntegrationsInnerWandb {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateFineTuningJobRequestIntegrationsInnerWandb[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateFineTuningJobRequestIntegrationsInnerWandb[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'project'), 'Required key "CreateFineTuningJobRequestIntegrationsInnerWandb[project]" is missing from JSON.');
+        assert(json[r'project'] != null, 'Required key "CreateFineTuningJobRequestIntegrationsInnerWandb[project]" has a null value in JSON.');
         return true;
       }());
 

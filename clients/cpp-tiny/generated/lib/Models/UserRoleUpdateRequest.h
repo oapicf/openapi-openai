@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set `owner` or `reader`
 	 */
-	void setRole(std::string  role);
+	void setRole(std::string role);
 
 
     private:

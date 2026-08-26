@@ -33,7 +33,7 @@ class  RunToolCallObject
 {
 public:
     RunToolCallObject();
-    virtual ~RunToolCallObject() = default;
+    virtual ~RunToolCallObject();
 
 
     /// <summary>

@@ -103,7 +103,7 @@ CompleteUploadRequest::getPartIds()
 }
 
 void
-CompleteUploadRequest::setPartIds(std::list <std::string> part_ids)
+CompleteUploadRequest::setPartIds(std::list<std::string> part_ids)
 {
 	this->part_ids = part_ids;
 }
@@ -115,7 +115,7 @@ CompleteUploadRequest::getMd5()
 }
 
 void
-CompleteUploadRequest::setMd5(std::string  md5)
+CompleteUploadRequest::setMd5(std::string md5)
 {
 	this->md5 = md5;
 }

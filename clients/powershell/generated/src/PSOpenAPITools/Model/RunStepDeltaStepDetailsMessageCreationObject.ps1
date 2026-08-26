@@ -46,8 +46,8 @@ function Initialize-RunStepDeltaStepDetailsMessageCreationObject {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "message_creation" = ${MessageCreation}
+            'type' = ${Type}
+            'message_creation' = ${MessageCreation}
         }
 
 
@@ -85,7 +85,7 @@ function ConvertFrom-JsonToRunStepDeltaStepDetailsMessageCreationObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDeltaStepDetailsMessageCreationObject
-        $AllProperties = ("type", "message_creation")
+        $AllProperties = ('type', 'message_creation')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -96,21 +96,21 @@ function ConvertFrom-JsonToRunStepDeltaStepDetailsMessageCreationObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "message_creation"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'message_creation'))) { #optional property not found
             $MessageCreation = $null
         } else {
-            $MessageCreation = $JsonParameters.PSobject.Properties["message_creation"].value
+            $MessageCreation = $JsonParameters.PSobject.Properties['message_creation'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "message_creation" = ${MessageCreation}
+            'type' = ${Type}
+            'message_creation' = ${MessageCreation}
         }
 
         return $PSO

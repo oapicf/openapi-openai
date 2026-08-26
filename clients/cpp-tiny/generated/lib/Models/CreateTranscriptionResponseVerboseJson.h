@@ -54,35 +54,35 @@ public:
 
 	/*! \brief Set The language of the input audio.
 	 */
-	void setLanguage(std::string  language);
+	void setLanguage(std::string language);
 	/*! \brief Get The duration of the input audio.
 	 */
 	std::string getDuration();
 
 	/*! \brief Set The duration of the input audio.
 	 */
-	void setDuration(std::string  duration);
+	void setDuration(std::string duration);
 	/*! \brief Get The transcribed text.
 	 */
 	std::string getText();
 
 	/*! \brief Set The transcribed text.
 	 */
-	void setText(std::string  text);
+	void setText(std::string text);
 	/*! \brief Get Extracted words and their corresponding timestamps.
 	 */
 	std::list<TranscriptionWord> getWords();
 
 	/*! \brief Set Extracted words and their corresponding timestamps.
 	 */
-	void setWords(std::list <TranscriptionWord> words);
+	void setWords(std::list<TranscriptionWord> words);
 	/*! \brief Get Segments of the transcribed text and their corresponding details.
 	 */
 	std::list<TranscriptionSegment> getSegments();
 
 	/*! \brief Set Segments of the transcribed text and their corresponding details.
 	 */
-	void setSegments(std::list <TranscriptionSegment> segments);
+	void setSegments(std::list<TranscriptionSegment> segments);
 
 
     private:

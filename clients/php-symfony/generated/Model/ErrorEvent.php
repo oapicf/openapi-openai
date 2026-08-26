@@ -49,7 +49,7 @@ class ErrorEvent
      * @var string|null
      * @SerializedName("event")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['error'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class ErrorEvent
      * @var Error|null
      * @SerializedName("data")
      * @Type("OpenAPI\Server\Model\Error")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\Error")]
@@ -88,12 +88,12 @@ class ErrorEvent
     }
 
     /**
-    * Sets event.
-    *
-    * @param string|null $event
-    *
-    * @return $this
-    */
+     * Sets event.
+     *
+     * @param string|null $event
+     *
+     * @return $this
+     */
     public function setEvent(?string $event): self
     {
         $this->event = $event;
@@ -115,12 +115,12 @@ class ErrorEvent
     }
 
     /**
-    * Sets data.
-    *
-    * @param Error|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param Error|null $data
+     *
+     * @return $this
+     */
     public function setData(?Error $data): self
     {
         $this->data = $data;

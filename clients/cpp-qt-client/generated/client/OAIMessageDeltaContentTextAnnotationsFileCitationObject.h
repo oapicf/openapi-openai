@@ -33,13 +33,13 @@ class OAIMessageDeltaContentTextAnnotationsFileCitationObject_file_citation;
 class OAIMessageDeltaContentTextAnnotationsFileCitationObject : public OAIObject {
 public:
     OAIMessageDeltaContentTextAnnotationsFileCitationObject();
-    OAIMessageDeltaContentTextAnnotationsFileCitationObject(QString json);
+    OAIMessageDeltaContentTextAnnotationsFileCitationObject(const QString &json);
     ~OAIMessageDeltaContentTextAnnotationsFileCitationObject() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getIndex() const;
     void setIndex(const qint32 &index);

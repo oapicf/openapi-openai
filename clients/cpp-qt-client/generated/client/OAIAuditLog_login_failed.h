@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIAuditLog_login_failed : public OAIObject {
 public:
     OAIAuditLog_login_failed();
-    OAIAuditLog_login_failed(QString json);
+    OAIAuditLog_login_failed(const QString &json);
     ~OAIAuditLog_login_failed() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getErrorCode() const;
     void setErrorCode(const QString &error_code);

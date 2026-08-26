@@ -1,8 +1,8 @@
 (ns open-ai-api.specs.fine-tune-method
   (:require [clojure.spec.alpha :as s]
             [spec-tools.data-spec :as ds]
-            [open-ai-api.specs. :refer :all]
-            [open-ai-api.specs. :refer :all]
+            [open-ai-api.specs.fine-tune-supervised-method :refer :all]
+            [open-ai-api.specs.fine-tune-dpo-method :refer :all]
             )
   (:import (java.io File)))
 

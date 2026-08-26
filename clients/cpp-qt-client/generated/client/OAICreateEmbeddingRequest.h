@@ -33,13 +33,13 @@ namespace OpenAPI {
 class OAICreateEmbeddingRequest : public OAIObject {
 public:
     OAICreateEmbeddingRequest();
-    OAICreateEmbeddingRequest(QString json);
+    OAICreateEmbeddingRequest(const QString &json);
     ~OAICreateEmbeddingRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     OAICreateEmbeddingRequest_input getInput() const;
     void setInput(const OAICreateEmbeddingRequest_input &input);

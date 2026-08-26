@@ -78,8 +78,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ChatCompletionRequestAssistantMessageAudio" />
     /// </summary>
-    public class ChatCompletionRequestAssistantMessageAudioJsonConverter : JsonConverter<ChatCompletionRequestAssistantMessageAudio>
+    public partial class ChatCompletionRequestAssistantMessageAudioJsonConverter : JsonConverter<ChatCompletionRequestAssistantMessageAudio>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChatCompletionRequestAssistantMessageAudioJsonConverter" /> class.
+        /// </summary>
+        public ChatCompletionRequestAssistantMessageAudioJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ChatCompletionRequestAssistantMessageAudio" />
         /// </summary>

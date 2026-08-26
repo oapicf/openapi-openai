@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set The [vector store](/docs/api-reference/vector-stores/object) attached to this assistant. There can be a maximum of 1 vector store attached to the assistant. 
 	 */
-	void setVectorStoreIds(std::list <std::string> vector_store_ids);
+	void setVectorStoreIds(std::list<std::string> vector_store_ids);
 	/*! \brief Get A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this assistant. There can be a maximum of 1 vector store attached to the assistant. 
 	 */
 	std::list<CreateAssistantRequest_tool_resources_file_search_vector_stores_inner> getVectorStores();
 
 	/*! \brief Set A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this assistant. There can be a maximum of 1 vector store attached to the assistant. 
 	 */
-	void setVectorStores(std::list <CreateAssistantRequest_tool_resources_file_search_vector_stores_inner> vector_stores);
+	void setVectorStores(std::list<CreateAssistantRequest_tool_resources_file_search_vector_stores_inner> vector_stores);
 
 
     private:

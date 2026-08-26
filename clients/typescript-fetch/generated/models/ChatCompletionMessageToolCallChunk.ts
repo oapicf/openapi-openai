@@ -41,7 +41,7 @@ export interface ChatCompletionMessageToolCallChunk {
     id?: string;
     /**
      * The type of the tool. Currently, only `function` is supported.
-     * @type {string}
+     * @type {ChatCompletionMessageToolCallChunkTypeEnum}
      * @memberof ChatCompletionMessageToolCallChunk
      */
     type?: ChatCompletionMessageToolCallChunkTypeEnum;

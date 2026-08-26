@@ -32,7 +32,7 @@ class  CreateTranscriptionResponseJson
 {
 public:
     CreateTranscriptionResponseJson();
-    virtual ~CreateTranscriptionResponseJson() = default;
+    virtual ~CreateTranscriptionResponseJson();
 
 
     /// <summary>

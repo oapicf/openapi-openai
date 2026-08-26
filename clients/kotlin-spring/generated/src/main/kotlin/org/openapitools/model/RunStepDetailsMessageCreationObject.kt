@@ -23,13 +23,15 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RunStepDetailsMessageCreationObject(
 
-    @Schema(example = "null", required = true, description = "Always `message_creation`.")
+    @Schema(required = true, description = "Always `message_creation`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RunStepDetailsMessageCreationObject.Type,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("message_creation")
     @get:JsonProperty("message_creation", required = true) val messageCreation: RunStepDetailsMessageCreationObjectMessageCreation
-) {
+) : RunStepObjectStepDetails {
 
     /**
     * Always `message_creation`.
@@ -44,7 +46,7 @@ data class RunStepDetailsMessageCreationObject(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RunStepDetailsMessageCreationObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

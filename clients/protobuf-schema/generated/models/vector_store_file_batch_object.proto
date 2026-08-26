@@ -26,7 +26,7 @@ message VectorStoreFileBatchObject {
     OBJECT_VECTOR_STORE_FILES_BATCH = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The Unix timestamp (in seconds) for when the vector store files batch was created.
   int32 created_at = 295938284;
@@ -42,7 +42,7 @@ message VectorStoreFileBatchObject {
     STATUS_FAILED = 3;
   }
 
-  Status status = 355610639;
+  string status = 355610639;
 
   VectorStoreFileBatchObjectFileCounts file_counts = 514258281;
 

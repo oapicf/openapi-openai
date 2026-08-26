@@ -24,7 +24,7 @@ typedef struct fine_tune_chat_request_input_t fine_tune_chat_request_input_t;
 typedef struct fine_tune_chat_request_input_t {
     list_t *messages; //nonprimitive container
     list_t *tools; //nonprimitive container
-    int parallel_tool_calls; //boolean
+    int *parallel_tool_calls; //boolean
     list_t *functions; //nonprimitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -33,7 +33,7 @@ typedef struct fine_tune_chat_request_input_t {
 __attribute__((deprecated)) fine_tune_chat_request_input_t *fine_tune_chat_request_input_create(
     list_t *messages,
     list_t *tools,
-    int parallel_tool_calls,
+    int *parallel_tool_calls,
     list_t *functions
 );
 

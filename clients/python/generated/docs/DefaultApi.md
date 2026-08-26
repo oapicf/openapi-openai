@@ -283,7 +283,7 @@ with openapiopenai.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapiopenai.DefaultApi(api_client)
     after = 'after_example' # str |  (optional)
-    order = asc # str |  (optional) (default to asc)
+    order = 'asc' # str |  (optional) (default to 'asc')
     limit = 20 # int |  (optional) (default to 20)
 
     try:
@@ -303,7 +303,7 @@ with openapiopenai.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **after** | **str**|  | [optional] 
- **order** | **str**|  | [optional] [default to asc]
+ **order** | **str**|  | [optional] [default to &#39;asc&#39;]
  **limit** | **int**|  | [optional] [default to 20]
 
 ### Return type

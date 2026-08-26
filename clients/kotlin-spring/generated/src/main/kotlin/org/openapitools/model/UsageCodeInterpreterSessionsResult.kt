@@ -4,6 +4,9 @@ import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -23,15 +26,18 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class UsageCodeInterpreterSessionsResult(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: UsageCodeInterpreterSessionsResult.`Object`,
 
-    @Schema(example = "null", required = true, description = "The number of code interpreter sessions.")
+    @Schema(required = true, description = "The number of code interpreter sessions.")
+    @param:JsonProperty("sessions")
     @get:JsonProperty("sessions", required = true) val sessions: kotlin.Int,
 
-    @Schema(example = "null", description = "When `group_by=project_id`, this field provides the project ID of the grouped usage result.")
+    @Schema(description = "When `group_by=project_id`, this field provides the project ID of the grouped usage result.")
+    @param:JsonProperty("project_id")
     @get:JsonProperty("project_id") val projectId: kotlin.String? = null
-) {
+) : UsageTimeBucketResultInner {
 
     /**
     * 
@@ -46,7 +52,7 @@ data class UsageCodeInterpreterSessionsResult(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'UsageCodeInterpreterSessionsResult'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }

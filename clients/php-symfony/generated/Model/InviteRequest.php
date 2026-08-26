@@ -49,7 +49,7 @@ class InviteRequest
      * @var string|null
      * @SerializedName("email")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $email = null;
@@ -60,7 +60,7 @@ class InviteRequest
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['reader', 'owner'])]
     #[Assert\Type("string")]
@@ -72,7 +72,7 @@ class InviteRequest
      * @var InviteRequestProjectsInner[]|null
      * @SerializedName("projects")
      * @Type("array<OpenAPI\Server\Model\InviteRequestProjectsInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\InviteRequestProjectsInner"),
     ])]
@@ -102,12 +102,12 @@ class InviteRequest
     }
 
     /**
-    * Sets email.
-    *
-    * @param string|null $email  Send an email to this address
-    *
-    * @return $this
-    */
+     * Sets email.
+     *
+     * @param string|null $email  Send an email to this address
+     *
+     * @return $this
+     */
     public function setEmail(?string $email): self
     {
         $this->email = $email;
@@ -129,12 +129,12 @@ class InviteRequest
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  `owner` or `reader`
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  `owner` or `reader`
+     *
+     * @return $this
+     */
     public function setRole(?string $role): self
     {
         $this->role = $role;
@@ -156,12 +156,12 @@ class InviteRequest
     }
 
     /**
-    * Sets projects.
-    *
-    * @param InviteRequestProjectsInner[]|null $projects  An array of projects to which membership is granted at the same time the org invite is accepted. If omitted, the user will be invited to the default project for compatibility with legacy behavior.
-    *
-    * @return $this
-    */
+     * Sets projects.
+     *
+     * @param InviteRequestProjectsInner[]|null $projects  An array of projects to which membership is granted at the same time the org invite is accepted. If omitted, the user will be invited to the default project for compatibility with legacy behavior.
+     *
+     * @return $this
+     */
     public function setProjects(?array $projects = null): self
     {
         $this->projects = $projects;

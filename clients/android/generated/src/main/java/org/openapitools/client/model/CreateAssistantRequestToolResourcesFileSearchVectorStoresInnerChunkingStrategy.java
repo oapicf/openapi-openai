@@ -12,7 +12,7 @@
 
 package org.openapitools.client.model;
 
-import org.openapitools.client.model.AutoChunkingStrategy;
+import org.openapitools.client.model.AutoChunkingStrategyRequestParam;
 import org.openapitools.client.model.StaticChunkingStrategy;
 import org.openapitools.client.model.StaticChunkingStrategyStatic;
 import io.swagger.annotations.*;

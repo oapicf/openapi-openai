@@ -32,7 +32,7 @@ class  RunObject_last_error
 {
 public:
     RunObject_last_error();
-    virtual ~RunObject_last_error() = default;
+    virtual ~RunObject_last_error();
 
 
     /// <summary>

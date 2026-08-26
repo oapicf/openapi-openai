@@ -27,6 +27,8 @@ TranscriptionWord::TranscriptionWord()
     
 }
 
+TranscriptionWord::~TranscriptionWord() = default;
+
 void TranscriptionWord::validate() const
 {
     std::stringstream msg;

@@ -65,9 +65,9 @@ void OAIVectorStoresApi::initializeServerConfigs() {
 }
 
 /**
-* returns 0 on success and -1, -2 or -3 on failure.
-* -1 when the variable does not exist and -2 if the value is not defined in the enum and -3 if the operation or server index is not found
-*/
+ * returns 0 on success and -1, -2 or -3 on failure.
+ * -1 when the variable does not exist and -2 if the value is not defined in the enum and -3 if the operation or server index is not found
+ */
 int OAIVectorStoresApi::setDefaultServerValue(int serverIndex, const QString &operation, const QString &variable, const QString &value) {
     auto it = _serverConfigs.find(operation);
     if (it != _serverConfigs.end() && serverIndex < it.value().size()) {
@@ -75,9 +75,21 @@ int OAIVectorStoresApi::setDefaultServerValue(int serverIndex, const QString &op
     }
     return -3;
 }
+
+/**
+ * Sets the server index.
+ * @param operation The id to the target operation.
+ * @param serverIndex The server index.
+ */
 void OAIVectorStoresApi::setServerIndex(const QString &operation, int serverIndex) {
     if (_serverIndices.contains(operation) && serverIndex < _serverConfigs.find(operation).value().size()) {
         _serverIndices[operation] = serverIndex;
+    }
+}
+
+void OAIVectorStoresApi::setServerIndex(int serverIndex) {
+    for (auto keyIt = _serverIndices.keyBegin(); keyIt != _serverIndices.keyEnd(); keyIt++) {
+        setServerIndex(*keyIt, serverIndex);
     }
 }
 
@@ -111,13 +123,13 @@ void OAIVectorStoresApi::setNetworkAccessManager(QNetworkAccessManager* manager)
 }
 
 /**
-    * Appends a new ServerConfiguration to the config map for a specific operation.
-    * @param operation The id to the target operation.
-    * @param url A string that contains the URL of the server
-    * @param description A String that describes the server
-    * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
-    * returns the index of the new server config on success and -1 if the operation is not found
-    */
+ * Appends a new ServerConfiguration to the config map for a specific operation.
+ * @param operation The id to the target operation.
+ * @param url A string that contains the URL of the server
+ * @param description A String that describes the server
+ * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
+ * returns the index of the new server config on success and -1 if the operation is not found
+ */
 int OAIVectorStoresApi::addServerConfiguration(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     if (_serverConfigs.contains(operation)) {
         _serverConfigs[operation].append(OAIServerConfiguration(
@@ -131,11 +143,11 @@ int OAIVectorStoresApi::addServerConfiguration(const QString &operation, const Q
 }
 
 /**
-    * Appends a new ServerConfiguration to the config map for a all operations and sets the index to that server.
-    * @param url A string that contains the URL of the server
-    * @param description A String that describes the server
-    * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
-    */
+ * Appends a new ServerConfiguration to the config map for a all operations and sets the index to that server.
+ * @param url A string that contains the URL of the server
+ * @param description A String that describes the server
+ * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
+ */
 void OAIVectorStoresApi::setNewServerForAllOperations(const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     for (auto keyIt = _serverIndices.keyBegin(); keyIt != _serverIndices.keyEnd(); keyIt++) {
         setServerIndex(*keyIt, addServerConfiguration(*keyIt, url, description, variables));
@@ -143,11 +155,11 @@ void OAIVectorStoresApi::setNewServerForAllOperations(const QUrl &url, const QSt
 }
 
 /**
-    * Appends a new ServerConfiguration to the config map for an operations and sets the index to that server.
-    * @param URL A string that contains the URL of the server
-    * @param description A String that describes the server
-    * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
-    */
+ * Appends a new ServerConfiguration to the config map for an operations and sets the index to that server.
+ * @param URL A string that contains the URL of the server
+ * @param description A String that describes the server
+ * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
+ */
 void OAIVectorStoresApi::setNewServer(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     setServerIndex(operation, addServerConfiguration(operation, url, description, variables));
 }
@@ -301,32 +313,6 @@ void OAIVectorStoresApi::cancelVectorStoreFileBatchCallback(OAIHttpRequestWorker
         Q_EMIT cancelVectorStoreFileBatchSignal(output);
         Q_EMIT cancelVectorStoreFileBatchSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT cancelVectorStoreFileBatchSignalE(output, error_type, error_str);
-        Q_EMIT cancelVectorStoreFileBatchSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT cancelVectorStoreFileBatchSignalError(output, error_type, error_str);
         Q_EMIT cancelVectorStoreFileBatchSignalErrorFull(worker, error_type, error_str);
     }
@@ -379,32 +365,6 @@ void OAIVectorStoresApi::createVectorStoreCallback(OAIHttpRequestWorker *worker)
         Q_EMIT createVectorStoreSignal(output);
         Q_EMIT createVectorStoreSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT createVectorStoreSignalE(output, error_type, error_str);
-        Q_EMIT createVectorStoreSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT createVectorStoreSignalError(output, error_type, error_str);
         Q_EMIT createVectorStoreSignalErrorFull(worker, error_type, error_str);
     }
@@ -471,32 +431,6 @@ void OAIVectorStoresApi::createVectorStoreFileCallback(OAIHttpRequestWorker *wor
         Q_EMIT createVectorStoreFileSignal(output);
         Q_EMIT createVectorStoreFileSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT createVectorStoreFileSignalE(output, error_type, error_str);
-        Q_EMIT createVectorStoreFileSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT createVectorStoreFileSignalError(output, error_type, error_str);
         Q_EMIT createVectorStoreFileSignalErrorFull(worker, error_type, error_str);
     }
@@ -563,32 +497,6 @@ void OAIVectorStoresApi::createVectorStoreFileBatchCallback(OAIHttpRequestWorker
         Q_EMIT createVectorStoreFileBatchSignal(output);
         Q_EMIT createVectorStoreFileBatchSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT createVectorStoreFileBatchSignalE(output, error_type, error_str);
-        Q_EMIT createVectorStoreFileBatchSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT createVectorStoreFileBatchSignalError(output, error_type, error_str);
         Q_EMIT createVectorStoreFileBatchSignalErrorFull(worker, error_type, error_str);
     }
@@ -650,32 +558,6 @@ void OAIVectorStoresApi::deleteVectorStoreCallback(OAIHttpRequestWorker *worker)
         Q_EMIT deleteVectorStoreSignal(output);
         Q_EMIT deleteVectorStoreSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT deleteVectorStoreSignalE(output, error_type, error_str);
-        Q_EMIT deleteVectorStoreSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT deleteVectorStoreSignalError(output, error_type, error_str);
         Q_EMIT deleteVectorStoreSignalErrorFull(worker, error_type, error_str);
     }
@@ -751,32 +633,6 @@ void OAIVectorStoresApi::deleteVectorStoreFileCallback(OAIHttpRequestWorker *wor
         Q_EMIT deleteVectorStoreFileSignal(output);
         Q_EMIT deleteVectorStoreFileSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT deleteVectorStoreFileSignalE(output, error_type, error_str);
-        Q_EMIT deleteVectorStoreFileSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT deleteVectorStoreFileSignalError(output, error_type, error_str);
         Q_EMIT deleteVectorStoreFileSignalErrorFull(worker, error_type, error_str);
     }
@@ -838,32 +694,6 @@ void OAIVectorStoresApi::getVectorStoreCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT getVectorStoreSignal(output);
         Q_EMIT getVectorStoreSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT getVectorStoreSignalE(output, error_type, error_str);
-        Q_EMIT getVectorStoreSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT getVectorStoreSignalError(output, error_type, error_str);
         Q_EMIT getVectorStoreSignalErrorFull(worker, error_type, error_str);
     }
@@ -939,32 +769,6 @@ void OAIVectorStoresApi::getVectorStoreFileCallback(OAIHttpRequestWorker *worker
         Q_EMIT getVectorStoreFileSignal(output);
         Q_EMIT getVectorStoreFileSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT getVectorStoreFileSignalE(output, error_type, error_str);
-        Q_EMIT getVectorStoreFileSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT getVectorStoreFileSignalError(output, error_type, error_str);
         Q_EMIT getVectorStoreFileSignalErrorFull(worker, error_type, error_str);
     }
@@ -1040,32 +844,6 @@ void OAIVectorStoresApi::getVectorStoreFileBatchCallback(OAIHttpRequestWorker *w
         Q_EMIT getVectorStoreFileBatchSignal(output);
         Q_EMIT getVectorStoreFileBatchSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT getVectorStoreFileBatchSignalE(output, error_type, error_str);
-        Q_EMIT getVectorStoreFileBatchSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT getVectorStoreFileBatchSignalError(output, error_type, error_str);
         Q_EMIT getVectorStoreFileBatchSignalErrorFull(worker, error_type, error_str);
     }
@@ -1217,32 +995,6 @@ void OAIVectorStoresApi::listFilesInVectorStoreBatchCallback(OAIHttpRequestWorke
         Q_EMIT listFilesInVectorStoreBatchSignal(output);
         Q_EMIT listFilesInVectorStoreBatchSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT listFilesInVectorStoreBatchSignalE(output, error_type, error_str);
-        Q_EMIT listFilesInVectorStoreBatchSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT listFilesInVectorStoreBatchSignalError(output, error_type, error_str);
         Q_EMIT listFilesInVectorStoreBatchSignalErrorFull(worker, error_type, error_str);
     }
@@ -1380,32 +1132,6 @@ void OAIVectorStoresApi::listVectorStoreFilesCallback(OAIHttpRequestWorker *work
         Q_EMIT listVectorStoreFilesSignal(output);
         Q_EMIT listVectorStoreFilesSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT listVectorStoreFilesSignalE(output, error_type, error_str);
-        Q_EMIT listVectorStoreFilesSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT listVectorStoreFilesSignalError(output, error_type, error_str);
         Q_EMIT listVectorStoreFilesSignalErrorFull(worker, error_type, error_str);
     }
@@ -1514,32 +1240,6 @@ void OAIVectorStoresApi::listVectorStoresCallback(OAIHttpRequestWorker *worker) 
         Q_EMIT listVectorStoresSignal(output);
         Q_EMIT listVectorStoresSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT listVectorStoresSignalE(output, error_type, error_str);
-        Q_EMIT listVectorStoresSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT listVectorStoresSignalError(output, error_type, error_str);
         Q_EMIT listVectorStoresSignalErrorFull(worker, error_type, error_str);
     }
@@ -1606,42 +1306,16 @@ void OAIVectorStoresApi::modifyVectorStoreCallback(OAIHttpRequestWorker *worker)
         Q_EMIT modifyVectorStoreSignal(output);
         Q_EMIT modifyVectorStoreSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT modifyVectorStoreSignalE(output, error_type, error_str);
-        Q_EMIT modifyVectorStoreSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT modifyVectorStoreSignalError(output, error_type, error_str);
         Q_EMIT modifyVectorStoreSignalErrorFull(worker, error_type, error_str);
     }
 }
 
-void OAIVectorStoresApi::tokenAvailable(){
+void OAIVectorStoresApi::tokenAvailable() {
 
     oauthToken token;
     switch (_OauthMethod) {
-    case 1: //implicit flow
+    case OauthMethod::ImplicitFlow:
         token = _implicitFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -1651,7 +1325,7 @@ void OAIVectorStoresApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 2: //authorization flow
+    case OauthMethod::AuthorizationFlow:
         token = _authFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -1661,7 +1335,7 @@ void OAIVectorStoresApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 3: //client credentials flow
+    case OauthMethod::ClientCredentialsFlow:
         token = _credentialFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -1671,7 +1345,7 @@ void OAIVectorStoresApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 4: //resource owner password flow
+    case OauthMethod::ResourceOwnerPasswordFlow:
         token = _passwordFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());

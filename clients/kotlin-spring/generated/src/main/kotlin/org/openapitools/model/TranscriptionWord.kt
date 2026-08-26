@@ -21,13 +21,16 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class TranscriptionWord(
 
-    @Schema(example = "null", required = true, description = "The text content of the word.")
+    @Schema(required = true, description = "The text content of the word.")
+    @param:JsonProperty("word")
     @get:JsonProperty("word", required = true) val word: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "Start time of the word in seconds.")
+    @Schema(required = true, description = "Start time of the word in seconds.")
+    @param:JsonProperty("start")
     @get:JsonProperty("start", required = true) val start: kotlin.Float,
 
-    @Schema(example = "null", required = true, description = "End time of the word in seconds.")
+    @Schema(required = true, description = "End time of the word in seconds.")
+    @param:JsonProperty("end")
     @get:JsonProperty("end", required = true) val end: kotlin.Float
 ) {
 

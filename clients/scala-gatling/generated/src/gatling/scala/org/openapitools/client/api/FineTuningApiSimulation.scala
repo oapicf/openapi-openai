@@ -142,8 +142,8 @@ class FineTuningApiSimulation extends Simulation {
         .feed(listPaginatedFineTuningJobsQUERYFeeder)
         .exec(http("listPaginatedFineTuningJobs")
         .httpRequest("GET","/fine_tuning/jobs")
-        .queryParam("after","${after}")
         .queryParam("limit","${limit}")
+        .queryParam("after","${after}")
 )
 
     // Run scnlistPaginatedFineTuningJobs with warm up and reach a constant rate for entire duration

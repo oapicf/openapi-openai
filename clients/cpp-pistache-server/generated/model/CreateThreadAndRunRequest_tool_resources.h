@@ -33,7 +33,7 @@ class  CreateThreadAndRunRequest_tool_resources
 {
 public:
     CreateThreadAndRunRequest_tool_resources();
-    virtual ~CreateThreadAndRunRequest_tool_resources() = default;
+    virtual ~CreateThreadAndRunRequest_tool_resources();
 
 
     /// <summary>

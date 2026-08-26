@@ -34,7 +34,7 @@ class  InviteListResponse
 {
 public:
     InviteListResponse();
-    virtual ~InviteListResponse() = default;
+    virtual ~InviteListResponse();
 
 
     /// <summary>

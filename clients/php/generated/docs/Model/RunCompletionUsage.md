@@ -1,4 +1,4 @@
-# # RunCompletionUsage
+# RunCompletionUsage
 
 ## Properties
 

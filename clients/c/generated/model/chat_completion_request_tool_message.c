@@ -31,11 +31,11 @@ static chat_completion_request_tool_message_t *chat_completion_request_tool_mess
     if (!chat_completion_request_tool_message_local_var) {
         return NULL;
     }
+    memset(chat_completion_request_tool_message_local_var, 0, sizeof(chat_completion_request_tool_message_t));
+    chat_completion_request_tool_message_local_var->_library_owned = 1;
     chat_completion_request_tool_message_local_var->role = role;
     chat_completion_request_tool_message_local_var->content = content;
     chat_completion_request_tool_message_local_var->tool_call_id = tool_call_id;
-
-    chat_completion_request_tool_message_local_var->_library_owned = 1;
     return chat_completion_request_tool_message_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) chat_completion_request_tool_message_t *chat_complet
     chat_completion_request_tool_message_content_t *content,
     char *tool_call_id
     ) {
-    return chat_completion_request_tool_message_create_internal (
+    chat_completion_request_tool_message_t *result = chat_completion_request_tool_message_create_internal (
         role,
         content,
         tool_call_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_request_tool_message_free(chat_completion_request_tool_message_t *chat_completion_request_tool_message) {
@@ -121,6 +124,8 @@ chat_completion_request_tool_message_t *chat_completion_request_tool_message_par
     // define the local variable for chat_completion_request_tool_message->content
     chat_completion_request_tool_message_content_t *content_local_nonprim = NULL;
 
+    char *tool_call_id_local_str = NULL;
+
     // chat_completion_request_tool_message->role
     cJSON *role = cJSON_GetObjectItemCaseSensitive(chat_completion_request_tool_messageJSON, "role");
     if (cJSON_IsNull(role)) {
@@ -166,17 +171,27 @@ chat_completion_request_tool_message_t *chat_completion_request_tool_message_par
     }
 
 
+    if (tool_call_id && !cJSON_IsNull(tool_call_id)) tool_call_id_local_str = strdup(tool_call_id->valuestring);
+
     chat_completion_request_tool_message_local_var = chat_completion_request_tool_message_create_internal (
         roleVariable,
         content_local_nonprim,
-        strdup(tool_call_id->valuestring)
+        tool_call_id_local_str
         );
+
+    if (!chat_completion_request_tool_message_local_var) {
+        goto end;
+    }
 
     return chat_completion_request_tool_message_local_var;
 end:
     if (content_local_nonprim) {
         chat_completion_request_tool_message_content_free(content_local_nonprim);
         content_local_nonprim = NULL;
+    }
+    if (tool_call_id_local_str) {
+        free(tool_call_id_local_str);
+        tool_call_id_local_str = NULL;
     }
     return NULL;
 

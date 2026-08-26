@@ -44,8 +44,8 @@ openai_api_open_ai_file_STATUS_e open_ai_file_status_FromString(char* status);
 
 typedef struct open_ai_file_t {
     char *id; // string
-    int bytes; //numeric
-    int created_at; //numeric
+    int *bytes; //numeric
+    int *created_at; //numeric
     char *filename; // string
     openai_api_open_ai_file_OBJECT_e object; //enum
     openai_api_open_ai_file_PURPOSE_e purpose; //enum
@@ -57,8 +57,8 @@ typedef struct open_ai_file_t {
 
 __attribute__((deprecated)) open_ai_file_t *open_ai_file_create(
     char *id,
-    int bytes,
-    int created_at,
+    int *bytes,
+    int *created_at,
     char *filename,
     openai_api_open_ai_file_OBJECT_e object,
     openai_api_open_ai_file_PURPOSE_e purpose,

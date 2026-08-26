@@ -174,10 +174,14 @@ class UsageCompletionsResult {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UsageCompletionsResult[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UsageCompletionsResult[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "UsageCompletionsResult[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "UsageCompletionsResult[object]" has a null value in JSON.');
+        assert(json.containsKey(r'input_tokens'), 'Required key "UsageCompletionsResult[input_tokens]" is missing from JSON.');
+        assert(json[r'input_tokens'] != null, 'Required key "UsageCompletionsResult[input_tokens]" has a null value in JSON.');
+        assert(json.containsKey(r'output_tokens'), 'Required key "UsageCompletionsResult[output_tokens]" is missing from JSON.');
+        assert(json[r'output_tokens'] != null, 'Required key "UsageCompletionsResult[output_tokens]" has a null value in JSON.');
+        assert(json.containsKey(r'num_model_requests'), 'Required key "UsageCompletionsResult[num_model_requests]" is missing from JSON.');
+        assert(json[r'num_model_requests'] != null, 'Required key "UsageCompletionsResult[num_model_requests]" has a null value in JSON.');
         return true;
       }());
 
@@ -249,27 +253,28 @@ class UsageCompletionsResult {
 }
 
 
-class UsageCompletionsResultObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const UsageCompletionsResultObjectEnum._(this.value);
+enum UsageCompletionsResultObjectEnum {
+  organizationPeriodUsagePeriodCompletionsPeriodResult._(r'organization.usage.completions.result'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const UsageCompletionsResultObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const organizationPeriodUsagePeriodCompletionsPeriodResult = UsageCompletionsResultObjectEnum._(r'organization.usage.completions.result');
-
-  /// List of all possible values in this [enum][UsageCompletionsResultObjectEnum].
-  static const values = <UsageCompletionsResultObjectEnum>[
-    organizationPeriodUsagePeriodCompletionsPeriodResult,
-  ];
-
+  /// Returns the instance of [UsageCompletionsResultObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static UsageCompletionsResultObjectEnum? fromJson(dynamic value) => UsageCompletionsResultObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [UsageCompletionsResultObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<UsageCompletionsResultObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <UsageCompletionsResultObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -291,9 +296,10 @@ class UsageCompletionsResultObjectEnumTypeTransformer {
 
   const UsageCompletionsResultObjectEnumTypeTransformer._();
 
-  String encode(UsageCompletionsResultObjectEnum data) => data.value;
+  String encode(UsageCompletionsResultObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a UsageCompletionsResultObjectEnum.
+  /// Returns the instance of [UsageCompletionsResultObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -302,6 +308,9 @@ class UsageCompletionsResultObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   UsageCompletionsResultObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is UsageCompletionsResultObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'organization.usage.completions.result': return UsageCompletionsResultObjectEnum.organizationPeriodUsagePeriodCompletionsPeriodResult;
@@ -314,7 +323,7 @@ class UsageCompletionsResultObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [UsageCompletionsResultObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static UsageCompletionsResultObjectEnumTypeTransformer? _instance;
 }
 

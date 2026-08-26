@@ -35,7 +35,7 @@ export interface RunToolCallObject {
     id: string;
     /**
      * The type of tool call the output is required for. For now, this is always `function`.
-     * @type {string}
+     * @type {RunToolCallObjectTypeEnum}
      * @memberof RunToolCallObject
      */
     type: RunToolCallObjectTypeEnum;
@@ -63,7 +63,9 @@ export type RunToolCallObjectTypeEnum = typeof RunToolCallObjectTypeEnum[keyof t
 export function instanceOfRunToolCallObject(value: object): value is RunToolCallObject {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('_function' in value) || value['_function'] === undefined) return false;
+    if (value['type'] !== 'function') return false;
+    
+    if ((!('_function' in (value as Record<string, any>)) && !('function' in (value as Record<string, any>))) || ((value as Record<string, any>)['_function'] === undefined && (value as Record<string, any>)['function'] === undefined)) return false;
     return true;
 }
 

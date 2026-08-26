@@ -74,8 +74,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTunePreferenceRequestInputPreferredCompletionInner" />
     /// </summary>
-    public class FineTunePreferenceRequestInputPreferredCompletionInnerJsonConverter : JsonConverter<FineTunePreferenceRequestInputPreferredCompletionInner>
+    public partial class FineTunePreferenceRequestInputPreferredCompletionInnerJsonConverter : JsonConverter<FineTunePreferenceRequestInputPreferredCompletionInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTunePreferenceRequestInputPreferredCompletionInnerJsonConverter" /> class.
+        /// </summary>
+        public FineTunePreferenceRequestInputPreferredCompletionInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTunePreferenceRequestInputPreferredCompletionInner" />
         /// </summary>

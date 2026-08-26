@@ -24,16 +24,20 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class Model(
 
-    @Schema(example = "null", required = true, description = "The model identifier, which can be referenced in the API endpoints.")
+    @Schema(required = true, description = "The model identifier, which can be referenced in the API endpoints.")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The Unix timestamp (in seconds) when the model was created.")
+    @Schema(required = true, description = "The Unix timestamp (in seconds) when the model was created.")
+    @param:JsonProperty("created")
     @get:JsonProperty("created", required = true) val created: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The object type, which is always \"model\".")
+    @Schema(required = true, description = "The object type, which is always \"model\".")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: Model.`Object`,
 
-    @Schema(example = "null", required = true, description = "The organization that owns the model.")
+    @Schema(required = true, description = "The organization that owns the model.")
+    @param:JsonProperty("owned_by")
     @get:JsonProperty("owned_by", required = true) val ownedBy: kotlin.String
 ) {
 
@@ -50,7 +54,7 @@ data class Model(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Model'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }

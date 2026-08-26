@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setUser(AuditLogActorUser  user);
+	void setUser(AuditLogActorUser user);
 	/*! \brief Get The IP address from which the action was performed.
 	 */
 	std::string getIpAddress();
 
 	/*! \brief Set The IP address from which the action was performed.
 	 */
-	void setIpAddress(std::string  ip_address);
+	void setIpAddress(std::string ip_address);
 
 
     private:

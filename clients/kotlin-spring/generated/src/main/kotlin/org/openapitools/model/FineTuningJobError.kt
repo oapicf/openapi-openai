@@ -21,13 +21,16 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class FineTuningJobError(
 
-    @Schema(example = "null", required = true, description = "A machine-readable error code.")
+    @Schema(required = true, description = "A machine-readable error code.")
+    @param:JsonProperty("code")
     @get:JsonProperty("code", required = true) val code: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "A human-readable error message.")
+    @Schema(required = true, description = "A human-readable error message.")
+    @param:JsonProperty("message")
     @get:JsonProperty("message", required = true) val message: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The parameter that was invalid, usually `training_file` or `validation_file`. This field will be null if the failure was not parameter-specific.")
+    @Schema(required = true, description = "The parameter that was invalid, usually `training_file` or `validation_file`. This field will be null if the failure was not parameter-specific.")
+    @param:JsonProperty("param")
     @get:JsonProperty("param", required = true) val `param`: kotlin.String?
 ) {
 

@@ -85,7 +85,7 @@ RealtimeSessionCreateResponse_client_secret::getValue()
 }
 
 void
-RealtimeSessionCreateResponse_client_secret::setValue(std::string  value)
+RealtimeSessionCreateResponse_client_secret::setValue(std::string value)
 {
 	this->value = value;
 }
@@ -97,7 +97,7 @@ RealtimeSessionCreateResponse_client_secret::getExpiresAt()
 }
 
 void
-RealtimeSessionCreateResponse_client_secret::setExpiresAt(int  expires_at)
+RealtimeSessionCreateResponse_client_secret::setExpiresAt(int expires_at)
 {
 	this->expires_at = expires_at;
 }

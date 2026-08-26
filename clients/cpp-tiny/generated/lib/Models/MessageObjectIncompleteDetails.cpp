@@ -64,7 +64,7 @@ MessageObject_incomplete_details::getReason()
 }
 
 void
-MessageObject_incomplete_details::setReason(std::string  reason)
+MessageObject_incomplete_details::setReason(std::string reason)
 {
 	this->reason = reason;
 }

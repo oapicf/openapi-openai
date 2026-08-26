@@ -15,7 +15,7 @@ import org.openapitools.model.RealtimeServerEventConversationItemInputAudioTrans
  **/
 
 @ApiModel(description = "Returned when input audio transcription is configured, and a transcription  request for a user message failed. These events are separate from other  `error` events so that the client can identify the related Item. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-26T05:15:28.776347668Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeServerEventConversationItemInputAudioTranscriptionFailed   {
   @JsonProperty("event_id")
   private String eventId;
@@ -191,10 +191,7 @@ public class RealtimeServerEventConversationItemInputAudioTranscriptionFailed   
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

@@ -32,7 +32,7 @@ class  RealtimeClientEventInputAudioBufferAppend
 {
 public:
     RealtimeClientEventInputAudioBufferAppend();
-    virtual ~RealtimeClientEventInputAudioBufferAppend() = default;
+    virtual ~RealtimeClientEventInputAudioBufferAppend();
 
 
     /// <summary>

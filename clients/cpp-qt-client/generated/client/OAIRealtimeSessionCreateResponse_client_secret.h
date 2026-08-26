@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIRealtimeSessionCreateResponse_client_secret : public OAIObject {
 public:
     OAIRealtimeSessionCreateResponse_client_secret();
-    OAIRealtimeSessionCreateResponse_client_secret(QString json);
+    OAIRealtimeSessionCreateResponse_client_secret(const QString &json);
     ~OAIRealtimeSessionCreateResponse_client_secret() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getValue() const;
     void setValue(const QString &value);

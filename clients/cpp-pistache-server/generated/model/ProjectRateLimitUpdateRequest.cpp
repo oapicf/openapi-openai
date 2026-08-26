@@ -36,6 +36,8 @@ ProjectRateLimitUpdateRequest::ProjectRateLimitUpdateRequest()
     
 }
 
+ProjectRateLimitUpdateRequest::~ProjectRateLimitUpdateRequest() = default;
+
 void ProjectRateLimitUpdateRequest::validate() const
 {
     std::stringstream msg;

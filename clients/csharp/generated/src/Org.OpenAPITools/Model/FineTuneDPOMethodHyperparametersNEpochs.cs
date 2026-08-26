@@ -89,8 +89,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTuneDPOMethodHyperparametersNEpochs" />
     /// </summary>
-    public class FineTuneDPOMethodHyperparametersNEpochsJsonConverter : JsonConverter<FineTuneDPOMethodHyperparametersNEpochs>
+    public partial class FineTuneDPOMethodHyperparametersNEpochsJsonConverter : JsonConverter<FineTuneDPOMethodHyperparametersNEpochs>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTuneDPOMethodHyperparametersNEpochsJsonConverter" /> class.
+        /// </summary>
+        public FineTuneDPOMethodHyperparametersNEpochsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTuneDPOMethodHyperparametersNEpochs" />
         /// </summary>

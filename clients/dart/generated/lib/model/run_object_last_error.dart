@@ -55,10 +55,10 @@ class RunObjectLastError {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunObjectLastError[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunObjectLastError[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'code'), 'Required key "RunObjectLastError[code]" is missing from JSON.');
+        assert(json[r'code'] != null, 'Required key "RunObjectLastError[code]" has a null value in JSON.');
+        assert(json.containsKey(r'message'), 'Required key "RunObjectLastError[message]" is missing from JSON.');
+        assert(json[r'message'] != null, 'Required key "RunObjectLastError[message]" has a null value in JSON.');
         return true;
       }());
 
@@ -118,31 +118,30 @@ class RunObjectLastError {
 }
 
 /// One of `server_error`, `rate_limit_exceeded`, or `invalid_prompt`.
-class RunObjectLastErrorCodeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunObjectLastErrorCodeEnum._(this.value);
+enum RunObjectLastErrorCodeEnum {
+  serverError._(r'server_error'),
+  rateLimitExceeded._(r'rate_limit_exceeded'),
+  invalidPrompt._(r'invalid_prompt'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunObjectLastErrorCodeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const serverError = RunObjectLastErrorCodeEnum._(r'server_error');
-  static const rateLimitExceeded = RunObjectLastErrorCodeEnum._(r'rate_limit_exceeded');
-  static const invalidPrompt = RunObjectLastErrorCodeEnum._(r'invalid_prompt');
-
-  /// List of all possible values in this [enum][RunObjectLastErrorCodeEnum].
-  static const values = <RunObjectLastErrorCodeEnum>[
-    serverError,
-    rateLimitExceeded,
-    invalidPrompt,
-  ];
-
+  /// Returns the instance of [RunObjectLastErrorCodeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunObjectLastErrorCodeEnum? fromJson(dynamic value) => RunObjectLastErrorCodeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunObjectLastErrorCodeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunObjectLastErrorCodeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunObjectLastErrorCodeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -164,9 +163,10 @@ class RunObjectLastErrorCodeEnumTypeTransformer {
 
   const RunObjectLastErrorCodeEnumTypeTransformer._();
 
-  String encode(RunObjectLastErrorCodeEnum data) => data.value;
+  String encode(RunObjectLastErrorCodeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunObjectLastErrorCodeEnum.
+  /// Returns the instance of [RunObjectLastErrorCodeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -175,6 +175,9 @@ class RunObjectLastErrorCodeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunObjectLastErrorCodeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunObjectLastErrorCodeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'server_error': return RunObjectLastErrorCodeEnum.serverError;
@@ -189,7 +192,7 @@ class RunObjectLastErrorCodeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunObjectLastErrorCodeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunObjectLastErrorCodeEnumTypeTransformer? _instance;
 }
 

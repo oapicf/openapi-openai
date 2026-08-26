@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRealtimeResponseCreateParams_tools_inner::OAIRealtimeResponseCreateParams_tools_inner(QString json) {
+OAIRealtimeResponseCreateParams_tools_inner::OAIRealtimeResponseCreateParams_tools_inner(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -47,7 +47,7 @@ void OAIRealtimeResponseCreateParams_tools_inner::initializeModel() {
     m_parameters_isValid = false;
 }
 
-void OAIRealtimeResponseCreateParams_tools_inner::fromJson(QString jsonString) {
+void OAIRealtimeResponseCreateParams_tools_inner::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

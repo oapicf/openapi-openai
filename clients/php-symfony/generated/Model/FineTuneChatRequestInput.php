@@ -49,7 +49,7 @@ class FineTuneChatRequestInput
      * @var FineTuneChatRequestInputMessagesInner[]|null
      * @SerializedName("messages")
      * @Type("array<OpenAPI\Server\Model\FineTuneChatRequestInputMessagesInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\FineTuneChatRequestInputMessagesInner"),
     ])]
@@ -62,7 +62,7 @@ class FineTuneChatRequestInput
      * @var ChatCompletionTool[]|null
      * @SerializedName("tools")
      * @Type("array<OpenAPI\Server\Model\ChatCompletionTool>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\ChatCompletionTool"),
     ])]
@@ -74,7 +74,7 @@ class FineTuneChatRequestInput
      * @var bool|null
      * @SerializedName("parallel_tool_calls")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $parallelToolCalls = true;
 
@@ -84,7 +84,7 @@ class FineTuneChatRequestInput
      * @var ChatCompletionFunctions[]|null
      * @SerializedName("functions")
      * @Type("array<OpenAPI\Server\Model\ChatCompletionFunctions>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\ChatCompletionFunctions"),
     ])]
@@ -117,12 +117,12 @@ class FineTuneChatRequestInput
     }
 
     /**
-    * Sets messages.
-    *
-    * @param FineTuneChatRequestInputMessagesInner[]|null $messages
-    *
-    * @return $this
-    */
+     * Sets messages.
+     *
+     * @param FineTuneChatRequestInputMessagesInner[]|null $messages
+     *
+     * @return $this
+     */
     public function setMessages(?array $messages = null): self
     {
         $this->messages = $messages;
@@ -144,12 +144,12 @@ class FineTuneChatRequestInput
     }
 
     /**
-    * Sets tools.
-    *
-    * @param ChatCompletionTool[]|null $tools  A list of tools the model may generate JSON inputs for.
-    *
-    * @return $this
-    */
+     * Sets tools.
+     *
+     * @param ChatCompletionTool[]|null $tools  A list of tools the model may generate JSON inputs for.
+     *
+     * @return $this
+     */
     public function setTools(?array $tools = null): self
     {
         $this->tools = $tools;
@@ -171,12 +171,12 @@ class FineTuneChatRequestInput
     }
 
     /**
-    * Sets parallelToolCalls.
-    *
-    * @param bool|null $parallelToolCalls  Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
-    *
-    * @return $this
-    */
+     * Sets parallelToolCalls.
+     *
+     * @param bool|null $parallelToolCalls  Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+     *
+     * @return $this
+     */
     public function setParallelToolCalls(?bool $parallelToolCalls = null): self
     {
         $this->parallelToolCalls = $parallelToolCalls;
@@ -198,12 +198,12 @@ class FineTuneChatRequestInput
     }
 
     /**
-    * Sets functions.
-    *
-    * @param ChatCompletionFunctions[]|null $functions  A list of functions the model may generate JSON inputs for.
-    *
-    * @return $this
-    */
+     * Sets functions.
+     *
+     * @param ChatCompletionFunctions[]|null $functions  A list of functions the model may generate JSON inputs for.
+     *
+     * @return $this
+     */
     public function setFunctions(?array $functions = null): self
     {
         $this->functions = $functions;

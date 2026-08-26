@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRealtimeResponse_usage_output_token_details::OAIRealtimeResponse_usage_output_token_details(QString json) {
+OAIRealtimeResponse_usage_output_token_details::OAIRealtimeResponse_usage_output_token_details(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIRealtimeResponse_usage_output_token_details::initializeModel() {
     m_audio_tokens_isValid = false;
 }
 
-void OAIRealtimeResponse_usage_output_token_details::fromJson(QString jsonString) {
+void OAIRealtimeResponse_usage_output_token_details::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

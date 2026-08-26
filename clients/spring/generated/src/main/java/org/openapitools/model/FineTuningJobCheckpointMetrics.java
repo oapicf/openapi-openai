@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -9,13 +10,13 @@ import java.math.BigDecimal;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Metrics at the step number during the fine-tuning job.
@@ -23,21 +24,28 @@ import javax.annotation.Generated;
 
 @Schema(name = "FineTuningJobCheckpoint_metrics", description = "Metrics at the step number during the fine-tuning job.")
 @JsonTypeName("FineTuningJobCheckpoint_metrics")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTuningJobCheckpointMetrics {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BigDecimal step;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BigDecimal trainLoss;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BigDecimal trainMeanTokenAccuracy;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BigDecimal validLoss;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BigDecimal validMeanTokenAccuracy;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BigDecimal fullValidLoss;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BigDecimal fullValidMeanTokenAccuracy;
 
   public FineTuningJobCheckpointMetrics step(@Nullable BigDecimal step) {
@@ -56,6 +64,7 @@ public class FineTuningJobCheckpointMetrics {
     return step;
   }
 
+  @JsonProperty("step")
   public void setStep(@Nullable BigDecimal step) {
     this.step = step;
   }
@@ -76,6 +85,7 @@ public class FineTuningJobCheckpointMetrics {
     return trainLoss;
   }
 
+  @JsonProperty("train_loss")
   public void setTrainLoss(@Nullable BigDecimal trainLoss) {
     this.trainLoss = trainLoss;
   }
@@ -96,6 +106,7 @@ public class FineTuningJobCheckpointMetrics {
     return trainMeanTokenAccuracy;
   }
 
+  @JsonProperty("train_mean_token_accuracy")
   public void setTrainMeanTokenAccuracy(@Nullable BigDecimal trainMeanTokenAccuracy) {
     this.trainMeanTokenAccuracy = trainMeanTokenAccuracy;
   }
@@ -116,6 +127,7 @@ public class FineTuningJobCheckpointMetrics {
     return validLoss;
   }
 
+  @JsonProperty("valid_loss")
   public void setValidLoss(@Nullable BigDecimal validLoss) {
     this.validLoss = validLoss;
   }
@@ -136,6 +148,7 @@ public class FineTuningJobCheckpointMetrics {
     return validMeanTokenAccuracy;
   }
 
+  @JsonProperty("valid_mean_token_accuracy")
   public void setValidMeanTokenAccuracy(@Nullable BigDecimal validMeanTokenAccuracy) {
     this.validMeanTokenAccuracy = validMeanTokenAccuracy;
   }
@@ -156,6 +169,7 @@ public class FineTuningJobCheckpointMetrics {
     return fullValidLoss;
   }
 
+  @JsonProperty("full_valid_loss")
   public void setFullValidLoss(@Nullable BigDecimal fullValidLoss) {
     this.fullValidLoss = fullValidLoss;
   }
@@ -176,6 +190,7 @@ public class FineTuningJobCheckpointMetrics {
     return fullValidMeanTokenAccuracy;
   }
 
+  @JsonProperty("full_valid_mean_token_accuracy")
   public void setFullValidMeanTokenAccuracy(@Nullable BigDecimal fullValidMeanTokenAccuracy) {
     this.fullValidMeanTokenAccuracy = fullValidMeanTokenAccuracy;
   }
@@ -222,11 +237,8 @@ public class FineTuningJobCheckpointMetrics {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

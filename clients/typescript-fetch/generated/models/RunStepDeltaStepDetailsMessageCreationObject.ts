@@ -29,7 +29,7 @@ import {
 export interface RunStepDeltaStepDetailsMessageCreationObject {
     /**
      * Always `message_creation`.
-     * @type {string}
+     * @type {RunStepDeltaStepDetailsMessageCreationObjectTypeEnum}
      * @memberof RunStepDeltaStepDetailsMessageCreationObject
      */
     type: RunStepDeltaStepDetailsMessageCreationObjectTypeEnum;
@@ -56,6 +56,8 @@ export type RunStepDeltaStepDetailsMessageCreationObjectTypeEnum = typeof RunSte
  */
 export function instanceOfRunStepDeltaStepDetailsMessageCreationObject(value: object): value is RunStepDeltaStepDetailsMessageCreationObject {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'message_creation') return false;
+    
     return true;
 }
 

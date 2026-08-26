@@ -29,6 +29,8 @@ RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::RealtimeSer
     
 }
 
+RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::~RealtimeServerEventConversationItemInputAudioTranscriptionCompleted() = default;
+
 void RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::validate() const
 {
     std::stringstream msg;

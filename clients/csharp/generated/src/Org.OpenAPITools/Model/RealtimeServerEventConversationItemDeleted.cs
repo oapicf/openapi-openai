@@ -151,8 +151,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeServerEventConversationItemDeleted" />
     /// </summary>
-    public class RealtimeServerEventConversationItemDeletedJsonConverter : JsonConverter<RealtimeServerEventConversationItemDeleted>
+    public partial class RealtimeServerEventConversationItemDeletedJsonConverter : JsonConverter<RealtimeServerEventConversationItemDeleted>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeServerEventConversationItemDeletedJsonConverter" /> class.
+        /// </summary>
+        public RealtimeServerEventConversationItemDeletedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeServerEventConversationItemDeleted" />
         /// </summary>

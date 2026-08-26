@@ -1,4 +1,4 @@
-# # UsageEmbeddingsResult
+# UsageEmbeddingsResult
 
 ## Properties
 

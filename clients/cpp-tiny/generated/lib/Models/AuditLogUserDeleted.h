@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set The user ID.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 
 
     private:

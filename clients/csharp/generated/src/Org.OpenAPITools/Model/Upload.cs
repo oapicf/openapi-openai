@@ -227,7 +227,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The object type, which is always \&quot;upload\&quot;.</value>
         [JsonPropertyName("object")]
-        public ObjectEnum? Object { get { return this.ObjectOption; } set { this.ObjectOption = new(value); } }
+        public ObjectEnum? Object { get { return this.ObjectOption.Value; } set { this.ObjectOption = new(value); } }
 
         /// <summary>
         /// The Upload unique identifier, which can be referenced in API endpoints.
@@ -282,7 +282,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets File
         /// </summary>
         [JsonPropertyName("file")]
-        public OpenAIFile? File { get { return this.FileOption; } set { this.FileOption = new(value); } }
+        public OpenAIFile? File { get { return this.FileOption.Value; } set { this.FileOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -319,8 +319,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="Upload" />
     /// </summary>
-    public class UploadJsonConverter : JsonConverter<Upload>
+    public partial class UploadJsonConverter : JsonConverter<Upload>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UploadJsonConverter" /> class.
+        /// </summary>
+        public UploadJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="Upload" />
         /// </summary>

@@ -27,6 +27,8 @@ InviteRequest::InviteRequest()
     
 }
 
+InviteRequest::~InviteRequest() = default;
+
 void InviteRequest::validate() const
 {
     std::stringstream msg;

@@ -51,7 +51,7 @@ class RealtimeServerEventResponseContentPartDonePart
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['audio', 'text'])]
     #[Assert\Type("string")]
     protected ?string $type = null;
@@ -62,7 +62,7 @@ class RealtimeServerEventResponseContentPartDonePart
      * @var string|null
      * @SerializedName("text")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $text = null;
 
@@ -72,7 +72,7 @@ class RealtimeServerEventResponseContentPartDonePart
      * @var string|null
      * @SerializedName("audio")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $audio = null;
 
@@ -82,7 +82,7 @@ class RealtimeServerEventResponseContentPartDonePart
      * @var string|null
      * @SerializedName("transcript")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $transcript = null;
 
@@ -111,12 +111,12 @@ class RealtimeServerEventResponseContentPartDonePart
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The content type (\"text\", \"audio\").
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The content type (\"text\", \"audio\").
+     *
+     * @return $this
+     */
     public function setType(?string $type = null): self
     {
         $this->type = $type;
@@ -138,12 +138,12 @@ class RealtimeServerEventResponseContentPartDonePart
     }
 
     /**
-    * Sets text.
-    *
-    * @param string|null $text  The text content (if type is \"text\").
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param string|null $text  The text content (if type is \"text\").
+     *
+     * @return $this
+     */
     public function setText(?string $text = null): self
     {
         $this->text = $text;
@@ -165,12 +165,12 @@ class RealtimeServerEventResponseContentPartDonePart
     }
 
     /**
-    * Sets audio.
-    *
-    * @param string|null $audio  Base64-encoded audio data (if type is \"audio\").
-    *
-    * @return $this
-    */
+     * Sets audio.
+     *
+     * @param string|null $audio  Base64-encoded audio data (if type is \"audio\").
+     *
+     * @return $this
+     */
     public function setAudio(?string $audio = null): self
     {
         $this->audio = $audio;
@@ -192,12 +192,12 @@ class RealtimeServerEventResponseContentPartDonePart
     }
 
     /**
-    * Sets transcript.
-    *
-    * @param string|null $transcript  The transcript of the audio (if type is \"audio\").
-    *
-    * @return $this
-    */
+     * Sets transcript.
+     *
+     * @param string|null $transcript  The transcript of the audio (if type is \"audio\").
+     *
+     * @return $this
+     */
     public function setTranscript(?string $transcript = null): self
     {
         $this->transcript = $transcript;

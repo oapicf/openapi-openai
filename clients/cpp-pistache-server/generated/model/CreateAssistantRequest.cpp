@@ -38,6 +38,8 @@ CreateAssistantRequest::CreateAssistantRequest()
     
 }
 
+CreateAssistantRequest::~CreateAssistantRequest() = default;
+
 void CreateAssistantRequest::validate() const
 {
     std::stringstream msg;

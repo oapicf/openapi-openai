@@ -49,7 +49,7 @@ class TranscriptionWord
      * @var string|null
      * @SerializedName("word")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $word = null;
@@ -60,7 +60,7 @@ class TranscriptionWord
      * @var float|null
      * @SerializedName("start")
      * @Type("float")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("float")]
     protected ?float $start = null;
@@ -71,7 +71,7 @@ class TranscriptionWord
      * @var float|null
      * @SerializedName("end")
      * @Type("float")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("float")]
     protected ?float $end = null;
@@ -100,12 +100,12 @@ class TranscriptionWord
     }
 
     /**
-    * Sets word.
-    *
-    * @param string|null $word  The text content of the word.
-    *
-    * @return $this
-    */
+     * Sets word.
+     *
+     * @param string|null $word  The text content of the word.
+     *
+     * @return $this
+     */
     public function setWord(?string $word): self
     {
         $this->word = $word;
@@ -127,12 +127,12 @@ class TranscriptionWord
     }
 
     /**
-    * Sets start.
-    *
-    * @param float|null $start  Start time of the word in seconds.
-    *
-    * @return $this
-    */
+     * Sets start.
+     *
+     * @param float|null $start  Start time of the word in seconds.
+     *
+     * @return $this
+     */
     public function setStart(?float $start): self
     {
         $this->start = $start;
@@ -154,12 +154,12 @@ class TranscriptionWord
     }
 
     /**
-    * Sets end.
-    *
-    * @param float|null $end  End time of the word in seconds.
-    *
-    * @return $this
-    */
+     * Sets end.
+     *
+     * @param float|null $end  End time of the word in seconds.
+     *
+     * @return $this
+     */
     public function setEnd(?float $end): self
     {
         $this->end = $end;

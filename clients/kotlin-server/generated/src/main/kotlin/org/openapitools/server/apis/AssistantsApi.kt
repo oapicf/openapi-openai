@@ -49,46 +49,54 @@ import org.openapitools.server.models.SubmitToolOutputsRunRequest
 import org.openapitools.server.models.ThreadObject
 
 fun Route.AssistantsApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    post<Paths.cancelRun> {
+    post<Paths.cancelRun> { cancelRun ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "cancelled_at" : 5,
-              "instructions" : "instructions",
-              "metadata" : "{}",
+              "id" : "id",
+              "object" : "thread.run",
+              "created_at" : 0,
+              "thread_id" : "thread_id",
               "assistant_id" : "assistant_id",
+              "status" : "queued",
               "required_action" : {
+                "type" : "submit_tool_outputs",
                 "submit_tool_outputs" : {
                   "tool_calls" : [ {
+                    "id" : "id",
+                    "type" : "function",
                     "function" : {
                       "name" : "name",
                       "arguments" : "arguments"
-                    },
-                    "id" : "id",
-                    "type" : "function"
+                    }
                   }, {
+                    "id" : "id",
+                    "type" : "function",
                     "function" : {
                       "name" : "name",
                       "arguments" : "arguments"
-                    },
-                    "id" : "id",
-                    "type" : "function"
+                    }
                   } ]
-                },
-                "type" : "submit_tool_outputs"
+                }
               },
-              "usage" : {
-                "completion_tokens" : 7,
-                "prompt_tokens" : 9,
-                "total_tokens" : 3
+              "last_error" : {
+                "code" : "server_error",
+                "message" : "message"
               },
-              "created_at" : 0,
+              "expires_at" : 6,
+              "started_at" : 1,
+              "cancelled_at" : 5,
+              "failed_at" : 5,
+              "completed_at" : 2,
+              "incomplete_details" : {
+                "reason" : "max_completion_tokens"
+              },
+              "model" : "model",
+              "instructions" : "instructions",
               "tools" : [ {
                 "type" : "code_interpreter"
               }, {
@@ -100,33 +108,23 @@ fun Route.AssistantsApi() {
               }, {
                 "type" : "code_interpreter"
               } ],
-              "top_p" : 4.145608029883936,
-              "max_completion_tokens" : 256,
-              "thread_id" : "thread_id",
-              "expires_at" : 6,
-              "response_format" : "auto",
+              "metadata" : "{}",
+              "usage" : {
+                "completion_tokens" : 7,
+                "prompt_tokens" : 9,
+                "total_tokens" : 3
+              },
               "temperature" : 2.027123023002322,
-              "tool_choice" : "none",
-              "model" : "model",
-              "id" : "id",
-              "last_error" : {
-                "code" : "server_error",
-                "message" : "message"
-              },
-              "incomplete_details" : {
-                "reason" : "max_completion_tokens"
-              },
-              "truncation_strategy" : {
-                "last_messages" : 1,
-                "type" : "auto"
-              },
-              "completed_at" : 2,
-              "parallel_tool_calls" : true,
-              "started_at" : 1,
-              "failed_at" : 5,
+              "top_p" : 4.145608029883936,
               "max_prompt_tokens" : 256,
-              "object" : "thread.run",
-              "status" : "queued"
+              "max_completion_tokens" : 256,
+              "truncation_strategy" : {
+                "type" : "auto",
+                "last_messages" : 1
+              },
+              "tool_choice" : "none",
+              "parallel_tool_calls" : true,
+              "response_format" : "auto"
             }"""
             
             when (exampleContentType) {
@@ -137,16 +135,32 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createAssistant> {
+    post<Paths.createAssistant> { createAssistant ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "id" : "id",
+              "object" : "assistant",
+              "created_at" : 0,
+              "name" : "name",
+              "description" : "description",
+              "model" : "model",
               "instructions" : "instructions",
+              "tools" : [ {
+                "type" : "code_interpreter"
+              }, {
+                "type" : "code_interpreter"
+              }, {
+                "type" : "code_interpreter"
+              }, {
+                "type" : "code_interpreter"
+              }, {
+                "type" : "code_interpreter"
+              } ],
               "tool_resources" : {
                 "code_interpreter" : {
                   "file_ids" : [ "file_ids", "file_ids", "file_ids", "file_ids", "file_ids" ]
@@ -156,26 +170,9 @@ fun Route.AssistantsApi() {
                 }
               },
               "metadata" : "{}",
-              "created_at" : 0,
-              "description" : "description",
-              "tools" : [ {
-                "type" : "code_interpreter"
-              }, {
-                "type" : "code_interpreter"
-              }, {
-                "type" : "code_interpreter"
-              }, {
-                "type" : "code_interpreter"
-              }, {
-                "type" : "code_interpreter"
-              } ],
-              "top_p" : 1,
-              "response_format" : "auto",
-              "name" : "name",
               "temperature" : 1,
-              "model" : "model",
-              "id" : "id",
-              "object" : "assistant"
+              "top_p" : 1,
+              "response_format" : "auto"
             }"""
             
             when (exampleContentType) {
@@ -186,17 +183,38 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createMessage> {
+    post<Paths.createMessage> { createMessage ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "metadata" : "{}",
+              "id" : "id",
+              "object" : "thread.message",
+              "created_at" : 0,
+              "thread_id" : "thread_id",
+              "status" : "in_progress",
+              "incomplete_details" : {
+                "reason" : "content_filter"
+              },
+              "completed_at" : 6,
+              "incomplete_at" : 1,
               "role" : "user",
+              "content" : [ {
+                "type" : "image_file",
+                "image_file" : {
+                  "file_id" : "file_id",
+                  "detail" : "auto"
+                }
+              }, {
+                "type" : "image_file",
+                "image_file" : {
+                  "file_id" : "file_id",
+                  "detail" : "auto"
+                }
+              } ],
               "assistant_id" : "assistant_id",
               "run_id" : "run_id",
               "attachments" : [ {
@@ -214,29 +232,7 @@ fun Route.AssistantsApi() {
                   "type" : "code_interpreter"
                 } ]
               } ],
-              "created_at" : 0,
-              "content" : [ {
-                "image_file" : {
-                  "file_id" : "file_id",
-                  "detail" : "auto"
-                },
-                "type" : "image_file"
-              }, {
-                "image_file" : {
-                  "file_id" : "file_id",
-                  "detail" : "auto"
-                },
-                "type" : "image_file"
-              } ],
-              "completed_at" : 6,
-              "thread_id" : "thread_id",
-              "id" : "id",
-              "incomplete_at" : 1,
-              "incomplete_details" : {
-                "reason" : "content_filter"
-              },
-              "object" : "thread.message",
-              "status" : "in_progress"
+              "metadata" : "{}"
             }"""
             
             when (exampleContentType) {
@@ -247,45 +243,54 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createRun> {
+    post<Paths.createRun> { createRun ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "cancelled_at" : 5,
-              "instructions" : "instructions",
-              "metadata" : "{}",
+              "id" : "id",
+              "object" : "thread.run",
+              "created_at" : 0,
+              "thread_id" : "thread_id",
               "assistant_id" : "assistant_id",
+              "status" : "queued",
               "required_action" : {
+                "type" : "submit_tool_outputs",
                 "submit_tool_outputs" : {
                   "tool_calls" : [ {
+                    "id" : "id",
+                    "type" : "function",
                     "function" : {
                       "name" : "name",
                       "arguments" : "arguments"
-                    },
-                    "id" : "id",
-                    "type" : "function"
+                    }
                   }, {
+                    "id" : "id",
+                    "type" : "function",
                     "function" : {
                       "name" : "name",
                       "arguments" : "arguments"
-                    },
-                    "id" : "id",
-                    "type" : "function"
+                    }
                   } ]
-                },
-                "type" : "submit_tool_outputs"
+                }
               },
-              "usage" : {
-                "completion_tokens" : 7,
-                "prompt_tokens" : 9,
-                "total_tokens" : 3
+              "last_error" : {
+                "code" : "server_error",
+                "message" : "message"
               },
-              "created_at" : 0,
+              "expires_at" : 6,
+              "started_at" : 1,
+              "cancelled_at" : 5,
+              "failed_at" : 5,
+              "completed_at" : 2,
+              "incomplete_details" : {
+                "reason" : "max_completion_tokens"
+              },
+              "model" : "model",
+              "instructions" : "instructions",
               "tools" : [ {
                 "type" : "code_interpreter"
               }, {
@@ -297,33 +302,23 @@ fun Route.AssistantsApi() {
               }, {
                 "type" : "code_interpreter"
               } ],
-              "top_p" : 4.145608029883936,
-              "max_completion_tokens" : 256,
-              "thread_id" : "thread_id",
-              "expires_at" : 6,
-              "response_format" : "auto",
+              "metadata" : "{}",
+              "usage" : {
+                "completion_tokens" : 7,
+                "prompt_tokens" : 9,
+                "total_tokens" : 3
+              },
               "temperature" : 2.027123023002322,
-              "tool_choice" : "none",
-              "model" : "model",
-              "id" : "id",
-              "last_error" : {
-                "code" : "server_error",
-                "message" : "message"
-              },
-              "incomplete_details" : {
-                "reason" : "max_completion_tokens"
-              },
-              "truncation_strategy" : {
-                "last_messages" : 1,
-                "type" : "auto"
-              },
-              "completed_at" : 2,
-              "parallel_tool_calls" : true,
-              "started_at" : 1,
-              "failed_at" : 5,
+              "top_p" : 4.145608029883936,
               "max_prompt_tokens" : 256,
-              "object" : "thread.run",
-              "status" : "queued"
+              "max_completion_tokens" : 256,
+              "truncation_strategy" : {
+                "type" : "auto",
+                "last_messages" : 1
+              },
+              "tool_choice" : "none",
+              "parallel_tool_calls" : true,
+              "response_format" : "auto"
             }"""
             
             when (exampleContentType) {
@@ -334,15 +329,17 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createThread> {
+    post<Paths.createThread> { createThread ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "id" : "id",
+              "object" : "thread",
+              "created_at" : 0,
               "tool_resources" : {
                 "code_interpreter" : {
                   "file_ids" : [ "file_ids", "file_ids", "file_ids", "file_ids", "file_ids" ]
@@ -351,10 +348,7 @@ fun Route.AssistantsApi() {
                   "vector_store_ids" : [ "vector_store_ids" ]
                 }
               },
-              "metadata" : "{}",
-              "created_at" : 0,
-              "id" : "id",
-              "object" : "thread"
+              "metadata" : "{}"
             }"""
             
             when (exampleContentType) {
@@ -365,45 +359,54 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createThreadAndRun> {
+    post<Paths.createThreadAndRun> { createThreadAndRun ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "cancelled_at" : 5,
-              "instructions" : "instructions",
-              "metadata" : "{}",
+              "id" : "id",
+              "object" : "thread.run",
+              "created_at" : 0,
+              "thread_id" : "thread_id",
               "assistant_id" : "assistant_id",
+              "status" : "queued",
               "required_action" : {
+                "type" : "submit_tool_outputs",
                 "submit_tool_outputs" : {
                   "tool_calls" : [ {
+                    "id" : "id",
+                    "type" : "function",
                     "function" : {
                       "name" : "name",
                       "arguments" : "arguments"
-                    },
-                    "id" : "id",
-                    "type" : "function"
+                    }
                   }, {
+                    "id" : "id",
+                    "type" : "function",
                     "function" : {
                       "name" : "name",
                       "arguments" : "arguments"
-                    },
-                    "id" : "id",
-                    "type" : "function"
+                    }
                   } ]
-                },
-                "type" : "submit_tool_outputs"
+                }
               },
-              "usage" : {
-                "completion_tokens" : 7,
-                "prompt_tokens" : 9,
-                "total_tokens" : 3
+              "last_error" : {
+                "code" : "server_error",
+                "message" : "message"
               },
-              "created_at" : 0,
+              "expires_at" : 6,
+              "started_at" : 1,
+              "cancelled_at" : 5,
+              "failed_at" : 5,
+              "completed_at" : 2,
+              "incomplete_details" : {
+                "reason" : "max_completion_tokens"
+              },
+              "model" : "model",
+              "instructions" : "instructions",
               "tools" : [ {
                 "type" : "code_interpreter"
               }, {
@@ -415,33 +418,23 @@ fun Route.AssistantsApi() {
               }, {
                 "type" : "code_interpreter"
               } ],
-              "top_p" : 4.145608029883936,
-              "max_completion_tokens" : 256,
-              "thread_id" : "thread_id",
-              "expires_at" : 6,
-              "response_format" : "auto",
+              "metadata" : "{}",
+              "usage" : {
+                "completion_tokens" : 7,
+                "prompt_tokens" : 9,
+                "total_tokens" : 3
+              },
               "temperature" : 2.027123023002322,
-              "tool_choice" : "none",
-              "model" : "model",
-              "id" : "id",
-              "last_error" : {
-                "code" : "server_error",
-                "message" : "message"
-              },
-              "incomplete_details" : {
-                "reason" : "max_completion_tokens"
-              },
-              "truncation_strategy" : {
-                "last_messages" : 1,
-                "type" : "auto"
-              },
-              "completed_at" : 2,
-              "parallel_tool_calls" : true,
-              "started_at" : 1,
-              "failed_at" : 5,
+              "top_p" : 4.145608029883936,
               "max_prompt_tokens" : 256,
-              "object" : "thread.run",
-              "status" : "queued"
+              "max_completion_tokens" : 256,
+              "truncation_strategy" : {
+                "type" : "auto",
+                "last_messages" : 1
+              },
+              "tool_choice" : "none",
+              "parallel_tool_calls" : true,
+              "response_format" : "auto"
             }"""
             
             when (exampleContentType) {
@@ -452,17 +445,16 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    delete<Paths.deleteAssistant> {
+    delete<Paths.deleteAssistant> { deleteAssistant ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "deleted" : true,
               "id" : "id",
+              "deleted" : true,
               "object" : "assistant.deleted"
             }"""
             
@@ -474,17 +466,16 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    delete<Paths.deleteMessage> {
+    delete<Paths.deleteMessage> { deleteMessage ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "deleted" : true,
               "id" : "id",
+              "deleted" : true,
               "object" : "thread.message.deleted"
             }"""
             
@@ -496,17 +487,16 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    delete<Paths.deleteThread> {
+    delete<Paths.deleteThread> { deleteThread ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "deleted" : true,
               "id" : "id",
+              "deleted" : true,
               "object" : "thread.deleted"
             }"""
             
@@ -518,27 +508,21 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.getAssistant> {
+    get<Paths.getAssistant> { getAssistant ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "instructions" : "instructions",
-              "tool_resources" : {
-                "code_interpreter" : {
-                  "file_ids" : [ "file_ids", "file_ids", "file_ids", "file_ids", "file_ids" ]
-                },
-                "file_search" : {
-                  "vector_store_ids" : [ "vector_store_ids" ]
-                }
-              },
-              "metadata" : "{}",
+              "id" : "id",
+              "object" : "assistant",
               "created_at" : 0,
+              "name" : "name",
               "description" : "description",
+              "model" : "model",
+              "instructions" : "instructions",
               "tools" : [ {
                 "type" : "code_interpreter"
               }, {
@@ -550,13 +534,18 @@ fun Route.AssistantsApi() {
               }, {
                 "type" : "code_interpreter"
               } ],
-              "top_p" : 1,
-              "response_format" : "auto",
-              "name" : "name",
+              "tool_resources" : {
+                "code_interpreter" : {
+                  "file_ids" : [ "file_ids", "file_ids", "file_ids", "file_ids", "file_ids" ]
+                },
+                "file_search" : {
+                  "vector_store_ids" : [ "vector_store_ids" ]
+                }
+              },
+              "metadata" : "{}",
               "temperature" : 1,
-              "model" : "model",
-              "id" : "id",
-              "object" : "assistant"
+              "top_p" : 1,
+              "response_format" : "auto"
             }"""
             
             when (exampleContentType) {
@@ -567,17 +556,38 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.getMessage> {
+    get<Paths.getMessage> { getMessage ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "metadata" : "{}",
+              "id" : "id",
+              "object" : "thread.message",
+              "created_at" : 0,
+              "thread_id" : "thread_id",
+              "status" : "in_progress",
+              "incomplete_details" : {
+                "reason" : "content_filter"
+              },
+              "completed_at" : 6,
+              "incomplete_at" : 1,
               "role" : "user",
+              "content" : [ {
+                "type" : "image_file",
+                "image_file" : {
+                  "file_id" : "file_id",
+                  "detail" : "auto"
+                }
+              }, {
+                "type" : "image_file",
+                "image_file" : {
+                  "file_id" : "file_id",
+                  "detail" : "auto"
+                }
+              } ],
               "assistant_id" : "assistant_id",
               "run_id" : "run_id",
               "attachments" : [ {
@@ -595,29 +605,7 @@ fun Route.AssistantsApi() {
                   "type" : "code_interpreter"
                 } ]
               } ],
-              "created_at" : 0,
-              "content" : [ {
-                "image_file" : {
-                  "file_id" : "file_id",
-                  "detail" : "auto"
-                },
-                "type" : "image_file"
-              }, {
-                "image_file" : {
-                  "file_id" : "file_id",
-                  "detail" : "auto"
-                },
-                "type" : "image_file"
-              } ],
-              "completed_at" : 6,
-              "thread_id" : "thread_id",
-              "id" : "id",
-              "incomplete_at" : 1,
-              "incomplete_details" : {
-                "reason" : "content_filter"
-              },
-              "object" : "thread.message",
-              "status" : "in_progress"
+              "metadata" : "{}"
             }"""
             
             when (exampleContentType) {
@@ -628,45 +616,54 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.getRun> {
+    get<Paths.getRun> { getRun ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "cancelled_at" : 5,
-              "instructions" : "instructions",
-              "metadata" : "{}",
+              "id" : "id",
+              "object" : "thread.run",
+              "created_at" : 0,
+              "thread_id" : "thread_id",
               "assistant_id" : "assistant_id",
+              "status" : "queued",
               "required_action" : {
+                "type" : "submit_tool_outputs",
                 "submit_tool_outputs" : {
                   "tool_calls" : [ {
+                    "id" : "id",
+                    "type" : "function",
                     "function" : {
                       "name" : "name",
                       "arguments" : "arguments"
-                    },
-                    "id" : "id",
-                    "type" : "function"
+                    }
                   }, {
+                    "id" : "id",
+                    "type" : "function",
                     "function" : {
                       "name" : "name",
                       "arguments" : "arguments"
-                    },
-                    "id" : "id",
-                    "type" : "function"
+                    }
                   } ]
-                },
-                "type" : "submit_tool_outputs"
+                }
               },
-              "usage" : {
-                "completion_tokens" : 7,
-                "prompt_tokens" : 9,
-                "total_tokens" : 3
+              "last_error" : {
+                "code" : "server_error",
+                "message" : "message"
               },
-              "created_at" : 0,
+              "expires_at" : 6,
+              "started_at" : 1,
+              "cancelled_at" : 5,
+              "failed_at" : 5,
+              "completed_at" : 2,
+              "incomplete_details" : {
+                "reason" : "max_completion_tokens"
+              },
+              "model" : "model",
+              "instructions" : "instructions",
               "tools" : [ {
                 "type" : "code_interpreter"
               }, {
@@ -678,33 +675,23 @@ fun Route.AssistantsApi() {
               }, {
                 "type" : "code_interpreter"
               } ],
-              "top_p" : 4.145608029883936,
-              "max_completion_tokens" : 256,
-              "thread_id" : "thread_id",
-              "expires_at" : 6,
-              "response_format" : "auto",
+              "metadata" : "{}",
+              "usage" : {
+                "completion_tokens" : 7,
+                "prompt_tokens" : 9,
+                "total_tokens" : 3
+              },
               "temperature" : 2.027123023002322,
-              "tool_choice" : "none",
-              "model" : "model",
-              "id" : "id",
-              "last_error" : {
-                "code" : "server_error",
-                "message" : "message"
-              },
-              "incomplete_details" : {
-                "reason" : "max_completion_tokens"
-              },
-              "truncation_strategy" : {
-                "last_messages" : 1,
-                "type" : "auto"
-              },
-              "completed_at" : 2,
-              "parallel_tool_calls" : true,
-              "started_at" : 1,
-              "failed_at" : 5,
+              "top_p" : 4.145608029883936,
               "max_prompt_tokens" : 256,
-              "object" : "thread.run",
-              "status" : "queued"
+              "max_completion_tokens" : 256,
+              "truncation_strategy" : {
+                "type" : "auto",
+                "last_messages" : 1
+              },
+              "tool_choice" : "none",
+              "parallel_tool_calls" : true,
+              "response_format" : "auto"
             }"""
             
             when (exampleContentType) {
@@ -715,43 +702,42 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.getRunStep> {
+    get<Paths.getRunStep> { getRunStep ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "cancelled_at" : 1,
-              "metadata" : "{}",
+              "id" : "id",
+              "object" : "thread.run.step",
+              "created_at" : 0,
               "assistant_id" : "assistant_id",
+              "thread_id" : "thread_id",
               "run_id" : "run_id",
+              "type" : "message_creation",
+              "status" : "in_progress",
+              "step_details" : {
+                "type" : "message_creation",
+                "message_creation" : {
+                  "message_id" : "message_id"
+                }
+              },
+              "last_error" : {
+                "code" : "server_error",
+                "message" : "message"
+              },
+              "expired_at" : 6,
+              "cancelled_at" : 1,
+              "failed_at" : 5,
+              "completed_at" : 5,
+              "metadata" : "{}",
               "usage" : {
                 "completion_tokens" : 2,
                 "prompt_tokens" : 7,
                 "total_tokens" : 9
-              },
-              "created_at" : 0,
-              "expired_at" : 6,
-              "type" : "message_creation",
-              "step_details" : {
-                "message_creation" : {
-                  "message_id" : "message_id"
-                },
-                "type" : "message_creation"
-              },
-              "completed_at" : 5,
-              "thread_id" : "thread_id",
-              "id" : "id",
-              "last_error" : {
-                "code" : "server_error",
-                "message" : "message"
-              },
-              "failed_at" : 5,
-              "object" : "thread.run.step",
-              "status" : "in_progress"
+              }
             }"""
             
             when (exampleContentType) {
@@ -762,15 +748,17 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.getThread> {
+    get<Paths.getThread> { getThread ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "id" : "id",
+              "object" : "thread",
+              "created_at" : 0,
               "tool_resources" : {
                 "code_interpreter" : {
                   "file_ids" : [ "file_ids", "file_ids", "file_ids", "file_ids", "file_ids" ]
@@ -779,10 +767,7 @@ fun Route.AssistantsApi() {
                   "vector_store_ids" : [ "vector_store_ids" ]
                 }
               },
-              "metadata" : "{}",
-              "created_at" : 0,
-              "id" : "id",
-              "object" : "thread"
+              "metadata" : "{}"
             }"""
             
             when (exampleContentType) {
@@ -793,82 +778,81 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listAssistants> {
+    get<Paths.listAssistants> { listAssistants ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "object" : "list",
+              "data" : [ {
+                "id" : "id",
+                "object" : "assistant",
+                "created_at" : 0,
+                "name" : "name",
+                "description" : "description",
+                "model" : "model",
+                "instructions" : "instructions",
+                "tools" : [ {
+                  "type" : "code_interpreter"
+                }, {
+                  "type" : "code_interpreter"
+                }, {
+                  "type" : "code_interpreter"
+                }, {
+                  "type" : "code_interpreter"
+                }, {
+                  "type" : "code_interpreter"
+                } ],
+                "tool_resources" : {
+                  "code_interpreter" : {
+                    "file_ids" : [ "file_ids", "file_ids", "file_ids", "file_ids", "file_ids" ]
+                  },
+                  "file_search" : {
+                    "vector_store_ids" : [ "vector_store_ids" ]
+                  }
+                },
+                "metadata" : "{}",
+                "temperature" : 1,
+                "top_p" : 1,
+                "response_format" : "auto"
+              }, {
+                "id" : "id",
+                "object" : "assistant",
+                "created_at" : 0,
+                "name" : "name",
+                "description" : "description",
+                "model" : "model",
+                "instructions" : "instructions",
+                "tools" : [ {
+                  "type" : "code_interpreter"
+                }, {
+                  "type" : "code_interpreter"
+                }, {
+                  "type" : "code_interpreter"
+                }, {
+                  "type" : "code_interpreter"
+                }, {
+                  "type" : "code_interpreter"
+                } ],
+                "tool_resources" : {
+                  "code_interpreter" : {
+                    "file_ids" : [ "file_ids", "file_ids", "file_ids", "file_ids", "file_ids" ]
+                  },
+                  "file_search" : {
+                    "vector_store_ids" : [ "vector_store_ids" ]
+                  }
+                },
+                "metadata" : "{}",
+                "temperature" : 1,
+                "top_p" : 1,
+                "response_format" : "auto"
+              } ],
               "first_id" : "asst_abc123",
-              "data" : [ {
-                "instructions" : "instructions",
-                "tool_resources" : {
-                  "code_interpreter" : {
-                    "file_ids" : [ "file_ids", "file_ids", "file_ids", "file_ids", "file_ids" ]
-                  },
-                  "file_search" : {
-                    "vector_store_ids" : [ "vector_store_ids" ]
-                  }
-                },
-                "metadata" : "{}",
-                "created_at" : 0,
-                "description" : "description",
-                "tools" : [ {
-                  "type" : "code_interpreter"
-                }, {
-                  "type" : "code_interpreter"
-                }, {
-                  "type" : "code_interpreter"
-                }, {
-                  "type" : "code_interpreter"
-                }, {
-                  "type" : "code_interpreter"
-                } ],
-                "top_p" : 1,
-                "response_format" : "auto",
-                "name" : "name",
-                "temperature" : 1,
-                "model" : "model",
-                "id" : "id",
-                "object" : "assistant"
-              }, {
-                "instructions" : "instructions",
-                "tool_resources" : {
-                  "code_interpreter" : {
-                    "file_ids" : [ "file_ids", "file_ids", "file_ids", "file_ids", "file_ids" ]
-                  },
-                  "file_search" : {
-                    "vector_store_ids" : [ "vector_store_ids" ]
-                  }
-                },
-                "metadata" : "{}",
-                "created_at" : 0,
-                "description" : "description",
-                "tools" : [ {
-                  "type" : "code_interpreter"
-                }, {
-                  "type" : "code_interpreter"
-                }, {
-                  "type" : "code_interpreter"
-                }, {
-                  "type" : "code_interpreter"
-                }, {
-                  "type" : "code_interpreter"
-                } ],
-                "top_p" : 1,
-                "response_format" : "auto",
-                "name" : "name",
-                "temperature" : 1,
-                "model" : "model",
-                "id" : "id",
-                "object" : "assistant"
-              } ],
               "last_id" : "asst_abc456",
-              "has_more" : false,
-              "object" : "list"
+              "has_more" : false
             }"""
             
             when (exampleContentType) {
@@ -879,106 +863,105 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listMessages> {
+    get<Paths.listMessages> { listMessages ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "object" : "list",
+              "data" : [ {
+                "id" : "id",
+                "object" : "thread.message",
+                "created_at" : 0,
+                "thread_id" : "thread_id",
+                "status" : "in_progress",
+                "incomplete_details" : {
+                  "reason" : "content_filter"
+                },
+                "completed_at" : 6,
+                "incomplete_at" : 1,
+                "role" : "user",
+                "content" : [ {
+                  "type" : "image_file",
+                  "image_file" : {
+                    "file_id" : "file_id",
+                    "detail" : "auto"
+                  }
+                }, {
+                  "type" : "image_file",
+                  "image_file" : {
+                    "file_id" : "file_id",
+                    "detail" : "auto"
+                  }
+                } ],
+                "assistant_id" : "assistant_id",
+                "run_id" : "run_id",
+                "attachments" : [ {
+                  "file_id" : "file_id",
+                  "tools" : [ {
+                    "type" : "code_interpreter"
+                  }, {
+                    "type" : "code_interpreter"
+                  } ]
+                }, {
+                  "file_id" : "file_id",
+                  "tools" : [ {
+                    "type" : "code_interpreter"
+                  }, {
+                    "type" : "code_interpreter"
+                  } ]
+                } ],
+                "metadata" : "{}"
+              }, {
+                "id" : "id",
+                "object" : "thread.message",
+                "created_at" : 0,
+                "thread_id" : "thread_id",
+                "status" : "in_progress",
+                "incomplete_details" : {
+                  "reason" : "content_filter"
+                },
+                "completed_at" : 6,
+                "incomplete_at" : 1,
+                "role" : "user",
+                "content" : [ {
+                  "type" : "image_file",
+                  "image_file" : {
+                    "file_id" : "file_id",
+                    "detail" : "auto"
+                  }
+                }, {
+                  "type" : "image_file",
+                  "image_file" : {
+                    "file_id" : "file_id",
+                    "detail" : "auto"
+                  }
+                } ],
+                "assistant_id" : "assistant_id",
+                "run_id" : "run_id",
+                "attachments" : [ {
+                  "file_id" : "file_id",
+                  "tools" : [ {
+                    "type" : "code_interpreter"
+                  }, {
+                    "type" : "code_interpreter"
+                  } ]
+                }, {
+                  "file_id" : "file_id",
+                  "tools" : [ {
+                    "type" : "code_interpreter"
+                  }, {
+                    "type" : "code_interpreter"
+                  } ]
+                } ],
+                "metadata" : "{}"
+              } ],
               "first_id" : "msg_abc123",
-              "data" : [ {
-                "metadata" : "{}",
-                "role" : "user",
-                "assistant_id" : "assistant_id",
-                "run_id" : "run_id",
-                "attachments" : [ {
-                  "file_id" : "file_id",
-                  "tools" : [ {
-                    "type" : "code_interpreter"
-                  }, {
-                    "type" : "code_interpreter"
-                  } ]
-                }, {
-                  "file_id" : "file_id",
-                  "tools" : [ {
-                    "type" : "code_interpreter"
-                  }, {
-                    "type" : "code_interpreter"
-                  } ]
-                } ],
-                "created_at" : 0,
-                "content" : [ {
-                  "image_file" : {
-                    "file_id" : "file_id",
-                    "detail" : "auto"
-                  },
-                  "type" : "image_file"
-                }, {
-                  "image_file" : {
-                    "file_id" : "file_id",
-                    "detail" : "auto"
-                  },
-                  "type" : "image_file"
-                } ],
-                "completed_at" : 6,
-                "thread_id" : "thread_id",
-                "id" : "id",
-                "incomplete_at" : 1,
-                "incomplete_details" : {
-                  "reason" : "content_filter"
-                },
-                "object" : "thread.message",
-                "status" : "in_progress"
-              }, {
-                "metadata" : "{}",
-                "role" : "user",
-                "assistant_id" : "assistant_id",
-                "run_id" : "run_id",
-                "attachments" : [ {
-                  "file_id" : "file_id",
-                  "tools" : [ {
-                    "type" : "code_interpreter"
-                  }, {
-                    "type" : "code_interpreter"
-                  } ]
-                }, {
-                  "file_id" : "file_id",
-                  "tools" : [ {
-                    "type" : "code_interpreter"
-                  }, {
-                    "type" : "code_interpreter"
-                  } ]
-                } ],
-                "created_at" : 0,
-                "content" : [ {
-                  "image_file" : {
-                    "file_id" : "file_id",
-                    "detail" : "auto"
-                  },
-                  "type" : "image_file"
-                }, {
-                  "image_file" : {
-                    "file_id" : "file_id",
-                    "detail" : "auto"
-                  },
-                  "type" : "image_file"
-                } ],
-                "completed_at" : 6,
-                "thread_id" : "thread_id",
-                "id" : "id",
-                "incomplete_at" : 1,
-                "incomplete_details" : {
-                  "reason" : "content_filter"
-                },
-                "object" : "thread.message",
-                "status" : "in_progress"
-              } ],
               "last_id" : "msg_abc123",
-              "has_more" : false,
-              "object" : "list"
+              "has_more" : false
             }"""
             
             when (exampleContentType) {
@@ -989,271 +972,263 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listRunSteps> {
+    get<Paths.listRunSteps> { listRunSteps ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "first_id" : "step_abc123",
+              "object" : "list",
               "data" : [ {
-                "cancelled_at" : 1,
-                "metadata" : "{}",
+                "id" : "id",
+                "object" : "thread.run.step",
+                "created_at" : 0,
                 "assistant_id" : "assistant_id",
+                "thread_id" : "thread_id",
                 "run_id" : "run_id",
+                "type" : "message_creation",
+                "status" : "in_progress",
+                "step_details" : {
+                  "type" : "message_creation",
+                  "message_creation" : {
+                    "message_id" : "message_id"
+                  }
+                },
+                "last_error" : {
+                  "code" : "server_error",
+                  "message" : "message"
+                },
+                "expired_at" : 6,
+                "cancelled_at" : 1,
+                "failed_at" : 5,
+                "completed_at" : 5,
+                "metadata" : "{}",
                 "usage" : {
                   "completion_tokens" : 2,
                   "prompt_tokens" : 7,
                   "total_tokens" : 9
-                },
-                "created_at" : 0,
-                "expired_at" : 6,
-                "type" : "message_creation",
-                "step_details" : {
-                  "message_creation" : {
-                    "message_id" : "message_id"
-                  },
-                  "type" : "message_creation"
-                },
-                "completed_at" : 5,
-                "thread_id" : "thread_id",
-                "id" : "id",
-                "last_error" : {
-                  "code" : "server_error",
-                  "message" : "message"
-                },
-                "failed_at" : 5,
-                "object" : "thread.run.step",
-                "status" : "in_progress"
-              }, {
-                "cancelled_at" : 1,
-                "metadata" : "{}",
-                "assistant_id" : "assistant_id",
-                "run_id" : "run_id",
-                "usage" : {
-                  "completion_tokens" : 2,
-                  "prompt_tokens" : 7,
-                  "total_tokens" : 9
-                },
-                "created_at" : 0,
-                "expired_at" : 6,
-                "type" : "message_creation",
-                "step_details" : {
-                  "message_creation" : {
-                    "message_id" : "message_id"
-                  },
-                  "type" : "message_creation"
-                },
-                "completed_at" : 5,
-                "thread_id" : "thread_id",
-                "id" : "id",
-                "last_error" : {
-                  "code" : "server_error",
-                  "message" : "message"
-                },
-                "failed_at" : 5,
-                "object" : "thread.run.step",
-                "status" : "in_progress"
-              } ],
-              "last_id" : "step_abc456",
-              "has_more" : false,
-              "object" : "list"
-            }"""
-            
-            when (exampleContentType) {
-                "application/json" -> call.respondText(exampleContentType, ContentType.Application.Json)
-                "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
-                else -> call.respondText(exampleContentString)
-            }
-        
-    }
-    }
-
-    authenticate("ApiKeyAuth") {
-    get<Paths.listRuns> {
-        
-        val principal = null!!
-        
-        
-        val exampleContentType = "application/json"
-            val exampleContentString = """{
-              "first_id" : "run_abc123",
-              "data" : [ {
-                "cancelled_at" : 5,
-                "instructions" : "instructions",
-                "metadata" : "{}",
-                "assistant_id" : "assistant_id",
-                "required_action" : {
-                  "submit_tool_outputs" : {
-                    "tool_calls" : [ {
-                      "function" : {
-                        "name" : "name",
-                        "arguments" : "arguments"
-                      },
-                      "id" : "id",
-                      "type" : "function"
-                    }, {
-                      "function" : {
-                        "name" : "name",
-                        "arguments" : "arguments"
-                      },
-                      "id" : "id",
-                      "type" : "function"
-                    } ]
-                  },
-                  "type" : "submit_tool_outputs"
-                },
-                "usage" : {
-                  "completion_tokens" : 7,
-                  "prompt_tokens" : 9,
-                  "total_tokens" : 3
-                },
-                "created_at" : 0,
-                "tools" : [ {
-                  "type" : "code_interpreter"
-                }, {
-                  "type" : "code_interpreter"
-                }, {
-                  "type" : "code_interpreter"
-                }, {
-                  "type" : "code_interpreter"
-                }, {
-                  "type" : "code_interpreter"
-                } ],
-                "top_p" : 4.145608029883936,
-                "max_completion_tokens" : 256,
-                "thread_id" : "thread_id",
-                "expires_at" : 6,
-                "response_format" : "auto",
-                "temperature" : 2.027123023002322,
-                "tool_choice" : "none",
-                "model" : "model",
-                "id" : "id",
-                "last_error" : {
-                  "code" : "server_error",
-                  "message" : "message"
-                },
-                "incomplete_details" : {
-                  "reason" : "max_completion_tokens"
-                },
-                "truncation_strategy" : {
-                  "last_messages" : 1,
-                  "type" : "auto"
-                },
-                "completed_at" : 2,
-                "parallel_tool_calls" : true,
-                "started_at" : 1,
-                "failed_at" : 5,
-                "max_prompt_tokens" : 256,
-                "object" : "thread.run",
-                "status" : "queued"
-              }, {
-                "cancelled_at" : 5,
-                "instructions" : "instructions",
-                "metadata" : "{}",
-                "assistant_id" : "assistant_id",
-                "required_action" : {
-                  "submit_tool_outputs" : {
-                    "tool_calls" : [ {
-                      "function" : {
-                        "name" : "name",
-                        "arguments" : "arguments"
-                      },
-                      "id" : "id",
-                      "type" : "function"
-                    }, {
-                      "function" : {
-                        "name" : "name",
-                        "arguments" : "arguments"
-                      },
-                      "id" : "id",
-                      "type" : "function"
-                    } ]
-                  },
-                  "type" : "submit_tool_outputs"
-                },
-                "usage" : {
-                  "completion_tokens" : 7,
-                  "prompt_tokens" : 9,
-                  "total_tokens" : 3
-                },
-                "created_at" : 0,
-                "tools" : [ {
-                  "type" : "code_interpreter"
-                }, {
-                  "type" : "code_interpreter"
-                }, {
-                  "type" : "code_interpreter"
-                }, {
-                  "type" : "code_interpreter"
-                }, {
-                  "type" : "code_interpreter"
-                } ],
-                "top_p" : 4.145608029883936,
-                "max_completion_tokens" : 256,
-                "thread_id" : "thread_id",
-                "expires_at" : 6,
-                "response_format" : "auto",
-                "temperature" : 2.027123023002322,
-                "tool_choice" : "none",
-                "model" : "model",
-                "id" : "id",
-                "last_error" : {
-                  "code" : "server_error",
-                  "message" : "message"
-                },
-                "incomplete_details" : {
-                  "reason" : "max_completion_tokens"
-                },
-                "truncation_strategy" : {
-                  "last_messages" : 1,
-                  "type" : "auto"
-                },
-                "completed_at" : 2,
-                "parallel_tool_calls" : true,
-                "started_at" : 1,
-                "failed_at" : 5,
-                "max_prompt_tokens" : 256,
-                "object" : "thread.run",
-                "status" : "queued"
-              } ],
-              "last_id" : "run_abc456",
-              "has_more" : false,
-              "object" : "list"
-            }"""
-            
-            when (exampleContentType) {
-                "application/json" -> call.respondText(exampleContentType, ContentType.Application.Json)
-                "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
-                else -> call.respondText(exampleContentString)
-            }
-        
-    }
-    }
-
-    authenticate("ApiKeyAuth") {
-    post<Paths.modifyAssistant> {
-        
-        val principal = null!!
-        
-        
-        val exampleContentType = "application/json"
-            val exampleContentString = """{
-              "instructions" : "instructions",
-              "tool_resources" : {
-                "code_interpreter" : {
-                  "file_ids" : [ "file_ids", "file_ids", "file_ids", "file_ids", "file_ids" ]
-                },
-                "file_search" : {
-                  "vector_store_ids" : [ "vector_store_ids" ]
                 }
-              },
-              "metadata" : "{}",
+              }, {
+                "id" : "id",
+                "object" : "thread.run.step",
+                "created_at" : 0,
+                "assistant_id" : "assistant_id",
+                "thread_id" : "thread_id",
+                "run_id" : "run_id",
+                "type" : "message_creation",
+                "status" : "in_progress",
+                "step_details" : {
+                  "type" : "message_creation",
+                  "message_creation" : {
+                    "message_id" : "message_id"
+                  }
+                },
+                "last_error" : {
+                  "code" : "server_error",
+                  "message" : "message"
+                },
+                "expired_at" : 6,
+                "cancelled_at" : 1,
+                "failed_at" : 5,
+                "completed_at" : 5,
+                "metadata" : "{}",
+                "usage" : {
+                  "completion_tokens" : 2,
+                  "prompt_tokens" : 7,
+                  "total_tokens" : 9
+                }
+              } ],
+              "first_id" : "step_abc123",
+              "last_id" : "step_abc456",
+              "has_more" : false
+            }"""
+            
+            when (exampleContentType) {
+                "application/json" -> call.respondText(exampleContentType, ContentType.Application.Json)
+                "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
+                else -> call.respondText(exampleContentString)
+            }
+        
+    }
+    }
+    authenticate("ApiKeyAuth") {
+    get<Paths.listRuns> { listRuns ->
+        
+        val principal = null!!
+        
+        
+        val exampleContentType = "application/json"
+            val exampleContentString = """{
+              "object" : "list",
+              "data" : [ {
+                "id" : "id",
+                "object" : "thread.run",
+                "created_at" : 0,
+                "thread_id" : "thread_id",
+                "assistant_id" : "assistant_id",
+                "status" : "queued",
+                "required_action" : {
+                  "type" : "submit_tool_outputs",
+                  "submit_tool_outputs" : {
+                    "tool_calls" : [ {
+                      "id" : "id",
+                      "type" : "function",
+                      "function" : {
+                        "name" : "name",
+                        "arguments" : "arguments"
+                      }
+                    }, {
+                      "id" : "id",
+                      "type" : "function",
+                      "function" : {
+                        "name" : "name",
+                        "arguments" : "arguments"
+                      }
+                    } ]
+                  }
+                },
+                "last_error" : {
+                  "code" : "server_error",
+                  "message" : "message"
+                },
+                "expires_at" : 6,
+                "started_at" : 1,
+                "cancelled_at" : 5,
+                "failed_at" : 5,
+                "completed_at" : 2,
+                "incomplete_details" : {
+                  "reason" : "max_completion_tokens"
+                },
+                "model" : "model",
+                "instructions" : "instructions",
+                "tools" : [ {
+                  "type" : "code_interpreter"
+                }, {
+                  "type" : "code_interpreter"
+                }, {
+                  "type" : "code_interpreter"
+                }, {
+                  "type" : "code_interpreter"
+                }, {
+                  "type" : "code_interpreter"
+                } ],
+                "metadata" : "{}",
+                "usage" : {
+                  "completion_tokens" : 7,
+                  "prompt_tokens" : 9,
+                  "total_tokens" : 3
+                },
+                "temperature" : 2.027123023002322,
+                "top_p" : 4.145608029883936,
+                "max_prompt_tokens" : 256,
+                "max_completion_tokens" : 256,
+                "truncation_strategy" : {
+                  "type" : "auto",
+                  "last_messages" : 1
+                },
+                "tool_choice" : "none",
+                "parallel_tool_calls" : true,
+                "response_format" : "auto"
+              }, {
+                "id" : "id",
+                "object" : "thread.run",
+                "created_at" : 0,
+                "thread_id" : "thread_id",
+                "assistant_id" : "assistant_id",
+                "status" : "queued",
+                "required_action" : {
+                  "type" : "submit_tool_outputs",
+                  "submit_tool_outputs" : {
+                    "tool_calls" : [ {
+                      "id" : "id",
+                      "type" : "function",
+                      "function" : {
+                        "name" : "name",
+                        "arguments" : "arguments"
+                      }
+                    }, {
+                      "id" : "id",
+                      "type" : "function",
+                      "function" : {
+                        "name" : "name",
+                        "arguments" : "arguments"
+                      }
+                    } ]
+                  }
+                },
+                "last_error" : {
+                  "code" : "server_error",
+                  "message" : "message"
+                },
+                "expires_at" : 6,
+                "started_at" : 1,
+                "cancelled_at" : 5,
+                "failed_at" : 5,
+                "completed_at" : 2,
+                "incomplete_details" : {
+                  "reason" : "max_completion_tokens"
+                },
+                "model" : "model",
+                "instructions" : "instructions",
+                "tools" : [ {
+                  "type" : "code_interpreter"
+                }, {
+                  "type" : "code_interpreter"
+                }, {
+                  "type" : "code_interpreter"
+                }, {
+                  "type" : "code_interpreter"
+                }, {
+                  "type" : "code_interpreter"
+                } ],
+                "metadata" : "{}",
+                "usage" : {
+                  "completion_tokens" : 7,
+                  "prompt_tokens" : 9,
+                  "total_tokens" : 3
+                },
+                "temperature" : 2.027123023002322,
+                "top_p" : 4.145608029883936,
+                "max_prompt_tokens" : 256,
+                "max_completion_tokens" : 256,
+                "truncation_strategy" : {
+                  "type" : "auto",
+                  "last_messages" : 1
+                },
+                "tool_choice" : "none",
+                "parallel_tool_calls" : true,
+                "response_format" : "auto"
+              } ],
+              "first_id" : "run_abc123",
+              "last_id" : "run_abc456",
+              "has_more" : false
+            }"""
+            
+            when (exampleContentType) {
+                "application/json" -> call.respondText(exampleContentType, ContentType.Application.Json)
+                "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
+                else -> call.respondText(exampleContentString)
+            }
+        
+    }
+    }
+    authenticate("ApiKeyAuth") {
+    post<Paths.modifyAssistant> { modifyAssistant ->
+        
+        val principal = null!!
+        
+        
+        val exampleContentType = "application/json"
+            val exampleContentString = """{
+              "id" : "id",
+              "object" : "assistant",
               "created_at" : 0,
+              "name" : "name",
               "description" : "description",
+              "model" : "model",
+              "instructions" : "instructions",
               "tools" : [ {
                 "type" : "code_interpreter"
               }, {
@@ -1265,13 +1240,18 @@ fun Route.AssistantsApi() {
               }, {
                 "type" : "code_interpreter"
               } ],
-              "top_p" : 1,
-              "response_format" : "auto",
-              "name" : "name",
+              "tool_resources" : {
+                "code_interpreter" : {
+                  "file_ids" : [ "file_ids", "file_ids", "file_ids", "file_ids", "file_ids" ]
+                },
+                "file_search" : {
+                  "vector_store_ids" : [ "vector_store_ids" ]
+                }
+              },
+              "metadata" : "{}",
               "temperature" : 1,
-              "model" : "model",
-              "id" : "id",
-              "object" : "assistant"
+              "top_p" : 1,
+              "response_format" : "auto"
             }"""
             
             when (exampleContentType) {
@@ -1282,17 +1262,38 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.modifyMessage> {
+    post<Paths.modifyMessage> { modifyMessage ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "metadata" : "{}",
+              "id" : "id",
+              "object" : "thread.message",
+              "created_at" : 0,
+              "thread_id" : "thread_id",
+              "status" : "in_progress",
+              "incomplete_details" : {
+                "reason" : "content_filter"
+              },
+              "completed_at" : 6,
+              "incomplete_at" : 1,
               "role" : "user",
+              "content" : [ {
+                "type" : "image_file",
+                "image_file" : {
+                  "file_id" : "file_id",
+                  "detail" : "auto"
+                }
+              }, {
+                "type" : "image_file",
+                "image_file" : {
+                  "file_id" : "file_id",
+                  "detail" : "auto"
+                }
+              } ],
               "assistant_id" : "assistant_id",
               "run_id" : "run_id",
               "attachments" : [ {
@@ -1310,29 +1311,7 @@ fun Route.AssistantsApi() {
                   "type" : "code_interpreter"
                 } ]
               } ],
-              "created_at" : 0,
-              "content" : [ {
-                "image_file" : {
-                  "file_id" : "file_id",
-                  "detail" : "auto"
-                },
-                "type" : "image_file"
-              }, {
-                "image_file" : {
-                  "file_id" : "file_id",
-                  "detail" : "auto"
-                },
-                "type" : "image_file"
-              } ],
-              "completed_at" : 6,
-              "thread_id" : "thread_id",
-              "id" : "id",
-              "incomplete_at" : 1,
-              "incomplete_details" : {
-                "reason" : "content_filter"
-              },
-              "object" : "thread.message",
-              "status" : "in_progress"
+              "metadata" : "{}"
             }"""
             
             when (exampleContentType) {
@@ -1343,45 +1322,54 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.modifyRun> {
+    post<Paths.modifyRun> { modifyRun ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "cancelled_at" : 5,
-              "instructions" : "instructions",
-              "metadata" : "{}",
+              "id" : "id",
+              "object" : "thread.run",
+              "created_at" : 0,
+              "thread_id" : "thread_id",
               "assistant_id" : "assistant_id",
+              "status" : "queued",
               "required_action" : {
+                "type" : "submit_tool_outputs",
                 "submit_tool_outputs" : {
                   "tool_calls" : [ {
+                    "id" : "id",
+                    "type" : "function",
                     "function" : {
                       "name" : "name",
                       "arguments" : "arguments"
-                    },
-                    "id" : "id",
-                    "type" : "function"
+                    }
                   }, {
+                    "id" : "id",
+                    "type" : "function",
                     "function" : {
                       "name" : "name",
                       "arguments" : "arguments"
-                    },
-                    "id" : "id",
-                    "type" : "function"
+                    }
                   } ]
-                },
-                "type" : "submit_tool_outputs"
+                }
               },
-              "usage" : {
-                "completion_tokens" : 7,
-                "prompt_tokens" : 9,
-                "total_tokens" : 3
+              "last_error" : {
+                "code" : "server_error",
+                "message" : "message"
               },
-              "created_at" : 0,
+              "expires_at" : 6,
+              "started_at" : 1,
+              "cancelled_at" : 5,
+              "failed_at" : 5,
+              "completed_at" : 2,
+              "incomplete_details" : {
+                "reason" : "max_completion_tokens"
+              },
+              "model" : "model",
+              "instructions" : "instructions",
               "tools" : [ {
                 "type" : "code_interpreter"
               }, {
@@ -1393,33 +1381,23 @@ fun Route.AssistantsApi() {
               }, {
                 "type" : "code_interpreter"
               } ],
-              "top_p" : 4.145608029883936,
-              "max_completion_tokens" : 256,
-              "thread_id" : "thread_id",
-              "expires_at" : 6,
-              "response_format" : "auto",
+              "metadata" : "{}",
+              "usage" : {
+                "completion_tokens" : 7,
+                "prompt_tokens" : 9,
+                "total_tokens" : 3
+              },
               "temperature" : 2.027123023002322,
-              "tool_choice" : "none",
-              "model" : "model",
-              "id" : "id",
-              "last_error" : {
-                "code" : "server_error",
-                "message" : "message"
-              },
-              "incomplete_details" : {
-                "reason" : "max_completion_tokens"
-              },
-              "truncation_strategy" : {
-                "last_messages" : 1,
-                "type" : "auto"
-              },
-              "completed_at" : 2,
-              "parallel_tool_calls" : true,
-              "started_at" : 1,
-              "failed_at" : 5,
+              "top_p" : 4.145608029883936,
               "max_prompt_tokens" : 256,
-              "object" : "thread.run",
-              "status" : "queued"
+              "max_completion_tokens" : 256,
+              "truncation_strategy" : {
+                "type" : "auto",
+                "last_messages" : 1
+              },
+              "tool_choice" : "none",
+              "parallel_tool_calls" : true,
+              "response_format" : "auto"
             }"""
             
             when (exampleContentType) {
@@ -1430,15 +1408,17 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.modifyThread> {
+    post<Paths.modifyThread> { modifyThread ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "id" : "id",
+              "object" : "thread",
+              "created_at" : 0,
               "tool_resources" : {
                 "code_interpreter" : {
                   "file_ids" : [ "file_ids", "file_ids", "file_ids", "file_ids", "file_ids" ]
@@ -1447,10 +1427,7 @@ fun Route.AssistantsApi() {
                   "vector_store_ids" : [ "vector_store_ids" ]
                 }
               },
-              "metadata" : "{}",
-              "created_at" : 0,
-              "id" : "id",
-              "object" : "thread"
+              "metadata" : "{}"
             }"""
             
             when (exampleContentType) {
@@ -1461,45 +1438,54 @@ fun Route.AssistantsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.submitToolOuputsToRun> {
+    post<Paths.submitToolOuputsToRun> { submitToolOuputsToRun ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "cancelled_at" : 5,
-              "instructions" : "instructions",
-              "metadata" : "{}",
+              "id" : "id",
+              "object" : "thread.run",
+              "created_at" : 0,
+              "thread_id" : "thread_id",
               "assistant_id" : "assistant_id",
+              "status" : "queued",
               "required_action" : {
+                "type" : "submit_tool_outputs",
                 "submit_tool_outputs" : {
                   "tool_calls" : [ {
+                    "id" : "id",
+                    "type" : "function",
                     "function" : {
                       "name" : "name",
                       "arguments" : "arguments"
-                    },
-                    "id" : "id",
-                    "type" : "function"
+                    }
                   }, {
+                    "id" : "id",
+                    "type" : "function",
                     "function" : {
                       "name" : "name",
                       "arguments" : "arguments"
-                    },
-                    "id" : "id",
-                    "type" : "function"
+                    }
                   } ]
-                },
-                "type" : "submit_tool_outputs"
+                }
               },
-              "usage" : {
-                "completion_tokens" : 7,
-                "prompt_tokens" : 9,
-                "total_tokens" : 3
+              "last_error" : {
+                "code" : "server_error",
+                "message" : "message"
               },
-              "created_at" : 0,
+              "expires_at" : 6,
+              "started_at" : 1,
+              "cancelled_at" : 5,
+              "failed_at" : 5,
+              "completed_at" : 2,
+              "incomplete_details" : {
+                "reason" : "max_completion_tokens"
+              },
+              "model" : "model",
+              "instructions" : "instructions",
               "tools" : [ {
                 "type" : "code_interpreter"
               }, {
@@ -1511,33 +1497,23 @@ fun Route.AssistantsApi() {
               }, {
                 "type" : "code_interpreter"
               } ],
-              "top_p" : 4.145608029883936,
-              "max_completion_tokens" : 256,
-              "thread_id" : "thread_id",
-              "expires_at" : 6,
-              "response_format" : "auto",
+              "metadata" : "{}",
+              "usage" : {
+                "completion_tokens" : 7,
+                "prompt_tokens" : 9,
+                "total_tokens" : 3
+              },
               "temperature" : 2.027123023002322,
-              "tool_choice" : "none",
-              "model" : "model",
-              "id" : "id",
-              "last_error" : {
-                "code" : "server_error",
-                "message" : "message"
-              },
-              "incomplete_details" : {
-                "reason" : "max_completion_tokens"
-              },
-              "truncation_strategy" : {
-                "last_messages" : 1,
-                "type" : "auto"
-              },
-              "completed_at" : 2,
-              "parallel_tool_calls" : true,
-              "started_at" : 1,
-              "failed_at" : 5,
+              "top_p" : 4.145608029883936,
               "max_prompt_tokens" : 256,
-              "object" : "thread.run",
-              "status" : "queued"
+              "max_completion_tokens" : 256,
+              "truncation_strategy" : {
+                "type" : "auto",
+                "last_messages" : 1
+              },
+              "tool_choice" : "none",
+              "parallel_tool_calls" : true,
+              "response_format" : "auto"
             }"""
             
             when (exampleContentType) {
@@ -1548,5 +1524,4 @@ fun Route.AssistantsApi() {
         
     }
     }
-
 }

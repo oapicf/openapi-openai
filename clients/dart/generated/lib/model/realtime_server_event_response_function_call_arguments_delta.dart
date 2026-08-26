@@ -90,10 +90,20 @@ class RealtimeServerEventResponseFunctionCallArgumentsDelta {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDelta[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDelta[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event_id'), 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDelta[event_id]" is missing from JSON.');
+        assert(json[r'event_id'] != null, 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDelta[event_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDelta[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDelta[type]" has a null value in JSON.');
+        assert(json.containsKey(r'response_id'), 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDelta[response_id]" is missing from JSON.');
+        assert(json[r'response_id'] != null, 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDelta[response_id]" has a null value in JSON.');
+        assert(json.containsKey(r'item_id'), 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDelta[item_id]" is missing from JSON.');
+        assert(json[r'item_id'] != null, 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDelta[item_id]" has a null value in JSON.');
+        assert(json.containsKey(r'output_index'), 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDelta[output_index]" is missing from JSON.');
+        assert(json[r'output_index'] != null, 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDelta[output_index]" has a null value in JSON.');
+        assert(json.containsKey(r'call_id'), 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDelta[call_id]" is missing from JSON.');
+        assert(json[r'call_id'] != null, 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDelta[call_id]" has a null value in JSON.');
+        assert(json.containsKey(r'delta'), 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDelta[delta]" is missing from JSON.');
+        assert(json[r'delta'] != null, 'Required key "RealtimeServerEventResponseFunctionCallArgumentsDelta[delta]" has a null value in JSON.');
         return true;
       }());
 
@@ -163,27 +173,28 @@ class RealtimeServerEventResponseFunctionCallArgumentsDelta {
 }
 
 /// The event type, must be `response.function_call_arguments.delta`. 
-class RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum._(this.value);
+enum RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum {
+  responsePeriodFunctionCallArgumentsPeriodDelta._(r'response.function_call_arguments.delta'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const responsePeriodFunctionCallArgumentsPeriodDelta = RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum._(r'response.function_call_arguments.delta');
-
-  /// List of all possible values in this [enum][RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum].
-  static const values = <RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum>[
-    responsePeriodFunctionCallArgumentsPeriodDelta,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum? fromJson(dynamic value) => RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -205,9 +216,10 @@ class RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnumTypeTransform
 
   const RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum data) => data.value;
+  String encode(RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum.
+  /// Returns the instance of [RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -216,6 +228,9 @@ class RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnumTypeTransform
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'response.function_call_arguments.delta': return RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum.responsePeriodFunctionCallArgumentsPeriodDelta;
@@ -228,7 +243,7 @@ class RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnumTypeTransform
     return null;
   }
 
-  /// Singleton [RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnumTypeTransformer? _instance;
 }
 

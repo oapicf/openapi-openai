@@ -21,7 +21,7 @@ message ProjectUserDeleteResponse {
     OBJECT_ORGANIZATION_PROJECT_USER_DELETED = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   string id = 3355;
 

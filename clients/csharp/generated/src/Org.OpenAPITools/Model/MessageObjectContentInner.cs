@@ -119,8 +119,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageObjectContentInner" />
     /// </summary>
-    public class MessageObjectContentInnerJsonConverter : JsonConverter<MessageObjectContentInner>
+    public partial class MessageObjectContentInnerJsonConverter : JsonConverter<MessageObjectContentInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageObjectContentInnerJsonConverter" /> class.
+        /// </summary>
+        public MessageObjectContentInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageObjectContentInner" />
         /// </summary>

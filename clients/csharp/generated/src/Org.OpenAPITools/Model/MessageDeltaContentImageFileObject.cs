@@ -126,7 +126,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ImageFile
         /// </summary>
         [JsonPropertyName("image_file")]
-        public MessageDeltaContentImageFileObjectImageFile? ImageFile { get { return this.ImageFileOption; } set { this.ImageFileOption = new(value); } }
+        public MessageDeltaContentImageFileObjectImageFile? ImageFile { get { return this.ImageFileOption.Value; } set { this.ImageFileOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -157,8 +157,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageDeltaContentImageFileObject" />
     /// </summary>
-    public class MessageDeltaContentImageFileObjectJsonConverter : JsonConverter<MessageDeltaContentImageFileObject>
+    public partial class MessageDeltaContentImageFileObjectJsonConverter : JsonConverter<MessageDeltaContentImageFileObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageDeltaContentImageFileObjectJsonConverter" /> class.
+        /// </summary>
+        public MessageDeltaContentImageFileObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageDeltaContentImageFileObject" />
         /// </summary>

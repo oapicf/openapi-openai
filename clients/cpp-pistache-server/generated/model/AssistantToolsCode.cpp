@@ -25,6 +25,8 @@ AssistantToolsCode::AssistantToolsCode()
     
 }
 
+AssistantToolsCode::~AssistantToolsCode() = default;
+
 void AssistantToolsCode::validate() const
 {
     std::stringstream msg;

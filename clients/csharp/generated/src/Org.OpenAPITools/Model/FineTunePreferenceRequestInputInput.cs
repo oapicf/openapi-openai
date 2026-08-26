@@ -59,7 +59,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Messages
         /// </summary>
         [JsonPropertyName("messages")]
-        public List<FineTuneChatRequestInputMessagesInner>? Messages { get { return this.MessagesOption; } set { this.MessagesOption = new(value); } }
+        public List<FineTuneChatRequestInputMessagesInner>? Messages { get { return this.MessagesOption.Value; } set { this.MessagesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Tools
@@ -73,7 +73,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A list of tools the model may generate JSON inputs for.</value>
         [JsonPropertyName("tools")]
-        public List<ChatCompletionTool>? Tools { get { return this.ToolsOption; } set { this.ToolsOption = new(value); } }
+        public List<ChatCompletionTool>? Tools { get { return this.ToolsOption.Value; } set { this.ToolsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ParallelToolCalls
@@ -87,7 +87,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.</value>
         [JsonPropertyName("parallel_tool_calls")]
-        public bool? ParallelToolCalls { get { return this.ParallelToolCallsOption; } set { this.ParallelToolCallsOption = new(value); } }
+        public bool? ParallelToolCalls { get { return this.ParallelToolCallsOption.Value; } set { this.ParallelToolCallsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,8 +118,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTunePreferenceRequestInputInput" />
     /// </summary>
-    public class FineTunePreferenceRequestInputInputJsonConverter : JsonConverter<FineTunePreferenceRequestInputInput>
+    public partial class FineTunePreferenceRequestInputInputJsonConverter : JsonConverter<FineTunePreferenceRequestInputInput>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTunePreferenceRequestInputInputJsonConverter" /> class.
+        /// </summary>
+        public FineTunePreferenceRequestInputInputJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTunePreferenceRequestInputInput" />
         /// </summary>

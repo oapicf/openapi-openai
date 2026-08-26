@@ -33,7 +33,7 @@ class  CreateChatCompletionFunctionResponse_choices_inner
 {
 public:
     CreateChatCompletionFunctionResponse_choices_inner();
-    virtual ~CreateChatCompletionFunctionResponse_choices_inner() = default;
+    virtual ~CreateChatCompletionFunctionResponse_choices_inner();
 
 
     /// <summary>

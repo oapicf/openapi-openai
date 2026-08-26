@@ -42,6 +42,7 @@ public:
     void initializeServerConfigs();
     int setDefaultServerValue(int serverIndex,const QString &operation, const QString &variable,const QString &val);
     void setServerIndex(const QString &operation, int serverIndex);
+    void setServerIndex(int serverIndex);
     void setApiKey(const QString &apiKeyName, const QString &apiKey);
     void setBearerToken(const QString &token);
     void setUsername(const QString &username);
@@ -89,6 +90,13 @@ public:
 
 
 private:
+    enum class OauthMethod : int {
+        INVALID_VALUE_OPENAPI_GENERATED = 0,
+        ImplicitFlow = 1,
+        AuthorizationFlow = 2,
+        ClientCredentialsFlow = 3,
+        ResourceOwnerPasswordFlow = 4
+    };
     QMap<QString,int> _serverIndices;
     QMap<QString,QList<OAIServerConfiguration>> _serverConfigs;
     QMap<QString, QString> _apiKeys;
@@ -108,7 +116,7 @@ private:
     OauthImplicit _implicitFlow;
     OauthCredentials _credentialFlow;
     OauthPassword _passwordFlow;
-    int _OauthMethod = 0;
+    OauthMethod _OauthMethod = OauthMethod::INVALID_VALUE_OPENAPI_GENERATED;
 
     void createImageCallback(OAIHttpRequestWorker *worker);
     void createImageEditCallback(OAIHttpRequestWorker *worker);
@@ -125,24 +133,12 @@ Q_SIGNALS:
     void createImageEditSignalFull(OAIHttpRequestWorker *worker, OAIImagesResponse summary);
     void createImageVariationSignalFull(OAIHttpRequestWorker *worker, OAIImagesResponse summary);
 
-    Q_DECL_DEPRECATED_X("Use createImageSignalError() instead")
-    void createImageSignalE(OAIImagesResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createImageSignalError(OAIImagesResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createImageEditSignalError() instead")
-    void createImageEditSignalE(OAIImagesResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createImageEditSignalError(OAIImagesResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createImageVariationSignalError() instead")
-    void createImageVariationSignalE(OAIImagesResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createImageVariationSignalError(OAIImagesResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
-    Q_DECL_DEPRECATED_X("Use createImageSignalErrorFull() instead")
-    void createImageSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createImageSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createImageEditSignalErrorFull() instead")
-    void createImageEditSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createImageEditSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createImageVariationSignalErrorFull() instead")
-    void createImageVariationSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createImageVariationSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();

@@ -19,7 +19,8 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RunStepDetailsMessageCreationObjectMessageCreation(
 
-    @Schema(example = "null", required = true, description = "The ID of the message that was created by this run step.")
+    @Schema(required = true, description = "The ID of the message that was created by this run step.")
+    @param:JsonProperty("message_id")
     @get:JsonProperty("message_id", required = true) val messageId: kotlin.String
 ) {
 

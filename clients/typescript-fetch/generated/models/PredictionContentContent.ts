@@ -44,6 +44,8 @@ export function PredictionContentContentFromJSONTyped(json: any, ignoreDiscrimin
                 return json.map(value => ChatCompletionRequestMessageContentPartTextFromJSONTyped(value, true));
             }
         }
+    }
+    if (Array.isArray(json)) {
         return json;
     }
     if (typeof json === 'string') {
@@ -66,6 +68,8 @@ export function PredictionContentContentToJSONTyped(value?: PredictionContentCon
                 return value.map(value => ChatCompletionRequestMessageContentPartTextToJSON(value as ChatCompletionRequestMessageContentPartText));
             }
         }
+    }
+    if (Array.isArray(value)) {
         return value;
     }
     if (typeof value === 'string') {

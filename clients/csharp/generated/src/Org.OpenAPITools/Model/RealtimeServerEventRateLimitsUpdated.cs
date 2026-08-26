@@ -151,8 +151,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeServerEventRateLimitsUpdated" />
     /// </summary>
-    public class RealtimeServerEventRateLimitsUpdatedJsonConverter : JsonConverter<RealtimeServerEventRateLimitsUpdated>
+    public partial class RealtimeServerEventRateLimitsUpdatedJsonConverter : JsonConverter<RealtimeServerEventRateLimitsUpdated>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeServerEventRateLimitsUpdatedJsonConverter" /> class.
+        /// </summary>
+        public RealtimeServerEventRateLimitsUpdatedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeServerEventRateLimitsUpdated" />
         /// </summary>

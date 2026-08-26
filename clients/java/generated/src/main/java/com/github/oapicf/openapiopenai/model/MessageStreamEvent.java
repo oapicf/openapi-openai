@@ -63,7 +63,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class MessageStreamEvent extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(MessageStreamEvent.class.getName());
 
@@ -285,6 +285,7 @@ public class MessageStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `MessageStreamEventOneOf`
      * @throws ClassCastException if the instance is not `MessageStreamEventOneOf`
      */
+    @SuppressWarnings("unchecked")
     public MessageStreamEventOneOf getMessageStreamEventOneOf() throws ClassCastException {
         return (MessageStreamEventOneOf)super.getActualInstance();
     }
@@ -296,6 +297,7 @@ public class MessageStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `MessageStreamEventOneOf1`
      * @throws ClassCastException if the instance is not `MessageStreamEventOneOf1`
      */
+    @SuppressWarnings("unchecked")
     public MessageStreamEventOneOf1 getMessageStreamEventOneOf1() throws ClassCastException {
         return (MessageStreamEventOneOf1)super.getActualInstance();
     }
@@ -307,6 +309,7 @@ public class MessageStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `MessageStreamEventOneOf2`
      * @throws ClassCastException if the instance is not `MessageStreamEventOneOf2`
      */
+    @SuppressWarnings("unchecked")
     public MessageStreamEventOneOf2 getMessageStreamEventOneOf2() throws ClassCastException {
         return (MessageStreamEventOneOf2)super.getActualInstance();
     }
@@ -318,6 +321,7 @@ public class MessageStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `MessageStreamEventOneOf3`
      * @throws ClassCastException if the instance is not `MessageStreamEventOneOf3`
      */
+    @SuppressWarnings("unchecked")
     public MessageStreamEventOneOf3 getMessageStreamEventOneOf3() throws ClassCastException {
         return (MessageStreamEventOneOf3)super.getActualInstance();
     }
@@ -329,6 +333,7 @@ public class MessageStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `MessageStreamEventOneOf4`
      * @throws ClassCastException if the instance is not `MessageStreamEventOneOf4`
      */
+    @SuppressWarnings("unchecked")
     public MessageStreamEventOneOf4 getMessageStreamEventOneOf4() throws ClassCastException {
         return (MessageStreamEventOneOf4)super.getActualInstance();
     }

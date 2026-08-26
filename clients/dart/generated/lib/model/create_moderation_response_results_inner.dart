@@ -66,10 +66,14 @@ class CreateModerationResponseResultsInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateModerationResponseResultsInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateModerationResponseResultsInner[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'flagged'), 'Required key "CreateModerationResponseResultsInner[flagged]" is missing from JSON.');
+        assert(json[r'flagged'] != null, 'Required key "CreateModerationResponseResultsInner[flagged]" has a null value in JSON.');
+        assert(json.containsKey(r'categories'), 'Required key "CreateModerationResponseResultsInner[categories]" is missing from JSON.');
+        assert(json[r'categories'] != null, 'Required key "CreateModerationResponseResultsInner[categories]" has a null value in JSON.');
+        assert(json.containsKey(r'category_scores'), 'Required key "CreateModerationResponseResultsInner[category_scores]" is missing from JSON.');
+        assert(json[r'category_scores'] != null, 'Required key "CreateModerationResponseResultsInner[category_scores]" has a null value in JSON.');
+        assert(json.containsKey(r'category_applied_input_types'), 'Required key "CreateModerationResponseResultsInner[category_applied_input_types]" is missing from JSON.');
+        assert(json[r'category_applied_input_types'] != null, 'Required key "CreateModerationResponseResultsInner[category_applied_input_types]" has a null value in JSON.');
         return true;
       }());
 

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**r#type** | **String** | Always `file_citation`. | 
+**r#type** | **Type** | Always `file_citation`. (enum: file_citation) | 
 **text** | **String** | The text in the message content that needs to be replaced. | 
-**file_citation** | [**models::MessageContentTextAnnotationsFileCitationObjectFileCitation**](MessageContentTextAnnotationsFileCitationObject_file_citation.md) |  | 
+**file_citation** | [**models::MessageContentTextAnnotationsFileCitationObjectFileCitation**](MessageContentTextAnnotationsFileCitationObjectFileCitation.md) |  | 
 **start_index** | **i32** |  | 
 **end_index** | **i32** |  | 
 

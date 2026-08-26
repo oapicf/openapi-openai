@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIUsageCodeInterpreterSessionsResult : public OAIObject {
 public:
     OAIUsageCodeInterpreterSessionsResult();
-    OAIUsageCodeInterpreterSessionsResult(QString json);
+    OAIUsageCodeInterpreterSessionsResult(const QString &json);
     ~OAIUsageCodeInterpreterSessionsResult() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getObject() const;
     void setObject(const QString &object);

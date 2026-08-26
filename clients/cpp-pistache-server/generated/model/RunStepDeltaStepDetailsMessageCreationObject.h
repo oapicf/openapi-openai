@@ -33,7 +33,7 @@ class  RunStepDeltaStepDetailsMessageCreationObject
 {
 public:
     RunStepDeltaStepDetailsMessageCreationObject();
-    virtual ~RunStepDeltaStepDetailsMessageCreationObject() = default;
+    virtual ~RunStepDeltaStepDetailsMessageCreationObject();
 
 
     /// <summary>

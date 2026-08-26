@@ -13,13 +13,16 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Logging;
 using Org.OpenAPITools.Model;
 using System.Diagnostics.CodeAnalysis;
 
@@ -76,7 +79,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="user">A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImageEditApiResponse"/>&gt;</returns>
-        Task<ICreateImageEditApiResponse> CreateImageEditAsync(System.IO.Stream image, string prompt, Option<System.IO.Stream> mask = default, Option<CreateImageEditRequestModel?> model = default, Option<int?> n = default, Option<string?> size = default, Option<string?> responseFormat = default, Option<string> user = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateImageEditApiResponse> CreateImageEditAsync(Org.OpenAPITools.Client.FileParameter image, string prompt, Option<Org.OpenAPITools.Client.FileParameter> mask = default, Option<CreateImageEditRequestModel?> model = default, Option<int?> n = default, Option<string?> size = default, Option<string?> responseFormat = default, Option<string> user = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Creates an edited or extended image given an original image and a prompt.
@@ -94,7 +97,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="user">A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImageEditApiResponse"/>?&gt;</returns>
-        Task<ICreateImageEditApiResponse?> CreateImageEditOrDefaultAsync(System.IO.Stream image, string prompt, Option<System.IO.Stream> mask = default, Option<CreateImageEditRequestModel?> model = default, Option<int?> n = default, Option<string?> size = default, Option<string?> responseFormat = default, Option<string> user = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateImageEditApiResponse?> CreateImageEditOrDefaultAsync(Org.OpenAPITools.Client.FileParameter image, string prompt, Option<Org.OpenAPITools.Client.FileParameter> mask = default, Option<CreateImageEditRequestModel?> model = default, Option<int?> n = default, Option<string?> size = default, Option<string?> responseFormat = default, Option<string> user = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Creates a variation of a given image.
@@ -111,7 +114,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="user">A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImageVariationApiResponse"/>&gt;</returns>
-        Task<ICreateImageVariationApiResponse> CreateImageVariationAsync(System.IO.Stream image, Option<CreateImageEditRequestModel?> model = default, Option<int?> n = default, Option<string?> responseFormat = default, Option<string?> size = default, Option<string> user = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateImageVariationApiResponse> CreateImageVariationAsync(Org.OpenAPITools.Client.FileParameter image, Option<CreateImageEditRequestModel?> model = default, Option<int?> n = default, Option<string?> responseFormat = default, Option<string?> size = default, Option<string> user = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Creates a variation of a given image.
@@ -127,7 +130,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="user">A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImageVariationApiResponse"/>?&gt;</returns>
-        Task<ICreateImageVariationApiResponse?> CreateImageVariationOrDefaultAsync(System.IO.Stream image, Option<CreateImageEditRequestModel?> model = default, Option<int?> n = default, Option<string?> responseFormat = default, Option<string?> size = default, Option<string> user = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateImageVariationApiResponse?> CreateImageVariationOrDefaultAsync(Org.OpenAPITools.Client.FileParameter image, Option<CreateImageEditRequestModel?> model = default, Option<int?> n = default, Option<string?> responseFormat = default, Option<string?> size = default, Option<string> user = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -240,11 +243,6 @@ namespace Org.OpenAPITools.Api
         private JsonSerializerOptions _jsonSerializerOptions;
 
         /// <summary>
-        /// The logger factory
-        /// </summary>
-        public ILoggerFactory LoggerFactory { get; }
-
-        /// <summary>
         /// The logger
         /// </summary>
         public ILogger<ImagesApi> Logger { get; }
@@ -268,12 +266,11 @@ namespace Org.OpenAPITools.Api
         /// Initializes a new instance of the <see cref="ImagesApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public ImagesApi(ILogger<ImagesApi> logger, ILoggerFactory loggerFactory, HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ImagesApiEvents imagesApiEvents,
+        public ImagesApi(ILogger<ImagesApi> logger, HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ImagesApiEvents imagesApiEvents,
             TokenProvider<BearerToken> bearerTokenProvider)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
-            LoggerFactory = loggerFactory;
-            Logger = LoggerFactory.CreateLogger<ImagesApi>();
+            Logger = logger;
             HttpClient = httpClient;
             Events = imagesApiEvents;
             BearerTokenProvider = bearerTokenProvider;
@@ -302,7 +299,7 @@ namespace Org.OpenAPITools.Api
             bool suppressDefaultLog = false;
             AfterCreateImage(ref suppressDefaultLog, apiResponseLocalVar, createImageRequest);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -325,7 +322,7 @@ namespace Org.OpenAPITools.Api
             bool suppressDefaultLogLocalVar = false;
             OnErrorCreateImage(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, createImageRequest);
             if (!suppressDefaultLogLocalVar)
-                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
 
         /// <summary>
@@ -380,10 +377,10 @@ namespace Org.OpenAPITools.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/images/generations"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/images/generations");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/images/generations");
 
-                    httpRequestMessageLocalVar.Content = (createImageRequest as object) is System.IO.Stream stream
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
+                    httpRequestMessageLocalVar.Content = (createImageRequest as object) is Org.OpenAPITools.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(createImageRequest, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
@@ -408,10 +405,10 @@ namespace Org.OpenAPITools.Api
                         "application/json"
                     };
 
-                    string? acceptLocalVar = ClientUtils.SelectHeaderAccept(acceptLocalVars);
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
 
-                    if (acceptLocalVar != null)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(acceptLocalVar));
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
                     httpRequestMessageLocalVar.Method = HttpMethod.Post;
 
@@ -419,13 +416,12 @@ namespace Org.OpenAPITools.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<CreateImageApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<CreateImageApiResponse>();
                         CreateImageApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/images/generations", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/images/generations", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
@@ -459,7 +455,7 @@ namespace Org.OpenAPITools.Api
             /// <summary>
             /// The logger
             /// </summary>
-            public ILogger<CreateImageApiResponse> Logger { get; }
+            public ILogger<ImagesApi> Logger { get; }
 
             /// <summary>
             /// The <see cref="CreateImageApiResponse"/>
@@ -471,7 +467,7 @@ namespace Org.OpenAPITools.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateImageApiResponse(ILogger<CreateImageApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public CreateImageApiResponse(ILogger<ImagesApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -487,7 +483,7 @@ namespace Org.OpenAPITools.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateImageApiResponse(ILogger<CreateImageApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public CreateImageApiResponse(ILogger<ImagesApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -538,13 +534,13 @@ namespace Org.OpenAPITools.Api
                 bool suppressDefaultLog = false;
                 OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
                 if (!suppressDefaultLog)
-                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
             }
 
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatCreateImageEdit(ref System.IO.Stream image, ref string prompt, ref Option<System.IO.Stream> mask, Option<CreateImageEditRequestModel?> model, ref Option<int?> n, ref Option<string?> size, ref Option<string?> responseFormat, ref Option<string> user);
+        partial void FormatCreateImageEdit(ref Org.OpenAPITools.Client.FileParameter image, ref string prompt, ref Option<Org.OpenAPITools.Client.FileParameter> mask, Option<CreateImageEditRequestModel?> model, ref Option<int?> n, ref Option<string?> size, ref Option<string?> responseFormat, ref Option<string> user);
 
         /// <summary>
         /// Validates the request parameters
@@ -554,7 +550,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="mask"></param>
         /// <param name="user"></param>
         /// <returns></returns>
-        private void ValidateCreateImageEdit(System.IO.Stream image, string prompt, Option<System.IO.Stream> mask, Option<string> user)
+        private void ValidateCreateImageEdit(Org.OpenAPITools.Client.FileParameter image, string prompt, Option<Org.OpenAPITools.Client.FileParameter> mask, Option<string> user)
         {
             if (image == null)
                 throw new ArgumentNullException(nameof(image));
@@ -581,12 +577,12 @@ namespace Org.OpenAPITools.Api
         /// <param name="size"></param>
         /// <param name="responseFormat"></param>
         /// <param name="user"></param>
-        private void AfterCreateImageEditDefaultImplementation(ICreateImageEditApiResponse apiResponseLocalVar, System.IO.Stream image, string prompt, Option<System.IO.Stream> mask, Option<CreateImageEditRequestModel?> model, Option<int?> n, Option<string?> size, Option<string?> responseFormat, Option<string> user)
+        private void AfterCreateImageEditDefaultImplementation(ICreateImageEditApiResponse apiResponseLocalVar, Org.OpenAPITools.Client.FileParameter image, string prompt, Option<Org.OpenAPITools.Client.FileParameter> mask, Option<CreateImageEditRequestModel?> model, Option<int?> n, Option<string?> size, Option<string?> responseFormat, Option<string> user)
         {
             bool suppressDefaultLog = false;
             AfterCreateImageEdit(ref suppressDefaultLog, apiResponseLocalVar, image, prompt, mask, model, n, size, responseFormat, user);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -602,7 +598,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="size"></param>
         /// <param name="responseFormat"></param>
         /// <param name="user"></param>
-        partial void AfterCreateImageEdit(ref bool suppressDefaultLog, ICreateImageEditApiResponse apiResponseLocalVar, System.IO.Stream image, string prompt, Option<System.IO.Stream> mask, Option<CreateImageEditRequestModel?> model, Option<int?> n, Option<string?> size, Option<string?> responseFormat, Option<string> user);
+        partial void AfterCreateImageEdit(ref bool suppressDefaultLog, ICreateImageEditApiResponse apiResponseLocalVar, Org.OpenAPITools.Client.FileParameter image, string prompt, Option<Org.OpenAPITools.Client.FileParameter> mask, Option<CreateImageEditRequestModel?> model, Option<int?> n, Option<string?> size, Option<string?> responseFormat, Option<string> user);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -618,12 +614,12 @@ namespace Org.OpenAPITools.Api
         /// <param name="size"></param>
         /// <param name="responseFormat"></param>
         /// <param name="user"></param>
-        private void OnErrorCreateImageEditDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, System.IO.Stream image, string prompt, Option<System.IO.Stream> mask, Option<CreateImageEditRequestModel?> model, Option<int?> n, Option<string?> size, Option<string?> responseFormat, Option<string> user)
+        private void OnErrorCreateImageEditDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Org.OpenAPITools.Client.FileParameter image, string prompt, Option<Org.OpenAPITools.Client.FileParameter> mask, Option<CreateImageEditRequestModel?> model, Option<int?> n, Option<string?> size, Option<string?> responseFormat, Option<string> user)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorCreateImageEdit(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, image, prompt, mask, model, n, size, responseFormat, user);
             if (!suppressDefaultLogLocalVar)
-                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
 
         /// <summary>
@@ -641,7 +637,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="size"></param>
         /// <param name="responseFormat"></param>
         /// <param name="user"></param>
-        partial void OnErrorCreateImageEdit(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, System.IO.Stream image, string prompt, Option<System.IO.Stream> mask, Option<CreateImageEditRequestModel?> model, Option<int?> n, Option<string?> size, Option<string?> responseFormat, Option<string> user);
+        partial void OnErrorCreateImageEdit(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Org.OpenAPITools.Client.FileParameter image, string prompt, Option<Org.OpenAPITools.Client.FileParameter> mask, Option<CreateImageEditRequestModel?> model, Option<int?> n, Option<string?> size, Option<string?> responseFormat, Option<string> user);
 
         /// <summary>
         /// Creates an edited or extended image given an original image and a prompt. 
@@ -656,7 +652,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="user">A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImageEditApiResponse"/>&gt;</returns>
-        public async Task<ICreateImageEditApiResponse?> CreateImageEditOrDefaultAsync(System.IO.Stream image, string prompt, Option<System.IO.Stream> mask = default, Option<CreateImageEditRequestModel?> model = default, Option<int?> n = default, Option<string?> size = default, Option<string?> responseFormat = default, Option<string> user = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateImageEditApiResponse?> CreateImageEditOrDefaultAsync(Org.OpenAPITools.Client.FileParameter image, string prompt, Option<Org.OpenAPITools.Client.FileParameter> mask = default, Option<CreateImageEditRequestModel?> model = default, Option<int?> n = default, Option<string?> size = default, Option<string?> responseFormat = default, Option<string> user = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -682,7 +678,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="user">A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImageEditApiResponse"/>&gt;</returns>
-        public async Task<ICreateImageEditApiResponse> CreateImageEditAsync(System.IO.Stream image, string prompt, Option<System.IO.Stream> mask = default, Option<CreateImageEditRequestModel?> model = default, Option<int?> n = default, Option<string?> size = default, Option<string?> responseFormat = default, Option<string> user = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateImageEditApiResponse> CreateImageEditAsync(Org.OpenAPITools.Client.FileParameter image, string prompt, Option<Org.OpenAPITools.Client.FileParameter> mask = default, Option<CreateImageEditRequestModel?> model = default, Option<int?> n = default, Option<string?> size = default, Option<string?> responseFormat = default, Option<string> user = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -699,35 +695,46 @@ namespace Org.OpenAPITools.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/images/edits"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/images/edits");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/images/edits");
 
-                    MultipartContent multipartContentLocalVar = new MultipartContent();
+                    MultipartFormDataContent multipartContentLocalVar = new MultipartFormDataContent();
 
                     httpRequestMessageLocalVar.Content = multipartContentLocalVar;
 
-                    List<KeyValuePair<string?, string?>> formParameterLocalVars = new List<KeyValuePair<string?, string?>>();
+                    List<KeyValuePair<string, string?>> formParameterLocalVars = new List<KeyValuePair<string, string?>>();
 
-                    multipartContentLocalVar.Add(new FormUrlEncodedContent(formParameterLocalVars));                    multipartContentLocalVar.Add(new StreamContent(image));
+                    {
+                        var streamContentLocalVar = new StreamContent(image.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(image.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "image", image.FileName ?? "image");
+                    }
 
-                    formParameterLocalVars.Add(new KeyValuePair<string?, string?>("prompt", ClientUtils.ParameterToString(prompt)));
+                    formParameterLocalVars.Add(new KeyValuePair<string, string?>("prompt", ClientUtils.ParameterToString(prompt)));
 
                     if (mask.IsSet)
-                        multipartContentLocalVar.Add(new StreamContent(mask.Value));
+                    {
+                        var streamContentLocalVar = new StreamContent(mask.Value.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(mask.Value.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "mask", mask.Value.FileName ?? "mask");
+                    }
 
                     if (model.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("model", ClientUtils.ParameterToString(model.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("model", ClientUtils.ParameterToString(model.Value)));
 
                     if (n.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("n", ClientUtils.ParameterToString(n.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("n", ClientUtils.ParameterToString(n.Value)));
 
                     if (size.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("size", ClientUtils.ParameterToString(size.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("size", ClientUtils.ParameterToString(size.Value)));
 
                     if (responseFormat.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("response_format", ClientUtils.ParameterToString(responseFormat.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("response_format", ClientUtils.ParameterToString(responseFormat.Value)));
 
                     if (user.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("user", ClientUtils.ParameterToString(user.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("user", ClientUtils.ParameterToString(user.Value)));
+
+                    foreach (var formParamLocalVar in formParameterLocalVars)
+                        multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
@@ -742,19 +749,14 @@ namespace Org.OpenAPITools.Api
                         "multipart/form-data"
                     };
 
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
                     string[] acceptLocalVars = new string[] {
                         "application/json"
                     };
 
-                    string? acceptLocalVar = ClientUtils.SelectHeaderAccept(acceptLocalVars);
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
 
-                    if (acceptLocalVar != null)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(acceptLocalVar));
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
                     httpRequestMessageLocalVar.Method = HttpMethod.Post;
 
@@ -762,13 +764,12 @@ namespace Org.OpenAPITools.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<CreateImageEditApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<CreateImageEditApiResponse>();
                         CreateImageEditApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/images/edits", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/images/edits", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
@@ -802,7 +803,7 @@ namespace Org.OpenAPITools.Api
             /// <summary>
             /// The logger
             /// </summary>
-            public ILogger<CreateImageEditApiResponse> Logger { get; }
+            public ILogger<ImagesApi> Logger { get; }
 
             /// <summary>
             /// The <see cref="CreateImageEditApiResponse"/>
@@ -814,7 +815,7 @@ namespace Org.OpenAPITools.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateImageEditApiResponse(ILogger<CreateImageEditApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public CreateImageEditApiResponse(ILogger<ImagesApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -830,7 +831,7 @@ namespace Org.OpenAPITools.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateImageEditApiResponse(ILogger<CreateImageEditApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public CreateImageEditApiResponse(ILogger<ImagesApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -881,13 +882,13 @@ namespace Org.OpenAPITools.Api
                 bool suppressDefaultLog = false;
                 OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
                 if (!suppressDefaultLog)
-                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
             }
 
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatCreateImageVariation(ref System.IO.Stream image, Option<CreateImageEditRequestModel?> model, ref Option<int?> n, ref Option<string?> responseFormat, ref Option<string?> size, ref Option<string> user);
+        partial void FormatCreateImageVariation(ref Org.OpenAPITools.Client.FileParameter image, Option<CreateImageEditRequestModel?> model, ref Option<int?> n, ref Option<string?> responseFormat, ref Option<string?> size, ref Option<string> user);
 
         /// <summary>
         /// Validates the request parameters
@@ -895,7 +896,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="image"></param>
         /// <param name="user"></param>
         /// <returns></returns>
-        private void ValidateCreateImageVariation(System.IO.Stream image, Option<string> user)
+        private void ValidateCreateImageVariation(Org.OpenAPITools.Client.FileParameter image, Option<string> user)
         {
             if (image == null)
                 throw new ArgumentNullException(nameof(image));
@@ -914,12 +915,12 @@ namespace Org.OpenAPITools.Api
         /// <param name="responseFormat"></param>
         /// <param name="size"></param>
         /// <param name="user"></param>
-        private void AfterCreateImageVariationDefaultImplementation(ICreateImageVariationApiResponse apiResponseLocalVar, System.IO.Stream image, Option<CreateImageEditRequestModel?> model, Option<int?> n, Option<string?> responseFormat, Option<string?> size, Option<string> user)
+        private void AfterCreateImageVariationDefaultImplementation(ICreateImageVariationApiResponse apiResponseLocalVar, Org.OpenAPITools.Client.FileParameter image, Option<CreateImageEditRequestModel?> model, Option<int?> n, Option<string?> responseFormat, Option<string?> size, Option<string> user)
         {
             bool suppressDefaultLog = false;
             AfterCreateImageVariation(ref suppressDefaultLog, apiResponseLocalVar, image, model, n, responseFormat, size, user);
             if (!suppressDefaultLog)
-                Logger.LogInformation("{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
 
         /// <summary>
@@ -933,7 +934,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="responseFormat"></param>
         /// <param name="size"></param>
         /// <param name="user"></param>
-        partial void AfterCreateImageVariation(ref bool suppressDefaultLog, ICreateImageVariationApiResponse apiResponseLocalVar, System.IO.Stream image, Option<CreateImageEditRequestModel?> model, Option<int?> n, Option<string?> responseFormat, Option<string?> size, Option<string> user);
+        partial void AfterCreateImageVariation(ref bool suppressDefaultLog, ICreateImageVariationApiResponse apiResponseLocalVar, Org.OpenAPITools.Client.FileParameter image, Option<CreateImageEditRequestModel?> model, Option<int?> n, Option<string?> responseFormat, Option<string?> size, Option<string> user);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -947,12 +948,12 @@ namespace Org.OpenAPITools.Api
         /// <param name="responseFormat"></param>
         /// <param name="size"></param>
         /// <param name="user"></param>
-        private void OnErrorCreateImageVariationDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, System.IO.Stream image, Option<CreateImageEditRequestModel?> model, Option<int?> n, Option<string?> responseFormat, Option<string?> size, Option<string> user)
+        private void OnErrorCreateImageVariationDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Org.OpenAPITools.Client.FileParameter image, Option<CreateImageEditRequestModel?> model, Option<int?> n, Option<string?> responseFormat, Option<string?> size, Option<string> user)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorCreateImageVariation(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, image, model, n, responseFormat, size, user);
             if (!suppressDefaultLogLocalVar)
-                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
 
         /// <summary>
@@ -968,7 +969,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="responseFormat"></param>
         /// <param name="size"></param>
         /// <param name="user"></param>
-        partial void OnErrorCreateImageVariation(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, System.IO.Stream image, Option<CreateImageEditRequestModel?> model, Option<int?> n, Option<string?> responseFormat, Option<string?> size, Option<string> user);
+        partial void OnErrorCreateImageVariation(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Org.OpenAPITools.Client.FileParameter image, Option<CreateImageEditRequestModel?> model, Option<int?> n, Option<string?> responseFormat, Option<string?> size, Option<string> user);
 
         /// <summary>
         /// Creates a variation of a given image. 
@@ -981,7 +982,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="user">A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImageVariationApiResponse"/>&gt;</returns>
-        public async Task<ICreateImageVariationApiResponse?> CreateImageVariationOrDefaultAsync(System.IO.Stream image, Option<CreateImageEditRequestModel?> model = default, Option<int?> n = default, Option<string?> responseFormat = default, Option<string?> size = default, Option<string> user = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateImageVariationApiResponse?> CreateImageVariationOrDefaultAsync(Org.OpenAPITools.Client.FileParameter image, Option<CreateImageEditRequestModel?> model = default, Option<int?> n = default, Option<string?> responseFormat = default, Option<string?> size = default, Option<string> user = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -1005,7 +1006,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="user">A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateImageVariationApiResponse"/>&gt;</returns>
-        public async Task<ICreateImageVariationApiResponse> CreateImageVariationAsync(System.IO.Stream image, Option<CreateImageEditRequestModel?> model = default, Option<int?> n = default, Option<string?> responseFormat = default, Option<string?> size = default, Option<string> user = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateImageVariationApiResponse> CreateImageVariationAsync(Org.OpenAPITools.Client.FileParameter image, Option<CreateImageEditRequestModel?> model = default, Option<int?> n = default, Option<string?> responseFormat = default, Option<string?> size = default, Option<string> user = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -1022,30 +1023,37 @@ namespace Org.OpenAPITools.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
                         ? "/images/variations"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/images/variations");
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/images/variations");
 
-                    MultipartContent multipartContentLocalVar = new MultipartContent();
+                    MultipartFormDataContent multipartContentLocalVar = new MultipartFormDataContent();
 
                     httpRequestMessageLocalVar.Content = multipartContentLocalVar;
 
-                    List<KeyValuePair<string?, string?>> formParameterLocalVars = new List<KeyValuePair<string?, string?>>();
+                    List<KeyValuePair<string, string?>> formParameterLocalVars = new List<KeyValuePair<string, string?>>();
 
-                    multipartContentLocalVar.Add(new FormUrlEncodedContent(formParameterLocalVars));                    multipartContentLocalVar.Add(new StreamContent(image));
+                    {
+                        var streamContentLocalVar = new StreamContent(image.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(image.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "image", image.FileName ?? "image");
+                    }
 
                     if (model.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("model", ClientUtils.ParameterToString(model.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("model", ClientUtils.ParameterToString(model.Value)));
 
                     if (n.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("n", ClientUtils.ParameterToString(n.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("n", ClientUtils.ParameterToString(n.Value)));
 
                     if (responseFormat.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("response_format", ClientUtils.ParameterToString(responseFormat.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("response_format", ClientUtils.ParameterToString(responseFormat.Value)));
 
                     if (size.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("size", ClientUtils.ParameterToString(size.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("size", ClientUtils.ParameterToString(size.Value)));
 
                     if (user.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string?, string?>("user", ClientUtils.ParameterToString(user.Value)));
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("user", ClientUtils.ParameterToString(user.Value)));
+
+                    foreach (var formParamLocalVar in formParameterLocalVars)
+                        multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
@@ -1060,19 +1068,14 @@ namespace Org.OpenAPITools.Api
                         "multipart/form-data"
                     };
 
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
                     string[] acceptLocalVars = new string[] {
                         "application/json"
                     };
 
-                    string? acceptLocalVar = ClientUtils.SelectHeaderAccept(acceptLocalVars);
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
 
-                    if (acceptLocalVar != null)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(acceptLocalVar));
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
                     httpRequestMessageLocalVar.Method = HttpMethod.Post;
 
@@ -1080,13 +1083,12 @@ namespace Org.OpenAPITools.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ILogger<CreateImageVariationApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<CreateImageVariationApiResponse>();
                         CreateImageVariationApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/images/variations", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/images/variations", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
@@ -1120,7 +1122,7 @@ namespace Org.OpenAPITools.Api
             /// <summary>
             /// The logger
             /// </summary>
-            public ILogger<CreateImageVariationApiResponse> Logger { get; }
+            public ILogger<ImagesApi> Logger { get; }
 
             /// <summary>
             /// The <see cref="CreateImageVariationApiResponse"/>
@@ -1132,7 +1134,7 @@ namespace Org.OpenAPITools.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateImageVariationApiResponse(ILogger<CreateImageVariationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public CreateImageVariationApiResponse(ILogger<ImagesApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1148,7 +1150,7 @@ namespace Org.OpenAPITools.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateImageVariationApiResponse(ILogger<CreateImageVariationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public CreateImageVariationApiResponse(ILogger<ImagesApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1199,7 +1201,7 @@ namespace Org.OpenAPITools.Api
                 bool suppressDefaultLog = false;
                 OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
                 if (!suppressDefaultLog)
-                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
             }
 
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);

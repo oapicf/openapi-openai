@@ -140,8 +140,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDetailsMessageCreationObject" />
     /// </summary>
-    public class RunStepDetailsMessageCreationObjectJsonConverter : JsonConverter<RunStepDetailsMessageCreationObject>
+    public partial class RunStepDetailsMessageCreationObjectJsonConverter : JsonConverter<RunStepDetailsMessageCreationObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDetailsMessageCreationObjectJsonConverter" /> class.
+        /// </summary>
+        public RunStepDetailsMessageCreationObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDetailsMessageCreationObject" />
         /// </summary>

@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateModerationResponse_results_inner_categories::OAICreateModerationResponse_results_inner_categories(QString json) {
+OAICreateModerationResponse_results_inner_categories::OAICreateModerationResponse_results_inner_categories(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -74,7 +74,7 @@ void OAICreateModerationResponse_results_inner_categories::initializeModel() {
     m_violence_graphic_isValid = false;
 }
 
-void OAICreateModerationResponse_results_inner_categories::fromJson(QString jsonString) {
+void OAICreateModerationResponse_results_inner_categories::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

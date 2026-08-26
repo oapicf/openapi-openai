@@ -23,7 +23,7 @@ message ChatCompletionNamedToolChoice {
     TYPE_FUNCTION = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   AssistantsNamedToolChoiceFunction function = 307196890;
 

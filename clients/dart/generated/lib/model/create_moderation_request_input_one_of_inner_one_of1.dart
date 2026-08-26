@@ -55,10 +55,10 @@ class CreateModerationRequestInputOneOfInnerOneOf1 {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateModerationRequestInputOneOfInnerOneOf1[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateModerationRequestInputOneOfInnerOneOf1[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "CreateModerationRequestInputOneOfInnerOneOf1[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "CreateModerationRequestInputOneOfInnerOneOf1[type]" has a null value in JSON.');
+        assert(json.containsKey(r'text'), 'Required key "CreateModerationRequestInputOneOfInnerOneOf1[text]" is missing from JSON.');
+        assert(json[r'text'] != null, 'Required key "CreateModerationRequestInputOneOfInnerOneOf1[text]" has a null value in JSON.');
         return true;
       }());
 
@@ -118,27 +118,28 @@ class CreateModerationRequestInputOneOfInnerOneOf1 {
 }
 
 /// Always `text`.
-class CreateModerationRequestInputOneOfInnerOneOf1TypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateModerationRequestInputOneOfInnerOneOf1TypeEnum._(this.value);
+enum CreateModerationRequestInputOneOfInnerOneOf1TypeEnum {
+  text._(r'text'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateModerationRequestInputOneOfInnerOneOf1TypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = CreateModerationRequestInputOneOfInnerOneOf1TypeEnum._(r'text');
-
-  /// List of all possible values in this [enum][CreateModerationRequestInputOneOfInnerOneOf1TypeEnum].
-  static const values = <CreateModerationRequestInputOneOfInnerOneOf1TypeEnum>[
-    text,
-  ];
-
+  /// Returns the instance of [CreateModerationRequestInputOneOfInnerOneOf1TypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateModerationRequestInputOneOfInnerOneOf1TypeEnum? fromJson(dynamic value) => CreateModerationRequestInputOneOfInnerOneOf1TypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateModerationRequestInputOneOfInnerOneOf1TypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateModerationRequestInputOneOfInnerOneOf1TypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateModerationRequestInputOneOfInnerOneOf1TypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -160,9 +161,10 @@ class CreateModerationRequestInputOneOfInnerOneOf1TypeEnumTypeTransformer {
 
   const CreateModerationRequestInputOneOfInnerOneOf1TypeEnumTypeTransformer._();
 
-  String encode(CreateModerationRequestInputOneOfInnerOneOf1TypeEnum data) => data.value;
+  String encode(CreateModerationRequestInputOneOfInnerOneOf1TypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateModerationRequestInputOneOfInnerOneOf1TypeEnum.
+  /// Returns the instance of [CreateModerationRequestInputOneOfInnerOneOf1TypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -171,6 +173,9 @@ class CreateModerationRequestInputOneOfInnerOneOf1TypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateModerationRequestInputOneOfInnerOneOf1TypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateModerationRequestInputOneOfInnerOneOf1TypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return CreateModerationRequestInputOneOfInnerOneOf1TypeEnum.text;
@@ -183,7 +188,7 @@ class CreateModerationRequestInputOneOfInnerOneOf1TypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateModerationRequestInputOneOfInnerOneOf1TypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateModerationRequestInputOneOfInnerOneOf1TypeEnumTypeTransformer? _instance;
 }
 

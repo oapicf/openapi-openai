@@ -100,7 +100,7 @@ class AudioController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateSpeechRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateSpeechRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($createSpeechRequest, $asserts);
         if ($response instanceof Response) {
@@ -181,7 +181,7 @@ class AudioController extends Controller
             $model = $this->deserialize($model, 'OpenAPI\Server\Model\CreateTranscriptionRequestModel', 'string');
             $language = $this->deserialize($language, 'string', 'string');
             $prompt = $this->deserialize($prompt, 'string', 'string');
-            $responseFormat = $this->deserialize($responseFormat, '\OpenAPI\Server\Model\OpenAPI\Server\Model\AudioResponseFormat', 'string');
+            $responseFormat = $this->deserialize($responseFormat, '\OpenAPI\Server\Model\AudioResponseFormat', 'string');
             $temperature = $this->deserialize($temperature, 'float', 'string');
             $timestampGranularities = $this->deserialize($timestampGranularities, 'array<csv,string>', 'string');
         } catch (SerializerRuntimeException $exception) {
@@ -198,32 +198,32 @@ class AudioController extends Controller
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateTranscriptionRequestModel");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateTranscriptionRequestModel');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($model, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($language, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($prompt, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("\OpenAPI\Server\Model\OpenAPI\Server\Model\AudioResponseFormat");
+        $asserts[] = new Assert\Type('\OpenAPI\Server\Model\AudioResponseFormat');
         $response = $this->validate($responseFormat, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("float");
+        $asserts[] = new Assert\Type('float');
         $response = $this->validate($temperature, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -312,7 +312,7 @@ class AudioController extends Controller
         try {
             $model = $this->deserialize($model, 'OpenAPI\Server\Model\CreateTranscriptionRequestModel', 'string');
             $prompt = $this->deserialize($prompt, 'string', 'string');
-            $responseFormat = $this->deserialize($responseFormat, '\OpenAPI\Server\Model\OpenAPI\Server\Model\AudioResponseFormat', 'string');
+            $responseFormat = $this->deserialize($responseFormat, '\OpenAPI\Server\Model\AudioResponseFormat', 'string');
             $temperature = $this->deserialize($temperature, 'float', 'string');
         } catch (SerializerRuntimeException $exception) {
             return $this->createBadRequestResponse($exception->getMessage());
@@ -328,26 +328,26 @@ class AudioController extends Controller
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateTranscriptionRequestModel");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateTranscriptionRequestModel');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($model, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($prompt, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("\OpenAPI\Server\Model\OpenAPI\Server\Model\AudioResponseFormat");
+        $asserts[] = new Assert\Type('\OpenAPI\Server\Model\AudioResponseFormat');
         $response = $this->validate($responseFormat, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("float");
+        $asserts[] = new Assert\Type('float');
         $response = $this->validate($temperature, $asserts);
         if ($response instanceof Response) {
             return $response;

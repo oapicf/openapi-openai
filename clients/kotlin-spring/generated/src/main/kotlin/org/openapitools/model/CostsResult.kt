@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.CostsResultAmount
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -25,19 +28,25 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class CostsResult(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: CostsResult.`Object`,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("amount")
     @get:JsonProperty("amount") val amount: CostsResultAmount? = null,
 
-    @Schema(example = "null", description = "When `group_by=line_item`, this field provides the line item of the grouped costs result.")
+    @Schema(description = "When `group_by=line_item`, this field provides the line item of the grouped costs result.")
+    @param:JsonProperty("line_item")
     @get:JsonProperty("line_item") val lineItem: kotlin.String? = null,
 
-    @Schema(example = "null", description = "When `group_by=project_id`, this field provides the project ID of the grouped costs result.")
+    @Schema(description = "When `group_by=project_id`, this field provides the project ID of the grouped costs result.")
+    @param:JsonProperty("project_id")
     @get:JsonProperty("project_id") val projectId: kotlin.String? = null
-) {
+) : UsageTimeBucketResultInner {
 
     /**
     * 
@@ -52,7 +61,7 @@ data class CostsResult(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CostsResult'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }

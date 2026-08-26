@@ -1,4 +1,4 @@
-# # RealtimeServerEventInputAudioBufferCommitted
+# RealtimeServerEventInputAudioBufferCommitted
 
 ## Properties
 

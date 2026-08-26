@@ -32,7 +32,7 @@ class  AuditLog_project_created_data
 {
 public:
     AuditLog_project_created_data();
-    virtual ~AuditLog_project_created_data() = default;
+    virtual ~AuditLog_project_created_data();
 
 
     /// <summary>

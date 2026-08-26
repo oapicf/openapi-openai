@@ -106,15 +106,15 @@ function Initialize-Upload {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "created_at" = ${CreatedAt}
-            "filename" = ${Filename}
-            "bytes" = ${Bytes}
-            "purpose" = ${Purpose}
-            "status" = ${Status}
-            "expires_at" = ${ExpiresAt}
-            "object" = ${Object}
-            "file" = ${File}
+            'id' = ${Id}
+            'created_at' = ${CreatedAt}
+            'filename' = ${Filename}
+            'bytes' = ${Bytes}
+            'purpose' = ${Purpose}
+            'status' = ${Status}
+            'expires_at' = ${ExpiresAt}
+            'object' = ${Object}
+            'file' = ${File}
         }
 
 
@@ -152,7 +152,7 @@ function ConvertFrom-JsonToUpload {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in Upload
-        $AllProperties = ("id", "created_at", "filename", "bytes", "purpose", "status", "expires_at", "object", "file")
+        $AllProperties = ('id', 'created_at', 'filename', 'bytes', 'purpose', 'status', 'expires_at', 'object', 'file')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -163,70 +163,70 @@ function ConvertFrom-JsonToUpload {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created_at' missing."
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filename"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'filename'))) {
             throw "Error! JSON cannot be serialized due to the required property 'filename' missing."
         } else {
-            $Filename = $JsonParameters.PSobject.Properties["filename"].value
+            $Filename = $JsonParameters.PSobject.Properties['filename'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bytes"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'bytes'))) {
             throw "Error! JSON cannot be serialized due to the required property 'bytes' missing."
         } else {
-            $Bytes = $JsonParameters.PSobject.Properties["bytes"].value
+            $Bytes = $JsonParameters.PSobject.Properties['bytes'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "purpose"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'purpose'))) {
             throw "Error! JSON cannot be serialized due to the required property 'purpose' missing."
         } else {
-            $Purpose = $JsonParameters.PSobject.Properties["purpose"].value
+            $Purpose = $JsonParameters.PSobject.Properties['purpose'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'status'))) {
             throw "Error! JSON cannot be serialized due to the required property 'status' missing."
         } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
+            $Status = $JsonParameters.PSobject.Properties['status'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expires_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'expires_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'expires_at' missing."
         } else {
-            $ExpiresAt = $JsonParameters.PSobject.Properties["expires_at"].value
+            $ExpiresAt = $JsonParameters.PSobject.Properties['expires_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) { #optional property not found
             $Object = $null
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file'))) { #optional property not found
             $File = $null
         } else {
-            $File = $JsonParameters.PSobject.Properties["file"].value
+            $File = $JsonParameters.PSobject.Properties['file'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "created_at" = ${CreatedAt}
-            "filename" = ${Filename}
-            "bytes" = ${Bytes}
-            "purpose" = ${Purpose}
-            "status" = ${Status}
-            "expires_at" = ${ExpiresAt}
-            "object" = ${Object}
-            "file" = ${File}
+            'id' = ${Id}
+            'created_at' = ${CreatedAt}
+            'filename' = ${Filename}
+            'bytes' = ${Bytes}
+            'purpose' = ${Purpose}
+            'status' = ${Status}
+            'expires_at' = ${ExpiresAt}
+            'object' = ${Object}
+            'file' = ${File}
         }
 
         return $PSO

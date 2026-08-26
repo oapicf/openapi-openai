@@ -1,4 +1,4 @@
-# # UsageImagesResult
+# UsageImagesResult
 
 ## Properties
 

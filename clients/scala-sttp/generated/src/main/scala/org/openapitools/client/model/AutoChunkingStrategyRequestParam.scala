@@ -19,7 +19,7 @@ package org.openapitools.client.model
 case class AutoChunkingStrategyRequestParam(
   /* Always `auto`. */
   `type`: AutoChunkingStrategyRequestParamEnums.`Type`
-)
+) extends CreateVectorStoreRequestChunkingStrategy
 
 object AutoChunkingStrategyRequestParamEnums {
 

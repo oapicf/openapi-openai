@@ -52,7 +52,7 @@ with openapiopenai.ApiClient(configuration) as api_client:
     api_instance = openapiopenai.UsageApi(api_client)
     start_time = 56 # int | Start time (Unix seconds) of the query time range, inclusive.
     end_time = 56 # int | End time (Unix seconds) of the query time range, exclusive. (optional)
-    bucket_width = 1d # str | Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`. (optional) (default to 1d)
+    bucket_width = '1d' # str | Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`. (optional) (default to '1d')
     project_ids = ['project_ids_example'] # List[str] | Return only usage for these projects. (optional)
     user_ids = ['user_ids_example'] # List[str] | Return only usage for these users. (optional)
     api_key_ids = ['api_key_ids_example'] # List[str] | Return only usage for these API keys. (optional)
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start_time** | **int**| Start time (Unix seconds) of the query time range, inclusive. | 
  **end_time** | **int**| End time (Unix seconds) of the query time range, exclusive. | [optional] 
- **bucket_width** | **str**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to 1d]
+ **bucket_width** | **str**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to &#39;1d&#39;]
  **project_ids** | [**List[str]**](str.md)| Return only usage for these projects. | [optional] 
  **user_ids** | [**List[str]**](str.md)| Return only usage for these users. | [optional] 
  **api_key_ids** | [**List[str]**](str.md)| Return only usage for these API keys. | [optional] 
@@ -146,7 +146,7 @@ with openapiopenai.ApiClient(configuration) as api_client:
     api_instance = openapiopenai.UsageApi(api_client)
     start_time = 56 # int | Start time (Unix seconds) of the query time range, inclusive.
     end_time = 56 # int | End time (Unix seconds) of the query time range, exclusive. (optional)
-    bucket_width = 1d # str | Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`. (optional) (default to 1d)
+    bucket_width = '1d' # str | Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`. (optional) (default to '1d')
     project_ids = ['project_ids_example'] # List[str] | Return only usage for these projects. (optional)
     user_ids = ['user_ids_example'] # List[str] | Return only usage for these users. (optional)
     api_key_ids = ['api_key_ids_example'] # List[str] | Return only usage for these API keys. (optional)
@@ -173,7 +173,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start_time** | **int**| Start time (Unix seconds) of the query time range, inclusive. | 
  **end_time** | **int**| End time (Unix seconds) of the query time range, exclusive. | [optional] 
- **bucket_width** | **str**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to 1d]
+ **bucket_width** | **str**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to &#39;1d&#39;]
  **project_ids** | [**List[str]**](str.md)| Return only usage for these projects. | [optional] 
  **user_ids** | [**List[str]**](str.md)| Return only usage for these users. | [optional] 
  **api_key_ids** | [**List[str]**](str.md)| Return only usage for these API keys. | [optional] 
@@ -240,7 +240,7 @@ with openapiopenai.ApiClient(configuration) as api_client:
     api_instance = openapiopenai.UsageApi(api_client)
     start_time = 56 # int | Start time (Unix seconds) of the query time range, inclusive.
     end_time = 56 # int | End time (Unix seconds) of the query time range, exclusive. (optional)
-    bucket_width = 1d # str | Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`. (optional) (default to 1d)
+    bucket_width = '1d' # str | Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`. (optional) (default to '1d')
     project_ids = ['project_ids_example'] # List[str] | Return only usage for these projects. (optional)
     group_by = ['group_by_example'] # List[str] | Group the usage data by the specified fields. Support fields include `project_id`. (optional)
     limit = 56 # int | Specifies the number of buckets to return. - `bucket_width=1d`: default: 7, max: 31 - `bucket_width=1h`: default: 24, max: 168 - `bucket_width=1m`: default: 60, max: 1440  (optional)
@@ -264,7 +264,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start_time** | **int**| Start time (Unix seconds) of the query time range, inclusive. | 
  **end_time** | **int**| End time (Unix seconds) of the query time range, exclusive. | [optional] 
- **bucket_width** | **str**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to 1d]
+ **bucket_width** | **str**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to &#39;1d&#39;]
  **project_ids** | [**List[str]**](str.md)| Return only usage for these projects. | [optional] 
  **group_by** | [**List[str]**](str.md)| Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;. | [optional] 
  **limit** | **int**| Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440  | [optional] 
@@ -328,7 +328,7 @@ with openapiopenai.ApiClient(configuration) as api_client:
     api_instance = openapiopenai.UsageApi(api_client)
     start_time = 56 # int | Start time (Unix seconds) of the query time range, inclusive.
     end_time = 56 # int | End time (Unix seconds) of the query time range, exclusive. (optional)
-    bucket_width = 1d # str | Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`. (optional) (default to 1d)
+    bucket_width = '1d' # str | Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`. (optional) (default to '1d')
     project_ids = ['project_ids_example'] # List[str] | Return only usage for these projects. (optional)
     user_ids = ['user_ids_example'] # List[str] | Return only usage for these users. (optional)
     api_key_ids = ['api_key_ids_example'] # List[str] | Return only usage for these API keys. (optional)
@@ -356,7 +356,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start_time** | **int**| Start time (Unix seconds) of the query time range, inclusive. | 
  **end_time** | **int**| End time (Unix seconds) of the query time range, exclusive. | [optional] 
- **bucket_width** | **str**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to 1d]
+ **bucket_width** | **str**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to &#39;1d&#39;]
  **project_ids** | [**List[str]**](str.md)| Return only usage for these projects. | [optional] 
  **user_ids** | [**List[str]**](str.md)| Return only usage for these users. | [optional] 
  **api_key_ids** | [**List[str]**](str.md)| Return only usage for these API keys. | [optional] 
@@ -424,7 +424,7 @@ with openapiopenai.ApiClient(configuration) as api_client:
     api_instance = openapiopenai.UsageApi(api_client)
     start_time = 56 # int | Start time (Unix seconds) of the query time range, inclusive.
     end_time = 56 # int | End time (Unix seconds) of the query time range, exclusive. (optional)
-    bucket_width = 1d # str | Width of each time bucket in response. Currently only `1d` is supported, default to `1d`. (optional) (default to 1d)
+    bucket_width = '1d' # str | Width of each time bucket in response. Currently only `1d` is supported, default to `1d`. (optional) (default to '1d')
     project_ids = ['project_ids_example'] # List[str] | Return only costs for these projects. (optional)
     group_by = ['group_by_example'] # List[str] | Group the costs by the specified fields. Support fields include `project_id`, `line_item` and any combination of them. (optional)
     limit = 7 # int | A limit on the number of buckets to be returned. Limit can range between 1 and 180, and the default is 7.  (optional) (default to 7)
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start_time** | **int**| Start time (Unix seconds) of the query time range, inclusive. | 
  **end_time** | **int**| End time (Unix seconds) of the query time range, exclusive. | [optional] 
- **bucket_width** | **str**| Width of each time bucket in response. Currently only &#x60;1d&#x60; is supported, default to &#x60;1d&#x60;. | [optional] [default to 1d]
+ **bucket_width** | **str**| Width of each time bucket in response. Currently only &#x60;1d&#x60; is supported, default to &#x60;1d&#x60;. | [optional] [default to &#39;1d&#39;]
  **project_ids** | [**List[str]**](str.md)| Return only costs for these projects. | [optional] 
  **group_by** | [**List[str]**](str.md)| Group the costs by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;line_item&#x60; and any combination of them. | [optional] 
  **limit** | **int**| A limit on the number of buckets to be returned. Limit can range between 1 and 180, and the default is 7.  | [optional] [default to 7]
@@ -512,7 +512,7 @@ with openapiopenai.ApiClient(configuration) as api_client:
     api_instance = openapiopenai.UsageApi(api_client)
     start_time = 56 # int | Start time (Unix seconds) of the query time range, inclusive.
     end_time = 56 # int | End time (Unix seconds) of the query time range, exclusive. (optional)
-    bucket_width = 1d # str | Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`. (optional) (default to 1d)
+    bucket_width = '1d' # str | Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`. (optional) (default to '1d')
     project_ids = ['project_ids_example'] # List[str] | Return only usage for these projects. (optional)
     user_ids = ['user_ids_example'] # List[str] | Return only usage for these users. (optional)
     api_key_ids = ['api_key_ids_example'] # List[str] | Return only usage for these API keys. (optional)
@@ -539,7 +539,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start_time** | **int**| Start time (Unix seconds) of the query time range, inclusive. | 
  **end_time** | **int**| End time (Unix seconds) of the query time range, exclusive. | [optional] 
- **bucket_width** | **str**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to 1d]
+ **bucket_width** | **str**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to &#39;1d&#39;]
  **project_ids** | [**List[str]**](str.md)| Return only usage for these projects. | [optional] 
  **user_ids** | [**List[str]**](str.md)| Return only usage for these users. | [optional] 
  **api_key_ids** | [**List[str]**](str.md)| Return only usage for these API keys. | [optional] 
@@ -606,7 +606,7 @@ with openapiopenai.ApiClient(configuration) as api_client:
     api_instance = openapiopenai.UsageApi(api_client)
     start_time = 56 # int | Start time (Unix seconds) of the query time range, inclusive.
     end_time = 56 # int | End time (Unix seconds) of the query time range, exclusive. (optional)
-    bucket_width = 1d # str | Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`. (optional) (default to 1d)
+    bucket_width = '1d' # str | Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`. (optional) (default to '1d')
     sources = ['sources_example'] # List[str] | Return only usages for these sources. Possible values are `image.generation`, `image.edit`, `image.variation` or any combination of them. (optional)
     sizes = ['sizes_example'] # List[str] | Return only usages for these image sizes. Possible values are `256x256`, `512x512`, `1024x1024`, `1792x1792`, `1024x1792` or any combination of them. (optional)
     project_ids = ['project_ids_example'] # List[str] | Return only usage for these projects. (optional)
@@ -635,7 +635,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start_time** | **int**| Start time (Unix seconds) of the query time range, inclusive. | 
  **end_time** | **int**| End time (Unix seconds) of the query time range, exclusive. | [optional] 
- **bucket_width** | **str**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to 1d]
+ **bucket_width** | **str**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to &#39;1d&#39;]
  **sources** | [**List[str]**](str.md)| Return only usages for these sources. Possible values are &#x60;image.generation&#x60;, &#x60;image.edit&#x60;, &#x60;image.variation&#x60; or any combination of them. | [optional] 
  **sizes** | [**List[str]**](str.md)| Return only usages for these image sizes. Possible values are &#x60;256x256&#x60;, &#x60;512x512&#x60;, &#x60;1024x1024&#x60;, &#x60;1792x1792&#x60;, &#x60;1024x1792&#x60; or any combination of them. | [optional] 
  **project_ids** | [**List[str]**](str.md)| Return only usage for these projects. | [optional] 
@@ -704,7 +704,7 @@ with openapiopenai.ApiClient(configuration) as api_client:
     api_instance = openapiopenai.UsageApi(api_client)
     start_time = 56 # int | Start time (Unix seconds) of the query time range, inclusive.
     end_time = 56 # int | End time (Unix seconds) of the query time range, exclusive. (optional)
-    bucket_width = 1d # str | Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`. (optional) (default to 1d)
+    bucket_width = '1d' # str | Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`. (optional) (default to '1d')
     project_ids = ['project_ids_example'] # List[str] | Return only usage for these projects. (optional)
     user_ids = ['user_ids_example'] # List[str] | Return only usage for these users. (optional)
     api_key_ids = ['api_key_ids_example'] # List[str] | Return only usage for these API keys. (optional)
@@ -731,7 +731,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start_time** | **int**| Start time (Unix seconds) of the query time range, inclusive. | 
  **end_time** | **int**| End time (Unix seconds) of the query time range, exclusive. | [optional] 
- **bucket_width** | **str**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to 1d]
+ **bucket_width** | **str**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to &#39;1d&#39;]
  **project_ids** | [**List[str]**](str.md)| Return only usage for these projects. | [optional] 
  **user_ids** | [**List[str]**](str.md)| Return only usage for these users. | [optional] 
  **api_key_ids** | [**List[str]**](str.md)| Return only usage for these API keys. | [optional] 
@@ -798,7 +798,7 @@ with openapiopenai.ApiClient(configuration) as api_client:
     api_instance = openapiopenai.UsageApi(api_client)
     start_time = 56 # int | Start time (Unix seconds) of the query time range, inclusive.
     end_time = 56 # int | End time (Unix seconds) of the query time range, exclusive. (optional)
-    bucket_width = 1d # str | Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`. (optional) (default to 1d)
+    bucket_width = '1d' # str | Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`. (optional) (default to '1d')
     project_ids = ['project_ids_example'] # List[str] | Return only usage for these projects. (optional)
     group_by = ['group_by_example'] # List[str] | Group the usage data by the specified fields. Support fields include `project_id`. (optional)
     limit = 56 # int | Specifies the number of buckets to return. - `bucket_width=1d`: default: 7, max: 31 - `bucket_width=1h`: default: 24, max: 168 - `bucket_width=1m`: default: 60, max: 1440  (optional)
@@ -822,7 +822,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start_time** | **int**| Start time (Unix seconds) of the query time range, inclusive. | 
  **end_time** | **int**| End time (Unix seconds) of the query time range, exclusive. | [optional] 
- **bucket_width** | **str**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to 1d]
+ **bucket_width** | **str**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to &#39;1d&#39;]
  **project_ids** | [**List[str]**](str.md)| Return only usage for these projects. | [optional] 
  **group_by** | [**List[str]**](str.md)| Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;. | [optional] 
  **limit** | **int**| Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440  | [optional] 

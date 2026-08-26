@@ -22,16 +22,18 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class CreateModerationRequestInputOneOfInnerOneOfImageUrl(BaseModel):
     """
     Contains either an image URL or a data URL for a base64 encoded image.
     """ # noqa: E501
-    url: StrictStr = Field(description="Either a URL of the image or the base64 encoded image data.")
+    url: StrictStr = Field(description="Either a URL of the image or the base64 encoded image data.", json_schema_extra={"examples": ["https://example.com/image.jpg"]})
     __properties: ClassVar[List[str]] = ["url"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -43,8 +45,7 @@ class CreateModerationRequestInputOneOfInnerOneOfImageUrl(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

@@ -60,7 +60,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner.class.getName());
 
@@ -207,6 +207,7 @@ public class RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner extend
      * @return The actual instance of `RunStepDetailsToolCallsCodeOutputLogsObject`
      * @throws ClassCastException if the instance is not `RunStepDetailsToolCallsCodeOutputLogsObject`
      */
+    @SuppressWarnings("unchecked")
     public RunStepDetailsToolCallsCodeOutputLogsObject getRunStepDetailsToolCallsCodeOutputLogsObject() throws ClassCastException {
         return (RunStepDetailsToolCallsCodeOutputLogsObject)super.getActualInstance();
     }
@@ -218,6 +219,7 @@ public class RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner extend
      * @return The actual instance of `RunStepDetailsToolCallsCodeOutputImageObject`
      * @throws ClassCastException if the instance is not `RunStepDetailsToolCallsCodeOutputImageObject`
      */
+    @SuppressWarnings("unchecked")
     public RunStepDetailsToolCallsCodeOutputImageObject getRunStepDetailsToolCallsCodeOutputImageObject() throws ClassCastException {
         return (RunStepDetailsToolCallsCodeOutputImageObject)super.getActualInstance();
     }

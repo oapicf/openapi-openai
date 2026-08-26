@@ -27,6 +27,8 @@ MessageDeltaContentImageFileObject::MessageDeltaContentImageFileObject()
     
 }
 
+MessageDeltaContentImageFileObject::~MessageDeltaContentImageFileObject() = default;
+
 void MessageDeltaContentImageFileObject::validate() const
 {
     std::stringstream msg;

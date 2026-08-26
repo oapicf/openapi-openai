@@ -25,7 +25,8 @@ type UpdateVectorStoreRequest struct {
 	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 }
 
-// AssertUpdateVectorStoreRequestRequired checks if the required fields are not zero-ed
+// AssertUpdateVectorStoreRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertUpdateVectorStoreRequestRequired(obj UpdateVectorStoreRequest) error {
 	if err := AssertVectorStoreExpirationAfterRequired(obj.ExpiresAfter); err != nil {
 		return err

@@ -1,4 +1,4 @@
-# # AssistantToolsFunction
+# AssistantToolsFunction
 
 ## Properties
 

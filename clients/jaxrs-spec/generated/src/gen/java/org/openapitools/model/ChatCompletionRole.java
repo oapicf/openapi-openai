@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * The role of the author of a message
  */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public enum ChatCompletionRole {
   
   SYSTEM("system"),

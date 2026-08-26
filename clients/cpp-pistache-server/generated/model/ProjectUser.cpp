@@ -30,6 +30,8 @@ ProjectUser::ProjectUser()
     
 }
 
+ProjectUser::~ProjectUser() = default;
+
 void ProjectUser::validate() const
 {
     std::stringstream msg;

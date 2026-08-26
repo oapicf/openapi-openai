@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set The [file](/docs/api-reference/files) ID of the image.
 	 */
-	void setFileId(std::string  file_id);
+	void setFileId(std::string file_id);
 
 
     private:

@@ -34,7 +34,7 @@ class  CreateFineTuningJobRequest_hyperparameters
 {
 public:
     CreateFineTuningJobRequest_hyperparameters();
-    virtual ~CreateFineTuningJobRequest_hyperparameters() = default;
+    virtual ~CreateFineTuningJobRequest_hyperparameters();
 
 
     /// <summary>

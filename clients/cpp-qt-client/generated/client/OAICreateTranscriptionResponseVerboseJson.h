@@ -36,13 +36,13 @@ class OAITranscriptionSegment;
 class OAICreateTranscriptionResponseVerboseJson : public OAIObject {
 public:
     OAICreateTranscriptionResponseVerboseJson();
-    OAICreateTranscriptionResponseVerboseJson(QString json);
+    OAICreateTranscriptionResponseVerboseJson(const QString &json);
     ~OAICreateTranscriptionResponseVerboseJson() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getLanguage() const;
     void setLanguage(const QString &language);

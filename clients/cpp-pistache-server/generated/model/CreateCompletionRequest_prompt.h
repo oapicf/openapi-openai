@@ -33,7 +33,7 @@ class  CreateCompletionRequest_prompt
 {
 public:
     CreateCompletionRequest_prompt();
-    virtual ~CreateCompletionRequest_prompt() = default;
+    virtual ~CreateCompletionRequest_prompt();
 
 
     /// <summary>

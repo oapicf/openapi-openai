@@ -73,10 +73,10 @@ export function RealtimeServerEventErrorErrorFromJSONTyped(json: any, ignoreDisc
     return {
         
         'type': json['type'],
-        'code': json['code'] == null ? undefined : json['code'],
+        'code': json['code'] === undefined ? undefined : json['code'] === null ? null : json['code'],
         'message': json['message'],
-        'param': json['param'] == null ? undefined : json['param'],
-        'eventId': json['event_id'] == null ? undefined : json['event_id'],
+        'param': json['param'] === undefined ? undefined : json['param'] === null ? null : json['param'],
+        'eventId': json['event_id'] === undefined ? undefined : json['event_id'] === null ? null : json['event_id'],
     };
 }
 

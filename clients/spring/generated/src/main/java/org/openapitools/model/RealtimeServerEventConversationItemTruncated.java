@@ -8,20 +8,20 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Returned when an earlier assistant audio message item is truncated by the  client with a &#x60;conversation.item.truncate&#x60; event. This event is used to  synchronize the server&#39;s understanding of the audio with the client&#39;s playback.  This action will truncate the audio and remove the server-side text transcript  to ensure there is no text in the context that hasn&#39;t been heard by the user. 
  */
 
 @Schema(name = "RealtimeServerEventConversationItemTruncated", description = "Returned when an earlier assistant audio message item is truncated by the  client with a `conversation.item.truncate` event. This event is used to  synchronize the server's understanding of the audio with the client's playback.  This action will truncate the audio and remove the server-side text transcript  to ensure there is no text in the context that hasn't been heard by the user. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeServerEventConversationItemTruncated {
 
   private String eventId;
@@ -98,6 +98,7 @@ public class RealtimeServerEventConversationItemTruncated {
     return eventId;
   }
 
+  @JsonProperty("event_id")
   public void setEventId(String eventId) {
     this.eventId = eventId;
   }
@@ -118,6 +119,7 @@ public class RealtimeServerEventConversationItemTruncated {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -138,6 +140,7 @@ public class RealtimeServerEventConversationItemTruncated {
     return itemId;
   }
 
+  @JsonProperty("item_id")
   public void setItemId(String itemId) {
     this.itemId = itemId;
   }
@@ -158,6 +161,7 @@ public class RealtimeServerEventConversationItemTruncated {
     return contentIndex;
   }
 
+  @JsonProperty("content_index")
   public void setContentIndex(Integer contentIndex) {
     this.contentIndex = contentIndex;
   }
@@ -178,6 +182,7 @@ public class RealtimeServerEventConversationItemTruncated {
     return audioEndMs;
   }
 
+  @JsonProperty("audio_end_ms")
   public void setAudioEndMs(Integer audioEndMs) {
     this.audioEndMs = audioEndMs;
   }
@@ -220,11 +225,8 @@ public class RealtimeServerEventConversationItemTruncated {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

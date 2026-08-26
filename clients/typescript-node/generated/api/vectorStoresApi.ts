@@ -110,8 +110,8 @@ export class VectorStoresApi {
      */
     public async cancelVectorStoreFileBatch (vectorStoreId: string, batchId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: VectorStoreFileBatchObject;  }> {
         const localVarPath = this.basePath + '/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)))
-            .replace('{' + 'batch_id' + '}', encodeURIComponent(String(batchId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+            .replace('{batch_id}', encodeURIComponent(String(batchId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -261,7 +261,7 @@ export class VectorStoresApi {
      */
     public async createVectorStoreFile (vectorStoreId: string, createVectorStoreFileRequest: CreateVectorStoreFileRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: VectorStoreFileObject;  }> {
         const localVarPath = this.basePath + '/vector_stores/{vector_store_id}/files'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -340,7 +340,7 @@ export class VectorStoresApi {
      */
     public async createVectorStoreFileBatch (vectorStoreId: string, createVectorStoreFileBatchRequest: CreateVectorStoreFileBatchRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: VectorStoreFileBatchObject;  }> {
         const localVarPath = this.basePath + '/vector_stores/{vector_store_id}/file_batches'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -418,7 +418,7 @@ export class VectorStoresApi {
      */
     public async deleteVectorStore (vectorStoreId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DeleteVectorStoreResponse;  }> {
         const localVarPath = this.basePath + '/vector_stores/{vector_store_id}'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -491,8 +491,8 @@ export class VectorStoresApi {
      */
     public async deleteVectorStoreFile (vectorStoreId: string, fileId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DeleteVectorStoreFileResponse;  }> {
         const localVarPath = this.basePath + '/vector_stores/{vector_store_id}/files/{file_id}'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)))
-            .replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+            .replace('{file_id}', encodeURIComponent(String(fileId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -569,7 +569,7 @@ export class VectorStoresApi {
      */
     public async getVectorStore (vectorStoreId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: VectorStoreObject;  }> {
         const localVarPath = this.basePath + '/vector_stores/{vector_store_id}'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -642,8 +642,8 @@ export class VectorStoresApi {
      */
     public async getVectorStoreFile (vectorStoreId: string, fileId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: VectorStoreFileObject;  }> {
         const localVarPath = this.basePath + '/vector_stores/{vector_store_id}/files/{file_id}'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)))
-            .replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+            .replace('{file_id}', encodeURIComponent(String(fileId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -721,8 +721,8 @@ export class VectorStoresApi {
      */
     public async getVectorStoreFileBatch (vectorStoreId: string, batchId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: VectorStoreFileBatchObject;  }> {
         const localVarPath = this.basePath + '/vector_stores/{vector_store_id}/file_batches/{batch_id}'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)))
-            .replace('{' + 'batch_id' + '}', encodeURIComponent(String(batchId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+            .replace('{batch_id}', encodeURIComponent(String(batchId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -805,8 +805,8 @@ export class VectorStoresApi {
      */
     public async listFilesInVectorStoreBatch (vectorStoreId: string, batchId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, filter?: 'in_progress' | 'completed' | 'failed' | 'cancelled', options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ListVectorStoreFilesResponse;  }> {
         const localVarPath = this.basePath + '/vector_stores/{vector_store_id}/file_batches/{batch_id}/files'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)))
-            .replace('{' + 'batch_id' + '}', encodeURIComponent(String(batchId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+            .replace('{batch_id}', encodeURIComponent(String(batchId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -908,7 +908,7 @@ export class VectorStoresApi {
      */
     public async listVectorStoreFiles (vectorStoreId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, filter?: 'in_progress' | 'completed' | 'failed' | 'cancelled', options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ListVectorStoreFilesResponse;  }> {
         const localVarPath = this.basePath + '/vector_stores/{vector_store_id}/files'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1086,7 +1086,7 @@ export class VectorStoresApi {
      */
     public async modifyVectorStore (vectorStoreId: string, updateVectorStoreRequest: UpdateVectorStoreRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: VectorStoreObject;  }> {
         const localVarPath = this.basePath + '/vector_stores/{vector_store_id}'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];

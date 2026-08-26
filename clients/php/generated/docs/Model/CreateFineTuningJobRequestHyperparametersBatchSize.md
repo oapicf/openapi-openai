@@ -1,4 +1,4 @@
-# # CreateFineTuningJobRequestHyperparametersBatchSize
+# CreateFineTuningJobRequestHyperparametersBatchSize
 
 ## Properties
 

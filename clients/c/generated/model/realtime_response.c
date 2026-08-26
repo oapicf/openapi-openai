@@ -52,6 +52,8 @@ static realtime_response_t *realtime_response_create_internal(
     if (!realtime_response_local_var) {
         return NULL;
     }
+    memset(realtime_response_local_var, 0, sizeof(realtime_response_t));
+    realtime_response_local_var->_library_owned = 1;
     realtime_response_local_var->id = id;
     realtime_response_local_var->object = object;
     realtime_response_local_var->status = status;
@@ -59,8 +61,6 @@ static realtime_response_t *realtime_response_create_internal(
     realtime_response_local_var->output = output;
     realtime_response_local_var->metadata = metadata;
     realtime_response_local_var->usage = usage;
-
-    realtime_response_local_var->_library_owned = 1;
     return realtime_response_local_var;
 }
 
@@ -73,7 +73,7 @@ __attribute__((deprecated)) realtime_response_t *realtime_response_create(
     object_t *metadata,
     realtime_response_usage_t *usage
     ) {
-    return realtime_response_create_internal (
+    realtime_response_t *result = realtime_response_create_internal (
         id,
         object,
         status,
@@ -82,6 +82,9 @@ __attribute__((deprecated)) realtime_response_t *realtime_response_create(
         metadata,
         usage
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_response_free(realtime_response_t *realtime_response) {
@@ -218,6 +221,8 @@ realtime_response_t *realtime_response_parseFromJSON(cJSON *realtime_responseJSO
 
     realtime_response_t *realtime_response_local_var = NULL;
 
+    char *id_local_str = NULL;
+
     // define the local variable for realtime_response->status_details
     realtime_response_status_details_t *status_details_local_nonprim = NULL;
 
@@ -320,8 +325,10 @@ realtime_response_t *realtime_response_parseFromJSON(cJSON *realtime_responseJSO
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     realtime_response_local_var = realtime_response_create_internal (
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
+        id_local_str,
         object ? objectVariable : openai_api_realtime_response_OBJECT_NULL,
         status ? statusVariable : openai_api_realtime_response_STATUS_NULL,
         status_details ? status_details_local_nonprim : NULL,
@@ -330,8 +337,16 @@ realtime_response_t *realtime_response_parseFromJSON(cJSON *realtime_responseJSO
         usage ? usage_local_nonprim : NULL
         );
 
+    if (!realtime_response_local_var) {
+        goto end;
+    }
+
     return realtime_response_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     if (status_details_local_nonprim) {
         realtime_response_status_details_free(status_details_local_nonprim);
         status_details_local_nonprim = NULL;

@@ -34,6 +34,8 @@ MessageDeltaContentTextObject_text_annotations_inner::MessageDeltaContentTextObj
     
 }
 
+MessageDeltaContentTextObject_text_annotations_inner::~MessageDeltaContentTextObject_text_annotations_inner() = default;
+
 void MessageDeltaContentTextObject_text_annotations_inner::validate() const
 {
     std::stringstream msg;

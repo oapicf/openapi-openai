@@ -28,6 +28,8 @@ RealtimeServerEventInputAudioBufferCommitted::RealtimeServerEventInputAudioBuffe
     
 }
 
+RealtimeServerEventInputAudioBufferCommitted::~RealtimeServerEventInputAudioBufferCommitted() = default;
+
 void RealtimeServerEventInputAudioBufferCommitted::validate() const
 {
     std::stringstream msg;

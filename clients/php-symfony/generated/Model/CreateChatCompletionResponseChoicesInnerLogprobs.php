@@ -51,7 +51,7 @@ class CreateChatCompletionResponseChoicesInnerLogprobs
      * @var ChatCompletionTokenLogprob[]|null
      * @SerializedName("content")
      * @Type("array<OpenAPI\Server\Model\ChatCompletionTokenLogprob>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -65,7 +65,7 @@ class CreateChatCompletionResponseChoicesInnerLogprobs
      * @var ChatCompletionTokenLogprob[]|null
      * @SerializedName("refusal")
      * @Type("array<OpenAPI\Server\Model\ChatCompletionTokenLogprob>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -96,12 +96,12 @@ class CreateChatCompletionResponseChoicesInnerLogprobs
     }
 
     /**
-    * Sets content.
-    *
-    * @param ChatCompletionTokenLogprob[]|null $content  A list of message content tokens with log probability information.
-    *
-    * @return $this
-    */
+     * Sets content.
+     *
+     * @param ChatCompletionTokenLogprob[]|null $content  A list of message content tokens with log probability information.
+     *
+     * @return $this
+     */
     public function setContent(?array $content): self
     {
         $this->content = $content;
@@ -123,12 +123,12 @@ class CreateChatCompletionResponseChoicesInnerLogprobs
     }
 
     /**
-    * Sets refusal.
-    *
-    * @param ChatCompletionTokenLogprob[]|null $refusal  A list of message refusal tokens with log probability information.
-    *
-    * @return $this
-    */
+     * Sets refusal.
+     *
+     * @param ChatCompletionTokenLogprob[]|null $refusal  A list of message refusal tokens with log probability information.
+     *
+     * @return $this
+     */
     public function setRefusal(?array $refusal): self
     {
         $this->refusal = $refusal;

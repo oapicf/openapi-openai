@@ -33,13 +33,13 @@ class OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url;
 class OAICreateModerationRequest_input_oneOf_inner_oneOf : public OAIObject {
 public:
     OAICreateModerationRequest_input_oneOf_inner_oneOf();
-    OAICreateModerationRequest_input_oneOf_inner_oneOf(QString json);
+    OAICreateModerationRequest_input_oneOf_inner_oneOf(const QString &json);
     ~OAICreateModerationRequest_input_oneOf_inner_oneOf() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

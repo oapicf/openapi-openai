@@ -51,7 +51,7 @@ class AuditLogActorUser
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -61,7 +61,7 @@ class AuditLogActorUser
      * @var string|null
      * @SerializedName("email")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $email = null;
 
@@ -88,12 +88,12 @@ class AuditLogActorUser
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The user id.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The user id.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -115,12 +115,12 @@ class AuditLogActorUser
     }
 
     /**
-    * Sets email.
-    *
-    * @param string|null $email  The user email.
-    *
-    * @return $this
-    */
+     * Sets email.
+     *
+     * @param string|null $email  The user email.
+     *
+     * @return $this
+     */
     public function setEmail(?string $email = null): self
     {
         $this->email = $email;

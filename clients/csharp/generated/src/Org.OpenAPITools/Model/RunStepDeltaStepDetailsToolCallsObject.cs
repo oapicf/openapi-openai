@@ -118,7 +118,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>An array of tool calls the run step was involved in. These can be associated with one of three types of tools: &#x60;code_interpreter&#x60;, &#x60;file_search&#x60;, or &#x60;function&#x60;. </value>
         [JsonPropertyName("tool_calls")]
-        public List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>? ToolCalls { get { return this.ToolCallsOption; } set { this.ToolCallsOption = new(value); } }
+        public List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>? ToolCalls { get { return this.ToolCallsOption.Value; } set { this.ToolCallsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,8 +148,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDeltaStepDetailsToolCallsObject" />
     /// </summary>
-    public class RunStepDeltaStepDetailsToolCallsObjectJsonConverter : JsonConverter<RunStepDeltaStepDetailsToolCallsObject>
+    public partial class RunStepDeltaStepDetailsToolCallsObjectJsonConverter : JsonConverter<RunStepDeltaStepDetailsToolCallsObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDeltaStepDetailsToolCallsObjectJsonConverter" /> class.
+        /// </summary>
+        public RunStepDeltaStepDetailsToolCallsObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDeltaStepDetailsToolCallsObject" />
         /// </summary>

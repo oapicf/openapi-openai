@@ -69,10 +69,14 @@ class CreateUploadRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateUploadRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateUploadRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'filename'), 'Required key "CreateUploadRequest[filename]" is missing from JSON.');
+        assert(json[r'filename'] != null, 'Required key "CreateUploadRequest[filename]" has a null value in JSON.');
+        assert(json.containsKey(r'purpose'), 'Required key "CreateUploadRequest[purpose]" is missing from JSON.');
+        assert(json[r'purpose'] != null, 'Required key "CreateUploadRequest[purpose]" has a null value in JSON.');
+        assert(json.containsKey(r'bytes'), 'Required key "CreateUploadRequest[bytes]" is missing from JSON.');
+        assert(json[r'bytes'] != null, 'Required key "CreateUploadRequest[bytes]" has a null value in JSON.');
+        assert(json.containsKey(r'mime_type'), 'Required key "CreateUploadRequest[mime_type]" is missing from JSON.');
+        assert(json[r'mime_type'] != null, 'Required key "CreateUploadRequest[mime_type]" has a null value in JSON.');
         return true;
       }());
 
@@ -136,33 +140,31 @@ class CreateUploadRequest {
 }
 
 /// The intended purpose of the uploaded file.  See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose). 
-class CreateUploadRequestPurposeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateUploadRequestPurposeEnum._(this.value);
+enum CreateUploadRequestPurposeEnum {
+  assistants._(r'assistants'),
+  batch._(r'batch'),
+  fineTune._(r'fine-tune'),
+  vision._(r'vision'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateUploadRequestPurposeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const assistants = CreateUploadRequestPurposeEnum._(r'assistants');
-  static const batch = CreateUploadRequestPurposeEnum._(r'batch');
-  static const fineTune = CreateUploadRequestPurposeEnum._(r'fine-tune');
-  static const vision = CreateUploadRequestPurposeEnum._(r'vision');
-
-  /// List of all possible values in this [enum][CreateUploadRequestPurposeEnum].
-  static const values = <CreateUploadRequestPurposeEnum>[
-    assistants,
-    batch,
-    fineTune,
-    vision,
-  ];
-
+  /// Returns the instance of [CreateUploadRequestPurposeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateUploadRequestPurposeEnum? fromJson(dynamic value) => CreateUploadRequestPurposeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateUploadRequestPurposeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateUploadRequestPurposeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateUploadRequestPurposeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -184,9 +186,10 @@ class CreateUploadRequestPurposeEnumTypeTransformer {
 
   const CreateUploadRequestPurposeEnumTypeTransformer._();
 
-  String encode(CreateUploadRequestPurposeEnum data) => data.value;
+  String encode(CreateUploadRequestPurposeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateUploadRequestPurposeEnum.
+  /// Returns the instance of [CreateUploadRequestPurposeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -195,6 +198,9 @@ class CreateUploadRequestPurposeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateUploadRequestPurposeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateUploadRequestPurposeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'assistants': return CreateUploadRequestPurposeEnum.assistants;
@@ -210,7 +216,7 @@ class CreateUploadRequestPurposeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateUploadRequestPurposeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateUploadRequestPurposeEnumTypeTransformer? _instance;
 }
 

@@ -19,7 +19,7 @@ import model_object
 
 type ModifyAssistantRequest* = object
   ## 
-  model*: Option[string]
+  model*: Option[string] ## ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
   name*: Option[string] ## The name of the assistant. The maximum length is 256 characters. 
   description*: Option[string] ## The description of the assistant. The maximum length is 512 characters. 
   instructions*: Option[string] ## The system instructions that the assistant uses. The maximum length is 256,000 characters. 

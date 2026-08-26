@@ -1,4 +1,4 @@
-# # CreateEmbeddingRequest
+# CreateEmbeddingRequest
 
 ## Properties
 

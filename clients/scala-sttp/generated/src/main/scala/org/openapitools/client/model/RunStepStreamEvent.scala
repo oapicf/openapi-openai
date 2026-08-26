@@ -12,10 +12,45 @@
 package org.openapitools.client.model
 
 
-case class RunStepStreamEvent(
-  event: RunStepStreamEventEnums.Event,
+sealed trait RunStepStreamEvent
+object RunStepStreamEvent {
+}
+
+case class RunStepStreamEventOneOf(
+  event: RunStepStreamEventOneOfEnums.Event,
   data: RunStepObject
-)
+) extends RunStepStreamEvent
+
+case class RunStepStreamEventOneOf1(
+  event: RunStepStreamEventOneOf1Enums.Event,
+  data: RunStepObject
+) extends RunStepStreamEvent
+
+case class RunStepStreamEventOneOf2(
+  event: RunStepStreamEventOneOf2Enums.Event,
+  data: RunStepDeltaObject
+) extends RunStepStreamEvent
+
+case class RunStepStreamEventOneOf3(
+  event: RunStepStreamEventOneOf3Enums.Event,
+  data: RunStepObject
+) extends RunStepStreamEvent
+
+case class RunStepStreamEventOneOf4(
+  event: RunStepStreamEventOneOf4Enums.Event,
+  data: RunStepObject
+) extends RunStepStreamEvent
+
+case class RunStepStreamEventOneOf5(
+  event: RunStepStreamEventOneOf5Enums.Event,
+  data: RunStepObject
+) extends RunStepStreamEvent
+
+case class RunStepStreamEventOneOf6(
+  event: RunStepStreamEventOneOf6Enums.Event,
+  data: RunStepObject
+) extends RunStepStreamEvent
+
 
 object RunStepStreamEventEnums {
 

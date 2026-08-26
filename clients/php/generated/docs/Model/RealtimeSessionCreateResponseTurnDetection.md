@@ -1,4 +1,4 @@
-# # RealtimeSessionCreateResponseTurnDetection
+# RealtimeSessionCreateResponseTurnDetection
 
 ## Properties
 

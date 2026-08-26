@@ -6,28 +6,37 @@
 
 
 static assistant_tools_file_search_file_search_t *assistant_tools_file_search_file_search_create_internal(
-    int max_num_results,
+    int *max_num_results,
     file_search_ranking_options_t *ranking_options
     ) {
     assistant_tools_file_search_file_search_t *assistant_tools_file_search_file_search_local_var = malloc(sizeof(assistant_tools_file_search_file_search_t));
     if (!assistant_tools_file_search_file_search_local_var) {
         return NULL;
     }
+    memset(assistant_tools_file_search_file_search_local_var, 0, sizeof(assistant_tools_file_search_file_search_t));
+    assistant_tools_file_search_file_search_local_var->_library_owned = 1;
     assistant_tools_file_search_file_search_local_var->max_num_results = max_num_results;
     assistant_tools_file_search_file_search_local_var->ranking_options = ranking_options;
-
-    assistant_tools_file_search_file_search_local_var->_library_owned = 1;
     return assistant_tools_file_search_file_search_local_var;
 }
 
 __attribute__((deprecated)) assistant_tools_file_search_file_search_t *assistant_tools_file_search_file_search_create(
-    int max_num_results,
+    int *max_num_results,
     file_search_ranking_options_t *ranking_options
     ) {
-    return assistant_tools_file_search_file_search_create_internal (
-        max_num_results,
+    int *max_num_results_copy = NULL;
+    if (max_num_results) {
+        max_num_results_copy = malloc(sizeof(int));
+        if (max_num_results_copy) *max_num_results_copy = *max_num_results;
+    }
+    assistant_tools_file_search_file_search_t *result = assistant_tools_file_search_file_search_create_internal (
+        max_num_results_copy,
         ranking_options
         );
+    if (!result) {
+        free(max_num_results_copy);
+    }
+    return result;
 }
 
 void assistant_tools_file_search_file_search_free(assistant_tools_file_search_file_search_t *assistant_tools_file_search_file_search) {
@@ -39,6 +48,10 @@ void assistant_tools_file_search_file_search_free(assistant_tools_file_search_fi
         return ;
     }
     listEntry_t *listEntry;
+    if (assistant_tools_file_search_file_search->max_num_results) {
+        free(assistant_tools_file_search_file_search->max_num_results);
+        assistant_tools_file_search_file_search->max_num_results = NULL;
+    }
     if (assistant_tools_file_search_file_search->ranking_options) {
         file_search_ranking_options_free(assistant_tools_file_search_file_search->ranking_options);
         assistant_tools_file_search_file_search->ranking_options = NULL;
@@ -51,7 +64,7 @@ cJSON *assistant_tools_file_search_file_search_convertToJSON(assistant_tools_fil
 
     // assistant_tools_file_search_file_search->max_num_results
     if(assistant_tools_file_search_file_search->max_num_results) {
-    if(cJSON_AddNumberToObject(item, "max_num_results", assistant_tools_file_search_file_search->max_num_results) == NULL) {
+    if(cJSON_AddNumberToObject(item, "max_num_results", *assistant_tools_file_search_file_search->max_num_results) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -81,6 +94,9 @@ assistant_tools_file_search_file_search_t *assistant_tools_file_search_file_sear
 
     assistant_tools_file_search_file_search_t *assistant_tools_file_search_file_search_local_var = NULL;
 
+    // define the local variable for assistant_tools_file_search_file_search->max_num_results
+    int *max_num_results_local_var = NULL;
+
     // define the local variable for assistant_tools_file_search_file_search->ranking_options
     file_search_ranking_options_t *ranking_options_local_nonprim = NULL;
 
@@ -94,6 +110,12 @@ assistant_tools_file_search_file_search_t *assistant_tools_file_search_file_sear
     {
     goto end; //Numeric
     }
+    max_num_results_local_var = malloc(sizeof(int));
+    if(!max_num_results_local_var)
+    {
+        goto end;
+    }
+    *max_num_results_local_var = max_num_results->valuedouble;
     }
 
     // assistant_tools_file_search_file_search->ranking_options
@@ -106,13 +128,22 @@ assistant_tools_file_search_file_search_t *assistant_tools_file_search_file_sear
     }
 
 
+
     assistant_tools_file_search_file_search_local_var = assistant_tools_file_search_file_search_create_internal (
-        max_num_results ? max_num_results->valuedouble : 0,
+        max_num_results_local_var,
         ranking_options ? ranking_options_local_nonprim : NULL
         );
 
+    if (!assistant_tools_file_search_file_search_local_var) {
+        goto end;
+    }
+
     return assistant_tools_file_search_file_search_local_var;
 end:
+    if (max_num_results_local_var) {
+        free(max_num_results_local_var);
+        max_num_results_local_var = NULL;
+    }
     if (ranking_options_local_nonprim) {
         file_search_ranking_options_free(ranking_options_local_nonprim);
         ranking_options_local_nonprim = NULL;

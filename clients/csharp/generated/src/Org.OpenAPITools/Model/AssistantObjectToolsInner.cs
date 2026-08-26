@@ -104,8 +104,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AssistantObjectToolsInner" />
     /// </summary>
-    public class AssistantObjectToolsInnerJsonConverter : JsonConverter<AssistantObjectToolsInner>
+    public partial class AssistantObjectToolsInnerJsonConverter : JsonConverter<AssistantObjectToolsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssistantObjectToolsInnerJsonConverter" /> class.
+        /// </summary>
+        public AssistantObjectToolsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AssistantObjectToolsInner" />
         /// </summary>

@@ -50,9 +50,9 @@ function Initialize-CreateThreadRequestToolResourcesFileSearchVectorStoresInner 
 
 
         $PSO = [PSCustomObject]@{
-            "file_ids" = ${FileIds}
-            "chunking_strategy" = ${ChunkingStrategy}
-            "metadata" = ${Metadata}
+            'file_ids' = ${FileIds}
+            'chunking_strategy' = ${ChunkingStrategy}
+            'metadata' = ${Metadata}
         }
 
 
@@ -90,35 +90,35 @@ function ConvertFrom-JsonToCreateThreadRequestToolResourcesFileSearchVectorStore
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateThreadRequestToolResourcesFileSearchVectorStoresInner
-        $AllProperties = ("file_ids", "chunking_strategy", "metadata")
+        $AllProperties = ('file_ids', 'chunking_strategy', 'metadata')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_ids"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_ids'))) { #optional property not found
             $FileIds = $null
         } else {
-            $FileIds = $JsonParameters.PSobject.Properties["file_ids"].value
+            $FileIds = $JsonParameters.PSobject.Properties['file_ids'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "chunking_strategy"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'chunking_strategy'))) { #optional property not found
             $ChunkingStrategy = $null
         } else {
-            $ChunkingStrategy = $JsonParameters.PSobject.Properties["chunking_strategy"].value
+            $ChunkingStrategy = $JsonParameters.PSobject.Properties['chunking_strategy'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) { #optional property not found
             $Metadata = $null
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "file_ids" = ${FileIds}
-            "chunking_strategy" = ${ChunkingStrategy}
-            "metadata" = ${Metadata}
+            'file_ids' = ${FileIds}
+            'chunking_strategy' = ${ChunkingStrategy}
+            'metadata' = ${Metadata}
         }
 
         return $PSO

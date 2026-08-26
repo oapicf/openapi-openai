@@ -25,6 +25,8 @@ CreateFineTuningJobRequest_integrations_inner::CreateFineTuningJobRequest_integr
     
 }
 
+CreateFineTuningJobRequest_integrations_inner::~CreateFineTuningJobRequest_integrations_inner() = default;
+
 void CreateFineTuningJobRequest_integrations_inner::validate() const
 {
     std::stringstream msg;

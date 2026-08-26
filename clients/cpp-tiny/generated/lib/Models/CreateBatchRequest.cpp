@@ -119,7 +119,7 @@ CreateBatch_request::getInputFileId()
 }
 
 void
-CreateBatch_request::setInputFileId(std::string  input_file_id)
+CreateBatch_request::setInputFileId(std::string input_file_id)
 {
 	this->input_file_id = input_file_id;
 }
@@ -131,7 +131,7 @@ CreateBatch_request::getEndpoint()
 }
 
 void
-CreateBatch_request::setEndpoint(std::string  endpoint)
+CreateBatch_request::setEndpoint(std::string endpoint)
 {
 	this->endpoint = endpoint;
 }
@@ -143,19 +143,19 @@ CreateBatch_request::getCompletionWindow()
 }
 
 void
-CreateBatch_request::setCompletionWindow(std::string  completion_window)
+CreateBatch_request::setCompletionWindow(std::string completion_window)
 {
 	this->completion_window = completion_window;
 }
 
-Map<string, string>
+std::map<std::string, std::string>
 CreateBatch_request::getMetadata()
 {
 	return metadata;
 }
 
 void
-CreateBatch_request::setMetadata(Map <string, string> metadata)
+CreateBatch_request::setMetadata(std::map<std::string, std::string> metadata)
 {
 	this->metadata = metadata;
 }

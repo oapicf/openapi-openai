@@ -102,7 +102,7 @@ MessageDeltaObject_delta::getRole()
 }
 
 void
-MessageDeltaObject_delta::setRole(std::string  role)
+MessageDeltaObject_delta::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -114,7 +114,7 @@ MessageDeltaObject_delta::getContent()
 }
 
 void
-MessageDeltaObject_delta::setContent(std::list <MessageDeltaObject_delta_content_inner> content)
+MessageDeltaObject_delta::setContent(std::list<MessageDeltaObject_delta_content_inner> content)
 {
 	this->content = content;
 }

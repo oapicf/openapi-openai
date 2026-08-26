@@ -43,7 +43,7 @@ import javax.validation.Valid;
   CreateModerationResponseResultsInnerCategoryScores.JSON_PROPERTY_VIOLENCE,
   CreateModerationResponseResultsInnerCategoryScores.JSON_PROPERTY_VIOLENCE_GRAPHIC
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-01-29T14:09:10.882541726Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateModerationResponseResultsInnerCategoryScores   {
   public static final String JSON_PROPERTY_HATE = "hate";
   @JsonProperty(JSON_PROPERTY_HATE)
@@ -414,10 +414,7 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

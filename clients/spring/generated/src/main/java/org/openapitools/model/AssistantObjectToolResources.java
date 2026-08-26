@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -10,13 +11,13 @@ import org.openapitools.model.AssistantObjectToolResourcesFileSearch;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * A set of resources that are used by the assistant&#39;s tools. The resources are specific to the type of tool. For example, the &#x60;code_interpreter&#x60; tool requires a list of file IDs, while the &#x60;file_search&#x60; tool requires a list of vector store IDs. 
@@ -24,11 +25,13 @@ import javax.annotation.Generated;
 
 @Schema(name = "AssistantObject_tool_resources", description = "A set of resources that are used by the assistant's tools. The resources are specific to the type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of vector store IDs. ")
 @JsonTypeName("AssistantObject_tool_resources")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class AssistantObjectToolResources {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AssistantObjectToolResourcesCodeInterpreter codeInterpreter;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AssistantObjectToolResourcesFileSearch fileSearch;
 
   public AssistantObjectToolResources codeInterpreter(@Nullable AssistantObjectToolResourcesCodeInterpreter codeInterpreter) {
@@ -47,6 +50,7 @@ public class AssistantObjectToolResources {
     return codeInterpreter;
   }
 
+  @JsonProperty("code_interpreter")
   public void setCodeInterpreter(@Nullable AssistantObjectToolResourcesCodeInterpreter codeInterpreter) {
     this.codeInterpreter = codeInterpreter;
   }
@@ -67,6 +71,7 @@ public class AssistantObjectToolResources {
     return fileSearch;
   }
 
+  @JsonProperty("file_search")
   public void setFileSearch(@Nullable AssistantObjectToolResourcesFileSearch fileSearch) {
     this.fileSearch = fileSearch;
   }
@@ -104,10 +109,7 @@ public class AssistantObjectToolResources {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

@@ -41,8 +41,8 @@ function Initialize-RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter {
 
 
         $PSO = [PSCustomObject]@{
-            "input" = ${VarInput}
-            "outputs" = ${Outputs}
+            'input' = ${VarInput}
+            'outputs' = ${Outputs}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToRunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpr
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
-        $AllProperties = ("input", "outputs")
+        $AllProperties = ('input', 'outputs')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "input"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'input'))) { #optional property not found
             $VarInput = $null
         } else {
-            $VarInput = $JsonParameters.PSobject.Properties["input"].value
+            $VarInput = $JsonParameters.PSobject.Properties['input'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "outputs"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'outputs'))) { #optional property not found
             $Outputs = $null
         } else {
-            $Outputs = $JsonParameters.PSobject.Properties["outputs"].value
+            $Outputs = $JsonParameters.PSobject.Properties['outputs'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "input" = ${VarInput}
-            "outputs" = ${Outputs}
+            'input' = ${VarInput}
+            'outputs' = ${Outputs}
         }
 
         return $PSO

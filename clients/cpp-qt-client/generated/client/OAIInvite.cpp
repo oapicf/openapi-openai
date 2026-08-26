@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIInvite::OAIInvite(QString json) {
+OAIInvite::OAIInvite(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -62,7 +62,7 @@ void OAIInvite::initializeModel() {
     m_projects_isValid = false;
 }
 
-void OAIInvite::fromJson(QString jsonString) {
+void OAIInvite::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

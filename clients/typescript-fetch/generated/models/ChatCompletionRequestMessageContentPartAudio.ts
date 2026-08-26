@@ -30,7 +30,7 @@ import {
 export interface ChatCompletionRequestMessageContentPartAudio {
     /**
      * The type of the content part. Always `input_audio`.
-     * @type {string}
+     * @type {ChatCompletionRequestMessageContentPartAudioTypeEnum}
      * @memberof ChatCompletionRequestMessageContentPartAudio
      */
     type: ChatCompletionRequestMessageContentPartAudioTypeEnum;
@@ -57,7 +57,9 @@ export type ChatCompletionRequestMessageContentPartAudioTypeEnum = typeof ChatCo
  */
 export function instanceOfChatCompletionRequestMessageContentPartAudio(value: object): value is ChatCompletionRequestMessageContentPartAudio {
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('inputAudio' in value) || value['inputAudio'] === undefined) return false;
+    if (value['type'] !== 'input_audio') return false;
+    
+    if ((!('inputAudio' in (value as Record<string, any>)) && !('input_audio' in (value as Record<string, any>))) || ((value as Record<string, any>)['inputAudio'] === undefined && (value as Record<string, any>)['input_audio'] === undefined)) return false;
     return true;
 }
 

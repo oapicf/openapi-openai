@@ -1,0 +1,81 @@
+package org.openapitools.api.interfaces;
+
+import org.openapitools.model.DeleteFileResponse;
+import org.openapitools.model.ListFilesResponse;
+import org.openapitools.model.OpenAIFile;
+import org.openapitools.model.*;
+import java.util.List;
+import java.util.Map;
+import java.time.OffsetDateTime;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import javax.annotation.Generated;
+
+
+@Generated(value = "org.openapitools.codegen.languages.JavaDubboServerCodegen", comments = "Generator version: 7.24.0")
+
+public interface FilesService {
+
+    /**
+     * Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+     * 
+     *
+     * @param _file The File object (not file name) to be uploaded.  (required)
+     * @param purpose The intended purpose of the uploaded file.  Use \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\&quot;vision\\\&quot; for Assistants image file inputs, \\\&quot;batch\\\&quot; for [Batch API](/docs/guides/batch), and \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning).  (required)
+     * @return OpenAIFile
+     */
+    OpenAIFile createFile(
+        org.springframework.web.multipart.MultipartFile _file,
+        String purpose
+    );
+
+    /**
+     * Delete a file.
+     * 
+     *
+     * @param fileId The ID of the file to use for this request. (required)
+     * @return DeleteFileResponse
+     */
+    DeleteFileResponse deleteFile(
+        String fileId
+    );
+
+    /**
+     * Returns the contents of the specified file.
+     * 
+     *
+     * @param fileId The ID of the file to use for this request. (required)
+     * @return String
+     */
+    String downloadFile(
+        String fileId
+    );
+
+    /**
+     * Returns a list of files.
+     * 
+     *
+     * @param purpose Only return files with the given purpose. (optional)
+     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000.  (optional, default to 10000)
+     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
+     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
+     * @return ListFilesResponse
+     */
+    ListFilesResponse listFiles(
+        String purpose,
+        Integer limit,
+        String order,
+        String after
+    );
+
+    /**
+     * Returns information about a specific file.
+     * 
+     *
+     * @param fileId The ID of the file to use for this request. (required)
+     * @return OpenAIFile
+     */
+    OpenAIFile retrieveFile(
+        String fileId
+    );
+}

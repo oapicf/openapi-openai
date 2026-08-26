@@ -59,7 +59,7 @@ openai_api_fine_tuning_job_event_TYPE_e fine_tuning_job_event_type_FromString(ch
 static fine_tuning_job_event_t *fine_tuning_job_event_create_internal(
     openai_api_fine_tuning_job_event_OBJECT_e object,
     char *id,
-    int created_at,
+    int *created_at,
     openai_api_fine_tuning_job_event_LEVEL_e level,
     char *message,
     openai_api_fine_tuning_job_event_TYPE_e type,
@@ -69,6 +69,8 @@ static fine_tuning_job_event_t *fine_tuning_job_event_create_internal(
     if (!fine_tuning_job_event_local_var) {
         return NULL;
     }
+    memset(fine_tuning_job_event_local_var, 0, sizeof(fine_tuning_job_event_t));
+    fine_tuning_job_event_local_var->_library_owned = 1;
     fine_tuning_job_event_local_var->object = object;
     fine_tuning_job_event_local_var->id = id;
     fine_tuning_job_event_local_var->created_at = created_at;
@@ -76,29 +78,36 @@ static fine_tuning_job_event_t *fine_tuning_job_event_create_internal(
     fine_tuning_job_event_local_var->message = message;
     fine_tuning_job_event_local_var->type = type;
     fine_tuning_job_event_local_var->data = data;
-
-    fine_tuning_job_event_local_var->_library_owned = 1;
     return fine_tuning_job_event_local_var;
 }
 
 __attribute__((deprecated)) fine_tuning_job_event_t *fine_tuning_job_event_create(
     openai_api_fine_tuning_job_event_OBJECT_e object,
     char *id,
-    int created_at,
+    int *created_at,
     openai_api_fine_tuning_job_event_LEVEL_e level,
     char *message,
     openai_api_fine_tuning_job_event_TYPE_e type,
     object_t *data
     ) {
-    return fine_tuning_job_event_create_internal (
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    fine_tuning_job_event_t *result = fine_tuning_job_event_create_internal (
         object,
         id,
-        created_at,
+        created_at_copy,
         level,
         message,
         type,
         data
         );
+    if (!result) {
+        free(created_at_copy);
+    }
+    return result;
 }
 
 void fine_tuning_job_event_free(fine_tuning_job_event_t *fine_tuning_job_event) {
@@ -113,6 +122,10 @@ void fine_tuning_job_event_free(fine_tuning_job_event_t *fine_tuning_job_event) 
     if (fine_tuning_job_event->id) {
         free(fine_tuning_job_event->id);
         fine_tuning_job_event->id = NULL;
+    }
+    if (fine_tuning_job_event->created_at) {
+        free(fine_tuning_job_event->created_at);
+        fine_tuning_job_event->created_at = NULL;
     }
     if (fine_tuning_job_event->message) {
         free(fine_tuning_job_event->message);
@@ -151,7 +164,7 @@ cJSON *fine_tuning_job_event_convertToJSON(fine_tuning_job_event_t *fine_tuning_
     if (!fine_tuning_job_event->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", fine_tuning_job_event->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *fine_tuning_job_event->created_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -208,6 +221,13 @@ fine_tuning_job_event_t *fine_tuning_job_event_parseFromJSON(cJSON *fine_tuning_
 
     fine_tuning_job_event_t *fine_tuning_job_event_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    // define the local variable for fine_tuning_job_event->created_at
+    int *created_at_local_var = NULL;
+
+    char *message_local_str = NULL;
+
     // fine_tuning_job_event->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(fine_tuning_job_eventJSON, "object");
     if (cJSON_IsNull(object)) {
@@ -254,6 +274,12 @@ fine_tuning_job_event_t *fine_tuning_job_event_parseFromJSON(cJSON *fine_tuning_
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
     // fine_tuning_job_event->level
     cJSON *level = cJSON_GetObjectItemCaseSensitive(fine_tuning_job_eventJSON, "level");
@@ -312,18 +338,37 @@ fine_tuning_job_event_t *fine_tuning_job_event_parseFromJSON(cJSON *fine_tuning_
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (message && !cJSON_IsNull(message)) message_local_str = strdup(message->valuestring);
+
     fine_tuning_job_event_local_var = fine_tuning_job_event_create_internal (
         objectVariable,
-        strdup(id->valuestring),
-        created_at->valuedouble,
+        id_local_str,
+        created_at_local_var,
         levelVariable,
-        strdup(message->valuestring),
+        message_local_str,
         type ? typeVariable : openai_api_fine_tuning_job_event_TYPE_NULL,
         data ? data_local_object : NULL
         );
 
+    if (!fine_tuning_job_event_local_var) {
+        goto end;
+    }
+
     return fine_tuning_job_event_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
+    if (message_local_str) {
+        free(message_local_str);
+        message_local_str = NULL;
+    }
     return NULL;
 
 }

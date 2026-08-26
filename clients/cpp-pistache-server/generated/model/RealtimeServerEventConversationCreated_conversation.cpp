@@ -28,6 +28,8 @@ RealtimeServerEventConversationCreated_conversation::RealtimeServerEventConversa
     
 }
 
+RealtimeServerEventConversationCreated_conversation::~RealtimeServerEventConversationCreated_conversation() = default;
+
 void RealtimeServerEventConversationCreated_conversation::validate() const
 {
     std::stringstream msg;

@@ -1,4 +1,4 @@
-# # RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
+# RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
 
 ## Properties
 

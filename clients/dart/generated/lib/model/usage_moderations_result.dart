@@ -105,10 +105,12 @@ class UsageModerationsResult {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UsageModerationsResult[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UsageModerationsResult[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "UsageModerationsResult[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "UsageModerationsResult[object]" has a null value in JSON.');
+        assert(json.containsKey(r'input_tokens'), 'Required key "UsageModerationsResult[input_tokens]" is missing from JSON.');
+        assert(json[r'input_tokens'] != null, 'Required key "UsageModerationsResult[input_tokens]" has a null value in JSON.');
+        assert(json.containsKey(r'num_model_requests'), 'Required key "UsageModerationsResult[num_model_requests]" is missing from JSON.');
+        assert(json[r'num_model_requests'] != null, 'Required key "UsageModerationsResult[num_model_requests]" has a null value in JSON.');
         return true;
       }());
 
@@ -174,27 +176,28 @@ class UsageModerationsResult {
 }
 
 
-class UsageModerationsResultObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const UsageModerationsResultObjectEnum._(this.value);
+enum UsageModerationsResultObjectEnum {
+  organizationPeriodUsagePeriodModerationsPeriodResult._(r'organization.usage.moderations.result'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const UsageModerationsResultObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const organizationPeriodUsagePeriodModerationsPeriodResult = UsageModerationsResultObjectEnum._(r'organization.usage.moderations.result');
-
-  /// List of all possible values in this [enum][UsageModerationsResultObjectEnum].
-  static const values = <UsageModerationsResultObjectEnum>[
-    organizationPeriodUsagePeriodModerationsPeriodResult,
-  ];
-
+  /// Returns the instance of [UsageModerationsResultObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static UsageModerationsResultObjectEnum? fromJson(dynamic value) => UsageModerationsResultObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [UsageModerationsResultObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<UsageModerationsResultObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <UsageModerationsResultObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -216,9 +219,10 @@ class UsageModerationsResultObjectEnumTypeTransformer {
 
   const UsageModerationsResultObjectEnumTypeTransformer._();
 
-  String encode(UsageModerationsResultObjectEnum data) => data.value;
+  String encode(UsageModerationsResultObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a UsageModerationsResultObjectEnum.
+  /// Returns the instance of [UsageModerationsResultObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -227,6 +231,9 @@ class UsageModerationsResultObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   UsageModerationsResultObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is UsageModerationsResultObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'organization.usage.moderations.result': return UsageModerationsResultObjectEnum.organizationPeriodUsagePeriodModerationsPeriodResult;
@@ -239,7 +246,7 @@ class UsageModerationsResultObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [UsageModerationsResultObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static UsageModerationsResultObjectEnumTypeTransformer? _instance;
 }
 

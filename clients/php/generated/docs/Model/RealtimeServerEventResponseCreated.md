@@ -1,4 +1,4 @@
-# # RealtimeServerEventResponseCreated
+# RealtimeServerEventResponseCreated
 
 ## Properties
 

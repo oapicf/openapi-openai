@@ -1,4 +1,4 @@
-# # RealtimeServerEventSessionCreated
+# RealtimeServerEventSessionCreated
 
 ## Properties
 

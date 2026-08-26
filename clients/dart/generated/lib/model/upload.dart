@@ -117,10 +117,20 @@ class Upload {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Upload[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Upload[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "Upload[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "Upload[id]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "Upload[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "Upload[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'filename'), 'Required key "Upload[filename]" is missing from JSON.');
+        assert(json[r'filename'] != null, 'Required key "Upload[filename]" has a null value in JSON.');
+        assert(json.containsKey(r'bytes'), 'Required key "Upload[bytes]" is missing from JSON.');
+        assert(json[r'bytes'] != null, 'Required key "Upload[bytes]" has a null value in JSON.');
+        assert(json.containsKey(r'purpose'), 'Required key "Upload[purpose]" is missing from JSON.');
+        assert(json[r'purpose'] != null, 'Required key "Upload[purpose]" has a null value in JSON.');
+        assert(json.containsKey(r'status'), 'Required key "Upload[status]" is missing from JSON.');
+        assert(json[r'status'] != null, 'Required key "Upload[status]" has a null value in JSON.');
+        assert(json.containsKey(r'expires_at'), 'Required key "Upload[expires_at]" is missing from JSON.');
+        assert(json[r'expires_at'] != null, 'Required key "Upload[expires_at]" has a null value in JSON.');
         return true;
       }());
 
@@ -192,33 +202,31 @@ class Upload {
 }
 
 /// The status of the Upload.
-class UploadStatusEnum {
-  /// Instantiate a new enum with the provided [value].
-  const UploadStatusEnum._(this.value);
+enum UploadStatusEnum {
+  pending._(r'pending'),
+  completed._(r'completed'),
+  cancelled._(r'cancelled'),
+  expired._(r'expired'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const UploadStatusEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const pending = UploadStatusEnum._(r'pending');
-  static const completed = UploadStatusEnum._(r'completed');
-  static const cancelled = UploadStatusEnum._(r'cancelled');
-  static const expired = UploadStatusEnum._(r'expired');
-
-  /// List of all possible values in this [enum][UploadStatusEnum].
-  static const values = <UploadStatusEnum>[
-    pending,
-    completed,
-    cancelled,
-    expired,
-  ];
-
+  /// Returns the instance of [UploadStatusEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static UploadStatusEnum? fromJson(dynamic value) => UploadStatusEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [UploadStatusEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<UploadStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <UploadStatusEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -240,9 +248,10 @@ class UploadStatusEnumTypeTransformer {
 
   const UploadStatusEnumTypeTransformer._();
 
-  String encode(UploadStatusEnum data) => data.value;
+  String encode(UploadStatusEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a UploadStatusEnum.
+  /// Returns the instance of [UploadStatusEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -251,6 +260,9 @@ class UploadStatusEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   UploadStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is UploadStatusEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'pending': return UploadStatusEnum.pending;
@@ -266,33 +278,34 @@ class UploadStatusEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [UploadStatusEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static UploadStatusEnumTypeTransformer? _instance;
 }
 
 
 /// The object type, which is always \"upload\".
-class UploadObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const UploadObjectEnum._(this.value);
+enum UploadObjectEnum {
+  upload._(r'upload'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const UploadObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const upload = UploadObjectEnum._(r'upload');
-
-  /// List of all possible values in this [enum][UploadObjectEnum].
-  static const values = <UploadObjectEnum>[
-    upload,
-  ];
-
+  /// Returns the instance of [UploadObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static UploadObjectEnum? fromJson(dynamic value) => UploadObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [UploadObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<UploadObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <UploadObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -314,9 +327,10 @@ class UploadObjectEnumTypeTransformer {
 
   const UploadObjectEnumTypeTransformer._();
 
-  String encode(UploadObjectEnum data) => data.value;
+  String encode(UploadObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a UploadObjectEnum.
+  /// Returns the instance of [UploadObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -325,6 +339,9 @@ class UploadObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   UploadObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is UploadObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'upload': return UploadObjectEnum.upload;
@@ -337,7 +354,7 @@ class UploadObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [UploadObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static UploadObjectEnumTypeTransformer? _instance;
 }
 

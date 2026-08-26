@@ -44,6 +44,8 @@ UsageCompletionsResult::UsageCompletionsResult()
     
 }
 
+UsageCompletionsResult::~UsageCompletionsResult() = default;
+
 void UsageCompletionsResult::validate() const
 {
     std::stringstream msg;

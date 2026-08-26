@@ -32,7 +32,7 @@ class  AssistantToolsFileSearch_file_search
 {
 public:
     AssistantToolsFileSearch_file_search();
-    virtual ~AssistantToolsFileSearch_file_search() = default;
+    virtual ~AssistantToolsFileSearch_file_search();
 
 
     /// <summary>

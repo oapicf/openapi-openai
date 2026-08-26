@@ -27,14 +27,16 @@ static realtime_server_event_response_content_part_added_t *realtime_server_even
     openai_api_realtime_server_event_response_content_part_added_TYPE_e type,
     char *response_id,
     char *item_id,
-    int output_index,
-    int content_index,
+    int *output_index,
+    int *content_index,
     realtime_server_event_response_content_part_added_part_t *part
     ) {
     realtime_server_event_response_content_part_added_t *realtime_server_event_response_content_part_added_local_var = malloc(sizeof(realtime_server_event_response_content_part_added_t));
     if (!realtime_server_event_response_content_part_added_local_var) {
         return NULL;
     }
+    memset(realtime_server_event_response_content_part_added_local_var, 0, sizeof(realtime_server_event_response_content_part_added_t));
+    realtime_server_event_response_content_part_added_local_var->_library_owned = 1;
     realtime_server_event_response_content_part_added_local_var->event_id = event_id;
     realtime_server_event_response_content_part_added_local_var->type = type;
     realtime_server_event_response_content_part_added_local_var->response_id = response_id;
@@ -42,8 +44,6 @@ static realtime_server_event_response_content_part_added_t *realtime_server_even
     realtime_server_event_response_content_part_added_local_var->output_index = output_index;
     realtime_server_event_response_content_part_added_local_var->content_index = content_index;
     realtime_server_event_response_content_part_added_local_var->part = part;
-
-    realtime_server_event_response_content_part_added_local_var->_library_owned = 1;
     return realtime_server_event_response_content_part_added_local_var;
 }
 
@@ -52,19 +52,34 @@ __attribute__((deprecated)) realtime_server_event_response_content_part_added_t 
     openai_api_realtime_server_event_response_content_part_added_TYPE_e type,
     char *response_id,
     char *item_id,
-    int output_index,
-    int content_index,
+    int *output_index,
+    int *content_index,
     realtime_server_event_response_content_part_added_part_t *part
     ) {
-    return realtime_server_event_response_content_part_added_create_internal (
+    int *output_index_copy = NULL;
+    if (output_index) {
+        output_index_copy = malloc(sizeof(int));
+        if (output_index_copy) *output_index_copy = *output_index;
+    }
+    int *content_index_copy = NULL;
+    if (content_index) {
+        content_index_copy = malloc(sizeof(int));
+        if (content_index_copy) *content_index_copy = *content_index;
+    }
+    realtime_server_event_response_content_part_added_t *result = realtime_server_event_response_content_part_added_create_internal (
         event_id,
         type,
         response_id,
         item_id,
-        output_index,
-        content_index,
+        output_index_copy,
+        content_index_copy,
         part
         );
+    if (!result) {
+        free(output_index_copy);
+        free(content_index_copy);
+    }
+    return result;
 }
 
 void realtime_server_event_response_content_part_added_free(realtime_server_event_response_content_part_added_t *realtime_server_event_response_content_part_added) {
@@ -87,6 +102,14 @@ void realtime_server_event_response_content_part_added_free(realtime_server_even
     if (realtime_server_event_response_content_part_added->item_id) {
         free(realtime_server_event_response_content_part_added->item_id);
         realtime_server_event_response_content_part_added->item_id = NULL;
+    }
+    if (realtime_server_event_response_content_part_added->output_index) {
+        free(realtime_server_event_response_content_part_added->output_index);
+        realtime_server_event_response_content_part_added->output_index = NULL;
+    }
+    if (realtime_server_event_response_content_part_added->content_index) {
+        free(realtime_server_event_response_content_part_added->content_index);
+        realtime_server_event_response_content_part_added->content_index = NULL;
     }
     if (realtime_server_event_response_content_part_added->part) {
         realtime_server_event_response_content_part_added_part_free(realtime_server_event_response_content_part_added->part);
@@ -139,7 +162,7 @@ cJSON *realtime_server_event_response_content_part_added_convertToJSON(realtime_
     if (!realtime_server_event_response_content_part_added->output_index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "output_index", realtime_server_event_response_content_part_added->output_index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "output_index", *realtime_server_event_response_content_part_added->output_index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -148,7 +171,7 @@ cJSON *realtime_server_event_response_content_part_added_convertToJSON(realtime_
     if (!realtime_server_event_response_content_part_added->content_index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "content_index", realtime_server_event_response_content_part_added->content_index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "content_index", *realtime_server_event_response_content_part_added->content_index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -177,6 +200,18 @@ fail:
 realtime_server_event_response_content_part_added_t *realtime_server_event_response_content_part_added_parseFromJSON(cJSON *realtime_server_event_response_content_part_addedJSON){
 
     realtime_server_event_response_content_part_added_t *realtime_server_event_response_content_part_added_local_var = NULL;
+
+    char *event_id_local_str = NULL;
+
+    char *response_id_local_str = NULL;
+
+    char *item_id_local_str = NULL;
+
+    // define the local variable for realtime_server_event_response_content_part_added->output_index
+    int *output_index_local_var = NULL;
+
+    // define the local variable for realtime_server_event_response_content_part_added->content_index
+    int *content_index_local_var = NULL;
 
     // define the local variable for realtime_server_event_response_content_part_added->part
     realtime_server_event_response_content_part_added_part_t *part_local_nonprim = NULL;
@@ -257,6 +292,12 @@ realtime_server_event_response_content_part_added_t *realtime_server_event_respo
     {
     goto end; //Numeric
     }
+    output_index_local_var = malloc(sizeof(int));
+    if(!output_index_local_var)
+    {
+        goto end;
+    }
+    *output_index_local_var = output_index->valuedouble;
 
     // realtime_server_event_response_content_part_added->content_index
     cJSON *content_index = cJSON_GetObjectItemCaseSensitive(realtime_server_event_response_content_part_addedJSON, "content_index");
@@ -272,6 +313,12 @@ realtime_server_event_response_content_part_added_t *realtime_server_event_respo
     {
     goto end; //Numeric
     }
+    content_index_local_var = malloc(sizeof(int));
+    if(!content_index_local_var)
+    {
+        goto end;
+    }
+    *content_index_local_var = content_index->valuedouble;
 
     // realtime_server_event_response_content_part_added->part
     cJSON *part = cJSON_GetObjectItemCaseSensitive(realtime_server_event_response_content_part_addedJSON, "part");
@@ -286,18 +333,46 @@ realtime_server_event_response_content_part_added_t *realtime_server_event_respo
     part_local_nonprim = realtime_server_event_response_content_part_added_part_parseFromJSON(part); //nonprimitive
 
 
+    if (event_id && !cJSON_IsNull(event_id)) event_id_local_str = strdup(event_id->valuestring);
+    if (response_id && !cJSON_IsNull(response_id)) response_id_local_str = strdup(response_id->valuestring);
+    if (item_id && !cJSON_IsNull(item_id)) item_id_local_str = strdup(item_id->valuestring);
+
     realtime_server_event_response_content_part_added_local_var = realtime_server_event_response_content_part_added_create_internal (
-        strdup(event_id->valuestring),
+        event_id_local_str,
         typeVariable,
-        strdup(response_id->valuestring),
-        strdup(item_id->valuestring),
-        output_index->valuedouble,
-        content_index->valuedouble,
+        response_id_local_str,
+        item_id_local_str,
+        output_index_local_var,
+        content_index_local_var,
         part_local_nonprim
         );
 
+    if (!realtime_server_event_response_content_part_added_local_var) {
+        goto end;
+    }
+
     return realtime_server_event_response_content_part_added_local_var;
 end:
+    if (event_id_local_str) {
+        free(event_id_local_str);
+        event_id_local_str = NULL;
+    }
+    if (response_id_local_str) {
+        free(response_id_local_str);
+        response_id_local_str = NULL;
+    }
+    if (item_id_local_str) {
+        free(item_id_local_str);
+        item_id_local_str = NULL;
+    }
+    if (output_index_local_var) {
+        free(output_index_local_var);
+        output_index_local_var = NULL;
+    }
+    if (content_index_local_var) {
+        free(content_index_local_var);
+        content_index_local_var = NULL;
+    }
     if (part_local_nonprim) {
         realtime_server_event_response_content_part_added_part_free(part_local_nonprim);
         part_local_nonprim = NULL;

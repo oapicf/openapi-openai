@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRunObject_required_action::OAIRunObject_required_action(QString json) {
+OAIRunObject_required_action::OAIRunObject_required_action(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIRunObject_required_action::initializeModel() {
     m_submit_tool_outputs_isValid = false;
 }
 
-void OAIRunObject_required_action::fromJson(QString jsonString) {
+void OAIRunObject_required_action::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -190,7 +190,7 @@ FineTuningJobCheckpoint_metrics::getStep()
 }
 
 void
-FineTuningJobCheckpoint_metrics::setStep(long  step)
+FineTuningJobCheckpoint_metrics::setStep(long step)
 {
 	this->step = step;
 }
@@ -202,7 +202,7 @@ FineTuningJobCheckpoint_metrics::getTrainLoss()
 }
 
 void
-FineTuningJobCheckpoint_metrics::setTrainLoss(long  train_loss)
+FineTuningJobCheckpoint_metrics::setTrainLoss(long train_loss)
 {
 	this->train_loss = train_loss;
 }
@@ -214,7 +214,7 @@ FineTuningJobCheckpoint_metrics::getTrainMeanTokenAccuracy()
 }
 
 void
-FineTuningJobCheckpoint_metrics::setTrainMeanTokenAccuracy(long  train_mean_token_accuracy)
+FineTuningJobCheckpoint_metrics::setTrainMeanTokenAccuracy(long train_mean_token_accuracy)
 {
 	this->train_mean_token_accuracy = train_mean_token_accuracy;
 }
@@ -226,7 +226,7 @@ FineTuningJobCheckpoint_metrics::getValidLoss()
 }
 
 void
-FineTuningJobCheckpoint_metrics::setValidLoss(long  valid_loss)
+FineTuningJobCheckpoint_metrics::setValidLoss(long valid_loss)
 {
 	this->valid_loss = valid_loss;
 }
@@ -238,7 +238,7 @@ FineTuningJobCheckpoint_metrics::getValidMeanTokenAccuracy()
 }
 
 void
-FineTuningJobCheckpoint_metrics::setValidMeanTokenAccuracy(long  valid_mean_token_accuracy)
+FineTuningJobCheckpoint_metrics::setValidMeanTokenAccuracy(long valid_mean_token_accuracy)
 {
 	this->valid_mean_token_accuracy = valid_mean_token_accuracy;
 }
@@ -250,7 +250,7 @@ FineTuningJobCheckpoint_metrics::getFullValidLoss()
 }
 
 void
-FineTuningJobCheckpoint_metrics::setFullValidLoss(long  full_valid_loss)
+FineTuningJobCheckpoint_metrics::setFullValidLoss(long full_valid_loss)
 {
 	this->full_valid_loss = full_valid_loss;
 }
@@ -262,7 +262,7 @@ FineTuningJobCheckpoint_metrics::getFullValidMeanTokenAccuracy()
 }
 
 void
-FineTuningJobCheckpoint_metrics::setFullValidMeanTokenAccuracy(long  full_valid_mean_token_accuracy)
+FineTuningJobCheckpoint_metrics::setFullValidMeanTokenAccuracy(long full_valid_mean_token_accuracy)
 {
 	this->full_valid_mean_token_accuracy = full_valid_mean_token_accuracy;
 }

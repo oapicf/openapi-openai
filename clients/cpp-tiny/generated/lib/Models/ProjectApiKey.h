@@ -52,42 +52,42 @@ public:
 
 	/*! \brief Set The object type, which is always `organization.project.api_key`
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get The redacted value of the API key
 	 */
 	std::string getRedactedValue();
 
 	/*! \brief Set The redacted value of the API key
 	 */
-	void setRedactedValue(std::string  redacted_value);
+	void setRedactedValue(std::string redacted_value);
 	/*! \brief Get The name of the API key
 	 */
 	std::string getName();
 
 	/*! \brief Set The name of the API key
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get The Unix timestamp (in seconds) of when the API key was created
 	 */
 	int getCreatedAt();
 
 	/*! \brief Set The Unix timestamp (in seconds) of when the API key was created
 	 */
-	void setCreatedAt(int  created_at);
+	void setCreatedAt(int created_at);
 	/*! \brief Get The identifier, which can be referenced in API endpoints
 	 */
 	std::string getId();
 
 	/*! \brief Set The identifier, which can be referenced in API endpoints
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	ProjectApiKey_owner getOwner();
 
 	/*! \brief Set 
 	 */
-	void setOwner(ProjectApiKey_owner  owner);
+	void setOwner(ProjectApiKey_owner owner);
 
 
     private:

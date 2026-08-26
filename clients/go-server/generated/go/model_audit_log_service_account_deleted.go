@@ -21,7 +21,8 @@ type AuditLogServiceAccountDeleted struct {
 	Id string `json:"id,omitempty"`
 }
 
-// AssertAuditLogServiceAccountDeletedRequired checks if the required fields are not zero-ed
+// AssertAuditLogServiceAccountDeletedRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertAuditLogServiceAccountDeletedRequired(obj AuditLogServiceAccountDeleted) error {
 	return nil
 }

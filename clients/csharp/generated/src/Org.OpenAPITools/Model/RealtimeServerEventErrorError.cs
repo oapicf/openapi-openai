@@ -78,7 +78,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Error code, if any.</value>
         [JsonPropertyName("code")]
-        public string? Code { get { return this.CodeOption; } set { this.CodeOption = new(value); } }
+        public string? Code { get { return this.CodeOption.Value; } set { this.CodeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Param
@@ -92,7 +92,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Parameter related to the error, if any.</value>
         [JsonPropertyName("param")]
-        public string? Param { get { return this.ParamOption; } set { this.ParamOption = new(value); } }
+        public string? Param { get { return this.ParamOption.Value; } set { this.ParamOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EventId
@@ -106,7 +106,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The event_id of the client event that caused the error, if applicable. </value>
         [JsonPropertyName("event_id")]
-        public string? EventId { get { return this.EventIdOption; } set { this.EventIdOption = new(value); } }
+        public string? EventId { get { return this.EventIdOption.Value; } set { this.EventIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,8 +139,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeServerEventErrorError" />
     /// </summary>
-    public class RealtimeServerEventErrorErrorJsonConverter : JsonConverter<RealtimeServerEventErrorError>
+    public partial class RealtimeServerEventErrorErrorJsonConverter : JsonConverter<RealtimeServerEventErrorError>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeServerEventErrorErrorJsonConverter" /> class.
+        /// </summary>
+        public RealtimeServerEventErrorErrorJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeServerEventErrorError" />
         /// </summary>

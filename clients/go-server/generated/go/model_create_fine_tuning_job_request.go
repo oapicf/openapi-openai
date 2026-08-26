@@ -14,6 +14,8 @@ package openapi
 
 import (
 	"errors"
+	"encoding/json"
+	"fmt"
 )
 
 
@@ -42,12 +44,108 @@ type CreateFineTuningJobRequest struct {
 
 	Method FineTuneMethod `json:"method,omitempty"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into CreateFineTuningJobRequest
+func (o *CreateFineTuningJobRequest) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"model",
+		"training_file",
+	}
 
-// AssertCreateFineTuningJobRequestRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"model": false,
+		"training_file": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"model": {},
+		"training_file": {},
+		"hyperparameters": {},
+		"suffix": {},
+		"validation_file": {},
+		"integrations": {},
+		"seed": {},
+		"method": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CreateFineTuningJobRequest
+
+	if value, exists := allProperties["model"]; exists {
+		if err = json.Unmarshal(value, &decoded.Model); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["training_file"]; exists {
+		if err = json.Unmarshal(value, &decoded.TrainingFile); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["hyperparameters"]; exists {
+		if err = json.Unmarshal(value, &decoded.Hyperparameters); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["suffix"]; exists {
+		if err = json.Unmarshal(value, &decoded.Suffix); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["validation_file"]; exists {
+		if err = json.Unmarshal(value, &decoded.ValidationFile); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["integrations"]; exists {
+		if err = json.Unmarshal(value, &decoded.Integrations); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["seed"]; exists {
+		if err = json.Unmarshal(value, &decoded.Seed); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["method"]; exists {
+		if err = json.Unmarshal(value, &decoded.Method); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCreateFineTuningJobRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateFineTuningJobRequestRequired(obj CreateFineTuningJobRequest) error {
 	elements := map[string]interface{}{
 		"model": obj.Model,
-		"training_file": obj.TrainingFile,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {

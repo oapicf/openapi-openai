@@ -32,7 +32,7 @@ class  RealtimeClientEventConversationItemTruncate
 {
 public:
     RealtimeClientEventConversationItemTruncate();
-    virtual ~RealtimeClientEventConversationItemTruncate() = default;
+    virtual ~RealtimeClientEventConversationItemTruncate();
 
 
     /// <summary>

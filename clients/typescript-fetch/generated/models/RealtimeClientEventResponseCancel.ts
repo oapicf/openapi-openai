@@ -30,7 +30,7 @@ export interface RealtimeClientEventResponseCancel {
     eventId?: string;
     /**
      * The event type, must be `response.cancel`.
-     * @type {string}
+     * @type {RealtimeClientEventResponseCancelTypeEnum}
      * @memberof RealtimeClientEventResponseCancel
      */
     type: RealtimeClientEventResponseCancelTypeEnum;
@@ -59,6 +59,8 @@ export type RealtimeClientEventResponseCancelTypeEnum = typeof RealtimeClientEve
  */
 export function instanceOfRealtimeClientEventResponseCancel(value: object): value is RealtimeClientEventResponseCancel {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'response.cancel') return false;
+    
     return true;
 }
 

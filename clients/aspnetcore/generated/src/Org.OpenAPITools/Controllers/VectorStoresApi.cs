@@ -46,7 +46,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"file_counts\" : {\n    \"in_progress\" : 6,\n    \"total\" : 2,\n    \"cancelled\" : 5,\n    \"completed\" : 1,\n    \"failed\" : 5\n  },\n  \"created_at\" : 0,\n  \"id\" : \"id\",\n  \"object\" : \"vector_store.files_batch\",\n  \"vector_store_id\" : \"vector_store_id\",\n  \"status\" : \"in_progress\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"object\" : \"vector_store.files_batch\",\n  \"created_at\" : 0,\n  \"vector_store_id\" : \"vector_store_id\",\n  \"status\" : \"in_progress\",\n  \"file_counts\" : {\n    \"in_progress\" : 6,\n    \"completed\" : 1,\n    \"failed\" : 5,\n    \"cancelled\" : 5,\n    \"total\" : 2\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<VectorStoreFileBatchObject>(exampleJson)
@@ -73,7 +73,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"file_counts\" : {\n    \"in_progress\" : 1,\n    \"total\" : 7,\n    \"cancelled\" : 2,\n    \"completed\" : 5,\n    \"failed\" : 5\n  },\n  \"metadata\" : \"{}\",\n  \"expires_at\" : 3,\n  \"expires_after\" : {\n    \"anchor\" : \"last_active_at\",\n    \"days\" : 339\n  },\n  \"last_active_at\" : 2,\n  \"usage_bytes\" : 6,\n  \"name\" : \"name\",\n  \"created_at\" : 0,\n  \"id\" : \"id\",\n  \"object\" : \"vector_store\",\n  \"status\" : \"expired\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"object\" : \"vector_store\",\n  \"created_at\" : 0,\n  \"name\" : \"name\",\n  \"usage_bytes\" : 6,\n  \"file_counts\" : {\n    \"in_progress\" : 1,\n    \"completed\" : 5,\n    \"failed\" : 5,\n    \"cancelled\" : 2,\n    \"total\" : 7\n  },\n  \"status\" : \"expired\",\n  \"expires_after\" : {\n    \"anchor\" : \"last_active_at\",\n    \"days\" : 339\n  },\n  \"expires_at\" : 3,\n  \"last_active_at\" : 2,\n  \"metadata\" : \"{}\"\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<VectorStoreObject>(exampleJson)
@@ -101,7 +101,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"chunking_strategy\" : {\n    \"static\" : {\n      \"max_chunk_size_tokens\" : 685,\n      \"chunk_overlap_tokens\" : 5\n    },\n    \"type\" : \"static\"\n  },\n  \"usage_bytes\" : 0,\n  \"created_at\" : 6,\n  \"id\" : \"id\",\n  \"last_error\" : {\n    \"code\" : \"server_error\",\n    \"message\" : \"message\"\n  },\n  \"object\" : \"vector_store.file\",\n  \"vector_store_id\" : \"vector_store_id\",\n  \"status\" : \"in_progress\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"object\" : \"vector_store.file\",\n  \"usage_bytes\" : 0,\n  \"created_at\" : 6,\n  \"vector_store_id\" : \"vector_store_id\",\n  \"status\" : \"in_progress\",\n  \"last_error\" : {\n    \"code\" : \"server_error\",\n    \"message\" : \"message\"\n  },\n  \"chunking_strategy\" : {\n    \"type\" : \"static\",\n    \"static\" : {\n      \"max_chunk_size_tokens\" : 685,\n      \"chunk_overlap_tokens\" : 5\n    }\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<VectorStoreFileObject>(exampleJson)
@@ -129,7 +129,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"file_counts\" : {\n    \"in_progress\" : 6,\n    \"total\" : 2,\n    \"cancelled\" : 5,\n    \"completed\" : 1,\n    \"failed\" : 5\n  },\n  \"created_at\" : 0,\n  \"id\" : \"id\",\n  \"object\" : \"vector_store.files_batch\",\n  \"vector_store_id\" : \"vector_store_id\",\n  \"status\" : \"in_progress\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"object\" : \"vector_store.files_batch\",\n  \"created_at\" : 0,\n  \"vector_store_id\" : \"vector_store_id\",\n  \"status\" : \"in_progress\",\n  \"file_counts\" : {\n    \"in_progress\" : 6,\n    \"completed\" : 1,\n    \"failed\" : 5,\n    \"cancelled\" : 5,\n    \"total\" : 2\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<VectorStoreFileBatchObject>(exampleJson)
@@ -155,7 +155,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"deleted\" : true,\n  \"id\" : \"id\",\n  \"object\" : \"vector_store.deleted\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"deleted\" : true,\n  \"object\" : \"vector_store.deleted\"\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<DeleteVectorStoreResponse>(exampleJson)
@@ -182,7 +182,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"deleted\" : true,\n  \"id\" : \"id\",\n  \"object\" : \"vector_store.file.deleted\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"deleted\" : true,\n  \"object\" : \"vector_store.file.deleted\"\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<DeleteVectorStoreFileResponse>(exampleJson)
@@ -208,7 +208,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"file_counts\" : {\n    \"in_progress\" : 1,\n    \"total\" : 7,\n    \"cancelled\" : 2,\n    \"completed\" : 5,\n    \"failed\" : 5\n  },\n  \"metadata\" : \"{}\",\n  \"expires_at\" : 3,\n  \"expires_after\" : {\n    \"anchor\" : \"last_active_at\",\n    \"days\" : 339\n  },\n  \"last_active_at\" : 2,\n  \"usage_bytes\" : 6,\n  \"name\" : \"name\",\n  \"created_at\" : 0,\n  \"id\" : \"id\",\n  \"object\" : \"vector_store\",\n  \"status\" : \"expired\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"object\" : \"vector_store\",\n  \"created_at\" : 0,\n  \"name\" : \"name\",\n  \"usage_bytes\" : 6,\n  \"file_counts\" : {\n    \"in_progress\" : 1,\n    \"completed\" : 5,\n    \"failed\" : 5,\n    \"cancelled\" : 2,\n    \"total\" : 7\n  },\n  \"status\" : \"expired\",\n  \"expires_after\" : {\n    \"anchor\" : \"last_active_at\",\n    \"days\" : 339\n  },\n  \"expires_at\" : 3,\n  \"last_active_at\" : 2,\n  \"metadata\" : \"{}\"\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<VectorStoreObject>(exampleJson)
@@ -235,7 +235,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"chunking_strategy\" : {\n    \"static\" : {\n      \"max_chunk_size_tokens\" : 685,\n      \"chunk_overlap_tokens\" : 5\n    },\n    \"type\" : \"static\"\n  },\n  \"usage_bytes\" : 0,\n  \"created_at\" : 6,\n  \"id\" : \"id\",\n  \"last_error\" : {\n    \"code\" : \"server_error\",\n    \"message\" : \"message\"\n  },\n  \"object\" : \"vector_store.file\",\n  \"vector_store_id\" : \"vector_store_id\",\n  \"status\" : \"in_progress\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"object\" : \"vector_store.file\",\n  \"usage_bytes\" : 0,\n  \"created_at\" : 6,\n  \"vector_store_id\" : \"vector_store_id\",\n  \"status\" : \"in_progress\",\n  \"last_error\" : {\n    \"code\" : \"server_error\",\n    \"message\" : \"message\"\n  },\n  \"chunking_strategy\" : {\n    \"type\" : \"static\",\n    \"static\" : {\n      \"max_chunk_size_tokens\" : 685,\n      \"chunk_overlap_tokens\" : 5\n    }\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<VectorStoreFileObject>(exampleJson)
@@ -262,7 +262,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"file_counts\" : {\n    \"in_progress\" : 6,\n    \"total\" : 2,\n    \"cancelled\" : 5,\n    \"completed\" : 1,\n    \"failed\" : 5\n  },\n  \"created_at\" : 0,\n  \"id\" : \"id\",\n  \"object\" : \"vector_store.files_batch\",\n  \"vector_store_id\" : \"vector_store_id\",\n  \"status\" : \"in_progress\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"object\" : \"vector_store.files_batch\",\n  \"created_at\" : 0,\n  \"vector_store_id\" : \"vector_store_id\",\n  \"status\" : \"in_progress\",\n  \"file_counts\" : {\n    \"in_progress\" : 6,\n    \"completed\" : 1,\n    \"failed\" : 5,\n    \"cancelled\" : 5,\n    \"total\" : 2\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<VectorStoreFileBatchObject>(exampleJson)
@@ -294,7 +294,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"first_id\" : \"file-abc123\",\n  \"data\" : [ {\n    \"chunking_strategy\" : {\n      \"static\" : {\n        \"max_chunk_size_tokens\" : 685,\n        \"chunk_overlap_tokens\" : 5\n      },\n      \"type\" : \"static\"\n    },\n    \"usage_bytes\" : 0,\n    \"created_at\" : 6,\n    \"id\" : \"id\",\n    \"last_error\" : {\n      \"code\" : \"server_error\",\n      \"message\" : \"message\"\n    },\n    \"object\" : \"vector_store.file\",\n    \"vector_store_id\" : \"vector_store_id\",\n    \"status\" : \"in_progress\"\n  }, {\n    \"chunking_strategy\" : {\n      \"static\" : {\n        \"max_chunk_size_tokens\" : 685,\n        \"chunk_overlap_tokens\" : 5\n      },\n      \"type\" : \"static\"\n    },\n    \"usage_bytes\" : 0,\n    \"created_at\" : 6,\n    \"id\" : \"id\",\n    \"last_error\" : {\n      \"code\" : \"server_error\",\n      \"message\" : \"message\"\n    },\n    \"object\" : \"vector_store.file\",\n    \"vector_store_id\" : \"vector_store_id\",\n    \"status\" : \"in_progress\"\n  } ],\n  \"last_id\" : \"file-abc456\",\n  \"has_more\" : false,\n  \"object\" : \"list\"\n}";
+            exampleJson = "{\n  \"object\" : \"list\",\n  \"data\" : [ {\n    \"id\" : \"id\",\n    \"object\" : \"vector_store.file\",\n    \"usage_bytes\" : 0,\n    \"created_at\" : 6,\n    \"vector_store_id\" : \"vector_store_id\",\n    \"status\" : \"in_progress\",\n    \"last_error\" : {\n      \"code\" : \"server_error\",\n      \"message\" : \"message\"\n    },\n    \"chunking_strategy\" : {\n      \"type\" : \"static\",\n      \"static\" : {\n        \"max_chunk_size_tokens\" : 685,\n        \"chunk_overlap_tokens\" : 5\n      }\n    }\n  }, {\n    \"id\" : \"id\",\n    \"object\" : \"vector_store.file\",\n    \"usage_bytes\" : 0,\n    \"created_at\" : 6,\n    \"vector_store_id\" : \"vector_store_id\",\n    \"status\" : \"in_progress\",\n    \"last_error\" : {\n      \"code\" : \"server_error\",\n      \"message\" : \"message\"\n    },\n    \"chunking_strategy\" : {\n      \"type\" : \"static\",\n      \"static\" : {\n        \"max_chunk_size_tokens\" : 685,\n        \"chunk_overlap_tokens\" : 5\n      }\n    }\n  } ],\n  \"first_id\" : \"file-abc123\",\n  \"last_id\" : \"file-abc456\",\n  \"has_more\" : false\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ListVectorStoreFilesResponse>(exampleJson)
@@ -325,7 +325,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"first_id\" : \"file-abc123\",\n  \"data\" : [ {\n    \"chunking_strategy\" : {\n      \"static\" : {\n        \"max_chunk_size_tokens\" : 685,\n        \"chunk_overlap_tokens\" : 5\n      },\n      \"type\" : \"static\"\n    },\n    \"usage_bytes\" : 0,\n    \"created_at\" : 6,\n    \"id\" : \"id\",\n    \"last_error\" : {\n      \"code\" : \"server_error\",\n      \"message\" : \"message\"\n    },\n    \"object\" : \"vector_store.file\",\n    \"vector_store_id\" : \"vector_store_id\",\n    \"status\" : \"in_progress\"\n  }, {\n    \"chunking_strategy\" : {\n      \"static\" : {\n        \"max_chunk_size_tokens\" : 685,\n        \"chunk_overlap_tokens\" : 5\n      },\n      \"type\" : \"static\"\n    },\n    \"usage_bytes\" : 0,\n    \"created_at\" : 6,\n    \"id\" : \"id\",\n    \"last_error\" : {\n      \"code\" : \"server_error\",\n      \"message\" : \"message\"\n    },\n    \"object\" : \"vector_store.file\",\n    \"vector_store_id\" : \"vector_store_id\",\n    \"status\" : \"in_progress\"\n  } ],\n  \"last_id\" : \"file-abc456\",\n  \"has_more\" : false,\n  \"object\" : \"list\"\n}";
+            exampleJson = "{\n  \"object\" : \"list\",\n  \"data\" : [ {\n    \"id\" : \"id\",\n    \"object\" : \"vector_store.file\",\n    \"usage_bytes\" : 0,\n    \"created_at\" : 6,\n    \"vector_store_id\" : \"vector_store_id\",\n    \"status\" : \"in_progress\",\n    \"last_error\" : {\n      \"code\" : \"server_error\",\n      \"message\" : \"message\"\n    },\n    \"chunking_strategy\" : {\n      \"type\" : \"static\",\n      \"static\" : {\n        \"max_chunk_size_tokens\" : 685,\n        \"chunk_overlap_tokens\" : 5\n      }\n    }\n  }, {\n    \"id\" : \"id\",\n    \"object\" : \"vector_store.file\",\n    \"usage_bytes\" : 0,\n    \"created_at\" : 6,\n    \"vector_store_id\" : \"vector_store_id\",\n    \"status\" : \"in_progress\",\n    \"last_error\" : {\n      \"code\" : \"server_error\",\n      \"message\" : \"message\"\n    },\n    \"chunking_strategy\" : {\n      \"type\" : \"static\",\n      \"static\" : {\n        \"max_chunk_size_tokens\" : 685,\n        \"chunk_overlap_tokens\" : 5\n      }\n    }\n  } ],\n  \"first_id\" : \"file-abc123\",\n  \"last_id\" : \"file-abc456\",\n  \"has_more\" : false\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ListVectorStoreFilesResponse>(exampleJson)
@@ -354,7 +354,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"first_id\" : \"vs_abc123\",\n  \"data\" : [ {\n    \"file_counts\" : {\n      \"in_progress\" : 1,\n      \"total\" : 7,\n      \"cancelled\" : 2,\n      \"completed\" : 5,\n      \"failed\" : 5\n    },\n    \"metadata\" : \"{}\",\n    \"expires_at\" : 3,\n    \"expires_after\" : {\n      \"anchor\" : \"last_active_at\",\n      \"days\" : 339\n    },\n    \"last_active_at\" : 2,\n    \"usage_bytes\" : 6,\n    \"name\" : \"name\",\n    \"created_at\" : 0,\n    \"id\" : \"id\",\n    \"object\" : \"vector_store\",\n    \"status\" : \"expired\"\n  }, {\n    \"file_counts\" : {\n      \"in_progress\" : 1,\n      \"total\" : 7,\n      \"cancelled\" : 2,\n      \"completed\" : 5,\n      \"failed\" : 5\n    },\n    \"metadata\" : \"{}\",\n    \"expires_at\" : 3,\n    \"expires_after\" : {\n      \"anchor\" : \"last_active_at\",\n      \"days\" : 339\n    },\n    \"last_active_at\" : 2,\n    \"usage_bytes\" : 6,\n    \"name\" : \"name\",\n    \"created_at\" : 0,\n    \"id\" : \"id\",\n    \"object\" : \"vector_store\",\n    \"status\" : \"expired\"\n  } ],\n  \"last_id\" : \"vs_abc456\",\n  \"has_more\" : false,\n  \"object\" : \"list\"\n}";
+            exampleJson = "{\n  \"object\" : \"list\",\n  \"data\" : [ {\n    \"id\" : \"id\",\n    \"object\" : \"vector_store\",\n    \"created_at\" : 0,\n    \"name\" : \"name\",\n    \"usage_bytes\" : 6,\n    \"file_counts\" : {\n      \"in_progress\" : 1,\n      \"completed\" : 5,\n      \"failed\" : 5,\n      \"cancelled\" : 2,\n      \"total\" : 7\n    },\n    \"status\" : \"expired\",\n    \"expires_after\" : {\n      \"anchor\" : \"last_active_at\",\n      \"days\" : 339\n    },\n    \"expires_at\" : 3,\n    \"last_active_at\" : 2,\n    \"metadata\" : \"{}\"\n  }, {\n    \"id\" : \"id\",\n    \"object\" : \"vector_store\",\n    \"created_at\" : 0,\n    \"name\" : \"name\",\n    \"usage_bytes\" : 6,\n    \"file_counts\" : {\n      \"in_progress\" : 1,\n      \"completed\" : 5,\n      \"failed\" : 5,\n      \"cancelled\" : 2,\n      \"total\" : 7\n    },\n    \"status\" : \"expired\",\n    \"expires_after\" : {\n      \"anchor\" : \"last_active_at\",\n      \"days\" : 339\n    },\n    \"expires_at\" : 3,\n    \"last_active_at\" : 2,\n    \"metadata\" : \"{}\"\n  } ],\n  \"first_id\" : \"vs_abc123\",\n  \"last_id\" : \"vs_abc456\",\n  \"has_more\" : false\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ListVectorStoresResponse>(exampleJson)
@@ -382,7 +382,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"file_counts\" : {\n    \"in_progress\" : 1,\n    \"total\" : 7,\n    \"cancelled\" : 2,\n    \"completed\" : 5,\n    \"failed\" : 5\n  },\n  \"metadata\" : \"{}\",\n  \"expires_at\" : 3,\n  \"expires_after\" : {\n    \"anchor\" : \"last_active_at\",\n    \"days\" : 339\n  },\n  \"last_active_at\" : 2,\n  \"usage_bytes\" : 6,\n  \"name\" : \"name\",\n  \"created_at\" : 0,\n  \"id\" : \"id\",\n  \"object\" : \"vector_store\",\n  \"status\" : \"expired\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"object\" : \"vector_store\",\n  \"created_at\" : 0,\n  \"name\" : \"name\",\n  \"usage_bytes\" : 6,\n  \"file_counts\" : {\n    \"in_progress\" : 1,\n    \"completed\" : 5,\n    \"failed\" : 5,\n    \"cancelled\" : 2,\n    \"total\" : 7\n  },\n  \"status\" : \"expired\",\n  \"expires_after\" : {\n    \"anchor\" : \"last_active_at\",\n    \"days\" : 339\n  },\n  \"expires_at\" : 3,\n  \"last_active_at\" : 2,\n  \"metadata\" : \"{}\"\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<VectorStoreObject>(exampleJson)

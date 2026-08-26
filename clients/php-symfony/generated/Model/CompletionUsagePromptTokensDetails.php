@@ -51,7 +51,7 @@ class CompletionUsagePromptTokensDetails
      * @var int|null
      * @SerializedName("audio_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $audioTokens = null;
 
@@ -61,7 +61,7 @@ class CompletionUsagePromptTokensDetails
      * @var int|null
      * @SerializedName("cached_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $cachedTokens = null;
 
@@ -88,12 +88,12 @@ class CompletionUsagePromptTokensDetails
     }
 
     /**
-    * Sets audioTokens.
-    *
-    * @param int|null $audioTokens  Audio input tokens present in the prompt.
-    *
-    * @return $this
-    */
+     * Sets audioTokens.
+     *
+     * @param int|null $audioTokens  Audio input tokens present in the prompt.
+     *
+     * @return $this
+     */
     public function setAudioTokens(?int $audioTokens = null): self
     {
         $this->audioTokens = $audioTokens;
@@ -115,12 +115,12 @@ class CompletionUsagePromptTokensDetails
     }
 
     /**
-    * Sets cachedTokens.
-    *
-    * @param int|null $cachedTokens  Cached tokens present in the prompt.
-    *
-    * @return $this
-    */
+     * Sets cachedTokens.
+     *
+     * @param int|null $cachedTokens  Cached tokens present in the prompt.
+     *
+     * @return $this
+     */
     public function setCachedTokens(?int $cachedTokens = null): self
     {
         $this->cachedTokens = $cachedTokens;

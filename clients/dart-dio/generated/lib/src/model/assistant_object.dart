@@ -298,8 +298,9 @@ class _$AssistantObjectSerializer implements PrimitiveSerializer<AssistantObject
         case r'response_format':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AssistantsApiResponseFormatOption),
-          ) as AssistantsApiResponseFormatOption;
+            specifiedType: const FullType.nullable(AssistantsApiResponseFormatOption),
+          ) as AssistantsApiResponseFormatOption?;
+          if (valueDes == null) continue;
           result.responseFormat.replace(valueDes);
           break;
         default:

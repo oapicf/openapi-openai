@@ -107,7 +107,7 @@ CreateChatCompletionFunctionResponse_choices_inner::getFinishReason()
 }
 
 void
-CreateChatCompletionFunctionResponse_choices_inner::setFinishReason(std::string  finish_reason)
+CreateChatCompletionFunctionResponse_choices_inner::setFinishReason(std::string finish_reason)
 {
 	this->finish_reason = finish_reason;
 }
@@ -119,7 +119,7 @@ CreateChatCompletionFunctionResponse_choices_inner::getIndex()
 }
 
 void
-CreateChatCompletionFunctionResponse_choices_inner::setIndex(int  index)
+CreateChatCompletionFunctionResponse_choices_inner::setIndex(int index)
 {
 	this->index = index;
 }
@@ -131,7 +131,7 @@ CreateChatCompletionFunctionResponse_choices_inner::getMessage()
 }
 
 void
-CreateChatCompletionFunctionResponse_choices_inner::setMessage(ChatCompletionResponseMessage  message)
+CreateChatCompletionFunctionResponse_choices_inner::setMessage(ChatCompletionResponseMessage message)
 {
 	this->message = message;
 }

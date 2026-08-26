@@ -20,7 +20,8 @@ type ModifyMessageRequest struct {
 	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 }
 
-// AssertModifyMessageRequestRequired checks if the required fields are not zero-ed
+// AssertModifyMessageRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertModifyMessageRequestRequired(obj ModifyMessageRequest) error {
 	return nil
 }

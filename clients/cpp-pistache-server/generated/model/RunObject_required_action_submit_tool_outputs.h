@@ -33,7 +33,7 @@ class  RunObject_required_action_submit_tool_outputs
 {
 public:
     RunObject_required_action_submit_tool_outputs();
-    virtual ~RunObject_required_action_submit_tool_outputs() = default;
+    virtual ~RunObject_required_action_submit_tool_outputs();
 
 
     /// <summary>

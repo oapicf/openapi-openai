@@ -54,10 +54,10 @@ class CreateChatCompletionRequestResponseFormat {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateChatCompletionRequestResponseFormat[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateChatCompletionRequestResponseFormat[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "CreateChatCompletionRequestResponseFormat[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "CreateChatCompletionRequestResponseFormat[type]" has a null value in JSON.');
+        assert(json.containsKey(r'json_schema'), 'Required key "CreateChatCompletionRequestResponseFormat[json_schema]" is missing from JSON.');
+        assert(json[r'json_schema'] != null, 'Required key "CreateChatCompletionRequestResponseFormat[json_schema]" has a null value in JSON.');
         return true;
       }());
 
@@ -117,31 +117,30 @@ class CreateChatCompletionRequestResponseFormat {
 }
 
 /// The type of response format being defined: `text`
-class CreateChatCompletionRequestResponseFormatTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateChatCompletionRequestResponseFormatTypeEnum._(this.value);
+enum CreateChatCompletionRequestResponseFormatTypeEnum {
+  text._(r'text'),
+  jsonObject._(r'json_object'),
+  jsonSchema._(r'json_schema'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateChatCompletionRequestResponseFormatTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = CreateChatCompletionRequestResponseFormatTypeEnum._(r'text');
-  static const jsonObject = CreateChatCompletionRequestResponseFormatTypeEnum._(r'json_object');
-  static const jsonSchema = CreateChatCompletionRequestResponseFormatTypeEnum._(r'json_schema');
-
-  /// List of all possible values in this [enum][CreateChatCompletionRequestResponseFormatTypeEnum].
-  static const values = <CreateChatCompletionRequestResponseFormatTypeEnum>[
-    text,
-    jsonObject,
-    jsonSchema,
-  ];
-
+  /// Returns the instance of [CreateChatCompletionRequestResponseFormatTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateChatCompletionRequestResponseFormatTypeEnum? fromJson(dynamic value) => CreateChatCompletionRequestResponseFormatTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateChatCompletionRequestResponseFormatTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateChatCompletionRequestResponseFormatTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateChatCompletionRequestResponseFormatTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -163,9 +162,10 @@ class CreateChatCompletionRequestResponseFormatTypeEnumTypeTransformer {
 
   const CreateChatCompletionRequestResponseFormatTypeEnumTypeTransformer._();
 
-  String encode(CreateChatCompletionRequestResponseFormatTypeEnum data) => data.value;
+  String encode(CreateChatCompletionRequestResponseFormatTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateChatCompletionRequestResponseFormatTypeEnum.
+  /// Returns the instance of [CreateChatCompletionRequestResponseFormatTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -174,6 +174,9 @@ class CreateChatCompletionRequestResponseFormatTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateChatCompletionRequestResponseFormatTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateChatCompletionRequestResponseFormatTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return CreateChatCompletionRequestResponseFormatTypeEnum.text;
@@ -188,7 +191,7 @@ class CreateChatCompletionRequestResponseFormatTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateChatCompletionRequestResponseFormatTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateChatCompletionRequestResponseFormatTypeEnumTypeTransformer? _instance;
 }
 

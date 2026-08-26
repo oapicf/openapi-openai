@@ -1,4 +1,4 @@
-# # Batch
+# Batch
 
 ## Properties
 

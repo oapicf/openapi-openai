@@ -1,0 +1,17 @@
+import { RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner } from './run-step-delta-step-details-tool-calls-code-object-code-interpreter-outputs-inner';
+
+
+/**
+ * The Code Interpreter tool call definition.
+ */
+export interface RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter { 
+  /**
+   * The input to the Code Interpreter tool call.
+   */
+  input?: string;
+  /**
+   * The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.
+   */
+  outputs?: Array<RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>;
+}
+

@@ -32,7 +32,7 @@ export interface CreateCompletionResponseChoicesInner {
      * `length` if the maximum number of tokens specified in the request was reached,
      * or `content_filter` if content was omitted due to a flag from our content filters.
      * 
-     * @type {string}
+     * @type {CreateCompletionResponseChoicesInnerFinishReasonEnum}
      * @memberof CreateCompletionResponseChoicesInner
      */
     finishReason: CreateCompletionResponseChoicesInnerFinishReasonEnum;
@@ -72,7 +72,7 @@ export type CreateCompletionResponseChoicesInnerFinishReasonEnum = typeof Create
  * Check if a given object implements the CreateCompletionResponseChoicesInner interface.
  */
 export function instanceOfCreateCompletionResponseChoicesInner(value: object): value is CreateCompletionResponseChoicesInner {
-    if (!('finishReason' in value) || value['finishReason'] === undefined) return false;
+    if ((!('finishReason' in (value as Record<string, any>)) && !('finish_reason' in (value as Record<string, any>))) || ((value as Record<string, any>)['finishReason'] === undefined && (value as Record<string, any>)['finish_reason'] === undefined)) return false;
     if (!('index' in value) || value['index'] === undefined) return false;
     if (!('logprobs' in value) || value['logprobs'] === undefined) return false;
     if (!('text' in value) || value['text'] === undefined) return false;

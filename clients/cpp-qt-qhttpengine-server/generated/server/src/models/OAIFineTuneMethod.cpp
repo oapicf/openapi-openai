@@ -75,10 +75,10 @@ QJsonObject OAIFineTuneMethod::asJsonObject() const {
     if (m_type_isSet) {
         obj.insert(QString("type"), ::OpenAPI::toJsonValue(type));
     }
-    if (m_supervised_isSet) {
+    if (supervised.isSet()) {
         obj.insert(QString("supervised"), ::OpenAPI::toJsonValue(supervised));
     }
-    if (m_dpo_isSet) {
+    if (dpo.isSet()) {
         obj.insert(QString("dpo"), ::OpenAPI::toJsonValue(dpo));
     }
     return obj;
@@ -140,12 +140,12 @@ bool OAIFineTuneMethod::isSet() const {
             break;
         }
 
-        if (m_supervised_isSet) {
+        if (supervised.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_dpo_isSet) {
+        if (dpo.isSet()) {
             isObjectUpdated = true;
             break;
         }

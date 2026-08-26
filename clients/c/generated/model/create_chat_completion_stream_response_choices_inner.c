@@ -26,18 +26,18 @@ static create_chat_completion_stream_response_choices_inner_t *create_chat_compl
     chat_completion_stream_response_delta_t *delta,
     create_chat_completion_response_choices_inner_logprobs_t *logprobs,
     openai_api_create_chat_completion_stream_response_choices_inner_FINISHREASON_e finish_reason,
-    int index
+    int *index
     ) {
     create_chat_completion_stream_response_choices_inner_t *create_chat_completion_stream_response_choices_inner_local_var = malloc(sizeof(create_chat_completion_stream_response_choices_inner_t));
     if (!create_chat_completion_stream_response_choices_inner_local_var) {
         return NULL;
     }
+    memset(create_chat_completion_stream_response_choices_inner_local_var, 0, sizeof(create_chat_completion_stream_response_choices_inner_t));
+    create_chat_completion_stream_response_choices_inner_local_var->_library_owned = 1;
     create_chat_completion_stream_response_choices_inner_local_var->delta = delta;
     create_chat_completion_stream_response_choices_inner_local_var->logprobs = logprobs;
     create_chat_completion_stream_response_choices_inner_local_var->finish_reason = finish_reason;
     create_chat_completion_stream_response_choices_inner_local_var->index = index;
-
-    create_chat_completion_stream_response_choices_inner_local_var->_library_owned = 1;
     return create_chat_completion_stream_response_choices_inner_local_var;
 }
 
@@ -45,14 +45,23 @@ __attribute__((deprecated)) create_chat_completion_stream_response_choices_inner
     chat_completion_stream_response_delta_t *delta,
     create_chat_completion_response_choices_inner_logprobs_t *logprobs,
     openai_api_create_chat_completion_stream_response_choices_inner_FINISHREASON_e finish_reason,
-    int index
+    int *index
     ) {
-    return create_chat_completion_stream_response_choices_inner_create_internal (
+    int *index_copy = NULL;
+    if (index) {
+        index_copy = malloc(sizeof(int));
+        if (index_copy) *index_copy = *index;
+    }
+    create_chat_completion_stream_response_choices_inner_t *result = create_chat_completion_stream_response_choices_inner_create_internal (
         delta,
         logprobs,
         finish_reason,
-        index
+        index_copy
         );
+    if (!result) {
+        free(index_copy);
+    }
+    return result;
 }
 
 void create_chat_completion_stream_response_choices_inner_free(create_chat_completion_stream_response_choices_inner_t *create_chat_completion_stream_response_choices_inner) {
@@ -71,6 +80,10 @@ void create_chat_completion_stream_response_choices_inner_free(create_chat_compl
     if (create_chat_completion_stream_response_choices_inner->logprobs) {
         create_chat_completion_response_choices_inner_logprobs_free(create_chat_completion_stream_response_choices_inner->logprobs);
         create_chat_completion_stream_response_choices_inner->logprobs = NULL;
+    }
+    if (create_chat_completion_stream_response_choices_inner->index) {
+        free(create_chat_completion_stream_response_choices_inner->index);
+        create_chat_completion_stream_response_choices_inner->index = NULL;
     }
     free(create_chat_completion_stream_response_choices_inner);
 }
@@ -119,7 +132,7 @@ cJSON *create_chat_completion_stream_response_choices_inner_convertToJSON(create
     if (!create_chat_completion_stream_response_choices_inner->index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "index", create_chat_completion_stream_response_choices_inner->index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "index", *create_chat_completion_stream_response_choices_inner->index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -140,6 +153,9 @@ create_chat_completion_stream_response_choices_inner_t *create_chat_completion_s
 
     // define the local variable for create_chat_completion_stream_response_choices_inner->logprobs
     create_chat_completion_response_choices_inner_logprobs_t *logprobs_local_nonprim = NULL;
+
+    // define the local variable for create_chat_completion_stream_response_choices_inner->index
+    int *index_local_var = NULL;
 
     // create_chat_completion_stream_response_choices_inner->delta
     cJSON *delta = cJSON_GetObjectItemCaseSensitive(create_chat_completion_stream_response_choices_innerJSON, "delta");
@@ -193,14 +209,25 @@ create_chat_completion_stream_response_choices_inner_t *create_chat_completion_s
     {
     goto end; //Numeric
     }
+    index_local_var = malloc(sizeof(int));
+    if(!index_local_var)
+    {
+        goto end;
+    }
+    *index_local_var = index->valuedouble;
+
 
 
     create_chat_completion_stream_response_choices_inner_local_var = create_chat_completion_stream_response_choices_inner_create_internal (
         delta_local_nonprim,
         logprobs ? logprobs_local_nonprim : NULL,
         finish_reasonVariable,
-        index->valuedouble
+        index_local_var
         );
+
+    if (!create_chat_completion_stream_response_choices_inner_local_var) {
+        goto end;
+    }
 
     return create_chat_completion_stream_response_choices_inner_local_var;
 end:
@@ -211,6 +238,10 @@ end:
     if (logprobs_local_nonprim) {
         create_chat_completion_response_choices_inner_logprobs_free(logprobs_local_nonprim);
         logprobs_local_nonprim = NULL;
+    }
+    if (index_local_var) {
+        free(index_local_var);
+        index_local_var = NULL;
     }
     return NULL;
 

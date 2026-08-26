@@ -64,7 +64,7 @@ OtherChunkingStrategyResponseParam::getType()
 }
 
 void
-OtherChunkingStrategyResponseParam::setType(std::string  type)
+OtherChunkingStrategyResponseParam::setType(std::string type)
 {
 	this->type = type;
 }

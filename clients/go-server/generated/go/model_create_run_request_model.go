@@ -18,7 +18,8 @@ package openapi
 type CreateRunRequestModel struct {
 }
 
-// AssertCreateRunRequestModelRequired checks if the required fields are not zero-ed
+// AssertCreateRunRequestModelRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateRunRequestModelRequired(obj CreateRunRequestModel) error {
 	return nil
 }

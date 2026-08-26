@@ -51,7 +51,7 @@ class CreateVectorStoreRequestChunkingStrategy
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['auto', 'static'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class CreateVectorStoreRequestChunkingStrategy
      * @var StaticChunkingStrategy|null
      * @SerializedName("static")
      * @Type("OpenAPI\Server\Model\StaticChunkingStrategy")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\StaticChunkingStrategy")]
@@ -90,12 +90,12 @@ class CreateVectorStoreRequestChunkingStrategy
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `auto`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `auto`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -117,12 +117,12 @@ class CreateVectorStoreRequestChunkingStrategy
     }
 
     /**
-    * Sets static.
-    *
-    * @param StaticChunkingStrategy|null $static
-    *
-    * @return $this
-    */
+     * Sets static.
+     *
+     * @param StaticChunkingStrategy|null $static
+     *
+     * @return $this
+     */
     public function setStatic(?StaticChunkingStrategy $static): self
     {
         $this->static = $static;

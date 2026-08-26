@@ -38,13 +38,13 @@ class OAIChatCompletionResponseMessage_audio;
 class OAIChatCompletionResponseMessage : public OAIObject {
 public:
     OAIChatCompletionResponseMessage();
-    OAIChatCompletionResponseMessage(QString json);
+    OAIChatCompletionResponseMessage(const QString &json);
     ~OAIChatCompletionResponseMessage() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getContent() const;
     void setContent(const QString &content);

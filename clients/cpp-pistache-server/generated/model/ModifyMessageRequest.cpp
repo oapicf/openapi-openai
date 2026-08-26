@@ -25,6 +25,8 @@ ModifyMessageRequest::ModifyMessageRequest()
     
 }
 
+ModifyMessageRequest::~ModifyMessageRequest() = default;
+
 void ModifyMessageRequest::validate() const
 {
     std::stringstream msg;

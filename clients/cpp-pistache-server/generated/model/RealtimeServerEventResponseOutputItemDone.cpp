@@ -28,6 +28,8 @@ RealtimeServerEventResponseOutputItemDone::RealtimeServerEventResponseOutputItem
     
 }
 
+RealtimeServerEventResponseOutputItemDone::~RealtimeServerEventResponseOutputItemDone() = default;
+
 void RealtimeServerEventResponseOutputItemDone::validate() const
 {
     std::stringstream msg;

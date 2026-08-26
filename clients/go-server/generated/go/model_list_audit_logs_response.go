@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type ListAuditLogsResponse struct {
@@ -26,15 +31,96 @@ type ListAuditLogsResponse struct {
 
 	HasMore bool `json:"has_more"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into ListAuditLogsResponse
+func (o *ListAuditLogsResponse) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"object",
+		"data",
+		"first_id",
+		"last_id",
+		"has_more",
+	}
 
-// AssertListAuditLogsResponseRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"object": false,
+		"data": false,
+		"first_id": false,
+		"last_id": false,
+		"has_more": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"object": {},
+		"data": {},
+		"first_id": {},
+		"last_id": {},
+		"has_more": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded ListAuditLogsResponse
+
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["data"]; exists {
+		if err = json.Unmarshal(value, &decoded.Data); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["first_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.FirstId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["last_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.LastId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["has_more"]; exists {
+		if err = json.Unmarshal(value, &decoded.HasMore); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertListAuditLogsResponseRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertListAuditLogsResponseRequired(obj ListAuditLogsResponse) error {
 	elements := map[string]interface{}{
-		"object": obj.Object,
 		"data": obj.Data,
-		"first_id": obj.FirstId,
-		"last_id": obj.LastId,
-		"has_more": obj.HasMore,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {

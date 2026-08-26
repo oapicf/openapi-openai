@@ -28,6 +28,8 @@ CreateUploadRequest::CreateUploadRequest()
     
 }
 
+CreateUploadRequest::~CreateUploadRequest() = default;
+
 void CreateUploadRequest::validate() const
 {
     std::stringstream msg;

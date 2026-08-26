@@ -14,20 +14,20 @@ import org.openapitools.model.MessageObjectIncompleteDetails;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Represents a message within a [thread](/docs/api-reference/threads).
  */
 
 @Schema(name = "MessageObject", description = "Represents a message within a [thread](/docs/api-reference/threads).")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class MessageObject {
 
   private String id;
@@ -153,14 +153,12 @@ public class MessageObject {
 
   private RoleEnum role;
 
-  @Valid
   private List<MessageObjectContentInner> content = new ArrayList<>();
 
   private JsonNullable<String> assistantId = JsonNullable.<String>undefined();
 
   private JsonNullable<String> runId = JsonNullable.<String>undefined();
 
-  @Valid
   private JsonNullable<List<@Valid CreateMessageRequestAttachmentsInner>> attachments = JsonNullable.<List<@Valid CreateMessageRequestAttachmentsInner>>undefined();
 
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
@@ -205,6 +203,7 @@ public class MessageObject {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
@@ -225,6 +224,7 @@ public class MessageObject {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
@@ -245,6 +245,7 @@ public class MessageObject {
     return createdAt;
   }
 
+  @JsonProperty("created_at")
   public void setCreatedAt(Integer createdAt) {
     this.createdAt = createdAt;
   }
@@ -265,6 +266,7 @@ public class MessageObject {
     return threadId;
   }
 
+  @JsonProperty("thread_id")
   public void setThreadId(String threadId) {
     this.threadId = threadId;
   }
@@ -285,6 +287,7 @@ public class MessageObject {
     return status;
   }
 
+  @JsonProperty("status")
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -305,6 +308,7 @@ public class MessageObject {
     return incompleteDetails;
   }
 
+  @JsonProperty("incomplete_details")
   public void setIncompleteDetails(JsonNullable<MessageObjectIncompleteDetails> incompleteDetails) {
     this.incompleteDetails = incompleteDetails;
   }
@@ -325,6 +329,7 @@ public class MessageObject {
     return completedAt;
   }
 
+  @JsonProperty("completed_at")
   public void setCompletedAt(JsonNullable<Integer> completedAt) {
     this.completedAt = completedAt;
   }
@@ -345,6 +350,7 @@ public class MessageObject {
     return incompleteAt;
   }
 
+  @JsonProperty("incomplete_at")
   public void setIncompleteAt(JsonNullable<Integer> incompleteAt) {
     this.incompleteAt = incompleteAt;
   }
@@ -365,6 +371,7 @@ public class MessageObject {
     return role;
   }
 
+  @JsonProperty("role")
   public void setRole(RoleEnum role) {
     this.role = role;
   }
@@ -393,6 +400,7 @@ public class MessageObject {
     return content;
   }
 
+  @JsonProperty("content")
   public void setContent(List<MessageObjectContentInner> content) {
     this.content = content;
   }
@@ -413,6 +421,7 @@ public class MessageObject {
     return assistantId;
   }
 
+  @JsonProperty("assistant_id")
   public void setAssistantId(JsonNullable<String> assistantId) {
     this.assistantId = assistantId;
   }
@@ -433,6 +442,7 @@ public class MessageObject {
     return runId;
   }
 
+  @JsonProperty("run_id")
   public void setRunId(JsonNullable<String> runId) {
     this.runId = runId;
   }
@@ -461,6 +471,7 @@ public class MessageObject {
     return attachments;
   }
 
+  @JsonProperty("attachments")
   public void setAttachments(JsonNullable<List<@Valid CreateMessageRequestAttachmentsInner>> attachments) {
     this.attachments = attachments;
   }
@@ -481,6 +492,7 @@ public class MessageObject {
     return metadata;
   }
 
+  @JsonProperty("metadata")
   public void setMetadata(JsonNullable<Object> metadata) {
     this.metadata = metadata;
   }
@@ -541,11 +553,8 @@ public class MessageObject {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

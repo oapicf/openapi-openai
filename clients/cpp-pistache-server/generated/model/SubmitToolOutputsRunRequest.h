@@ -33,7 +33,7 @@ class  SubmitToolOutputsRunRequest
 {
 public:
     SubmitToolOutputsRunRequest();
-    virtual ~SubmitToolOutputsRunRequest() = default;
+    virtual ~SubmitToolOutputsRunRequest();
 
 
     /// <summary>

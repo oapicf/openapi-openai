@@ -27,7 +27,7 @@ export interface MessageContentImageFileObjectImageFile {
     fileId: string;
     /**
      * Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
-     * @type {string}
+     * @type {MessageContentImageFileObjectImageFileDetailEnum}
      * @memberof MessageContentImageFileObjectImageFile
      */
     detail?: MessageContentImageFileObjectImageFileDetailEnum;
@@ -49,7 +49,7 @@ export type MessageContentImageFileObjectImageFileDetailEnum = typeof MessageCon
  * Check if a given object implements the MessageContentImageFileObjectImageFile interface.
  */
 export function instanceOfMessageContentImageFileObjectImageFile(value: object): value is MessageContentImageFileObjectImageFile {
-    if (!('fileId' in value) || value['fileId'] === undefined) return false;
+    if ((!('fileId' in (value as Record<string, any>)) && !('file_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['fileId'] === undefined && (value as Record<string, any>)['file_id'] === undefined)) return false;
     return true;
 }
 

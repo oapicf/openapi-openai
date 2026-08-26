@@ -161,8 +161,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="Model" />
     /// </summary>
-    public class ModelJsonConverter : JsonConverter<Model>
+    public partial class ModelJsonConverter : JsonConverter<Model>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ModelJsonConverter" /> class.
+        /// </summary>
+        public ModelJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="Model" />
         /// </summary>

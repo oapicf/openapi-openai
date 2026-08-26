@@ -7,8 +7,8 @@ The actor who performed the audit logged action.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** | The type of actor. Is either &#x60;session&#x60; or &#x60;api_key&#x60;. | [optional] [default to undefined]
-**session** | [**AuditLogActorSession**](.md) |  | [optional] [default to undefined]
-**api_key** | [**AuditLogActorApiKey**](.md) |  | [optional] [default to undefined]
+**session** | [**AuditLogActorSession**](AuditLogActorSession.md) |  | [optional] [default to undefined]
+**api_key** | [**AuditLogActorApiKey**](AuditLogActorApiKey.md) |  | [optional] [default to undefined]
 
 ## Example
 

@@ -148,7 +148,7 @@ AdminApiKey_owner::getType()
 }
 
 void
-AdminApiKey_owner::setType(std::string  type)
+AdminApiKey_owner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -160,7 +160,7 @@ AdminApiKey_owner::getId()
 }
 
 void
-AdminApiKey_owner::setId(std::string  id)
+AdminApiKey_owner::setId(std::string id)
 {
 	this->id = id;
 }
@@ -172,7 +172,7 @@ AdminApiKey_owner::getName()
 }
 
 void
-AdminApiKey_owner::setName(std::string  name)
+AdminApiKey_owner::setName(std::string name)
 {
 	this->name = name;
 }
@@ -184,7 +184,7 @@ AdminApiKey_owner::getCreatedAt()
 }
 
 void
-AdminApiKey_owner::setCreatedAt(long  created_at)
+AdminApiKey_owner::setCreatedAt(long created_at)
 {
 	this->created_at = created_at;
 }
@@ -196,7 +196,7 @@ AdminApiKey_owner::getRole()
 }
 
 void
-AdminApiKey_owner::setRole(std::string  role)
+AdminApiKey_owner::setRole(std::string role)
 {
 	this->role = role;
 }

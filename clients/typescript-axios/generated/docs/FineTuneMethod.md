@@ -7,8 +7,8 @@ The method used for fine-tuning.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** | The type of method. Is either &#x60;supervised&#x60; or &#x60;dpo&#x60;. | [optional] [default to undefined]
-**supervised** | [**FineTuneSupervisedMethod**](.md) |  | [optional] [default to undefined]
-**dpo** | [**FineTuneDPOMethod**](.md) |  | [optional] [default to undefined]
+**supervised** | [**FineTuneSupervisedMethod**](FineTuneSupervisedMethod.md) |  | [optional] [default to undefined]
+**dpo** | [**FineTuneDPOMethod**](FineTuneDPOMethod.md) |  | [optional] [default to undefined]
 
 ## Example
 

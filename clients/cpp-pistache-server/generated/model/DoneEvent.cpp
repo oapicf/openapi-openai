@@ -26,6 +26,8 @@ DoneEvent::DoneEvent()
     
 }
 
+DoneEvent::~DoneEvent() = default;
+
 void DoneEvent::validate() const
 {
     std::stringstream msg;

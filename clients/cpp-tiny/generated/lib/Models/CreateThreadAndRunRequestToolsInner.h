@@ -56,21 +56,21 @@ public:
 
 	/*! \brief Set The type of tool being defined: `code_interpreter`
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	AssistantToolsFileSearch_file_search getFileSearch();
 
 	/*! \brief Set 
 	 */
-	void setFileSearch(AssistantToolsFileSearch_file_search  file_search);
+	void setFileSearch(AssistantToolsFileSearch_file_search file_search);
 	/*! \brief Get 
 	 */
 	FunctionObject getFunction();
 
 	/*! \brief Set 
 	 */
-	void setFunction(FunctionObject  function);
+	void setFunction(FunctionObject function);
 
 
     private:

@@ -1,4 +1,4 @@
-# # VectorStoreObjectFileCounts
+# VectorStoreObjectFileCounts
 
 ## Properties
 

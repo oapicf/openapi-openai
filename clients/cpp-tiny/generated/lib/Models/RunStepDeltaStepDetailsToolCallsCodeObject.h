@@ -52,28 +52,28 @@ public:
 
 	/*! \brief Set The index of the tool call in the tool calls array.
 	 */
-	void setIndex(int  index);
+	void setIndex(int index);
 	/*! \brief Get The ID of the tool call.
 	 */
 	std::string getId();
 
 	/*! \brief Set The ID of the tool call.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
 	 */
 	std::string getType();
 
 	/*! \brief Set The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter getCodeInterpreter();
 
 	/*! \brief Set 
 	 */
-	void setCodeInterpreter(RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter  code_interpreter);
+	void setCodeInterpreter(RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter code_interpreter);
 
 
     private:

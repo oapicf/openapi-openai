@@ -47,7 +47,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="maxCompletionTokens">An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). </param>
         /// <param name="n">How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep &#x60;n&#x60; as &#x60;1&#x60; to minimize costs. (default to 1)</param>
         /// <param name="modalities">Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  &#x60;[\&quot;text\&quot;]&#x60;  The &#x60;gpt-4o-audio-preview&#x60; model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  &#x60;[\&quot;text\&quot;, \&quot;audio\&quot;]&#x60; </param>
-        /// <param name="prediction">prediction</param>
+        /// <param name="prediction">Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. </param>
         /// <param name="audio">audio</param>
         /// <param name="presencePenalty">Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics.  (default to 0M)</param>
         /// <param name="responseFormat">responseFormat</param>
@@ -195,7 +195,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>**o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are &#x60;low&#x60;, &#x60;medium&#x60;, and &#x60;high&#x60;. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. </value>
         [JsonPropertyName("reasoning_effort")]
-        public ReasoningEffortEnum? ReasoningEffort { get { return this.ReasoningEffortOption; } set { this.ReasoningEffortOption = new(value); } }
+        public ReasoningEffortEnum? ReasoningEffort { get { return this.ReasoningEffortOption.Value; } set { this.ReasoningEffortOption = new(value); } }
 
         /// <summary>
         /// Defines Modalities
@@ -345,7 +345,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to &#39;auto&#39;, and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to &#39;auto&#39;, and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to &#39;default&#39;, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is &#39;auto&#39;.    When this parameter is set, the response body will include the &#x60;service_tier&#x60; utilized. </value>
         [JsonPropertyName("service_tier")]
-        public ServiceTierEnum? ServiceTier { get { return this.ServiceTierOption; } set { this.ServiceTierOption = new(value); } }
+        public ServiceTierEnum? ServiceTier { get { return this.ServiceTierOption.Value; } set { this.ServiceTierOption = new(value); } }
 
         /// <summary>
         /// A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
@@ -372,7 +372,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. </value>
         [JsonPropertyName("store")]
-        public bool? Store { get { return this.StoreOption; } set { this.StoreOption = new(value); } }
+        public bool? Store { get { return this.StoreOption.Value; } set { this.StoreOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Metadata
@@ -386,7 +386,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). </value>
         [JsonPropertyName("metadata")]
-        public Dictionary<string, string>? Metadata { get { return this.MetadataOption; } set { this.MetadataOption = new(value); } }
+        public Dictionary<string, string>? Metadata { get { return this.MetadataOption.Value; } set { this.MetadataOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FrequencyPenalty
@@ -400,7 +400,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim. </value>
         [JsonPropertyName("frequency_penalty")]
-        public decimal? FrequencyPenalty { get { return this.FrequencyPenaltyOption; } set { this.FrequencyPenaltyOption = new(value); } }
+        public decimal? FrequencyPenalty { get { return this.FrequencyPenaltyOption.Value; } set { this.FrequencyPenaltyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LogitBias
@@ -414,7 +414,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. </value>
         [JsonPropertyName("logit_bias")]
-        public Dictionary<string, int>? LogitBias { get { return this.LogitBiasOption; } set { this.LogitBiasOption = new(value); } }
+        public Dictionary<string, int>? LogitBias { get { return this.LogitBiasOption.Value; } set { this.LogitBiasOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Logprobs
@@ -428,7 +428,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the &#x60;content&#x60; of &#x60;message&#x60;. </value>
         [JsonPropertyName("logprobs")]
-        public bool? Logprobs { get { return this.LogprobsOption; } set { this.LogprobsOption = new(value); } }
+        public bool? Logprobs { get { return this.LogprobsOption.Value; } set { this.LogprobsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TopLogprobs
@@ -442,7 +442,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. &#x60;logprobs&#x60; must be set to &#x60;true&#x60; if this parameter is used. </value>
         [JsonPropertyName("top_logprobs")]
-        public int? TopLogprobs { get { return this.TopLogprobsOption; } set { this.TopLogprobsOption = new(value); } }
+        public int? TopLogprobs { get { return this.TopLogprobsOption.Value; } set { this.TopLogprobsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxTokens
@@ -457,7 +457,7 @@ namespace Org.OpenAPITools.Model
         /// <value>The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of &#x60;max_completion_tokens&#x60;, and is not compatible with [o1 series models](/docs/guides/reasoning). </value>
         [JsonPropertyName("max_tokens")]
         [Obsolete]
-        public int? MaxTokens { get { return this.MaxTokensOption; } set { this.MaxTokensOption = new(value); } }
+        public int? MaxTokens { get { return this.MaxTokensOption.Value; } set { this.MaxTokensOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxCompletionTokens
@@ -471,7 +471,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). </value>
         [JsonPropertyName("max_completion_tokens")]
-        public int? MaxCompletionTokens { get { return this.MaxCompletionTokensOption; } set { this.MaxCompletionTokensOption = new(value); } }
+        public int? MaxCompletionTokens { get { return this.MaxCompletionTokensOption.Value; } set { this.MaxCompletionTokensOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of N
@@ -486,7 +486,7 @@ namespace Org.OpenAPITools.Model
         /// <value>How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep &#x60;n&#x60; as &#x60;1&#x60; to minimize costs.</value>
         /* <example>1</example> */
         [JsonPropertyName("n")]
-        public int? N { get { return this.NOption; } set { this.NOption = new(value); } }
+        public int? N { get { return this.NOption.Value; } set { this.NOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Modalities
@@ -500,7 +500,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  &#x60;[\&quot;text\&quot;]&#x60;  The &#x60;gpt-4o-audio-preview&#x60; model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  &#x60;[\&quot;text\&quot;, \&quot;audio\&quot;]&#x60; </value>
         [JsonPropertyName("modalities")]
-        public List<CreateChatCompletionRequest.ModalitiesEnum>? Modalities { get { return this.ModalitiesOption; } set { this.ModalitiesOption = new(value); } }
+        public List<CreateChatCompletionRequest.ModalitiesEnum>? Modalities { get { return this.ModalitiesOption.Value; } set { this.ModalitiesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Prediction
@@ -510,10 +510,11 @@ namespace Org.OpenAPITools.Model
         public Option<PredictionContent?> PredictionOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Prediction
+        /// Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
         /// </summary>
+        /// <value>Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. </value>
         [JsonPropertyName("prediction")]
-        public PredictionContent? Prediction { get { return this.PredictionOption; } set { this.PredictionOption = new(value); } }
+        public PredictionContent? Prediction { get { return this.PredictionOption.Value; } set { this.PredictionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Audio
@@ -526,7 +527,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Audio
         /// </summary>
         [JsonPropertyName("audio")]
-        public CreateChatCompletionRequestAudio? Audio { get { return this.AudioOption; } set { this.AudioOption = new(value); } }
+        public CreateChatCompletionRequestAudio? Audio { get { return this.AudioOption.Value; } set { this.AudioOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PresencePenalty
@@ -540,7 +541,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics. </value>
         [JsonPropertyName("presence_penalty")]
-        public decimal? PresencePenalty { get { return this.PresencePenaltyOption; } set { this.PresencePenaltyOption = new(value); } }
+        public decimal? PresencePenalty { get { return this.PresencePenaltyOption.Value; } set { this.PresencePenaltyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ResponseFormat
@@ -553,7 +554,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ResponseFormat
         /// </summary>
         [JsonPropertyName("response_format")]
-        public CreateChatCompletionRequestResponseFormat? ResponseFormat { get { return this.ResponseFormatOption; } set { this.ResponseFormatOption = new(value); } }
+        public CreateChatCompletionRequestResponseFormat? ResponseFormat { get { return this.ResponseFormatOption.Value; } set { this.ResponseFormatOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Seed
@@ -567,7 +568,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same &#x60;seed&#x60; and parameters should return the same result. Determinism is not guaranteed, and you should refer to the &#x60;system_fingerprint&#x60; response parameter to monitor changes in the backend. </value>
         [JsonPropertyName("seed")]
-        public long? Seed { get { return this.SeedOption; } set { this.SeedOption = new(value); } }
+        public long? Seed { get { return this.SeedOption.Value; } set { this.SeedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Stop
@@ -580,7 +581,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Stop
         /// </summary>
         [JsonPropertyName("stop")]
-        public CreateChatCompletionRequestStop? Stop { get { return this.StopOption; } set { this.StopOption = new(value); } }
+        public CreateChatCompletionRequestStop? Stop { get { return this.StopOption.Value; } set { this.StopOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Stream
@@ -594,7 +595,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a &#x60;data: [DONE]&#x60; message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). </value>
         [JsonPropertyName("stream")]
-        public bool? Stream { get { return this.StreamOption; } set { this.StreamOption = new(value); } }
+        public bool? Stream { get { return this.StreamOption.Value; } set { this.StreamOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of StreamOptions
@@ -607,7 +608,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets StreamOptions
         /// </summary>
         [JsonPropertyName("stream_options")]
-        public ChatCompletionStreamOptions? StreamOptions { get { return this.StreamOptionsOption; } set { this.StreamOptionsOption = new(value); } }
+        public ChatCompletionStreamOptions? StreamOptions { get { return this.StreamOptionsOption.Value; } set { this.StreamOptionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Temperature
@@ -622,7 +623,7 @@ namespace Org.OpenAPITools.Model
         /// <value>What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or &#x60;top_p&#x60; but not both. </value>
         /* <example>1</example> */
         [JsonPropertyName("temperature")]
-        public decimal? Temperature { get { return this.TemperatureOption; } set { this.TemperatureOption = new(value); } }
+        public decimal? Temperature { get { return this.TemperatureOption.Value; } set { this.TemperatureOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TopP
@@ -637,7 +638,7 @@ namespace Org.OpenAPITools.Model
         /// <value>An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or &#x60;temperature&#x60; but not both. </value>
         /* <example>1</example> */
         [JsonPropertyName("top_p")]
-        public decimal? TopP { get { return this.TopPOption; } set { this.TopPOption = new(value); } }
+        public decimal? TopP { get { return this.TopPOption.Value; } set { this.TopPOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Tools
@@ -651,7 +652,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. </value>
         [JsonPropertyName("tools")]
-        public List<ChatCompletionTool>? Tools { get { return this.ToolsOption; } set { this.ToolsOption = new(value); } }
+        public List<ChatCompletionTool>? Tools { get { return this.ToolsOption.Value; } set { this.ToolsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ToolChoice
@@ -664,7 +665,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ToolChoice
         /// </summary>
         [JsonPropertyName("tool_choice")]
-        public ChatCompletionToolChoiceOption? ToolChoice { get { return this.ToolChoiceOption; } set { this.ToolChoiceOption = new(value); } }
+        public ChatCompletionToolChoiceOption? ToolChoice { get { return this.ToolChoiceOption.Value; } set { this.ToolChoiceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ParallelToolCalls
@@ -678,7 +679,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.</value>
         [JsonPropertyName("parallel_tool_calls")]
-        public bool? ParallelToolCalls { get { return this.ParallelToolCallsOption; } set { this.ParallelToolCallsOption = new(value); } }
+        public bool? ParallelToolCalls { get { return this.ParallelToolCallsOption.Value; } set { this.ParallelToolCallsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of User
@@ -693,7 +694,7 @@ namespace Org.OpenAPITools.Model
         /// <value>A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). </value>
         /* <example>user-1234</example> */
         [JsonPropertyName("user")]
-        public string? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public string? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FunctionCall
@@ -707,7 +708,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [JsonPropertyName("function_call")]
         [Obsolete]
-        public CreateChatCompletionRequestFunctionCall? FunctionCall { get { return this.FunctionCallOption; } set { this.FunctionCallOption = new(value); } }
+        public CreateChatCompletionRequestFunctionCall? FunctionCall { get { return this.FunctionCallOption.Value; } set { this.FunctionCallOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Functions
@@ -722,7 +723,7 @@ namespace Org.OpenAPITools.Model
         /// <value>Deprecated in favor of &#x60;tools&#x60;.  A list of functions the model may generate JSON inputs for. </value>
         [JsonPropertyName("functions")]
         [Obsolete]
-        public List<ChatCompletionFunctions>? Functions { get { return this.FunctionsOption; } set { this.FunctionsOption = new(value); } }
+        public List<ChatCompletionFunctions>? Functions { get { return this.FunctionsOption.Value; } set { this.FunctionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -864,8 +865,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateChatCompletionRequest" />
     /// </summary>
-    public class CreateChatCompletionRequestJsonConverter : JsonConverter<CreateChatCompletionRequest>
+    public partial class CreateChatCompletionRequestJsonConverter : JsonConverter<CreateChatCompletionRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateChatCompletionRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateChatCompletionRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateChatCompletionRequest" />
         /// </summary>
@@ -987,8 +998,7 @@ namespace Org.OpenAPITools.Model
                             break;
                         case "service_tier":
                             string? serviceTierRawValue = utf8JsonReader.GetString();
-                            if (serviceTierRawValue != null)
-                                serviceTier = new Option<CreateChatCompletionRequest.ServiceTierEnum?>(CreateChatCompletionRequest.ServiceTierEnumFromStringOrDefault(serviceTierRawValue));
+                            serviceTier = new Option<CreateChatCompletionRequest.ServiceTierEnum?>(serviceTierRawValue == null ? null : CreateChatCompletionRequest.ServiceTierEnumFromStringOrDefault(serviceTierRawValue));
                             break;
                         case "stop":
                             stop = new Option<CreateChatCompletionRequestStop?>(JsonSerializer.Deserialize<CreateChatCompletionRequestStop>(ref utf8JsonReader, jsonSerializerOptions)!);

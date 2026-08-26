@@ -31,11 +31,11 @@ static batch_request_input_t *batch_request_input_create_internal(
     if (!batch_request_input_local_var) {
         return NULL;
     }
+    memset(batch_request_input_local_var, 0, sizeof(batch_request_input_t));
+    batch_request_input_local_var->_library_owned = 1;
     batch_request_input_local_var->custom_id = custom_id;
     batch_request_input_local_var->method = method;
     batch_request_input_local_var->url = url;
-
-    batch_request_input_local_var->_library_owned = 1;
     return batch_request_input_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) batch_request_input_t *batch_request_input_create(
     openai_api_batch_request_input_METHOD_e method,
     char *url
     ) {
-    return batch_request_input_create_internal (
+    batch_request_input_t *result = batch_request_input_create_internal (
         custom_id,
         method,
         url
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void batch_request_input_free(batch_request_input_t *batch_request_input) {
@@ -110,6 +113,10 @@ batch_request_input_t *batch_request_input_parseFromJSON(cJSON *batch_request_in
 
     batch_request_input_t *batch_request_input_local_var = NULL;
 
+    char *custom_id_local_str = NULL;
+
+    char *url_local_str = NULL;
+
     // batch_request_input->custom_id
     cJSON *custom_id = cJSON_GetObjectItemCaseSensitive(batch_request_inputJSON, "custom_id");
     if (cJSON_IsNull(custom_id)) {
@@ -149,14 +156,29 @@ batch_request_input_t *batch_request_input_parseFromJSON(cJSON *batch_request_in
     }
 
 
+    if (custom_id && !cJSON_IsNull(custom_id)) custom_id_local_str = strdup(custom_id->valuestring);
+    if (url && !cJSON_IsNull(url)) url_local_str = strdup(url->valuestring);
+
     batch_request_input_local_var = batch_request_input_create_internal (
-        custom_id && !cJSON_IsNull(custom_id) ? strdup(custom_id->valuestring) : NULL,
+        custom_id_local_str,
         method ? methodVariable : openai_api_batch_request_input_METHOD_NULL,
-        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL
+        url_local_str
         );
+
+    if (!batch_request_input_local_var) {
+        goto end;
+    }
 
     return batch_request_input_local_var;
 end:
+    if (custom_id_local_str) {
+        free(custom_id_local_str);
+        custom_id_local_str = NULL;
+    }
+    if (url_local_str) {
+        free(url_local_str);
+        url_local_str = NULL;
+    }
     return NULL;
 
 }

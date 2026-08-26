@@ -13,6 +13,8 @@ use reqwest;
 use serde::{Deserialize, Serialize, de::Error as _};
 use crate::{apis::ResponseContent, models};
 use super::{Error, configuration, ContentType};
+use tokio::fs::File as TokioFile;
+use tokio_util::codec::{BytesCodec, FramedRead};
 
 
 /// struct for typed errors of method [`add_upload_part`]
@@ -59,7 +61,11 @@ pub async fn add_upload_part(configuration: &configuration::Configuration, uploa
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
     let mut multipart_form = reqwest::multipart::Form::new();
-    multipart_form = multipart_form.file("data", p_form_data.as_os_str()).await?;
+    let file = TokioFile::open(&p_form_data).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    let file_name = p_form_data.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
+    let file_part = reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
+    multipart_form = multipart_form.part("data", file_part);
     req_builder = req_builder.multipart(multipart_form);
 
     let req = req_builder.build()?;

@@ -193,24 +193,24 @@ function Initialize-CreateCompletionRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "model" = ${Model}
-            "prompt" = ${Prompt}
-            "best_of" = ${BestOf}
-            "echo" = ${Echo}
-            "frequency_penalty" = ${FrequencyPenalty}
-            "logit_bias" = ${LogitBias}
-            "logprobs" = ${Logprobs}
-            "max_tokens" = ${MaxTokens}
-            "n" = ${N}
-            "presence_penalty" = ${PresencePenalty}
-            "seed" = ${Seed}
-            "stop" = ${Stop}
-            "stream" = ${Stream}
-            "stream_options" = ${StreamOptions}
-            "suffix" = ${Suffix}
-            "temperature" = ${Temperature}
-            "top_p" = ${TopP}
-            "user" = ${User}
+            'model' = ${Model}
+            'prompt' = ${Prompt}
+            'best_of' = ${BestOf}
+            'echo' = ${Echo}
+            'frequency_penalty' = ${FrequencyPenalty}
+            'logit_bias' = ${LogitBias}
+            'logprobs' = ${Logprobs}
+            'max_tokens' = ${MaxTokens}
+            'n' = ${N}
+            'presence_penalty' = ${PresencePenalty}
+            'seed' = ${Seed}
+            'stop' = ${Stop}
+            'stream' = ${Stream}
+            'stream_options' = ${StreamOptions}
+            'suffix' = ${Suffix}
+            'temperature' = ${Temperature}
+            'top_p' = ${TopP}
+            'user' = ${User}
         }
 
 
@@ -248,7 +248,7 @@ function ConvertFrom-JsonToCreateCompletionRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateCompletionRequest
-        $AllProperties = ("model", "prompt", "best_of", "echo", "frequency_penalty", "logit_bias", "logprobs", "max_tokens", "n", "presence_penalty", "seed", "stop", "stream", "stream_options", "suffix", "temperature", "top_p", "user")
+        $AllProperties = ('model', 'prompt', 'best_of', 'echo', 'frequency_penalty', 'logit_bias', 'logprobs', 'max_tokens', 'n', 'presence_penalty', 'seed', 'stop', 'stream', 'stream_options', 'suffix', 'temperature', 'top_p', 'user')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -259,133 +259,133 @@ function ConvertFrom-JsonToCreateCompletionRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'model' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) {
             throw "Error! JSON cannot be serialized due to the required property 'model' missing."
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prompt"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'prompt'))) {
             throw "Error! JSON cannot be serialized due to the required property 'prompt' missing."
         } else {
-            $Prompt = $JsonParameters.PSobject.Properties["prompt"].value
+            $Prompt = $JsonParameters.PSobject.Properties['prompt'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "best_of"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'best_of'))) { #optional property not found
             $BestOf = $null
         } else {
-            $BestOf = $JsonParameters.PSobject.Properties["best_of"].value
+            $BestOf = $JsonParameters.PSobject.Properties['best_of'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "echo"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'echo'))) { #optional property not found
             $Echo = $null
         } else {
-            $Echo = $JsonParameters.PSobject.Properties["echo"].value
+            $Echo = $JsonParameters.PSobject.Properties['echo'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "frequency_penalty"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'frequency_penalty'))) { #optional property not found
             $FrequencyPenalty = $null
         } else {
-            $FrequencyPenalty = $JsonParameters.PSobject.Properties["frequency_penalty"].value
+            $FrequencyPenalty = $JsonParameters.PSobject.Properties['frequency_penalty'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "logit_bias"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'logit_bias'))) { #optional property not found
             $LogitBias = $null
         } else {
-            $LogitBias = $JsonParameters.PSobject.Properties["logit_bias"].value
+            $LogitBias = $JsonParameters.PSobject.Properties['logit_bias'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "logprobs"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'logprobs'))) { #optional property not found
             $Logprobs = $null
         } else {
-            $Logprobs = $JsonParameters.PSobject.Properties["logprobs"].value
+            $Logprobs = $JsonParameters.PSobject.Properties['logprobs'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'max_tokens'))) { #optional property not found
             $MaxTokens = $null
         } else {
-            $MaxTokens = $JsonParameters.PSobject.Properties["max_tokens"].value
+            $MaxTokens = $JsonParameters.PSobject.Properties['max_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "n"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'n'))) { #optional property not found
             $N = $null
         } else {
-            $N = $JsonParameters.PSobject.Properties["n"].value
+            $N = $JsonParameters.PSobject.Properties['n'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "presence_penalty"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'presence_penalty'))) { #optional property not found
             $PresencePenalty = $null
         } else {
-            $PresencePenalty = $JsonParameters.PSobject.Properties["presence_penalty"].value
+            $PresencePenalty = $JsonParameters.PSobject.Properties['presence_penalty'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "seed"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'seed'))) { #optional property not found
             $Seed = $null
         } else {
-            $Seed = $JsonParameters.PSobject.Properties["seed"].value
+            $Seed = $JsonParameters.PSobject.Properties['seed'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "stop"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'stop'))) { #optional property not found
             $Stop = $null
         } else {
-            $Stop = $JsonParameters.PSobject.Properties["stop"].value
+            $Stop = $JsonParameters.PSobject.Properties['stop'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "stream"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'stream'))) { #optional property not found
             $Stream = $null
         } else {
-            $Stream = $JsonParameters.PSobject.Properties["stream"].value
+            $Stream = $JsonParameters.PSobject.Properties['stream'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "stream_options"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'stream_options'))) { #optional property not found
             $StreamOptions = $null
         } else {
-            $StreamOptions = $JsonParameters.PSobject.Properties["stream_options"].value
+            $StreamOptions = $JsonParameters.PSobject.Properties['stream_options'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "suffix"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'suffix'))) { #optional property not found
             $Suffix = $null
         } else {
-            $Suffix = $JsonParameters.PSobject.Properties["suffix"].value
+            $Suffix = $JsonParameters.PSobject.Properties['suffix'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "temperature"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'temperature'))) { #optional property not found
             $Temperature = $null
         } else {
-            $Temperature = $JsonParameters.PSobject.Properties["temperature"].value
+            $Temperature = $JsonParameters.PSobject.Properties['temperature'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "top_p"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'top_p'))) { #optional property not found
             $TopP = $null
         } else {
-            $TopP = $JsonParameters.PSobject.Properties["top_p"].value
+            $TopP = $JsonParameters.PSobject.Properties['top_p'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'user'))) { #optional property not found
             $User = $null
         } else {
-            $User = $JsonParameters.PSobject.Properties["user"].value
+            $User = $JsonParameters.PSobject.Properties['user'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "model" = ${Model}
-            "prompt" = ${Prompt}
-            "best_of" = ${BestOf}
-            "echo" = ${Echo}
-            "frequency_penalty" = ${FrequencyPenalty}
-            "logit_bias" = ${LogitBias}
-            "logprobs" = ${Logprobs}
-            "max_tokens" = ${MaxTokens}
-            "n" = ${N}
-            "presence_penalty" = ${PresencePenalty}
-            "seed" = ${Seed}
-            "stop" = ${Stop}
-            "stream" = ${Stream}
-            "stream_options" = ${StreamOptions}
-            "suffix" = ${Suffix}
-            "temperature" = ${Temperature}
-            "top_p" = ${TopP}
-            "user" = ${User}
+            'model' = ${Model}
+            'prompt' = ${Prompt}
+            'best_of' = ${BestOf}
+            'echo' = ${Echo}
+            'frequency_penalty' = ${FrequencyPenalty}
+            'logit_bias' = ${LogitBias}
+            'logprobs' = ${Logprobs}
+            'max_tokens' = ${MaxTokens}
+            'n' = ${N}
+            'presence_penalty' = ${PresencePenalty}
+            'seed' = ${Seed}
+            'stop' = ${Stop}
+            'stream' = ${Stream}
+            'stream_options' = ${StreamOptions}
+            'suffix' = ${Suffix}
+            'temperature' = ${Temperature}
+            'top_p' = ${TopP}
+            'user' = ${User}
         }
 
         return $PSO

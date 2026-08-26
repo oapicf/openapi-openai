@@ -12,10 +12,35 @@
 package org.openapitools.client.model
 
 
-case class MessageStreamEvent(
-  event: MessageStreamEventEnums.Event,
+sealed trait MessageStreamEvent
+object MessageStreamEvent {
+}
+
+case class MessageStreamEventOneOf(
+  event: MessageStreamEventOneOfEnums.Event,
   data: MessageObject
-)
+) extends MessageStreamEvent
+
+case class MessageStreamEventOneOf1(
+  event: MessageStreamEventOneOf1Enums.Event,
+  data: MessageObject
+) extends MessageStreamEvent
+
+case class MessageStreamEventOneOf2(
+  event: MessageStreamEventOneOf2Enums.Event,
+  data: MessageDeltaObject
+) extends MessageStreamEvent
+
+case class MessageStreamEventOneOf3(
+  event: MessageStreamEventOneOf3Enums.Event,
+  data: MessageObject
+) extends MessageStreamEvent
+
+case class MessageStreamEventOneOf4(
+  event: MessageStreamEventOneOf4Enums.Event,
+  data: MessageObject
+) extends MessageStreamEvent
+
 
 object MessageStreamEventEnums {
 

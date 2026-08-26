@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -12,19 +13,19 @@ import org.springframework.lang.Nullable;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * CreateTranslationResponseVerboseJson
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateTranslationResponseVerboseJson implements CreateTranslation200Response {
 
   private String language;
@@ -33,7 +34,7 @@ public class CreateTranslationResponseVerboseJson implements CreateTranslation20
 
   private String text;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid TranscriptionSegment> segments = new ArrayList<>();
 
   public CreateTranslationResponseVerboseJson() {
@@ -65,6 +66,7 @@ public class CreateTranslationResponseVerboseJson implements CreateTranslation20
     return language;
   }
 
+  @JsonProperty("language")
   public void setLanguage(String language) {
     this.language = language;
   }
@@ -85,6 +87,7 @@ public class CreateTranslationResponseVerboseJson implements CreateTranslation20
     return duration;
   }
 
+  @JsonProperty("duration")
   public void setDuration(String duration) {
     this.duration = duration;
   }
@@ -105,6 +108,7 @@ public class CreateTranslationResponseVerboseJson implements CreateTranslation20
     return text;
   }
 
+  @JsonProperty("text")
   public void setText(String text) {
     this.text = text;
   }
@@ -133,6 +137,7 @@ public class CreateTranslationResponseVerboseJson implements CreateTranslation20
     return segments;
   }
 
+  @JsonProperty("segments")
   public void setSegments(List<@Valid TranscriptionSegment> segments) {
     this.segments = segments;
   }
@@ -173,11 +178,8 @@ public class CreateTranslationResponseVerboseJson implements CreateTranslation20
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

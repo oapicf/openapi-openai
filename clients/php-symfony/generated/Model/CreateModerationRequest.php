@@ -47,7 +47,7 @@ class CreateModerationRequest
      * @var CreateModerationRequestInput|null
      * @SerializedName("input")
      * @Type("OpenAPI\Server\Model\CreateModerationRequestInput")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\CreateModerationRequestInput")]
@@ -57,7 +57,7 @@ class CreateModerationRequest
      * @var CreateModerationRequestModel|null
      * @SerializedName("model")
      * @Type("OpenAPI\Server\Model\CreateModerationRequestModel")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateModerationRequestModel")]
     protected ?CreateModerationRequestModel $model = null;
 
@@ -84,12 +84,12 @@ class CreateModerationRequest
     }
 
     /**
-    * Sets input.
-    *
-    * @param CreateModerationRequestInput|null $input
-    *
-    * @return $this
-    */
+     * Sets input.
+     *
+     * @param CreateModerationRequestInput|null $input
+     *
+     * @return $this
+     */
     public function setInput(?CreateModerationRequestInput $input): self
     {
         $this->input = $input;
@@ -111,12 +111,12 @@ class CreateModerationRequest
     }
 
     /**
-    * Sets model.
-    *
-    * @param CreateModerationRequestModel|null $model
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param CreateModerationRequestModel|null $model
+     *
+     * @return $this
+     */
     public function setModel(?CreateModerationRequestModel $model = null): self
     {
         $this->model = $model;

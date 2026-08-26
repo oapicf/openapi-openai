@@ -26,6 +26,8 @@ AuditLog_api_key_deleted::AuditLog_api_key_deleted()
     
 }
 
+AuditLog_api_key_deleted::~AuditLog_api_key_deleted() = default;
+
 void AuditLog_api_key_deleted::validate() const
 {
     std::stringstream msg;

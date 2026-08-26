@@ -24,7 +24,8 @@ type AuditLogActorUser struct {
 	Email string `json:"email,omitempty"`
 }
 
-// AssertAuditLogActorUserRequired checks if the required fields are not zero-ed
+// AssertAuditLogActorUserRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertAuditLogActorUserRequired(obj AuditLogActorUser) error {
 	return nil
 }

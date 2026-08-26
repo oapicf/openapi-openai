@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -25,19 +28,26 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeClientEventConversationItemTruncate(
 
-    @Schema(example = "null", required = true, description = "The event type, must be `conversation.item.truncate`.")
+    @Schema(required = true, description = "The event type, must be `conversation.item.truncate`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RealtimeClientEventConversationItemTruncate.Type,
 
-    @Schema(example = "null", required = true, description = "The ID of the assistant message item to truncate. Only assistant message  items can be truncated. ")
+    @Schema(required = true, description = "The ID of the assistant message item to truncate. Only assistant message  items can be truncated. ")
+    @param:JsonProperty("item_id")
     @get:JsonProperty("item_id", required = true) val itemId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The index of the content part to truncate. Set this to 0.")
+    @Schema(required = true, description = "The index of the content part to truncate. Set this to 0.")
+    @param:JsonProperty("content_index")
     @get:JsonProperty("content_index", required = true) val contentIndex: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "Inclusive duration up to which audio is truncated, in milliseconds. If  the audio_end_ms is greater than the actual audio duration, the server  will respond with an error. ")
+    @Schema(required = true, description = "Inclusive duration up to which audio is truncated, in milliseconds. If  the audio_end_ms is greater than the actual audio duration, the server  will respond with an error. ")
+    @param:JsonProperty("audio_end_ms")
     @get:JsonProperty("audio_end_ms", required = true) val audioEndMs: kotlin.Int,
 
-    @Schema(example = "null", description = "Optional client-generated ID used to identify this event.")
+    @Schema(description = "Optional client-generated ID used to identify this event.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("event_id")
     @get:JsonProperty("event_id") val eventId: kotlin.String? = null
 ) {
 
@@ -54,7 +64,7 @@ data class RealtimeClientEventConversationItemTruncate(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeClientEventConversationItemTruncate'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

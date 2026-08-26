@@ -23,7 +23,7 @@ openai_api_run_step_delta_step_details_tool_calls_code_output_image_object_TYPE_
 }
 
 static run_step_delta_step_details_tool_calls_code_output_image_object_t *run_step_delta_step_details_tool_calls_code_output_image_object_create_internal(
-    int index,
+    int *index,
     openai_api_run_step_delta_step_details_tool_calls_code_output_image_object_TYPE_e type,
     run_step_delta_step_details_tool_calls_code_output_image_object_image_t *image
     ) {
@@ -31,24 +31,33 @@ static run_step_delta_step_details_tool_calls_code_output_image_object_t *run_st
     if (!run_step_delta_step_details_tool_calls_code_output_image_object_local_var) {
         return NULL;
     }
+    memset(run_step_delta_step_details_tool_calls_code_output_image_object_local_var, 0, sizeof(run_step_delta_step_details_tool_calls_code_output_image_object_t));
+    run_step_delta_step_details_tool_calls_code_output_image_object_local_var->_library_owned = 1;
     run_step_delta_step_details_tool_calls_code_output_image_object_local_var->index = index;
     run_step_delta_step_details_tool_calls_code_output_image_object_local_var->type = type;
     run_step_delta_step_details_tool_calls_code_output_image_object_local_var->image = image;
-
-    run_step_delta_step_details_tool_calls_code_output_image_object_local_var->_library_owned = 1;
     return run_step_delta_step_details_tool_calls_code_output_image_object_local_var;
 }
 
 __attribute__((deprecated)) run_step_delta_step_details_tool_calls_code_output_image_object_t *run_step_delta_step_details_tool_calls_code_output_image_object_create(
-    int index,
+    int *index,
     openai_api_run_step_delta_step_details_tool_calls_code_output_image_object_TYPE_e type,
     run_step_delta_step_details_tool_calls_code_output_image_object_image_t *image
     ) {
-    return run_step_delta_step_details_tool_calls_code_output_image_object_create_internal (
-        index,
+    int *index_copy = NULL;
+    if (index) {
+        index_copy = malloc(sizeof(int));
+        if (index_copy) *index_copy = *index;
+    }
+    run_step_delta_step_details_tool_calls_code_output_image_object_t *result = run_step_delta_step_details_tool_calls_code_output_image_object_create_internal (
+        index_copy,
         type,
         image
         );
+    if (!result) {
+        free(index_copy);
+    }
+    return result;
 }
 
 void run_step_delta_step_details_tool_calls_code_output_image_object_free(run_step_delta_step_details_tool_calls_code_output_image_object_t *run_step_delta_step_details_tool_calls_code_output_image_object) {
@@ -60,6 +69,10 @@ void run_step_delta_step_details_tool_calls_code_output_image_object_free(run_st
         return ;
     }
     listEntry_t *listEntry;
+    if (run_step_delta_step_details_tool_calls_code_output_image_object->index) {
+        free(run_step_delta_step_details_tool_calls_code_output_image_object->index);
+        run_step_delta_step_details_tool_calls_code_output_image_object->index = NULL;
+    }
     if (run_step_delta_step_details_tool_calls_code_output_image_object->image) {
         run_step_delta_step_details_tool_calls_code_output_image_object_image_free(run_step_delta_step_details_tool_calls_code_output_image_object->image);
         run_step_delta_step_details_tool_calls_code_output_image_object->image = NULL;
@@ -74,7 +87,7 @@ cJSON *run_step_delta_step_details_tool_calls_code_output_image_object_convertTo
     if (!run_step_delta_step_details_tool_calls_code_output_image_object->index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "index", run_step_delta_step_details_tool_calls_code_output_image_object->index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "index", *run_step_delta_step_details_tool_calls_code_output_image_object->index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -113,6 +126,9 @@ run_step_delta_step_details_tool_calls_code_output_image_object_t *run_step_delt
 
     run_step_delta_step_details_tool_calls_code_output_image_object_t *run_step_delta_step_details_tool_calls_code_output_image_object_local_var = NULL;
 
+    // define the local variable for run_step_delta_step_details_tool_calls_code_output_image_object->index
+    int *index_local_var = NULL;
+
     // define the local variable for run_step_delta_step_details_tool_calls_code_output_image_object->image
     run_step_delta_step_details_tool_calls_code_output_image_object_image_t *image_local_nonprim = NULL;
 
@@ -130,6 +146,12 @@ run_step_delta_step_details_tool_calls_code_output_image_object_t *run_step_delt
     {
     goto end; //Numeric
     }
+    index_local_var = malloc(sizeof(int));
+    if(!index_local_var)
+    {
+        goto end;
+    }
+    *index_local_var = index->valuedouble;
 
     // run_step_delta_step_details_tool_calls_code_output_image_object->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(run_step_delta_step_details_tool_calls_code_output_image_objectJSON, "type");
@@ -158,14 +180,23 @@ run_step_delta_step_details_tool_calls_code_output_image_object_t *run_step_delt
     }
 
 
+
     run_step_delta_step_details_tool_calls_code_output_image_object_local_var = run_step_delta_step_details_tool_calls_code_output_image_object_create_internal (
-        index->valuedouble,
+        index_local_var,
         typeVariable,
         image ? image_local_nonprim : NULL
         );
 
+    if (!run_step_delta_step_details_tool_calls_code_output_image_object_local_var) {
+        goto end;
+    }
+
     return run_step_delta_step_details_tool_calls_code_output_image_object_local_var;
 end:
+    if (index_local_var) {
+        free(index_local_var);
+        index_local_var = NULL;
+    }
     if (image_local_nonprim) {
         run_step_delta_step_details_tool_calls_code_output_image_object_image_free(image_local_nonprim);
         image_local_nonprim = NULL;

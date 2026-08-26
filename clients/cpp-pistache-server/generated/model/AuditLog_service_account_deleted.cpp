@@ -26,6 +26,8 @@ AuditLog_service_account_deleted::AuditLog_service_account_deleted()
     
 }
 
+AuditLog_service_account_deleted::~AuditLog_service_account_deleted() = default;
+
 void AuditLog_service_account_deleted::validate() const
 {
     std::stringstream msg;

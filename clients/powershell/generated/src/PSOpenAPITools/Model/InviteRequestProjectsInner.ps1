@@ -50,8 +50,8 @@ function Initialize-InviteRequestProjectsInner {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "role" = ${Role}
+            'id' = ${Id}
+            'role' = ${Role}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToInviteRequestProjectsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in InviteRequestProjectsInner
-        $AllProperties = ("id", "role")
+        $AllProperties = ('id', 'role')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToInviteRequestProjectsInner {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "role"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'role'))) {
             throw "Error! JSON cannot be serialized due to the required property 'role' missing."
         } else {
-            $Role = $JsonParameters.PSobject.Properties["role"].value
+            $Role = $JsonParameters.PSobject.Properties['role'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "role" = ${Role}
+            'id' = ${Id}
+            'role' = ${Role}
         }
 
         return $PSO

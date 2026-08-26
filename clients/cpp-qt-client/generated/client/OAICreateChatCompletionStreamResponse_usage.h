@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAICreateChatCompletionStreamResponse_usage : public OAIObject {
 public:
     OAICreateChatCompletionStreamResponse_usage();
-    OAICreateChatCompletionStreamResponse_usage(QString json);
+    OAICreateChatCompletionStreamResponse_usage(const QString &json);
     ~OAICreateChatCompletionStreamResponse_usage() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getCompletionTokens() const;
     void setCompletionTokens(const qint32 &completion_tokens);

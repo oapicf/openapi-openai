@@ -145,7 +145,7 @@ CreateFineTuningJobRequest_integrations_inner_wandb::getProject()
 }
 
 void
-CreateFineTuningJobRequest_integrations_inner_wandb::setProject(std::string  project)
+CreateFineTuningJobRequest_integrations_inner_wandb::setProject(std::string project)
 {
 	this->project = project;
 }
@@ -157,7 +157,7 @@ CreateFineTuningJobRequest_integrations_inner_wandb::getName()
 }
 
 void
-CreateFineTuningJobRequest_integrations_inner_wandb::setName(std::string  name)
+CreateFineTuningJobRequest_integrations_inner_wandb::setName(std::string name)
 {
 	this->name = name;
 }
@@ -169,7 +169,7 @@ CreateFineTuningJobRequest_integrations_inner_wandb::getEntity()
 }
 
 void
-CreateFineTuningJobRequest_integrations_inner_wandb::setEntity(std::string  entity)
+CreateFineTuningJobRequest_integrations_inner_wandb::setEntity(std::string entity)
 {
 	this->entity = entity;
 }
@@ -181,7 +181,7 @@ CreateFineTuningJobRequest_integrations_inner_wandb::getTags()
 }
 
 void
-CreateFineTuningJobRequest_integrations_inner_wandb::setTags(std::list <std::string> tags)
+CreateFineTuningJobRequest_integrations_inner_wandb::setTags(std::list<std::string> tags)
 {
 	this->tags = tags;
 }

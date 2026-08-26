@@ -116,22 +116,25 @@ class _$ChatCompletionMessageToolCallChunkSerializer implements PrimitiveSeriali
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ChatCompletionMessageToolCallChunkTypeEnum),
-          ) as ChatCompletionMessageToolCallChunkTypeEnum;
+            specifiedType: const FullType.nullable(ChatCompletionMessageToolCallChunkTypeEnum),
+          ) as ChatCompletionMessageToolCallChunkTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'function':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ChatCompletionMessageToolCallChunkFunction),
-          ) as ChatCompletionMessageToolCallChunkFunction;
+            specifiedType: const FullType.nullable(ChatCompletionMessageToolCallChunkFunction),
+          ) as ChatCompletionMessageToolCallChunkFunction?;
+          if (valueDes == null) continue;
           result.function_.replace(valueDes);
           break;
         default:

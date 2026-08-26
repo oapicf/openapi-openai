@@ -31,19 +31,17 @@ import org.openapitools.server.models.UserListResponse
 import org.openapitools.server.models.UserRoleUpdateRequest
 
 fun Route.UsersApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    delete<Paths.deleteUser> {
+    delete<Paths.deleteUser> { deleteUser ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "deleted" : true,
+              "object" : "organization.user.deleted",
               "id" : "id",
-              "object" : "organization.user.deleted"
+              "deleted" : true
             }"""
             
             when (exampleContentType) {
@@ -54,34 +52,33 @@ fun Route.UsersApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listUsers> {
+    get<Paths.listUsers> { listUsers ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "first_id" : "first_id",
+              "object" : "list",
               "data" : [ {
-                "added_at" : 0,
-                "role" : "owner",
-                "name" : "name",
+                "object" : "organization.user",
                 "id" : "id",
+                "name" : "name",
                 "email" : "email",
-                "object" : "organization.user"
+                "role" : "owner",
+                "added_at" : 0
               }, {
-                "added_at" : 0,
-                "role" : "owner",
-                "name" : "name",
+                "object" : "organization.user",
                 "id" : "id",
+                "name" : "name",
                 "email" : "email",
-                "object" : "organization.user"
+                "role" : "owner",
+                "added_at" : 0
               } ],
+              "first_id" : "first_id",
               "last_id" : "last_id",
-              "has_more" : true,
-              "object" : "list"
+              "has_more" : true
             }"""
             
             when (exampleContentType) {
@@ -92,21 +89,20 @@ fun Route.UsersApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.modifyUser> {
+    post<Paths.modifyUser> { modifyUser ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "added_at" : 0,
-              "role" : "owner",
-              "name" : "name",
+              "object" : "organization.user",
               "id" : "id",
+              "name" : "name",
               "email" : "email",
-              "object" : "organization.user"
+              "role" : "owner",
+              "added_at" : 0
             }"""
             
             when (exampleContentType) {
@@ -117,21 +113,20 @@ fun Route.UsersApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.retrieveUser> {
+    get<Paths.retrieveUser> { retrieveUser ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "added_at" : 0,
-              "role" : "owner",
-              "name" : "name",
+              "object" : "organization.user",
               "id" : "id",
+              "name" : "name",
               "email" : "email",
-              "object" : "organization.user"
+              "role" : "owner",
+              "added_at" : 0
             }"""
             
             when (exampleContentType) {
@@ -142,5 +137,4 @@ fun Route.UsersApi() {
         
     }
     }
-
 }

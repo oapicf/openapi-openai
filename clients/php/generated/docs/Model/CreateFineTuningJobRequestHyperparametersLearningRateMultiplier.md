@@ -1,4 +1,4 @@
-# # CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+# CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
 
 ## Properties
 

@@ -32,7 +32,7 @@ class  AssistantsNamedToolChoice_function
 {
 public:
     AssistantsNamedToolChoice_function();
-    virtual ~AssistantsNamedToolChoice_function() = default;
+    virtual ~AssistantsNamedToolChoice_function();
 
 
     /// <summary>

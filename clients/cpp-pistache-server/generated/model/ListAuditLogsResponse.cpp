@@ -28,6 +28,8 @@ ListAuditLogsResponse::ListAuditLogsResponse()
     
 }
 
+ListAuditLogsResponse::~ListAuditLogsResponse() = default;
+
 void ListAuditLogsResponse::validate() const
 {
     std::stringstream msg;

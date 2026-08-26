@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIBatch_errors_data_inner::OAIBatch_errors_data_inner(QString json) {
+OAIBatch_errors_data_inner::OAIBatch_errors_data_inner(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -47,7 +47,7 @@ void OAIBatch_errors_data_inner::initializeModel() {
     m_line_isValid = false;
 }
 
-void OAIBatch_errors_data_inner::fromJson(QString jsonString) {
+void OAIBatch_errors_data_inner::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

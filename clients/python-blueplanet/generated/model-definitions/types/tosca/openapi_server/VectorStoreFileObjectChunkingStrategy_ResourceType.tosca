@@ -9,7 +9,7 @@ imports {
   Root = tosca.resourceTypes.Root
   OtherChunkingStrategyResponseParam = openapi_server.resourceTypes.OtherChunkingStrategyResponseParam
   StaticChunkingStrategy = openapi_server.resourceTypes.StaticChunkingStrategy
-  StaticChunkingStrategyResponseParam = openapi_server.resourceTypes.StaticChunkingStrategyResponseParam
+  StaticChunkingStrategyRequestParam = openapi_server.resourceTypes.StaticChunkingStrategyRequestParam
 }
 resourceTypes {
 

@@ -12,14 +12,9 @@
 package org.openapitools.client.model
 
 
-case class ChatCompletionRequestUserMessageContentPart(
-  /* The type of the content part. */
-  `type`: ChatCompletionRequestUserMessageContentPartEnums.`Type`,
-  /* The text content. */
-  text: String,
-  imageUrl: ChatCompletionRequestMessageContentPartImageImageUrl,
-  inputAudio: ChatCompletionRequestMessageContentPartAudioInputAudio
-)
+trait ChatCompletionRequestUserMessageContentPart
+object ChatCompletionRequestUserMessageContentPart {
+}
 
 object ChatCompletionRequestUserMessageContentPartEnums {
 

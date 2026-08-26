@@ -15,6 +15,7 @@ package org.openapitools.client.model
   /**
    * The contents of the system message.
    */
-case class ChatCompletionRequestSystemMessageContent(
-)
+trait ChatCompletionRequestSystemMessageContent
+object ChatCompletionRequestSystemMessageContent {
+}
 

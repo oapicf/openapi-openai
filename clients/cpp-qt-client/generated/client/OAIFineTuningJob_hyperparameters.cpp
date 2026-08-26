@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIFineTuningJob_hyperparameters::OAIFineTuningJob_hyperparameters(QString json) {
+OAIFineTuningJob_hyperparameters::OAIFineTuningJob_hyperparameters(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIFineTuningJob_hyperparameters::initializeModel() {
     m_n_epochs_isValid = false;
 }
 
-void OAIFineTuningJob_hyperparameters::fromJson(QString jsonString) {
+void OAIFineTuningJob_hyperparameters::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -16,7 +16,7 @@ package com.github.oapicf.openapiopenai.model;
 import java.util.Objects;
 import com.github.oapicf.openapiopenai.model.OtherChunkingStrategyResponseParam;
 import com.github.oapicf.openapiopenai.model.StaticChunkingStrategy;
-import com.github.oapicf.openapiopenai.model.StaticChunkingStrategyResponseParam;
+import com.github.oapicf.openapiopenai.model.StaticChunkingStrategyRequestParam;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -60,7 +60,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class VectorStoreFileObjectChunkingStrategy extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(VectorStoreFileObjectChunkingStrategy.class.getName());
 
@@ -72,7 +72,7 @@ public class VectorStoreFileObjectChunkingStrategy extends AbstractOpenApiSchema
                 return null; // this class only serializes 'VectorStoreFileObjectChunkingStrategy' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<StaticChunkingStrategyResponseParam> adapterStaticChunkingStrategyResponseParam = gson.getDelegateAdapter(this, TypeToken.get(StaticChunkingStrategyResponseParam.class));
+            final TypeAdapter<StaticChunkingStrategyRequestParam> adapterStaticChunkingStrategyRequestParam = gson.getDelegateAdapter(this, TypeToken.get(StaticChunkingStrategyRequestParam.class));
             final TypeAdapter<OtherChunkingStrategyResponseParam> adapterOtherChunkingStrategyResponseParam = gson.getDelegateAdapter(this, TypeToken.get(OtherChunkingStrategyResponseParam.class));
 
             return (TypeAdapter<T>) new TypeAdapter<VectorStoreFileObjectChunkingStrategy>() {
@@ -83,9 +83,9 @@ public class VectorStoreFileObjectChunkingStrategy extends AbstractOpenApiSchema
                         return;
                     }
 
-                    // check if the actual instance is of the type `StaticChunkingStrategyResponseParam`
-                    if (value.getActualInstance() instanceof StaticChunkingStrategyResponseParam) {
-                        JsonElement element = adapterStaticChunkingStrategyResponseParam.toJsonTree((StaticChunkingStrategyResponseParam)value.getActualInstance());
+                    // check if the actual instance is of the type `StaticChunkingStrategyRequestParam`
+                    if (value.getActualInstance() instanceof StaticChunkingStrategyRequestParam) {
+                        JsonElement element = adapterStaticChunkingStrategyRequestParam.toJsonTree((StaticChunkingStrategyRequestParam)value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
@@ -95,7 +95,7 @@ public class VectorStoreFileObjectChunkingStrategy extends AbstractOpenApiSchema
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam");
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam");
                 }
 
                 @Override
@@ -107,17 +107,17 @@ public class VectorStoreFileObjectChunkingStrategy extends AbstractOpenApiSchema
                     ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
 
-                    // deserialize StaticChunkingStrategyResponseParam
+                    // deserialize StaticChunkingStrategyRequestParam
                     try {
                         // validate the JSON object to see if any exception is thrown
-                        StaticChunkingStrategyResponseParam.validateJsonElement(jsonElement);
-                        actualAdapter = adapterStaticChunkingStrategyResponseParam;
+                        StaticChunkingStrategyRequestParam.validateJsonElement(jsonElement);
+                        actualAdapter = adapterStaticChunkingStrategyRequestParam;
                         match++;
-                        log.log(Level.FINER, "Input data matches schema 'StaticChunkingStrategyResponseParam'");
+                        log.log(Level.FINER, "Input data matches schema 'StaticChunkingStrategyRequestParam'");
                     } catch (Exception e) {
                         // deserialization failed, continue
-                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for StaticChunkingStrategyResponseParam failed with `%s`.", e.getMessage()));
-                        log.log(Level.FINER, "Input data does not match schema 'StaticChunkingStrategyResponseParam'", e);
+                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for StaticChunkingStrategyRequestParam failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'StaticChunkingStrategyRequestParam'", e);
                     }
                     // deserialize OtherChunkingStrategyResponseParam
                     try {
@@ -157,7 +157,7 @@ public class VectorStoreFileObjectChunkingStrategy extends AbstractOpenApiSchema
     }
 
     static {
-        schemas.put("StaticChunkingStrategyResponseParam", StaticChunkingStrategyResponseParam.class);
+        schemas.put("StaticChunkingStrategyRequestParam", StaticChunkingStrategyRequestParam.class);
         schemas.put("OtherChunkingStrategyResponseParam", OtherChunkingStrategyResponseParam.class);
     }
 
@@ -169,13 +169,13 @@ public class VectorStoreFileObjectChunkingStrategy extends AbstractOpenApiSchema
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam
+     * OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam
      *
      * It could be an instance of the 'oneOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
-        if (instance instanceof StaticChunkingStrategyResponseParam) {
+        if (instance instanceof StaticChunkingStrategyRequestParam) {
             super.setActualInstance(instance);
             return;
         }
@@ -185,14 +185,14 @@ public class VectorStoreFileObjectChunkingStrategy extends AbstractOpenApiSchema
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam");
+        throw new RuntimeException("Invalid instance type. Must be OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam
+     * OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam
      *
-     * @return The actual instance (OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam)
+     * @return The actual instance (OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -201,14 +201,15 @@ public class VectorStoreFileObjectChunkingStrategy extends AbstractOpenApiSchema
     }
 
     /**
-     * Get the actual instance of `StaticChunkingStrategyResponseParam`. If the actual instance is not `StaticChunkingStrategyResponseParam`,
+     * Get the actual instance of `StaticChunkingStrategyRequestParam`. If the actual instance is not `StaticChunkingStrategyRequestParam`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `StaticChunkingStrategyResponseParam`
-     * @throws ClassCastException if the instance is not `StaticChunkingStrategyResponseParam`
+     * @return The actual instance of `StaticChunkingStrategyRequestParam`
+     * @throws ClassCastException if the instance is not `StaticChunkingStrategyRequestParam`
      */
-    public StaticChunkingStrategyResponseParam getStaticChunkingStrategyResponseParam() throws ClassCastException {
-        return (StaticChunkingStrategyResponseParam)super.getActualInstance();
+    @SuppressWarnings("unchecked")
+    public StaticChunkingStrategyRequestParam getStaticChunkingStrategyRequestParam() throws ClassCastException {
+        return (StaticChunkingStrategyRequestParam)super.getActualInstance();
     }
 
     /**
@@ -218,6 +219,7 @@ public class VectorStoreFileObjectChunkingStrategy extends AbstractOpenApiSchema
      * @return The actual instance of `OtherChunkingStrategyResponseParam`
      * @throws ClassCastException if the instance is not `OtherChunkingStrategyResponseParam`
      */
+    @SuppressWarnings("unchecked")
     public OtherChunkingStrategyResponseParam getOtherChunkingStrategyResponseParam() throws ClassCastException {
         return (OtherChunkingStrategyResponseParam)super.getActualInstance();
     }
@@ -232,12 +234,12 @@ public class VectorStoreFileObjectChunkingStrategy extends AbstractOpenApiSchema
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with StaticChunkingStrategyResponseParam
+        // validate the json string with StaticChunkingStrategyRequestParam
         try {
-            StaticChunkingStrategyResponseParam.validateJsonElement(jsonElement);
+            StaticChunkingStrategyRequestParam.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
-            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for StaticChunkingStrategyResponseParam failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for StaticChunkingStrategyRequestParam failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
         // validate the json string with OtherChunkingStrategyResponseParam
@@ -249,7 +251,7 @@ public class VectorStoreFileObjectChunkingStrategy extends AbstractOpenApiSchema
             // continue to the next one
         }
         if (validCount != 1) {
-            throw new IOException(String.format(java.util.Locale.ROOT, "The JSON string is invalid for VectorStoreFileObjectChunkingStrategy with oneOf schemas: OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+            throw new IOException(String.format(java.util.Locale.ROOT, "The JSON string is invalid for VectorStoreFileObjectChunkingStrategy with oneOf schemas: OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
         }
     }
 

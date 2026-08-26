@@ -22,7 +22,7 @@ message UsageResponse {
     OBJECT_PAGE = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   repeated UsageTimeBucket data = 3076010;
 

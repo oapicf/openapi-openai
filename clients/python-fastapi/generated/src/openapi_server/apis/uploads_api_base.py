@@ -9,6 +9,7 @@ from openapi_server.models.complete_upload_request import CompleteUploadRequest
 from openapi_server.models.create_upload_request import CreateUploadRequest
 from openapi_server.models.upload import Upload
 from openapi_server.models.upload_part import UploadPart
+from fastapi import File, UploadFile
 from openapi_server.security_api import get_token_ApiKeyAuth
 
 class BaseUploadsApi:
@@ -42,6 +43,6 @@ class BaseUploadsApi:
     async def add_upload_part(
         self,
         upload_id: Annotated[StrictStr, Field(description="The ID of the Upload. ")],
-        data: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The chunk of bytes for this Part. ")],
+        data: UploadFile,
     ) -> UploadPart:
         ...

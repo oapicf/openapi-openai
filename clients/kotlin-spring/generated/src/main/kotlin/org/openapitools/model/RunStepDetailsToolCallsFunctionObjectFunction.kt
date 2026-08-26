@@ -21,13 +21,16 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RunStepDetailsToolCallsFunctionObjectFunction(
 
-    @Schema(example = "null", required = true, description = "The name of the function.")
+    @Schema(required = true, description = "The name of the function.")
+    @param:JsonProperty("name")
     @get:JsonProperty("name", required = true) val name: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The arguments passed to the function.")
+    @Schema(required = true, description = "The arguments passed to the function.")
+    @param:JsonProperty("arguments")
     @get:JsonProperty("arguments", required = true) val arguments: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The output of the function. This will be `null` if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet.")
+    @Schema(required = true, description = "The output of the function. This will be `null` if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet.")
+    @param:JsonProperty("output")
     @get:JsonProperty("output", required = true) val output: kotlin.String?
 ) {
 

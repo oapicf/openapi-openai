@@ -37,7 +37,7 @@ export interface RealtimeServerEventInputAudioBufferSpeechStarted {
     eventId: string;
     /**
      * The event type, must be `input_audio_buffer.speech_started`.
-     * @type {string}
+     * @type {RealtimeServerEventInputAudioBufferSpeechStartedTypeEnum}
      * @memberof RealtimeServerEventInputAudioBufferSpeechStarted
      */
     type: RealtimeServerEventInputAudioBufferSpeechStartedTypeEnum;
@@ -74,10 +74,12 @@ export type RealtimeServerEventInputAudioBufferSpeechStartedTypeEnum = typeof Re
  * Check if a given object implements the RealtimeServerEventInputAudioBufferSpeechStarted interface.
  */
 export function instanceOfRealtimeServerEventInputAudioBufferSpeechStarted(value: object): value is RealtimeServerEventInputAudioBufferSpeechStarted {
-    if (!('eventId' in value) || value['eventId'] === undefined) return false;
+    if ((!('eventId' in (value as Record<string, any>)) && !('event_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['eventId'] === undefined && (value as Record<string, any>)['event_id'] === undefined)) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('audioStartMs' in value) || value['audioStartMs'] === undefined) return false;
-    if (!('itemId' in value) || value['itemId'] === undefined) return false;
+    if (value['type'] !== 'input_audio_buffer.speech_started') return false;
+    
+    if ((!('audioStartMs' in (value as Record<string, any>)) && !('audio_start_ms' in (value as Record<string, any>))) || ((value as Record<string, any>)['audioStartMs'] === undefined && (value as Record<string, any>)['audio_start_ms'] === undefined)) return false;
+    if ((!('itemId' in (value as Record<string, any>)) && !('item_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['itemId'] === undefined && (value as Record<string, any>)['item_id'] === undefined)) return false;
     return true;
 }
 

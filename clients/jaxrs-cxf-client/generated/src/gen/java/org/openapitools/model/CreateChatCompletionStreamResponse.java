@@ -332,10 +332,7 @@ CHAT_COMPLETION_CHUNK(String.valueOf("chat.completion.chunk"));
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

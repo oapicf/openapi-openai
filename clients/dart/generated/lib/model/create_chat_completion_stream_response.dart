@@ -114,10 +114,16 @@ class CreateChatCompletionStreamResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateChatCompletionStreamResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateChatCompletionStreamResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "CreateChatCompletionStreamResponse[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "CreateChatCompletionStreamResponse[id]" has a null value in JSON.');
+        assert(json.containsKey(r'choices'), 'Required key "CreateChatCompletionStreamResponse[choices]" is missing from JSON.');
+        assert(json[r'choices'] != null, 'Required key "CreateChatCompletionStreamResponse[choices]" has a null value in JSON.');
+        assert(json.containsKey(r'created'), 'Required key "CreateChatCompletionStreamResponse[created]" is missing from JSON.');
+        assert(json[r'created'] != null, 'Required key "CreateChatCompletionStreamResponse[created]" has a null value in JSON.');
+        assert(json.containsKey(r'model'), 'Required key "CreateChatCompletionStreamResponse[model]" is missing from JSON.');
+        assert(json[r'model'] != null, 'Required key "CreateChatCompletionStreamResponse[model]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "CreateChatCompletionStreamResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "CreateChatCompletionStreamResponse[object]" has a null value in JSON.');
         return true;
       }());
 
@@ -186,29 +192,29 @@ class CreateChatCompletionStreamResponse {
 }
 
 /// The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
-class CreateChatCompletionStreamResponseServiceTierEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateChatCompletionStreamResponseServiceTierEnum._(this.value);
+enum CreateChatCompletionStreamResponseServiceTierEnum {
+  scale._(r'scale'),
+  default_._(r'default'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateChatCompletionStreamResponseServiceTierEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const scale = CreateChatCompletionStreamResponseServiceTierEnum._(r'scale');
-  static const default_ = CreateChatCompletionStreamResponseServiceTierEnum._(r'default');
-
-  /// List of all possible values in this [enum][CreateChatCompletionStreamResponseServiceTierEnum].
-  static const values = <CreateChatCompletionStreamResponseServiceTierEnum>[
-    scale,
-    default_,
-  ];
-
+  /// Returns the instance of [CreateChatCompletionStreamResponseServiceTierEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateChatCompletionStreamResponseServiceTierEnum? fromJson(dynamic value) => CreateChatCompletionStreamResponseServiceTierEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateChatCompletionStreamResponseServiceTierEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateChatCompletionStreamResponseServiceTierEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateChatCompletionStreamResponseServiceTierEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -230,9 +236,10 @@ class CreateChatCompletionStreamResponseServiceTierEnumTypeTransformer {
 
   const CreateChatCompletionStreamResponseServiceTierEnumTypeTransformer._();
 
-  String encode(CreateChatCompletionStreamResponseServiceTierEnum data) => data.value;
+  String encode(CreateChatCompletionStreamResponseServiceTierEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateChatCompletionStreamResponseServiceTierEnum.
+  /// Returns the instance of [CreateChatCompletionStreamResponseServiceTierEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -241,6 +248,9 @@ class CreateChatCompletionStreamResponseServiceTierEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateChatCompletionStreamResponseServiceTierEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateChatCompletionStreamResponseServiceTierEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'scale': return CreateChatCompletionStreamResponseServiceTierEnum.scale;
@@ -254,33 +264,34 @@ class CreateChatCompletionStreamResponseServiceTierEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateChatCompletionStreamResponseServiceTierEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateChatCompletionStreamResponseServiceTierEnumTypeTransformer? _instance;
 }
 
 
 /// The object type, which is always `chat.completion.chunk`.
-class CreateChatCompletionStreamResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateChatCompletionStreamResponseObjectEnum._(this.value);
+enum CreateChatCompletionStreamResponseObjectEnum {
+  chatPeriodCompletionPeriodChunk._(r'chat.completion.chunk'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateChatCompletionStreamResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const chatPeriodCompletionPeriodChunk = CreateChatCompletionStreamResponseObjectEnum._(r'chat.completion.chunk');
-
-  /// List of all possible values in this [enum][CreateChatCompletionStreamResponseObjectEnum].
-  static const values = <CreateChatCompletionStreamResponseObjectEnum>[
-    chatPeriodCompletionPeriodChunk,
-  ];
-
+  /// Returns the instance of [CreateChatCompletionStreamResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateChatCompletionStreamResponseObjectEnum? fromJson(dynamic value) => CreateChatCompletionStreamResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateChatCompletionStreamResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateChatCompletionStreamResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateChatCompletionStreamResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -302,9 +313,10 @@ class CreateChatCompletionStreamResponseObjectEnumTypeTransformer {
 
   const CreateChatCompletionStreamResponseObjectEnumTypeTransformer._();
 
-  String encode(CreateChatCompletionStreamResponseObjectEnum data) => data.value;
+  String encode(CreateChatCompletionStreamResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateChatCompletionStreamResponseObjectEnum.
+  /// Returns the instance of [CreateChatCompletionStreamResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -313,6 +325,9 @@ class CreateChatCompletionStreamResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateChatCompletionStreamResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateChatCompletionStreamResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'chat.completion.chunk': return CreateChatCompletionStreamResponseObjectEnum.chatPeriodCompletionPeriodChunk;
@@ -325,7 +340,7 @@ class CreateChatCompletionStreamResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateChatCompletionStreamResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateChatCompletionStreamResponseObjectEnumTypeTransformer? _instance;
 }
 

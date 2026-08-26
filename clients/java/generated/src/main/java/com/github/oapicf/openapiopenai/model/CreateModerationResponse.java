@@ -51,7 +51,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * Represents if a given text input is potentially harmful.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateModerationResponse {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -172,10 +172,7 @@ public class CreateModerationResponse {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -224,16 +221,16 @@ public class CreateModerationResponse {
       if (!jsonObj.get("model").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `model` to be a primitive type in the JSON string but got `%s`", jsonObj.get("model").toString()));
       }
-      // ensure the json data is an array
-      if (!jsonObj.get("results").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `results` to be an array in the JSON string but got `%s`", jsonObj.get("results").toString()));
+      if (jsonObj.get("results") != null) {
+        if (!jsonObj.get("results").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `results` to be an array in the JSON string but got `%s`", jsonObj.get("results").toString()));
+        }
+        JsonArray jsonArrayresults = jsonObj.getAsJsonArray("results");
+        // validate the required field `results` (array)
+        for (int i = 0; i < jsonArrayresults.size(); i++) {
+          CreateModerationResponseResultsInner.validateJsonElement(jsonArrayresults.get(i));
+        }
       }
-
-      JsonArray jsonArrayresults = jsonObj.getAsJsonArray("results");
-      // validate the required field `results` (array)
-      for (int i = 0; i < jsonArrayresults.size(); i++) {
-        CreateModerationResponseResultsInner.validateJsonElement(jsonArrayresults.get(i));
-      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

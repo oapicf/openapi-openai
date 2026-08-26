@@ -32,7 +32,7 @@ class  RealtimeServerEventResponseFunctionCallArgumentsDelta
 {
 public:
     RealtimeServerEventResponseFunctionCallArgumentsDelta();
-    virtual ~RealtimeServerEventResponseFunctionCallArgumentsDelta() = default;
+    virtual ~RealtimeServerEventResponseFunctionCallArgumentsDelta();
 
 
     /// <summary>

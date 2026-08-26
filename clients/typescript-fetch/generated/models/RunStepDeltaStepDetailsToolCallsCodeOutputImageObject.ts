@@ -35,7 +35,7 @@ export interface RunStepDeltaStepDetailsToolCallsCodeOutputImageObject {
     index: number;
     /**
      * Always `image`.
-     * @type {string}
+     * @type {RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum}
      * @memberof RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
      */
     type: RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum;
@@ -63,6 +63,8 @@ export type RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum = type
 export function instanceOfRunStepDeltaStepDetailsToolCallsCodeOutputImageObject(value: object): value is RunStepDeltaStepDetailsToolCallsCodeOutputImageObject {
     if (!('index' in value) || value['index'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'image') return false;
+    
     return true;
 }
 

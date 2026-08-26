@@ -6,32 +6,53 @@
 
 
 static run_step_completion_usage_t *run_step_completion_usage_create_internal(
-    int completion_tokens,
-    int prompt_tokens,
-    int total_tokens
+    int *completion_tokens,
+    int *prompt_tokens,
+    int *total_tokens
     ) {
     run_step_completion_usage_t *run_step_completion_usage_local_var = malloc(sizeof(run_step_completion_usage_t));
     if (!run_step_completion_usage_local_var) {
         return NULL;
     }
+    memset(run_step_completion_usage_local_var, 0, sizeof(run_step_completion_usage_t));
+    run_step_completion_usage_local_var->_library_owned = 1;
     run_step_completion_usage_local_var->completion_tokens = completion_tokens;
     run_step_completion_usage_local_var->prompt_tokens = prompt_tokens;
     run_step_completion_usage_local_var->total_tokens = total_tokens;
-
-    run_step_completion_usage_local_var->_library_owned = 1;
     return run_step_completion_usage_local_var;
 }
 
 __attribute__((deprecated)) run_step_completion_usage_t *run_step_completion_usage_create(
-    int completion_tokens,
-    int prompt_tokens,
-    int total_tokens
+    int *completion_tokens,
+    int *prompt_tokens,
+    int *total_tokens
     ) {
-    return run_step_completion_usage_create_internal (
-        completion_tokens,
-        prompt_tokens,
-        total_tokens
+    int *completion_tokens_copy = NULL;
+    if (completion_tokens) {
+        completion_tokens_copy = malloc(sizeof(int));
+        if (completion_tokens_copy) *completion_tokens_copy = *completion_tokens;
+    }
+    int *prompt_tokens_copy = NULL;
+    if (prompt_tokens) {
+        prompt_tokens_copy = malloc(sizeof(int));
+        if (prompt_tokens_copy) *prompt_tokens_copy = *prompt_tokens;
+    }
+    int *total_tokens_copy = NULL;
+    if (total_tokens) {
+        total_tokens_copy = malloc(sizeof(int));
+        if (total_tokens_copy) *total_tokens_copy = *total_tokens;
+    }
+    run_step_completion_usage_t *result = run_step_completion_usage_create_internal (
+        completion_tokens_copy,
+        prompt_tokens_copy,
+        total_tokens_copy
         );
+    if (!result) {
+        free(completion_tokens_copy);
+        free(prompt_tokens_copy);
+        free(total_tokens_copy);
+    }
+    return result;
 }
 
 void run_step_completion_usage_free(run_step_completion_usage_t *run_step_completion_usage) {
@@ -43,6 +64,18 @@ void run_step_completion_usage_free(run_step_completion_usage_t *run_step_comple
         return ;
     }
     listEntry_t *listEntry;
+    if (run_step_completion_usage->completion_tokens) {
+        free(run_step_completion_usage->completion_tokens);
+        run_step_completion_usage->completion_tokens = NULL;
+    }
+    if (run_step_completion_usage->prompt_tokens) {
+        free(run_step_completion_usage->prompt_tokens);
+        run_step_completion_usage->prompt_tokens = NULL;
+    }
+    if (run_step_completion_usage->total_tokens) {
+        free(run_step_completion_usage->total_tokens);
+        run_step_completion_usage->total_tokens = NULL;
+    }
     free(run_step_completion_usage);
 }
 
@@ -53,7 +86,7 @@ cJSON *run_step_completion_usage_convertToJSON(run_step_completion_usage_t *run_
     if (!run_step_completion_usage->completion_tokens) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "completion_tokens", run_step_completion_usage->completion_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "completion_tokens", *run_step_completion_usage->completion_tokens) == NULL) {
     goto fail; //Numeric
     }
 
@@ -62,7 +95,7 @@ cJSON *run_step_completion_usage_convertToJSON(run_step_completion_usage_t *run_
     if (!run_step_completion_usage->prompt_tokens) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "prompt_tokens", run_step_completion_usage->prompt_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "prompt_tokens", *run_step_completion_usage->prompt_tokens) == NULL) {
     goto fail; //Numeric
     }
 
@@ -71,7 +104,7 @@ cJSON *run_step_completion_usage_convertToJSON(run_step_completion_usage_t *run_
     if (!run_step_completion_usage->total_tokens) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "total_tokens", run_step_completion_usage->total_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "total_tokens", *run_step_completion_usage->total_tokens) == NULL) {
     goto fail; //Numeric
     }
 
@@ -87,6 +120,15 @@ run_step_completion_usage_t *run_step_completion_usage_parseFromJSON(cJSON *run_
 
     run_step_completion_usage_t *run_step_completion_usage_local_var = NULL;
 
+    // define the local variable for run_step_completion_usage->completion_tokens
+    int *completion_tokens_local_var = NULL;
+
+    // define the local variable for run_step_completion_usage->prompt_tokens
+    int *prompt_tokens_local_var = NULL;
+
+    // define the local variable for run_step_completion_usage->total_tokens
+    int *total_tokens_local_var = NULL;
+
     // run_step_completion_usage->completion_tokens
     cJSON *completion_tokens = cJSON_GetObjectItemCaseSensitive(run_step_completion_usageJSON, "completion_tokens");
     if (cJSON_IsNull(completion_tokens)) {
@@ -101,6 +143,12 @@ run_step_completion_usage_t *run_step_completion_usage_parseFromJSON(cJSON *run_
     {
     goto end; //Numeric
     }
+    completion_tokens_local_var = malloc(sizeof(int));
+    if(!completion_tokens_local_var)
+    {
+        goto end;
+    }
+    *completion_tokens_local_var = completion_tokens->valuedouble;
 
     // run_step_completion_usage->prompt_tokens
     cJSON *prompt_tokens = cJSON_GetObjectItemCaseSensitive(run_step_completion_usageJSON, "prompt_tokens");
@@ -116,6 +164,12 @@ run_step_completion_usage_t *run_step_completion_usage_parseFromJSON(cJSON *run_
     {
     goto end; //Numeric
     }
+    prompt_tokens_local_var = malloc(sizeof(int));
+    if(!prompt_tokens_local_var)
+    {
+        goto end;
+    }
+    *prompt_tokens_local_var = prompt_tokens->valuedouble;
 
     // run_step_completion_usage->total_tokens
     cJSON *total_tokens = cJSON_GetObjectItemCaseSensitive(run_step_completion_usageJSON, "total_tokens");
@@ -131,16 +185,39 @@ run_step_completion_usage_t *run_step_completion_usage_parseFromJSON(cJSON *run_
     {
     goto end; //Numeric
     }
+    total_tokens_local_var = malloc(sizeof(int));
+    if(!total_tokens_local_var)
+    {
+        goto end;
+    }
+    *total_tokens_local_var = total_tokens->valuedouble;
+
 
 
     run_step_completion_usage_local_var = run_step_completion_usage_create_internal (
-        completion_tokens->valuedouble,
-        prompt_tokens->valuedouble,
-        total_tokens->valuedouble
+        completion_tokens_local_var,
+        prompt_tokens_local_var,
+        total_tokens_local_var
         );
+
+    if (!run_step_completion_usage_local_var) {
+        goto end;
+    }
 
     return run_step_completion_usage_local_var;
 end:
+    if (completion_tokens_local_var) {
+        free(completion_tokens_local_var);
+        completion_tokens_local_var = NULL;
+    }
+    if (prompt_tokens_local_var) {
+        free(prompt_tokens_local_var);
+        prompt_tokens_local_var = NULL;
+    }
+    if (total_tokens_local_var) {
+        free(total_tokens_local_var);
+        total_tokens_local_var = NULL;
+    }
     return NULL;
 
 }

@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRealtimeSessionCreateResponse_client_secret::OAIRealtimeSessionCreateResponse_client_secret(QString json) {
+OAIRealtimeSessionCreateResponse_client_secret::OAIRealtimeSessionCreateResponse_client_secret(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIRealtimeSessionCreateResponse_client_secret::initializeModel() {
     m_expires_at_isValid = false;
 }
 
-void OAIRealtimeSessionCreateResponse_client_secret::fromJson(QString jsonString) {
+void OAIRealtimeSessionCreateResponse_client_secret::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

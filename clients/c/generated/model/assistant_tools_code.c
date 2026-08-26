@@ -29,18 +29,21 @@ static assistant_tools_code_t *assistant_tools_code_create_internal(
     if (!assistant_tools_code_local_var) {
         return NULL;
     }
-    assistant_tools_code_local_var->type = type;
-
+    memset(assistant_tools_code_local_var, 0, sizeof(assistant_tools_code_t));
     assistant_tools_code_local_var->_library_owned = 1;
+    assistant_tools_code_local_var->type = type;
     return assistant_tools_code_local_var;
 }
 
 __attribute__((deprecated)) assistant_tools_code_t *assistant_tools_code_create(
     openai_api_assistant_tools_code_TYPE_e type
     ) {
-    return assistant_tools_code_create_internal (
+    assistant_tools_code_t *result = assistant_tools_code_create_internal (
         type
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void assistant_tools_code_free(assistant_tools_code_t *assistant_tools_code) {
@@ -97,9 +100,14 @@ assistant_tools_code_t *assistant_tools_code_parseFromJSON(cJSON *assistant_tool
     typeVariable = assistant_tools_code_type_FromString(type->valuestring);
 
 
+
     assistant_tools_code_local_var = assistant_tools_code_create_internal (
         typeVariable
         );
+
+    if (!assistant_tools_code_local_var) {
+        goto end;
+    }
 
     return assistant_tools_code_local_var;
 end:

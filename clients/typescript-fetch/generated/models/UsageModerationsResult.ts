@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface UsageModerationsResult {
     /**
      * 
-     * @type {string}
+     * @type {UsageModerationsResultObjectEnum}
      * @memberof UsageModerationsResult
      */
     object: UsageModerationsResultObjectEnum;
@@ -78,8 +78,10 @@ export type UsageModerationsResultObjectEnum = typeof UsageModerationsResultObje
  */
 export function instanceOfUsageModerationsResult(value: object): value is UsageModerationsResult {
     if (!('object' in value) || value['object'] === undefined) return false;
-    if (!('inputTokens' in value) || value['inputTokens'] === undefined) return false;
-    if (!('numModelRequests' in value) || value['numModelRequests'] === undefined) return false;
+    if (value['object'] !== 'organization.usage.moderations.result') return false;
+    
+    if ((!('inputTokens' in (value as Record<string, any>)) && !('input_tokens' in (value as Record<string, any>))) || ((value as Record<string, any>)['inputTokens'] === undefined && (value as Record<string, any>)['input_tokens'] === undefined)) return false;
+    if ((!('numModelRequests' in (value as Record<string, any>)) && !('num_model_requests' in (value as Record<string, any>))) || ((value as Record<string, any>)['numModelRequests'] === undefined && (value as Record<string, any>)['num_model_requests'] === undefined)) return false;
     return true;
 }
 
@@ -96,10 +98,10 @@ export function UsageModerationsResultFromJSONTyped(json: any, ignoreDiscriminat
         'object': json['object'],
         'inputTokens': json['input_tokens'],
         'numModelRequests': json['num_model_requests'],
-        'projectId': json['project_id'] == null ? undefined : json['project_id'],
-        'userId': json['user_id'] == null ? undefined : json['user_id'],
-        'apiKeyId': json['api_key_id'] == null ? undefined : json['api_key_id'],
-        'model': json['model'] == null ? undefined : json['model'],
+        'projectId': json['project_id'] === undefined ? undefined : json['project_id'] === null ? null : json['project_id'],
+        'userId': json['user_id'] === undefined ? undefined : json['user_id'] === null ? null : json['user_id'],
+        'apiKeyId': json['api_key_id'] === undefined ? undefined : json['api_key_id'] === null ? null : json['api_key_id'],
+        'model': json['model'] === undefined ? undefined : json['model'] === null ? null : json['model'],
     };
 }
 

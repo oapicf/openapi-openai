@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAICreateEmbeddingResponse_usage : public OAIObject {
 public:
     OAICreateEmbeddingResponse_usage();
-    OAICreateEmbeddingResponse_usage(QString json);
+    OAICreateEmbeddingResponse_usage(const QString &json);
     ~OAICreateEmbeddingResponse_usage() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getPromptTokens() const;
     void setPromptTokens(const qint32 &prompt_tokens);

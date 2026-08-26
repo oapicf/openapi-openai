@@ -144,7 +144,7 @@ UsageTimeBucket::getObject()
 }
 
 void
-UsageTimeBucket::setObject(std::string  object)
+UsageTimeBucket::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -156,7 +156,7 @@ UsageTimeBucket::getStartTime()
 }
 
 void
-UsageTimeBucket::setStartTime(int  start_time)
+UsageTimeBucket::setStartTime(int start_time)
 {
 	this->start_time = start_time;
 }
@@ -168,7 +168,7 @@ UsageTimeBucket::getEndTime()
 }
 
 void
-UsageTimeBucket::setEndTime(int  end_time)
+UsageTimeBucket::setEndTime(int end_time)
 {
 	this->end_time = end_time;
 }
@@ -180,7 +180,7 @@ UsageTimeBucket::getResult()
 }
 
 void
-UsageTimeBucket::setResult(std::list <UsageTimeBucket_result_inner> result)
+UsageTimeBucket::setResult(std::list<UsageTimeBucket_result_inner> result)
 {
 	this->result = result;
 }

@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIAssistantsNamedToolChoice_function : public OAIObject {
 public:
     OAIAssistantsNamedToolChoice_function();
-    OAIAssistantsNamedToolChoice_function(QString json);
+    OAIAssistantsNamedToolChoice_function(const QString &json);
     ~OAIAssistantsNamedToolChoice_function() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getName() const;
     void setName(const QString &name);

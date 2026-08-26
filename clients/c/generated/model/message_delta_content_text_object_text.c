@@ -13,10 +13,10 @@ static message_delta_content_text_object_text_t *message_delta_content_text_obje
     if (!message_delta_content_text_object_text_local_var) {
         return NULL;
     }
+    memset(message_delta_content_text_object_text_local_var, 0, sizeof(message_delta_content_text_object_text_t));
+    message_delta_content_text_object_text_local_var->_library_owned = 1;
     message_delta_content_text_object_text_local_var->value = value;
     message_delta_content_text_object_text_local_var->annotations = annotations;
-
-    message_delta_content_text_object_text_local_var->_library_owned = 1;
     return message_delta_content_text_object_text_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) message_delta_content_text_object_text_t *message_de
     char *value,
     list_t *annotations
     ) {
-    return message_delta_content_text_object_text_create_internal (
+    message_delta_content_text_object_text_t *result = message_delta_content_text_object_text_create_internal (
         value,
         annotations
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_delta_content_text_object_text_free(message_delta_content_text_object_text_t *message_delta_content_text_object_text) {
@@ -95,6 +98,8 @@ message_delta_content_text_object_text_t *message_delta_content_text_object_text
 
     message_delta_content_text_object_text_t *message_delta_content_text_object_text_local_var = NULL;
 
+    char *value_local_str = NULL;
+
     // define the local list for message_delta_content_text_object_text->annotations
     list_t *annotationsList = NULL;
 
@@ -135,13 +140,23 @@ message_delta_content_text_object_text_t *message_delta_content_text_object_text
     }
 
 
+    if (value && !cJSON_IsNull(value)) value_local_str = strdup(value->valuestring);
+
     message_delta_content_text_object_text_local_var = message_delta_content_text_object_text_create_internal (
-        value && !cJSON_IsNull(value) ? strdup(value->valuestring) : NULL,
+        value_local_str,
         annotations ? annotationsList : NULL
         );
 
+    if (!message_delta_content_text_object_text_local_var) {
+        goto end;
+    }
+
     return message_delta_content_text_object_text_local_var;
 end:
+    if (value_local_str) {
+        free(value_local_str);
+        value_local_str = NULL;
+    }
     if (annotationsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, annotationsList) {

@@ -34,13 +34,13 @@ class OAIChunkingStrategyRequestParam;
 class OAICreateVectorStoreFileBatchRequest : public OAIObject {
 public:
     OAICreateVectorStoreFileBatchRequest();
-    OAICreateVectorStoreFileBatchRequest(QString json);
+    OAICreateVectorStoreFileBatchRequest(const QString &json);
     ~OAICreateVectorStoreFileBatchRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QList<QString> getFileIds() const;
     void setFileIds(const QList<QString> &file_ids);

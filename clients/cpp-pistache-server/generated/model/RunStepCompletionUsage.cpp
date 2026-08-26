@@ -27,6 +27,8 @@ RunStepCompletionUsage::RunStepCompletionUsage()
     
 }
 
+RunStepCompletionUsage::~RunStepCompletionUsage() = default;
+
 void RunStepCompletionUsage::validate() const
 {
     std::stringstream msg;

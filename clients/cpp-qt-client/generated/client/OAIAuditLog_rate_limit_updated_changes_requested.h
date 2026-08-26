@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIAuditLog_rate_limit_updated_changes_requested : public OAIObject {
 public:
     OAIAuditLog_rate_limit_updated_changes_requested();
-    OAIAuditLog_rate_limit_updated_changes_requested(QString json);
+    OAIAuditLog_rate_limit_updated_changes_requested(const QString &json);
     ~OAIAuditLog_rate_limit_updated_changes_requested() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getMaxRequestsPer1Minute() const;
     void setMaxRequestsPer1Minute(const qint32 &max_requests_per_1_minute);

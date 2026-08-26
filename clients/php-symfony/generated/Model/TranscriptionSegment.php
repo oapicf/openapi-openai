@@ -49,7 +49,7 @@ class TranscriptionSegment
      * @var int|null
      * @SerializedName("id")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $id = null;
@@ -60,7 +60,7 @@ class TranscriptionSegment
      * @var int|null
      * @SerializedName("seek")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $seek = null;
@@ -71,7 +71,7 @@ class TranscriptionSegment
      * @var float|null
      * @SerializedName("start")
      * @Type("float")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("float")]
     protected ?float $start = null;
@@ -82,7 +82,7 @@ class TranscriptionSegment
      * @var float|null
      * @SerializedName("end")
      * @Type("float")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("float")]
     protected ?float $end = null;
@@ -93,7 +93,7 @@ class TranscriptionSegment
      * @var string|null
      * @SerializedName("text")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $text = null;
@@ -104,7 +104,7 @@ class TranscriptionSegment
      * @var int[]|null
      * @SerializedName("tokens")
      * @Type("array<int>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Type("int"),
@@ -117,7 +117,7 @@ class TranscriptionSegment
      * @var float|null
      * @SerializedName("temperature")
      * @Type("float")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("float")]
     protected ?float $temperature = null;
@@ -128,7 +128,7 @@ class TranscriptionSegment
      * @var float|null
      * @SerializedName("avg_logprob")
      * @Type("float")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("float")]
     protected ?float $avgLogprob = null;
@@ -139,7 +139,7 @@ class TranscriptionSegment
      * @var float|null
      * @SerializedName("compression_ratio")
      * @Type("float")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("float")]
     protected ?float $compressionRatio = null;
@@ -150,7 +150,7 @@ class TranscriptionSegment
      * @var float|null
      * @SerializedName("no_speech_prob")
      * @Type("float")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("float")]
     protected ?float $noSpeechProb = null;
@@ -186,12 +186,12 @@ class TranscriptionSegment
     }
 
     /**
-    * Sets id.
-    *
-    * @param int|null $id  Unique identifier of the segment.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param int|null $id  Unique identifier of the segment.
+     *
+     * @return $this
+     */
     public function setId(?int $id): self
     {
         $this->id = $id;
@@ -213,12 +213,12 @@ class TranscriptionSegment
     }
 
     /**
-    * Sets seek.
-    *
-    * @param int|null $seek  Seek offset of the segment.
-    *
-    * @return $this
-    */
+     * Sets seek.
+     *
+     * @param int|null $seek  Seek offset of the segment.
+     *
+     * @return $this
+     */
     public function setSeek(?int $seek): self
     {
         $this->seek = $seek;
@@ -240,12 +240,12 @@ class TranscriptionSegment
     }
 
     /**
-    * Sets start.
-    *
-    * @param float|null $start  Start time of the segment in seconds.
-    *
-    * @return $this
-    */
+     * Sets start.
+     *
+     * @param float|null $start  Start time of the segment in seconds.
+     *
+     * @return $this
+     */
     public function setStart(?float $start): self
     {
         $this->start = $start;
@@ -267,12 +267,12 @@ class TranscriptionSegment
     }
 
     /**
-    * Sets end.
-    *
-    * @param float|null $end  End time of the segment in seconds.
-    *
-    * @return $this
-    */
+     * Sets end.
+     *
+     * @param float|null $end  End time of the segment in seconds.
+     *
+     * @return $this
+     */
     public function setEnd(?float $end): self
     {
         $this->end = $end;
@@ -294,12 +294,12 @@ class TranscriptionSegment
     }
 
     /**
-    * Sets text.
-    *
-    * @param string|null $text  Text content of the segment.
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param string|null $text  Text content of the segment.
+     *
+     * @return $this
+     */
     public function setText(?string $text): self
     {
         $this->text = $text;
@@ -321,12 +321,12 @@ class TranscriptionSegment
     }
 
     /**
-    * Sets tokens.
-    *
-    * @param int[]|null $tokens  Array of token IDs for the text content.
-    *
-    * @return $this
-    */
+     * Sets tokens.
+     *
+     * @param int[]|null $tokens  Array of token IDs for the text content.
+     *
+     * @return $this
+     */
     public function setTokens(?array $tokens): self
     {
         $this->tokens = $tokens;
@@ -348,12 +348,12 @@ class TranscriptionSegment
     }
 
     /**
-    * Sets temperature.
-    *
-    * @param float|null $temperature  Temperature parameter used for generating the segment.
-    *
-    * @return $this
-    */
+     * Sets temperature.
+     *
+     * @param float|null $temperature  Temperature parameter used for generating the segment.
+     *
+     * @return $this
+     */
     public function setTemperature(?float $temperature): self
     {
         $this->temperature = $temperature;
@@ -375,12 +375,12 @@ class TranscriptionSegment
     }
 
     /**
-    * Sets avgLogprob.
-    *
-    * @param float|null $avgLogprob  Average logprob of the segment. If the value is lower than -1, consider the logprobs failed.
-    *
-    * @return $this
-    */
+     * Sets avgLogprob.
+     *
+     * @param float|null $avgLogprob  Average logprob of the segment. If the value is lower than -1, consider the logprobs failed.
+     *
+     * @return $this
+     */
     public function setAvgLogprob(?float $avgLogprob): self
     {
         $this->avgLogprob = $avgLogprob;
@@ -402,12 +402,12 @@ class TranscriptionSegment
     }
 
     /**
-    * Sets compressionRatio.
-    *
-    * @param float|null $compressionRatio  Compression ratio of the segment. If the value is greater than 2.4, consider the compression failed.
-    *
-    * @return $this
-    */
+     * Sets compressionRatio.
+     *
+     * @param float|null $compressionRatio  Compression ratio of the segment. If the value is greater than 2.4, consider the compression failed.
+     *
+     * @return $this
+     */
     public function setCompressionRatio(?float $compressionRatio): self
     {
         $this->compressionRatio = $compressionRatio;
@@ -429,12 +429,12 @@ class TranscriptionSegment
     }
 
     /**
-    * Sets noSpeechProb.
-    *
-    * @param float|null $noSpeechProb  Probability of no speech in the segment. If the value is higher than 1.0 and the `avg_logprob` is below -1, consider this segment silent.
-    *
-    * @return $this
-    */
+     * Sets noSpeechProb.
+     *
+     * @param float|null $noSpeechProb  Probability of no speech in the segment. If the value is higher than 1.0 and the `avg_logprob` is below -1, consider this segment silent.
+     *
+     * @return $this
+     */
     public function setNoSpeechProb(?float $noSpeechProb): self
     {
         $this->noSpeechProb = $noSpeechProb;

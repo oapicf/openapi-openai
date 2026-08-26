@@ -30,7 +30,7 @@ typedef struct project_service_account_api_key_t {
     openai_api_project_service_account_api_key_OBJECT_e object; //enum
     char *value; // string
     char *name; // string
-    int created_at; //numeric
+    int *created_at; //numeric
     char *id; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -40,7 +40,7 @@ __attribute__((deprecated)) project_service_account_api_key_t *project_service_a
     openai_api_project_service_account_api_key_OBJECT_e object,
     char *value,
     char *name,
-    int created_at,
+    int *created_at,
     char *id
 );
 

@@ -23,13 +23,16 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class DeleteThreadResponse(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("deleted")
     @get:JsonProperty("deleted", required = true) val deleted: kotlin.Boolean,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: DeleteThreadResponse.`Object`
 ) {
 
@@ -46,7 +49,7 @@ data class DeleteThreadResponse(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'DeleteThreadResponse'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }

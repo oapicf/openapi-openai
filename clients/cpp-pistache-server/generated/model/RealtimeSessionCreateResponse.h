@@ -38,7 +38,7 @@ class  RealtimeSessionCreateResponse
 {
 public:
     RealtimeSessionCreateResponse();
-    virtual ~RealtimeSessionCreateResponse() = default;
+    virtual ~RealtimeSessionCreateResponse();
 
 
     /// <summary>

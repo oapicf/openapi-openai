@@ -1,4 +1,4 @@
-# # AdminApiKeyOwner
+# AdminApiKeyOwner
 
 ## Properties
 

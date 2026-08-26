@@ -8,6 +8,7 @@ from typing_extensions import Annotated
 from openapi_server.models.delete_file_response import DeleteFileResponse
 from openapi_server.models.list_files_response import ListFilesResponse
 from openapi_server.models.open_ai_file import OpenAIFile
+from fastapi import File, UploadFile
 from openapi_server.security_api import get_token_ApiKeyAuth
 
 class BaseFilesApi:
@@ -28,7 +29,7 @@ class BaseFilesApi:
 
     async def create_file(
         self,
-        file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The File object (not file name) to be uploaded. ")],
+        file: UploadFile,
         purpose: Annotated[StrictStr, Field(description="The intended purpose of the uploaded file.  Use \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\"vision\\\" for Assistants image file inputs, \\\"batch\\\" for [Batch API](/docs/guides/batch), and \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning). ")],
     ) -> OpenAIFile:
         ...

@@ -37,23 +37,23 @@ import javax.validation.Valid;
   FineTuneDPOMethodHyperparameters.JSON_PROPERTY_LEARNING_RATE_MULTIPLIER,
   FineTuneDPOMethodHyperparameters.JSON_PROPERTY_N_EPOCHS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-01-29T14:09:10.882541726Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTuneDPOMethodHyperparameters   {
   public static final String JSON_PROPERTY_BETA = "beta";
   @JsonProperty(JSON_PROPERTY_BETA)
-  private FineTuneDPOMethodHyperparametersBeta beta = auto;
+  private FineTuneDPOMethodHyperparametersBeta beta;
 
   public static final String JSON_PROPERTY_BATCH_SIZE = "batch_size";
   @JsonProperty(JSON_PROPERTY_BATCH_SIZE)
-  private FineTuneDPOMethodHyperparametersBatchSize batchSize = auto;
+  private FineTuneDPOMethodHyperparametersBatchSize batchSize;
 
   public static final String JSON_PROPERTY_LEARNING_RATE_MULTIPLIER = "learning_rate_multiplier";
   @JsonProperty(JSON_PROPERTY_LEARNING_RATE_MULTIPLIER)
-  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier;
 
   public static final String JSON_PROPERTY_N_EPOCHS = "n_epochs";
   @JsonProperty(JSON_PROPERTY_N_EPOCHS)
-  private FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto;
+  private FineTuneDPOMethodHyperparametersNEpochs nEpochs;
 
   public FineTuneDPOMethodHyperparameters beta(FineTuneDPOMethodHyperparametersBeta beta) {
     this.beta = beta;
@@ -174,10 +174,7 @@ public class FineTuneDPOMethodHyperparameters   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

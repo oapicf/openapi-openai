@@ -123,7 +123,7 @@ InviteRequest::getEmail()
 }
 
 void
-InviteRequest::setEmail(std::string  email)
+InviteRequest::setEmail(std::string email)
 {
 	this->email = email;
 }
@@ -135,7 +135,7 @@ InviteRequest::getRole()
 }
 
 void
-InviteRequest::setRole(std::string  role)
+InviteRequest::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -147,7 +147,7 @@ InviteRequest::getProjects()
 }
 
 void
-InviteRequest::setProjects(std::list <InviteRequest_projects_inner> projects)
+InviteRequest::setProjects(std::list<InviteRequest_projects_inner> projects)
 {
 	this->projects = projects;
 }

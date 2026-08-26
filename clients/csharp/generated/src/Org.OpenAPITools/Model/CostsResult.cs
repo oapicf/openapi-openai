@@ -119,7 +119,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Amount
         /// </summary>
         [JsonPropertyName("amount")]
-        public CostsResultAmount? Amount { get { return this.AmountOption; } set { this.AmountOption = new(value); } }
+        public CostsResultAmount? Amount { get { return this.AmountOption.Value; } set { this.AmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LineItem
@@ -133,7 +133,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;line_item&#x60;, this field provides the line item of the grouped costs result.</value>
         [JsonPropertyName("line_item")]
-        public string? LineItem { get { return this.LineItemOption; } set { this.LineItemOption = new(value); } }
+        public string? LineItem { get { return this.LineItemOption.Value; } set { this.LineItemOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectId
@@ -147,7 +147,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>When &#x60;group_by&#x3D;project_id&#x60;, this field provides the project ID of the grouped costs result.</value>
         [JsonPropertyName("project_id")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -179,8 +179,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CostsResult" />
     /// </summary>
-    public class CostsResultJsonConverter : JsonConverter<CostsResult>
+    public partial class CostsResultJsonConverter : JsonConverter<CostsResult>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CostsResultJsonConverter" /> class.
+        /// </summary>
+        public CostsResultJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CostsResult" />
         /// </summary>

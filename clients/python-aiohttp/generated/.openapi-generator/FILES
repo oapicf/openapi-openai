@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 README.md
 openapi_server/__init__.py
 openapi_server/__main__.py
@@ -86,7 +85,6 @@ openapi_server/models/audit_log_user_added_data.py
 openapi_server/models/audit_log_user_deleted.py
 openapi_server/models/audit_log_user_updated.py
 openapi_server/models/audit_log_user_updated_changes_requested.py
-openapi_server/models/auto_chunking_strategy.py
 openapi_server/models/auto_chunking_strategy_request_param.py
 openapi_server/models/base_model.py
 openapi_server/models/batch.py
@@ -497,7 +495,6 @@ openapi_server/models/run_tool_call_object.py
 openapi_server/models/run_tool_call_object_function.py
 openapi_server/models/static_chunking_strategy.py
 openapi_server/models/static_chunking_strategy_request_param.py
-openapi_server/models/static_chunking_strategy_response_param.py
 openapi_server/models/static_chunking_strategy_static.py
 openapi_server/models/submit_tool_outputs_run_request.py
 openapi_server/models/submit_tool_outputs_run_request_tool_outputs_inner.py
@@ -540,24 +537,4 @@ setup.py
 test-requirements.txt
 tests/__init__.py
 tests/conftest.py
-tests/test_assistants_controller.py
-tests/test_audio_controller.py
-tests/test_audit_logs_controller.py
-tests/test_batch_controller.py
-tests/test_chat_controller.py
-tests/test_completions_controller.py
-tests/test_default_controller.py
-tests/test_embeddings_controller.py
-tests/test_files_controller.py
-tests/test_fine_tuning_controller.py
-tests/test_images_controller.py
-tests/test_invites_controller.py
-tests/test_models_controller.py
-tests/test_moderations_controller.py
-tests/test_projects_controller.py
-tests/test_realtime_controller.py
-tests/test_uploads_controller.py
-tests/test_usage_controller.py
-tests/test_users_controller.py
-tests/test_vector_stores_controller.py
 tox.ini

@@ -28,14 +28,14 @@ openai_api_truncation_object_TYPE_e truncation_object_type_FromString(char* type
 
 typedef struct truncation_object_t {
     openai_api_truncation_object_TYPE_e type; //enum
-    int last_messages; //numeric
+    int *last_messages; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } truncation_object_t;
 
 __attribute__((deprecated)) truncation_object_t *truncation_object_create(
     openai_api_truncation_object_TYPE_e type,
-    int last_messages
+    int *last_messages
 );
 
 void truncation_object_free(truncation_object_t *truncation_object);

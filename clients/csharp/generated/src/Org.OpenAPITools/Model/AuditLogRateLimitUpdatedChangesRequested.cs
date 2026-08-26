@@ -66,7 +66,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The maximum requests per minute.</value>
         [JsonPropertyName("max_requests_per_1_minute")]
-        public int? MaxRequestsPer1Minute { get { return this.MaxRequestsPer1MinuteOption; } set { this.MaxRequestsPer1MinuteOption = new(value); } }
+        public int? MaxRequestsPer1Minute { get { return this.MaxRequestsPer1MinuteOption.Value; } set { this.MaxRequestsPer1MinuteOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxTokensPer1Minute
@@ -80,7 +80,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The maximum tokens per minute.</value>
         [JsonPropertyName("max_tokens_per_1_minute")]
-        public int? MaxTokensPer1Minute { get { return this.MaxTokensPer1MinuteOption; } set { this.MaxTokensPer1MinuteOption = new(value); } }
+        public int? MaxTokensPer1Minute { get { return this.MaxTokensPer1MinuteOption.Value; } set { this.MaxTokensPer1MinuteOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxImagesPer1Minute
@@ -94,7 +94,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The maximum images per minute. Only relevant for certain models.</value>
         [JsonPropertyName("max_images_per_1_minute")]
-        public int? MaxImagesPer1Minute { get { return this.MaxImagesPer1MinuteOption; } set { this.MaxImagesPer1MinuteOption = new(value); } }
+        public int? MaxImagesPer1Minute { get { return this.MaxImagesPer1MinuteOption.Value; } set { this.MaxImagesPer1MinuteOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxAudioMegabytesPer1Minute
@@ -108,7 +108,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The maximum audio megabytes per minute. Only relevant for certain models.</value>
         [JsonPropertyName("max_audio_megabytes_per_1_minute")]
-        public int? MaxAudioMegabytesPer1Minute { get { return this.MaxAudioMegabytesPer1MinuteOption; } set { this.MaxAudioMegabytesPer1MinuteOption = new(value); } }
+        public int? MaxAudioMegabytesPer1Minute { get { return this.MaxAudioMegabytesPer1MinuteOption.Value; } set { this.MaxAudioMegabytesPer1MinuteOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxRequestsPer1Day
@@ -122,7 +122,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The maximum requests per day. Only relevant for certain models.</value>
         [JsonPropertyName("max_requests_per_1_day")]
-        public int? MaxRequestsPer1Day { get { return this.MaxRequestsPer1DayOption; } set { this.MaxRequestsPer1DayOption = new(value); } }
+        public int? MaxRequestsPer1Day { get { return this.MaxRequestsPer1DayOption.Value; } set { this.MaxRequestsPer1DayOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Batch1DayMaxInputTokens
@@ -136,7 +136,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The maximum batch input tokens per day. Only relevant for certain models.</value>
         [JsonPropertyName("batch_1_day_max_input_tokens")]
-        public int? Batch1DayMaxInputTokens { get { return this.Batch1DayMaxInputTokensOption; } set { this.Batch1DayMaxInputTokensOption = new(value); } }
+        public int? Batch1DayMaxInputTokens { get { return this.Batch1DayMaxInputTokensOption.Value; } set { this.Batch1DayMaxInputTokensOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -170,8 +170,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogRateLimitUpdatedChangesRequested" />
     /// </summary>
-    public class AuditLogRateLimitUpdatedChangesRequestedJsonConverter : JsonConverter<AuditLogRateLimitUpdatedChangesRequested>
+    public partial class AuditLogRateLimitUpdatedChangesRequestedJsonConverter : JsonConverter<AuditLogRateLimitUpdatedChangesRequested>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogRateLimitUpdatedChangesRequestedJsonConverter" /> class.
+        /// </summary>
+        public AuditLogRateLimitUpdatedChangesRequestedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogRateLimitUpdatedChangesRequested" />
         /// </summary>

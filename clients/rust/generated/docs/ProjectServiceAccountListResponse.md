@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **String** |  | 
+**object** | **Object** |  (enum: list) | 
 **data** | [**Vec<models::ProjectServiceAccount>**](ProjectServiceAccount.md) |  | 
 **first_id** | **String** |  | 
 **last_id** | **String** |  | 

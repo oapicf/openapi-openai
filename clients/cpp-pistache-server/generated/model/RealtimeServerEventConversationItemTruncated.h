@@ -32,7 +32,7 @@ class  RealtimeServerEventConversationItemTruncated
 {
 public:
     RealtimeServerEventConversationItemTruncated();
-    virtual ~RealtimeServerEventConversationItemTruncated() = default;
+    virtual ~RealtimeServerEventConversationItemTruncated();
 
 
     /// <summary>

@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIFineTunePreferenceRequestInput::OAIFineTunePreferenceRequestInput(QString json) {
+OAIFineTunePreferenceRequestInput::OAIFineTunePreferenceRequestInput(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIFineTunePreferenceRequestInput::initializeModel() {
     m_non_preferred_completion_isValid = false;
 }
 
-void OAIFineTunePreferenceRequestInput::fromJson(QString jsonString) {
+void OAIFineTunePreferenceRequestInput::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

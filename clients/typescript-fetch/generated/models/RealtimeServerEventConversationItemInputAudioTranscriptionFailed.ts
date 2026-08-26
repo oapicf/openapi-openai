@@ -40,7 +40,7 @@ export interface RealtimeServerEventConversationItemInputAudioTranscriptionFaile
      * The event type, must be
      * `conversation.item.input_audio_transcription.failed`.
      * 
-     * @type {string}
+     * @type {RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum}
      * @memberof RealtimeServerEventConversationItemInputAudioTranscriptionFailed
      */
     type: RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum;
@@ -78,10 +78,12 @@ export type RealtimeServerEventConversationItemInputAudioTranscriptionFailedType
  * Check if a given object implements the RealtimeServerEventConversationItemInputAudioTranscriptionFailed interface.
  */
 export function instanceOfRealtimeServerEventConversationItemInputAudioTranscriptionFailed(value: object): value is RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
-    if (!('eventId' in value) || value['eventId'] === undefined) return false;
+    if ((!('eventId' in (value as Record<string, any>)) && !('event_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['eventId'] === undefined && (value as Record<string, any>)['event_id'] === undefined)) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('itemId' in value) || value['itemId'] === undefined) return false;
-    if (!('contentIndex' in value) || value['contentIndex'] === undefined) return false;
+    if (value['type'] !== 'conversation.item.input_audio_transcription.failed') return false;
+    
+    if ((!('itemId' in (value as Record<string, any>)) && !('item_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['itemId'] === undefined && (value as Record<string, any>)['item_id'] === undefined)) return false;
+    if ((!('contentIndex' in (value as Record<string, any>)) && !('content_index' in (value as Record<string, any>))) || ((value as Record<string, any>)['contentIndex'] === undefined && (value as Record<string, any>)['content_index'] === undefined)) return false;
     if (!('error' in value) || value['error'] === undefined) return false;
     return true;
 }

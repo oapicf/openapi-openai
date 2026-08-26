@@ -25,34 +25,43 @@ openai_api_create_upload_request_PURPOSE_e create_upload_request_purpose_FromStr
 static create_upload_request_t *create_upload_request_create_internal(
     char *filename,
     openai_api_create_upload_request_PURPOSE_e purpose,
-    int bytes,
+    int *bytes,
     char *mime_type
     ) {
     create_upload_request_t *create_upload_request_local_var = malloc(sizeof(create_upload_request_t));
     if (!create_upload_request_local_var) {
         return NULL;
     }
+    memset(create_upload_request_local_var, 0, sizeof(create_upload_request_t));
+    create_upload_request_local_var->_library_owned = 1;
     create_upload_request_local_var->filename = filename;
     create_upload_request_local_var->purpose = purpose;
     create_upload_request_local_var->bytes = bytes;
     create_upload_request_local_var->mime_type = mime_type;
-
-    create_upload_request_local_var->_library_owned = 1;
     return create_upload_request_local_var;
 }
 
 __attribute__((deprecated)) create_upload_request_t *create_upload_request_create(
     char *filename,
     openai_api_create_upload_request_PURPOSE_e purpose,
-    int bytes,
+    int *bytes,
     char *mime_type
     ) {
-    return create_upload_request_create_internal (
+    int *bytes_copy = NULL;
+    if (bytes) {
+        bytes_copy = malloc(sizeof(int));
+        if (bytes_copy) *bytes_copy = *bytes;
+    }
+    create_upload_request_t *result = create_upload_request_create_internal (
         filename,
         purpose,
-        bytes,
+        bytes_copy,
         mime_type
         );
+    if (!result) {
+        free(bytes_copy);
+    }
+    return result;
 }
 
 void create_upload_request_free(create_upload_request_t *create_upload_request) {
@@ -67,6 +76,10 @@ void create_upload_request_free(create_upload_request_t *create_upload_request) 
     if (create_upload_request->filename) {
         free(create_upload_request->filename);
         create_upload_request->filename = NULL;
+    }
+    if (create_upload_request->bytes) {
+        free(create_upload_request->bytes);
+        create_upload_request->bytes = NULL;
     }
     if (create_upload_request->mime_type) {
         free(create_upload_request->mime_type);
@@ -101,7 +114,7 @@ cJSON *create_upload_request_convertToJSON(create_upload_request_t *create_uploa
     if (!create_upload_request->bytes) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "bytes", create_upload_request->bytes) == NULL) {
+    if(cJSON_AddNumberToObject(item, "bytes", *create_upload_request->bytes) == NULL) {
     goto fail; //Numeric
     }
 
@@ -125,6 +138,13 @@ fail:
 create_upload_request_t *create_upload_request_parseFromJSON(cJSON *create_upload_requestJSON){
 
     create_upload_request_t *create_upload_request_local_var = NULL;
+
+    char *filename_local_str = NULL;
+
+    // define the local variable for create_upload_request->bytes
+    int *bytes_local_var = NULL;
+
+    char *mime_type_local_str = NULL;
 
     // create_upload_request->filename
     cJSON *filename = cJSON_GetObjectItemCaseSensitive(create_upload_requestJSON, "filename");
@@ -172,6 +192,12 @@ create_upload_request_t *create_upload_request_parseFromJSON(cJSON *create_uploa
     {
     goto end; //Numeric
     }
+    bytes_local_var = malloc(sizeof(int));
+    if(!bytes_local_var)
+    {
+        goto end;
+    }
+    *bytes_local_var = bytes->valuedouble;
 
     // create_upload_request->mime_type
     cJSON *mime_type = cJSON_GetObjectItemCaseSensitive(create_upload_requestJSON, "mime_type");
@@ -189,15 +215,34 @@ create_upload_request_t *create_upload_request_parseFromJSON(cJSON *create_uploa
     }
 
 
+    if (filename && !cJSON_IsNull(filename)) filename_local_str = strdup(filename->valuestring);
+    if (mime_type && !cJSON_IsNull(mime_type)) mime_type_local_str = strdup(mime_type->valuestring);
+
     create_upload_request_local_var = create_upload_request_create_internal (
-        strdup(filename->valuestring),
+        filename_local_str,
         purposeVariable,
-        bytes->valuedouble,
-        strdup(mime_type->valuestring)
+        bytes_local_var,
+        mime_type_local_str
         );
+
+    if (!create_upload_request_local_var) {
+        goto end;
+    }
 
     return create_upload_request_local_var;
 end:
+    if (filename_local_str) {
+        free(filename_local_str);
+        filename_local_str = NULL;
+    }
+    if (bytes_local_var) {
+        free(bytes_local_var);
+        bytes_local_var = NULL;
+    }
+    if (mime_type_local_str) {
+        free(mime_type_local_str);
+        mime_type_local_str = NULL;
+    }
     return NULL;
 
 }

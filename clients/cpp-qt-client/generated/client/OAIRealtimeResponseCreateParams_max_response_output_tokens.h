@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIRealtimeResponseCreateParams_max_response_output_tokens : public OAIObject {
 public:
     OAIRealtimeResponseCreateParams_max_response_output_tokens();
-    OAIRealtimeResponseCreateParams_max_response_output_tokens(QString json);
+    OAIRealtimeResponseCreateParams_max_response_output_tokens(const QString &json);
     ~OAIRealtimeResponseCreateParams_max_response_output_tokens() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

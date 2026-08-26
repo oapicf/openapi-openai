@@ -85,7 +85,7 @@ ChatCompletionMessageToolCallChunk_function::getName()
 }
 
 void
-ChatCompletionMessageToolCallChunk_function::setName(std::string  name)
+ChatCompletionMessageToolCallChunk_function::setName(std::string name)
 {
 	this->name = name;
 }
@@ -97,7 +97,7 @@ ChatCompletionMessageToolCallChunk_function::getArguments()
 }
 
 void
-ChatCompletionMessageToolCallChunk_function::setArguments(std::string  arguments)
+ChatCompletionMessageToolCallChunk_function::setArguments(std::string arguments)
 {
 	this->arguments = arguments;
 }

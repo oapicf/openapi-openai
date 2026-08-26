@@ -26,6 +26,8 @@ VectorStoreFileObject_last_error::VectorStoreFileObject_last_error()
     
 }
 
+VectorStoreFileObject_last_error::~VectorStoreFileObject_last_error() = default;
+
 void VectorStoreFileObject_last_error::validate() const
 {
     std::stringstream msg;

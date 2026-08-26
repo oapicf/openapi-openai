@@ -392,7 +392,7 @@ namespace Org.OpenAPITools.Model
         /// <value>Deprecated. For details on why a fine-tuning training file failed validation, see the &#x60;error&#x60; field on &#x60;fine_tuning.job&#x60;.</value>
         [JsonPropertyName("status_details")]
         [Obsolete]
-        public string? StatusDetails { get { return this.StatusDetailsOption; } set { this.StatusDetailsOption = new(value); } }
+        public string? StatusDetails { get { return this.StatusDetailsOption.Value; } set { this.StatusDetailsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -428,8 +428,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="OpenAIFile" />
     /// </summary>
-    public class OpenAIFileJsonConverter : JsonConverter<OpenAIFile>
+    public partial class OpenAIFileJsonConverter : JsonConverter<OpenAIFile>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OpenAIFileJsonConverter" /> class.
+        /// </summary>
+        public OpenAIFileJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OpenAIFile" />
         /// </summary>

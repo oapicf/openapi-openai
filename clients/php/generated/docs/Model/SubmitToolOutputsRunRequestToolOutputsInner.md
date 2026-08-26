@@ -1,4 +1,4 @@
-# # SubmitToolOutputsRunRequestToolOutputsInner
+# SubmitToolOutputsRunRequestToolOutputsInner
 
 ## Properties
 

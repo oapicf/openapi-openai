@@ -1,4 +1,4 @@
-import connexion
+import flask
 from typing import Dict
 from typing import Tuple
 from typing import Union
@@ -34,8 +34,8 @@ def invite_user(body):  # noqa: E501
     :rtype: Union[Invite, Tuple[Invite, int], Tuple[Invite, int, Dict[str, str]]
     """
     invite_request = body
-    if connexion.request.is_json:
-        invite_request = InviteRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        invite_request = InviteRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 

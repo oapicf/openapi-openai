@@ -119,7 +119,7 @@ export class ProjectsApi {
      */
     public async archiveProject (projectId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Project;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}/archive'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -264,7 +264,7 @@ export class ProjectsApi {
      */
     public async createProjectServiceAccount (projectId: string, projectServiceAccountCreateRequest: ProjectServiceAccountCreateRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProjectServiceAccountCreateResponse;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}/service_accounts'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -343,7 +343,7 @@ export class ProjectsApi {
      */
     public async createProjectUser (projectId: string, projectUserCreateRequest: ProjectUserCreateRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProjectUser;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}/users'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -422,8 +422,8 @@ export class ProjectsApi {
      */
     public async deleteProjectApiKey (projectId: string, keyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProjectApiKeyDeleteResponse;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}/api_keys/{key_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)))
-            .replace('{' + 'key_id' + '}', encodeURIComponent(String(keyId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)))
+            .replace('{key_id}', encodeURIComponent(String(keyId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -501,8 +501,8 @@ export class ProjectsApi {
      */
     public async deleteProjectServiceAccount (projectId: string, serviceAccountId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProjectServiceAccountDeleteResponse;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}/service_accounts/{service_account_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)))
-            .replace('{' + 'service_account_id' + '}', encodeURIComponent(String(serviceAccountId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)))
+            .replace('{service_account_id}', encodeURIComponent(String(serviceAccountId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -580,8 +580,8 @@ export class ProjectsApi {
      */
     public async deleteProjectUser (projectId: string, userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProjectUserDeleteResponse;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}/users/{user_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)))
-            .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)))
+            .replace('{user_id}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -660,7 +660,7 @@ export class ProjectsApi {
      */
     public async listProjectApiKeys (projectId: string, limit?: number, after?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProjectApiKeyListResponse;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}/api_keys'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -743,7 +743,7 @@ export class ProjectsApi {
      */
     public async listProjectRateLimits (projectId: string, limit?: number, after?: string, before?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProjectRateLimitListResponse;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}/rate_limits'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -829,7 +829,7 @@ export class ProjectsApi {
      */
     public async listProjectServiceAccounts (projectId: string, limit?: number, after?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProjectServiceAccountListResponse;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}/service_accounts'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -911,7 +911,7 @@ export class ProjectsApi {
      */
     public async listProjectUsers (projectId: string, limit?: number, after?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProjectUserListResponse;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}/users'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1072,7 +1072,7 @@ export class ProjectsApi {
      */
     public async modifyProject (projectId: string, projectUpdateRequest: ProjectUpdateRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Project;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1152,8 +1152,8 @@ export class ProjectsApi {
      */
     public async modifyProjectUser (projectId: string, userId: string, projectUserUpdateRequest: ProjectUserUpdateRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProjectUser;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}/users/{user_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)))
-            .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)))
+            .replace('{user_id}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1236,7 +1236,7 @@ export class ProjectsApi {
      */
     public async retrieveProject (projectId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Project;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1309,8 +1309,8 @@ export class ProjectsApi {
      */
     public async retrieveProjectApiKey (projectId: string, keyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProjectApiKey;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}/api_keys/{key_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)))
-            .replace('{' + 'key_id' + '}', encodeURIComponent(String(keyId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)))
+            .replace('{key_id}', encodeURIComponent(String(keyId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1388,8 +1388,8 @@ export class ProjectsApi {
      */
     public async retrieveProjectServiceAccount (projectId: string, serviceAccountId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProjectServiceAccount;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}/service_accounts/{service_account_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)))
-            .replace('{' + 'service_account_id' + '}', encodeURIComponent(String(serviceAccountId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)))
+            .replace('{service_account_id}', encodeURIComponent(String(serviceAccountId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1467,8 +1467,8 @@ export class ProjectsApi {
      */
     public async retrieveProjectUser (projectId: string, userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProjectUser;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}/users/{user_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)))
-            .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)))
+            .replace('{user_id}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1547,8 +1547,8 @@ export class ProjectsApi {
      */
     public async updateProjectRateLimits (projectId: string, rateLimitId: string, projectRateLimitUpdateRequest: ProjectRateLimitUpdateRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProjectRateLimit;  }> {
         const localVarPath = this.basePath + '/organization/projects/{project_id}/rate_limits/{rate_limit_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)))
-            .replace('{' + 'rate_limit_id' + '}', encodeURIComponent(String(rateLimitId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)))
+            .replace('{rate_limit_id}', encodeURIComponent(String(rateLimitId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];

@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set The name of the function.
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get The arguments passed to the function.
 	 */
 	std::string getArguments();
 
 	/*! \brief Set The arguments passed to the function.
 	 */
-	void setArguments(std::string  arguments);
+	void setArguments(std::string arguments);
 	/*! \brief Get The output of the function. This will be `null` if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet.
 	 */
 	std::string getOutput();
 
 	/*! \brief Set The output of the function. This will be `null` if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet.
 	 */
-	void setOutput(std::string  output);
+	void setOutput(std::string output);
 
 
     private:

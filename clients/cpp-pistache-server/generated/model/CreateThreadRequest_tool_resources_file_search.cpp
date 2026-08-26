@@ -26,6 +26,8 @@ CreateThreadRequest_tool_resources_file_search::CreateThreadRequest_tool_resourc
     
 }
 
+CreateThreadRequest_tool_resources_file_search::~CreateThreadRequest_tool_resources_file_search() = default;
+
 void CreateThreadRequest_tool_resources_file_search::validate() const
 {
     std::stringstream msg;

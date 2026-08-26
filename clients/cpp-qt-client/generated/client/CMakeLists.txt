@@ -72,7 +72,6 @@ add_library(${PROJECT_NAME}
   OAIAuditLog_user_updated.h
   OAIAuditLog_user_updated_changes_requested.h
   OAIAutoChunkingStrategyRequestParam.h
-  OAIAuto_Chunking_Strategy.h
   OAIBatch.h
   OAIBatchRequestInput.h
   OAIBatchRequestOutput.h
@@ -481,7 +480,6 @@ add_library(${PROJECT_NAME}
   OAIRunToolCallObject_function.h
   OAIStaticChunkingStrategy.h
   OAIStaticChunkingStrategyRequestParam.h
-  OAIStaticChunkingStrategyResponseParam.h
   OAIStatic_Chunking_Strategy.h
   OAIStatic_Chunking_Strategy_static.h
   OAISubmitToolOutputsRunRequest.h
@@ -606,7 +604,6 @@ add_library(${PROJECT_NAME}
   OAIAuditLog_user_updated.cpp
   OAIAuditLog_user_updated_changes_requested.cpp
   OAIAutoChunkingStrategyRequestParam.cpp
-  OAIAuto_Chunking_Strategy.cpp
   OAIBatch.cpp
   OAIBatchRequestInput.cpp
   OAIBatchRequestOutput.cpp
@@ -1015,7 +1012,6 @@ add_library(${PROJECT_NAME}
   OAIRunToolCallObject_function.cpp
   OAIStaticChunkingStrategy.cpp
   OAIStaticChunkingStrategyRequestParam.cpp
-  OAIStaticChunkingStrategyResponseParam.cpp
   OAIStatic_Chunking_Strategy.cpp
   OAIStatic_Chunking_Strategy_static.cpp
   OAISubmitToolOutputsRunRequest.cpp

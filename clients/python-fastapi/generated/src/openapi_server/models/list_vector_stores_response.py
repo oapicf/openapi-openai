@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List
 from openapi_server.models.vector_store_object import VectorStoreObject
 try:
@@ -33,11 +33,11 @@ class ListVectorStoresResponse(BaseModel):
     """
     ListVectorStoresResponse
     """ # noqa: E501
-    object: StrictStr
+    object: StrictStr = Field(json_schema_extra={"examples": ["list"]})
     data: List[VectorStoreObject]
-    first_id: StrictStr
-    last_id: StrictStr
-    has_more: StrictBool
+    first_id: StrictStr = Field(json_schema_extra={"examples": ["vs_abc123"]})
+    last_id: StrictStr = Field(json_schema_extra={"examples": ["vs_abc456"]})
+    has_more: StrictBool = Field(json_schema_extra={"examples": [False]})
     __properties: ClassVar[List[str]] = ["object", "data", "first_id", "last_id", "has_more"]
 
     model_config = {

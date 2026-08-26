@@ -26,6 +26,8 @@ RunStepDetailsToolCallsFileSearchRankingOptionsObject::RunStepDetailsToolCallsFi
     
 }
 
+RunStepDetailsToolCallsFileSearchRankingOptionsObject::~RunStepDetailsToolCallsFileSearchRankingOptionsObject() = default;
+
 void RunStepDetailsToolCallsFileSearchRankingOptionsObject::validate() const
 {
     std::stringstream msg;

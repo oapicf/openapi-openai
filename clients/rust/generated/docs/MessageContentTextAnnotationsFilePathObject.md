@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**r#type** | **String** | Always `file_path`. | 
+**r#type** | **Type** | Always `file_path`. (enum: file_path) | 
 **text** | **String** | The text in the message content that needs to be replaced. | 
-**file_path** | [**models::MessageContentTextAnnotationsFilePathObjectFilePath**](MessageContentTextAnnotationsFilePathObject_file_path.md) |  | 
+**file_path** | [**models::MessageContentTextAnnotationsFilePathObjectFilePath**](MessageContentTextAnnotationsFilePathObjectFilePath.md) |  | 
 **start_index** | **i32** |  | 
 **end_index** | **i32** |  | 
 

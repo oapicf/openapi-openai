@@ -37,7 +37,7 @@ class  RealtimeResponse
 {
 public:
     RealtimeResponse();
-    virtual ~RealtimeResponse() = default;
+    virtual ~RealtimeResponse();
 
 
     /// <summary>

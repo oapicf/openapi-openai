@@ -1,4 +1,4 @@
-# # InviteRequest
+# InviteRequest
 
 ## Properties
 

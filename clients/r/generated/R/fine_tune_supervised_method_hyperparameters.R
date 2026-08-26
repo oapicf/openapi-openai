@@ -75,17 +75,40 @@ FineTuneSupervisedMethodHyperparameters <- R6::R6Class(
       FineTuneSupervisedMethodHyperparametersObject <- list()
       if (!is.null(self$`batch_size`)) {
         FineTuneSupervisedMethodHyperparametersObject[["batch_size"]] <-
-          self$`batch_size`$toSimpleType()
+          self$extractSimpleType(self$`batch_size`)
       }
       if (!is.null(self$`learning_rate_multiplier`)) {
         FineTuneSupervisedMethodHyperparametersObject[["learning_rate_multiplier"]] <-
-          self$`learning_rate_multiplier`$toSimpleType()
+          self$extractSimpleType(self$`learning_rate_multiplier`)
       }
       if (!is.null(self$`n_epochs`)) {
         FineTuneSupervisedMethodHyperparametersObject[["n_epochs"]] <-
-          self$`n_epochs`$toSimpleType()
+          self$extractSimpleType(self$`n_epochs`)
       }
       return(FineTuneSupervisedMethodHyperparametersObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

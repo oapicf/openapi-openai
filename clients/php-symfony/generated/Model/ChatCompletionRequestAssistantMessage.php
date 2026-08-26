@@ -49,7 +49,7 @@ class ChatCompletionRequestAssistantMessage
      * @var ChatCompletionRequestAssistantMessageContent|null
      * @SerializedName("content")
      * @Type("OpenAPI\Server\Model\ChatCompletionRequestAssistantMessageContent")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionRequestAssistantMessageContent")]
     protected ?ChatCompletionRequestAssistantMessageContent $content = null;
 
@@ -59,7 +59,7 @@ class ChatCompletionRequestAssistantMessage
      * @var string|null
      * @SerializedName("refusal")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $refusal = null;
 
@@ -69,7 +69,7 @@ class ChatCompletionRequestAssistantMessage
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['assistant'])]
     #[Assert\Type("string")]
@@ -81,7 +81,7 @@ class ChatCompletionRequestAssistantMessage
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $name = null;
 
@@ -89,7 +89,7 @@ class ChatCompletionRequestAssistantMessage
      * @var ChatCompletionRequestAssistantMessageAudio|null
      * @SerializedName("audio")
      * @Type("OpenAPI\Server\Model\ChatCompletionRequestAssistantMessageAudio")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionRequestAssistantMessageAudio")]
     protected ?ChatCompletionRequestAssistantMessageAudio $audio = null;
 
@@ -99,7 +99,7 @@ class ChatCompletionRequestAssistantMessage
      * @var ChatCompletionMessageToolCall[]|null
      * @SerializedName("tool_calls")
      * @Type("array<OpenAPI\Server\Model\ChatCompletionMessageToolCall>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\ChatCompletionMessageToolCall"),
     ])]
@@ -109,7 +109,7 @@ class ChatCompletionRequestAssistantMessage
      * @var ChatCompletionRequestAssistantMessageFunctionCall|null
      * @SerializedName("function_call")
      * @Type("OpenAPI\Server\Model\ChatCompletionRequestAssistantMessageFunctionCall")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionRequestAssistantMessageFunctionCall")]
     protected ?ChatCompletionRequestAssistantMessageFunctionCall $functionCall = null;
 
@@ -141,12 +141,12 @@ class ChatCompletionRequestAssistantMessage
     }
 
     /**
-    * Sets content.
-    *
-    * @param ChatCompletionRequestAssistantMessageContent|null $content
-    *
-    * @return $this
-    */
+     * Sets content.
+     *
+     * @param ChatCompletionRequestAssistantMessageContent|null $content
+     *
+     * @return $this
+     */
     public function setContent(?ChatCompletionRequestAssistantMessageContent $content = null): self
     {
         $this->content = $content;
@@ -168,12 +168,12 @@ class ChatCompletionRequestAssistantMessage
     }
 
     /**
-    * Sets refusal.
-    *
-    * @param string|null $refusal  The refusal message by the assistant.
-    *
-    * @return $this
-    */
+     * Sets refusal.
+     *
+     * @param string|null $refusal  The refusal message by the assistant.
+     *
+     * @return $this
+     */
     public function setRefusal(?string $refusal = null): self
     {
         $this->refusal = $refusal;
@@ -195,12 +195,12 @@ class ChatCompletionRequestAssistantMessage
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  The role of the messages author, in this case `assistant`.
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  The role of the messages author, in this case `assistant`.
+     *
+     * @return $this
+     */
     public function setRole(?string $role): self
     {
         $this->role = $role;
@@ -222,12 +222,12 @@ class ChatCompletionRequestAssistantMessage
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  An optional name for the participant. Provides the model information to differentiate between participants of the same role.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  An optional name for the participant. Provides the model information to differentiate between participants of the same role.
+     *
+     * @return $this
+     */
     public function setName(?string $name = null): self
     {
         $this->name = $name;
@@ -249,12 +249,12 @@ class ChatCompletionRequestAssistantMessage
     }
 
     /**
-    * Sets audio.
-    *
-    * @param ChatCompletionRequestAssistantMessageAudio|null $audio
-    *
-    * @return $this
-    */
+     * Sets audio.
+     *
+     * @param ChatCompletionRequestAssistantMessageAudio|null $audio
+     *
+     * @return $this
+     */
     public function setAudio(?ChatCompletionRequestAssistantMessageAudio $audio = null): self
     {
         $this->audio = $audio;
@@ -276,12 +276,12 @@ class ChatCompletionRequestAssistantMessage
     }
 
     /**
-    * Sets toolCalls.
-    *
-    * @param ChatCompletionMessageToolCall[]|null $toolCalls  The tool calls generated by the model, such as function calls.
-    *
-    * @return $this
-    */
+     * Sets toolCalls.
+     *
+     * @param ChatCompletionMessageToolCall[]|null $toolCalls  The tool calls generated by the model, such as function calls.
+     *
+     * @return $this
+     */
     public function setToolCalls(?array $toolCalls = null): self
     {
         $this->toolCalls = $toolCalls;
@@ -303,12 +303,12 @@ class ChatCompletionRequestAssistantMessage
     }
 
     /**
-    * Sets functionCall.
-    *
-    * @param ChatCompletionRequestAssistantMessageFunctionCall|null $functionCall
-    *
-    * @return $this
-    */
+     * Sets functionCall.
+     *
+     * @param ChatCompletionRequestAssistantMessageFunctionCall|null $functionCall
+     *
+     * @return $this
+     */
     public function setFunctionCall(?ChatCompletionRequestAssistantMessageFunctionCall $functionCall = null): self
     {
         $this->functionCall = $functionCall;

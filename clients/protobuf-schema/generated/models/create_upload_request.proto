@@ -28,7 +28,7 @@ message CreateUploadRequest {
     PURPOSE_VISION = 3;
   }
 
-  Purpose purpose = 220463842;
+  string purpose = 220463842;
 
   // The number of bytes in the file you are uploading. 
   int32 bytes = 94224491;

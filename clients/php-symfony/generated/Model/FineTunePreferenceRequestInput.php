@@ -49,7 +49,7 @@ class FineTunePreferenceRequestInput
      * @var FineTunePreferenceRequestInputInput|null
      * @SerializedName("input")
      * @Type("OpenAPI\Server\Model\FineTunePreferenceRequestInputInput")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\FineTunePreferenceRequestInputInput")]
     protected ?FineTunePreferenceRequestInputInput $input = null;
 
@@ -59,7 +59,7 @@ class FineTunePreferenceRequestInput
      * @var FineTunePreferenceRequestInputPreferredCompletionInner[]|null
      * @SerializedName("preferred_completion")
      * @Type("array<OpenAPI\Server\Model\FineTunePreferenceRequestInputPreferredCompletionInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\FineTunePreferenceRequestInputPreferredCompletionInner"),
     ])]
@@ -72,7 +72,7 @@ class FineTunePreferenceRequestInput
      * @var FineTunePreferenceRequestInputPreferredCompletionInner[]|null
      * @SerializedName("non_preferred_completion")
      * @Type("array<OpenAPI\Server\Model\FineTunePreferenceRequestInputPreferredCompletionInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\FineTunePreferenceRequestInputPreferredCompletionInner"),
     ])]
@@ -103,12 +103,12 @@ class FineTunePreferenceRequestInput
     }
 
     /**
-    * Sets input.
-    *
-    * @param FineTunePreferenceRequestInputInput|null $input
-    *
-    * @return $this
-    */
+     * Sets input.
+     *
+     * @param FineTunePreferenceRequestInputInput|null $input
+     *
+     * @return $this
+     */
     public function setInput(?FineTunePreferenceRequestInputInput $input = null): self
     {
         $this->input = $input;
@@ -130,12 +130,12 @@ class FineTunePreferenceRequestInput
     }
 
     /**
-    * Sets preferredCompletion.
-    *
-    * @param FineTunePreferenceRequestInputPreferredCompletionInner[]|null $preferredCompletion  The preferred completion message for the output.
-    *
-    * @return $this
-    */
+     * Sets preferredCompletion.
+     *
+     * @param FineTunePreferenceRequestInputPreferredCompletionInner[]|null $preferredCompletion  The preferred completion message for the output.
+     *
+     * @return $this
+     */
     public function setPreferredCompletion(?array $preferredCompletion = null): self
     {
         $this->preferredCompletion = $preferredCompletion;
@@ -157,12 +157,12 @@ class FineTunePreferenceRequestInput
     }
 
     /**
-    * Sets nonPreferredCompletion.
-    *
-    * @param FineTunePreferenceRequestInputPreferredCompletionInner[]|null $nonPreferredCompletion  The non-preferred completion message for the output.
-    *
-    * @return $this
-    */
+     * Sets nonPreferredCompletion.
+     *
+     * @param FineTunePreferenceRequestInputPreferredCompletionInner[]|null $nonPreferredCompletion  The non-preferred completion message for the output.
+     *
+     * @return $this
+     */
     public function setNonPreferredCompletion(?array $nonPreferredCompletion = null): self
     {
         $this->nonPreferredCompletion = $nonPreferredCompletion;

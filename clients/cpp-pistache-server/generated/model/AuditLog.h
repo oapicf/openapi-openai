@@ -53,7 +53,7 @@ class  AuditLog
 {
 public:
     AuditLog();
-    virtual ~AuditLog() = default;
+    virtual ~AuditLog();
 
 
     /// <summary>

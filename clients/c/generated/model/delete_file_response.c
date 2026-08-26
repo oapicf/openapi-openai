@@ -25,30 +25,39 @@ openai_api_delete_file_response_OBJECT_e delete_file_response_object_FromString(
 static delete_file_response_t *delete_file_response_create_internal(
     char *id,
     openai_api_delete_file_response_OBJECT_e object,
-    int deleted
+    int *deleted
     ) {
     delete_file_response_t *delete_file_response_local_var = malloc(sizeof(delete_file_response_t));
     if (!delete_file_response_local_var) {
         return NULL;
     }
+    memset(delete_file_response_local_var, 0, sizeof(delete_file_response_t));
+    delete_file_response_local_var->_library_owned = 1;
     delete_file_response_local_var->id = id;
     delete_file_response_local_var->object = object;
     delete_file_response_local_var->deleted = deleted;
-
-    delete_file_response_local_var->_library_owned = 1;
     return delete_file_response_local_var;
 }
 
 __attribute__((deprecated)) delete_file_response_t *delete_file_response_create(
     char *id,
     openai_api_delete_file_response_OBJECT_e object,
-    int deleted
+    int *deleted
     ) {
-    return delete_file_response_create_internal (
+    int *deleted_copy = NULL;
+    if (deleted) {
+        deleted_copy = malloc(sizeof(int));
+        if (deleted_copy) *deleted_copy = *deleted;
+    }
+    delete_file_response_t *result = delete_file_response_create_internal (
         id,
         object,
-        deleted
+        deleted_copy
         );
+    if (!result) {
+        free(deleted_copy);
+    }
+    return result;
 }
 
 void delete_file_response_free(delete_file_response_t *delete_file_response) {
@@ -63,6 +72,10 @@ void delete_file_response_free(delete_file_response_t *delete_file_response) {
     if (delete_file_response->id) {
         free(delete_file_response->id);
         delete_file_response->id = NULL;
+    }
+    if (delete_file_response->deleted) {
+        free(delete_file_response->deleted);
+        delete_file_response->deleted = NULL;
     }
     free(delete_file_response);
 }
@@ -93,7 +106,7 @@ cJSON *delete_file_response_convertToJSON(delete_file_response_t *delete_file_re
     if (!delete_file_response->deleted) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "deleted", delete_file_response->deleted) == NULL) {
+    if(cJSON_AddBoolToObject(item, "deleted", *delete_file_response->deleted) == NULL) {
     goto fail; //Bool
     }
 
@@ -108,6 +121,11 @@ fail:
 delete_file_response_t *delete_file_response_parseFromJSON(cJSON *delete_file_responseJSON){
 
     delete_file_response_t *delete_file_response_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    // define the local variable for delete_file_response->deleted
+    int *deleted_local_var = NULL;
 
     // delete_file_response->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(delete_file_responseJSON, "id");
@@ -155,16 +173,36 @@ delete_file_response_t *delete_file_response_parseFromJSON(cJSON *delete_file_re
     {
     goto end; //Bool
     }
+    deleted_local_var = malloc(sizeof(int));
+    if(!deleted_local_var)
+    {
+        goto end;
+    }
+    *deleted_local_var = deleted->valueint;
 
+
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
 
     delete_file_response_local_var = delete_file_response_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         objectVariable,
-        deleted->valueint
+        deleted_local_var
         );
+
+    if (!delete_file_response_local_var) {
+        goto end;
+    }
 
     return delete_file_response_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (deleted_local_var) {
+        free(deleted_local_var);
+        deleted_local_var = NULL;
+    }
     return NULL;
 
 }

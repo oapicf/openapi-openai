@@ -89,8 +89,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTuneDPOMethodHyperparametersBeta" />
     /// </summary>
-    public class FineTuneDPOMethodHyperparametersBetaJsonConverter : JsonConverter<FineTuneDPOMethodHyperparametersBeta>
+    public partial class FineTuneDPOMethodHyperparametersBetaJsonConverter : JsonConverter<FineTuneDPOMethodHyperparametersBeta>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTuneDPOMethodHyperparametersBetaJsonConverter" /> class.
+        /// </summary>
+        public FineTuneDPOMethodHyperparametersBetaJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTuneDPOMethodHyperparametersBeta" />
         /// </summary>

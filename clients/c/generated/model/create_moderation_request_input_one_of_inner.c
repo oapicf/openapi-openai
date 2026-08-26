@@ -31,11 +31,11 @@ static create_moderation_request_input_one_of_inner_t *create_moderation_request
     if (!create_moderation_request_input_one_of_inner_local_var) {
         return NULL;
     }
+    memset(create_moderation_request_input_one_of_inner_local_var, 0, sizeof(create_moderation_request_input_one_of_inner_t));
+    create_moderation_request_input_one_of_inner_local_var->_library_owned = 1;
     create_moderation_request_input_one_of_inner_local_var->type = type;
     create_moderation_request_input_one_of_inner_local_var->image_url = image_url;
     create_moderation_request_input_one_of_inner_local_var->text = text;
-
-    create_moderation_request_input_one_of_inner_local_var->_library_owned = 1;
     return create_moderation_request_input_one_of_inner_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) create_moderation_request_input_one_of_inner_t *crea
     create_moderation_request_input_one_of_inner_one_of_image_url_t *image_url,
     char *text
     ) {
-    return create_moderation_request_input_one_of_inner_create_internal (
+    create_moderation_request_input_one_of_inner_t *result = create_moderation_request_input_one_of_inner_create_internal (
         type,
         image_url,
         text
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_moderation_request_input_one_of_inner_free(create_moderation_request_input_one_of_inner_t *create_moderation_request_input_one_of_inner) {
@@ -121,6 +124,8 @@ create_moderation_request_input_one_of_inner_t *create_moderation_request_input_
     // define the local variable for create_moderation_request_input_one_of_inner->image_url
     create_moderation_request_input_one_of_inner_one_of_image_url_t *image_url_local_nonprim = NULL;
 
+    char *text_local_str = NULL;
+
     // create_moderation_request_input_one_of_inner->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(create_moderation_request_input_one_of_innerJSON, "type");
     if (cJSON_IsNull(type)) {
@@ -166,17 +171,27 @@ create_moderation_request_input_one_of_inner_t *create_moderation_request_input_
     }
 
 
+    if (text && !cJSON_IsNull(text)) text_local_str = strdup(text->valuestring);
+
     create_moderation_request_input_one_of_inner_local_var = create_moderation_request_input_one_of_inner_create_internal (
         typeVariable,
         image_url_local_nonprim,
-        strdup(text->valuestring)
+        text_local_str
         );
+
+    if (!create_moderation_request_input_one_of_inner_local_var) {
+        goto end;
+    }
 
     return create_moderation_request_input_one_of_inner_local_var;
 end:
     if (image_url_local_nonprim) {
         create_moderation_request_input_one_of_inner_one_of_image_url_free(image_url_local_nonprim);
         image_url_local_nonprim = NULL;
+    }
+    if (text_local_str) {
+        free(text_local_str);
+        text_local_str = NULL;
     }
     return NULL;
 

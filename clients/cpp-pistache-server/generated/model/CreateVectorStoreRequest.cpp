@@ -30,6 +30,8 @@ CreateVectorStoreRequest::CreateVectorStoreRequest()
     
 }
 
+CreateVectorStoreRequest::~CreateVectorStoreRequest() = default;
+
 void CreateVectorStoreRequest::validate() const
 {
     std::stringstream msg;

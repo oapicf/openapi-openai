@@ -336,7 +336,6 @@ Class | Method | HTTP request | Description
 * OpenAPIServer\Model\AuditLogUserDeleted
 * OpenAPIServer\Model\AuditLogUserUpdated
 * OpenAPIServer\Model\AuditLogUserUpdatedChangesRequested
-* OpenAPIServer\Model\AutoChunkingStrategy
 * OpenAPIServer\Model\AutoChunkingStrategyRequestParam
 * OpenAPIServer\Model\Batch
 * OpenAPIServer\Model\BatchErrors
@@ -746,7 +745,6 @@ Class | Method | HTTP request | Description
 * OpenAPIServer\Model\RunToolCallObjectFunction
 * OpenAPIServer\Model\StaticChunkingStrategy
 * OpenAPIServer\Model\StaticChunkingStrategyRequestParam
-* OpenAPIServer\Model\StaticChunkingStrategyResponseParam
 * OpenAPIServer\Model\StaticChunkingStrategyStatic
 * OpenAPIServer\Model\SubmitToolOutputsRunRequest
 * OpenAPIServer\Model\SubmitToolOutputsRunRequestToolOutputsInner

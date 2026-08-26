@@ -63,7 +63,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class AssistantStreamEvent extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(AssistantStreamEvent.class.getName());
 
@@ -310,6 +310,7 @@ public class AssistantStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `ThreadStreamEvent`
      * @throws ClassCastException if the instance is not `ThreadStreamEvent`
      */
+    @SuppressWarnings("unchecked")
     public ThreadStreamEvent getThreadStreamEvent() throws ClassCastException {
         return (ThreadStreamEvent)super.getActualInstance();
     }
@@ -321,6 +322,7 @@ public class AssistantStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `RunStreamEvent`
      * @throws ClassCastException if the instance is not `RunStreamEvent`
      */
+    @SuppressWarnings("unchecked")
     public RunStreamEvent getRunStreamEvent() throws ClassCastException {
         return (RunStreamEvent)super.getActualInstance();
     }
@@ -332,6 +334,7 @@ public class AssistantStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `RunStepStreamEvent`
      * @throws ClassCastException if the instance is not `RunStepStreamEvent`
      */
+    @SuppressWarnings("unchecked")
     public RunStepStreamEvent getRunStepStreamEvent() throws ClassCastException {
         return (RunStepStreamEvent)super.getActualInstance();
     }
@@ -343,6 +346,7 @@ public class AssistantStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `MessageStreamEvent`
      * @throws ClassCastException if the instance is not `MessageStreamEvent`
      */
+    @SuppressWarnings("unchecked")
     public MessageStreamEvent getMessageStreamEvent() throws ClassCastException {
         return (MessageStreamEvent)super.getActualInstance();
     }
@@ -354,6 +358,7 @@ public class AssistantStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `ErrorEvent`
      * @throws ClassCastException if the instance is not `ErrorEvent`
      */
+    @SuppressWarnings("unchecked")
     public ErrorEvent getErrorEvent() throws ClassCastException {
         return (ErrorEvent)super.getActualInstance();
     }
@@ -365,6 +370,7 @@ public class AssistantStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `DoneEvent`
      * @throws ClassCastException if the instance is not `DoneEvent`
      */
+    @SuppressWarnings("unchecked")
     public DoneEvent getDoneEvent() throws ClassCastException {
         return (DoneEvent)super.getActualInstance();
     }

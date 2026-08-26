@@ -20,7 +20,7 @@ case class ChatCompletionRequestMessageContentPartImage(
   /* The type of the content part. */
   `type`: ChatCompletionRequestMessageContentPartImageEnums.`Type`,
   imageUrl: ChatCompletionRequestMessageContentPartImageImageUrl
-)
+) extends ChatCompletionRequestUserMessageContentPart
 
 object ChatCompletionRequestMessageContentPartImageEnums {
 

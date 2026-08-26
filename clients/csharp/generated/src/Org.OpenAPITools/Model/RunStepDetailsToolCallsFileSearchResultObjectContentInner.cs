@@ -111,7 +111,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The type of the content.</value>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Text
@@ -125,7 +125,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The text content of the file.</value>
         [JsonPropertyName("text")]
-        public string? Text { get { return this.TextOption; } set { this.TextOption = new(value); } }
+        public string? Text { get { return this.TextOption.Value; } set { this.TextOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -155,8 +155,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDetailsToolCallsFileSearchResultObjectContentInner" />
     /// </summary>
-    public class RunStepDetailsToolCallsFileSearchResultObjectContentInnerJsonConverter : JsonConverter<RunStepDetailsToolCallsFileSearchResultObjectContentInner>
+    public partial class RunStepDetailsToolCallsFileSearchResultObjectContentInnerJsonConverter : JsonConverter<RunStepDetailsToolCallsFileSearchResultObjectContentInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDetailsToolCallsFileSearchResultObjectContentInnerJsonConverter" /> class.
+        /// </summary>
+        public RunStepDetailsToolCallsFileSearchResultObjectContentInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDetailsToolCallsFileSearchResultObjectContentInner" />
         /// </summary>

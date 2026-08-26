@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface InviteDeleteResponse {
     /**
      * The object type, which is always `organization.invite.deleted`
-     * @type {string}
+     * @type {InviteDeleteResponseObjectEnum}
      * @memberof InviteDeleteResponse
      */
     object: InviteDeleteResponseObjectEnum;
@@ -54,6 +54,8 @@ export type InviteDeleteResponseObjectEnum = typeof InviteDeleteResponseObjectEn
  */
 export function instanceOfInviteDeleteResponse(value: object): value is InviteDeleteResponse {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'organization.invite.deleted') return false;
+    
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('deleted' in value) || value['deleted'] === undefined) return false;
     return true;

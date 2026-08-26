@@ -31,11 +31,11 @@ static project_api_key_owner_t *project_api_key_owner_create_internal(
     if (!project_api_key_owner_local_var) {
         return NULL;
     }
+    memset(project_api_key_owner_local_var, 0, sizeof(project_api_key_owner_t));
+    project_api_key_owner_local_var->_library_owned = 1;
     project_api_key_owner_local_var->type = type;
     project_api_key_owner_local_var->user = user;
     project_api_key_owner_local_var->service_account = service_account;
-
-    project_api_key_owner_local_var->_library_owned = 1;
     return project_api_key_owner_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) project_api_key_owner_t *project_api_key_owner_creat
     project_user_t *user,
     project_service_account_t *service_account
     ) {
-    return project_api_key_owner_create_internal (
+    project_api_key_owner_t *result = project_api_key_owner_create_internal (
         type,
         user,
         service_account
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void project_api_key_owner_free(project_api_key_owner_t *project_api_key_owner) {
@@ -159,11 +162,16 @@ project_api_key_owner_t *project_api_key_owner_parseFromJSON(cJSON *project_api_
     }
 
 
+
     project_api_key_owner_local_var = project_api_key_owner_create_internal (
         type ? typeVariable : openai_api_project_api_key_owner_TYPE_NULL,
         user ? user_local_nonprim : NULL,
         service_account ? service_account_local_nonprim : NULL
         );
+
+    if (!project_api_key_owner_local_var) {
+        goto end;
+    }
 
     return project_api_key_owner_local_var;
 end:

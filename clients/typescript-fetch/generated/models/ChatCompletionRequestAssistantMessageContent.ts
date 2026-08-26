@@ -42,6 +42,8 @@ export function ChatCompletionRequestAssistantMessageContentFromJSONTyped(json: 
                 return json.map(value => ChatCompletionRequestAssistantMessageContentPartFromJSONTyped(value, true));
             }
         }
+    }
+    if (Array.isArray(json)) {
         return json;
     }
     if (typeof json === 'string') {
@@ -64,6 +66,8 @@ export function ChatCompletionRequestAssistantMessageContentToJSONTyped(value?: 
                 return value.map(value => ChatCompletionRequestAssistantMessageContentPartToJSON(value as ChatCompletionRequestAssistantMessageContentPart));
             }
         }
+    }
+    if (Array.isArray(value)) {
         return value;
     }
     if (typeof value === 'string') {

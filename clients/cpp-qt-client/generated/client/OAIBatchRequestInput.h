@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIBatchRequestInput : public OAIObject {
 public:
     OAIBatchRequestInput();
-    OAIBatchRequestInput(QString json);
+    OAIBatchRequestInput(const QString &json);
     ~OAIBatchRequestInput() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getCustomId() const;
     void setCustomId(const QString &custom_id);

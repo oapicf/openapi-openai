@@ -53,10 +53,10 @@ class RunStreamEventOneOf6 {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStreamEventOneOf6[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStreamEventOneOf6[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event'), 'Required key "RunStreamEventOneOf6[event]" is missing from JSON.');
+        assert(json[r'event'] != null, 'Required key "RunStreamEventOneOf6[event]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "RunStreamEventOneOf6[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "RunStreamEventOneOf6[data]" has a null value in JSON.');
         return true;
       }());
 
@@ -116,27 +116,28 @@ class RunStreamEventOneOf6 {
 }
 
 
-class RunStreamEventOneOf6EventEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStreamEventOneOf6EventEnum._(this.value);
+enum RunStreamEventOneOf6EventEnum {
+  threadPeriodRunPeriodFailed._(r'thread.run.failed'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStreamEventOneOf6EventEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodRunPeriodFailed = RunStreamEventOneOf6EventEnum._(r'thread.run.failed');
-
-  /// List of all possible values in this [enum][RunStreamEventOneOf6EventEnum].
-  static const values = <RunStreamEventOneOf6EventEnum>[
-    threadPeriodRunPeriodFailed,
-  ];
-
+  /// Returns the instance of [RunStreamEventOneOf6EventEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStreamEventOneOf6EventEnum? fromJson(dynamic value) => RunStreamEventOneOf6EventEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStreamEventOneOf6EventEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStreamEventOneOf6EventEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStreamEventOneOf6EventEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -158,9 +159,10 @@ class RunStreamEventOneOf6EventEnumTypeTransformer {
 
   const RunStreamEventOneOf6EventEnumTypeTransformer._();
 
-  String encode(RunStreamEventOneOf6EventEnum data) => data.value;
+  String encode(RunStreamEventOneOf6EventEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStreamEventOneOf6EventEnum.
+  /// Returns the instance of [RunStreamEventOneOf6EventEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -169,6 +171,9 @@ class RunStreamEventOneOf6EventEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStreamEventOneOf6EventEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStreamEventOneOf6EventEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.run.failed': return RunStreamEventOneOf6EventEnum.threadPeriodRunPeriodFailed;
@@ -181,7 +186,7 @@ class RunStreamEventOneOf6EventEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStreamEventOneOf6EventEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStreamEventOneOf6EventEnumTypeTransformer? _instance;
 }
 

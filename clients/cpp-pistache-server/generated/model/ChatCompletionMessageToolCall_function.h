@@ -32,7 +32,7 @@ class  ChatCompletionMessageToolCall_function
 {
 public:
     ChatCompletionMessageToolCall_function();
-    virtual ~ChatCompletionMessageToolCall_function() = default;
+    virtual ~ChatCompletionMessageToolCall_function();
 
 
     /// <summary>

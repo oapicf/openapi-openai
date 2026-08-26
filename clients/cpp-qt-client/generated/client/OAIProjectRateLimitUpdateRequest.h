@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIProjectRateLimitUpdateRequest : public OAIObject {
 public:
     OAIProjectRateLimitUpdateRequest();
-    OAIProjectRateLimitUpdateRequest(QString json);
+    OAIProjectRateLimitUpdateRequest(const QString &json);
     ~OAIProjectRateLimitUpdateRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getMaxRequestsPer1Minute() const;
     void setMaxRequestsPer1Minute(const qint32 &max_requests_per_1_minute);

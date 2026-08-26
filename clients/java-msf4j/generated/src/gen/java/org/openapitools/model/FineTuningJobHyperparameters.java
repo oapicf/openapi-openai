@@ -14,16 +14,16 @@ import org.openapitools.model.CreateFineTuningJobRequestHyperparametersNEpochs;
  * The hyperparameters used for the fine-tuning job. This value will only be returned when running &#x60;supervised&#x60; jobs.
  */
 @ApiModel(description = "The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTuningJobHyperparameters   {
   @JsonProperty("batch_size")
-  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
+  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
 
   @JsonProperty("learning_rate_multiplier")
-  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
 
   @JsonProperty("n_epochs")
-  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
+  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
 
   public FineTuningJobHyperparameters batchSize(CreateFineTuningJobRequestHyperparametersBatchSize batchSize) {
     this.batchSize = batchSize;
@@ -116,10 +116,7 @@ public class FineTuningJobHyperparameters   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

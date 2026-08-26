@@ -37,7 +37,7 @@ class  RealtimeSessionCreateRequest
 {
 public:
     RealtimeSessionCreateRequest();
-    virtual ~RealtimeSessionCreateRequest() = default;
+    virtual ~RealtimeSessionCreateRequest();
 
 
     /// <summary>

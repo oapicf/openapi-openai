@@ -30,10 +30,10 @@ static error_event_t *error_event_create_internal(
     if (!error_event_local_var) {
         return NULL;
     }
+    memset(error_event_local_var, 0, sizeof(error_event_t));
+    error_event_local_var->_library_owned = 1;
     error_event_local_var->event = event;
     error_event_local_var->data = data;
-
-    error_event_local_var->_library_owned = 1;
     return error_event_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) error_event_t *error_event_create(
     openai_api_error_event_EVENT_e event,
     error_t *data
     ) {
-    return error_event_create_internal (
+    error_event_t *result = error_event_create_internal (
         event,
         data
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void error_event_free(error_event_t *error_event) {
@@ -134,10 +137,15 @@ error_event_t *error_event_parseFromJSON(cJSON *error_eventJSON){
     data_local_nonprim = error_parseFromJSON(data); //nonprimitive
 
 
+
     error_event_local_var = error_event_create_internal (
         eventVariable,
         data_local_nonprim
         );
+
+    if (!error_event_local_var) {
+        goto end;
+    }
 
     return error_event_local_var;
 end:

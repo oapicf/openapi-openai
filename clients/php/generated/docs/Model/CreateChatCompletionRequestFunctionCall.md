@@ -1,4 +1,4 @@
-# # CreateChatCompletionRequestFunctionCall
+# CreateChatCompletionRequestFunctionCall
 
 ## Properties
 

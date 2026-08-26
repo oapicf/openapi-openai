@@ -32,13 +32,13 @@ export interface CreateBatchRequest {
     inputFileId: string;
     /**
      * The endpoint to be used for all requests in the batch. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported. Note that `/v1/embeddings` batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.
-     * @type {string}
+     * @type {CreateBatchRequestEndpointEnum}
      * @memberof CreateBatchRequest
      */
     endpoint: CreateBatchRequestEndpointEnum;
     /**
      * The time frame within which the batch should be processed. Currently only `24h` is supported.
-     * @type {string}
+     * @type {CreateBatchRequestCompletionWindowEnum}
      * @memberof CreateBatchRequest
      */
     completionWindow: CreateBatchRequestCompletionWindowEnum;
@@ -74,9 +74,11 @@ export type CreateBatchRequestCompletionWindowEnum = typeof CreateBatchRequestCo
  * Check if a given object implements the CreateBatchRequest interface.
  */
 export function instanceOfCreateBatchRequest(value: object): value is CreateBatchRequest {
-    if (!('inputFileId' in value) || value['inputFileId'] === undefined) return false;
+    if ((!('inputFileId' in (value as Record<string, any>)) && !('input_file_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['inputFileId'] === undefined && (value as Record<string, any>)['input_file_id'] === undefined)) return false;
     if (!('endpoint' in value) || value['endpoint'] === undefined) return false;
-    if (!('completionWindow' in value) || value['completionWindow'] === undefined) return false;
+    if ((!('completionWindow' in (value as Record<string, any>)) && !('completion_window' in (value as Record<string, any>))) || ((value as Record<string, any>)['completionWindow'] === undefined && (value as Record<string, any>)['completion_window'] === undefined)) return false;
+    if ((value as Record<string, any>)['completionWindow'] !== '24h' && (value as Record<string, any>)['completion_window'] !== '24h') return false;
+    
     return true;
 }
 
@@ -93,7 +95,7 @@ export function CreateBatchRequestFromJSONTyped(json: any, ignoreDiscriminator: 
         'inputFileId': json['input_file_id'],
         'endpoint': json['endpoint'],
         'completionWindow': json['completion_window'],
-        'metadata': json['metadata'] == null ? undefined : json['metadata'],
+        'metadata': json['metadata'] === undefined ? undefined : json['metadata'] === null ? null : json['metadata'],
     };
 }
 

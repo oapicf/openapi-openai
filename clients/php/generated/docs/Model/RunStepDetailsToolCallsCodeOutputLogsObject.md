@@ -1,4 +1,4 @@
-# # RunStepDetailsToolCallsCodeOutputLogsObject
+# RunStepDetailsToolCallsCodeOutputLogsObject
 
 ## Properties
 

@@ -274,7 +274,7 @@ CreateAssistantRequest::getModel()
 }
 
 void
-CreateAssistantRequest::setModel(CreateAssistantRequest_model  model)
+CreateAssistantRequest::setModel(CreateAssistantRequest_model model)
 {
 	this->model = model;
 }
@@ -286,7 +286,7 @@ CreateAssistantRequest::getName()
 }
 
 void
-CreateAssistantRequest::setName(std::string  name)
+CreateAssistantRequest::setName(std::string name)
 {
 	this->name = name;
 }
@@ -298,7 +298,7 @@ CreateAssistantRequest::getDescription()
 }
 
 void
-CreateAssistantRequest::setDescription(std::string  description)
+CreateAssistantRequest::setDescription(std::string description)
 {
 	this->description = description;
 }
@@ -310,7 +310,7 @@ CreateAssistantRequest::getInstructions()
 }
 
 void
-CreateAssistantRequest::setInstructions(std::string  instructions)
+CreateAssistantRequest::setInstructions(std::string instructions)
 {
 	this->instructions = instructions;
 }
@@ -322,7 +322,7 @@ CreateAssistantRequest::getTools()
 }
 
 void
-CreateAssistantRequest::setTools(std::list <AssistantObject_tools_inner> tools)
+CreateAssistantRequest::setTools(std::list<AssistantObject_tools_inner> tools)
 {
 	this->tools = tools;
 }
@@ -334,7 +334,7 @@ CreateAssistantRequest::getToolResources()
 }
 
 void
-CreateAssistantRequest::setToolResources(CreateAssistantRequest_tool_resources  tool_resources)
+CreateAssistantRequest::setToolResources(CreateAssistantRequest_tool_resources tool_resources)
 {
 	this->tool_resources = tool_resources;
 }
@@ -346,7 +346,7 @@ CreateAssistantRequest::getMetadata()
 }
 
 void
-CreateAssistantRequest::setMetadata(Object  metadata)
+CreateAssistantRequest::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }
@@ -358,7 +358,7 @@ CreateAssistantRequest::getTemperature()
 }
 
 void
-CreateAssistantRequest::setTemperature(long  temperature)
+CreateAssistantRequest::setTemperature(long temperature)
 {
 	this->temperature = temperature;
 }
@@ -370,7 +370,7 @@ CreateAssistantRequest::getTopP()
 }
 
 void
-CreateAssistantRequest::setTopP(long  top_p)
+CreateAssistantRequest::setTopP(long top_p)
 {
 	this->top_p = top_p;
 }
@@ -382,7 +382,7 @@ CreateAssistantRequest::getResponseFormat()
 }
 
 void
-CreateAssistantRequest::setResponseFormat(AssistantsApiResponseFormatOption  response_format)
+CreateAssistantRequest::setResponseFormat(AssistantsApiResponseFormatOption response_format)
 {
 	this->response_format = response_format;
 }

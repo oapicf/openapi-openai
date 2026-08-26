@@ -86,15 +86,17 @@ class _$CompletionUsagePromptTokensDetailsSerializer implements PrimitiveSeriali
         case r'audio_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.audioTokens = valueDes;
           break;
         case r'cached_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.cachedTokens = valueDes;
           break;
         default:

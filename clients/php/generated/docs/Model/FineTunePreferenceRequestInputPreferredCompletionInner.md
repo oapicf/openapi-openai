@@ -1,4 +1,4 @@
-# # FineTunePreferenceRequestInputPreferredCompletionInner
+# FineTunePreferenceRequestInputPreferredCompletionInner
 
 ## Properties
 

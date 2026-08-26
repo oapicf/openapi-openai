@@ -33,7 +33,7 @@ class  AdminApiKey
 {
 public:
     AdminApiKey();
-    virtual ~AdminApiKey() = default;
+    virtual ~AdminApiKey();
 
 
     /// <summary>

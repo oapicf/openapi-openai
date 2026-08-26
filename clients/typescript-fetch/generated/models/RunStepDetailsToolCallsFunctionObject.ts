@@ -35,7 +35,7 @@ export interface RunStepDetailsToolCallsFunctionObject {
     id: string;
     /**
      * The type of tool call. This is always going to be `function` for this type of tool call.
-     * @type {string}
+     * @type {RunStepDetailsToolCallsFunctionObjectTypeEnum}
      * @memberof RunStepDetailsToolCallsFunctionObject
      */
     type: RunStepDetailsToolCallsFunctionObjectTypeEnum;
@@ -63,7 +63,9 @@ export type RunStepDetailsToolCallsFunctionObjectTypeEnum = typeof RunStepDetail
 export function instanceOfRunStepDetailsToolCallsFunctionObject(value: object): value is RunStepDetailsToolCallsFunctionObject {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('_function' in value) || value['_function'] === undefined) return false;
+    if (value['type'] !== 'function') return false;
+    
+    if ((!('_function' in (value as Record<string, any>)) && !('function' in (value as Record<string, any>))) || ((value as Record<string, any>)['_function'] === undefined && (value as Record<string, any>)['function'] === undefined)) return false;
     return true;
 }
 

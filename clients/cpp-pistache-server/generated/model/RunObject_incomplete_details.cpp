@@ -26,6 +26,8 @@ RunObject_incomplete_details::RunObject_incomplete_details()
     
 }
 
+RunObject_incomplete_details::~RunObject_incomplete_details() = default;
+
 void RunObject_incomplete_details::validate() const
 {
     std::stringstream msg;

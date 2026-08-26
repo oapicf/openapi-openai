@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set Always `image_file`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	MessageContentImageFileObject_image_file getImageFile();
 
 	/*! \brief Set 
 	 */
-	void setImageFile(MessageContentImageFileObject_image_file  image_file);
+	void setImageFile(MessageContentImageFileObject_image_file image_file);
 
 
     private:

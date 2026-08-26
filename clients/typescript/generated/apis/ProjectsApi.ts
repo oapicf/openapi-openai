@@ -50,7 +50,7 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}/archive'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -141,7 +141,7 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}/service_accounts'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -196,7 +196,7 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}/users'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -251,8 +251,8 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}/api_keys/{key_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)))
-            .replace('{' + 'key_id' + '}', encodeURIComponent(String(keyId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)))
+            .replace('{key_id}', encodeURIComponent(String(keyId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -296,8 +296,8 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}/service_accounts/{service_account_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)))
-            .replace('{' + 'service_account_id' + '}', encodeURIComponent(String(serviceAccountId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)))
+            .replace('{service_account_id}', encodeURIComponent(String(serviceAccountId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -341,8 +341,8 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}/users/{user_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)))
-            .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)))
+            .replace('{user_id}', encodeURIComponent(String(userId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -383,7 +383,7 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}/api_keys'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -436,7 +436,7 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}/rate_limits'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -492,7 +492,7 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}/service_accounts'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -543,7 +543,7 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}/users'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -647,7 +647,7 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -709,8 +709,8 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}/users/{user_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)))
-            .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)))
+            .replace('{user_id}', encodeURIComponent(String(userId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -758,7 +758,7 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -802,8 +802,8 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}/api_keys/{key_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)))
-            .replace('{' + 'key_id' + '}', encodeURIComponent(String(keyId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)))
+            .replace('{key_id}', encodeURIComponent(String(keyId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -847,8 +847,8 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}/service_accounts/{service_account_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)))
-            .replace('{' + 'service_account_id' + '}', encodeURIComponent(String(serviceAccountId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)))
+            .replace('{service_account_id}', encodeURIComponent(String(serviceAccountId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -892,8 +892,8 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}/users/{user_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)))
-            .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)))
+            .replace('{user_id}', encodeURIComponent(String(userId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -944,8 +944,8 @@ export class ProjectsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/projects/{project_id}/rate_limits/{rate_limit_id}'
-            .replace('{' + 'project_id' + '}', encodeURIComponent(String(projectId)))
-            .replace('{' + 'rate_limit_id' + '}', encodeURIComponent(String(rateLimitId)));
+            .replace('{project_id}', encodeURIComponent(String(projectId)))
+            .replace('{rate_limit_id}', encodeURIComponent(String(rateLimitId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);

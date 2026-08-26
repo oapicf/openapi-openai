@@ -26,6 +26,8 @@ VectorStoreExpirationAfter::VectorStoreExpirationAfter()
     
 }
 
+VectorStoreExpirationAfter::~VectorStoreExpirationAfter() = default;
+
 void VectorStoreExpirationAfter::validate() const
 {
     std::stringstream msg;

@@ -34,7 +34,7 @@ class  CreateMessageRequest_attachments_inner
 {
 public:
     CreateMessageRequest_attachments_inner();
-    virtual ~CreateMessageRequest_attachments_inner() = default;
+    virtual ~CreateMessageRequest_attachments_inner();
 
 
     /// <summary>

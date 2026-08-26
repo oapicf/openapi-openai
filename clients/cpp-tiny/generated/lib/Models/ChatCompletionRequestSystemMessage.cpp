@@ -107,7 +107,7 @@ ChatCompletionRequestSystemMessage::getContent()
 }
 
 void
-ChatCompletionRequestSystemMessage::setContent(ChatCompletionRequestSystemMessage_content  content)
+ChatCompletionRequestSystemMessage::setContent(ChatCompletionRequestSystemMessage_content content)
 {
 	this->content = content;
 }
@@ -119,7 +119,7 @@ ChatCompletionRequestSystemMessage::getRole()
 }
 
 void
-ChatCompletionRequestSystemMessage::setRole(std::string  role)
+ChatCompletionRequestSystemMessage::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -131,7 +131,7 @@ ChatCompletionRequestSystemMessage::getName()
 }
 
 void
-ChatCompletionRequestSystemMessage::setName(std::string  name)
+ChatCompletionRequestSystemMessage::setName(std::string name)
 {
 	this->name = name;
 }

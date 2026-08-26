@@ -93,7 +93,7 @@ export interface FineTuningJob {
     model: string;
     /**
      * The object type, which is always "fine_tuning.job".
-     * @type {string}
+     * @type {FineTuningJobObjectEnum}
      * @memberof FineTuningJob
      */
     object: FineTuningJobObjectEnum;
@@ -111,7 +111,7 @@ export interface FineTuningJob {
     resultFiles: Array<string>;
     /**
      * The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.
-     * @type {string}
+     * @type {FineTuningJobStatusEnum}
      * @memberof FineTuningJob
      */
     status: FineTuningJobStatusEnum;
@@ -187,19 +187,21 @@ export type FineTuningJobStatusEnum = typeof FineTuningJobStatusEnum[keyof typeo
  */
 export function instanceOfFineTuningJob(value: object): value is FineTuningJob {
     if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
     if (!('error' in value) || value['error'] === undefined) return false;
-    if (!('fineTunedModel' in value) || value['fineTunedModel'] === undefined) return false;
-    if (!('finishedAt' in value) || value['finishedAt'] === undefined) return false;
+    if ((!('fineTunedModel' in (value as Record<string, any>)) && !('fine_tuned_model' in (value as Record<string, any>))) || ((value as Record<string, any>)['fineTunedModel'] === undefined && (value as Record<string, any>)['fine_tuned_model'] === undefined)) return false;
+    if ((!('finishedAt' in (value as Record<string, any>)) && !('finished_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['finishedAt'] === undefined && (value as Record<string, any>)['finished_at'] === undefined)) return false;
     if (!('hyperparameters' in value) || value['hyperparameters'] === undefined) return false;
     if (!('model' in value) || value['model'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
-    if (!('organizationId' in value) || value['organizationId'] === undefined) return false;
-    if (!('resultFiles' in value) || value['resultFiles'] === undefined) return false;
+    if (value['object'] !== 'fine_tuning.job') return false;
+    
+    if ((!('organizationId' in (value as Record<string, any>)) && !('organization_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['organizationId'] === undefined && (value as Record<string, any>)['organization_id'] === undefined)) return false;
+    if ((!('resultFiles' in (value as Record<string, any>)) && !('result_files' in (value as Record<string, any>))) || ((value as Record<string, any>)['resultFiles'] === undefined && (value as Record<string, any>)['result_files'] === undefined)) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('trainedTokens' in value) || value['trainedTokens'] === undefined) return false;
-    if (!('trainingFile' in value) || value['trainingFile'] === undefined) return false;
-    if (!('validationFile' in value) || value['validationFile'] === undefined) return false;
+    if ((!('trainedTokens' in (value as Record<string, any>)) && !('trained_tokens' in (value as Record<string, any>))) || ((value as Record<string, any>)['trainedTokens'] === undefined && (value as Record<string, any>)['trained_tokens'] === undefined)) return false;
+    if ((!('trainingFile' in (value as Record<string, any>)) && !('training_file' in (value as Record<string, any>))) || ((value as Record<string, any>)['trainingFile'] === undefined && (value as Record<string, any>)['training_file'] === undefined)) return false;
+    if ((!('validationFile' in (value as Record<string, any>)) && !('validation_file' in (value as Record<string, any>))) || ((value as Record<string, any>)['validationFile'] === undefined && (value as Record<string, any>)['validation_file'] === undefined)) return false;
     if (!('seed' in value) || value['seed'] === undefined) return false;
     return true;
 }
@@ -228,9 +230,9 @@ export function FineTuningJobFromJSONTyped(json: any, ignoreDiscriminator: boole
         'trainedTokens': json['trained_tokens'],
         'trainingFile': json['training_file'],
         'validationFile': json['validation_file'],
-        'integrations': json['integrations'] == null ? undefined : ((json['integrations'] as Array<any>).map(FineTuningJobIntegrationsInnerFromJSON)),
+        'integrations': json['integrations'] === undefined ? undefined : json['integrations'] === null ? null : ((json['integrations'] as Array<any>).map(FineTuningJobIntegrationsInnerFromJSON)),
         'seed': json['seed'],
-        'estimatedFinish': json['estimated_finish'] == null ? undefined : json['estimated_finish'],
+        'estimatedFinish': json['estimated_finish'] === undefined ? undefined : json['estimated_finish'] === null ? null : json['estimated_finish'],
         'method': json['method'] == null ? undefined : FineTuneMethodFromJSON(json['method']),
     };
 }

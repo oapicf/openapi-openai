@@ -24,14 +24,17 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeServerEventRateLimitsUpdated(
 
-    @Schema(example = "null", required = true, description = "The unique ID of the server event.")
+    @Schema(required = true, description = "The unique ID of the server event.")
+    @param:JsonProperty("event_id")
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The event type, must be `rate_limits.updated`.")
+    @Schema(required = true, description = "The event type, must be `rate_limits.updated`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventRateLimitsUpdated.Type,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "List of rate limit information.")
+    @Schema(required = true, description = "List of rate limit information.")
+    @param:JsonProperty("rate_limits")
     @get:JsonProperty("rate_limits", required = true) val rateLimits: kotlin.collections.List<RealtimeServerEventRateLimitsUpdatedRateLimitsInner>
 ) {
 
@@ -48,7 +51,7 @@ data class RealtimeServerEventRateLimitsUpdated(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeServerEventRateLimitsUpdated'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

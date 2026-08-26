@@ -108,18 +108,18 @@ function Initialize-UsageCompletionsResult {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "input_tokens" = ${InputTokens}
-            "input_cached_tokens" = ${InputCachedTokens}
-            "output_tokens" = ${OutputTokens}
-            "input_audio_tokens" = ${InputAudioTokens}
-            "output_audio_tokens" = ${OutputAudioTokens}
-            "num_model_requests" = ${NumModelRequests}
-            "project_id" = ${ProjectId}
-            "user_id" = ${UserId}
-            "api_key_id" = ${ApiKeyId}
-            "model" = ${Model}
-            "batch" = ${Batch}
+            'object' = ${Object}
+            'input_tokens' = ${InputTokens}
+            'input_cached_tokens' = ${InputCachedTokens}
+            'output_tokens' = ${OutputTokens}
+            'input_audio_tokens' = ${InputAudioTokens}
+            'output_audio_tokens' = ${OutputAudioTokens}
+            'num_model_requests' = ${NumModelRequests}
+            'project_id' = ${ProjectId}
+            'user_id' = ${UserId}
+            'api_key_id' = ${ApiKeyId}
+            'model' = ${Model}
+            'batch' = ${Batch}
         }
 
 
@@ -157,7 +157,7 @@ function ConvertFrom-JsonToUsageCompletionsResult {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in UsageCompletionsResult
-        $AllProperties = ("object", "input_tokens", "input_cached_tokens", "output_tokens", "input_audio_tokens", "output_audio_tokens", "num_model_requests", "project_id", "user_id", "api_key_id", "model", "batch")
+        $AllProperties = ('object', 'input_tokens', 'input_cached_tokens', 'output_tokens', 'input_audio_tokens', 'output_audio_tokens', 'num_model_requests', 'project_id', 'user_id', 'api_key_id', 'model', 'batch')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -168,91 +168,91 @@ function ConvertFrom-JsonToUsageCompletionsResult {
             throw "Error! Empty JSON cannot be serialized due to the required property 'object' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "input_tokens"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'input_tokens'))) {
             throw "Error! JSON cannot be serialized due to the required property 'input_tokens' missing."
         } else {
-            $InputTokens = $JsonParameters.PSobject.Properties["input_tokens"].value
+            $InputTokens = $JsonParameters.PSobject.Properties['input_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "output_tokens"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'output_tokens'))) {
             throw "Error! JSON cannot be serialized due to the required property 'output_tokens' missing."
         } else {
-            $OutputTokens = $JsonParameters.PSobject.Properties["output_tokens"].value
+            $OutputTokens = $JsonParameters.PSobject.Properties['output_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "num_model_requests"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'num_model_requests'))) {
             throw "Error! JSON cannot be serialized due to the required property 'num_model_requests' missing."
         } else {
-            $NumModelRequests = $JsonParameters.PSobject.Properties["num_model_requests"].value
+            $NumModelRequests = $JsonParameters.PSobject.Properties['num_model_requests'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "input_cached_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'input_cached_tokens'))) { #optional property not found
             $InputCachedTokens = $null
         } else {
-            $InputCachedTokens = $JsonParameters.PSobject.Properties["input_cached_tokens"].value
+            $InputCachedTokens = $JsonParameters.PSobject.Properties['input_cached_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "input_audio_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'input_audio_tokens'))) { #optional property not found
             $InputAudioTokens = $null
         } else {
-            $InputAudioTokens = $JsonParameters.PSobject.Properties["input_audio_tokens"].value
+            $InputAudioTokens = $JsonParameters.PSobject.Properties['input_audio_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "output_audio_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'output_audio_tokens'))) { #optional property not found
             $OutputAudioTokens = $null
         } else {
-            $OutputAudioTokens = $JsonParameters.PSobject.Properties["output_audio_tokens"].value
+            $OutputAudioTokens = $JsonParameters.PSobject.Properties['output_audio_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "project_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'project_id'))) { #optional property not found
             $ProjectId = $null
         } else {
-            $ProjectId = $JsonParameters.PSobject.Properties["project_id"].value
+            $ProjectId = $JsonParameters.PSobject.Properties['project_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'user_id'))) { #optional property not found
             $UserId = $null
         } else {
-            $UserId = $JsonParameters.PSobject.Properties["user_id"].value
+            $UserId = $JsonParameters.PSobject.Properties['user_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "api_key_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'api_key_id'))) { #optional property not found
             $ApiKeyId = $null
         } else {
-            $ApiKeyId = $JsonParameters.PSobject.Properties["api_key_id"].value
+            $ApiKeyId = $JsonParameters.PSobject.Properties['api_key_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) { #optional property not found
             $Model = $null
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "batch"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'batch'))) { #optional property not found
             $Batch = $null
         } else {
-            $Batch = $JsonParameters.PSobject.Properties["batch"].value
+            $Batch = $JsonParameters.PSobject.Properties['batch'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "input_tokens" = ${InputTokens}
-            "input_cached_tokens" = ${InputCachedTokens}
-            "output_tokens" = ${OutputTokens}
-            "input_audio_tokens" = ${InputAudioTokens}
-            "output_audio_tokens" = ${OutputAudioTokens}
-            "num_model_requests" = ${NumModelRequests}
-            "project_id" = ${ProjectId}
-            "user_id" = ${UserId}
-            "api_key_id" = ${ApiKeyId}
-            "model" = ${Model}
-            "batch" = ${Batch}
+            'object' = ${Object}
+            'input_tokens' = ${InputTokens}
+            'input_cached_tokens' = ${InputCachedTokens}
+            'output_tokens' = ${OutputTokens}
+            'input_audio_tokens' = ${InputAudioTokens}
+            'output_audio_tokens' = ${OutputAudioTokens}
+            'num_model_requests' = ${NumModelRequests}
+            'project_id' = ${ProjectId}
+            'user_id' = ${UserId}
+            'api_key_id' = ${ApiKeyId}
+            'model' = ${Model}
+            'batch' = ${Batch}
         }
 
         return $PSO

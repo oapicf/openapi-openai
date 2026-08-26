@@ -30,6 +30,8 @@ ListFineTuningJobCheckpointsResponse::ListFineTuningJobCheckpointsResponse()
     
 }
 
+ListFineTuningJobCheckpointsResponse::~ListFineTuningJobCheckpointsResponse() = default;
+
 void ListFineTuningJobCheckpointsResponse::validate() const
 {
     std::stringstream msg;

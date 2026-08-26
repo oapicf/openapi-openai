@@ -180,11 +180,11 @@ CreateThreadAndRunRequest <- R6::R6Class(
       }
       if (!is.null(self$`thread`)) {
         CreateThreadAndRunRequestObject[["thread"]] <-
-          self$`thread`$toSimpleType()
+          self$extractSimpleType(self$`thread`)
       }
       if (!is.null(self$`model`)) {
         CreateThreadAndRunRequestObject[["model"]] <-
-          self$`model`$toSimpleType()
+          self$extractSimpleType(self$`model`)
       }
       if (!is.null(self$`instructions`)) {
         CreateThreadAndRunRequestObject[["instructions"]] <-
@@ -192,11 +192,11 @@ CreateThreadAndRunRequest <- R6::R6Class(
       }
       if (!is.null(self$`tools`)) {
         CreateThreadAndRunRequestObject[["tools"]] <-
-          lapply(self$`tools`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`tools`)
       }
       if (!is.null(self$`tool_resources`)) {
         CreateThreadAndRunRequestObject[["tool_resources"]] <-
-          self$`tool_resources`$toSimpleType()
+          self$extractSimpleType(self$`tool_resources`)
       }
       if (!is.null(self$`metadata`)) {
         CreateThreadAndRunRequestObject[["metadata"]] <-
@@ -224,11 +224,11 @@ CreateThreadAndRunRequest <- R6::R6Class(
       }
       if (!is.null(self$`truncation_strategy`)) {
         CreateThreadAndRunRequestObject[["truncation_strategy"]] <-
-          self$`truncation_strategy`$toSimpleType()
+          self$extractSimpleType(self$`truncation_strategy`)
       }
       if (!is.null(self$`tool_choice`)) {
         CreateThreadAndRunRequestObject[["tool_choice"]] <-
-          self$`tool_choice`$toSimpleType()
+          self$extractSimpleType(self$`tool_choice`)
       }
       if (!is.null(self$`parallel_tool_calls`)) {
         CreateThreadAndRunRequestObject[["parallel_tool_calls"]] <-
@@ -236,9 +236,32 @@ CreateThreadAndRunRequest <- R6::R6Class(
       }
       if (!is.null(self$`response_format`)) {
         CreateThreadAndRunRequestObject[["response_format"]] <-
-          self$`response_format`$toSimpleType()
+          self$extractSimpleType(self$`response_format`)
       }
       return(CreateThreadAndRunRequestObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

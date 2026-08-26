@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRealtimeResponse_status_details_error::OAIRealtimeResponse_status_details_error(QString json) {
+OAIRealtimeResponse_status_details_error::OAIRealtimeResponse_status_details_error(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIRealtimeResponse_status_details_error::initializeModel() {
     m_code_isValid = false;
 }
 
-void OAIRealtimeResponse_status_details_error::fromJson(QString jsonString) {
+void OAIRealtimeResponse_status_details_error::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

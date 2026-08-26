@@ -208,7 +208,7 @@ CreateCompletionResponse::getId()
 }
 
 void
-CreateCompletionResponse::setId(std::string  id)
+CreateCompletionResponse::setId(std::string id)
 {
 	this->id = id;
 }
@@ -220,7 +220,7 @@ CreateCompletionResponse::getChoices()
 }
 
 void
-CreateCompletionResponse::setChoices(std::list <CreateCompletionResponse_choices_inner> choices)
+CreateCompletionResponse::setChoices(std::list<CreateCompletionResponse_choices_inner> choices)
 {
 	this->choices = choices;
 }
@@ -232,7 +232,7 @@ CreateCompletionResponse::getCreated()
 }
 
 void
-CreateCompletionResponse::setCreated(int  created)
+CreateCompletionResponse::setCreated(int created)
 {
 	this->created = created;
 }
@@ -244,7 +244,7 @@ CreateCompletionResponse::getModel()
 }
 
 void
-CreateCompletionResponse::setModel(std::string  model)
+CreateCompletionResponse::setModel(std::string model)
 {
 	this->model = model;
 }
@@ -256,7 +256,7 @@ CreateCompletionResponse::getSystemFingerprint()
 }
 
 void
-CreateCompletionResponse::setSystemFingerprint(std::string  system_fingerprint)
+CreateCompletionResponse::setSystemFingerprint(std::string system_fingerprint)
 {
 	this->system_fingerprint = system_fingerprint;
 }
@@ -268,7 +268,7 @@ CreateCompletionResponse::getObject()
 }
 
 void
-CreateCompletionResponse::setObject(std::string  object)
+CreateCompletionResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -280,7 +280,7 @@ CreateCompletionResponse::getUsage()
 }
 
 void
-CreateCompletionResponse::setUsage(CompletionUsage  usage)
+CreateCompletionResponse::setUsage(CompletionUsage usage)
 {
 	this->usage = usage;
 }

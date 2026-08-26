@@ -107,29 +107,33 @@ class _$CreateCompletionResponseChoicesInnerLogprobsSerializer implements Primit
         case r'text_offset':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(int)]),
-          ) as BuiltList<int>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(int)]),
+          ) as BuiltList<int>?;
+          if (valueDes == null) continue;
           result.textOffset.replace(valueDes);
           break;
         case r'token_logprobs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(num)]),
-          ) as BuiltList<num>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(num)]),
+          ) as BuiltList<num>?;
+          if (valueDes == null) continue;
           result.tokenLogprobs.replace(valueDes);
           break;
         case r'tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.tokens.replace(valueDes);
           break;
         case r'top_logprobs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(BuiltMap, [FullType(String), FullType(num)])]),
-          ) as BuiltList<BuiltMap<String, num>>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(BuiltMap, [FullType(String), FullType(num)])]),
+          ) as BuiltList<BuiltMap<String, num>>?;
+          if (valueDes == null) continue;
           result.topLogprobs.replace(valueDes);
           break;
         default:

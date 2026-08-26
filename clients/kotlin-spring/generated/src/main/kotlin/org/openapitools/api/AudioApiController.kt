@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.AudioApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -35,7 +34,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.openAI.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:/v1}")
 class AudioApiController() {
 
     @Operation(
@@ -48,7 +47,8 @@ class AudioApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_SPEECH /* "/audio/speech" */],
+        // "/audio/speech"
+        value = [PATH_CREATE_SPEECH],
         produces = ["application/octet-stream"],
         consumes = ["application/json"]
     )
@@ -68,7 +68,8 @@ class AudioApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_TRANSCRIPTION /* "/audio/transcriptions" */],
+        // "/audio/transcriptions"
+        value = [PATH_CREATE_TRANSCRIPTION],
         produces = ["application/json"],
         consumes = ["multipart/form-data"]
     )
@@ -94,7 +95,8 @@ class AudioApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_TRANSLATION /* "/audio/translations" */],
+        // "/audio/translations"
+        value = [PATH_CREATE_TRANSLATION],
         produces = ["application/json"],
         consumes = ["multipart/form-data"]
     )

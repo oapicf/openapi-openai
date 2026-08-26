@@ -21,7 +21,7 @@ typedef struct chat_completion_token_logprob_t chat_completion_token_logprob_t;
 
 typedef struct chat_completion_token_logprob_t {
     char *token; // string
-    double logprob; //numeric
+    double *logprob; //numeric
     list_t *bytes; //primitive container
     list_t *top_logprobs; //nonprimitive container
 
@@ -30,7 +30,7 @@ typedef struct chat_completion_token_logprob_t {
 
 __attribute__((deprecated)) chat_completion_token_logprob_t *chat_completion_token_logprob_create(
     char *token,
-    double logprob,
+    double *logprob,
     list_t *bytes,
     list_t *top_logprobs
 );

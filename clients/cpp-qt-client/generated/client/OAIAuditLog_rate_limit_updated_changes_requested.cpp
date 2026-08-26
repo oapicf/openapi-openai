@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIAuditLog_rate_limit_updated_changes_requested::OAIAuditLog_rate_limit_updated_changes_requested(QString json) {
+OAIAuditLog_rate_limit_updated_changes_requested::OAIAuditLog_rate_limit_updated_changes_requested(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -53,7 +53,7 @@ void OAIAuditLog_rate_limit_updated_changes_requested::initializeModel() {
     m_batch_1_day_max_input_tokens_isValid = false;
 }
 
-void OAIAuditLog_rate_limit_updated_changes_requested::fromJson(QString jsonString) {
+void OAIAuditLog_rate_limit_updated_changes_requested::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

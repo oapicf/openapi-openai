@@ -34,7 +34,7 @@ class  AuditLogActor
 {
 public:
     AuditLogActor();
-    virtual ~AuditLogActor() = default;
+    virtual ~AuditLogActor();
 
 
     /// <summary>

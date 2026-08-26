@@ -1,0 +1,14 @@
+## ModerationsApi
+
+### Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
+## Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
+POST https://api.openai.com/v1/moderations
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "input": "<string>",
+ "model": "<string>"
+}
+

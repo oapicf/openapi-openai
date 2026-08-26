@@ -33,13 +33,13 @@ static realtime_conversation_item_content_inner_t *realtime_conversation_item_co
     if (!realtime_conversation_item_content_inner_local_var) {
         return NULL;
     }
+    memset(realtime_conversation_item_content_inner_local_var, 0, sizeof(realtime_conversation_item_content_inner_t));
+    realtime_conversation_item_content_inner_local_var->_library_owned = 1;
     realtime_conversation_item_content_inner_local_var->type = type;
     realtime_conversation_item_content_inner_local_var->text = text;
     realtime_conversation_item_content_inner_local_var->id = id;
     realtime_conversation_item_content_inner_local_var->audio = audio;
     realtime_conversation_item_content_inner_local_var->transcript = transcript;
-
-    realtime_conversation_item_content_inner_local_var->_library_owned = 1;
     return realtime_conversation_item_content_inner_local_var;
 }
 
@@ -50,13 +50,16 @@ __attribute__((deprecated)) realtime_conversation_item_content_inner_t *realtime
     char *audio,
     char *transcript
     ) {
-    return realtime_conversation_item_content_inner_create_internal (
+    realtime_conversation_item_content_inner_t *result = realtime_conversation_item_content_inner_create_internal (
         type,
         text,
         id,
         audio,
         transcript
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_conversation_item_content_inner_free(realtime_conversation_item_content_inner_t *realtime_conversation_item_content_inner) {
@@ -142,6 +145,14 @@ realtime_conversation_item_content_inner_t *realtime_conversation_item_content_i
 
     realtime_conversation_item_content_inner_t *realtime_conversation_item_content_inner_local_var = NULL;
 
+    char *text_local_str = NULL;
+
+    char *id_local_str = NULL;
+
+    char *audio_local_str = NULL;
+
+    char *transcript_local_str = NULL;
+
     // realtime_conversation_item_content_inner->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(realtime_conversation_item_content_innerJSON, "type");
     if (cJSON_IsNull(type)) {
@@ -205,16 +216,41 @@ realtime_conversation_item_content_inner_t *realtime_conversation_item_content_i
     }
 
 
+    if (text && !cJSON_IsNull(text)) text_local_str = strdup(text->valuestring);
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (audio && !cJSON_IsNull(audio)) audio_local_str = strdup(audio->valuestring);
+    if (transcript && !cJSON_IsNull(transcript)) transcript_local_str = strdup(transcript->valuestring);
+
     realtime_conversation_item_content_inner_local_var = realtime_conversation_item_content_inner_create_internal (
         type ? typeVariable : openai_api_realtime_conversation_item_content_inner_TYPE_NULL,
-        text && !cJSON_IsNull(text) ? strdup(text->valuestring) : NULL,
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        audio && !cJSON_IsNull(audio) ? strdup(audio->valuestring) : NULL,
-        transcript && !cJSON_IsNull(transcript) ? strdup(transcript->valuestring) : NULL
+        text_local_str,
+        id_local_str,
+        audio_local_str,
+        transcript_local_str
         );
+
+    if (!realtime_conversation_item_content_inner_local_var) {
+        goto end;
+    }
 
     return realtime_conversation_item_content_inner_local_var;
 end:
+    if (text_local_str) {
+        free(text_local_str);
+        text_local_str = NULL;
+    }
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (audio_local_str) {
+        free(audio_local_str);
+        audio_local_str = NULL;
+    }
+    if (transcript_local_str) {
+        free(transcript_local_str);
+        transcript_local_str = NULL;
+    }
     return NULL;
 
 }

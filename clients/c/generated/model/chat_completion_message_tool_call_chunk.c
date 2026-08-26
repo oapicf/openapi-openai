@@ -23,7 +23,7 @@ openai_api_chat_completion_message_tool_call_chunk_TYPE_e chat_completion_messag
 }
 
 static chat_completion_message_tool_call_chunk_t *chat_completion_message_tool_call_chunk_create_internal(
-    int index,
+    int *index,
     char *id,
     openai_api_chat_completion_message_tool_call_chunk_TYPE_e type,
     chat_completion_message_tool_call_chunk_function_t *function
@@ -32,27 +32,36 @@ static chat_completion_message_tool_call_chunk_t *chat_completion_message_tool_c
     if (!chat_completion_message_tool_call_chunk_local_var) {
         return NULL;
     }
+    memset(chat_completion_message_tool_call_chunk_local_var, 0, sizeof(chat_completion_message_tool_call_chunk_t));
+    chat_completion_message_tool_call_chunk_local_var->_library_owned = 1;
     chat_completion_message_tool_call_chunk_local_var->index = index;
     chat_completion_message_tool_call_chunk_local_var->id = id;
     chat_completion_message_tool_call_chunk_local_var->type = type;
     chat_completion_message_tool_call_chunk_local_var->function = function;
-
-    chat_completion_message_tool_call_chunk_local_var->_library_owned = 1;
     return chat_completion_message_tool_call_chunk_local_var;
 }
 
 __attribute__((deprecated)) chat_completion_message_tool_call_chunk_t *chat_completion_message_tool_call_chunk_create(
-    int index,
+    int *index,
     char *id,
     openai_api_chat_completion_message_tool_call_chunk_TYPE_e type,
     chat_completion_message_tool_call_chunk_function_t *function
     ) {
-    return chat_completion_message_tool_call_chunk_create_internal (
-        index,
+    int *index_copy = NULL;
+    if (index) {
+        index_copy = malloc(sizeof(int));
+        if (index_copy) *index_copy = *index;
+    }
+    chat_completion_message_tool_call_chunk_t *result = chat_completion_message_tool_call_chunk_create_internal (
+        index_copy,
         id,
         type,
         function
         );
+    if (!result) {
+        free(index_copy);
+    }
+    return result;
 }
 
 void chat_completion_message_tool_call_chunk_free(chat_completion_message_tool_call_chunk_t *chat_completion_message_tool_call_chunk) {
@@ -64,6 +73,10 @@ void chat_completion_message_tool_call_chunk_free(chat_completion_message_tool_c
         return ;
     }
     listEntry_t *listEntry;
+    if (chat_completion_message_tool_call_chunk->index) {
+        free(chat_completion_message_tool_call_chunk->index);
+        chat_completion_message_tool_call_chunk->index = NULL;
+    }
     if (chat_completion_message_tool_call_chunk->id) {
         free(chat_completion_message_tool_call_chunk->id);
         chat_completion_message_tool_call_chunk->id = NULL;
@@ -82,7 +95,7 @@ cJSON *chat_completion_message_tool_call_chunk_convertToJSON(chat_completion_mes
     if (!chat_completion_message_tool_call_chunk->index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "index", chat_completion_message_tool_call_chunk->index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "index", *chat_completion_message_tool_call_chunk->index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -128,6 +141,11 @@ chat_completion_message_tool_call_chunk_t *chat_completion_message_tool_call_chu
 
     chat_completion_message_tool_call_chunk_t *chat_completion_message_tool_call_chunk_local_var = NULL;
 
+    // define the local variable for chat_completion_message_tool_call_chunk->index
+    int *index_local_var = NULL;
+
+    char *id_local_str = NULL;
+
     // define the local variable for chat_completion_message_tool_call_chunk->function
     chat_completion_message_tool_call_chunk_function_t *function_local_nonprim = NULL;
 
@@ -145,6 +163,12 @@ chat_completion_message_tool_call_chunk_t *chat_completion_message_tool_call_chu
     {
     goto end; //Numeric
     }
+    index_local_var = malloc(sizeof(int));
+    if(!index_local_var)
+    {
+        goto end;
+    }
+    *index_local_var = index->valuedouble;
 
     // chat_completion_message_tool_call_chunk->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(chat_completion_message_tool_call_chunkJSON, "id");
@@ -182,15 +206,29 @@ chat_completion_message_tool_call_chunk_t *chat_completion_message_tool_call_chu
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     chat_completion_message_tool_call_chunk_local_var = chat_completion_message_tool_call_chunk_create_internal (
-        index->valuedouble,
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
+        index_local_var,
+        id_local_str,
         type ? typeVariable : openai_api_chat_completion_message_tool_call_chunk_TYPE_NULL,
         function ? function_local_nonprim : NULL
         );
 
+    if (!chat_completion_message_tool_call_chunk_local_var) {
+        goto end;
+    }
+
     return chat_completion_message_tool_call_chunk_local_var;
 end:
+    if (index_local_var) {
+        free(index_local_var);
+        index_local_var = NULL;
+    }
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     if (function_local_nonprim) {
         chat_completion_message_tool_call_chunk_function_free(function_local_nonprim);
         function_local_nonprim = NULL;

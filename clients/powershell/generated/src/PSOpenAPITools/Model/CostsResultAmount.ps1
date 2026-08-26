@@ -41,8 +41,8 @@ function Initialize-CostsResultAmount {
 
 
         $PSO = [PSCustomObject]@{
-            "value" = ${Value}
-            "currency" = ${Currency}
+            'value' = ${Value}
+            'currency' = ${Currency}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToCostsResultAmount {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CostsResultAmount
-        $AllProperties = ("value", "currency")
+        $AllProperties = ('value', 'currency')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "value"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'value'))) { #optional property not found
             $Value = $null
         } else {
-            $Value = $JsonParameters.PSobject.Properties["value"].value
+            $Value = $JsonParameters.PSobject.Properties['value'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "currency"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'currency'))) { #optional property not found
             $Currency = $null
         } else {
-            $Currency = $JsonParameters.PSobject.Properties["currency"].value
+            $Currency = $JsonParameters.PSobject.Properties['currency'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "value" = ${Value}
-            "currency" = ${Currency}
+            'value' = ${Value}
+            'currency' = ${Currency}
         }
 
         return $PSO

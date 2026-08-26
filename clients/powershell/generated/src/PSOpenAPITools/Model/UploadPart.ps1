@@ -68,10 +68,10 @@ function Initialize-UploadPart {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "created_at" = ${CreatedAt}
-            "upload_id" = ${UploadId}
-            "object" = ${Object}
+            'id' = ${Id}
+            'created_at' = ${CreatedAt}
+            'upload_id' = ${UploadId}
+            'object' = ${Object}
         }
 
 
@@ -109,7 +109,7 @@ function ConvertFrom-JsonToUploadPart {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in UploadPart
-        $AllProperties = ("id", "created_at", "upload_id", "object")
+        $AllProperties = ('id', 'created_at', 'upload_id', 'object')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -120,35 +120,35 @@ function ConvertFrom-JsonToUploadPart {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created_at' missing."
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "upload_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'upload_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'upload_id' missing."
         } else {
-            $UploadId = $JsonParameters.PSobject.Properties["upload_id"].value
+            $UploadId = $JsonParameters.PSobject.Properties['upload_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "created_at" = ${CreatedAt}
-            "upload_id" = ${UploadId}
-            "object" = ${Object}
+            'id' = ${Id}
+            'created_at' = ${CreatedAt}
+            'upload_id' = ${UploadId}
+            'object' = ${Object}
         }
 
         return $PSO

@@ -27,19 +27,19 @@ static list_fine_tuning_job_checkpoints_response_t *list_fine_tuning_job_checkpo
     openai_api_list_fine_tuning_job_checkpoints_response_OBJECT_e object,
     char *first_id,
     char *last_id,
-    int has_more
+    int *has_more
     ) {
     list_fine_tuning_job_checkpoints_response_t *list_fine_tuning_job_checkpoints_response_local_var = malloc(sizeof(list_fine_tuning_job_checkpoints_response_t));
     if (!list_fine_tuning_job_checkpoints_response_local_var) {
         return NULL;
     }
+    memset(list_fine_tuning_job_checkpoints_response_local_var, 0, sizeof(list_fine_tuning_job_checkpoints_response_t));
+    list_fine_tuning_job_checkpoints_response_local_var->_library_owned = 1;
     list_fine_tuning_job_checkpoints_response_local_var->data = data;
     list_fine_tuning_job_checkpoints_response_local_var->object = object;
     list_fine_tuning_job_checkpoints_response_local_var->first_id = first_id;
     list_fine_tuning_job_checkpoints_response_local_var->last_id = last_id;
     list_fine_tuning_job_checkpoints_response_local_var->has_more = has_more;
-
-    list_fine_tuning_job_checkpoints_response_local_var->_library_owned = 1;
     return list_fine_tuning_job_checkpoints_response_local_var;
 }
 
@@ -48,15 +48,24 @@ __attribute__((deprecated)) list_fine_tuning_job_checkpoints_response_t *list_fi
     openai_api_list_fine_tuning_job_checkpoints_response_OBJECT_e object,
     char *first_id,
     char *last_id,
-    int has_more
+    int *has_more
     ) {
-    return list_fine_tuning_job_checkpoints_response_create_internal (
+    int *has_more_copy = NULL;
+    if (has_more) {
+        has_more_copy = malloc(sizeof(int));
+        if (has_more_copy) *has_more_copy = *has_more;
+    }
+    list_fine_tuning_job_checkpoints_response_t *result = list_fine_tuning_job_checkpoints_response_create_internal (
         data,
         object,
         first_id,
         last_id,
-        has_more
+        has_more_copy
         );
+    if (!result) {
+        free(has_more_copy);
+    }
+    return result;
 }
 
 void list_fine_tuning_job_checkpoints_response_free(list_fine_tuning_job_checkpoints_response_t *list_fine_tuning_job_checkpoints_response) {
@@ -82,6 +91,10 @@ void list_fine_tuning_job_checkpoints_response_free(list_fine_tuning_job_checkpo
     if (list_fine_tuning_job_checkpoints_response->last_id) {
         free(list_fine_tuning_job_checkpoints_response->last_id);
         list_fine_tuning_job_checkpoints_response->last_id = NULL;
+    }
+    if (list_fine_tuning_job_checkpoints_response->has_more) {
+        free(list_fine_tuning_job_checkpoints_response->has_more);
+        list_fine_tuning_job_checkpoints_response->has_more = NULL;
     }
     free(list_fine_tuning_job_checkpoints_response);
 }
@@ -140,7 +153,7 @@ cJSON *list_fine_tuning_job_checkpoints_response_convertToJSON(list_fine_tuning_
     if (!list_fine_tuning_job_checkpoints_response->has_more) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "has_more", list_fine_tuning_job_checkpoints_response->has_more) == NULL) {
+    if(cJSON_AddBoolToObject(item, "has_more", *list_fine_tuning_job_checkpoints_response->has_more) == NULL) {
     goto fail; //Bool
     }
 
@@ -158,6 +171,13 @@ list_fine_tuning_job_checkpoints_response_t *list_fine_tuning_job_checkpoints_re
 
     // define the local list for list_fine_tuning_job_checkpoints_response->data
     list_t *dataList = NULL;
+
+    char *first_id_local_str = NULL;
+
+    char *last_id_local_str = NULL;
+
+    // define the local variable for list_fine_tuning_job_checkpoints_response->has_more
+    int *has_more_local_var = NULL;
 
     // list_fine_tuning_job_checkpoints_response->data
     cJSON *data = cJSON_GetObjectItemCaseSensitive(list_fine_tuning_job_checkpoints_responseJSON, "data");
@@ -241,15 +261,28 @@ list_fine_tuning_job_checkpoints_response_t *list_fine_tuning_job_checkpoints_re
     {
     goto end; //Bool
     }
+    has_more_local_var = malloc(sizeof(int));
+    if(!has_more_local_var)
+    {
+        goto end;
+    }
+    *has_more_local_var = has_more->valueint;
 
+
+    if (first_id && !cJSON_IsNull(first_id)) first_id_local_str = strdup(first_id->valuestring);
+    if (last_id && !cJSON_IsNull(last_id)) last_id_local_str = strdup(last_id->valuestring);
 
     list_fine_tuning_job_checkpoints_response_local_var = list_fine_tuning_job_checkpoints_response_create_internal (
         dataList,
         objectVariable,
-        first_id && !cJSON_IsNull(first_id) ? strdup(first_id->valuestring) : NULL,
-        last_id && !cJSON_IsNull(last_id) ? strdup(last_id->valuestring) : NULL,
-        has_more->valueint
+        first_id_local_str,
+        last_id_local_str,
+        has_more_local_var
         );
+
+    if (!list_fine_tuning_job_checkpoints_response_local_var) {
+        goto end;
+    }
 
     return list_fine_tuning_job_checkpoints_response_local_var;
 end:
@@ -261,6 +294,18 @@ end:
         }
         list_freeList(dataList);
         dataList = NULL;
+    }
+    if (first_id_local_str) {
+        free(first_id_local_str);
+        first_id_local_str = NULL;
+    }
+    if (last_id_local_str) {
+        free(last_id_local_str);
+        last_id_local_str = NULL;
+    }
+    if (has_more_local_var) {
+        free(has_more_local_var);
+        has_more_local_var = NULL;
     }
     return NULL;
 

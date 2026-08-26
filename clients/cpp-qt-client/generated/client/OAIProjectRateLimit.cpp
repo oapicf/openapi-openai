@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIProjectRateLimit::OAIProjectRateLimit(QString json) {
+OAIProjectRateLimit::OAIProjectRateLimit(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -62,7 +62,7 @@ void OAIProjectRateLimit::initializeModel() {
     m_batch_1_day_max_input_tokens_isValid = false;
 }
 
-void OAIProjectRateLimit::fromJson(QString jsonString) {
+void OAIProjectRateLimit::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

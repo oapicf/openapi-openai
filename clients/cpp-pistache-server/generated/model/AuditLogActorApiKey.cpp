@@ -30,6 +30,8 @@ AuditLogActorApiKey::AuditLogActorApiKey()
     
 }
 
+AuditLogActorApiKey::~AuditLogActorApiKey() = default;
+
 void AuditLogActorApiKey::validate() const
 {
     std::stringstream msg;

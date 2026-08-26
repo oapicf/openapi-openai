@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type CreateVectorStoreFileRequest struct {
@@ -21,18 +26,68 @@ type CreateVectorStoreFileRequest struct {
 
 	ChunkingStrategy ChunkingStrategyRequestParam `json:"chunking_strategy,omitempty"`
 }
-
-// AssertCreateVectorStoreFileRequestRequired checks if the required fields are not zero-ed
-func AssertCreateVectorStoreFileRequestRequired(obj CreateVectorStoreFileRequest) error {
-	elements := map[string]interface{}{
-		"file_id": obj.FileId,
+// UnmarshalJSON validates required property keys then unmarshals into CreateVectorStoreFileRequest
+func (o *CreateVectorStoreFileRequest) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"file_id",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"file_id": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"file_id": {},
+		"chunking_strategy": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CreateVectorStoreFileRequest
+
+	if value, exists := allProperties["file_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.FileId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["chunking_strategy"]; exists {
+		if err = json.Unmarshal(value, &decoded.ChunkingStrategy); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCreateVectorStoreFileRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertCreateVectorStoreFileRequestRequired(obj CreateVectorStoreFileRequest) error {
 	if err := AssertChunkingStrategyRequestParamRequired(obj.ChunkingStrategy); err != nil {
 		return err
 	}

@@ -29,7 +29,7 @@ typedef struct create_fine_tuning_job_request_t {
     char *suffix; // string
     char *validation_file; // string
     list_t *integrations; //nonprimitive container
-    int seed; //numeric
+    int *seed; //numeric
     struct fine_tune_method_t *method; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -42,7 +42,7 @@ __attribute__((deprecated)) create_fine_tuning_job_request_t *create_fine_tuning
     char *suffix,
     char *validation_file,
     list_t *integrations,
-    int seed,
+    int *seed,
     fine_tune_method_t *method
 );
 

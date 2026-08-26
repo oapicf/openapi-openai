@@ -39,13 +39,13 @@ class OAIRealtimeConversationItem;
 class OAIRealtimeResponseCreateParams : public OAIObject {
 public:
     OAIRealtimeResponseCreateParams();
-    OAIRealtimeResponseCreateParams(QString json);
+    OAIRealtimeResponseCreateParams(const QString &json);
     ~OAIRealtimeResponseCreateParams() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QList<QString> getModalities() const;
     void setModalities(const QList<QString> &modalities);

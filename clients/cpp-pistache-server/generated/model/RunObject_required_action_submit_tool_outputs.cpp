@@ -24,6 +24,8 @@ RunObject_required_action_submit_tool_outputs::RunObject_required_action_submit_
     
 }
 
+RunObject_required_action_submit_tool_outputs::~RunObject_required_action_submit_tool_outputs() = default;
+
 void RunObject_required_action_submit_tool_outputs::validate() const
 {
     std::stringstream msg;

@@ -53,10 +53,10 @@ class MessageStreamEvent {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageStreamEvent[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageStreamEvent[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event'), 'Required key "MessageStreamEvent[event]" is missing from JSON.');
+        assert(json[r'event'] != null, 'Required key "MessageStreamEvent[event]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "MessageStreamEvent[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "MessageStreamEvent[data]" has a null value in JSON.');
         return true;
       }());
 
@@ -116,27 +116,28 @@ class MessageStreamEvent {
 }
 
 
-class MessageStreamEventEventEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageStreamEventEventEnum._(this.value);
+enum MessageStreamEventEventEnum {
+  threadPeriodMessagePeriodIncomplete._(r'thread.message.incomplete'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageStreamEventEventEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodMessagePeriodIncomplete = MessageStreamEventEventEnum._(r'thread.message.incomplete');
-
-  /// List of all possible values in this [enum][MessageStreamEventEventEnum].
-  static const values = <MessageStreamEventEventEnum>[
-    threadPeriodMessagePeriodIncomplete,
-  ];
-
+  /// Returns the instance of [MessageStreamEventEventEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageStreamEventEventEnum? fromJson(dynamic value) => MessageStreamEventEventEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageStreamEventEventEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageStreamEventEventEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageStreamEventEventEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -158,9 +159,10 @@ class MessageStreamEventEventEnumTypeTransformer {
 
   const MessageStreamEventEventEnumTypeTransformer._();
 
-  String encode(MessageStreamEventEventEnum data) => data.value;
+  String encode(MessageStreamEventEventEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageStreamEventEventEnum.
+  /// Returns the instance of [MessageStreamEventEventEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -169,6 +171,9 @@ class MessageStreamEventEventEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageStreamEventEventEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageStreamEventEventEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.message.incomplete': return MessageStreamEventEventEnum.threadPeriodMessagePeriodIncomplete;
@@ -181,7 +186,7 @@ class MessageStreamEventEventEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageStreamEventEventEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageStreamEventEventEnumTypeTransformer? _instance;
 }
 

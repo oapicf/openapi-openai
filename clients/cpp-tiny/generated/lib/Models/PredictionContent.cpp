@@ -86,7 +86,7 @@ PredictionContent::getType()
 }
 
 void
-PredictionContent::setType(std::string  type)
+PredictionContent::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ PredictionContent::getContent()
 }
 
 void
-PredictionContent::setContent(PredictionContent_content  content)
+PredictionContent::setContent(PredictionContent_content content)
 {
 	this->content = content;
 }

@@ -50,8 +50,8 @@ function Initialize-CreateModerationRequestInputOneOfInnerOneOf {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "image_url" = ${ImageUrl}
+            'type' = ${Type}
+            'image_url' = ${ImageUrl}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToCreateModerationRequestInputOneOfInnerOneOf {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateModerationRequestInputOneOfInnerOneOf
-        $AllProperties = ("type", "image_url")
+        $AllProperties = ('type', 'image_url')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToCreateModerationRequestInputOneOfInnerOneOf {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "image_url"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'image_url'))) {
             throw "Error! JSON cannot be serialized due to the required property 'image_url' missing."
         } else {
-            $ImageUrl = $JsonParameters.PSobject.Properties["image_url"].value
+            $ImageUrl = $JsonParameters.PSobject.Properties['image_url'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "image_url" = ${ImageUrl}
+            'type' = ${Type}
+            'image_url' = ${ImageUrl}
         }
 
         return $PSO

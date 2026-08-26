@@ -1,0 +1,43 @@
+
+
+/**
+ * Returned when the model-generated function call arguments are updated. 
+ */
+export interface RealtimeServerEventResponseFunctionCallArgumentsDelta { 
+  /**
+   * The unique ID of the server event.
+   */
+  event_id: string;
+  /**
+   * The event type, must be `response.function_call_arguments.delta`. 
+   */
+  type: RealtimeServerEventResponseFunctionCallArgumentsDelta.TypeEnum;
+  /**
+   * The ID of the response.
+   */
+  response_id: string;
+  /**
+   * The ID of the function call item.
+   */
+  item_id: string;
+  /**
+   * The index of the output item in the response.
+   */
+  output_index: number;
+  /**
+   * The ID of the function call.
+   */
+  call_id: string;
+  /**
+   * The arguments delta as a JSON string.
+   */
+  delta: string;
+}
+export namespace RealtimeServerEventResponseFunctionCallArgumentsDelta {
+  export const TypeEnum = {
+    ResponseFunctionCallArgumentsDelta: 'response.function_call_arguments.delta'
+  } as const;
+  export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
+}
+
+

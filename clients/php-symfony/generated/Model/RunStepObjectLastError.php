@@ -51,7 +51,7 @@ class RunStepObjectLastError
      * @var string|null
      * @SerializedName("code")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['server_error', 'rate_limit_exceeded'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class RunStepObjectLastError
      * @var string|null
      * @SerializedName("message")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $message = null;
@@ -91,12 +91,12 @@ class RunStepObjectLastError
     }
 
     /**
-    * Sets code.
-    *
-    * @param string|null $code  One of `server_error` or `rate_limit_exceeded`.
-    *
-    * @return $this
-    */
+     * Sets code.
+     *
+     * @param string|null $code  One of `server_error` or `rate_limit_exceeded`.
+     *
+     * @return $this
+     */
     public function setCode(?string $code): self
     {
         $this->code = $code;
@@ -118,12 +118,12 @@ class RunStepObjectLastError
     }
 
     /**
-    * Sets message.
-    *
-    * @param string|null $message  A human-readable description of the error.
-    *
-    * @return $this
-    */
+     * Sets message.
+     *
+     * @param string|null $message  A human-readable description of the error.
+     *
+     * @return $this
+     */
     public function setMessage(?string $message): self
     {
         $this->message = $message;

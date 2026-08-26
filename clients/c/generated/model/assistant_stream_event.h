@@ -41,7 +41,7 @@ openai_api_assistant_stream_event_DATA_e assistant_stream_event_data_FromString(
 
 
 typedef struct assistant_stream_event_t {
-    int enabled; //boolean
+    int *enabled; //boolean
     openai_api_assistant_stream_event_EVENT_e event; //enum
     openai_api_assistant_stream_event_DATA_e data; //enum
 
@@ -49,7 +49,7 @@ typedef struct assistant_stream_event_t {
 } assistant_stream_event_t;
 
 __attribute__((deprecated)) assistant_stream_event_t *assistant_stream_event_create(
-    int enabled,
+    int *enabled,
     openai_api_assistant_stream_event_EVENT_e event,
     openai_api_assistant_stream_event_DATA_e data
 );

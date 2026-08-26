@@ -29,7 +29,7 @@ openai_api_list_paginated_fine_tuning_jobs_response_OBJECT_e list_paginated_fine
 
 typedef struct list_paginated_fine_tuning_jobs_response_t {
     list_t *data; //nonprimitive container
-    int has_more; //boolean
+    int *has_more; //boolean
     openai_api_list_paginated_fine_tuning_jobs_response_OBJECT_e object; //enum
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -37,7 +37,7 @@ typedef struct list_paginated_fine_tuning_jobs_response_t {
 
 __attribute__((deprecated)) list_paginated_fine_tuning_jobs_response_t *list_paginated_fine_tuning_jobs_response_create(
     list_t *data,
-    int has_more,
+    int *has_more,
     openai_api_list_paginated_fine_tuning_jobs_response_OBJECT_e object
 );
 

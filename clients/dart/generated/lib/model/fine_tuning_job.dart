@@ -202,10 +202,31 @@ class FineTuningJob {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "FineTuningJob[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "FineTuningJob[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "FineTuningJob[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "FineTuningJob[id]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "FineTuningJob[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "FineTuningJob[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'error'), 'Required key "FineTuningJob[error]" is missing from JSON.');
+        assert(json.containsKey(r'fine_tuned_model'), 'Required key "FineTuningJob[fine_tuned_model]" is missing from JSON.');
+        assert(json.containsKey(r'finished_at'), 'Required key "FineTuningJob[finished_at]" is missing from JSON.');
+        assert(json.containsKey(r'hyperparameters'), 'Required key "FineTuningJob[hyperparameters]" is missing from JSON.');
+        assert(json[r'hyperparameters'] != null, 'Required key "FineTuningJob[hyperparameters]" has a null value in JSON.');
+        assert(json.containsKey(r'model'), 'Required key "FineTuningJob[model]" is missing from JSON.');
+        assert(json[r'model'] != null, 'Required key "FineTuningJob[model]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "FineTuningJob[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "FineTuningJob[object]" has a null value in JSON.');
+        assert(json.containsKey(r'organization_id'), 'Required key "FineTuningJob[organization_id]" is missing from JSON.');
+        assert(json[r'organization_id'] != null, 'Required key "FineTuningJob[organization_id]" has a null value in JSON.');
+        assert(json.containsKey(r'result_files'), 'Required key "FineTuningJob[result_files]" is missing from JSON.');
+        assert(json[r'result_files'] != null, 'Required key "FineTuningJob[result_files]" has a null value in JSON.');
+        assert(json.containsKey(r'status'), 'Required key "FineTuningJob[status]" is missing from JSON.');
+        assert(json[r'status'] != null, 'Required key "FineTuningJob[status]" has a null value in JSON.');
+        assert(json.containsKey(r'trained_tokens'), 'Required key "FineTuningJob[trained_tokens]" is missing from JSON.');
+        assert(json.containsKey(r'training_file'), 'Required key "FineTuningJob[training_file]" is missing from JSON.');
+        assert(json[r'training_file'] != null, 'Required key "FineTuningJob[training_file]" has a null value in JSON.');
+        assert(json.containsKey(r'validation_file'), 'Required key "FineTuningJob[validation_file]" is missing from JSON.');
+        assert(json.containsKey(r'seed'), 'Required key "FineTuningJob[seed]" is missing from JSON.');
+        assert(json[r'seed'] != null, 'Required key "FineTuningJob[seed]" has a null value in JSON.');
         return true;
       }());
 
@@ -296,27 +317,28 @@ class FineTuningJob {
 }
 
 /// The object type, which is always \"fine_tuning.job\".
-class FineTuningJobObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const FineTuningJobObjectEnum._(this.value);
+enum FineTuningJobObjectEnum {
+  fineTuningPeriodJob._(r'fine_tuning.job'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const FineTuningJobObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const fineTuningPeriodJob = FineTuningJobObjectEnum._(r'fine_tuning.job');
-
-  /// List of all possible values in this [enum][FineTuningJobObjectEnum].
-  static const values = <FineTuningJobObjectEnum>[
-    fineTuningPeriodJob,
-  ];
-
+  /// Returns the instance of [FineTuningJobObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static FineTuningJobObjectEnum? fromJson(dynamic value) => FineTuningJobObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [FineTuningJobObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<FineTuningJobObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <FineTuningJobObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -338,9 +360,10 @@ class FineTuningJobObjectEnumTypeTransformer {
 
   const FineTuningJobObjectEnumTypeTransformer._();
 
-  String encode(FineTuningJobObjectEnum data) => data.value;
+  String encode(FineTuningJobObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a FineTuningJobObjectEnum.
+  /// Returns the instance of [FineTuningJobObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -349,6 +372,9 @@ class FineTuningJobObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   FineTuningJobObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is FineTuningJobObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'fine_tuning.job': return FineTuningJobObjectEnum.fineTuningPeriodJob;
@@ -361,43 +387,39 @@ class FineTuningJobObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [FineTuningJobObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static FineTuningJobObjectEnumTypeTransformer? _instance;
 }
 
 
 /// The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.
-class FineTuningJobStatusEnum {
-  /// Instantiate a new enum with the provided [value].
-  const FineTuningJobStatusEnum._(this.value);
+enum FineTuningJobStatusEnum {
+  validatingFiles._(r'validating_files'),
+  queued._(r'queued'),
+  running._(r'running'),
+  succeeded._(r'succeeded'),
+  failed._(r'failed'),
+  cancelled._(r'cancelled'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const FineTuningJobStatusEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const validatingFiles = FineTuningJobStatusEnum._(r'validating_files');
-  static const queued = FineTuningJobStatusEnum._(r'queued');
-  static const running = FineTuningJobStatusEnum._(r'running');
-  static const succeeded = FineTuningJobStatusEnum._(r'succeeded');
-  static const failed = FineTuningJobStatusEnum._(r'failed');
-  static const cancelled = FineTuningJobStatusEnum._(r'cancelled');
-
-  /// List of all possible values in this [enum][FineTuningJobStatusEnum].
-  static const values = <FineTuningJobStatusEnum>[
-    validatingFiles,
-    queued,
-    running,
-    succeeded,
-    failed,
-    cancelled,
-  ];
-
+  /// Returns the instance of [FineTuningJobStatusEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static FineTuningJobStatusEnum? fromJson(dynamic value) => FineTuningJobStatusEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [FineTuningJobStatusEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<FineTuningJobStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <FineTuningJobStatusEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -419,9 +441,10 @@ class FineTuningJobStatusEnumTypeTransformer {
 
   const FineTuningJobStatusEnumTypeTransformer._();
 
-  String encode(FineTuningJobStatusEnum data) => data.value;
+  String encode(FineTuningJobStatusEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a FineTuningJobStatusEnum.
+  /// Returns the instance of [FineTuningJobStatusEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -430,6 +453,9 @@ class FineTuningJobStatusEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   FineTuningJobStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is FineTuningJobStatusEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'validating_files': return FineTuningJobStatusEnum.validatingFiles;
@@ -447,7 +473,7 @@ class FineTuningJobStatusEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [FineTuningJobStatusEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static FineTuningJobStatusEnumTypeTransformer? _instance;
 }
 

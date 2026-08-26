@@ -96,10 +96,6 @@ class ChatCompletionStreamResponseDelta {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ChatCompletionStreamResponseDelta[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ChatCompletionStreamResponseDelta[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
@@ -160,33 +156,31 @@ class ChatCompletionStreamResponseDelta {
 }
 
 /// The role of the author of this message.
-class ChatCompletionStreamResponseDeltaRoleEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ChatCompletionStreamResponseDeltaRoleEnum._(this.value);
+enum ChatCompletionStreamResponseDeltaRoleEnum {
+  system._(r'system'),
+  user._(r'user'),
+  assistant._(r'assistant'),
+  tool._(r'tool'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ChatCompletionStreamResponseDeltaRoleEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const system = ChatCompletionStreamResponseDeltaRoleEnum._(r'system');
-  static const user = ChatCompletionStreamResponseDeltaRoleEnum._(r'user');
-  static const assistant = ChatCompletionStreamResponseDeltaRoleEnum._(r'assistant');
-  static const tool = ChatCompletionStreamResponseDeltaRoleEnum._(r'tool');
-
-  /// List of all possible values in this [enum][ChatCompletionStreamResponseDeltaRoleEnum].
-  static const values = <ChatCompletionStreamResponseDeltaRoleEnum>[
-    system,
-    user,
-    assistant,
-    tool,
-  ];
-
+  /// Returns the instance of [ChatCompletionStreamResponseDeltaRoleEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ChatCompletionStreamResponseDeltaRoleEnum? fromJson(dynamic value) => ChatCompletionStreamResponseDeltaRoleEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ChatCompletionStreamResponseDeltaRoleEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ChatCompletionStreamResponseDeltaRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ChatCompletionStreamResponseDeltaRoleEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -208,9 +202,10 @@ class ChatCompletionStreamResponseDeltaRoleEnumTypeTransformer {
 
   const ChatCompletionStreamResponseDeltaRoleEnumTypeTransformer._();
 
-  String encode(ChatCompletionStreamResponseDeltaRoleEnum data) => data.value;
+  String encode(ChatCompletionStreamResponseDeltaRoleEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ChatCompletionStreamResponseDeltaRoleEnum.
+  /// Returns the instance of [ChatCompletionStreamResponseDeltaRoleEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -219,6 +214,9 @@ class ChatCompletionStreamResponseDeltaRoleEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ChatCompletionStreamResponseDeltaRoleEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ChatCompletionStreamResponseDeltaRoleEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'system': return ChatCompletionStreamResponseDeltaRoleEnum.system;
@@ -234,7 +232,7 @@ class ChatCompletionStreamResponseDeltaRoleEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ChatCompletionStreamResponseDeltaRoleEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ChatCompletionStreamResponseDeltaRoleEnumTypeTransformer? _instance;
 }
 

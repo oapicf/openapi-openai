@@ -19,17 +19,17 @@ typedef struct run_completion_usage_t run_completion_usage_t;
 
 
 typedef struct run_completion_usage_t {
-    int completion_tokens; //numeric
-    int prompt_tokens; //numeric
-    int total_tokens; //numeric
+    int *completion_tokens; //numeric
+    int *prompt_tokens; //numeric
+    int *total_tokens; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } run_completion_usage_t;
 
 __attribute__((deprecated)) run_completion_usage_t *run_completion_usage_create(
-    int completion_tokens,
-    int prompt_tokens,
-    int total_tokens
+    int *completion_tokens,
+    int *prompt_tokens,
+    int *total_tokens
 );
 
 void run_completion_usage_free(run_completion_usage_t *run_completion_usage);

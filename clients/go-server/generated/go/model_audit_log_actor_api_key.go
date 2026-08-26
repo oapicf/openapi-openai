@@ -28,7 +28,8 @@ type AuditLogActorApiKey struct {
 	ServiceAccount AuditLogActorServiceAccount `json:"service_account,omitempty"`
 }
 
-// AssertAuditLogActorApiKeyRequired checks if the required fields are not zero-ed
+// AssertAuditLogActorApiKeyRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertAuditLogActorApiKeyRequired(obj AuditLogActorApiKey) error {
 	if err := AssertAuditLogActorUserRequired(obj.User); err != nil {
 		return err

@@ -33,7 +33,7 @@ class  AuditLog_api_key_updated_changes_requested
 {
 public:
     AuditLog_api_key_updated_changes_requested();
-    virtual ~AuditLog_api_key_updated_changes_requested() = default;
+    virtual ~AuditLog_api_key_updated_changes_requested();
 
 
     /// <summary>

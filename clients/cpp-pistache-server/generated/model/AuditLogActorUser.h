@@ -32,7 +32,7 @@ class  AuditLogActorUser
 {
 public:
     AuditLogActorUser();
-    virtual ~AuditLogActorUser() = default;
+    virtual ~AuditLogActorUser();
 
 
     /// <summary>

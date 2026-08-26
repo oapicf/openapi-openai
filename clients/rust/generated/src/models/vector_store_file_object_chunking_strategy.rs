@@ -16,13 +16,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum VectorStoreFileObjectChunkingStrategy {
-    StaticChunkingStrategyResponseParam(Box<models::StaticChunkingStrategyResponseParam>),
+    StaticChunkingStrategyRequestParam(Box<models::StaticChunkingStrategyRequestParam>),
     OtherChunkingStrategyResponseParam(Box<models::OtherChunkingStrategyResponseParam>),
 }
 
 impl Default for VectorStoreFileObjectChunkingStrategy {
     fn default() -> Self {
-        Self::StaticChunkingStrategyResponseParam(Default::default())
+        Self::StaticChunkingStrategyRequestParam(Default::default())
     }
 }
 /// Always `static`.

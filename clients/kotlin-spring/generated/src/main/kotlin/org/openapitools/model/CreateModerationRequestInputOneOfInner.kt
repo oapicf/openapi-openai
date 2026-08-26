@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonValue
 import org.openapitools.model.CreateModerationRequestInputOneOfInnerOneOf
 import org.openapitools.model.CreateModerationRequestInputOneOfInnerOneOf1
 import org.openapitools.model.CreateModerationRequestInputOneOfInnerOneOfImageUrl
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -20,41 +23,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param type Always `image_url`.
- * @param imageUrl 
- * @param text A string of text to classify.
  */
-data class CreateModerationRequestInputOneOfInner(
-
-    @Schema(example = "null", required = true, description = "Always `image_url`.")
-    @get:JsonProperty("type", required = true) val type: CreateModerationRequestInputOneOfInner.Type,
-
-    @field:Valid
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("image_url", required = true) val imageUrl: CreateModerationRequestInputOneOfInnerOneOfImageUrl,
-
-    @Schema(example = "I want to kill them", required = true, description = "A string of text to classify.")
-    @get:JsonProperty("text", required = true) val text: kotlin.String
-) {
-
-    /**
-    * Always `image_url`.
-    * Values: image_url,text
-    */
-    enum class Type(@get:JsonValue val value: kotlin.String) {
-
-        image_url("image_url"),
-        text("text");
-
-        companion object {
-            @JvmStatic
-            @JsonCreator
-            fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateModerationRequestInputOneOfInner'")
-            }
-        }
-    }
-
+sealed interface CreateModerationRequestInputOneOfInner {
 }
 

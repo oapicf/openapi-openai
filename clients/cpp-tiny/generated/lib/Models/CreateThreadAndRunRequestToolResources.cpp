@@ -87,7 +87,7 @@ CreateThreadAndRunRequest_tool_resources::getCodeInterpreter()
 }
 
 void
-CreateThreadAndRunRequest_tool_resources::setCodeInterpreter(CreateAssistantRequest_tool_resources_code_interpreter  code_interpreter)
+CreateThreadAndRunRequest_tool_resources::setCodeInterpreter(CreateAssistantRequest_tool_resources_code_interpreter code_interpreter)
 {
 	this->code_interpreter = code_interpreter;
 }
@@ -99,7 +99,7 @@ CreateThreadAndRunRequest_tool_resources::getFileSearch()
 }
 
 void
-CreateThreadAndRunRequest_tool_resources::setFileSearch(AssistantObject_tool_resources_file_search  file_search)
+CreateThreadAndRunRequest_tool_resources::setFileSearch(AssistantObject_tool_resources_file_search file_search)
 {
 	this->file_search = file_search;
 }

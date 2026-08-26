@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 openapi2graphql/api/assistants_api.graphql
 openapi2graphql/api/audio_api.graphql
 openapi2graphql/api/audit_logs_api.graphql
@@ -79,7 +78,6 @@ openapi2graphql/model/audit_log_user_added_data.graphql
 openapi2graphql/model/audit_log_user_deleted.graphql
 openapi2graphql/model/audit_log_user_updated.graphql
 openapi2graphql/model/audit_log_user_updated_changes_requested.graphql
-openapi2graphql/model/auto_chunking_strategy.graphql
 openapi2graphql/model/auto_chunking_strategy_request_param.graphql
 openapi2graphql/model/batch.graphql
 openapi2graphql/model/batch_errors.graphql
@@ -489,7 +487,6 @@ openapi2graphql/model/run_tool_call_object.graphql
 openapi2graphql/model/run_tool_call_object_function.graphql
 openapi2graphql/model/static_chunking_strategy.graphql
 openapi2graphql/model/static_chunking_strategy_request_param.graphql
-openapi2graphql/model/static_chunking_strategy_response_param.graphql
 openapi2graphql/model/static_chunking_strategy_static.graphql
 openapi2graphql/model/submit_tool_outputs_run_request.graphql
 openapi2graphql/model/submit_tool_outputs_run_request_tool_outputs_inner.graphql

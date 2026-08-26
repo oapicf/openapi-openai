@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -10,20 +11,20 @@ import org.springframework.lang.Nullable;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * The text content that is part of a message.
  */
 
 @Schema(name = "MessageDeltaContentTextObject", description = "The text content that is part of a message.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class MessageDeltaContentTextObject implements MessageDeltaObjectDeltaContentInner {
 
   private Integer index;
@@ -63,6 +64,7 @@ public class MessageDeltaContentTextObject implements MessageDeltaObjectDeltaCon
 
   private TypeEnum type;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable MessageDeltaContentTextObjectText text;
 
   public MessageDeltaContentTextObject() {
@@ -93,6 +95,7 @@ public class MessageDeltaContentTextObject implements MessageDeltaObjectDeltaCon
     return index;
   }
 
+  @JsonProperty("index")
   public void setIndex(Integer index) {
     this.index = index;
   }
@@ -113,6 +116,7 @@ public class MessageDeltaContentTextObject implements MessageDeltaObjectDeltaCon
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -133,6 +137,7 @@ public class MessageDeltaContentTextObject implements MessageDeltaObjectDeltaCon
     return text;
   }
 
+  @JsonProperty("text")
   public void setText(@Nullable MessageDeltaContentTextObjectText text) {
     this.text = text;
   }
@@ -171,11 +176,8 @@ public class MessageDeltaContentTextObject implements MessageDeltaObjectDeltaCon
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

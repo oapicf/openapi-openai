@@ -1,0 +1,110 @@
+package org.openapitools.model;
+
+import java.util.Objects;
+import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.annotation.Generated;
+import java.time.*;
+import java.math.*;
+@Generated(value = "org.openapitools.codegen.languages.JavaDubboServerCodegen", comments = "Generator version: 7.24.0")
+
+/**
+ * The definition of the function that was called.
+ */
+public class RunStepDetailsToolCallsFunctionObjectFunction implements Serializable {
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * The name of the function.
+   */
+  @JsonProperty("name")
+  private String name;
+
+  /**
+   * The arguments passed to the function.
+   */
+  @JsonProperty("arguments")
+  private String arguments;
+
+  /**
+   * The output of the function. This will be &#x60;null&#x60; if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet.
+   */
+  @JsonProperty("output")
+  private String output;
+
+  /**
+   * The name of the function.
+   * @return name
+   */
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  /**
+   * The arguments passed to the function.
+   * @return arguments
+   */
+  public String getArguments() {
+    return arguments;
+  }
+
+  public void setArguments(String arguments) {
+    this.arguments = arguments;
+  }
+
+  /**
+   * The output of the function. This will be &#x60;null&#x60; if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet.
+   * @return output
+   */
+  public String getOutput() {
+    return output;
+  }
+
+  public void setOutput(String output) {
+    this.output = output;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    RunStepDetailsToolCallsFunctionObjectFunction runStepDetailsToolCallsFunctionObjectFunction = (RunStepDetailsToolCallsFunctionObjectFunction) o;
+    return Objects.equals(this.name, runStepDetailsToolCallsFunctionObjectFunction.name) &&
+        Objects.equals(this.arguments, runStepDetailsToolCallsFunctionObjectFunction.arguments) &&
+        Objects.equals(this.output, runStepDetailsToolCallsFunctionObjectFunction.output);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, arguments, output);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class RunStepDetailsToolCallsFunctionObjectFunction {\n");
+    
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    arguments: ").append(toIndentedString(arguments)).append("\n");
+    sb.append("    output: ").append(toIndentedString(output)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
+  }
+}

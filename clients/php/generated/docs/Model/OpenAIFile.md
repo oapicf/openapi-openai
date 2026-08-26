@@ -1,4 +1,4 @@
-# # OpenAIFile
+# OpenAIFile
 
 ## Properties
 

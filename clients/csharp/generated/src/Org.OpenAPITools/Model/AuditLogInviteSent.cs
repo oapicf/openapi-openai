@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The ID of the invite.</value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Data
@@ -71,7 +71,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public AuditLogInviteSentData? Data { get { return this.DataOption; } set { this.DataOption = new(value); } }
+        public AuditLogInviteSentData? Data { get { return this.DataOption.Value; } set { this.DataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogInviteSent" />
     /// </summary>
-    public class AuditLogInviteSentJsonConverter : JsonConverter<AuditLogInviteSent>
+    public partial class AuditLogInviteSentJsonConverter : JsonConverter<AuditLogInviteSent>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogInviteSentJsonConverter" /> class.
+        /// </summary>
+        public AuditLogInviteSentJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogInviteSent" />
         /// </summary>

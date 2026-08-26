@@ -18,7 +18,8 @@ package openapi
 type RealtimeSessionModel struct {
 }
 
-// AssertRealtimeSessionModelRequired checks if the required fields are not zero-ed
+// AssertRealtimeSessionModelRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeSessionModelRequired(obj RealtimeSessionModel) error {
 	return nil
 }

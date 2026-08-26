@@ -25,6 +25,8 @@ ChatCompletionFunctionCallOption::ChatCompletionFunctionCallOption()
     
 }
 
+ChatCompletionFunctionCallOption::~ChatCompletionFunctionCallOption() = default;
+
 void ChatCompletionFunctionCallOption::validate() const
 {
     std::stringstream msg;

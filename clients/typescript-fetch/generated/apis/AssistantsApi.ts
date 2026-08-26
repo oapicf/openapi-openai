@@ -12,78 +12,117 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  AssistantObject,
-  CreateAssistantRequest,
-  CreateMessageRequest,
-  CreateRunRequest,
-  CreateThreadAndRunRequest,
-  CreateThreadRequest,
-  DeleteAssistantResponse,
-  DeleteMessageResponse,
-  DeleteThreadResponse,
-  ListAssistantsResponse,
-  ListMessagesResponse,
-  ListRunStepsResponse,
-  ListRunsResponse,
-  MessageObject,
-  ModifyAssistantRequest,
-  ModifyMessageRequest,
-  ModifyRunRequest,
-  ModifyThreadRequest,
-  RunObject,
-  RunStepObject,
-  SubmitToolOutputsRunRequest,
-  ThreadObject,
-} from '../models/index';
 import {
+    type AssistantObject,
     AssistantObjectFromJSON,
     AssistantObjectToJSON,
+} from '../models/AssistantObject';
+import {
+    type CreateAssistantRequest,
     CreateAssistantRequestFromJSON,
     CreateAssistantRequestToJSON,
+} from '../models/CreateAssistantRequest';
+import {
+    type CreateMessageRequest,
     CreateMessageRequestFromJSON,
     CreateMessageRequestToJSON,
+} from '../models/CreateMessageRequest';
+import {
+    type CreateRunRequest,
     CreateRunRequestFromJSON,
     CreateRunRequestToJSON,
+} from '../models/CreateRunRequest';
+import {
+    type CreateThreadAndRunRequest,
     CreateThreadAndRunRequestFromJSON,
     CreateThreadAndRunRequestToJSON,
+} from '../models/CreateThreadAndRunRequest';
+import {
+    type CreateThreadRequest,
     CreateThreadRequestFromJSON,
     CreateThreadRequestToJSON,
+} from '../models/CreateThreadRequest';
+import {
+    type DeleteAssistantResponse,
     DeleteAssistantResponseFromJSON,
     DeleteAssistantResponseToJSON,
+} from '../models/DeleteAssistantResponse';
+import {
+    type DeleteMessageResponse,
     DeleteMessageResponseFromJSON,
     DeleteMessageResponseToJSON,
+} from '../models/DeleteMessageResponse';
+import {
+    type DeleteThreadResponse,
     DeleteThreadResponseFromJSON,
     DeleteThreadResponseToJSON,
+} from '../models/DeleteThreadResponse';
+import {
+    type ListAssistantsResponse,
     ListAssistantsResponseFromJSON,
     ListAssistantsResponseToJSON,
+} from '../models/ListAssistantsResponse';
+import {
+    type ListMessagesResponse,
     ListMessagesResponseFromJSON,
     ListMessagesResponseToJSON,
+} from '../models/ListMessagesResponse';
+import {
+    type ListRunStepsResponse,
     ListRunStepsResponseFromJSON,
     ListRunStepsResponseToJSON,
+} from '../models/ListRunStepsResponse';
+import {
+    type ListRunsResponse,
     ListRunsResponseFromJSON,
     ListRunsResponseToJSON,
+} from '../models/ListRunsResponse';
+import {
+    type MessageObject,
     MessageObjectFromJSON,
     MessageObjectToJSON,
+} from '../models/MessageObject';
+import {
+    type ModifyAssistantRequest,
     ModifyAssistantRequestFromJSON,
     ModifyAssistantRequestToJSON,
+} from '../models/ModifyAssistantRequest';
+import {
+    type ModifyMessageRequest,
     ModifyMessageRequestFromJSON,
     ModifyMessageRequestToJSON,
+} from '../models/ModifyMessageRequest';
+import {
+    type ModifyRunRequest,
     ModifyRunRequestFromJSON,
     ModifyRunRequestToJSON,
+} from '../models/ModifyRunRequest';
+import {
+    type ModifyThreadRequest,
     ModifyThreadRequestFromJSON,
     ModifyThreadRequestToJSON,
+} from '../models/ModifyThreadRequest';
+import {
+    type RunObject,
     RunObjectFromJSON,
     RunObjectToJSON,
+} from '../models/RunObject';
+import {
+    type RunStepObject,
     RunStepObjectFromJSON,
     RunStepObjectToJSON,
+} from '../models/RunStepObject';
+import {
+    type SubmitToolOutputsRunRequest,
     SubmitToolOutputsRunRequestFromJSON,
     SubmitToolOutputsRunRequestToJSON,
+} from '../models/SubmitToolOutputsRunRequest';
+import {
+    type ThreadObject,
     ThreadObjectFromJSON,
     ThreadObjectToJSON,
-} from '../models/index';
+} from '../models/ThreadObject';
 
 export interface CancelRunRequest {
     threadId: string;
@@ -219,9 +258,9 @@ export interface SubmitToolOuputsToRunRequest {
 export class AssistantsApi extends runtime.BaseAPI {
 
     /**
-     * Cancels a run that is `in_progress`.
+     * Creates request options for cancelRun without sending the request
      */
-    async cancelRunRaw(requestParameters: CancelRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RunObject>> {
+    async cancelRunRequestOpts(requestParameters: CancelRunRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['threadId'] == null) {
             throw new runtime.RequiredError(
                 'threadId',
@@ -250,15 +289,23 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/threads/{thread_id}/runs/{run_id}/cancel`;
-        urlPath = urlPath.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters['threadId'])));
-        urlPath = urlPath.replace(`{${"run_id"}}`, encodeURIComponent(String(requestParameters['runId'])));
+        urlPath = urlPath.replace('{thread_id}', encodeURIComponent(String(requestParameters['threadId'])));
+        urlPath = urlPath.replace('{run_id}', encodeURIComponent(String(requestParameters['runId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Cancels a run that is `in_progress`.
+     */
+    async cancelRunRaw(requestParameters: CancelRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RunObject>> {
+        const requestOptions = await this.cancelRunRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => RunObjectFromJSON(jsonValue));
     }
@@ -272,9 +319,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create an assistant with a model and instructions.
+     * Creates request options for createAssistant without sending the request
      */
-    async createAssistantRaw(requestParameters: CreateAssistantOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AssistantObject>> {
+    async createAssistantRequestOpts(requestParameters: CreateAssistantOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createAssistantRequest'] == null) {
             throw new runtime.RequiredError(
                 'createAssistantRequest',
@@ -299,13 +346,21 @@ export class AssistantsApi extends runtime.BaseAPI {
 
         let urlPath = `/assistants`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateAssistantRequestToJSON(requestParameters['createAssistantRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create an assistant with a model and instructions.
+     */
+    async createAssistantRaw(requestParameters: CreateAssistantOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AssistantObject>> {
+        const requestOptions = await this.createAssistantRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AssistantObjectFromJSON(jsonValue));
     }
@@ -319,9 +374,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a message.
+     * Creates request options for createMessage without sending the request
      */
-    async createMessageRaw(requestParameters: CreateMessageOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MessageObject>> {
+    async createMessageRequestOpts(requestParameters: CreateMessageOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['threadId'] == null) {
             throw new runtime.RequiredError(
                 'threadId',
@@ -352,15 +407,23 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/threads/{thread_id}/messages`;
-        urlPath = urlPath.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters['threadId'])));
+        urlPath = urlPath.replace('{thread_id}', encodeURIComponent(String(requestParameters['threadId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateMessageRequestToJSON(requestParameters['createMessageRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a message.
+     */
+    async createMessageRaw(requestParameters: CreateMessageOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MessageObject>> {
+        const requestOptions = await this.createMessageRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MessageObjectFromJSON(jsonValue));
     }
@@ -374,9 +437,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a run.
+     * Creates request options for createRun without sending the request
      */
-    async createRunRaw(requestParameters: CreateRunOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RunObject>> {
+    async createRunRequestOpts(requestParameters: CreateRunOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['threadId'] == null) {
             throw new runtime.RequiredError(
                 'threadId',
@@ -411,15 +474,23 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/threads/{thread_id}/runs`;
-        urlPath = urlPath.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters['threadId'])));
+        urlPath = urlPath.replace('{thread_id}', encodeURIComponent(String(requestParameters['threadId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateRunRequestToJSON(requestParameters['createRunRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a run.
+     */
+    async createRunRaw(requestParameters: CreateRunOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RunObject>> {
+        const requestOptions = await this.createRunRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => RunObjectFromJSON(jsonValue));
     }
@@ -433,9 +504,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a thread.
+     * Creates request options for createThread without sending the request
      */
-    async createThreadRaw(requestParameters: CreateThreadOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ThreadObject>> {
+    async createThreadRequestOpts(requestParameters: CreateThreadOperationRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -453,13 +524,21 @@ export class AssistantsApi extends runtime.BaseAPI {
 
         let urlPath = `/threads`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateThreadRequestToJSON(requestParameters['createThreadRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a thread.
+     */
+    async createThreadRaw(requestParameters: CreateThreadOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ThreadObject>> {
+        const requestOptions = await this.createThreadRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ThreadObjectFromJSON(jsonValue));
     }
@@ -473,9 +552,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a thread and run it in one request.
+     * Creates request options for createThreadAndRun without sending the request
      */
-    async createThreadAndRunRaw(requestParameters: CreateThreadAndRunOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RunObject>> {
+    async createThreadAndRunRequestOpts(requestParameters: CreateThreadAndRunOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createThreadAndRunRequest'] == null) {
             throw new runtime.RequiredError(
                 'createThreadAndRunRequest',
@@ -500,13 +579,21 @@ export class AssistantsApi extends runtime.BaseAPI {
 
         let urlPath = `/threads/runs`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateThreadAndRunRequestToJSON(requestParameters['createThreadAndRunRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a thread and run it in one request.
+     */
+    async createThreadAndRunRaw(requestParameters: CreateThreadAndRunOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RunObject>> {
+        const requestOptions = await this.createThreadAndRunRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => RunObjectFromJSON(jsonValue));
     }
@@ -520,9 +607,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete an assistant.
+     * Creates request options for deleteAssistant without sending the request
      */
-    async deleteAssistantRaw(requestParameters: DeleteAssistantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteAssistantResponse>> {
+    async deleteAssistantRequestOpts(requestParameters: DeleteAssistantRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['assistantId'] == null) {
             throw new runtime.RequiredError(
                 'assistantId',
@@ -544,14 +631,22 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/assistants/{assistant_id}`;
-        urlPath = urlPath.replace(`{${"assistant_id"}}`, encodeURIComponent(String(requestParameters['assistantId'])));
+        urlPath = urlPath.replace('{assistant_id}', encodeURIComponent(String(requestParameters['assistantId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete an assistant.
+     */
+    async deleteAssistantRaw(requestParameters: DeleteAssistantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteAssistantResponse>> {
+        const requestOptions = await this.deleteAssistantRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => DeleteAssistantResponseFromJSON(jsonValue));
     }
@@ -565,9 +660,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes a message.
+     * Creates request options for deleteMessage without sending the request
      */
-    async deleteMessageRaw(requestParameters: DeleteMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteMessageResponse>> {
+    async deleteMessageRequestOpts(requestParameters: DeleteMessageRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['threadId'] == null) {
             throw new runtime.RequiredError(
                 'threadId',
@@ -596,15 +691,23 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/threads/{thread_id}/messages/{message_id}`;
-        urlPath = urlPath.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters['threadId'])));
-        urlPath = urlPath.replace(`{${"message_id"}}`, encodeURIComponent(String(requestParameters['messageId'])));
+        urlPath = urlPath.replace('{thread_id}', encodeURIComponent(String(requestParameters['threadId'])));
+        urlPath = urlPath.replace('{message_id}', encodeURIComponent(String(requestParameters['messageId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Deletes a message.
+     */
+    async deleteMessageRaw(requestParameters: DeleteMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteMessageResponse>> {
+        const requestOptions = await this.deleteMessageRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => DeleteMessageResponseFromJSON(jsonValue));
     }
@@ -618,9 +721,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a thread.
+     * Creates request options for deleteThread without sending the request
      */
-    async deleteThreadRaw(requestParameters: DeleteThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteThreadResponse>> {
+    async deleteThreadRequestOpts(requestParameters: DeleteThreadRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['threadId'] == null) {
             throw new runtime.RequiredError(
                 'threadId',
@@ -642,14 +745,22 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/threads/{thread_id}`;
-        urlPath = urlPath.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters['threadId'])));
+        urlPath = urlPath.replace('{thread_id}', encodeURIComponent(String(requestParameters['threadId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete a thread.
+     */
+    async deleteThreadRaw(requestParameters: DeleteThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteThreadResponse>> {
+        const requestOptions = await this.deleteThreadRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => DeleteThreadResponseFromJSON(jsonValue));
     }
@@ -663,9 +774,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves an assistant.
+     * Creates request options for getAssistant without sending the request
      */
-    async getAssistantRaw(requestParameters: GetAssistantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AssistantObject>> {
+    async getAssistantRequestOpts(requestParameters: GetAssistantRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['assistantId'] == null) {
             throw new runtime.RequiredError(
                 'assistantId',
@@ -687,14 +798,22 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/assistants/{assistant_id}`;
-        urlPath = urlPath.replace(`{${"assistant_id"}}`, encodeURIComponent(String(requestParameters['assistantId'])));
+        urlPath = urlPath.replace('{assistant_id}', encodeURIComponent(String(requestParameters['assistantId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves an assistant.
+     */
+    async getAssistantRaw(requestParameters: GetAssistantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AssistantObject>> {
+        const requestOptions = await this.getAssistantRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AssistantObjectFromJSON(jsonValue));
     }
@@ -708,9 +827,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve a message.
+     * Creates request options for getMessage without sending the request
      */
-    async getMessageRaw(requestParameters: GetMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MessageObject>> {
+    async getMessageRequestOpts(requestParameters: GetMessageRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['threadId'] == null) {
             throw new runtime.RequiredError(
                 'threadId',
@@ -739,15 +858,23 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/threads/{thread_id}/messages/{message_id}`;
-        urlPath = urlPath.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters['threadId'])));
-        urlPath = urlPath.replace(`{${"message_id"}}`, encodeURIComponent(String(requestParameters['messageId'])));
+        urlPath = urlPath.replace('{thread_id}', encodeURIComponent(String(requestParameters['threadId'])));
+        urlPath = urlPath.replace('{message_id}', encodeURIComponent(String(requestParameters['messageId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve a message.
+     */
+    async getMessageRaw(requestParameters: GetMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MessageObject>> {
+        const requestOptions = await this.getMessageRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MessageObjectFromJSON(jsonValue));
     }
@@ -761,9 +888,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves a run.
+     * Creates request options for getRun without sending the request
      */
-    async getRunRaw(requestParameters: GetRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RunObject>> {
+    async getRunRequestOpts(requestParameters: GetRunRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['threadId'] == null) {
             throw new runtime.RequiredError(
                 'threadId',
@@ -792,15 +919,23 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/threads/{thread_id}/runs/{run_id}`;
-        urlPath = urlPath.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters['threadId'])));
-        urlPath = urlPath.replace(`{${"run_id"}}`, encodeURIComponent(String(requestParameters['runId'])));
+        urlPath = urlPath.replace('{thread_id}', encodeURIComponent(String(requestParameters['threadId'])));
+        urlPath = urlPath.replace('{run_id}', encodeURIComponent(String(requestParameters['runId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves a run.
+     */
+    async getRunRaw(requestParameters: GetRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RunObject>> {
+        const requestOptions = await this.getRunRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => RunObjectFromJSON(jsonValue));
     }
@@ -814,9 +949,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves a run step.
+     * Creates request options for getRunStep without sending the request
      */
-    async getRunStepRaw(requestParameters: GetRunStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RunStepObject>> {
+    async getRunStepRequestOpts(requestParameters: GetRunStepRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['threadId'] == null) {
             throw new runtime.RequiredError(
                 'threadId',
@@ -856,16 +991,24 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/threads/{thread_id}/runs/{run_id}/steps/{step_id}`;
-        urlPath = urlPath.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters['threadId'])));
-        urlPath = urlPath.replace(`{${"run_id"}}`, encodeURIComponent(String(requestParameters['runId'])));
-        urlPath = urlPath.replace(`{${"step_id"}}`, encodeURIComponent(String(requestParameters['stepId'])));
+        urlPath = urlPath.replace('{thread_id}', encodeURIComponent(String(requestParameters['threadId'])));
+        urlPath = urlPath.replace('{run_id}', encodeURIComponent(String(requestParameters['runId'])));
+        urlPath = urlPath.replace('{step_id}', encodeURIComponent(String(requestParameters['stepId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves a run step.
+     */
+    async getRunStepRaw(requestParameters: GetRunStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RunStepObject>> {
+        const requestOptions = await this.getRunStepRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => RunStepObjectFromJSON(jsonValue));
     }
@@ -879,9 +1022,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves a thread.
+     * Creates request options for getThread without sending the request
      */
-    async getThreadRaw(requestParameters: GetThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ThreadObject>> {
+    async getThreadRequestOpts(requestParameters: GetThreadRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['threadId'] == null) {
             throw new runtime.RequiredError(
                 'threadId',
@@ -903,14 +1046,22 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/threads/{thread_id}`;
-        urlPath = urlPath.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters['threadId'])));
+        urlPath = urlPath.replace('{thread_id}', encodeURIComponent(String(requestParameters['threadId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves a thread.
+     */
+    async getThreadRaw(requestParameters: GetThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ThreadObject>> {
+        const requestOptions = await this.getThreadRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ThreadObjectFromJSON(jsonValue));
     }
@@ -924,9 +1075,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of assistants.
+     * Creates request options for listAssistants without sending the request
      */
-    async listAssistantsRaw(requestParameters: ListAssistantsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAssistantsResponse>> {
+    async listAssistantsRequestOpts(requestParameters: ListAssistantsRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['limit'] != null) {
@@ -958,12 +1109,20 @@ export class AssistantsApi extends runtime.BaseAPI {
 
         let urlPath = `/assistants`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns a list of assistants.
+     */
+    async listAssistantsRaw(requestParameters: ListAssistantsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAssistantsResponse>> {
+        const requestOptions = await this.listAssistantsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListAssistantsResponseFromJSON(jsonValue));
     }
@@ -977,9 +1136,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of messages for a given thread.
+     * Creates request options for listMessages without sending the request
      */
-    async listMessagesRaw(requestParameters: ListMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListMessagesResponse>> {
+    async listMessagesRequestOpts(requestParameters: ListMessagesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['threadId'] == null) {
             throw new runtime.RequiredError(
                 'threadId',
@@ -1021,14 +1180,22 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/threads/{thread_id}/messages`;
-        urlPath = urlPath.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters['threadId'])));
+        urlPath = urlPath.replace('{thread_id}', encodeURIComponent(String(requestParameters['threadId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns a list of messages for a given thread.
+     */
+    async listMessagesRaw(requestParameters: ListMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListMessagesResponse>> {
+        const requestOptions = await this.listMessagesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListMessagesResponseFromJSON(jsonValue));
     }
@@ -1042,9 +1209,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of run steps belonging to a run.
+     * Creates request options for listRunSteps without sending the request
      */
-    async listRunStepsRaw(requestParameters: ListRunStepsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListRunStepsResponse>> {
+    async listRunStepsRequestOpts(requestParameters: ListRunStepsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['threadId'] == null) {
             throw new runtime.RequiredError(
                 'threadId',
@@ -1093,15 +1260,23 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/threads/{thread_id}/runs/{run_id}/steps`;
-        urlPath = urlPath.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters['threadId'])));
-        urlPath = urlPath.replace(`{${"run_id"}}`, encodeURIComponent(String(requestParameters['runId'])));
+        urlPath = urlPath.replace('{thread_id}', encodeURIComponent(String(requestParameters['threadId'])));
+        urlPath = urlPath.replace('{run_id}', encodeURIComponent(String(requestParameters['runId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns a list of run steps belonging to a run.
+     */
+    async listRunStepsRaw(requestParameters: ListRunStepsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListRunStepsResponse>> {
+        const requestOptions = await this.listRunStepsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListRunStepsResponseFromJSON(jsonValue));
     }
@@ -1115,9 +1290,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of runs belonging to a thread.
+     * Creates request options for listRuns without sending the request
      */
-    async listRunsRaw(requestParameters: ListRunsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListRunsResponse>> {
+    async listRunsRequestOpts(requestParameters: ListRunsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['threadId'] == null) {
             throw new runtime.RequiredError(
                 'threadId',
@@ -1155,14 +1330,22 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/threads/{thread_id}/runs`;
-        urlPath = urlPath.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters['threadId'])));
+        urlPath = urlPath.replace('{thread_id}', encodeURIComponent(String(requestParameters['threadId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns a list of runs belonging to a thread.
+     */
+    async listRunsRaw(requestParameters: ListRunsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListRunsResponse>> {
+        const requestOptions = await this.listRunsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListRunsResponseFromJSON(jsonValue));
     }
@@ -1176,9 +1359,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Modifies an assistant.
+     * Creates request options for modifyAssistant without sending the request
      */
-    async modifyAssistantRaw(requestParameters: ModifyAssistantOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AssistantObject>> {
+    async modifyAssistantRequestOpts(requestParameters: ModifyAssistantOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['assistantId'] == null) {
             throw new runtime.RequiredError(
                 'assistantId',
@@ -1209,15 +1392,23 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/assistants/{assistant_id}`;
-        urlPath = urlPath.replace(`{${"assistant_id"}}`, encodeURIComponent(String(requestParameters['assistantId'])));
+        urlPath = urlPath.replace('{assistant_id}', encodeURIComponent(String(requestParameters['assistantId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ModifyAssistantRequestToJSON(requestParameters['modifyAssistantRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Modifies an assistant.
+     */
+    async modifyAssistantRaw(requestParameters: ModifyAssistantOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AssistantObject>> {
+        const requestOptions = await this.modifyAssistantRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AssistantObjectFromJSON(jsonValue));
     }
@@ -1231,9 +1422,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Modifies a message.
+     * Creates request options for modifyMessage without sending the request
      */
-    async modifyMessageRaw(requestParameters: ModifyMessageOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MessageObject>> {
+    async modifyMessageRequestOpts(requestParameters: ModifyMessageOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['threadId'] == null) {
             throw new runtime.RequiredError(
                 'threadId',
@@ -1271,16 +1462,24 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/threads/{thread_id}/messages/{message_id}`;
-        urlPath = urlPath.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters['threadId'])));
-        urlPath = urlPath.replace(`{${"message_id"}}`, encodeURIComponent(String(requestParameters['messageId'])));
+        urlPath = urlPath.replace('{thread_id}', encodeURIComponent(String(requestParameters['threadId'])));
+        urlPath = urlPath.replace('{message_id}', encodeURIComponent(String(requestParameters['messageId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ModifyMessageRequestToJSON(requestParameters['modifyMessageRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Modifies a message.
+     */
+    async modifyMessageRaw(requestParameters: ModifyMessageOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MessageObject>> {
+        const requestOptions = await this.modifyMessageRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MessageObjectFromJSON(jsonValue));
     }
@@ -1294,9 +1493,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Modifies a run.
+     * Creates request options for modifyRun without sending the request
      */
-    async modifyRunRaw(requestParameters: ModifyRunOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RunObject>> {
+    async modifyRunRequestOpts(requestParameters: ModifyRunOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['threadId'] == null) {
             throw new runtime.RequiredError(
                 'threadId',
@@ -1334,16 +1533,24 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/threads/{thread_id}/runs/{run_id}`;
-        urlPath = urlPath.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters['threadId'])));
-        urlPath = urlPath.replace(`{${"run_id"}}`, encodeURIComponent(String(requestParameters['runId'])));
+        urlPath = urlPath.replace('{thread_id}', encodeURIComponent(String(requestParameters['threadId'])));
+        urlPath = urlPath.replace('{run_id}', encodeURIComponent(String(requestParameters['runId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ModifyRunRequestToJSON(requestParameters['modifyRunRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Modifies a run.
+     */
+    async modifyRunRaw(requestParameters: ModifyRunOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RunObject>> {
+        const requestOptions = await this.modifyRunRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => RunObjectFromJSON(jsonValue));
     }
@@ -1357,9 +1564,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Modifies a thread.
+     * Creates request options for modifyThread without sending the request
      */
-    async modifyThreadRaw(requestParameters: ModifyThreadOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ThreadObject>> {
+    async modifyThreadRequestOpts(requestParameters: ModifyThreadOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['threadId'] == null) {
             throw new runtime.RequiredError(
                 'threadId',
@@ -1390,15 +1597,23 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/threads/{thread_id}`;
-        urlPath = urlPath.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters['threadId'])));
+        urlPath = urlPath.replace('{thread_id}', encodeURIComponent(String(requestParameters['threadId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ModifyThreadRequestToJSON(requestParameters['modifyThreadRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Modifies a thread.
+     */
+    async modifyThreadRaw(requestParameters: ModifyThreadOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ThreadObject>> {
+        const requestOptions = await this.modifyThreadRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ThreadObjectFromJSON(jsonValue));
     }
@@ -1412,9 +1627,9 @@ export class AssistantsApi extends runtime.BaseAPI {
     }
 
     /**
-     * When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they\'re all completed. All outputs must be submitted in a single request. 
+     * Creates request options for submitToolOuputsToRun without sending the request
      */
-    async submitToolOuputsToRunRaw(requestParameters: SubmitToolOuputsToRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RunObject>> {
+    async submitToolOuputsToRunRequestOpts(requestParameters: SubmitToolOuputsToRunRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['threadId'] == null) {
             throw new runtime.RequiredError(
                 'threadId',
@@ -1452,16 +1667,24 @@ export class AssistantsApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/threads/{thread_id}/runs/{run_id}/submit_tool_outputs`;
-        urlPath = urlPath.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters['threadId'])));
-        urlPath = urlPath.replace(`{${"run_id"}}`, encodeURIComponent(String(requestParameters['runId'])));
+        urlPath = urlPath.replace('{thread_id}', encodeURIComponent(String(requestParameters['threadId'])));
+        urlPath = urlPath.replace('{run_id}', encodeURIComponent(String(requestParameters['runId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: SubmitToolOutputsRunRequestToJSON(requestParameters['submitToolOutputsRunRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they\'re all completed. All outputs must be submitted in a single request. 
+     */
+    async submitToolOuputsToRunRaw(requestParameters: SubmitToolOuputsToRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RunObject>> {
+        const requestOptions = await this.submitToolOuputsToRunRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => RunObjectFromJSON(jsonValue));
     }

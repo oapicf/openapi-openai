@@ -52,21 +52,21 @@ public:
 
 	/*! \brief Set The index of the content part in the message.
 	 */
-	void setIndex(int  index);
+	void setIndex(int index);
 	/*! \brief Get Always `text`.
 	 */
 	std::string getType();
 
 	/*! \brief Set Always `text`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	MessageDeltaContentTextObject_text getText();
 
 	/*! \brief Set 
 	 */
-	void setText(MessageDeltaContentTextObject_text  text);
+	void setText(MessageDeltaContentTextObject_text text);
 
 
     private:

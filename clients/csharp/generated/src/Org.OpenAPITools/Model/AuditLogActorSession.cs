@@ -57,7 +57,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets User
         /// </summary>
         [JsonPropertyName("user")]
-        public AuditLogActorUser? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public AuditLogActorUser? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IpAddress
@@ -71,7 +71,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The IP address from which the action was performed.</value>
         [JsonPropertyName("ip_address")]
-        public string? IpAddress { get { return this.IpAddressOption; } set { this.IpAddressOption = new(value); } }
+        public string? IpAddress { get { return this.IpAddressOption.Value; } set { this.IpAddressOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogActorSession" />
     /// </summary>
-    public class AuditLogActorSessionJsonConverter : JsonConverter<AuditLogActorSession>
+    public partial class AuditLogActorSessionJsonConverter : JsonConverter<AuditLogActorSession>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogActorSessionJsonConverter" /> class.
+        /// </summary>
+        public AuditLogActorSessionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogActorSession" />
         /// </summary>

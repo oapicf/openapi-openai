@@ -32,7 +32,7 @@ class  ProjectApiKeyDeleteResponse
 {
 public:
     ProjectApiKeyDeleteResponse();
-    virtual ~ProjectApiKeyDeleteResponse() = default;
+    virtual ~ProjectApiKeyDeleteResponse();
 
 
     /// <summary>

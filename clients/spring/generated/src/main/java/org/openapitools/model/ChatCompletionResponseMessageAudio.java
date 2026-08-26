@@ -8,13 +8,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * If the audio output modality is requested, this object contains data about the audio response from the model. [Learn more](/docs/guides/audio). 
@@ -22,7 +22,7 @@ import javax.annotation.Generated;
 
 @Schema(name = "ChatCompletionResponseMessage_audio", description = "If the audio output modality is requested, this object contains data about the audio response from the model. [Learn more](/docs/guides/audio). ")
 @JsonTypeName("ChatCompletionResponseMessage_audio")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ChatCompletionResponseMessageAudio {
 
   private String id;
@@ -63,6 +63,7 @@ public class ChatCompletionResponseMessageAudio {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
@@ -83,6 +84,7 @@ public class ChatCompletionResponseMessageAudio {
     return expiresAt;
   }
 
+  @JsonProperty("expires_at")
   public void setExpiresAt(Integer expiresAt) {
     this.expiresAt = expiresAt;
   }
@@ -103,6 +105,7 @@ public class ChatCompletionResponseMessageAudio {
     return data;
   }
 
+  @JsonProperty("data")
   public void setData(String data) {
     this.data = data;
   }
@@ -123,6 +126,7 @@ public class ChatCompletionResponseMessageAudio {
     return transcript;
   }
 
+  @JsonProperty("transcript")
   public void setTranscript(String transcript) {
     this.transcript = transcript;
   }
@@ -164,10 +168,7 @@ public class ChatCompletionResponseMessageAudio {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

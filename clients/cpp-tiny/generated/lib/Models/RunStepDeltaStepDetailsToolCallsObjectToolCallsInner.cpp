@@ -172,7 +172,7 @@ RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::getIndex()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::setIndex(int  index)
+RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::setIndex(int index)
 {
 	this->index = index;
 }
@@ -184,7 +184,7 @@ RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::getId()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::setId(std::string  id)
+RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::setId(std::string id)
 {
 	this->id = id;
 }
@@ -196,7 +196,7 @@ RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::getType()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::setType(std::string  type)
+RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -208,7 +208,7 @@ RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::getCodeInterpreter()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::setCodeInterpreter(RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter  code_interpreter)
+RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::setCodeInterpreter(RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter code_interpreter)
 {
 	this->code_interpreter = code_interpreter;
 }
@@ -220,7 +220,7 @@ RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::getFileSearch()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::setFileSearch(Object  file_search)
+RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::setFileSearch(Object file_search)
 {
 	this->file_search = file_search;
 }
@@ -232,7 +232,7 @@ RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::getFunction()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::setFunction(RunStepDeltaStepDetailsToolCallsFunctionObject_function  function)
+RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::setFunction(RunStepDeltaStepDetailsToolCallsFunctionObject_function function)
 {
 	this->function = function;
 }

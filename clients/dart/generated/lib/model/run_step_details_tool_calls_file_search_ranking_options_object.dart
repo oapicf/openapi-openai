@@ -58,10 +58,10 @@ class RunStepDetailsToolCallsFileSearchRankingOptionsObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepDetailsToolCallsFileSearchRankingOptionsObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepDetailsToolCallsFileSearchRankingOptionsObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'ranker'), 'Required key "RunStepDetailsToolCallsFileSearchRankingOptionsObject[ranker]" is missing from JSON.');
+        assert(json[r'ranker'] != null, 'Required key "RunStepDetailsToolCallsFileSearchRankingOptionsObject[ranker]" has a null value in JSON.');
+        assert(json.containsKey(r'score_threshold'), 'Required key "RunStepDetailsToolCallsFileSearchRankingOptionsObject[score_threshold]" is missing from JSON.');
+        assert(json[r'score_threshold'] != null, 'Required key "RunStepDetailsToolCallsFileSearchRankingOptionsObject[score_threshold]" has a null value in JSON.');
         return true;
       }());
 
@@ -121,27 +121,28 @@ class RunStepDetailsToolCallsFileSearchRankingOptionsObject {
 }
 
 /// The ranker used for the file search.
-class RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum._(this.value);
+enum RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum {
+  default20240821._(r'default_2024_08_21'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const default20240821 = RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum._(r'default_2024_08_21');
-
-  /// List of all possible values in this [enum][RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum].
-  static const values = <RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum>[
-    default20240821,
-  ];
-
+  /// Returns the instance of [RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum? fromJson(dynamic value) => RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -163,9 +164,10 @@ class RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnumTypeTransfo
 
   const RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnumTypeTransformer._();
 
-  String encode(RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum data) => data.value;
+  String encode(RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum.
+  /// Returns the instance of [RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -174,6 +176,9 @@ class RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnumTypeTransfo
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'default_2024_08_21': return RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum.default20240821;
@@ -186,7 +191,7 @@ class RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnumTypeTransfo
     return null;
   }
 
-  /// Singleton [RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnumTypeTransformer? _instance;
 }
 

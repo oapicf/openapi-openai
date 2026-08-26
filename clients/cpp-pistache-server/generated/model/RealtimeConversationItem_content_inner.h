@@ -32,7 +32,7 @@ class  RealtimeConversationItem_content_inner
 {
 public:
     RealtimeConversationItem_content_inner();
-    virtual ~RealtimeConversationItem_content_inner() = default;
+    virtual ~RealtimeConversationItem_content_inner();
 
 
     /// <summary>

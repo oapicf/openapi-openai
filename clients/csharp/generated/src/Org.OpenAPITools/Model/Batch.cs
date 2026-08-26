@@ -345,7 +345,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Errors
         /// </summary>
         [JsonPropertyName("errors")]
-        public BatchErrors? Errors { get { return this.ErrorsOption; } set { this.ErrorsOption = new(value); } }
+        public BatchErrors? Errors { get { return this.ErrorsOption.Value; } set { this.ErrorsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OutputFileId
@@ -359,7 +359,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The ID of the file containing the outputs of successfully executed requests.</value>
         [JsonPropertyName("output_file_id")]
-        public string? OutputFileId { get { return this.OutputFileIdOption; } set { this.OutputFileIdOption = new(value); } }
+        public string? OutputFileId { get { return this.OutputFileIdOption.Value; } set { this.OutputFileIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ErrorFileId
@@ -373,7 +373,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The ID of the file containing the outputs of requests with errors.</value>
         [JsonPropertyName("error_file_id")]
-        public string? ErrorFileId { get { return this.ErrorFileIdOption; } set { this.ErrorFileIdOption = new(value); } }
+        public string? ErrorFileId { get { return this.ErrorFileIdOption.Value; } set { this.ErrorFileIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of InProgressAt
@@ -387,7 +387,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The Unix timestamp (in seconds) for when the batch started processing.</value>
         [JsonPropertyName("in_progress_at")]
-        public int? InProgressAt { get { return this.InProgressAtOption; } set { this.InProgressAtOption = new(value); } }
+        public int? InProgressAt { get { return this.InProgressAtOption.Value; } set { this.InProgressAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresAt
@@ -401,7 +401,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The Unix timestamp (in seconds) for when the batch will expire.</value>
         [JsonPropertyName("expires_at")]
-        public int? ExpiresAt { get { return this.ExpiresAtOption; } set { this.ExpiresAtOption = new(value); } }
+        public int? ExpiresAt { get { return this.ExpiresAtOption.Value; } set { this.ExpiresAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FinalizingAt
@@ -415,7 +415,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The Unix timestamp (in seconds) for when the batch started finalizing.</value>
         [JsonPropertyName("finalizing_at")]
-        public int? FinalizingAt { get { return this.FinalizingAtOption; } set { this.FinalizingAtOption = new(value); } }
+        public int? FinalizingAt { get { return this.FinalizingAtOption.Value; } set { this.FinalizingAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CompletedAt
@@ -429,7 +429,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The Unix timestamp (in seconds) for when the batch was completed.</value>
         [JsonPropertyName("completed_at")]
-        public int? CompletedAt { get { return this.CompletedAtOption; } set { this.CompletedAtOption = new(value); } }
+        public int? CompletedAt { get { return this.CompletedAtOption.Value; } set { this.CompletedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FailedAt
@@ -443,7 +443,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The Unix timestamp (in seconds) for when the batch failed.</value>
         [JsonPropertyName("failed_at")]
-        public int? FailedAt { get { return this.FailedAtOption; } set { this.FailedAtOption = new(value); } }
+        public int? FailedAt { get { return this.FailedAtOption.Value; } set { this.FailedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiredAt
@@ -457,7 +457,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The Unix timestamp (in seconds) for when the batch expired.</value>
         [JsonPropertyName("expired_at")]
-        public int? ExpiredAt { get { return this.ExpiredAtOption; } set { this.ExpiredAtOption = new(value); } }
+        public int? ExpiredAt { get { return this.ExpiredAtOption.Value; } set { this.ExpiredAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CancellingAt
@@ -471,7 +471,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The Unix timestamp (in seconds) for when the batch started cancelling.</value>
         [JsonPropertyName("cancelling_at")]
-        public int? CancellingAt { get { return this.CancellingAtOption; } set { this.CancellingAtOption = new(value); } }
+        public int? CancellingAt { get { return this.CancellingAtOption.Value; } set { this.CancellingAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CancelledAt
@@ -485,7 +485,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The Unix timestamp (in seconds) for when the batch was cancelled.</value>
         [JsonPropertyName("cancelled_at")]
-        public int? CancelledAt { get { return this.CancelledAtOption; } set { this.CancelledAtOption = new(value); } }
+        public int? CancelledAt { get { return this.CancelledAtOption.Value; } set { this.CancelledAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequestCounts
@@ -498,7 +498,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets RequestCounts
         /// </summary>
         [JsonPropertyName("request_counts")]
-        public BatchRequestCounts? RequestCounts { get { return this.RequestCountsOption; } set { this.RequestCountsOption = new(value); } }
+        public BatchRequestCounts? RequestCounts { get { return this.RequestCountsOption.Value; } set { this.RequestCountsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Metadata
@@ -512,7 +512,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. </value>
         [JsonPropertyName("metadata")]
-        public Object? Metadata { get { return this.MetadataOption; } set { this.MetadataOption = new(value); } }
+        public Object? Metadata { get { return this.MetadataOption.Value; } set { this.MetadataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -560,8 +560,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="Batch" />
     /// </summary>
-    public class BatchJsonConverter : JsonConverter<Batch>
+    public partial class BatchJsonConverter : JsonConverter<Batch>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BatchJsonConverter" /> class.
+        /// </summary>
+        public BatchJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="Batch" />
         /// </summary>

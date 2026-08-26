@@ -1,4 +1,4 @@
-# # ResponseFormatJsonObject
+# ResponseFormatJsonObject
 
 ## Properties
 

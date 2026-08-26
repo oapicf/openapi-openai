@@ -34,7 +34,7 @@ class  ProjectRateLimitListResponse
 {
 public:
     ProjectRateLimitListResponse();
-    virtual ~ProjectRateLimitListResponse() = default;
+    virtual ~ProjectRateLimitListResponse();
 
 
     /// <summary>

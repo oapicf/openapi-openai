@@ -52,14 +52,14 @@ export interface RealtimeSessionCreateRequest {
      * The set of modalities the model can respond with. To disable audio,
      * set this to ["text"].
      * 
-     * @type {Array<string>}
+     * @type {Array<RealtimeSessionCreateRequestModalitiesEnum>}
      * @memberof RealtimeSessionCreateRequest
      */
     modalities?: Array<RealtimeSessionCreateRequestModalitiesEnum>;
     /**
      * The Realtime model used for this session.
      * 
-     * @type {string}
+     * @type {RealtimeSessionCreateRequestModelEnum}
      * @memberof RealtimeSessionCreateRequest
      */
     model: RealtimeSessionCreateRequestModelEnum;
@@ -87,21 +87,21 @@ export interface RealtimeSessionCreateRequest {
      * voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`, 
      * `shimmer` and `verse`.
      * 
-     * @type {string}
+     * @type {RealtimeSessionCreateRequestVoiceEnum}
      * @memberof RealtimeSessionCreateRequest
      */
     voice?: RealtimeSessionCreateRequestVoiceEnum;
     /**
      * The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
      * 
-     * @type {string}
+     * @type {RealtimeSessionCreateRequestInputAudioFormatEnum}
      * @memberof RealtimeSessionCreateRequest
      */
     inputAudioFormat?: RealtimeSessionCreateRequestInputAudioFormatEnum;
     /**
      * The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
      * 
-     * @type {string}
+     * @type {RealtimeSessionCreateRequestOutputAudioFormatEnum}
      * @memberof RealtimeSessionCreateRequest
      */
     outputAudioFormat?: RealtimeSessionCreateRequestOutputAudioFormatEnum;

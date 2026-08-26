@@ -26,6 +26,8 @@ RunStepDetailsToolCallsFileSearchObject::RunStepDetailsToolCallsFileSearchObject
     
 }
 
+RunStepDetailsToolCallsFileSearchObject::~RunStepDetailsToolCallsFileSearchObject() = default;
+
 void RunStepDetailsToolCallsFileSearchObject::validate() const
 {
     std::stringstream msg;

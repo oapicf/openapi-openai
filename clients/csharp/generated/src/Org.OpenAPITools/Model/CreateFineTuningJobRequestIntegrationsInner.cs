@@ -34,7 +34,7 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateFineTuningJobRequestIntegrationsInner" /> class.
         /// </summary>
-        /// <param name="type">type</param>
+        /// <param name="type">The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. </param>
         /// <param name="wandb">wandb</param>
         [JsonConstructor]
         public CreateFineTuningJobRequestIntegrationsInner(TypeEnum type, CreateFineTuningJobRequestIntegrationsInnerWandb wandb)
@@ -47,8 +47,9 @@ namespace Org.OpenAPITools.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Defines Type
+        /// The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. 
         /// </summary>
+        /// <value>The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. </value>
         public enum TypeEnum
         {
             /// <summary>
@@ -99,8 +100,9 @@ namespace Org.OpenAPITools.Model
         }
 
         /// <summary>
-        /// Gets or Sets Type
+        /// The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. 
         /// </summary>
+        /// <value>The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. </value>
         [JsonPropertyName("type")]
         public TypeEnum Type { get; set; }
 
@@ -138,8 +140,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateFineTuningJobRequestIntegrationsInner" />
     /// </summary>
-    public class CreateFineTuningJobRequestIntegrationsInnerJsonConverter : JsonConverter<CreateFineTuningJobRequestIntegrationsInner>
+    public partial class CreateFineTuningJobRequestIntegrationsInnerJsonConverter : JsonConverter<CreateFineTuningJobRequestIntegrationsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateFineTuningJobRequestIntegrationsInnerJsonConverter" /> class.
+        /// </summary>
+        public CreateFineTuningJobRequestIntegrationsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateFineTuningJobRequestIntegrationsInner" />
         /// </summary>

@@ -275,8 +275,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="VectorStoreFileBatchObject" />
     /// </summary>
-    public class VectorStoreFileBatchObjectJsonConverter : JsonConverter<VectorStoreFileBatchObject>
+    public partial class VectorStoreFileBatchObjectJsonConverter : JsonConverter<VectorStoreFileBatchObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VectorStoreFileBatchObjectJsonConverter" /> class.
+        /// </summary>
+        public VectorStoreFileBatchObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="VectorStoreFileBatchObject" />
         /// </summary>

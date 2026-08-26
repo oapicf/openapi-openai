@@ -31,6 +31,8 @@ RealtimeServerEventResponseFunctionCallArgumentsDone::RealtimeServerEventRespons
     
 }
 
+RealtimeServerEventResponseFunctionCallArgumentsDone::~RealtimeServerEventResponseFunctionCallArgumentsDone() = default;
+
 void RealtimeServerEventResponseFunctionCallArgumentsDone::validate() const
 {
     std::stringstream msg;

@@ -31,11 +31,11 @@ static realtime_server_event_conversation_created_t *realtime_server_event_conve
     if (!realtime_server_event_conversation_created_local_var) {
         return NULL;
     }
+    memset(realtime_server_event_conversation_created_local_var, 0, sizeof(realtime_server_event_conversation_created_t));
+    realtime_server_event_conversation_created_local_var->_library_owned = 1;
     realtime_server_event_conversation_created_local_var->event_id = event_id;
     realtime_server_event_conversation_created_local_var->type = type;
     realtime_server_event_conversation_created_local_var->conversation = conversation;
-
-    realtime_server_event_conversation_created_local_var->_library_owned = 1;
     return realtime_server_event_conversation_created_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) realtime_server_event_conversation_created_t *realti
     openai_api_realtime_server_event_conversation_created_TYPE_e type,
     realtime_server_event_conversation_created_conversation_t *conversation
     ) {
-    return realtime_server_event_conversation_created_create_internal (
+    realtime_server_event_conversation_created_t *result = realtime_server_event_conversation_created_create_internal (
         event_id,
         type,
         conversation
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_server_event_conversation_created_free(realtime_server_event_conversation_created_t *realtime_server_event_conversation_created) {
@@ -118,6 +121,8 @@ realtime_server_event_conversation_created_t *realtime_server_event_conversation
 
     realtime_server_event_conversation_created_t *realtime_server_event_conversation_created_local_var = NULL;
 
+    char *event_id_local_str = NULL;
+
     // define the local variable for realtime_server_event_conversation_created->conversation
     realtime_server_event_conversation_created_conversation_t *conversation_local_nonprim = NULL;
 
@@ -166,14 +171,24 @@ realtime_server_event_conversation_created_t *realtime_server_event_conversation
     conversation_local_nonprim = realtime_server_event_conversation_created_conversation_parseFromJSON(conversation); //nonprimitive
 
 
+    if (event_id && !cJSON_IsNull(event_id)) event_id_local_str = strdup(event_id->valuestring);
+
     realtime_server_event_conversation_created_local_var = realtime_server_event_conversation_created_create_internal (
-        strdup(event_id->valuestring),
+        event_id_local_str,
         typeVariable,
         conversation_local_nonprim
         );
 
+    if (!realtime_server_event_conversation_created_local_var) {
+        goto end;
+    }
+
     return realtime_server_event_conversation_created_local_var;
 end:
+    if (event_id_local_str) {
+        free(event_id_local_str);
+        event_id_local_str = NULL;
+    }
     if (conversation_local_nonprim) {
         realtime_server_event_conversation_created_conversation_free(conversation_local_nonprim);
         conversation_local_nonprim = NULL;

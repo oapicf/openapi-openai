@@ -42,7 +42,7 @@ class  RunObject
 {
 public:
     RunObject();
-    virtual ~RunObject() = default;
+    virtual ~RunObject();
 
 
     /// <summary>

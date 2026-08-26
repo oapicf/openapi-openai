@@ -24,7 +24,8 @@ type CompletionUsagePromptTokensDetails struct {
 	CachedTokens int32 `json:"cached_tokens,omitempty"`
 }
 
-// AssertCompletionUsagePromptTokensDetailsRequired checks if the required fields are not zero-ed
+// AssertCompletionUsagePromptTokensDetailsRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCompletionUsagePromptTokensDetailsRequired(obj CompletionUsagePromptTokensDetails) error {
 	return nil
 }

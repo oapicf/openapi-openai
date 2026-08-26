@@ -89,15 +89,17 @@ class _$MessageDeltaObjectDeltaSerializer implements PrimitiveSerializer<Message
         case r'role':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MessageDeltaObjectDeltaRoleEnum),
-          ) as MessageDeltaObjectDeltaRoleEnum;
+            specifiedType: const FullType.nullable(MessageDeltaObjectDeltaRoleEnum),
+          ) as MessageDeltaObjectDeltaRoleEnum?;
+          if (valueDes == null) continue;
           result.role = valueDes;
           break;
         case r'content':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(MessageDeltaObjectDeltaContentInner)]),
-          ) as BuiltList<MessageDeltaObjectDeltaContentInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(MessageDeltaObjectDeltaContentInner)]),
+          ) as BuiltList<MessageDeltaObjectDeltaContentInner>?;
+          if (valueDes == null) continue;
           result.content.replace(valueDes);
           break;
         default:

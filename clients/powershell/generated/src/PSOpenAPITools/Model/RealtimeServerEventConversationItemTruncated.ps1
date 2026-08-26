@@ -77,11 +77,11 @@ function Initialize-RealtimeServerEventConversationItemTruncated {
 
 
         $PSO = [PSCustomObject]@{
-            "event_id" = ${EventId}
-            "type" = ${Type}
-            "item_id" = ${ItemId}
-            "content_index" = ${ContentIndex}
-            "audio_end_ms" = ${AudioEndMs}
+            'event_id' = ${EventId}
+            'type' = ${Type}
+            'item_id' = ${ItemId}
+            'content_index' = ${ContentIndex}
+            'audio_end_ms' = ${AudioEndMs}
         }
 
 
@@ -119,7 +119,7 @@ function ConvertFrom-JsonToRealtimeServerEventConversationItemTruncated {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeServerEventConversationItemTruncated
-        $AllProperties = ("event_id", "type", "item_id", "content_index", "audio_end_ms")
+        $AllProperties = ('event_id', 'type', 'item_id', 'content_index', 'audio_end_ms')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -130,42 +130,42 @@ function ConvertFrom-JsonToRealtimeServerEventConversationItemTruncated {
             throw "Error! Empty JSON cannot be serialized due to the required property 'event_id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "event_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'event_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'event_id' missing."
         } else {
-            $EventId = $JsonParameters.PSobject.Properties["event_id"].value
+            $EventId = $JsonParameters.PSobject.Properties['event_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "item_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'item_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'item_id' missing."
         } else {
-            $ItemId = $JsonParameters.PSobject.Properties["item_id"].value
+            $ItemId = $JsonParameters.PSobject.Properties['item_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content_index"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'content_index'))) {
             throw "Error! JSON cannot be serialized due to the required property 'content_index' missing."
         } else {
-            $ContentIndex = $JsonParameters.PSobject.Properties["content_index"].value
+            $ContentIndex = $JsonParameters.PSobject.Properties['content_index'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "audio_end_ms"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'audio_end_ms'))) {
             throw "Error! JSON cannot be serialized due to the required property 'audio_end_ms' missing."
         } else {
-            $AudioEndMs = $JsonParameters.PSobject.Properties["audio_end_ms"].value
+            $AudioEndMs = $JsonParameters.PSobject.Properties['audio_end_ms'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "event_id" = ${EventId}
-            "type" = ${Type}
-            "item_id" = ${ItemId}
-            "content_index" = ${ContentIndex}
-            "audio_end_ms" = ${AudioEndMs}
+            'event_id' = ${EventId}
+            'type' = ${Type}
+            'item_id' = ${ItemId}
+            'content_index' = ${ContentIndex}
+            'audio_end_ms' = ${AudioEndMs}
         }
 
         return $PSO

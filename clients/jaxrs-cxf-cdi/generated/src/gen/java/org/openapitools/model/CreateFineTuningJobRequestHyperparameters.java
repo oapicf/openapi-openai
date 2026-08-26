@@ -22,11 +22,11 @@ import java.util.Objects;
 @ApiModel(description = "The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of `method`, and should be passed in under the `method` parameter. ")
 public class CreateFineTuningJobRequestHyperparameters   {
   
-  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
+  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
 
-  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
 
-  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
+  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
 
   /**
    **/
@@ -119,10 +119,7 @@ public class CreateFineTuningJobRequestHyperparameters   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

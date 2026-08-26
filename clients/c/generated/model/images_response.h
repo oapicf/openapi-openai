@@ -20,14 +20,14 @@ typedef struct images_response_t images_response_t;
 
 
 typedef struct images_response_t {
-    int created; //numeric
+    int *created; //numeric
     list_t *data; //nonprimitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
 } images_response_t;
 
 __attribute__((deprecated)) images_response_t *images_response_create(
-    int created,
+    int *created,
     list_t *data
 );
 

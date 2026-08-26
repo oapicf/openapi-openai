@@ -15,14 +15,16 @@ module.exports = {
                     'dpo',
                 ],
             },
+            ...FineTuneSupervisedMethod.fields(`${keyPrefix}supervised`, isInput),
+            ...FineTuneDPOMethod.fields(`${keyPrefix}dpo`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'type': bundle.inputData?.[`${keyPrefix}type`],
-            'supervised': utils.removeIfEmpty(.mapping(bundle, `${keyPrefix}supervised`)),
-            'dpo': utils.removeIfEmpty(.mapping(bundle, `${keyPrefix}dpo`)),
+            'supervised': utils.removeIfEmpty(FineTuneSupervisedMethod.mapping(bundle, `${keyPrefix}supervised`)),
+            'dpo': utils.removeIfEmpty(FineTuneDPOMethod.mapping(bundle, `${keyPrefix}dpo`)),
         }
     },
 }

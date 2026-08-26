@@ -32,7 +32,7 @@ class  UsageAudioSpeechesResult
 {
 public:
     UsageAudioSpeechesResult();
-    virtual ~UsageAudioSpeechesResult() = default;
+    virtual ~UsageAudioSpeechesResult();
 
 
     /// <summary>

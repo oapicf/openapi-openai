@@ -25,17 +25,21 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class UsageResponse(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: UsageResponse.`Object`,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("data")
     @get:JsonProperty("data", required = true) val `data`: kotlin.collections.List<UsageTimeBucket>,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("has_more")
     @get:JsonProperty("has_more", required = true) val hasMore: kotlin.Boolean,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("next_page")
     @get:JsonProperty("next_page", required = true) val nextPage: kotlin.String
 ) {
 
@@ -52,7 +56,7 @@ data class UsageResponse(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'UsageResponse'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }

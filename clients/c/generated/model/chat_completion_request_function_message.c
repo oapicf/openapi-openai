@@ -31,11 +31,11 @@ static chat_completion_request_function_message_t *chat_completion_request_funct
     if (!chat_completion_request_function_message_local_var) {
         return NULL;
     }
+    memset(chat_completion_request_function_message_local_var, 0, sizeof(chat_completion_request_function_message_t));
+    chat_completion_request_function_message_local_var->_library_owned = 1;
     chat_completion_request_function_message_local_var->role = role;
     chat_completion_request_function_message_local_var->content = content;
     chat_completion_request_function_message_local_var->name = name;
-
-    chat_completion_request_function_message_local_var->_library_owned = 1;
     return chat_completion_request_function_message_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) chat_completion_request_function_message_t *chat_com
     char *content,
     char *name
     ) {
-    return chat_completion_request_function_message_create_internal (
+    chat_completion_request_function_message_t *result = chat_completion_request_function_message_create_internal (
         role,
         content,
         name
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_request_function_message_free(chat_completion_request_function_message_t *chat_completion_request_function_message) {
@@ -113,6 +116,10 @@ chat_completion_request_function_message_t *chat_completion_request_function_mes
 
     chat_completion_request_function_message_t *chat_completion_request_function_message_local_var = NULL;
 
+    char *content_local_str = NULL;
+
+    char *name_local_str = NULL;
+
     // chat_completion_request_function_message->role
     cJSON *role = cJSON_GetObjectItemCaseSensitive(chat_completion_request_function_messageJSON, "role");
     if (cJSON_IsNull(role)) {
@@ -161,14 +168,29 @@ chat_completion_request_function_message_t *chat_completion_request_function_mes
     }
 
 
+    if (content && !cJSON_IsNull(content)) content_local_str = strdup(content->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     chat_completion_request_function_message_local_var = chat_completion_request_function_message_create_internal (
         roleVariable,
-        strdup(content->valuestring),
-        strdup(name->valuestring)
+        content_local_str,
+        name_local_str
         );
+
+    if (!chat_completion_request_function_message_local_var) {
+        goto end;
+    }
 
     return chat_completion_request_function_message_local_var;
 end:
+    if (content_local_str) {
+        free(content_local_str);
+        content_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
     return NULL;
 
 }

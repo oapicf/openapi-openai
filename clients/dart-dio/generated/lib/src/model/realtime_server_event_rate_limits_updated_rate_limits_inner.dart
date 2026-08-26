@@ -112,29 +112,33 @@ class _$RealtimeServerEventRateLimitsUpdatedRateLimitsInnerSerializer implements
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum),
-          ) as RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum;
+            specifiedType: const FullType.nullable(RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum),
+          ) as RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'limit':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.limit = valueDes;
           break;
         case r'remaining':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.remaining = valueDes;
           break;
         case r'reset_seconds':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.resetSeconds = valueDes;
           break;
         default:

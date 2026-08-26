@@ -19,20 +19,20 @@ import {
     OtherChunkingStrategyResponseParamFromJSONTyped,
     OtherChunkingStrategyResponseParamToJSON,
 } from './OtherChunkingStrategyResponseParam';
-import type { StaticChunkingStrategyResponseParam } from './StaticChunkingStrategyResponseParam';
+import type { StaticChunkingStrategyRequestParam } from './StaticChunkingStrategyRequestParam';
 import {
-    instanceOfStaticChunkingStrategyResponseParam,
-    StaticChunkingStrategyResponseParamFromJSON,
-    StaticChunkingStrategyResponseParamFromJSONTyped,
-    StaticChunkingStrategyResponseParamToJSON,
-} from './StaticChunkingStrategyResponseParam';
+    instanceOfStaticChunkingStrategyRequestParam,
+    StaticChunkingStrategyRequestParamFromJSON,
+    StaticChunkingStrategyRequestParamFromJSONTyped,
+    StaticChunkingStrategyRequestParamToJSON,
+} from './StaticChunkingStrategyRequestParam';
 
 /**
  * @type VectorStoreFileObjectChunkingStrategy
  * The strategy used to chunk the file.
  * @export
  */
-export type VectorStoreFileObjectChunkingStrategy = OtherChunkingStrategyResponseParam | StaticChunkingStrategyResponseParam;
+export type VectorStoreFileObjectChunkingStrategy = OtherChunkingStrategyResponseParam | StaticChunkingStrategyRequestParam;
 
 export function VectorStoreFileObjectChunkingStrategyFromJSON(json: any): VectorStoreFileObjectChunkingStrategy {
     return VectorStoreFileObjectChunkingStrategyFromJSONTyped(json, false);
@@ -48,8 +48,8 @@ export function VectorStoreFileObjectChunkingStrategyFromJSONTyped(json: any, ig
     if (instanceOfOtherChunkingStrategyResponseParam(json)) {
         return OtherChunkingStrategyResponseParamFromJSONTyped(json, true);
     }
-    if (instanceOfStaticChunkingStrategyResponseParam(json)) {
-        return StaticChunkingStrategyResponseParamFromJSONTyped(json, true);
+    if (instanceOfStaticChunkingStrategyRequestParam(json)) {
+        return StaticChunkingStrategyRequestParamFromJSONTyped(json, true);
     }
     return {} as any;
 }
@@ -68,8 +68,8 @@ export function VectorStoreFileObjectChunkingStrategyToJSONTyped(value?: VectorS
     if (instanceOfOtherChunkingStrategyResponseParam(value)) {
         return OtherChunkingStrategyResponseParamToJSON(value as OtherChunkingStrategyResponseParam);
     }
-    if (instanceOfStaticChunkingStrategyResponseParam(value)) {
-        return StaticChunkingStrategyResponseParamToJSON(value as StaticChunkingStrategyResponseParam);
+    if (instanceOfStaticChunkingStrategyRequestParam(value)) {
+        return StaticChunkingStrategyRequestParamToJSON(value as StaticChunkingStrategyRequestParam);
     }
     return {};
 }

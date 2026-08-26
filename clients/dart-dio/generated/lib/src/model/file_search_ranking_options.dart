@@ -86,8 +86,9 @@ class _$FileSearchRankingOptionsSerializer implements PrimitiveSerializer<FileSe
         case r'ranker':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FileSearchRankingOptionsRankerEnum),
-          ) as FileSearchRankingOptionsRankerEnum;
+            specifiedType: const FullType.nullable(FileSearchRankingOptionsRankerEnum),
+          ) as FileSearchRankingOptionsRankerEnum?;
+          if (valueDes == null) continue;
           result.ranker = valueDes;
           break;
         case r'score_threshold':

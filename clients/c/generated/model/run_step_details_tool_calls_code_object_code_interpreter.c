@@ -13,10 +13,10 @@ static run_step_details_tool_calls_code_object_code_interpreter_t *run_step_deta
     if (!run_step_details_tool_calls_code_object_code_interpreter_local_var) {
         return NULL;
     }
+    memset(run_step_details_tool_calls_code_object_code_interpreter_local_var, 0, sizeof(run_step_details_tool_calls_code_object_code_interpreter_t));
+    run_step_details_tool_calls_code_object_code_interpreter_local_var->_library_owned = 1;
     run_step_details_tool_calls_code_object_code_interpreter_local_var->input = input;
     run_step_details_tool_calls_code_object_code_interpreter_local_var->outputs = outputs;
-
-    run_step_details_tool_calls_code_object_code_interpreter_local_var->_library_owned = 1;
     return run_step_details_tool_calls_code_object_code_interpreter_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) run_step_details_tool_calls_code_object_code_interpr
     char *input,
     list_t *outputs
     ) {
-    return run_step_details_tool_calls_code_object_code_interpreter_create_internal (
+    run_step_details_tool_calls_code_object_code_interpreter_t *result = run_step_details_tool_calls_code_object_code_interpreter_create_internal (
         input,
         outputs
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_step_details_tool_calls_code_object_code_interpreter_free(run_step_details_tool_calls_code_object_code_interpreter_t *run_step_details_tool_calls_code_object_code_interpreter) {
@@ -97,6 +100,8 @@ run_step_details_tool_calls_code_object_code_interpreter_t *run_step_details_too
 
     run_step_details_tool_calls_code_object_code_interpreter_t *run_step_details_tool_calls_code_object_code_interpreter_local_var = NULL;
 
+    char *input_local_str = NULL;
+
     // define the local list for run_step_details_tool_calls_code_object_code_interpreter->outputs
     list_t *outputsList = NULL;
 
@@ -143,13 +148,23 @@ run_step_details_tool_calls_code_object_code_interpreter_t *run_step_details_too
     }
 
 
+    if (input && !cJSON_IsNull(input)) input_local_str = strdup(input->valuestring);
+
     run_step_details_tool_calls_code_object_code_interpreter_local_var = run_step_details_tool_calls_code_object_code_interpreter_create_internal (
-        strdup(input->valuestring),
+        input_local_str,
         outputsList
         );
 
+    if (!run_step_details_tool_calls_code_object_code_interpreter_local_var) {
+        goto end;
+    }
+
     return run_step_details_tool_calls_code_object_code_interpreter_local_var;
 end:
+    if (input_local_str) {
+        free(input_local_str);
+        input_local_str = NULL;
+    }
     if (outputsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, outputsList) {

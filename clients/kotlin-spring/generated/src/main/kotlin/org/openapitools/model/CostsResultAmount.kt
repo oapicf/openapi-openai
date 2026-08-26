@@ -1,7 +1,10 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -20,10 +23,16 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class CostsResultAmount(
 
-    @Schema(example = "null", description = "The numeric value of the cost.")
+    @Schema(description = "The numeric value of the cost.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("value")
     @get:JsonProperty("value") val `value`: java.math.BigDecimal? = null,
 
-    @Schema(example = "null", description = "Lowercase ISO-4217 currency e.g. \"usd\"")
+    @Schema(description = "Lowercase ISO-4217 currency e.g. \"usd\"")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("currency")
     @get:JsonProperty("currency") val currency: kotlin.String? = null
 ) {
 

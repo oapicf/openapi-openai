@@ -1,0 +1,25 @@
+import { RunToolCallObjectFunction } from './run-tool-call-object-function';
+
+
+/**
+ * Tool call objects
+ */
+export interface RunToolCallObject { 
+  /**
+   * The ID of the tool call. This ID must be referenced when you submit the tool outputs in using the [Submit tool outputs to run](/docs/api-reference/runs/submitToolOutputs) endpoint.
+   */
+  id: string;
+  /**
+   * The type of tool call the output is required for. For now, this is always `function`.
+   */
+  type: RunToolCallObject.TypeEnum;
+  'function': RunToolCallObjectFunction;
+}
+export namespace RunToolCallObject {
+  export const TypeEnum = {
+    Function: 'function'
+  } as const;
+  export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
+}
+
+

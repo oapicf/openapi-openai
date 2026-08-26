@@ -86,7 +86,7 @@ ChatCompletionTool::getType()
 }
 
 void
-ChatCompletionTool::setType(std::string  type)
+ChatCompletionTool::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ ChatCompletionTool::getFunction()
 }
 
 void
-ChatCompletionTool::setFunction(FunctionObject  function)
+ChatCompletionTool::setFunction(FunctionObject function)
 {
 	this->function = function;
 }

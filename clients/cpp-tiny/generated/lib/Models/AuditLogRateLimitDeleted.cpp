@@ -64,7 +64,7 @@ AuditLog_rate_limit_deleted::getId()
 }
 
 void
-AuditLog_rate_limit_deleted::setId(std::string  id)
+AuditLog_rate_limit_deleted::setId(std::string id)
 {
 	this->id = id;
 }

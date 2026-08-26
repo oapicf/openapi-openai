@@ -34,7 +34,7 @@ class  ProjectApiKeyListResponse
 {
 public:
     ProjectApiKeyListResponse();
-    virtual ~ProjectApiKeyListResponse() = default;
+    virtual ~ProjectApiKeyListResponse();
 
 
     /// <summary>

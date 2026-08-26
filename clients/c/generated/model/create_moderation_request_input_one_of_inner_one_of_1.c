@@ -30,10 +30,10 @@ static create_moderation_request_input_one_of_inner_one_of_1_t *create_moderatio
     if (!create_moderation_request_input_one_of_inner_one_of_1_local_var) {
         return NULL;
     }
+    memset(create_moderation_request_input_one_of_inner_one_of_1_local_var, 0, sizeof(create_moderation_request_input_one_of_inner_one_of_1_t));
+    create_moderation_request_input_one_of_inner_one_of_1_local_var->_library_owned = 1;
     create_moderation_request_input_one_of_inner_one_of_1_local_var->type = type;
     create_moderation_request_input_one_of_inner_one_of_1_local_var->text = text;
-
-    create_moderation_request_input_one_of_inner_one_of_1_local_var->_library_owned = 1;
     return create_moderation_request_input_one_of_inner_one_of_1_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) create_moderation_request_input_one_of_inner_one_of_
     openai_api_create_moderation_request_input_one_of_inner_one_of_1_TYPE_e type,
     char *text
     ) {
-    return create_moderation_request_input_one_of_inner_one_of_1_create_internal (
+    create_moderation_request_input_one_of_inner_one_of_1_t *result = create_moderation_request_input_one_of_inner_one_of_1_create_internal (
         type,
         text
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_moderation_request_input_one_of_inner_one_of_1_free(create_moderation_request_input_one_of_inner_one_of_1_t *create_moderation_request_input_one_of_inner_one_of_1) {
@@ -96,6 +99,8 @@ create_moderation_request_input_one_of_inner_one_of_1_t *create_moderation_reque
 
     create_moderation_request_input_one_of_inner_one_of_1_t *create_moderation_request_input_one_of_inner_one_of_1_local_var = NULL;
 
+    char *text_local_str = NULL;
+
     // create_moderation_request_input_one_of_inner_one_of_1->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(create_moderation_request_input_one_of_inner_one_of_1JSON, "type");
     if (cJSON_IsNull(type)) {
@@ -129,13 +134,23 @@ create_moderation_request_input_one_of_inner_one_of_1_t *create_moderation_reque
     }
 
 
+    if (text && !cJSON_IsNull(text)) text_local_str = strdup(text->valuestring);
+
     create_moderation_request_input_one_of_inner_one_of_1_local_var = create_moderation_request_input_one_of_inner_one_of_1_create_internal (
         typeVariable,
-        strdup(text->valuestring)
+        text_local_str
         );
+
+    if (!create_moderation_request_input_one_of_inner_one_of_1_local_var) {
+        goto end;
+    }
 
     return create_moderation_request_input_one_of_inner_one_of_1_local_var;
 end:
+    if (text_local_str) {
+        free(text_local_str);
+        text_local_str = NULL;
+    }
     return NULL;
 
 }

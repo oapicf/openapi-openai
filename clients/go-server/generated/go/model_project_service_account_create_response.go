@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type ProjectServiceAccountCreateResponse struct {
@@ -29,15 +34,103 @@ type ProjectServiceAccountCreateResponse struct {
 
 	ApiKey ProjectServiceAccountApiKey `json:"api_key"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into ProjectServiceAccountCreateResponse
+func (o *ProjectServiceAccountCreateResponse) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"object",
+		"id",
+		"name",
+		"role",
+		"created_at",
+		"api_key",
+	}
 
-// AssertProjectServiceAccountCreateResponseRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"object": false,
+		"id": false,
+		"name": false,
+		"role": false,
+		"created_at": false,
+		"api_key": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"object": {},
+		"id": {},
+		"name": {},
+		"role": {},
+		"created_at": {},
+		"api_key": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded ProjectServiceAccountCreateResponse
+
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["name"]; exists {
+		if err = json.Unmarshal(value, &decoded.Name); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["role"]; exists {
+		if err = json.Unmarshal(value, &decoded.Role); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["created_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CreatedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["api_key"]; exists {
+		if err = json.Unmarshal(value, &decoded.ApiKey); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertProjectServiceAccountCreateResponseRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertProjectServiceAccountCreateResponseRequired(obj ProjectServiceAccountCreateResponse) error {
 	elements := map[string]interface{}{
-		"object": obj.Object,
-		"id": obj.Id,
-		"name": obj.Name,
-		"role": obj.Role,
-		"created_at": obj.CreatedAt,
 		"api_key": obj.ApiKey,
 	}
 	for name, el := range elements {

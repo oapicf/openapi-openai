@@ -128,7 +128,7 @@ CreateCompletionResponse_choices_inner::getFinishReason()
 }
 
 void
-CreateCompletionResponse_choices_inner::setFinishReason(std::string  finish_reason)
+CreateCompletionResponse_choices_inner::setFinishReason(std::string finish_reason)
 {
 	this->finish_reason = finish_reason;
 }
@@ -140,7 +140,7 @@ CreateCompletionResponse_choices_inner::getIndex()
 }
 
 void
-CreateCompletionResponse_choices_inner::setIndex(int  index)
+CreateCompletionResponse_choices_inner::setIndex(int index)
 {
 	this->index = index;
 }
@@ -152,7 +152,7 @@ CreateCompletionResponse_choices_inner::getLogprobs()
 }
 
 void
-CreateCompletionResponse_choices_inner::setLogprobs(CreateCompletionResponse_choices_inner_logprobs  logprobs)
+CreateCompletionResponse_choices_inner::setLogprobs(CreateCompletionResponse_choices_inner_logprobs logprobs)
 {
 	this->logprobs = logprobs;
 }
@@ -164,7 +164,7 @@ CreateCompletionResponse_choices_inner::getText()
 }
 
 void
-CreateCompletionResponse_choices_inner::setText(std::string  text)
+CreateCompletionResponse_choices_inner::setText(std::string text)
 {
 	this->text = text;
 }

@@ -28,7 +28,7 @@ openai_api_chat_completion_message_tool_call_chunk_TYPE_e chat_completion_messag
 
 
 typedef struct chat_completion_message_tool_call_chunk_t {
-    int index; //numeric
+    int *index; //numeric
     char *id; // string
     openai_api_chat_completion_message_tool_call_chunk_TYPE_e type; //enum
     struct chat_completion_message_tool_call_chunk_function_t *function; //model
@@ -37,7 +37,7 @@ typedef struct chat_completion_message_tool_call_chunk_t {
 } chat_completion_message_tool_call_chunk_t;
 
 __attribute__((deprecated)) chat_completion_message_tool_call_chunk_t *chat_completion_message_tool_call_chunk_create(
-    int index,
+    int *index,
     char *id,
     openai_api_chat_completion_message_tool_call_chunk_TYPE_e type,
     chat_completion_message_tool_call_chunk_function_t *function

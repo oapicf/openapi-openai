@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIDeleteThreadResponse : public OAIObject {
 public:
     OAIDeleteThreadResponse();
-    OAIDeleteThreadResponse(QString json);
+    OAIDeleteThreadResponse(const QString &json);
     ~OAIDeleteThreadResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

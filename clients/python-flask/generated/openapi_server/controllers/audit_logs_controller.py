@@ -1,4 +1,4 @@
-import connexion
+import flask
 from typing import Dict
 from typing import Tuple
 from typing import Union
@@ -35,8 +35,8 @@ def list_audit_logs(effective_at=None, project_ids=None, event_types=None, actor
 
     :rtype: Union[ListAuditLogsResponse, Tuple[ListAuditLogsResponse, int], Tuple[ListAuditLogsResponse, int, Dict[str, str]]
     """
-    if connexion.request.is_json:
-        effective_at =  ListAuditLogsEffectiveAtParameter.from_dict(connexion.request.get_json())  # noqa: E501
-    if connexion.request.is_json:
-        event_types = [AuditLogEventType.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
+    if flask.request.is_json:
+        effective_at =  ListAuditLogsEffectiveAtParameter.from_dict(flask.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        event_types = [AuditLogEventType.from_dict(d) for d in flask.request.get_json()]  # noqa: E501
     return 'do some magic!'

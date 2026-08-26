@@ -15,12 +15,12 @@ static create_fine_tuning_job_request_integrations_inner_wandb_t *create_fine_tu
     if (!create_fine_tuning_job_request_integrations_inner_wandb_local_var) {
         return NULL;
     }
+    memset(create_fine_tuning_job_request_integrations_inner_wandb_local_var, 0, sizeof(create_fine_tuning_job_request_integrations_inner_wandb_t));
+    create_fine_tuning_job_request_integrations_inner_wandb_local_var->_library_owned = 1;
     create_fine_tuning_job_request_integrations_inner_wandb_local_var->project = project;
     create_fine_tuning_job_request_integrations_inner_wandb_local_var->name = name;
     create_fine_tuning_job_request_integrations_inner_wandb_local_var->entity = entity;
     create_fine_tuning_job_request_integrations_inner_wandb_local_var->tags = tags;
-
-    create_fine_tuning_job_request_integrations_inner_wandb_local_var->_library_owned = 1;
     return create_fine_tuning_job_request_integrations_inner_wandb_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) create_fine_tuning_job_request_integrations_inner_wa
     char *entity,
     list_t *tags
     ) {
-    return create_fine_tuning_job_request_integrations_inner_wandb_create_internal (
+    create_fine_tuning_job_request_integrations_inner_wandb_t *result = create_fine_tuning_job_request_integrations_inner_wandb_create_internal (
         project,
         name,
         entity,
         tags
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_fine_tuning_job_request_integrations_inner_wandb_free(create_fine_tuning_job_request_integrations_inner_wandb_t *create_fine_tuning_job_request_integrations_inner_wandb) {
@@ -125,6 +128,12 @@ create_fine_tuning_job_request_integrations_inner_wandb_t *create_fine_tuning_jo
 
     create_fine_tuning_job_request_integrations_inner_wandb_t *create_fine_tuning_job_request_integrations_inner_wandb_local_var = NULL;
 
+    char *project_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    char *entity_local_str = NULL;
+
     // define the local list for create_fine_tuning_job_request_integrations_inner_wandb->tags
     list_t *tagsList = NULL;
 
@@ -190,15 +199,35 @@ create_fine_tuning_job_request_integrations_inner_wandb_t *create_fine_tuning_jo
     }
 
 
+    if (project && !cJSON_IsNull(project)) project_local_str = strdup(project->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (entity && !cJSON_IsNull(entity)) entity_local_str = strdup(entity->valuestring);
+
     create_fine_tuning_job_request_integrations_inner_wandb_local_var = create_fine_tuning_job_request_integrations_inner_wandb_create_internal (
-        strdup(project->valuestring),
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        entity && !cJSON_IsNull(entity) ? strdup(entity->valuestring) : NULL,
+        project_local_str,
+        name_local_str,
+        entity_local_str,
         tags ? tagsList : NULL
         );
 
+    if (!create_fine_tuning_job_request_integrations_inner_wandb_local_var) {
+        goto end;
+    }
+
     return create_fine_tuning_job_request_integrations_inner_wandb_local_var;
 end:
+    if (project_local_str) {
+        free(project_local_str);
+        project_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (entity_local_str) {
+        free(entity_local_str);
+        entity_local_str = NULL;
+    }
     if (tagsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, tagsList) {

@@ -1,4 +1,4 @@
-# # RealtimeServerEventError
+# RealtimeServerEventError
 
 ## Properties
 

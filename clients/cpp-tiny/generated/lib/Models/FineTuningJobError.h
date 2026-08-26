@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set A machine-readable error code.
 	 */
-	void setCode(std::string  code);
+	void setCode(std::string code);
 	/*! \brief Get A human-readable error message.
 	 */
 	std::string getMessage();
 
 	/*! \brief Set A human-readable error message.
 	 */
-	void setMessage(std::string  message);
+	void setMessage(std::string message);
 	/*! \brief Get The parameter that was invalid, usually `training_file` or `validation_file`. This field will be null if the failure was not parameter-specific.
 	 */
 	std::string getParam();
 
 	/*! \brief Set The parameter that was invalid, usually `training_file` or `validation_file`. This field will be null if the failure was not parameter-specific.
 	 */
-	void setParam(std::string  param);
+	void setParam(std::string param);
 
 
     private:

@@ -49,7 +49,7 @@ class UsageImagesResult
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['organization.usage.images.result'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class UsageImagesResult
      * @var int|null
      * @SerializedName("images")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $images = null;
@@ -72,7 +72,7 @@ class UsageImagesResult
      * @var int|null
      * @SerializedName("num_model_requests")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $numModelRequests = null;
@@ -83,7 +83,7 @@ class UsageImagesResult
      * @var string|null
      * @SerializedName("source")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $source = null;
 
@@ -93,7 +93,7 @@ class UsageImagesResult
      * @var string|null
      * @SerializedName("size")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $size = null;
 
@@ -103,7 +103,7 @@ class UsageImagesResult
      * @var string|null
      * @SerializedName("project_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $projectId = null;
 
@@ -113,7 +113,7 @@ class UsageImagesResult
      * @var string|null
      * @SerializedName("user_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $userId = null;
 
@@ -123,7 +123,7 @@ class UsageImagesResult
      * @var string|null
      * @SerializedName("api_key_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $apiKeyId = null;
 
@@ -133,7 +133,7 @@ class UsageImagesResult
      * @var string|null
      * @SerializedName("model")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $model = null;
 
@@ -167,12 +167,12 @@ class UsageImagesResult
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -194,12 +194,12 @@ class UsageImagesResult
     }
 
     /**
-    * Sets images.
-    *
-    * @param int|null $images  The number of images processed.
-    *
-    * @return $this
-    */
+     * Sets images.
+     *
+     * @param int|null $images  The number of images processed.
+     *
+     * @return $this
+     */
     public function setImages(?int $images): self
     {
         $this->images = $images;
@@ -221,12 +221,12 @@ class UsageImagesResult
     }
 
     /**
-    * Sets numModelRequests.
-    *
-    * @param int|null $numModelRequests  The count of requests made to the model.
-    *
-    * @return $this
-    */
+     * Sets numModelRequests.
+     *
+     * @param int|null $numModelRequests  The count of requests made to the model.
+     *
+     * @return $this
+     */
     public function setNumModelRequests(?int $numModelRequests): self
     {
         $this->numModelRequests = $numModelRequests;
@@ -248,12 +248,12 @@ class UsageImagesResult
     }
 
     /**
-    * Sets source.
-    *
-    * @param string|null $source  When `group_by=source`, this field provides the source of the grouped usage result, possible values are `image.generation`, `image.edit`, `image.variation`.
-    *
-    * @return $this
-    */
+     * Sets source.
+     *
+     * @param string|null $source  When `group_by=source`, this field provides the source of the grouped usage result, possible values are `image.generation`, `image.edit`, `image.variation`.
+     *
+     * @return $this
+     */
     public function setSource(?string $source = null): self
     {
         $this->source = $source;
@@ -275,12 +275,12 @@ class UsageImagesResult
     }
 
     /**
-    * Sets size.
-    *
-    * @param string|null $size  When `group_by=size`, this field provides the image size of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets size.
+     *
+     * @param string|null $size  When `group_by=size`, this field provides the image size of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setSize(?string $size = null): self
     {
         $this->size = $size;
@@ -302,12 +302,12 @@ class UsageImagesResult
     }
 
     /**
-    * Sets projectId.
-    *
-    * @param string|null $projectId  When `group_by=project_id`, this field provides the project ID of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets projectId.
+     *
+     * @param string|null $projectId  When `group_by=project_id`, this field provides the project ID of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setProjectId(?string $projectId = null): self
     {
         $this->projectId = $projectId;
@@ -329,12 +329,12 @@ class UsageImagesResult
     }
 
     /**
-    * Sets userId.
-    *
-    * @param string|null $userId  When `group_by=user_id`, this field provides the user ID of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets userId.
+     *
+     * @param string|null $userId  When `group_by=user_id`, this field provides the user ID of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setUserId(?string $userId = null): self
     {
         $this->userId = $userId;
@@ -356,12 +356,12 @@ class UsageImagesResult
     }
 
     /**
-    * Sets apiKeyId.
-    *
-    * @param string|null $apiKeyId  When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets apiKeyId.
+     *
+     * @param string|null $apiKeyId  When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setApiKeyId(?string $apiKeyId = null): self
     {
         $this->apiKeyId = $apiKeyId;
@@ -383,12 +383,12 @@ class UsageImagesResult
     }
 
     /**
-    * Sets model.
-    *
-    * @param string|null $model  When `group_by=model`, this field provides the model name of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param string|null $model  When `group_by=model`, this field provides the model name of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setModel(?string $model = null): self
     {
         $this->model = $model;

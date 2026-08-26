@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIUsageCodeInterpreterSessionsResult::OAIUsageCodeInterpreterSessionsResult(QString json) {
+OAIUsageCodeInterpreterSessionsResult::OAIUsageCodeInterpreterSessionsResult(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIUsageCodeInterpreterSessionsResult::initializeModel() {
     m_project_id_isValid = false;
 }
 
-void OAIUsageCodeInterpreterSessionsResult::fromJson(QString jsonString) {
+void OAIUsageCodeInterpreterSessionsResult::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

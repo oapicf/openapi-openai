@@ -51,49 +51,49 @@ public:
 
 	/*! \brief Set The unique ID of the server event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `response.audio_transcript.done`.
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `response.audio_transcript.done`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The ID of the response.
 	 */
 	std::string getResponseId();
 
 	/*! \brief Set The ID of the response.
 	 */
-	void setResponseId(std::string  response_id);
+	void setResponseId(std::string response_id);
 	/*! \brief Get The ID of the item.
 	 */
 	std::string getItemId();
 
 	/*! \brief Set The ID of the item.
 	 */
-	void setItemId(std::string  item_id);
+	void setItemId(std::string item_id);
 	/*! \brief Get The index of the output item in the response.
 	 */
 	int getOutputIndex();
 
 	/*! \brief Set The index of the output item in the response.
 	 */
-	void setOutputIndex(int  output_index);
+	void setOutputIndex(int output_index);
 	/*! \brief Get The index of the content part in the item's content array.
 	 */
 	int getContentIndex();
 
 	/*! \brief Set The index of the content part in the item's content array.
 	 */
-	void setContentIndex(int  content_index);
+	void setContentIndex(int content_index);
 	/*! \brief Get The final transcript of the audio.
 	 */
 	std::string getTranscript();
 
 	/*! \brief Set The final transcript of the audio.
 	 */
-	void setTranscript(std::string  transcript);
+	void setTranscript(std::string transcript);
 
 
     private:

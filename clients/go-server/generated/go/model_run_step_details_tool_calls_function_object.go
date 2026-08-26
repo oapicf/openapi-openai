@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type RunStepDetailsToolCallsFunctionObject struct {
@@ -24,12 +29,79 @@ type RunStepDetailsToolCallsFunctionObject struct {
 
 	Function RunStepDetailsToolCallsFunctionObjectFunction `json:"function"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into RunStepDetailsToolCallsFunctionObject
+func (o *RunStepDetailsToolCallsFunctionObject) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"id",
+		"type",
+		"function",
+	}
 
-// AssertRunStepDetailsToolCallsFunctionObjectRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"id": false,
+		"type": false,
+		"function": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"id": {},
+		"type": {},
+		"function": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RunStepDetailsToolCallsFunctionObject
+
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["function"]; exists {
+		if err = json.Unmarshal(value, &decoded.Function); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRunStepDetailsToolCallsFunctionObjectRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRunStepDetailsToolCallsFunctionObjectRequired(obj RunStepDetailsToolCallsFunctionObject) error {
 	elements := map[string]interface{}{
-		"id": obj.Id,
-		"type": obj.Type,
 		"function": obj.Function,
 	}
 	for name, el := range elements {

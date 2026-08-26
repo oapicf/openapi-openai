@@ -49,7 +49,7 @@ class CreateImageRequest
      * @var string|null
      * @SerializedName("prompt")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $prompt = null;
@@ -58,7 +58,7 @@ class CreateImageRequest
      * @var CreateImageRequestModel|null
      * @SerializedName("model")
      * @Type("OpenAPI\Server\Model\CreateImageRequestModel")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateImageRequestModel")]
     protected ?CreateImageRequestModel $model = null;
 
@@ -68,7 +68,7 @@ class CreateImageRequest
      * @var int|null
      * @SerializedName("n")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(1)]
     #[Assert\LessThanOrEqual(10)]
@@ -80,7 +80,7 @@ class CreateImageRequest
      * @var string|null
      * @SerializedName("quality")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['standard', 'hd'])]
     #[Assert\Type("string")]
     protected ?string $quality = 'standard';
@@ -91,7 +91,7 @@ class CreateImageRequest
      * @var string|null
      * @SerializedName("response_format")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['url', 'b64_json'])]
     #[Assert\Type("string")]
     protected ?string $responseFormat = 'url';
@@ -102,7 +102,7 @@ class CreateImageRequest
      * @var string|null
      * @SerializedName("size")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['256x256', '512x512', '1024x1024', '1792x1024', '1024x1792'])]
     #[Assert\Type("string")]
     protected ?string $size = '1024x1024';
@@ -113,7 +113,7 @@ class CreateImageRequest
      * @var string|null
      * @SerializedName("style")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['vivid', 'natural'])]
     #[Assert\Type("string")]
     protected ?string $style = 'vivid';
@@ -124,7 +124,7 @@ class CreateImageRequest
      * @var string|null
      * @SerializedName("user")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $user = null;
 
@@ -157,12 +157,12 @@ class CreateImageRequest
     }
 
     /**
-    * Sets prompt.
-    *
-    * @param string|null $prompt  A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`.
-    *
-    * @return $this
-    */
+     * Sets prompt.
+     *
+     * @param string|null $prompt  A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`.
+     *
+     * @return $this
+     */
     public function setPrompt(?string $prompt): self
     {
         $this->prompt = $prompt;
@@ -184,12 +184,12 @@ class CreateImageRequest
     }
 
     /**
-    * Sets model.
-    *
-    * @param CreateImageRequestModel|null $model
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param CreateImageRequestModel|null $model
+     *
+     * @return $this
+     */
     public function setModel(?CreateImageRequestModel $model = null): self
     {
         $this->model = $model;
@@ -211,12 +211,12 @@ class CreateImageRequest
     }
 
     /**
-    * Sets n.
-    *
-    * @param int|null $n  The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
-    *
-    * @return $this
-    */
+     * Sets n.
+     *
+     * @param int|null $n  The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
+     *
+     * @return $this
+     */
     public function setN(?int $n = null): self
     {
         $this->n = $n;
@@ -238,12 +238,12 @@ class CreateImageRequest
     }
 
     /**
-    * Sets quality.
-    *
-    * @param string|null $quality  The quality of the image that will be generated. `hd` creates images with finer details and greater consistency across the image. This param is only supported for `dall-e-3`.
-    *
-    * @return $this
-    */
+     * Sets quality.
+     *
+     * @param string|null $quality  The quality of the image that will be generated. `hd` creates images with finer details and greater consistency across the image. This param is only supported for `dall-e-3`.
+     *
+     * @return $this
+     */
     public function setQuality(?string $quality = null): self
     {
         $this->quality = $quality;
@@ -265,12 +265,12 @@ class CreateImageRequest
     }
 
     /**
-    * Sets responseFormat.
-    *
-    * @param string|null $responseFormat  The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
-    *
-    * @return $this
-    */
+     * Sets responseFormat.
+     *
+     * @param string|null $responseFormat  The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
+     *
+     * @return $this
+     */
     public function setResponseFormat(?string $responseFormat = null): self
     {
         $this->responseFormat = $responseFormat;
@@ -292,12 +292,12 @@ class CreateImageRequest
     }
 
     /**
-    * Sets size.
-    *
-    * @param string|null $size  The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3` models.
-    *
-    * @return $this
-    */
+     * Sets size.
+     *
+     * @param string|null $size  The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3` models.
+     *
+     * @return $this
+     */
     public function setSize(?string $size = null): self
     {
         $this->size = $size;
@@ -319,12 +319,12 @@ class CreateImageRequest
     }
 
     /**
-    * Sets style.
-    *
-    * @param string|null $style  The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`.
-    *
-    * @return $this
-    */
+     * Sets style.
+     *
+     * @param string|null $style  The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`.
+     *
+     * @return $this
+     */
     public function setStyle(?string $style = null): self
     {
         $this->style = $style;
@@ -346,12 +346,12 @@ class CreateImageRequest
     }
 
     /**
-    * Sets user.
-    *
-    * @param string|null $user  A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).
-    *
-    * @return $this
-    */
+     * Sets user.
+     *
+     * @param string|null $user  A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).
+     *
+     * @return $this
+     */
     public function setUser(?string $user = null): self
     {
         $this->user = $user;

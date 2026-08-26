@@ -176,15 +176,17 @@ class _$FineTuningJobEventSerializer implements PrimitiveSerializer<FineTuningJo
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FineTuningJobEventTypeEnum),
-          ) as FineTuningJobEventTypeEnum;
+            specifiedType: const FullType.nullable(FineTuningJobEventTypeEnum),
+          ) as FineTuningJobEventTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.data = valueDes;
           break;
         default:

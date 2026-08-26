@@ -86,7 +86,7 @@ AssistantsNamedToolChoice::getType()
 }
 
 void
-AssistantsNamedToolChoice::setType(std::string  type)
+AssistantsNamedToolChoice::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ AssistantsNamedToolChoice::getFunction()
 }
 
 void
-AssistantsNamedToolChoice::setFunction(AssistantsNamedToolChoice_function  function)
+AssistantsNamedToolChoice::setFunction(AssistantsNamedToolChoice_function function)
 {
 	this->function = function;
 }

@@ -24,6 +24,8 @@ CreateChatCompletionRequest_stop::CreateChatCompletionRequest_stop()
     
 }
 
+CreateChatCompletionRequest_stop::~CreateChatCompletionRequest_stop() = default;
+
 void CreateChatCompletionRequest_stop::validate() const
 {
     std::stringstream msg;

@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface RunStepDetailsToolCallsFileSearchResultObjectContentInner {
     /**
      * The type of the content.
-     * @type {string}
+     * @type {RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum}
      * @memberof RunStepDetailsToolCallsFileSearchResultObjectContentInner
      */
     type?: RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum;

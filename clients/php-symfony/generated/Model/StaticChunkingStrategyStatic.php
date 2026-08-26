@@ -49,7 +49,7 @@ class StaticChunkingStrategyStatic
      * @var int|null
      * @SerializedName("max_chunk_size_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(100)]
@@ -62,7 +62,7 @@ class StaticChunkingStrategyStatic
      * @var int|null
      * @SerializedName("chunk_overlap_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $chunkOverlapTokens = null;
@@ -90,12 +90,12 @@ class StaticChunkingStrategyStatic
     }
 
     /**
-    * Sets maxChunkSizeTokens.
-    *
-    * @param int|null $maxChunkSizeTokens  The maximum number of tokens in each chunk. The default value is `800`. The minimum value is `100` and the maximum value is `4096`.
-    *
-    * @return $this
-    */
+     * Sets maxChunkSizeTokens.
+     *
+     * @param int|null $maxChunkSizeTokens  The maximum number of tokens in each chunk. The default value is `800`. The minimum value is `100` and the maximum value is `4096`.
+     *
+     * @return $this
+     */
     public function setMaxChunkSizeTokens(?int $maxChunkSizeTokens): self
     {
         $this->maxChunkSizeTokens = $maxChunkSizeTokens;
@@ -117,12 +117,12 @@ class StaticChunkingStrategyStatic
     }
 
     /**
-    * Sets chunkOverlapTokens.
-    *
-    * @param int|null $chunkOverlapTokens  The number of tokens that overlap between chunks. The default value is `400`.  Note that the overlap must not exceed half of `max_chunk_size_tokens`.
-    *
-    * @return $this
-    */
+     * Sets chunkOverlapTokens.
+     *
+     * @param int|null $chunkOverlapTokens  The number of tokens that overlap between chunks. The default value is `400`.  Note that the overlap must not exceed half of `max_chunk_size_tokens`.
+     *
+     * @return $this
+     */
     public function setChunkOverlapTokens(?int $chunkOverlapTokens): self
     {
         $this->chunkOverlapTokens = $chunkOverlapTokens;

@@ -32,7 +32,7 @@ class  RealtimeServerEventInputAudioBufferSpeechStopped
 {
 public:
     RealtimeServerEventInputAudioBufferSpeechStopped();
-    virtual ~RealtimeServerEventInputAudioBufferSpeechStopped() = default;
+    virtual ~RealtimeServerEventInputAudioBufferSpeechStopped();
 
 
     /// <summary>

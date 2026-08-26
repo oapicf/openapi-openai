@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | [**models::CreateCompletionRequestModel**](CreateCompletionRequest_model.md) |  | 
-**prompt** | Option<[**models::CreateCompletionRequestPrompt**](CreateCompletionRequest_prompt.md)> |  | 
+**model** | [**models::CreateCompletionRequestModel**](CreateCompletionRequestModel.md) |  | 
+**prompt** | Option<[**models::CreateCompletionRequestPrompt**](CreateCompletionRequestPrompt.md)> |  | 
 **best_of** | Option<**i32**> | Generates `best_of` completions server-side and returns the \"best\" (the one with the highest log probability per token). Results cannot be streamed.  When used with `n`, `best_of` controls the number of candidate completions and `n` specifies how many to return – `best_of` must be greater than `n`.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`.  | [optional][default to 1]
 **echo** | Option<**bool**> | Echo back the prompt in addition to the completion  | [optional][default to false]
 **frequency_penalty** | Option<**f64**> | Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation)  | [optional][default to 0]
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **n** | Option<**i32**> | How many completions to generate for each prompt.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`.  | [optional][default to 1]
 **presence_penalty** | Option<**f64**> | Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation)  | [optional][default to 0]
 **seed** | Option<**i32**> | If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.  Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.  | [optional]
-**stop** | Option<[**models::CreateCompletionRequestStop**](CreateCompletionRequest_stop.md)> |  | [optional]
+**stop** | Option<[**models::CreateCompletionRequestStop**](CreateCompletionRequestStop.md)> |  | [optional]
 **stream** | Option<**bool**> | Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions).  | [optional][default to false]
 **stream_options** | Option<[**models::ChatCompletionStreamOptions**](ChatCompletionStreamOptions.md)> |  | [optional]
 **suffix** | Option<**String**> | The suffix that comes after a completion of inserted text.  This parameter is only supported for `gpt-3.5-turbo-instruct`.  | [optional]

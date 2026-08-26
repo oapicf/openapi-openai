@@ -251,7 +251,7 @@ FineTuneChatRequestInput_messages_inner::getContent()
 }
 
 void
-FineTuneChatRequestInput_messages_inner::setContent(std::string  content)
+FineTuneChatRequestInput_messages_inner::setContent(std::string content)
 {
 	this->content = content;
 }
@@ -263,7 +263,7 @@ FineTuneChatRequestInput_messages_inner::getRole()
 }
 
 void
-FineTuneChatRequestInput_messages_inner::setRole(std::string  role)
+FineTuneChatRequestInput_messages_inner::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -275,7 +275,7 @@ FineTuneChatRequestInput_messages_inner::getName()
 }
 
 void
-FineTuneChatRequestInput_messages_inner::setName(std::string  name)
+FineTuneChatRequestInput_messages_inner::setName(std::string name)
 {
 	this->name = name;
 }
@@ -287,7 +287,7 @@ FineTuneChatRequestInput_messages_inner::getWeight()
 }
 
 void
-FineTuneChatRequestInput_messages_inner::setWeight(int  weight)
+FineTuneChatRequestInput_messages_inner::setWeight(int weight)
 {
 	this->weight = weight;
 }
@@ -299,7 +299,7 @@ FineTuneChatRequestInput_messages_inner::getRefusal()
 }
 
 void
-FineTuneChatRequestInput_messages_inner::setRefusal(std::string  refusal)
+FineTuneChatRequestInput_messages_inner::setRefusal(std::string refusal)
 {
 	this->refusal = refusal;
 }
@@ -311,7 +311,7 @@ FineTuneChatRequestInput_messages_inner::getAudio()
 }
 
 void
-FineTuneChatRequestInput_messages_inner::setAudio(ChatCompletionRequestAssistantMessage_audio  audio)
+FineTuneChatRequestInput_messages_inner::setAudio(ChatCompletionRequestAssistantMessage_audio audio)
 {
 	this->audio = audio;
 }
@@ -323,7 +323,7 @@ FineTuneChatRequestInput_messages_inner::getToolCalls()
 }
 
 void
-FineTuneChatRequestInput_messages_inner::setToolCalls(std::list <ChatCompletionMessageToolCall> tool_calls)
+FineTuneChatRequestInput_messages_inner::setToolCalls(std::list<ChatCompletionMessageToolCall> tool_calls)
 {
 	this->tool_calls = tool_calls;
 }
@@ -335,7 +335,7 @@ FineTuneChatRequestInput_messages_inner::getFunctionCall()
 }
 
 void
-FineTuneChatRequestInput_messages_inner::setFunctionCall(ChatCompletionRequestAssistantMessage_function_call  function_call)
+FineTuneChatRequestInput_messages_inner::setFunctionCall(ChatCompletionRequestAssistantMessage_function_call function_call)
 {
 	this->function_call = function_call;
 }
@@ -347,7 +347,7 @@ FineTuneChatRequestInput_messages_inner::getToolCallId()
 }
 
 void
-FineTuneChatRequestInput_messages_inner::setToolCallId(std::string  tool_call_id)
+FineTuneChatRequestInput_messages_inner::setToolCallId(std::string tool_call_id)
 {
 	this->tool_call_id = tool_call_id;
 }

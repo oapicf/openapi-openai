@@ -29,7 +29,7 @@ import {
 export interface StaticChunkingStrategy {
     /**
      * Always `static`.
-     * @type {string}
+     * @type {StaticChunkingStrategyTypeEnum}
      * @memberof StaticChunkingStrategy
      */
     type: StaticChunkingStrategyTypeEnum;
@@ -56,7 +56,9 @@ export type StaticChunkingStrategyTypeEnum = typeof StaticChunkingStrategyTypeEn
  */
 export function instanceOfStaticChunkingStrategy(value: object): value is StaticChunkingStrategy {
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('_static' in value) || value['_static'] === undefined) return false;
+    if (value['type'] !== 'static') return false;
+    
+    if ((!('_static' in (value as Record<string, any>)) && !('static' in (value as Record<string, any>))) || ((value as Record<string, any>)['_static'] === undefined && (value as Record<string, any>)['static'] === undefined)) return false;
     return true;
 }
 

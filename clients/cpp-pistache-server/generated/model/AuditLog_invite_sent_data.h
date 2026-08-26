@@ -32,7 +32,7 @@ class  AuditLog_invite_sent_data
 {
 public:
     AuditLog_invite_sent_data();
-    virtual ~AuditLog_invite_sent_data() = default;
+    virtual ~AuditLog_invite_sent_data();
 
 
     /// <summary>

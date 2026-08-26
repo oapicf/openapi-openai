@@ -54,6 +54,8 @@ Batch::Batch()
     
 }
 
+Batch::~Batch() = default;
+
 void Batch::validate() const
 {
     std::stringstream msg;

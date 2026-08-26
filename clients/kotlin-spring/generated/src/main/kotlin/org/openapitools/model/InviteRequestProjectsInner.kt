@@ -22,10 +22,12 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class InviteRequestProjectsInner(
 
-    @Schema(example = "null", required = true, description = "Project's public ID")
+    @Schema(required = true, description = "Project's public ID")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "Project membership role")
+    @Schema(required = true, description = "Project membership role")
+    @param:JsonProperty("role")
     @get:JsonProperty("role", required = true) val role: InviteRequestProjectsInner.Role
 ) {
 
@@ -43,7 +45,7 @@ data class InviteRequestProjectsInner(
             @JsonCreator
             fun forValue(value: kotlin.String): Role {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'InviteRequestProjectsInner'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Role'")
             }
         }
     }

@@ -1,4 +1,4 @@
-# # RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
+# RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
 
 ## Properties
 

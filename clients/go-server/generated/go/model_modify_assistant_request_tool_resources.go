@@ -22,7 +22,8 @@ type ModifyAssistantRequestToolResources struct {
 	FileSearch ModifyAssistantRequestToolResourcesFileSearch `json:"file_search,omitempty"`
 }
 
-// AssertModifyAssistantRequestToolResourcesRequired checks if the required fields are not zero-ed
+// AssertModifyAssistantRequestToolResourcesRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertModifyAssistantRequestToolResourcesRequired(obj ModifyAssistantRequestToolResources) error {
 	if err := AssertModifyAssistantRequestToolResourcesCodeInterpreterRequired(obj.CodeInterpreter); err != nil {
 		return err

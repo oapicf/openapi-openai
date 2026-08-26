@@ -27,7 +27,7 @@ class AssistantsApi {
   ///
   /// * [String] runId (required):
   ///   The ID of the run to cancel.
-  Future<Response> cancelRunWithHttpInfo(String threadId, String runId,) async {
+  Future<Response> cancelRunWithHttpInfo(String threadId, String runId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/{thread_id}/runs/{run_id}/cancel'
       .replaceAll('{thread_id}', threadId)
@@ -51,6 +51,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -63,8 +64,8 @@ class AssistantsApi {
   ///
   /// * [String] runId (required):
   ///   The ID of the run to cancel.
-  Future<RunObject?> cancelRun(String threadId, String runId,) async {
-    final response = await cancelRunWithHttpInfo(threadId, runId,);
+  Future<RunObject?> cancelRun(String threadId, String runId, { Future<void>? abortTrigger, }) async {
+    final response = await cancelRunWithHttpInfo(threadId, runId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -85,7 +86,7 @@ class AssistantsApi {
   /// Parameters:
   ///
   /// * [CreateAssistantRequest] createAssistantRequest (required):
-  Future<Response> createAssistantWithHttpInfo(CreateAssistantRequest createAssistantRequest,) async {
+  Future<Response> createAssistantWithHttpInfo(CreateAssistantRequest createAssistantRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/assistants';
 
@@ -107,6 +108,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -115,8 +117,8 @@ class AssistantsApi {
   /// Parameters:
   ///
   /// * [CreateAssistantRequest] createAssistantRequest (required):
-  Future<AssistantObject?> createAssistant(CreateAssistantRequest createAssistantRequest,) async {
-    final response = await createAssistantWithHttpInfo(createAssistantRequest,);
+  Future<AssistantObject?> createAssistant(CreateAssistantRequest createAssistantRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createAssistantWithHttpInfo(createAssistantRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -140,7 +142,7 @@ class AssistantsApi {
   ///   The ID of the [thread](/docs/api-reference/threads) to create a message for.
   ///
   /// * [CreateMessageRequest] createMessageRequest (required):
-  Future<Response> createMessageWithHttpInfo(String threadId, CreateMessageRequest createMessageRequest,) async {
+  Future<Response> createMessageWithHttpInfo(String threadId, CreateMessageRequest createMessageRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/{thread_id}/messages'
       .replaceAll('{thread_id}', threadId);
@@ -163,6 +165,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -174,8 +177,8 @@ class AssistantsApi {
   ///   The ID of the [thread](/docs/api-reference/threads) to create a message for.
   ///
   /// * [CreateMessageRequest] createMessageRequest (required):
-  Future<MessageObject?> createMessage(String threadId, CreateMessageRequest createMessageRequest,) async {
-    final response = await createMessageWithHttpInfo(threadId, createMessageRequest,);
+  Future<MessageObject?> createMessage(String threadId, CreateMessageRequest createMessageRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createMessageWithHttpInfo(threadId, createMessageRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -202,7 +205,7 @@ class AssistantsApi {
   ///
   /// * [List<String>] includeLeftSquareBracketRightSquareBracket:
   ///   A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
-  Future<Response> createRunWithHttpInfo(String threadId, CreateRunRequest createRunRequest, { List<String>? includeLeftSquareBracketRightSquareBracket, }) async {
+  Future<Response> createRunWithHttpInfo(String threadId, CreateRunRequest createRunRequest, { List<String>? includeLeftSquareBracketRightSquareBracket, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/{thread_id}/runs'
       .replaceAll('{thread_id}', threadId);
@@ -229,6 +232,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -243,8 +247,8 @@ class AssistantsApi {
   ///
   /// * [List<String>] includeLeftSquareBracketRightSquareBracket:
   ///   A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
-  Future<RunObject?> createRun(String threadId, CreateRunRequest createRunRequest, { List<String>? includeLeftSquareBracketRightSquareBracket, }) async {
-    final response = await createRunWithHttpInfo(threadId, createRunRequest,  includeLeftSquareBracketRightSquareBracket: includeLeftSquareBracketRightSquareBracket, );
+  Future<RunObject?> createRun(String threadId, CreateRunRequest createRunRequest, { List<String>? includeLeftSquareBracketRightSquareBracket, Future<void>? abortTrigger, }) async {
+    final response = await createRunWithHttpInfo(threadId, createRunRequest, includeLeftSquareBracketRightSquareBracket: includeLeftSquareBracketRightSquareBracket, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -265,7 +269,7 @@ class AssistantsApi {
   /// Parameters:
   ///
   /// * [CreateThreadRequest] createThreadRequest:
-  Future<Response> createThreadWithHttpInfo({ CreateThreadRequest? createThreadRequest, }) async {
+  Future<Response> createThreadWithHttpInfo({ CreateThreadRequest? createThreadRequest, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads';
 
@@ -287,6 +291,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -295,8 +300,8 @@ class AssistantsApi {
   /// Parameters:
   ///
   /// * [CreateThreadRequest] createThreadRequest:
-  Future<ThreadObject?> createThread({ CreateThreadRequest? createThreadRequest, }) async {
-    final response = await createThreadWithHttpInfo( createThreadRequest: createThreadRequest, );
+  Future<ThreadObject?> createThread({ CreateThreadRequest? createThreadRequest, Future<void>? abortTrigger, }) async {
+    final response = await createThreadWithHttpInfo(createThreadRequest: createThreadRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -317,7 +322,7 @@ class AssistantsApi {
   /// Parameters:
   ///
   /// * [CreateThreadAndRunRequest] createThreadAndRunRequest (required):
-  Future<Response> createThreadAndRunWithHttpInfo(CreateThreadAndRunRequest createThreadAndRunRequest,) async {
+  Future<Response> createThreadAndRunWithHttpInfo(CreateThreadAndRunRequest createThreadAndRunRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/runs';
 
@@ -339,6 +344,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -347,8 +353,8 @@ class AssistantsApi {
   /// Parameters:
   ///
   /// * [CreateThreadAndRunRequest] createThreadAndRunRequest (required):
-  Future<RunObject?> createThreadAndRun(CreateThreadAndRunRequest createThreadAndRunRequest,) async {
-    final response = await createThreadAndRunWithHttpInfo(createThreadAndRunRequest,);
+  Future<RunObject?> createThreadAndRun(CreateThreadAndRunRequest createThreadAndRunRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createThreadAndRunWithHttpInfo(createThreadAndRunRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -370,7 +376,7 @@ class AssistantsApi {
   ///
   /// * [String] assistantId (required):
   ///   The ID of the assistant to delete.
-  Future<Response> deleteAssistantWithHttpInfo(String assistantId,) async {
+  Future<Response> deleteAssistantWithHttpInfo(String assistantId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/assistants/{assistant_id}'
       .replaceAll('{assistant_id}', assistantId);
@@ -393,6 +399,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -402,8 +409,8 @@ class AssistantsApi {
   ///
   /// * [String] assistantId (required):
   ///   The ID of the assistant to delete.
-  Future<DeleteAssistantResponse?> deleteAssistant(String assistantId,) async {
-    final response = await deleteAssistantWithHttpInfo(assistantId,);
+  Future<DeleteAssistantResponse?> deleteAssistant(String assistantId, { Future<void>? abortTrigger, }) async {
+    final response = await deleteAssistantWithHttpInfo(assistantId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -428,7 +435,7 @@ class AssistantsApi {
   ///
   /// * [String] messageId (required):
   ///   The ID of the message to delete.
-  Future<Response> deleteMessageWithHttpInfo(String threadId, String messageId,) async {
+  Future<Response> deleteMessageWithHttpInfo(String threadId, String messageId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/{thread_id}/messages/{message_id}'
       .replaceAll('{thread_id}', threadId)
@@ -452,6 +459,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -464,8 +472,8 @@ class AssistantsApi {
   ///
   /// * [String] messageId (required):
   ///   The ID of the message to delete.
-  Future<DeleteMessageResponse?> deleteMessage(String threadId, String messageId,) async {
-    final response = await deleteMessageWithHttpInfo(threadId, messageId,);
+  Future<DeleteMessageResponse?> deleteMessage(String threadId, String messageId, { Future<void>? abortTrigger, }) async {
+    final response = await deleteMessageWithHttpInfo(threadId, messageId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -487,7 +495,7 @@ class AssistantsApi {
   ///
   /// * [String] threadId (required):
   ///   The ID of the thread to delete.
-  Future<Response> deleteThreadWithHttpInfo(String threadId,) async {
+  Future<Response> deleteThreadWithHttpInfo(String threadId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/{thread_id}'
       .replaceAll('{thread_id}', threadId);
@@ -510,6 +518,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -519,8 +528,8 @@ class AssistantsApi {
   ///
   /// * [String] threadId (required):
   ///   The ID of the thread to delete.
-  Future<DeleteThreadResponse?> deleteThread(String threadId,) async {
-    final response = await deleteThreadWithHttpInfo(threadId,);
+  Future<DeleteThreadResponse?> deleteThread(String threadId, { Future<void>? abortTrigger, }) async {
+    final response = await deleteThreadWithHttpInfo(threadId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -542,7 +551,7 @@ class AssistantsApi {
   ///
   /// * [String] assistantId (required):
   ///   The ID of the assistant to retrieve.
-  Future<Response> getAssistantWithHttpInfo(String assistantId,) async {
+  Future<Response> getAssistantWithHttpInfo(String assistantId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/assistants/{assistant_id}'
       .replaceAll('{assistant_id}', assistantId);
@@ -565,6 +574,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -574,8 +584,8 @@ class AssistantsApi {
   ///
   /// * [String] assistantId (required):
   ///   The ID of the assistant to retrieve.
-  Future<AssistantObject?> getAssistant(String assistantId,) async {
-    final response = await getAssistantWithHttpInfo(assistantId,);
+  Future<AssistantObject?> getAssistant(String assistantId, { Future<void>? abortTrigger, }) async {
+    final response = await getAssistantWithHttpInfo(assistantId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -600,7 +610,7 @@ class AssistantsApi {
   ///
   /// * [String] messageId (required):
   ///   The ID of the message to retrieve.
-  Future<Response> getMessageWithHttpInfo(String threadId, String messageId,) async {
+  Future<Response> getMessageWithHttpInfo(String threadId, String messageId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/{thread_id}/messages/{message_id}'
       .replaceAll('{thread_id}', threadId)
@@ -624,6 +634,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -636,8 +647,8 @@ class AssistantsApi {
   ///
   /// * [String] messageId (required):
   ///   The ID of the message to retrieve.
-  Future<MessageObject?> getMessage(String threadId, String messageId,) async {
-    final response = await getMessageWithHttpInfo(threadId, messageId,);
+  Future<MessageObject?> getMessage(String threadId, String messageId, { Future<void>? abortTrigger, }) async {
+    final response = await getMessageWithHttpInfo(threadId, messageId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -662,7 +673,7 @@ class AssistantsApi {
   ///
   /// * [String] runId (required):
   ///   The ID of the run to retrieve.
-  Future<Response> getRunWithHttpInfo(String threadId, String runId,) async {
+  Future<Response> getRunWithHttpInfo(String threadId, String runId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/{thread_id}/runs/{run_id}'
       .replaceAll('{thread_id}', threadId)
@@ -686,6 +697,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -698,8 +710,8 @@ class AssistantsApi {
   ///
   /// * [String] runId (required):
   ///   The ID of the run to retrieve.
-  Future<RunObject?> getRun(String threadId, String runId,) async {
-    final response = await getRunWithHttpInfo(threadId, runId,);
+  Future<RunObject?> getRun(String threadId, String runId, { Future<void>? abortTrigger, }) async {
+    final response = await getRunWithHttpInfo(threadId, runId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -730,7 +742,7 @@ class AssistantsApi {
   ///
   /// * [List<String>] includeLeftSquareBracketRightSquareBracket:
   ///   A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
-  Future<Response> getRunStepWithHttpInfo(String threadId, String runId, String stepId, { List<String>? includeLeftSquareBracketRightSquareBracket, }) async {
+  Future<Response> getRunStepWithHttpInfo(String threadId, String runId, String stepId, { List<String>? includeLeftSquareBracketRightSquareBracket, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/{thread_id}/runs/{run_id}/steps/{step_id}'
       .replaceAll('{thread_id}', threadId)
@@ -759,6 +771,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -777,8 +790,8 @@ class AssistantsApi {
   ///
   /// * [List<String>] includeLeftSquareBracketRightSquareBracket:
   ///   A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
-  Future<RunStepObject?> getRunStep(String threadId, String runId, String stepId, { List<String>? includeLeftSquareBracketRightSquareBracket, }) async {
-    final response = await getRunStepWithHttpInfo(threadId, runId, stepId,  includeLeftSquareBracketRightSquareBracket: includeLeftSquareBracketRightSquareBracket, );
+  Future<RunStepObject?> getRunStep(String threadId, String runId, String stepId, { List<String>? includeLeftSquareBracketRightSquareBracket, Future<void>? abortTrigger, }) async {
+    final response = await getRunStepWithHttpInfo(threadId, runId, stepId, includeLeftSquareBracketRightSquareBracket: includeLeftSquareBracketRightSquareBracket, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -800,7 +813,7 @@ class AssistantsApi {
   ///
   /// * [String] threadId (required):
   ///   The ID of the thread to retrieve.
-  Future<Response> getThreadWithHttpInfo(String threadId,) async {
+  Future<Response> getThreadWithHttpInfo(String threadId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/{thread_id}'
       .replaceAll('{thread_id}', threadId);
@@ -823,6 +836,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -832,8 +846,8 @@ class AssistantsApi {
   ///
   /// * [String] threadId (required):
   ///   The ID of the thread to retrieve.
-  Future<ThreadObject?> getThread(String threadId,) async {
-    final response = await getThreadWithHttpInfo(threadId,);
+  Future<ThreadObject?> getThread(String threadId, { Future<void>? abortTrigger, }) async {
+    final response = await getThreadWithHttpInfo(threadId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -864,7 +878,7 @@ class AssistantsApi {
   ///
   /// * [String] before:
   ///   A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-  Future<Response> listAssistantsWithHttpInfo({ int? limit, String? order, String? after, String? before, }) async {
+  Future<Response> listAssistantsWithHttpInfo({ int? limit, String? order, String? after, String? before, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/assistants';
 
@@ -899,6 +913,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -917,8 +932,8 @@ class AssistantsApi {
   ///
   /// * [String] before:
   ///   A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-  Future<ListAssistantsResponse?> listAssistants({ int? limit, String? order, String? after, String? before, }) async {
-    final response = await listAssistantsWithHttpInfo( limit: limit, order: order, after: after, before: before, );
+  Future<ListAssistantsResponse?> listAssistants({ int? limit, String? order, String? after, String? before, Future<void>? abortTrigger, }) async {
+    final response = await listAssistantsWithHttpInfo(limit: limit, order: order, after: after, before: before, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -955,7 +970,7 @@ class AssistantsApi {
   ///
   /// * [String] runId:
   ///   Filter messages by the run ID that generated them. 
-  Future<Response> listMessagesWithHttpInfo(String threadId, { int? limit, String? order, String? after, String? before, String? runId, }) async {
+  Future<Response> listMessagesWithHttpInfo(String threadId, { int? limit, String? order, String? after, String? before, String? runId, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/{thread_id}/messages'
       .replaceAll('{thread_id}', threadId);
@@ -994,6 +1009,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1018,8 +1034,8 @@ class AssistantsApi {
   ///
   /// * [String] runId:
   ///   Filter messages by the run ID that generated them. 
-  Future<ListMessagesResponse?> listMessages(String threadId, { int? limit, String? order, String? after, String? before, String? runId, }) async {
-    final response = await listMessagesWithHttpInfo(threadId,  limit: limit, order: order, after: after, before: before, runId: runId, );
+  Future<ListMessagesResponse?> listMessages(String threadId, { int? limit, String? order, String? after, String? before, String? runId, Future<void>? abortTrigger, }) async {
+    final response = await listMessagesWithHttpInfo(threadId, limit: limit, order: order, after: after, before: before, runId: runId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1059,7 +1075,7 @@ class AssistantsApi {
   ///
   /// * [List<String>] includeLeftSquareBracketRightSquareBracket:
   ///   A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
-  Future<Response> listRunStepsWithHttpInfo(String threadId, String runId, { int? limit, String? order, String? after, String? before, List<String>? includeLeftSquareBracketRightSquareBracket, }) async {
+  Future<Response> listRunStepsWithHttpInfo(String threadId, String runId, { int? limit, String? order, String? after, String? before, List<String>? includeLeftSquareBracketRightSquareBracket, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/{thread_id}/runs/{run_id}/steps'
       .replaceAll('{thread_id}', threadId)
@@ -1099,6 +1115,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1126,8 +1143,8 @@ class AssistantsApi {
   ///
   /// * [List<String>] includeLeftSquareBracketRightSquareBracket:
   ///   A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
-  Future<ListRunStepsResponse?> listRunSteps(String threadId, String runId, { int? limit, String? order, String? after, String? before, List<String>? includeLeftSquareBracketRightSquareBracket, }) async {
-    final response = await listRunStepsWithHttpInfo(threadId, runId,  limit: limit, order: order, after: after, before: before, includeLeftSquareBracketRightSquareBracket: includeLeftSquareBracketRightSquareBracket, );
+  Future<ListRunStepsResponse?> listRunSteps(String threadId, String runId, { int? limit, String? order, String? after, String? before, List<String>? includeLeftSquareBracketRightSquareBracket, Future<void>? abortTrigger, }) async {
+    final response = await listRunStepsWithHttpInfo(threadId, runId, limit: limit, order: order, after: after, before: before, includeLeftSquareBracketRightSquareBracket: includeLeftSquareBracketRightSquareBracket, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1161,7 +1178,7 @@ class AssistantsApi {
   ///
   /// * [String] before:
   ///   A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-  Future<Response> listRunsWithHttpInfo(String threadId, { int? limit, String? order, String? after, String? before, }) async {
+  Future<Response> listRunsWithHttpInfo(String threadId, { int? limit, String? order, String? after, String? before, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/{thread_id}/runs'
       .replaceAll('{thread_id}', threadId);
@@ -1197,6 +1214,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1218,8 +1236,8 @@ class AssistantsApi {
   ///
   /// * [String] before:
   ///   A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-  Future<ListRunsResponse?> listRuns(String threadId, { int? limit, String? order, String? after, String? before, }) async {
-    final response = await listRunsWithHttpInfo(threadId,  limit: limit, order: order, after: after, before: before, );
+  Future<ListRunsResponse?> listRuns(String threadId, { int? limit, String? order, String? after, String? before, Future<void>? abortTrigger, }) async {
+    final response = await listRunsWithHttpInfo(threadId, limit: limit, order: order, after: after, before: before, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1243,7 +1261,7 @@ class AssistantsApi {
   ///   The ID of the assistant to modify.
   ///
   /// * [ModifyAssistantRequest] modifyAssistantRequest (required):
-  Future<Response> modifyAssistantWithHttpInfo(String assistantId, ModifyAssistantRequest modifyAssistantRequest,) async {
+  Future<Response> modifyAssistantWithHttpInfo(String assistantId, ModifyAssistantRequest modifyAssistantRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/assistants/{assistant_id}'
       .replaceAll('{assistant_id}', assistantId);
@@ -1266,6 +1284,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1277,8 +1296,8 @@ class AssistantsApi {
   ///   The ID of the assistant to modify.
   ///
   /// * [ModifyAssistantRequest] modifyAssistantRequest (required):
-  Future<AssistantObject?> modifyAssistant(String assistantId, ModifyAssistantRequest modifyAssistantRequest,) async {
-    final response = await modifyAssistantWithHttpInfo(assistantId, modifyAssistantRequest,);
+  Future<AssistantObject?> modifyAssistant(String assistantId, ModifyAssistantRequest modifyAssistantRequest, { Future<void>? abortTrigger, }) async {
+    final response = await modifyAssistantWithHttpInfo(assistantId, modifyAssistantRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1305,7 +1324,7 @@ class AssistantsApi {
   ///   The ID of the message to modify.
   ///
   /// * [ModifyMessageRequest] modifyMessageRequest (required):
-  Future<Response> modifyMessageWithHttpInfo(String threadId, String messageId, ModifyMessageRequest modifyMessageRequest,) async {
+  Future<Response> modifyMessageWithHttpInfo(String threadId, String messageId, ModifyMessageRequest modifyMessageRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/{thread_id}/messages/{message_id}'
       .replaceAll('{thread_id}', threadId)
@@ -1329,6 +1348,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1343,8 +1363,8 @@ class AssistantsApi {
   ///   The ID of the message to modify.
   ///
   /// * [ModifyMessageRequest] modifyMessageRequest (required):
-  Future<MessageObject?> modifyMessage(String threadId, String messageId, ModifyMessageRequest modifyMessageRequest,) async {
-    final response = await modifyMessageWithHttpInfo(threadId, messageId, modifyMessageRequest,);
+  Future<MessageObject?> modifyMessage(String threadId, String messageId, ModifyMessageRequest modifyMessageRequest, { Future<void>? abortTrigger, }) async {
+    final response = await modifyMessageWithHttpInfo(threadId, messageId, modifyMessageRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1371,7 +1391,7 @@ class AssistantsApi {
   ///   The ID of the run to modify.
   ///
   /// * [ModifyRunRequest] modifyRunRequest (required):
-  Future<Response> modifyRunWithHttpInfo(String threadId, String runId, ModifyRunRequest modifyRunRequest,) async {
+  Future<Response> modifyRunWithHttpInfo(String threadId, String runId, ModifyRunRequest modifyRunRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/{thread_id}/runs/{run_id}'
       .replaceAll('{thread_id}', threadId)
@@ -1395,6 +1415,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1409,8 +1430,8 @@ class AssistantsApi {
   ///   The ID of the run to modify.
   ///
   /// * [ModifyRunRequest] modifyRunRequest (required):
-  Future<RunObject?> modifyRun(String threadId, String runId, ModifyRunRequest modifyRunRequest,) async {
-    final response = await modifyRunWithHttpInfo(threadId, runId, modifyRunRequest,);
+  Future<RunObject?> modifyRun(String threadId, String runId, ModifyRunRequest modifyRunRequest, { Future<void>? abortTrigger, }) async {
+    final response = await modifyRunWithHttpInfo(threadId, runId, modifyRunRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1434,7 +1455,7 @@ class AssistantsApi {
   ///   The ID of the thread to modify. Only the `metadata` can be modified.
   ///
   /// * [ModifyThreadRequest] modifyThreadRequest (required):
-  Future<Response> modifyThreadWithHttpInfo(String threadId, ModifyThreadRequest modifyThreadRequest,) async {
+  Future<Response> modifyThreadWithHttpInfo(String threadId, ModifyThreadRequest modifyThreadRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/{thread_id}'
       .replaceAll('{thread_id}', threadId);
@@ -1457,6 +1478,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1468,8 +1490,8 @@ class AssistantsApi {
   ///   The ID of the thread to modify. Only the `metadata` can be modified.
   ///
   /// * [ModifyThreadRequest] modifyThreadRequest (required):
-  Future<ThreadObject?> modifyThread(String threadId, ModifyThreadRequest modifyThreadRequest,) async {
-    final response = await modifyThreadWithHttpInfo(threadId, modifyThreadRequest,);
+  Future<ThreadObject?> modifyThread(String threadId, ModifyThreadRequest modifyThreadRequest, { Future<void>? abortTrigger, }) async {
+    final response = await modifyThreadWithHttpInfo(threadId, modifyThreadRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1496,7 +1518,7 @@ class AssistantsApi {
   ///   The ID of the run that requires the tool output submission.
   ///
   /// * [SubmitToolOutputsRunRequest] submitToolOutputsRunRequest (required):
-  Future<Response> submitToolOuputsToRunWithHttpInfo(String threadId, String runId, SubmitToolOutputsRunRequest submitToolOutputsRunRequest,) async {
+  Future<Response> submitToolOuputsToRunWithHttpInfo(String threadId, String runId, SubmitToolOutputsRunRequest submitToolOutputsRunRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/threads/{thread_id}/runs/{run_id}/submit_tool_outputs'
       .replaceAll('{thread_id}', threadId)
@@ -1520,6 +1542,7 @@ class AssistantsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1534,8 +1557,8 @@ class AssistantsApi {
   ///   The ID of the run that requires the tool output submission.
   ///
   /// * [SubmitToolOutputsRunRequest] submitToolOutputsRunRequest (required):
-  Future<RunObject?> submitToolOuputsToRun(String threadId, String runId, SubmitToolOutputsRunRequest submitToolOutputsRunRequest,) async {
-    final response = await submitToolOuputsToRunWithHttpInfo(threadId, runId, submitToolOutputsRunRequest,);
+  Future<RunObject?> submitToolOuputsToRun(String threadId, String runId, SubmitToolOutputsRunRequest submitToolOutputsRunRequest, { Future<void>? abortTrigger, }) async {
+    final response = await submitToolOuputsToRunWithHttpInfo(threadId, runId, submitToolOutputsRunRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

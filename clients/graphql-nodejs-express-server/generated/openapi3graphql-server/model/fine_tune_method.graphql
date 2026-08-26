@@ -19,7 +19,7 @@ type FineTuneMethod {
 input FineTuneMethodInput {
     # The type of method. Is either `supervised` or `dpo`.
     type: TypeEnum
-    supervised: FineTuneSupervisedMethod
-    dpo: FineTuneDpoMethod
+    supervised: FineTuneSupervisedMethodInput
+    dpo: FineTuneDpoMethodInput
 }
 

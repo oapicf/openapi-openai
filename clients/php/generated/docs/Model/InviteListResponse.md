@@ -1,4 +1,4 @@
-# # InviteListResponse
+# InviteListResponse
 
 ## Properties
 

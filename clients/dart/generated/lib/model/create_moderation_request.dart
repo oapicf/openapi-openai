@@ -63,10 +63,8 @@ class CreateModerationRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateModerationRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateModerationRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'input'), 'Required key "CreateModerationRequest[input]" is missing from JSON.');
+        assert(json[r'input'] != null, 'Required key "CreateModerationRequest[input]" has a null value in JSON.');
         return true;
       }());
 

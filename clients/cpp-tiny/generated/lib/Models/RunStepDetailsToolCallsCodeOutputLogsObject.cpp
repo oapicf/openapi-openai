@@ -85,7 +85,7 @@ RunStepDetailsToolCallsCodeOutputLogsObject::getType()
 }
 
 void
-RunStepDetailsToolCallsCodeOutputLogsObject::setType(std::string  type)
+RunStepDetailsToolCallsCodeOutputLogsObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -97,7 +97,7 @@ RunStepDetailsToolCallsCodeOutputLogsObject::getLogs()
 }
 
 void
-RunStepDetailsToolCallsCodeOutputLogsObject::setLogs(std::string  logs)
+RunStepDetailsToolCallsCodeOutputLogsObject::setLogs(std::string logs)
 {
 	this->logs = logs;
 }

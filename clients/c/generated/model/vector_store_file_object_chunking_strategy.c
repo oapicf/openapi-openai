@@ -30,10 +30,10 @@ static vector_store_file_object_chunking_strategy_t *vector_store_file_object_ch
     if (!vector_store_file_object_chunking_strategy_local_var) {
         return NULL;
     }
+    memset(vector_store_file_object_chunking_strategy_local_var, 0, sizeof(vector_store_file_object_chunking_strategy_t));
+    vector_store_file_object_chunking_strategy_local_var->_library_owned = 1;
     vector_store_file_object_chunking_strategy_local_var->type = type;
     vector_store_file_object_chunking_strategy_local_var->_static = _static;
-
-    vector_store_file_object_chunking_strategy_local_var->_library_owned = 1;
     return vector_store_file_object_chunking_strategy_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) vector_store_file_object_chunking_strategy_t *vector
     openai_api_vector_store_file_object_chunking_strategy_TYPE_e type,
     static_chunking_strategy_t *_static
     ) {
-    return vector_store_file_object_chunking_strategy_create_internal (
+    vector_store_file_object_chunking_strategy_t *result = vector_store_file_object_chunking_strategy_create_internal (
         type,
         _static
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void vector_store_file_object_chunking_strategy_free(vector_store_file_object_chunking_strategy_t *vector_store_file_object_chunking_strategy) {
@@ -134,10 +137,15 @@ vector_store_file_object_chunking_strategy_t *vector_store_file_object_chunking_
     _static_local_nonprim = static_chunking_strategy_parseFromJSON(_static); //nonprimitive
 
 
+
     vector_store_file_object_chunking_strategy_local_var = vector_store_file_object_chunking_strategy_create_internal (
         typeVariable,
         _static_local_nonprim
         );
+
+    if (!vector_store_file_object_chunking_strategy_local_var) {
+        goto end;
+    }
 
     return vector_store_file_object_chunking_strategy_local_var;
 end:

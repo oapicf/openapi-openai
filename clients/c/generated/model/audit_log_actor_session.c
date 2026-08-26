@@ -13,10 +13,10 @@ static audit_log_actor_session_t *audit_log_actor_session_create_internal(
     if (!audit_log_actor_session_local_var) {
         return NULL;
     }
+    memset(audit_log_actor_session_local_var, 0, sizeof(audit_log_actor_session_t));
+    audit_log_actor_session_local_var->_library_owned = 1;
     audit_log_actor_session_local_var->user = user;
     audit_log_actor_session_local_var->ip_address = ip_address;
-
-    audit_log_actor_session_local_var->_library_owned = 1;
     return audit_log_actor_session_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) audit_log_actor_session_t *audit_log_actor_session_c
     audit_log_actor_user_t *user,
     char *ip_address
     ) {
-    return audit_log_actor_session_create_internal (
+    audit_log_actor_session_t *result = audit_log_actor_session_create_internal (
         user,
         ip_address
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void audit_log_actor_session_free(audit_log_actor_session_t *audit_log_actor_session) {
@@ -88,6 +91,8 @@ audit_log_actor_session_t *audit_log_actor_session_parseFromJSON(cJSON *audit_lo
     // define the local variable for audit_log_actor_session->user
     audit_log_actor_user_t *user_local_nonprim = NULL;
 
+    char *ip_address_local_str = NULL;
+
     // audit_log_actor_session->user
     cJSON *user = cJSON_GetObjectItemCaseSensitive(audit_log_actor_sessionJSON, "user");
     if (cJSON_IsNull(user)) {
@@ -110,16 +115,26 @@ audit_log_actor_session_t *audit_log_actor_session_parseFromJSON(cJSON *audit_lo
     }
 
 
+    if (ip_address && !cJSON_IsNull(ip_address)) ip_address_local_str = strdup(ip_address->valuestring);
+
     audit_log_actor_session_local_var = audit_log_actor_session_create_internal (
         user ? user_local_nonprim : NULL,
-        ip_address && !cJSON_IsNull(ip_address) ? strdup(ip_address->valuestring) : NULL
+        ip_address_local_str
         );
+
+    if (!audit_log_actor_session_local_var) {
+        goto end;
+    }
 
     return audit_log_actor_session_local_var;
 end:
     if (user_local_nonprim) {
         audit_log_actor_user_free(user_local_nonprim);
         user_local_nonprim = NULL;
+    }
+    if (ip_address_local_str) {
+        free(ip_address_local_str);
+        ip_address_local_str = NULL;
     }
     return NULL;
 

@@ -93,8 +93,9 @@ class _$AssistantsNamedToolChoiceSerializer implements PrimitiveSerializer<Assis
         case r'function':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AssistantsNamedToolChoiceFunction),
-          ) as AssistantsNamedToolChoiceFunction;
+            specifiedType: const FullType.nullable(AssistantsNamedToolChoiceFunction),
+          ) as AssistantsNamedToolChoiceFunction?;
+          if (valueDes == null) continue;
           result.function_.replace(valueDes);
           break;
         default:

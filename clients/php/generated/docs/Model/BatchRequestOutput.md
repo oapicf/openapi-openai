@@ -1,4 +1,4 @@
-# # BatchRequestOutput
+# BatchRequestOutput
 
 ## Properties
 

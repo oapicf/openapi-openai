@@ -1,7 +1,10 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -19,7 +22,10 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class AuditLogProjectUpdatedChangesRequested(
 
-    @Schema(example = "null", description = "The title of the project as seen on the dashboard.")
+    @Schema(description = "The title of the project as seen on the dashboard.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("title")
     @get:JsonProperty("title") val title: kotlin.String? = null
 ) {
 

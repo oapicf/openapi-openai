@@ -7,31 +7,40 @@
 
 static chat_completion_token_logprob_top_logprobs_inner_t *chat_completion_token_logprob_top_logprobs_inner_create_internal(
     char *token,
-    double logprob,
+    double *logprob,
     list_t *bytes
     ) {
     chat_completion_token_logprob_top_logprobs_inner_t *chat_completion_token_logprob_top_logprobs_inner_local_var = malloc(sizeof(chat_completion_token_logprob_top_logprobs_inner_t));
     if (!chat_completion_token_logprob_top_logprobs_inner_local_var) {
         return NULL;
     }
+    memset(chat_completion_token_logprob_top_logprobs_inner_local_var, 0, sizeof(chat_completion_token_logprob_top_logprobs_inner_t));
+    chat_completion_token_logprob_top_logprobs_inner_local_var->_library_owned = 1;
     chat_completion_token_logprob_top_logprobs_inner_local_var->token = token;
     chat_completion_token_logprob_top_logprobs_inner_local_var->logprob = logprob;
     chat_completion_token_logprob_top_logprobs_inner_local_var->bytes = bytes;
-
-    chat_completion_token_logprob_top_logprobs_inner_local_var->_library_owned = 1;
     return chat_completion_token_logprob_top_logprobs_inner_local_var;
 }
 
 __attribute__((deprecated)) chat_completion_token_logprob_top_logprobs_inner_t *chat_completion_token_logprob_top_logprobs_inner_create(
     char *token,
-    double logprob,
+    double *logprob,
     list_t *bytes
     ) {
-    return chat_completion_token_logprob_top_logprobs_inner_create_internal (
+    double *logprob_copy = NULL;
+    if (logprob) {
+        logprob_copy = malloc(sizeof(double));
+        if (logprob_copy) *logprob_copy = *logprob;
+    }
+    chat_completion_token_logprob_top_logprobs_inner_t *result = chat_completion_token_logprob_top_logprobs_inner_create_internal (
         token,
-        logprob,
+        logprob_copy,
         bytes
         );
+    if (!result) {
+        free(logprob_copy);
+    }
+    return result;
 }
 
 void chat_completion_token_logprob_top_logprobs_inner_free(chat_completion_token_logprob_top_logprobs_inner_t *chat_completion_token_logprob_top_logprobs_inner) {
@@ -46,6 +55,10 @@ void chat_completion_token_logprob_top_logprobs_inner_free(chat_completion_token
     if (chat_completion_token_logprob_top_logprobs_inner->token) {
         free(chat_completion_token_logprob_top_logprobs_inner->token);
         chat_completion_token_logprob_top_logprobs_inner->token = NULL;
+    }
+    if (chat_completion_token_logprob_top_logprobs_inner->logprob) {
+        free(chat_completion_token_logprob_top_logprobs_inner->logprob);
+        chat_completion_token_logprob_top_logprobs_inner->logprob = NULL;
     }
     if (chat_completion_token_logprob_top_logprobs_inner->bytes) {
         list_ForEach(listEntry, chat_completion_token_logprob_top_logprobs_inner->bytes) {
@@ -73,7 +86,7 @@ cJSON *chat_completion_token_logprob_top_logprobs_inner_convertToJSON(chat_compl
     if (!chat_completion_token_logprob_top_logprobs_inner->logprob) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "logprob", chat_completion_token_logprob_top_logprobs_inner->logprob) == NULL) {
+    if(cJSON_AddNumberToObject(item, "logprob", *chat_completion_token_logprob_top_logprobs_inner->logprob) == NULL) {
     goto fail; //Numeric
     }
 
@@ -107,6 +120,11 @@ chat_completion_token_logprob_top_logprobs_inner_t *chat_completion_token_logpro
 
     chat_completion_token_logprob_top_logprobs_inner_t *chat_completion_token_logprob_top_logprobs_inner_local_var = NULL;
 
+    char *token_local_str = NULL;
+
+    // define the local variable for chat_completion_token_logprob_top_logprobs_inner->logprob
+    double *logprob_local_var = NULL;
+
     // define the local list for chat_completion_token_logprob_top_logprobs_inner->bytes
     list_t *bytesList = NULL;
 
@@ -139,6 +157,12 @@ chat_completion_token_logprob_top_logprobs_inner_t *chat_completion_token_logpro
     {
     goto end; //Numeric
     }
+    logprob_local_var = malloc(sizeof(double));
+    if(!logprob_local_var)
+    {
+        goto end;
+    }
+    *logprob_local_var = logprob->valuedouble;
 
     // chat_completion_token_logprob_top_logprobs_inner->bytes
     cJSON *bytes = cJSON_GetObjectItemCaseSensitive(chat_completion_token_logprob_top_logprobs_innerJSON, "bytes");
@@ -172,14 +196,28 @@ chat_completion_token_logprob_top_logprobs_inner_t *chat_completion_token_logpro
     }
 
 
+    if (token && !cJSON_IsNull(token)) token_local_str = strdup(token->valuestring);
+
     chat_completion_token_logprob_top_logprobs_inner_local_var = chat_completion_token_logprob_top_logprobs_inner_create_internal (
-        strdup(token->valuestring),
-        logprob->valuedouble,
+        token_local_str,
+        logprob_local_var,
         bytesList
         );
 
+    if (!chat_completion_token_logprob_top_logprobs_inner_local_var) {
+        goto end;
+    }
+
     return chat_completion_token_logprob_top_logprobs_inner_local_var;
 end:
+    if (token_local_str) {
+        free(token_local_str);
+        token_local_str = NULL;
+    }
+    if (logprob_local_var) {
+        free(logprob_local_var);
+        logprob_local_var = NULL;
+    }
     if (bytesList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, bytesList) {

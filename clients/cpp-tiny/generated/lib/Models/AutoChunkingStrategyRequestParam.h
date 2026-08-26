@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set Always `auto`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 
 
     private:

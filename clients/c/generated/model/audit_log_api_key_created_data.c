@@ -12,18 +12,21 @@ static audit_log_api_key_created_data_t *audit_log_api_key_created_data_create_i
     if (!audit_log_api_key_created_data_local_var) {
         return NULL;
     }
-    audit_log_api_key_created_data_local_var->scopes = scopes;
-
+    memset(audit_log_api_key_created_data_local_var, 0, sizeof(audit_log_api_key_created_data_t));
     audit_log_api_key_created_data_local_var->_library_owned = 1;
+    audit_log_api_key_created_data_local_var->scopes = scopes;
     return audit_log_api_key_created_data_local_var;
 }
 
 __attribute__((deprecated)) audit_log_api_key_created_data_t *audit_log_api_key_created_data_create(
     list_t *scopes
     ) {
-    return audit_log_api_key_created_data_create_internal (
+    audit_log_api_key_created_data_t *result = audit_log_api_key_created_data_create_internal (
         scopes
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void audit_log_api_key_created_data_free(audit_log_api_key_created_data_t *audit_log_api_key_created_data) {
@@ -102,9 +105,14 @@ audit_log_api_key_created_data_t *audit_log_api_key_created_data_parseFromJSON(c
     }
 
 
+
     audit_log_api_key_created_data_local_var = audit_log_api_key_created_data_create_internal (
         scopes ? scopesList : NULL
         );
+
+    if (!audit_log_api_key_created_data_local_var) {
+        goto end;
+    }
 
     return audit_log_api_key_created_data_local_var;
 end:

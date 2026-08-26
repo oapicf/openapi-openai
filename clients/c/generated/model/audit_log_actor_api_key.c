@@ -32,12 +32,12 @@ static audit_log_actor_api_key_t *audit_log_actor_api_key_create_internal(
     if (!audit_log_actor_api_key_local_var) {
         return NULL;
     }
+    memset(audit_log_actor_api_key_local_var, 0, sizeof(audit_log_actor_api_key_t));
+    audit_log_actor_api_key_local_var->_library_owned = 1;
     audit_log_actor_api_key_local_var->id = id;
     audit_log_actor_api_key_local_var->type = type;
     audit_log_actor_api_key_local_var->user = user;
     audit_log_actor_api_key_local_var->service_account = service_account;
-
-    audit_log_actor_api_key_local_var->_library_owned = 1;
     return audit_log_actor_api_key_local_var;
 }
 
@@ -47,12 +47,15 @@ __attribute__((deprecated)) audit_log_actor_api_key_t *audit_log_actor_api_key_c
     audit_log_actor_user_t *user,
     audit_log_actor_service_account_t *service_account
     ) {
-    return audit_log_actor_api_key_create_internal (
+    audit_log_actor_api_key_t *result = audit_log_actor_api_key_create_internal (
         id,
         type,
         user,
         service_account
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void audit_log_actor_api_key_free(audit_log_actor_api_key_t *audit_log_actor_api_key) {
@@ -136,6 +139,8 @@ audit_log_actor_api_key_t *audit_log_actor_api_key_parseFromJSON(cJSON *audit_lo
 
     audit_log_actor_api_key_t *audit_log_actor_api_key_local_var = NULL;
 
+    char *id_local_str = NULL;
+
     // define the local variable for audit_log_actor_api_key->user
     audit_log_actor_user_t *user_local_nonprim = NULL;
 
@@ -187,15 +192,25 @@ audit_log_actor_api_key_t *audit_log_actor_api_key_parseFromJSON(cJSON *audit_lo
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     audit_log_actor_api_key_local_var = audit_log_actor_api_key_create_internal (
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
+        id_local_str,
         type ? typeVariable : openai_api_audit_log_actor_api_key_TYPE_NULL,
         user ? user_local_nonprim : NULL,
         service_account ? service_account_local_nonprim : NULL
         );
 
+    if (!audit_log_actor_api_key_local_var) {
+        goto end;
+    }
+
     return audit_log_actor_api_key_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     if (user_local_nonprim) {
         audit_log_actor_user_free(user_local_nonprim);
         user_local_nonprim = NULL;

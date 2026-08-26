@@ -62,7 +62,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The organization title.</value>
         [JsonPropertyName("title")]
-        public string? Title { get { return this.TitleOption; } set { this.TitleOption = new(value); } }
+        public string? Title { get { return this.TitleOption.Value; } set { this.TitleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -76,7 +76,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The organization description.</value>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -90,7 +90,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The organization name.</value>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Settings
@@ -103,7 +103,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Settings
         /// </summary>
         [JsonPropertyName("settings")]
-        public AuditLogOrganizationUpdatedChangesRequestedSettings? Settings { get { return this.SettingsOption; } set { this.SettingsOption = new(value); } }
+        public AuditLogOrganizationUpdatedChangesRequestedSettings? Settings { get { return this.SettingsOption.Value; } set { this.SettingsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -135,8 +135,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogOrganizationUpdatedChangesRequested" />
     /// </summary>
-    public class AuditLogOrganizationUpdatedChangesRequestedJsonConverter : JsonConverter<AuditLogOrganizationUpdatedChangesRequested>
+    public partial class AuditLogOrganizationUpdatedChangesRequestedJsonConverter : JsonConverter<AuditLogOrganizationUpdatedChangesRequested>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogOrganizationUpdatedChangesRequestedJsonConverter" /> class.
+        /// </summary>
+        public AuditLogOrganizationUpdatedChangesRequestedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogOrganizationUpdatedChangesRequested" />
         /// </summary>

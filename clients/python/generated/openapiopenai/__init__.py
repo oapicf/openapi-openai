@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.1.1-pre.0"
+__version__ = "1.2.1-pre.0"
 
 # Define package exports
 __all__ = [
@@ -108,7 +108,6 @@ __all__ = [
     "AuditLogUserDeleted",
     "AuditLogUserUpdated",
     "AuditLogUserUpdatedChangesRequested",
-    "AutoChunkingStrategy",
     "AutoChunkingStrategyRequestParam",
     "Batch",
     "BatchErrors",
@@ -518,7 +517,6 @@ __all__ = [
     "RunToolCallObjectFunction",
     "StaticChunkingStrategy",
     "StaticChunkingStrategyRequestParam",
-    "StaticChunkingStrategyResponseParam",
     "StaticChunkingStrategyStatic",
     "SubmitToolOutputsRunRequest",
     "SubmitToolOutputsRunRequestToolOutputsInner",
@@ -649,7 +647,6 @@ from openapiopenai.models.audit_log_user_added_data import AuditLogUserAddedData
 from openapiopenai.models.audit_log_user_deleted import AuditLogUserDeleted as AuditLogUserDeleted
 from openapiopenai.models.audit_log_user_updated import AuditLogUserUpdated as AuditLogUserUpdated
 from openapiopenai.models.audit_log_user_updated_changes_requested import AuditLogUserUpdatedChangesRequested as AuditLogUserUpdatedChangesRequested
-from openapiopenai.models.auto_chunking_strategy import AutoChunkingStrategy as AutoChunkingStrategy
 from openapiopenai.models.auto_chunking_strategy_request_param import AutoChunkingStrategyRequestParam as AutoChunkingStrategyRequestParam
 from openapiopenai.models.batch import Batch as Batch
 from openapiopenai.models.batch_errors import BatchErrors as BatchErrors
@@ -1059,7 +1056,6 @@ from openapiopenai.models.run_tool_call_object import RunToolCallObject as RunTo
 from openapiopenai.models.run_tool_call_object_function import RunToolCallObjectFunction as RunToolCallObjectFunction
 from openapiopenai.models.static_chunking_strategy import StaticChunkingStrategy as StaticChunkingStrategy
 from openapiopenai.models.static_chunking_strategy_request_param import StaticChunkingStrategyRequestParam as StaticChunkingStrategyRequestParam
-from openapiopenai.models.static_chunking_strategy_response_param import StaticChunkingStrategyResponseParam as StaticChunkingStrategyResponseParam
 from openapiopenai.models.static_chunking_strategy_static import StaticChunkingStrategyStatic as StaticChunkingStrategyStatic
 from openapiopenai.models.submit_tool_outputs_run_request import SubmitToolOutputsRunRequest as SubmitToolOutputsRunRequest
 from openapiopenai.models.submit_tool_outputs_run_request_tool_outputs_inner import SubmitToolOutputsRunRequestToolOutputsInner as SubmitToolOutputsRunRequestToolOutputsInner

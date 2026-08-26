@@ -1,4 +1,4 @@
-# # UsageAudioSpeechesResult
+# UsageAudioSpeechesResult
 
 ## Properties
 

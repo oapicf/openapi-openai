@@ -65,10 +65,10 @@ class UsageCodeInterpreterSessionsResult {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UsageCodeInterpreterSessionsResult[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UsageCodeInterpreterSessionsResult[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "UsageCodeInterpreterSessionsResult[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "UsageCodeInterpreterSessionsResult[object]" has a null value in JSON.');
+        assert(json.containsKey(r'sessions'), 'Required key "UsageCodeInterpreterSessionsResult[sessions]" is missing from JSON.');
+        assert(json[r'sessions'] != null, 'Required key "UsageCodeInterpreterSessionsResult[sessions]" has a null value in JSON.');
         return true;
       }());
 
@@ -129,27 +129,28 @@ class UsageCodeInterpreterSessionsResult {
 }
 
 
-class UsageCodeInterpreterSessionsResultObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const UsageCodeInterpreterSessionsResultObjectEnum._(this.value);
+enum UsageCodeInterpreterSessionsResultObjectEnum {
+  organizationPeriodUsagePeriodCodeInterpreterSessionsPeriodResult._(r'organization.usage.code_interpreter_sessions.result'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const UsageCodeInterpreterSessionsResultObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const organizationPeriodUsagePeriodCodeInterpreterSessionsPeriodResult = UsageCodeInterpreterSessionsResultObjectEnum._(r'organization.usage.code_interpreter_sessions.result');
-
-  /// List of all possible values in this [enum][UsageCodeInterpreterSessionsResultObjectEnum].
-  static const values = <UsageCodeInterpreterSessionsResultObjectEnum>[
-    organizationPeriodUsagePeriodCodeInterpreterSessionsPeriodResult,
-  ];
-
+  /// Returns the instance of [UsageCodeInterpreterSessionsResultObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static UsageCodeInterpreterSessionsResultObjectEnum? fromJson(dynamic value) => UsageCodeInterpreterSessionsResultObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [UsageCodeInterpreterSessionsResultObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<UsageCodeInterpreterSessionsResultObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <UsageCodeInterpreterSessionsResultObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -171,9 +172,10 @@ class UsageCodeInterpreterSessionsResultObjectEnumTypeTransformer {
 
   const UsageCodeInterpreterSessionsResultObjectEnumTypeTransformer._();
 
-  String encode(UsageCodeInterpreterSessionsResultObjectEnum data) => data.value;
+  String encode(UsageCodeInterpreterSessionsResultObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a UsageCodeInterpreterSessionsResultObjectEnum.
+  /// Returns the instance of [UsageCodeInterpreterSessionsResultObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -182,6 +184,9 @@ class UsageCodeInterpreterSessionsResultObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   UsageCodeInterpreterSessionsResultObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is UsageCodeInterpreterSessionsResultObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'organization.usage.code_interpreter_sessions.result': return UsageCodeInterpreterSessionsResultObjectEnum.organizationPeriodUsagePeriodCodeInterpreterSessionsPeriodResult;
@@ -194,7 +199,7 @@ class UsageCodeInterpreterSessionsResultObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [UsageCodeInterpreterSessionsResultObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static UsageCodeInterpreterSessionsResultObjectEnumTypeTransformer? _instance;
 }
 

@@ -37,12 +37,12 @@ openai_api_upload_OBJECT_e upload_object_FromString(char* object);
 
 typedef struct upload_t {
     char *id; // string
-    int created_at; //numeric
+    int *created_at; //numeric
     char *filename; // string
-    int bytes; //numeric
+    int *bytes; //numeric
     char *purpose; // string
     openai_api_upload_STATUS_e status; //enum
-    int expires_at; //numeric
+    int *expires_at; //numeric
     openai_api_upload_OBJECT_e object; //enum
     struct open_ai_file_t *file; //model
 
@@ -51,12 +51,12 @@ typedef struct upload_t {
 
 __attribute__((deprecated)) upload_t *upload_create(
     char *id,
-    int created_at,
+    int *created_at,
     char *filename,
-    int bytes,
+    int *bytes,
     char *purpose,
     openai_api_upload_STATUS_e status,
-    int expires_at,
+    int *expires_at,
     openai_api_upload_OBJECT_e object,
     open_ai_file_t *file
 );

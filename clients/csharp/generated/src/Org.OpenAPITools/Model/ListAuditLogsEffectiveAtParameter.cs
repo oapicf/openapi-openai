@@ -62,7 +62,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Return only events whose &#x60;effective_at&#x60; (Unix seconds) is greater than this value.</value>
         [JsonPropertyName("gt")]
-        public int? Gt { get { return this.GtOption; } set { this.GtOption = new(value); } }
+        public int? Gt { get { return this.GtOption.Value; } set { this.GtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Gte
@@ -76,7 +76,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Return only events whose &#x60;effective_at&#x60; (Unix seconds) is greater than or equal to this value.</value>
         [JsonPropertyName("gte")]
-        public int? Gte { get { return this.GteOption; } set { this.GteOption = new(value); } }
+        public int? Gte { get { return this.GteOption.Value; } set { this.GteOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Lt
@@ -90,7 +90,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Return only events whose &#x60;effective_at&#x60; (Unix seconds) is less than this value.</value>
         [JsonPropertyName("lt")]
-        public int? Lt { get { return this.LtOption; } set { this.LtOption = new(value); } }
+        public int? Lt { get { return this.LtOption.Value; } set { this.LtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Lte
@@ -104,7 +104,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Return only events whose &#x60;effective_at&#x60; (Unix seconds) is less than or equal to this value.</value>
         [JsonPropertyName("lte")]
-        public int? Lte { get { return this.LteOption; } set { this.LteOption = new(value); } }
+        public int? Lte { get { return this.LteOption.Value; } set { this.LteOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -136,8 +136,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ListAuditLogsEffectiveAtParameter" />
     /// </summary>
-    public class ListAuditLogsEffectiveAtParameterJsonConverter : JsonConverter<ListAuditLogsEffectiveAtParameter>
+    public partial class ListAuditLogsEffectiveAtParameterJsonConverter : JsonConverter<ListAuditLogsEffectiveAtParameter>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListAuditLogsEffectiveAtParameterJsonConverter" /> class.
+        /// </summary>
+        public ListAuditLogsEffectiveAtParameterJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ListAuditLogsEffectiveAtParameter" />
         /// </summary>

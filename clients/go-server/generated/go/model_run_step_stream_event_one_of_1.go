@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // RunStepStreamEventOneOf1 - Occurs when a [run step](/docs/api-reference/run-steps/step-object) moves to an `in_progress` state.
@@ -21,11 +26,71 @@ type RunStepStreamEventOneOf1 struct {
 
 	Data RunStepObject `json:"data"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into RunStepStreamEventOneOf1
+func (o *RunStepStreamEventOneOf1) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"event",
+		"data",
+	}
 
-// AssertRunStepStreamEventOneOf1Required checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"event": false,
+		"data": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"event": {},
+		"data": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RunStepStreamEventOneOf1
+
+	if value, exists := allProperties["event"]; exists {
+		if err = json.Unmarshal(value, &decoded.Event); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["data"]; exists {
+		if err = json.Unmarshal(value, &decoded.Data); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRunStepStreamEventOneOf1Required checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRunStepStreamEventOneOf1Required(obj RunStepStreamEventOneOf1) error {
 	elements := map[string]interface{}{
-		"event": obj.Event,
 		"data": obj.Data,
 	}
 	for name, el := range elements {

@@ -35,7 +35,7 @@ class  FineTuneChatRequestInput
 {
 public:
     FineTuneChatRequestInput();
-    virtual ~FineTuneChatRequestInput() = default;
+    virtual ~FineTuneChatRequestInput();
 
 
     /// <summary>

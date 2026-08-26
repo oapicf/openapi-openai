@@ -51,7 +51,7 @@ class CostsResultAmount
      * @var float|null
      * @SerializedName("value")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     protected ?float $value = null;
 
@@ -61,7 +61,7 @@ class CostsResultAmount
      * @var string|null
      * @SerializedName("currency")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $currency = null;
 
@@ -88,12 +88,12 @@ class CostsResultAmount
     }
 
     /**
-    * Sets value.
-    *
-    * @param float|null $value  The numeric value of the cost.
-    *
-    * @return $this
-    */
+     * Sets value.
+     *
+     * @param float|null $value  The numeric value of the cost.
+     *
+     * @return $this
+     */
     public function setValue(?float $value = null): self
     {
         $this->value = $value;
@@ -115,12 +115,12 @@ class CostsResultAmount
     }
 
     /**
-    * Sets currency.
-    *
-    * @param string|null $currency  Lowercase ISO-4217 currency e.g. \"usd\"
-    *
-    * @return $this
-    */
+     * Sets currency.
+     *
+     * @param string|null $currency  Lowercase ISO-4217 currency e.g. \"usd\"
+     *
+     * @return $this
+     */
     public function setCurrency(?string $currency = null): self
     {
         $this->currency = $currency;

@@ -46,8 +46,8 @@ function Initialize-AssistantsNamedToolChoice {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "function" = ${VarFunction}
+            'type' = ${Type}
+            'function' = ${VarFunction}
         }
 
 
@@ -85,7 +85,7 @@ function ConvertFrom-JsonToAssistantsNamedToolChoice {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AssistantsNamedToolChoice
-        $AllProperties = ("type", "function")
+        $AllProperties = ('type', 'function')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -96,21 +96,21 @@ function ConvertFrom-JsonToAssistantsNamedToolChoice {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "function"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'function'))) { #optional property not found
             $VarFunction = $null
         } else {
-            $VarFunction = $JsonParameters.PSobject.Properties["function"].value
+            $VarFunction = $JsonParameters.PSobject.Properties['function'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "function" = ${VarFunction}
+            'type' = ${Type}
+            'function' = ${VarFunction}
         }
 
         return $PSO

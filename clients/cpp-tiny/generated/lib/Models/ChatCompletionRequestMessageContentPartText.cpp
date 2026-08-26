@@ -85,7 +85,7 @@ ChatCompletionRequestMessageContentPartText::getType()
 }
 
 void
-ChatCompletionRequestMessageContentPartText::setType(std::string  type)
+ChatCompletionRequestMessageContentPartText::setType(std::string type)
 {
 	this->type = type;
 }
@@ -97,7 +97,7 @@ ChatCompletionRequestMessageContentPartText::getText()
 }
 
 void
-ChatCompletionRequestMessageContentPartText::setText(std::string  text)
+ChatCompletionRequestMessageContentPartText::setText(std::string text)
 {
 	this->text = text;
 }

@@ -1,4 +1,4 @@
-# # RealtimeServerEventRateLimitsUpdated
+# RealtimeServerEventRateLimitsUpdated
 
 ## Properties
 

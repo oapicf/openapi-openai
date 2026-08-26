@@ -1,4 +1,4 @@
-# # AdminApiKeysCreateRequest
+# AdminApiKeysCreateRequest
 
 ## Properties
 

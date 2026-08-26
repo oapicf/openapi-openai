@@ -51,7 +51,7 @@ class CreateTranscriptionResponseJson
      * @var string|null
      * @SerializedName("text")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $text = null;
@@ -78,12 +78,12 @@ class CreateTranscriptionResponseJson
     }
 
     /**
-    * Sets text.
-    *
-    * @param string|null $text  The transcribed text.
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param string|null $text  The transcribed text.
+     *
+     * @return $this
+     */
     public function setText(?string $text): self
     {
         $this->text = $text;

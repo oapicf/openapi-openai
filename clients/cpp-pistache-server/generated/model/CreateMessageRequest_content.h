@@ -32,7 +32,7 @@ class  CreateMessageRequest_content
 {
 public:
     CreateMessageRequest_content();
-    virtual ~CreateMessageRequest_content() = default;
+    virtual ~CreateMessageRequest_content();
 
 
     /// <summary>

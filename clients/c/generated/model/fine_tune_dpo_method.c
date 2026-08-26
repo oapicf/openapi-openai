@@ -12,18 +12,21 @@ static fine_tune_dpo_method_t *fine_tune_dpo_method_create_internal(
     if (!fine_tune_dpo_method_local_var) {
         return NULL;
     }
-    fine_tune_dpo_method_local_var->hyperparameters = hyperparameters;
-
+    memset(fine_tune_dpo_method_local_var, 0, sizeof(fine_tune_dpo_method_t));
     fine_tune_dpo_method_local_var->_library_owned = 1;
+    fine_tune_dpo_method_local_var->hyperparameters = hyperparameters;
     return fine_tune_dpo_method_local_var;
 }
 
 __attribute__((deprecated)) fine_tune_dpo_method_t *fine_tune_dpo_method_create(
     fine_tune_dpo_method_hyperparameters_t *hyperparameters
     ) {
-    return fine_tune_dpo_method_create_internal (
+    fine_tune_dpo_method_t *result = fine_tune_dpo_method_create_internal (
         hyperparameters
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void fine_tune_dpo_method_free(fine_tune_dpo_method_t *fine_tune_dpo_method) {
@@ -82,9 +85,14 @@ fine_tune_dpo_method_t *fine_tune_dpo_method_parseFromJSON(cJSON *fine_tune_dpo_
     }
 
 
+
     fine_tune_dpo_method_local_var = fine_tune_dpo_method_create_internal (
         hyperparameters ? hyperparameters_local_nonprim : NULL
         );
+
+    if (!fine_tune_dpo_method_local_var) {
+        goto end;
+    }
 
     return fine_tune_dpo_method_local_var;
 end:

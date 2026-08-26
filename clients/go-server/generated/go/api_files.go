@@ -194,6 +194,7 @@ func (c *FilesAPIController) CreateFile(w http.ResponseWriter, r *http.Request) 
 		}
 
 		fileParam = param
+		defer param.Close()
 	}
 	
 	

@@ -119,10 +119,10 @@ class MessageDeltaObjectDeltaContentInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageDeltaObjectDeltaContentInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageDeltaObjectDeltaContentInner[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'index'), 'Required key "MessageDeltaObjectDeltaContentInner[index]" is missing from JSON.');
+        assert(json[r'index'] != null, 'Required key "MessageDeltaObjectDeltaContentInner[index]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "MessageDeltaObjectDeltaContentInner[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "MessageDeltaObjectDeltaContentInner[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -186,33 +186,31 @@ class MessageDeltaObjectDeltaContentInner {
 }
 
 /// Always `image_file`.
-class MessageDeltaObjectDeltaContentInnerTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageDeltaObjectDeltaContentInnerTypeEnum._(this.value);
+enum MessageDeltaObjectDeltaContentInnerTypeEnum {
+  imageFile._(r'image_file'),
+  text._(r'text'),
+  refusal._(r'refusal'),
+  imageUrl._(r'image_url'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageDeltaObjectDeltaContentInnerTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const imageFile = MessageDeltaObjectDeltaContentInnerTypeEnum._(r'image_file');
-  static const text = MessageDeltaObjectDeltaContentInnerTypeEnum._(r'text');
-  static const refusal = MessageDeltaObjectDeltaContentInnerTypeEnum._(r'refusal');
-  static const imageUrl = MessageDeltaObjectDeltaContentInnerTypeEnum._(r'image_url');
-
-  /// List of all possible values in this [enum][MessageDeltaObjectDeltaContentInnerTypeEnum].
-  static const values = <MessageDeltaObjectDeltaContentInnerTypeEnum>[
-    imageFile,
-    text,
-    refusal,
-    imageUrl,
-  ];
-
+  /// Returns the instance of [MessageDeltaObjectDeltaContentInnerTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageDeltaObjectDeltaContentInnerTypeEnum? fromJson(dynamic value) => MessageDeltaObjectDeltaContentInnerTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageDeltaObjectDeltaContentInnerTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageDeltaObjectDeltaContentInnerTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageDeltaObjectDeltaContentInnerTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -234,9 +232,10 @@ class MessageDeltaObjectDeltaContentInnerTypeEnumTypeTransformer {
 
   const MessageDeltaObjectDeltaContentInnerTypeEnumTypeTransformer._();
 
-  String encode(MessageDeltaObjectDeltaContentInnerTypeEnum data) => data.value;
+  String encode(MessageDeltaObjectDeltaContentInnerTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageDeltaObjectDeltaContentInnerTypeEnum.
+  /// Returns the instance of [MessageDeltaObjectDeltaContentInnerTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -245,6 +244,9 @@ class MessageDeltaObjectDeltaContentInnerTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageDeltaObjectDeltaContentInnerTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageDeltaObjectDeltaContentInnerTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'image_file': return MessageDeltaObjectDeltaContentInnerTypeEnum.imageFile;
@@ -260,7 +262,7 @@ class MessageDeltaObjectDeltaContentInnerTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageDeltaObjectDeltaContentInnerTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageDeltaObjectDeltaContentInnerTypeEnumTypeTransformer? _instance;
 }
 

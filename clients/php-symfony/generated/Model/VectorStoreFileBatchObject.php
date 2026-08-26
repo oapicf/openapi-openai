@@ -51,7 +51,7 @@ class VectorStoreFileBatchObject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class VectorStoreFileBatchObject
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['vector_store.files_batch'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class VectorStoreFileBatchObject
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -85,7 +85,7 @@ class VectorStoreFileBatchObject
      * @var string|null
      * @SerializedName("vector_store_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $vectorStoreId = null;
@@ -96,7 +96,7 @@ class VectorStoreFileBatchObject
      * @var string|null
      * @SerializedName("status")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['in_progress', 'completed', 'cancelled', 'failed'])]
     #[Assert\Type("string")]
@@ -106,7 +106,7 @@ class VectorStoreFileBatchObject
      * @var VectorStoreFileBatchObjectFileCounts|null
      * @SerializedName("file_counts")
      * @Type("OpenAPI\Server\Model\VectorStoreFileBatchObjectFileCounts")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\VectorStoreFileBatchObjectFileCounts")]
@@ -139,12 +139,12 @@ class VectorStoreFileBatchObject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The identifier, which can be referenced in API endpoints.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The identifier, which can be referenced in API endpoints.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -166,12 +166,12 @@ class VectorStoreFileBatchObject
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `vector_store.file_batch`.
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `vector_store.file_batch`.
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -193,12 +193,12 @@ class VectorStoreFileBatchObject
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) for when the vector store files batch was created.
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) for when the vector store files batch was created.
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -220,12 +220,12 @@ class VectorStoreFileBatchObject
     }
 
     /**
-    * Sets vectorStoreId.
-    *
-    * @param string|null $vectorStoreId  The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.
-    *
-    * @return $this
-    */
+     * Sets vectorStoreId.
+     *
+     * @param string|null $vectorStoreId  The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.
+     *
+     * @return $this
+     */
     public function setVectorStoreId(?string $vectorStoreId): self
     {
         $this->vectorStoreId = $vectorStoreId;
@@ -247,12 +247,12 @@ class VectorStoreFileBatchObject
     }
 
     /**
-    * Sets status.
-    *
-    * @param string|null $status  The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.
-    *
-    * @return $this
-    */
+     * Sets status.
+     *
+     * @param string|null $status  The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.
+     *
+     * @return $this
+     */
     public function setStatus(?string $status): self
     {
         $this->status = $status;
@@ -274,12 +274,12 @@ class VectorStoreFileBatchObject
     }
 
     /**
-    * Sets fileCounts.
-    *
-    * @param VectorStoreFileBatchObjectFileCounts|null $fileCounts
-    *
-    * @return $this
-    */
+     * Sets fileCounts.
+     *
+     * @param VectorStoreFileBatchObjectFileCounts|null $fileCounts
+     *
+     * @return $this
+     */
     public function setFileCounts(?VectorStoreFileBatchObjectFileCounts $fileCounts): self
     {
         $this->fileCounts = $fileCounts;

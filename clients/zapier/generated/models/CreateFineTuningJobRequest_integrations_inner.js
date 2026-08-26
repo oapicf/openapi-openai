@@ -7,7 +7,7 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}type`,
-                label: `[${labelPrefix}type]`,
+                label: `The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported.  - [${labelPrefix}type]`,
                 required: true,
                 type: 'string',
                 choices: [

@@ -2,30 +2,33 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.AuditLogActorUser;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * The session in which the audit logged action was performed.
  */
 
 @Schema(name = "AuditLogActorSession", description = "The session in which the audit logged action was performed.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class AuditLogActorSession {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogActorUser user;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String ipAddress;
 
   public AuditLogActorSession user(@Nullable AuditLogActorUser user) {
@@ -44,6 +47,7 @@ public class AuditLogActorSession {
     return user;
   }
 
+  @JsonProperty("user")
   public void setUser(@Nullable AuditLogActorUser user) {
     this.user = user;
   }
@@ -64,6 +68,7 @@ public class AuditLogActorSession {
     return ipAddress;
   }
 
+  @JsonProperty("ip_address")
   public void setIpAddress(@Nullable String ipAddress) {
     this.ipAddress = ipAddress;
   }
@@ -100,11 +105,8 @@ public class AuditLogActorSession {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

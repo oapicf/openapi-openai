@@ -106,7 +106,7 @@ BatchRequestInput::getCustomId()
 }
 
 void
-BatchRequestInput::setCustomId(std::string  custom_id)
+BatchRequestInput::setCustomId(std::string custom_id)
 {
 	this->custom_id = custom_id;
 }
@@ -118,7 +118,7 @@ BatchRequestInput::getMethod()
 }
 
 void
-BatchRequestInput::setMethod(std::string  method)
+BatchRequestInput::setMethod(std::string method)
 {
 	this->method = method;
 }
@@ -130,7 +130,7 @@ BatchRequestInput::getUrl()
 }
 
 void
-BatchRequestInput::setUrl(std::string  url)
+BatchRequestInput::setUrl(std::string url)
 {
 	this->url = url;
 }

@@ -202,7 +202,7 @@ MessageObject <- R6::R6Class(
       }
       if (!is.null(self$`incomplete_details`)) {
         MessageObjectObject[["incomplete_details"]] <-
-          self$`incomplete_details`$toSimpleType()
+          self$extractSimpleType(self$`incomplete_details`)
       }
       if (!is.null(self$`completed_at`)) {
         MessageObjectObject[["completed_at"]] <-
@@ -218,7 +218,7 @@ MessageObject <- R6::R6Class(
       }
       if (!is.null(self$`content`)) {
         MessageObjectObject[["content"]] <-
-          lapply(self$`content`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`content`)
       }
       if (!is.null(self$`assistant_id`)) {
         MessageObjectObject[["assistant_id"]] <-
@@ -230,13 +230,36 @@ MessageObject <- R6::R6Class(
       }
       if (!is.null(self$`attachments`)) {
         MessageObjectObject[["attachments"]] <-
-          lapply(self$`attachments`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`attachments`)
       }
       if (!is.null(self$`metadata`)) {
         MessageObjectObject[["metadata"]] <-
           self$`metadata`
       }
       return(MessageObjectObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

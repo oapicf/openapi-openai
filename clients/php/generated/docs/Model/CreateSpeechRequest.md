@@ -1,4 +1,4 @@
-# # CreateSpeechRequest
+# CreateSpeechRequest
 
 ## Properties
 

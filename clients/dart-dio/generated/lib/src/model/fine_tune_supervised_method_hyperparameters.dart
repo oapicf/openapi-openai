@@ -98,22 +98,25 @@ class _$FineTuneSupervisedMethodHyperparametersSerializer implements PrimitiveSe
         case r'batch_size':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FineTuneDPOMethodHyperparametersBatchSize),
-          ) as FineTuneDPOMethodHyperparametersBatchSize;
+            specifiedType: const FullType.nullable(FineTuneDPOMethodHyperparametersBatchSize),
+          ) as FineTuneDPOMethodHyperparametersBatchSize?;
+          if (valueDes == null) continue;
           result.batchSize.replace(valueDes);
           break;
         case r'learning_rate_multiplier':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FineTuneDPOMethodHyperparametersLearningRateMultiplier),
-          ) as FineTuneDPOMethodHyperparametersLearningRateMultiplier;
+            specifiedType: const FullType.nullable(FineTuneDPOMethodHyperparametersLearningRateMultiplier),
+          ) as FineTuneDPOMethodHyperparametersLearningRateMultiplier?;
+          if (valueDes == null) continue;
           result.learningRateMultiplier.replace(valueDes);
           break;
         case r'n_epochs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FineTuneDPOMethodHyperparametersNEpochs),
-          ) as FineTuneDPOMethodHyperparametersNEpochs;
+            specifiedType: const FullType.nullable(FineTuneDPOMethodHyperparametersNEpochs),
+          ) as FineTuneDPOMethodHyperparametersNEpochs?;
+          if (valueDes == null) continue;
           result.nEpochs.replace(valueDes);
           break;
         default:

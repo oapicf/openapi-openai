@@ -31,7 +31,7 @@ class  RunCompletionUsage
 {
 public:
     RunCompletionUsage();
-    virtual ~RunCompletionUsage() = default;
+    virtual ~RunCompletionUsage();
 
 
     /// <summary>

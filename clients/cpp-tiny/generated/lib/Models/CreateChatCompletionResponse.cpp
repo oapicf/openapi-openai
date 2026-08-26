@@ -229,7 +229,7 @@ CreateChatCompletionResponse::getId()
 }
 
 void
-CreateChatCompletionResponse::setId(std::string  id)
+CreateChatCompletionResponse::setId(std::string id)
 {
 	this->id = id;
 }
@@ -241,7 +241,7 @@ CreateChatCompletionResponse::getChoices()
 }
 
 void
-CreateChatCompletionResponse::setChoices(std::list <CreateChatCompletionResponse_choices_inner> choices)
+CreateChatCompletionResponse::setChoices(std::list<CreateChatCompletionResponse_choices_inner> choices)
 {
 	this->choices = choices;
 }
@@ -253,7 +253,7 @@ CreateChatCompletionResponse::getCreated()
 }
 
 void
-CreateChatCompletionResponse::setCreated(int  created)
+CreateChatCompletionResponse::setCreated(int created)
 {
 	this->created = created;
 }
@@ -265,7 +265,7 @@ CreateChatCompletionResponse::getModel()
 }
 
 void
-CreateChatCompletionResponse::setModel(std::string  model)
+CreateChatCompletionResponse::setModel(std::string model)
 {
 	this->model = model;
 }
@@ -277,7 +277,7 @@ CreateChatCompletionResponse::getServiceTier()
 }
 
 void
-CreateChatCompletionResponse::setServiceTier(std::string  service_tier)
+CreateChatCompletionResponse::setServiceTier(std::string service_tier)
 {
 	this->service_tier = service_tier;
 }
@@ -289,7 +289,7 @@ CreateChatCompletionResponse::getSystemFingerprint()
 }
 
 void
-CreateChatCompletionResponse::setSystemFingerprint(std::string  system_fingerprint)
+CreateChatCompletionResponse::setSystemFingerprint(std::string system_fingerprint)
 {
 	this->system_fingerprint = system_fingerprint;
 }
@@ -301,7 +301,7 @@ CreateChatCompletionResponse::getObject()
 }
 
 void
-CreateChatCompletionResponse::setObject(std::string  object)
+CreateChatCompletionResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -313,7 +313,7 @@ CreateChatCompletionResponse::getUsage()
 }
 
 void
-CreateChatCompletionResponse::setUsage(CompletionUsage  usage)
+CreateChatCompletionResponse::setUsage(CompletionUsage usage)
 {
 	this->usage = usage;
 }

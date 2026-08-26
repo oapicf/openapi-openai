@@ -25,6 +25,8 @@ CreateModerationRequest_input_oneOf_inner_oneOf_image_url::CreateModerationReque
     
 }
 
+CreateModerationRequest_input_oneOf_inner_oneOf_image_url::~CreateModerationRequest_input_oneOf_inner_oneOf_image_url() = default;
+
 void CreateModerationRequest_input_oneOf_inner_oneOf_image_url::validate() const
 {
     std::stringstream msg;

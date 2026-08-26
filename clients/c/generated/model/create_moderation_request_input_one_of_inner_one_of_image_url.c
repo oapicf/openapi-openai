@@ -12,18 +12,21 @@ static create_moderation_request_input_one_of_inner_one_of_image_url_t *create_m
     if (!create_moderation_request_input_one_of_inner_one_of_image_url_local_var) {
         return NULL;
     }
-    create_moderation_request_input_one_of_inner_one_of_image_url_local_var->url = url;
-
+    memset(create_moderation_request_input_one_of_inner_one_of_image_url_local_var, 0, sizeof(create_moderation_request_input_one_of_inner_one_of_image_url_t));
     create_moderation_request_input_one_of_inner_one_of_image_url_local_var->_library_owned = 1;
+    create_moderation_request_input_one_of_inner_one_of_image_url_local_var->url = url;
     return create_moderation_request_input_one_of_inner_one_of_image_url_local_var;
 }
 
 __attribute__((deprecated)) create_moderation_request_input_one_of_inner_one_of_image_url_t *create_moderation_request_input_one_of_inner_one_of_image_url_create(
     char *url
     ) {
-    return create_moderation_request_input_one_of_inner_one_of_image_url_create_internal (
+    create_moderation_request_input_one_of_inner_one_of_image_url_t *result = create_moderation_request_input_one_of_inner_one_of_image_url_create_internal (
         url
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_moderation_request_input_one_of_inner_one_of_image_url_free(create_moderation_request_input_one_of_inner_one_of_image_url_t *create_moderation_request_input_one_of_inner_one_of_image_url) {
@@ -65,6 +68,8 @@ create_moderation_request_input_one_of_inner_one_of_image_url_t *create_moderati
 
     create_moderation_request_input_one_of_inner_one_of_image_url_t *create_moderation_request_input_one_of_inner_one_of_image_url_local_var = NULL;
 
+    char *url_local_str = NULL;
+
     // create_moderation_request_input_one_of_inner_one_of_image_url->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(create_moderation_request_input_one_of_inner_one_of_image_urlJSON, "url");
     if (cJSON_IsNull(url)) {
@@ -81,12 +86,22 @@ create_moderation_request_input_one_of_inner_one_of_image_url_t *create_moderati
     }
 
 
+    if (url && !cJSON_IsNull(url)) url_local_str = strdup(url->valuestring);
+
     create_moderation_request_input_one_of_inner_one_of_image_url_local_var = create_moderation_request_input_one_of_inner_one_of_image_url_create_internal (
-        strdup(url->valuestring)
+        url_local_str
         );
+
+    if (!create_moderation_request_input_one_of_inner_one_of_image_url_local_var) {
+        goto end;
+    }
 
     return create_moderation_request_input_one_of_inner_one_of_image_url_local_var;
 end:
+    if (url_local_str) {
+        free(url_local_str);
+        url_local_str = NULL;
+    }
     return NULL;
 
 }

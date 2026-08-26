@@ -89,15 +89,15 @@ function Initialize-UsageImagesResult {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "images" = ${Images}
-            "num_model_requests" = ${NumModelRequests}
-            "source" = ${Source}
-            "size" = ${Size}
-            "project_id" = ${ProjectId}
-            "user_id" = ${UserId}
-            "api_key_id" = ${ApiKeyId}
-            "model" = ${Model}
+            'object' = ${Object}
+            'images' = ${Images}
+            'num_model_requests' = ${NumModelRequests}
+            'source' = ${Source}
+            'size' = ${Size}
+            'project_id' = ${ProjectId}
+            'user_id' = ${UserId}
+            'api_key_id' = ${ApiKeyId}
+            'model' = ${Model}
         }
 
 
@@ -135,7 +135,7 @@ function ConvertFrom-JsonToUsageImagesResult {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in UsageImagesResult
-        $AllProperties = ("object", "images", "num_model_requests", "source", "size", "project_id", "user_id", "api_key_id", "model")
+        $AllProperties = ('object', 'images', 'num_model_requests', 'source', 'size', 'project_id', 'user_id', 'api_key_id', 'model')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -146,70 +146,70 @@ function ConvertFrom-JsonToUsageImagesResult {
             throw "Error! Empty JSON cannot be serialized due to the required property 'object' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "images"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'images'))) {
             throw "Error! JSON cannot be serialized due to the required property 'images' missing."
         } else {
-            $Images = $JsonParameters.PSobject.Properties["images"].value
+            $Images = $JsonParameters.PSobject.Properties['images'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "num_model_requests"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'num_model_requests'))) {
             throw "Error! JSON cannot be serialized due to the required property 'num_model_requests' missing."
         } else {
-            $NumModelRequests = $JsonParameters.PSobject.Properties["num_model_requests"].value
+            $NumModelRequests = $JsonParameters.PSobject.Properties['num_model_requests'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "source"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'source'))) { #optional property not found
             $Source = $null
         } else {
-            $Source = $JsonParameters.PSobject.Properties["source"].value
+            $Source = $JsonParameters.PSobject.Properties['source'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "size"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'size'))) { #optional property not found
             $Size = $null
         } else {
-            $Size = $JsonParameters.PSobject.Properties["size"].value
+            $Size = $JsonParameters.PSobject.Properties['size'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "project_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'project_id'))) { #optional property not found
             $ProjectId = $null
         } else {
-            $ProjectId = $JsonParameters.PSobject.Properties["project_id"].value
+            $ProjectId = $JsonParameters.PSobject.Properties['project_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'user_id'))) { #optional property not found
             $UserId = $null
         } else {
-            $UserId = $JsonParameters.PSobject.Properties["user_id"].value
+            $UserId = $JsonParameters.PSobject.Properties['user_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "api_key_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'api_key_id'))) { #optional property not found
             $ApiKeyId = $null
         } else {
-            $ApiKeyId = $JsonParameters.PSobject.Properties["api_key_id"].value
+            $ApiKeyId = $JsonParameters.PSobject.Properties['api_key_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) { #optional property not found
             $Model = $null
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "images" = ${Images}
-            "num_model_requests" = ${NumModelRequests}
-            "source" = ${Source}
-            "size" = ${Size}
-            "project_id" = ${ProjectId}
-            "user_id" = ${UserId}
-            "api_key_id" = ${ApiKeyId}
-            "model" = ${Model}
+            'object' = ${Object}
+            'images' = ${Images}
+            'num_model_requests' = ${NumModelRequests}
+            'source' = ${Source}
+            'size' = ${Size}
+            'project_id' = ${ProjectId}
+            'user_id' = ${UserId}
+            'api_key_id' = ${ApiKeyId}
+            'model' = ${Model}
         }
 
         return $PSO

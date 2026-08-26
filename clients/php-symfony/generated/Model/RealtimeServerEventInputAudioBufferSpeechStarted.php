@@ -51,7 +51,7 @@ class RealtimeServerEventInputAudioBufferSpeechStarted
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $eventId = null;
@@ -62,7 +62,7 @@ class RealtimeServerEventInputAudioBufferSpeechStarted
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['input_audio_buffer.speech_started'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class RealtimeServerEventInputAudioBufferSpeechStarted
      * @var int|null
      * @SerializedName("audio_start_ms")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $audioStartMs = null;
@@ -85,7 +85,7 @@ class RealtimeServerEventInputAudioBufferSpeechStarted
      * @var string|null
      * @SerializedName("item_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $itemId = null;
@@ -115,12 +115,12 @@ class RealtimeServerEventInputAudioBufferSpeechStarted
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  The unique ID of the server event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  The unique ID of the server event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId): self
     {
         $this->eventId = $eventId;
@@ -142,12 +142,12 @@ class RealtimeServerEventInputAudioBufferSpeechStarted
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `input_audio_buffer.speech_started`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `input_audio_buffer.speech_started`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -169,12 +169,12 @@ class RealtimeServerEventInputAudioBufferSpeechStarted
     }
 
     /**
-    * Sets audioStartMs.
-    *
-    * @param int|null $audioStartMs  Milliseconds from the start of all audio written to the buffer during the  session when speech was first detected. This will correspond to the  beginning of audio sent to the model, and thus includes the  `prefix_padding_ms` configured in the Session.
-    *
-    * @return $this
-    */
+     * Sets audioStartMs.
+     *
+     * @param int|null $audioStartMs  Milliseconds from the start of all audio written to the buffer during the  session when speech was first detected. This will correspond to the  beginning of audio sent to the model, and thus includes the  `prefix_padding_ms` configured in the Session.
+     *
+     * @return $this
+     */
     public function setAudioStartMs(?int $audioStartMs): self
     {
         $this->audioStartMs = $audioStartMs;
@@ -196,12 +196,12 @@ class RealtimeServerEventInputAudioBufferSpeechStarted
     }
 
     /**
-    * Sets itemId.
-    *
-    * @param string|null $itemId  The ID of the user message item that will be created when speech stops.
-    *
-    * @return $this
-    */
+     * Sets itemId.
+     *
+     * @param string|null $itemId  The ID of the user message item that will be created when speech stops.
+     *
+     * @return $this
+     */
     public function setItemId(?string $itemId): self
     {
         $this->itemId = $itemId;

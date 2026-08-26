@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **String** | The object type, which is always `project.rate_limit` | 
+**object** | **Object** | The object type, which is always `project.rate_limit` (enum: project.rate_limit) | 
 **id** | **String** | The identifier, which can be referenced in API endpoints. | 
 **model** | **String** | The model this rate limit applies to. | 
 **max_requests_per_1_minute** | **i32** | The maximum requests per minute. | 

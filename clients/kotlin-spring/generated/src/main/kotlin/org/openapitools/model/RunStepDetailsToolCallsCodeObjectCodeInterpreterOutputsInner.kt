@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonValue
 import org.openapitools.model.RunStepDetailsToolCallsCodeOutputImageObject
 import org.openapitools.model.RunStepDetailsToolCallsCodeOutputImageObjectImage
 import org.openapitools.model.RunStepDetailsToolCallsCodeOutputLogsObject
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -20,41 +23,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param type Always `logs`.
- * @param logs The text output from the Code Interpreter tool call.
- * @param image 
  */
-data class RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner(
-
-    @Schema(example = "null", required = true, description = "Always `logs`.")
-    @get:JsonProperty("type", required = true) val type: RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner.Type,
-
-    @Schema(example = "null", required = true, description = "The text output from the Code Interpreter tool call.")
-    @get:JsonProperty("logs", required = true) val logs: kotlin.String,
-
-    @field:Valid
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("image", required = true) val image: RunStepDetailsToolCallsCodeOutputImageObjectImage
-) {
-
-    /**
-    * Always `logs`.
-    * Values: logs,image
-    */
-    enum class Type(@get:JsonValue val value: kotlin.String) {
-
-        logs("logs"),
-        image("image");
-
-        companion object {
-            @JvmStatic
-            @JsonCreator
-            fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner'")
-            }
-        }
-    }
-
+sealed interface RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner {
 }
 

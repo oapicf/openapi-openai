@@ -12,6 +12,7 @@ import org.joda.time.DateTime
 import CreateFineTuningJobRequestIntegrationsInner._
 
 case class CreateFineTuningJobRequestIntegrationsInner (
+  /* The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported.  */
   `type`: `Type`,
 wandb: CreateFineTuningJobRequestIntegrationsInnerWandb)
 

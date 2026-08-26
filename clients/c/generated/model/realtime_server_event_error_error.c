@@ -16,13 +16,13 @@ static realtime_server_event_error_error_t *realtime_server_event_error_error_cr
     if (!realtime_server_event_error_error_local_var) {
         return NULL;
     }
+    memset(realtime_server_event_error_error_local_var, 0, sizeof(realtime_server_event_error_error_t));
+    realtime_server_event_error_error_local_var->_library_owned = 1;
     realtime_server_event_error_error_local_var->type = type;
     realtime_server_event_error_error_local_var->code = code;
     realtime_server_event_error_error_local_var->message = message;
     realtime_server_event_error_error_local_var->param = param;
     realtime_server_event_error_error_local_var->event_id = event_id;
-
-    realtime_server_event_error_error_local_var->_library_owned = 1;
     return realtime_server_event_error_error_local_var;
 }
 
@@ -33,13 +33,16 @@ __attribute__((deprecated)) realtime_server_event_error_error_t *realtime_server
     char *param,
     char *event_id
     ) {
-    return realtime_server_event_error_error_create_internal (
+    realtime_server_event_error_error_t *result = realtime_server_event_error_error_create_internal (
         type,
         code,
         message,
         param,
         event_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_server_event_error_error_free(realtime_server_event_error_error_t *realtime_server_event_error_error) {
@@ -130,6 +133,16 @@ realtime_server_event_error_error_t *realtime_server_event_error_error_parseFrom
 
     realtime_server_event_error_error_t *realtime_server_event_error_error_local_var = NULL;
 
+    char *type_local_str = NULL;
+
+    char *code_local_str = NULL;
+
+    char *message_local_str = NULL;
+
+    char *param_local_str = NULL;
+
+    char *event_id_local_str = NULL;
+
     // realtime_server_event_error_error->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(realtime_server_event_error_errorJSON, "type");
     if (cJSON_IsNull(type)) {
@@ -197,16 +210,46 @@ realtime_server_event_error_error_t *realtime_server_event_error_error_parseFrom
     }
 
 
+    if (type && !cJSON_IsNull(type)) type_local_str = strdup(type->valuestring);
+    if (code && !cJSON_IsNull(code)) code_local_str = strdup(code->valuestring);
+    if (message && !cJSON_IsNull(message)) message_local_str = strdup(message->valuestring);
+    if (param && !cJSON_IsNull(param)) param_local_str = strdup(param->valuestring);
+    if (event_id && !cJSON_IsNull(event_id)) event_id_local_str = strdup(event_id->valuestring);
+
     realtime_server_event_error_error_local_var = realtime_server_event_error_error_create_internal (
-        strdup(type->valuestring),
-        code && !cJSON_IsNull(code) ? strdup(code->valuestring) : NULL,
-        strdup(message->valuestring),
-        param && !cJSON_IsNull(param) ? strdup(param->valuestring) : NULL,
-        event_id && !cJSON_IsNull(event_id) ? strdup(event_id->valuestring) : NULL
+        type_local_str,
+        code_local_str,
+        message_local_str,
+        param_local_str,
+        event_id_local_str
         );
+
+    if (!realtime_server_event_error_error_local_var) {
+        goto end;
+    }
 
     return realtime_server_event_error_error_local_var;
 end:
+    if (type_local_str) {
+        free(type_local_str);
+        type_local_str = NULL;
+    }
+    if (code_local_str) {
+        free(code_local_str);
+        code_local_str = NULL;
+    }
+    if (message_local_str) {
+        free(message_local_str);
+        message_local_str = NULL;
+    }
+    if (param_local_str) {
+        free(param_local_str);
+        param_local_str = NULL;
+    }
+    if (event_id_local_str) {
+        free(event_id_local_str);
+        event_id_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -51,7 +51,7 @@ class CreateModerationRequestInputOneOfInnerOneOf
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['image_url'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class CreateModerationRequestInputOneOfInnerOneOf
      * @var CreateModerationRequestInputOneOfInnerOneOfImageUrl|null
      * @SerializedName("image_url")
      * @Type("OpenAPI\Server\Model\CreateModerationRequestInputOneOfInnerOneOfImageUrl")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\CreateModerationRequestInputOneOfInnerOneOfImageUrl")]
@@ -90,12 +90,12 @@ class CreateModerationRequestInputOneOfInnerOneOf
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `image_url`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `image_url`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -117,12 +117,12 @@ class CreateModerationRequestInputOneOfInnerOneOf
     }
 
     /**
-    * Sets imageUrl.
-    *
-    * @param CreateModerationRequestInputOneOfInnerOneOfImageUrl|null $imageUrl
-    *
-    * @return $this
-    */
+     * Sets imageUrl.
+     *
+     * @param CreateModerationRequestInputOneOfInnerOneOfImageUrl|null $imageUrl
+     *
+     * @return $this
+     */
     public function setImageUrl(?CreateModerationRequestInputOneOfInnerOneOfImageUrl $imageUrl): self
     {
         $this->imageUrl = $imageUrl;

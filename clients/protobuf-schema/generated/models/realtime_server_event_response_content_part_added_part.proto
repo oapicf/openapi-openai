@@ -23,7 +23,7 @@ message RealtimeServerEventResponseContentPartAddedPart {
     TYPE_TEXT = 1;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // The text content (if type is \"text\").
   string text = 3556653;

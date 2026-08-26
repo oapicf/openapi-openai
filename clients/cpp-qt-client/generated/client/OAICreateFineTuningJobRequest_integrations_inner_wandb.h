@@ -32,13 +32,13 @@ namespace OpenAPI {
 class OAICreateFineTuningJobRequest_integrations_inner_wandb : public OAIObject {
 public:
     OAICreateFineTuningJobRequest_integrations_inner_wandb();
-    OAICreateFineTuningJobRequest_integrations_inner_wandb(QString json);
+    OAICreateFineTuningJobRequest_integrations_inner_wandb(const QString &json);
     ~OAICreateFineTuningJobRequest_integrations_inner_wandb() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getProject() const;
     void setProject(const QString &project);

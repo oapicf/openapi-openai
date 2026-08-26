@@ -33,7 +33,7 @@ class  RunStepDetailsMessageCreationObject
 {
 public:
     RunStepDetailsMessageCreationObject();
-    virtual ~RunStepDetailsMessageCreationObject() = default;
+    virtual ~RunStepDetailsMessageCreationObject();
 
 
     /// <summary>

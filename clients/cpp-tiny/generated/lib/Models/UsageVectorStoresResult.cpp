@@ -106,7 +106,7 @@ UsageVectorStoresResult::getObject()
 }
 
 void
-UsageVectorStoresResult::setObject(std::string  object)
+UsageVectorStoresResult::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -118,7 +118,7 @@ UsageVectorStoresResult::getUsageBytes()
 }
 
 void
-UsageVectorStoresResult::setUsageBytes(int  usage_bytes)
+UsageVectorStoresResult::setUsageBytes(int usage_bytes)
 {
 	this->usage_bytes = usage_bytes;
 }
@@ -130,7 +130,7 @@ UsageVectorStoresResult::getProjectId()
 }
 
 void
-UsageVectorStoresResult::setProjectId(std::string  project_id)
+UsageVectorStoresResult::setProjectId(std::string project_id)
 {
 	this->project_id = project_id;
 }

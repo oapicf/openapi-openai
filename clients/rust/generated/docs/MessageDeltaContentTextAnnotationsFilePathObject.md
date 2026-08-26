@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **index** | **i32** | The index of the annotation in the text content part. | 
-**r#type** | **String** | Always `file_path`. | 
+**r#type** | **Type** | Always `file_path`. (enum: file_path) | 
 **text** | Option<**String**> | The text in the message content that needs to be replaced. | [optional]
-**file_path** | Option<[**models::MessageDeltaContentTextAnnotationsFilePathObjectFilePath**](MessageDeltaContentTextAnnotationsFilePathObject_file_path.md)> |  | [optional]
+**file_path** | Option<[**models::MessageDeltaContentTextAnnotationsFilePathObjectFilePath**](MessageDeltaContentTextAnnotationsFilePathObjectFilePath.md)> |  | [optional]
 **start_index** | Option<**i32**> |  | [optional]
 **end_index** | Option<**i32**> |  | [optional]
 

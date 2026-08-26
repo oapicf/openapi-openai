@@ -31,6 +31,8 @@ VectorStoreFileObject::VectorStoreFileObject()
     
 }
 
+VectorStoreFileObject::~VectorStoreFileObject() = default;
+
 void VectorStoreFileObject::validate() const
 {
     std::stringstream msg;

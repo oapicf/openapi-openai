@@ -49,7 +49,7 @@ class ProjectCreateRequest
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $name = null;
@@ -76,12 +76,12 @@ class ProjectCreateRequest
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The friendly name of the project, this name appears in reports.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The friendly name of the project, this name appears in reports.
+     *
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;

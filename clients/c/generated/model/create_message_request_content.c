@@ -11,15 +11,18 @@ static create_message_request_content_t *create_message_request_content_create_i
     if (!create_message_request_content_local_var) {
         return NULL;
     }
-
+    memset(create_message_request_content_local_var, 0, sizeof(create_message_request_content_t));
     create_message_request_content_local_var->_library_owned = 1;
     return create_message_request_content_local_var;
 }
 
 __attribute__((deprecated)) create_message_request_content_t *create_message_request_content_create(
     ) {
-    return create_message_request_content_create_internal (
+    create_message_request_content_t *result = create_message_request_content_create_internal (
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_message_request_content_free(create_message_request_content_t *create_message_request_content) {
@@ -49,8 +52,13 @@ create_message_request_content_t *create_message_request_content_parseFromJSON(c
     create_message_request_content_t *create_message_request_content_local_var = NULL;
 
 
+
     create_message_request_content_local_var = create_message_request_content_create_internal (
         );
+
+    if (!create_message_request_content_local_var) {
+        goto end;
+    }
 
     return create_message_request_content_local_var;
 end:

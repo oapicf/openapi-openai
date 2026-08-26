@@ -52,7 +52,7 @@ public:
 
 	/*! \brief Set A list of scopes allowed for the API key, e.g. `[\"api.model.request\"]`
 	 */
-	void setScopes(std::list <std::string> scopes);
+	void setScopes(std::list<std::string> scopes);
 
 
     private:

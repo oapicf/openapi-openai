@@ -1,4 +1,4 @@
-# # TranscriptionWord
+# TranscriptionWord
 
 ## Properties
 

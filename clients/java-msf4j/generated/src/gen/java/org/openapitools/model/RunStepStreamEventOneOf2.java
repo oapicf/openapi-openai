@@ -13,7 +13,7 @@ import org.openapitools.model.RunStepDeltaObject;
  * Occurs when parts of a [run step](/docs/api-reference/run-steps/step-object) are being streamed.
  */
 @ApiModel(description = "Occurs when parts of a [run step](/docs/api-reference/run-steps/step-object) are being streamed.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RunStepStreamEventOneOf2   {
   /**
    * Gets or Sets event
@@ -121,10 +121,7 @@ public class RunStepStreamEventOneOf2   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

@@ -193,6 +193,9 @@ namespace Org.OpenAPITools.Model
         /// <returns></returns>
         public override AudioResponseFormat? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
+            if (reader.TokenType == JsonTokenType.Null)
+                return null;
+
             string? rawValue = reader.GetString();
 
             AudioResponseFormat? result = rawValue == null
@@ -213,7 +216,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="options"></param>
         public override void Write(Utf8JsonWriter writer, AudioResponseFormat? audioResponseFormat, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(audioResponseFormat.HasValue ? AudioResponseFormatValueConverter.ToJsonValue(audioResponseFormat.Value).ToString() : "null");
+            if (audioResponseFormat.HasValue)
+                writer.WriteStringValue(AudioResponseFormatValueConverter.ToJsonValue(audioResponseFormat.Value).ToString());
+            else
+                writer.WriteNullValue();
         }
     }
 }

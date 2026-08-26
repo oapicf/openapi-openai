@@ -49,7 +49,7 @@ class FineTuneSupervisedMethod
      * @var FineTuneSupervisedMethodHyperparameters|null
      * @SerializedName("hyperparameters")
      * @Type("OpenAPI\Server\Model\FineTuneSupervisedMethodHyperparameters")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\FineTuneSupervisedMethodHyperparameters")]
     protected ?FineTuneSupervisedMethodHyperparameters $hyperparameters = null;
 
@@ -75,12 +75,12 @@ class FineTuneSupervisedMethod
     }
 
     /**
-    * Sets hyperparameters.
-    *
-    * @param FineTuneSupervisedMethodHyperparameters|null $hyperparameters
-    *
-    * @return $this
-    */
+     * Sets hyperparameters.
+     *
+     * @param FineTuneSupervisedMethodHyperparameters|null $hyperparameters
+     *
+     * @return $this
+     */
     public function setHyperparameters(?FineTuneSupervisedMethodHyperparameters $hyperparameters = null): self
     {
         $this->hyperparameters = $hyperparameters;

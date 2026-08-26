@@ -26,25 +26,27 @@ from openapiopenai.models.assistants_api_response_format_option import Assistant
 from openapiopenai.models.modify_assistant_request_tool_resources import ModifyAssistantRequestToolResources
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class ModifyAssistantRequest(BaseModel):
     """
     ModifyAssistantRequest
     """ # noqa: E501
-    model: Optional[StrictStr] = None
+    model: Optional[StrictStr] = Field(default=None, description="ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. ")
     name: Optional[Annotated[str, Field(strict=True, max_length=256)]] = Field(default=None, description="The name of the assistant. The maximum length is 256 characters. ")
     description: Optional[Annotated[str, Field(strict=True, max_length=512)]] = Field(default=None, description="The description of the assistant. The maximum length is 512 characters. ")
     instructions: Optional[Annotated[str, Field(strict=True, max_length=256000)]] = Field(default=None, description="The system instructions that the assistant uses. The maximum length is 256,000 characters. ")
     tools: Optional[Annotated[List[AssistantObjectToolsInner], Field(max_length=128)]] = Field(default=None, description="A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
     tool_resources: Optional[ModifyAssistantRequestToolResources] = None
     metadata: Optional[Dict[str, Any]] = Field(default=None, description="Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
-    temperature: Optional[Union[Annotated[float, Field(le=2, strict=True, ge=0)], Annotated[int, Field(le=2, strict=True, ge=0)]]] = Field(default=1, description="What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. ")
-    top_p: Optional[Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]] = Field(default=1, description="An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ")
+    temperature: Optional[Union[Annotated[float, Field(le=2, strict=True, ge=0)], Annotated[int, Field(le=2, strict=True, ge=0)]]] = Field(default=1, description="What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. ", json_schema_extra={"examples": [1]})
+    top_p: Optional[Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]] = Field(default=1, description="An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ", json_schema_extra={"examples": [1]})
     response_format: Optional[AssistantsApiResponseFormatOption] = None
     __properties: ClassVar[List[str]] = ["model", "name", "description", "instructions", "tools", "tool_resources", "metadata", "temperature", "top_p", "response_format"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -56,8 +58,7 @@ class ModifyAssistantRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

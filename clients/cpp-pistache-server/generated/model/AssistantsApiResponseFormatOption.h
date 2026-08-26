@@ -36,7 +36,7 @@ class  AssistantsApiResponseFormatOption
 {
 public:
     AssistantsApiResponseFormatOption();
-    virtual ~AssistantsApiResponseFormatOption() = default;
+    virtual ~AssistantsApiResponseFormatOption();
 
 
     /// <summary>

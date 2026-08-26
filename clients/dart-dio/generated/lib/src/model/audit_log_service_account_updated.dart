@@ -86,15 +86,17 @@ class _$AuditLogServiceAccountUpdatedSerializer implements PrimitiveSerializer<A
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'changes_requested':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogServiceAccountUpdatedChangesRequested),
-          ) as AuditLogServiceAccountUpdatedChangesRequested;
+            specifiedType: const FullType.nullable(AuditLogServiceAccountUpdatedChangesRequested),
+          ) as AuditLogServiceAccountUpdatedChangesRequested?;
+          if (valueDes == null) continue;
           result.changesRequested.replace(valueDes);
           break;
         default:

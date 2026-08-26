@@ -86,15 +86,17 @@ class _$AssistantToolsFileSearchFileSearchSerializer implements PrimitiveSeriali
         case r'max_num_results':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.maxNumResults = valueDes;
           break;
         case r'ranking_options':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FileSearchRankingOptions),
-          ) as FileSearchRankingOptions;
+            specifiedType: const FullType.nullable(FileSearchRankingOptions),
+          ) as FileSearchRankingOptions?;
+          if (valueDes == null) continue;
           result.rankingOptions.replace(valueDes);
           break;
         default:

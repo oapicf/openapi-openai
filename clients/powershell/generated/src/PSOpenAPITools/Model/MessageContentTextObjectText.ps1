@@ -49,8 +49,8 @@ function Initialize-MessageContentTextObjectText {
 
 
         $PSO = [PSCustomObject]@{
-            "value" = ${Value}
-            "annotations" = ${Annotations}
+            'value' = ${Value}
+            'annotations' = ${Annotations}
         }
 
 
@@ -88,7 +88,7 @@ function ConvertFrom-JsonToMessageContentTextObjectText {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in MessageContentTextObjectText
-        $AllProperties = ("value", "annotations")
+        $AllProperties = ('value', 'annotations')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -99,21 +99,21 @@ function ConvertFrom-JsonToMessageContentTextObjectText {
             throw "Error! Empty JSON cannot be serialized due to the required property 'value' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "value"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'value'))) {
             throw "Error! JSON cannot be serialized due to the required property 'value' missing."
         } else {
-            $Value = $JsonParameters.PSobject.Properties["value"].value
+            $Value = $JsonParameters.PSobject.Properties['value'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "annotations"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'annotations'))) {
             throw "Error! JSON cannot be serialized due to the required property 'annotations' missing."
         } else {
-            $Annotations = $JsonParameters.PSobject.Properties["annotations"].value
+            $Annotations = $JsonParameters.PSobject.Properties['annotations'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "value" = ${Value}
-            "annotations" = ${Annotations}
+            'value' = ${Value}
+            'annotations' = ${Annotations}
         }
 
         return $PSO

@@ -32,13 +32,13 @@ namespace OpenAPI {
 class OAICreateSpeechRequest : public OAIObject {
 public:
     OAICreateSpeechRequest();
-    OAICreateSpeechRequest(QString json);
+    OAICreateSpeechRequest(const QString &json);
     ~OAICreateSpeechRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     OAICreateSpeechRequest_model getModel() const;
     void setModel(const OAICreateSpeechRequest_model &model);

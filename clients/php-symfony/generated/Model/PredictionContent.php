@@ -51,7 +51,7 @@ class PredictionContent
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['content'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class PredictionContent
      * @var PredictionContentContent|null
      * @SerializedName("content")
      * @Type("OpenAPI\Server\Model\PredictionContentContent")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\PredictionContentContent")]
@@ -90,12 +90,12 @@ class PredictionContent
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of the predicted content you want to provide. This type is currently always `content`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of the predicted content you want to provide. This type is currently always `content`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -117,12 +117,12 @@ class PredictionContent
     }
 
     /**
-    * Sets content.
-    *
-    * @param PredictionContentContent|null $content
-    *
-    * @return $this
-    */
+     * Sets content.
+     *
+     * @param PredictionContentContent|null $content
+     *
+     * @return $this
+     */
     public function setContent(?PredictionContentContent $content): self
     {
         $this->content = $content;

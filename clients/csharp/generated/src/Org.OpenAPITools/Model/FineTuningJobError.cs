@@ -98,8 +98,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTuningJobError" />
     /// </summary>
-    public class FineTuningJobErrorJsonConverter : JsonConverter<FineTuningJobError>
+    public partial class FineTuningJobErrorJsonConverter : JsonConverter<FineTuningJobError>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTuningJobErrorJsonConverter" /> class.
+        /// </summary>
+        public FineTuningJobErrorJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTuningJobError" />
         /// </summary>

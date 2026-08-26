@@ -57,7 +57,7 @@ export interface ChatCompletionResponseMessageAudio {
  */
 export function instanceOfChatCompletionResponseMessageAudio(value: object): value is ChatCompletionResponseMessageAudio {
     if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('expiresAt' in value) || value['expiresAt'] === undefined) return false;
+    if ((!('expiresAt' in (value as Record<string, any>)) && !('expires_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['expiresAt'] === undefined && (value as Record<string, any>)['expires_at'] === undefined)) return false;
     if (!('data' in value) || value['data'] === undefined) return false;
     if (!('transcript' in value) || value['transcript'] === undefined) return false;
     return true;

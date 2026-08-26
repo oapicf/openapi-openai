@@ -64,7 +64,7 @@ ResponseFormatText::getType()
 }
 
 void
-ResponseFormatText::setType(std::string  type)
+ResponseFormatText::setType(std::string type)
 {
 	this->type = type;
 }

@@ -26,6 +26,8 @@ DefaultProjectErrorResponse::DefaultProjectErrorResponse()
     
 }
 
+DefaultProjectErrorResponse::~DefaultProjectErrorResponse() = default;
+
 void DefaultProjectErrorResponse::validate() const
 {
     std::stringstream msg;

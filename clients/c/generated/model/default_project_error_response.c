@@ -6,28 +6,37 @@
 
 
 static default_project_error_response_t *default_project_error_response_create_internal(
-    int code,
+    int *code,
     char *message
     ) {
     default_project_error_response_t *default_project_error_response_local_var = malloc(sizeof(default_project_error_response_t));
     if (!default_project_error_response_local_var) {
         return NULL;
     }
+    memset(default_project_error_response_local_var, 0, sizeof(default_project_error_response_t));
+    default_project_error_response_local_var->_library_owned = 1;
     default_project_error_response_local_var->code = code;
     default_project_error_response_local_var->message = message;
-
-    default_project_error_response_local_var->_library_owned = 1;
     return default_project_error_response_local_var;
 }
 
 __attribute__((deprecated)) default_project_error_response_t *default_project_error_response_create(
-    int code,
+    int *code,
     char *message
     ) {
-    return default_project_error_response_create_internal (
-        code,
+    int *code_copy = NULL;
+    if (code) {
+        code_copy = malloc(sizeof(int));
+        if (code_copy) *code_copy = *code;
+    }
+    default_project_error_response_t *result = default_project_error_response_create_internal (
+        code_copy,
         message
         );
+    if (!result) {
+        free(code_copy);
+    }
+    return result;
 }
 
 void default_project_error_response_free(default_project_error_response_t *default_project_error_response) {
@@ -39,6 +48,10 @@ void default_project_error_response_free(default_project_error_response_t *defau
         return ;
     }
     listEntry_t *listEntry;
+    if (default_project_error_response->code) {
+        free(default_project_error_response->code);
+        default_project_error_response->code = NULL;
+    }
     if (default_project_error_response->message) {
         free(default_project_error_response->message);
         default_project_error_response->message = NULL;
@@ -53,7 +66,7 @@ cJSON *default_project_error_response_convertToJSON(default_project_error_respon
     if (!default_project_error_response->code) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "code", default_project_error_response->code) == NULL) {
+    if(cJSON_AddNumberToObject(item, "code", *default_project_error_response->code) == NULL) {
     goto fail; //Numeric
     }
 
@@ -78,6 +91,11 @@ default_project_error_response_t *default_project_error_response_parseFromJSON(c
 
     default_project_error_response_t *default_project_error_response_local_var = NULL;
 
+    // define the local variable for default_project_error_response->code
+    int *code_local_var = NULL;
+
+    char *message_local_str = NULL;
+
     // default_project_error_response->code
     cJSON *code = cJSON_GetObjectItemCaseSensitive(default_project_error_responseJSON, "code");
     if (cJSON_IsNull(code)) {
@@ -92,6 +110,12 @@ default_project_error_response_t *default_project_error_response_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    code_local_var = malloc(sizeof(int));
+    if(!code_local_var)
+    {
+        goto end;
+    }
+    *code_local_var = code->valuedouble;
 
     // default_project_error_response->message
     cJSON *message = cJSON_GetObjectItemCaseSensitive(default_project_error_responseJSON, "message");
@@ -109,13 +133,27 @@ default_project_error_response_t *default_project_error_response_parseFromJSON(c
     }
 
 
+    if (message && !cJSON_IsNull(message)) message_local_str = strdup(message->valuestring);
+
     default_project_error_response_local_var = default_project_error_response_create_internal (
-        code->valuedouble,
-        strdup(message->valuestring)
+        code_local_var,
+        message_local_str
         );
+
+    if (!default_project_error_response_local_var) {
+        goto end;
+    }
 
     return default_project_error_response_local_var;
 end:
+    if (code_local_var) {
+        free(code_local_var);
+        code_local_var = NULL;
+    }
+    if (message_local_str) {
+        free(message_local_str);
+        message_local_str = NULL;
+    }
     return NULL;
 
 }

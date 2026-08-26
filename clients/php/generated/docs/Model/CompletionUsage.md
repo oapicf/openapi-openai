@@ -1,4 +1,4 @@
-# # CompletionUsage
+# CompletionUsage
 
 ## Properties
 

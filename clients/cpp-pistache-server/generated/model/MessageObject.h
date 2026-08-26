@@ -37,7 +37,7 @@ class  MessageObject
 {
 public:
     MessageObject();
-    virtual ~MessageObject() = default;
+    virtual ~MessageObject();
 
 
     /// <summary>

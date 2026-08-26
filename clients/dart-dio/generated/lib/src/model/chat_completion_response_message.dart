@@ -148,8 +148,9 @@ class _$ChatCompletionResponseMessageSerializer implements PrimitiveSerializer<C
         case r'tool_calls':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ChatCompletionMessageToolCall)]),
-          ) as BuiltList<ChatCompletionMessageToolCall>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ChatCompletionMessageToolCall)]),
+          ) as BuiltList<ChatCompletionMessageToolCall>?;
+          if (valueDes == null) continue;
           result.toolCalls.replace(valueDes);
           break;
         case r'role':
@@ -162,8 +163,9 @@ class _$ChatCompletionResponseMessageSerializer implements PrimitiveSerializer<C
         case r'function_call':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ChatCompletionResponseMessageFunctionCall),
-          ) as ChatCompletionResponseMessageFunctionCall;
+            specifiedType: const FullType.nullable(ChatCompletionResponseMessageFunctionCall),
+          ) as ChatCompletionResponseMessageFunctionCall?;
+          if (valueDes == null) continue;
           result.functionCall.replace(valueDes);
           break;
         case r'audio':

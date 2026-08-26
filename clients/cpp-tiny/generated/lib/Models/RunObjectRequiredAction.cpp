@@ -86,7 +86,7 @@ RunObject_required_action::getType()
 }
 
 void
-RunObject_required_action::setType(std::string  type)
+RunObject_required_action::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ RunObject_required_action::getSubmitToolOutputs()
 }
 
 void
-RunObject_required_action::setSubmitToolOutputs(RunObject_required_action_submit_tool_outputs  submit_tool_outputs)
+RunObject_required_action::setSubmitToolOutputs(RunObject_required_action_submit_tool_outputs submit_tool_outputs)
 {
 	this->submit_tool_outputs = submit_tool_outputs;
 }

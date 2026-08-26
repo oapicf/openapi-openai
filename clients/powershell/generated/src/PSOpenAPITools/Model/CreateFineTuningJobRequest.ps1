@@ -95,14 +95,14 @@ function Initialize-CreateFineTuningJobRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "model" = ${Model}
-            "training_file" = ${TrainingFile}
-            "hyperparameters" = ${Hyperparameters}
-            "suffix" = ${Suffix}
-            "validation_file" = ${ValidationFile}
-            "integrations" = ${Integrations}
-            "seed" = ${Seed}
-            "method" = ${Method}
+            'model' = ${Model}
+            'training_file' = ${TrainingFile}
+            'hyperparameters' = ${Hyperparameters}
+            'suffix' = ${Suffix}
+            'validation_file' = ${ValidationFile}
+            'integrations' = ${Integrations}
+            'seed' = ${Seed}
+            'method' = ${Method}
         }
 
 
@@ -140,7 +140,7 @@ function ConvertFrom-JsonToCreateFineTuningJobRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateFineTuningJobRequest
-        $AllProperties = ("model", "training_file", "hyperparameters", "suffix", "validation_file", "integrations", "seed", "method")
+        $AllProperties = ('model', 'training_file', 'hyperparameters', 'suffix', 'validation_file', 'integrations', 'seed', 'method')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -151,63 +151,63 @@ function ConvertFrom-JsonToCreateFineTuningJobRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'model' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) {
             throw "Error! JSON cannot be serialized due to the required property 'model' missing."
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "training_file"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'training_file'))) {
             throw "Error! JSON cannot be serialized due to the required property 'training_file' missing."
         } else {
-            $TrainingFile = $JsonParameters.PSobject.Properties["training_file"].value
+            $TrainingFile = $JsonParameters.PSobject.Properties['training_file'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hyperparameters"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'hyperparameters'))) { #optional property not found
             $Hyperparameters = $null
         } else {
-            $Hyperparameters = $JsonParameters.PSobject.Properties["hyperparameters"].value
+            $Hyperparameters = $JsonParameters.PSobject.Properties['hyperparameters'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "suffix"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'suffix'))) { #optional property not found
             $Suffix = $null
         } else {
-            $Suffix = $JsonParameters.PSobject.Properties["suffix"].value
+            $Suffix = $JsonParameters.PSobject.Properties['suffix'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "validation_file"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'validation_file'))) { #optional property not found
             $ValidationFile = $null
         } else {
-            $ValidationFile = $JsonParameters.PSobject.Properties["validation_file"].value
+            $ValidationFile = $JsonParameters.PSobject.Properties['validation_file'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "integrations"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'integrations'))) { #optional property not found
             $Integrations = $null
         } else {
-            $Integrations = $JsonParameters.PSobject.Properties["integrations"].value
+            $Integrations = $JsonParameters.PSobject.Properties['integrations'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "seed"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'seed'))) { #optional property not found
             $Seed = $null
         } else {
-            $Seed = $JsonParameters.PSobject.Properties["seed"].value
+            $Seed = $JsonParameters.PSobject.Properties['seed'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "method"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'method'))) { #optional property not found
             $Method = $null
         } else {
-            $Method = $JsonParameters.PSobject.Properties["method"].value
+            $Method = $JsonParameters.PSobject.Properties['method'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "model" = ${Model}
-            "training_file" = ${TrainingFile}
-            "hyperparameters" = ${Hyperparameters}
-            "suffix" = ${Suffix}
-            "validation_file" = ${ValidationFile}
-            "integrations" = ${Integrations}
-            "seed" = ${Seed}
-            "method" = ${Method}
+            'model' = ${Model}
+            'training_file' = ${TrainingFile}
+            'hyperparameters' = ${Hyperparameters}
+            'suffix' = ${Suffix}
+            'validation_file' = ${ValidationFile}
+            'integrations' = ${Integrations}
+            'seed' = ${Seed}
+            'method' = ${Method}
         }
 
         return $PSO

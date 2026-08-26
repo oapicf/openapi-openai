@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The ID of the specific File the citation is from.
 	 */
-	void setFileId(std::string  file_id);
+	void setFileId(std::string file_id);
 	/*! \brief Get The specific quote in the file.
 	 */
 	std::string getQuote();
 
 	/*! \brief Set The specific quote in the file.
 	 */
-	void setQuote(std::string  quote);
+	void setQuote(std::string quote);
 
 
     private:

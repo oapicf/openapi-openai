@@ -31,7 +31,7 @@ class  AuditLogEventType
 {
 public:
     AuditLogEventType();
-    virtual ~AuditLogEventType() = default;
+    virtual ~AuditLogEventType();
 
     enum class eAuditLogEventType {
     // To have a valid default value.

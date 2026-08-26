@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIVectorStoreExpirationAfter::OAIVectorStoreExpirationAfter(QString json) {
+OAIVectorStoreExpirationAfter::OAIVectorStoreExpirationAfter(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIVectorStoreExpirationAfter::initializeModel() {
     m_days_isValid = false;
 }
 
-void OAIVectorStoreExpirationAfter::fromJson(QString jsonString) {
+void OAIVectorStoreExpirationAfter::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

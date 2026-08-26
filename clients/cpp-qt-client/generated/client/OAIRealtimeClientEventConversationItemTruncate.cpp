@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRealtimeClientEventConversationItemTruncate::OAIRealtimeClientEventConversationItemTruncate(QString json) {
+OAIRealtimeClientEventConversationItemTruncate::OAIRealtimeClientEventConversationItemTruncate(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -50,7 +50,7 @@ void OAIRealtimeClientEventConversationItemTruncate::initializeModel() {
     m_audio_end_ms_isValid = false;
 }
 
-void OAIRealtimeClientEventConversationItemTruncate::fromJson(QString jsonString) {
+void OAIRealtimeClientEventConversationItemTruncate::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

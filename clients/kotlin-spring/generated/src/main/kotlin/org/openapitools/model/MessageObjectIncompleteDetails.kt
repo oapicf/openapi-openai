@@ -21,7 +21,8 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class MessageObjectIncompleteDetails(
 
-    @Schema(example = "null", required = true, description = "The reason the message is incomplete.")
+    @Schema(required = true, description = "The reason the message is incomplete.")
+    @param:JsonProperty("reason")
     @get:JsonProperty("reason", required = true) val reason: MessageObjectIncompleteDetails.Reason
 ) {
 
@@ -42,7 +43,7 @@ data class MessageObjectIncompleteDetails(
             @JsonCreator
             fun forValue(value: kotlin.String): Reason {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'MessageObjectIncompleteDetails'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Reason'")
             }
         }
     }

@@ -1,4 +1,4 @@
-# # UsageModerationsResult
+# UsageModerationsResult
 
 ## Properties
 

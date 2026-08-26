@@ -31,7 +31,7 @@ class  ChatCompletionRole
 {
 public:
     ChatCompletionRole();
-    virtual ~ChatCompletionRole() = default;
+    virtual ~ChatCompletionRole();
 
     enum class eChatCompletionRole {
     // To have a valid default value.

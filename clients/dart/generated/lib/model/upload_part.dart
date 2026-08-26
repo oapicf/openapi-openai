@@ -69,10 +69,14 @@ class UploadPart {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UploadPart[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UploadPart[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "UploadPart[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "UploadPart[id]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "UploadPart[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "UploadPart[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'upload_id'), 'Required key "UploadPart[upload_id]" is missing from JSON.');
+        assert(json[r'upload_id'] != null, 'Required key "UploadPart[upload_id]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "UploadPart[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "UploadPart[object]" has a null value in JSON.');
         return true;
       }());
 
@@ -136,27 +140,28 @@ class UploadPart {
 }
 
 /// The object type, which is always `upload.part`.
-class UploadPartObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const UploadPartObjectEnum._(this.value);
+enum UploadPartObjectEnum {
+  uploadPeriodPart._(r'upload.part'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const UploadPartObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const uploadPeriodPart = UploadPartObjectEnum._(r'upload.part');
-
-  /// List of all possible values in this [enum][UploadPartObjectEnum].
-  static const values = <UploadPartObjectEnum>[
-    uploadPeriodPart,
-  ];
-
+  /// Returns the instance of [UploadPartObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static UploadPartObjectEnum? fromJson(dynamic value) => UploadPartObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [UploadPartObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<UploadPartObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <UploadPartObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -178,9 +183,10 @@ class UploadPartObjectEnumTypeTransformer {
 
   const UploadPartObjectEnumTypeTransformer._();
 
-  String encode(UploadPartObjectEnum data) => data.value;
+  String encode(UploadPartObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a UploadPartObjectEnum.
+  /// Returns the instance of [UploadPartObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -189,6 +195,9 @@ class UploadPartObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   UploadPartObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is UploadPartObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'upload.part': return UploadPartObjectEnum.uploadPeriodPart;
@@ -201,7 +210,7 @@ class UploadPartObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [UploadPartObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static UploadPartObjectEnumTypeTransformer? _instance;
 }
 

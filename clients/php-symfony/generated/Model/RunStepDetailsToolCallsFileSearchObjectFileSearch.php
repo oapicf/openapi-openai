@@ -49,7 +49,7 @@ class RunStepDetailsToolCallsFileSearchObjectFileSearch
      * @var RunStepDetailsToolCallsFileSearchRankingOptionsObject|null
      * @SerializedName("ranking_options")
      * @Type("OpenAPI\Server\Model\RunStepDetailsToolCallsFileSearchRankingOptionsObject")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RunStepDetailsToolCallsFileSearchRankingOptionsObject")]
     protected ?RunStepDetailsToolCallsFileSearchRankingOptionsObject $rankingOptions = null;
 
@@ -59,7 +59,7 @@ class RunStepDetailsToolCallsFileSearchObjectFileSearch
      * @var RunStepDetailsToolCallsFileSearchResultObject[]|null
      * @SerializedName("results")
      * @Type("array<OpenAPI\Server\Model\RunStepDetailsToolCallsFileSearchResultObject>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\RunStepDetailsToolCallsFileSearchResultObject"),
     ])]
@@ -88,12 +88,12 @@ class RunStepDetailsToolCallsFileSearchObjectFileSearch
     }
 
     /**
-    * Sets rankingOptions.
-    *
-    * @param RunStepDetailsToolCallsFileSearchRankingOptionsObject|null $rankingOptions
-    *
-    * @return $this
-    */
+     * Sets rankingOptions.
+     *
+     * @param RunStepDetailsToolCallsFileSearchRankingOptionsObject|null $rankingOptions
+     *
+     * @return $this
+     */
     public function setRankingOptions(?RunStepDetailsToolCallsFileSearchRankingOptionsObject $rankingOptions = null): self
     {
         $this->rankingOptions = $rankingOptions;
@@ -115,12 +115,12 @@ class RunStepDetailsToolCallsFileSearchObjectFileSearch
     }
 
     /**
-    * Sets results.
-    *
-    * @param RunStepDetailsToolCallsFileSearchResultObject[]|null $results  The results of the file search.
-    *
-    * @return $this
-    */
+     * Sets results.
+     *
+     * @param RunStepDetailsToolCallsFileSearchResultObject[]|null $results  The results of the file search.
+     *
+     * @return $this
+     */
     public function setResults(?array $results = null): self
     {
         $this->results = $results;

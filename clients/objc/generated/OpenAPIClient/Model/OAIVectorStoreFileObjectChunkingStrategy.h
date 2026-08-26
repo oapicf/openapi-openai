@@ -16,13 +16,13 @@
 
 #import "OAIOtherChunkingStrategyResponseParam.h"
 #import "OAIStaticChunkingStrategy.h"
-#import "OAIStaticChunkingStrategyResponseParam.h"
+#import "OAIStaticChunkingStrategyRequestParam.h"
 @protocol OAIOtherChunkingStrategyResponseParam;
 @class OAIOtherChunkingStrategyResponseParam;
 @protocol OAIStaticChunkingStrategy;
 @class OAIStaticChunkingStrategy;
-@protocol OAIStaticChunkingStrategyResponseParam;
-@class OAIStaticChunkingStrategyResponseParam;
+@protocol OAIStaticChunkingStrategyRequestParam;
+@class OAIStaticChunkingStrategyRequestParam;
 
 
 

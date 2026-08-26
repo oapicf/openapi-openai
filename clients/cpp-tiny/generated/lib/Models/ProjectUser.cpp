@@ -169,7 +169,7 @@ ProjectUser::getObject()
 }
 
 void
-ProjectUser::setObject(std::string  object)
+ProjectUser::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -181,7 +181,7 @@ ProjectUser::getId()
 }
 
 void
-ProjectUser::setId(std::string  id)
+ProjectUser::setId(std::string id)
 {
 	this->id = id;
 }
@@ -193,7 +193,7 @@ ProjectUser::getName()
 }
 
 void
-ProjectUser::setName(std::string  name)
+ProjectUser::setName(std::string name)
 {
 	this->name = name;
 }
@@ -205,7 +205,7 @@ ProjectUser::getEmail()
 }
 
 void
-ProjectUser::setEmail(std::string  email)
+ProjectUser::setEmail(std::string email)
 {
 	this->email = email;
 }
@@ -217,7 +217,7 @@ ProjectUser::getRole()
 }
 
 void
-ProjectUser::setRole(std::string  role)
+ProjectUser::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -229,7 +229,7 @@ ProjectUser::getAddedAt()
 }
 
 void
-ProjectUser::setAddedAt(int  added_at)
+ProjectUser::setAddedAt(int added_at)
 {
 	this->added_at = added_at;
 }

@@ -46,8 +46,8 @@ function Initialize-MessageContentImageUrlObjectImageUrl {
 
 
         $PSO = [PSCustomObject]@{
-            "url" = ${Url}
-            "detail" = ${Detail}
+            'url' = ${Url}
+            'detail' = ${Detail}
         }
 
 
@@ -85,7 +85,7 @@ function ConvertFrom-JsonToMessageContentImageUrlObjectImageUrl {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in MessageContentImageUrlObjectImageUrl
-        $AllProperties = ("url", "detail")
+        $AllProperties = ('url', 'detail')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -96,21 +96,21 @@ function ConvertFrom-JsonToMessageContentImageUrlObjectImageUrl {
             throw "Error! Empty JSON cannot be serialized due to the required property 'url' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'url'))) {
             throw "Error! JSON cannot be serialized due to the required property 'url' missing."
         } else {
-            $Url = $JsonParameters.PSobject.Properties["url"].value
+            $Url = $JsonParameters.PSobject.Properties['url'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "detail"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'detail'))) { #optional property not found
             $Detail = $null
         } else {
-            $Detail = $JsonParameters.PSobject.Properties["detail"].value
+            $Detail = $JsonParameters.PSobject.Properties['detail'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "url" = ${Url}
-            "detail" = ${Detail}
+            'url' = ${Url}
+            'detail' = ${Detail}
         }
 
         return $PSO

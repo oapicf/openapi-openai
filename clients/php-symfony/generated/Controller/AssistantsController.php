@@ -109,14 +109,14 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($threadId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($runId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -203,7 +203,7 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateAssistantRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateAssistantRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($createAssistantRequest, $asserts);
         if ($response instanceof Response) {
@@ -292,14 +292,14 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($threadId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateMessageRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateMessageRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($createMessageRequest, $asserts);
         if ($response instanceof Response) {
@@ -372,7 +372,7 @@ class AssistantsController extends Controller
         $securityApiKeyAuth = $request->headers->get('authorization');
 
         // Read out all input parameter values into variables
-        $include = $request->query->get('include');
+        $include = $request->query->get('include[]');
         $createRunRequest = $request->getContent();
 
         // Use the default value if no value was provided
@@ -390,14 +390,14 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($threadId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateRunRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateRunRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($createRunRequest, $asserts);
         if ($response instanceof Response) {
@@ -496,7 +496,7 @@ class AssistantsController extends Controller
 
         // Validate the input values
         $asserts = [];
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateThreadRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateThreadRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($createThreadRequest, $asserts);
         if ($response instanceof Response) {
@@ -584,7 +584,7 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateThreadAndRunRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateThreadAndRunRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($createThreadAndRunRequest, $asserts);
         if ($response instanceof Response) {
@@ -663,7 +663,7 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($assistantId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -742,14 +742,14 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($threadId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($messageId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -827,7 +827,7 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($threadId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -905,7 +905,7 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($assistantId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -984,14 +984,14 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($threadId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($messageId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1070,14 +1070,14 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($threadId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($runId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1142,7 +1142,7 @@ class AssistantsController extends Controller
         $securityApiKeyAuth = $request->headers->get('authorization');
 
         // Read out all input parameter values into variables
-        $include = $request->query->get('include');
+        $include = $request->query->get('include[]');
 
         // Use the default value if no value was provided
 
@@ -1159,21 +1159,21 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($threadId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($runId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($stepId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1263,7 +1263,7 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($threadId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1347,26 +1347,26 @@ class AssistantsController extends Controller
 
         // Validate the input values
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ 'asc', 'desc' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($order, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($after, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($before, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1435,7 +1435,7 @@ class AssistantsController extends Controller
         $order = $request->query->get('order', 'desc');
         $after = $request->query->get('after');
         $before = $request->query->get('before');
-        $runId = $request->query->get('runId');
+        $runId = $request->query->get('run_id');
 
         // Use the default value if no value was provided
 
@@ -1454,38 +1454,38 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($threadId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ 'asc', 'desc' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($order, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($after, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($before, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($runId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1554,7 +1554,7 @@ class AssistantsController extends Controller
         $order = $request->query->get('order', 'desc');
         $after = $request->query->get('after');
         $before = $request->query->get('before');
-        $include = $request->query->get('include');
+        $include = $request->query->get('include[]');
 
         // Use the default value if no value was provided
 
@@ -1574,39 +1574,39 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($threadId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($runId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ 'asc', 'desc' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($order, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($after, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($before, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1704,32 +1704,32 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($threadId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ 'asc', 'desc' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($order, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($after, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($before, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1817,14 +1817,14 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($assistantId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\ModifyAssistantRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\ModifyAssistantRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($modifyAssistantRequest, $asserts);
         if ($response instanceof Response) {
@@ -1914,21 +1914,21 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($threadId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($messageId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\ModifyMessageRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\ModifyMessageRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($modifyMessageRequest, $asserts);
         if ($response instanceof Response) {
@@ -2018,21 +2018,21 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($threadId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($runId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\ModifyRunRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\ModifyRunRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($modifyRunRequest, $asserts);
         if ($response instanceof Response) {
@@ -2121,14 +2121,14 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($threadId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\ModifyThreadRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\ModifyThreadRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($modifyThreadRequest, $asserts);
         if ($response instanceof Response) {
@@ -2218,21 +2218,21 @@ class AssistantsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($threadId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($runId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\SubmitToolOutputsRunRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\SubmitToolOutputsRunRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($submitToolOutputsRunRequest, $asserts);
         if ($response instanceof Response) {

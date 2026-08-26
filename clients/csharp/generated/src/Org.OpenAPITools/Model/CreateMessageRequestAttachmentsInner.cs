@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The ID of the file to attach to the message.</value>
         [JsonPropertyName("file_id")]
-        public string? FileId { get { return this.FileIdOption; } set { this.FileIdOption = new(value); } }
+        public string? FileId { get { return this.FileIdOption.Value; } set { this.FileIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Tools
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The tools to add this file to.</value>
         [JsonPropertyName("tools")]
-        public List<CreateMessageRequestAttachmentsInnerToolsInner>? Tools { get { return this.ToolsOption; } set { this.ToolsOption = new(value); } }
+        public List<CreateMessageRequestAttachmentsInnerToolsInner>? Tools { get { return this.ToolsOption.Value; } set { this.ToolsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateMessageRequestAttachmentsInner" />
     /// </summary>
-    public class CreateMessageRequestAttachmentsInnerJsonConverter : JsonConverter<CreateMessageRequestAttachmentsInner>
+    public partial class CreateMessageRequestAttachmentsInnerJsonConverter : JsonConverter<CreateMessageRequestAttachmentsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateMessageRequestAttachmentsInnerJsonConverter" /> class.
+        /// </summary>
+        public CreateMessageRequestAttachmentsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateMessageRequestAttachmentsInner" />
         /// </summary>

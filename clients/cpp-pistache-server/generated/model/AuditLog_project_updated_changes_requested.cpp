@@ -26,6 +26,8 @@ AuditLog_project_updated_changes_requested::AuditLog_project_updated_changes_req
     
 }
 
+AuditLog_project_updated_changes_requested::~AuditLog_project_updated_changes_requested() = default;
+
 void AuditLog_project_updated_changes_requested::validate() const
 {
     std::stringstream msg;

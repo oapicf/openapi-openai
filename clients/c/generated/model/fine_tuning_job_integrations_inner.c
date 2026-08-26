@@ -30,10 +30,10 @@ static fine_tuning_job_integrations_inner_t *fine_tuning_job_integrations_inner_
     if (!fine_tuning_job_integrations_inner_local_var) {
         return NULL;
     }
+    memset(fine_tuning_job_integrations_inner_local_var, 0, sizeof(fine_tuning_job_integrations_inner_t));
+    fine_tuning_job_integrations_inner_local_var->_library_owned = 1;
     fine_tuning_job_integrations_inner_local_var->type = type;
     fine_tuning_job_integrations_inner_local_var->wandb = wandb;
-
-    fine_tuning_job_integrations_inner_local_var->_library_owned = 1;
     return fine_tuning_job_integrations_inner_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) fine_tuning_job_integrations_inner_t *fine_tuning_jo
     openai_api_fine_tuning_job_integrations_inner_TYPE_e type,
     create_fine_tuning_job_request_integrations_inner_wandb_t *wandb
     ) {
-    return fine_tuning_job_integrations_inner_create_internal (
+    fine_tuning_job_integrations_inner_t *result = fine_tuning_job_integrations_inner_create_internal (
         type,
         wandb
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void fine_tuning_job_integrations_inner_free(fine_tuning_job_integrations_inner_t *fine_tuning_job_integrations_inner) {
@@ -134,10 +137,15 @@ fine_tuning_job_integrations_inner_t *fine_tuning_job_integrations_inner_parseFr
     wandb_local_nonprim = create_fine_tuning_job_request_integrations_inner_wandb_parseFromJSON(wandb); //nonprimitive
 
 
+
     fine_tuning_job_integrations_inner_local_var = fine_tuning_job_integrations_inner_create_internal (
         typeVariable,
         wandb_local_nonprim
         );
+
+    if (!fine_tuning_job_integrations_inner_local_var) {
+        goto end;
+    }
 
     return fine_tuning_job_integrations_inner_local_var;
 end:

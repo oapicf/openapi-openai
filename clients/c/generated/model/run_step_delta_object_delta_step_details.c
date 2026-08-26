@@ -31,11 +31,11 @@ static run_step_delta_object_delta_step_details_t *run_step_delta_object_delta_s
     if (!run_step_delta_object_delta_step_details_local_var) {
         return NULL;
     }
+    memset(run_step_delta_object_delta_step_details_local_var, 0, sizeof(run_step_delta_object_delta_step_details_t));
+    run_step_delta_object_delta_step_details_local_var->_library_owned = 1;
     run_step_delta_object_delta_step_details_local_var->type = type;
     run_step_delta_object_delta_step_details_local_var->message_creation = message_creation;
     run_step_delta_object_delta_step_details_local_var->tool_calls = tool_calls;
-
-    run_step_delta_object_delta_step_details_local_var->_library_owned = 1;
     return run_step_delta_object_delta_step_details_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) run_step_delta_object_delta_step_details_t *run_step
     run_step_delta_step_details_message_creation_object_message_creation_t *message_creation,
     list_t *tool_calls
     ) {
-    return run_step_delta_object_delta_step_details_create_internal (
+    run_step_delta_object_delta_step_details_t *result = run_step_delta_object_delta_step_details_create_internal (
         type,
         message_creation,
         tool_calls
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_step_delta_object_delta_step_details_free(run_step_delta_object_delta_step_details_t *run_step_delta_object_delta_step_details) {
@@ -188,11 +191,16 @@ run_step_delta_object_delta_step_details_t *run_step_delta_object_delta_step_det
     }
 
 
+
     run_step_delta_object_delta_step_details_local_var = run_step_delta_object_delta_step_details_create_internal (
         typeVariable,
         message_creation ? message_creation_local_nonprim : NULL,
         tool_calls ? tool_callsList : NULL
         );
+
+    if (!run_step_delta_object_delta_step_details_local_var) {
+        goto end;
+    }
 
     return run_step_delta_object_delta_step_details_local_var;
 end:

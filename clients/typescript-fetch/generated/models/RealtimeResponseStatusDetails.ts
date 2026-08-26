@@ -32,7 +32,7 @@ export interface RealtimeResponseStatusDetails {
      * with the `status` field (`completed`, `cancelled`, `incomplete`, 
      * `failed`).
      * 
-     * @type {string}
+     * @type {RealtimeResponseStatusDetailsTypeEnum}
      * @memberof RealtimeResponseStatusDetails
      */
     type?: RealtimeResponseStatusDetailsTypeEnum;
@@ -43,7 +43,7 @@ export interface RealtimeResponseStatusDetails {
      * `incomplete` Response, one of `max_output_tokens` or `content_filter` 
      * (the server-side safety filter activated and cut off the response).
      * 
-     * @type {string}
+     * @type {RealtimeResponseStatusDetailsReasonEnum}
      * @memberof RealtimeResponseStatusDetails
      */
     reason?: RealtimeResponseStatusDetailsReasonEnum;

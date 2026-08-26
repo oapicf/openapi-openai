@@ -53,28 +53,28 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get 
 	 */
 	int getStartTime();
 
 	/*! \brief Set 
 	 */
-	void setStartTime(int  start_time);
+	void setStartTime(int start_time);
 	/*! \brief Get 
 	 */
 	int getEndTime();
 
 	/*! \brief Set 
 	 */
-	void setEndTime(int  end_time);
+	void setEndTime(int end_time);
 	/*! \brief Get 
 	 */
 	std::list<UsageTimeBucket_result_inner> getResult();
 
 	/*! \brief Set 
 	 */
-	void setResult(std::list <UsageTimeBucket_result_inner> result);
+	void setResult(std::list<UsageTimeBucket_result_inner> result);
 
 
     private:

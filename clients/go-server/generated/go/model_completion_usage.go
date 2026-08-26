@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // CompletionUsage - Usage statistics for the completion request.
@@ -30,20 +35,90 @@ type CompletionUsage struct {
 
 	PromptTokensDetails CompletionUsagePromptTokensDetails `json:"prompt_tokens_details,omitempty"`
 }
-
-// AssertCompletionUsageRequired checks if the required fields are not zero-ed
-func AssertCompletionUsageRequired(obj CompletionUsage) error {
-	elements := map[string]interface{}{
-		"completion_tokens": obj.CompletionTokens,
-		"prompt_tokens": obj.PromptTokens,
-		"total_tokens": obj.TotalTokens,
+// UnmarshalJSON validates required property keys then unmarshals into CompletionUsage
+func (o *CompletionUsage) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"completion_tokens",
+		"prompt_tokens",
+		"total_tokens",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"completion_tokens": false,
+		"prompt_tokens": false,
+		"total_tokens": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"completion_tokens": {},
+		"prompt_tokens": {},
+		"total_tokens": {},
+		"completion_tokens_details": {},
+		"prompt_tokens_details": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CompletionUsage
+
+	if value, exists := allProperties["completion_tokens"]; exists {
+		if err = json.Unmarshal(value, &decoded.CompletionTokens); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["prompt_tokens"]; exists {
+		if err = json.Unmarshal(value, &decoded.PromptTokens); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["total_tokens"]; exists {
+		if err = json.Unmarshal(value, &decoded.TotalTokens); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["completion_tokens_details"]; exists {
+		if err = json.Unmarshal(value, &decoded.CompletionTokensDetails); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["prompt_tokens_details"]; exists {
+		if err = json.Unmarshal(value, &decoded.PromptTokensDetails); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCompletionUsageRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertCompletionUsageRequired(obj CompletionUsage) error {
 	if err := AssertCompletionUsageCompletionTokensDetailsRequired(obj.CompletionTokensDetails); err != nil {
 		return err
 	}

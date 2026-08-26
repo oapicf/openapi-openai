@@ -1,4 +1,4 @@
-# # ProjectRateLimit
+# ProjectRateLimit
 
 ## Properties
 

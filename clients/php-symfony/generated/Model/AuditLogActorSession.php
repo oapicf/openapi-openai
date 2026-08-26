@@ -49,7 +49,7 @@ class AuditLogActorSession
      * @var AuditLogActorUser|null
      * @SerializedName("user")
      * @Type("OpenAPI\Server\Model\AuditLogActorUser")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogActorUser")]
     protected ?AuditLogActorUser $user = null;
 
@@ -59,7 +59,7 @@ class AuditLogActorSession
      * @var string|null
      * @SerializedName("ip_address")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $ipAddress = null;
 
@@ -86,12 +86,12 @@ class AuditLogActorSession
     }
 
     /**
-    * Sets user.
-    *
-    * @param AuditLogActorUser|null $user
-    *
-    * @return $this
-    */
+     * Sets user.
+     *
+     * @param AuditLogActorUser|null $user
+     *
+     * @return $this
+     */
     public function setUser(?AuditLogActorUser $user = null): self
     {
         $this->user = $user;
@@ -113,12 +113,12 @@ class AuditLogActorSession
     }
 
     /**
-    * Sets ipAddress.
-    *
-    * @param string|null $ipAddress  The IP address from which the action was performed.
-    *
-    * @return $this
-    */
+     * Sets ipAddress.
+     *
+     * @param string|null $ipAddress  The IP address from which the action was performed.
+     *
+     * @return $this
+     */
     public function setIpAddress(?string $ipAddress = null): self
     {
         $this->ipAddress = $ipAddress;

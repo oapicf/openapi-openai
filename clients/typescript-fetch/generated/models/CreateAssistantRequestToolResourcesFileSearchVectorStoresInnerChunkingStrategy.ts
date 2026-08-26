@@ -12,13 +12,13 @@
  * Do not edit the class manually.
  */
 
-import type { AutoChunkingStrategy } from './AutoChunkingStrategy';
+import type { AutoChunkingStrategyRequestParam } from './AutoChunkingStrategyRequestParam';
 import {
-    instanceOfAutoChunkingStrategy,
-    AutoChunkingStrategyFromJSON,
-    AutoChunkingStrategyFromJSONTyped,
-    AutoChunkingStrategyToJSON,
-} from './AutoChunkingStrategy';
+    instanceOfAutoChunkingStrategyRequestParam,
+    AutoChunkingStrategyRequestParamFromJSON,
+    AutoChunkingStrategyRequestParamFromJSONTyped,
+    AutoChunkingStrategyRequestParamToJSON,
+} from './AutoChunkingStrategyRequestParam';
 import type { StaticChunkingStrategy } from './StaticChunkingStrategy';
 import {
     instanceOfStaticChunkingStrategy,
@@ -32,7 +32,7 @@ import {
  * The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.
  * @export
  */
-export type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = AutoChunkingStrategy | StaticChunkingStrategy;
+export type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = AutoChunkingStrategyRequestParam | StaticChunkingStrategy;
 
 export function CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyFromJSON(json: any): CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy {
     return CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyFromJSONTyped(json, false);
@@ -45,8 +45,8 @@ export function CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerCh
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfAutoChunkingStrategy(json)) {
-        return AutoChunkingStrategyFromJSONTyped(json, true);
+    if (instanceOfAutoChunkingStrategyRequestParam(json)) {
+        return AutoChunkingStrategyRequestParamFromJSONTyped(json, true);
     }
     if (instanceOfStaticChunkingStrategy(json)) {
         return StaticChunkingStrategyFromJSONTyped(json, true);
@@ -65,8 +65,8 @@ export function CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerCh
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfAutoChunkingStrategy(value)) {
-        return AutoChunkingStrategyToJSON(value as AutoChunkingStrategy);
+    if (instanceOfAutoChunkingStrategyRequestParam(value)) {
+        return AutoChunkingStrategyRequestParamToJSON(value as AutoChunkingStrategyRequestParam);
     }
     if (instanceOfStaticChunkingStrategy(value)) {
         return StaticChunkingStrategyToJSON(value as StaticChunkingStrategy);

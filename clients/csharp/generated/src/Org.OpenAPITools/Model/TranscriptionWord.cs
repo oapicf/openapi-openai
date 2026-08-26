@@ -98,8 +98,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="TranscriptionWord" />
     /// </summary>
-    public class TranscriptionWordJsonConverter : JsonConverter<TranscriptionWord>
+    public partial class TranscriptionWordJsonConverter : JsonConverter<TranscriptionWord>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TranscriptionWordJsonConverter" /> class.
+        /// </summary>
+        public TranscriptionWordJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="TranscriptionWord" />
         /// </summary>

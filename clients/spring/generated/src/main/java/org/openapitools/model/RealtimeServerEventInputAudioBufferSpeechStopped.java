@@ -8,20 +8,20 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Returned in &#x60;server_vad&#x60; mode when the server detects the end of speech in  the audio buffer. The server will also send an &#x60;conversation.item.created&#x60;  event with the user message item that is created from the audio buffer. 
  */
 
 @Schema(name = "RealtimeServerEventInputAudioBufferSpeechStopped", description = "Returned in `server_vad` mode when the server detects the end of speech in  the audio buffer. The server will also send an `conversation.item.created`  event with the user message item that is created from the audio buffer. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeServerEventInputAudioBufferSpeechStopped {
 
   private String eventId;
@@ -95,6 +95,7 @@ public class RealtimeServerEventInputAudioBufferSpeechStopped {
     return eventId;
   }
 
+  @JsonProperty("event_id")
   public void setEventId(String eventId) {
     this.eventId = eventId;
   }
@@ -115,6 +116,7 @@ public class RealtimeServerEventInputAudioBufferSpeechStopped {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -135,6 +137,7 @@ public class RealtimeServerEventInputAudioBufferSpeechStopped {
     return audioEndMs;
   }
 
+  @JsonProperty("audio_end_ms")
   public void setAudioEndMs(Integer audioEndMs) {
     this.audioEndMs = audioEndMs;
   }
@@ -155,6 +158,7 @@ public class RealtimeServerEventInputAudioBufferSpeechStopped {
     return itemId;
   }
 
+  @JsonProperty("item_id")
   public void setItemId(String itemId) {
     this.itemId = itemId;
   }
@@ -195,11 +199,8 @@ public class RealtimeServerEventInputAudioBufferSpeechStopped {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

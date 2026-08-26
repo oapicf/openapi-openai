@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIBatch::OAIBatch(QString json) {
+OAIBatch::OAIBatch(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -95,7 +95,7 @@ void OAIBatch::initializeModel() {
     m_metadata_isValid = false;
 }
 
-void OAIBatch::fromJson(QString jsonString) {
+void OAIBatch::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

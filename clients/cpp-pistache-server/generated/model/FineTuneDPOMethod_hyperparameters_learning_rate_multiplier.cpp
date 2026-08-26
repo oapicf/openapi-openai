@@ -24,6 +24,8 @@ FineTuneDPOMethod_hyperparameters_learning_rate_multiplier::FineTuneDPOMethod_hy
     
 }
 
+FineTuneDPOMethod_hyperparameters_learning_rate_multiplier::~FineTuneDPOMethod_hyperparameters_learning_rate_multiplier() = default;
+
 void FineTuneDPOMethod_hyperparameters_learning_rate_multiplier::validate() const
 {
     std::stringstream msg;

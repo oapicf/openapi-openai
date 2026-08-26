@@ -23,7 +23,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Log probability information for the choice.")
 @JsonTypeName("CreateChatCompletionResponse_choices_inner_logprobs")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateChatCompletionResponseChoicesInnerLogprobs   {
   private @Valid List<@Valid ChatCompletionTokenLogprob> content;
   private @Valid List<@Valid ChatCompletionTokenLogprob> refusal;
@@ -147,12 +147,8 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
 }
-

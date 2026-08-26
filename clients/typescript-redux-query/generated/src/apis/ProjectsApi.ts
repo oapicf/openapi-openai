@@ -199,7 +199,7 @@ function archiveProjectRaw<T>(requestParameters: ArchiveProjectRequest, requestC
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/archive`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/archive`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -301,7 +301,7 @@ function createProjectServiceAccountRaw<T>(requestParameters: CreateProjectServi
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/service_accounts`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/service_accounts`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -354,7 +354,7 @@ function createProjectUserRaw<T>(requestParameters: CreateProjectUserRequest, re
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/users`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/users`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -405,7 +405,7 @@ function deleteProjectApiKeyRaw<T>(requestParameters: DeleteProjectApiKeyRequest
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/api_keys/{key_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))).replace(`{${"key_id"}}`, encodeURIComponent(String(requestParameters.keyId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/api_keys/{key_id}`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))).replace('{key_id}', encodeURIComponent(String(requestParameters.keyId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -456,7 +456,7 @@ function deleteProjectServiceAccountRaw<T>(requestParameters: DeleteProjectServi
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/service_accounts/{service_account_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))).replace(`{${"service_account_id"}}`, encodeURIComponent(String(requestParameters.serviceAccountId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/service_accounts/{service_account_id}`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))).replace('{service_account_id}', encodeURIComponent(String(requestParameters.serviceAccountId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -507,7 +507,7 @@ function deleteProjectUserRaw<T>(requestParameters: DeleteProjectUserRequest, re
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/users/{user_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))).replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/users/{user_id}`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))).replace('{user_id}', encodeURIComponent(String(requestParameters.userId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -565,7 +565,7 @@ function listProjectApiKeysRaw<T>(requestParameters: ListProjectApiKeysRequest, 
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/api_keys`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/api_keys`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -628,7 +628,7 @@ function listProjectRateLimitsRaw<T>(requestParameters: ListProjectRateLimitsReq
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/rate_limits`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/rate_limits`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -686,7 +686,7 @@ function listProjectServiceAccountsRaw<T>(requestParameters: ListProjectServiceA
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/service_accounts`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/service_accounts`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -744,7 +744,7 @@ function listProjectUsersRaw<T>(requestParameters: ListProjectUsersRequest, requ
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/users`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/users`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -856,7 +856,7 @@ function modifyProjectRaw<T>(requestParameters: ModifyProjectRequest, requestCon
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -913,7 +913,7 @@ function modifyProjectUserRaw<T>(requestParameters: ModifyProjectUserRequest, re
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/users/{user_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))).replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/users/{user_id}`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))).replace('{user_id}', encodeURIComponent(String(requestParameters.userId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -960,7 +960,7 @@ function retrieveProjectRaw<T>(requestParameters: RetrieveProjectRequest, reques
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -1011,7 +1011,7 @@ function retrieveProjectApiKeyRaw<T>(requestParameters: RetrieveProjectApiKeyReq
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/api_keys/{key_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))).replace(`{${"key_id"}}`, encodeURIComponent(String(requestParameters.keyId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/api_keys/{key_id}`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))).replace('{key_id}', encodeURIComponent(String(requestParameters.keyId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -1062,7 +1062,7 @@ function retrieveProjectServiceAccountRaw<T>(requestParameters: RetrieveProjectS
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/service_accounts/{service_account_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))).replace(`{${"service_account_id"}}`, encodeURIComponent(String(requestParameters.serviceAccountId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/service_accounts/{service_account_id}`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))).replace('{service_account_id}', encodeURIComponent(String(requestParameters.serviceAccountId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -1113,7 +1113,7 @@ function retrieveProjectUserRaw<T>(requestParameters: RetrieveProjectUserRequest
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/users/{user_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))).replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/users/{user_id}`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))).replace('{user_id}', encodeURIComponent(String(requestParameters.userId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -1170,7 +1170,7 @@ function updateProjectRateLimitsRaw<T>(requestParameters: UpdateProjectRateLimit
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/rate_limits/{rate_limit_id}`.replace(`{${"project_id"}}`, encodeURIComponent(String(requestParameters.projectId))).replace(`{${"rate_limit_id"}}`, encodeURIComponent(String(requestParameters.rateLimitId))),
+        url: `${runtime.Configuration.basePath}/organization/projects/{project_id}/rate_limits/{rate_limit_id}`.replace('{project_id}', encodeURIComponent(String(requestParameters.projectId))).replace('{rate_limit_id}', encodeURIComponent(String(requestParameters.rateLimitId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,

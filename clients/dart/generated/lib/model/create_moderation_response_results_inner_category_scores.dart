@@ -132,10 +132,32 @@ class CreateModerationResponseResultsInnerCategoryScores {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateModerationResponseResultsInnerCategoryScores[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateModerationResponseResultsInnerCategoryScores[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'hate'), 'Required key "CreateModerationResponseResultsInnerCategoryScores[hate]" is missing from JSON.');
+        assert(json[r'hate'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryScores[hate]" has a null value in JSON.');
+        assert(json.containsKey(r'hate/threatening'), 'Required key "CreateModerationResponseResultsInnerCategoryScores[hate/threatening]" is missing from JSON.');
+        assert(json[r'hate/threatening'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryScores[hate/threatening]" has a null value in JSON.');
+        assert(json.containsKey(r'harassment'), 'Required key "CreateModerationResponseResultsInnerCategoryScores[harassment]" is missing from JSON.');
+        assert(json[r'harassment'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryScores[harassment]" has a null value in JSON.');
+        assert(json.containsKey(r'harassment/threatening'), 'Required key "CreateModerationResponseResultsInnerCategoryScores[harassment/threatening]" is missing from JSON.');
+        assert(json[r'harassment/threatening'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryScores[harassment/threatening]" has a null value in JSON.');
+        assert(json.containsKey(r'illicit'), 'Required key "CreateModerationResponseResultsInnerCategoryScores[illicit]" is missing from JSON.');
+        assert(json[r'illicit'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryScores[illicit]" has a null value in JSON.');
+        assert(json.containsKey(r'illicit/violent'), 'Required key "CreateModerationResponseResultsInnerCategoryScores[illicit/violent]" is missing from JSON.');
+        assert(json[r'illicit/violent'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryScores[illicit/violent]" has a null value in JSON.');
+        assert(json.containsKey(r'self-harm'), 'Required key "CreateModerationResponseResultsInnerCategoryScores[self-harm]" is missing from JSON.');
+        assert(json[r'self-harm'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryScores[self-harm]" has a null value in JSON.');
+        assert(json.containsKey(r'self-harm/intent'), 'Required key "CreateModerationResponseResultsInnerCategoryScores[self-harm/intent]" is missing from JSON.');
+        assert(json[r'self-harm/intent'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryScores[self-harm/intent]" has a null value in JSON.');
+        assert(json.containsKey(r'self-harm/instructions'), 'Required key "CreateModerationResponseResultsInnerCategoryScores[self-harm/instructions]" is missing from JSON.');
+        assert(json[r'self-harm/instructions'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryScores[self-harm/instructions]" has a null value in JSON.');
+        assert(json.containsKey(r'sexual'), 'Required key "CreateModerationResponseResultsInnerCategoryScores[sexual]" is missing from JSON.');
+        assert(json[r'sexual'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryScores[sexual]" has a null value in JSON.');
+        assert(json.containsKey(r'sexual/minors'), 'Required key "CreateModerationResponseResultsInnerCategoryScores[sexual/minors]" is missing from JSON.');
+        assert(json[r'sexual/minors'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryScores[sexual/minors]" has a null value in JSON.');
+        assert(json.containsKey(r'violence'), 'Required key "CreateModerationResponseResultsInnerCategoryScores[violence]" is missing from JSON.');
+        assert(json[r'violence'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryScores[violence]" has a null value in JSON.');
+        assert(json.containsKey(r'violence/graphic'), 'Required key "CreateModerationResponseResultsInnerCategoryScores[violence/graphic]" is missing from JSON.');
+        assert(json[r'violence/graphic'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryScores[violence/graphic]" has a null value in JSON.');
         return true;
       }());
 

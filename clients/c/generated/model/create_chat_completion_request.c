@@ -59,31 +59,31 @@ openai_api_create_chat_completion_request_SERVICETIER_e create_chat_completion_r
 static create_chat_completion_request_t *create_chat_completion_request_create_internal(
     list_t *messages,
     create_chat_completion_request_model_t *model,
-    int store,
+    int *store,
     openai_api_create_chat_completion_request_REASONINGEFFORT_e reasoning_effort,
     list_t* metadata,
-    double frequency_penalty,
+    double *frequency_penalty,
     list_t* logit_bias,
-    int logprobs,
-    int top_logprobs,
-    int max_tokens,
-    int max_completion_tokens,
-    int n,
+    int *logprobs,
+    int *top_logprobs,
+    int *max_tokens,
+    int *max_completion_tokens,
+    int *n,
     list_t *modalities,
     prediction_content_t *prediction,
     create_chat_completion_request_audio_t *audio,
-    double presence_penalty,
+    double *presence_penalty,
     create_chat_completion_request_response_format_t *response_format,
-    int seed,
+    int *seed,
     openai_api_create_chat_completion_request_SERVICETIER_e service_tier,
     create_chat_completion_request_stop_t *stop,
-    int stream,
+    int *stream,
     chat_completion_stream_options_t *stream_options,
-    double temperature,
-    double top_p,
+    double *temperature,
+    double *top_p,
     list_t *tools,
     chat_completion_tool_choice_option_t *tool_choice,
-    int parallel_tool_calls,
+    int *parallel_tool_calls,
     char *user,
     create_chat_completion_request_function_call_t *function_call,
     list_t *functions
@@ -92,6 +92,8 @@ static create_chat_completion_request_t *create_chat_completion_request_create_i
     if (!create_chat_completion_request_local_var) {
         return NULL;
     }
+    memset(create_chat_completion_request_local_var, 0, sizeof(create_chat_completion_request_t));
+    create_chat_completion_request_local_var->_library_owned = 1;
     create_chat_completion_request_local_var->messages = messages;
     create_chat_completion_request_local_var->model = model;
     create_chat_completion_request_local_var->store = store;
@@ -122,75 +124,154 @@ static create_chat_completion_request_t *create_chat_completion_request_create_i
     create_chat_completion_request_local_var->user = user;
     create_chat_completion_request_local_var->function_call = function_call;
     create_chat_completion_request_local_var->functions = functions;
-
-    create_chat_completion_request_local_var->_library_owned = 1;
     return create_chat_completion_request_local_var;
 }
 
 __attribute__((deprecated)) create_chat_completion_request_t *create_chat_completion_request_create(
     list_t *messages,
     create_chat_completion_request_model_t *model,
-    int store,
+    int *store,
     openai_api_create_chat_completion_request_REASONINGEFFORT_e reasoning_effort,
     list_t* metadata,
-    double frequency_penalty,
+    double *frequency_penalty,
     list_t* logit_bias,
-    int logprobs,
-    int top_logprobs,
-    int max_tokens,
-    int max_completion_tokens,
-    int n,
+    int *logprobs,
+    int *top_logprobs,
+    int *max_tokens,
+    int *max_completion_tokens,
+    int *n,
     list_t *modalities,
     prediction_content_t *prediction,
     create_chat_completion_request_audio_t *audio,
-    double presence_penalty,
+    double *presence_penalty,
     create_chat_completion_request_response_format_t *response_format,
-    int seed,
+    int *seed,
     openai_api_create_chat_completion_request_SERVICETIER_e service_tier,
     create_chat_completion_request_stop_t *stop,
-    int stream,
+    int *stream,
     chat_completion_stream_options_t *stream_options,
-    double temperature,
-    double top_p,
+    double *temperature,
+    double *top_p,
     list_t *tools,
     chat_completion_tool_choice_option_t *tool_choice,
-    int parallel_tool_calls,
+    int *parallel_tool_calls,
     char *user,
     create_chat_completion_request_function_call_t *function_call,
     list_t *functions
     ) {
-    return create_chat_completion_request_create_internal (
+    int *store_copy = NULL;
+    if (store) {
+        store_copy = malloc(sizeof(int));
+        if (store_copy) *store_copy = *store;
+    }
+    double *frequency_penalty_copy = NULL;
+    if (frequency_penalty) {
+        frequency_penalty_copy = malloc(sizeof(double));
+        if (frequency_penalty_copy) *frequency_penalty_copy = *frequency_penalty;
+    }
+    int *logprobs_copy = NULL;
+    if (logprobs) {
+        logprobs_copy = malloc(sizeof(int));
+        if (logprobs_copy) *logprobs_copy = *logprobs;
+    }
+    int *top_logprobs_copy = NULL;
+    if (top_logprobs) {
+        top_logprobs_copy = malloc(sizeof(int));
+        if (top_logprobs_copy) *top_logprobs_copy = *top_logprobs;
+    }
+    int *max_tokens_copy = NULL;
+    if (max_tokens) {
+        max_tokens_copy = malloc(sizeof(int));
+        if (max_tokens_copy) *max_tokens_copy = *max_tokens;
+    }
+    int *max_completion_tokens_copy = NULL;
+    if (max_completion_tokens) {
+        max_completion_tokens_copy = malloc(sizeof(int));
+        if (max_completion_tokens_copy) *max_completion_tokens_copy = *max_completion_tokens;
+    }
+    int *n_copy = NULL;
+    if (n) {
+        n_copy = malloc(sizeof(int));
+        if (n_copy) *n_copy = *n;
+    }
+    double *presence_penalty_copy = NULL;
+    if (presence_penalty) {
+        presence_penalty_copy = malloc(sizeof(double));
+        if (presence_penalty_copy) *presence_penalty_copy = *presence_penalty;
+    }
+    int *seed_copy = NULL;
+    if (seed) {
+        seed_copy = malloc(sizeof(int));
+        if (seed_copy) *seed_copy = *seed;
+    }
+    int *stream_copy = NULL;
+    if (stream) {
+        stream_copy = malloc(sizeof(int));
+        if (stream_copy) *stream_copy = *stream;
+    }
+    double *temperature_copy = NULL;
+    if (temperature) {
+        temperature_copy = malloc(sizeof(double));
+        if (temperature_copy) *temperature_copy = *temperature;
+    }
+    double *top_p_copy = NULL;
+    if (top_p) {
+        top_p_copy = malloc(sizeof(double));
+        if (top_p_copy) *top_p_copy = *top_p;
+    }
+    int *parallel_tool_calls_copy = NULL;
+    if (parallel_tool_calls) {
+        parallel_tool_calls_copy = malloc(sizeof(int));
+        if (parallel_tool_calls_copy) *parallel_tool_calls_copy = *parallel_tool_calls;
+    }
+    create_chat_completion_request_t *result = create_chat_completion_request_create_internal (
         messages,
         model,
-        store,
+        store_copy,
         reasoning_effort,
         metadata,
-        frequency_penalty,
+        frequency_penalty_copy,
         logit_bias,
-        logprobs,
-        top_logprobs,
-        max_tokens,
-        max_completion_tokens,
-        n,
+        logprobs_copy,
+        top_logprobs_copy,
+        max_tokens_copy,
+        max_completion_tokens_copy,
+        n_copy,
         modalities,
         prediction,
         audio,
-        presence_penalty,
+        presence_penalty_copy,
         response_format,
-        seed,
+        seed_copy,
         service_tier,
         stop,
-        stream,
+        stream_copy,
         stream_options,
-        temperature,
-        top_p,
+        temperature_copy,
+        top_p_copy,
         tools,
         tool_choice,
-        parallel_tool_calls,
+        parallel_tool_calls_copy,
         user,
         function_call,
         functions
         );
+    if (!result) {
+        free(store_copy);
+        free(frequency_penalty_copy);
+        free(logprobs_copy);
+        free(top_logprobs_copy);
+        free(max_tokens_copy);
+        free(max_completion_tokens_copy);
+        free(n_copy);
+        free(presence_penalty_copy);
+        free(seed_copy);
+        free(stream_copy);
+        free(temperature_copy);
+        free(top_p_copy);
+        free(parallel_tool_calls_copy);
+    }
+    return result;
 }
 
 void create_chat_completion_request_free(create_chat_completion_request_t *create_chat_completion_request) {
@@ -213,6 +294,10 @@ void create_chat_completion_request_free(create_chat_completion_request_t *creat
         create_chat_completion_request_model_free(create_chat_completion_request->model);
         create_chat_completion_request->model = NULL;
     }
+    if (create_chat_completion_request->store) {
+        free(create_chat_completion_request->store);
+        create_chat_completion_request->store = NULL;
+    }
     if (create_chat_completion_request->metadata) {
         list_ForEach(listEntry, create_chat_completion_request->metadata) {
             keyValuePair_t *localKeyValue = listEntry->data;
@@ -223,6 +308,10 @@ void create_chat_completion_request_free(create_chat_completion_request_t *creat
         list_freeList(create_chat_completion_request->metadata);
         create_chat_completion_request->metadata = NULL;
     }
+    if (create_chat_completion_request->frequency_penalty) {
+        free(create_chat_completion_request->frequency_penalty);
+        create_chat_completion_request->frequency_penalty = NULL;
+    }
     if (create_chat_completion_request->logit_bias) {
         list_ForEach(listEntry, create_chat_completion_request->logit_bias) {
             keyValuePair_t *localKeyValue = listEntry->data;
@@ -232,6 +321,26 @@ void create_chat_completion_request_free(create_chat_completion_request_t *creat
         }
         list_freeList(create_chat_completion_request->logit_bias);
         create_chat_completion_request->logit_bias = NULL;
+    }
+    if (create_chat_completion_request->logprobs) {
+        free(create_chat_completion_request->logprobs);
+        create_chat_completion_request->logprobs = NULL;
+    }
+    if (create_chat_completion_request->top_logprobs) {
+        free(create_chat_completion_request->top_logprobs);
+        create_chat_completion_request->top_logprobs = NULL;
+    }
+    if (create_chat_completion_request->max_tokens) {
+        free(create_chat_completion_request->max_tokens);
+        create_chat_completion_request->max_tokens = NULL;
+    }
+    if (create_chat_completion_request->max_completion_tokens) {
+        free(create_chat_completion_request->max_completion_tokens);
+        create_chat_completion_request->max_completion_tokens = NULL;
+    }
+    if (create_chat_completion_request->n) {
+        free(create_chat_completion_request->n);
+        create_chat_completion_request->n = NULL;
     }
     if (create_chat_completion_request->modalities) {
         list_ForEach(listEntry, create_chat_completion_request->modalities) {
@@ -248,17 +357,37 @@ void create_chat_completion_request_free(create_chat_completion_request_t *creat
         create_chat_completion_request_audio_free(create_chat_completion_request->audio);
         create_chat_completion_request->audio = NULL;
     }
+    if (create_chat_completion_request->presence_penalty) {
+        free(create_chat_completion_request->presence_penalty);
+        create_chat_completion_request->presence_penalty = NULL;
+    }
     if (create_chat_completion_request->response_format) {
         create_chat_completion_request_response_format_free(create_chat_completion_request->response_format);
         create_chat_completion_request->response_format = NULL;
+    }
+    if (create_chat_completion_request->seed) {
+        free(create_chat_completion_request->seed);
+        create_chat_completion_request->seed = NULL;
     }
     if (create_chat_completion_request->stop) {
         create_chat_completion_request_stop_free(create_chat_completion_request->stop);
         create_chat_completion_request->stop = NULL;
     }
+    if (create_chat_completion_request->stream) {
+        free(create_chat_completion_request->stream);
+        create_chat_completion_request->stream = NULL;
+    }
     if (create_chat_completion_request->stream_options) {
         chat_completion_stream_options_free(create_chat_completion_request->stream_options);
         create_chat_completion_request->stream_options = NULL;
+    }
+    if (create_chat_completion_request->temperature) {
+        free(create_chat_completion_request->temperature);
+        create_chat_completion_request->temperature = NULL;
+    }
+    if (create_chat_completion_request->top_p) {
+        free(create_chat_completion_request->top_p);
+        create_chat_completion_request->top_p = NULL;
     }
     if (create_chat_completion_request->tools) {
         list_ForEach(listEntry, create_chat_completion_request->tools) {
@@ -270,6 +399,10 @@ void create_chat_completion_request_free(create_chat_completion_request_t *creat
     if (create_chat_completion_request->tool_choice) {
         chat_completion_tool_choice_option_free(create_chat_completion_request->tool_choice);
         create_chat_completion_request->tool_choice = NULL;
+    }
+    if (create_chat_completion_request->parallel_tool_calls) {
+        free(create_chat_completion_request->parallel_tool_calls);
+        create_chat_completion_request->parallel_tool_calls = NULL;
     }
     if (create_chat_completion_request->user) {
         free(create_chat_completion_request->user);
@@ -329,7 +462,7 @@ cJSON *create_chat_completion_request_convertToJSON(create_chat_completion_reque
 
     // create_chat_completion_request->store
     if(create_chat_completion_request->store) {
-    if(cJSON_AddBoolToObject(item, "store", create_chat_completion_request->store) == NULL) {
+    if(cJSON_AddBoolToObject(item, "store", *create_chat_completion_request->store) == NULL) {
     goto fail; //Bool
     }
     }
@@ -366,7 +499,7 @@ cJSON *create_chat_completion_request_convertToJSON(create_chat_completion_reque
 
     // create_chat_completion_request->frequency_penalty
     if(create_chat_completion_request->frequency_penalty) {
-    if(cJSON_AddNumberToObject(item, "frequency_penalty", create_chat_completion_request->frequency_penalty) == NULL) {
+    if(cJSON_AddNumberToObject(item, "frequency_penalty", *create_chat_completion_request->frequency_penalty) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -394,7 +527,7 @@ cJSON *create_chat_completion_request_convertToJSON(create_chat_completion_reque
 
     // create_chat_completion_request->logprobs
     if(create_chat_completion_request->logprobs) {
-    if(cJSON_AddBoolToObject(item, "logprobs", create_chat_completion_request->logprobs) == NULL) {
+    if(cJSON_AddBoolToObject(item, "logprobs", *create_chat_completion_request->logprobs) == NULL) {
     goto fail; //Bool
     }
     }
@@ -402,7 +535,7 @@ cJSON *create_chat_completion_request_convertToJSON(create_chat_completion_reque
 
     // create_chat_completion_request->top_logprobs
     if(create_chat_completion_request->top_logprobs) {
-    if(cJSON_AddNumberToObject(item, "top_logprobs", create_chat_completion_request->top_logprobs) == NULL) {
+    if(cJSON_AddNumberToObject(item, "top_logprobs", *create_chat_completion_request->top_logprobs) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -410,7 +543,7 @@ cJSON *create_chat_completion_request_convertToJSON(create_chat_completion_reque
 
     // create_chat_completion_request->max_tokens
     if(create_chat_completion_request->max_tokens) {
-    if(cJSON_AddNumberToObject(item, "max_tokens", create_chat_completion_request->max_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "max_tokens", *create_chat_completion_request->max_tokens) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -418,7 +551,7 @@ cJSON *create_chat_completion_request_convertToJSON(create_chat_completion_reque
 
     // create_chat_completion_request->max_completion_tokens
     if(create_chat_completion_request->max_completion_tokens) {
-    if(cJSON_AddNumberToObject(item, "max_completion_tokens", create_chat_completion_request->max_completion_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "max_completion_tokens", *create_chat_completion_request->max_completion_tokens) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -426,7 +559,7 @@ cJSON *create_chat_completion_request_convertToJSON(create_chat_completion_reque
 
     // create_chat_completion_request->n
     if(create_chat_completion_request->n) {
-    if(cJSON_AddNumberToObject(item, "n", create_chat_completion_request->n) == NULL) {
+    if(cJSON_AddNumberToObject(item, "n", *create_chat_completion_request->n) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -477,7 +610,7 @@ cJSON *create_chat_completion_request_convertToJSON(create_chat_completion_reque
 
     // create_chat_completion_request->presence_penalty
     if(create_chat_completion_request->presence_penalty) {
-    if(cJSON_AddNumberToObject(item, "presence_penalty", create_chat_completion_request->presence_penalty) == NULL) {
+    if(cJSON_AddNumberToObject(item, "presence_penalty", *create_chat_completion_request->presence_penalty) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -498,7 +631,7 @@ cJSON *create_chat_completion_request_convertToJSON(create_chat_completion_reque
 
     // create_chat_completion_request->seed
     if(create_chat_completion_request->seed) {
-    if(cJSON_AddNumberToObject(item, "seed", create_chat_completion_request->seed) == NULL) {
+    if(cJSON_AddNumberToObject(item, "seed", *create_chat_completion_request->seed) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -528,7 +661,7 @@ cJSON *create_chat_completion_request_convertToJSON(create_chat_completion_reque
 
     // create_chat_completion_request->stream
     if(create_chat_completion_request->stream) {
-    if(cJSON_AddBoolToObject(item, "stream", create_chat_completion_request->stream) == NULL) {
+    if(cJSON_AddBoolToObject(item, "stream", *create_chat_completion_request->stream) == NULL) {
     goto fail; //Bool
     }
     }
@@ -549,7 +682,7 @@ cJSON *create_chat_completion_request_convertToJSON(create_chat_completion_reque
 
     // create_chat_completion_request->temperature
     if(create_chat_completion_request->temperature) {
-    if(cJSON_AddNumberToObject(item, "temperature", create_chat_completion_request->temperature) == NULL) {
+    if(cJSON_AddNumberToObject(item, "temperature", *create_chat_completion_request->temperature) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -557,7 +690,7 @@ cJSON *create_chat_completion_request_convertToJSON(create_chat_completion_reque
 
     // create_chat_completion_request->top_p
     if(create_chat_completion_request->top_p) {
-    if(cJSON_AddNumberToObject(item, "top_p", create_chat_completion_request->top_p) == NULL) {
+    if(cJSON_AddNumberToObject(item, "top_p", *create_chat_completion_request->top_p) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -598,7 +731,7 @@ cJSON *create_chat_completion_request_convertToJSON(create_chat_completion_reque
 
     // create_chat_completion_request->parallel_tool_calls
     if(create_chat_completion_request->parallel_tool_calls) {
-    if(cJSON_AddBoolToObject(item, "parallel_tool_calls", create_chat_completion_request->parallel_tool_calls) == NULL) {
+    if(cJSON_AddBoolToObject(item, "parallel_tool_calls", *create_chat_completion_request->parallel_tool_calls) == NULL) {
     goto fail; //Bool
     }
     }
@@ -662,11 +795,32 @@ create_chat_completion_request_t *create_chat_completion_request_parseFromJSON(c
     // define the local variable for create_chat_completion_request->model
     create_chat_completion_request_model_t *model_local_nonprim = NULL;
 
+    // define the local variable for create_chat_completion_request->store
+    int *store_local_var = NULL;
+
     // define the local map for create_chat_completion_request->metadata
     list_t *metadataList = NULL;
 
+    // define the local variable for create_chat_completion_request->frequency_penalty
+    double *frequency_penalty_local_var = NULL;
+
     // define the local map for create_chat_completion_request->logit_bias
     list_t *logit_biasList = NULL;
+
+    // define the local variable for create_chat_completion_request->logprobs
+    int *logprobs_local_var = NULL;
+
+    // define the local variable for create_chat_completion_request->top_logprobs
+    int *top_logprobs_local_var = NULL;
+
+    // define the local variable for create_chat_completion_request->max_tokens
+    int *max_tokens_local_var = NULL;
+
+    // define the local variable for create_chat_completion_request->max_completion_tokens
+    int *max_completion_tokens_local_var = NULL;
+
+    // define the local variable for create_chat_completion_request->n
+    int *n_local_var = NULL;
 
     // define the local list for create_chat_completion_request->modalities
     list_t *modalitiesList = NULL;
@@ -677,20 +831,40 @@ create_chat_completion_request_t *create_chat_completion_request_parseFromJSON(c
     // define the local variable for create_chat_completion_request->audio
     create_chat_completion_request_audio_t *audio_local_nonprim = NULL;
 
+    // define the local variable for create_chat_completion_request->presence_penalty
+    double *presence_penalty_local_var = NULL;
+
     // define the local variable for create_chat_completion_request->response_format
     create_chat_completion_request_response_format_t *response_format_local_nonprim = NULL;
+
+    // define the local variable for create_chat_completion_request->seed
+    int *seed_local_var = NULL;
 
     // define the local variable for create_chat_completion_request->stop
     create_chat_completion_request_stop_t *stop_local_nonprim = NULL;
 
+    // define the local variable for create_chat_completion_request->stream
+    int *stream_local_var = NULL;
+
     // define the local variable for create_chat_completion_request->stream_options
     chat_completion_stream_options_t *stream_options_local_nonprim = NULL;
+
+    // define the local variable for create_chat_completion_request->temperature
+    double *temperature_local_var = NULL;
+
+    // define the local variable for create_chat_completion_request->top_p
+    double *top_p_local_var = NULL;
 
     // define the local list for create_chat_completion_request->tools
     list_t *toolsList = NULL;
 
     // define the local variable for create_chat_completion_request->tool_choice
     chat_completion_tool_choice_option_t *tool_choice_local_nonprim = NULL;
+
+    // define the local variable for create_chat_completion_request->parallel_tool_calls
+    int *parallel_tool_calls_local_var = NULL;
+
+    char *user_local_str = NULL;
 
     // define the local variable for create_chat_completion_request->function_call
     create_chat_completion_request_function_call_t *function_call_local_nonprim = NULL;
@@ -747,6 +921,12 @@ create_chat_completion_request_t *create_chat_completion_request_parseFromJSON(c
     {
     goto end; //Bool
     }
+    store_local_var = malloc(sizeof(int));
+    if(!store_local_var)
+    {
+        goto end;
+    }
+    *store_local_var = store->valueint;
     }
 
     // create_chat_completion_request->reasoning_effort
@@ -801,6 +981,12 @@ create_chat_completion_request_t *create_chat_completion_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    frequency_penalty_local_var = malloc(sizeof(double));
+    if(!frequency_penalty_local_var)
+    {
+        goto end;
+    }
+    *frequency_penalty_local_var = frequency_penalty->valuedouble;
     }
 
     // create_chat_completion_request->logit_bias
@@ -841,6 +1027,12 @@ create_chat_completion_request_t *create_chat_completion_request_parseFromJSON(c
     {
     goto end; //Bool
     }
+    logprobs_local_var = malloc(sizeof(int));
+    if(!logprobs_local_var)
+    {
+        goto end;
+    }
+    *logprobs_local_var = logprobs->valueint;
     }
 
     // create_chat_completion_request->top_logprobs
@@ -853,6 +1045,12 @@ create_chat_completion_request_t *create_chat_completion_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    top_logprobs_local_var = malloc(sizeof(int));
+    if(!top_logprobs_local_var)
+    {
+        goto end;
+    }
+    *top_logprobs_local_var = top_logprobs->valuedouble;
     }
 
     // create_chat_completion_request->max_tokens
@@ -865,6 +1063,12 @@ create_chat_completion_request_t *create_chat_completion_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    max_tokens_local_var = malloc(sizeof(int));
+    if(!max_tokens_local_var)
+    {
+        goto end;
+    }
+    *max_tokens_local_var = max_tokens->valuedouble;
     }
 
     // create_chat_completion_request->max_completion_tokens
@@ -877,6 +1081,12 @@ create_chat_completion_request_t *create_chat_completion_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    max_completion_tokens_local_var = malloc(sizeof(int));
+    if(!max_completion_tokens_local_var)
+    {
+        goto end;
+    }
+    *max_completion_tokens_local_var = max_completion_tokens->valuedouble;
     }
 
     // create_chat_completion_request->n
@@ -889,6 +1099,12 @@ create_chat_completion_request_t *create_chat_completion_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    n_local_var = malloc(sizeof(int));
+    if(!n_local_var)
+    {
+        goto end;
+    }
+    *n_local_var = n->valuedouble;
     }
 
     // create_chat_completion_request->modalities
@@ -941,6 +1157,12 @@ create_chat_completion_request_t *create_chat_completion_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    presence_penalty_local_var = malloc(sizeof(double));
+    if(!presence_penalty_local_var)
+    {
+        goto end;
+    }
+    *presence_penalty_local_var = presence_penalty->valuedouble;
     }
 
     // create_chat_completion_request->response_format
@@ -962,6 +1184,12 @@ create_chat_completion_request_t *create_chat_completion_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    seed_local_var = malloc(sizeof(int));
+    if(!seed_local_var)
+    {
+        goto end;
+    }
+    *seed_local_var = seed->valuedouble;
     }
 
     // create_chat_completion_request->service_tier
@@ -997,6 +1225,12 @@ create_chat_completion_request_t *create_chat_completion_request_parseFromJSON(c
     {
     goto end; //Bool
     }
+    stream_local_var = malloc(sizeof(int));
+    if(!stream_local_var)
+    {
+        goto end;
+    }
+    *stream_local_var = stream->valueint;
     }
 
     // create_chat_completion_request->stream_options
@@ -1018,6 +1252,12 @@ create_chat_completion_request_t *create_chat_completion_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    temperature_local_var = malloc(sizeof(double));
+    if(!temperature_local_var)
+    {
+        goto end;
+    }
+    *temperature_local_var = temperature->valuedouble;
     }
 
     // create_chat_completion_request->top_p
@@ -1030,6 +1270,12 @@ create_chat_completion_request_t *create_chat_completion_request_parseFromJSON(c
     {
     goto end; //Numeric
     }
+    top_p_local_var = malloc(sizeof(double));
+    if(!top_p_local_var)
+    {
+        goto end;
+    }
+    *top_p_local_var = top_p->valuedouble;
     }
 
     // create_chat_completion_request->tools
@@ -1075,6 +1321,12 @@ create_chat_completion_request_t *create_chat_completion_request_parseFromJSON(c
     {
     goto end; //Bool
     }
+    parallel_tool_calls_local_var = malloc(sizeof(int));
+    if(!parallel_tool_calls_local_var)
+    {
+        goto end;
+    }
+    *parallel_tool_calls_local_var = parallel_tool_calls->valueint;
     }
 
     // create_chat_completion_request->user
@@ -1123,38 +1375,44 @@ create_chat_completion_request_t *create_chat_completion_request_parseFromJSON(c
     }
 
 
+    if (user && !cJSON_IsNull(user)) user_local_str = strdup(user->valuestring);
+
     create_chat_completion_request_local_var = create_chat_completion_request_create_internal (
         messagesList,
         model_local_nonprim,
-        store ? store->valueint : 0,
+        store_local_var,
         reasoning_effort ? reasoning_effortVariable : openai_api_create_chat_completion_request_REASONINGEFFORT_NULL,
         metadata ? metadataList : NULL,
-        frequency_penalty ? frequency_penalty->valuedouble : 0,
+        frequency_penalty_local_var,
         logit_bias ? logit_biasList : NULL,
-        logprobs ? logprobs->valueint : 0,
-        top_logprobs ? top_logprobs->valuedouble : 0,
-        max_tokens ? max_tokens->valuedouble : 0,
-        max_completion_tokens ? max_completion_tokens->valuedouble : 0,
-        n ? n->valuedouble : 0,
+        logprobs_local_var,
+        top_logprobs_local_var,
+        max_tokens_local_var,
+        max_completion_tokens_local_var,
+        n_local_var,
         modalities ? modalitiesList : NULL,
         prediction ? prediction_local_nonprim : NULL,
         audio ? audio_local_nonprim : NULL,
-        presence_penalty ? presence_penalty->valuedouble : 0,
+        presence_penalty_local_var,
         response_format ? response_format_local_nonprim : NULL,
-        seed ? seed->valuedouble : 0,
+        seed_local_var,
         service_tier ? service_tierVariable : openai_api_create_chat_completion_request_SERVICETIER_NULL,
         stop ? stop_local_nonprim : NULL,
-        stream ? stream->valueint : 0,
+        stream_local_var,
         stream_options ? stream_options_local_nonprim : NULL,
-        temperature ? temperature->valuedouble : 0,
-        top_p ? top_p->valuedouble : 0,
+        temperature_local_var,
+        top_p_local_var,
         tools ? toolsList : NULL,
         tool_choice ? tool_choice_local_nonprim : NULL,
-        parallel_tool_calls ? parallel_tool_calls->valueint : 0,
-        user && !cJSON_IsNull(user) ? strdup(user->valuestring) : NULL,
+        parallel_tool_calls_local_var,
+        user_local_str,
         function_call ? function_call_local_nonprim : NULL,
         functions ? functionsList : NULL
         );
+
+    if (!create_chat_completion_request_local_var) {
+        goto end;
+    }
 
     return create_chat_completion_request_local_var;
 end:
@@ -1171,6 +1429,10 @@ end:
         create_chat_completion_request_model_free(model_local_nonprim);
         model_local_nonprim = NULL;
     }
+    if (store_local_var) {
+        free(store_local_var);
+        store_local_var = NULL;
+    }
     if (metadataList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, metadataList) {
@@ -1185,6 +1447,10 @@ end:
         list_freeList(metadataList);
         metadataList = NULL;
     }
+    if (frequency_penalty_local_var) {
+        free(frequency_penalty_local_var);
+        frequency_penalty_local_var = NULL;
+    }
     if (logit_biasList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, logit_biasList) {
@@ -1196,6 +1462,26 @@ end:
         }
         list_freeList(logit_biasList);
         logit_biasList = NULL;
+    }
+    if (logprobs_local_var) {
+        free(logprobs_local_var);
+        logprobs_local_var = NULL;
+    }
+    if (top_logprobs_local_var) {
+        free(top_logprobs_local_var);
+        top_logprobs_local_var = NULL;
+    }
+    if (max_tokens_local_var) {
+        free(max_tokens_local_var);
+        max_tokens_local_var = NULL;
+    }
+    if (max_completion_tokens_local_var) {
+        free(max_completion_tokens_local_var);
+        max_completion_tokens_local_var = NULL;
+    }
+    if (n_local_var) {
+        free(n_local_var);
+        n_local_var = NULL;
     }
     if (modalitiesList) {
         listEntry_t *listEntry = NULL;
@@ -1214,17 +1500,37 @@ end:
         create_chat_completion_request_audio_free(audio_local_nonprim);
         audio_local_nonprim = NULL;
     }
+    if (presence_penalty_local_var) {
+        free(presence_penalty_local_var);
+        presence_penalty_local_var = NULL;
+    }
     if (response_format_local_nonprim) {
         create_chat_completion_request_response_format_free(response_format_local_nonprim);
         response_format_local_nonprim = NULL;
+    }
+    if (seed_local_var) {
+        free(seed_local_var);
+        seed_local_var = NULL;
     }
     if (stop_local_nonprim) {
         create_chat_completion_request_stop_free(stop_local_nonprim);
         stop_local_nonprim = NULL;
     }
+    if (stream_local_var) {
+        free(stream_local_var);
+        stream_local_var = NULL;
+    }
     if (stream_options_local_nonprim) {
         chat_completion_stream_options_free(stream_options_local_nonprim);
         stream_options_local_nonprim = NULL;
+    }
+    if (temperature_local_var) {
+        free(temperature_local_var);
+        temperature_local_var = NULL;
+    }
+    if (top_p_local_var) {
+        free(top_p_local_var);
+        top_p_local_var = NULL;
     }
     if (toolsList) {
         listEntry_t *listEntry = NULL;
@@ -1238,6 +1544,14 @@ end:
     if (tool_choice_local_nonprim) {
         chat_completion_tool_choice_option_free(tool_choice_local_nonprim);
         tool_choice_local_nonprim = NULL;
+    }
+    if (parallel_tool_calls_local_var) {
+        free(parallel_tool_calls_local_var);
+        parallel_tool_calls_local_var = NULL;
+    }
+    if (user_local_str) {
+        free(user_local_str);
+        user_local_str = NULL;
     }
     if (function_call_local_nonprim) {
         create_chat_completion_request_function_call_free(function_call_local_nonprim);

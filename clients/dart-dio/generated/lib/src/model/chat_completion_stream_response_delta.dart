@@ -133,22 +133,25 @@ class _$ChatCompletionStreamResponseDeltaSerializer implements PrimitiveSerializ
         case r'function_call':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ChatCompletionStreamResponseDeltaFunctionCall),
-          ) as ChatCompletionStreamResponseDeltaFunctionCall;
+            specifiedType: const FullType.nullable(ChatCompletionStreamResponseDeltaFunctionCall),
+          ) as ChatCompletionStreamResponseDeltaFunctionCall?;
+          if (valueDes == null) continue;
           result.functionCall.replace(valueDes);
           break;
         case r'tool_calls':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ChatCompletionMessageToolCallChunk)]),
-          ) as BuiltList<ChatCompletionMessageToolCallChunk>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ChatCompletionMessageToolCallChunk)]),
+          ) as BuiltList<ChatCompletionMessageToolCallChunk>?;
+          if (valueDes == null) continue;
           result.toolCalls.replace(valueDes);
           break;
         case r'role':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ChatCompletionStreamResponseDeltaRoleEnum),
-          ) as ChatCompletionStreamResponseDeltaRoleEnum;
+            specifiedType: const FullType.nullable(ChatCompletionStreamResponseDeltaRoleEnum),
+          ) as ChatCompletionStreamResponseDeltaRoleEnum?;
+          if (valueDes == null) continue;
           result.role = valueDes;
           break;
         case r'refusal':

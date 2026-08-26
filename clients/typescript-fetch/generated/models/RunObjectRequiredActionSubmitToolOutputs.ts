@@ -39,7 +39,7 @@ export interface RunObjectRequiredActionSubmitToolOutputs {
  * Check if a given object implements the RunObjectRequiredActionSubmitToolOutputs interface.
  */
 export function instanceOfRunObjectRequiredActionSubmitToolOutputs(value: object): value is RunObjectRequiredActionSubmitToolOutputs {
-    if (!('toolCalls' in value) || value['toolCalls'] === undefined) return false;
+    if ((!('toolCalls' in (value as Record<string, any>)) && !('tool_calls' in (value as Record<string, any>))) || ((value as Record<string, any>)['toolCalls'] === undefined && (value as Record<string, any>)['tool_calls'] === undefined)) return false;
     return true;
 }
 

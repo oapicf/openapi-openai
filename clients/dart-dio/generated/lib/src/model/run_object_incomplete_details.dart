@@ -76,8 +76,9 @@ class _$RunObjectIncompleteDetailsSerializer implements PrimitiveSerializer<RunO
         case r'reason':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RunObjectIncompleteDetailsReasonEnum),
-          ) as RunObjectIncompleteDetailsReasonEnum;
+            specifiedType: const FullType.nullable(RunObjectIncompleteDetailsReasonEnum),
+          ) as RunObjectIncompleteDetailsReasonEnum?;
+          if (valueDes == null) continue;
           result.reason = valueDes;
           break;
         default:

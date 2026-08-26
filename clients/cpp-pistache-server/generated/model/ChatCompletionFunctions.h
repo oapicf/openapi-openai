@@ -34,7 +34,7 @@ class  ChatCompletionFunctions
 {
 public:
     ChatCompletionFunctions();
-    virtual ~ChatCompletionFunctions() = default;
+    virtual ~ChatCompletionFunctions();
 
 
     /// <summary>

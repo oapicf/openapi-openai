@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIFineTuneDPOMethod_hyperparameters_beta::OAIFineTuneDPOMethod_hyperparameters_beta(QString json) {
+OAIFineTuneDPOMethod_hyperparameters_beta::OAIFineTuneDPOMethod_hyperparameters_beta(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -36,7 +36,7 @@ void OAIFineTuneDPOMethod_hyperparameters_beta::initializeModel() {
 
 }
 
-void OAIFineTuneDPOMethod_hyperparameters_beta::fromJson(QString jsonString) {
+void OAIFineTuneDPOMethod_hyperparameters_beta::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -30,7 +30,7 @@ import javax.annotation.Generated;
   DeleteFileResponse.JSON_PROPERTY_DELETED
 })
 @JsonTypeName("DeleteFileResponse")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-01-29T14:07:53.155657246Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class DeleteFileResponse {
     public static final String JSON_PROPERTY_ID = "id";
@@ -181,10 +181,7 @@ public class DeleteFileResponse {
      * (except the first line).
      */
     private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
+        return o == null ? "null" : o.toString().replace("\n", "\n    ");
     }
 
 }

@@ -2,28 +2,30 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Send this event to cancel an in-progress response. The server will respond  with a &#x60;response.cancelled&#x60; event or an error if there is no response to  cancel. 
  */
 
 @Schema(name = "RealtimeClientEventResponseCancel", description = "Send this event to cancel an in-progress response. The server will respond  with a `response.cancelled` event or an error if there is no response to  cancel. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeClientEventResponseCancel {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String eventId;
 
   /**
@@ -61,6 +63,7 @@ public class RealtimeClientEventResponseCancel {
 
   private TypeEnum type;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String responseId;
 
   public RealtimeClientEventResponseCancel() {
@@ -90,6 +93,7 @@ public class RealtimeClientEventResponseCancel {
     return eventId;
   }
 
+  @JsonProperty("event_id")
   public void setEventId(@Nullable String eventId) {
     this.eventId = eventId;
   }
@@ -110,6 +114,7 @@ public class RealtimeClientEventResponseCancel {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -130,6 +135,7 @@ public class RealtimeClientEventResponseCancel {
     return responseId;
   }
 
+  @JsonProperty("response_id")
   public void setResponseId(@Nullable String responseId) {
     this.responseId = responseId;
   }
@@ -168,11 +174,8 @@ public class RealtimeClientEventResponseCancel {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

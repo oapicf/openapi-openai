@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIChatCompletionRequestAssistantMessage_audio::OAIChatCompletionRequestAssistantMessage_audio(QString json) {
+OAIChatCompletionRequestAssistantMessage_audio::OAIChatCompletionRequestAssistantMessage_audio(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -38,7 +38,7 @@ void OAIChatCompletionRequestAssistantMessage_audio::initializeModel() {
     m_id_isValid = false;
 }
 
-void OAIChatCompletionRequestAssistantMessage_audio::fromJson(QString jsonString) {
+void OAIChatCompletionRequestAssistantMessage_audio::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

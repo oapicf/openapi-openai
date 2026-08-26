@@ -53,6 +53,8 @@ CreateCompletionRequest::CreateCompletionRequest()
     
 }
 
+CreateCompletionRequest::~CreateCompletionRequest() = default;
+
 void CreateCompletionRequest::validate() const
 {
     std::stringstream msg;

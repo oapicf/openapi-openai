@@ -403,10 +403,14 @@ class AuditLog {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AuditLog[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AuditLog[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "AuditLog[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "AuditLog[id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "AuditLog[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "AuditLog[type]" has a null value in JSON.');
+        assert(json.containsKey(r'effective_at'), 'Required key "AuditLog[effective_at]" is missing from JSON.');
+        assert(json[r'effective_at'] != null, 'Required key "AuditLog[effective_at]" has a null value in JSON.');
+        assert(json.containsKey(r'actor'), 'Required key "AuditLog[actor]" is missing from JSON.');
+        assert(json[r'actor'] != null, 'Required key "AuditLog[actor]" has a null value in JSON.');
         return true;
       }());
 

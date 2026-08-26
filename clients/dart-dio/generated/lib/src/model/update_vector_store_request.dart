@@ -107,8 +107,9 @@ class _$UpdateVectorStoreRequestSerializer implements PrimitiveSerializer<Update
         case r'expires_after':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(VectorStoreExpirationAfter),
-          ) as VectorStoreExpirationAfter;
+            specifiedType: const FullType.nullable(VectorStoreExpirationAfter),
+          ) as VectorStoreExpirationAfter?;
+          if (valueDes == null) continue;
           result.expiresAfter.replace(valueDes);
           break;
         case r'metadata':

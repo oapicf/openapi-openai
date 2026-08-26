@@ -24,9 +24,9 @@ openai_api_fine_tuning_job_checkpoint_OBJECT_e fine_tuning_job_checkpoint_object
 
 static fine_tuning_job_checkpoint_t *fine_tuning_job_checkpoint_create_internal(
     char *id,
-    int created_at,
+    int *created_at,
     char *fine_tuned_model_checkpoint,
-    int step_number,
+    int *step_number,
     fine_tuning_job_checkpoint_metrics_t *metrics,
     char *fine_tuning_job_id,
     openai_api_fine_tuning_job_checkpoint_OBJECT_e object
@@ -35,6 +35,8 @@ static fine_tuning_job_checkpoint_t *fine_tuning_job_checkpoint_create_internal(
     if (!fine_tuning_job_checkpoint_local_var) {
         return NULL;
     }
+    memset(fine_tuning_job_checkpoint_local_var, 0, sizeof(fine_tuning_job_checkpoint_t));
+    fine_tuning_job_checkpoint_local_var->_library_owned = 1;
     fine_tuning_job_checkpoint_local_var->id = id;
     fine_tuning_job_checkpoint_local_var->created_at = created_at;
     fine_tuning_job_checkpoint_local_var->fine_tuned_model_checkpoint = fine_tuned_model_checkpoint;
@@ -42,29 +44,42 @@ static fine_tuning_job_checkpoint_t *fine_tuning_job_checkpoint_create_internal(
     fine_tuning_job_checkpoint_local_var->metrics = metrics;
     fine_tuning_job_checkpoint_local_var->fine_tuning_job_id = fine_tuning_job_id;
     fine_tuning_job_checkpoint_local_var->object = object;
-
-    fine_tuning_job_checkpoint_local_var->_library_owned = 1;
     return fine_tuning_job_checkpoint_local_var;
 }
 
 __attribute__((deprecated)) fine_tuning_job_checkpoint_t *fine_tuning_job_checkpoint_create(
     char *id,
-    int created_at,
+    int *created_at,
     char *fine_tuned_model_checkpoint,
-    int step_number,
+    int *step_number,
     fine_tuning_job_checkpoint_metrics_t *metrics,
     char *fine_tuning_job_id,
     openai_api_fine_tuning_job_checkpoint_OBJECT_e object
     ) {
-    return fine_tuning_job_checkpoint_create_internal (
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    int *step_number_copy = NULL;
+    if (step_number) {
+        step_number_copy = malloc(sizeof(int));
+        if (step_number_copy) *step_number_copy = *step_number;
+    }
+    fine_tuning_job_checkpoint_t *result = fine_tuning_job_checkpoint_create_internal (
         id,
-        created_at,
+        created_at_copy,
         fine_tuned_model_checkpoint,
-        step_number,
+        step_number_copy,
         metrics,
         fine_tuning_job_id,
         object
         );
+    if (!result) {
+        free(created_at_copy);
+        free(step_number_copy);
+    }
+    return result;
 }
 
 void fine_tuning_job_checkpoint_free(fine_tuning_job_checkpoint_t *fine_tuning_job_checkpoint) {
@@ -80,9 +95,17 @@ void fine_tuning_job_checkpoint_free(fine_tuning_job_checkpoint_t *fine_tuning_j
         free(fine_tuning_job_checkpoint->id);
         fine_tuning_job_checkpoint->id = NULL;
     }
+    if (fine_tuning_job_checkpoint->created_at) {
+        free(fine_tuning_job_checkpoint->created_at);
+        fine_tuning_job_checkpoint->created_at = NULL;
+    }
     if (fine_tuning_job_checkpoint->fine_tuned_model_checkpoint) {
         free(fine_tuning_job_checkpoint->fine_tuned_model_checkpoint);
         fine_tuning_job_checkpoint->fine_tuned_model_checkpoint = NULL;
+    }
+    if (fine_tuning_job_checkpoint->step_number) {
+        free(fine_tuning_job_checkpoint->step_number);
+        fine_tuning_job_checkpoint->step_number = NULL;
     }
     if (fine_tuning_job_checkpoint->metrics) {
         fine_tuning_job_checkpoint_metrics_free(fine_tuning_job_checkpoint->metrics);
@@ -111,7 +134,7 @@ cJSON *fine_tuning_job_checkpoint_convertToJSON(fine_tuning_job_checkpoint_t *fi
     if (!fine_tuning_job_checkpoint->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", fine_tuning_job_checkpoint->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *fine_tuning_job_checkpoint->created_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -129,7 +152,7 @@ cJSON *fine_tuning_job_checkpoint_convertToJSON(fine_tuning_job_checkpoint_t *fi
     if (!fine_tuning_job_checkpoint->step_number) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "step_number", fine_tuning_job_checkpoint->step_number) == NULL) {
+    if(cJSON_AddNumberToObject(item, "step_number", *fine_tuning_job_checkpoint->step_number) == NULL) {
     goto fail; //Numeric
     }
 
@@ -178,8 +201,20 @@ fine_tuning_job_checkpoint_t *fine_tuning_job_checkpoint_parseFromJSON(cJSON *fi
 
     fine_tuning_job_checkpoint_t *fine_tuning_job_checkpoint_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    // define the local variable for fine_tuning_job_checkpoint->created_at
+    int *created_at_local_var = NULL;
+
+    char *fine_tuned_model_checkpoint_local_str = NULL;
+
+    // define the local variable for fine_tuning_job_checkpoint->step_number
+    int *step_number_local_var = NULL;
+
     // define the local variable for fine_tuning_job_checkpoint->metrics
     fine_tuning_job_checkpoint_metrics_t *metrics_local_nonprim = NULL;
+
+    char *fine_tuning_job_id_local_str = NULL;
 
     // fine_tuning_job_checkpoint->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(fine_tuning_job_checkpointJSON, "id");
@@ -210,6 +245,12 @@ fine_tuning_job_checkpoint_t *fine_tuning_job_checkpoint_parseFromJSON(cJSON *fi
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
     // fine_tuning_job_checkpoint->fine_tuned_model_checkpoint
     cJSON *fine_tuned_model_checkpoint = cJSON_GetObjectItemCaseSensitive(fine_tuning_job_checkpointJSON, "fine_tuned_model_checkpoint");
@@ -240,6 +281,12 @@ fine_tuning_job_checkpoint_t *fine_tuning_job_checkpoint_parseFromJSON(cJSON *fi
     {
     goto end; //Numeric
     }
+    step_number_local_var = malloc(sizeof(int));
+    if(!step_number_local_var)
+    {
+        goto end;
+    }
+    *step_number_local_var = step_number->valuedouble;
 
     // fine_tuning_job_checkpoint->metrics
     cJSON *metrics = cJSON_GetObjectItemCaseSensitive(fine_tuning_job_checkpointJSON, "metrics");
@@ -286,21 +333,49 @@ fine_tuning_job_checkpoint_t *fine_tuning_job_checkpoint_parseFromJSON(cJSON *fi
     objectVariable = fine_tuning_job_checkpoint_object_FromString(object->valuestring);
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (fine_tuned_model_checkpoint && !cJSON_IsNull(fine_tuned_model_checkpoint)) fine_tuned_model_checkpoint_local_str = strdup(fine_tuned_model_checkpoint->valuestring);
+    if (fine_tuning_job_id && !cJSON_IsNull(fine_tuning_job_id)) fine_tuning_job_id_local_str = strdup(fine_tuning_job_id->valuestring);
+
     fine_tuning_job_checkpoint_local_var = fine_tuning_job_checkpoint_create_internal (
-        strdup(id->valuestring),
-        created_at->valuedouble,
-        strdup(fine_tuned_model_checkpoint->valuestring),
-        step_number->valuedouble,
+        id_local_str,
+        created_at_local_var,
+        fine_tuned_model_checkpoint_local_str,
+        step_number_local_var,
         metrics_local_nonprim,
-        strdup(fine_tuning_job_id->valuestring),
+        fine_tuning_job_id_local_str,
         objectVariable
         );
 
+    if (!fine_tuning_job_checkpoint_local_var) {
+        goto end;
+    }
+
     return fine_tuning_job_checkpoint_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
+    if (fine_tuned_model_checkpoint_local_str) {
+        free(fine_tuned_model_checkpoint_local_str);
+        fine_tuned_model_checkpoint_local_str = NULL;
+    }
+    if (step_number_local_var) {
+        free(step_number_local_var);
+        step_number_local_var = NULL;
+    }
     if (metrics_local_nonprim) {
         fine_tuning_job_checkpoint_metrics_free(metrics_local_nonprim);
         metrics_local_nonprim = NULL;
+    }
+    if (fine_tuning_job_id_local_str) {
+        free(fine_tuning_job_id_local_str);
+        fine_tuning_job_id_local_str = NULL;
     }
     return NULL;
 

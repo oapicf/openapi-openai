@@ -107,7 +107,7 @@ CreateModerationRequest_input_oneOf_inner::getType()
 }
 
 void
-CreateModerationRequest_input_oneOf_inner::setType(std::string  type)
+CreateModerationRequest_input_oneOf_inner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -119,7 +119,7 @@ CreateModerationRequest_input_oneOf_inner::getImageUrl()
 }
 
 void
-CreateModerationRequest_input_oneOf_inner::setImageUrl(CreateModerationRequest_input_oneOf_inner_oneOf_image_url  image_url)
+CreateModerationRequest_input_oneOf_inner::setImageUrl(CreateModerationRequest_input_oneOf_inner_oneOf_image_url image_url)
 {
 	this->image_url = image_url;
 }
@@ -131,7 +131,7 @@ CreateModerationRequest_input_oneOf_inner::getText()
 }
 
 void
-CreateModerationRequest_input_oneOf_inner::setText(std::string  text)
+CreateModerationRequest_input_oneOf_inner::setText(std::string text)
 {
 	this->text = text;
 }

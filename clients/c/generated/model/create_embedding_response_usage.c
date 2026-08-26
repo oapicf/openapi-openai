@@ -6,28 +6,43 @@
 
 
 static create_embedding_response_usage_t *create_embedding_response_usage_create_internal(
-    int prompt_tokens,
-    int total_tokens
+    int *prompt_tokens,
+    int *total_tokens
     ) {
     create_embedding_response_usage_t *create_embedding_response_usage_local_var = malloc(sizeof(create_embedding_response_usage_t));
     if (!create_embedding_response_usage_local_var) {
         return NULL;
     }
+    memset(create_embedding_response_usage_local_var, 0, sizeof(create_embedding_response_usage_t));
+    create_embedding_response_usage_local_var->_library_owned = 1;
     create_embedding_response_usage_local_var->prompt_tokens = prompt_tokens;
     create_embedding_response_usage_local_var->total_tokens = total_tokens;
-
-    create_embedding_response_usage_local_var->_library_owned = 1;
     return create_embedding_response_usage_local_var;
 }
 
 __attribute__((deprecated)) create_embedding_response_usage_t *create_embedding_response_usage_create(
-    int prompt_tokens,
-    int total_tokens
+    int *prompt_tokens,
+    int *total_tokens
     ) {
-    return create_embedding_response_usage_create_internal (
-        prompt_tokens,
-        total_tokens
+    int *prompt_tokens_copy = NULL;
+    if (prompt_tokens) {
+        prompt_tokens_copy = malloc(sizeof(int));
+        if (prompt_tokens_copy) *prompt_tokens_copy = *prompt_tokens;
+    }
+    int *total_tokens_copy = NULL;
+    if (total_tokens) {
+        total_tokens_copy = malloc(sizeof(int));
+        if (total_tokens_copy) *total_tokens_copy = *total_tokens;
+    }
+    create_embedding_response_usage_t *result = create_embedding_response_usage_create_internal (
+        prompt_tokens_copy,
+        total_tokens_copy
         );
+    if (!result) {
+        free(prompt_tokens_copy);
+        free(total_tokens_copy);
+    }
+    return result;
 }
 
 void create_embedding_response_usage_free(create_embedding_response_usage_t *create_embedding_response_usage) {
@@ -39,6 +54,14 @@ void create_embedding_response_usage_free(create_embedding_response_usage_t *cre
         return ;
     }
     listEntry_t *listEntry;
+    if (create_embedding_response_usage->prompt_tokens) {
+        free(create_embedding_response_usage->prompt_tokens);
+        create_embedding_response_usage->prompt_tokens = NULL;
+    }
+    if (create_embedding_response_usage->total_tokens) {
+        free(create_embedding_response_usage->total_tokens);
+        create_embedding_response_usage->total_tokens = NULL;
+    }
     free(create_embedding_response_usage);
 }
 
@@ -49,7 +72,7 @@ cJSON *create_embedding_response_usage_convertToJSON(create_embedding_response_u
     if (!create_embedding_response_usage->prompt_tokens) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "prompt_tokens", create_embedding_response_usage->prompt_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "prompt_tokens", *create_embedding_response_usage->prompt_tokens) == NULL) {
     goto fail; //Numeric
     }
 
@@ -58,7 +81,7 @@ cJSON *create_embedding_response_usage_convertToJSON(create_embedding_response_u
     if (!create_embedding_response_usage->total_tokens) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "total_tokens", create_embedding_response_usage->total_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "total_tokens", *create_embedding_response_usage->total_tokens) == NULL) {
     goto fail; //Numeric
     }
 
@@ -74,6 +97,12 @@ create_embedding_response_usage_t *create_embedding_response_usage_parseFromJSON
 
     create_embedding_response_usage_t *create_embedding_response_usage_local_var = NULL;
 
+    // define the local variable for create_embedding_response_usage->prompt_tokens
+    int *prompt_tokens_local_var = NULL;
+
+    // define the local variable for create_embedding_response_usage->total_tokens
+    int *total_tokens_local_var = NULL;
+
     // create_embedding_response_usage->prompt_tokens
     cJSON *prompt_tokens = cJSON_GetObjectItemCaseSensitive(create_embedding_response_usageJSON, "prompt_tokens");
     if (cJSON_IsNull(prompt_tokens)) {
@@ -88,6 +117,12 @@ create_embedding_response_usage_t *create_embedding_response_usage_parseFromJSON
     {
     goto end; //Numeric
     }
+    prompt_tokens_local_var = malloc(sizeof(int));
+    if(!prompt_tokens_local_var)
+    {
+        goto end;
+    }
+    *prompt_tokens_local_var = prompt_tokens->valuedouble;
 
     // create_embedding_response_usage->total_tokens
     cJSON *total_tokens = cJSON_GetObjectItemCaseSensitive(create_embedding_response_usageJSON, "total_tokens");
@@ -103,15 +138,34 @@ create_embedding_response_usage_t *create_embedding_response_usage_parseFromJSON
     {
     goto end; //Numeric
     }
+    total_tokens_local_var = malloc(sizeof(int));
+    if(!total_tokens_local_var)
+    {
+        goto end;
+    }
+    *total_tokens_local_var = total_tokens->valuedouble;
+
 
 
     create_embedding_response_usage_local_var = create_embedding_response_usage_create_internal (
-        prompt_tokens->valuedouble,
-        total_tokens->valuedouble
+        prompt_tokens_local_var,
+        total_tokens_local_var
         );
+
+    if (!create_embedding_response_usage_local_var) {
+        goto end;
+    }
 
     return create_embedding_response_usage_local_var;
 end:
+    if (prompt_tokens_local_var) {
+        free(prompt_tokens_local_var);
+        prompt_tokens_local_var = NULL;
+    }
+    if (total_tokens_local_var) {
+        free(total_tokens_local_var);
+        total_tokens_local_var = NULL;
+    }
     return NULL;
 
 }

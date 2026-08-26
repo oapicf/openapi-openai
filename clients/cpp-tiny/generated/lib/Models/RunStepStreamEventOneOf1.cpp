@@ -86,7 +86,7 @@ RunStepStreamEvent_oneOf_1::getEvent()
 }
 
 void
-RunStepStreamEvent_oneOf_1::setEvent(std::string  event)
+RunStepStreamEvent_oneOf_1::setEvent(std::string event)
 {
 	this->event = event;
 }
@@ -98,7 +98,7 @@ RunStepStreamEvent_oneOf_1::getData()
 }
 
 void
-RunStepStreamEvent_oneOf_1::setData(RunStepObject  data)
+RunStepStreamEvent_oneOf_1::setData(RunStepObject data)
 {
 	this->data = data;
 }

@@ -147,8 +147,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="DeleteMessageResponse" />
     /// </summary>
-    public class DeleteMessageResponseJsonConverter : JsonConverter<DeleteMessageResponse>
+    public partial class DeleteMessageResponseJsonConverter : JsonConverter<DeleteMessageResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeleteMessageResponseJsonConverter" /> class.
+        /// </summary>
+        public DeleteMessageResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DeleteMessageResponse" />
         /// </summary>

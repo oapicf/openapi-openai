@@ -34,7 +34,7 @@ class  UsageResponse
 {
 public:
     UsageResponse();
-    virtual ~UsageResponse() = default;
+    virtual ~UsageResponse();
 
 
     /// <summary>

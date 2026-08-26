@@ -6,7 +6,7 @@ import play.api.libs.json._
   * Details on the action required to continue the run. Will be `null` if no action is required.
   * @param `type` For now, this is always `submit_tool_outputs`.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 case class RunObjectRequiredAction(
   `type`: RunObjectRequiredAction.Type.Value,
   submitToolOutputs: RunObjectRequiredActionSubmitToolOutputs

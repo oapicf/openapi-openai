@@ -87,7 +87,7 @@ ModifyThreadRequest::getToolResources()
 }
 
 void
-ModifyThreadRequest::setToolResources(ModifyThreadRequest_tool_resources  tool_resources)
+ModifyThreadRequest::setToolResources(ModifyThreadRequest_tool_resources tool_resources)
 {
 	this->tool_resources = tool_resources;
 }
@@ -99,7 +99,7 @@ ModifyThreadRequest::getMetadata()
 }
 
 void
-ModifyThreadRequest::setMetadata(Object  metadata)
+ModifyThreadRequest::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }

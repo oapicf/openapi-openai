@@ -12,18 +12,21 @@ static admin_api_keys_create_request_t *admin_api_keys_create_request_create_int
     if (!admin_api_keys_create_request_local_var) {
         return NULL;
     }
-    admin_api_keys_create_request_local_var->name = name;
-
+    memset(admin_api_keys_create_request_local_var, 0, sizeof(admin_api_keys_create_request_t));
     admin_api_keys_create_request_local_var->_library_owned = 1;
+    admin_api_keys_create_request_local_var->name = name;
     return admin_api_keys_create_request_local_var;
 }
 
 __attribute__((deprecated)) admin_api_keys_create_request_t *admin_api_keys_create_request_create(
     char *name
     ) {
-    return admin_api_keys_create_request_create_internal (
+    admin_api_keys_create_request_t *result = admin_api_keys_create_request_create_internal (
         name
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void admin_api_keys_create_request_free(admin_api_keys_create_request_t *admin_api_keys_create_request) {
@@ -65,6 +68,8 @@ admin_api_keys_create_request_t *admin_api_keys_create_request_parseFromJSON(cJS
 
     admin_api_keys_create_request_t *admin_api_keys_create_request_local_var = NULL;
 
+    char *name_local_str = NULL;
+
     // admin_api_keys_create_request->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(admin_api_keys_create_requestJSON, "name");
     if (cJSON_IsNull(name)) {
@@ -81,12 +86,22 @@ admin_api_keys_create_request_t *admin_api_keys_create_request_parseFromJSON(cJS
     }
 
 
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     admin_api_keys_create_request_local_var = admin_api_keys_create_request_create_internal (
-        strdup(name->valuestring)
+        name_local_str
         );
+
+    if (!admin_api_keys_create_request_local_var) {
+        goto end;
+    }
 
     return admin_api_keys_create_request_local_var;
 end:
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
     return NULL;
 
 }

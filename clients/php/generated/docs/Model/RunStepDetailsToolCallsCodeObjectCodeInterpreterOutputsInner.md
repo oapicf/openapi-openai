@@ -1,4 +1,4 @@
-# # RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
+# RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
 
 ## Properties
 

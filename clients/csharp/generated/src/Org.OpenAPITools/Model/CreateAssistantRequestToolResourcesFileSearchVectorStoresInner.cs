@@ -60,7 +60,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A list of [file](/docs/api-reference/files) IDs to add to the vector store. There can be a maximum of 10000 files in a vector store. </value>
         [JsonPropertyName("file_ids")]
-        public List<string>? FileIds { get { return this.FileIdsOption; } set { this.FileIdsOption = new(value); } }
+        public List<string>? FileIds { get { return this.FileIdsOption.Value; } set { this.FileIdsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ChunkingStrategy
@@ -73,7 +73,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ChunkingStrategy
         /// </summary>
         [JsonPropertyName("chunking_strategy")]
-        public CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy? ChunkingStrategy { get { return this.ChunkingStrategyOption; } set { this.ChunkingStrategyOption = new(value); } }
+        public CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy? ChunkingStrategy { get { return this.ChunkingStrategyOption.Value; } set { this.ChunkingStrategyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Metadata
@@ -87,7 +87,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Set of 16 key-value pairs that can be attached to a vector store. This can be useful for storing additional information about the vector store in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. </value>
         [JsonPropertyName("metadata")]
-        public Object? Metadata { get { return this.MetadataOption; } set { this.MetadataOption = new(value); } }
+        public Object? Metadata { get { return this.MetadataOption.Value; } set { this.MetadataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,8 +118,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateAssistantRequestToolResourcesFileSearchVectorStoresInner" />
     /// </summary>
-    public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerJsonConverter : JsonConverter<CreateAssistantRequestToolResourcesFileSearchVectorStoresInner>
+    public partial class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerJsonConverter : JsonConverter<CreateAssistantRequestToolResourcesFileSearchVectorStoresInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerJsonConverter" /> class.
+        /// </summary>
+        public CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateAssistantRequestToolResourcesFileSearchVectorStoresInner" />
         /// </summary>

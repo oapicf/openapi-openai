@@ -129,7 +129,7 @@ ChatCompletionRequestUserMessageContentPart::getType()
 }
 
 void
-ChatCompletionRequestUserMessageContentPart::setType(std::string  type)
+ChatCompletionRequestUserMessageContentPart::setType(std::string type)
 {
 	this->type = type;
 }
@@ -141,7 +141,7 @@ ChatCompletionRequestUserMessageContentPart::getText()
 }
 
 void
-ChatCompletionRequestUserMessageContentPart::setText(std::string  text)
+ChatCompletionRequestUserMessageContentPart::setText(std::string text)
 {
 	this->text = text;
 }
@@ -153,7 +153,7 @@ ChatCompletionRequestUserMessageContentPart::getImageUrl()
 }
 
 void
-ChatCompletionRequestUserMessageContentPart::setImageUrl(ChatCompletionRequestMessageContentPartImage_image_url  image_url)
+ChatCompletionRequestUserMessageContentPart::setImageUrl(ChatCompletionRequestMessageContentPartImage_image_url image_url)
 {
 	this->image_url = image_url;
 }
@@ -165,7 +165,7 @@ ChatCompletionRequestUserMessageContentPart::getInputAudio()
 }
 
 void
-ChatCompletionRequestUserMessageContentPart::setInputAudio(ChatCompletionRequestMessageContentPartAudio_input_audio  input_audio)
+ChatCompletionRequestUserMessageContentPart::setInputAudio(ChatCompletionRequestMessageContentPartAudio_input_audio input_audio)
 {
 	this->input_audio = input_audio;
 }

@@ -52,49 +52,49 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get 
 	 */
 	std::string getId();
 
 	/*! \brief Set 
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	std::string getName();
 
 	/*! \brief Set 
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get 
 	 */
 	std::string getRedactedValue();
 
 	/*! \brief Set 
 	 */
-	void setRedactedValue(std::string  redacted_value);
+	void setRedactedValue(std::string redacted_value);
 	/*! \brief Get 
 	 */
 	std::string getValue();
 
 	/*! \brief Set 
 	 */
-	void setValue(std::string  value);
+	void setValue(std::string value);
 	/*! \brief Get 
 	 */
 	long getCreatedAt();
 
 	/*! \brief Set 
 	 */
-	void setCreatedAt(long  created_at);
+	void setCreatedAt(long created_at);
 	/*! \brief Get 
 	 */
 	AdminApiKey_owner getOwner();
 
 	/*! \brief Set 
 	 */
-	void setOwner(AdminApiKey_owner  owner);
+	void setOwner(AdminApiKey_owner owner);
 
 
     private:

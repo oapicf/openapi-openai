@@ -106,7 +106,7 @@ ChatCompletionRequestFunctionMessage::getRole()
 }
 
 void
-ChatCompletionRequestFunctionMessage::setRole(std::string  role)
+ChatCompletionRequestFunctionMessage::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -118,7 +118,7 @@ ChatCompletionRequestFunctionMessage::getContent()
 }
 
 void
-ChatCompletionRequestFunctionMessage::setContent(std::string  content)
+ChatCompletionRequestFunctionMessage::setContent(std::string content)
 {
 	this->content = content;
 }
@@ -130,7 +130,7 @@ ChatCompletionRequestFunctionMessage::getName()
 }
 
 void
-ChatCompletionRequestFunctionMessage::setName(std::string  name)
+ChatCompletionRequestFunctionMessage::setName(std::string name)
 {
 	this->name = name;
 }

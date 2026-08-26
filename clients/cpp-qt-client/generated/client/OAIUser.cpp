@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIUser::OAIUser(QString json) {
+OAIUser::OAIUser(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -53,7 +53,7 @@ void OAIUser::initializeModel() {
     m_added_at_isValid = false;
 }
 
-void OAIUser::fromJson(QString jsonString) {
+void OAIUser::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

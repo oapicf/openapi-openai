@@ -33,7 +33,7 @@ message CreateSpeechRequest {
     VOICE_SHIMMER = 5;
   }
 
-  Voice voice = 112386354;
+  string voice = 112386354;
 
   // The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
   enum Response_format {
@@ -45,7 +45,7 @@ message CreateSpeechRequest {
     RESPONSE_FORMAT_PCM = 5;
   }
 
-  Response_format response_format = 367445429;
+  string response_format = 367445429;
 
   // The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.
   float speed = 109641799;

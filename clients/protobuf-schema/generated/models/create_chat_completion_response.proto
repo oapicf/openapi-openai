@@ -37,7 +37,7 @@ message CreateChatCompletionResponse {
     SERVICE_TIER_DEFAULT = 1;
   }
 
-  Service_tier service_tier = 360066348;
+  optional string service_tier = 360066348;
 
   // This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
   string system_fingerprint = 319231278;
@@ -47,7 +47,7 @@ message CreateChatCompletionResponse {
     OBJECT_CHAT_COMPLETION = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   CompletionUsage usage = 111574433;
 

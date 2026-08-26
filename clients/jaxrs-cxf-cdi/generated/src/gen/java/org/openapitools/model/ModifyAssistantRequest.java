@@ -44,6 +44,7 @@ public class ModifyAssistantRequest   {
   private AssistantsApiResponseFormatOption responseFormat;
 
   /**
+   * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
    **/
   public ModifyAssistantRequest model(String model) {
     this.model = model;
@@ -51,7 +52,7 @@ public class ModifyAssistantRequest   {
   }
 
   
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. ")
   @JsonProperty("model")
   public String getModel() {
     return model;
@@ -293,10 +294,7 @@ public class ModifyAssistantRequest   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

@@ -19,7 +19,7 @@ case class AssistantsNamedToolChoice(
   /* The type of the tool. If type is `function`, the function name must be set */
   `type`: AssistantsNamedToolChoiceEnums.`Type`,
   function: Option[AssistantsNamedToolChoiceFunction] = None
-)
+) extends AssistantsApiToolChoiceOption
 
 object AssistantsNamedToolChoiceEnums {
 

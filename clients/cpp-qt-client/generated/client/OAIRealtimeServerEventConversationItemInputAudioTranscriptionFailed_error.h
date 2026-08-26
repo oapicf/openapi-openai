@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIRealtimeServerEventConversationItemInputAudioTranscriptionFailed_error : public OAIObject {
 public:
     OAIRealtimeServerEventConversationItemInputAudioTranscriptionFailed_error();
-    OAIRealtimeServerEventConversationItemInputAudioTranscriptionFailed_error(QString json);
+    OAIRealtimeServerEventConversationItemInputAudioTranscriptionFailed_error(const QString &json);
     ~OAIRealtimeServerEventConversationItemInputAudioTranscriptionFailed_error() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

@@ -102,7 +102,7 @@ export class UsersApi {
      */
     public async deleteUser (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserDeleteResponse;  }> {
         const localVarPath = this.basePath + '/organization/users/{user_id}'
-            .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
+            .replace('{user_id}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -250,7 +250,7 @@ export class UsersApi {
      */
     public async modifyUser (userId: string, userRoleUpdateRequest: UserRoleUpdateRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: User;  }> {
         const localVarPath = this.basePath + '/organization/users/{user_id}'
-            .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
+            .replace('{user_id}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -328,7 +328,7 @@ export class UsersApi {
      */
     public async retrieveUser (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: User;  }> {
         const localVarPath = this.basePath + '/organization/users/{user_id}'
-            .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
+            .replace('{user_id}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];

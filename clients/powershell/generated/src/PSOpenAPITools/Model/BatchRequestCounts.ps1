@@ -58,9 +58,9 @@ function Initialize-BatchRequestCounts {
 
 
         $PSO = [PSCustomObject]@{
-            "total" = ${Total}
-            "completed" = ${Completed}
-            "failed" = ${Failed}
+            'total' = ${Total}
+            'completed' = ${Completed}
+            'failed' = ${Failed}
         }
 
 
@@ -98,7 +98,7 @@ function ConvertFrom-JsonToBatchRequestCounts {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in BatchRequestCounts
-        $AllProperties = ("total", "completed", "failed")
+        $AllProperties = ('total', 'completed', 'failed')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -109,28 +109,28 @@ function ConvertFrom-JsonToBatchRequestCounts {
             throw "Error! Empty JSON cannot be serialized due to the required property 'total' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "total"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'total'))) {
             throw "Error! JSON cannot be serialized due to the required property 'total' missing."
         } else {
-            $Total = $JsonParameters.PSobject.Properties["total"].value
+            $Total = $JsonParameters.PSobject.Properties['total'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "completed"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'completed'))) {
             throw "Error! JSON cannot be serialized due to the required property 'completed' missing."
         } else {
-            $Completed = $JsonParameters.PSobject.Properties["completed"].value
+            $Completed = $JsonParameters.PSobject.Properties['completed'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "failed"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'failed'))) {
             throw "Error! JSON cannot be serialized due to the required property 'failed' missing."
         } else {
-            $Failed = $JsonParameters.PSobject.Properties["failed"].value
+            $Failed = $JsonParameters.PSobject.Properties['failed'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "total" = ${Total}
-            "completed" = ${Completed}
-            "failed" = ${Failed}
+            'total' = ${Total}
+            'completed' = ${Completed}
+            'failed' = ${Failed}
         }
 
         return $PSO

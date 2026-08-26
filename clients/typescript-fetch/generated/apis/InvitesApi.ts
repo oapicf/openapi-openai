@@ -12,24 +12,27 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  Invite,
-  InviteDeleteResponse,
-  InviteListResponse,
-  InviteRequest,
-} from '../models/index';
 import {
+    type Invite,
     InviteFromJSON,
     InviteToJSON,
+} from '../models/Invite';
+import {
+    type InviteDeleteResponse,
     InviteDeleteResponseFromJSON,
     InviteDeleteResponseToJSON,
+} from '../models/InviteDeleteResponse';
+import {
+    type InviteListResponse,
     InviteListResponseFromJSON,
     InviteListResponseToJSON,
+} from '../models/InviteListResponse';
+import {
+    type InviteRequest,
     InviteRequestFromJSON,
     InviteRequestToJSON,
-} from '../models/index';
+} from '../models/InviteRequest';
 
 export interface DeleteInviteRequest {
     inviteId: string;
@@ -54,9 +57,9 @@ export interface RetrieveInviteRequest {
 export class InvitesApi extends runtime.BaseAPI {
 
     /**
-     * Delete an invite. If the invite has already been accepted, it cannot be deleted.
+     * Creates request options for deleteInvite without sending the request
      */
-    async deleteInviteRaw(requestParameters: DeleteInviteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InviteDeleteResponse>> {
+    async deleteInviteRequestOpts(requestParameters: DeleteInviteRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['inviteId'] == null) {
             throw new runtime.RequiredError(
                 'inviteId',
@@ -78,14 +81,22 @@ export class InvitesApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/invites/{invite_id}`;
-        urlPath = urlPath.replace(`{${"invite_id"}}`, encodeURIComponent(String(requestParameters['inviteId'])));
+        urlPath = urlPath.replace('{invite_id}', encodeURIComponent(String(requestParameters['inviteId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete an invite. If the invite has already been accepted, it cannot be deleted.
+     */
+    async deleteInviteRaw(requestParameters: DeleteInviteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InviteDeleteResponse>> {
+        const requestOptions = await this.deleteInviteRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => InviteDeleteResponseFromJSON(jsonValue));
     }
@@ -99,9 +110,9 @@ export class InvitesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+     * Creates request options for inviteUser without sending the request
      */
-    async inviteUserRaw(requestParameters: InviteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Invite>> {
+    async inviteUserRequestOpts(requestParameters: InviteUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['inviteRequest'] == null) {
             throw new runtime.RequiredError(
                 'inviteRequest',
@@ -126,13 +137,21 @@ export class InvitesApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/invites`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: InviteRequestToJSON(requestParameters['inviteRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+     */
+    async inviteUserRaw(requestParameters: InviteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Invite>> {
+        const requestOptions = await this.inviteUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => InviteFromJSON(jsonValue));
     }
@@ -146,9 +165,9 @@ export class InvitesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of invites in the organization.
+     * Creates request options for listInvites without sending the request
      */
-    async listInvitesRaw(requestParameters: ListInvitesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InviteListResponse>> {
+    async listInvitesRequestOpts(requestParameters: ListInvitesRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['limit'] != null) {
@@ -172,12 +191,20 @@ export class InvitesApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/invites`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns a list of invites in the organization.
+     */
+    async listInvitesRaw(requestParameters: ListInvitesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InviteListResponse>> {
+        const requestOptions = await this.listInvitesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => InviteListResponseFromJSON(jsonValue));
     }
@@ -191,9 +218,9 @@ export class InvitesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves an invite.
+     * Creates request options for retrieveInvite without sending the request
      */
-    async retrieveInviteRaw(requestParameters: RetrieveInviteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Invite>> {
+    async retrieveInviteRequestOpts(requestParameters: RetrieveInviteRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['inviteId'] == null) {
             throw new runtime.RequiredError(
                 'inviteId',
@@ -215,14 +242,22 @@ export class InvitesApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/invites/{invite_id}`;
-        urlPath = urlPath.replace(`{${"invite_id"}}`, encodeURIComponent(String(requestParameters['inviteId'])));
+        urlPath = urlPath.replace('{invite_id}', encodeURIComponent(String(requestParameters['inviteId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves an invite.
+     */
+    async retrieveInviteRaw(requestParameters: RetrieveInviteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Invite>> {
+        const requestOptions = await this.retrieveInviteRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => InviteFromJSON(jsonValue));
     }

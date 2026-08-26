@@ -25,7 +25,7 @@ message ProjectApiKeyOwner {
     TYPE_SERVICE_ACCOUNT = 1;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   ProjectUser user = 3599307;
 

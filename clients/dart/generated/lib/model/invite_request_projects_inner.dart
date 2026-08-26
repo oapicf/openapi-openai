@@ -55,10 +55,10 @@ class InviteRequestProjectsInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "InviteRequestProjectsInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "InviteRequestProjectsInner[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "InviteRequestProjectsInner[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "InviteRequestProjectsInner[id]" has a null value in JSON.');
+        assert(json.containsKey(r'role'), 'Required key "InviteRequestProjectsInner[role]" is missing from JSON.');
+        assert(json[r'role'] != null, 'Required key "InviteRequestProjectsInner[role]" has a null value in JSON.');
         return true;
       }());
 
@@ -118,29 +118,29 @@ class InviteRequestProjectsInner {
 }
 
 /// Project membership role
-class InviteRequestProjectsInnerRoleEnum {
-  /// Instantiate a new enum with the provided [value].
-  const InviteRequestProjectsInnerRoleEnum._(this.value);
+enum InviteRequestProjectsInnerRoleEnum {
+  member._(r'member'),
+  owner._(r'owner'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const InviteRequestProjectsInnerRoleEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const member = InviteRequestProjectsInnerRoleEnum._(r'member');
-  static const owner = InviteRequestProjectsInnerRoleEnum._(r'owner');
-
-  /// List of all possible values in this [enum][InviteRequestProjectsInnerRoleEnum].
-  static const values = <InviteRequestProjectsInnerRoleEnum>[
-    member,
-    owner,
-  ];
-
+  /// Returns the instance of [InviteRequestProjectsInnerRoleEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static InviteRequestProjectsInnerRoleEnum? fromJson(dynamic value) => InviteRequestProjectsInnerRoleEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [InviteRequestProjectsInnerRoleEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<InviteRequestProjectsInnerRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <InviteRequestProjectsInnerRoleEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -162,9 +162,10 @@ class InviteRequestProjectsInnerRoleEnumTypeTransformer {
 
   const InviteRequestProjectsInnerRoleEnumTypeTransformer._();
 
-  String encode(InviteRequestProjectsInnerRoleEnum data) => data.value;
+  String encode(InviteRequestProjectsInnerRoleEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a InviteRequestProjectsInnerRoleEnum.
+  /// Returns the instance of [InviteRequestProjectsInnerRoleEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -173,6 +174,9 @@ class InviteRequestProjectsInnerRoleEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   InviteRequestProjectsInnerRoleEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is InviteRequestProjectsInnerRoleEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'member': return InviteRequestProjectsInnerRoleEnum.member;
@@ -186,7 +190,7 @@ class InviteRequestProjectsInnerRoleEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [InviteRequestProjectsInnerRoleEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static InviteRequestProjectsInnerRoleEnumTypeTransformer? _instance;
 }
 

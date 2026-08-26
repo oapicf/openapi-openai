@@ -52,42 +52,42 @@ public:
 
 	/*! \brief Set The index of the annotation in the text content part.
 	 */
-	void setIndex(int  index);
+	void setIndex(int index);
 	/*! \brief Get Always `file_path`.
 	 */
 	std::string getType();
 
 	/*! \brief Set Always `file_path`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The text in the message content that needs to be replaced.
 	 */
 	std::string getText();
 
 	/*! \brief Set The text in the message content that needs to be replaced.
 	 */
-	void setText(std::string  text);
+	void setText(std::string text);
 	/*! \brief Get 
 	 */
 	MessageDeltaContentTextAnnotationsFilePathObject_file_path getFilePath();
 
 	/*! \brief Set 
 	 */
-	void setFilePath(MessageDeltaContentTextAnnotationsFilePathObject_file_path  file_path);
+	void setFilePath(MessageDeltaContentTextAnnotationsFilePathObject_file_path file_path);
 	/*! \brief Get 
 	 */
 	int getStartIndex();
 
 	/*! \brief Set 
 	 */
-	void setStartIndex(int  start_index);
+	void setStartIndex(int start_index);
 	/*! \brief Get 
 	 */
 	int getEndIndex();
 
 	/*! \brief Set 
 	 */
-	void setEndIndex(int  end_index);
+	void setEndIndex(int end_index);
 
 
     private:

@@ -34,13 +34,13 @@ class OAIThreadObject;
 class OAIListThreadsResponse : public OAIObject {
 public:
     OAIListThreadsResponse();
-    OAIListThreadsResponse(QString json);
+    OAIListThreadsResponse(const QString &json);
     ~OAIListThreadsResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getObject() const;
     void setObject(const QString &object);

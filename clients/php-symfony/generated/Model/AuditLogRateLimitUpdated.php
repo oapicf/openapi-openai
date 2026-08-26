@@ -51,7 +51,7 @@ class AuditLogRateLimitUpdated
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -59,7 +59,7 @@ class AuditLogRateLimitUpdated
      * @var AuditLogRateLimitUpdatedChangesRequested|null
      * @SerializedName("changes_requested")
      * @Type("OpenAPI\Server\Model\AuditLogRateLimitUpdatedChangesRequested")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogRateLimitUpdatedChangesRequested")]
     protected ?AuditLogRateLimitUpdatedChangesRequested $changesRequested = null;
 
@@ -86,12 +86,12 @@ class AuditLogRateLimitUpdated
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The rate limit ID
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The rate limit ID
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -113,12 +113,12 @@ class AuditLogRateLimitUpdated
     }
 
     /**
-    * Sets changesRequested.
-    *
-    * @param AuditLogRateLimitUpdatedChangesRequested|null $changesRequested
-    *
-    * @return $this
-    */
+     * Sets changesRequested.
+     *
+     * @param AuditLogRateLimitUpdatedChangesRequested|null $changesRequested
+     *
+     * @return $this
+     */
     public function setChangesRequested(?AuditLogRateLimitUpdatedChangesRequested $changesRequested = null): self
     {
         $this->changesRequested = $changesRequested;

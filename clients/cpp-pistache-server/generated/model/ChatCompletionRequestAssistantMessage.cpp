@@ -33,6 +33,8 @@ ChatCompletionRequestAssistantMessage::ChatCompletionRequestAssistantMessage()
     
 }
 
+ChatCompletionRequestAssistantMessage::~ChatCompletionRequestAssistantMessage() = default;
+
 void ChatCompletionRequestAssistantMessage::validate() const
 {
     std::stringstream msg;

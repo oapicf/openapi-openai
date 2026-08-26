@@ -52,28 +52,28 @@ public:
 
 	/*! \brief Set The unique ID of the server event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `conversation.item.created`.
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `conversation.item.created`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The ID of the preceding item in the Conversation context, allows the  client to understand the order of the conversation. 
 	 */
 	std::string getPreviousItemId();
 
 	/*! \brief Set The ID of the preceding item in the Conversation context, allows the  client to understand the order of the conversation. 
 	 */
-	void setPreviousItemId(std::string  previous_item_id);
+	void setPreviousItemId(std::string previous_item_id);
 	/*! \brief Get 
 	 */
 	RealtimeConversationItem getItem();
 
 	/*! \brief Set 
 	 */
-	void setItem(RealtimeConversationItem  item);
+	void setItem(RealtimeConversationItem item);
 
 
     private:

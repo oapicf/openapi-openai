@@ -58,7 +58,7 @@ export function RunStepDeltaStepDetailsToolCallsFunctionObjectFunctionFromJSONTy
         
         'name': json['name'] == null ? undefined : json['name'],
         'arguments': json['arguments'] == null ? undefined : json['arguments'],
-        'output': json['output'] == null ? undefined : json['output'],
+        'output': json['output'] === undefined ? undefined : json['output'] === null ? null : json['output'],
     };
 }
 

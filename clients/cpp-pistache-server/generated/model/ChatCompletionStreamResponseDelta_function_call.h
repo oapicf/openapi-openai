@@ -32,7 +32,7 @@ class  ChatCompletionStreamResponseDelta_function_call
 {
 public:
     ChatCompletionStreamResponseDelta_function_call();
-    virtual ~ChatCompletionStreamResponseDelta_function_call() = default;
+    virtual ~ChatCompletionStreamResponseDelta_function_call();
 
 
     /// <summary>

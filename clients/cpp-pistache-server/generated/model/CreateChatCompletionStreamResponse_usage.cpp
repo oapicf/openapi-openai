@@ -27,6 +27,8 @@ CreateChatCompletionStreamResponse_usage::CreateChatCompletionStreamResponse_usa
     
 }
 
+CreateChatCompletionStreamResponse_usage::~CreateChatCompletionStreamResponse_usage() = default;
+
 void CreateChatCompletionStreamResponse_usage::validate() const
 {
     std::stringstream msg;

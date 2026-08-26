@@ -68,7 +68,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RunStreamEvent extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(RunStreamEvent.class.getName());
 
@@ -415,6 +415,7 @@ public class RunStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `RunStreamEventOneOf`
      * @throws ClassCastException if the instance is not `RunStreamEventOneOf`
      */
+    @SuppressWarnings("unchecked")
     public RunStreamEventOneOf getRunStreamEventOneOf() throws ClassCastException {
         return (RunStreamEventOneOf)super.getActualInstance();
     }
@@ -426,6 +427,7 @@ public class RunStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `RunStreamEventOneOf1`
      * @throws ClassCastException if the instance is not `RunStreamEventOneOf1`
      */
+    @SuppressWarnings("unchecked")
     public RunStreamEventOneOf1 getRunStreamEventOneOf1() throws ClassCastException {
         return (RunStreamEventOneOf1)super.getActualInstance();
     }
@@ -437,6 +439,7 @@ public class RunStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `RunStreamEventOneOf2`
      * @throws ClassCastException if the instance is not `RunStreamEventOneOf2`
      */
+    @SuppressWarnings("unchecked")
     public RunStreamEventOneOf2 getRunStreamEventOneOf2() throws ClassCastException {
         return (RunStreamEventOneOf2)super.getActualInstance();
     }
@@ -448,6 +451,7 @@ public class RunStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `RunStreamEventOneOf3`
      * @throws ClassCastException if the instance is not `RunStreamEventOneOf3`
      */
+    @SuppressWarnings("unchecked")
     public RunStreamEventOneOf3 getRunStreamEventOneOf3() throws ClassCastException {
         return (RunStreamEventOneOf3)super.getActualInstance();
     }
@@ -459,6 +463,7 @@ public class RunStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `RunStreamEventOneOf4`
      * @throws ClassCastException if the instance is not `RunStreamEventOneOf4`
      */
+    @SuppressWarnings("unchecked")
     public RunStreamEventOneOf4 getRunStreamEventOneOf4() throws ClassCastException {
         return (RunStreamEventOneOf4)super.getActualInstance();
     }
@@ -470,6 +475,7 @@ public class RunStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `RunStreamEventOneOf5`
      * @throws ClassCastException if the instance is not `RunStreamEventOneOf5`
      */
+    @SuppressWarnings("unchecked")
     public RunStreamEventOneOf5 getRunStreamEventOneOf5() throws ClassCastException {
         return (RunStreamEventOneOf5)super.getActualInstance();
     }
@@ -481,6 +487,7 @@ public class RunStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `RunStreamEventOneOf6`
      * @throws ClassCastException if the instance is not `RunStreamEventOneOf6`
      */
+    @SuppressWarnings("unchecked")
     public RunStreamEventOneOf6 getRunStreamEventOneOf6() throws ClassCastException {
         return (RunStreamEventOneOf6)super.getActualInstance();
     }
@@ -492,6 +499,7 @@ public class RunStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `RunStreamEventOneOf7`
      * @throws ClassCastException if the instance is not `RunStreamEventOneOf7`
      */
+    @SuppressWarnings("unchecked")
     public RunStreamEventOneOf7 getRunStreamEventOneOf7() throws ClassCastException {
         return (RunStreamEventOneOf7)super.getActualInstance();
     }
@@ -503,6 +511,7 @@ public class RunStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `RunStreamEventOneOf8`
      * @throws ClassCastException if the instance is not `RunStreamEventOneOf8`
      */
+    @SuppressWarnings("unchecked")
     public RunStreamEventOneOf8 getRunStreamEventOneOf8() throws ClassCastException {
         return (RunStreamEventOneOf8)super.getActualInstance();
     }
@@ -514,6 +523,7 @@ public class RunStreamEvent extends AbstractOpenApiSchema {
      * @return The actual instance of `RunStreamEventOneOf9`
      * @throws ClassCastException if the instance is not `RunStreamEventOneOf9`
      */
+    @SuppressWarnings("unchecked")
     public RunStreamEventOneOf9 getRunStreamEventOneOf9() throws ClassCastException {
         return (RunStreamEventOneOf9)super.getActualInstance();
     }

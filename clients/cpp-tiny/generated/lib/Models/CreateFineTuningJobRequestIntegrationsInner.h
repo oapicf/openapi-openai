@@ -46,20 +46,20 @@ public:
 	 */
     void fromJson(std::string jsonObj);
 
-	/*! \brief Get 
+	/*! \brief Get The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
 	 */
 	std::string getType();
 
-	/*! \brief Set 
+	/*! \brief Set The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	CreateFineTuningJobRequest_integrations_inner_wandb getWandb();
 
 	/*! \brief Set 
 	 */
-	void setWandb(CreateFineTuningJobRequest_integrations_inner_wandb  wandb);
+	void setWandb(CreateFineTuningJobRequest_integrations_inner_wandb wandb);
 
 
     private:

@@ -116,8 +116,9 @@ class _$CostsResultSerializer implements PrimitiveSerializer<CostsResult> {
         case r'amount':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CostsResultAmount),
-          ) as CostsResultAmount;
+            specifiedType: const FullType.nullable(CostsResultAmount),
+          ) as CostsResultAmount?;
+          if (valueDes == null) continue;
           result.amount.replace(valueDes);
           break;
         case r'line_item':

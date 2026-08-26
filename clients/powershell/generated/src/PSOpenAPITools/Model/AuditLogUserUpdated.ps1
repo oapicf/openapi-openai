@@ -41,8 +41,8 @@ function Initialize-AuditLogUserUpdated {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "changes_requested" = ${ChangesRequested}
+            'id' = ${Id}
+            'changes_requested' = ${ChangesRequested}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToAuditLogUserUpdated {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AuditLogUserUpdated
-        $AllProperties = ("id", "changes_requested")
+        $AllProperties = ('id', 'changes_requested')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) { #optional property not found
             $Id = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "changes_requested"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'changes_requested'))) { #optional property not found
             $ChangesRequested = $null
         } else {
-            $ChangesRequested = $JsonParameters.PSobject.Properties["changes_requested"].value
+            $ChangesRequested = $JsonParameters.PSobject.Properties['changes_requested'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "changes_requested" = ${ChangesRequested}
+            'id' = ${Id}
+            'changes_requested' = ${ChangesRequested}
         }
 
         return $PSO

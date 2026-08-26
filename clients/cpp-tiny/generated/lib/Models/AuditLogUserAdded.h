@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set The user ID.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	AuditLog_user_added_data getData();
 
 	/*! \brief Set 
 	 */
-	void setData(AuditLog_user_added_data  data);
+	void setData(AuditLog_user_added_data data);
 
 
     private:

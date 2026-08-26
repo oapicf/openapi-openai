@@ -1,4 +1,4 @@
-# # BatchRequestCounts
+# BatchRequestCounts
 
 ## Properties
 

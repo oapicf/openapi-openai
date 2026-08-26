@@ -56,7 +56,7 @@ export class UploadsApi {
     { response: JQueryXHR; body: models.UploadPart;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/uploads/{upload_id}/parts'.replace('{' + 'upload_id' + '}', encodeURIComponent(String(uploadId)));
+        let localVarPath = this.basePath + '/uploads/{upload_id}/parts'.replace('{upload_id}', encodeURIComponent(String(uploadId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -138,7 +138,7 @@ export class UploadsApi {
     { response: JQueryXHR; body: models.Upload;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/uploads/{upload_id}/cancel'.replace('{' + 'upload_id' + '}', encodeURIComponent(String(uploadId)));
+        let localVarPath = this.basePath + '/uploads/{upload_id}/cancel'.replace('{upload_id}', encodeURIComponent(String(uploadId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -202,7 +202,7 @@ export class UploadsApi {
     { response: JQueryXHR; body: models.Upload;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/uploads/{upload_id}/complete'.replace('{' + 'upload_id' + '}', encodeURIComponent(String(uploadId)));
+        let localVarPath = this.basePath + '/uploads/{upload_id}/complete'.replace('{upload_id}', encodeURIComponent(String(uploadId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};

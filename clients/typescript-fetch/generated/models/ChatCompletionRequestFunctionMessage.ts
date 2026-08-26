@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface ChatCompletionRequestFunctionMessage {
     /**
      * The role of the messages author, in this case `function`.
-     * @type {string}
+     * @type {ChatCompletionRequestFunctionMessageRoleEnum}
      * @memberof ChatCompletionRequestFunctionMessage
      */
     role: ChatCompletionRequestFunctionMessageRoleEnum;
@@ -54,6 +54,8 @@ export type ChatCompletionRequestFunctionMessageRoleEnum = typeof ChatCompletion
  */
 export function instanceOfChatCompletionRequestFunctionMessage(value: object): value is ChatCompletionRequestFunctionMessage {
     if (!('role' in value) || value['role'] === undefined) return false;
+    if (value['role'] !== 'function') return false;
+    
     if (!('content' in value) || value['content'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     return true;

@@ -1,4 +1,4 @@
-# # CreateEmbeddingRequestModel
+# CreateEmbeddingRequestModel
 
 ## Properties
 

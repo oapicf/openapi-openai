@@ -16,13 +16,13 @@ static create_transcription_response_verbose_json_t *create_transcription_respon
     if (!create_transcription_response_verbose_json_local_var) {
         return NULL;
     }
+    memset(create_transcription_response_verbose_json_local_var, 0, sizeof(create_transcription_response_verbose_json_t));
+    create_transcription_response_verbose_json_local_var->_library_owned = 1;
     create_transcription_response_verbose_json_local_var->language = language;
     create_transcription_response_verbose_json_local_var->duration = duration;
     create_transcription_response_verbose_json_local_var->text = text;
     create_transcription_response_verbose_json_local_var->words = words;
     create_transcription_response_verbose_json_local_var->segments = segments;
-
-    create_transcription_response_verbose_json_local_var->_library_owned = 1;
     return create_transcription_response_verbose_json_local_var;
 }
 
@@ -33,13 +33,16 @@ __attribute__((deprecated)) create_transcription_response_verbose_json_t *create
     list_t *words,
     list_t *segments
     ) {
-    return create_transcription_response_verbose_json_create_internal (
+    create_transcription_response_verbose_json_t *result = create_transcription_response_verbose_json_create_internal (
         language,
         duration,
         text,
         words,
         segments
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_transcription_response_verbose_json_free(create_transcription_response_verbose_json_t *create_transcription_response_verbose_json) {
@@ -161,6 +164,12 @@ create_transcription_response_verbose_json_t *create_transcription_response_verb
 
     create_transcription_response_verbose_json_t *create_transcription_response_verbose_json_local_var = NULL;
 
+    char *language_local_str = NULL;
+
+    char *duration_local_str = NULL;
+
+    char *text_local_str = NULL;
+
     // define the local list for create_transcription_response_verbose_json->words
     list_t *wordsList = NULL;
 
@@ -261,16 +270,36 @@ create_transcription_response_verbose_json_t *create_transcription_response_verb
     }
 
 
+    if (language && !cJSON_IsNull(language)) language_local_str = strdup(language->valuestring);
+    if (duration && !cJSON_IsNull(duration)) duration_local_str = strdup(duration->valuestring);
+    if (text && !cJSON_IsNull(text)) text_local_str = strdup(text->valuestring);
+
     create_transcription_response_verbose_json_local_var = create_transcription_response_verbose_json_create_internal (
-        strdup(language->valuestring),
-        strdup(duration->valuestring),
-        strdup(text->valuestring),
+        language_local_str,
+        duration_local_str,
+        text_local_str,
         words ? wordsList : NULL,
         segments ? segmentsList : NULL
         );
 
+    if (!create_transcription_response_verbose_json_local_var) {
+        goto end;
+    }
+
     return create_transcription_response_verbose_json_local_var;
 end:
+    if (language_local_str) {
+        free(language_local_str);
+        language_local_str = NULL;
+    }
+    if (duration_local_str) {
+        free(duration_local_str);
+        duration_local_str = NULL;
+    }
+    if (text_local_str) {
+        free(text_local_str);
+        text_local_str = NULL;
+    }
     if (wordsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, wordsList) {

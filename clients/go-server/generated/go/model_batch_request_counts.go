@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // BatchRequestCounts - The request counts for different statuses within the batch.
@@ -26,20 +31,78 @@ type BatchRequestCounts struct {
 	// Number of requests that have failed.
 	Failed int32 `json:"failed"`
 }
-
-// AssertBatchRequestCountsRequired checks if the required fields are not zero-ed
-func AssertBatchRequestCountsRequired(obj BatchRequestCounts) error {
-	elements := map[string]interface{}{
-		"total": obj.Total,
-		"completed": obj.Completed,
-		"failed": obj.Failed,
+// UnmarshalJSON validates required property keys then unmarshals into BatchRequestCounts
+func (o *BatchRequestCounts) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"total",
+		"completed",
+		"failed",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"total": false,
+		"completed": false,
+		"failed": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"total": {},
+		"completed": {},
+		"failed": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded BatchRequestCounts
+
+	if value, exists := allProperties["total"]; exists {
+		if err = json.Unmarshal(value, &decoded.Total); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["completed"]; exists {
+		if err = json.Unmarshal(value, &decoded.Completed); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["failed"]; exists {
+		if err = json.Unmarshal(value, &decoded.Failed); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertBatchRequestCountsRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertBatchRequestCountsRequired(obj BatchRequestCounts) error {
 	return nil
 }
 

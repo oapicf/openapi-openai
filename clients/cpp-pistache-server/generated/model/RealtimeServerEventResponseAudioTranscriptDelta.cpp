@@ -31,6 +31,8 @@ RealtimeServerEventResponseAudioTranscriptDelta::RealtimeServerEventResponseAudi
     
 }
 
+RealtimeServerEventResponseAudioTranscriptDelta::~RealtimeServerEventResponseAudioTranscriptDelta() = default;
+
 void RealtimeServerEventResponseAudioTranscriptDelta::validate() const
 {
     std::stringstream msg;

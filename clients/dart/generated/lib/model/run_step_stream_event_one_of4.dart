@@ -53,10 +53,10 @@ class RunStepStreamEventOneOf4 {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepStreamEventOneOf4[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepStreamEventOneOf4[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event'), 'Required key "RunStepStreamEventOneOf4[event]" is missing from JSON.');
+        assert(json[r'event'] != null, 'Required key "RunStepStreamEventOneOf4[event]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "RunStepStreamEventOneOf4[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "RunStepStreamEventOneOf4[data]" has a null value in JSON.');
         return true;
       }());
 
@@ -116,27 +116,28 @@ class RunStepStreamEventOneOf4 {
 }
 
 
-class RunStepStreamEventOneOf4EventEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepStreamEventOneOf4EventEnum._(this.value);
+enum RunStepStreamEventOneOf4EventEnum {
+  threadPeriodRunPeriodStepPeriodFailed._(r'thread.run.step.failed'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepStreamEventOneOf4EventEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodRunPeriodStepPeriodFailed = RunStepStreamEventOneOf4EventEnum._(r'thread.run.step.failed');
-
-  /// List of all possible values in this [enum][RunStepStreamEventOneOf4EventEnum].
-  static const values = <RunStepStreamEventOneOf4EventEnum>[
-    threadPeriodRunPeriodStepPeriodFailed,
-  ];
-
+  /// Returns the instance of [RunStepStreamEventOneOf4EventEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepStreamEventOneOf4EventEnum? fromJson(dynamic value) => RunStepStreamEventOneOf4EventEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepStreamEventOneOf4EventEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepStreamEventOneOf4EventEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepStreamEventOneOf4EventEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -158,9 +159,10 @@ class RunStepStreamEventOneOf4EventEnumTypeTransformer {
 
   const RunStepStreamEventOneOf4EventEnumTypeTransformer._();
 
-  String encode(RunStepStreamEventOneOf4EventEnum data) => data.value;
+  String encode(RunStepStreamEventOneOf4EventEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepStreamEventOneOf4EventEnum.
+  /// Returns the instance of [RunStepStreamEventOneOf4EventEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -169,6 +171,9 @@ class RunStepStreamEventOneOf4EventEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepStreamEventOneOf4EventEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepStreamEventOneOf4EventEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.run.step.failed': return RunStepStreamEventOneOf4EventEnum.threadPeriodRunPeriodStepPeriodFailed;
@@ -181,7 +186,7 @@ class RunStepStreamEventOneOf4EventEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStepStreamEventOneOf4EventEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepStreamEventOneOf4EventEnumTypeTransformer? _instance;
 }
 

@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIAuditLog_organization_updated_changes_requested_settings : public OAIObject {
 public:
     OAIAuditLog_organization_updated_changes_requested_settings();
-    OAIAuditLog_organization_updated_changes_requested_settings(QString json);
+    OAIAuditLog_organization_updated_changes_requested_settings(const QString &json);
     ~OAIAuditLog_organization_updated_changes_requested_settings() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getThreadsUiVisibility() const;
     void setThreadsUiVisibility(const QString &threads_ui_visibility);

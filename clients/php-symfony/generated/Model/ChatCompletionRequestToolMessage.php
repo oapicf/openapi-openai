@@ -49,7 +49,7 @@ class ChatCompletionRequestToolMessage
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['tool'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class ChatCompletionRequestToolMessage
      * @var ChatCompletionRequestToolMessageContent|null
      * @SerializedName("content")
      * @Type("OpenAPI\Server\Model\ChatCompletionRequestToolMessageContent")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionRequestToolMessageContent")]
@@ -71,7 +71,7 @@ class ChatCompletionRequestToolMessage
      * @var string|null
      * @SerializedName("tool_call_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $toolCallId = null;
@@ -100,12 +100,12 @@ class ChatCompletionRequestToolMessage
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  The role of the messages author, in this case `tool`.
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  The role of the messages author, in this case `tool`.
+     *
+     * @return $this
+     */
     public function setRole(?string $role): self
     {
         $this->role = $role;
@@ -127,12 +127,12 @@ class ChatCompletionRequestToolMessage
     }
 
     /**
-    * Sets content.
-    *
-    * @param ChatCompletionRequestToolMessageContent|null $content
-    *
-    * @return $this
-    */
+     * Sets content.
+     *
+     * @param ChatCompletionRequestToolMessageContent|null $content
+     *
+     * @return $this
+     */
     public function setContent(?ChatCompletionRequestToolMessageContent $content): self
     {
         $this->content = $content;
@@ -154,12 +154,12 @@ class ChatCompletionRequestToolMessage
     }
 
     /**
-    * Sets toolCallId.
-    *
-    * @param string|null $toolCallId  Tool call that this message is responding to.
-    *
-    * @return $this
-    */
+     * Sets toolCallId.
+     *
+     * @param string|null $toolCallId  Tool call that this message is responding to.
+     *
+     * @return $this
+     */
     public function setToolCallId(?string $toolCallId): self
     {
         $this->toolCallId = $toolCallId;

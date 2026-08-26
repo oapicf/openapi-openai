@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**`type`** | [**`Type`**](#`Type`) |  | 
+**`type`** | [**`Type`**](#`Type`) | The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported.  | 
 **wandb** | [**CreateFineTuningJobRequestIntegrationsInnerWandb**](CreateFineTuningJobRequestIntegrationsInnerWandb.md) |  | 
 
 

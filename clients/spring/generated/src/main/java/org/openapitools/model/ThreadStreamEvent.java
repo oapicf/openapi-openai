@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -9,22 +10,23 @@ import org.openapitools.model.ThreadObject;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Occurs when a new [thread](/docs/api-reference/threads/object) is created.
  */
 
 @Schema(name = "ThreadStreamEvent", description = "Occurs when a new [thread](/docs/api-reference/threads/object) is created.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ThreadStreamEvent implements AssistantStreamEvent {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean enabled;
 
   /**
@@ -92,6 +94,7 @@ public class ThreadStreamEvent implements AssistantStreamEvent {
     return enabled;
   }
 
+  @JsonProperty("enabled")
   public void setEnabled(@Nullable Boolean enabled) {
     this.enabled = enabled;
   }
@@ -112,6 +115,7 @@ public class ThreadStreamEvent implements AssistantStreamEvent {
     return event;
   }
 
+  @JsonProperty("event")
   public void setEvent(EventEnum event) {
     this.event = event;
   }
@@ -132,6 +136,7 @@ public class ThreadStreamEvent implements AssistantStreamEvent {
     return data;
   }
 
+  @JsonProperty("data")
   public void setData(ThreadObject data) {
     this.data = data;
   }
@@ -170,11 +175,8 @@ public class ThreadStreamEvent implements AssistantStreamEvent {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

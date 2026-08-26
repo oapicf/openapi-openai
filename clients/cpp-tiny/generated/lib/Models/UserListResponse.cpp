@@ -165,7 +165,7 @@ UserListResponse::getObject()
 }
 
 void
-UserListResponse::setObject(std::string  object)
+UserListResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -177,7 +177,7 @@ UserListResponse::getData()
 }
 
 void
-UserListResponse::setData(std::list <User> data)
+UserListResponse::setData(std::list<User> data)
 {
 	this->data = data;
 }
@@ -189,7 +189,7 @@ UserListResponse::getFirstId()
 }
 
 void
-UserListResponse::setFirstId(std::string  first_id)
+UserListResponse::setFirstId(std::string first_id)
 {
 	this->first_id = first_id;
 }
@@ -201,7 +201,7 @@ UserListResponse::getLastId()
 }
 
 void
-UserListResponse::setLastId(std::string  last_id)
+UserListResponse::setLastId(std::string last_id)
 {
 	this->last_id = last_id;
 }
@@ -213,7 +213,7 @@ UserListResponse::isHasMore()
 }
 
 void
-UserListResponse::setHasMore(bool  has_more)
+UserListResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | **string** |  | [optional] [default to undefined]
+**model** | **string** | ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them.  | [optional] [default to undefined]
 **name** | **string** | The name of the assistant. The maximum length is 256 characters.  | [optional] [default to undefined]
 **description** | **string** | The description of the assistant. The maximum length is 512 characters.  | [optional] [default to undefined]
 **instructions** | **string** | The system instructions that the assistant uses. The maximum length is 256,000 characters.  | [optional] [default to undefined]

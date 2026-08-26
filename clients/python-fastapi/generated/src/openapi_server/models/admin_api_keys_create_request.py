@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 try:
     from typing import Self
@@ -32,7 +32,7 @@ class AdminApiKeysCreateRequest(BaseModel):
     """
     AdminApiKeysCreateRequest
     """ # noqa: E501
-    name: StrictStr
+    name: StrictStr = Field(json_schema_extra={"examples": ["New Admin Key"]})
     __properties: ClassVar[List[str]] = ["name"]
 
     model_config = {

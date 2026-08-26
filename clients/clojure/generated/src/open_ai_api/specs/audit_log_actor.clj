@@ -1,8 +1,8 @@
 (ns open-ai-api.specs.audit-log-actor
   (:require [clojure.spec.alpha :as s]
             [spec-tools.data-spec :as ds]
-            [open-ai-api.specs. :refer :all]
-            [open-ai-api.specs. :refer :all]
+            [open-ai-api.specs.audit-log-actor-session :refer :all]
+            [open-ai-api.specs.audit-log-actor-api-key :refer :all]
             )
   (:import (java.io File)))
 

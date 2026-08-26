@@ -240,7 +240,7 @@ AuditLog <- R6::R6Class(
       }
       if (!is.null(self$`type`)) {
         AuditLogObject[["type"]] <-
-          self$`type`$toSimpleType()
+          self$extractSimpleType(self$`type`)
       }
       if (!is.null(self$`effective_at`)) {
         AuditLogObject[["effective_at"]] <-
@@ -248,93 +248,116 @@ AuditLog <- R6::R6Class(
       }
       if (!is.null(self$`project`)) {
         AuditLogObject[["project"]] <-
-          self$`project`$toSimpleType()
+          self$extractSimpleType(self$`project`)
       }
       if (!is.null(self$`actor`)) {
         AuditLogObject[["actor"]] <-
-          self$`actor`$toSimpleType()
+          self$extractSimpleType(self$`actor`)
       }
       if (!is.null(self$`api_key.created`)) {
         AuditLogObject[["api_key.created"]] <-
-          self$`api_key.created`$toSimpleType()
+          self$extractSimpleType(self$`api_key.created`)
       }
       if (!is.null(self$`api_key.updated`)) {
         AuditLogObject[["api_key.updated"]] <-
-          self$`api_key.updated`$toSimpleType()
+          self$extractSimpleType(self$`api_key.updated`)
       }
       if (!is.null(self$`api_key.deleted`)) {
         AuditLogObject[["api_key.deleted"]] <-
-          self$`api_key.deleted`$toSimpleType()
+          self$extractSimpleType(self$`api_key.deleted`)
       }
       if (!is.null(self$`invite.sent`)) {
         AuditLogObject[["invite.sent"]] <-
-          self$`invite.sent`$toSimpleType()
+          self$extractSimpleType(self$`invite.sent`)
       }
       if (!is.null(self$`invite.accepted`)) {
         AuditLogObject[["invite.accepted"]] <-
-          self$`invite.accepted`$toSimpleType()
+          self$extractSimpleType(self$`invite.accepted`)
       }
       if (!is.null(self$`invite.deleted`)) {
         AuditLogObject[["invite.deleted"]] <-
-          self$`invite.deleted`$toSimpleType()
+          self$extractSimpleType(self$`invite.deleted`)
       }
       if (!is.null(self$`login.failed`)) {
         AuditLogObject[["login.failed"]] <-
-          self$`login.failed`$toSimpleType()
+          self$extractSimpleType(self$`login.failed`)
       }
       if (!is.null(self$`logout.failed`)) {
         AuditLogObject[["logout.failed"]] <-
-          self$`logout.failed`$toSimpleType()
+          self$extractSimpleType(self$`logout.failed`)
       }
       if (!is.null(self$`organization.updated`)) {
         AuditLogObject[["organization.updated"]] <-
-          self$`organization.updated`$toSimpleType()
+          self$extractSimpleType(self$`organization.updated`)
       }
       if (!is.null(self$`project.created`)) {
         AuditLogObject[["project.created"]] <-
-          self$`project.created`$toSimpleType()
+          self$extractSimpleType(self$`project.created`)
       }
       if (!is.null(self$`project.updated`)) {
         AuditLogObject[["project.updated"]] <-
-          self$`project.updated`$toSimpleType()
+          self$extractSimpleType(self$`project.updated`)
       }
       if (!is.null(self$`project.archived`)) {
         AuditLogObject[["project.archived"]] <-
-          self$`project.archived`$toSimpleType()
+          self$extractSimpleType(self$`project.archived`)
       }
       if (!is.null(self$`rate_limit.updated`)) {
         AuditLogObject[["rate_limit.updated"]] <-
-          self$`rate_limit.updated`$toSimpleType()
+          self$extractSimpleType(self$`rate_limit.updated`)
       }
       if (!is.null(self$`rate_limit.deleted`)) {
         AuditLogObject[["rate_limit.deleted"]] <-
-          self$`rate_limit.deleted`$toSimpleType()
+          self$extractSimpleType(self$`rate_limit.deleted`)
       }
       if (!is.null(self$`service_account.created`)) {
         AuditLogObject[["service_account.created"]] <-
-          self$`service_account.created`$toSimpleType()
+          self$extractSimpleType(self$`service_account.created`)
       }
       if (!is.null(self$`service_account.updated`)) {
         AuditLogObject[["service_account.updated"]] <-
-          self$`service_account.updated`$toSimpleType()
+          self$extractSimpleType(self$`service_account.updated`)
       }
       if (!is.null(self$`service_account.deleted`)) {
         AuditLogObject[["service_account.deleted"]] <-
-          self$`service_account.deleted`$toSimpleType()
+          self$extractSimpleType(self$`service_account.deleted`)
       }
       if (!is.null(self$`user.added`)) {
         AuditLogObject[["user.added"]] <-
-          self$`user.added`$toSimpleType()
+          self$extractSimpleType(self$`user.added`)
       }
       if (!is.null(self$`user.updated`)) {
         AuditLogObject[["user.updated"]] <-
-          self$`user.updated`$toSimpleType()
+          self$extractSimpleType(self$`user.updated`)
       }
       if (!is.null(self$`user.deleted`)) {
         AuditLogObject[["user.deleted"]] <-
-          self$`user.deleted`$toSimpleType()
+          self$extractSimpleType(self$`user.deleted`)
       }
       return(AuditLogObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

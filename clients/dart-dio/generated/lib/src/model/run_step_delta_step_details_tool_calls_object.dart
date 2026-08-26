@@ -94,8 +94,9 @@ class _$RunStepDeltaStepDetailsToolCallsObjectSerializer implements PrimitiveSer
         case r'tool_calls':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(RunStepDeltaStepDetailsToolCallsObjectToolCallsInner)]),
-          ) as BuiltList<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(RunStepDeltaStepDetailsToolCallsObjectToolCallsInner)]),
+          ) as BuiltList<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>?;
+          if (valueDes == null) continue;
           result.toolCalls.replace(valueDes);
           break;
         default:

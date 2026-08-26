@@ -1,4 +1,4 @@
-# # CostsResult
+# CostsResult
 
 ## Properties
 

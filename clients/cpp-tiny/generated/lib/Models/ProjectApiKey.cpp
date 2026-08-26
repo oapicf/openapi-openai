@@ -170,7 +170,7 @@ ProjectApiKey::getObject()
 }
 
 void
-ProjectApiKey::setObject(std::string  object)
+ProjectApiKey::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -182,7 +182,7 @@ ProjectApiKey::getRedactedValue()
 }
 
 void
-ProjectApiKey::setRedactedValue(std::string  redacted_value)
+ProjectApiKey::setRedactedValue(std::string redacted_value)
 {
 	this->redacted_value = redacted_value;
 }
@@ -194,7 +194,7 @@ ProjectApiKey::getName()
 }
 
 void
-ProjectApiKey::setName(std::string  name)
+ProjectApiKey::setName(std::string name)
 {
 	this->name = name;
 }
@@ -206,7 +206,7 @@ ProjectApiKey::getCreatedAt()
 }
 
 void
-ProjectApiKey::setCreatedAt(int  created_at)
+ProjectApiKey::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -218,7 +218,7 @@ ProjectApiKey::getId()
 }
 
 void
-ProjectApiKey::setId(std::string  id)
+ProjectApiKey::setId(std::string id)
 {
 	this->id = id;
 }
@@ -230,7 +230,7 @@ ProjectApiKey::getOwner()
 }
 
 void
-ProjectApiKey::setOwner(ProjectApiKey_owner  owner)
+ProjectApiKey::setOwner(ProjectApiKey_owner owner)
 {
 	this->owner = owner;
 }

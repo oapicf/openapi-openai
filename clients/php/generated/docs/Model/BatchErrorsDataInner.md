@@ -1,4 +1,4 @@
-# # BatchErrorsDataInner
+# BatchErrorsDataInner
 
 ## Properties
 

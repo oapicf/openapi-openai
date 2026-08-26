@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.math.BigDecimal;
@@ -16,40 +17,49 @@ import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * ModifyAssistantRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ModifyAssistantRequest {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String model;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Size(max = 256) String> name = JsonNullable.<String>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Size(max = 512) String> description = JsonNullable.<String>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Size(max = 256000) String> instructions = JsonNullable.<String>undefined();
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<AssistantObjectToolsInner> tools = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<ModifyAssistantRequestToolResources> toolResources = JsonNullable.<ModifyAssistantRequestToolResources>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AssistantsApiResponseFormatOption responseFormat;
 
   public ModifyAssistantRequest model(@Nullable String model) {
@@ -58,16 +68,17 @@ public class ModifyAssistantRequest {
   }
 
   /**
-   * Get model
+   * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
    * @return model
    */
   
-  @Schema(name = "model", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "model", description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("model")
   public @Nullable String getModel() {
     return model;
   }
 
+  @JsonProperty("model")
   public void setModel(@Nullable String model) {
     this.model = model;
   }
@@ -156,6 +167,7 @@ public class ModifyAssistantRequest {
     return tools;
   }
 
+  @JsonProperty("tools")
   public void setTools(List<AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
@@ -260,6 +272,7 @@ public class ModifyAssistantRequest {
     return responseFormat;
   }
 
+  @JsonProperty("response_format")
   public void setResponseFormat(@Nullable AssistantsApiResponseFormatOption responseFormat) {
     this.responseFormat = responseFormat;
   }
@@ -323,11 +336,8 @@ public class ModifyAssistantRequest {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

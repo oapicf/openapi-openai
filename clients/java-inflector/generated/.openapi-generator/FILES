@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 README.md
 inflector.yaml
 pom.xml
@@ -63,7 +62,6 @@ src/gen/java/org/openapitools/model/AuditLogUserAddedData.java
 src/gen/java/org/openapitools/model/AuditLogUserDeleted.java
 src/gen/java/org/openapitools/model/AuditLogUserUpdated.java
 src/gen/java/org/openapitools/model/AuditLogUserUpdatedChangesRequested.java
-src/gen/java/org/openapitools/model/AutoChunkingStrategy.java
 src/gen/java/org/openapitools/model/AutoChunkingStrategyRequestParam.java
 src/gen/java/org/openapitools/model/Batch.java
 src/gen/java/org/openapitools/model/BatchErrors.java
@@ -473,7 +471,6 @@ src/gen/java/org/openapitools/model/RunToolCallObject.java
 src/gen/java/org/openapitools/model/RunToolCallObjectFunction.java
 src/gen/java/org/openapitools/model/StaticChunkingStrategy.java
 src/gen/java/org/openapitools/model/StaticChunkingStrategyRequestParam.java
-src/gen/java/org/openapitools/model/StaticChunkingStrategyResponseParam.java
 src/gen/java/org/openapitools/model/StaticChunkingStrategyStatic.java
 src/gen/java/org/openapitools/model/SubmitToolOutputsRunRequest.java
 src/gen/java/org/openapitools/model/SubmitToolOutputsRunRequestToolOutputsInner.java

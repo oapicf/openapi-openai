@@ -49,7 +49,7 @@ class SubmitToolOutputsRunRequest
      * @var SubmitToolOutputsRunRequestToolOutputsInner[]|null
      * @SerializedName("tool_outputs")
      * @Type("array<OpenAPI\Server\Model\SubmitToolOutputsRunRequestToolOutputsInner>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -63,7 +63,7 @@ class SubmitToolOutputsRunRequest
      * @var bool|null
      * @SerializedName("stream")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $stream = null;
 
@@ -90,12 +90,12 @@ class SubmitToolOutputsRunRequest
     }
 
     /**
-    * Sets toolOutputs.
-    *
-    * @param SubmitToolOutputsRunRequestToolOutputsInner[]|null $toolOutputs  A list of tools for which the outputs are being submitted.
-    *
-    * @return $this
-    */
+     * Sets toolOutputs.
+     *
+     * @param SubmitToolOutputsRunRequestToolOutputsInner[]|null $toolOutputs  A list of tools for which the outputs are being submitted.
+     *
+     * @return $this
+     */
     public function setToolOutputs(?array $toolOutputs): self
     {
         $this->toolOutputs = $toolOutputs;
@@ -117,12 +117,12 @@ class SubmitToolOutputsRunRequest
     }
 
     /**
-    * Sets stream.
-    *
-    * @param bool|null $stream  If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message.
-    *
-    * @return $this
-    */
+     * Sets stream.
+     *
+     * @param bool|null $stream  If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message.
+     *
+     * @return $this
+     */
     public function setStream(?bool $stream = null): self
     {
         $this->stream = $stream;

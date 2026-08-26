@@ -1,4 +1,4 @@
-# # UsageVectorStoresResult
+# UsageVectorStoresResult
 
 ## Properties
 

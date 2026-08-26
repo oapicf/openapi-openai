@@ -17,7 +17,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.model.OtherChunkingStrategyResponseParam;
 import org.openapitools.model.StaticChunkingStrategy;
-import org.openapitools.model.StaticChunkingStrategyResponseParam;
+import org.openapitools.model.StaticChunkingStrategyRequestParam;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.validation.constraints.*;
@@ -35,7 +35,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   VectorStoreFileObjectChunkingStrategy.JSON_PROPERTY_STATIC
 })
 @JsonTypeName("VectorStoreFileObject_chunking_strategy")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-01-29T14:08:04.353155660Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class VectorStoreFileObjectChunkingStrategy {
     /**
@@ -162,10 +162,7 @@ public class VectorStoreFileObjectChunkingStrategy {
      * (except the first line).
      */
     private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
+        return o == null ? "null" : o.toString().replace("\n", "\n    ");
     }
 
 }

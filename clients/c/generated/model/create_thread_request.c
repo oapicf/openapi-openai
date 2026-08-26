@@ -14,11 +14,11 @@ static create_thread_request_t *create_thread_request_create_internal(
     if (!create_thread_request_local_var) {
         return NULL;
     }
+    memset(create_thread_request_local_var, 0, sizeof(create_thread_request_t));
+    create_thread_request_local_var->_library_owned = 1;
     create_thread_request_local_var->messages = messages;
     create_thread_request_local_var->tool_resources = tool_resources;
     create_thread_request_local_var->metadata = metadata;
-
-    create_thread_request_local_var->_library_owned = 1;
     return create_thread_request_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) create_thread_request_t *create_thread_request_creat
     create_thread_request_tool_resources_t *tool_resources,
     object_t *metadata
     ) {
-    return create_thread_request_create_internal (
+    create_thread_request_t *result = create_thread_request_create_internal (
         messages,
         tool_resources,
         metadata
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_thread_request_free(create_thread_request_t *create_thread_request) {
@@ -171,11 +174,16 @@ create_thread_request_t *create_thread_request_parseFromJSON(cJSON *create_threa
     }
 
 
+
     create_thread_request_local_var = create_thread_request_create_internal (
         messages ? messagesList : NULL,
         tool_resources ? tool_resources_local_nonprim : NULL,
         metadata ? metadata_local_object : NULL
         );
+
+    if (!create_thread_request_local_var) {
+        goto end;
+    }
 
     return create_thread_request_local_var;
 end:

@@ -54,10 +54,10 @@ class VectorStoreFileObjectChunkingStrategy {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "VectorStoreFileObjectChunkingStrategy[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "VectorStoreFileObjectChunkingStrategy[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "VectorStoreFileObjectChunkingStrategy[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "VectorStoreFileObjectChunkingStrategy[type]" has a null value in JSON.');
+        assert(json.containsKey(r'static'), 'Required key "VectorStoreFileObjectChunkingStrategy[static]" is missing from JSON.');
+        assert(json[r'static'] != null, 'Required key "VectorStoreFileObjectChunkingStrategy[static]" has a null value in JSON.');
         return true;
       }());
 
@@ -117,29 +117,29 @@ class VectorStoreFileObjectChunkingStrategy {
 }
 
 /// Always `static`.
-class VectorStoreFileObjectChunkingStrategyTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const VectorStoreFileObjectChunkingStrategyTypeEnum._(this.value);
+enum VectorStoreFileObjectChunkingStrategyTypeEnum {
+  static_._(r'static'),
+  other._(r'other'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const VectorStoreFileObjectChunkingStrategyTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const static_ = VectorStoreFileObjectChunkingStrategyTypeEnum._(r'static');
-  static const other = VectorStoreFileObjectChunkingStrategyTypeEnum._(r'other');
-
-  /// List of all possible values in this [enum][VectorStoreFileObjectChunkingStrategyTypeEnum].
-  static const values = <VectorStoreFileObjectChunkingStrategyTypeEnum>[
-    static_,
-    other,
-  ];
-
+  /// Returns the instance of [VectorStoreFileObjectChunkingStrategyTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static VectorStoreFileObjectChunkingStrategyTypeEnum? fromJson(dynamic value) => VectorStoreFileObjectChunkingStrategyTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [VectorStoreFileObjectChunkingStrategyTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<VectorStoreFileObjectChunkingStrategyTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <VectorStoreFileObjectChunkingStrategyTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -161,9 +161,10 @@ class VectorStoreFileObjectChunkingStrategyTypeEnumTypeTransformer {
 
   const VectorStoreFileObjectChunkingStrategyTypeEnumTypeTransformer._();
 
-  String encode(VectorStoreFileObjectChunkingStrategyTypeEnum data) => data.value;
+  String encode(VectorStoreFileObjectChunkingStrategyTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a VectorStoreFileObjectChunkingStrategyTypeEnum.
+  /// Returns the instance of [VectorStoreFileObjectChunkingStrategyTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -172,6 +173,9 @@ class VectorStoreFileObjectChunkingStrategyTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   VectorStoreFileObjectChunkingStrategyTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is VectorStoreFileObjectChunkingStrategyTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'static': return VectorStoreFileObjectChunkingStrategyTypeEnum.static_;
@@ -185,7 +189,7 @@ class VectorStoreFileObjectChunkingStrategyTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [VectorStoreFileObjectChunkingStrategyTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static VectorStoreFileObjectChunkingStrategyTypeEnumTypeTransformer? _instance;
 }
 

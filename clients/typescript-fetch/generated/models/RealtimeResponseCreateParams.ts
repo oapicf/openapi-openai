@@ -52,7 +52,7 @@ export interface RealtimeResponseCreateParams {
      * The set of modalities the model can respond with. To disable audio,
      * set this to ["text"].
      * 
-     * @type {Array<string>}
+     * @type {Array<RealtimeResponseCreateParamsModalitiesEnum>}
      * @memberof RealtimeResponseCreateParams
      */
     modalities?: Array<RealtimeResponseCreateParamsModalitiesEnum>;
@@ -80,14 +80,14 @@ export interface RealtimeResponseCreateParams {
      * voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`, 
      * `shimmer` and `verse`.
      * 
-     * @type {string}
+     * @type {RealtimeResponseCreateParamsVoiceEnum}
      * @memberof RealtimeResponseCreateParams
      */
     voice?: RealtimeResponseCreateParamsVoiceEnum;
     /**
      * The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
      * 
-     * @type {string}
+     * @type {RealtimeResponseCreateParamsOutputAudioFormatEnum}
      * @memberof RealtimeResponseCreateParams
      */
     outputAudioFormat?: RealtimeResponseCreateParamsOutputAudioFormatEnum;
@@ -207,7 +207,7 @@ export function RealtimeResponseCreateParamsFromJSONTyped(json: any, ignoreDiscr
         'temperature': json['temperature'] == null ? undefined : json['temperature'],
         'maxResponseOutputTokens': json['max_response_output_tokens'] == null ? undefined : RealtimeResponseCreateParamsMaxResponseOutputTokensFromJSON(json['max_response_output_tokens']),
         'conversation': json['conversation'] == null ? undefined : RealtimeResponseCreateParamsConversationFromJSON(json['conversation']),
-        'metadata': json['metadata'] == null ? undefined : json['metadata'],
+        'metadata': json['metadata'] === undefined ? undefined : json['metadata'] === null ? null : json['metadata'],
         'input': json['input'] == null ? undefined : ((json['input'] as Array<any>).map(RealtimeConversationItemFromJSON)),
     };
 }

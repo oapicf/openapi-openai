@@ -125,7 +125,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Project membership role</value>
         [JsonPropertyName("role")]
-        public RoleEnum? Role { get { return this.RoleOption; } set { this.RoleOption = new(value); } }
+        public RoleEnum? Role { get { return this.RoleOption.Value; } set { this.RoleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -139,7 +139,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Project&#39;s public ID</value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -169,8 +169,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="InviteProjectsInner" />
     /// </summary>
-    public class InviteProjectsInnerJsonConverter : JsonConverter<InviteProjectsInner>
+    public partial class InviteProjectsInnerJsonConverter : JsonConverter<InviteProjectsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InviteProjectsInnerJsonConverter" /> class.
+        /// </summary>
+        public InviteProjectsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="InviteProjectsInner" />
         /// </summary>

@@ -67,7 +67,7 @@ export function CreateAssistantRequestToolResourcesFromJSONTyped(json: any, igno
     return {
         
         'codeInterpreter': json['code_interpreter'] == null ? undefined : CreateAssistantRequestToolResourcesCodeInterpreterFromJSON(json['code_interpreter']),
-        'fileSearch': json['file_search'] == null ? undefined : CreateAssistantRequestToolResourcesFileSearchFromJSON(json['file_search']),
+        'fileSearch': json['file_search'] === undefined ? undefined : json['file_search'] === null ? null : CreateAssistantRequestToolResourcesFileSearchFromJSON(json['file_search']),
     };
 }
 

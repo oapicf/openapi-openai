@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAITranscriptionWord::OAITranscriptionWord(QString json) {
+OAITranscriptionWord::OAITranscriptionWord(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAITranscriptionWord::initializeModel() {
     m_end_isValid = false;
 }
 
-void OAITranscriptionWord::fromJson(QString jsonString) {
+void OAITranscriptionWord::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

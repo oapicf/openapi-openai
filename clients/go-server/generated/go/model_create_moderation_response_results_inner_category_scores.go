@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // CreateModerationResponseResultsInnerCategoryScores - A list of the categories along with their scores as predicted by model.
@@ -56,30 +61,158 @@ type CreateModerationResponseResultsInnerCategoryScores struct {
 	// The score for the category 'violence/graphic'.
 	ViolenceGraphic float32 `json:"violence/graphic"`
 }
-
-// AssertCreateModerationResponseResultsInnerCategoryScoresRequired checks if the required fields are not zero-ed
-func AssertCreateModerationResponseResultsInnerCategoryScoresRequired(obj CreateModerationResponseResultsInnerCategoryScores) error {
-	elements := map[string]interface{}{
-		"hate": obj.Hate,
-		"hate/threatening": obj.HateThreatening,
-		"harassment": obj.Harassment,
-		"harassment/threatening": obj.HarassmentThreatening,
-		"illicit": obj.Illicit,
-		"illicit/violent": obj.IllicitViolent,
-		"self-harm": obj.SelfHarm,
-		"self-harm/intent": obj.SelfHarmIntent,
-		"self-harm/instructions": obj.SelfHarmInstructions,
-		"sexual": obj.Sexual,
-		"sexual/minors": obj.SexualMinors,
-		"violence": obj.Violence,
-		"violence/graphic": obj.ViolenceGraphic,
+// UnmarshalJSON validates required property keys then unmarshals into CreateModerationResponseResultsInnerCategoryScores
+func (o *CreateModerationResponseResultsInnerCategoryScores) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"hate",
+		"hate/threatening",
+		"harassment",
+		"harassment/threatening",
+		"illicit",
+		"illicit/violent",
+		"self-harm",
+		"self-harm/intent",
+		"self-harm/instructions",
+		"sexual",
+		"sexual/minors",
+		"violence",
+		"violence/graphic",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"hate": false,
+		"hate/threatening": false,
+		"harassment": false,
+		"harassment/threatening": false,
+		"illicit": false,
+		"illicit/violent": false,
+		"self-harm": false,
+		"self-harm/intent": false,
+		"self-harm/instructions": false,
+		"sexual": false,
+		"sexual/minors": false,
+		"violence": false,
+		"violence/graphic": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"hate": {},
+		"hate/threatening": {},
+		"harassment": {},
+		"harassment/threatening": {},
+		"illicit": {},
+		"illicit/violent": {},
+		"self-harm": {},
+		"self-harm/intent": {},
+		"self-harm/instructions": {},
+		"sexual": {},
+		"sexual/minors": {},
+		"violence": {},
+		"violence/graphic": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CreateModerationResponseResultsInnerCategoryScores
+
+	if value, exists := allProperties["hate"]; exists {
+		if err = json.Unmarshal(value, &decoded.Hate); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["hate/threatening"]; exists {
+		if err = json.Unmarshal(value, &decoded.HateThreatening); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["harassment"]; exists {
+		if err = json.Unmarshal(value, &decoded.Harassment); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["harassment/threatening"]; exists {
+		if err = json.Unmarshal(value, &decoded.HarassmentThreatening); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["illicit"]; exists {
+		if err = json.Unmarshal(value, &decoded.Illicit); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["illicit/violent"]; exists {
+		if err = json.Unmarshal(value, &decoded.IllicitViolent); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["self-harm"]; exists {
+		if err = json.Unmarshal(value, &decoded.SelfHarm); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["self-harm/intent"]; exists {
+		if err = json.Unmarshal(value, &decoded.SelfHarmIntent); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["self-harm/instructions"]; exists {
+		if err = json.Unmarshal(value, &decoded.SelfHarmInstructions); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["sexual"]; exists {
+		if err = json.Unmarshal(value, &decoded.Sexual); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["sexual/minors"]; exists {
+		if err = json.Unmarshal(value, &decoded.SexualMinors); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["violence"]; exists {
+		if err = json.Unmarshal(value, &decoded.Violence); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["violence/graphic"]; exists {
+		if err = json.Unmarshal(value, &decoded.ViolenceGraphic); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCreateModerationResponseResultsInnerCategoryScoresRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertCreateModerationResponseResultsInnerCategoryScoresRequired(obj CreateModerationResponseResultsInnerCategoryScores) error {
 	return nil
 }
 

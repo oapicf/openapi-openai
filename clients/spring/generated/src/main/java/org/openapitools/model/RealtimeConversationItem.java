@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -12,22 +13,23 @@ import org.openapitools.model.RealtimeConversationItemContentInner;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * The item to add to the conversation.
  */
 
 @Schema(name = "RealtimeConversationItem", description = "The item to add to the conversation.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeConversationItem {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String id;
 
   /**
@@ -67,6 +69,7 @@ public class RealtimeConversationItem {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable TypeEnum type;
 
   /**
@@ -102,6 +105,7 @@ public class RealtimeConversationItem {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable ObjectEnum _object;
 
   /**
@@ -139,6 +143,7 @@ public class RealtimeConversationItem {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable StatusEnum status;
 
   /**
@@ -178,17 +183,22 @@ public class RealtimeConversationItem {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RoleEnum role;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid RealtimeConversationItemContentInner> content = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String callId;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String name;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String arguments;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String output;
 
   public RealtimeConversationItem id(@Nullable String id) {
@@ -207,6 +217,7 @@ public class RealtimeConversationItem {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(@Nullable String id) {
     this.id = id;
   }
@@ -227,6 +238,7 @@ public class RealtimeConversationItem {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(@Nullable TypeEnum type) {
     this.type = type;
   }
@@ -247,6 +259,7 @@ public class RealtimeConversationItem {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(@Nullable ObjectEnum _object) {
     this._object = _object;
   }
@@ -267,6 +280,7 @@ public class RealtimeConversationItem {
     return status;
   }
 
+  @JsonProperty("status")
   public void setStatus(@Nullable StatusEnum status) {
     this.status = status;
   }
@@ -287,6 +301,7 @@ public class RealtimeConversationItem {
     return role;
   }
 
+  @JsonProperty("role")
   public void setRole(@Nullable RoleEnum role) {
     this.role = role;
   }
@@ -315,6 +330,7 @@ public class RealtimeConversationItem {
     return content;
   }
 
+  @JsonProperty("content")
   public void setContent(List<@Valid RealtimeConversationItemContentInner> content) {
     this.content = content;
   }
@@ -335,6 +351,7 @@ public class RealtimeConversationItem {
     return callId;
   }
 
+  @JsonProperty("call_id")
   public void setCallId(@Nullable String callId) {
     this.callId = callId;
   }
@@ -355,6 +372,7 @@ public class RealtimeConversationItem {
     return name;
   }
 
+  @JsonProperty("name")
   public void setName(@Nullable String name) {
     this.name = name;
   }
@@ -375,6 +393,7 @@ public class RealtimeConversationItem {
     return arguments;
   }
 
+  @JsonProperty("arguments")
   public void setArguments(@Nullable String arguments) {
     this.arguments = arguments;
   }
@@ -395,6 +414,7 @@ public class RealtimeConversationItem {
     return output;
   }
 
+  @JsonProperty("output")
   public void setOutput(@Nullable String output) {
     this.output = output;
   }
@@ -447,11 +467,8 @@ public class RealtimeConversationItem {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

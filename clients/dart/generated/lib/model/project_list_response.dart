@@ -71,10 +71,16 @@ class ProjectListResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectListResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectListResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "ProjectListResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "ProjectListResponse[object]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "ProjectListResponse[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "ProjectListResponse[data]" has a null value in JSON.');
+        assert(json.containsKey(r'first_id'), 'Required key "ProjectListResponse[first_id]" is missing from JSON.');
+        assert(json[r'first_id'] != null, 'Required key "ProjectListResponse[first_id]" has a null value in JSON.');
+        assert(json.containsKey(r'last_id'), 'Required key "ProjectListResponse[last_id]" is missing from JSON.');
+        assert(json[r'last_id'] != null, 'Required key "ProjectListResponse[last_id]" has a null value in JSON.');
+        assert(json.containsKey(r'has_more'), 'Required key "ProjectListResponse[has_more]" is missing from JSON.');
+        assert(json[r'has_more'] != null, 'Required key "ProjectListResponse[has_more]" has a null value in JSON.');
         return true;
       }());
 
@@ -140,27 +146,28 @@ class ProjectListResponse {
 }
 
 
-class ProjectListResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ProjectListResponseObjectEnum._(this.value);
+enum ProjectListResponseObjectEnum {
+  list._(r'list'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ProjectListResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const list = ProjectListResponseObjectEnum._(r'list');
-
-  /// List of all possible values in this [enum][ProjectListResponseObjectEnum].
-  static const values = <ProjectListResponseObjectEnum>[
-    list,
-  ];
-
+  /// Returns the instance of [ProjectListResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ProjectListResponseObjectEnum? fromJson(dynamic value) => ProjectListResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ProjectListResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ProjectListResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ProjectListResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -182,9 +189,10 @@ class ProjectListResponseObjectEnumTypeTransformer {
 
   const ProjectListResponseObjectEnumTypeTransformer._();
 
-  String encode(ProjectListResponseObjectEnum data) => data.value;
+  String encode(ProjectListResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ProjectListResponseObjectEnum.
+  /// Returns the instance of [ProjectListResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -193,6 +201,9 @@ class ProjectListResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ProjectListResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ProjectListResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'list': return ProjectListResponseObjectEnum.list;
@@ -205,7 +216,7 @@ class ProjectListResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ProjectListResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ProjectListResponseObjectEnumTypeTransformer? _instance;
 }
 

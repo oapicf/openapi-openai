@@ -56,7 +56,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The role of the service account. Is either &#x60;owner&#x60; or &#x60;member&#x60;.</value>
         [JsonPropertyName("role")]
-        public string? Role { get { return this.RoleOption; } set { this.RoleOption = new(value); } }
+        public string? Role { get { return this.RoleOption.Value; } set { this.RoleOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogServiceAccountCreatedData" />
     /// </summary>
-    public class AuditLogServiceAccountCreatedDataJsonConverter : JsonConverter<AuditLogServiceAccountCreatedData>
+    public partial class AuditLogServiceAccountCreatedDataJsonConverter : JsonConverter<AuditLogServiceAccountCreatedData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogServiceAccountCreatedDataJsonConverter" /> class.
+        /// </summary>
+        public AuditLogServiceAccountCreatedDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogServiceAccountCreatedData" />
         /// </summary>

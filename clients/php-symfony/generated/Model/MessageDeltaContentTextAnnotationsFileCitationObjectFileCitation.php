@@ -49,7 +49,7 @@ class MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
      * @var string|null
      * @SerializedName("file_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $fileId = null;
 
@@ -59,7 +59,7 @@ class MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
      * @var string|null
      * @SerializedName("quote")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $quote = null;
 
@@ -86,12 +86,12 @@ class MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
     }
 
     /**
-    * Sets fileId.
-    *
-    * @param string|null $fileId  The ID of the specific File the citation is from.
-    *
-    * @return $this
-    */
+     * Sets fileId.
+     *
+     * @param string|null $fileId  The ID of the specific File the citation is from.
+     *
+     * @return $this
+     */
     public function setFileId(?string $fileId = null): self
     {
         $this->fileId = $fileId;
@@ -113,12 +113,12 @@ class MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
     }
 
     /**
-    * Sets quote.
-    *
-    * @param string|null $quote  The specific quote in the file.
-    *
-    * @return $this
-    */
+     * Sets quote.
+     *
+     * @param string|null $quote  The specific quote in the file.
+     *
+     * @return $this
+     */
     public function setQuote(?string $quote = null): self
     {
         $this->quote = $quote;

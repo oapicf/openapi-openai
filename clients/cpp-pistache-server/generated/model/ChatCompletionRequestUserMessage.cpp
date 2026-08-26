@@ -27,6 +27,8 @@ ChatCompletionRequestUserMessage::ChatCompletionRequestUserMessage()
     
 }
 
+ChatCompletionRequestUserMessage::~ChatCompletionRequestUserMessage() = default;
+
 void ChatCompletionRequestUserMessage::validate() const
 {
     std::stringstream msg;

@@ -19,18 +19,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * 
- * @param type 
+ * @param type The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
  * @param wandb 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class CreateFineTuningJobRequestIntegrationsInner (
+    /* The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported.  */
     @SerializedName("type") private val _type: CreateFineTuningJobRequestIntegrationsInner.Type?,
     @SerializedName("wandb") private val _wandb: CreateFineTuningJobRequestIntegrationsInnerWandb?
 ) {
 
     /**
-    * 
+    * The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
     * Values: wandb
     */
     enum class Type(val value: kotlin.String){

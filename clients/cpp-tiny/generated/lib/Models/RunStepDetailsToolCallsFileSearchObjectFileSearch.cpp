@@ -103,7 +103,7 @@ RunStepDetailsToolCallsFileSearchObject_file_search::getRankingOptions()
 }
 
 void
-RunStepDetailsToolCallsFileSearchObject_file_search::setRankingOptions(RunStepDetailsToolCallsFileSearchRankingOptionsObject  ranking_options)
+RunStepDetailsToolCallsFileSearchObject_file_search::setRankingOptions(RunStepDetailsToolCallsFileSearchRankingOptionsObject ranking_options)
 {
 	this->ranking_options = ranking_options;
 }
@@ -115,7 +115,7 @@ RunStepDetailsToolCallsFileSearchObject_file_search::getResults()
 }
 
 void
-RunStepDetailsToolCallsFileSearchObject_file_search::setResults(std::list <RunStepDetailsToolCallsFileSearchResultObject> results)
+RunStepDetailsToolCallsFileSearchObject_file_search::setResults(std::list<RunStepDetailsToolCallsFileSearchResultObject> results)
 {
 	this->results = results;
 }

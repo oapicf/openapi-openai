@@ -26,6 +26,8 @@ ModifyAssistantRequest_tool_resources::ModifyAssistantRequest_tool_resources()
     
 }
 
+ModifyAssistantRequest_tool_resources::~ModifyAssistantRequest_tool_resources() = default;
+
 void ModifyAssistantRequest_tool_resources::validate() const
 {
     std::stringstream msg;

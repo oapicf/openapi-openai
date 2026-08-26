@@ -129,7 +129,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The ID of the tool call.</value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CodeInterpreter
@@ -142,7 +142,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets CodeInterpreter
         /// </summary>
         [JsonPropertyName("code_interpreter")]
-        public RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter? CodeInterpreter { get { return this.CodeInterpreterOption; } set { this.CodeInterpreterOption = new(value); } }
+        public RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter? CodeInterpreter { get { return this.CodeInterpreterOption.Value; } set { this.CodeInterpreterOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -174,8 +174,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDeltaStepDetailsToolCallsCodeObject" />
     /// </summary>
-    public class RunStepDeltaStepDetailsToolCallsCodeObjectJsonConverter : JsonConverter<RunStepDeltaStepDetailsToolCallsCodeObject>
+    public partial class RunStepDeltaStepDetailsToolCallsCodeObjectJsonConverter : JsonConverter<RunStepDeltaStepDetailsToolCallsCodeObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDeltaStepDetailsToolCallsCodeObjectJsonConverter" /> class.
+        /// </summary>
+        public RunStepDeltaStepDetailsToolCallsCodeObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDeltaStepDetailsToolCallsCodeObject" />
         /// </summary>

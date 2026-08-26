@@ -32,7 +32,7 @@ class  RealtimeServerEventRateLimitsUpdated_rate_limits_inner
 {
 public:
     RealtimeServerEventRateLimitsUpdated_rate_limits_inner();
-    virtual ~RealtimeServerEventRateLimitsUpdated_rate_limits_inner() = default;
+    virtual ~RealtimeServerEventRateLimitsUpdated_rate_limits_inner();
 
 
     /// <summary>

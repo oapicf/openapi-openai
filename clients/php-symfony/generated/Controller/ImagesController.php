@@ -98,7 +98,7 @@ class ImagesController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateImageRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateImageRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($createImageRequest, $asserts);
         if ($response instanceof Response) {
@@ -197,7 +197,7 @@ class ImagesController extends Controller
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($prompt, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -209,14 +209,14 @@ class ImagesController extends Controller
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateImageEditRequestModel");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateImageEditRequestModel');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($model, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $asserts[] = new Assert\GreaterThanOrEqual(1);
         $asserts[] = new Assert\LessThanOrEqual(10);
         $response = $this->validate($n, $asserts);
@@ -225,20 +225,20 @@ class ImagesController extends Controller
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ '256x256', '512x512', '1024x1024' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($size, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ 'url', 'b64_json' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($responseFormat, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($user, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -332,14 +332,14 @@ class ImagesController extends Controller
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateImageEditRequestModel");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateImageEditRequestModel');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($model, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $asserts[] = new Assert\GreaterThanOrEqual(1);
         $asserts[] = new Assert\LessThanOrEqual(10);
         $response = $this->validate($n, $asserts);
@@ -348,20 +348,20 @@ class ImagesController extends Controller
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ 'url', 'b64_json' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($responseFormat, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ '256x256', '512x512', '1024x1024' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($size, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($user, $asserts);
         if ($response instanceof Response) {
             return $response;

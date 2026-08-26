@@ -49,7 +49,7 @@ class RunStepDetailsToolCallsObjectToolCallsInner
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -60,7 +60,7 @@ class RunStepDetailsToolCallsObjectToolCallsInner
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['code_interpreter', 'file_search', 'function'])]
     #[Assert\Type("string")]
@@ -70,7 +70,7 @@ class RunStepDetailsToolCallsObjectToolCallsInner
      * @var RunStepDetailsToolCallsCodeObjectCodeInterpreter|null
      * @SerializedName("code_interpreter")
      * @Type("OpenAPI\Server\Model\RunStepDetailsToolCallsCodeObjectCodeInterpreter")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunStepDetailsToolCallsCodeObjectCodeInterpreter")]
@@ -80,7 +80,7 @@ class RunStepDetailsToolCallsObjectToolCallsInner
      * @var RunStepDetailsToolCallsFileSearchObjectFileSearch|null
      * @SerializedName("file_search")
      * @Type("OpenAPI\Server\Model\RunStepDetailsToolCallsFileSearchObjectFileSearch")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunStepDetailsToolCallsFileSearchObjectFileSearch")]
@@ -90,7 +90,7 @@ class RunStepDetailsToolCallsObjectToolCallsInner
      * @var RunStepDetailsToolCallsFunctionObjectFunction|null
      * @SerializedName("function")
      * @Type("OpenAPI\Server\Model\RunStepDetailsToolCallsFunctionObjectFunction")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunStepDetailsToolCallsFunctionObjectFunction")]
@@ -122,12 +122,12 @@ class RunStepDetailsToolCallsObjectToolCallsInner
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The ID of the tool call object.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The ID of the tool call object.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -149,12 +149,12 @@ class RunStepDetailsToolCallsObjectToolCallsInner
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -176,12 +176,12 @@ class RunStepDetailsToolCallsObjectToolCallsInner
     }
 
     /**
-    * Sets codeInterpreter.
-    *
-    * @param RunStepDetailsToolCallsCodeObjectCodeInterpreter|null $codeInterpreter
-    *
-    * @return $this
-    */
+     * Sets codeInterpreter.
+     *
+     * @param RunStepDetailsToolCallsCodeObjectCodeInterpreter|null $codeInterpreter
+     *
+     * @return $this
+     */
     public function setCodeInterpreter(?RunStepDetailsToolCallsCodeObjectCodeInterpreter $codeInterpreter): self
     {
         $this->codeInterpreter = $codeInterpreter;
@@ -203,12 +203,12 @@ class RunStepDetailsToolCallsObjectToolCallsInner
     }
 
     /**
-    * Sets fileSearch.
-    *
-    * @param RunStepDetailsToolCallsFileSearchObjectFileSearch|null $fileSearch
-    *
-    * @return $this
-    */
+     * Sets fileSearch.
+     *
+     * @param RunStepDetailsToolCallsFileSearchObjectFileSearch|null $fileSearch
+     *
+     * @return $this
+     */
     public function setFileSearch(?RunStepDetailsToolCallsFileSearchObjectFileSearch $fileSearch): self
     {
         $this->fileSearch = $fileSearch;
@@ -230,12 +230,12 @@ class RunStepDetailsToolCallsObjectToolCallsInner
     }
 
     /**
-    * Sets function.
-    *
-    * @param RunStepDetailsToolCallsFunctionObjectFunction|null $function
-    *
-    * @return $this
-    */
+     * Sets function.
+     *
+     * @param RunStepDetailsToolCallsFunctionObjectFunction|null $function
+     *
+     * @return $this
+     */
     public function setFunction(?RunStepDetailsToolCallsFunctionObjectFunction $function): self
     {
         $this->function = $function;

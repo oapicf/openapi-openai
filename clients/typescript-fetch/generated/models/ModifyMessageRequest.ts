@@ -45,7 +45,7 @@ export function ModifyMessageRequestFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'metadata': json['metadata'] == null ? undefined : json['metadata'],
+        'metadata': json['metadata'] === undefined ? undefined : json['metadata'] === null ? null : json['metadata'],
     };
 }
 

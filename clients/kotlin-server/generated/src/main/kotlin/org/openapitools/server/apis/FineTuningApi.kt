@@ -32,96 +32,94 @@ import org.openapitools.server.models.ListFineTuningJobEventsResponse
 import org.openapitools.server.models.ListPaginatedFineTuningJobsResponse
 
 fun Route.FineTuningApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    post<Paths.cancelFineTuningJob> {
+    post<Paths.cancelFineTuningJob> { cancelFineTuningJob ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "training_file" : "training_file",
-              "result_files" : [ "file-abc123", "file-abc123" ],
+              "id" : "id",
+              "created_at" : 0,
+              "error" : {
+                "code" : "code",
+                "message" : "message",
+                "param" : "param"
+              },
+              "fine_tuned_model" : "fine_tuned_model",
               "finished_at" : 6,
+              "hyperparameters" : {
+                "batch_size" : "auto",
+                "learning_rate_multiplier" : "auto",
+                "n_epochs" : "auto"
+              },
+              "model" : "model",
+              "object" : "fine_tuning.job",
+              "organization_id" : "organization_id",
+              "result_files" : [ "file-abc123", "file-abc123" ],
+              "status" : "validating_files",
+              "trained_tokens" : 1,
+              "training_file" : "training_file",
+              "validation_file" : "validation_file",
+              "integrations" : [ {
+                "type" : "wandb",
+                "wandb" : {
+                  "project" : "my-wandb-project",
+                  "name" : "name",
+                  "entity" : "entity",
+                  "tags" : [ "custom-tag", "custom-tag" ]
+                }
+              }, {
+                "type" : "wandb",
+                "wandb" : {
+                  "project" : "my-wandb-project",
+                  "name" : "name",
+                  "entity" : "entity",
+                  "tags" : [ "custom-tag", "custom-tag" ]
+                }
+              }, {
+                "type" : "wandb",
+                "wandb" : {
+                  "project" : "my-wandb-project",
+                  "name" : "name",
+                  "entity" : "entity",
+                  "tags" : [ "custom-tag", "custom-tag" ]
+                }
+              }, {
+                "type" : "wandb",
+                "wandb" : {
+                  "project" : "my-wandb-project",
+                  "name" : "name",
+                  "entity" : "entity",
+                  "tags" : [ "custom-tag", "custom-tag" ]
+                }
+              }, {
+                "type" : "wandb",
+                "wandb" : {
+                  "project" : "my-wandb-project",
+                  "name" : "name",
+                  "entity" : "entity",
+                  "tags" : [ "custom-tag", "custom-tag" ]
+                }
+              } ],
               "seed" : 5,
+              "estimated_finish" : 5,
               "method" : {
+                "type" : "supervised",
                 "supervised" : {
                   "hyperparameters" : {
                     "batch_size" : "auto",
-                    "n_epochs" : "auto",
-                    "learning_rate_multiplier" : "auto"
+                    "learning_rate_multiplier" : "auto",
+                    "n_epochs" : "auto"
                   }
                 },
                 "dpo" : {
                   "hyperparameters" : {
                     "beta" : "auto"
                   }
-                },
-                "type" : "supervised"
-              },
-              "fine_tuned_model" : "fine_tuned_model",
-              "validation_file" : "validation_file",
-              "created_at" : 0,
-              "error" : {
-                "code" : "code",
-                "param" : "param",
-                "message" : "message"
-              },
-              "estimated_finish" : 5,
-              "organization_id" : "organization_id",
-              "hyperparameters" : {
-                "batch_size" : "auto",
-                "n_epochs" : "auto",
-                "learning_rate_multiplier" : "auto"
-              },
-              "model" : "model",
-              "id" : "id",
-              "trained_tokens" : 1,
-              "integrations" : [ {
-                "wandb" : {
-                  "name" : "name",
-                  "project" : "my-wandb-project",
-                  "entity" : "entity",
-                  "tags" : [ "custom-tag", "custom-tag" ]
-                },
-                "type" : "wandb"
-              }, {
-                "wandb" : {
-                  "name" : "name",
-                  "project" : "my-wandb-project",
-                  "entity" : "entity",
-                  "tags" : [ "custom-tag", "custom-tag" ]
-                },
-                "type" : "wandb"
-              }, {
-                "wandb" : {
-                  "name" : "name",
-                  "project" : "my-wandb-project",
-                  "entity" : "entity",
-                  "tags" : [ "custom-tag", "custom-tag" ]
-                },
-                "type" : "wandb"
-              }, {
-                "wandb" : {
-                  "name" : "name",
-                  "project" : "my-wandb-project",
-                  "entity" : "entity",
-                  "tags" : [ "custom-tag", "custom-tag" ]
-                },
-                "type" : "wandb"
-              }, {
-                "wandb" : {
-                  "name" : "name",
-                  "project" : "my-wandb-project",
-                  "entity" : "entity",
-                  "tags" : [ "custom-tag", "custom-tag" ]
-                },
-                "type" : "wandb"
-              } ],
-              "object" : "fine_tuning.job",
-              "status" : "validating_files"
+                }
+              }
             }"""
             
             when (exampleContentType) {
@@ -132,95 +130,94 @@ fun Route.FineTuningApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createFineTuningJob> {
+    post<Paths.createFineTuningJob> { createFineTuningJob ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "training_file" : "training_file",
-              "result_files" : [ "file-abc123", "file-abc123" ],
+              "id" : "id",
+              "created_at" : 0,
+              "error" : {
+                "code" : "code",
+                "message" : "message",
+                "param" : "param"
+              },
+              "fine_tuned_model" : "fine_tuned_model",
               "finished_at" : 6,
+              "hyperparameters" : {
+                "batch_size" : "auto",
+                "learning_rate_multiplier" : "auto",
+                "n_epochs" : "auto"
+              },
+              "model" : "model",
+              "object" : "fine_tuning.job",
+              "organization_id" : "organization_id",
+              "result_files" : [ "file-abc123", "file-abc123" ],
+              "status" : "validating_files",
+              "trained_tokens" : 1,
+              "training_file" : "training_file",
+              "validation_file" : "validation_file",
+              "integrations" : [ {
+                "type" : "wandb",
+                "wandb" : {
+                  "project" : "my-wandb-project",
+                  "name" : "name",
+                  "entity" : "entity",
+                  "tags" : [ "custom-tag", "custom-tag" ]
+                }
+              }, {
+                "type" : "wandb",
+                "wandb" : {
+                  "project" : "my-wandb-project",
+                  "name" : "name",
+                  "entity" : "entity",
+                  "tags" : [ "custom-tag", "custom-tag" ]
+                }
+              }, {
+                "type" : "wandb",
+                "wandb" : {
+                  "project" : "my-wandb-project",
+                  "name" : "name",
+                  "entity" : "entity",
+                  "tags" : [ "custom-tag", "custom-tag" ]
+                }
+              }, {
+                "type" : "wandb",
+                "wandb" : {
+                  "project" : "my-wandb-project",
+                  "name" : "name",
+                  "entity" : "entity",
+                  "tags" : [ "custom-tag", "custom-tag" ]
+                }
+              }, {
+                "type" : "wandb",
+                "wandb" : {
+                  "project" : "my-wandb-project",
+                  "name" : "name",
+                  "entity" : "entity",
+                  "tags" : [ "custom-tag", "custom-tag" ]
+                }
+              } ],
               "seed" : 5,
+              "estimated_finish" : 5,
               "method" : {
+                "type" : "supervised",
                 "supervised" : {
                   "hyperparameters" : {
                     "batch_size" : "auto",
-                    "n_epochs" : "auto",
-                    "learning_rate_multiplier" : "auto"
+                    "learning_rate_multiplier" : "auto",
+                    "n_epochs" : "auto"
                   }
                 },
                 "dpo" : {
                   "hyperparameters" : {
                     "beta" : "auto"
                   }
-                },
-                "type" : "supervised"
-              },
-              "fine_tuned_model" : "fine_tuned_model",
-              "validation_file" : "validation_file",
-              "created_at" : 0,
-              "error" : {
-                "code" : "code",
-                "param" : "param",
-                "message" : "message"
-              },
-              "estimated_finish" : 5,
-              "organization_id" : "organization_id",
-              "hyperparameters" : {
-                "batch_size" : "auto",
-                "n_epochs" : "auto",
-                "learning_rate_multiplier" : "auto"
-              },
-              "model" : "model",
-              "id" : "id",
-              "trained_tokens" : 1,
-              "integrations" : [ {
-                "wandb" : {
-                  "name" : "name",
-                  "project" : "my-wandb-project",
-                  "entity" : "entity",
-                  "tags" : [ "custom-tag", "custom-tag" ]
-                },
-                "type" : "wandb"
-              }, {
-                "wandb" : {
-                  "name" : "name",
-                  "project" : "my-wandb-project",
-                  "entity" : "entity",
-                  "tags" : [ "custom-tag", "custom-tag" ]
-                },
-                "type" : "wandb"
-              }, {
-                "wandb" : {
-                  "name" : "name",
-                  "project" : "my-wandb-project",
-                  "entity" : "entity",
-                  "tags" : [ "custom-tag", "custom-tag" ]
-                },
-                "type" : "wandb"
-              }, {
-                "wandb" : {
-                  "name" : "name",
-                  "project" : "my-wandb-project",
-                  "entity" : "entity",
-                  "tags" : [ "custom-tag", "custom-tag" ]
-                },
-                "type" : "wandb"
-              }, {
-                "wandb" : {
-                  "name" : "name",
-                  "project" : "my-wandb-project",
-                  "entity" : "entity",
-                  "tags" : [ "custom-tag", "custom-tag" ]
-                },
-                "type" : "wandb"
-              } ],
-              "object" : "fine_tuning.job",
-              "status" : "validating_files"
+                }
+              }
             }"""
             
             when (exampleContentType) {
@@ -231,9 +228,8 @@ fun Route.FineTuningApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listFineTuningEvents> {
+    get<Paths.listFineTuningEvents> { listFineTuningEvents ->
         
         val principal = null!!
         
@@ -241,21 +237,21 @@ fun Route.FineTuningApi() {
         val exampleContentType = "application/json"
             val exampleContentString = """{
               "data" : [ {
-                "data" : "{}",
-                "level" : "info",
-                "created_at" : 0,
+                "object" : "fine_tuning.job.event",
                 "id" : "id",
+                "created_at" : 0,
+                "level" : "info",
                 "message" : "message",
                 "type" : "message",
-                "object" : "fine_tuning.job.event"
+                "data" : "{}"
               }, {
-                "data" : "{}",
-                "level" : "info",
-                "created_at" : 0,
+                "object" : "fine_tuning.job.event",
                 "id" : "id",
+                "created_at" : 0,
+                "level" : "info",
                 "message" : "message",
                 "type" : "message",
-                "object" : "fine_tuning.job.event"
+                "data" : "{}"
               } ],
               "object" : "list"
             }"""
@@ -268,52 +264,51 @@ fun Route.FineTuningApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listFineTuningJobCheckpoints> {
+    get<Paths.listFineTuningJobCheckpoints> { listFineTuningJobCheckpoints ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "data" : [ {
+                "id" : "id",
+                "created_at" : 0,
+                "fine_tuned_model_checkpoint" : "fine_tuned_model_checkpoint",
+                "step_number" : 6,
+                "metrics" : {
+                  "step" : 1.4658129805029452,
+                  "train_loss" : 5.962133916683182,
+                  "train_mean_token_accuracy" : 5.637376656633329,
+                  "valid_loss" : 2.3021358869347655,
+                  "valid_mean_token_accuracy" : 7.061401241503109,
+                  "full_valid_loss" : 9.301444243932576,
+                  "full_valid_mean_token_accuracy" : 3.616076749251911
+                },
+                "fine_tuning_job_id" : "fine_tuning_job_id",
+                "object" : "fine_tuning.job.checkpoint"
+              }, {
+                "id" : "id",
+                "created_at" : 0,
+                "fine_tuned_model_checkpoint" : "fine_tuned_model_checkpoint",
+                "step_number" : 6,
+                "metrics" : {
+                  "step" : 1.4658129805029452,
+                  "train_loss" : 5.962133916683182,
+                  "train_mean_token_accuracy" : 5.637376656633329,
+                  "valid_loss" : 2.3021358869347655,
+                  "valid_mean_token_accuracy" : 7.061401241503109,
+                  "full_valid_loss" : 9.301444243932576,
+                  "full_valid_mean_token_accuracy" : 3.616076749251911
+                },
+                "fine_tuning_job_id" : "fine_tuning_job_id",
+                "object" : "fine_tuning.job.checkpoint"
+              } ],
+              "object" : "list",
               "first_id" : "first_id",
-              "data" : [ {
-                "step_number" : 6,
-                "created_at" : 0,
-                "fine_tuning_job_id" : "fine_tuning_job_id",
-                "id" : "id",
-                "metrics" : {
-                  "full_valid_mean_token_accuracy" : 3.616076749251911,
-                  "valid_loss" : 2.3021358869347655,
-                  "full_valid_loss" : 9.301444243932576,
-                  "train_mean_token_accuracy" : 5.637376656633329,
-                  "valid_mean_token_accuracy" : 7.061401241503109,
-                  "train_loss" : 5.962133916683182,
-                  "step" : 1.4658129805029452
-                },
-                "fine_tuned_model_checkpoint" : "fine_tuned_model_checkpoint",
-                "object" : "fine_tuning.job.checkpoint"
-              }, {
-                "step_number" : 6,
-                "created_at" : 0,
-                "fine_tuning_job_id" : "fine_tuning_job_id",
-                "id" : "id",
-                "metrics" : {
-                  "full_valid_mean_token_accuracy" : 3.616076749251911,
-                  "valid_loss" : 2.3021358869347655,
-                  "full_valid_loss" : 9.301444243932576,
-                  "train_mean_token_accuracy" : 5.637376656633329,
-                  "valid_mean_token_accuracy" : 7.061401241503109,
-                  "train_loss" : 5.962133916683182,
-                  "step" : 1.4658129805029452
-                },
-                "fine_tuned_model_checkpoint" : "fine_tuned_model_checkpoint",
-                "object" : "fine_tuning.job.checkpoint"
-              } ],
               "last_id" : "last_id",
-              "has_more" : true,
-              "object" : "list"
+              "has_more" : true
             }"""
             
             when (exampleContentType) {
@@ -324,9 +319,8 @@ fun Route.FineTuningApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listPaginatedFineTuningJobs> {
+    get<Paths.listPaginatedFineTuningJobs> { listPaginatedFineTuningJobs ->
         
         val principal = null!!
         
@@ -334,167 +328,167 @@ fun Route.FineTuningApi() {
         val exampleContentType = "application/json"
             val exampleContentString = """{
               "data" : [ {
-                "training_file" : "training_file",
-                "result_files" : [ "file-abc123", "file-abc123" ],
+                "id" : "id",
+                "created_at" : 0,
+                "error" : {
+                  "code" : "code",
+                  "message" : "message",
+                  "param" : "param"
+                },
+                "fine_tuned_model" : "fine_tuned_model",
                 "finished_at" : 6,
+                "hyperparameters" : {
+                  "batch_size" : "auto",
+                  "learning_rate_multiplier" : "auto",
+                  "n_epochs" : "auto"
+                },
+                "model" : "model",
+                "object" : "fine_tuning.job",
+                "organization_id" : "organization_id",
+                "result_files" : [ "file-abc123", "file-abc123" ],
+                "status" : "validating_files",
+                "trained_tokens" : 1,
+                "training_file" : "training_file",
+                "validation_file" : "validation_file",
+                "integrations" : [ {
+                  "type" : "wandb",
+                  "wandb" : {
+                    "project" : "my-wandb-project",
+                    "name" : "name",
+                    "entity" : "entity",
+                    "tags" : [ "custom-tag", "custom-tag" ]
+                  }
+                }, {
+                  "type" : "wandb",
+                  "wandb" : {
+                    "project" : "my-wandb-project",
+                    "name" : "name",
+                    "entity" : "entity",
+                    "tags" : [ "custom-tag", "custom-tag" ]
+                  }
+                }, {
+                  "type" : "wandb",
+                  "wandb" : {
+                    "project" : "my-wandb-project",
+                    "name" : "name",
+                    "entity" : "entity",
+                    "tags" : [ "custom-tag", "custom-tag" ]
+                  }
+                }, {
+                  "type" : "wandb",
+                  "wandb" : {
+                    "project" : "my-wandb-project",
+                    "name" : "name",
+                    "entity" : "entity",
+                    "tags" : [ "custom-tag", "custom-tag" ]
+                  }
+                }, {
+                  "type" : "wandb",
+                  "wandb" : {
+                    "project" : "my-wandb-project",
+                    "name" : "name",
+                    "entity" : "entity",
+                    "tags" : [ "custom-tag", "custom-tag" ]
+                  }
+                } ],
                 "seed" : 5,
+                "estimated_finish" : 5,
                 "method" : {
+                  "type" : "supervised",
                   "supervised" : {
                     "hyperparameters" : {
                       "batch_size" : "auto",
-                      "n_epochs" : "auto",
-                      "learning_rate_multiplier" : "auto"
+                      "learning_rate_multiplier" : "auto",
+                      "n_epochs" : "auto"
                     }
                   },
                   "dpo" : {
                     "hyperparameters" : {
                       "beta" : "auto"
                     }
-                  },
-                  "type" : "supervised"
-                },
-                "fine_tuned_model" : "fine_tuned_model",
-                "validation_file" : "validation_file",
-                "created_at" : 0,
-                "error" : {
-                  "code" : "code",
-                  "param" : "param",
-                  "message" : "message"
-                },
-                "estimated_finish" : 5,
-                "organization_id" : "organization_id",
-                "hyperparameters" : {
-                  "batch_size" : "auto",
-                  "n_epochs" : "auto",
-                  "learning_rate_multiplier" : "auto"
-                },
-                "model" : "model",
-                "id" : "id",
-                "trained_tokens" : 1,
-                "integrations" : [ {
-                  "wandb" : {
-                    "name" : "name",
-                    "project" : "my-wandb-project",
-                    "entity" : "entity",
-                    "tags" : [ "custom-tag", "custom-tag" ]
-                  },
-                  "type" : "wandb"
-                }, {
-                  "wandb" : {
-                    "name" : "name",
-                    "project" : "my-wandb-project",
-                    "entity" : "entity",
-                    "tags" : [ "custom-tag", "custom-tag" ]
-                  },
-                  "type" : "wandb"
-                }, {
-                  "wandb" : {
-                    "name" : "name",
-                    "project" : "my-wandb-project",
-                    "entity" : "entity",
-                    "tags" : [ "custom-tag", "custom-tag" ]
-                  },
-                  "type" : "wandb"
-                }, {
-                  "wandb" : {
-                    "name" : "name",
-                    "project" : "my-wandb-project",
-                    "entity" : "entity",
-                    "tags" : [ "custom-tag", "custom-tag" ]
-                  },
-                  "type" : "wandb"
-                }, {
-                  "wandb" : {
-                    "name" : "name",
-                    "project" : "my-wandb-project",
-                    "entity" : "entity",
-                    "tags" : [ "custom-tag", "custom-tag" ]
-                  },
-                  "type" : "wandb"
-                } ],
-                "object" : "fine_tuning.job",
-                "status" : "validating_files"
+                  }
+                }
               }, {
-                "training_file" : "training_file",
-                "result_files" : [ "file-abc123", "file-abc123" ],
+                "id" : "id",
+                "created_at" : 0,
+                "error" : {
+                  "code" : "code",
+                  "message" : "message",
+                  "param" : "param"
+                },
+                "fine_tuned_model" : "fine_tuned_model",
                 "finished_at" : 6,
+                "hyperparameters" : {
+                  "batch_size" : "auto",
+                  "learning_rate_multiplier" : "auto",
+                  "n_epochs" : "auto"
+                },
+                "model" : "model",
+                "object" : "fine_tuning.job",
+                "organization_id" : "organization_id",
+                "result_files" : [ "file-abc123", "file-abc123" ],
+                "status" : "validating_files",
+                "trained_tokens" : 1,
+                "training_file" : "training_file",
+                "validation_file" : "validation_file",
+                "integrations" : [ {
+                  "type" : "wandb",
+                  "wandb" : {
+                    "project" : "my-wandb-project",
+                    "name" : "name",
+                    "entity" : "entity",
+                    "tags" : [ "custom-tag", "custom-tag" ]
+                  }
+                }, {
+                  "type" : "wandb",
+                  "wandb" : {
+                    "project" : "my-wandb-project",
+                    "name" : "name",
+                    "entity" : "entity",
+                    "tags" : [ "custom-tag", "custom-tag" ]
+                  }
+                }, {
+                  "type" : "wandb",
+                  "wandb" : {
+                    "project" : "my-wandb-project",
+                    "name" : "name",
+                    "entity" : "entity",
+                    "tags" : [ "custom-tag", "custom-tag" ]
+                  }
+                }, {
+                  "type" : "wandb",
+                  "wandb" : {
+                    "project" : "my-wandb-project",
+                    "name" : "name",
+                    "entity" : "entity",
+                    "tags" : [ "custom-tag", "custom-tag" ]
+                  }
+                }, {
+                  "type" : "wandb",
+                  "wandb" : {
+                    "project" : "my-wandb-project",
+                    "name" : "name",
+                    "entity" : "entity",
+                    "tags" : [ "custom-tag", "custom-tag" ]
+                  }
+                } ],
                 "seed" : 5,
+                "estimated_finish" : 5,
                 "method" : {
+                  "type" : "supervised",
                   "supervised" : {
                     "hyperparameters" : {
                       "batch_size" : "auto",
-                      "n_epochs" : "auto",
-                      "learning_rate_multiplier" : "auto"
+                      "learning_rate_multiplier" : "auto",
+                      "n_epochs" : "auto"
                     }
                   },
                   "dpo" : {
                     "hyperparameters" : {
                       "beta" : "auto"
                     }
-                  },
-                  "type" : "supervised"
-                },
-                "fine_tuned_model" : "fine_tuned_model",
-                "validation_file" : "validation_file",
-                "created_at" : 0,
-                "error" : {
-                  "code" : "code",
-                  "param" : "param",
-                  "message" : "message"
-                },
-                "estimated_finish" : 5,
-                "organization_id" : "organization_id",
-                "hyperparameters" : {
-                  "batch_size" : "auto",
-                  "n_epochs" : "auto",
-                  "learning_rate_multiplier" : "auto"
-                },
-                "model" : "model",
-                "id" : "id",
-                "trained_tokens" : 1,
-                "integrations" : [ {
-                  "wandb" : {
-                    "name" : "name",
-                    "project" : "my-wandb-project",
-                    "entity" : "entity",
-                    "tags" : [ "custom-tag", "custom-tag" ]
-                  },
-                  "type" : "wandb"
-                }, {
-                  "wandb" : {
-                    "name" : "name",
-                    "project" : "my-wandb-project",
-                    "entity" : "entity",
-                    "tags" : [ "custom-tag", "custom-tag" ]
-                  },
-                  "type" : "wandb"
-                }, {
-                  "wandb" : {
-                    "name" : "name",
-                    "project" : "my-wandb-project",
-                    "entity" : "entity",
-                    "tags" : [ "custom-tag", "custom-tag" ]
-                  },
-                  "type" : "wandb"
-                }, {
-                  "wandb" : {
-                    "name" : "name",
-                    "project" : "my-wandb-project",
-                    "entity" : "entity",
-                    "tags" : [ "custom-tag", "custom-tag" ]
-                  },
-                  "type" : "wandb"
-                }, {
-                  "wandb" : {
-                    "name" : "name",
-                    "project" : "my-wandb-project",
-                    "entity" : "entity",
-                    "tags" : [ "custom-tag", "custom-tag" ]
-                  },
-                  "type" : "wandb"
-                } ],
-                "object" : "fine_tuning.job",
-                "status" : "validating_files"
+                  }
+                }
               } ],
               "has_more" : true,
               "object" : "list"
@@ -508,95 +502,94 @@ fun Route.FineTuningApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.retrieveFineTuningJob> {
+    get<Paths.retrieveFineTuningJob> { retrieveFineTuningJob ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "training_file" : "training_file",
-              "result_files" : [ "file-abc123", "file-abc123" ],
+              "id" : "id",
+              "created_at" : 0,
+              "error" : {
+                "code" : "code",
+                "message" : "message",
+                "param" : "param"
+              },
+              "fine_tuned_model" : "fine_tuned_model",
               "finished_at" : 6,
+              "hyperparameters" : {
+                "batch_size" : "auto",
+                "learning_rate_multiplier" : "auto",
+                "n_epochs" : "auto"
+              },
+              "model" : "model",
+              "object" : "fine_tuning.job",
+              "organization_id" : "organization_id",
+              "result_files" : [ "file-abc123", "file-abc123" ],
+              "status" : "validating_files",
+              "trained_tokens" : 1,
+              "training_file" : "training_file",
+              "validation_file" : "validation_file",
+              "integrations" : [ {
+                "type" : "wandb",
+                "wandb" : {
+                  "project" : "my-wandb-project",
+                  "name" : "name",
+                  "entity" : "entity",
+                  "tags" : [ "custom-tag", "custom-tag" ]
+                }
+              }, {
+                "type" : "wandb",
+                "wandb" : {
+                  "project" : "my-wandb-project",
+                  "name" : "name",
+                  "entity" : "entity",
+                  "tags" : [ "custom-tag", "custom-tag" ]
+                }
+              }, {
+                "type" : "wandb",
+                "wandb" : {
+                  "project" : "my-wandb-project",
+                  "name" : "name",
+                  "entity" : "entity",
+                  "tags" : [ "custom-tag", "custom-tag" ]
+                }
+              }, {
+                "type" : "wandb",
+                "wandb" : {
+                  "project" : "my-wandb-project",
+                  "name" : "name",
+                  "entity" : "entity",
+                  "tags" : [ "custom-tag", "custom-tag" ]
+                }
+              }, {
+                "type" : "wandb",
+                "wandb" : {
+                  "project" : "my-wandb-project",
+                  "name" : "name",
+                  "entity" : "entity",
+                  "tags" : [ "custom-tag", "custom-tag" ]
+                }
+              } ],
               "seed" : 5,
+              "estimated_finish" : 5,
               "method" : {
+                "type" : "supervised",
                 "supervised" : {
                   "hyperparameters" : {
                     "batch_size" : "auto",
-                    "n_epochs" : "auto",
-                    "learning_rate_multiplier" : "auto"
+                    "learning_rate_multiplier" : "auto",
+                    "n_epochs" : "auto"
                   }
                 },
                 "dpo" : {
                   "hyperparameters" : {
                     "beta" : "auto"
                   }
-                },
-                "type" : "supervised"
-              },
-              "fine_tuned_model" : "fine_tuned_model",
-              "validation_file" : "validation_file",
-              "created_at" : 0,
-              "error" : {
-                "code" : "code",
-                "param" : "param",
-                "message" : "message"
-              },
-              "estimated_finish" : 5,
-              "organization_id" : "organization_id",
-              "hyperparameters" : {
-                "batch_size" : "auto",
-                "n_epochs" : "auto",
-                "learning_rate_multiplier" : "auto"
-              },
-              "model" : "model",
-              "id" : "id",
-              "trained_tokens" : 1,
-              "integrations" : [ {
-                "wandb" : {
-                  "name" : "name",
-                  "project" : "my-wandb-project",
-                  "entity" : "entity",
-                  "tags" : [ "custom-tag", "custom-tag" ]
-                },
-                "type" : "wandb"
-              }, {
-                "wandb" : {
-                  "name" : "name",
-                  "project" : "my-wandb-project",
-                  "entity" : "entity",
-                  "tags" : [ "custom-tag", "custom-tag" ]
-                },
-                "type" : "wandb"
-              }, {
-                "wandb" : {
-                  "name" : "name",
-                  "project" : "my-wandb-project",
-                  "entity" : "entity",
-                  "tags" : [ "custom-tag", "custom-tag" ]
-                },
-                "type" : "wandb"
-              }, {
-                "wandb" : {
-                  "name" : "name",
-                  "project" : "my-wandb-project",
-                  "entity" : "entity",
-                  "tags" : [ "custom-tag", "custom-tag" ]
-                },
-                "type" : "wandb"
-              }, {
-                "wandb" : {
-                  "name" : "name",
-                  "project" : "my-wandb-project",
-                  "entity" : "entity",
-                  "tags" : [ "custom-tag", "custom-tag" ]
-                },
-                "type" : "wandb"
-              } ],
-              "object" : "fine_tuning.job",
-              "status" : "validating_files"
+                }
+              }
             }"""
             
             when (exampleContentType) {
@@ -607,5 +600,4 @@ fun Route.FineTuningApi() {
         
     }
     }
-
 }

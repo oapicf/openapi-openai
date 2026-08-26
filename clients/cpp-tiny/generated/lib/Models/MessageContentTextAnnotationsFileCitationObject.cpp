@@ -149,7 +149,7 @@ MessageContentTextAnnotationsFileCitationObject::getType()
 }
 
 void
-MessageContentTextAnnotationsFileCitationObject::setType(std::string  type)
+MessageContentTextAnnotationsFileCitationObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -161,7 +161,7 @@ MessageContentTextAnnotationsFileCitationObject::getText()
 }
 
 void
-MessageContentTextAnnotationsFileCitationObject::setText(std::string  text)
+MessageContentTextAnnotationsFileCitationObject::setText(std::string text)
 {
 	this->text = text;
 }
@@ -173,7 +173,7 @@ MessageContentTextAnnotationsFileCitationObject::getFileCitation()
 }
 
 void
-MessageContentTextAnnotationsFileCitationObject::setFileCitation(MessageContentTextAnnotationsFileCitationObject_file_citation  file_citation)
+MessageContentTextAnnotationsFileCitationObject::setFileCitation(MessageContentTextAnnotationsFileCitationObject_file_citation file_citation)
 {
 	this->file_citation = file_citation;
 }
@@ -185,7 +185,7 @@ MessageContentTextAnnotationsFileCitationObject::getStartIndex()
 }
 
 void
-MessageContentTextAnnotationsFileCitationObject::setStartIndex(int  start_index)
+MessageContentTextAnnotationsFileCitationObject::setStartIndex(int start_index)
 {
 	this->start_index = start_index;
 }
@@ -197,7 +197,7 @@ MessageContentTextAnnotationsFileCitationObject::getEndIndex()
 }
 
 void
-MessageContentTextAnnotationsFileCitationObject::setEndIndex(int  end_index)
+MessageContentTextAnnotationsFileCitationObject::setEndIndex(int end_index)
 {
 	this->end_index = end_index;
 }

@@ -28,6 +28,8 @@ ListRunsResponse::ListRunsResponse()
     
 }
 
+ListRunsResponse::~ListRunsResponse() = default;
+
 void ListRunsResponse::validate() const
 {
     std::stringstream msg;

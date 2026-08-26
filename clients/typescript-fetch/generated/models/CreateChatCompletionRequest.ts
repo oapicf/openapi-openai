@@ -131,7 +131,7 @@ export interface CreateChatCompletionRequest {
      * reasoning effort can result in faster responses and fewer tokens used
      * on reasoning in a response.
      * 
-     * @type {string}
+     * @type {CreateChatCompletionRequestReasoningEffortEnum}
      * @memberof CreateChatCompletionRequest
      */
     reasoningEffort?: CreateChatCompletionRequestReasoningEffortEnum;
@@ -222,11 +222,15 @@ export interface CreateChatCompletionRequest {
      * 
      * `["text", "audio"]`
      * 
-     * @type {Array<string>}
+     * @type {Array<CreateChatCompletionRequestModalitiesEnum>}
      * @memberof CreateChatCompletionRequest
      */
     modalities?: Array<CreateChatCompletionRequestModalitiesEnum> | null;
     /**
+     * Configuration for a [Predicted Output](/docs/guides/predicted-outputs),
+     * which can greatly improve response times when large parts of the model
+     * response are known ahead of time. This is most common when you are
+     * regenerating a file with only minor changes to most of the content.
      * 
      * @type {PredictionContent}
      * @memberof CreateChatCompletionRequest
@@ -272,7 +276,7 @@ export interface CreateChatCompletionRequest {
      * 
      *   When this parameter is set, the response body will include the `service_tier` utilized.
      * 
-     * @type {string}
+     * @type {CreateChatCompletionRequestServiceTierEnum}
      * @memberof CreateChatCompletionRequest
      */
     serviceTier?: CreateChatCompletionRequestServiceTierEnum | null;
@@ -411,28 +415,28 @@ export function CreateChatCompletionRequestFromJSONTyped(json: any, ignoreDiscri
         
         'messages': ((json['messages'] as Array<any>).map(ChatCompletionRequestMessageFromJSON)),
         'model': CreateChatCompletionRequestModelFromJSON(json['model']),
-        'store': json['store'] == null ? undefined : json['store'],
+        'store': json['store'] === undefined ? undefined : json['store'] === null ? null : json['store'],
         'reasoningEffort': json['reasoning_effort'] == null ? undefined : json['reasoning_effort'],
-        'metadata': json['metadata'] == null ? undefined : json['metadata'],
-        'frequencyPenalty': json['frequency_penalty'] == null ? undefined : json['frequency_penalty'],
-        'logitBias': json['logit_bias'] == null ? undefined : json['logit_bias'],
-        'logprobs': json['logprobs'] == null ? undefined : json['logprobs'],
-        'topLogprobs': json['top_logprobs'] == null ? undefined : json['top_logprobs'],
-        'maxTokens': json['max_tokens'] == null ? undefined : json['max_tokens'],
-        'maxCompletionTokens': json['max_completion_tokens'] == null ? undefined : json['max_completion_tokens'],
-        'n': json['n'] == null ? undefined : json['n'],
-        'modalities': json['modalities'] == null ? undefined : json['modalities'],
-        'prediction': json['prediction'] == null ? undefined : PredictionContentFromJSON(json['prediction']),
-        'audio': json['audio'] == null ? undefined : CreateChatCompletionRequestAudioFromJSON(json['audio']),
-        'presencePenalty': json['presence_penalty'] == null ? undefined : json['presence_penalty'],
+        'metadata': json['metadata'] === undefined ? undefined : json['metadata'] === null ? null : json['metadata'],
+        'frequencyPenalty': json['frequency_penalty'] === undefined ? undefined : json['frequency_penalty'] === null ? null : json['frequency_penalty'],
+        'logitBias': json['logit_bias'] === undefined ? undefined : json['logit_bias'] === null ? null : json['logit_bias'],
+        'logprobs': json['logprobs'] === undefined ? undefined : json['logprobs'] === null ? null : json['logprobs'],
+        'topLogprobs': json['top_logprobs'] === undefined ? undefined : json['top_logprobs'] === null ? null : json['top_logprobs'],
+        'maxTokens': json['max_tokens'] === undefined ? undefined : json['max_tokens'] === null ? null : json['max_tokens'],
+        'maxCompletionTokens': json['max_completion_tokens'] === undefined ? undefined : json['max_completion_tokens'] === null ? null : json['max_completion_tokens'],
+        'n': json['n'] === undefined ? undefined : json['n'] === null ? null : json['n'],
+        'modalities': json['modalities'] === undefined ? undefined : json['modalities'] === null ? null : json['modalities'],
+        'prediction': json['prediction'] === undefined ? undefined : json['prediction'] === null ? null : PredictionContentFromJSON(json['prediction']),
+        'audio': json['audio'] === undefined ? undefined : json['audio'] === null ? null : CreateChatCompletionRequestAudioFromJSON(json['audio']),
+        'presencePenalty': json['presence_penalty'] === undefined ? undefined : json['presence_penalty'] === null ? null : json['presence_penalty'],
         'responseFormat': json['response_format'] == null ? undefined : CreateChatCompletionRequestResponseFormatFromJSON(json['response_format']),
-        'seed': json['seed'] == null ? undefined : json['seed'],
-        'serviceTier': json['service_tier'] == null ? undefined : json['service_tier'],
+        'seed': json['seed'] === undefined ? undefined : json['seed'] === null ? null : json['seed'],
+        'serviceTier': json['service_tier'] === undefined ? undefined : json['service_tier'] === null ? null : json['service_tier'],
         'stop': json['stop'] == null ? undefined : CreateChatCompletionRequestStopFromJSON(json['stop']),
-        'stream': json['stream'] == null ? undefined : json['stream'],
-        'streamOptions': json['stream_options'] == null ? undefined : ChatCompletionStreamOptionsFromJSON(json['stream_options']),
-        'temperature': json['temperature'] == null ? undefined : json['temperature'],
-        'topP': json['top_p'] == null ? undefined : json['top_p'],
+        'stream': json['stream'] === undefined ? undefined : json['stream'] === null ? null : json['stream'],
+        'streamOptions': json['stream_options'] === undefined ? undefined : json['stream_options'] === null ? null : ChatCompletionStreamOptionsFromJSON(json['stream_options']),
+        'temperature': json['temperature'] === undefined ? undefined : json['temperature'] === null ? null : json['temperature'],
+        'topP': json['top_p'] === undefined ? undefined : json['top_p'] === null ? null : json['top_p'],
         'tools': json['tools'] == null ? undefined : ((json['tools'] as Array<any>).map(ChatCompletionToolFromJSON)),
         'toolChoice': json['tool_choice'] == null ? undefined : ChatCompletionToolChoiceOptionFromJSON(json['tool_choice']),
         'parallelToolCalls': json['parallel_tool_calls'] == null ? undefined : json['parallel_tool_calls'],

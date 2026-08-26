@@ -51,7 +51,7 @@ class RealtimeServerEventConversationItemDeleted
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $eventId = null;
@@ -62,7 +62,7 @@ class RealtimeServerEventConversationItemDeleted
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['conversation.item.deleted'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class RealtimeServerEventConversationItemDeleted
      * @var string|null
      * @SerializedName("item_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $itemId = null;
@@ -103,12 +103,12 @@ class RealtimeServerEventConversationItemDeleted
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  The unique ID of the server event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  The unique ID of the server event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId): self
     {
         $this->eventId = $eventId;
@@ -130,12 +130,12 @@ class RealtimeServerEventConversationItemDeleted
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `conversation.item.deleted`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `conversation.item.deleted`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -157,12 +157,12 @@ class RealtimeServerEventConversationItemDeleted
     }
 
     /**
-    * Sets itemId.
-    *
-    * @param string|null $itemId  The ID of the item that was deleted.
-    *
-    * @return $this
-    */
+     * Sets itemId.
+     *
+     * @param string|null $itemId  The ID of the item that was deleted.
+     *
+     * @return $this
+     */
     public function setItemId(?string $itemId): self
     {
         $this->itemId = $itemId;

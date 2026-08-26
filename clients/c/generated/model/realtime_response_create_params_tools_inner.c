@@ -32,12 +32,12 @@ static realtime_response_create_params_tools_inner_t *realtime_response_create_p
     if (!realtime_response_create_params_tools_inner_local_var) {
         return NULL;
     }
+    memset(realtime_response_create_params_tools_inner_local_var, 0, sizeof(realtime_response_create_params_tools_inner_t));
+    realtime_response_create_params_tools_inner_local_var->_library_owned = 1;
     realtime_response_create_params_tools_inner_local_var->type = type;
     realtime_response_create_params_tools_inner_local_var->name = name;
     realtime_response_create_params_tools_inner_local_var->description = description;
     realtime_response_create_params_tools_inner_local_var->parameters = parameters;
-
-    realtime_response_create_params_tools_inner_local_var->_library_owned = 1;
     return realtime_response_create_params_tools_inner_local_var;
 }
 
@@ -47,12 +47,15 @@ __attribute__((deprecated)) realtime_response_create_params_tools_inner_t *realt
     char *description,
     object_t *parameters
     ) {
-    return realtime_response_create_params_tools_inner_create_internal (
+    realtime_response_create_params_tools_inner_t *result = realtime_response_create_params_tools_inner_create_internal (
         type,
         name,
         description,
         parameters
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_response_create_params_tools_inner_free(realtime_response_create_params_tools_inner_t *realtime_response_create_params_tools_inner) {
@@ -131,6 +134,10 @@ realtime_response_create_params_tools_inner_t *realtime_response_create_params_t
 
     realtime_response_create_params_tools_inner_t *realtime_response_create_params_tools_inner_local_var = NULL;
 
+    char *name_local_str = NULL;
+
+    char *description_local_str = NULL;
+
     // realtime_response_create_params_tools_inner->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(realtime_response_create_params_tools_innerJSON, "type");
     if (cJSON_IsNull(type)) {
@@ -180,15 +187,30 @@ realtime_response_create_params_tools_inner_t *realtime_response_create_params_t
     }
 
 
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (description && !cJSON_IsNull(description)) description_local_str = strdup(description->valuestring);
+
     realtime_response_create_params_tools_inner_local_var = realtime_response_create_params_tools_inner_create_internal (
         type ? typeVariable : openai_api_realtime_response_create_params_tools_inner_TYPE_NULL,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
+        name_local_str,
+        description_local_str,
         parameters ? parameters_local_object : NULL
         );
 
+    if (!realtime_response_create_params_tools_inner_local_var) {
+        goto end;
+    }
+
     return realtime_response_create_params_tools_inner_local_var;
 end:
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (description_local_str) {
+        free(description_local_str);
+        description_local_str = NULL;
+    }
     return NULL;
 
 }

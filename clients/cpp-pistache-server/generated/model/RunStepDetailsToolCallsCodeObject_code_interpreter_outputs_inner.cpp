@@ -26,6 +26,8 @@ RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::RunStepDetails
     
 }
 
+RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::~RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner() = default;
+
 void RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::validate() const
 {
     std::stringstream msg;

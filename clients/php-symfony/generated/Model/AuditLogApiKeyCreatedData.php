@@ -51,7 +51,7 @@ class AuditLogApiKeyCreatedData
      * @var string[]|null
      * @SerializedName("scopes")
      * @Type("array<string>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("string"),
     ])]
@@ -79,12 +79,12 @@ class AuditLogApiKeyCreatedData
     }
 
     /**
-    * Sets scopes.
-    *
-    * @param string[]|null $scopes  A list of scopes allowed for the API key, e.g. `[\"api.model.request\"]`
-    *
-    * @return $this
-    */
+     * Sets scopes.
+     *
+     * @param string[]|null $scopes  A list of scopes allowed for the API key, e.g. `[\"api.model.request\"]`
+     *
+     * @return $this
+     */
     public function setScopes(?array $scopes = null): self
     {
         $this->scopes = $scopes;

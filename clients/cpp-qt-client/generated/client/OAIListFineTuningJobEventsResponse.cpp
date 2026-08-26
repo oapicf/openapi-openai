@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIListFineTuningJobEventsResponse::OAIListFineTuningJobEventsResponse(QString json) {
+OAIListFineTuningJobEventsResponse::OAIListFineTuningJobEventsResponse(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIListFineTuningJobEventsResponse::initializeModel() {
     m_object_isValid = false;
 }
 
-void OAIListFineTuningJobEventsResponse::fromJson(QString jsonString) {
+void OAIListFineTuningJobEventsResponse::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

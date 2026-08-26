@@ -102,7 +102,7 @@ MessageDeltaContentTextObject_text::getValue()
 }
 
 void
-MessageDeltaContentTextObject_text::setValue(std::string  value)
+MessageDeltaContentTextObject_text::setValue(std::string value)
 {
 	this->value = value;
 }
@@ -114,7 +114,7 @@ MessageDeltaContentTextObject_text::getAnnotations()
 }
 
 void
-MessageDeltaContentTextObject_text::setAnnotations(std::list <MessageDeltaContentTextObject_text_annotations_inner> annotations)
+MessageDeltaContentTextObject_text::setAnnotations(std::list<MessageDeltaContentTextObject_text_annotations_inner> annotations)
 {
 	this->annotations = annotations;
 }

@@ -29,18 +29,21 @@ static project_user_update_request_t *project_user_update_request_create_interna
     if (!project_user_update_request_local_var) {
         return NULL;
     }
-    project_user_update_request_local_var->role = role;
-
+    memset(project_user_update_request_local_var, 0, sizeof(project_user_update_request_t));
     project_user_update_request_local_var->_library_owned = 1;
+    project_user_update_request_local_var->role = role;
     return project_user_update_request_local_var;
 }
 
 __attribute__((deprecated)) project_user_update_request_t *project_user_update_request_create(
     openai_api_project_user_update_request_ROLE_e role
     ) {
-    return project_user_update_request_create_internal (
+    project_user_update_request_t *result = project_user_update_request_create_internal (
         role
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void project_user_update_request_free(project_user_update_request_t *project_user_update_request) {
@@ -97,9 +100,14 @@ project_user_update_request_t *project_user_update_request_parseFromJSON(cJSON *
     roleVariable = project_user_update_request_role_FromString(role->valuestring);
 
 
+
     project_user_update_request_local_var = project_user_update_request_create_internal (
         roleVariable
         );
+
+    if (!project_user_update_request_local_var) {
+        goto end;
+    }
 
     return project_user_update_request_local_var;
 end:

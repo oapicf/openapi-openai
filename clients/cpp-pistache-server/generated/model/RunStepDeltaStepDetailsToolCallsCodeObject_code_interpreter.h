@@ -34,7 +34,7 @@ class  RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter
 {
 public:
     RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter();
-    virtual ~RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter() = default;
+    virtual ~RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter();
 
 
     /// <summary>

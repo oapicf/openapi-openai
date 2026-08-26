@@ -1,4 +1,4 @@
-# # RealtimeResponseCreateParamsMaxResponseOutputTokens
+# RealtimeResponseCreateParamsMaxResponseOutputTokens
 
 ## Properties
 

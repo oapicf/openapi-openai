@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 README.md
 build.gradle
 docs/AdminApiKey.md
@@ -65,7 +64,6 @@ docs/AuditLogUserDeleted.md
 docs/AuditLogUserUpdated.md
 docs/AuditLogUserUpdatedChangesRequested.md
 docs/AuditLogsApi.md
-docs/AutoChunkingStrategy.md
 docs/AutoChunkingStrategyRequestParam.md
 docs/Batch.md
 docs/BatchApi.md
@@ -488,7 +486,6 @@ docs/RunToolCallObject.md
 docs/RunToolCallObjectFunction.md
 docs/StaticChunkingStrategy.md
 docs/StaticChunkingStrategyRequestParam.md
-docs/StaticChunkingStrategyResponseParam.md
 docs/StaticChunkingStrategyStatic.md
 docs/SubmitToolOutputsRunRequest.md
 docs/SubmitToolOutputsRunRequestToolOutputsInner.md
@@ -622,7 +619,6 @@ src/main/java/org/openapitools/client/model/AuditLogUserAddedData.java
 src/main/java/org/openapitools/client/model/AuditLogUserDeleted.java
 src/main/java/org/openapitools/client/model/AuditLogUserUpdated.java
 src/main/java/org/openapitools/client/model/AuditLogUserUpdatedChangesRequested.java
-src/main/java/org/openapitools/client/model/AutoChunkingStrategy.java
 src/main/java/org/openapitools/client/model/AutoChunkingStrategyRequestParam.java
 src/main/java/org/openapitools/client/model/Batch.java
 src/main/java/org/openapitools/client/model/BatchErrors.java
@@ -1032,7 +1028,6 @@ src/main/java/org/openapitools/client/model/RunToolCallObject.java
 src/main/java/org/openapitools/client/model/RunToolCallObjectFunction.java
 src/main/java/org/openapitools/client/model/StaticChunkingStrategy.java
 src/main/java/org/openapitools/client/model/StaticChunkingStrategyRequestParam.java
-src/main/java/org/openapitools/client/model/StaticChunkingStrategyResponseParam.java
 src/main/java/org/openapitools/client/model/StaticChunkingStrategyStatic.java
 src/main/java/org/openapitools/client/model/SubmitToolOutputsRunRequest.java
 src/main/java/org/openapitools/client/model/SubmitToolOutputsRunRequestToolOutputsInner.java

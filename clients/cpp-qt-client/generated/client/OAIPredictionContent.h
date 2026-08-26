@@ -32,13 +32,13 @@ namespace OpenAPI {
 class OAIPredictionContent : public OAIObject {
 public:
     OAIPredictionContent();
-    OAIPredictionContent(QString json);
+    OAIPredictionContent(const QString &json);
     ~OAIPredictionContent() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

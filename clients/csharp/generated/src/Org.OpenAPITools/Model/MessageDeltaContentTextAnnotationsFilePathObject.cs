@@ -133,7 +133,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The text in the message content that needs to be replaced.</value>
         [JsonPropertyName("text")]
-        public string? Text { get { return this.TextOption; } set { this.TextOption = new(value); } }
+        public string? Text { get { return this.TextOption.Value; } set { this.TextOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FilePath
@@ -146,7 +146,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets FilePath
         /// </summary>
         [JsonPropertyName("file_path")]
-        public MessageDeltaContentTextAnnotationsFilePathObjectFilePath? FilePath { get { return this.FilePathOption; } set { this.FilePathOption = new(value); } }
+        public MessageDeltaContentTextAnnotationsFilePathObjectFilePath? FilePath { get { return this.FilePathOption.Value; } set { this.FilePathOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of StartIndex
@@ -159,7 +159,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets StartIndex
         /// </summary>
         [JsonPropertyName("start_index")]
-        public int? StartIndex { get { return this.StartIndexOption; } set { this.StartIndexOption = new(value); } }
+        public int? StartIndex { get { return this.StartIndexOption.Value; } set { this.StartIndexOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EndIndex
@@ -172,7 +172,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets EndIndex
         /// </summary>
         [JsonPropertyName("end_index")]
-        public int? EndIndex { get { return this.EndIndexOption; } set { this.EndIndexOption = new(value); } }
+        public int? EndIndex { get { return this.EndIndexOption.Value; } set { this.EndIndexOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -218,8 +218,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageDeltaContentTextAnnotationsFilePathObject" />
     /// </summary>
-    public class MessageDeltaContentTextAnnotationsFilePathObjectJsonConverter : JsonConverter<MessageDeltaContentTextAnnotationsFilePathObject>
+    public partial class MessageDeltaContentTextAnnotationsFilePathObjectJsonConverter : JsonConverter<MessageDeltaContentTextAnnotationsFilePathObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageDeltaContentTextAnnotationsFilePathObjectJsonConverter" /> class.
+        /// </summary>
+        public MessageDeltaContentTextAnnotationsFilePathObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageDeltaContentTextAnnotationsFilePathObject" />
         /// </summary>

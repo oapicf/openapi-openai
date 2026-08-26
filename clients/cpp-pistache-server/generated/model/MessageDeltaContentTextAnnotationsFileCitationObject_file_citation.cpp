@@ -28,6 +28,8 @@ MessageDeltaContentTextAnnotationsFileCitationObject_file_citation::MessageDelta
     
 }
 
+MessageDeltaContentTextAnnotationsFileCitationObject_file_citation::~MessageDeltaContentTextAnnotationsFileCitationObject_file_citation() = default;
+
 void MessageDeltaContentTextAnnotationsFileCitationObject_file_citation::validate() const
 {
     std::stringstream msg;

@@ -49,15 +49,15 @@ static batch_t *batch_create_internal(
     openai_api_batch_STATUS_e status,
     char *output_file_id,
     char *error_file_id,
-    int created_at,
-    int in_progress_at,
-    int expires_at,
-    int finalizing_at,
-    int completed_at,
-    int failed_at,
-    int expired_at,
-    int cancelling_at,
-    int cancelled_at,
+    int *created_at,
+    int *in_progress_at,
+    int *expires_at,
+    int *finalizing_at,
+    int *completed_at,
+    int *failed_at,
+    int *expired_at,
+    int *cancelling_at,
+    int *cancelled_at,
     batch_request_counts_t *request_counts,
     object_t *metadata
     ) {
@@ -65,6 +65,8 @@ static batch_t *batch_create_internal(
     if (!batch_local_var) {
         return NULL;
     }
+    memset(batch_local_var, 0, sizeof(batch_t));
+    batch_local_var->_library_owned = 1;
     batch_local_var->id = id;
     batch_local_var->object = object;
     batch_local_var->endpoint = endpoint;
@@ -85,8 +87,6 @@ static batch_t *batch_create_internal(
     batch_local_var->cancelled_at = cancelled_at;
     batch_local_var->request_counts = request_counts;
     batch_local_var->metadata = metadata;
-
-    batch_local_var->_library_owned = 1;
     return batch_local_var;
 }
 
@@ -100,19 +100,64 @@ __attribute__((deprecated)) batch_t *batch_create(
     openai_api_batch_STATUS_e status,
     char *output_file_id,
     char *error_file_id,
-    int created_at,
-    int in_progress_at,
-    int expires_at,
-    int finalizing_at,
-    int completed_at,
-    int failed_at,
-    int expired_at,
-    int cancelling_at,
-    int cancelled_at,
+    int *created_at,
+    int *in_progress_at,
+    int *expires_at,
+    int *finalizing_at,
+    int *completed_at,
+    int *failed_at,
+    int *expired_at,
+    int *cancelling_at,
+    int *cancelled_at,
     batch_request_counts_t *request_counts,
     object_t *metadata
     ) {
-    return batch_create_internal (
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    int *in_progress_at_copy = NULL;
+    if (in_progress_at) {
+        in_progress_at_copy = malloc(sizeof(int));
+        if (in_progress_at_copy) *in_progress_at_copy = *in_progress_at;
+    }
+    int *expires_at_copy = NULL;
+    if (expires_at) {
+        expires_at_copy = malloc(sizeof(int));
+        if (expires_at_copy) *expires_at_copy = *expires_at;
+    }
+    int *finalizing_at_copy = NULL;
+    if (finalizing_at) {
+        finalizing_at_copy = malloc(sizeof(int));
+        if (finalizing_at_copy) *finalizing_at_copy = *finalizing_at;
+    }
+    int *completed_at_copy = NULL;
+    if (completed_at) {
+        completed_at_copy = malloc(sizeof(int));
+        if (completed_at_copy) *completed_at_copy = *completed_at;
+    }
+    int *failed_at_copy = NULL;
+    if (failed_at) {
+        failed_at_copy = malloc(sizeof(int));
+        if (failed_at_copy) *failed_at_copy = *failed_at;
+    }
+    int *expired_at_copy = NULL;
+    if (expired_at) {
+        expired_at_copy = malloc(sizeof(int));
+        if (expired_at_copy) *expired_at_copy = *expired_at;
+    }
+    int *cancelling_at_copy = NULL;
+    if (cancelling_at) {
+        cancelling_at_copy = malloc(sizeof(int));
+        if (cancelling_at_copy) *cancelling_at_copy = *cancelling_at;
+    }
+    int *cancelled_at_copy = NULL;
+    if (cancelled_at) {
+        cancelled_at_copy = malloc(sizeof(int));
+        if (cancelled_at_copy) *cancelled_at_copy = *cancelled_at;
+    }
+    batch_t *result = batch_create_internal (
         id,
         object,
         endpoint,
@@ -122,18 +167,30 @@ __attribute__((deprecated)) batch_t *batch_create(
         status,
         output_file_id,
         error_file_id,
-        created_at,
-        in_progress_at,
-        expires_at,
-        finalizing_at,
-        completed_at,
-        failed_at,
-        expired_at,
-        cancelling_at,
-        cancelled_at,
+        created_at_copy,
+        in_progress_at_copy,
+        expires_at_copy,
+        finalizing_at_copy,
+        completed_at_copy,
+        failed_at_copy,
+        expired_at_copy,
+        cancelling_at_copy,
+        cancelled_at_copy,
         request_counts,
         metadata
         );
+    if (!result) {
+        free(created_at_copy);
+        free(in_progress_at_copy);
+        free(expires_at_copy);
+        free(finalizing_at_copy);
+        free(completed_at_copy);
+        free(failed_at_copy);
+        free(expired_at_copy);
+        free(cancelling_at_copy);
+        free(cancelled_at_copy);
+    }
+    return result;
 }
 
 void batch_free(batch_t *batch) {
@@ -172,6 +229,42 @@ void batch_free(batch_t *batch) {
     if (batch->error_file_id) {
         free(batch->error_file_id);
         batch->error_file_id = NULL;
+    }
+    if (batch->created_at) {
+        free(batch->created_at);
+        batch->created_at = NULL;
+    }
+    if (batch->in_progress_at) {
+        free(batch->in_progress_at);
+        batch->in_progress_at = NULL;
+    }
+    if (batch->expires_at) {
+        free(batch->expires_at);
+        batch->expires_at = NULL;
+    }
+    if (batch->finalizing_at) {
+        free(batch->finalizing_at);
+        batch->finalizing_at = NULL;
+    }
+    if (batch->completed_at) {
+        free(batch->completed_at);
+        batch->completed_at = NULL;
+    }
+    if (batch->failed_at) {
+        free(batch->failed_at);
+        batch->failed_at = NULL;
+    }
+    if (batch->expired_at) {
+        free(batch->expired_at);
+        batch->expired_at = NULL;
+    }
+    if (batch->cancelling_at) {
+        free(batch->cancelling_at);
+        batch->cancelling_at = NULL;
+    }
+    if (batch->cancelled_at) {
+        free(batch->cancelled_at);
+        batch->cancelled_at = NULL;
     }
     if (batch->request_counts) {
         batch_request_counts_free(batch->request_counts);
@@ -276,14 +369,14 @@ cJSON *batch_convertToJSON(batch_t *batch) {
     if (!batch->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", batch->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *batch->created_at) == NULL) {
     goto fail; //Numeric
     }
 
 
     // batch->in_progress_at
     if(batch->in_progress_at) {
-    if(cJSON_AddNumberToObject(item, "in_progress_at", batch->in_progress_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "in_progress_at", *batch->in_progress_at) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -291,7 +384,7 @@ cJSON *batch_convertToJSON(batch_t *batch) {
 
     // batch->expires_at
     if(batch->expires_at) {
-    if(cJSON_AddNumberToObject(item, "expires_at", batch->expires_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "expires_at", *batch->expires_at) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -299,7 +392,7 @@ cJSON *batch_convertToJSON(batch_t *batch) {
 
     // batch->finalizing_at
     if(batch->finalizing_at) {
-    if(cJSON_AddNumberToObject(item, "finalizing_at", batch->finalizing_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "finalizing_at", *batch->finalizing_at) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -307,7 +400,7 @@ cJSON *batch_convertToJSON(batch_t *batch) {
 
     // batch->completed_at
     if(batch->completed_at) {
-    if(cJSON_AddNumberToObject(item, "completed_at", batch->completed_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "completed_at", *batch->completed_at) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -315,7 +408,7 @@ cJSON *batch_convertToJSON(batch_t *batch) {
 
     // batch->failed_at
     if(batch->failed_at) {
-    if(cJSON_AddNumberToObject(item, "failed_at", batch->failed_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "failed_at", *batch->failed_at) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -323,7 +416,7 @@ cJSON *batch_convertToJSON(batch_t *batch) {
 
     // batch->expired_at
     if(batch->expired_at) {
-    if(cJSON_AddNumberToObject(item, "expired_at", batch->expired_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "expired_at", *batch->expired_at) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -331,7 +424,7 @@ cJSON *batch_convertToJSON(batch_t *batch) {
 
     // batch->cancelling_at
     if(batch->cancelling_at) {
-    if(cJSON_AddNumberToObject(item, "cancelling_at", batch->cancelling_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "cancelling_at", *batch->cancelling_at) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -339,7 +432,7 @@ cJSON *batch_convertToJSON(batch_t *batch) {
 
     // batch->cancelled_at
     if(batch->cancelled_at) {
-    if(cJSON_AddNumberToObject(item, "cancelled_at", batch->cancelled_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "cancelled_at", *batch->cancelled_at) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -382,8 +475,47 @@ batch_t *batch_parseFromJSON(cJSON *batchJSON){
 
     batch_t *batch_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    char *endpoint_local_str = NULL;
+
     // define the local variable for batch->errors
     batch_errors_t *errors_local_nonprim = NULL;
+
+    char *input_file_id_local_str = NULL;
+
+    char *completion_window_local_str = NULL;
+
+    char *output_file_id_local_str = NULL;
+
+    char *error_file_id_local_str = NULL;
+
+    // define the local variable for batch->created_at
+    int *created_at_local_var = NULL;
+
+    // define the local variable for batch->in_progress_at
+    int *in_progress_at_local_var = NULL;
+
+    // define the local variable for batch->expires_at
+    int *expires_at_local_var = NULL;
+
+    // define the local variable for batch->finalizing_at
+    int *finalizing_at_local_var = NULL;
+
+    // define the local variable for batch->completed_at
+    int *completed_at_local_var = NULL;
+
+    // define the local variable for batch->failed_at
+    int *failed_at_local_var = NULL;
+
+    // define the local variable for batch->expired_at
+    int *expired_at_local_var = NULL;
+
+    // define the local variable for batch->cancelling_at
+    int *cancelling_at_local_var = NULL;
+
+    // define the local variable for batch->cancelled_at
+    int *cancelled_at_local_var = NULL;
 
     // define the local variable for batch->request_counts
     batch_request_counts_t *request_counts_local_nonprim = NULL;
@@ -529,6 +661,12 @@ batch_t *batch_parseFromJSON(cJSON *batchJSON){
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
     // batch->in_progress_at
     cJSON *in_progress_at = cJSON_GetObjectItemCaseSensitive(batchJSON, "in_progress_at");
@@ -540,6 +678,12 @@ batch_t *batch_parseFromJSON(cJSON *batchJSON){
     {
     goto end; //Numeric
     }
+    in_progress_at_local_var = malloc(sizeof(int));
+    if(!in_progress_at_local_var)
+    {
+        goto end;
+    }
+    *in_progress_at_local_var = in_progress_at->valuedouble;
     }
 
     // batch->expires_at
@@ -552,6 +696,12 @@ batch_t *batch_parseFromJSON(cJSON *batchJSON){
     {
     goto end; //Numeric
     }
+    expires_at_local_var = malloc(sizeof(int));
+    if(!expires_at_local_var)
+    {
+        goto end;
+    }
+    *expires_at_local_var = expires_at->valuedouble;
     }
 
     // batch->finalizing_at
@@ -564,6 +714,12 @@ batch_t *batch_parseFromJSON(cJSON *batchJSON){
     {
     goto end; //Numeric
     }
+    finalizing_at_local_var = malloc(sizeof(int));
+    if(!finalizing_at_local_var)
+    {
+        goto end;
+    }
+    *finalizing_at_local_var = finalizing_at->valuedouble;
     }
 
     // batch->completed_at
@@ -576,6 +732,12 @@ batch_t *batch_parseFromJSON(cJSON *batchJSON){
     {
     goto end; //Numeric
     }
+    completed_at_local_var = malloc(sizeof(int));
+    if(!completed_at_local_var)
+    {
+        goto end;
+    }
+    *completed_at_local_var = completed_at->valuedouble;
     }
 
     // batch->failed_at
@@ -588,6 +750,12 @@ batch_t *batch_parseFromJSON(cJSON *batchJSON){
     {
     goto end; //Numeric
     }
+    failed_at_local_var = malloc(sizeof(int));
+    if(!failed_at_local_var)
+    {
+        goto end;
+    }
+    *failed_at_local_var = failed_at->valuedouble;
     }
 
     // batch->expired_at
@@ -600,6 +768,12 @@ batch_t *batch_parseFromJSON(cJSON *batchJSON){
     {
     goto end; //Numeric
     }
+    expired_at_local_var = malloc(sizeof(int));
+    if(!expired_at_local_var)
+    {
+        goto end;
+    }
+    *expired_at_local_var = expired_at->valuedouble;
     }
 
     // batch->cancelling_at
@@ -612,6 +786,12 @@ batch_t *batch_parseFromJSON(cJSON *batchJSON){
     {
     goto end; //Numeric
     }
+    cancelling_at_local_var = malloc(sizeof(int));
+    if(!cancelling_at_local_var)
+    {
+        goto end;
+    }
+    *cancelling_at_local_var = cancelling_at->valuedouble;
     }
 
     // batch->cancelled_at
@@ -624,6 +804,12 @@ batch_t *batch_parseFromJSON(cJSON *batchJSON){
     {
     goto end; //Numeric
     }
+    cancelled_at_local_var = malloc(sizeof(int));
+    if(!cancelled_at_local_var)
+    {
+        goto end;
+    }
+    *cancelled_at_local_var = cancelled_at->valuedouble;
     }
 
     // batch->request_counts
@@ -646,34 +832,105 @@ batch_t *batch_parseFromJSON(cJSON *batchJSON){
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (endpoint && !cJSON_IsNull(endpoint)) endpoint_local_str = strdup(endpoint->valuestring);
+    if (input_file_id && !cJSON_IsNull(input_file_id)) input_file_id_local_str = strdup(input_file_id->valuestring);
+    if (completion_window && !cJSON_IsNull(completion_window)) completion_window_local_str = strdup(completion_window->valuestring);
+    if (output_file_id && !cJSON_IsNull(output_file_id)) output_file_id_local_str = strdup(output_file_id->valuestring);
+    if (error_file_id && !cJSON_IsNull(error_file_id)) error_file_id_local_str = strdup(error_file_id->valuestring);
+
     batch_local_var = batch_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         objectVariable,
-        strdup(endpoint->valuestring),
+        endpoint_local_str,
         errors ? errors_local_nonprim : NULL,
-        strdup(input_file_id->valuestring),
-        strdup(completion_window->valuestring),
+        input_file_id_local_str,
+        completion_window_local_str,
         statusVariable,
-        output_file_id && !cJSON_IsNull(output_file_id) ? strdup(output_file_id->valuestring) : NULL,
-        error_file_id && !cJSON_IsNull(error_file_id) ? strdup(error_file_id->valuestring) : NULL,
-        created_at->valuedouble,
-        in_progress_at ? in_progress_at->valuedouble : 0,
-        expires_at ? expires_at->valuedouble : 0,
-        finalizing_at ? finalizing_at->valuedouble : 0,
-        completed_at ? completed_at->valuedouble : 0,
-        failed_at ? failed_at->valuedouble : 0,
-        expired_at ? expired_at->valuedouble : 0,
-        cancelling_at ? cancelling_at->valuedouble : 0,
-        cancelled_at ? cancelled_at->valuedouble : 0,
+        output_file_id_local_str,
+        error_file_id_local_str,
+        created_at_local_var,
+        in_progress_at_local_var,
+        expires_at_local_var,
+        finalizing_at_local_var,
+        completed_at_local_var,
+        failed_at_local_var,
+        expired_at_local_var,
+        cancelling_at_local_var,
+        cancelled_at_local_var,
         request_counts ? request_counts_local_nonprim : NULL,
         metadata ? metadata_local_object : NULL
         );
 
+    if (!batch_local_var) {
+        goto end;
+    }
+
     return batch_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (endpoint_local_str) {
+        free(endpoint_local_str);
+        endpoint_local_str = NULL;
+    }
     if (errors_local_nonprim) {
         batch_errors_free(errors_local_nonprim);
         errors_local_nonprim = NULL;
+    }
+    if (input_file_id_local_str) {
+        free(input_file_id_local_str);
+        input_file_id_local_str = NULL;
+    }
+    if (completion_window_local_str) {
+        free(completion_window_local_str);
+        completion_window_local_str = NULL;
+    }
+    if (output_file_id_local_str) {
+        free(output_file_id_local_str);
+        output_file_id_local_str = NULL;
+    }
+    if (error_file_id_local_str) {
+        free(error_file_id_local_str);
+        error_file_id_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
+    if (in_progress_at_local_var) {
+        free(in_progress_at_local_var);
+        in_progress_at_local_var = NULL;
+    }
+    if (expires_at_local_var) {
+        free(expires_at_local_var);
+        expires_at_local_var = NULL;
+    }
+    if (finalizing_at_local_var) {
+        free(finalizing_at_local_var);
+        finalizing_at_local_var = NULL;
+    }
+    if (completed_at_local_var) {
+        free(completed_at_local_var);
+        completed_at_local_var = NULL;
+    }
+    if (failed_at_local_var) {
+        free(failed_at_local_var);
+        failed_at_local_var = NULL;
+    }
+    if (expired_at_local_var) {
+        free(expired_at_local_var);
+        expired_at_local_var = NULL;
+    }
+    if (cancelling_at_local_var) {
+        free(cancelling_at_local_var);
+        cancelling_at_local_var = NULL;
+    }
+    if (cancelled_at_local_var) {
+        free(cancelled_at_local_var);
+        cancelled_at_local_var = NULL;
     }
     if (request_counts_local_nonprim) {
         batch_request_counts_free(request_counts_local_nonprim);

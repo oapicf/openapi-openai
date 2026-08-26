@@ -51,7 +51,7 @@ class RealtimeResponseUsageInputTokenDetails
      * @var int|null
      * @SerializedName("cached_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $cachedTokens = null;
 
@@ -61,7 +61,7 @@ class RealtimeResponseUsageInputTokenDetails
      * @var int|null
      * @SerializedName("text_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $textTokens = null;
 
@@ -71,7 +71,7 @@ class RealtimeResponseUsageInputTokenDetails
      * @var int|null
      * @SerializedName("audio_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $audioTokens = null;
 
@@ -99,12 +99,12 @@ class RealtimeResponseUsageInputTokenDetails
     }
 
     /**
-    * Sets cachedTokens.
-    *
-    * @param int|null $cachedTokens  The number of cached tokens used in the Response.
-    *
-    * @return $this
-    */
+     * Sets cachedTokens.
+     *
+     * @param int|null $cachedTokens  The number of cached tokens used in the Response.
+     *
+     * @return $this
+     */
     public function setCachedTokens(?int $cachedTokens = null): self
     {
         $this->cachedTokens = $cachedTokens;
@@ -126,12 +126,12 @@ class RealtimeResponseUsageInputTokenDetails
     }
 
     /**
-    * Sets textTokens.
-    *
-    * @param int|null $textTokens  The number of text tokens used in the Response.
-    *
-    * @return $this
-    */
+     * Sets textTokens.
+     *
+     * @param int|null $textTokens  The number of text tokens used in the Response.
+     *
+     * @return $this
+     */
     public function setTextTokens(?int $textTokens = null): self
     {
         $this->textTokens = $textTokens;
@@ -153,12 +153,12 @@ class RealtimeResponseUsageInputTokenDetails
     }
 
     /**
-    * Sets audioTokens.
-    *
-    * @param int|null $audioTokens  The number of audio tokens used in the Response.
-    *
-    * @return $this
-    */
+     * Sets audioTokens.
+     *
+     * @param int|null $audioTokens  The number of audio tokens used in the Response.
+     *
+     * @return $this
+     */
     public function setAudioTokens(?int $audioTokens = null): self
     {
         $this->audioTokens = $audioTokens;

@@ -126,7 +126,7 @@ CreateAssistantRequest_tool_resources_file_search_vector_stores_inner::getFileId
 }
 
 void
-CreateAssistantRequest_tool_resources_file_search_vector_stores_inner::setFileIds(std::list <std::string> file_ids)
+CreateAssistantRequest_tool_resources_file_search_vector_stores_inner::setFileIds(std::list<std::string> file_ids)
 {
 	this->file_ids = file_ids;
 }
@@ -138,7 +138,7 @@ CreateAssistantRequest_tool_resources_file_search_vector_stores_inner::getChunki
 }
 
 void
-CreateAssistantRequest_tool_resources_file_search_vector_stores_inner::setChunkingStrategy(CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy  chunking_strategy)
+CreateAssistantRequest_tool_resources_file_search_vector_stores_inner::setChunkingStrategy(CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy chunking_strategy)
 {
 	this->chunking_strategy = chunking_strategy;
 }
@@ -150,7 +150,7 @@ CreateAssistantRequest_tool_resources_file_search_vector_stores_inner::getMetada
 }
 
 void
-CreateAssistantRequest_tool_resources_file_search_vector_stores_inner::setMetadata(Object  metadata)
+CreateAssistantRequest_tool_resources_file_search_vector_stores_inner::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }

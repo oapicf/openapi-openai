@@ -71,10 +71,10 @@ class MessageDeltaContentImageFileObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageDeltaContentImageFileObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageDeltaContentImageFileObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'index'), 'Required key "MessageDeltaContentImageFileObject[index]" is missing from JSON.');
+        assert(json[r'index'] != null, 'Required key "MessageDeltaContentImageFileObject[index]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "MessageDeltaContentImageFileObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "MessageDeltaContentImageFileObject[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -135,27 +135,28 @@ class MessageDeltaContentImageFileObject {
 }
 
 /// Always `image_file`.
-class MessageDeltaContentImageFileObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageDeltaContentImageFileObjectTypeEnum._(this.value);
+enum MessageDeltaContentImageFileObjectTypeEnum {
+  imageFile._(r'image_file'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageDeltaContentImageFileObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const imageFile = MessageDeltaContentImageFileObjectTypeEnum._(r'image_file');
-
-  /// List of all possible values in this [enum][MessageDeltaContentImageFileObjectTypeEnum].
-  static const values = <MessageDeltaContentImageFileObjectTypeEnum>[
-    imageFile,
-  ];
-
+  /// Returns the instance of [MessageDeltaContentImageFileObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageDeltaContentImageFileObjectTypeEnum? fromJson(dynamic value) => MessageDeltaContentImageFileObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageDeltaContentImageFileObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageDeltaContentImageFileObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageDeltaContentImageFileObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -177,9 +178,10 @@ class MessageDeltaContentImageFileObjectTypeEnumTypeTransformer {
 
   const MessageDeltaContentImageFileObjectTypeEnumTypeTransformer._();
 
-  String encode(MessageDeltaContentImageFileObjectTypeEnum data) => data.value;
+  String encode(MessageDeltaContentImageFileObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageDeltaContentImageFileObjectTypeEnum.
+  /// Returns the instance of [MessageDeltaContentImageFileObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -188,6 +190,9 @@ class MessageDeltaContentImageFileObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageDeltaContentImageFileObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageDeltaContentImageFileObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'image_file': return MessageDeltaContentImageFileObjectTypeEnum.imageFile;
@@ -200,7 +205,7 @@ class MessageDeltaContentImageFileObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageDeltaContentImageFileObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageDeltaContentImageFileObjectTypeEnumTypeTransformer? _instance;
 }
 

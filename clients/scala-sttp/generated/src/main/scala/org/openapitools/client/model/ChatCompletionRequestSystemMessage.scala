@@ -22,7 +22,7 @@ case class ChatCompletionRequestSystemMessage(
   role: ChatCompletionRequestSystemMessageEnums.Role,
   /* An optional name for the participant. Provides the model information to differentiate between participants of the same role. */
   name: Option[String] = None
-)
+) extends FineTuneChatRequestInputMessagesInner
 
 object ChatCompletionRequestSystemMessageEnums {
 

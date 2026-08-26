@@ -42,8 +42,8 @@ function Initialize-RunStepDetailsToolCallsFileSearchResultObjectContentInner {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "text" = ${Text}
+            'type' = ${Type}
+            'text' = ${Text}
         }
 
 
@@ -81,28 +81,28 @@ function ConvertFrom-JsonToRunStepDetailsToolCallsFileSearchResultObjectContentI
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDetailsToolCallsFileSearchResultObjectContentInner
-        $AllProperties = ("type", "text")
+        $AllProperties = ('type', 'text')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) { #optional property not found
             $Type = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "text"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'text'))) { #optional property not found
             $Text = $null
         } else {
-            $Text = $JsonParameters.PSobject.Properties["text"].value
+            $Text = $JsonParameters.PSobject.Properties['text'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "text" = ${Text}
+            'type' = ${Type}
+            'text' = ${Text}
         }
 
         return $PSO

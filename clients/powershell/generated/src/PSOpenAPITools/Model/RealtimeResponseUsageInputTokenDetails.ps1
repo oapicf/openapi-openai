@@ -46,9 +46,9 @@ function Initialize-RealtimeResponseUsageInputTokenDetails {
 
 
         $PSO = [PSCustomObject]@{
-            "cached_tokens" = ${CachedTokens}
-            "text_tokens" = ${TextTokens}
-            "audio_tokens" = ${AudioTokens}
+            'cached_tokens' = ${CachedTokens}
+            'text_tokens' = ${TextTokens}
+            'audio_tokens' = ${AudioTokens}
         }
 
 
@@ -86,35 +86,35 @@ function ConvertFrom-JsonToRealtimeResponseUsageInputTokenDetails {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeResponseUsageInputTokenDetails
-        $AllProperties = ("cached_tokens", "text_tokens", "audio_tokens")
+        $AllProperties = ('cached_tokens', 'text_tokens', 'audio_tokens')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cached_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'cached_tokens'))) { #optional property not found
             $CachedTokens = $null
         } else {
-            $CachedTokens = $JsonParameters.PSobject.Properties["cached_tokens"].value
+            $CachedTokens = $JsonParameters.PSobject.Properties['cached_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "text_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'text_tokens'))) { #optional property not found
             $TextTokens = $null
         } else {
-            $TextTokens = $JsonParameters.PSobject.Properties["text_tokens"].value
+            $TextTokens = $JsonParameters.PSobject.Properties['text_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "audio_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'audio_tokens'))) { #optional property not found
             $AudioTokens = $null
         } else {
-            $AudioTokens = $JsonParameters.PSobject.Properties["audio_tokens"].value
+            $AudioTokens = $JsonParameters.PSobject.Properties['audio_tokens'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "cached_tokens" = ${CachedTokens}
-            "text_tokens" = ${TextTokens}
-            "audio_tokens" = ${AudioTokens}
+            'cached_tokens' = ${CachedTokens}
+            'text_tokens' = ${TextTokens}
+            'audio_tokens' = ${AudioTokens}
         }
 
         return $PSO

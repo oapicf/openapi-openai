@@ -22,7 +22,7 @@ message ChatCompletionRequestFunctionMessage {
     ROLE_FUNCTION = 0;
   }
 
-  Role role = 3506294;
+  string role = 3506294;
 
   // The contents of the function message.
   optional string content = 414659706;

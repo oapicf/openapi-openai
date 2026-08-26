@@ -26,20 +26,20 @@ static project_service_account_api_key_t *project_service_account_api_key_create
     openai_api_project_service_account_api_key_OBJECT_e object,
     char *value,
     char *name,
-    int created_at,
+    int *created_at,
     char *id
     ) {
     project_service_account_api_key_t *project_service_account_api_key_local_var = malloc(sizeof(project_service_account_api_key_t));
     if (!project_service_account_api_key_local_var) {
         return NULL;
     }
+    memset(project_service_account_api_key_local_var, 0, sizeof(project_service_account_api_key_t));
+    project_service_account_api_key_local_var->_library_owned = 1;
     project_service_account_api_key_local_var->object = object;
     project_service_account_api_key_local_var->value = value;
     project_service_account_api_key_local_var->name = name;
     project_service_account_api_key_local_var->created_at = created_at;
     project_service_account_api_key_local_var->id = id;
-
-    project_service_account_api_key_local_var->_library_owned = 1;
     return project_service_account_api_key_local_var;
 }
 
@@ -47,16 +47,25 @@ __attribute__((deprecated)) project_service_account_api_key_t *project_service_a
     openai_api_project_service_account_api_key_OBJECT_e object,
     char *value,
     char *name,
-    int created_at,
+    int *created_at,
     char *id
     ) {
-    return project_service_account_api_key_create_internal (
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    project_service_account_api_key_t *result = project_service_account_api_key_create_internal (
         object,
         value,
         name,
-        created_at,
+        created_at_copy,
         id
         );
+    if (!result) {
+        free(created_at_copy);
+    }
+    return result;
 }
 
 void project_service_account_api_key_free(project_service_account_api_key_t *project_service_account_api_key) {
@@ -75,6 +84,10 @@ void project_service_account_api_key_free(project_service_account_api_key_t *pro
     if (project_service_account_api_key->name) {
         free(project_service_account_api_key->name);
         project_service_account_api_key->name = NULL;
+    }
+    if (project_service_account_api_key->created_at) {
+        free(project_service_account_api_key->created_at);
+        project_service_account_api_key->created_at = NULL;
     }
     if (project_service_account_api_key->id) {
         free(project_service_account_api_key->id);
@@ -118,7 +131,7 @@ cJSON *project_service_account_api_key_convertToJSON(project_service_account_api
     if (!project_service_account_api_key->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", project_service_account_api_key->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *project_service_account_api_key->created_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -142,6 +155,15 @@ fail:
 project_service_account_api_key_t *project_service_account_api_key_parseFromJSON(cJSON *project_service_account_api_keyJSON){
 
     project_service_account_api_key_t *project_service_account_api_key_local_var = NULL;
+
+    char *value_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    // define the local variable for project_service_account_api_key->created_at
+    int *created_at_local_var = NULL;
+
+    char *id_local_str = NULL;
 
     // project_service_account_api_key->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(project_service_account_api_keyJSON, "object");
@@ -204,6 +226,12 @@ project_service_account_api_key_t *project_service_account_api_key_parseFromJSON
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
     // project_service_account_api_key->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(project_service_account_api_keyJSON, "id");
@@ -221,16 +249,40 @@ project_service_account_api_key_t *project_service_account_api_key_parseFromJSON
     }
 
 
+    if (value && !cJSON_IsNull(value)) value_local_str = strdup(value->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     project_service_account_api_key_local_var = project_service_account_api_key_create_internal (
         objectVariable,
-        strdup(value->valuestring),
-        strdup(name->valuestring),
-        created_at->valuedouble,
-        strdup(id->valuestring)
+        value_local_str,
+        name_local_str,
+        created_at_local_var,
+        id_local_str
         );
+
+    if (!project_service_account_api_key_local_var) {
+        goto end;
+    }
 
     return project_service_account_api_key_local_var;
 end:
+    if (value_local_str) {
+        free(value_local_str);
+        value_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -124,10 +124,8 @@ class FineTuneChatCompletionRequestAssistantMessage {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "FineTuneChatCompletionRequestAssistantMessage[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "FineTuneChatCompletionRequestAssistantMessage[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'role'), 'Required key "FineTuneChatCompletionRequestAssistantMessage[role]" is missing from JSON.');
+        assert(json[r'role'] != null, 'Required key "FineTuneChatCompletionRequestAssistantMessage[role]" has a null value in JSON.');
         return true;
       }());
 
@@ -192,27 +190,28 @@ class FineTuneChatCompletionRequestAssistantMessage {
 }
 
 /// The role of the messages author, in this case `assistant`.
-class FineTuneChatCompletionRequestAssistantMessageRoleEnum {
-  /// Instantiate a new enum with the provided [value].
-  const FineTuneChatCompletionRequestAssistantMessageRoleEnum._(this.value);
+enum FineTuneChatCompletionRequestAssistantMessageRoleEnum {
+  assistant._(r'assistant'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const FineTuneChatCompletionRequestAssistantMessageRoleEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const assistant = FineTuneChatCompletionRequestAssistantMessageRoleEnum._(r'assistant');
-
-  /// List of all possible values in this [enum][FineTuneChatCompletionRequestAssistantMessageRoleEnum].
-  static const values = <FineTuneChatCompletionRequestAssistantMessageRoleEnum>[
-    assistant,
-  ];
-
+  /// Returns the instance of [FineTuneChatCompletionRequestAssistantMessageRoleEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static FineTuneChatCompletionRequestAssistantMessageRoleEnum? fromJson(dynamic value) => FineTuneChatCompletionRequestAssistantMessageRoleEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [FineTuneChatCompletionRequestAssistantMessageRoleEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<FineTuneChatCompletionRequestAssistantMessageRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <FineTuneChatCompletionRequestAssistantMessageRoleEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -234,9 +233,10 @@ class FineTuneChatCompletionRequestAssistantMessageRoleEnumTypeTransformer {
 
   const FineTuneChatCompletionRequestAssistantMessageRoleEnumTypeTransformer._();
 
-  String encode(FineTuneChatCompletionRequestAssistantMessageRoleEnum data) => data.value;
+  String encode(FineTuneChatCompletionRequestAssistantMessageRoleEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a FineTuneChatCompletionRequestAssistantMessageRoleEnum.
+  /// Returns the instance of [FineTuneChatCompletionRequestAssistantMessageRoleEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -245,6 +245,9 @@ class FineTuneChatCompletionRequestAssistantMessageRoleEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   FineTuneChatCompletionRequestAssistantMessageRoleEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is FineTuneChatCompletionRequestAssistantMessageRoleEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'assistant': return FineTuneChatCompletionRequestAssistantMessageRoleEnum.assistant;
@@ -257,35 +260,35 @@ class FineTuneChatCompletionRequestAssistantMessageRoleEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [FineTuneChatCompletionRequestAssistantMessageRoleEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static FineTuneChatCompletionRequestAssistantMessageRoleEnumTypeTransformer? _instance;
 }
 
 
 /// Controls whether the assistant message is trained against (0 or 1)
-class FineTuneChatCompletionRequestAssistantMessageWeightEnum {
-  /// Instantiate a new enum with the provided [value].
-  const FineTuneChatCompletionRequestAssistantMessageWeightEnum._(this.value);
+enum FineTuneChatCompletionRequestAssistantMessageWeightEnum {
+  number0._(0),
+  number1._(1),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const FineTuneChatCompletionRequestAssistantMessageWeightEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final int value;
+  final int _value;
 
   @override
-  String toString() => value.toString();
+  String toString() => _value.toString();
 
-  int toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  int toJson() => _value;
 
-  static const number0 = FineTuneChatCompletionRequestAssistantMessageWeightEnum._(0);
-  static const number1 = FineTuneChatCompletionRequestAssistantMessageWeightEnum._(1);
-
-  /// List of all possible values in this [enum][FineTuneChatCompletionRequestAssistantMessageWeightEnum].
-  static const values = <FineTuneChatCompletionRequestAssistantMessageWeightEnum>[
-    number0,
-    number1,
-  ];
-
+  /// Returns the instance of [FineTuneChatCompletionRequestAssistantMessageWeightEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static FineTuneChatCompletionRequestAssistantMessageWeightEnum? fromJson(dynamic value) => FineTuneChatCompletionRequestAssistantMessageWeightEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [FineTuneChatCompletionRequestAssistantMessageWeightEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<FineTuneChatCompletionRequestAssistantMessageWeightEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <FineTuneChatCompletionRequestAssistantMessageWeightEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -307,9 +310,10 @@ class FineTuneChatCompletionRequestAssistantMessageWeightEnumTypeTransformer {
 
   const FineTuneChatCompletionRequestAssistantMessageWeightEnumTypeTransformer._();
 
-  int encode(FineTuneChatCompletionRequestAssistantMessageWeightEnum data) => data.value;
+  int encode(FineTuneChatCompletionRequestAssistantMessageWeightEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a FineTuneChatCompletionRequestAssistantMessageWeightEnum.
+  /// Returns the instance of [FineTuneChatCompletionRequestAssistantMessageWeightEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -318,6 +322,9 @@ class FineTuneChatCompletionRequestAssistantMessageWeightEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   FineTuneChatCompletionRequestAssistantMessageWeightEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is FineTuneChatCompletionRequestAssistantMessageWeightEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case 0: return FineTuneChatCompletionRequestAssistantMessageWeightEnum.number0;
@@ -331,7 +338,7 @@ class FineTuneChatCompletionRequestAssistantMessageWeightEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [FineTuneChatCompletionRequestAssistantMessageWeightEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static FineTuneChatCompletionRequestAssistantMessageWeightEnumTypeTransformer? _instance;
 }
 

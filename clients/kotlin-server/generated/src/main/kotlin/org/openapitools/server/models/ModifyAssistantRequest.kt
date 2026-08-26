@@ -18,7 +18,7 @@ import org.openapitools.server.models.ModifyAssistantRequestToolResources
 import kotlinx.serialization.Serializable
 /**
  * 
- * @param model 
+ * @param model ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
  * @param name The name of the assistant. The maximum length is 256 characters. 
  * @param description The description of the assistant. The maximum length is 512 characters. 
  * @param instructions The system instructions that the assistant uses. The maximum length is 256,000 characters. 
@@ -31,6 +31,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class ModifyAssistantRequest(
+    /* ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them.  */
     val model: kotlin.String? = null,
     /* The name of the assistant. The maximum length is 256 characters.  */
     val name: kotlin.String? = null,

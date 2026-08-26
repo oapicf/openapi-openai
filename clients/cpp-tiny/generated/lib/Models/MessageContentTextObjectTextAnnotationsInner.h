@@ -55,42 +55,42 @@ public:
 
 	/*! \brief Set Always `file_citation`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The text in the message content that needs to be replaced.
 	 */
 	std::string getText();
 
 	/*! \brief Set The text in the message content that needs to be replaced.
 	 */
-	void setText(std::string  text);
+	void setText(std::string text);
 	/*! \brief Get 
 	 */
 	MessageContentTextAnnotationsFileCitationObject_file_citation getFileCitation();
 
 	/*! \brief Set 
 	 */
-	void setFileCitation(MessageContentTextAnnotationsFileCitationObject_file_citation  file_citation);
+	void setFileCitation(MessageContentTextAnnotationsFileCitationObject_file_citation file_citation);
 	/*! \brief Get 
 	 */
 	int getStartIndex();
 
 	/*! \brief Set 
 	 */
-	void setStartIndex(int  start_index);
+	void setStartIndex(int start_index);
 	/*! \brief Get 
 	 */
 	int getEndIndex();
 
 	/*! \brief Set 
 	 */
-	void setEndIndex(int  end_index);
+	void setEndIndex(int end_index);
 	/*! \brief Get 
 	 */
 	MessageContentTextAnnotationsFilePathObject_file_path getFilePath();
 
 	/*! \brief Set 
 	 */
-	void setFilePath(MessageContentTextAnnotationsFilePathObject_file_path  file_path);
+	void setFilePath(MessageContentTextAnnotationsFilePathObject_file_path file_path);
 
 
     private:

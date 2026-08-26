@@ -40,6 +40,8 @@ ModifyAssistantRequest::ModifyAssistantRequest()
     
 }
 
+ModifyAssistantRequest::~ModifyAssistantRequest() = default;
+
 void ModifyAssistantRequest::validate() const
 {
     std::stringstream msg;

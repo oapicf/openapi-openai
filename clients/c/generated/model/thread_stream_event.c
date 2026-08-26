@@ -23,7 +23,7 @@ openai_api_thread_stream_event_EVENT_e thread_stream_event_event_FromString(char
 }
 
 static thread_stream_event_t *thread_stream_event_create_internal(
-    int enabled,
+    int *enabled,
     openai_api_thread_stream_event_EVENT_e event,
     thread_object_t *data
     ) {
@@ -31,24 +31,33 @@ static thread_stream_event_t *thread_stream_event_create_internal(
     if (!thread_stream_event_local_var) {
         return NULL;
     }
+    memset(thread_stream_event_local_var, 0, sizeof(thread_stream_event_t));
+    thread_stream_event_local_var->_library_owned = 1;
     thread_stream_event_local_var->enabled = enabled;
     thread_stream_event_local_var->event = event;
     thread_stream_event_local_var->data = data;
-
-    thread_stream_event_local_var->_library_owned = 1;
     return thread_stream_event_local_var;
 }
 
 __attribute__((deprecated)) thread_stream_event_t *thread_stream_event_create(
-    int enabled,
+    int *enabled,
     openai_api_thread_stream_event_EVENT_e event,
     thread_object_t *data
     ) {
-    return thread_stream_event_create_internal (
-        enabled,
+    int *enabled_copy = NULL;
+    if (enabled) {
+        enabled_copy = malloc(sizeof(int));
+        if (enabled_copy) *enabled_copy = *enabled;
+    }
+    thread_stream_event_t *result = thread_stream_event_create_internal (
+        enabled_copy,
         event,
         data
         );
+    if (!result) {
+        free(enabled_copy);
+    }
+    return result;
 }
 
 void thread_stream_event_free(thread_stream_event_t *thread_stream_event) {
@@ -60,6 +69,10 @@ void thread_stream_event_free(thread_stream_event_t *thread_stream_event) {
         return ;
     }
     listEntry_t *listEntry;
+    if (thread_stream_event->enabled) {
+        free(thread_stream_event->enabled);
+        thread_stream_event->enabled = NULL;
+    }
     if (thread_stream_event->data) {
         thread_object_free(thread_stream_event->data);
         thread_stream_event->data = NULL;
@@ -72,7 +85,7 @@ cJSON *thread_stream_event_convertToJSON(thread_stream_event_t *thread_stream_ev
 
     // thread_stream_event->enabled
     if(thread_stream_event->enabled) {
-    if(cJSON_AddBoolToObject(item, "enabled", thread_stream_event->enabled) == NULL) {
+    if(cJSON_AddBoolToObject(item, "enabled", *thread_stream_event->enabled) == NULL) {
     goto fail; //Bool
     }
     }
@@ -113,6 +126,9 @@ thread_stream_event_t *thread_stream_event_parseFromJSON(cJSON *thread_stream_ev
 
     thread_stream_event_t *thread_stream_event_local_var = NULL;
 
+    // define the local variable for thread_stream_event->enabled
+    int *enabled_local_var = NULL;
+
     // define the local variable for thread_stream_event->data
     thread_object_t *data_local_nonprim = NULL;
 
@@ -126,6 +142,12 @@ thread_stream_event_t *thread_stream_event_parseFromJSON(cJSON *thread_stream_ev
     {
     goto end; //Bool
     }
+    enabled_local_var = malloc(sizeof(int));
+    if(!enabled_local_var)
+    {
+        goto end;
+    }
+    *enabled_local_var = enabled->valueint;
     }
 
     // thread_stream_event->event
@@ -158,14 +180,23 @@ thread_stream_event_t *thread_stream_event_parseFromJSON(cJSON *thread_stream_ev
     data_local_nonprim = thread_object_parseFromJSON(data); //nonprimitive
 
 
+
     thread_stream_event_local_var = thread_stream_event_create_internal (
-        enabled ? enabled->valueint : 0,
+        enabled_local_var,
         eventVariable,
         data_local_nonprim
         );
 
+    if (!thread_stream_event_local_var) {
+        goto end;
+    }
+
     return thread_stream_event_local_var;
 end:
+    if (enabled_local_var) {
+        free(enabled_local_var);
+        enabled_local_var = NULL;
+    }
     if (data_local_nonprim) {
         thread_object_free(data_local_nonprim);
         data_local_nonprim = NULL;

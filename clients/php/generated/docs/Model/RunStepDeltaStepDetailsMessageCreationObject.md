@@ -1,4 +1,4 @@
-# # RunStepDeltaStepDetailsMessageCreationObject
+# RunStepDeltaStepDetailsMessageCreationObject
 
 ## Properties
 

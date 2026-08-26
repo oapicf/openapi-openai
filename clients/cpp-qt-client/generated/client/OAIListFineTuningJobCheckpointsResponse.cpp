@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIListFineTuningJobCheckpointsResponse::OAIListFineTuningJobCheckpointsResponse(QString json) {
+OAIListFineTuningJobCheckpointsResponse::OAIListFineTuningJobCheckpointsResponse(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -50,7 +50,7 @@ void OAIListFineTuningJobCheckpointsResponse::initializeModel() {
     m_has_more_isValid = false;
 }
 
-void OAIListFineTuningJobCheckpointsResponse::fromJson(QString jsonString) {
+void OAIListFineTuningJobCheckpointsResponse::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

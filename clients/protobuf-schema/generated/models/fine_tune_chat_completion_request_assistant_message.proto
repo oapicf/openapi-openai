@@ -31,7 +31,7 @@ message FineTuneChatCompletionRequestAssistantMessage {
     ROLE_ASSISTANT = 0;
   }
 
-  Role role = 3506294;
+  string role = 3506294;
 
   // An optional name for the participant. Provides the model information to differentiate between participants of the same role.
   string name = 3373707;
@@ -49,7 +49,7 @@ message FineTuneChatCompletionRequestAssistantMessage {
     WEIGHT__1 = 1;
   }
 
-  Weight weight = 254721417;
+  int32 weight = 254721417;
 
 }
 

@@ -33,7 +33,7 @@ class  CreateBatch_request
 {
 public:
     CreateBatch_request();
-    virtual ~CreateBatch_request() = default;
+    virtual ~CreateBatch_request();
 
 
     /// <summary>

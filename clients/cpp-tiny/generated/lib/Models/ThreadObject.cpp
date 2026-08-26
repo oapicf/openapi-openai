@@ -150,7 +150,7 @@ ThreadObject::getId()
 }
 
 void
-ThreadObject::setId(std::string  id)
+ThreadObject::setId(std::string id)
 {
 	this->id = id;
 }
@@ -162,7 +162,7 @@ ThreadObject::getObject()
 }
 
 void
-ThreadObject::setObject(std::string  object)
+ThreadObject::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -174,7 +174,7 @@ ThreadObject::getCreatedAt()
 }
 
 void
-ThreadObject::setCreatedAt(int  created_at)
+ThreadObject::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -186,7 +186,7 @@ ThreadObject::getToolResources()
 }
 
 void
-ThreadObject::setToolResources(ModifyThreadRequest_tool_resources  tool_resources)
+ThreadObject::setToolResources(ModifyThreadRequest_tool_resources tool_resources)
 {
 	this->tool_resources = tool_resources;
 }
@@ -198,7 +198,7 @@ ThreadObject::getMetadata()
 }
 
 void
-ThreadObject::setMetadata(Object  metadata)
+ThreadObject::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }

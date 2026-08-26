@@ -1,4 +1,4 @@
-# # AuditLogInviteAccepted
+# AuditLogInviteAccepted
 
 ## Properties
 

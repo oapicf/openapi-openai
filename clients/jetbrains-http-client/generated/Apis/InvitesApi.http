@@ -1,0 +1,33 @@
+## InvitesApi
+
+### Delete an invite. If the invite has already been accepted, it cannot be deleted.
+## Delete an invite. If the invite has already been accepted, it cannot be deleted.
+DELETE https://api.openai.com/v1/organization/invites/{{invite_id}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+## Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+POST https://api.openai.com/v1/organization/invites
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "email": "<string>",
+ "role": "<string>",
+ "projects": "<string>"
+}
+
+
+### Returns a list of invites in the organization.
+## Returns a list of invites in the organization.
+GET https://api.openai.com/v1/organization/invites?limit={{limit}}&after={{after}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Retrieves an invite.
+## Retrieves an invite.
+GET https://api.openai.com/v1/organization/invites/{{invite_id}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}

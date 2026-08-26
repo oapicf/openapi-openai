@@ -27,6 +27,8 @@ AuditLog_user_updated::AuditLog_user_updated()
     
 }
 
+AuditLog_user_updated::~AuditLog_user_updated() = default;
+
 void AuditLog_user_updated::validate() const
 {
     std::stringstream msg;

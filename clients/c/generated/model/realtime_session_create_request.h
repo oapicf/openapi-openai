@@ -73,7 +73,7 @@ typedef struct realtime_session_create_request_t {
     struct realtime_session_create_request_turn_detection_t *turn_detection; //model
     list_t *tools; //nonprimitive container
     char *tool_choice; // string
-    double temperature; //numeric
+    double *temperature; //numeric
     struct realtime_response_create_params_max_response_output_tokens_t *max_response_output_tokens; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -90,7 +90,7 @@ __attribute__((deprecated)) realtime_session_create_request_t *realtime_session_
     realtime_session_create_request_turn_detection_t *turn_detection,
     list_t *tools,
     char *tool_choice,
-    double temperature,
+    double *temperature,
     realtime_response_create_params_max_response_output_tokens_t *max_response_output_tokens
 );
 

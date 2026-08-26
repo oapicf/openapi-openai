@@ -26,6 +26,8 @@ RunObject_last_error::RunObject_last_error()
     
 }
 
+RunObject_last_error::~RunObject_last_error() = default;
+
 void RunObject_last_error::validate() const
 {
     std::stringstream msg;

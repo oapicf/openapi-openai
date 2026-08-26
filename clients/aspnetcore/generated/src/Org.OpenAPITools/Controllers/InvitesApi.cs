@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"deleted\" : true,\n  \"id\" : \"id\",\n  \"object\" : \"organization.invite.deleted\"\n}";
+            exampleJson = "{\n  \"object\" : \"organization.invite.deleted\",\n  \"id\" : \"id\",\n  \"deleted\" : true\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<InviteDeleteResponse>(exampleJson)
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"role\" : \"owner\",\n  \"expires_at\" : 6,\n  \"projects\" : [ {\n    \"role\" : \"member\",\n    \"id\" : \"id\"\n  }, {\n    \"role\" : \"member\",\n    \"id\" : \"id\"\n  } ],\n  \"invited_at\" : 0,\n  \"id\" : \"id\",\n  \"accepted_at\" : 1,\n  \"email\" : \"email\",\n  \"object\" : \"organization.invite\",\n  \"status\" : \"accepted\"\n}";
+            exampleJson = "{\n  \"object\" : \"organization.invite\",\n  \"id\" : \"id\",\n  \"email\" : \"email\",\n  \"role\" : \"owner\",\n  \"status\" : \"accepted\",\n  \"invited_at\" : 0,\n  \"expires_at\" : 6,\n  \"accepted_at\" : 1,\n  \"projects\" : [ {\n    \"id\" : \"id\",\n    \"role\" : \"member\"\n  }, {\n    \"id\" : \"id\",\n    \"role\" : \"member\"\n  } ]\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<Invite>(exampleJson)
@@ -99,7 +99,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"first_id\" : \"first_id\",\n  \"data\" : [ {\n    \"role\" : \"owner\",\n    \"expires_at\" : 6,\n    \"projects\" : [ {\n      \"role\" : \"member\",\n      \"id\" : \"id\"\n    }, {\n      \"role\" : \"member\",\n      \"id\" : \"id\"\n    } ],\n    \"invited_at\" : 0,\n    \"id\" : \"id\",\n    \"accepted_at\" : 1,\n    \"email\" : \"email\",\n    \"object\" : \"organization.invite\",\n    \"status\" : \"accepted\"\n  }, {\n    \"role\" : \"owner\",\n    \"expires_at\" : 6,\n    \"projects\" : [ {\n      \"role\" : \"member\",\n      \"id\" : \"id\"\n    }, {\n      \"role\" : \"member\",\n      \"id\" : \"id\"\n    } ],\n    \"invited_at\" : 0,\n    \"id\" : \"id\",\n    \"accepted_at\" : 1,\n    \"email\" : \"email\",\n    \"object\" : \"organization.invite\",\n    \"status\" : \"accepted\"\n  } ],\n  \"last_id\" : \"last_id\",\n  \"has_more\" : true,\n  \"object\" : \"list\"\n}";
+            exampleJson = "{\n  \"object\" : \"list\",\n  \"data\" : [ {\n    \"object\" : \"organization.invite\",\n    \"id\" : \"id\",\n    \"email\" : \"email\",\n    \"role\" : \"owner\",\n    \"status\" : \"accepted\",\n    \"invited_at\" : 0,\n    \"expires_at\" : 6,\n    \"accepted_at\" : 1,\n    \"projects\" : [ {\n      \"id\" : \"id\",\n      \"role\" : \"member\"\n    }, {\n      \"id\" : \"id\",\n      \"role\" : \"member\"\n    } ]\n  }, {\n    \"object\" : \"organization.invite\",\n    \"id\" : \"id\",\n    \"email\" : \"email\",\n    \"role\" : \"owner\",\n    \"status\" : \"accepted\",\n    \"invited_at\" : 0,\n    \"expires_at\" : 6,\n    \"accepted_at\" : 1,\n    \"projects\" : [ {\n      \"id\" : \"id\",\n      \"role\" : \"member\"\n    }, {\n      \"id\" : \"id\",\n      \"role\" : \"member\"\n    } ]\n  } ],\n  \"first_id\" : \"first_id\",\n  \"last_id\" : \"last_id\",\n  \"has_more\" : true\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<InviteListResponse>(exampleJson)
@@ -125,7 +125,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"role\" : \"owner\",\n  \"expires_at\" : 6,\n  \"projects\" : [ {\n    \"role\" : \"member\",\n    \"id\" : \"id\"\n  }, {\n    \"role\" : \"member\",\n    \"id\" : \"id\"\n  } ],\n  \"invited_at\" : 0,\n  \"id\" : \"id\",\n  \"accepted_at\" : 1,\n  \"email\" : \"email\",\n  \"object\" : \"organization.invite\",\n  \"status\" : \"accepted\"\n}";
+            exampleJson = "{\n  \"object\" : \"organization.invite\",\n  \"id\" : \"id\",\n  \"email\" : \"email\",\n  \"role\" : \"owner\",\n  \"status\" : \"accepted\",\n  \"invited_at\" : 0,\n  \"expires_at\" : 6,\n  \"accepted_at\" : 1,\n  \"projects\" : [ {\n    \"id\" : \"id\",\n    \"role\" : \"member\"\n  }, {\n    \"id\" : \"id\",\n    \"role\" : \"member\"\n  } ]\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<Invite>(exampleJson)

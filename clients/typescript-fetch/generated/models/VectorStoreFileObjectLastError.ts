@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface VectorStoreFileObjectLastError {
     /**
      * One of `server_error` or `rate_limit_exceeded`.
-     * @type {string}
+     * @type {VectorStoreFileObjectLastErrorCodeEnum}
      * @memberof VectorStoreFileObjectLastError
      */
     code: VectorStoreFileObjectLastErrorCodeEnum;

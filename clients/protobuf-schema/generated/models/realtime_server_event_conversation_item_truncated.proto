@@ -25,7 +25,7 @@ message RealtimeServerEventConversationItemTruncated {
     TYPE_CONVERSATION_ITEM_TRUNCATED = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // The ID of the assistant message item that was truncated.
   string item_id = 505592266;

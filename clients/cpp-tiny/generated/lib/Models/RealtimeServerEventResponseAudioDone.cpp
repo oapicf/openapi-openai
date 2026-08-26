@@ -169,7 +169,7 @@ RealtimeServerEventResponseAudioDone::getEventId()
 }
 
 void
-RealtimeServerEventResponseAudioDone::setEventId(std::string  event_id)
+RealtimeServerEventResponseAudioDone::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -181,7 +181,7 @@ RealtimeServerEventResponseAudioDone::getType()
 }
 
 void
-RealtimeServerEventResponseAudioDone::setType(std::string  type)
+RealtimeServerEventResponseAudioDone::setType(std::string type)
 {
 	this->type = type;
 }
@@ -193,7 +193,7 @@ RealtimeServerEventResponseAudioDone::getResponseId()
 }
 
 void
-RealtimeServerEventResponseAudioDone::setResponseId(std::string  response_id)
+RealtimeServerEventResponseAudioDone::setResponseId(std::string response_id)
 {
 	this->response_id = response_id;
 }
@@ -205,7 +205,7 @@ RealtimeServerEventResponseAudioDone::getItemId()
 }
 
 void
-RealtimeServerEventResponseAudioDone::setItemId(std::string  item_id)
+RealtimeServerEventResponseAudioDone::setItemId(std::string item_id)
 {
 	this->item_id = item_id;
 }
@@ -217,7 +217,7 @@ RealtimeServerEventResponseAudioDone::getOutputIndex()
 }
 
 void
-RealtimeServerEventResponseAudioDone::setOutputIndex(int  output_index)
+RealtimeServerEventResponseAudioDone::setOutputIndex(int output_index)
 {
 	this->output_index = output_index;
 }
@@ -229,7 +229,7 @@ RealtimeServerEventResponseAudioDone::getContentIndex()
 }
 
 void
-RealtimeServerEventResponseAudioDone::setContentIndex(int  content_index)
+RealtimeServerEventResponseAudioDone::setContentIndex(int content_index)
 {
 	this->content_index = content_index;
 }

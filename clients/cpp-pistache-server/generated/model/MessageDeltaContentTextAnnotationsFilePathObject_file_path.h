@@ -32,7 +32,7 @@ class  MessageDeltaContentTextAnnotationsFilePathObject_file_path
 {
 public:
     MessageDeltaContentTextAnnotationsFilePathObject_file_path();
-    virtual ~MessageDeltaContentTextAnnotationsFilePathObject_file_path() = default;
+    virtual ~MessageDeltaContentTextAnnotationsFilePathObject_file_path();
 
 
     /// <summary>

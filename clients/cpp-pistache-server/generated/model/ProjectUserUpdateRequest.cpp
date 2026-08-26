@@ -25,6 +25,8 @@ ProjectUserUpdateRequest::ProjectUserUpdateRequest()
     
 }
 
+ProjectUserUpdateRequest::~ProjectUserUpdateRequest() = default;
+
 void ProjectUserUpdateRequest::validate() const
 {
     std::stringstream msg;

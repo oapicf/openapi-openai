@@ -23,7 +23,7 @@ message DeleteFileResponse {
     OBJECT_FILE = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   bool deleted = 476721179;
 

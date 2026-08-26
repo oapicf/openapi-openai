@@ -11,7 +11,7 @@ import play.api.libs.json._
   * @param apiKeyId When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.
   * @param model When `group_by=model`, this field provides the model name of the grouped usage result.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 case class UsageAudioTranscriptionsResult(
   `object`: UsageAudioTranscriptionsResult.Object.Value,
   seconds: Int,

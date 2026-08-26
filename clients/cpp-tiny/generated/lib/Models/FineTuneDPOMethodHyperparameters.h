@@ -55,28 +55,28 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setBeta(FineTuneDPOMethod_hyperparameters_beta  beta);
+	void setBeta(FineTuneDPOMethod_hyperparameters_beta beta);
 	/*! \brief Get 
 	 */
 	FineTuneDPOMethod_hyperparameters_batch_size getBatchSize();
 
 	/*! \brief Set 
 	 */
-	void setBatchSize(FineTuneDPOMethod_hyperparameters_batch_size  batch_size);
+	void setBatchSize(FineTuneDPOMethod_hyperparameters_batch_size batch_size);
 	/*! \brief Get 
 	 */
 	FineTuneDPOMethod_hyperparameters_learning_rate_multiplier getLearningRateMultiplier();
 
 	/*! \brief Set 
 	 */
-	void setLearningRateMultiplier(FineTuneDPOMethod_hyperparameters_learning_rate_multiplier  learning_rate_multiplier);
+	void setLearningRateMultiplier(FineTuneDPOMethod_hyperparameters_learning_rate_multiplier learning_rate_multiplier);
 	/*! \brief Get 
 	 */
 	FineTuneDPOMethod_hyperparameters_n_epochs getNEpochs();
 
 	/*! \brief Set 
 	 */
-	void setNEpochs(FineTuneDPOMethod_hyperparameters_n_epochs  n_epochs);
+	void setNEpochs(FineTuneDPOMethod_hyperparameters_n_epochs n_epochs);
 
 
     private:

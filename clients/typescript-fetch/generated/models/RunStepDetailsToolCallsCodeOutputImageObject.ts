@@ -29,7 +29,7 @@ import {
 export interface RunStepDetailsToolCallsCodeOutputImageObject {
     /**
      * Always `image`.
-     * @type {string}
+     * @type {RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum}
      * @memberof RunStepDetailsToolCallsCodeOutputImageObject
      */
     type: RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum;
@@ -56,6 +56,8 @@ export type RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum = typeof RunSte
  */
 export function instanceOfRunStepDetailsToolCallsCodeOutputImageObject(value: object): value is RunStepDetailsToolCallsCodeOutputImageObject {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'image') return false;
+    
     if (!('image' in value) || value['image'] === undefined) return false;
     return true;
 }

@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateMessageRequest_content::OAICreateMessageRequest_content(QString json) {
+OAICreateMessageRequest_content::OAICreateMessageRequest_content(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -36,7 +36,7 @@ void OAICreateMessageRequest_content::initializeModel() {
 
 }
 
-void OAICreateMessageRequest_content::fromJson(QString jsonString) {
+void OAICreateMessageRequest_content::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

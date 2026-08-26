@@ -85,7 +85,7 @@ ChatCompletionRequestMessageContentPartRefusal::getType()
 }
 
 void
-ChatCompletionRequestMessageContentPartRefusal::setType(std::string  type)
+ChatCompletionRequestMessageContentPartRefusal::setType(std::string type)
 {
 	this->type = type;
 }
@@ -97,7 +97,7 @@ ChatCompletionRequestMessageContentPartRefusal::getRefusal()
 }
 
 void
-ChatCompletionRequestMessageContentPartRefusal::setRefusal(std::string  refusal)
+ChatCompletionRequestMessageContentPartRefusal::setRefusal(std::string refusal)
 {
 	this->refusal = refusal;
 }

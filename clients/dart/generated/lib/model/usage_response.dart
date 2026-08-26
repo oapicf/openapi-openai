@@ -65,10 +65,14 @@ class UsageResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UsageResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UsageResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "UsageResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "UsageResponse[object]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "UsageResponse[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "UsageResponse[data]" has a null value in JSON.');
+        assert(json.containsKey(r'has_more'), 'Required key "UsageResponse[has_more]" is missing from JSON.');
+        assert(json[r'has_more'] != null, 'Required key "UsageResponse[has_more]" has a null value in JSON.');
+        assert(json.containsKey(r'next_page'), 'Required key "UsageResponse[next_page]" is missing from JSON.');
+        assert(json[r'next_page'] != null, 'Required key "UsageResponse[next_page]" has a null value in JSON.');
         return true;
       }());
 
@@ -132,27 +136,28 @@ class UsageResponse {
 }
 
 
-class UsageResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const UsageResponseObjectEnum._(this.value);
+enum UsageResponseObjectEnum {
+  page._(r'page'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const UsageResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const page = UsageResponseObjectEnum._(r'page');
-
-  /// List of all possible values in this [enum][UsageResponseObjectEnum].
-  static const values = <UsageResponseObjectEnum>[
-    page,
-  ];
-
+  /// Returns the instance of [UsageResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static UsageResponseObjectEnum? fromJson(dynamic value) => UsageResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [UsageResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<UsageResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <UsageResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -174,9 +179,10 @@ class UsageResponseObjectEnumTypeTransformer {
 
   const UsageResponseObjectEnumTypeTransformer._();
 
-  String encode(UsageResponseObjectEnum data) => data.value;
+  String encode(UsageResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a UsageResponseObjectEnum.
+  /// Returns the instance of [UsageResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -185,6 +191,9 @@ class UsageResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   UsageResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is UsageResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'page': return UsageResponseObjectEnum.page;
@@ -197,7 +206,7 @@ class UsageResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [UsageResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static UsageResponseObjectEnumTypeTransformer? _instance;
 }
 

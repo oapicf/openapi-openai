@@ -86,7 +86,7 @@ CreateVectorStoreFileRequest::getFileId()
 }
 
 void
-CreateVectorStoreFileRequest::setFileId(std::string  file_id)
+CreateVectorStoreFileRequest::setFileId(std::string file_id)
 {
 	this->file_id = file_id;
 }
@@ -98,7 +98,7 @@ CreateVectorStoreFileRequest::getChunkingStrategy()
 }
 
 void
-CreateVectorStoreFileRequest::setChunkingStrategy(ChunkingStrategyRequestParam  chunking_strategy)
+CreateVectorStoreFileRequest::setChunkingStrategy(ChunkingStrategyRequestParam chunking_strategy)
 {
 	this->chunking_strategy = chunking_strategy;
 }

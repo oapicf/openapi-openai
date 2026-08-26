@@ -54,10 +54,10 @@ class StaticChunkingStrategyRequestParam {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "StaticChunkingStrategyRequestParam[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "StaticChunkingStrategyRequestParam[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "StaticChunkingStrategyRequestParam[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "StaticChunkingStrategyRequestParam[type]" has a null value in JSON.');
+        assert(json.containsKey(r'static'), 'Required key "StaticChunkingStrategyRequestParam[static]" is missing from JSON.');
+        assert(json[r'static'] != null, 'Required key "StaticChunkingStrategyRequestParam[static]" has a null value in JSON.');
         return true;
       }());
 
@@ -117,27 +117,28 @@ class StaticChunkingStrategyRequestParam {
 }
 
 /// Always `static`.
-class StaticChunkingStrategyRequestParamTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const StaticChunkingStrategyRequestParamTypeEnum._(this.value);
+enum StaticChunkingStrategyRequestParamTypeEnum {
+  static_._(r'static'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const StaticChunkingStrategyRequestParamTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const static_ = StaticChunkingStrategyRequestParamTypeEnum._(r'static');
-
-  /// List of all possible values in this [enum][StaticChunkingStrategyRequestParamTypeEnum].
-  static const values = <StaticChunkingStrategyRequestParamTypeEnum>[
-    static_,
-  ];
-
+  /// Returns the instance of [StaticChunkingStrategyRequestParamTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static StaticChunkingStrategyRequestParamTypeEnum? fromJson(dynamic value) => StaticChunkingStrategyRequestParamTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [StaticChunkingStrategyRequestParamTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<StaticChunkingStrategyRequestParamTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <StaticChunkingStrategyRequestParamTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -159,9 +160,10 @@ class StaticChunkingStrategyRequestParamTypeEnumTypeTransformer {
 
   const StaticChunkingStrategyRequestParamTypeEnumTypeTransformer._();
 
-  String encode(StaticChunkingStrategyRequestParamTypeEnum data) => data.value;
+  String encode(StaticChunkingStrategyRequestParamTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a StaticChunkingStrategyRequestParamTypeEnum.
+  /// Returns the instance of [StaticChunkingStrategyRequestParamTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -170,6 +172,9 @@ class StaticChunkingStrategyRequestParamTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   StaticChunkingStrategyRequestParamTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is StaticChunkingStrategyRequestParamTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'static': return StaticChunkingStrategyRequestParamTypeEnum.static_;
@@ -182,7 +187,7 @@ class StaticChunkingStrategyRequestParamTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [StaticChunkingStrategyRequestParamTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static StaticChunkingStrategyRequestParamTypeEnumTypeTransformer? _instance;
 }
 

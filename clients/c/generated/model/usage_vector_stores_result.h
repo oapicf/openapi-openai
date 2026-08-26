@@ -28,7 +28,7 @@ openai_api_usage_vector_stores_result_OBJECT_e usage_vector_stores_result_object
 
 typedef struct usage_vector_stores_result_t {
     openai_api_usage_vector_stores_result_OBJECT_e object; //enum
-    int usage_bytes; //numeric
+    int *usage_bytes; //numeric
     char *project_id; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -36,7 +36,7 @@ typedef struct usage_vector_stores_result_t {
 
 __attribute__((deprecated)) usage_vector_stores_result_t *usage_vector_stores_result_create(
     openai_api_usage_vector_stores_result_OBJECT_e object,
-    int usage_bytes,
+    int *usage_bytes,
     char *project_id
 );
 

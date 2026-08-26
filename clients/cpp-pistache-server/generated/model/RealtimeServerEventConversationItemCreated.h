@@ -33,7 +33,7 @@ class  RealtimeServerEventConversationItemCreated
 {
 public:
     RealtimeServerEventConversationItemCreated();
-    virtual ~RealtimeServerEventConversationItemCreated() = default;
+    virtual ~RealtimeServerEventConversationItemCreated();
 
 
     /// <summary>

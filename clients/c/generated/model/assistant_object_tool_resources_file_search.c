@@ -12,18 +12,21 @@ static assistant_object_tool_resources_file_search_t *assistant_object_tool_reso
     if (!assistant_object_tool_resources_file_search_local_var) {
         return NULL;
     }
-    assistant_object_tool_resources_file_search_local_var->vector_store_ids = vector_store_ids;
-
+    memset(assistant_object_tool_resources_file_search_local_var, 0, sizeof(assistant_object_tool_resources_file_search_t));
     assistant_object_tool_resources_file_search_local_var->_library_owned = 1;
+    assistant_object_tool_resources_file_search_local_var->vector_store_ids = vector_store_ids;
     return assistant_object_tool_resources_file_search_local_var;
 }
 
 __attribute__((deprecated)) assistant_object_tool_resources_file_search_t *assistant_object_tool_resources_file_search_create(
     list_t *vector_store_ids
     ) {
-    return assistant_object_tool_resources_file_search_create_internal (
+    assistant_object_tool_resources_file_search_t *result = assistant_object_tool_resources_file_search_create_internal (
         vector_store_ids
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void assistant_object_tool_resources_file_search_free(assistant_object_tool_resources_file_search_t *assistant_object_tool_resources_file_search) {
@@ -102,9 +105,14 @@ assistant_object_tool_resources_file_search_t *assistant_object_tool_resources_f
     }
 
 
+
     assistant_object_tool_resources_file_search_local_var = assistant_object_tool_resources_file_search_create_internal (
         vector_store_ids ? vector_store_idsList : NULL
         );
+
+    if (!assistant_object_tool_resources_file_search_local_var) {
+        goto end;
+    }
 
     return assistant_object_tool_resources_file_search_local_var;
 end:

@@ -25,7 +25,7 @@ message RealtimeServerEventConversationItemInputAudioTranscriptionCompleted {
     TYPE_CONVERSATION_ITEM_INPUT_AUDIO_TRANSCRIPTION_COMPLETED = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // The ID of the user message item containing the audio.
   string item_id = 505592266;

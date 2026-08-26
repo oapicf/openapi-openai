@@ -68,7 +68,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class UsageTimeBucketResultInner extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(UsageTimeBucketResultInner.class.getName());
 
@@ -390,6 +390,7 @@ public class UsageTimeBucketResultInner extends AbstractOpenApiSchema {
      * @return The actual instance of `UsageCompletionsResult`
      * @throws ClassCastException if the instance is not `UsageCompletionsResult`
      */
+    @SuppressWarnings("unchecked")
     public UsageCompletionsResult getUsageCompletionsResult() throws ClassCastException {
         return (UsageCompletionsResult)super.getActualInstance();
     }
@@ -401,6 +402,7 @@ public class UsageTimeBucketResultInner extends AbstractOpenApiSchema {
      * @return The actual instance of `UsageEmbeddingsResult`
      * @throws ClassCastException if the instance is not `UsageEmbeddingsResult`
      */
+    @SuppressWarnings("unchecked")
     public UsageEmbeddingsResult getUsageEmbeddingsResult() throws ClassCastException {
         return (UsageEmbeddingsResult)super.getActualInstance();
     }
@@ -412,6 +414,7 @@ public class UsageTimeBucketResultInner extends AbstractOpenApiSchema {
      * @return The actual instance of `UsageModerationsResult`
      * @throws ClassCastException if the instance is not `UsageModerationsResult`
      */
+    @SuppressWarnings("unchecked")
     public UsageModerationsResult getUsageModerationsResult() throws ClassCastException {
         return (UsageModerationsResult)super.getActualInstance();
     }
@@ -423,6 +426,7 @@ public class UsageTimeBucketResultInner extends AbstractOpenApiSchema {
      * @return The actual instance of `UsageImagesResult`
      * @throws ClassCastException if the instance is not `UsageImagesResult`
      */
+    @SuppressWarnings("unchecked")
     public UsageImagesResult getUsageImagesResult() throws ClassCastException {
         return (UsageImagesResult)super.getActualInstance();
     }
@@ -434,6 +438,7 @@ public class UsageTimeBucketResultInner extends AbstractOpenApiSchema {
      * @return The actual instance of `UsageAudioSpeechesResult`
      * @throws ClassCastException if the instance is not `UsageAudioSpeechesResult`
      */
+    @SuppressWarnings("unchecked")
     public UsageAudioSpeechesResult getUsageAudioSpeechesResult() throws ClassCastException {
         return (UsageAudioSpeechesResult)super.getActualInstance();
     }
@@ -445,6 +450,7 @@ public class UsageTimeBucketResultInner extends AbstractOpenApiSchema {
      * @return The actual instance of `UsageAudioTranscriptionsResult`
      * @throws ClassCastException if the instance is not `UsageAudioTranscriptionsResult`
      */
+    @SuppressWarnings("unchecked")
     public UsageAudioTranscriptionsResult getUsageAudioTranscriptionsResult() throws ClassCastException {
         return (UsageAudioTranscriptionsResult)super.getActualInstance();
     }
@@ -456,6 +462,7 @@ public class UsageTimeBucketResultInner extends AbstractOpenApiSchema {
      * @return The actual instance of `UsageVectorStoresResult`
      * @throws ClassCastException if the instance is not `UsageVectorStoresResult`
      */
+    @SuppressWarnings("unchecked")
     public UsageVectorStoresResult getUsageVectorStoresResult() throws ClassCastException {
         return (UsageVectorStoresResult)super.getActualInstance();
     }
@@ -467,6 +474,7 @@ public class UsageTimeBucketResultInner extends AbstractOpenApiSchema {
      * @return The actual instance of `UsageCodeInterpreterSessionsResult`
      * @throws ClassCastException if the instance is not `UsageCodeInterpreterSessionsResult`
      */
+    @SuppressWarnings("unchecked")
     public UsageCodeInterpreterSessionsResult getUsageCodeInterpreterSessionsResult() throws ClassCastException {
         return (UsageCodeInterpreterSessionsResult)super.getActualInstance();
     }
@@ -478,6 +486,7 @@ public class UsageTimeBucketResultInner extends AbstractOpenApiSchema {
      * @return The actual instance of `CostsResult`
      * @throws ClassCastException if the instance is not `CostsResult`
      */
+    @SuppressWarnings("unchecked")
     public CostsResult getCostsResult() throws ClassCastException {
         return (CostsResult)super.getActualInstance();
     }

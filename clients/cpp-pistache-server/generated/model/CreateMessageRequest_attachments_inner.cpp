@@ -27,6 +27,8 @@ CreateMessageRequest_attachments_inner::CreateMessageRequest_attachments_inner()
     
 }
 
+CreateMessageRequest_attachments_inner::~CreateMessageRequest_attachments_inner() = default;
+
 void CreateMessageRequest_attachments_inner::validate() const
 {
     std::stringstream msg;

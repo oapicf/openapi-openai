@@ -51,7 +51,7 @@ class RunStepDetailsToolCallsObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['tool_calls'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class RunStepDetailsToolCallsObject
      * @var RunStepDetailsToolCallsObjectToolCallsInner[]|null
      * @SerializedName("tool_calls")
      * @Type("array<OpenAPI\Server\Model\RunStepDetailsToolCallsObjectToolCallsInner>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -94,12 +94,12 @@ class RunStepDetailsToolCallsObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `tool_calls`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `tool_calls`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -121,12 +121,12 @@ class RunStepDetailsToolCallsObject
     }
 
     /**
-    * Sets toolCalls.
-    *
-    * @param RunStepDetailsToolCallsObjectToolCallsInner[]|null $toolCalls  An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`.
-    *
-    * @return $this
-    */
+     * Sets toolCalls.
+     *
+     * @param RunStepDetailsToolCallsObjectToolCallsInner[]|null $toolCalls  An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`.
+     *
+     * @return $this
+     */
     public function setToolCalls(?array $toolCalls): self
     {
         $this->toolCalls = $toolCalls;

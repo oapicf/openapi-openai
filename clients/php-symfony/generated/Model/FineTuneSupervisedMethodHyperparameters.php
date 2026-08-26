@@ -49,7 +49,7 @@ class FineTuneSupervisedMethodHyperparameters
      * @var FineTuneDPOMethodHyperparametersBatchSize|null
      * @SerializedName("batch_size")
      * @Type("OpenAPI\Server\Model\FineTuneDPOMethodHyperparametersBatchSize")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\FineTuneDPOMethodHyperparametersBatchSize")]
     protected ?FineTuneDPOMethodHyperparametersBatchSize $batchSize = null;
 
@@ -57,7 +57,7 @@ class FineTuneSupervisedMethodHyperparameters
      * @var FineTuneDPOMethodHyperparametersLearningRateMultiplier|null
      * @SerializedName("learning_rate_multiplier")
      * @Type("OpenAPI\Server\Model\FineTuneDPOMethodHyperparametersLearningRateMultiplier")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\FineTuneDPOMethodHyperparametersLearningRateMultiplier")]
     protected ?FineTuneDPOMethodHyperparametersLearningRateMultiplier $learningRateMultiplier = null;
 
@@ -65,7 +65,7 @@ class FineTuneSupervisedMethodHyperparameters
      * @var FineTuneDPOMethodHyperparametersNEpochs|null
      * @SerializedName("n_epochs")
      * @Type("OpenAPI\Server\Model\FineTuneDPOMethodHyperparametersNEpochs")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\FineTuneDPOMethodHyperparametersNEpochs")]
     protected ?FineTuneDPOMethodHyperparametersNEpochs $nEpochs = null;
 
@@ -93,12 +93,12 @@ class FineTuneSupervisedMethodHyperparameters
     }
 
     /**
-    * Sets batchSize.
-    *
-    * @param FineTuneDPOMethodHyperparametersBatchSize|null $batchSize
-    *
-    * @return $this
-    */
+     * Sets batchSize.
+     *
+     * @param FineTuneDPOMethodHyperparametersBatchSize|null $batchSize
+     *
+     * @return $this
+     */
     public function setBatchSize(?FineTuneDPOMethodHyperparametersBatchSize $batchSize = null): self
     {
         $this->batchSize = $batchSize;
@@ -120,12 +120,12 @@ class FineTuneSupervisedMethodHyperparameters
     }
 
     /**
-    * Sets learningRateMultiplier.
-    *
-    * @param FineTuneDPOMethodHyperparametersLearningRateMultiplier|null $learningRateMultiplier
-    *
-    * @return $this
-    */
+     * Sets learningRateMultiplier.
+     *
+     * @param FineTuneDPOMethodHyperparametersLearningRateMultiplier|null $learningRateMultiplier
+     *
+     * @return $this
+     */
     public function setLearningRateMultiplier(?FineTuneDPOMethodHyperparametersLearningRateMultiplier $learningRateMultiplier = null): self
     {
         $this->learningRateMultiplier = $learningRateMultiplier;
@@ -147,12 +147,12 @@ class FineTuneSupervisedMethodHyperparameters
     }
 
     /**
-    * Sets nEpochs.
-    *
-    * @param FineTuneDPOMethodHyperparametersNEpochs|null $nEpochs
-    *
-    * @return $this
-    */
+     * Sets nEpochs.
+     *
+     * @param FineTuneDPOMethodHyperparametersNEpochs|null $nEpochs
+     *
+     * @return $this
+     */
     public function setNEpochs(?FineTuneDPOMethodHyperparametersNEpochs $nEpochs = null): self
     {
         $this->nEpochs = $nEpochs;

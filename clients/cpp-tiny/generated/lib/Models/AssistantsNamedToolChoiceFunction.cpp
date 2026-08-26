@@ -64,7 +64,7 @@ AssistantsNamedToolChoice_function::getName()
 }
 
 void
-AssistantsNamedToolChoice_function::setName(std::string  name)
+AssistantsNamedToolChoice_function::setName(std::string name)
 {
 	this->name = name;
 }

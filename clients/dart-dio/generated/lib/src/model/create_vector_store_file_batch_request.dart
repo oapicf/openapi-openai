@@ -92,8 +92,9 @@ class _$CreateVectorStoreFileBatchRequestSerializer implements PrimitiveSerializ
         case r'chunking_strategy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ChunkingStrategyRequestParam),
-          ) as ChunkingStrategyRequestParam;
+            specifiedType: const FullType.nullable(ChunkingStrategyRequestParam),
+          ) as ChunkingStrategyRequestParam?;
+          if (valueDes == null) continue;
           result.chunkingStrategy.replace(valueDes);
           break;
         default:

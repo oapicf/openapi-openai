@@ -77,17 +77,40 @@ FineTunePreferenceRequestInput <- R6::R6Class(
       FineTunePreferenceRequestInputObject <- list()
       if (!is.null(self$`input`)) {
         FineTunePreferenceRequestInputObject[["input"]] <-
-          self$`input`$toSimpleType()
+          self$extractSimpleType(self$`input`)
       }
       if (!is.null(self$`preferred_completion`)) {
         FineTunePreferenceRequestInputObject[["preferred_completion"]] <-
-          lapply(self$`preferred_completion`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`preferred_completion`)
       }
       if (!is.null(self$`non_preferred_completion`)) {
         FineTunePreferenceRequestInputObject[["non_preferred_completion"]] <-
-          lapply(self$`non_preferred_completion`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`non_preferred_completion`)
       }
       return(FineTunePreferenceRequestInputObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

@@ -82,7 +82,7 @@ AssistantObject_tool_resources_code_interpreter::getFileIds()
 }
 
 void
-AssistantObject_tool_resources_code_interpreter::setFileIds(std::list <std::string> file_ids)
+AssistantObject_tool_resources_code_interpreter::setFileIds(std::list<std::string> file_ids)
 {
 	this->file_ids = file_ids;
 }

@@ -29,7 +29,7 @@ message RealtimeResponse {
     OBJECT_REALTIME_RESPONSE = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The final status of the response (`completed`, `cancelled`, `failed`, or  `incomplete`). 
   enum Status {
@@ -39,7 +39,7 @@ message RealtimeResponse {
     STATUS_INCOMPLETE = 3;
   }
 
-  Status status = 355610639;
+  string status = 355610639;
 
   RealtimeResponseStatusDetails status_details = 363353845;
 

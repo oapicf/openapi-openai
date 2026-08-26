@@ -53,21 +53,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setData(std::list <FineTuningJob> data);
+	void setData(std::list<FineTuningJob> data);
 	/*! \brief Get 
 	 */
 	bool isHasMore();
 
 	/*! \brief Set 
 	 */
-	void setHasMore(bool  has_more);
+	void setHasMore(bool has_more);
 	/*! \brief Get 
 	 */
 	std::string getObject();
 
 	/*! \brief Set 
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 
 
     private:

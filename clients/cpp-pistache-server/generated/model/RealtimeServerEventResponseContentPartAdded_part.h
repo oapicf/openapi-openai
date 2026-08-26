@@ -32,7 +32,7 @@ class  RealtimeServerEventResponseContentPartAdded_part
 {
 public:
     RealtimeServerEventResponseContentPartAdded_part();
-    virtual ~RealtimeServerEventResponseContentPartAdded_part() = default;
+    virtual ~RealtimeServerEventResponseContentPartAdded_part();
 
 
     /// <summary>

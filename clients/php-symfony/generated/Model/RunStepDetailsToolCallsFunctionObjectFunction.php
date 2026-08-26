@@ -51,7 +51,7 @@ class RunStepDetailsToolCallsFunctionObjectFunction
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $name = null;
@@ -62,7 +62,7 @@ class RunStepDetailsToolCallsFunctionObjectFunction
      * @var string|null
      * @SerializedName("arguments")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $arguments = null;
@@ -73,7 +73,7 @@ class RunStepDetailsToolCallsFunctionObjectFunction
      * @var string|null
      * @SerializedName("output")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $output = null;
@@ -102,12 +102,12 @@ class RunStepDetailsToolCallsFunctionObjectFunction
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the function.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the function.
+     *
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -129,12 +129,12 @@ class RunStepDetailsToolCallsFunctionObjectFunction
     }
 
     /**
-    * Sets arguments.
-    *
-    * @param string|null $arguments  The arguments passed to the function.
-    *
-    * @return $this
-    */
+     * Sets arguments.
+     *
+     * @param string|null $arguments  The arguments passed to the function.
+     *
+     * @return $this
+     */
     public function setArguments(?string $arguments): self
     {
         $this->arguments = $arguments;
@@ -156,12 +156,12 @@ class RunStepDetailsToolCallsFunctionObjectFunction
     }
 
     /**
-    * Sets output.
-    *
-    * @param string|null $output  The output of the function. This will be `null` if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet.
-    *
-    * @return $this
-    */
+     * Sets output.
+     *
+     * @param string|null $output  The output of the function. This will be `null` if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet.
+     *
+     * @return $this
+     */
     public function setOutput(?string $output): self
     {
         $this->output = $output;

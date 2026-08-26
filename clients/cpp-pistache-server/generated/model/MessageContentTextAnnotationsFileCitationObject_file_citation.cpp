@@ -25,6 +25,8 @@ MessageContentTextAnnotationsFileCitationObject_file_citation::MessageContentTex
     
 }
 
+MessageContentTextAnnotationsFileCitationObject_file_citation::~MessageContentTextAnnotationsFileCitationObject_file_citation() = default;
+
 void MessageContentTextAnnotationsFileCitationObject_file_citation::validate() const
 {
     std::stringstream msg;

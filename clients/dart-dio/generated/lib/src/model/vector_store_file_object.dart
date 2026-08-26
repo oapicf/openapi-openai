@@ -197,8 +197,9 @@ class _$VectorStoreFileObjectSerializer implements PrimitiveSerializer<VectorSto
         case r'chunking_strategy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(VectorStoreFileObjectChunkingStrategy),
-          ) as VectorStoreFileObjectChunkingStrategy;
+            specifiedType: const FullType.nullable(VectorStoreFileObjectChunkingStrategy),
+          ) as VectorStoreFileObjectChunkingStrategy?;
+          if (valueDes == null) continue;
           result.chunkingStrategy.replace(valueDes);
           break;
         default:

@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIMessageObject_incomplete_details::OAIMessageObject_incomplete_details(QString json) {
+OAIMessageObject_incomplete_details::OAIMessageObject_incomplete_details(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -38,7 +38,7 @@ void OAIMessageObject_incomplete_details::initializeModel() {
     m_reason_isValid = false;
 }
 
-void OAIMessageObject_incomplete_details::fromJson(QString jsonString) {
+void OAIMessageObject_incomplete_details::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

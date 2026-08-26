@@ -49,7 +49,7 @@ class RunStepDetailsToolCallsCodeOutputImageObjectImage
      * @var string|null
      * @SerializedName("file_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $fileId = null;
@@ -76,12 +76,12 @@ class RunStepDetailsToolCallsCodeOutputImageObjectImage
     }
 
     /**
-    * Sets fileId.
-    *
-    * @param string|null $fileId  The [file](/docs/api-reference/files) ID of the image.
-    *
-    * @return $this
-    */
+     * Sets fileId.
+     *
+     * @param string|null $fileId  The [file](/docs/api-reference/files) ID of the image.
+     *
+     * @return $this
+     */
     public function setFileId(?string $fileId): self
     {
         $this->fileId = $fileId;

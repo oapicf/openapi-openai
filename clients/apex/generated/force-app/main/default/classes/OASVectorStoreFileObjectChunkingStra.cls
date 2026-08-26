@@ -13,7 +13,7 @@
 /**
  * The strategy used to chunk the file.
  */
-public class OASVectorStoreFileObjectChunkingStra implements OASStaticChunkingStrategyResponsePar, OASOtherChunkingStrategyResponsePara, OAS.MappedProperties {
+public class OASVectorStoreFileObjectChunkingStra implements OASStaticChunkingStrategyRequestPara, OASOtherChunkingStrategyResponsePara, OAS.MappedProperties {
     /**
      * Always `static`.
      */

@@ -51,7 +51,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * Emitted at the beginning of a Response to indicate the updated rate limits.  When a Response is created some tokens will be \&quot;reserved\&quot; for the output  tokens, the rate limits shown here reflect that reservation, which is then  adjusted accordingly once the Response is completed. 
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeServerEventRateLimitsUpdated {
   public static final String SERIALIZED_NAME_EVENT_ID = "event_id";
   @SerializedName(SERIALIZED_NAME_EVENT_ID)
@@ -222,10 +222,7 @@ public class RealtimeServerEventRateLimitsUpdated {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -276,16 +273,16 @@ public class RealtimeServerEventRateLimitsUpdated {
       }
       // validate the required field `type`
       TypeEnum.validateJsonElement(jsonObj.get("type"));
-      // ensure the json data is an array
-      if (!jsonObj.get("rate_limits").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `rate_limits` to be an array in the JSON string but got `%s`", jsonObj.get("rate_limits").toString()));
+      if (jsonObj.get("rate_limits") != null) {
+        if (!jsonObj.get("rate_limits").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `rate_limits` to be an array in the JSON string but got `%s`", jsonObj.get("rate_limits").toString()));
+        }
+        JsonArray jsonArrayrateLimits = jsonObj.getAsJsonArray("rate_limits");
+        // validate the required field `rate_limits` (array)
+        for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
+          RealtimeServerEventRateLimitsUpdatedRateLimitsInner.validateJsonElement(jsonArrayrateLimits.get(i));
+        }
       }
-
-      JsonArray jsonArrayrateLimits = jsonObj.getAsJsonArray("rate_limits");
-      // validate the required field `rate_limits` (array)
-      for (int i = 0; i < jsonArrayrateLimits.size(); i++) {
-        RealtimeServerEventRateLimitsUpdatedRateLimitsInner.validateJsonElement(jsonArrayrateLimits.get(i));
-      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

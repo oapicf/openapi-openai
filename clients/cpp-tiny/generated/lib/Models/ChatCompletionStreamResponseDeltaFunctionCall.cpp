@@ -85,7 +85,7 @@ ChatCompletionStreamResponseDelta_function_call::getArguments()
 }
 
 void
-ChatCompletionStreamResponseDelta_function_call::setArguments(std::string  arguments)
+ChatCompletionStreamResponseDelta_function_call::setArguments(std::string arguments)
 {
 	this->arguments = arguments;
 }
@@ -97,7 +97,7 @@ ChatCompletionStreamResponseDelta_function_call::getName()
 }
 
 void
-ChatCompletionStreamResponseDelta_function_call::setName(std::string  name)
+ChatCompletionStreamResponseDelta_function_call::setName(std::string name)
 {
 	this->name = name;
 }

@@ -50,8 +50,8 @@ export interface FineTuneMethod  {
 export function FineTuneMethodFromJSON(json: any): FineTuneMethod {
     return {
         'type': !exists(json, 'type') ? undefined : json['type'],
-        'supervised': !exists(json, 'supervised') ? undefined : json['supervised'],
-        'dpo': !exists(json, 'dpo') ? undefined : json['dpo'],
+        'supervised': !exists(json, 'supervised') ? undefined : FineTuneSupervisedMethodFromJSON(json['supervised']),
+        'dpo': !exists(json, 'dpo') ? undefined : FineTuneDPOMethodFromJSON(json['dpo']),
     };
 }
 
@@ -61,8 +61,8 @@ export function FineTuneMethodToJSON(value?: FineTuneMethod): any {
     }
     return {
         'type': value.type,
-        'supervised': value.supervised,
-        'dpo': value.dpo,
+        'supervised': FineTuneSupervisedMethodToJSON(value.supervised),
+        'dpo': FineTuneDPOMethodToJSON(value.dpo),
     };
 }
 

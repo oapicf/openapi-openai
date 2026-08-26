@@ -38,7 +38,7 @@ class  RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner
 {
 public:
     RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner();
-    virtual ~RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner() = default;
+    virtual ~RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner();
 
 
     /// <summary>

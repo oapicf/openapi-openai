@@ -30,7 +30,7 @@ openai_api_usage_response_OBJECT_e usage_response_object_FromString(char* object
 typedef struct usage_response_t {
     openai_api_usage_response_OBJECT_e object; //enum
     list_t *data; //nonprimitive container
-    int has_more; //boolean
+    int *has_more; //boolean
     char *next_page; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -39,7 +39,7 @@ typedef struct usage_response_t {
 __attribute__((deprecated)) usage_response_t *usage_response_create(
     openai_api_usage_response_OBJECT_e object,
     list_t *data,
-    int has_more,
+    int *has_more,
     char *next_page
 );
 

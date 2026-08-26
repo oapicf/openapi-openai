@@ -54,10 +54,10 @@ class MessageContentImageFileObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageContentImageFileObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageContentImageFileObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "MessageContentImageFileObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "MessageContentImageFileObject[type]" has a null value in JSON.');
+        assert(json.containsKey(r'image_file'), 'Required key "MessageContentImageFileObject[image_file]" is missing from JSON.');
+        assert(json[r'image_file'] != null, 'Required key "MessageContentImageFileObject[image_file]" has a null value in JSON.');
         return true;
       }());
 
@@ -117,27 +117,28 @@ class MessageContentImageFileObject {
 }
 
 /// Always `image_file`.
-class MessageContentImageFileObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageContentImageFileObjectTypeEnum._(this.value);
+enum MessageContentImageFileObjectTypeEnum {
+  imageFile._(r'image_file'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageContentImageFileObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const imageFile = MessageContentImageFileObjectTypeEnum._(r'image_file');
-
-  /// List of all possible values in this [enum][MessageContentImageFileObjectTypeEnum].
-  static const values = <MessageContentImageFileObjectTypeEnum>[
-    imageFile,
-  ];
-
+  /// Returns the instance of [MessageContentImageFileObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageContentImageFileObjectTypeEnum? fromJson(dynamic value) => MessageContentImageFileObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageContentImageFileObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageContentImageFileObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageContentImageFileObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -159,9 +160,10 @@ class MessageContentImageFileObjectTypeEnumTypeTransformer {
 
   const MessageContentImageFileObjectTypeEnumTypeTransformer._();
 
-  String encode(MessageContentImageFileObjectTypeEnum data) => data.value;
+  String encode(MessageContentImageFileObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageContentImageFileObjectTypeEnum.
+  /// Returns the instance of [MessageContentImageFileObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -170,6 +172,9 @@ class MessageContentImageFileObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageContentImageFileObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageContentImageFileObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'image_file': return MessageContentImageFileObjectTypeEnum.imageFile;
@@ -182,7 +187,7 @@ class MessageContentImageFileObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageContentImageFileObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageContentImageFileObjectTypeEnumTypeTransformer? _instance;
 }
 

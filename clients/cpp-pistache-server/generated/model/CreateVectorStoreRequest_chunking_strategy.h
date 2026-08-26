@@ -35,7 +35,7 @@ class  CreateVectorStoreRequest_chunking_strategy
 {
 public:
     CreateVectorStoreRequest_chunking_strategy();
-    virtual ~CreateVectorStoreRequest_chunking_strategy() = default;
+    virtual ~CreateVectorStoreRequest_chunking_strategy();
 
 
     /// <summary>

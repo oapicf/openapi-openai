@@ -1,7 +1,7 @@
 const utils = require('../utils/utils');
 const OtherChunkingStrategyResponseParam = require('../models/OtherChunkingStrategyResponseParam');
 const StaticChunkingStrategy = require('../models/StaticChunkingStrategy');
-const StaticChunkingStrategyResponseParam = require('../models/StaticChunkingStrategyResponseParam');
+const StaticChunkingStrategyRequestParam = require('../models/StaticChunkingStrategyRequestParam');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {

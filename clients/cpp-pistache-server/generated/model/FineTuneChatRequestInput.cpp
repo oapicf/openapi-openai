@@ -29,6 +29,8 @@ FineTuneChatRequestInput::FineTuneChatRequestInput()
     
 }
 
+FineTuneChatRequestInput::~FineTuneChatRequestInput() = default;
+
 void FineTuneChatRequestInput::validate() const
 {
     std::stringstream msg;

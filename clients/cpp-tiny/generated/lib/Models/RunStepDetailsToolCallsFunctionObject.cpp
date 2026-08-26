@@ -107,7 +107,7 @@ RunStepDetailsToolCallsFunctionObject::getId()
 }
 
 void
-RunStepDetailsToolCallsFunctionObject::setId(std::string  id)
+RunStepDetailsToolCallsFunctionObject::setId(std::string id)
 {
 	this->id = id;
 }
@@ -119,7 +119,7 @@ RunStepDetailsToolCallsFunctionObject::getType()
 }
 
 void
-RunStepDetailsToolCallsFunctionObject::setType(std::string  type)
+RunStepDetailsToolCallsFunctionObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -131,7 +131,7 @@ RunStepDetailsToolCallsFunctionObject::getFunction()
 }
 
 void
-RunStepDetailsToolCallsFunctionObject::setFunction(RunStepDetailsToolCallsFunctionObject_function  function)
+RunStepDetailsToolCallsFunctionObject::setFunction(RunStepDetailsToolCallsFunctionObject_function function)
 {
 	this->function = function;
 }

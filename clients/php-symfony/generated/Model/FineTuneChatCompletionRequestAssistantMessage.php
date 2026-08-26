@@ -47,7 +47,7 @@ class FineTuneChatCompletionRequestAssistantMessage
      * @var ChatCompletionRequestAssistantMessageContent|null
      * @SerializedName("content")
      * @Type("OpenAPI\Server\Model\ChatCompletionRequestAssistantMessageContent")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionRequestAssistantMessageContent")]
     protected ?ChatCompletionRequestAssistantMessageContent $content = null;
 
@@ -57,7 +57,7 @@ class FineTuneChatCompletionRequestAssistantMessage
      * @var string|null
      * @SerializedName("refusal")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $refusal = null;
 
@@ -67,7 +67,7 @@ class FineTuneChatCompletionRequestAssistantMessage
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['assistant'])]
     #[Assert\Type("string")]
@@ -79,7 +79,7 @@ class FineTuneChatCompletionRequestAssistantMessage
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $name = null;
 
@@ -87,7 +87,7 @@ class FineTuneChatCompletionRequestAssistantMessage
      * @var ChatCompletionRequestAssistantMessageAudio|null
      * @SerializedName("audio")
      * @Type("OpenAPI\Server\Model\ChatCompletionRequestAssistantMessageAudio")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionRequestAssistantMessageAudio")]
     protected ?ChatCompletionRequestAssistantMessageAudio $audio = null;
 
@@ -97,7 +97,7 @@ class FineTuneChatCompletionRequestAssistantMessage
      * @var ChatCompletionMessageToolCall[]|null
      * @SerializedName("tool_calls")
      * @Type("array<OpenAPI\Server\Model\ChatCompletionMessageToolCall>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\ChatCompletionMessageToolCall"),
     ])]
@@ -107,7 +107,7 @@ class FineTuneChatCompletionRequestAssistantMessage
      * @var ChatCompletionRequestAssistantMessageFunctionCall|null
      * @SerializedName("function_call")
      * @Type("OpenAPI\Server\Model\ChatCompletionRequestAssistantMessageFunctionCall")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionRequestAssistantMessageFunctionCall")]
     protected ?ChatCompletionRequestAssistantMessageFunctionCall $functionCall = null;
 
@@ -117,7 +117,7 @@ class FineTuneChatCompletionRequestAssistantMessage
      * @var int|null
      * @SerializedName("weight")
      * @Type("int")
-    */
+     */
     #[Assert\Choice([0, 1])]
     #[Assert\Type("int")]
     protected ?int $weight = null;
@@ -151,12 +151,12 @@ class FineTuneChatCompletionRequestAssistantMessage
     }
 
     /**
-    * Sets content.
-    *
-    * @param ChatCompletionRequestAssistantMessageContent|null $content
-    *
-    * @return $this
-    */
+     * Sets content.
+     *
+     * @param ChatCompletionRequestAssistantMessageContent|null $content
+     *
+     * @return $this
+     */
     public function setContent(?ChatCompletionRequestAssistantMessageContent $content = null): self
     {
         $this->content = $content;
@@ -178,12 +178,12 @@ class FineTuneChatCompletionRequestAssistantMessage
     }
 
     /**
-    * Sets refusal.
-    *
-    * @param string|null $refusal  The refusal message by the assistant.
-    *
-    * @return $this
-    */
+     * Sets refusal.
+     *
+     * @param string|null $refusal  The refusal message by the assistant.
+     *
+     * @return $this
+     */
     public function setRefusal(?string $refusal = null): self
     {
         $this->refusal = $refusal;
@@ -205,12 +205,12 @@ class FineTuneChatCompletionRequestAssistantMessage
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  The role of the messages author, in this case `assistant`.
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  The role of the messages author, in this case `assistant`.
+     *
+     * @return $this
+     */
     public function setRole(?string $role): self
     {
         $this->role = $role;
@@ -232,12 +232,12 @@ class FineTuneChatCompletionRequestAssistantMessage
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  An optional name for the participant. Provides the model information to differentiate between participants of the same role.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  An optional name for the participant. Provides the model information to differentiate between participants of the same role.
+     *
+     * @return $this
+     */
     public function setName(?string $name = null): self
     {
         $this->name = $name;
@@ -259,12 +259,12 @@ class FineTuneChatCompletionRequestAssistantMessage
     }
 
     /**
-    * Sets audio.
-    *
-    * @param ChatCompletionRequestAssistantMessageAudio|null $audio
-    *
-    * @return $this
-    */
+     * Sets audio.
+     *
+     * @param ChatCompletionRequestAssistantMessageAudio|null $audio
+     *
+     * @return $this
+     */
     public function setAudio(?ChatCompletionRequestAssistantMessageAudio $audio = null): self
     {
         $this->audio = $audio;
@@ -286,12 +286,12 @@ class FineTuneChatCompletionRequestAssistantMessage
     }
 
     /**
-    * Sets toolCalls.
-    *
-    * @param ChatCompletionMessageToolCall[]|null $toolCalls  The tool calls generated by the model, such as function calls.
-    *
-    * @return $this
-    */
+     * Sets toolCalls.
+     *
+     * @param ChatCompletionMessageToolCall[]|null $toolCalls  The tool calls generated by the model, such as function calls.
+     *
+     * @return $this
+     */
     public function setToolCalls(?array $toolCalls = null): self
     {
         $this->toolCalls = $toolCalls;
@@ -313,12 +313,12 @@ class FineTuneChatCompletionRequestAssistantMessage
     }
 
     /**
-    * Sets functionCall.
-    *
-    * @param ChatCompletionRequestAssistantMessageFunctionCall|null $functionCall
-    *
-    * @return $this
-    */
+     * Sets functionCall.
+     *
+     * @param ChatCompletionRequestAssistantMessageFunctionCall|null $functionCall
+     *
+     * @return $this
+     */
     public function setFunctionCall(?ChatCompletionRequestAssistantMessageFunctionCall $functionCall = null): self
     {
         $this->functionCall = $functionCall;
@@ -340,12 +340,12 @@ class FineTuneChatCompletionRequestAssistantMessage
     }
 
     /**
-    * Sets weight.
-    *
-    * @param int|null $weight  Controls whether the assistant message is trained against (0 or 1)
-    *
-    * @return $this
-    */
+     * Sets weight.
+     *
+     * @param int|null $weight  Controls whether the assistant message is trained against (0 or 1)
+     *
+     * @return $this
+     */
     public function setWeight(?int $weight = null): self
     {
         $this->weight = $weight;

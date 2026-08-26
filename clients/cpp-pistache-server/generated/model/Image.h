@@ -32,7 +32,7 @@ class  Image
 {
 public:
     Image();
-    virtual ~Image() = default;
+    virtual ~Image();
 
 
     /// <summary>

@@ -13,10 +13,10 @@ static chat_completion_message_tool_call_chunk_function_t *chat_completion_messa
     if (!chat_completion_message_tool_call_chunk_function_local_var) {
         return NULL;
     }
+    memset(chat_completion_message_tool_call_chunk_function_local_var, 0, sizeof(chat_completion_message_tool_call_chunk_function_t));
+    chat_completion_message_tool_call_chunk_function_local_var->_library_owned = 1;
     chat_completion_message_tool_call_chunk_function_local_var->name = name;
     chat_completion_message_tool_call_chunk_function_local_var->arguments = arguments;
-
-    chat_completion_message_tool_call_chunk_function_local_var->_library_owned = 1;
     return chat_completion_message_tool_call_chunk_function_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) chat_completion_message_tool_call_chunk_function_t *
     char *name,
     char *arguments
     ) {
-    return chat_completion_message_tool_call_chunk_function_create_internal (
+    chat_completion_message_tool_call_chunk_function_t *result = chat_completion_message_tool_call_chunk_function_create_internal (
         name,
         arguments
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_message_tool_call_chunk_function_free(chat_completion_message_tool_call_chunk_function_t *chat_completion_message_tool_call_chunk_function) {
@@ -80,6 +83,10 @@ chat_completion_message_tool_call_chunk_function_t *chat_completion_message_tool
 
     chat_completion_message_tool_call_chunk_function_t *chat_completion_message_tool_call_chunk_function_local_var = NULL;
 
+    char *name_local_str = NULL;
+
+    char *arguments_local_str = NULL;
+
     // chat_completion_message_tool_call_chunk_function->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(chat_completion_message_tool_call_chunk_functionJSON, "name");
     if (cJSON_IsNull(name)) {
@@ -105,13 +112,28 @@ chat_completion_message_tool_call_chunk_function_t *chat_completion_message_tool
     }
 
 
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (arguments && !cJSON_IsNull(arguments)) arguments_local_str = strdup(arguments->valuestring);
+
     chat_completion_message_tool_call_chunk_function_local_var = chat_completion_message_tool_call_chunk_function_create_internal (
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        arguments && !cJSON_IsNull(arguments) ? strdup(arguments->valuestring) : NULL
+        name_local_str,
+        arguments_local_str
         );
+
+    if (!chat_completion_message_tool_call_chunk_function_local_var) {
+        goto end;
+    }
 
     return chat_completion_message_tool_call_chunk_function_local_var;
 end:
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (arguments_local_str) {
+        free(arguments_local_str);
+        arguments_local_str = NULL;
+    }
     return NULL;
 
 }

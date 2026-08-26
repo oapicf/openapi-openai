@@ -17,7 +17,7 @@ typedef struct vector_store_file_object_chunking_strategy_t vector_store_file_ob
 
 #include "other_chunking_strategy_response_param.h"
 #include "static_chunking_strategy.h"
-#include "static_chunking_strategy_response_param.h"
+#include "static_chunking_strategy_request_param.h"
 
 // Enum TYPE for vector_store_file_object_chunking_strategy
 

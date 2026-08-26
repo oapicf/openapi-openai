@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set The ID of the invite.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	AuditLog_invite_sent_data getData();
 
 	/*! \brief Set 
 	 */
-	void setData(AuditLog_invite_sent_data  data);
+	void setData(AuditLog_invite_sent_data data);
 
 
     private:

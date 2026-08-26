@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface RunStepDetailsToolCallsCodeOutputLogsObject {
     /**
      * Always `logs`.
-     * @type {string}
+     * @type {RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum}
      * @memberof RunStepDetailsToolCallsCodeOutputLogsObject
      */
     type: RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum;
@@ -48,6 +48,8 @@ export type RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum = typeof RunStep
  */
 export function instanceOfRunStepDetailsToolCallsCodeOutputLogsObject(value: object): value is RunStepDetailsToolCallsCodeOutputLogsObject {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'logs') return false;
+    
     if (!('logs' in value) || value['logs'] === undefined) return false;
     return true;
 }

@@ -54,10 +54,10 @@ class AssistantsApiResponseFormatOption {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AssistantsApiResponseFormatOption[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AssistantsApiResponseFormatOption[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "AssistantsApiResponseFormatOption[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "AssistantsApiResponseFormatOption[type]" has a null value in JSON.');
+        assert(json.containsKey(r'json_schema'), 'Required key "AssistantsApiResponseFormatOption[json_schema]" is missing from JSON.');
+        assert(json[r'json_schema'] != null, 'Required key "AssistantsApiResponseFormatOption[json_schema]" has a null value in JSON.');
         return true;
       }());
 
@@ -117,31 +117,30 @@ class AssistantsApiResponseFormatOption {
 }
 
 /// The type of response format being defined: `text`
-class AssistantsApiResponseFormatOptionTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const AssistantsApiResponseFormatOptionTypeEnum._(this.value);
+enum AssistantsApiResponseFormatOptionTypeEnum {
+  text._(r'text'),
+  jsonObject._(r'json_object'),
+  jsonSchema._(r'json_schema'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const AssistantsApiResponseFormatOptionTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = AssistantsApiResponseFormatOptionTypeEnum._(r'text');
-  static const jsonObject = AssistantsApiResponseFormatOptionTypeEnum._(r'json_object');
-  static const jsonSchema = AssistantsApiResponseFormatOptionTypeEnum._(r'json_schema');
-
-  /// List of all possible values in this [enum][AssistantsApiResponseFormatOptionTypeEnum].
-  static const values = <AssistantsApiResponseFormatOptionTypeEnum>[
-    text,
-    jsonObject,
-    jsonSchema,
-  ];
-
+  /// Returns the instance of [AssistantsApiResponseFormatOptionTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static AssistantsApiResponseFormatOptionTypeEnum? fromJson(dynamic value) => AssistantsApiResponseFormatOptionTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [AssistantsApiResponseFormatOptionTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<AssistantsApiResponseFormatOptionTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <AssistantsApiResponseFormatOptionTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -163,9 +162,10 @@ class AssistantsApiResponseFormatOptionTypeEnumTypeTransformer {
 
   const AssistantsApiResponseFormatOptionTypeEnumTypeTransformer._();
 
-  String encode(AssistantsApiResponseFormatOptionTypeEnum data) => data.value;
+  String encode(AssistantsApiResponseFormatOptionTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a AssistantsApiResponseFormatOptionTypeEnum.
+  /// Returns the instance of [AssistantsApiResponseFormatOptionTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -174,6 +174,9 @@ class AssistantsApiResponseFormatOptionTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   AssistantsApiResponseFormatOptionTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is AssistantsApiResponseFormatOptionTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return AssistantsApiResponseFormatOptionTypeEnum.text;
@@ -188,7 +191,7 @@ class AssistantsApiResponseFormatOptionTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [AssistantsApiResponseFormatOptionTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static AssistantsApiResponseFormatOptionTypeEnumTypeTransformer? _instance;
 }
 

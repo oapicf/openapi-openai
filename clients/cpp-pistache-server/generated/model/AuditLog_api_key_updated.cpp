@@ -27,6 +27,8 @@ AuditLog_api_key_updated::AuditLog_api_key_updated()
     
 }
 
+AuditLog_api_key_updated::~AuditLog_api_key_updated() = default;
+
 void AuditLog_api_key_updated::validate() const
 {
     std::stringstream msg;

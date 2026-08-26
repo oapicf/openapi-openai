@@ -32,7 +32,7 @@ class  TranscriptionWord
 {
 public:
     TranscriptionWord();
-    virtual ~TranscriptionWord() = default;
+    virtual ~TranscriptionWord();
 
 
     /// <summary>

@@ -34,13 +34,13 @@ class OAIVectorStoreExpirationAfter;
 class OAIUpdateVectorStoreRequest : public OAIObject {
 public:
     OAIUpdateVectorStoreRequest();
-    OAIUpdateVectorStoreRequest(QString json);
+    OAIUpdateVectorStoreRequest(const QString &json);
     ~OAIUpdateVectorStoreRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getName() const;
     void setName(const QString &name);

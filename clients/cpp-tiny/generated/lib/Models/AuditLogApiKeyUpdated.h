@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set The tracking ID of the API key.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	AuditLog_api_key_updated_changes_requested getChangesRequested();
 
 	/*! \brief Set 
 	 */
-	void setChangesRequested(AuditLog_api_key_updated_changes_requested  changes_requested);
+	void setChangesRequested(AuditLog_api_key_updated_changes_requested changes_requested);
 
 
     private:

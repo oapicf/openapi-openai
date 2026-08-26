@@ -18,9 +18,9 @@ List user actions and configuration changes within this organization.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**effective_at** | Option<[**ListAuditLogsEffectiveAtParameter**](.md)> | Return only events whose `effective_at` (Unix seconds) is in this range. |  |
+**effective_at** | Option<[**ListAuditLogsEffectiveAtParameter**](ListAuditLogsEffectiveAtParameter.md)> | Return only events whose `effective_at` (Unix seconds) is in this range. |  |
 **project_ids_left_square_bracket_right_square_bracket** | Option<[**Vec<String>**](String.md)> | Return only events for these projects. |  |
-**event_types_left_square_bracket_right_square_bracket** | Option<[**Vec<models::AuditLogEventType>**](models::AuditLogEventType.md)> | Return only events with a `type` in one of these values. For example, `project.created`. For all options, see the documentation for the [audit log object](/docs/api-reference/audit-logs/object). |  |
+**event_types_left_square_bracket_right_square_bracket** | Option<[**Vec<models::AuditLogEventType>**](Models__AuditLogEventType.md)> | Return only events with a `type` in one of these values. For example, `project.created`. For all options, see the documentation for the [audit log object](/docs/api-reference/audit-logs/object). |  |
 **actor_ids_left_square_bracket_right_square_bracket** | Option<[**Vec<String>**](String.md)> | Return only events performed by these actors. Can be a user ID, a service account ID, or an api key tracking ID. |  |
 **actor_emails_left_square_bracket_right_square_bracket** | Option<[**Vec<String>**](String.md)> | Return only events performed by users with these emails. |  |
 **resource_ids_left_square_bracket_right_square_bracket** | Option<[**Vec<String>**](String.md)> | Return only events performed on these targets. For example, a project ID updated. |  |

@@ -1,4 +1,4 @@
-# # CreateMessageRequestAttachmentsInner
+# CreateMessageRequestAttachmentsInner
 
 ## Properties
 

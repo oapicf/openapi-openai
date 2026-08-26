@@ -36,7 +36,7 @@ function Initialize-RunStepDeltaStepDetailsMessageCreationObjectMessageCreation 
 
 
         $PSO = [PSCustomObject]@{
-            "message_id" = ${MessageId}
+            'message_id' = ${MessageId}
         }
 
 
@@ -74,21 +74,21 @@ function ConvertFrom-JsonToRunStepDeltaStepDetailsMessageCreationObjectMessageCr
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDeltaStepDetailsMessageCreationObjectMessageCreation
-        $AllProperties = ("message_id")
+        $AllProperties = ('message_id')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "message_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'message_id'))) { #optional property not found
             $MessageId = $null
         } else {
-            $MessageId = $JsonParameters.PSobject.Properties["message_id"].value
+            $MessageId = $JsonParameters.PSobject.Properties['message_id'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "message_id" = ${MessageId}
+            'message_id' = ${MessageId}
         }
 
         return $PSO

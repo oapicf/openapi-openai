@@ -173,10 +173,7 @@ WAV(String.valueOf("wav")), MP3(String.valueOf("mp3")), FLAC(String.valueOf("fla
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

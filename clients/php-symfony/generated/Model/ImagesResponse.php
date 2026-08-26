@@ -47,7 +47,7 @@ class ImagesResponse
      * @var int|null
      * @SerializedName("created")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $created = null;
@@ -56,7 +56,7 @@ class ImagesResponse
      * @var Image[]|null
      * @SerializedName("data")
      * @Type("array<OpenAPI\Server\Model\Image>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -87,12 +87,12 @@ class ImagesResponse
     }
 
     /**
-    * Sets created.
-    *
-    * @param int|null $created
-    *
-    * @return $this
-    */
+     * Sets created.
+     *
+     * @param int|null $created
+     *
+     * @return $this
+     */
     public function setCreated(?int $created): self
     {
         $this->created = $created;
@@ -114,12 +114,12 @@ class ImagesResponse
     }
 
     /**
-    * Sets data.
-    *
-    * @param Image[]|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param Image[]|null $data
+     *
+     * @return $this
+     */
     public function setData(?array $data): self
     {
         $this->data = $data;

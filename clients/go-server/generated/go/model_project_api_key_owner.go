@@ -24,7 +24,8 @@ type ProjectApiKeyOwner struct {
 	ServiceAccount ProjectServiceAccount `json:"service_account,omitempty"`
 }
 
-// AssertProjectApiKeyOwnerRequired checks if the required fields are not zero-ed
+// AssertProjectApiKeyOwnerRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertProjectApiKeyOwnerRequired(obj ProjectApiKeyOwner) error {
 	if err := AssertProjectUserRequired(obj.User); err != nil {
 		return err

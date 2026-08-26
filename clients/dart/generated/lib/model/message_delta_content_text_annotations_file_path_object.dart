@@ -122,10 +122,10 @@ class MessageDeltaContentTextAnnotationsFilePathObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageDeltaContentTextAnnotationsFilePathObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageDeltaContentTextAnnotationsFilePathObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'index'), 'Required key "MessageDeltaContentTextAnnotationsFilePathObject[index]" is missing from JSON.');
+        assert(json[r'index'] != null, 'Required key "MessageDeltaContentTextAnnotationsFilePathObject[index]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "MessageDeltaContentTextAnnotationsFilePathObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "MessageDeltaContentTextAnnotationsFilePathObject[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -189,27 +189,28 @@ class MessageDeltaContentTextAnnotationsFilePathObject {
 }
 
 /// Always `file_path`.
-class MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum._(this.value);
+enum MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum {
+  filePath._(r'file_path'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const filePath = MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum._(r'file_path');
-
-  /// List of all possible values in this [enum][MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum].
-  static const values = <MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum>[
-    filePath,
-  ];
-
+  /// Returns the instance of [MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum? fromJson(dynamic value) => MessageDeltaContentTextAnnotationsFilePathObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -231,9 +232,10 @@ class MessageDeltaContentTextAnnotationsFilePathObjectTypeEnumTypeTransformer {
 
   const MessageDeltaContentTextAnnotationsFilePathObjectTypeEnumTypeTransformer._();
 
-  String encode(MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum data) => data.value;
+  String encode(MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum.
+  /// Returns the instance of [MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -242,6 +244,9 @@ class MessageDeltaContentTextAnnotationsFilePathObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'file_path': return MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum.filePath;
@@ -254,7 +259,7 @@ class MessageDeltaContentTextAnnotationsFilePathObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageDeltaContentTextAnnotationsFilePathObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageDeltaContentTextAnnotationsFilePathObjectTypeEnumTypeTransformer? _instance;
 }
 

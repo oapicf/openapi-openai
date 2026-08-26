@@ -32,7 +32,7 @@ class  DeleteFileResponse
 {
 public:
     DeleteFileResponse();
-    virtual ~DeleteFileResponse() = default;
+    virtual ~DeleteFileResponse();
 
 
     /// <summary>

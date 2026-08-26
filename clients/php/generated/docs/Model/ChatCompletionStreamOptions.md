@@ -1,4 +1,4 @@
-# # ChatCompletionStreamOptions
+# ChatCompletionStreamOptions
 
 ## Properties
 

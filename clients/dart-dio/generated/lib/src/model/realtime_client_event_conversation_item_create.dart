@@ -108,8 +108,9 @@ class _$RealtimeClientEventConversationItemCreateSerializer implements Primitive
         case r'event_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.eventId = valueDes;
           break;
         case r'type':
@@ -122,8 +123,9 @@ class _$RealtimeClientEventConversationItemCreateSerializer implements Primitive
         case r'previous_item_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.previousItemId = valueDes;
           break;
         case r'item':

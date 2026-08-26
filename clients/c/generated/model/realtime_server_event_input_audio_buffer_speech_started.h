@@ -29,7 +29,7 @@ openai_api_realtime_server_event_input_audio_buffer_speech_started_TYPE_e realti
 typedef struct realtime_server_event_input_audio_buffer_speech_started_t {
     char *event_id; // string
     openai_api_realtime_server_event_input_audio_buffer_speech_started_TYPE_e type; //enum
-    int audio_start_ms; //numeric
+    int *audio_start_ms; //numeric
     char *item_id; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -38,7 +38,7 @@ typedef struct realtime_server_event_input_audio_buffer_speech_started_t {
 __attribute__((deprecated)) realtime_server_event_input_audio_buffer_speech_started_t *realtime_server_event_input_audio_buffer_speech_started_create(
     char *event_id,
     openai_api_realtime_server_event_input_audio_buffer_speech_started_TYPE_e type,
-    int audio_start_ms,
+    int *audio_start_ms,
     char *item_id
 );
 

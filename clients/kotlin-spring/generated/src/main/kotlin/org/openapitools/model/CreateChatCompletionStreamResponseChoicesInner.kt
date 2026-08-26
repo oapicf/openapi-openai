@@ -27,17 +27,21 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class CreateChatCompletionStreamResponseChoicesInner(
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("delta")
     @get:JsonProperty("delta", required = true) val delta: ChatCompletionStreamResponseDelta,
 
-    @Schema(example = "null", required = true, description = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. ")
+    @Schema(required = true, description = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. ")
+    @param:JsonProperty("finish_reason")
     @get:JsonProperty("finish_reason", required = true) val finishReason: CreateChatCompletionStreamResponseChoicesInner.FinishReason?,
 
-    @Schema(example = "null", required = true, description = "The index of the choice in the list of choices.")
+    @Schema(required = true, description = "The index of the choice in the list of choices.")
+    @param:JsonProperty("index")
     @get:JsonProperty("index", required = true) val index: kotlin.Int,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @param:JsonProperty("logprobs")
     @get:JsonProperty("logprobs") val logprobs: CreateChatCompletionResponseChoicesInnerLogprobs? = null
 ) {
 
@@ -58,7 +62,7 @@ data class CreateChatCompletionStreamResponseChoicesInner(
             @JsonCreator
             fun forValue(value: kotlin.String): FinishReason {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateChatCompletionStreamResponseChoicesInner'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FinishReason'")
             }
         }
     }

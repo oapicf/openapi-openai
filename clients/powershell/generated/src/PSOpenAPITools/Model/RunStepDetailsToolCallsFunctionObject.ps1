@@ -59,9 +59,9 @@ function Initialize-RunStepDetailsToolCallsFunctionObject {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "type" = ${Type}
-            "function" = ${VarFunction}
+            'id' = ${Id}
+            'type' = ${Type}
+            'function' = ${VarFunction}
         }
 
 
@@ -99,7 +99,7 @@ function ConvertFrom-JsonToRunStepDetailsToolCallsFunctionObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDetailsToolCallsFunctionObject
-        $AllProperties = ("id", "type", "function")
+        $AllProperties = ('id', 'type', 'function')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -110,28 +110,28 @@ function ConvertFrom-JsonToRunStepDetailsToolCallsFunctionObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "function"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'function'))) {
             throw "Error! JSON cannot be serialized due to the required property 'function' missing."
         } else {
-            $VarFunction = $JsonParameters.PSobject.Properties["function"].value
+            $VarFunction = $JsonParameters.PSobject.Properties['function'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "type" = ${Type}
-            "function" = ${VarFunction}
+            'id' = ${Id}
+            'type' = ${Type}
+            'function' = ${VarFunction}
         }
 
         return $PSO

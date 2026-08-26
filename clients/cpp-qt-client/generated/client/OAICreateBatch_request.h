@@ -32,13 +32,13 @@ namespace OpenAPI {
 class OAICreateBatch_request : public OAIObject {
 public:
     OAICreateBatch_request();
-    OAICreateBatch_request(QString json);
+    OAICreateBatch_request(const QString &json);
     ~OAICreateBatch_request() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getInputFileId() const;
     void setInputFileId(const QString &input_file_id);

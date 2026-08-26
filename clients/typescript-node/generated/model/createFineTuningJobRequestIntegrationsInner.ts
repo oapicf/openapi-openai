@@ -14,6 +14,9 @@ import { RequestFile } from './models';
 import { CreateFineTuningJobRequestIntegrationsInnerWandb } from './createFineTuningJobRequestIntegrationsInnerWandb';
 
 export class CreateFineTuningJobRequestIntegrationsInner {
+    /**
+    * The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
+    */
     'type': CreateFineTuningJobRequestIntegrationsInner.TypeEnum;
     'wandb': CreateFineTuningJobRequestIntegrationsInnerWandb;
 

@@ -30,10 +30,10 @@ static create_chat_completion_request_response_format_t *create_chat_completion_
     if (!create_chat_completion_request_response_format_local_var) {
         return NULL;
     }
+    memset(create_chat_completion_request_response_format_local_var, 0, sizeof(create_chat_completion_request_response_format_t));
+    create_chat_completion_request_response_format_local_var->_library_owned = 1;
     create_chat_completion_request_response_format_local_var->type = type;
     create_chat_completion_request_response_format_local_var->json_schema = json_schema;
-
-    create_chat_completion_request_response_format_local_var->_library_owned = 1;
     return create_chat_completion_request_response_format_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) create_chat_completion_request_response_format_t *cr
     openai_api_create_chat_completion_request_response_format_TYPE_e type,
     response_format_json_schema_json_schema_t *json_schema
     ) {
-    return create_chat_completion_request_response_format_create_internal (
+    create_chat_completion_request_response_format_t *result = create_chat_completion_request_response_format_create_internal (
         type,
         json_schema
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_chat_completion_request_response_format_free(create_chat_completion_request_response_format_t *create_chat_completion_request_response_format) {
@@ -134,10 +137,15 @@ create_chat_completion_request_response_format_t *create_chat_completion_request
     json_schema_local_nonprim = response_format_json_schema_json_schema_parseFromJSON(json_schema); //nonprimitive
 
 
+
     create_chat_completion_request_response_format_local_var = create_chat_completion_request_response_format_create_internal (
         typeVariable,
         json_schema_local_nonprim
         );
+
+    if (!create_chat_completion_request_response_format_local_var) {
+        goto end;
+    }
 
     return create_chat_completion_request_response_format_local_var;
 end:

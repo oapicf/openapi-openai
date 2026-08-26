@@ -13,10 +13,10 @@ static create_moderation_request_t *create_moderation_request_create_internal(
     if (!create_moderation_request_local_var) {
         return NULL;
     }
+    memset(create_moderation_request_local_var, 0, sizeof(create_moderation_request_t));
+    create_moderation_request_local_var->_library_owned = 1;
     create_moderation_request_local_var->input = input;
     create_moderation_request_local_var->model = model;
-
-    create_moderation_request_local_var->_library_owned = 1;
     return create_moderation_request_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) create_moderation_request_t *create_moderation_reque
     create_moderation_request_input_t *input,
     create_moderation_request_model_t *model
     ) {
-    return create_moderation_request_create_internal (
+    create_moderation_request_t *result = create_moderation_request_create_internal (
         input,
         model
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_moderation_request_free(create_moderation_request_t *create_moderation_request) {
@@ -119,10 +122,15 @@ create_moderation_request_t *create_moderation_request_parseFromJSON(cJSON *crea
     }
 
 
+
     create_moderation_request_local_var = create_moderation_request_create_internal (
         input_local_nonprim,
         model ? model_local_nonprim : NULL
         );
+
+    if (!create_moderation_request_local_var) {
+        goto end;
+    }
 
     return create_moderation_request_local_var;
 end:

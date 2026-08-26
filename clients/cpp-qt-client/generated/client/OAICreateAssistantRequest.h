@@ -40,13 +40,13 @@ class OAIAssistantsApiResponseFormatOption;
 class OAICreateAssistantRequest : public OAIObject {
 public:
     OAICreateAssistantRequest();
-    OAICreateAssistantRequest(QString json);
+    OAICreateAssistantRequest(const QString &json);
     ~OAICreateAssistantRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     OAICreateAssistantRequest_model getModel() const;
     void setModel(const OAICreateAssistantRequest_model &model);

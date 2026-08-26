@@ -27,25 +27,32 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeServerEventResponseAudioDelta(
 
-    @Schema(example = "null", required = true, description = "The unique ID of the server event.")
+    @Schema(required = true, description = "The unique ID of the server event.")
+    @param:JsonProperty("event_id")
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The event type, must be `response.audio.delta`.")
+    @Schema(required = true, description = "The event type, must be `response.audio.delta`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventResponseAudioDelta.Type,
 
-    @Schema(example = "null", required = true, description = "The ID of the response.")
+    @Schema(required = true, description = "The ID of the response.")
+    @param:JsonProperty("response_id")
     @get:JsonProperty("response_id", required = true) val responseId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The ID of the item.")
+    @Schema(required = true, description = "The ID of the item.")
+    @param:JsonProperty("item_id")
     @get:JsonProperty("item_id", required = true) val itemId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The index of the output item in the response.")
+    @Schema(required = true, description = "The index of the output item in the response.")
+    @param:JsonProperty("output_index")
     @get:JsonProperty("output_index", required = true) val outputIndex: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The index of the content part in the item's content array.")
+    @Schema(required = true, description = "The index of the content part in the item's content array.")
+    @param:JsonProperty("content_index")
     @get:JsonProperty("content_index", required = true) val contentIndex: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "Base64-encoded audio data delta.")
+    @Schema(required = true, description = "Base64-encoded audio data delta.")
+    @param:JsonProperty("delta")
     @get:JsonProperty("delta", required = true) val delta: kotlin.String
 ) {
 
@@ -62,7 +69,7 @@ data class RealtimeServerEventResponseAudioDelta(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeServerEventResponseAudioDelta'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

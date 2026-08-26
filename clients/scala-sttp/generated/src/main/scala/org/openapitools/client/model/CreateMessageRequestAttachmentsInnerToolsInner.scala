@@ -12,10 +12,9 @@
 package org.openapitools.client.model
 
 
-case class CreateMessageRequestAttachmentsInnerToolsInner(
-  /* The type of tool being defined: `code_interpreter` */
-  `type`: CreateMessageRequestAttachmentsInnerToolsInnerEnums.`Type`
-)
+trait CreateMessageRequestAttachmentsInnerToolsInner
+object CreateMessageRequestAttachmentsInnerToolsInner {
+}
 
 object CreateMessageRequestAttachmentsInnerToolsInnerEnums {
 

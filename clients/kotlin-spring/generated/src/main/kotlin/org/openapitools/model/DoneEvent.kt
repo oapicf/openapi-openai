@@ -4,6 +4,9 @@ import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -22,12 +25,14 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class DoneEvent(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("event")
     @get:JsonProperty("event", required = true) val event: DoneEvent.Event,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("data")
     @get:JsonProperty("data", required = true) val `data`: DoneEvent.`Data`
-) {
+) : AssistantStreamEvent {
 
     /**
     * 
@@ -42,7 +47,7 @@ data class DoneEvent(
             @JsonCreator
             fun forValue(value: kotlin.String): Event {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'DoneEvent'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Event'")
             }
         }
     }
@@ -60,7 +65,7 @@ data class DoneEvent(
             @JsonCreator
             fun forValue(value: kotlin.String): `Data` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'DoneEvent'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Data&#x60;'")
             }
         }
     }

@@ -35,6 +35,8 @@ FineTuneChatRequestInput_messages_inner::FineTuneChatRequestInput_messages_inner
     
 }
 
+FineTuneChatRequestInput_messages_inner::~FineTuneChatRequestInput_messages_inner() = default;
+
 void FineTuneChatRequestInput_messages_inner::validate() const
 {
     std::stringstream msg;

@@ -70,10 +70,10 @@ class AssistantStreamEvent {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AssistantStreamEvent[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AssistantStreamEvent[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event'), 'Required key "AssistantStreamEvent[event]" is missing from JSON.');
+        assert(json[r'event'] != null, 'Required key "AssistantStreamEvent[event]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "AssistantStreamEvent[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "AssistantStreamEvent[data]" has a null value in JSON.');
         return true;
       }());
 
@@ -134,27 +134,28 @@ class AssistantStreamEvent {
 }
 
 
-class AssistantStreamEventEventEnum {
-  /// Instantiate a new enum with the provided [value].
-  const AssistantStreamEventEventEnum._(this.value);
+enum AssistantStreamEventEventEnum {
+  done._(r'done'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const AssistantStreamEventEventEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const done = AssistantStreamEventEventEnum._(r'done');
-
-  /// List of all possible values in this [enum][AssistantStreamEventEventEnum].
-  static const values = <AssistantStreamEventEventEnum>[
-    done,
-  ];
-
+  /// Returns the instance of [AssistantStreamEventEventEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static AssistantStreamEventEventEnum? fromJson(dynamic value) => AssistantStreamEventEventEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [AssistantStreamEventEventEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<AssistantStreamEventEventEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <AssistantStreamEventEventEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -176,9 +177,10 @@ class AssistantStreamEventEventEnumTypeTransformer {
 
   const AssistantStreamEventEventEnumTypeTransformer._();
 
-  String encode(AssistantStreamEventEventEnum data) => data.value;
+  String encode(AssistantStreamEventEventEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a AssistantStreamEventEventEnum.
+  /// Returns the instance of [AssistantStreamEventEventEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -187,6 +189,9 @@ class AssistantStreamEventEventEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   AssistantStreamEventEventEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is AssistantStreamEventEventEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'done': return AssistantStreamEventEventEnum.done;
@@ -199,33 +204,34 @@ class AssistantStreamEventEventEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [AssistantStreamEventEventEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static AssistantStreamEventEventEnumTypeTransformer? _instance;
 }
 
 
 
-class AssistantStreamEventDataEnum {
-  /// Instantiate a new enum with the provided [value].
-  const AssistantStreamEventDataEnum._(this.value);
+enum AssistantStreamEventDataEnum {
+  leftSquareBracketDONERightSquareBracket._(r'[DONE]'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const AssistantStreamEventDataEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const leftSquareBracketDONERightSquareBracket = AssistantStreamEventDataEnum._(r'[DONE]');
-
-  /// List of all possible values in this [enum][AssistantStreamEventDataEnum].
-  static const values = <AssistantStreamEventDataEnum>[
-    leftSquareBracketDONERightSquareBracket,
-  ];
-
+  /// Returns the instance of [AssistantStreamEventDataEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static AssistantStreamEventDataEnum? fromJson(dynamic value) => AssistantStreamEventDataEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [AssistantStreamEventDataEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<AssistantStreamEventDataEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <AssistantStreamEventDataEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -247,9 +253,10 @@ class AssistantStreamEventDataEnumTypeTransformer {
 
   const AssistantStreamEventDataEnumTypeTransformer._();
 
-  String encode(AssistantStreamEventDataEnum data) => data.value;
+  String encode(AssistantStreamEventDataEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a AssistantStreamEventDataEnum.
+  /// Returns the instance of [AssistantStreamEventDataEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -258,6 +265,9 @@ class AssistantStreamEventDataEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   AssistantStreamEventDataEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is AssistantStreamEventDataEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'[DONE]': return AssistantStreamEventDataEnum.leftSquareBracketDONERightSquareBracket;
@@ -270,7 +280,7 @@ class AssistantStreamEventDataEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [AssistantStreamEventDataEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static AssistantStreamEventDataEnumTypeTransformer? _instance;
 }
 

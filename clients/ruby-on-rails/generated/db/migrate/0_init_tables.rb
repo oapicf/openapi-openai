@@ -466,12 +466,6 @@ class InitTables < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table "auto_chunking_strategy".pluralize.to_sym, id: false do |t|
-      t.string :type
-
-      t.timestamps
-    end
-
     create_table "auto_chunking_strategy_request_param".pluralize.to_sym, id: false do |t|
       t.string :type
 
@@ -3964,13 +3958,6 @@ class InitTables < ActiveRecord::Migration
     end
 
     create_table "static_chunking_strategy_request_param".pluralize.to_sym, id: false do |t|
-      t.string :type
-      t.string :static
-
-      t.timestamps
-    end
-
-    create_table "static_chunking_strategy_response_param".pluralize.to_sym, id: false do |t|
       t.string :type
       t.string :static
 

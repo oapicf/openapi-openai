@@ -25,7 +25,7 @@ export interface RealtimeSessionTurnDetection {
     /**
      * Type of turn detection, only `server_vad` is currently supported.
      * 
-     * @type {string}
+     * @type {RealtimeSessionTurnDetectionTypeEnum}
      * @memberof RealtimeSessionTurnDetection
      */
     type?: RealtimeSessionTurnDetectionTypeEnum;

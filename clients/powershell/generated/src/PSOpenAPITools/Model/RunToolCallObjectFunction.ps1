@@ -49,8 +49,8 @@ function Initialize-RunToolCallObjectFunction {
 
 
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
-            "arguments" = ${Arguments}
+            'name' = ${Name}
+            'arguments' = ${Arguments}
         }
 
 
@@ -88,7 +88,7 @@ function ConvertFrom-JsonToRunToolCallObjectFunction {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunToolCallObjectFunction
-        $AllProperties = ("name", "arguments")
+        $AllProperties = ('name', 'arguments')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -99,21 +99,21 @@ function ConvertFrom-JsonToRunToolCallObjectFunction {
             throw "Error! Empty JSON cannot be serialized due to the required property 'name' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) {
             throw "Error! JSON cannot be serialized due to the required property 'name' missing."
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "arguments"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'arguments'))) {
             throw "Error! JSON cannot be serialized due to the required property 'arguments' missing."
         } else {
-            $Arguments = $JsonParameters.PSobject.Properties["arguments"].value
+            $Arguments = $JsonParameters.PSobject.Properties['arguments'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
-            "arguments" = ${Arguments}
+            'name' = ${Name}
+            'arguments' = ${Arguments}
         }
 
         return $PSO

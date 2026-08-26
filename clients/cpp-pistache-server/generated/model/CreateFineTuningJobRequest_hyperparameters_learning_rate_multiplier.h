@@ -31,7 +31,7 @@ class  CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier
 {
 public:
     CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier();
-    virtual ~CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier() = default;
+    virtual ~CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier();
 
 
     /// <summary>

@@ -24,7 +24,7 @@ class FineTuningApi {
   ///
   /// * [String] fineTuningJobId (required):
   ///   The ID of the fine-tuning job to cancel. 
-  Future<Response> cancelFineTuningJobWithHttpInfo(String fineTuningJobId,) async {
+  Future<Response> cancelFineTuningJobWithHttpInfo(String fineTuningJobId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/fine_tuning/jobs/{fine_tuning_job_id}/cancel'
       .replaceAll('{fine_tuning_job_id}', fineTuningJobId);
@@ -47,6 +47,7 @@ class FineTuningApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -56,8 +57,8 @@ class FineTuningApi {
   ///
   /// * [String] fineTuningJobId (required):
   ///   The ID of the fine-tuning job to cancel. 
-  Future<FineTuningJob?> cancelFineTuningJob(String fineTuningJobId,) async {
-    final response = await cancelFineTuningJobWithHttpInfo(fineTuningJobId,);
+  Future<FineTuningJob?> cancelFineTuningJob(String fineTuningJobId, { Future<void>? abortTrigger, }) async {
+    final response = await cancelFineTuningJobWithHttpInfo(fineTuningJobId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -78,7 +79,7 @@ class FineTuningApi {
   /// Parameters:
   ///
   /// * [CreateFineTuningJobRequest] createFineTuningJobRequest (required):
-  Future<Response> createFineTuningJobWithHttpInfo(CreateFineTuningJobRequest createFineTuningJobRequest,) async {
+  Future<Response> createFineTuningJobWithHttpInfo(CreateFineTuningJobRequest createFineTuningJobRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/fine_tuning/jobs';
 
@@ -100,6 +101,7 @@ class FineTuningApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -108,8 +110,8 @@ class FineTuningApi {
   /// Parameters:
   ///
   /// * [CreateFineTuningJobRequest] createFineTuningJobRequest (required):
-  Future<FineTuningJob?> createFineTuningJob(CreateFineTuningJobRequest createFineTuningJobRequest,) async {
-    final response = await createFineTuningJobWithHttpInfo(createFineTuningJobRequest,);
+  Future<FineTuningJob?> createFineTuningJob(CreateFineTuningJobRequest createFineTuningJobRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createFineTuningJobWithHttpInfo(createFineTuningJobRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -137,7 +139,7 @@ class FineTuningApi {
   ///
   /// * [int] limit:
   ///   Number of events to retrieve.
-  Future<Response> listFineTuningEventsWithHttpInfo(String fineTuningJobId, { String? after, int? limit, }) async {
+  Future<Response> listFineTuningEventsWithHttpInfo(String fineTuningJobId, { String? after, int? limit, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/fine_tuning/jobs/{fine_tuning_job_id}/events'
       .replaceAll('{fine_tuning_job_id}', fineTuningJobId);
@@ -167,6 +169,7 @@ class FineTuningApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -182,8 +185,8 @@ class FineTuningApi {
   ///
   /// * [int] limit:
   ///   Number of events to retrieve.
-  Future<ListFineTuningJobEventsResponse?> listFineTuningEvents(String fineTuningJobId, { String? after, int? limit, }) async {
-    final response = await listFineTuningEventsWithHttpInfo(fineTuningJobId,  after: after, limit: limit, );
+  Future<ListFineTuningJobEventsResponse?> listFineTuningEvents(String fineTuningJobId, { String? after, int? limit, Future<void>? abortTrigger, }) async {
+    final response = await listFineTuningEventsWithHttpInfo(fineTuningJobId, after: after, limit: limit, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -211,7 +214,7 @@ class FineTuningApi {
   ///
   /// * [int] limit:
   ///   Number of checkpoints to retrieve.
-  Future<Response> listFineTuningJobCheckpointsWithHttpInfo(String fineTuningJobId, { String? after, int? limit, }) async {
+  Future<Response> listFineTuningJobCheckpointsWithHttpInfo(String fineTuningJobId, { String? after, int? limit, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints'
       .replaceAll('{fine_tuning_job_id}', fineTuningJobId);
@@ -241,6 +244,7 @@ class FineTuningApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -256,8 +260,8 @@ class FineTuningApi {
   ///
   /// * [int] limit:
   ///   Number of checkpoints to retrieve.
-  Future<ListFineTuningJobCheckpointsResponse?> listFineTuningJobCheckpoints(String fineTuningJobId, { String? after, int? limit, }) async {
-    final response = await listFineTuningJobCheckpointsWithHttpInfo(fineTuningJobId,  after: after, limit: limit, );
+  Future<ListFineTuningJobCheckpointsResponse?> listFineTuningJobCheckpoints(String fineTuningJobId, { String? after, int? limit, Future<void>? abortTrigger, }) async {
+    final response = await listFineTuningJobCheckpointsWithHttpInfo(fineTuningJobId, after: after, limit: limit, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -282,7 +286,7 @@ class FineTuningApi {
   ///
   /// * [int] limit:
   ///   Number of fine-tuning jobs to retrieve.
-  Future<Response> listPaginatedFineTuningJobsWithHttpInfo({ String? after, int? limit, }) async {
+  Future<Response> listPaginatedFineTuningJobsWithHttpInfo({ String? after, int? limit, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/fine_tuning/jobs';
 
@@ -311,6 +315,7 @@ class FineTuningApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -323,8 +328,8 @@ class FineTuningApi {
   ///
   /// * [int] limit:
   ///   Number of fine-tuning jobs to retrieve.
-  Future<ListPaginatedFineTuningJobsResponse?> listPaginatedFineTuningJobs({ String? after, int? limit, }) async {
-    final response = await listPaginatedFineTuningJobsWithHttpInfo( after: after, limit: limit, );
+  Future<ListPaginatedFineTuningJobsResponse?> listPaginatedFineTuningJobs({ String? after, int? limit, Future<void>? abortTrigger, }) async {
+    final response = await listPaginatedFineTuningJobsWithHttpInfo(after: after, limit: limit, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -346,7 +351,7 @@ class FineTuningApi {
   ///
   /// * [String] fineTuningJobId (required):
   ///   The ID of the fine-tuning job. 
-  Future<Response> retrieveFineTuningJobWithHttpInfo(String fineTuningJobId,) async {
+  Future<Response> retrieveFineTuningJobWithHttpInfo(String fineTuningJobId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/fine_tuning/jobs/{fine_tuning_job_id}'
       .replaceAll('{fine_tuning_job_id}', fineTuningJobId);
@@ -369,6 +374,7 @@ class FineTuningApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -378,8 +384,8 @@ class FineTuningApi {
   ///
   /// * [String] fineTuningJobId (required):
   ///   The ID of the fine-tuning job. 
-  Future<FineTuningJob?> retrieveFineTuningJob(String fineTuningJobId,) async {
-    final response = await retrieveFineTuningJobWithHttpInfo(fineTuningJobId,);
+  Future<FineTuningJob?> retrieveFineTuningJob(String fineTuningJobId, { Future<void>? abortTrigger, }) async {
+    final response = await retrieveFineTuningJobWithHttpInfo(fineTuningJobId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

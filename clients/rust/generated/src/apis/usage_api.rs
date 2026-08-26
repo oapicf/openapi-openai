@@ -100,7 +100,7 @@ pub async fn usage_audio_speeches(configuration: &configuration::Configuration, 
         req_builder = req_builder.query(&[("end_time", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_bucket_width {
-        req_builder = req_builder.query(&[("bucket_width", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("bucket_width", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_project_ids {
         req_builder = match "multi" {
@@ -191,7 +191,7 @@ pub async fn usage_audio_transcriptions(configuration: &configuration::Configura
         req_builder = req_builder.query(&[("end_time", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_bucket_width {
-        req_builder = req_builder.query(&[("bucket_width", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("bucket_width", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_project_ids {
         req_builder = match "multi" {
@@ -279,7 +279,7 @@ pub async fn usage_code_interpreter_sessions(configuration: &configuration::Conf
         req_builder = req_builder.query(&[("end_time", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_bucket_width {
-        req_builder = req_builder.query(&[("bucket_width", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("bucket_width", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_project_ids {
         req_builder = match "multi" {
@@ -353,7 +353,7 @@ pub async fn usage_completions(configuration: &configuration::Configuration, sta
         req_builder = req_builder.query(&[("end_time", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_bucket_width {
-        req_builder = req_builder.query(&[("bucket_width", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("bucket_width", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_project_ids {
         req_builder = match "multi" {
@@ -444,7 +444,7 @@ pub async fn usage_costs(configuration: &configuration::Configuration, start_tim
         req_builder = req_builder.query(&[("end_time", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_bucket_width {
-        req_builder = req_builder.query(&[("bucket_width", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("bucket_width", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_project_ids {
         req_builder = match "multi" {
@@ -517,7 +517,7 @@ pub async fn usage_embeddings(configuration: &configuration::Configuration, star
         req_builder = req_builder.query(&[("end_time", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_bucket_width {
-        req_builder = req_builder.query(&[("bucket_width", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("bucket_width", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_project_ids {
         req_builder = match "multi" {
@@ -610,7 +610,7 @@ pub async fn usage_images(configuration: &configuration::Configuration, start_ti
         req_builder = req_builder.query(&[("end_time", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_bucket_width {
-        req_builder = req_builder.query(&[("bucket_width", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("bucket_width", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_sources {
         req_builder = match "multi" {
@@ -713,7 +713,7 @@ pub async fn usage_moderations(configuration: &configuration::Configuration, sta
         req_builder = req_builder.query(&[("end_time", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_bucket_width {
-        req_builder = req_builder.query(&[("bucket_width", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("bucket_width", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_project_ids {
         req_builder = match "multi" {
@@ -801,7 +801,7 @@ pub async fn usage_vector_stores(configuration: &configuration::Configuration, s
         req_builder = req_builder.query(&[("end_time", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_bucket_width {
-        req_builder = req_builder.query(&[("bucket_width", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("bucket_width", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_project_ids {
         req_builder = match "multi" {

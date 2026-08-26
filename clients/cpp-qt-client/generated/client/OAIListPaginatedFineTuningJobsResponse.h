@@ -34,13 +34,13 @@ class OAIFineTuningJob;
 class OAIListPaginatedFineTuningJobsResponse : public OAIObject {
 public:
     OAIListPaginatedFineTuningJobsResponse();
-    OAIListPaginatedFineTuningJobsResponse(QString json);
+    OAIListPaginatedFineTuningJobsResponse(const QString &json);
     ~OAIListPaginatedFineTuningJobsResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QList<OAIFineTuningJob> getData() const;
     void setData(const QList<OAIFineTuningJob> &data);

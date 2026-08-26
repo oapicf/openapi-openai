@@ -45,19 +45,19 @@ export interface OpenAIFile {
     filename: string;
     /**
      * The object type, which is always `file`.
-     * @type {string}
+     * @type {OpenAIFileObjectEnum}
      * @memberof OpenAIFile
      */
     object: OpenAIFileObjectEnum;
     /**
      * The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
-     * @type {string}
+     * @type {OpenAIFilePurposeEnum}
      * @memberof OpenAIFile
      */
     purpose: OpenAIFilePurposeEnum;
     /**
      * Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
-     * @type {string}
+     * @type {OpenAIFileStatusEnum}
      * @memberof OpenAIFile
      * @deprecated
      */
@@ -111,9 +111,11 @@ export type OpenAIFileStatusEnum = typeof OpenAIFileStatusEnum[keyof typeof Open
 export function instanceOfOpenAIFile(value: object): value is OpenAIFile {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('bytes' in value) || value['bytes'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
     if (!('filename' in value) || value['filename'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'file') return false;
+    
     if (!('purpose' in value) || value['purpose'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     return true;

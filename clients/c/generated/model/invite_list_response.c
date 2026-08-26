@@ -27,19 +27,19 @@ static invite_list_response_t *invite_list_response_create_internal(
     list_t *data,
     char *first_id,
     char *last_id,
-    int has_more
+    int *has_more
     ) {
     invite_list_response_t *invite_list_response_local_var = malloc(sizeof(invite_list_response_t));
     if (!invite_list_response_local_var) {
         return NULL;
     }
+    memset(invite_list_response_local_var, 0, sizeof(invite_list_response_t));
+    invite_list_response_local_var->_library_owned = 1;
     invite_list_response_local_var->object = object;
     invite_list_response_local_var->data = data;
     invite_list_response_local_var->first_id = first_id;
     invite_list_response_local_var->last_id = last_id;
     invite_list_response_local_var->has_more = has_more;
-
-    invite_list_response_local_var->_library_owned = 1;
     return invite_list_response_local_var;
 }
 
@@ -48,15 +48,24 @@ __attribute__((deprecated)) invite_list_response_t *invite_list_response_create(
     list_t *data,
     char *first_id,
     char *last_id,
-    int has_more
+    int *has_more
     ) {
-    return invite_list_response_create_internal (
+    int *has_more_copy = NULL;
+    if (has_more) {
+        has_more_copy = malloc(sizeof(int));
+        if (has_more_copy) *has_more_copy = *has_more;
+    }
+    invite_list_response_t *result = invite_list_response_create_internal (
         object,
         data,
         first_id,
         last_id,
-        has_more
+        has_more_copy
         );
+    if (!result) {
+        free(has_more_copy);
+    }
+    return result;
 }
 
 void invite_list_response_free(invite_list_response_t *invite_list_response) {
@@ -82,6 +91,10 @@ void invite_list_response_free(invite_list_response_t *invite_list_response) {
     if (invite_list_response->last_id) {
         free(invite_list_response->last_id);
         invite_list_response->last_id = NULL;
+    }
+    if (invite_list_response->has_more) {
+        free(invite_list_response->has_more);
+        invite_list_response->has_more = NULL;
     }
     free(invite_list_response);
 }
@@ -138,7 +151,7 @@ cJSON *invite_list_response_convertToJSON(invite_list_response_t *invite_list_re
 
     // invite_list_response->has_more
     if(invite_list_response->has_more) {
-    if(cJSON_AddBoolToObject(item, "has_more", invite_list_response->has_more) == NULL) {
+    if(cJSON_AddBoolToObject(item, "has_more", *invite_list_response->has_more) == NULL) {
     goto fail; //Bool
     }
     }
@@ -157,6 +170,13 @@ invite_list_response_t *invite_list_response_parseFromJSON(cJSON *invite_list_re
 
     // define the local list for invite_list_response->data
     list_t *dataList = NULL;
+
+    char *first_id_local_str = NULL;
+
+    char *last_id_local_str = NULL;
+
+    // define the local variable for invite_list_response->has_more
+    int *has_more_local_var = NULL;
 
     // invite_list_response->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(invite_list_responseJSON, "object");
@@ -236,16 +256,29 @@ invite_list_response_t *invite_list_response_parseFromJSON(cJSON *invite_list_re
     {
     goto end; //Bool
     }
+    has_more_local_var = malloc(sizeof(int));
+    if(!has_more_local_var)
+    {
+        goto end;
+    }
+    *has_more_local_var = has_more->valueint;
     }
 
+
+    if (first_id && !cJSON_IsNull(first_id)) first_id_local_str = strdup(first_id->valuestring);
+    if (last_id && !cJSON_IsNull(last_id)) last_id_local_str = strdup(last_id->valuestring);
 
     invite_list_response_local_var = invite_list_response_create_internal (
         objectVariable,
         dataList,
-        first_id && !cJSON_IsNull(first_id) ? strdup(first_id->valuestring) : NULL,
-        last_id && !cJSON_IsNull(last_id) ? strdup(last_id->valuestring) : NULL,
-        has_more ? has_more->valueint : 0
+        first_id_local_str,
+        last_id_local_str,
+        has_more_local_var
         );
+
+    if (!invite_list_response_local_var) {
+        goto end;
+    }
 
     return invite_list_response_local_var;
 end:
@@ -257,6 +290,18 @@ end:
         }
         list_freeList(dataList);
         dataList = NULL;
+    }
+    if (first_id_local_str) {
+        free(first_id_local_str);
+        first_id_local_str = NULL;
+    }
+    if (last_id_local_str) {
+        free(last_id_local_str);
+        last_id_local_str = NULL;
+    }
+    if (has_more_local_var) {
+        free(has_more_local_var);
+        has_more_local_var = NULL;
     }
     return NULL;
 

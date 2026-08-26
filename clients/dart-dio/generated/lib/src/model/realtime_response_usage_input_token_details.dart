@@ -98,22 +98,25 @@ class _$RealtimeResponseUsageInputTokenDetailsSerializer implements PrimitiveSer
         case r'cached_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.cachedTokens = valueDes;
           break;
         case r'text_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.textTokens = valueDes;
           break;
         case r'audio_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.audioTokens = valueDes;
           break;
         default:

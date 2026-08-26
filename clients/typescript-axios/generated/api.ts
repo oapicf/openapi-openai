@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from './common';
 import type { RequestArgs } from './base';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
@@ -112,7 +112,7 @@ export interface AssistantObject {
 }
 
 export const AssistantObjectObjectEnum = {
-    Assistant: 'assistant'
+    Assistant: 'assistant',
 } as const;
 
 export type AssistantObjectObjectEnum = typeof AssistantObjectObjectEnum[keyof typeof AssistantObjectObjectEnum];
@@ -155,7 +155,7 @@ export interface AssistantToolsCode {
 }
 
 export const AssistantToolsCodeTypeEnum = {
-    CodeInterpreter: 'code_interpreter'
+    CodeInterpreter: 'code_interpreter',
 } as const;
 
 export type AssistantToolsCodeTypeEnum = typeof AssistantToolsCodeTypeEnum[keyof typeof AssistantToolsCodeTypeEnum];
@@ -169,7 +169,7 @@ export interface AssistantToolsFileSearch {
 }
 
 export const AssistantToolsFileSearchTypeEnum = {
-    FileSearch: 'file_search'
+    FileSearch: 'file_search',
 } as const;
 
 export type AssistantToolsFileSearchTypeEnum = typeof AssistantToolsFileSearchTypeEnum[keyof typeof AssistantToolsFileSearchTypeEnum];
@@ -192,7 +192,7 @@ export interface AssistantToolsFileSearchTypeOnly {
 }
 
 export const AssistantToolsFileSearchTypeOnlyTypeEnum = {
-    FileSearch: 'file_search'
+    FileSearch: 'file_search',
 } as const;
 
 export type AssistantToolsFileSearchTypeOnlyTypeEnum = typeof AssistantToolsFileSearchTypeOnlyTypeEnum[keyof typeof AssistantToolsFileSearchTypeOnlyTypeEnum];
@@ -206,7 +206,7 @@ export interface AssistantToolsFunction {
 }
 
 export const AssistantToolsFunctionTypeEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 
 export type AssistantToolsFunctionTypeEnum = typeof AssistantToolsFunctionTypeEnum[keyof typeof AssistantToolsFunctionTypeEnum];
@@ -237,7 +237,7 @@ export interface AssistantsNamedToolChoice {
 export const AssistantsNamedToolChoiceTypeEnum = {
     Function: 'function',
     CodeInterpreter: 'code_interpreter',
-    FileSearch: 'file_search'
+    FileSearch: 'file_search',
 } as const;
 
 export type AssistantsNamedToolChoiceTypeEnum = typeof AssistantsNamedToolChoiceTypeEnum[keyof typeof AssistantsNamedToolChoiceTypeEnum];
@@ -257,7 +257,7 @@ export const AudioResponseFormat = {
     Text: 'text',
     Srt: 'srt',
     VerboseJson: 'verbose_json',
-    Vtt: 'vtt'
+    Vtt: 'vtt',
 } as const;
 
 export type AudioResponseFormat = typeof AudioResponseFormat[keyof typeof AudioResponseFormat];
@@ -315,7 +315,7 @@ export interface AuditLogActor {
 
 export const AuditLogActorTypeEnum = {
     Session: 'session',
-    ApiKey: 'api_key'
+    ApiKey: 'api_key',
 } as const;
 
 export type AuditLogActorTypeEnum = typeof AuditLogActorTypeEnum[keyof typeof AuditLogActorTypeEnum];
@@ -338,7 +338,7 @@ export interface AuditLogActorApiKey {
 
 export const AuditLogActorApiKeyTypeEnum = {
     User: 'user',
-    ServiceAccount: 'service_account'
+    ServiceAccount: 'service_account',
 } as const;
 
 export type AuditLogActorApiKeyTypeEnum = typeof AuditLogActorApiKeyTypeEnum[keyof typeof AuditLogActorApiKeyTypeEnum];
@@ -448,7 +448,7 @@ export const AuditLogEventType = {
     RateLimitDeleted: 'rate_limit.deleted',
     UserAdded: 'user.added',
     UserUpdated: 'user.updated',
-    UserDeleted: 'user.deleted'
+    UserDeleted: 'user.deleted',
 } as const;
 
 export type AuditLogEventType = typeof AuditLogEventType[keyof typeof AuditLogEventType];
@@ -746,22 +746,6 @@ export interface AuditLogUserUpdatedChangesRequested {
 /**
  * The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`.
  */
-export interface AutoChunkingStrategy {
-    /**
-     * Always `auto`.
-     */
-    'type': AutoChunkingStrategyTypeEnum;
-}
-
-export const AutoChunkingStrategyTypeEnum = {
-    Auto: 'auto'
-} as const;
-
-export type AutoChunkingStrategyTypeEnum = typeof AutoChunkingStrategyTypeEnum[keyof typeof AutoChunkingStrategyTypeEnum];
-
-/**
- * The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`.
- */
 export interface AutoChunkingStrategyRequestParam {
     /**
      * Always `auto`.
@@ -770,7 +754,7 @@ export interface AutoChunkingStrategyRequestParam {
 }
 
 export const AutoChunkingStrategyRequestParamTypeEnum = {
-    Auto: 'auto'
+    Auto: 'auto',
 } as const;
 
 export type AutoChunkingStrategyRequestParamTypeEnum = typeof AutoChunkingStrategyRequestParamTypeEnum[keyof typeof AutoChunkingStrategyRequestParamTypeEnum];
@@ -850,7 +834,7 @@ export interface Batch {
 }
 
 export const BatchObjectEnum = {
-    Batch: 'batch'
+    Batch: 'batch',
 } as const;
 
 export type BatchObjectEnum = typeof BatchObjectEnum[keyof typeof BatchObjectEnum];
@@ -862,7 +846,7 @@ export const BatchStatusEnum = {
     Completed: 'completed',
     Expired: 'expired',
     Cancelling: 'cancelling',
-    Cancelled: 'cancelled'
+    Cancelled: 'cancelled',
 } as const;
 
 export type BatchStatusEnum = typeof BatchStatusEnum[keyof typeof BatchStatusEnum];
@@ -928,7 +912,7 @@ export interface BatchRequestInput {
 }
 
 export const BatchRequestInputMethodEnum = {
-    Post: 'POST'
+    Post: 'POST',
 } as const;
 
 export type BatchRequestInputMethodEnum = typeof BatchRequestInputMethodEnum[keyof typeof BatchRequestInputMethodEnum];
@@ -1008,7 +992,7 @@ export interface ChatCompletionMessageToolCall {
 }
 
 export const ChatCompletionMessageToolCallTypeEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 
 export type ChatCompletionMessageToolCallTypeEnum = typeof ChatCompletionMessageToolCallTypeEnum[keyof typeof ChatCompletionMessageToolCallTypeEnum];
@@ -1027,7 +1011,7 @@ export interface ChatCompletionMessageToolCallChunk {
 }
 
 export const ChatCompletionMessageToolCallChunkTypeEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 
 export type ChatCompletionMessageToolCallChunkTypeEnum = typeof ChatCompletionMessageToolCallChunkTypeEnum[keyof typeof ChatCompletionMessageToolCallChunkTypeEnum];
@@ -1067,7 +1051,7 @@ export interface ChatCompletionNamedToolChoice {
 }
 
 export const ChatCompletionNamedToolChoiceTypeEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 
 export type ChatCompletionNamedToolChoiceTypeEnum = typeof ChatCompletionNamedToolChoiceTypeEnum[keyof typeof ChatCompletionNamedToolChoiceTypeEnum];
@@ -1101,7 +1085,7 @@ export interface ChatCompletionRequestAssistantMessage {
 }
 
 export const ChatCompletionRequestAssistantMessageRoleEnum = {
-    Assistant: 'assistant'
+    Assistant: 'assistant',
 } as const;
 
 export type ChatCompletionRequestAssistantMessageRoleEnum = typeof ChatCompletionRequestAssistantMessageRoleEnum[keyof typeof ChatCompletionRequestAssistantMessageRoleEnum];
@@ -1155,7 +1139,7 @@ export interface ChatCompletionRequestDeveloperMessage {
 }
 
 export const ChatCompletionRequestDeveloperMessageRoleEnum = {
-    Developer: 'developer'
+    Developer: 'developer',
 } as const;
 
 export type ChatCompletionRequestDeveloperMessageRoleEnum = typeof ChatCompletionRequestDeveloperMessageRoleEnum[keyof typeof ChatCompletionRequestDeveloperMessageRoleEnum];
@@ -1182,7 +1166,7 @@ export interface ChatCompletionRequestFunctionMessage {
 }
 
 export const ChatCompletionRequestFunctionMessageRoleEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 
 export type ChatCompletionRequestFunctionMessageRoleEnum = typeof ChatCompletionRequestFunctionMessageRoleEnum[keyof typeof ChatCompletionRequestFunctionMessageRoleEnum];
@@ -1204,7 +1188,7 @@ export interface ChatCompletionRequestMessageContentPartAudio {
 }
 
 export const ChatCompletionRequestMessageContentPartAudioTypeEnum = {
-    InputAudio: 'input_audio'
+    InputAudio: 'input_audio',
 } as const;
 
 export type ChatCompletionRequestMessageContentPartAudioTypeEnum = typeof ChatCompletionRequestMessageContentPartAudioTypeEnum[keyof typeof ChatCompletionRequestMessageContentPartAudioTypeEnum];
@@ -1222,7 +1206,7 @@ export interface ChatCompletionRequestMessageContentPartAudioInputAudio {
 
 export const ChatCompletionRequestMessageContentPartAudioInputAudioFormatEnum = {
     Wav: 'wav',
-    Mp3: 'mp3'
+    Mp3: 'mp3',
 } as const;
 
 export type ChatCompletionRequestMessageContentPartAudioInputAudioFormatEnum = typeof ChatCompletionRequestMessageContentPartAudioInputAudioFormatEnum[keyof typeof ChatCompletionRequestMessageContentPartAudioInputAudioFormatEnum];
@@ -1239,7 +1223,7 @@ export interface ChatCompletionRequestMessageContentPartImage {
 }
 
 export const ChatCompletionRequestMessageContentPartImageTypeEnum = {
-    ImageUrl: 'image_url'
+    ImageUrl: 'image_url',
 } as const;
 
 export type ChatCompletionRequestMessageContentPartImageTypeEnum = typeof ChatCompletionRequestMessageContentPartImageTypeEnum[keyof typeof ChatCompletionRequestMessageContentPartImageTypeEnum];
@@ -1258,7 +1242,7 @@ export interface ChatCompletionRequestMessageContentPartImageImageUrl {
 export const ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum = {
     Auto: 'auto',
     Low: 'low',
-    High: 'high'
+    High: 'high',
 } as const;
 
 export type ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum = typeof ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum[keyof typeof ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum];
@@ -1275,7 +1259,7 @@ export interface ChatCompletionRequestMessageContentPartRefusal {
 }
 
 export const ChatCompletionRequestMessageContentPartRefusalTypeEnum = {
-    Refusal: 'refusal'
+    Refusal: 'refusal',
 } as const;
 
 export type ChatCompletionRequestMessageContentPartRefusalTypeEnum = typeof ChatCompletionRequestMessageContentPartRefusalTypeEnum[keyof typeof ChatCompletionRequestMessageContentPartRefusalTypeEnum];
@@ -1295,7 +1279,7 @@ export interface ChatCompletionRequestMessageContentPartText {
 }
 
 export const ChatCompletionRequestMessageContentPartTextTypeEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type ChatCompletionRequestMessageContentPartTextTypeEnum = typeof ChatCompletionRequestMessageContentPartTextTypeEnum[keyof typeof ChatCompletionRequestMessageContentPartTextTypeEnum];
@@ -1316,7 +1300,7 @@ export interface ChatCompletionRequestSystemMessage {
 }
 
 export const ChatCompletionRequestSystemMessageRoleEnum = {
-    System: 'system'
+    System: 'system',
 } as const;
 
 export type ChatCompletionRequestSystemMessageRoleEnum = typeof ChatCompletionRequestSystemMessageRoleEnum[keyof typeof ChatCompletionRequestSystemMessageRoleEnum];
@@ -1340,7 +1324,7 @@ export interface ChatCompletionRequestToolMessage {
 }
 
 export const ChatCompletionRequestToolMessageRoleEnum = {
-    Tool: 'tool'
+    Tool: 'tool',
 } as const;
 
 export type ChatCompletionRequestToolMessageRoleEnum = typeof ChatCompletionRequestToolMessageRoleEnum[keyof typeof ChatCompletionRequestToolMessageRoleEnum];
@@ -1367,7 +1351,7 @@ export interface ChatCompletionRequestUserMessage {
 }
 
 export const ChatCompletionRequestUserMessageRoleEnum = {
-    User: 'user'
+    User: 'user',
 } as const;
 
 export type ChatCompletionRequestUserMessageRoleEnum = typeof ChatCompletionRequestUserMessageRoleEnum[keyof typeof ChatCompletionRequestUserMessageRoleEnum];
@@ -1411,7 +1395,7 @@ export interface ChatCompletionResponseMessage {
 }
 
 export const ChatCompletionResponseMessageRoleEnum = {
-    Assistant: 'assistant'
+    Assistant: 'assistant',
 } as const;
 
 export type ChatCompletionResponseMessageRoleEnum = typeof ChatCompletionResponseMessageRoleEnum[keyof typeof ChatCompletionResponseMessageRoleEnum];
@@ -1459,7 +1443,7 @@ export const ChatCompletionRole = {
     User: 'user',
     Assistant: 'assistant',
     Tool: 'tool',
-    Function: 'function'
+    Function: 'function',
 } as const;
 
 export type ChatCompletionRole = typeof ChatCompletionRole[keyof typeof ChatCompletionRole];
@@ -1501,7 +1485,7 @@ export const ChatCompletionStreamResponseDeltaRoleEnum = {
     System: 'system',
     User: 'user',
     Assistant: 'assistant',
-    Tool: 'tool'
+    Tool: 'tool',
 } as const;
 
 export type ChatCompletionStreamResponseDeltaRoleEnum = typeof ChatCompletionStreamResponseDeltaRoleEnum[keyof typeof ChatCompletionStreamResponseDeltaRoleEnum];
@@ -1560,7 +1544,7 @@ export interface ChatCompletionTool {
 }
 
 export const ChatCompletionToolTypeEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 
 export type ChatCompletionToolTypeEnum = typeof ChatCompletionToolTypeEnum[keyof typeof ChatCompletionToolTypeEnum];
@@ -1657,7 +1641,7 @@ export interface CostsResult {
 }
 
 export const CostsResultObjectEnum = {
-    OrganizationCostsResult: 'organization.costs.result'
+    OrganizationCostsResult: 'organization.costs.result',
 } as const;
 
 export type CostsResultObjectEnum = typeof CostsResultObjectEnum[keyof typeof CostsResultObjectEnum];
@@ -1751,7 +1735,7 @@ export interface CreateAssistantRequestToolResourcesFileSearchVectorStoresInner 
  * @type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
  * The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.
  */
-export type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = AutoChunkingStrategy | StaticChunkingStrategy;
+export type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = AutoChunkingStrategyRequestParam | StaticChunkingStrategy;
 
 export interface CreateBatchRequest {
     /**
@@ -1775,12 +1759,12 @@ export interface CreateBatchRequest {
 export const CreateBatchRequestEndpointEnum = {
     V1ChatCompletions: '/v1/chat/completions',
     V1Embeddings: '/v1/embeddings',
-    V1Completions: '/v1/completions'
+    V1Completions: '/v1/completions',
 } as const;
 
 export type CreateBatchRequestEndpointEnum = typeof CreateBatchRequestEndpointEnum[keyof typeof CreateBatchRequestEndpointEnum];
 export const CreateBatchRequestCompletionWindowEnum = {
-    _24h: '24h'
+    _24h: '24h',
 } as const;
 
 export type CreateBatchRequestCompletionWindowEnum = typeof CreateBatchRequestCompletionWindowEnum[keyof typeof CreateBatchRequestCompletionWindowEnum];
@@ -1817,7 +1801,7 @@ export interface CreateChatCompletionFunctionResponse {
 }
 
 export const CreateChatCompletionFunctionResponseObjectEnum = {
-    ChatCompletion: 'chat.completion'
+    ChatCompletion: 'chat.completion',
 } as const;
 
 export type CreateChatCompletionFunctionResponseObjectEnum = typeof CreateChatCompletionFunctionResponseObjectEnum[keyof typeof CreateChatCompletionFunctionResponseObjectEnum];
@@ -1838,7 +1822,7 @@ export const CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum = 
     Stop: 'stop',
     Length: 'length',
     FunctionCall: 'function_call',
-    ContentFilter: 'content_filter'
+    ContentFilter: 'content_filter',
 } as const;
 
 export type CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum = typeof CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum[keyof typeof CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum];
@@ -1894,6 +1878,9 @@ export interface CreateChatCompletionRequest {
      * Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` 
      */
     'modalities'?: Array<CreateChatCompletionRequestModalitiesEnum> | null;
+    /**
+     * Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
+     */
     'prediction'?: PredictionContent | null;
     'audio'?: CreateChatCompletionRequestAudio | null;
     /**
@@ -1950,19 +1937,19 @@ export interface CreateChatCompletionRequest {
 export const CreateChatCompletionRequestReasoningEffortEnum = {
     Low: 'low',
     Medium: 'medium',
-    High: 'high'
+    High: 'high',
 } as const;
 
 export type CreateChatCompletionRequestReasoningEffortEnum = typeof CreateChatCompletionRequestReasoningEffortEnum[keyof typeof CreateChatCompletionRequestReasoningEffortEnum];
 export const CreateChatCompletionRequestModalitiesEnum = {
     Text: 'text',
-    Audio: 'audio'
+    Audio: 'audio',
 } as const;
 
 export type CreateChatCompletionRequestModalitiesEnum = typeof CreateChatCompletionRequestModalitiesEnum[keyof typeof CreateChatCompletionRequestModalitiesEnum];
 export const CreateChatCompletionRequestServiceTierEnum = {
     Auto: 'auto',
-    Default: 'default'
+    Default: 'default',
 } as const;
 
 export type CreateChatCompletionRequestServiceTierEnum = typeof CreateChatCompletionRequestServiceTierEnum[keyof typeof CreateChatCompletionRequestServiceTierEnum];
@@ -1989,7 +1976,7 @@ export const CreateChatCompletionRequestAudioVoiceEnum = {
     Echo: 'echo',
     Sage: 'sage',
     Shimmer: 'shimmer',
-    Verse: 'verse'
+    Verse: 'verse',
 } as const;
 
 export type CreateChatCompletionRequestAudioVoiceEnum = typeof CreateChatCompletionRequestAudioVoiceEnum[keyof typeof CreateChatCompletionRequestAudioVoiceEnum];
@@ -1998,7 +1985,7 @@ export const CreateChatCompletionRequestAudioFormatEnum = {
     Mp3: 'mp3',
     Flac: 'flac',
     Opus: 'opus',
-    Pcm16: 'pcm16'
+    Pcm16: 'pcm16',
 } as const;
 
 export type CreateChatCompletionRequestAudioFormatEnum = typeof CreateChatCompletionRequestAudioFormatEnum[keyof typeof CreateChatCompletionRequestAudioFormatEnum];
@@ -2063,12 +2050,12 @@ export interface CreateChatCompletionResponse {
 
 export const CreateChatCompletionResponseServiceTierEnum = {
     Scale: 'scale',
-    Default: 'default'
+    Default: 'default',
 } as const;
 
 export type CreateChatCompletionResponseServiceTierEnum = typeof CreateChatCompletionResponseServiceTierEnum[keyof typeof CreateChatCompletionResponseServiceTierEnum];
 export const CreateChatCompletionResponseObjectEnum = {
-    ChatCompletion: 'chat.completion'
+    ChatCompletion: 'chat.completion',
 } as const;
 
 export type CreateChatCompletionResponseObjectEnum = typeof CreateChatCompletionResponseObjectEnum[keyof typeof CreateChatCompletionResponseObjectEnum];
@@ -2091,7 +2078,7 @@ export const CreateChatCompletionResponseChoicesInnerFinishReasonEnum = {
     Length: 'length',
     ToolCalls: 'tool_calls',
     ContentFilter: 'content_filter',
-    FunctionCall: 'function_call'
+    FunctionCall: 'function_call',
 } as const;
 
 export type CreateChatCompletionResponseChoicesInnerFinishReasonEnum = typeof CreateChatCompletionResponseChoicesInnerFinishReasonEnum[keyof typeof CreateChatCompletionResponseChoicesInnerFinishReasonEnum];
@@ -2146,12 +2133,12 @@ export interface CreateChatCompletionStreamResponse {
 
 export const CreateChatCompletionStreamResponseServiceTierEnum = {
     Scale: 'scale',
-    Default: 'default'
+    Default: 'default',
 } as const;
 
 export type CreateChatCompletionStreamResponseServiceTierEnum = typeof CreateChatCompletionStreamResponseServiceTierEnum[keyof typeof CreateChatCompletionStreamResponseServiceTierEnum];
 export const CreateChatCompletionStreamResponseObjectEnum = {
-    ChatCompletionChunk: 'chat.completion.chunk'
+    ChatCompletionChunk: 'chat.completion.chunk',
 } as const;
 
 export type CreateChatCompletionStreamResponseObjectEnum = typeof CreateChatCompletionStreamResponseObjectEnum[keyof typeof CreateChatCompletionStreamResponseObjectEnum];
@@ -2174,7 +2161,7 @@ export const CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum = {
     Length: 'length',
     ToolCalls: 'tool_calls',
     ContentFilter: 'content_filter',
-    FunctionCall: 'function_call'
+    FunctionCall: 'function_call',
 } as const;
 
 export type CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum = typeof CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum[keyof typeof CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum];
@@ -2307,7 +2294,7 @@ export interface CreateCompletionResponse {
 }
 
 export const CreateCompletionResponseObjectEnum = {
-    TextCompletion: 'text_completion'
+    TextCompletion: 'text_completion',
 } as const;
 
 export type CreateCompletionResponseObjectEnum = typeof CreateCompletionResponseObjectEnum[keyof typeof CreateCompletionResponseObjectEnum];
@@ -2325,7 +2312,7 @@ export interface CreateCompletionResponseChoicesInner {
 export const CreateCompletionResponseChoicesInnerFinishReasonEnum = {
     Stop: 'stop',
     Length: 'length',
-    ContentFilter: 'content_filter'
+    ContentFilter: 'content_filter',
 } as const;
 
 export type CreateCompletionResponseChoicesInnerFinishReasonEnum = typeof CreateCompletionResponseChoicesInnerFinishReasonEnum[keyof typeof CreateCompletionResponseChoicesInnerFinishReasonEnum];
@@ -2355,7 +2342,7 @@ export interface CreateEmbeddingRequest {
 
 export const CreateEmbeddingRequestEncodingFormatEnum = {
     Float: 'float',
-    Base64: 'base64'
+    Base64: 'base64',
 } as const;
 
 export type CreateEmbeddingRequestEncodingFormatEnum = typeof CreateEmbeddingRequestEncodingFormatEnum[keyof typeof CreateEmbeddingRequestEncodingFormatEnum];
@@ -2388,7 +2375,7 @@ export interface CreateEmbeddingResponse {
 }
 
 export const CreateEmbeddingResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 
 export type CreateEmbeddingResponseObjectEnum = typeof CreateEmbeddingResponseObjectEnum[keyof typeof CreateEmbeddingResponseObjectEnum];
@@ -2461,12 +2448,15 @@ export type CreateFineTuningJobRequestHyperparametersLearningRateMultiplier = nu
 export type CreateFineTuningJobRequestHyperparametersNEpochs = number | string;
 
 export interface CreateFineTuningJobRequestIntegrationsInner {
+    /**
+     * The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
+     */
     'type': CreateFineTuningJobRequestIntegrationsInnerTypeEnum;
     'wandb': CreateFineTuningJobRequestIntegrationsInnerWandb;
 }
 
 export const CreateFineTuningJobRequestIntegrationsInnerTypeEnum = {
-    Wandb: 'wandb'
+    Wandb: 'wandb',
 } as const;
 
 export type CreateFineTuningJobRequestIntegrationsInnerTypeEnum = typeof CreateFineTuningJobRequestIntegrationsInnerTypeEnum[keyof typeof CreateFineTuningJobRequestIntegrationsInnerTypeEnum];
@@ -2536,13 +2526,13 @@ export interface CreateImageRequest {
 
 export const CreateImageRequestQualityEnum = {
     Standard: 'standard',
-    Hd: 'hd'
+    Hd: 'hd',
 } as const;
 
 export type CreateImageRequestQualityEnum = typeof CreateImageRequestQualityEnum[keyof typeof CreateImageRequestQualityEnum];
 export const CreateImageRequestResponseFormatEnum = {
     Url: 'url',
-    B64Json: 'b64_json'
+    B64Json: 'b64_json',
 } as const;
 
 export type CreateImageRequestResponseFormatEnum = typeof CreateImageRequestResponseFormatEnum[keyof typeof CreateImageRequestResponseFormatEnum];
@@ -2551,13 +2541,13 @@ export const CreateImageRequestSizeEnum = {
     _512x512: '512x512',
     _1024x1024: '1024x1024',
     _1792x1024: '1792x1024',
-    _1024x1792: '1024x1792'
+    _1024x1792: '1024x1792',
 } as const;
 
 export type CreateImageRequestSizeEnum = typeof CreateImageRequestSizeEnum[keyof typeof CreateImageRequestSizeEnum];
 export const CreateImageRequestStyleEnum = {
     Vivid: 'vivid',
-    Natural: 'natural'
+    Natural: 'natural',
 } as const;
 
 export type CreateImageRequestStyleEnum = typeof CreateImageRequestStyleEnum[keyof typeof CreateImageRequestStyleEnum];
@@ -2585,7 +2575,7 @@ export interface CreateMessageRequest {
 
 export const CreateMessageRequestRoleEnum = {
     User: 'user',
-    Assistant: 'assistant'
+    Assistant: 'assistant',
 } as const;
 
 export type CreateMessageRequestRoleEnum = typeof CreateMessageRequestRoleEnum[keyof typeof CreateMessageRequestRoleEnum];
@@ -2637,7 +2627,7 @@ export interface CreateModerationRequestInputOneOfInnerOneOf {
 }
 
 export const CreateModerationRequestInputOneOfInnerOneOfTypeEnum = {
-    ImageUrl: 'image_url'
+    ImageUrl: 'image_url',
 } as const;
 
 export type CreateModerationRequestInputOneOfInnerOneOfTypeEnum = typeof CreateModerationRequestInputOneOfInnerOneOfTypeEnum[keyof typeof CreateModerationRequestInputOneOfInnerOneOfTypeEnum];
@@ -2657,7 +2647,7 @@ export interface CreateModerationRequestInputOneOfInnerOneOf1 {
 }
 
 export const CreateModerationRequestInputOneOfInnerOneOf1TypeEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type CreateModerationRequestInputOneOfInnerOneOf1TypeEnum = typeof CreateModerationRequestInputOneOfInnerOneOf1TypeEnum[keyof typeof CreateModerationRequestInputOneOfInnerOneOf1TypeEnum];
@@ -2818,73 +2808,73 @@ export interface CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
 }
 
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum];
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateThreateningEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateThreateningEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateThreateningEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateThreateningEnum];
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum];
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentThreateningEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentThreateningEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentThreateningEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentThreateningEnum];
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum];
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitViolentEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitViolentEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitViolentEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitViolentEnum];
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum = {
     Text: 'text',
-    Image: 'image'
+    Image: 'image',
 } as const;
 
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum];
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmIntentEnum = {
     Text: 'text',
-    Image: 'image'
+    Image: 'image',
 } as const;
 
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmIntentEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmIntentEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmIntentEnum];
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmInstructionsEnum = {
     Text: 'text',
-    Image: 'image'
+    Image: 'image',
 } as const;
 
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmInstructionsEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmInstructionsEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmInstructionsEnum];
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum = {
     Text: 'text',
-    Image: 'image'
+    Image: 'image',
 } as const;
 
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum];
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualMinorsEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualMinorsEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualMinorsEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualMinorsEnum];
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum = {
     Text: 'text',
-    Image: 'image'
+    Image: 'image',
 } as const;
 
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum];
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceGraphicEnum = {
     Text: 'text',
-    Image: 'image'
+    Image: 'image',
 } as const;
 
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceGraphicEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceGraphicEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceGraphicEnum];
@@ -3031,7 +3021,7 @@ export const CreateSpeechRequestVoiceEnum = {
     Fable: 'fable',
     Onyx: 'onyx',
     Nova: 'nova',
-    Shimmer: 'shimmer'
+    Shimmer: 'shimmer',
 } as const;
 
 export type CreateSpeechRequestVoiceEnum = typeof CreateSpeechRequestVoiceEnum[keyof typeof CreateSpeechRequestVoiceEnum];
@@ -3041,7 +3031,7 @@ export const CreateSpeechRequestResponseFormatEnum = {
     Aac: 'aac',
     Flac: 'flac',
     Wav: 'wav',
-    Pcm: 'pcm'
+    Pcm: 'pcm',
 } as const;
 
 export type CreateSpeechRequestResponseFormatEnum = typeof CreateSpeechRequestResponseFormatEnum[keyof typeof CreateSpeechRequestResponseFormatEnum];
@@ -3243,7 +3233,7 @@ export const CreateUploadRequestPurposeEnum = {
     Assistants: 'assistants',
     Batch: 'batch',
     FineTune: 'fine-tune',
-    Vision: 'vision'
+    Vision: 'vision',
 } as const;
 
 export type CreateUploadRequestPurposeEnum = typeof CreateUploadRequestPurposeEnum[keyof typeof CreateUploadRequestPurposeEnum];
@@ -3295,7 +3285,7 @@ export interface DeleteAssistantResponse {
 }
 
 export const DeleteAssistantResponseObjectEnum = {
-    AssistantDeleted: 'assistant.deleted'
+    AssistantDeleted: 'assistant.deleted',
 } as const;
 
 export type DeleteAssistantResponseObjectEnum = typeof DeleteAssistantResponseObjectEnum[keyof typeof DeleteAssistantResponseObjectEnum];
@@ -3307,7 +3297,7 @@ export interface DeleteFileResponse {
 }
 
 export const DeleteFileResponseObjectEnum = {
-    File: 'file'
+    File: 'file',
 } as const;
 
 export type DeleteFileResponseObjectEnum = typeof DeleteFileResponseObjectEnum[keyof typeof DeleteFileResponseObjectEnum];
@@ -3319,7 +3309,7 @@ export interface DeleteMessageResponse {
 }
 
 export const DeleteMessageResponseObjectEnum = {
-    ThreadMessageDeleted: 'thread.message.deleted'
+    ThreadMessageDeleted: 'thread.message.deleted',
 } as const;
 
 export type DeleteMessageResponseObjectEnum = typeof DeleteMessageResponseObjectEnum[keyof typeof DeleteMessageResponseObjectEnum];
@@ -3336,7 +3326,7 @@ export interface DeleteThreadResponse {
 }
 
 export const DeleteThreadResponseObjectEnum = {
-    ThreadDeleted: 'thread.deleted'
+    ThreadDeleted: 'thread.deleted',
 } as const;
 
 export type DeleteThreadResponseObjectEnum = typeof DeleteThreadResponseObjectEnum[keyof typeof DeleteThreadResponseObjectEnum];
@@ -3348,7 +3338,7 @@ export interface DeleteVectorStoreFileResponse {
 }
 
 export const DeleteVectorStoreFileResponseObjectEnum = {
-    VectorStoreFileDeleted: 'vector_store.file.deleted'
+    VectorStoreFileDeleted: 'vector_store.file.deleted',
 } as const;
 
 export type DeleteVectorStoreFileResponseObjectEnum = typeof DeleteVectorStoreFileResponseObjectEnum[keyof typeof DeleteVectorStoreFileResponseObjectEnum];
@@ -3360,7 +3350,7 @@ export interface DeleteVectorStoreResponse {
 }
 
 export const DeleteVectorStoreResponseObjectEnum = {
-    VectorStoreDeleted: 'vector_store.deleted'
+    VectorStoreDeleted: 'vector_store.deleted',
 } as const;
 
 export type DeleteVectorStoreResponseObjectEnum = typeof DeleteVectorStoreResponseObjectEnum[keyof typeof DeleteVectorStoreResponseObjectEnum];
@@ -3374,12 +3364,12 @@ export interface DoneEvent {
 }
 
 export const DoneEventEventEnum = {
-    Done: 'done'
+    Done: 'done',
 } as const;
 
 export type DoneEventEventEnum = typeof DoneEventEventEnum[keyof typeof DoneEventEventEnum];
 export const DoneEventDataEnum = {
-    Done: '[DONE]'
+    Done: '[DONE]',
 } as const;
 
 export type DoneEventDataEnum = typeof DoneEventDataEnum[keyof typeof DoneEventDataEnum];
@@ -3403,7 +3393,7 @@ export interface Embedding {
 }
 
 export const EmbeddingObjectEnum = {
-    Embedding: 'embedding'
+    Embedding: 'embedding',
 } as const;
 
 export type EmbeddingObjectEnum = typeof EmbeddingObjectEnum[keyof typeof EmbeddingObjectEnum];
@@ -3417,7 +3407,7 @@ export interface ErrorEvent {
 }
 
 export const ErrorEventEventEnum = {
-    Error: 'error'
+    Error: 'error',
 } as const;
 
 export type ErrorEventEventEnum = typeof ErrorEventEventEnum[keyof typeof ErrorEventEventEnum];
@@ -3441,7 +3431,7 @@ export interface FileSearchRankingOptions {
 
 export const FileSearchRankingOptionsRankerEnum = {
     Auto: 'auto',
-    Default20240821: 'default_2024_08_21'
+    Default20240821: 'default_2024_08_21',
 } as const;
 
 export type FileSearchRankingOptionsRankerEnum = typeof FileSearchRankingOptionsRankerEnum[keyof typeof FileSearchRankingOptionsRankerEnum];
@@ -3476,13 +3466,13 @@ export interface FineTuneChatCompletionRequestAssistantMessage {
 }
 
 export const FineTuneChatCompletionRequestAssistantMessageRoleEnum = {
-    Assistant: 'assistant'
+    Assistant: 'assistant',
 } as const;
 
 export type FineTuneChatCompletionRequestAssistantMessageRoleEnum = typeof FineTuneChatCompletionRequestAssistantMessageRoleEnum[keyof typeof FineTuneChatCompletionRequestAssistantMessageRoleEnum];
 export const FineTuneChatCompletionRequestAssistantMessageWeightEnum = {
     NUMBER_0: 0,
-    NUMBER_1: 1
+    NUMBER_1: 1,
 } as const;
 
 export type FineTuneChatCompletionRequestAssistantMessageWeightEnum = typeof FineTuneChatCompletionRequestAssistantMessageWeightEnum[keyof typeof FineTuneChatCompletionRequestAssistantMessageWeightEnum];
@@ -3577,7 +3567,7 @@ export interface FineTuneMethod {
 
 export const FineTuneMethodTypeEnum = {
     Supervised: 'supervised',
-    Dpo: 'dpo'
+    Dpo: 'dpo',
 } as const;
 
 export type FineTuneMethodTypeEnum = typeof FineTuneMethodTypeEnum[keyof typeof FineTuneMethodTypeEnum];
@@ -3635,7 +3625,7 @@ export interface FineTuningIntegration {
 }
 
 export const FineTuningIntegrationTypeEnum = {
-    Wandb: 'wandb'
+    Wandb: 'wandb',
 } as const;
 
 export type FineTuningIntegrationTypeEnum = typeof FineTuningIntegrationTypeEnum[keyof typeof FineTuningIntegrationTypeEnum];
@@ -3710,7 +3700,7 @@ export interface FineTuningJob {
 }
 
 export const FineTuningJobObjectEnum = {
-    FineTuningJob: 'fine_tuning.job'
+    FineTuningJob: 'fine_tuning.job',
 } as const;
 
 export type FineTuningJobObjectEnum = typeof FineTuningJobObjectEnum[keyof typeof FineTuningJobObjectEnum];
@@ -3720,7 +3710,7 @@ export const FineTuningJobStatusEnum = {
     Running: 'running',
     Succeeded: 'succeeded',
     Failed: 'failed',
-    Cancelled: 'cancelled'
+    Cancelled: 'cancelled',
 } as const;
 
 export type FineTuningJobStatusEnum = typeof FineTuningJobStatusEnum[keyof typeof FineTuningJobStatusEnum];
@@ -3757,7 +3747,7 @@ export interface FineTuningJobCheckpoint {
 }
 
 export const FineTuningJobCheckpointObjectEnum = {
-    FineTuningJobCheckpoint: 'fine_tuning.job.checkpoint'
+    FineTuningJobCheckpoint: 'fine_tuning.job.checkpoint',
 } as const;
 
 export type FineTuningJobCheckpointObjectEnum = typeof FineTuningJobCheckpointObjectEnum[keyof typeof FineTuningJobCheckpointObjectEnum];
@@ -3826,20 +3816,20 @@ export interface FineTuningJobEvent {
 }
 
 export const FineTuningJobEventObjectEnum = {
-    FineTuningJobEvent: 'fine_tuning.job.event'
+    FineTuningJobEvent: 'fine_tuning.job.event',
 } as const;
 
 export type FineTuningJobEventObjectEnum = typeof FineTuningJobEventObjectEnum[keyof typeof FineTuningJobEventObjectEnum];
 export const FineTuningJobEventLevelEnum = {
     Info: 'info',
     Warn: 'warn',
-    Error: 'error'
+    Error: 'error',
 } as const;
 
 export type FineTuningJobEventLevelEnum = typeof FineTuningJobEventLevelEnum[keyof typeof FineTuningJobEventLevelEnum];
 export const FineTuningJobEventTypeEnum = {
     Message: 'message',
-    Metrics: 'metrics'
+    Metrics: 'metrics',
 } as const;
 
 export type FineTuningJobEventTypeEnum = typeof FineTuningJobEventTypeEnum[keyof typeof FineTuningJobEventTypeEnum];
@@ -3939,20 +3929,20 @@ export interface Invite {
 }
 
 export const InviteObjectEnum = {
-    OrganizationInvite: 'organization.invite'
+    OrganizationInvite: 'organization.invite',
 } as const;
 
 export type InviteObjectEnum = typeof InviteObjectEnum[keyof typeof InviteObjectEnum];
 export const InviteRoleEnum = {
     Owner: 'owner',
-    Reader: 'reader'
+    Reader: 'reader',
 } as const;
 
 export type InviteRoleEnum = typeof InviteRoleEnum[keyof typeof InviteRoleEnum];
 export const InviteStatusEnum = {
     Accepted: 'accepted',
     Expired: 'expired',
-    Pending: 'pending'
+    Pending: 'pending',
 } as const;
 
 export type InviteStatusEnum = typeof InviteStatusEnum[keyof typeof InviteStatusEnum];
@@ -3967,7 +3957,7 @@ export interface InviteDeleteResponse {
 }
 
 export const InviteDeleteResponseObjectEnum = {
-    OrganizationInviteDeleted: 'organization.invite.deleted'
+    OrganizationInviteDeleted: 'organization.invite.deleted',
 } as const;
 
 export type InviteDeleteResponseObjectEnum = typeof InviteDeleteResponseObjectEnum[keyof typeof InviteDeleteResponseObjectEnum];
@@ -3993,7 +3983,7 @@ export interface InviteListResponse {
 }
 
 export const InviteListResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 
 export type InviteListResponseObjectEnum = typeof InviteListResponseObjectEnum[keyof typeof InviteListResponseObjectEnum];
@@ -4011,7 +4001,7 @@ export interface InviteProjectsInner {
 
 export const InviteProjectsInnerRoleEnum = {
     Member: 'member',
-    Owner: 'owner'
+    Owner: 'owner',
 } as const;
 
 export type InviteProjectsInnerRoleEnum = typeof InviteProjectsInnerRoleEnum[keyof typeof InviteProjectsInnerRoleEnum];
@@ -4033,7 +4023,7 @@ export interface InviteRequest {
 
 export const InviteRequestRoleEnum = {
     Reader: 'reader',
-    Owner: 'owner'
+    Owner: 'owner',
 } as const;
 
 export type InviteRequestRoleEnum = typeof InviteRequestRoleEnum[keyof typeof InviteRequestRoleEnum];
@@ -4051,7 +4041,7 @@ export interface InviteRequestProjectsInner {
 
 export const InviteRequestProjectsInnerRoleEnum = {
     Member: 'member',
-    Owner: 'owner'
+    Owner: 'owner',
 } as const;
 
 export type InviteRequestProjectsInnerRoleEnum = typeof InviteRequestProjectsInnerRoleEnum[keyof typeof InviteRequestProjectsInnerRoleEnum];
@@ -4090,7 +4080,7 @@ export interface ListAuditLogsResponse {
 }
 
 export const ListAuditLogsResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 
 export type ListAuditLogsResponseObjectEnum = typeof ListAuditLogsResponseObjectEnum[keyof typeof ListAuditLogsResponseObjectEnum];
@@ -4104,7 +4094,7 @@ export interface ListBatchesResponse {
 }
 
 export const ListBatchesResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 
 export type ListBatchesResponseObjectEnum = typeof ListBatchesResponseObjectEnum[keyof typeof ListBatchesResponseObjectEnum];
@@ -4125,7 +4115,7 @@ export interface ListFineTuningJobCheckpointsResponse {
 }
 
 export const ListFineTuningJobCheckpointsResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 
 export type ListFineTuningJobCheckpointsResponseObjectEnum = typeof ListFineTuningJobCheckpointsResponseObjectEnum[keyof typeof ListFineTuningJobCheckpointsResponseObjectEnum];
@@ -4136,7 +4126,7 @@ export interface ListFineTuningJobEventsResponse {
 }
 
 export const ListFineTuningJobEventsResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 
 export type ListFineTuningJobEventsResponseObjectEnum = typeof ListFineTuningJobEventsResponseObjectEnum[keyof typeof ListFineTuningJobEventsResponseObjectEnum];
@@ -4154,7 +4144,7 @@ export interface ListModelsResponse {
 }
 
 export const ListModelsResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 
 export type ListModelsResponseObjectEnum = typeof ListModelsResponseObjectEnum[keyof typeof ListModelsResponseObjectEnum];
@@ -4166,7 +4156,7 @@ export interface ListPaginatedFineTuningJobsResponse {
 }
 
 export const ListPaginatedFineTuningJobsResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 
 export type ListPaginatedFineTuningJobsResponseObjectEnum = typeof ListPaginatedFineTuningJobsResponseObjectEnum[keyof typeof ListPaginatedFineTuningJobsResponseObjectEnum];
@@ -4218,7 +4208,7 @@ export interface MessageContentImageFileObject {
 }
 
 export const MessageContentImageFileObjectTypeEnum = {
-    ImageFile: 'image_file'
+    ImageFile: 'image_file',
 } as const;
 
 export type MessageContentImageFileObjectTypeEnum = typeof MessageContentImageFileObjectTypeEnum[keyof typeof MessageContentImageFileObjectTypeEnum];
@@ -4237,7 +4227,7 @@ export interface MessageContentImageFileObjectImageFile {
 export const MessageContentImageFileObjectImageFileDetailEnum = {
     Auto: 'auto',
     Low: 'low',
-    High: 'high'
+    High: 'high',
 } as const;
 
 export type MessageContentImageFileObjectImageFileDetailEnum = typeof MessageContentImageFileObjectImageFileDetailEnum[keyof typeof MessageContentImageFileObjectImageFileDetailEnum];
@@ -4254,7 +4244,7 @@ export interface MessageContentImageUrlObject {
 }
 
 export const MessageContentImageUrlObjectTypeEnum = {
-    ImageUrl: 'image_url'
+    ImageUrl: 'image_url',
 } as const;
 
 export type MessageContentImageUrlObjectTypeEnum = typeof MessageContentImageUrlObjectTypeEnum[keyof typeof MessageContentImageUrlObjectTypeEnum];
@@ -4273,7 +4263,7 @@ export interface MessageContentImageUrlObjectImageUrl {
 export const MessageContentImageUrlObjectImageUrlDetailEnum = {
     Auto: 'auto',
     Low: 'low',
-    High: 'high'
+    High: 'high',
 } as const;
 
 export type MessageContentImageUrlObjectImageUrlDetailEnum = typeof MessageContentImageUrlObjectImageUrlDetailEnum[keyof typeof MessageContentImageUrlObjectImageUrlDetailEnum];
@@ -4290,7 +4280,7 @@ export interface MessageContentRefusalObject {
 }
 
 export const MessageContentRefusalObjectTypeEnum = {
-    Refusal: 'refusal'
+    Refusal: 'refusal',
 } as const;
 
 export type MessageContentRefusalObjectTypeEnum = typeof MessageContentRefusalObjectTypeEnum[keyof typeof MessageContentRefusalObjectTypeEnum];
@@ -4313,7 +4303,7 @@ export interface MessageContentTextAnnotationsFileCitationObject {
 }
 
 export const MessageContentTextAnnotationsFileCitationObjectTypeEnum = {
-    FileCitation: 'file_citation'
+    FileCitation: 'file_citation',
 } as const;
 
 export type MessageContentTextAnnotationsFileCitationObjectTypeEnum = typeof MessageContentTextAnnotationsFileCitationObjectTypeEnum[keyof typeof MessageContentTextAnnotationsFileCitationObjectTypeEnum];
@@ -4342,7 +4332,7 @@ export interface MessageContentTextAnnotationsFilePathObject {
 }
 
 export const MessageContentTextAnnotationsFilePathObjectTypeEnum = {
-    FilePath: 'file_path'
+    FilePath: 'file_path',
 } as const;
 
 export type MessageContentTextAnnotationsFilePathObjectTypeEnum = typeof MessageContentTextAnnotationsFilePathObjectTypeEnum[keyof typeof MessageContentTextAnnotationsFilePathObjectTypeEnum];
@@ -4365,7 +4355,7 @@ export interface MessageContentTextObject {
 }
 
 export const MessageContentTextObjectTypeEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type MessageContentTextObjectTypeEnum = typeof MessageContentTextObjectTypeEnum[keyof typeof MessageContentTextObjectTypeEnum];
@@ -4398,7 +4388,7 @@ export interface MessageDeltaContentImageFileObject {
 }
 
 export const MessageDeltaContentImageFileObjectTypeEnum = {
-    ImageFile: 'image_file'
+    ImageFile: 'image_file',
 } as const;
 
 export type MessageDeltaContentImageFileObjectTypeEnum = typeof MessageDeltaContentImageFileObjectTypeEnum[keyof typeof MessageDeltaContentImageFileObjectTypeEnum];
@@ -4417,7 +4407,7 @@ export interface MessageDeltaContentImageFileObjectImageFile {
 export const MessageDeltaContentImageFileObjectImageFileDetailEnum = {
     Auto: 'auto',
     Low: 'low',
-    High: 'high'
+    High: 'high',
 } as const;
 
 export type MessageDeltaContentImageFileObjectImageFileDetailEnum = typeof MessageDeltaContentImageFileObjectImageFileDetailEnum[keyof typeof MessageDeltaContentImageFileObjectImageFileDetailEnum];
@@ -4438,7 +4428,7 @@ export interface MessageDeltaContentImageUrlObject {
 }
 
 export const MessageDeltaContentImageUrlObjectTypeEnum = {
-    ImageUrl: 'image_url'
+    ImageUrl: 'image_url',
 } as const;
 
 export type MessageDeltaContentImageUrlObjectTypeEnum = typeof MessageDeltaContentImageUrlObjectTypeEnum[keyof typeof MessageDeltaContentImageUrlObjectTypeEnum];
@@ -4457,7 +4447,7 @@ export interface MessageDeltaContentImageUrlObjectImageUrl {
 export const MessageDeltaContentImageUrlObjectImageUrlDetailEnum = {
     Auto: 'auto',
     Low: 'low',
-    High: 'high'
+    High: 'high',
 } as const;
 
 export type MessageDeltaContentImageUrlObjectImageUrlDetailEnum = typeof MessageDeltaContentImageUrlObjectImageUrlDetailEnum[keyof typeof MessageDeltaContentImageUrlObjectImageUrlDetailEnum];
@@ -4478,7 +4468,7 @@ export interface MessageDeltaContentRefusalObject {
 }
 
 export const MessageDeltaContentRefusalObjectTypeEnum = {
-    Refusal: 'refusal'
+    Refusal: 'refusal',
 } as const;
 
 export type MessageDeltaContentRefusalObjectTypeEnum = typeof MessageDeltaContentRefusalObjectTypeEnum[keyof typeof MessageDeltaContentRefusalObjectTypeEnum];
@@ -4505,7 +4495,7 @@ export interface MessageDeltaContentTextAnnotationsFileCitationObject {
 }
 
 export const MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum = {
-    FileCitation: 'file_citation'
+    FileCitation: 'file_citation',
 } as const;
 
 export type MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum = typeof MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum[keyof typeof MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum];
@@ -4542,7 +4532,7 @@ export interface MessageDeltaContentTextAnnotationsFilePathObject {
 }
 
 export const MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum = {
-    FilePath: 'file_path'
+    FilePath: 'file_path',
 } as const;
 
 export type MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum = typeof MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum[keyof typeof MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum];
@@ -4569,7 +4559,7 @@ export interface MessageDeltaContentTextObject {
 }
 
 export const MessageDeltaContentTextObjectTypeEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type MessageDeltaContentTextObjectTypeEnum = typeof MessageDeltaContentTextObjectTypeEnum[keyof typeof MessageDeltaContentTextObjectTypeEnum];
@@ -4602,7 +4592,7 @@ export interface MessageDeltaObject {
 }
 
 export const MessageDeltaObjectObjectEnum = {
-    ThreadMessageDelta: 'thread.message.delta'
+    ThreadMessageDelta: 'thread.message.delta',
 } as const;
 
 export type MessageDeltaObjectObjectEnum = typeof MessageDeltaObjectObjectEnum[keyof typeof MessageDeltaObjectObjectEnum];
@@ -4623,7 +4613,7 @@ export interface MessageDeltaObjectDelta {
 
 export const MessageDeltaObjectDeltaRoleEnum = {
     User: 'user',
-    Assistant: 'assistant'
+    Assistant: 'assistant',
 } as const;
 
 export type MessageDeltaObjectDeltaRoleEnum = typeof MessageDeltaObjectDeltaRoleEnum[keyof typeof MessageDeltaObjectDeltaRoleEnum];
@@ -4693,20 +4683,20 @@ export interface MessageObject {
 }
 
 export const MessageObjectObjectEnum = {
-    ThreadMessage: 'thread.message'
+    ThreadMessage: 'thread.message',
 } as const;
 
 export type MessageObjectObjectEnum = typeof MessageObjectObjectEnum[keyof typeof MessageObjectObjectEnum];
 export const MessageObjectStatusEnum = {
     InProgress: 'in_progress',
     Incomplete: 'incomplete',
-    Completed: 'completed'
+    Completed: 'completed',
 } as const;
 
 export type MessageObjectStatusEnum = typeof MessageObjectStatusEnum[keyof typeof MessageObjectStatusEnum];
 export const MessageObjectRoleEnum = {
     User: 'user',
-    Assistant: 'assistant'
+    Assistant: 'assistant',
 } as const;
 
 export type MessageObjectRoleEnum = typeof MessageObjectRoleEnum[keyof typeof MessageObjectRoleEnum];
@@ -4731,7 +4721,7 @@ export const MessageObjectIncompleteDetailsReasonEnum = {
     MaxTokens: 'max_tokens',
     RunCancelled: 'run_cancelled',
     RunExpired: 'run_expired',
-    RunFailed: 'run_failed'
+    RunFailed: 'run_failed',
 } as const;
 
 export type MessageObjectIncompleteDetailsReasonEnum = typeof MessageObjectIncompleteDetailsReasonEnum[keyof typeof MessageObjectIncompleteDetailsReasonEnum];
@@ -4751,7 +4741,7 @@ export interface MessageRequestContentTextObject {
 }
 
 export const MessageRequestContentTextObjectTypeEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type MessageRequestContentTextObjectTypeEnum = typeof MessageRequestContentTextObjectTypeEnum[keyof typeof MessageRequestContentTextObjectTypeEnum];
@@ -4770,7 +4760,7 @@ export interface MessageStreamEventOneOf {
 }
 
 export const MessageStreamEventOneOfEventEnum = {
-    ThreadMessageCreated: 'thread.message.created'
+    ThreadMessageCreated: 'thread.message.created',
 } as const;
 
 export type MessageStreamEventOneOfEventEnum = typeof MessageStreamEventOneOfEventEnum[keyof typeof MessageStreamEventOneOfEventEnum];
@@ -4784,7 +4774,7 @@ export interface MessageStreamEventOneOf1 {
 }
 
 export const MessageStreamEventOneOf1EventEnum = {
-    ThreadMessageInProgress: 'thread.message.in_progress'
+    ThreadMessageInProgress: 'thread.message.in_progress',
 } as const;
 
 export type MessageStreamEventOneOf1EventEnum = typeof MessageStreamEventOneOf1EventEnum[keyof typeof MessageStreamEventOneOf1EventEnum];
@@ -4798,7 +4788,7 @@ export interface MessageStreamEventOneOf2 {
 }
 
 export const MessageStreamEventOneOf2EventEnum = {
-    ThreadMessageDelta: 'thread.message.delta'
+    ThreadMessageDelta: 'thread.message.delta',
 } as const;
 
 export type MessageStreamEventOneOf2EventEnum = typeof MessageStreamEventOneOf2EventEnum[keyof typeof MessageStreamEventOneOf2EventEnum];
@@ -4812,7 +4802,7 @@ export interface MessageStreamEventOneOf3 {
 }
 
 export const MessageStreamEventOneOf3EventEnum = {
-    ThreadMessageCompleted: 'thread.message.completed'
+    ThreadMessageCompleted: 'thread.message.completed',
 } as const;
 
 export type MessageStreamEventOneOf3EventEnum = typeof MessageStreamEventOneOf3EventEnum[keyof typeof MessageStreamEventOneOf3EventEnum];
@@ -4826,7 +4816,7 @@ export interface MessageStreamEventOneOf4 {
 }
 
 export const MessageStreamEventOneOf4EventEnum = {
-    ThreadMessageIncomplete: 'thread.message.incomplete'
+    ThreadMessageIncomplete: 'thread.message.incomplete',
 } as const;
 
 export type MessageStreamEventOneOf4EventEnum = typeof MessageStreamEventOneOf4EventEnum[keyof typeof MessageStreamEventOneOf4EventEnum];
@@ -4854,7 +4844,7 @@ export interface Model {
 }
 
 export const ModelObjectEnum = {
-    Model: 'model'
+    Model: 'model',
 } as const;
 
 export type ModelObjectEnum = typeof ModelObjectEnum[keyof typeof ModelObjectEnum];
@@ -4866,6 +4856,9 @@ export interface ModelError {
     'type': string;
 }
 export interface ModifyAssistantRequest {
+    /**
+     * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
+     */
     'model'?: string;
     /**
      * The name of the assistant. The maximum length is 256 characters. 
@@ -4990,7 +4983,7 @@ export interface OpenAIFile {
 }
 
 export const OpenAIFileObjectEnum = {
-    File: 'file'
+    File: 'file',
 } as const;
 
 export type OpenAIFileObjectEnum = typeof OpenAIFileObjectEnum[keyof typeof OpenAIFileObjectEnum];
@@ -5001,14 +4994,14 @@ export const OpenAIFilePurposeEnum = {
     BatchOutput: 'batch_output',
     FineTune: 'fine-tune',
     FineTuneResults: 'fine-tune-results',
-    Vision: 'vision'
+    Vision: 'vision',
 } as const;
 
 export type OpenAIFilePurposeEnum = typeof OpenAIFilePurposeEnum[keyof typeof OpenAIFilePurposeEnum];
 export const OpenAIFileStatusEnum = {
     Uploaded: 'uploaded',
     Processed: 'processed',
-    Error: 'error'
+    Error: 'error',
 } as const;
 
 export type OpenAIFileStatusEnum = typeof OpenAIFileStatusEnum[keyof typeof OpenAIFileStatusEnum];
@@ -5024,7 +5017,7 @@ export interface OtherChunkingStrategyResponseParam {
 }
 
 export const OtherChunkingStrategyResponseParamTypeEnum = {
-    Other: 'other'
+    Other: 'other',
 } as const;
 
 export type OtherChunkingStrategyResponseParamTypeEnum = typeof OtherChunkingStrategyResponseParamTypeEnum[keyof typeof OtherChunkingStrategyResponseParamTypeEnum];
@@ -5041,7 +5034,7 @@ export interface PredictionContent {
 }
 
 export const PredictionContentTypeEnum = {
-    Content: 'content'
+    Content: 'content',
 } as const;
 
 export type PredictionContentTypeEnum = typeof PredictionContentTypeEnum[keyof typeof PredictionContentTypeEnum];
@@ -5083,13 +5076,13 @@ export interface Project {
 }
 
 export const ProjectObjectEnum = {
-    OrganizationProject: 'organization.project'
+    OrganizationProject: 'organization.project',
 } as const;
 
 export type ProjectObjectEnum = typeof ProjectObjectEnum[keyof typeof ProjectObjectEnum];
 export const ProjectStatusEnum = {
     Active: 'active',
-    Archived: 'archived'
+    Archived: 'archived',
 } as const;
 
 export type ProjectStatusEnum = typeof ProjectStatusEnum[keyof typeof ProjectStatusEnum];
@@ -5122,7 +5115,7 @@ export interface ProjectApiKey {
 }
 
 export const ProjectApiKeyObjectEnum = {
-    OrganizationProjectApiKey: 'organization.project.api_key'
+    OrganizationProjectApiKey: 'organization.project.api_key',
 } as const;
 
 export type ProjectApiKeyObjectEnum = typeof ProjectApiKeyObjectEnum[keyof typeof ProjectApiKeyObjectEnum];
@@ -5134,7 +5127,7 @@ export interface ProjectApiKeyDeleteResponse {
 }
 
 export const ProjectApiKeyDeleteResponseObjectEnum = {
-    OrganizationProjectApiKeyDeleted: 'organization.project.api_key.deleted'
+    OrganizationProjectApiKeyDeleted: 'organization.project.api_key.deleted',
 } as const;
 
 export type ProjectApiKeyDeleteResponseObjectEnum = typeof ProjectApiKeyDeleteResponseObjectEnum[keyof typeof ProjectApiKeyDeleteResponseObjectEnum];
@@ -5148,7 +5141,7 @@ export interface ProjectApiKeyListResponse {
 }
 
 export const ProjectApiKeyListResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 
 export type ProjectApiKeyListResponseObjectEnum = typeof ProjectApiKeyListResponseObjectEnum[keyof typeof ProjectApiKeyListResponseObjectEnum];
@@ -5164,7 +5157,7 @@ export interface ProjectApiKeyOwner {
 
 export const ProjectApiKeyOwnerTypeEnum = {
     User: 'user',
-    ServiceAccount: 'service_account'
+    ServiceAccount: 'service_account',
 } as const;
 
 export type ProjectApiKeyOwnerTypeEnum = typeof ProjectApiKeyOwnerTypeEnum[keyof typeof ProjectApiKeyOwnerTypeEnum];
@@ -5184,7 +5177,7 @@ export interface ProjectListResponse {
 }
 
 export const ProjectListResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 
 export type ProjectListResponseObjectEnum = typeof ProjectListResponseObjectEnum[keyof typeof ProjectListResponseObjectEnum];
@@ -5232,7 +5225,7 @@ export interface ProjectRateLimit {
 }
 
 export const ProjectRateLimitObjectEnum = {
-    ProjectRateLimit: 'project.rate_limit'
+    ProjectRateLimit: 'project.rate_limit',
 } as const;
 
 export type ProjectRateLimitObjectEnum = typeof ProjectRateLimitObjectEnum[keyof typeof ProjectRateLimitObjectEnum];
@@ -5246,7 +5239,7 @@ export interface ProjectRateLimitListResponse {
 }
 
 export const ProjectRateLimitListResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 
 export type ProjectRateLimitListResponseObjectEnum = typeof ProjectRateLimitListResponseObjectEnum[keyof typeof ProjectRateLimitListResponseObjectEnum];
@@ -5304,13 +5297,13 @@ export interface ProjectServiceAccount {
 }
 
 export const ProjectServiceAccountObjectEnum = {
-    OrganizationProjectServiceAccount: 'organization.project.service_account'
+    OrganizationProjectServiceAccount: 'organization.project.service_account',
 } as const;
 
 export type ProjectServiceAccountObjectEnum = typeof ProjectServiceAccountObjectEnum[keyof typeof ProjectServiceAccountObjectEnum];
 export const ProjectServiceAccountRoleEnum = {
     Owner: 'owner',
-    Member: 'member'
+    Member: 'member',
 } as const;
 
 export type ProjectServiceAccountRoleEnum = typeof ProjectServiceAccountRoleEnum[keyof typeof ProjectServiceAccountRoleEnum];
@@ -5327,7 +5320,7 @@ export interface ProjectServiceAccountApiKey {
 }
 
 export const ProjectServiceAccountApiKeyObjectEnum = {
-    OrganizationProjectServiceAccountApiKey: 'organization.project.service_account.api_key'
+    OrganizationProjectServiceAccountApiKey: 'organization.project.service_account.api_key',
 } as const;
 
 export type ProjectServiceAccountApiKeyObjectEnum = typeof ProjectServiceAccountApiKeyObjectEnum[keyof typeof ProjectServiceAccountApiKeyObjectEnum];
@@ -5351,12 +5344,12 @@ export interface ProjectServiceAccountCreateResponse {
 }
 
 export const ProjectServiceAccountCreateResponseObjectEnum = {
-    OrganizationProjectServiceAccount: 'organization.project.service_account'
+    OrganizationProjectServiceAccount: 'organization.project.service_account',
 } as const;
 
 export type ProjectServiceAccountCreateResponseObjectEnum = typeof ProjectServiceAccountCreateResponseObjectEnum[keyof typeof ProjectServiceAccountCreateResponseObjectEnum];
 export const ProjectServiceAccountCreateResponseRoleEnum = {
-    Member: 'member'
+    Member: 'member',
 } as const;
 
 export type ProjectServiceAccountCreateResponseRoleEnum = typeof ProjectServiceAccountCreateResponseRoleEnum[keyof typeof ProjectServiceAccountCreateResponseRoleEnum];
@@ -5368,7 +5361,7 @@ export interface ProjectServiceAccountDeleteResponse {
 }
 
 export const ProjectServiceAccountDeleteResponseObjectEnum = {
-    OrganizationProjectServiceAccountDeleted: 'organization.project.service_account.deleted'
+    OrganizationProjectServiceAccountDeleted: 'organization.project.service_account.deleted',
 } as const;
 
 export type ProjectServiceAccountDeleteResponseObjectEnum = typeof ProjectServiceAccountDeleteResponseObjectEnum[keyof typeof ProjectServiceAccountDeleteResponseObjectEnum];
@@ -5382,7 +5375,7 @@ export interface ProjectServiceAccountListResponse {
 }
 
 export const ProjectServiceAccountListResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 
 export type ProjectServiceAccountListResponseObjectEnum = typeof ProjectServiceAccountListResponseObjectEnum[keyof typeof ProjectServiceAccountListResponseObjectEnum];
@@ -5424,13 +5417,13 @@ export interface ProjectUser {
 }
 
 export const ProjectUserObjectEnum = {
-    OrganizationProjectUser: 'organization.project.user'
+    OrganizationProjectUser: 'organization.project.user',
 } as const;
 
 export type ProjectUserObjectEnum = typeof ProjectUserObjectEnum[keyof typeof ProjectUserObjectEnum];
 export const ProjectUserRoleEnum = {
     Owner: 'owner',
-    Member: 'member'
+    Member: 'member',
 } as const;
 
 export type ProjectUserRoleEnum = typeof ProjectUserRoleEnum[keyof typeof ProjectUserRoleEnum];
@@ -5448,7 +5441,7 @@ export interface ProjectUserCreateRequest {
 
 export const ProjectUserCreateRequestRoleEnum = {
     Owner: 'owner',
-    Member: 'member'
+    Member: 'member',
 } as const;
 
 export type ProjectUserCreateRequestRoleEnum = typeof ProjectUserCreateRequestRoleEnum[keyof typeof ProjectUserCreateRequestRoleEnum];
@@ -5460,7 +5453,7 @@ export interface ProjectUserDeleteResponse {
 }
 
 export const ProjectUserDeleteResponseObjectEnum = {
-    OrganizationProjectUserDeleted: 'organization.project.user.deleted'
+    OrganizationProjectUserDeleted: 'organization.project.user.deleted',
 } as const;
 
 export type ProjectUserDeleteResponseObjectEnum = typeof ProjectUserDeleteResponseObjectEnum[keyof typeof ProjectUserDeleteResponseObjectEnum];
@@ -5481,7 +5474,7 @@ export interface ProjectUserUpdateRequest {
 
 export const ProjectUserUpdateRequestRoleEnum = {
     Owner: 'owner',
-    Member: 'member'
+    Member: 'member',
 } as const;
 
 export type ProjectUserUpdateRequestRoleEnum = typeof ProjectUserUpdateRequestRoleEnum[keyof typeof ProjectUserUpdateRequestRoleEnum];
@@ -5506,7 +5499,7 @@ export interface RealtimeClientEventConversationItemCreate {
 }
 
 export const RealtimeClientEventConversationItemCreateTypeEnum = {
-    ConversationItemCreate: 'conversation.item.create'
+    ConversationItemCreate: 'conversation.item.create',
 } as const;
 
 export type RealtimeClientEventConversationItemCreateTypeEnum = typeof RealtimeClientEventConversationItemCreateTypeEnum[keyof typeof RealtimeClientEventConversationItemCreateTypeEnum];
@@ -5530,7 +5523,7 @@ export interface RealtimeClientEventConversationItemDelete {
 }
 
 export const RealtimeClientEventConversationItemDeleteTypeEnum = {
-    ConversationItemDelete: 'conversation.item.delete'
+    ConversationItemDelete: 'conversation.item.delete',
 } as const;
 
 export type RealtimeClientEventConversationItemDeleteTypeEnum = typeof RealtimeClientEventConversationItemDeleteTypeEnum[keyof typeof RealtimeClientEventConversationItemDeleteTypeEnum];
@@ -5562,7 +5555,7 @@ export interface RealtimeClientEventConversationItemTruncate {
 }
 
 export const RealtimeClientEventConversationItemTruncateTypeEnum = {
-    ConversationItemTruncate: 'conversation.item.truncate'
+    ConversationItemTruncate: 'conversation.item.truncate',
 } as const;
 
 export type RealtimeClientEventConversationItemTruncateTypeEnum = typeof RealtimeClientEventConversationItemTruncateTypeEnum[keyof typeof RealtimeClientEventConversationItemTruncateTypeEnum];
@@ -5586,7 +5579,7 @@ export interface RealtimeClientEventInputAudioBufferAppend {
 }
 
 export const RealtimeClientEventInputAudioBufferAppendTypeEnum = {
-    InputAudioBufferAppend: 'input_audio_buffer.append'
+    InputAudioBufferAppend: 'input_audio_buffer.append',
 } as const;
 
 export type RealtimeClientEventInputAudioBufferAppendTypeEnum = typeof RealtimeClientEventInputAudioBufferAppendTypeEnum[keyof typeof RealtimeClientEventInputAudioBufferAppendTypeEnum];
@@ -5606,7 +5599,7 @@ export interface RealtimeClientEventInputAudioBufferClear {
 }
 
 export const RealtimeClientEventInputAudioBufferClearTypeEnum = {
-    InputAudioBufferClear: 'input_audio_buffer.clear'
+    InputAudioBufferClear: 'input_audio_buffer.clear',
 } as const;
 
 export type RealtimeClientEventInputAudioBufferClearTypeEnum = typeof RealtimeClientEventInputAudioBufferClearTypeEnum[keyof typeof RealtimeClientEventInputAudioBufferClearTypeEnum];
@@ -5626,7 +5619,7 @@ export interface RealtimeClientEventInputAudioBufferCommit {
 }
 
 export const RealtimeClientEventInputAudioBufferCommitTypeEnum = {
-    InputAudioBufferCommit: 'input_audio_buffer.commit'
+    InputAudioBufferCommit: 'input_audio_buffer.commit',
 } as const;
 
 export type RealtimeClientEventInputAudioBufferCommitTypeEnum = typeof RealtimeClientEventInputAudioBufferCommitTypeEnum[keyof typeof RealtimeClientEventInputAudioBufferCommitTypeEnum];
@@ -5650,7 +5643,7 @@ export interface RealtimeClientEventResponseCancel {
 }
 
 export const RealtimeClientEventResponseCancelTypeEnum = {
-    ResponseCancel: 'response.cancel'
+    ResponseCancel: 'response.cancel',
 } as const;
 
 export type RealtimeClientEventResponseCancelTypeEnum = typeof RealtimeClientEventResponseCancelTypeEnum[keyof typeof RealtimeClientEventResponseCancelTypeEnum];
@@ -5671,7 +5664,7 @@ export interface RealtimeClientEventResponseCreate {
 }
 
 export const RealtimeClientEventResponseCreateTypeEnum = {
-    ResponseCreate: 'response.create'
+    ResponseCreate: 'response.create',
 } as const;
 
 export type RealtimeClientEventResponseCreateTypeEnum = typeof RealtimeClientEventResponseCreateTypeEnum[keyof typeof RealtimeClientEventResponseCreateTypeEnum];
@@ -5692,7 +5685,7 @@ export interface RealtimeClientEventSessionUpdate {
 }
 
 export const RealtimeClientEventSessionUpdateTypeEnum = {
-    SessionUpdate: 'session.update'
+    SessionUpdate: 'session.update',
 } as const;
 
 export type RealtimeClientEventSessionUpdateTypeEnum = typeof RealtimeClientEventSessionUpdateTypeEnum[keyof typeof RealtimeClientEventSessionUpdateTypeEnum];
@@ -5746,25 +5739,25 @@ export interface RealtimeConversationItem {
 export const RealtimeConversationItemTypeEnum = {
     Message: 'message',
     FunctionCall: 'function_call',
-    FunctionCallOutput: 'function_call_output'
+    FunctionCallOutput: 'function_call_output',
 } as const;
 
 export type RealtimeConversationItemTypeEnum = typeof RealtimeConversationItemTypeEnum[keyof typeof RealtimeConversationItemTypeEnum];
 export const RealtimeConversationItemObjectEnum = {
-    RealtimeItem: 'realtime.item'
+    RealtimeItem: 'realtime.item',
 } as const;
 
 export type RealtimeConversationItemObjectEnum = typeof RealtimeConversationItemObjectEnum[keyof typeof RealtimeConversationItemObjectEnum];
 export const RealtimeConversationItemStatusEnum = {
     Completed: 'completed',
-    Incomplete: 'incomplete'
+    Incomplete: 'incomplete',
 } as const;
 
 export type RealtimeConversationItemStatusEnum = typeof RealtimeConversationItemStatusEnum[keyof typeof RealtimeConversationItemStatusEnum];
 export const RealtimeConversationItemRoleEnum = {
     User: 'user',
     Assistant: 'assistant',
-    System: 'system'
+    System: 'system',
 } as const;
 
 export type RealtimeConversationItemRoleEnum = typeof RealtimeConversationItemRoleEnum[keyof typeof RealtimeConversationItemRoleEnum];
@@ -5796,7 +5789,7 @@ export const RealtimeConversationItemContentInnerTypeEnum = {
     InputAudio: 'input_audio',
     InputText: 'input_text',
     ItemReference: 'item_reference',
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type RealtimeConversationItemContentInnerTypeEnum = typeof RealtimeConversationItemContentInnerTypeEnum[keyof typeof RealtimeConversationItemContentInnerTypeEnum];
@@ -5830,7 +5823,7 @@ export interface RealtimeResponse {
 }
 
 export const RealtimeResponseObjectEnum = {
-    RealtimeResponse: 'realtime.response'
+    RealtimeResponse: 'realtime.response',
 } as const;
 
 export type RealtimeResponseObjectEnum = typeof RealtimeResponseObjectEnum[keyof typeof RealtimeResponseObjectEnum];
@@ -5838,7 +5831,7 @@ export const RealtimeResponseStatusEnum = {
     Completed: 'completed',
     Cancelled: 'cancelled',
     Failed: 'failed',
-    Incomplete: 'incomplete'
+    Incomplete: 'incomplete',
 } as const;
 
 export type RealtimeResponseStatusEnum = typeof RealtimeResponseStatusEnum[keyof typeof RealtimeResponseStatusEnum];
@@ -5889,7 +5882,7 @@ export interface RealtimeResponseCreateParams {
 
 export const RealtimeResponseCreateParamsModalitiesEnum = {
     Text: 'text',
-    Audio: 'audio'
+    Audio: 'audio',
 } as const;
 
 export type RealtimeResponseCreateParamsModalitiesEnum = typeof RealtimeResponseCreateParamsModalitiesEnum[keyof typeof RealtimeResponseCreateParamsModalitiesEnum];
@@ -5901,14 +5894,14 @@ export const RealtimeResponseCreateParamsVoiceEnum = {
     Echo: 'echo',
     Sage: 'sage',
     Shimmer: 'shimmer',
-    Verse: 'verse'
+    Verse: 'verse',
 } as const;
 
 export type RealtimeResponseCreateParamsVoiceEnum = typeof RealtimeResponseCreateParamsVoiceEnum[keyof typeof RealtimeResponseCreateParamsVoiceEnum];
 export const RealtimeResponseCreateParamsOutputAudioFormatEnum = {
     Pcm16: 'pcm16',
     G711Ulaw: 'g711_ulaw',
-    G711Alaw: 'g711_alaw'
+    G711Alaw: 'g711_alaw',
 } as const;
 
 export type RealtimeResponseCreateParamsOutputAudioFormatEnum = typeof RealtimeResponseCreateParamsOutputAudioFormatEnum[keyof typeof RealtimeResponseCreateParamsOutputAudioFormatEnum];
@@ -5945,7 +5938,7 @@ export interface RealtimeResponseCreateParamsToolsInner {
 }
 
 export const RealtimeResponseCreateParamsToolsInnerTypeEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 
 export type RealtimeResponseCreateParamsToolsInnerTypeEnum = typeof RealtimeResponseCreateParamsToolsInnerTypeEnum[keyof typeof RealtimeResponseCreateParamsToolsInnerTypeEnum];
@@ -5969,7 +5962,7 @@ export const RealtimeResponseStatusDetailsTypeEnum = {
     Completed: 'completed',
     Cancelled: 'cancelled',
     Failed: 'failed',
-    Incomplete: 'incomplete'
+    Incomplete: 'incomplete',
 } as const;
 
 export type RealtimeResponseStatusDetailsTypeEnum = typeof RealtimeResponseStatusDetailsTypeEnum[keyof typeof RealtimeResponseStatusDetailsTypeEnum];
@@ -5977,7 +5970,7 @@ export const RealtimeResponseStatusDetailsReasonEnum = {
     TurnDetected: 'turn_detected',
     ClientCancelled: 'client_cancelled',
     MaxOutputTokens: 'max_output_tokens',
-    ContentFilter: 'content_filter'
+    ContentFilter: 'content_filter',
 } as const;
 
 export type RealtimeResponseStatusDetailsReasonEnum = typeof RealtimeResponseStatusDetailsReasonEnum[keyof typeof RealtimeResponseStatusDetailsReasonEnum];
@@ -6060,7 +6053,7 @@ export interface RealtimeServerEventConversationCreated {
 }
 
 export const RealtimeServerEventConversationCreatedTypeEnum = {
-    ConversationCreated: 'conversation.created'
+    ConversationCreated: 'conversation.created',
 } as const;
 
 export type RealtimeServerEventConversationCreatedTypeEnum = typeof RealtimeServerEventConversationCreatedTypeEnum[keyof typeof RealtimeServerEventConversationCreatedTypeEnum];
@@ -6098,7 +6091,7 @@ export interface RealtimeServerEventConversationItemCreated {
 }
 
 export const RealtimeServerEventConversationItemCreatedTypeEnum = {
-    ConversationItemCreated: 'conversation.item.created'
+    ConversationItemCreated: 'conversation.item.created',
 } as const;
 
 export type RealtimeServerEventConversationItemCreatedTypeEnum = typeof RealtimeServerEventConversationItemCreatedTypeEnum[keyof typeof RealtimeServerEventConversationItemCreatedTypeEnum];
@@ -6122,7 +6115,7 @@ export interface RealtimeServerEventConversationItemDeleted {
 }
 
 export const RealtimeServerEventConversationItemDeletedTypeEnum = {
-    ConversationItemDeleted: 'conversation.item.deleted'
+    ConversationItemDeleted: 'conversation.item.deleted',
 } as const;
 
 export type RealtimeServerEventConversationItemDeletedTypeEnum = typeof RealtimeServerEventConversationItemDeletedTypeEnum[keyof typeof RealtimeServerEventConversationItemDeletedTypeEnum];
@@ -6154,7 +6147,7 @@ export interface RealtimeServerEventConversationItemInputAudioTranscriptionCompl
 }
 
 export const RealtimeServerEventConversationItemInputAudioTranscriptionCompletedTypeEnum = {
-    ConversationItemInputAudioTranscriptionCompleted: 'conversation.item.input_audio_transcription.completed'
+    ConversationItemInputAudioTranscriptionCompleted: 'conversation.item.input_audio_transcription.completed',
 } as const;
 
 export type RealtimeServerEventConversationItemInputAudioTranscriptionCompletedTypeEnum = typeof RealtimeServerEventConversationItemInputAudioTranscriptionCompletedTypeEnum[keyof typeof RealtimeServerEventConversationItemInputAudioTranscriptionCompletedTypeEnum];
@@ -6183,7 +6176,7 @@ export interface RealtimeServerEventConversationItemInputAudioTranscriptionFaile
 }
 
 export const RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum = {
-    ConversationItemInputAudioTranscriptionFailed: 'conversation.item.input_audio_transcription.failed'
+    ConversationItemInputAudioTranscriptionFailed: 'conversation.item.input_audio_transcription.failed',
 } as const;
 
 export type RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum = typeof RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum[keyof typeof RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum];
@@ -6236,7 +6229,7 @@ export interface RealtimeServerEventConversationItemTruncated {
 }
 
 export const RealtimeServerEventConversationItemTruncatedTypeEnum = {
-    ConversationItemTruncated: 'conversation.item.truncated'
+    ConversationItemTruncated: 'conversation.item.truncated',
 } as const;
 
 export type RealtimeServerEventConversationItemTruncatedTypeEnum = typeof RealtimeServerEventConversationItemTruncatedTypeEnum[keyof typeof RealtimeServerEventConversationItemTruncatedTypeEnum];
@@ -6257,7 +6250,7 @@ export interface RealtimeServerEventError {
 }
 
 export const RealtimeServerEventErrorTypeEnum = {
-    Error: 'error'
+    Error: 'error',
 } as const;
 
 export type RealtimeServerEventErrorTypeEnum = typeof RealtimeServerEventErrorTypeEnum[keyof typeof RealtimeServerEventErrorTypeEnum];
@@ -6302,7 +6295,7 @@ export interface RealtimeServerEventInputAudioBufferCleared {
 }
 
 export const RealtimeServerEventInputAudioBufferClearedTypeEnum = {
-    InputAudioBufferCleared: 'input_audio_buffer.cleared'
+    InputAudioBufferCleared: 'input_audio_buffer.cleared',
 } as const;
 
 export type RealtimeServerEventInputAudioBufferClearedTypeEnum = typeof RealtimeServerEventInputAudioBufferClearedTypeEnum[keyof typeof RealtimeServerEventInputAudioBufferClearedTypeEnum];
@@ -6330,7 +6323,7 @@ export interface RealtimeServerEventInputAudioBufferCommitted {
 }
 
 export const RealtimeServerEventInputAudioBufferCommittedTypeEnum = {
-    InputAudioBufferCommitted: 'input_audio_buffer.committed'
+    InputAudioBufferCommitted: 'input_audio_buffer.committed',
 } as const;
 
 export type RealtimeServerEventInputAudioBufferCommittedTypeEnum = typeof RealtimeServerEventInputAudioBufferCommittedTypeEnum[keyof typeof RealtimeServerEventInputAudioBufferCommittedTypeEnum];
@@ -6358,7 +6351,7 @@ export interface RealtimeServerEventInputAudioBufferSpeechStarted {
 }
 
 export const RealtimeServerEventInputAudioBufferSpeechStartedTypeEnum = {
-    InputAudioBufferSpeechStarted: 'input_audio_buffer.speech_started'
+    InputAudioBufferSpeechStarted: 'input_audio_buffer.speech_started',
 } as const;
 
 export type RealtimeServerEventInputAudioBufferSpeechStartedTypeEnum = typeof RealtimeServerEventInputAudioBufferSpeechStartedTypeEnum[keyof typeof RealtimeServerEventInputAudioBufferSpeechStartedTypeEnum];
@@ -6386,7 +6379,7 @@ export interface RealtimeServerEventInputAudioBufferSpeechStopped {
 }
 
 export const RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum = {
-    InputAudioBufferSpeechStopped: 'input_audio_buffer.speech_stopped'
+    InputAudioBufferSpeechStopped: 'input_audio_buffer.speech_stopped',
 } as const;
 
 export type RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum = typeof RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum[keyof typeof RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum];
@@ -6410,7 +6403,7 @@ export interface RealtimeServerEventRateLimitsUpdated {
 }
 
 export const RealtimeServerEventRateLimitsUpdatedTypeEnum = {
-    RateLimitsUpdated: 'rate_limits.updated'
+    RateLimitsUpdated: 'rate_limits.updated',
 } as const;
 
 export type RealtimeServerEventRateLimitsUpdatedTypeEnum = typeof RealtimeServerEventRateLimitsUpdatedTypeEnum[keyof typeof RealtimeServerEventRateLimitsUpdatedTypeEnum];
@@ -6436,7 +6429,7 @@ export interface RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
 
 export const RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum = {
     Requests: 'requests',
-    Tokens: 'tokens'
+    Tokens: 'tokens',
 } as const;
 
 export type RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum = typeof RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum[keyof typeof RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum];
@@ -6476,7 +6469,7 @@ export interface RealtimeServerEventResponseAudioDelta {
 }
 
 export const RealtimeServerEventResponseAudioDeltaTypeEnum = {
-    ResponseAudioDelta: 'response.audio.delta'
+    ResponseAudioDelta: 'response.audio.delta',
 } as const;
 
 export type RealtimeServerEventResponseAudioDeltaTypeEnum = typeof RealtimeServerEventResponseAudioDeltaTypeEnum[keyof typeof RealtimeServerEventResponseAudioDeltaTypeEnum];
@@ -6512,7 +6505,7 @@ export interface RealtimeServerEventResponseAudioDone {
 }
 
 export const RealtimeServerEventResponseAudioDoneTypeEnum = {
-    ResponseAudioDone: 'response.audio.done'
+    ResponseAudioDone: 'response.audio.done',
 } as const;
 
 export type RealtimeServerEventResponseAudioDoneTypeEnum = typeof RealtimeServerEventResponseAudioDoneTypeEnum[keyof typeof RealtimeServerEventResponseAudioDoneTypeEnum];
@@ -6552,7 +6545,7 @@ export interface RealtimeServerEventResponseAudioTranscriptDelta {
 }
 
 export const RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum = {
-    ResponseAudioTranscriptDelta: 'response.audio_transcript.delta'
+    ResponseAudioTranscriptDelta: 'response.audio_transcript.delta',
 } as const;
 
 export type RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum = typeof RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum[keyof typeof RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum];
@@ -6592,7 +6585,7 @@ export interface RealtimeServerEventResponseAudioTranscriptDone {
 }
 
 export const RealtimeServerEventResponseAudioTranscriptDoneTypeEnum = {
-    ResponseAudioTranscriptDone: 'response.audio_transcript.done'
+    ResponseAudioTranscriptDone: 'response.audio_transcript.done',
 } as const;
 
 export type RealtimeServerEventResponseAudioTranscriptDoneTypeEnum = typeof RealtimeServerEventResponseAudioTranscriptDoneTypeEnum[keyof typeof RealtimeServerEventResponseAudioTranscriptDoneTypeEnum];
@@ -6629,7 +6622,7 @@ export interface RealtimeServerEventResponseContentPartAdded {
 }
 
 export const RealtimeServerEventResponseContentPartAddedTypeEnum = {
-    ResponseContentPartAdded: 'response.content_part.added'
+    ResponseContentPartAdded: 'response.content_part.added',
 } as const;
 
 export type RealtimeServerEventResponseContentPartAddedTypeEnum = typeof RealtimeServerEventResponseContentPartAddedTypeEnum[keyof typeof RealtimeServerEventResponseContentPartAddedTypeEnum];
@@ -6658,7 +6651,7 @@ export interface RealtimeServerEventResponseContentPartAddedPart {
 
 export const RealtimeServerEventResponseContentPartAddedPartTypeEnum = {
     Audio: 'audio',
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type RealtimeServerEventResponseContentPartAddedPartTypeEnum = typeof RealtimeServerEventResponseContentPartAddedPartTypeEnum[keyof typeof RealtimeServerEventResponseContentPartAddedPartTypeEnum];
@@ -6695,7 +6688,7 @@ export interface RealtimeServerEventResponseContentPartDone {
 }
 
 export const RealtimeServerEventResponseContentPartDoneTypeEnum = {
-    ResponseContentPartDone: 'response.content_part.done'
+    ResponseContentPartDone: 'response.content_part.done',
 } as const;
 
 export type RealtimeServerEventResponseContentPartDoneTypeEnum = typeof RealtimeServerEventResponseContentPartDoneTypeEnum[keyof typeof RealtimeServerEventResponseContentPartDoneTypeEnum];
@@ -6724,7 +6717,7 @@ export interface RealtimeServerEventResponseContentPartDonePart {
 
 export const RealtimeServerEventResponseContentPartDonePartTypeEnum = {
     Audio: 'audio',
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type RealtimeServerEventResponseContentPartDonePartTypeEnum = typeof RealtimeServerEventResponseContentPartDonePartTypeEnum[keyof typeof RealtimeServerEventResponseContentPartDonePartTypeEnum];
@@ -6745,7 +6738,7 @@ export interface RealtimeServerEventResponseCreated {
 }
 
 export const RealtimeServerEventResponseCreatedTypeEnum = {
-    ResponseCreated: 'response.created'
+    ResponseCreated: 'response.created',
 } as const;
 
 export type RealtimeServerEventResponseCreatedTypeEnum = typeof RealtimeServerEventResponseCreatedTypeEnum[keyof typeof RealtimeServerEventResponseCreatedTypeEnum];
@@ -6766,7 +6759,7 @@ export interface RealtimeServerEventResponseDone {
 }
 
 export const RealtimeServerEventResponseDoneTypeEnum = {
-    ResponseDone: 'response.done'
+    ResponseDone: 'response.done',
 } as const;
 
 export type RealtimeServerEventResponseDoneTypeEnum = typeof RealtimeServerEventResponseDoneTypeEnum[keyof typeof RealtimeServerEventResponseDoneTypeEnum];
@@ -6806,7 +6799,7 @@ export interface RealtimeServerEventResponseFunctionCallArgumentsDelta {
 }
 
 export const RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum = {
-    ResponseFunctionCallArgumentsDelta: 'response.function_call_arguments.delta'
+    ResponseFunctionCallArgumentsDelta: 'response.function_call_arguments.delta',
 } as const;
 
 export type RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum = typeof RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum[keyof typeof RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum];
@@ -6846,7 +6839,7 @@ export interface RealtimeServerEventResponseFunctionCallArgumentsDone {
 }
 
 export const RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum = {
-    ResponseFunctionCallArgumentsDone: 'response.function_call_arguments.done'
+    ResponseFunctionCallArgumentsDone: 'response.function_call_arguments.done',
 } as const;
 
 export type RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum = typeof RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum[keyof typeof RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum];
@@ -6875,7 +6868,7 @@ export interface RealtimeServerEventResponseOutputItemAdded {
 }
 
 export const RealtimeServerEventResponseOutputItemAddedTypeEnum = {
-    ResponseOutputItemAdded: 'response.output_item.added'
+    ResponseOutputItemAdded: 'response.output_item.added',
 } as const;
 
 export type RealtimeServerEventResponseOutputItemAddedTypeEnum = typeof RealtimeServerEventResponseOutputItemAddedTypeEnum[keyof typeof RealtimeServerEventResponseOutputItemAddedTypeEnum];
@@ -6904,7 +6897,7 @@ export interface RealtimeServerEventResponseOutputItemDone {
 }
 
 export const RealtimeServerEventResponseOutputItemDoneTypeEnum = {
-    ResponseOutputItemDone: 'response.output_item.done'
+    ResponseOutputItemDone: 'response.output_item.done',
 } as const;
 
 export type RealtimeServerEventResponseOutputItemDoneTypeEnum = typeof RealtimeServerEventResponseOutputItemDoneTypeEnum[keyof typeof RealtimeServerEventResponseOutputItemDoneTypeEnum];
@@ -6944,7 +6937,7 @@ export interface RealtimeServerEventResponseTextDelta {
 }
 
 export const RealtimeServerEventResponseTextDeltaTypeEnum = {
-    ResponseTextDelta: 'response.text.delta'
+    ResponseTextDelta: 'response.text.delta',
 } as const;
 
 export type RealtimeServerEventResponseTextDeltaTypeEnum = typeof RealtimeServerEventResponseTextDeltaTypeEnum[keyof typeof RealtimeServerEventResponseTextDeltaTypeEnum];
@@ -6984,7 +6977,7 @@ export interface RealtimeServerEventResponseTextDone {
 }
 
 export const RealtimeServerEventResponseTextDoneTypeEnum = {
-    ResponseTextDone: 'response.text.done'
+    ResponseTextDone: 'response.text.done',
 } as const;
 
 export type RealtimeServerEventResponseTextDoneTypeEnum = typeof RealtimeServerEventResponseTextDoneTypeEnum[keyof typeof RealtimeServerEventResponseTextDoneTypeEnum];
@@ -7005,7 +6998,7 @@ export interface RealtimeServerEventSessionCreated {
 }
 
 export const RealtimeServerEventSessionCreatedTypeEnum = {
-    SessionCreated: 'session.created'
+    SessionCreated: 'session.created',
 } as const;
 
 export type RealtimeServerEventSessionCreatedTypeEnum = typeof RealtimeServerEventSessionCreatedTypeEnum[keyof typeof RealtimeServerEventSessionCreatedTypeEnum];
@@ -7026,7 +7019,7 @@ export interface RealtimeServerEventSessionUpdated {
 }
 
 export const RealtimeServerEventSessionUpdatedTypeEnum = {
-    SessionUpdated: 'session.updated'
+    SessionUpdated: 'session.updated',
 } as const;
 
 export type RealtimeServerEventSessionUpdatedTypeEnum = typeof RealtimeServerEventSessionUpdatedTypeEnum[keyof typeof RealtimeServerEventSessionUpdatedTypeEnum];
@@ -7079,7 +7072,7 @@ export interface RealtimeSession {
 
 export const RealtimeSessionModalitiesEnum = {
     Text: 'text',
-    Audio: 'audio'
+    Audio: 'audio',
 } as const;
 
 export type RealtimeSessionModalitiesEnum = typeof RealtimeSessionModalitiesEnum[keyof typeof RealtimeSessionModalitiesEnum];
@@ -7091,21 +7084,21 @@ export const RealtimeSessionVoiceEnum = {
     Echo: 'echo',
     Sage: 'sage',
     Shimmer: 'shimmer',
-    Verse: 'verse'
+    Verse: 'verse',
 } as const;
 
 export type RealtimeSessionVoiceEnum = typeof RealtimeSessionVoiceEnum[keyof typeof RealtimeSessionVoiceEnum];
 export const RealtimeSessionInputAudioFormatEnum = {
     Pcm16: 'pcm16',
     G711Ulaw: 'g711_ulaw',
-    G711Alaw: 'g711_alaw'
+    G711Alaw: 'g711_alaw',
 } as const;
 
 export type RealtimeSessionInputAudioFormatEnum = typeof RealtimeSessionInputAudioFormatEnum[keyof typeof RealtimeSessionInputAudioFormatEnum];
 export const RealtimeSessionOutputAudioFormatEnum = {
     Pcm16: 'pcm16',
     G711Ulaw: 'g711_ulaw',
-    G711Alaw: 'g711_alaw'
+    G711Alaw: 'g711_alaw',
 } as const;
 
 export type RealtimeSessionOutputAudioFormatEnum = typeof RealtimeSessionOutputAudioFormatEnum[keyof typeof RealtimeSessionOutputAudioFormatEnum];
@@ -7157,7 +7150,7 @@ export interface RealtimeSessionCreateRequest {
 
 export const RealtimeSessionCreateRequestModalitiesEnum = {
     Text: 'text',
-    Audio: 'audio'
+    Audio: 'audio',
 } as const;
 
 export type RealtimeSessionCreateRequestModalitiesEnum = typeof RealtimeSessionCreateRequestModalitiesEnum[keyof typeof RealtimeSessionCreateRequestModalitiesEnum];
@@ -7166,7 +7159,7 @@ export const RealtimeSessionCreateRequestModelEnum = {
     Gpt4oRealtimePreview20241001: 'gpt-4o-realtime-preview-2024-10-01',
     Gpt4oRealtimePreview20241217: 'gpt-4o-realtime-preview-2024-12-17',
     Gpt4oMiniRealtimePreview: 'gpt-4o-mini-realtime-preview',
-    Gpt4oMiniRealtimePreview20241217: 'gpt-4o-mini-realtime-preview-2024-12-17'
+    Gpt4oMiniRealtimePreview20241217: 'gpt-4o-mini-realtime-preview-2024-12-17',
 } as const;
 
 export type RealtimeSessionCreateRequestModelEnum = typeof RealtimeSessionCreateRequestModelEnum[keyof typeof RealtimeSessionCreateRequestModelEnum];
@@ -7178,21 +7171,21 @@ export const RealtimeSessionCreateRequestVoiceEnum = {
     Echo: 'echo',
     Sage: 'sage',
     Shimmer: 'shimmer',
-    Verse: 'verse'
+    Verse: 'verse',
 } as const;
 
 export type RealtimeSessionCreateRequestVoiceEnum = typeof RealtimeSessionCreateRequestVoiceEnum[keyof typeof RealtimeSessionCreateRequestVoiceEnum];
 export const RealtimeSessionCreateRequestInputAudioFormatEnum = {
     Pcm16: 'pcm16',
     G711Ulaw: 'g711_ulaw',
-    G711Alaw: 'g711_alaw'
+    G711Alaw: 'g711_alaw',
 } as const;
 
 export type RealtimeSessionCreateRequestInputAudioFormatEnum = typeof RealtimeSessionCreateRequestInputAudioFormatEnum[keyof typeof RealtimeSessionCreateRequestInputAudioFormatEnum];
 export const RealtimeSessionCreateRequestOutputAudioFormatEnum = {
     Pcm16: 'pcm16',
     G711Ulaw: 'g711_ulaw',
-    G711Alaw: 'g711_alaw'
+    G711Alaw: 'g711_alaw',
 } as const;
 
 export type RealtimeSessionCreateRequestOutputAudioFormatEnum = typeof RealtimeSessionCreateRequestOutputAudioFormatEnum[keyof typeof RealtimeSessionCreateRequestOutputAudioFormatEnum];
@@ -7266,7 +7259,7 @@ export interface RealtimeSessionCreateResponse {
 
 export const RealtimeSessionCreateResponseModalitiesEnum = {
     Text: 'text',
-    Audio: 'audio'
+    Audio: 'audio',
 } as const;
 
 export type RealtimeSessionCreateResponseModalitiesEnum = typeof RealtimeSessionCreateResponseModalitiesEnum[keyof typeof RealtimeSessionCreateResponseModalitiesEnum];
@@ -7278,7 +7271,7 @@ export const RealtimeSessionCreateResponseVoiceEnum = {
     Echo: 'echo',
     Sage: 'sage',
     Shimmer: 'shimmer',
-    Verse: 'verse'
+    Verse: 'verse',
 } as const;
 
 export type RealtimeSessionCreateResponseVoiceEnum = typeof RealtimeSessionCreateResponseVoiceEnum[keyof typeof RealtimeSessionCreateResponseVoiceEnum];
@@ -7354,7 +7347,7 @@ export interface RealtimeSessionTurnDetection {
 }
 
 export const RealtimeSessionTurnDetectionTypeEnum = {
-    ServerVad: 'server_vad'
+    ServerVad: 'server_vad',
 } as const;
 
 export type RealtimeSessionTurnDetectionTypeEnum = typeof RealtimeSessionTurnDetectionTypeEnum[keyof typeof RealtimeSessionTurnDetectionTypeEnum];
@@ -7367,7 +7360,7 @@ export interface ResponseFormatJsonObject {
 }
 
 export const ResponseFormatJsonObjectTypeEnum = {
-    JsonObject: 'json_object'
+    JsonObject: 'json_object',
 } as const;
 
 export type ResponseFormatJsonObjectTypeEnum = typeof ResponseFormatJsonObjectTypeEnum[keyof typeof ResponseFormatJsonObjectTypeEnum];
@@ -7381,7 +7374,7 @@ export interface ResponseFormatJsonSchema {
 }
 
 export const ResponseFormatJsonSchemaTypeEnum = {
-    JsonSchema: 'json_schema'
+    JsonSchema: 'json_schema',
 } as const;
 
 export type ResponseFormatJsonSchemaTypeEnum = typeof ResponseFormatJsonSchemaTypeEnum[keyof typeof ResponseFormatJsonSchemaTypeEnum];
@@ -7412,7 +7405,7 @@ export interface ResponseFormatText {
 }
 
 export const ResponseFormatTextTypeEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type ResponseFormatTextTypeEnum = typeof ResponseFormatTextTypeEnum[keyof typeof ResponseFormatTextTypeEnum];
@@ -7528,7 +7521,7 @@ export interface RunObject {
 }
 
 export const RunObjectObjectEnum = {
-    ThreadRun: 'thread.run'
+    ThreadRun: 'thread.run',
 } as const;
 
 export type RunObjectObjectEnum = typeof RunObjectObjectEnum[keyof typeof RunObjectObjectEnum];
@@ -7541,7 +7534,7 @@ export const RunObjectStatusEnum = {
     Failed: 'failed',
     Completed: 'completed',
     Incomplete: 'incomplete',
-    Expired: 'expired'
+    Expired: 'expired',
 } as const;
 
 export type RunObjectStatusEnum = typeof RunObjectStatusEnum[keyof typeof RunObjectStatusEnum];
@@ -7558,7 +7551,7 @@ export interface RunObjectIncompleteDetails {
 
 export const RunObjectIncompleteDetailsReasonEnum = {
     MaxCompletionTokens: 'max_completion_tokens',
-    MaxPromptTokens: 'max_prompt_tokens'
+    MaxPromptTokens: 'max_prompt_tokens',
 } as const;
 
 export type RunObjectIncompleteDetailsReasonEnum = typeof RunObjectIncompleteDetailsReasonEnum[keyof typeof RunObjectIncompleteDetailsReasonEnum];
@@ -7580,7 +7573,7 @@ export interface RunObjectLastError {
 export const RunObjectLastErrorCodeEnum = {
     ServerError: 'server_error',
     RateLimitExceeded: 'rate_limit_exceeded',
-    InvalidPrompt: 'invalid_prompt'
+    InvalidPrompt: 'invalid_prompt',
 } as const;
 
 export type RunObjectLastErrorCodeEnum = typeof RunObjectLastErrorCodeEnum[keyof typeof RunObjectLastErrorCodeEnum];
@@ -7597,7 +7590,7 @@ export interface RunObjectRequiredAction {
 }
 
 export const RunObjectRequiredActionTypeEnum = {
-    SubmitToolOutputs: 'submit_tool_outputs'
+    SubmitToolOutputs: 'submit_tool_outputs',
 } as const;
 
 export type RunObjectRequiredActionTypeEnum = typeof RunObjectRequiredActionTypeEnum[keyof typeof RunObjectRequiredActionTypeEnum];
@@ -7644,7 +7637,7 @@ export interface RunStepDeltaObject {
 }
 
 export const RunStepDeltaObjectObjectEnum = {
-    ThreadRunStepDelta: 'thread.run.step.delta'
+    ThreadRunStepDelta: 'thread.run.step.delta',
 } as const;
 
 export type RunStepDeltaObjectObjectEnum = typeof RunStepDeltaObjectObjectEnum[keyof typeof RunStepDeltaObjectObjectEnum];
@@ -7673,7 +7666,7 @@ export interface RunStepDeltaStepDetailsMessageCreationObject {
 }
 
 export const RunStepDeltaStepDetailsMessageCreationObjectTypeEnum = {
-    MessageCreation: 'message_creation'
+    MessageCreation: 'message_creation',
 } as const;
 
 export type RunStepDeltaStepDetailsMessageCreationObjectTypeEnum = typeof RunStepDeltaStepDetailsMessageCreationObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsMessageCreationObjectTypeEnum];
@@ -7704,7 +7697,7 @@ export interface RunStepDeltaStepDetailsToolCallsCodeObject {
 }
 
 export const RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum = {
-    CodeInterpreter: 'code_interpreter'
+    CodeInterpreter: 'code_interpreter',
 } as const;
 
 export type RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum = typeof RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum];
@@ -7740,7 +7733,7 @@ export interface RunStepDeltaStepDetailsToolCallsCodeOutputImageObject {
 }
 
 export const RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum = {
-    Image: 'image'
+    Image: 'image',
 } as const;
 
 export type RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum = typeof RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum];
@@ -7770,7 +7763,7 @@ export interface RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject {
 }
 
 export const RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum = {
-    Logs: 'logs'
+    Logs: 'logs',
 } as const;
 
 export type RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum = typeof RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum];
@@ -7795,7 +7788,7 @@ export interface RunStepDeltaStepDetailsToolCallsFileSearchObject {
 }
 
 export const RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum = {
-    FileSearch: 'file_search'
+    FileSearch: 'file_search',
 } as const;
 
 export type RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum = typeof RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum];
@@ -7817,7 +7810,7 @@ export interface RunStepDeltaStepDetailsToolCallsFunctionObject {
 }
 
 export const RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 
 export type RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum = typeof RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum];
@@ -7854,7 +7847,7 @@ export interface RunStepDeltaStepDetailsToolCallsObject {
 }
 
 export const RunStepDeltaStepDetailsToolCallsObjectTypeEnum = {
-    ToolCalls: 'tool_calls'
+    ToolCalls: 'tool_calls',
 } as const;
 
 export type RunStepDeltaStepDetailsToolCallsObjectTypeEnum = typeof RunStepDeltaStepDetailsToolCallsObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsToolCallsObjectTypeEnum];
@@ -7876,7 +7869,7 @@ export interface RunStepDetailsMessageCreationObject {
 }
 
 export const RunStepDetailsMessageCreationObjectTypeEnum = {
-    MessageCreation: 'message_creation'
+    MessageCreation: 'message_creation',
 } as const;
 
 export type RunStepDetailsMessageCreationObjectTypeEnum = typeof RunStepDetailsMessageCreationObjectTypeEnum[keyof typeof RunStepDetailsMessageCreationObjectTypeEnum];
@@ -7903,7 +7896,7 @@ export interface RunStepDetailsToolCallsCodeObject {
 }
 
 export const RunStepDetailsToolCallsCodeObjectTypeEnum = {
-    CodeInterpreter: 'code_interpreter'
+    CodeInterpreter: 'code_interpreter',
 } as const;
 
 export type RunStepDetailsToolCallsCodeObjectTypeEnum = typeof RunStepDetailsToolCallsCodeObjectTypeEnum[keyof typeof RunStepDetailsToolCallsCodeObjectTypeEnum];
@@ -7935,7 +7928,7 @@ export interface RunStepDetailsToolCallsCodeOutputImageObject {
 }
 
 export const RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum = {
-    Image: 'image'
+    Image: 'image',
 } as const;
 
 export type RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum = typeof RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum[keyof typeof RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum];
@@ -7961,7 +7954,7 @@ export interface RunStepDetailsToolCallsCodeOutputLogsObject {
 }
 
 export const RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum = {
-    Logs: 'logs'
+    Logs: 'logs',
 } as const;
 
 export type RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum = typeof RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum[keyof typeof RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum];
@@ -7979,7 +7972,7 @@ export interface RunStepDetailsToolCallsFileSearchObject {
 }
 
 export const RunStepDetailsToolCallsFileSearchObjectTypeEnum = {
-    FileSearch: 'file_search'
+    FileSearch: 'file_search',
 } as const;
 
 export type RunStepDetailsToolCallsFileSearchObjectTypeEnum = typeof RunStepDetailsToolCallsFileSearchObjectTypeEnum[keyof typeof RunStepDetailsToolCallsFileSearchObjectTypeEnum];
@@ -8009,7 +8002,7 @@ export interface RunStepDetailsToolCallsFileSearchRankingOptionsObject {
 }
 
 export const RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum = {
-    Default20240821: 'default_2024_08_21'
+    Default20240821: 'default_2024_08_21',
 } as const;
 
 export type RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum = typeof RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum[keyof typeof RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum];
@@ -8047,7 +8040,7 @@ export interface RunStepDetailsToolCallsFileSearchResultObjectContentInner {
 }
 
 export const RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 
 export type RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum = typeof RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum[keyof typeof RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum];
@@ -8065,7 +8058,7 @@ export interface RunStepDetailsToolCallsFunctionObject {
 }
 
 export const RunStepDetailsToolCallsFunctionObjectTypeEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 
 export type RunStepDetailsToolCallsFunctionObjectTypeEnum = typeof RunStepDetailsToolCallsFunctionObjectTypeEnum[keyof typeof RunStepDetailsToolCallsFunctionObjectTypeEnum];
@@ -8102,7 +8095,7 @@ export interface RunStepDetailsToolCallsObject {
 }
 
 export const RunStepDetailsToolCallsObjectTypeEnum = {
-    ToolCalls: 'tool_calls'
+    ToolCalls: 'tool_calls',
 } as const;
 
 export type RunStepDetailsToolCallsObjectTypeEnum = typeof RunStepDetailsToolCallsObjectTypeEnum[keyof typeof RunStepDetailsToolCallsObjectTypeEnum];
@@ -8174,13 +8167,13 @@ export interface RunStepObject {
 }
 
 export const RunStepObjectObjectEnum = {
-    ThreadRunStep: 'thread.run.step'
+    ThreadRunStep: 'thread.run.step',
 } as const;
 
 export type RunStepObjectObjectEnum = typeof RunStepObjectObjectEnum[keyof typeof RunStepObjectObjectEnum];
 export const RunStepObjectTypeEnum = {
     MessageCreation: 'message_creation',
-    ToolCalls: 'tool_calls'
+    ToolCalls: 'tool_calls',
 } as const;
 
 export type RunStepObjectTypeEnum = typeof RunStepObjectTypeEnum[keyof typeof RunStepObjectTypeEnum];
@@ -8189,7 +8182,7 @@ export const RunStepObjectStatusEnum = {
     Cancelled: 'cancelled',
     Failed: 'failed',
     Completed: 'completed',
-    Expired: 'expired'
+    Expired: 'expired',
 } as const;
 
 export type RunStepObjectStatusEnum = typeof RunStepObjectStatusEnum[keyof typeof RunStepObjectStatusEnum];
@@ -8210,7 +8203,7 @@ export interface RunStepObjectLastError {
 
 export const RunStepObjectLastErrorCodeEnum = {
     ServerError: 'server_error',
-    RateLimitExceeded: 'rate_limit_exceeded'
+    RateLimitExceeded: 'rate_limit_exceeded',
 } as const;
 
 export type RunStepObjectLastErrorCodeEnum = typeof RunStepObjectLastErrorCodeEnum[keyof typeof RunStepObjectLastErrorCodeEnum];
@@ -8235,7 +8228,7 @@ export interface RunStepStreamEventOneOf {
 }
 
 export const RunStepStreamEventOneOfEventEnum = {
-    ThreadRunStepCreated: 'thread.run.step.created'
+    ThreadRunStepCreated: 'thread.run.step.created',
 } as const;
 
 export type RunStepStreamEventOneOfEventEnum = typeof RunStepStreamEventOneOfEventEnum[keyof typeof RunStepStreamEventOneOfEventEnum];
@@ -8249,7 +8242,7 @@ export interface RunStepStreamEventOneOf1 {
 }
 
 export const RunStepStreamEventOneOf1EventEnum = {
-    ThreadRunStepInProgress: 'thread.run.step.in_progress'
+    ThreadRunStepInProgress: 'thread.run.step.in_progress',
 } as const;
 
 export type RunStepStreamEventOneOf1EventEnum = typeof RunStepStreamEventOneOf1EventEnum[keyof typeof RunStepStreamEventOneOf1EventEnum];
@@ -8263,7 +8256,7 @@ export interface RunStepStreamEventOneOf2 {
 }
 
 export const RunStepStreamEventOneOf2EventEnum = {
-    ThreadRunStepDelta: 'thread.run.step.delta'
+    ThreadRunStepDelta: 'thread.run.step.delta',
 } as const;
 
 export type RunStepStreamEventOneOf2EventEnum = typeof RunStepStreamEventOneOf2EventEnum[keyof typeof RunStepStreamEventOneOf2EventEnum];
@@ -8277,7 +8270,7 @@ export interface RunStepStreamEventOneOf3 {
 }
 
 export const RunStepStreamEventOneOf3EventEnum = {
-    ThreadRunStepCompleted: 'thread.run.step.completed'
+    ThreadRunStepCompleted: 'thread.run.step.completed',
 } as const;
 
 export type RunStepStreamEventOneOf3EventEnum = typeof RunStepStreamEventOneOf3EventEnum[keyof typeof RunStepStreamEventOneOf3EventEnum];
@@ -8291,7 +8284,7 @@ export interface RunStepStreamEventOneOf4 {
 }
 
 export const RunStepStreamEventOneOf4EventEnum = {
-    ThreadRunStepFailed: 'thread.run.step.failed'
+    ThreadRunStepFailed: 'thread.run.step.failed',
 } as const;
 
 export type RunStepStreamEventOneOf4EventEnum = typeof RunStepStreamEventOneOf4EventEnum[keyof typeof RunStepStreamEventOneOf4EventEnum];
@@ -8305,7 +8298,7 @@ export interface RunStepStreamEventOneOf5 {
 }
 
 export const RunStepStreamEventOneOf5EventEnum = {
-    ThreadRunStepCancelled: 'thread.run.step.cancelled'
+    ThreadRunStepCancelled: 'thread.run.step.cancelled',
 } as const;
 
 export type RunStepStreamEventOneOf5EventEnum = typeof RunStepStreamEventOneOf5EventEnum[keyof typeof RunStepStreamEventOneOf5EventEnum];
@@ -8319,7 +8312,7 @@ export interface RunStepStreamEventOneOf6 {
 }
 
 export const RunStepStreamEventOneOf6EventEnum = {
-    ThreadRunStepExpired: 'thread.run.step.expired'
+    ThreadRunStepExpired: 'thread.run.step.expired',
 } as const;
 
 export type RunStepStreamEventOneOf6EventEnum = typeof RunStepStreamEventOneOf6EventEnum[keyof typeof RunStepStreamEventOneOf6EventEnum];
@@ -8338,7 +8331,7 @@ export interface RunStreamEventOneOf {
 }
 
 export const RunStreamEventOneOfEventEnum = {
-    ThreadRunCreated: 'thread.run.created'
+    ThreadRunCreated: 'thread.run.created',
 } as const;
 
 export type RunStreamEventOneOfEventEnum = typeof RunStreamEventOneOfEventEnum[keyof typeof RunStreamEventOneOfEventEnum];
@@ -8352,7 +8345,7 @@ export interface RunStreamEventOneOf1 {
 }
 
 export const RunStreamEventOneOf1EventEnum = {
-    ThreadRunQueued: 'thread.run.queued'
+    ThreadRunQueued: 'thread.run.queued',
 } as const;
 
 export type RunStreamEventOneOf1EventEnum = typeof RunStreamEventOneOf1EventEnum[keyof typeof RunStreamEventOneOf1EventEnum];
@@ -8366,7 +8359,7 @@ export interface RunStreamEventOneOf2 {
 }
 
 export const RunStreamEventOneOf2EventEnum = {
-    ThreadRunInProgress: 'thread.run.in_progress'
+    ThreadRunInProgress: 'thread.run.in_progress',
 } as const;
 
 export type RunStreamEventOneOf2EventEnum = typeof RunStreamEventOneOf2EventEnum[keyof typeof RunStreamEventOneOf2EventEnum];
@@ -8380,7 +8373,7 @@ export interface RunStreamEventOneOf3 {
 }
 
 export const RunStreamEventOneOf3EventEnum = {
-    ThreadRunRequiresAction: 'thread.run.requires_action'
+    ThreadRunRequiresAction: 'thread.run.requires_action',
 } as const;
 
 export type RunStreamEventOneOf3EventEnum = typeof RunStreamEventOneOf3EventEnum[keyof typeof RunStreamEventOneOf3EventEnum];
@@ -8394,7 +8387,7 @@ export interface RunStreamEventOneOf4 {
 }
 
 export const RunStreamEventOneOf4EventEnum = {
-    ThreadRunCompleted: 'thread.run.completed'
+    ThreadRunCompleted: 'thread.run.completed',
 } as const;
 
 export type RunStreamEventOneOf4EventEnum = typeof RunStreamEventOneOf4EventEnum[keyof typeof RunStreamEventOneOf4EventEnum];
@@ -8408,7 +8401,7 @@ export interface RunStreamEventOneOf5 {
 }
 
 export const RunStreamEventOneOf5EventEnum = {
-    ThreadRunIncomplete: 'thread.run.incomplete'
+    ThreadRunIncomplete: 'thread.run.incomplete',
 } as const;
 
 export type RunStreamEventOneOf5EventEnum = typeof RunStreamEventOneOf5EventEnum[keyof typeof RunStreamEventOneOf5EventEnum];
@@ -8422,7 +8415,7 @@ export interface RunStreamEventOneOf6 {
 }
 
 export const RunStreamEventOneOf6EventEnum = {
-    ThreadRunFailed: 'thread.run.failed'
+    ThreadRunFailed: 'thread.run.failed',
 } as const;
 
 export type RunStreamEventOneOf6EventEnum = typeof RunStreamEventOneOf6EventEnum[keyof typeof RunStreamEventOneOf6EventEnum];
@@ -8436,7 +8429,7 @@ export interface RunStreamEventOneOf7 {
 }
 
 export const RunStreamEventOneOf7EventEnum = {
-    ThreadRunCancelling: 'thread.run.cancelling'
+    ThreadRunCancelling: 'thread.run.cancelling',
 } as const;
 
 export type RunStreamEventOneOf7EventEnum = typeof RunStreamEventOneOf7EventEnum[keyof typeof RunStreamEventOneOf7EventEnum];
@@ -8450,7 +8443,7 @@ export interface RunStreamEventOneOf8 {
 }
 
 export const RunStreamEventOneOf8EventEnum = {
-    ThreadRunCancelled: 'thread.run.cancelled'
+    ThreadRunCancelled: 'thread.run.cancelled',
 } as const;
 
 export type RunStreamEventOneOf8EventEnum = typeof RunStreamEventOneOf8EventEnum[keyof typeof RunStreamEventOneOf8EventEnum];
@@ -8464,7 +8457,7 @@ export interface RunStreamEventOneOf9 {
 }
 
 export const RunStreamEventOneOf9EventEnum = {
-    ThreadRunExpired: 'thread.run.expired'
+    ThreadRunExpired: 'thread.run.expired',
 } as const;
 
 export type RunStreamEventOneOf9EventEnum = typeof RunStreamEventOneOf9EventEnum[keyof typeof RunStreamEventOneOf9EventEnum];
@@ -8485,7 +8478,7 @@ export interface RunToolCallObject {
 }
 
 export const RunToolCallObjectTypeEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 
 export type RunToolCallObjectTypeEnum = typeof RunToolCallObjectTypeEnum[keyof typeof RunToolCallObjectTypeEnum];
@@ -8512,7 +8505,7 @@ export interface StaticChunkingStrategy {
 }
 
 export const StaticChunkingStrategyTypeEnum = {
-    Static: 'static'
+    Static: 'static',
 } as const;
 
 export type StaticChunkingStrategyTypeEnum = typeof StaticChunkingStrategyTypeEnum[keyof typeof StaticChunkingStrategyTypeEnum];
@@ -8526,24 +8519,10 @@ export interface StaticChunkingStrategyRequestParam {
 }
 
 export const StaticChunkingStrategyRequestParamTypeEnum = {
-    Static: 'static'
+    Static: 'static',
 } as const;
 
 export type StaticChunkingStrategyRequestParamTypeEnum = typeof StaticChunkingStrategyRequestParamTypeEnum[keyof typeof StaticChunkingStrategyRequestParamTypeEnum];
-
-export interface StaticChunkingStrategyResponseParam {
-    /**
-     * Always `static`.
-     */
-    'type': StaticChunkingStrategyResponseParamTypeEnum;
-    'static': StaticChunkingStrategy;
-}
-
-export const StaticChunkingStrategyResponseParamTypeEnum = {
-    Static: 'static'
-} as const;
-
-export type StaticChunkingStrategyResponseParamTypeEnum = typeof StaticChunkingStrategyResponseParamTypeEnum[keyof typeof StaticChunkingStrategyResponseParamTypeEnum];
 
 export interface StaticChunkingStrategyStatic {
     /**
@@ -8599,7 +8578,7 @@ export interface ThreadObject {
 }
 
 export const ThreadObjectObjectEnum = {
-    Thread: 'thread'
+    Thread: 'thread',
 } as const;
 
 export type ThreadObjectObjectEnum = typeof ThreadObjectObjectEnum[keyof typeof ThreadObjectObjectEnum];
@@ -8617,7 +8596,7 @@ export interface ThreadStreamEvent {
 }
 
 export const ThreadStreamEventEventEnum = {
-    ThreadCreated: 'thread.created'
+    ThreadCreated: 'thread.created',
 } as const;
 
 export type ThreadStreamEventEventEnum = typeof ThreadStreamEventEventEnum[keyof typeof ThreadStreamEventEventEnum];
@@ -8694,7 +8673,7 @@ export interface TruncationObject {
 
 export const TruncationObjectTypeEnum = {
     Auto: 'auto',
-    LastMessages: 'last_messages'
+    LastMessages: 'last_messages',
 } as const;
 
 export type TruncationObjectTypeEnum = typeof TruncationObjectTypeEnum[keyof typeof TruncationObjectTypeEnum];
@@ -8753,12 +8732,12 @@ export const UploadStatusEnum = {
     Pending: 'pending',
     Completed: 'completed',
     Cancelled: 'cancelled',
-    Expired: 'expired'
+    Expired: 'expired',
 } as const;
 
 export type UploadStatusEnum = typeof UploadStatusEnum[keyof typeof UploadStatusEnum];
 export const UploadObjectEnum = {
-    Upload: 'upload'
+    Upload: 'upload',
 } as const;
 
 export type UploadObjectEnum = typeof UploadObjectEnum[keyof typeof UploadObjectEnum];
@@ -8786,7 +8765,7 @@ export interface UploadPart {
 }
 
 export const UploadPartObjectEnum = {
-    UploadPart: 'upload.part'
+    UploadPart: 'upload.part',
 } as const;
 
 export type UploadPartObjectEnum = typeof UploadPartObjectEnum[keyof typeof UploadPartObjectEnum];
@@ -8823,7 +8802,7 @@ export interface UsageAudioSpeechesResult {
 }
 
 export const UsageAudioSpeechesResultObjectEnum = {
-    OrganizationUsageAudioSpeechesResult: 'organization.usage.audio_speeches.result'
+    OrganizationUsageAudioSpeechesResult: 'organization.usage.audio_speeches.result',
 } as const;
 
 export type UsageAudioSpeechesResultObjectEnum = typeof UsageAudioSpeechesResultObjectEnum[keyof typeof UsageAudioSpeechesResultObjectEnum];
@@ -8860,7 +8839,7 @@ export interface UsageAudioTranscriptionsResult {
 }
 
 export const UsageAudioTranscriptionsResultObjectEnum = {
-    OrganizationUsageAudioTranscriptionsResult: 'organization.usage.audio_transcriptions.result'
+    OrganizationUsageAudioTranscriptionsResult: 'organization.usage.audio_transcriptions.result',
 } as const;
 
 export type UsageAudioTranscriptionsResultObjectEnum = typeof UsageAudioTranscriptionsResultObjectEnum[keyof typeof UsageAudioTranscriptionsResultObjectEnum];
@@ -8881,7 +8860,7 @@ export interface UsageCodeInterpreterSessionsResult {
 }
 
 export const UsageCodeInterpreterSessionsResultObjectEnum = {
-    OrganizationUsageCodeInterpreterSessionsResult: 'organization.usage.code_interpreter_sessions.result'
+    OrganizationUsageCodeInterpreterSessionsResult: 'organization.usage.code_interpreter_sessions.result',
 } as const;
 
 export type UsageCodeInterpreterSessionsResultObjectEnum = typeof UsageCodeInterpreterSessionsResultObjectEnum[keyof typeof UsageCodeInterpreterSessionsResultObjectEnum];
@@ -8938,7 +8917,7 @@ export interface UsageCompletionsResult {
 }
 
 export const UsageCompletionsResultObjectEnum = {
-    OrganizationUsageCompletionsResult: 'organization.usage.completions.result'
+    OrganizationUsageCompletionsResult: 'organization.usage.completions.result',
 } as const;
 
 export type UsageCompletionsResultObjectEnum = typeof UsageCompletionsResultObjectEnum[keyof typeof UsageCompletionsResultObjectEnum];
@@ -8975,7 +8954,7 @@ export interface UsageEmbeddingsResult {
 }
 
 export const UsageEmbeddingsResultObjectEnum = {
-    OrganizationUsageEmbeddingsResult: 'organization.usage.embeddings.result'
+    OrganizationUsageEmbeddingsResult: 'organization.usage.embeddings.result',
 } as const;
 
 export type UsageEmbeddingsResultObjectEnum = typeof UsageEmbeddingsResultObjectEnum[keyof typeof UsageEmbeddingsResultObjectEnum];
@@ -9020,7 +8999,7 @@ export interface UsageImagesResult {
 }
 
 export const UsageImagesResultObjectEnum = {
-    OrganizationUsageImagesResult: 'organization.usage.images.result'
+    OrganizationUsageImagesResult: 'organization.usage.images.result',
 } as const;
 
 export type UsageImagesResultObjectEnum = typeof UsageImagesResultObjectEnum[keyof typeof UsageImagesResultObjectEnum];
@@ -9057,7 +9036,7 @@ export interface UsageModerationsResult {
 }
 
 export const UsageModerationsResultObjectEnum = {
-    OrganizationUsageModerationsResult: 'organization.usage.moderations.result'
+    OrganizationUsageModerationsResult: 'organization.usage.moderations.result',
 } as const;
 
 export type UsageModerationsResultObjectEnum = typeof UsageModerationsResultObjectEnum[keyof typeof UsageModerationsResultObjectEnum];
@@ -9070,7 +9049,7 @@ export interface UsageResponse {
 }
 
 export const UsageResponseObjectEnum = {
-    Page: 'page'
+    Page: 'page',
 } as const;
 
 export type UsageResponseObjectEnum = typeof UsageResponseObjectEnum[keyof typeof UsageResponseObjectEnum];
@@ -9083,7 +9062,7 @@ export interface UsageTimeBucket {
 }
 
 export const UsageTimeBucketObjectEnum = {
-    Bucket: 'bucket'
+    Bucket: 'bucket',
 } as const;
 
 export type UsageTimeBucketObjectEnum = typeof UsageTimeBucketObjectEnum[keyof typeof UsageTimeBucketObjectEnum];
@@ -9109,7 +9088,7 @@ export interface UsageVectorStoresResult {
 }
 
 export const UsageVectorStoresResultObjectEnum = {
-    OrganizationUsageVectorStoresResult: 'organization.usage.vector_stores.result'
+    OrganizationUsageVectorStoresResult: 'organization.usage.vector_stores.result',
 } as const;
 
 export type UsageVectorStoresResultObjectEnum = typeof UsageVectorStoresResultObjectEnum[keyof typeof UsageVectorStoresResultObjectEnum];
@@ -9145,13 +9124,13 @@ export interface User {
 }
 
 export const UserObjectEnum = {
-    OrganizationUser: 'organization.user'
+    OrganizationUser: 'organization.user',
 } as const;
 
 export type UserObjectEnum = typeof UserObjectEnum[keyof typeof UserObjectEnum];
 export const UserRoleEnum = {
     Owner: 'owner',
-    Reader: 'reader'
+    Reader: 'reader',
 } as const;
 
 export type UserRoleEnum = typeof UserRoleEnum[keyof typeof UserRoleEnum];
@@ -9163,7 +9142,7 @@ export interface UserDeleteResponse {
 }
 
 export const UserDeleteResponseObjectEnum = {
-    OrganizationUserDeleted: 'organization.user.deleted'
+    OrganizationUserDeleted: 'organization.user.deleted',
 } as const;
 
 export type UserDeleteResponseObjectEnum = typeof UserDeleteResponseObjectEnum[keyof typeof UserDeleteResponseObjectEnum];
@@ -9177,7 +9156,7 @@ export interface UserListResponse {
 }
 
 export const UserListResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 
 export type UserListResponseObjectEnum = typeof UserListResponseObjectEnum[keyof typeof UserListResponseObjectEnum];
@@ -9191,7 +9170,7 @@ export interface UserRoleUpdateRequest {
 
 export const UserRoleUpdateRequestRoleEnum = {
     Owner: 'owner',
-    Reader: 'reader'
+    Reader: 'reader',
 } as const;
 
 export type UserRoleUpdateRequestRoleEnum = typeof UserRoleUpdateRequestRoleEnum[keyof typeof UserRoleUpdateRequestRoleEnum];
@@ -9211,7 +9190,7 @@ export interface VectorStoreExpirationAfter {
 }
 
 export const VectorStoreExpirationAfterAnchorEnum = {
-    LastActiveAt: 'last_active_at'
+    LastActiveAt: 'last_active_at',
 } as const;
 
 export type VectorStoreExpirationAfterAnchorEnum = typeof VectorStoreExpirationAfterAnchorEnum[keyof typeof VectorStoreExpirationAfterAnchorEnum];
@@ -9244,7 +9223,7 @@ export interface VectorStoreFileBatchObject {
 }
 
 export const VectorStoreFileBatchObjectObjectEnum = {
-    VectorStoreFilesBatch: 'vector_store.files_batch'
+    VectorStoreFilesBatch: 'vector_store.files_batch',
 } as const;
 
 export type VectorStoreFileBatchObjectObjectEnum = typeof VectorStoreFileBatchObjectObjectEnum[keyof typeof VectorStoreFileBatchObjectObjectEnum];
@@ -9252,7 +9231,7 @@ export const VectorStoreFileBatchObjectStatusEnum = {
     InProgress: 'in_progress',
     Completed: 'completed',
     Cancelled: 'cancelled',
-    Failed: 'failed'
+    Failed: 'failed',
 } as const;
 
 export type VectorStoreFileBatchObjectStatusEnum = typeof VectorStoreFileBatchObjectStatusEnum[keyof typeof VectorStoreFileBatchObjectStatusEnum];
@@ -9312,7 +9291,7 @@ export interface VectorStoreFileObject {
 }
 
 export const VectorStoreFileObjectObjectEnum = {
-    VectorStoreFile: 'vector_store.file'
+    VectorStoreFile: 'vector_store.file',
 } as const;
 
 export type VectorStoreFileObjectObjectEnum = typeof VectorStoreFileObjectObjectEnum[keyof typeof VectorStoreFileObjectObjectEnum];
@@ -9320,7 +9299,7 @@ export const VectorStoreFileObjectStatusEnum = {
     InProgress: 'in_progress',
     Completed: 'completed',
     Cancelled: 'cancelled',
-    Failed: 'failed'
+    Failed: 'failed',
 } as const;
 
 export type VectorStoreFileObjectStatusEnum = typeof VectorStoreFileObjectStatusEnum[keyof typeof VectorStoreFileObjectStatusEnum];
@@ -9329,7 +9308,7 @@ export type VectorStoreFileObjectStatusEnum = typeof VectorStoreFileObjectStatus
  * @type VectorStoreFileObjectChunkingStrategy
  * The strategy used to chunk the file.
  */
-export type VectorStoreFileObjectChunkingStrategy = OtherChunkingStrategyResponseParam | StaticChunkingStrategyResponseParam;
+export type VectorStoreFileObjectChunkingStrategy = OtherChunkingStrategyResponseParam | StaticChunkingStrategyRequestParam;
 
 /**
  * The last error associated with this vector store file. Will be `null` if there are no errors.
@@ -9348,7 +9327,7 @@ export interface VectorStoreFileObjectLastError {
 export const VectorStoreFileObjectLastErrorCodeEnum = {
     ServerError: 'server_error',
     UnsupportedFile: 'unsupported_file',
-    InvalidFile: 'invalid_file'
+    InvalidFile: 'invalid_file',
 } as const;
 
 export type VectorStoreFileObjectLastErrorCodeEnum = typeof VectorStoreFileObjectLastErrorCodeEnum[keyof typeof VectorStoreFileObjectLastErrorCodeEnum];
@@ -9398,14 +9377,14 @@ export interface VectorStoreObject {
 }
 
 export const VectorStoreObjectObjectEnum = {
-    VectorStore: 'vector_store'
+    VectorStore: 'vector_store',
 } as const;
 
 export type VectorStoreObjectObjectEnum = typeof VectorStoreObjectObjectEnum[keyof typeof VectorStoreObjectObjectEnum];
 export const VectorStoreObjectStatusEnum = {
     Expired: 'expired',
     InProgress: 'in_progress',
-    Completed: 'completed'
+    Completed: 'completed',
 } as const;
 
 export type VectorStoreObjectStatusEnum = typeof VectorStoreObjectStatusEnum[keyof typeof VectorStoreObjectStatusEnum];
@@ -9452,8 +9431,8 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'runId' is not null or undefined
             assertParamExists('cancelRun', 'runId', runId)
             const localVarPath = `/threads/{thread_id}/runs/{run_id}/cancel`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{run_id}', encodeURIComponent(String(runId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9533,7 +9512,7 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'createMessageRequest' is not null or undefined
             assertParamExists('createMessage', 'createMessageRequest', createMessageRequest)
             const localVarPath = `/threads/{thread_id}/messages`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9577,7 +9556,7 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'createRunRequest' is not null or undefined
             assertParamExists('createRun', 'createRunRequest', createRunRequest)
             const localVarPath = `/threads/{thread_id}/runs`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9697,7 +9676,7 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'assistantId' is not null or undefined
             assertParamExists('deleteAssistant', 'assistantId', assistantId)
             const localVarPath = `/assistants/{assistant_id}`
-                .replace(`{${"assistant_id"}}`, encodeURIComponent(String(assistantId)));
+                .replace('{assistant_id}', encodeURIComponent(String(assistantId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9738,8 +9717,8 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'messageId' is not null or undefined
             assertParamExists('deleteMessage', 'messageId', messageId)
             const localVarPath = `/threads/{thread_id}/messages/{message_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"message_id"}}`, encodeURIComponent(String(messageId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{message_id}', encodeURIComponent(String(messageId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9777,7 +9756,7 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'threadId' is not null or undefined
             assertParamExists('deleteThread', 'threadId', threadId)
             const localVarPath = `/threads/{thread_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9815,7 +9794,7 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'assistantId' is not null or undefined
             assertParamExists('getAssistant', 'assistantId', assistantId)
             const localVarPath = `/assistants/{assistant_id}`
-                .replace(`{${"assistant_id"}}`, encodeURIComponent(String(assistantId)));
+                .replace('{assistant_id}', encodeURIComponent(String(assistantId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9856,8 +9835,8 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'messageId' is not null or undefined
             assertParamExists('getMessage', 'messageId', messageId)
             const localVarPath = `/threads/{thread_id}/messages/{message_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"message_id"}}`, encodeURIComponent(String(messageId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{message_id}', encodeURIComponent(String(messageId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9898,8 +9877,8 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'runId' is not null or undefined
             assertParamExists('getRun', 'runId', runId)
             const localVarPath = `/threads/{thread_id}/runs/{run_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{run_id}', encodeURIComponent(String(runId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9944,9 +9923,9 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'stepId' is not null or undefined
             assertParamExists('getRunStep', 'stepId', stepId)
             const localVarPath = `/threads/{thread_id}/runs/{run_id}/steps/{step_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)))
-                .replace(`{${"step_id"}}`, encodeURIComponent(String(stepId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{run_id}', encodeURIComponent(String(runId)))
+                .replace('{step_id}', encodeURIComponent(String(stepId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9988,7 +9967,7 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'threadId' is not null or undefined
             assertParamExists('getThread', 'threadId', threadId)
             const localVarPath = `/threads/{thread_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -10085,7 +10064,7 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'threadId' is not null or undefined
             assertParamExists('listMessages', 'threadId', threadId)
             const localVarPath = `/threads/{thread_id}/messages`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -10151,8 +10130,8 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'runId' is not null or undefined
             assertParamExists('listRunSteps', 'runId', runId)
             const localVarPath = `/threads/{thread_id}/runs/{run_id}/steps`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{run_id}', encodeURIComponent(String(runId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -10214,7 +10193,7 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'threadId' is not null or undefined
             assertParamExists('listRuns', 'threadId', threadId)
             const localVarPath = `/threads/{thread_id}/runs`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -10271,7 +10250,7 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'modifyAssistantRequest' is not null or undefined
             assertParamExists('modifyAssistant', 'modifyAssistantRequest', modifyAssistantRequest)
             const localVarPath = `/assistants/{assistant_id}`
-                .replace(`{${"assistant_id"}}`, encodeURIComponent(String(assistantId)));
+                .replace('{assistant_id}', encodeURIComponent(String(assistantId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -10317,8 +10296,8 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'modifyMessageRequest' is not null or undefined
             assertParamExists('modifyMessage', 'modifyMessageRequest', modifyMessageRequest)
             const localVarPath = `/threads/{thread_id}/messages/{message_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"message_id"}}`, encodeURIComponent(String(messageId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{message_id}', encodeURIComponent(String(messageId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -10364,8 +10343,8 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'modifyRunRequest' is not null or undefined
             assertParamExists('modifyRun', 'modifyRunRequest', modifyRunRequest)
             const localVarPath = `/threads/{thread_id}/runs/{run_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{run_id}', encodeURIComponent(String(runId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -10408,7 +10387,7 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'modifyThreadRequest' is not null or undefined
             assertParamExists('modifyThread', 'modifyThreadRequest', modifyThreadRequest)
             const localVarPath = `/threads/{thread_id}`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -10454,8 +10433,8 @@ export const AssistantsApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'submitToolOutputsRunRequest' is not null or undefined
             assertParamExists('submitToolOuputsToRun', 'submitToolOutputsRunRequest', submitToolOutputsRunRequest)
             const localVarPath = `/threads/{thread_id}/runs/{run_id}/submit_tool_outputs`
-                .replace(`{${"thread_id"}}`, encodeURIComponent(String(threadId)))
-                .replace(`{${"run_id"}}`, encodeURIComponent(String(runId)));
+                .replace('{thread_id}', encodeURIComponent(String(threadId)))
+                .replace('{run_id}', encodeURIComponent(String(runId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -11401,35 +11380,35 @@ export class AssistantsApi extends BaseAPI {
 }
 
 export const CreateRunIncludeEnum = {
-    StepDetailsToolCallsFileSearchResultsContent: 'step_details.tool_calls[*].file_search.results[*].content'
+    StepDetailsToolCallsFileSearchResultsContent: 'step_details.tool_calls[*].file_search.results[*].content',
 } as const;
 export type CreateRunIncludeEnum = typeof CreateRunIncludeEnum[keyof typeof CreateRunIncludeEnum];
 export const GetRunStepIncludeEnum = {
-    StepDetailsToolCallsFileSearchResultsContent: 'step_details.tool_calls[*].file_search.results[*].content'
+    StepDetailsToolCallsFileSearchResultsContent: 'step_details.tool_calls[*].file_search.results[*].content',
 } as const;
 export type GetRunStepIncludeEnum = typeof GetRunStepIncludeEnum[keyof typeof GetRunStepIncludeEnum];
 export const ListAssistantsOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type ListAssistantsOrderEnum = typeof ListAssistantsOrderEnum[keyof typeof ListAssistantsOrderEnum];
 export const ListMessagesOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type ListMessagesOrderEnum = typeof ListMessagesOrderEnum[keyof typeof ListMessagesOrderEnum];
 export const ListRunStepsOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type ListRunStepsOrderEnum = typeof ListRunStepsOrderEnum[keyof typeof ListRunStepsOrderEnum];
 export const ListRunStepsIncludeEnum = {
-    StepDetailsToolCallsFileSearchResultsContent: 'step_details.tool_calls[*].file_search.results[*].content'
+    StepDetailsToolCallsFileSearchResultsContent: 'step_details.tool_calls[*].file_search.results[*].content',
 } as const;
 export type ListRunStepsIncludeEnum = typeof ListRunStepsIncludeEnum[keyof typeof ListRunStepsIncludeEnum];
 export const ListRunsOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type ListRunsOrderEnum = typeof ListRunsOrderEnum[keyof typeof ListRunsOrderEnum];
 
@@ -11519,7 +11498,7 @@ export const AudioApiAxiosParamCreator = function (configuration?: Configuration
             }
 
             if (model !== undefined) { 
-                localVarFormParams.append('model', new Blob([JSON.stringify(model)], { type: "application/json", }));
+                localVarFormParams.append('model', new Blob([JSON.stringify(model, replaceWithSerializableTypeIfNeeded)], { type: "application/json", }));
             }
 
             if (language !== undefined) { 
@@ -11593,7 +11572,7 @@ export const AudioApiAxiosParamCreator = function (configuration?: Configuration
             }
 
             if (model !== undefined) { 
-                localVarFormParams.append('model', new Blob([JSON.stringify(model)], { type: "application/json", }));
+                localVarFormParams.append('model', new Blob([JSON.stringify(model, replaceWithSerializableTypeIfNeeded)], { type: "application/json", }));
             }
 
             if (prompt !== undefined) { 
@@ -11780,7 +11759,7 @@ export class AudioApi extends BaseAPI {
 
 export const CreateTranscriptionTimestampGranularitiesEnum = {
     Word: 'word',
-    Segment: 'segment'
+    Segment: 'segment',
 } as const;
 export type CreateTranscriptionTimestampGranularitiesEnum = typeof CreateTranscriptionTimestampGranularitiesEnum[keyof typeof CreateTranscriptionTimestampGranularitiesEnum];
 
@@ -11973,7 +11952,7 @@ export const BatchApiAxiosParamCreator = function (configuration?: Configuration
             // verify required parameter 'batchId' is not null or undefined
             assertParamExists('cancelBatch', 'batchId', batchId)
             const localVarPath = `/batches/{batch_id}/cancel`
-                .replace(`{${"batch_id"}}`, encodeURIComponent(String(batchId)));
+                .replace('{batch_id}', encodeURIComponent(String(batchId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -12094,7 +12073,7 @@ export const BatchApiAxiosParamCreator = function (configuration?: Configuration
             // verify required parameter 'batchId' is not null or undefined
             assertParamExists('retrieveBatch', 'batchId', batchId)
             const localVarPath = `/batches/{batch_id}`
-                .replace(`{${"batch_id"}}`, encodeURIComponent(String(batchId)));
+                .replace('{batch_id}', encodeURIComponent(String(batchId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -12555,7 +12534,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'keyId' is not null or undefined
             assertParamExists('adminApiKeysDelete', 'keyId', keyId)
             const localVarPath = `/organization/admin_api_keys/{key_id}`
-                .replace(`{${"key_id"}}`, encodeURIComponent(String(keyId)));
+                .replace('{key_id}', encodeURIComponent(String(keyId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -12593,7 +12572,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'keyId' is not null or undefined
             assertParamExists('adminApiKeysGet', 'keyId', keyId)
             const localVarPath = `/organization/admin_api_keys/{key_id}`
-                .replace(`{${"key_id"}}`, encodeURIComponent(String(keyId)));
+                .replace('{key_id}', encodeURIComponent(String(keyId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -12839,7 +12818,7 @@ export class DefaultApi extends BaseAPI {
 
 export const AdminApiKeysListOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type AdminApiKeysListOrderEnum = typeof AdminApiKeysListOrderEnum[keyof typeof AdminApiKeysListOrderEnum];
 
@@ -13017,7 +12996,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
             // verify required parameter 'fileId' is not null or undefined
             assertParamExists('deleteFile', 'fileId', fileId)
             const localVarPath = `/files/{file_id}`
-                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+                .replace('{file_id}', encodeURIComponent(String(fileId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -13055,7 +13034,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
             // verify required parameter 'fileId' is not null or undefined
             assertParamExists('downloadFile', 'fileId', fileId)
             const localVarPath = `/files/{file_id}/content`
-                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+                .replace('{file_id}', encodeURIComponent(String(fileId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -13147,7 +13126,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
             // verify required parameter 'fileId' is not null or undefined
             assertParamExists('retrieveFile', 'fileId', fileId)
             const localVarPath = `/files/{file_id}`
-                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+                .replace('{file_id}', encodeURIComponent(String(fileId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -13386,12 +13365,12 @@ export const CreateFilePurposeEnum = {
     Assistants: 'assistants',
     Batch: 'batch',
     FineTune: 'fine-tune',
-    Vision: 'vision'
+    Vision: 'vision',
 } as const;
 export type CreateFilePurposeEnum = typeof CreateFilePurposeEnum[keyof typeof CreateFilePurposeEnum];
 export const ListFilesOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type ListFilesOrderEnum = typeof ListFilesOrderEnum[keyof typeof ListFilesOrderEnum];
 
@@ -13412,7 +13391,7 @@ export const FineTuningApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'fineTuningJobId' is not null or undefined
             assertParamExists('cancelFineTuningJob', 'fineTuningJobId', fineTuningJobId)
             const localVarPath = `/fine_tuning/jobs/{fine_tuning_job_id}/cancel`
-                .replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(fineTuningJobId)));
+                .replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -13491,7 +13470,7 @@ export const FineTuningApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'fineTuningJobId' is not null or undefined
             assertParamExists('listFineTuningEvents', 'fineTuningJobId', fineTuningJobId)
             const localVarPath = `/fine_tuning/jobs/{fine_tuning_job_id}/events`
-                .replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(fineTuningJobId)));
+                .replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -13539,7 +13518,7 @@ export const FineTuningApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'fineTuningJobId' is not null or undefined
             assertParamExists('listFineTuningJobCheckpoints', 'fineTuningJobId', fineTuningJobId)
             const localVarPath = `/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints`
-                .replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(fineTuningJobId)));
+                .replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -13629,7 +13608,7 @@ export const FineTuningApiAxiosParamCreator = function (configuration?: Configur
             // verify required parameter 'fineTuningJobId' is not null or undefined
             assertParamExists('retrieveFineTuningJob', 'fineTuningJobId', fineTuningJobId)
             const localVarPath = `/fine_tuning/jobs/{fine_tuning_job_id}`
-                .replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(fineTuningJobId)));
+                .replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -13997,7 +13976,7 @@ export const ImagesApiAxiosParamCreator = function (configuration?: Configuratio
             }
 
             if (model !== undefined) { 
-                localVarFormParams.append('model', new Blob([JSON.stringify(model)], { type: "application/json", }));
+                localVarFormParams.append('model', new Blob([JSON.stringify(model, replaceWithSerializableTypeIfNeeded)], { type: "application/json", }));
             }
 
             if (n !== undefined) { 
@@ -14066,7 +14045,7 @@ export const ImagesApiAxiosParamCreator = function (configuration?: Configuratio
             }
 
             if (model !== undefined) { 
-                localVarFormParams.append('model', new Blob([JSON.stringify(model)], { type: "application/json", }));
+                localVarFormParams.append('model', new Blob([JSON.stringify(model, replaceWithSerializableTypeIfNeeded)], { type: "application/json", }));
             }
 
             if (n !== undefined) { 
@@ -14264,23 +14243,23 @@ export class ImagesApi extends BaseAPI {
 export const CreateImageEditSizeEnum = {
     _256x256: '256x256',
     _512x512: '512x512',
-    _1024x1024: '1024x1024'
+    _1024x1024: '1024x1024',
 } as const;
 export type CreateImageEditSizeEnum = typeof CreateImageEditSizeEnum[keyof typeof CreateImageEditSizeEnum];
 export const CreateImageEditResponseFormatEnum = {
     Url: 'url',
-    B64Json: 'b64_json'
+    B64Json: 'b64_json',
 } as const;
 export type CreateImageEditResponseFormatEnum = typeof CreateImageEditResponseFormatEnum[keyof typeof CreateImageEditResponseFormatEnum];
 export const CreateImageVariationResponseFormatEnum = {
     Url: 'url',
-    B64Json: 'b64_json'
+    B64Json: 'b64_json',
 } as const;
 export type CreateImageVariationResponseFormatEnum = typeof CreateImageVariationResponseFormatEnum[keyof typeof CreateImageVariationResponseFormatEnum];
 export const CreateImageVariationSizeEnum = {
     _256x256: '256x256',
     _512x512: '512x512',
-    _1024x1024: '1024x1024'
+    _1024x1024: '1024x1024',
 } as const;
 export type CreateImageVariationSizeEnum = typeof CreateImageVariationSizeEnum[keyof typeof CreateImageVariationSizeEnum];
 
@@ -14301,7 +14280,7 @@ export const InvitesApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'inviteId' is not null or undefined
             assertParamExists('deleteInvite', 'inviteId', inviteId)
             const localVarPath = `/organization/invites/{invite_id}`
-                .replace(`{${"invite_id"}}`, encodeURIComponent(String(inviteId)));
+                .replace('{invite_id}', encodeURIComponent(String(inviteId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -14422,7 +14401,7 @@ export const InvitesApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'inviteId' is not null or undefined
             assertParamExists('retrieveInvite', 'inviteId', inviteId)
             const localVarPath = `/organization/invites/{invite_id}`
-                .replace(`{${"invite_id"}}`, encodeURIComponent(String(inviteId)));
+                .replace('{invite_id}', encodeURIComponent(String(inviteId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -14632,7 +14611,7 @@ export const ModelsApiAxiosParamCreator = function (configuration?: Configuratio
             // verify required parameter 'model' is not null or undefined
             assertParamExists('deleteModel', 'model', model)
             const localVarPath = `/models/{model}`
-                .replace(`{${"model"}}`, encodeURIComponent(String(model)));
+                .replace('{model}', encodeURIComponent(String(model)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -14704,7 +14683,7 @@ export const ModelsApiAxiosParamCreator = function (configuration?: Configuratio
             // verify required parameter 'model' is not null or undefined
             assertParamExists('retrieveModel', 'model', model)
             const localVarPath = `/models/{model}`
-                .replace(`{${"model"}}`, encodeURIComponent(String(model)));
+                .replace('{model}', encodeURIComponent(String(model)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -14980,7 +14959,7 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'projectId' is not null or undefined
             assertParamExists('archiveProject', 'projectId', projectId)
             const localVarPath = `/organization/projects/{project_id}/archive`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -15060,7 +15039,7 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'projectServiceAccountCreateRequest' is not null or undefined
             assertParamExists('createProjectServiceAccount', 'projectServiceAccountCreateRequest', projectServiceAccountCreateRequest)
             const localVarPath = `/organization/projects/{project_id}/service_accounts`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -15103,7 +15082,7 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'projectUserCreateRequest' is not null or undefined
             assertParamExists('createProjectUser', 'projectUserCreateRequest', projectUserCreateRequest)
             const localVarPath = `/organization/projects/{project_id}/users`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -15146,8 +15125,8 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'keyId' is not null or undefined
             assertParamExists('deleteProjectApiKey', 'keyId', keyId)
             const localVarPath = `/organization/projects/{project_id}/api_keys/{key_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"key_id"}}`, encodeURIComponent(String(keyId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)))
+                .replace('{key_id}', encodeURIComponent(String(keyId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -15188,8 +15167,8 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'serviceAccountId' is not null or undefined
             assertParamExists('deleteProjectServiceAccount', 'serviceAccountId', serviceAccountId)
             const localVarPath = `/organization/projects/{project_id}/service_accounts/{service_account_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"service_account_id"}}`, encodeURIComponent(String(serviceAccountId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)))
+                .replace('{service_account_id}', encodeURIComponent(String(serviceAccountId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -15230,8 +15209,8 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('deleteProjectUser', 'userId', userId)
             const localVarPath = `/organization/projects/{project_id}/users/{user_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)))
+                .replace('{user_id}', encodeURIComponent(String(userId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -15271,7 +15250,7 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'projectId' is not null or undefined
             assertParamExists('listProjectApiKeys', 'projectId', projectId)
             const localVarPath = `/organization/projects/{project_id}/api_keys`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -15320,7 +15299,7 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'projectId' is not null or undefined
             assertParamExists('listProjectRateLimits', 'projectId', projectId)
             const localVarPath = `/organization/projects/{project_id}/rate_limits`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -15372,7 +15351,7 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'projectId' is not null or undefined
             assertParamExists('listProjectServiceAccounts', 'projectId', projectId)
             const localVarPath = `/organization/projects/{project_id}/service_accounts`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -15420,7 +15399,7 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'projectId' is not null or undefined
             assertParamExists('listProjectUsers', 'projectId', projectId)
             const localVarPath = `/organization/projects/{project_id}/users`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -15518,7 +15497,7 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'projectUpdateRequest' is not null or undefined
             assertParamExists('modifyProject', 'projectUpdateRequest', projectUpdateRequest)
             const localVarPath = `/organization/projects/{project_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -15564,8 +15543,8 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'projectUserUpdateRequest' is not null or undefined
             assertParamExists('modifyProjectUser', 'projectUserUpdateRequest', projectUserUpdateRequest)
             const localVarPath = `/organization/projects/{project_id}/users/{user_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)))
+                .replace('{user_id}', encodeURIComponent(String(userId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -15605,7 +15584,7 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'projectId' is not null or undefined
             assertParamExists('retrieveProject', 'projectId', projectId)
             const localVarPath = `/organization/projects/{project_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -15646,8 +15625,8 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'keyId' is not null or undefined
             assertParamExists('retrieveProjectApiKey', 'keyId', keyId)
             const localVarPath = `/organization/projects/{project_id}/api_keys/{key_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"key_id"}}`, encodeURIComponent(String(keyId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)))
+                .replace('{key_id}', encodeURIComponent(String(keyId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -15688,8 +15667,8 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'serviceAccountId' is not null or undefined
             assertParamExists('retrieveProjectServiceAccount', 'serviceAccountId', serviceAccountId)
             const localVarPath = `/organization/projects/{project_id}/service_accounts/{service_account_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"service_account_id"}}`, encodeURIComponent(String(serviceAccountId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)))
+                .replace('{service_account_id}', encodeURIComponent(String(serviceAccountId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -15730,8 +15709,8 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('retrieveProjectUser', 'userId', userId)
             const localVarPath = `/organization/projects/{project_id}/users/{user_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)))
+                .replace('{user_id}', encodeURIComponent(String(userId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -15775,8 +15754,8 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'projectRateLimitUpdateRequest' is not null or undefined
             assertParamExists('updateProjectRateLimits', 'projectRateLimitUpdateRequest', projectRateLimitUpdateRequest)
             const localVarPath = `/organization/projects/{project_id}/rate_limits/{rate_limit_id}`
-                .replace(`{${"project_id"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"rate_limit_id"}}`, encodeURIComponent(String(rateLimitId)));
+                .replace('{project_id}', encodeURIComponent(String(projectId)))
+                .replace('{rate_limit_id}', encodeURIComponent(String(rateLimitId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -16676,7 +16655,7 @@ export const UploadsApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'data' is not null or undefined
             assertParamExists('addUploadPart', 'data', data)
             const localVarPath = `/uploads/{upload_id}/parts`
-                .replace(`{${"upload_id"}}`, encodeURIComponent(String(uploadId)));
+                .replace('{upload_id}', encodeURIComponent(String(uploadId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -16721,7 +16700,7 @@ export const UploadsApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'uploadId' is not null or undefined
             assertParamExists('cancelUpload', 'uploadId', uploadId)
             const localVarPath = `/uploads/{upload_id}/cancel`
-                .replace(`{${"upload_id"}}`, encodeURIComponent(String(uploadId)));
+                .replace('{upload_id}', encodeURIComponent(String(uploadId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -16762,7 +16741,7 @@ export const UploadsApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'completeUploadRequest' is not null or undefined
             assertParamExists('completeUpload', 'completeUploadRequest', completeUploadRequest)
             const localVarPath = `/uploads/{upload_id}/complete`
-                .replace(`{${"upload_id"}}`, encodeURIComponent(String(uploadId)));
+                .replace('{upload_id}', encodeURIComponent(String(uploadId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -18309,43 +18288,43 @@ export class UsageApi extends BaseAPI {
 export const UsageAudioSpeechesBucketWidthEnum = {
     _1m: '1m',
     _1h: '1h',
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageAudioSpeechesBucketWidthEnum = typeof UsageAudioSpeechesBucketWidthEnum[keyof typeof UsageAudioSpeechesBucketWidthEnum];
 export const UsageAudioSpeechesGroupByEnum = {
     ProjectId: 'project_id',
     UserId: 'user_id',
     ApiKeyId: 'api_key_id',
-    Model: 'model'
+    Model: 'model',
 } as const;
 export type UsageAudioSpeechesGroupByEnum = typeof UsageAudioSpeechesGroupByEnum[keyof typeof UsageAudioSpeechesGroupByEnum];
 export const UsageAudioTranscriptionsBucketWidthEnum = {
     _1m: '1m',
     _1h: '1h',
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageAudioTranscriptionsBucketWidthEnum = typeof UsageAudioTranscriptionsBucketWidthEnum[keyof typeof UsageAudioTranscriptionsBucketWidthEnum];
 export const UsageAudioTranscriptionsGroupByEnum = {
     ProjectId: 'project_id',
     UserId: 'user_id',
     ApiKeyId: 'api_key_id',
-    Model: 'model'
+    Model: 'model',
 } as const;
 export type UsageAudioTranscriptionsGroupByEnum = typeof UsageAudioTranscriptionsGroupByEnum[keyof typeof UsageAudioTranscriptionsGroupByEnum];
 export const UsageCodeInterpreterSessionsBucketWidthEnum = {
     _1m: '1m',
     _1h: '1h',
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageCodeInterpreterSessionsBucketWidthEnum = typeof UsageCodeInterpreterSessionsBucketWidthEnum[keyof typeof UsageCodeInterpreterSessionsBucketWidthEnum];
 export const UsageCodeInterpreterSessionsGroupByEnum = {
-    ProjectId: 'project_id'
+    ProjectId: 'project_id',
 } as const;
 export type UsageCodeInterpreterSessionsGroupByEnum = typeof UsageCodeInterpreterSessionsGroupByEnum[keyof typeof UsageCodeInterpreterSessionsGroupByEnum];
 export const UsageCompletionsBucketWidthEnum = {
     _1m: '1m',
     _1h: '1h',
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageCompletionsBucketWidthEnum = typeof UsageCompletionsBucketWidthEnum[keyof typeof UsageCompletionsBucketWidthEnum];
 export const UsageCompletionsGroupByEnum = {
@@ -18353,41 +18332,41 @@ export const UsageCompletionsGroupByEnum = {
     UserId: 'user_id',
     ApiKeyId: 'api_key_id',
     Model: 'model',
-    Batch: 'batch'
+    Batch: 'batch',
 } as const;
 export type UsageCompletionsGroupByEnum = typeof UsageCompletionsGroupByEnum[keyof typeof UsageCompletionsGroupByEnum];
 export const UsageCostsBucketWidthEnum = {
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageCostsBucketWidthEnum = typeof UsageCostsBucketWidthEnum[keyof typeof UsageCostsBucketWidthEnum];
 export const UsageCostsGroupByEnum = {
     ProjectId: 'project_id',
-    LineItem: 'line_item'
+    LineItem: 'line_item',
 } as const;
 export type UsageCostsGroupByEnum = typeof UsageCostsGroupByEnum[keyof typeof UsageCostsGroupByEnum];
 export const UsageEmbeddingsBucketWidthEnum = {
     _1m: '1m',
     _1h: '1h',
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageEmbeddingsBucketWidthEnum = typeof UsageEmbeddingsBucketWidthEnum[keyof typeof UsageEmbeddingsBucketWidthEnum];
 export const UsageEmbeddingsGroupByEnum = {
     ProjectId: 'project_id',
     UserId: 'user_id',
     ApiKeyId: 'api_key_id',
-    Model: 'model'
+    Model: 'model',
 } as const;
 export type UsageEmbeddingsGroupByEnum = typeof UsageEmbeddingsGroupByEnum[keyof typeof UsageEmbeddingsGroupByEnum];
 export const UsageImagesBucketWidthEnum = {
     _1m: '1m',
     _1h: '1h',
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageImagesBucketWidthEnum = typeof UsageImagesBucketWidthEnum[keyof typeof UsageImagesBucketWidthEnum];
 export const UsageImagesSourcesEnum = {
     ImageGeneration: 'image.generation',
     ImageEdit: 'image.edit',
-    ImageVariation: 'image.variation'
+    ImageVariation: 'image.variation',
 } as const;
 export type UsageImagesSourcesEnum = typeof UsageImagesSourcesEnum[keyof typeof UsageImagesSourcesEnum];
 export const UsageImagesSizesEnum = {
@@ -18395,7 +18374,7 @@ export const UsageImagesSizesEnum = {
     _512x512: '512x512',
     _1024x1024: '1024x1024',
     _1792x1792: '1792x1792',
-    _1024x1792: '1024x1792'
+    _1024x1792: '1024x1792',
 } as const;
 export type UsageImagesSizesEnum = typeof UsageImagesSizesEnum[keyof typeof UsageImagesSizesEnum];
 export const UsageImagesGroupByEnum = {
@@ -18404,30 +18383,30 @@ export const UsageImagesGroupByEnum = {
     ApiKeyId: 'api_key_id',
     Model: 'model',
     Size: 'size',
-    Source: 'source'
+    Source: 'source',
 } as const;
 export type UsageImagesGroupByEnum = typeof UsageImagesGroupByEnum[keyof typeof UsageImagesGroupByEnum];
 export const UsageModerationsBucketWidthEnum = {
     _1m: '1m',
     _1h: '1h',
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageModerationsBucketWidthEnum = typeof UsageModerationsBucketWidthEnum[keyof typeof UsageModerationsBucketWidthEnum];
 export const UsageModerationsGroupByEnum = {
     ProjectId: 'project_id',
     UserId: 'user_id',
     ApiKeyId: 'api_key_id',
-    Model: 'model'
+    Model: 'model',
 } as const;
 export type UsageModerationsGroupByEnum = typeof UsageModerationsGroupByEnum[keyof typeof UsageModerationsGroupByEnum];
 export const UsageVectorStoresBucketWidthEnum = {
     _1m: '1m',
     _1h: '1h',
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageVectorStoresBucketWidthEnum = typeof UsageVectorStoresBucketWidthEnum[keyof typeof UsageVectorStoresBucketWidthEnum];
 export const UsageVectorStoresGroupByEnum = {
-    ProjectId: 'project_id'
+    ProjectId: 'project_id',
 } as const;
 export type UsageVectorStoresGroupByEnum = typeof UsageVectorStoresGroupByEnum[keyof typeof UsageVectorStoresGroupByEnum];
 
@@ -18448,7 +18427,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('deleteUser', 'userId', userId)
             const localVarPath = `/organization/users/{user_id}`
-                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+                .replace('{user_id}', encodeURIComponent(String(userId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -18533,7 +18512,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             // verify required parameter 'userRoleUpdateRequest' is not null or undefined
             assertParamExists('modifyUser', 'userRoleUpdateRequest', userRoleUpdateRequest)
             const localVarPath = `/organization/users/{user_id}`
-                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+                .replace('{user_id}', encodeURIComponent(String(userId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -18573,7 +18552,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('retrieveUser', 'userId', userId)
             const localVarPath = `/organization/users/{user_id}`
-                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+                .replace('{user_id}', encodeURIComponent(String(userId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -18789,8 +18768,8 @@ export const VectorStoresApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'batchId' is not null or undefined
             assertParamExists('cancelVectorStoreFileBatch', 'batchId', batchId)
             const localVarPath = `/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)))
-                .replace(`{${"batch_id"}}`, encodeURIComponent(String(batchId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+                .replace('{batch_id}', encodeURIComponent(String(batchId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -18870,7 +18849,7 @@ export const VectorStoresApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'createVectorStoreFileRequest' is not null or undefined
             assertParamExists('createVectorStoreFile', 'createVectorStoreFileRequest', createVectorStoreFileRequest)
             const localVarPath = `/vector_stores/{vector_store_id}/files`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -18913,7 +18892,7 @@ export const VectorStoresApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'createVectorStoreFileBatchRequest' is not null or undefined
             assertParamExists('createVectorStoreFileBatch', 'createVectorStoreFileBatchRequest', createVectorStoreFileBatchRequest)
             const localVarPath = `/vector_stores/{vector_store_id}/file_batches`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -18953,7 +18932,7 @@ export const VectorStoresApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'vectorStoreId' is not null or undefined
             assertParamExists('deleteVectorStore', 'vectorStoreId', vectorStoreId)
             const localVarPath = `/vector_stores/{vector_store_id}`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -18994,8 +18973,8 @@ export const VectorStoresApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'fileId' is not null or undefined
             assertParamExists('deleteVectorStoreFile', 'fileId', fileId)
             const localVarPath = `/vector_stores/{vector_store_id}/files/{file_id}`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)))
-                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+                .replace('{file_id}', encodeURIComponent(String(fileId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -19033,7 +19012,7 @@ export const VectorStoresApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'vectorStoreId' is not null or undefined
             assertParamExists('getVectorStore', 'vectorStoreId', vectorStoreId)
             const localVarPath = `/vector_stores/{vector_store_id}`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -19074,8 +19053,8 @@ export const VectorStoresApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'fileId' is not null or undefined
             assertParamExists('getVectorStoreFile', 'fileId', fileId)
             const localVarPath = `/vector_stores/{vector_store_id}/files/{file_id}`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)))
-                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+                .replace('{file_id}', encodeURIComponent(String(fileId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -19116,8 +19095,8 @@ export const VectorStoresApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'batchId' is not null or undefined
             assertParamExists('getVectorStoreFileBatch', 'batchId', batchId)
             const localVarPath = `/vector_stores/{vector_store_id}/file_batches/{batch_id}`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)))
-                .replace(`{${"batch_id"}}`, encodeURIComponent(String(batchId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+                .replace('{batch_id}', encodeURIComponent(String(batchId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -19163,8 +19142,8 @@ export const VectorStoresApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'batchId' is not null or undefined
             assertParamExists('listFilesInVectorStoreBatch', 'batchId', batchId)
             const localVarPath = `/vector_stores/{vector_store_id}/file_batches/{batch_id}/files`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)))
-                .replace(`{${"batch_id"}}`, encodeURIComponent(String(batchId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+                .replace('{batch_id}', encodeURIComponent(String(batchId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -19227,7 +19206,7 @@ export const VectorStoresApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'vectorStoreId' is not null or undefined
             assertParamExists('listVectorStoreFiles', 'vectorStoreId', vectorStoreId)
             const localVarPath = `/vector_stores/{vector_store_id}/files`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -19342,7 +19321,7 @@ export const VectorStoresApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'updateVectorStoreRequest' is not null or undefined
             assertParamExists('modifyVectorStore', 'updateVectorStoreRequest', updateVectorStoreRequest)
             const localVarPath = `/vector_stores/{vector_store_id}`
-                .replace(`{${"vector_store_id"}}`, encodeURIComponent(String(vectorStoreId)));
+                .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -19904,31 +19883,31 @@ export class VectorStoresApi extends BaseAPI {
 
 export const ListFilesInVectorStoreBatchOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type ListFilesInVectorStoreBatchOrderEnum = typeof ListFilesInVectorStoreBatchOrderEnum[keyof typeof ListFilesInVectorStoreBatchOrderEnum];
 export const ListFilesInVectorStoreBatchFilterEnum = {
     InProgress: 'in_progress',
     Completed: 'completed',
     Failed: 'failed',
-    Cancelled: 'cancelled'
+    Cancelled: 'cancelled',
 } as const;
 export type ListFilesInVectorStoreBatchFilterEnum = typeof ListFilesInVectorStoreBatchFilterEnum[keyof typeof ListFilesInVectorStoreBatchFilterEnum];
 export const ListVectorStoreFilesOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type ListVectorStoreFilesOrderEnum = typeof ListVectorStoreFilesOrderEnum[keyof typeof ListVectorStoreFilesOrderEnum];
 export const ListVectorStoreFilesFilterEnum = {
     InProgress: 'in_progress',
     Completed: 'completed',
     Failed: 'failed',
-    Cancelled: 'cancelled'
+    Cancelled: 'cancelled',
 } as const;
 export type ListVectorStoreFilesFilterEnum = typeof ListVectorStoreFilesFilterEnum[keyof typeof ListVectorStoreFilesFilterEnum];
 export const ListVectorStoresOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type ListVectorStoresOrderEnum = typeof ListVectorStoresOrderEnum[keyof typeof ListVectorStoresOrderEnum];
 

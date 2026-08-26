@@ -26,7 +26,7 @@ case class FineTuneChatCompletionRequestAssistantMessage(
   functionCall: Option[ChatCompletionRequestAssistantMessageFunctionCall] = None,
   /* Controls whether the assistant message is trained against (0 or 1) */
   weight: Option[FineTuneChatCompletionRequestAssistantMessageEnums.Weight] = None
-)
+) extends FineTuneChatRequestInputMessagesInner
 
 object FineTuneChatCompletionRequestAssistantMessageEnums {
 

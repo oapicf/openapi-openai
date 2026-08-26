@@ -51,7 +51,7 @@ class ProjectRateLimit
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['project.rate_limit'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class ProjectRateLimit
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -74,7 +74,7 @@ class ProjectRateLimit
      * @var string|null
      * @SerializedName("model")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $model = null;
@@ -85,7 +85,7 @@ class ProjectRateLimit
      * @var int|null
      * @SerializedName("max_requests_per_1_minute")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $maxRequestsPer1Minute = null;
@@ -96,7 +96,7 @@ class ProjectRateLimit
      * @var int|null
      * @SerializedName("max_tokens_per_1_minute")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $maxTokensPer1Minute = null;
@@ -107,7 +107,7 @@ class ProjectRateLimit
      * @var int|null
      * @SerializedName("max_images_per_1_minute")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $maxImagesPer1Minute = null;
 
@@ -117,7 +117,7 @@ class ProjectRateLimit
      * @var int|null
      * @SerializedName("max_audio_megabytes_per_1_minute")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $maxAudioMegabytesPer1Minute = null;
 
@@ -127,7 +127,7 @@ class ProjectRateLimit
      * @var int|null
      * @SerializedName("max_requests_per_1_day")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $maxRequestsPer1Day = null;
 
@@ -137,7 +137,7 @@ class ProjectRateLimit
      * @var int|null
      * @SerializedName("batch_1_day_max_input_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $batch1DayMaxInputTokens = null;
 
@@ -171,12 +171,12 @@ class ProjectRateLimit
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `project.rate_limit`
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `project.rate_limit`
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -198,12 +198,12 @@ class ProjectRateLimit
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The identifier, which can be referenced in API endpoints.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The identifier, which can be referenced in API endpoints.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -225,12 +225,12 @@ class ProjectRateLimit
     }
 
     /**
-    * Sets model.
-    *
-    * @param string|null $model  The model this rate limit applies to.
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param string|null $model  The model this rate limit applies to.
+     *
+     * @return $this
+     */
     public function setModel(?string $model): self
     {
         $this->model = $model;
@@ -252,12 +252,12 @@ class ProjectRateLimit
     }
 
     /**
-    * Sets maxRequestsPer1Minute.
-    *
-    * @param int|null $maxRequestsPer1Minute  The maximum requests per minute.
-    *
-    * @return $this
-    */
+     * Sets maxRequestsPer1Minute.
+     *
+     * @param int|null $maxRequestsPer1Minute  The maximum requests per minute.
+     *
+     * @return $this
+     */
     public function setMaxRequestsPer1Minute(?int $maxRequestsPer1Minute): self
     {
         $this->maxRequestsPer1Minute = $maxRequestsPer1Minute;
@@ -279,12 +279,12 @@ class ProjectRateLimit
     }
 
     /**
-    * Sets maxTokensPer1Minute.
-    *
-    * @param int|null $maxTokensPer1Minute  The maximum tokens per minute.
-    *
-    * @return $this
-    */
+     * Sets maxTokensPer1Minute.
+     *
+     * @param int|null $maxTokensPer1Minute  The maximum tokens per minute.
+     *
+     * @return $this
+     */
     public function setMaxTokensPer1Minute(?int $maxTokensPer1Minute): self
     {
         $this->maxTokensPer1Minute = $maxTokensPer1Minute;
@@ -306,12 +306,12 @@ class ProjectRateLimit
     }
 
     /**
-    * Sets maxImagesPer1Minute.
-    *
-    * @param int|null $maxImagesPer1Minute  The maximum images per minute. Only present for relevant models.
-    *
-    * @return $this
-    */
+     * Sets maxImagesPer1Minute.
+     *
+     * @param int|null $maxImagesPer1Minute  The maximum images per minute. Only present for relevant models.
+     *
+     * @return $this
+     */
     public function setMaxImagesPer1Minute(?int $maxImagesPer1Minute = null): self
     {
         $this->maxImagesPer1Minute = $maxImagesPer1Minute;
@@ -333,12 +333,12 @@ class ProjectRateLimit
     }
 
     /**
-    * Sets maxAudioMegabytesPer1Minute.
-    *
-    * @param int|null $maxAudioMegabytesPer1Minute  The maximum audio megabytes per minute. Only present for relevant models.
-    *
-    * @return $this
-    */
+     * Sets maxAudioMegabytesPer1Minute.
+     *
+     * @param int|null $maxAudioMegabytesPer1Minute  The maximum audio megabytes per minute. Only present for relevant models.
+     *
+     * @return $this
+     */
     public function setMaxAudioMegabytesPer1Minute(?int $maxAudioMegabytesPer1Minute = null): self
     {
         $this->maxAudioMegabytesPer1Minute = $maxAudioMegabytesPer1Minute;
@@ -360,12 +360,12 @@ class ProjectRateLimit
     }
 
     /**
-    * Sets maxRequestsPer1Day.
-    *
-    * @param int|null $maxRequestsPer1Day  The maximum requests per day. Only present for relevant models.
-    *
-    * @return $this
-    */
+     * Sets maxRequestsPer1Day.
+     *
+     * @param int|null $maxRequestsPer1Day  The maximum requests per day. Only present for relevant models.
+     *
+     * @return $this
+     */
     public function setMaxRequestsPer1Day(?int $maxRequestsPer1Day = null): self
     {
         $this->maxRequestsPer1Day = $maxRequestsPer1Day;
@@ -387,12 +387,12 @@ class ProjectRateLimit
     }
 
     /**
-    * Sets batch1DayMaxInputTokens.
-    *
-    * @param int|null $batch1DayMaxInputTokens  The maximum batch input tokens per day. Only present for relevant models.
-    *
-    * @return $this
-    */
+     * Sets batch1DayMaxInputTokens.
+     *
+     * @param int|null $batch1DayMaxInputTokens  The maximum batch input tokens per day. Only present for relevant models.
+     *
+     * @return $this
+     */
     public function setBatch1DayMaxInputTokens(?int $batch1DayMaxInputTokens = null): self
     {
         $this->batch1DayMaxInputTokens = $batch1DayMaxInputTokens;

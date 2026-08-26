@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type ResponseFormatText struct {
@@ -19,18 +24,62 @@ type ResponseFormatText struct {
 	// The type of response format being defined: `text`
 	Type string `json:"type"`
 }
-
-// AssertResponseFormatTextRequired checks if the required fields are not zero-ed
-func AssertResponseFormatTextRequired(obj ResponseFormatText) error {
-	elements := map[string]interface{}{
-		"type": obj.Type,
+// UnmarshalJSON validates required property keys then unmarshals into ResponseFormatText
+func (o *ResponseFormatText) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"type",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"type": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"type": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded ResponseFormatText
+
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertResponseFormatTextRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertResponseFormatTextRequired(obj ResponseFormatText) error {
 	return nil
 }
 

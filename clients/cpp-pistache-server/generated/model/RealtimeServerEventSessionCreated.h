@@ -33,7 +33,7 @@ class  RealtimeServerEventSessionCreated
 {
 public:
     RealtimeServerEventSessionCreated();
-    virtual ~RealtimeServerEventSessionCreated() = default;
+    virtual ~RealtimeServerEventSessionCreated();
 
 
     /// <summary>

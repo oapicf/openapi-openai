@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRunStepDeltaStepDetailsToolCallsFileSearchObject::OAIRunStepDeltaStepDetailsToolCallsFileSearchObject(QString json) {
+OAIRunStepDeltaStepDetailsToolCallsFileSearchObject::OAIRunStepDeltaStepDetailsToolCallsFileSearchObject(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -47,7 +47,7 @@ void OAIRunStepDeltaStepDetailsToolCallsFileSearchObject::initializeModel() {
     m_file_search_isValid = false;
 }
 
-void OAIRunStepDeltaStepDetailsToolCallsFileSearchObject::fromJson(QString jsonString) {
+void OAIRunStepDeltaStepDetailsToolCallsFileSearchObject::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

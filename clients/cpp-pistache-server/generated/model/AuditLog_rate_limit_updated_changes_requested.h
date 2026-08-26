@@ -31,7 +31,7 @@ class  AuditLog_rate_limit_updated_changes_requested
 {
 public:
     AuditLog_rate_limit_updated_changes_requested();
-    virtual ~AuditLog_rate_limit_updated_changes_requested() = default;
+    virtual ~AuditLog_rate_limit_updated_changes_requested();
 
 
     /// <summary>

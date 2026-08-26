@@ -56,7 +56,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A list of scopes allowed for the API key, e.g. &#x60;[\&quot;api.model.request\&quot;]&#x60;</value>
         [JsonPropertyName("scopes")]
-        public List<string>? Scopes { get { return this.ScopesOption; } set { this.ScopesOption = new(value); } }
+        public List<string>? Scopes { get { return this.ScopesOption.Value; } set { this.ScopesOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogApiKeyCreatedData" />
     /// </summary>
-    public class AuditLogApiKeyCreatedDataJsonConverter : JsonConverter<AuditLogApiKeyCreatedData>
+    public partial class AuditLogApiKeyCreatedDataJsonConverter : JsonConverter<AuditLogApiKeyCreatedData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogApiKeyCreatedDataJsonConverter" /> class.
+        /// </summary>
+        public AuditLogApiKeyCreatedDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogApiKeyCreatedData" />
         /// </summary>

@@ -95,8 +95,9 @@ class _$ThreadStreamEventSerializer implements PrimitiveSerializer<ThreadStreamE
         case r'enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.enabled = valueDes;
           break;
         case r'event':

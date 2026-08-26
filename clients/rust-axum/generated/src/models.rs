@@ -8,6 +8,9 @@ use crate::header;
 use crate::{models, types::*};
 
 #[allow(dead_code)]
+pub type SSE = std::pin::Pin<std::boxed::Box<dyn futures_util::Stream<Item = std::result::Result<axum::response::sse::Event, std::convert::Infallible>> + std::marker::Send + std::marker::Sync>>;
+
+#[allow(dead_code)]
 fn from_validation_error(e: validator::ValidationError) -> validator::ValidationErrors {
   let mut errs = validator::ValidationErrors::new();
   errs.add("na", e);
@@ -9770,125 +9773,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<AuditLogUser
 /// The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`.
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
-pub struct AutoChunkingStrategy {
-    /// Always `auto`.
-    /// Note: inline enums are not fully supported by openapi-generator
-    #[serde(rename = "type")]
-          #[validate(custom(function = "check_xss_string"))]
-    pub r_type: String,
-
-}
-
-
-
-impl AutoChunkingStrategy {
-    #[allow(clippy::new_without_default, clippy::too_many_arguments)]
-    pub fn new(r_type: String, ) -> AutoChunkingStrategy {
-        AutoChunkingStrategy {
- r_type,
-        }
-    }
-}
-
-/// Converts the AutoChunkingStrategy value to the Query Parameters representation (style=form, explode=false)
-/// specified in https://swagger.io/docs/specification/serialization/
-/// Should be implemented in a serde serializer
-impl std::fmt::Display for AutoChunkingStrategy {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let params: Vec<Option<String>> = vec![
-
-            Some("type".to_string()),
-            Some(self.r_type.to_string()),
-
-        ];
-
-        write!(f, "{}", params.into_iter().flatten().collect::<Vec<_>>().join(","))
-    }
-}
-
-/// Converts Query Parameters representation (style=form, explode=false) to a AutoChunkingStrategy value
-/// as specified in https://swagger.io/docs/specification/serialization/
-/// Should be implemented in a serde deserializer
-impl std::str::FromStr for AutoChunkingStrategy {
-    type Err = String;
-
-    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
-        /// An intermediate representation of the struct to use for parsing.
-        #[derive(Default)]
-        #[allow(dead_code)]
-        struct IntermediateRep {
-            pub r_type: Vec<String>,
-        }
-
-        let mut intermediate_rep = IntermediateRep::default();
-
-        // Parse into intermediate representation
-        let mut string_iter = s.split(',');
-        let mut key_result = string_iter.next();
-
-        while key_result.is_some() {
-            let val = match string_iter.next() {
-                Some(x) => x,
-                None => return std::result::Result::Err("Missing value while parsing AutoChunkingStrategy".to_string())
-            };
-
-            if let Some(key) = key_result {
-                #[allow(clippy::match_single_binding)]
-                match key {
-                    #[allow(clippy::redundant_clone)]
-                    "type" => intermediate_rep.r_type.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
-                    _ => return std::result::Result::Err("Unexpected key while parsing AutoChunkingStrategy".to_string())
-                }
-            }
-
-            // Get the next key
-            key_result = string_iter.next();
-        }
-
-        // Use the intermediate representation to return the struct
-        std::result::Result::Ok(AutoChunkingStrategy {
-            r_type: intermediate_rep.r_type.into_iter().next().ok_or_else(|| "type missing in AutoChunkingStrategy".to_string())?,
-        })
-    }
-}
-
-// Methods for converting between header::IntoHeaderValue<AutoChunkingStrategy> and HeaderValue
-
-#[cfg(feature = "server")]
-impl std::convert::TryFrom<header::IntoHeaderValue<AutoChunkingStrategy>> for HeaderValue {
-    type Error = String;
-
-    fn try_from(hdr_value: header::IntoHeaderValue<AutoChunkingStrategy>) -> std::result::Result<Self, Self::Error> {
-        let hdr_value = hdr_value.to_string();
-        match HeaderValue::from_str(&hdr_value) {
-             std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for AutoChunkingStrategy - value: {hdr_value} is invalid {e}"#))
-        }
-    }
-}
-
-#[cfg(feature = "server")]
-impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<AutoChunkingStrategy> {
-    type Error = String;
-
-    fn try_from(hdr_value: HeaderValue) -> std::result::Result<Self, Self::Error> {
-        match hdr_value.to_str() {
-             std::result::Result::Ok(value) => {
-                    match <AutoChunkingStrategy as std::str::FromStr>::from_str(value) {
-                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into AutoChunkingStrategy - {err}"#))
-                    }
-             },
-             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
-        }
-    }
-}
-
-
-
-/// The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`.
-#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct AutoChunkingStrategyRequestParam {
     /// Always `auto`.
     /// Note: inline enums are not fully supported by openapi-generator
@@ -18341,7 +18225,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<CreateAssist
 #[serde(untagged)]
 #[allow(non_camel_case_types, clippy::large_enum_variant)]
 pub enum CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy {
-    AutoChunkingStrategy(models::AutoChunkingStrategy),
+    AutoChunkingStrategyRequestParam(models::AutoChunkingStrategyRequestParam),
     StaticChunkingStrategy(models::StaticChunkingStrategy),
 }
 
@@ -18349,7 +18233,7 @@ impl validator::Validate for CreateAssistantRequestToolResourcesFileSearchVector
 {
     fn validate(&self) -> std::result::Result<(), validator::ValidationErrors> {
         match self {
-            Self::AutoChunkingStrategy(v) => v.validate(),
+            Self::AutoChunkingStrategyRequestParam(v) => v.validate(),
             Self::StaticChunkingStrategy(v) => v.validate(),
         }
     }
@@ -18367,9 +18251,9 @@ impl std::str::FromStr for CreateAssistantRequestToolResourcesFileSearchVectorSt
 }
 
 
-impl From<models::AutoChunkingStrategy> for CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy {
-    fn from(value: models::AutoChunkingStrategy) -> Self {
-        Self::AutoChunkingStrategy(value)
+impl From<models::AutoChunkingStrategyRequestParam> for CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy {
+    fn from(value: models::AutoChunkingStrategyRequestParam) -> Self {
+        Self::AutoChunkingStrategyRequestParam(value)
     }
 }
 impl From<models::StaticChunkingStrategy> for CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy {
@@ -18988,6 +18872,7 @@ pub struct CreateChatCompletionRequest {
     #[serde(skip_serializing_if="Option::is_none")]
     pub modalities: Option<Nullable<Vec<String>>>,
 
+    /// Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
     #[serde(rename = "prediction")]
     #[serde(deserialize_with = "deserialize_optional_nullable")]
     #[serde(default = "default_optional_nullable")]
@@ -19249,13 +19134,7 @@ impl std::fmt::Display for CreateChatCompletionRequest {
 
             // Skipping response_format in query parameter serialization
 
-
-            self.seed.as_ref().map(|seed| {
-                [
-                    "seed".to_string(),
-                    seed.as_ref().map_or("null".to_string(), |x| x.to_string()),
-                ].join(",")
-            }),
+            // Skipping seed in query parameter serialization
 
 
             self.service_tier.as_ref().map(|service_tier| {
@@ -21070,13 +20949,7 @@ impl std::fmt::Display for CreateCompletionRequest {
                 ].join(",")
             }),
 
-
-            self.seed.as_ref().map(|seed| {
-                [
-                    "seed".to_string(),
-                    seed.as_ref().map_or("null".to_string(), |x| x.to_string()),
-                ].join(",")
-            }),
+            // Skipping seed in query parameter serialization
 
             // Skipping stop in query parameter serialization
 
@@ -22857,7 +22730,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<CreateFineTu
 #[allow(non_camel_case_types, clippy::large_enum_variant)]
 pub enum CreateFineTuningJobRequestHyperparametersBatchSize {
     String(String),
-    I32(i32),
+    U16(u16),
 }
 
 impl validator::Validate for CreateFineTuningJobRequestHyperparametersBatchSize
@@ -22865,7 +22738,7 @@ impl validator::Validate for CreateFineTuningJobRequestHyperparametersBatchSize
     fn validate(&self) -> std::result::Result<(), validator::ValidationErrors> {
         match self {
             Self::String(_) => std::result::Result::Ok(()),
-            Self::I32(_) => std::result::Result::Ok(()),
+            Self::U16(_) => std::result::Result::Ok(()),
         }
     }
 }
@@ -22887,9 +22760,9 @@ impl From<String> for CreateFineTuningJobRequestHyperparametersBatchSize {
         Self::String(value)
     }
 }
-impl From<i32> for CreateFineTuningJobRequestHyperparametersBatchSize {
-    fn from(value: i32) -> Self {
-        Self::I32(value)
+impl From<u16> for CreateFineTuningJobRequestHyperparametersBatchSize {
+    fn from(value: u16) -> Self {
+        Self::U16(value)
     }
 }
 
@@ -22949,7 +22822,7 @@ impl From<f64> for CreateFineTuningJobRequestHyperparametersLearningRateMultipli
 #[allow(non_camel_case_types, clippy::large_enum_variant)]
 pub enum CreateFineTuningJobRequestHyperparametersNEpochs {
     String(String),
-    I32(i32),
+    U8(u8),
 }
 
 impl validator::Validate for CreateFineTuningJobRequestHyperparametersNEpochs
@@ -22957,7 +22830,7 @@ impl validator::Validate for CreateFineTuningJobRequestHyperparametersNEpochs
     fn validate(&self) -> std::result::Result<(), validator::ValidationErrors> {
         match self {
             Self::String(_) => std::result::Result::Ok(()),
-            Self::I32(_) => std::result::Result::Ok(()),
+            Self::U8(_) => std::result::Result::Ok(()),
         }
     }
 }
@@ -22979,9 +22852,9 @@ impl From<String> for CreateFineTuningJobRequestHyperparametersNEpochs {
         Self::String(value)
     }
 }
-impl From<i32> for CreateFineTuningJobRequestHyperparametersNEpochs {
-    fn from(value: i32) -> Self {
-        Self::I32(value)
+impl From<u8> for CreateFineTuningJobRequestHyperparametersNEpochs {
+    fn from(value: u8) -> Self {
+        Self::U8(value)
     }
 }
 
@@ -22992,6 +22865,7 @@ impl From<i32> for CreateFineTuningJobRequestHyperparametersNEpochs {
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct CreateFineTuningJobRequestIntegrationsInner {
+    /// The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
     /// Note: inline enums are not fully supported by openapi-generator
     #[serde(rename = "type")]
           #[validate(custom(function = "check_xss_string"))]
@@ -31645,7 +31519,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FineTuneDpoM
 #[allow(non_camel_case_types, clippy::large_enum_variant)]
 pub enum FineTuneDpoMethodHyperparametersBatchSize {
     String(String),
-    I32(i32),
+    U16(u16),
 }
 
 impl validator::Validate for FineTuneDpoMethodHyperparametersBatchSize
@@ -31653,7 +31527,7 @@ impl validator::Validate for FineTuneDpoMethodHyperparametersBatchSize
     fn validate(&self) -> std::result::Result<(), validator::ValidationErrors> {
         match self {
             Self::String(_) => std::result::Result::Ok(()),
-            Self::I32(_) => std::result::Result::Ok(()),
+            Self::U16(_) => std::result::Result::Ok(()),
         }
     }
 }
@@ -31675,9 +31549,9 @@ impl From<String> for FineTuneDpoMethodHyperparametersBatchSize {
         Self::String(value)
     }
 }
-impl From<i32> for FineTuneDpoMethodHyperparametersBatchSize {
-    fn from(value: i32) -> Self {
-        Self::I32(value)
+impl From<u16> for FineTuneDpoMethodHyperparametersBatchSize {
+    fn from(value: u16) -> Self {
+        Self::U16(value)
     }
 }
 
@@ -31783,7 +31657,7 @@ impl From<f64> for FineTuneDpoMethodHyperparametersLearningRateMultiplier {
 #[allow(non_camel_case_types, clippy::large_enum_variant)]
 pub enum FineTuneDpoMethodHyperparametersNEpochs {
     String(String),
-    I32(i32),
+    U8(u8),
 }
 
 impl validator::Validate for FineTuneDpoMethodHyperparametersNEpochs
@@ -31791,7 +31665,7 @@ impl validator::Validate for FineTuneDpoMethodHyperparametersNEpochs
     fn validate(&self) -> std::result::Result<(), validator::ValidationErrors> {
         match self {
             Self::String(_) => std::result::Result::Ok(()),
-            Self::I32(_) => std::result::Result::Ok(()),
+            Self::U8(_) => std::result::Result::Ok(()),
         }
     }
 }
@@ -31813,9 +31687,9 @@ impl From<String> for FineTuneDpoMethodHyperparametersNEpochs {
         Self::String(value)
     }
 }
-impl From<i32> for FineTuneDpoMethodHyperparametersNEpochs {
-    fn from(value: i32) -> Self {
-        Self::I32(value)
+impl From<u8> for FineTuneDpoMethodHyperparametersNEpochs {
+    fn from(value: u8) -> Self {
+        Self::U8(value)
     }
 }
 
@@ -42874,6 +42748,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Model> {
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ModifyAssistantRequest {
+    /// ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
     #[serde(rename = "model")]
           #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -68506,135 +68381,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<StaticChunki
 
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
-pub struct StaticChunkingStrategyResponseParam {
-    /// Always `static`.
-    /// Note: inline enums are not fully supported by openapi-generator
-    #[serde(rename = "type")]
-          #[validate(custom(function = "check_xss_string"))]
-    pub r_type: String,
-
-    #[serde(rename = "static")]
-          #[validate(nested)]
-    pub r_static: models::StaticChunkingStrategy,
-
-}
-
-
-
-impl StaticChunkingStrategyResponseParam {
-    #[allow(clippy::new_without_default, clippy::too_many_arguments)]
-    pub fn new(r_type: String, r_static: models::StaticChunkingStrategy, ) -> StaticChunkingStrategyResponseParam {
-        StaticChunkingStrategyResponseParam {
- r_type,
- r_static,
-        }
-    }
-}
-
-/// Converts the StaticChunkingStrategyResponseParam value to the Query Parameters representation (style=form, explode=false)
-/// specified in https://swagger.io/docs/specification/serialization/
-/// Should be implemented in a serde serializer
-impl std::fmt::Display for StaticChunkingStrategyResponseParam {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let params: Vec<Option<String>> = vec![
-
-            Some("type".to_string()),
-            Some(self.r_type.to_string()),
-
-            // Skipping static in query parameter serialization
-
-        ];
-
-        write!(f, "{}", params.into_iter().flatten().collect::<Vec<_>>().join(","))
-    }
-}
-
-/// Converts Query Parameters representation (style=form, explode=false) to a StaticChunkingStrategyResponseParam value
-/// as specified in https://swagger.io/docs/specification/serialization/
-/// Should be implemented in a serde deserializer
-impl std::str::FromStr for StaticChunkingStrategyResponseParam {
-    type Err = String;
-
-    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
-        /// An intermediate representation of the struct to use for parsing.
-        #[derive(Default)]
-        #[allow(dead_code)]
-        struct IntermediateRep {
-            pub r_type: Vec<String>,
-            pub r_static: Vec<models::StaticChunkingStrategy>,
-        }
-
-        let mut intermediate_rep = IntermediateRep::default();
-
-        // Parse into intermediate representation
-        let mut string_iter = s.split(',');
-        let mut key_result = string_iter.next();
-
-        while key_result.is_some() {
-            let val = match string_iter.next() {
-                Some(x) => x,
-                None => return std::result::Result::Err("Missing value while parsing StaticChunkingStrategyResponseParam".to_string())
-            };
-
-            if let Some(key) = key_result {
-                #[allow(clippy::match_single_binding)]
-                match key {
-                    #[allow(clippy::redundant_clone)]
-                    "type" => intermediate_rep.r_type.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
-                    #[allow(clippy::redundant_clone)]
-                    "static" => intermediate_rep.r_static.push(<models::StaticChunkingStrategy as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
-                    _ => return std::result::Result::Err("Unexpected key while parsing StaticChunkingStrategyResponseParam".to_string())
-                }
-            }
-
-            // Get the next key
-            key_result = string_iter.next();
-        }
-
-        // Use the intermediate representation to return the struct
-        std::result::Result::Ok(StaticChunkingStrategyResponseParam {
-            r_type: intermediate_rep.r_type.into_iter().next().ok_or_else(|| "type missing in StaticChunkingStrategyResponseParam".to_string())?,
-            r_static: intermediate_rep.r_static.into_iter().next().ok_or_else(|| "static missing in StaticChunkingStrategyResponseParam".to_string())?,
-        })
-    }
-}
-
-// Methods for converting between header::IntoHeaderValue<StaticChunkingStrategyResponseParam> and HeaderValue
-
-#[cfg(feature = "server")]
-impl std::convert::TryFrom<header::IntoHeaderValue<StaticChunkingStrategyResponseParam>> for HeaderValue {
-    type Error = String;
-
-    fn try_from(hdr_value: header::IntoHeaderValue<StaticChunkingStrategyResponseParam>) -> std::result::Result<Self, Self::Error> {
-        let hdr_value = hdr_value.to_string();
-        match HeaderValue::from_str(&hdr_value) {
-             std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for StaticChunkingStrategyResponseParam - value: {hdr_value} is invalid {e}"#))
-        }
-    }
-}
-
-#[cfg(feature = "server")]
-impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<StaticChunkingStrategyResponseParam> {
-    type Error = String;
-
-    fn try_from(hdr_value: HeaderValue) -> std::result::Result<Self, Self::Error> {
-        match hdr_value.to_str() {
-             std::result::Result::Ok(value) => {
-                    match <StaticChunkingStrategyResponseParam as std::str::FromStr>::from_str(value) {
-                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into StaticChunkingStrategyResponseParam - {err}"#))
-                    }
-             },
-             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
-        }
-    }
-}
-
-
-
-#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct StaticChunkingStrategyStatic {
     /// The maximum number of tokens in each chunk. The default value is `800`. The minimum value is `100` and the maximum value is `4096`.
     #[serde(rename = "max_chunk_size_tokens")]
@@ -73865,7 +73611,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<VectorStoreF
 #[serde(untagged)]
 #[allow(non_camel_case_types, clippy::large_enum_variant)]
 pub enum VectorStoreFileObjectChunkingStrategy {
-    StaticChunkingStrategyResponseParam(models::StaticChunkingStrategyResponseParam),
+    StaticChunkingStrategyRequestParam(models::StaticChunkingStrategyRequestParam),
     OtherChunkingStrategyResponseParam(models::OtherChunkingStrategyResponseParam),
 }
 
@@ -73873,7 +73619,7 @@ impl validator::Validate for VectorStoreFileObjectChunkingStrategy
 {
     fn validate(&self) -> std::result::Result<(), validator::ValidationErrors> {
         match self {
-            Self::StaticChunkingStrategyResponseParam(v) => v.validate(),
+            Self::StaticChunkingStrategyRequestParam(v) => v.validate(),
             Self::OtherChunkingStrategyResponseParam(v) => v.validate(),
         }
     }
@@ -73891,9 +73637,9 @@ impl std::str::FromStr for VectorStoreFileObjectChunkingStrategy {
 }
 
 
-impl From<models::StaticChunkingStrategyResponseParam> for VectorStoreFileObjectChunkingStrategy {
-    fn from(value: models::StaticChunkingStrategyResponseParam) -> Self {
-        Self::StaticChunkingStrategyResponseParam(value)
+impl From<models::StaticChunkingStrategyRequestParam> for VectorStoreFileObjectChunkingStrategy {
+    fn from(value: models::StaticChunkingStrategyRequestParam) -> Self {
+        Self::StaticChunkingStrategyRequestParam(value)
     }
 }
 impl From<models::OtherChunkingStrategyResponseParam> for VectorStoreFileObjectChunkingStrategy {

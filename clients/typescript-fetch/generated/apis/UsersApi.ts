@@ -12,24 +12,27 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  User,
-  UserDeleteResponse,
-  UserListResponse,
-  UserRoleUpdateRequest,
-} from '../models/index';
 import {
+    type User,
     UserFromJSON,
     UserToJSON,
+} from '../models/User';
+import {
+    type UserDeleteResponse,
     UserDeleteResponseFromJSON,
     UserDeleteResponseToJSON,
+} from '../models/UserDeleteResponse';
+import {
+    type UserListResponse,
     UserListResponseFromJSON,
     UserListResponseToJSON,
+} from '../models/UserListResponse';
+import {
+    type UserRoleUpdateRequest,
     UserRoleUpdateRequestFromJSON,
     UserRoleUpdateRequestToJSON,
-} from '../models/index';
+} from '../models/UserRoleUpdateRequest';
 
 export interface DeleteUserRequest {
     userId: string;
@@ -55,9 +58,9 @@ export interface RetrieveUserRequest {
 export class UsersApi extends runtime.BaseAPI {
 
     /**
-     * Deletes a user from the organization.
+     * Creates request options for deleteUser without sending the request
      */
-    async deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserDeleteResponse>> {
+    async deleteUserRequestOpts(requestParameters: DeleteUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -79,14 +82,22 @@ export class UsersApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/users/{user_id}`;
-        urlPath = urlPath.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{user_id}', encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Deletes a user from the organization.
+     */
+    async deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserDeleteResponse>> {
+        const requestOptions = await this.deleteUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserDeleteResponseFromJSON(jsonValue));
     }
@@ -100,9 +111,9 @@ export class UsersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists all of the users in the organization.
+     * Creates request options for listUsers without sending the request
      */
-    async listUsersRaw(requestParameters: ListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserListResponse>> {
+    async listUsersRequestOpts(requestParameters: ListUsersRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['limit'] != null) {
@@ -126,12 +137,20 @@ export class UsersApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/users`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Lists all of the users in the organization.
+     */
+    async listUsersRaw(requestParameters: ListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserListResponse>> {
+        const requestOptions = await this.listUsersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserListResponseFromJSON(jsonValue));
     }
@@ -145,9 +164,9 @@ export class UsersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Modifies a user\'s role in the organization.
+     * Creates request options for modifyUser without sending the request
      */
-    async modifyUserRaw(requestParameters: ModifyUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+    async modifyUserRequestOpts(requestParameters: ModifyUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -178,15 +197,23 @@ export class UsersApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/users/{user_id}`;
-        urlPath = urlPath.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{user_id}', encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: UserRoleUpdateRequestToJSON(requestParameters['userRoleUpdateRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Modifies a user\'s role in the organization.
+     */
+    async modifyUserRaw(requestParameters: ModifyUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+        const requestOptions = await this.modifyUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserFromJSON(jsonValue));
     }
@@ -200,9 +227,9 @@ export class UsersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves a user by their identifier.
+     * Creates request options for retrieveUser without sending the request
      */
-    async retrieveUserRaw(requestParameters: RetrieveUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+    async retrieveUserRequestOpts(requestParameters: RetrieveUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -224,14 +251,22 @@ export class UsersApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/users/{user_id}`;
-        urlPath = urlPath.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{user_id}', encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves a user by their identifier.
+     */
+    async retrieveUserRaw(requestParameters: RetrieveUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+        const requestOptions = await this.retrieveUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserFromJSON(jsonValue));
     }

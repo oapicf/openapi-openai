@@ -33,13 +33,13 @@ static message_object_content_inner_t *message_object_content_inner_create_inter
     if (!message_object_content_inner_local_var) {
         return NULL;
     }
+    memset(message_object_content_inner_local_var, 0, sizeof(message_object_content_inner_t));
+    message_object_content_inner_local_var->_library_owned = 1;
     message_object_content_inner_local_var->type = type;
     message_object_content_inner_local_var->image_file = image_file;
     message_object_content_inner_local_var->image_url = image_url;
     message_object_content_inner_local_var->text = text;
     message_object_content_inner_local_var->refusal = refusal;
-
-    message_object_content_inner_local_var->_library_owned = 1;
     return message_object_content_inner_local_var;
 }
 
@@ -50,13 +50,16 @@ __attribute__((deprecated)) message_object_content_inner_t *message_object_conte
     message_content_text_object_text_t *text,
     char *refusal
     ) {
-    return message_object_content_inner_create_internal (
+    message_object_content_inner_t *result = message_object_content_inner_create_internal (
         type,
         image_file,
         image_url,
         text,
         refusal
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_object_content_inner_free(message_object_content_inner_t *message_object_content_inner) {
@@ -171,6 +174,8 @@ message_object_content_inner_t *message_object_content_inner_parseFromJSON(cJSON
     // define the local variable for message_object_content_inner->text
     message_content_text_object_text_t *text_local_nonprim = NULL;
 
+    char *refusal_local_str = NULL;
+
     // message_object_content_inner->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(message_object_content_innerJSON, "type");
     if (cJSON_IsNull(type)) {
@@ -240,13 +245,19 @@ message_object_content_inner_t *message_object_content_inner_parseFromJSON(cJSON
     }
 
 
+    if (refusal && !cJSON_IsNull(refusal)) refusal_local_str = strdup(refusal->valuestring);
+
     message_object_content_inner_local_var = message_object_content_inner_create_internal (
         typeVariable,
         image_file_local_nonprim,
         image_url_local_nonprim,
         text_local_nonprim,
-        strdup(refusal->valuestring)
+        refusal_local_str
         );
+
+    if (!message_object_content_inner_local_var) {
+        goto end;
+    }
 
     return message_object_content_inner_local_var;
 end:
@@ -261,6 +272,10 @@ end:
     if (text_local_nonprim) {
         message_content_text_object_text_free(text_local_nonprim);
         text_local_nonprim = NULL;
+    }
+    if (refusal_local_str) {
+        free(refusal_local_str);
+        refusal_local_str = NULL;
     }
     return NULL;
 

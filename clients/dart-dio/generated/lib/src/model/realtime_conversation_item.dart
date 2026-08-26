@@ -188,71 +188,81 @@ class _$RealtimeConversationItemSerializer implements PrimitiveSerializer<Realti
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeConversationItemTypeEnum),
-          ) as RealtimeConversationItemTypeEnum;
+            specifiedType: const FullType.nullable(RealtimeConversationItemTypeEnum),
+          ) as RealtimeConversationItemTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'object':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeConversationItemObjectEnum),
-          ) as RealtimeConversationItemObjectEnum;
+            specifiedType: const FullType.nullable(RealtimeConversationItemObjectEnum),
+          ) as RealtimeConversationItemObjectEnum?;
+          if (valueDes == null) continue;
           result.object = valueDes;
           break;
         case r'status':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeConversationItemStatusEnum),
-          ) as RealtimeConversationItemStatusEnum;
+            specifiedType: const FullType.nullable(RealtimeConversationItemStatusEnum),
+          ) as RealtimeConversationItemStatusEnum?;
+          if (valueDes == null) continue;
           result.status = valueDes;
           break;
         case r'role':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeConversationItemRoleEnum),
-          ) as RealtimeConversationItemRoleEnum;
+            specifiedType: const FullType.nullable(RealtimeConversationItemRoleEnum),
+          ) as RealtimeConversationItemRoleEnum?;
+          if (valueDes == null) continue;
           result.role = valueDes;
           break;
         case r'content':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(RealtimeConversationItemContentInner)]),
-          ) as BuiltList<RealtimeConversationItemContentInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(RealtimeConversationItemContentInner)]),
+          ) as BuiltList<RealtimeConversationItemContentInner>?;
+          if (valueDes == null) continue;
           result.content.replace(valueDes);
           break;
         case r'call_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.callId = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'arguments':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.arguments = valueDes;
           break;
         case r'output':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.output = valueDes;
           break;
         default:

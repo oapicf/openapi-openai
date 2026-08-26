@@ -36,7 +36,7 @@ function Initialize-RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage {
 
 
         $PSO = [PSCustomObject]@{
-            "file_id" = ${FileId}
+            'file_id' = ${FileId}
         }
 
 
@@ -74,21 +74,21 @@ function ConvertFrom-JsonToRunStepDeltaStepDetailsToolCallsCodeOutputImageObject
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage
-        $AllProperties = ("file_id")
+        $AllProperties = ('file_id')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_id'))) { #optional property not found
             $FileId = $null
         } else {
-            $FileId = $JsonParameters.PSobject.Properties["file_id"].value
+            $FileId = $JsonParameters.PSobject.Properties['file_id'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "file_id" = ${FileId}
+            'file_id' = ${FileId}
         }
 
         return $PSO

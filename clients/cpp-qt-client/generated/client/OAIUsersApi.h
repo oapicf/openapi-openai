@@ -42,6 +42,7 @@ public:
     void initializeServerConfigs();
     int setDefaultServerValue(int serverIndex,const QString &operation, const QString &variable,const QString &val);
     void setServerIndex(const QString &operation, int serverIndex);
+    void setServerIndex(int serverIndex);
     void setApiKey(const QString &apiKeyName, const QString &apiKey);
     void setBearerToken(const QString &token);
     void setUsername(const QString &username);
@@ -84,6 +85,13 @@ public:
 
 
 private:
+    enum class OauthMethod : int {
+        INVALID_VALUE_OPENAPI_GENERATED = 0,
+        ImplicitFlow = 1,
+        AuthorizationFlow = 2,
+        ClientCredentialsFlow = 3,
+        ResourceOwnerPasswordFlow = 4
+    };
     QMap<QString,int> _serverIndices;
     QMap<QString,QList<OAIServerConfiguration>> _serverConfigs;
     QMap<QString, QString> _apiKeys;
@@ -103,7 +111,7 @@ private:
     OauthImplicit _implicitFlow;
     OauthCredentials _credentialFlow;
     OauthPassword _passwordFlow;
-    int _OauthMethod = 0;
+    OauthMethod _OauthMethod = OauthMethod::INVALID_VALUE_OPENAPI_GENERATED;
 
     void deleteUserCallback(OAIHttpRequestWorker *worker);
     void listUsersCallback(OAIHttpRequestWorker *worker);
@@ -123,30 +131,14 @@ Q_SIGNALS:
     void modifyUserSignalFull(OAIHttpRequestWorker *worker, OAIUser summary);
     void retrieveUserSignalFull(OAIHttpRequestWorker *worker, OAIUser summary);
 
-    Q_DECL_DEPRECATED_X("Use deleteUserSignalError() instead")
-    void deleteUserSignalE(OAIUserDeleteResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteUserSignalError(OAIUserDeleteResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listUsersSignalError() instead")
-    void listUsersSignalE(OAIUserListResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listUsersSignalError(OAIUserListResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use modifyUserSignalError() instead")
-    void modifyUserSignalE(OAIUser summary, QNetworkReply::NetworkError error_type, QString error_str);
     void modifyUserSignalError(OAIUser summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use retrieveUserSignalError() instead")
-    void retrieveUserSignalE(OAIUser summary, QNetworkReply::NetworkError error_type, QString error_str);
     void retrieveUserSignalError(OAIUser summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
-    Q_DECL_DEPRECATED_X("Use deleteUserSignalErrorFull() instead")
-    void deleteUserSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteUserSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listUsersSignalErrorFull() instead")
-    void listUsersSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listUsersSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use modifyUserSignalErrorFull() instead")
-    void modifyUserSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void modifyUserSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use retrieveUserSignalErrorFull() instead")
-    void retrieveUserSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void retrieveUserSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();

@@ -1,4 +1,4 @@
-# # RunStreamEventOneOf7
+# RunStreamEventOneOf7
 
 ## Properties
 

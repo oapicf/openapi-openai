@@ -13,10 +13,10 @@ static create_message_request_attachments_inner_t *create_message_request_attach
     if (!create_message_request_attachments_inner_local_var) {
         return NULL;
     }
+    memset(create_message_request_attachments_inner_local_var, 0, sizeof(create_message_request_attachments_inner_t));
+    create_message_request_attachments_inner_local_var->_library_owned = 1;
     create_message_request_attachments_inner_local_var->file_id = file_id;
     create_message_request_attachments_inner_local_var->tools = tools;
-
-    create_message_request_attachments_inner_local_var->_library_owned = 1;
     return create_message_request_attachments_inner_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) create_message_request_attachments_inner_t *create_m
     char *file_id,
     list_t *tools
     ) {
-    return create_message_request_attachments_inner_create_internal (
+    create_message_request_attachments_inner_t *result = create_message_request_attachments_inner_create_internal (
         file_id,
         tools
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_message_request_attachments_inner_free(create_message_request_attachments_inner_t *create_message_request_attachments_inner) {
@@ -95,6 +98,8 @@ create_message_request_attachments_inner_t *create_message_request_attachments_i
 
     create_message_request_attachments_inner_t *create_message_request_attachments_inner_local_var = NULL;
 
+    char *file_id_local_str = NULL;
+
     // define the local list for create_message_request_attachments_inner->tools
     list_t *toolsList = NULL;
 
@@ -135,13 +140,23 @@ create_message_request_attachments_inner_t *create_message_request_attachments_i
     }
 
 
+    if (file_id && !cJSON_IsNull(file_id)) file_id_local_str = strdup(file_id->valuestring);
+
     create_message_request_attachments_inner_local_var = create_message_request_attachments_inner_create_internal (
-        file_id && !cJSON_IsNull(file_id) ? strdup(file_id->valuestring) : NULL,
+        file_id_local_str,
         tools ? toolsList : NULL
         );
 
+    if (!create_message_request_attachments_inner_local_var) {
+        goto end;
+    }
+
     return create_message_request_attachments_inner_local_var;
 end:
+    if (file_id_local_str) {
+        free(file_id_local_str);
+        file_id_local_str = NULL;
+    }
     if (toolsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, toolsList) {

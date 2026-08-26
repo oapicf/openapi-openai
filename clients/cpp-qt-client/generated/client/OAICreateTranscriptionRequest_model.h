@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAICreateTranscriptionRequest_model : public OAIObject {
 public:
     OAICreateTranscriptionRequest_model();
-    OAICreateTranscriptionRequest_model(QString json);
+    OAICreateTranscriptionRequest_model(const QString &json);
     ~OAICreateTranscriptionRequest_model() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

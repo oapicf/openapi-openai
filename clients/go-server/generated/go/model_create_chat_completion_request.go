@@ -14,6 +14,8 @@ package openapi
 
 import (
 	"errors"
+	"encoding/json"
+	"fmt"
 )
 
 
@@ -59,6 +61,7 @@ type CreateChatCompletionRequest struct {
 	// Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` 
 	Modalities *[]string `json:"modalities,omitempty"`
 
+	// Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
 	Prediction *PredictionContent `json:"prediction,omitempty"`
 
 	Audio *CreateChatCompletionRequestAudio `json:"audio,omitempty"`
@@ -105,8 +108,237 @@ type CreateChatCompletionRequest struct {
 	// Deprecated
 	Functions []ChatCompletionFunctions `json:"functions,omitempty"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into CreateChatCompletionRequest
+func (o *CreateChatCompletionRequest) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"messages",
+		"model",
+	}
 
-// AssertCreateChatCompletionRequestRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"messages": false,
+		"model": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"messages": {},
+		"model": {},
+		"store": {},
+		"reasoning_effort": {},
+		"metadata": {},
+		"frequency_penalty": {},
+		"logit_bias": {},
+		"logprobs": {},
+		"top_logprobs": {},
+		"max_tokens": {},
+		"max_completion_tokens": {},
+		"n": {},
+		"modalities": {},
+		"prediction": {},
+		"audio": {},
+		"presence_penalty": {},
+		"response_format": {},
+		"seed": {},
+		"service_tier": {},
+		"stop": {},
+		"stream": {},
+		"stream_options": {},
+		"temperature": {},
+		"top_p": {},
+		"tools": {},
+		"tool_choice": {},
+		"parallel_tool_calls": {},
+		"user": {},
+		"function_call": {},
+		"functions": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CreateChatCompletionRequest
+
+	if value, exists := allProperties["messages"]; exists {
+		if err = json.Unmarshal(value, &decoded.Messages); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["model"]; exists {
+		if err = json.Unmarshal(value, &decoded.Model); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["store"]; exists {
+		if err = json.Unmarshal(value, &decoded.Store); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["reasoning_effort"]; exists {
+		if err = json.Unmarshal(value, &decoded.ReasoningEffort); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["metadata"]; exists {
+		if err = json.Unmarshal(value, &decoded.Metadata); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["frequency_penalty"]; exists {
+		if err = json.Unmarshal(value, &decoded.FrequencyPenalty); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["logit_bias"]; exists {
+		if err = json.Unmarshal(value, &decoded.LogitBias); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["logprobs"]; exists {
+		if err = json.Unmarshal(value, &decoded.Logprobs); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["top_logprobs"]; exists {
+		if err = json.Unmarshal(value, &decoded.TopLogprobs); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["max_tokens"]; exists {
+		if err = json.Unmarshal(value, &decoded.MaxTokens); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["max_completion_tokens"]; exists {
+		if err = json.Unmarshal(value, &decoded.MaxCompletionTokens); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["n"]; exists {
+		if err = json.Unmarshal(value, &decoded.N); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["modalities"]; exists {
+		if err = json.Unmarshal(value, &decoded.Modalities); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["prediction"]; exists {
+		if err = json.Unmarshal(value, &decoded.Prediction); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["audio"]; exists {
+		if err = json.Unmarshal(value, &decoded.Audio); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["presence_penalty"]; exists {
+		if err = json.Unmarshal(value, &decoded.PresencePenalty); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["response_format"]; exists {
+		if err = json.Unmarshal(value, &decoded.ResponseFormat); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["seed"]; exists {
+		if err = json.Unmarshal(value, &decoded.Seed); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["service_tier"]; exists {
+		if err = json.Unmarshal(value, &decoded.ServiceTier); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["stop"]; exists {
+		if err = json.Unmarshal(value, &decoded.Stop); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["stream"]; exists {
+		if err = json.Unmarshal(value, &decoded.Stream); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["stream_options"]; exists {
+		if err = json.Unmarshal(value, &decoded.StreamOptions); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["temperature"]; exists {
+		if err = json.Unmarshal(value, &decoded.Temperature); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["top_p"]; exists {
+		if err = json.Unmarshal(value, &decoded.TopP); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["tools"]; exists {
+		if err = json.Unmarshal(value, &decoded.Tools); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["tool_choice"]; exists {
+		if err = json.Unmarshal(value, &decoded.ToolChoice); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["parallel_tool_calls"]; exists {
+		if err = json.Unmarshal(value, &decoded.ParallelToolCalls); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["user"]; exists {
+		if err = json.Unmarshal(value, &decoded.User); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["function_call"]; exists {
+		if err = json.Unmarshal(value, &decoded.FunctionCall); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["functions"]; exists {
+		if err = json.Unmarshal(value, &decoded.Functions); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCreateChatCompletionRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateChatCompletionRequestRequired(obj CreateChatCompletionRequest) error {
 	elements := map[string]interface{}{
 		"messages": obj.Messages,

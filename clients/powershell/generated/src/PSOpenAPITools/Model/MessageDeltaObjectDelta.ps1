@@ -42,8 +42,8 @@ function Initialize-MessageDeltaObjectDelta {
 
 
         $PSO = [PSCustomObject]@{
-            "role" = ${Role}
-            "content" = ${Content}
+            'role' = ${Role}
+            'content' = ${Content}
         }
 
 
@@ -81,28 +81,28 @@ function ConvertFrom-JsonToMessageDeltaObjectDelta {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in MessageDeltaObjectDelta
-        $AllProperties = ("role", "content")
+        $AllProperties = ('role', 'content')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "role"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'role'))) { #optional property not found
             $Role = $null
         } else {
-            $Role = $JsonParameters.PSobject.Properties["role"].value
+            $Role = $JsonParameters.PSobject.Properties['role'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'content'))) { #optional property not found
             $Content = $null
         } else {
-            $Content = $JsonParameters.PSobject.Properties["content"].value
+            $Content = $JsonParameters.PSobject.Properties['content'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "role" = ${Role}
-            "content" = ${Content}
+            'role' = ${Role}
+            'content' = ${Content}
         }
 
         return $PSO

@@ -61,10 +61,12 @@ class RunStepDetailsToolCallsCodeObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepDetailsToolCallsCodeObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepDetailsToolCallsCodeObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "RunStepDetailsToolCallsCodeObject[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "RunStepDetailsToolCallsCodeObject[id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RunStepDetailsToolCallsCodeObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RunStepDetailsToolCallsCodeObject[type]" has a null value in JSON.');
+        assert(json.containsKey(r'code_interpreter'), 'Required key "RunStepDetailsToolCallsCodeObject[code_interpreter]" is missing from JSON.');
+        assert(json[r'code_interpreter'] != null, 'Required key "RunStepDetailsToolCallsCodeObject[code_interpreter]" has a null value in JSON.');
         return true;
       }());
 
@@ -126,27 +128,28 @@ class RunStepDetailsToolCallsCodeObject {
 }
 
 /// The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
-class RunStepDetailsToolCallsCodeObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepDetailsToolCallsCodeObjectTypeEnum._(this.value);
+enum RunStepDetailsToolCallsCodeObjectTypeEnum {
+  codeInterpreter._(r'code_interpreter'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepDetailsToolCallsCodeObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const codeInterpreter = RunStepDetailsToolCallsCodeObjectTypeEnum._(r'code_interpreter');
-
-  /// List of all possible values in this [enum][RunStepDetailsToolCallsCodeObjectTypeEnum].
-  static const values = <RunStepDetailsToolCallsCodeObjectTypeEnum>[
-    codeInterpreter,
-  ];
-
+  /// Returns the instance of [RunStepDetailsToolCallsCodeObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepDetailsToolCallsCodeObjectTypeEnum? fromJson(dynamic value) => RunStepDetailsToolCallsCodeObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepDetailsToolCallsCodeObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepDetailsToolCallsCodeObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepDetailsToolCallsCodeObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -168,9 +171,10 @@ class RunStepDetailsToolCallsCodeObjectTypeEnumTypeTransformer {
 
   const RunStepDetailsToolCallsCodeObjectTypeEnumTypeTransformer._();
 
-  String encode(RunStepDetailsToolCallsCodeObjectTypeEnum data) => data.value;
+  String encode(RunStepDetailsToolCallsCodeObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepDetailsToolCallsCodeObjectTypeEnum.
+  /// Returns the instance of [RunStepDetailsToolCallsCodeObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -179,6 +183,9 @@ class RunStepDetailsToolCallsCodeObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepDetailsToolCallsCodeObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepDetailsToolCallsCodeObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'code_interpreter': return RunStepDetailsToolCallsCodeObjectTypeEnum.codeInterpreter;
@@ -191,7 +198,7 @@ class RunStepDetailsToolCallsCodeObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStepDetailsToolCallsCodeObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepDetailsToolCallsCodeObjectTypeEnumTypeTransformer? _instance;
 }
 

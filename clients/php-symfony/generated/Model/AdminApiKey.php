@@ -47,7 +47,7 @@ class AdminApiKey
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $object = null;
 
@@ -55,7 +55,7 @@ class AdminApiKey
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -63,7 +63,7 @@ class AdminApiKey
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $name = null;
 
@@ -71,7 +71,7 @@ class AdminApiKey
      * @var string|null
      * @SerializedName("redacted_value")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $redactedValue = null;
 
@@ -79,7 +79,7 @@ class AdminApiKey
      * @var string|null
      * @SerializedName("value")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $value = null;
 
@@ -87,7 +87,7 @@ class AdminApiKey
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
 
@@ -95,7 +95,7 @@ class AdminApiKey
      * @var AdminApiKeyOwner|null
      * @SerializedName("owner")
      * @Type("OpenAPI\Server\Model\AdminApiKeyOwner")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AdminApiKeyOwner")]
     protected ?AdminApiKeyOwner $owner = null;
 
@@ -127,12 +127,12 @@ class AdminApiKey
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object = null): self
     {
         $this->object = $object;
@@ -154,12 +154,12 @@ class AdminApiKey
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -181,12 +181,12 @@ class AdminApiKey
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name
+     *
+     * @return $this
+     */
     public function setName(?string $name = null): self
     {
         $this->name = $name;
@@ -208,12 +208,12 @@ class AdminApiKey
     }
 
     /**
-    * Sets redactedValue.
-    *
-    * @param string|null $redactedValue
-    *
-    * @return $this
-    */
+     * Sets redactedValue.
+     *
+     * @param string|null $redactedValue
+     *
+     * @return $this
+     */
     public function setRedactedValue(?string $redactedValue = null): self
     {
         $this->redactedValue = $redactedValue;
@@ -235,12 +235,12 @@ class AdminApiKey
     }
 
     /**
-    * Sets value.
-    *
-    * @param string|null $value
-    *
-    * @return $this
-    */
+     * Sets value.
+     *
+     * @param string|null $value
+     *
+     * @return $this
+     */
     public function setValue(?string $value = null): self
     {
         $this->value = $value;
@@ -262,12 +262,12 @@ class AdminApiKey
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt = null): self
     {
         $this->createdAt = $createdAt;
@@ -289,12 +289,12 @@ class AdminApiKey
     }
 
     /**
-    * Sets owner.
-    *
-    * @param AdminApiKeyOwner|null $owner
-    *
-    * @return $this
-    */
+     * Sets owner.
+     *
+     * @param AdminApiKeyOwner|null $owner
+     *
+     * @return $this
+     */
     public function setOwner(?AdminApiKeyOwner $owner = null): self
     {
         $this->owner = $owner;

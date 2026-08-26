@@ -49,7 +49,7 @@ class AssistantToolsFileSearchTypeOnly
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['file_search'])]
     #[Assert\Type("string")]
@@ -77,12 +77,12 @@ class AssistantToolsFileSearchTypeOnly
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of tool being defined: `file_search`
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of tool being defined: `file_search`
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;

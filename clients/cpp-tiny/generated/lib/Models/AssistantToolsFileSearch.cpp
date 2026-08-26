@@ -86,7 +86,7 @@ AssistantToolsFileSearch::getType()
 }
 
 void
-AssistantToolsFileSearch::setType(std::string  type)
+AssistantToolsFileSearch::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ AssistantToolsFileSearch::getFileSearch()
 }
 
 void
-AssistantToolsFileSearch::setFileSearch(AssistantToolsFileSearch_file_search  file_search)
+AssistantToolsFileSearch::setFileSearch(AssistantToolsFileSearch_file_search file_search)
 {
 	this->file_search = file_search;
 }

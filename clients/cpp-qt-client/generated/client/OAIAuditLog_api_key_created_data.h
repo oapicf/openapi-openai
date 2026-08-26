@@ -32,13 +32,13 @@ namespace OpenAPI {
 class OAIAuditLog_api_key_created_data : public OAIObject {
 public:
     OAIAuditLog_api_key_created_data();
-    OAIAuditLog_api_key_created_data(QString json);
+    OAIAuditLog_api_key_created_data(const QString &json);
     ~OAIAuditLog_api_key_created_data() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QList<QString> getScopes() const;
     void setScopes(const QList<QString> &scopes);

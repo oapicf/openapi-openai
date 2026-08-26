@@ -32,7 +32,7 @@ class CreateModerationRequestInputOneOfInnerOneOfImageUrl(BaseModel):
     """
     Contains either an image URL or a data URL for a base64 encoded image.
     """ # noqa: E501
-    url: StrictStr = Field(description="Either a URL of the image or the base64 encoded image data.")
+    url: StrictStr = Field(description="Either a URL of the image or the base64 encoded image data.", json_schema_extra={"examples": ["https://example.com/image.jpg"]})
     __properties: ClassVar[List[str]] = ["url"]
 
     model_config = {

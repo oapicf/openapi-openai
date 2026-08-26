@@ -46,8 +46,8 @@ function Initialize-AssistantToolsFileSearch {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "file_search" = ${FileSearch}
+            'type' = ${Type}
+            'file_search' = ${FileSearch}
         }
 
 
@@ -85,7 +85,7 @@ function ConvertFrom-JsonToAssistantToolsFileSearch {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AssistantToolsFileSearch
-        $AllProperties = ("type", "file_search")
+        $AllProperties = ('type', 'file_search')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -96,21 +96,21 @@ function ConvertFrom-JsonToAssistantToolsFileSearch {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_search"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_search'))) { #optional property not found
             $FileSearch = $null
         } else {
-            $FileSearch = $JsonParameters.PSobject.Properties["file_search"].value
+            $FileSearch = $JsonParameters.PSobject.Properties['file_search'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "file_search" = ${FileSearch}
+            'type' = ${Type}
+            'file_search' = ${FileSearch}
         }
 
         return $PSO

@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -12,20 +13,20 @@ import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * The aggregated audio transcriptions usage details of the specific time bucket.
  */
 
 @Schema(name = "UsageAudioTranscriptionsResult", description = "The aggregated audio transcriptions usage details of the specific time bucket.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class UsageAudioTranscriptionsResult implements UsageTimeBucketResultInner {
 
   /**
@@ -67,12 +68,16 @@ public class UsageAudioTranscriptionsResult implements UsageTimeBucketResultInne
 
   private Integer numModelRequests;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> projectId = JsonNullable.<String>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> userId = JsonNullable.<String>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> apiKeyId = JsonNullable.<String>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> model = JsonNullable.<String>undefined();
 
   public UsageAudioTranscriptionsResult() {
@@ -104,6 +109,7 @@ public class UsageAudioTranscriptionsResult implements UsageTimeBucketResultInne
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
@@ -124,6 +130,7 @@ public class UsageAudioTranscriptionsResult implements UsageTimeBucketResultInne
     return seconds;
   }
 
+  @JsonProperty("seconds")
   public void setSeconds(Integer seconds) {
     this.seconds = seconds;
   }
@@ -144,6 +151,7 @@ public class UsageAudioTranscriptionsResult implements UsageTimeBucketResultInne
     return numModelRequests;
   }
 
+  @JsonProperty("num_model_requests")
   public void setNumModelRequests(Integer numModelRequests) {
     this.numModelRequests = numModelRequests;
   }
@@ -281,11 +289,8 @@ public class UsageAudioTranscriptionsResult implements UsageTimeBucketResultInne
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

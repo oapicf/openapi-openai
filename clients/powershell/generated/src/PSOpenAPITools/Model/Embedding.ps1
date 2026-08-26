@@ -59,9 +59,9 @@ function Initialize-Embedding {
 
 
         $PSO = [PSCustomObject]@{
-            "index" = ${Index}
-            "embedding" = ${Embedding}
-            "object" = ${Object}
+            'index' = ${Index}
+            'embedding' = ${Embedding}
+            'object' = ${Object}
         }
 
 
@@ -99,7 +99,7 @@ function ConvertFrom-JsonToEmbedding {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in Embedding
-        $AllProperties = ("index", "embedding", "object")
+        $AllProperties = ('index', 'embedding', 'object')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -110,28 +110,28 @@ function ConvertFrom-JsonToEmbedding {
             throw "Error! Empty JSON cannot be serialized due to the required property 'index' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "index"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'index'))) {
             throw "Error! JSON cannot be serialized due to the required property 'index' missing."
         } else {
-            $Index = $JsonParameters.PSobject.Properties["index"].value
+            $Index = $JsonParameters.PSobject.Properties['index'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "embedding"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'embedding'))) {
             throw "Error! JSON cannot be serialized due to the required property 'embedding' missing."
         } else {
-            $Embedding = $JsonParameters.PSobject.Properties["embedding"].value
+            $Embedding = $JsonParameters.PSobject.Properties['embedding'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "index" = ${Index}
-            "embedding" = ${Embedding}
-            "object" = ${Object}
+            'index' = ${Index}
+            'embedding' = ${Embedding}
+            'object' = ${Object}
         }
 
         return $PSO

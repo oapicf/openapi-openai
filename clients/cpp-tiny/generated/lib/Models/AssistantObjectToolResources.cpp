@@ -87,7 +87,7 @@ AssistantObject_tool_resources::getCodeInterpreter()
 }
 
 void
-AssistantObject_tool_resources::setCodeInterpreter(AssistantObject_tool_resources_code_interpreter  code_interpreter)
+AssistantObject_tool_resources::setCodeInterpreter(AssistantObject_tool_resources_code_interpreter code_interpreter)
 {
 	this->code_interpreter = code_interpreter;
 }
@@ -99,7 +99,7 @@ AssistantObject_tool_resources::getFileSearch()
 }
 
 void
-AssistantObject_tool_resources::setFileSearch(AssistantObject_tool_resources_file_search  file_search)
+AssistantObject_tool_resources::setFileSearch(AssistantObject_tool_resources_file_search file_search)
 {
 	this->file_search = file_search;
 }

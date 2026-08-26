@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIRealtimeSession_input_audio_transcription : public OAIObject {
 public:
     OAIRealtimeSession_input_audio_transcription();
-    OAIRealtimeSession_input_audio_transcription(QString json);
+    OAIRealtimeSession_input_audio_transcription(const QString &json);
     ~OAIRealtimeSession_input_audio_transcription() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getModel() const;
     void setModel(const QString &model);

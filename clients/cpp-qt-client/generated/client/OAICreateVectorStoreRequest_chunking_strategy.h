@@ -35,13 +35,13 @@ class OAIStaticChunkingStrategy;
 class OAICreateVectorStoreRequest_chunking_strategy : public OAIObject {
 public:
     OAICreateVectorStoreRequest_chunking_strategy();
-    OAICreateVectorStoreRequest_chunking_strategy(QString json);
+    OAICreateVectorStoreRequest_chunking_strategy(const QString &json);
     ~OAICreateVectorStoreRequest_chunking_strategy() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

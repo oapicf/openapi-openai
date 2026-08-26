@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set The name of the file to upload. 
 	 */
-	void setFilename(std::string  filename);
+	void setFilename(std::string filename);
 	/*! \brief Get The intended purpose of the uploaded file.  See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose). 
 	 */
 	std::string getPurpose();
 
 	/*! \brief Set The intended purpose of the uploaded file.  See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose). 
 	 */
-	void setPurpose(std::string  purpose);
+	void setPurpose(std::string purpose);
 	/*! \brief Get The number of bytes in the file you are uploading. 
 	 */
 	int getBytes();
 
 	/*! \brief Set The number of bytes in the file you are uploading. 
 	 */
-	void setBytes(int  bytes);
+	void setBytes(int bytes);
 	/*! \brief Get The MIME type of the file.  This must fall within the supported MIME types for your file purpose. See the supported MIME types for assistants and vision. 
 	 */
 	std::string getMimeType();
 
 	/*! \brief Set The MIME type of the file.  This must fall within the supported MIME types for your file purpose. See the supported MIME types for assistants and vision. 
 	 */
-	void setMimeType(std::string  mime_type);
+	void setMimeType(std::string mime_type);
 
 
     private:

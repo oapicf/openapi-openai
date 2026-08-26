@@ -49,7 +49,7 @@ class ProjectServiceAccountCreateRequest
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $name = null;
@@ -76,12 +76,12 @@ class ProjectServiceAccountCreateRequest
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the service account being created.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the service account being created.
+     *
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;

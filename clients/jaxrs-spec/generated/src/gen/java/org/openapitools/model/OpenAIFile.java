@@ -18,7 +18,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "The `File` object represents a document that has been uploaded to OpenAI.")
 @JsonTypeName("OpenAIFile")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class OpenAIFile   {
   private String id;
   private Integer bytes;
@@ -167,7 +167,9 @@ public class OpenAIFile   {
     }
 }
 
+  @Deprecated
   private StatusEnum status;
+  @Deprecated
   private String statusDetails;
 
   public OpenAIFile() {
@@ -314,12 +316,18 @@ public class OpenAIFile   {
 
   /**
    * Deprecated. The current status of the file, which can be either &#x60;uploaded&#x60;, &#x60;processed&#x60;, or &#x60;error&#x60;.
+   * @deprecated
    **/
+  @Deprecated
   public OpenAIFile status(StatusEnum status) {
     this.status = status;
     return this;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   
   @ApiModelProperty(required = true, value = "Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.")
   @JsonProperty(required = true, value = "status")
@@ -327,6 +335,10 @@ public class OpenAIFile   {
     return status;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @JsonProperty(required = true, value = "status")
   public void setStatus(StatusEnum status) {
     this.status = status;
@@ -334,12 +346,18 @@ public class OpenAIFile   {
 
   /**
    * Deprecated. For details on why a fine-tuning training file failed validation, see the &#x60;error&#x60; field on &#x60;fine_tuning.job&#x60;.
+   * @deprecated
    **/
+  @Deprecated
   public OpenAIFile statusDetails(String statusDetails) {
     this.statusDetails = statusDetails;
     return this;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   
   @ApiModelProperty(value = "Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.")
   @JsonProperty("status_details")
@@ -347,6 +365,10 @@ public class OpenAIFile   {
     return statusDetails;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @JsonProperty("status_details")
   public void setStatusDetails(String statusDetails) {
     this.statusDetails = statusDetails;
@@ -399,12 +421,8 @@ public class OpenAIFile   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
 }
-

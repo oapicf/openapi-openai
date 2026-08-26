@@ -51,8 +51,8 @@ function Initialize-CreateChatCompletionRequestAudio {
 
 
         $PSO = [PSCustomObject]@{
-            "voice" = ${Voice}
-            "format" = ${Format}
+            'voice' = ${Voice}
+            'format' = ${Format}
         }
 
 
@@ -90,7 +90,7 @@ function ConvertFrom-JsonToCreateChatCompletionRequestAudio {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateChatCompletionRequestAudio
-        $AllProperties = ("voice", "format")
+        $AllProperties = ('voice', 'format')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -101,21 +101,21 @@ function ConvertFrom-JsonToCreateChatCompletionRequestAudio {
             throw "Error! Empty JSON cannot be serialized due to the required property 'voice' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "voice"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'voice'))) {
             throw "Error! JSON cannot be serialized due to the required property 'voice' missing."
         } else {
-            $Voice = $JsonParameters.PSobject.Properties["voice"].value
+            $Voice = $JsonParameters.PSobject.Properties['voice'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "format"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'format'))) {
             throw "Error! JSON cannot be serialized due to the required property 'format' missing."
         } else {
-            $Format = $JsonParameters.PSobject.Properties["format"].value
+            $Format = $JsonParameters.PSobject.Properties['format'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "voice" = ${Voice}
-            "format" = ${Format}
+            'voice' = ${Voice}
+            'format' = ${Format}
         }
 
         return $PSO

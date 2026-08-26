@@ -20,7 +20,7 @@ case class MessageContentTextObject(
   /* Always `text`. */
   `type`: MessageContentTextObjectEnums.`Type`,
   text: MessageContentTextObjectText
-)
+) extends MessageObjectContentInner
 
 object MessageContentTextObjectEnums {
 

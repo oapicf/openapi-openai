@@ -15,11 +15,9 @@ package org.openapitools.client.model
   /**
    * The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.
    */
-case class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy(
-  /* Always `auto`. */
-  `type`: CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyEnums.`Type`,
-  static: StaticChunkingStrategyStatic
-)
+trait CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
+object CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy {
+}
 
 object CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyEnums {
 

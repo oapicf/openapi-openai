@@ -101,7 +101,7 @@ export class BatchApi {
      */
     public async cancelBatch (batchId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Batch;  }> {
         const localVarPath = this.basePath + '/batches/{batch_id}/cancel'
-            .replace('{' + 'batch_id' + '}', encodeURIComponent(String(batchId)));
+            .replace('{batch_id}', encodeURIComponent(String(batchId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -320,7 +320,7 @@ export class BatchApi {
      */
     public async retrieveBatch (batchId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Batch;  }> {
         const localVarPath = this.basePath + '/batches/{batch_id}'
-            .replace('{' + 'batch_id' + '}', encodeURIComponent(String(batchId)));
+            .replace('{batch_id}', encodeURIComponent(String(batchId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];

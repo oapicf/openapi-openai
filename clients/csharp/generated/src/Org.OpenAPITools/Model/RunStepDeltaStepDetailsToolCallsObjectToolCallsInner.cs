@@ -104,8 +104,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDeltaStepDetailsToolCallsObjectToolCallsInner" />
     /// </summary>
-    public class RunStepDeltaStepDetailsToolCallsObjectToolCallsInnerJsonConverter : JsonConverter<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>
+    public partial class RunStepDeltaStepDetailsToolCallsObjectToolCallsInnerJsonConverter : JsonConverter<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDeltaStepDetailsToolCallsObjectToolCallsInnerJsonConverter" /> class.
+        /// </summary>
+        public RunStepDeltaStepDetailsToolCallsObjectToolCallsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDeltaStepDetailsToolCallsObjectToolCallsInner" />
         /// </summary>

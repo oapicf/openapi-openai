@@ -21,9 +21,10 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class OtherChunkingStrategyResponseParam(
 
-    @Schema(example = "null", required = true, description = "Always `other`.")
+    @Schema(required = true, description = "Always `other`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: OtherChunkingStrategyResponseParam.Type
-) {
+) : VectorStoreFileObjectChunkingStrategy {
 
     /**
     * Always `other`.
@@ -38,7 +39,7 @@ data class OtherChunkingStrategyResponseParam(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'OtherChunkingStrategyResponseParam'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

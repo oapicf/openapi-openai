@@ -23,7 +23,7 @@ class ImagesApi {
   /// Parameters:
   ///
   /// * [CreateImageRequest] createImageRequest (required):
-  Future<Response> createImageWithHttpInfo(CreateImageRequest createImageRequest,) async {
+  Future<Response> createImageWithHttpInfo(CreateImageRequest createImageRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/images/generations';
 
@@ -45,6 +45,7 @@ class ImagesApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -53,8 +54,8 @@ class ImagesApi {
   /// Parameters:
   ///
   /// * [CreateImageRequest] createImageRequest (required):
-  Future<ImagesResponse?> createImage(CreateImageRequest createImageRequest,) async {
-    final response = await createImageWithHttpInfo(createImageRequest,);
+  Future<ImagesResponse?> createImage(CreateImageRequest createImageRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createImageWithHttpInfo(createImageRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -96,7 +97,7 @@ class ImagesApi {
   ///
   /// * [String] user:
   ///   A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
-  Future<Response> createImageEditWithHttpInfo(MultipartFile image, String prompt, { MultipartFile? mask, CreateImageEditRequestModel? model, int? n, String? size, String? responseFormat, String? user, }) async {
+  Future<Response> createImageEditWithHttpInfo(MultipartFile image, String prompt, { MultipartFile? mask, CreateImageEditRequestModel? model, int? n, String? size, String? responseFormat, String? user, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/images/edits';
 
@@ -157,6 +158,7 @@ class ImagesApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -186,8 +188,8 @@ class ImagesApi {
   ///
   /// * [String] user:
   ///   A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
-  Future<ImagesResponse?> createImageEdit(MultipartFile image, String prompt, { MultipartFile? mask, CreateImageEditRequestModel? model, int? n, String? size, String? responseFormat, String? user, }) async {
-    final response = await createImageEditWithHttpInfo(image, prompt,  mask: mask, model: model, n: n, size: size, responseFormat: responseFormat, user: user, );
+  Future<ImagesResponse?> createImageEdit(MultipartFile image, String prompt, { MultipartFile? mask, CreateImageEditRequestModel? model, int? n, String? size, String? responseFormat, String? user, Future<void>? abortTrigger, }) async {
+    final response = await createImageEditWithHttpInfo(image, prompt, mask: mask, model: model, n: n, size: size, responseFormat: responseFormat, user: user, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -223,7 +225,7 @@ class ImagesApi {
   ///
   /// * [String] user:
   ///   A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
-  Future<Response> createImageVariationWithHttpInfo(MultipartFile image, { CreateImageEditRequestModel? model, int? n, String? responseFormat, String? size, String? user, }) async {
+  Future<Response> createImageVariationWithHttpInfo(MultipartFile image, { CreateImageEditRequestModel? model, int? n, String? responseFormat, String? size, String? user, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/images/variations';
 
@@ -275,6 +277,7 @@ class ImagesApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -298,8 +301,8 @@ class ImagesApi {
   ///
   /// * [String] user:
   ///   A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
-  Future<ImagesResponse?> createImageVariation(MultipartFile image, { CreateImageEditRequestModel? model, int? n, String? responseFormat, String? size, String? user, }) async {
-    final response = await createImageVariationWithHttpInfo(image,  model: model, n: n, responseFormat: responseFormat, size: size, user: user, );
+  Future<ImagesResponse?> createImageVariation(MultipartFile image, { CreateImageEditRequestModel? model, int? n, String? responseFormat, String? size, String? user, Future<void>? abortTrigger, }) async {
+    final response = await createImageVariationWithHttpInfo(image, model: model, n: n, responseFormat: responseFormat, size: size, user: user, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

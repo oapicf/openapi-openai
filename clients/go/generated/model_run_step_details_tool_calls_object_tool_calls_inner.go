@@ -111,7 +111,21 @@ func (dst *RunStepDetailsToolCallsObjectToolCallsInner) UnmarshalJSON(data []byt
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(RunStepDetailsToolCallsObjectToolCallsInner)")
+        if err != nil {
+            return fmt.Errorf("data failed to match schemas in oneOf(RunStepDetailsToolCallsObjectToolCallsInner): %v", err)
+        } else {
+            return fmt.Errorf("data failed to match schemas in oneOf(RunStepDetailsToolCallsObjectToolCallsInner)")
+        }
+        if err != nil {
+            return fmt.Errorf("data failed to match schemas in oneOf(RunStepDetailsToolCallsObjectToolCallsInner): %v", err)
+        } else {
+            return fmt.Errorf("data failed to match schemas in oneOf(RunStepDetailsToolCallsObjectToolCallsInner)")
+        }
+        if err != nil {
+            return fmt.Errorf("data failed to match schemas in oneOf(RunStepDetailsToolCallsObjectToolCallsInner): %v", err)
+        } else {
+            return fmt.Errorf("data failed to match schemas in oneOf(RunStepDetailsToolCallsObjectToolCallsInner)")
+        }
 	}
 }
 

@@ -50,8 +50,8 @@ function Initialize-ChatCompletionTool {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "function" = ${VarFunction}
+            'type' = ${Type}
+            'function' = ${VarFunction}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToChatCompletionTool {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ChatCompletionTool
-        $AllProperties = ("type", "function")
+        $AllProperties = ('type', 'function')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToChatCompletionTool {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "function"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'function'))) {
             throw "Error! JSON cannot be serialized due to the required property 'function' missing."
         } else {
-            $VarFunction = $JsonParameters.PSobject.Properties["function"].value
+            $VarFunction = $JsonParameters.PSobject.Properties['function'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "function" = ${VarFunction}
+            'type' = ${Type}
+            'function' = ${VarFunction}
         }
 
         return $PSO

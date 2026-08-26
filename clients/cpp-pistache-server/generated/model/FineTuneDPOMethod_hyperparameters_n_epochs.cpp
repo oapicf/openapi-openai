@@ -24,6 +24,8 @@ FineTuneDPOMethod_hyperparameters_n_epochs::FineTuneDPOMethod_hyperparameters_n_
     
 }
 
+FineTuneDPOMethod_hyperparameters_n_epochs::~FineTuneDPOMethod_hyperparameters_n_epochs() = default;
+
 void FineTuneDPOMethod_hyperparameters_n_epochs::validate() const
 {
     std::stringstream msg;

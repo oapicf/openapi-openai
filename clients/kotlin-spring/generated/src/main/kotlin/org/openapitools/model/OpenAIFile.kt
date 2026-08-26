@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -28,29 +31,39 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class OpenAIFile(
 
-    @Schema(example = "null", required = true, description = "The file identifier, which can be referenced in the API endpoints.")
+    @Schema(required = true, description = "The file identifier, which can be referenced in the API endpoints.")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The size of the file, in bytes.")
+    @Schema(required = true, description = "The size of the file, in bytes.")
+    @param:JsonProperty("bytes")
     @get:JsonProperty("bytes", required = true) val bytes: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The Unix timestamp (in seconds) for when the file was created.")
+    @Schema(required = true, description = "The Unix timestamp (in seconds) for when the file was created.")
+    @param:JsonProperty("created_at")
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The name of the file.")
+    @Schema(required = true, description = "The name of the file.")
+    @param:JsonProperty("filename")
     @get:JsonProperty("filename", required = true) val filename: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The object type, which is always `file`.")
+    @Schema(required = true, description = "The object type, which is always `file`.")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: OpenAIFile.`Object`,
 
-    @Schema(example = "null", required = true, description = "The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.")
+    @Schema(required = true, description = "The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.")
+    @param:JsonProperty("purpose")
     @get:JsonProperty("purpose", required = true) val purpose: OpenAIFile.Purpose,
 
-    @Schema(example = "null", required = true, description = "Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.")
+    @Schema(required = true, description = "Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.")
+    @param:JsonProperty("status")
     @get:JsonProperty("status", required = true) val status: OpenAIFile.Status,
 
-    @Schema(example = "null", description = "Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.")
+    @Schema(description = "Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.")
     @Deprecated(message = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("status_details")
     @get:JsonProperty("status_details") val statusDetails: kotlin.String? = null
 ) {
 
@@ -67,7 +80,7 @@ data class OpenAIFile(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'OpenAIFile'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }
@@ -91,7 +104,7 @@ data class OpenAIFile(
             @JsonCreator
             fun forValue(value: kotlin.String): Purpose {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'OpenAIFile'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Purpose'")
             }
         }
     }
@@ -111,7 +124,7 @@ data class OpenAIFile(
             @JsonCreator
             fun forValue(value: kotlin.String): Status {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'OpenAIFile'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Status'")
             }
         }
     }

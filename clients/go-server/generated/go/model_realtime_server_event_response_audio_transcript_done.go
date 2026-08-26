@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // RealtimeServerEventResponseAudioTranscriptDone - Returned when the model-generated transcription of audio output is done streaming. Also emitted when a Response is interrupted, incomplete, or cancelled. 
@@ -38,24 +43,110 @@ type RealtimeServerEventResponseAudioTranscriptDone struct {
 	// The final transcript of the audio.
 	Transcript string `json:"transcript"`
 }
-
-// AssertRealtimeServerEventResponseAudioTranscriptDoneRequired checks if the required fields are not zero-ed
-func AssertRealtimeServerEventResponseAudioTranscriptDoneRequired(obj RealtimeServerEventResponseAudioTranscriptDone) error {
-	elements := map[string]interface{}{
-		"event_id": obj.EventId,
-		"type": obj.Type,
-		"response_id": obj.ResponseId,
-		"item_id": obj.ItemId,
-		"output_index": obj.OutputIndex,
-		"content_index": obj.ContentIndex,
-		"transcript": obj.Transcript,
+// UnmarshalJSON validates required property keys then unmarshals into RealtimeServerEventResponseAudioTranscriptDone
+func (o *RealtimeServerEventResponseAudioTranscriptDone) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"event_id",
+		"type",
+		"response_id",
+		"item_id",
+		"output_index",
+		"content_index",
+		"transcript",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"event_id": false,
+		"type": false,
+		"response_id": false,
+		"item_id": false,
+		"output_index": false,
+		"content_index": false,
+		"transcript": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"event_id": {},
+		"type": {},
+		"response_id": {},
+		"item_id": {},
+		"output_index": {},
+		"content_index": {},
+		"transcript": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RealtimeServerEventResponseAudioTranscriptDone
+
+	if value, exists := allProperties["event_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.EventId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["response_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.ResponseId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["item_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.ItemId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["output_index"]; exists {
+		if err = json.Unmarshal(value, &decoded.OutputIndex); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["content_index"]; exists {
+		if err = json.Unmarshal(value, &decoded.ContentIndex); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["transcript"]; exists {
+		if err = json.Unmarshal(value, &decoded.Transcript); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRealtimeServerEventResponseAudioTranscriptDoneRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertRealtimeServerEventResponseAudioTranscriptDoneRequired(obj RealtimeServerEventResponseAudioTranscriptDone) error {
 	return nil
 }
 

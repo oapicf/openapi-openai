@@ -36,7 +36,7 @@ class  MessageContentTextObject_text_annotations_inner
 {
 public:
     MessageContentTextObject_text_annotations_inner();
-    virtual ~MessageContentTextObject_text_annotations_inner() = default;
+    virtual ~MessageContentTextObject_text_annotations_inner();
 
 
     /// <summary>

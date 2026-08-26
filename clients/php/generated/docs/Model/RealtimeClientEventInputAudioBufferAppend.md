@@ -1,4 +1,4 @@
-# # RealtimeClientEventInputAudioBufferAppend
+# RealtimeClientEventInputAudioBufferAppend
 
 ## Properties
 

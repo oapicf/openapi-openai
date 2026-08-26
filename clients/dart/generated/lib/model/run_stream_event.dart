@@ -53,10 +53,10 @@ class RunStreamEvent {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStreamEvent[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStreamEvent[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event'), 'Required key "RunStreamEvent[event]" is missing from JSON.');
+        assert(json[r'event'] != null, 'Required key "RunStreamEvent[event]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "RunStreamEvent[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "RunStreamEvent[data]" has a null value in JSON.');
         return true;
       }());
 
@@ -116,27 +116,28 @@ class RunStreamEvent {
 }
 
 
-class RunStreamEventEventEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStreamEventEventEnum._(this.value);
+enum RunStreamEventEventEnum {
+  threadPeriodRunPeriodExpired._(r'thread.run.expired'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStreamEventEventEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodRunPeriodExpired = RunStreamEventEventEnum._(r'thread.run.expired');
-
-  /// List of all possible values in this [enum][RunStreamEventEventEnum].
-  static const values = <RunStreamEventEventEnum>[
-    threadPeriodRunPeriodExpired,
-  ];
-
+  /// Returns the instance of [RunStreamEventEventEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStreamEventEventEnum? fromJson(dynamic value) => RunStreamEventEventEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStreamEventEventEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStreamEventEventEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStreamEventEventEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -158,9 +159,10 @@ class RunStreamEventEventEnumTypeTransformer {
 
   const RunStreamEventEventEnumTypeTransformer._();
 
-  String encode(RunStreamEventEventEnum data) => data.value;
+  String encode(RunStreamEventEventEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStreamEventEventEnum.
+  /// Returns the instance of [RunStreamEventEventEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -169,6 +171,9 @@ class RunStreamEventEventEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStreamEventEventEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStreamEventEventEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.run.expired': return RunStreamEventEventEnum.threadPeriodRunPeriodExpired;
@@ -181,7 +186,7 @@ class RunStreamEventEventEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStreamEventEventEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStreamEventEventEnumTypeTransformer? _instance;
 }
 

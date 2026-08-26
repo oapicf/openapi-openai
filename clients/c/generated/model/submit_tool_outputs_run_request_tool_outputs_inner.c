@@ -13,10 +13,10 @@ static submit_tool_outputs_run_request_tool_outputs_inner_t *submit_tool_outputs
     if (!submit_tool_outputs_run_request_tool_outputs_inner_local_var) {
         return NULL;
     }
+    memset(submit_tool_outputs_run_request_tool_outputs_inner_local_var, 0, sizeof(submit_tool_outputs_run_request_tool_outputs_inner_t));
+    submit_tool_outputs_run_request_tool_outputs_inner_local_var->_library_owned = 1;
     submit_tool_outputs_run_request_tool_outputs_inner_local_var->tool_call_id = tool_call_id;
     submit_tool_outputs_run_request_tool_outputs_inner_local_var->output = output;
-
-    submit_tool_outputs_run_request_tool_outputs_inner_local_var->_library_owned = 1;
     return submit_tool_outputs_run_request_tool_outputs_inner_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) submit_tool_outputs_run_request_tool_outputs_inner_t
     char *tool_call_id,
     char *output
     ) {
-    return submit_tool_outputs_run_request_tool_outputs_inner_create_internal (
+    submit_tool_outputs_run_request_tool_outputs_inner_t *result = submit_tool_outputs_run_request_tool_outputs_inner_create_internal (
         tool_call_id,
         output
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void submit_tool_outputs_run_request_tool_outputs_inner_free(submit_tool_outputs_run_request_tool_outputs_inner_t *submit_tool_outputs_run_request_tool_outputs_inner) {
@@ -80,6 +83,10 @@ submit_tool_outputs_run_request_tool_outputs_inner_t *submit_tool_outputs_run_re
 
     submit_tool_outputs_run_request_tool_outputs_inner_t *submit_tool_outputs_run_request_tool_outputs_inner_local_var = NULL;
 
+    char *tool_call_id_local_str = NULL;
+
+    char *output_local_str = NULL;
+
     // submit_tool_outputs_run_request_tool_outputs_inner->tool_call_id
     cJSON *tool_call_id = cJSON_GetObjectItemCaseSensitive(submit_tool_outputs_run_request_tool_outputs_innerJSON, "tool_call_id");
     if (cJSON_IsNull(tool_call_id)) {
@@ -105,13 +112,28 @@ submit_tool_outputs_run_request_tool_outputs_inner_t *submit_tool_outputs_run_re
     }
 
 
+    if (tool_call_id && !cJSON_IsNull(tool_call_id)) tool_call_id_local_str = strdup(tool_call_id->valuestring);
+    if (output && !cJSON_IsNull(output)) output_local_str = strdup(output->valuestring);
+
     submit_tool_outputs_run_request_tool_outputs_inner_local_var = submit_tool_outputs_run_request_tool_outputs_inner_create_internal (
-        tool_call_id && !cJSON_IsNull(tool_call_id) ? strdup(tool_call_id->valuestring) : NULL,
-        output && !cJSON_IsNull(output) ? strdup(output->valuestring) : NULL
+        tool_call_id_local_str,
+        output_local_str
         );
+
+    if (!submit_tool_outputs_run_request_tool_outputs_inner_local_var) {
+        goto end;
+    }
 
     return submit_tool_outputs_run_request_tool_outputs_inner_local_var;
 end:
+    if (tool_call_id_local_str) {
+        free(tool_call_id_local_str);
+        tool_call_id_local_str = NULL;
+    }
+    if (output_local_str) {
+        free(output_local_str);
+        output_local_str = NULL;
+    }
     return NULL;
 
 }

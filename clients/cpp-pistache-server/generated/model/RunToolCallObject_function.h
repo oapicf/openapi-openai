@@ -32,7 +32,7 @@ class  RunToolCallObject_function
 {
 public:
     RunToolCallObject_function();
-    virtual ~RunToolCallObject_function() = default;
+    virtual ~RunToolCallObject_function();
 
 
     /// <summary>

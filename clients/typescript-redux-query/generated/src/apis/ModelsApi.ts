@@ -53,7 +53,7 @@ function deleteModelRaw<T>(requestParameters: DeleteModelRequest, requestConfig:
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/models/{model}`.replace(`{${"model"}}`, encodeURIComponent(String(requestParameters.model))),
+        url: `${runtime.Configuration.basePath}/models/{model}`.replace('{model}', encodeURIComponent(String(requestParameters.model))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -143,7 +143,7 @@ function retrieveModelRaw<T>(requestParameters: RetrieveModelRequest, requestCon
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/models/{model}`.replace(`{${"model"}}`, encodeURIComponent(String(requestParameters.model))),
+        url: `${runtime.Configuration.basePath}/models/{model}`.replace('{model}', encodeURIComponent(String(requestParameters.model))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,

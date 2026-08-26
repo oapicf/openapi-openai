@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // VectorStoreFileObject - A list of files attached to a vector store.
@@ -39,24 +44,116 @@ type VectorStoreFileObject struct {
 
 	ChunkingStrategy VectorStoreFileObjectChunkingStrategy `json:"chunking_strategy,omitempty"`
 }
-
-// AssertVectorStoreFileObjectRequired checks if the required fields are not zero-ed
-func AssertVectorStoreFileObjectRequired(obj VectorStoreFileObject) error {
-	elements := map[string]interface{}{
-		"id": obj.Id,
-		"object": obj.Object,
-		"usage_bytes": obj.UsageBytes,
-		"created_at": obj.CreatedAt,
-		"vector_store_id": obj.VectorStoreId,
-		"status": obj.Status,
-		"last_error": obj.LastError,
+// UnmarshalJSON validates required property keys then unmarshals into VectorStoreFileObject
+func (o *VectorStoreFileObject) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"id",
+		"object",
+		"usage_bytes",
+		"created_at",
+		"vector_store_id",
+		"status",
+		"last_error",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"id": false,
+		"object": false,
+		"usage_bytes": false,
+		"created_at": false,
+		"vector_store_id": false,
+		"status": false,
+		"last_error": true,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"id": {},
+		"object": {},
+		"usage_bytes": {},
+		"created_at": {},
+		"vector_store_id": {},
+		"status": {},
+		"last_error": {},
+		"chunking_strategy": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded VectorStoreFileObject
+
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["usage_bytes"]; exists {
+		if err = json.Unmarshal(value, &decoded.UsageBytes); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["created_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CreatedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["vector_store_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.VectorStoreId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["status"]; exists {
+		if err = json.Unmarshal(value, &decoded.Status); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["last_error"]; exists {
+		if err = json.Unmarshal(value, &decoded.LastError); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["chunking_strategy"]; exists {
+		if err = json.Unmarshal(value, &decoded.ChunkingStrategy); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertVectorStoreFileObjectRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertVectorStoreFileObjectRequired(obj VectorStoreFileObject) error {
 	if obj.LastError != nil {
 		if err := AssertVectorStoreFileObjectLastErrorRequired(*obj.LastError); err != nil {
 			return err

@@ -113,8 +113,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectUserListResponse" />
     /// </summary>
-    public class ProjectUserListResponseJsonConverter : JsonConverter<ProjectUserListResponse>
+    public partial class ProjectUserListResponseJsonConverter : JsonConverter<ProjectUserListResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectUserListResponseJsonConverter" /> class.
+        /// </summary>
+        public ProjectUserListResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProjectUserListResponse" />
         /// </summary>

@@ -112,29 +112,33 @@ class _$AuditLogActorApiKeySerializer implements PrimitiveSerializer<AuditLogAct
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogActorApiKeyTypeEnum),
-          ) as AuditLogActorApiKeyTypeEnum;
+            specifiedType: const FullType.nullable(AuditLogActorApiKeyTypeEnum),
+          ) as AuditLogActorApiKeyTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'user':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogActorUser),
-          ) as AuditLogActorUser;
+            specifiedType: const FullType.nullable(AuditLogActorUser),
+          ) as AuditLogActorUser?;
+          if (valueDes == null) continue;
           result.user.replace(valueDes);
           break;
         case r'service_account':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogActorServiceAccount),
-          ) as AuditLogActorServiceAccount;
+            specifiedType: const FullType.nullable(AuditLogActorServiceAccount),
+          ) as AuditLogActorServiceAccount?;
+          if (valueDes == null) continue;
           result.serviceAccount.replace(valueDes);
           break;
         default:

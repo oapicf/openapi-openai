@@ -284,10 +284,11 @@ VectorStoresApi <- R6::R6Class(
     #' @param batch_id The ID of the file batch to cancel.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return VectorStoreFileBatchObject
-    CancelVectorStoreFileBatch = function(vector_store_id, batch_id, data_file = NULL, ...) {
-      local_var_response <- self$CancelVectorStoreFileBatchWithHttpInfo(vector_store_id, batch_id, data_file = data_file, ...)
+    CancelVectorStoreFileBatch = function(vector_store_id, batch_id, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$CancelVectorStoreFileBatchWithHttpInfo(vector_store_id, batch_id, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -306,9 +307,10 @@ VectorStoresApi <- R6::R6Class(
     #' @param batch_id The ID of the file batch to cancel.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (VectorStoreFileBatchObject) with additional information such as HTTP status code, headers
-    CancelVectorStoreFileBatchWithHttpInfo = function(vector_store_id, batch_id, data_file = NULL, ...) {
+    CancelVectorStoreFileBatchWithHttpInfo = function(vector_store_id, batch_id, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -372,6 +374,10 @@ VectorStoresApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "VectorStoreFileBatchObject"),
@@ -385,11 +391,15 @@ VectorStoresApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -402,10 +412,11 @@ VectorStoresApi <- R6::R6Class(
     #' @param create_vector_store_request 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return VectorStoreObject
-    CreateVectorStore = function(create_vector_store_request, data_file = NULL, ...) {
-      local_var_response <- self$CreateVectorStoreWithHttpInfo(create_vector_store_request, data_file = data_file, ...)
+    CreateVectorStore = function(create_vector_store_request, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$CreateVectorStoreWithHttpInfo(create_vector_store_request, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -423,9 +434,10 @@ VectorStoresApi <- R6::R6Class(
     #' @param create_vector_store_request 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (VectorStoreObject) with additional information such as HTTP status code, headers
-    CreateVectorStoreWithHttpInfo = function(create_vector_store_request, data_file = NULL, ...) {
+    CreateVectorStoreWithHttpInfo = function(create_vector_store_request, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -479,6 +491,10 @@ VectorStoresApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "VectorStoreObject"),
@@ -492,11 +508,15 @@ VectorStoresApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -510,10 +530,11 @@ VectorStoresApi <- R6::R6Class(
     #' @param create_vector_store_file_request 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return VectorStoreFileObject
-    CreateVectorStoreFile = function(vector_store_id, create_vector_store_file_request, data_file = NULL, ...) {
-      local_var_response <- self$CreateVectorStoreFileWithHttpInfo(vector_store_id, create_vector_store_file_request, data_file = data_file, ...)
+    CreateVectorStoreFile = function(vector_store_id, create_vector_store_file_request, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$CreateVectorStoreFileWithHttpInfo(vector_store_id, create_vector_store_file_request, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -532,9 +553,10 @@ VectorStoresApi <- R6::R6Class(
     #' @param create_vector_store_file_request 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (VectorStoreFileObject) with additional information such as HTTP status code, headers
-    CreateVectorStoreFileWithHttpInfo = function(vector_store_id, create_vector_store_file_request, data_file = NULL, ...) {
+    CreateVectorStoreFileWithHttpInfo = function(vector_store_id, create_vector_store_file_request, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -600,6 +622,10 @@ VectorStoresApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "VectorStoreFileObject"),
@@ -613,11 +639,15 @@ VectorStoresApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -631,10 +661,11 @@ VectorStoresApi <- R6::R6Class(
     #' @param create_vector_store_file_batch_request 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return VectorStoreFileBatchObject
-    CreateVectorStoreFileBatch = function(vector_store_id, create_vector_store_file_batch_request, data_file = NULL, ...) {
-      local_var_response <- self$CreateVectorStoreFileBatchWithHttpInfo(vector_store_id, create_vector_store_file_batch_request, data_file = data_file, ...)
+    CreateVectorStoreFileBatch = function(vector_store_id, create_vector_store_file_batch_request, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$CreateVectorStoreFileBatchWithHttpInfo(vector_store_id, create_vector_store_file_batch_request, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -653,9 +684,10 @@ VectorStoresApi <- R6::R6Class(
     #' @param create_vector_store_file_batch_request 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (VectorStoreFileBatchObject) with additional information such as HTTP status code, headers
-    CreateVectorStoreFileBatchWithHttpInfo = function(vector_store_id, create_vector_store_file_batch_request, data_file = NULL, ...) {
+    CreateVectorStoreFileBatchWithHttpInfo = function(vector_store_id, create_vector_store_file_batch_request, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -721,6 +753,10 @@ VectorStoresApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "VectorStoreFileBatchObject"),
@@ -734,11 +770,15 @@ VectorStoresApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -751,10 +791,11 @@ VectorStoresApi <- R6::R6Class(
     #' @param vector_store_id The ID of the vector store to delete.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return DeleteVectorStoreResponse
-    DeleteVectorStore = function(vector_store_id, data_file = NULL, ...) {
-      local_var_response <- self$DeleteVectorStoreWithHttpInfo(vector_store_id, data_file = data_file, ...)
+    DeleteVectorStore = function(vector_store_id, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$DeleteVectorStoreWithHttpInfo(vector_store_id, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -772,9 +813,10 @@ VectorStoresApi <- R6::R6Class(
     #' @param vector_store_id The ID of the vector store to delete.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (DeleteVectorStoreResponse) with additional information such as HTTP status code, headers
-    DeleteVectorStoreWithHttpInfo = function(vector_store_id, data_file = NULL, ...) {
+    DeleteVectorStoreWithHttpInfo = function(vector_store_id, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -826,6 +868,10 @@ VectorStoresApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "DeleteVectorStoreResponse"),
@@ -839,11 +885,15 @@ VectorStoresApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -857,10 +907,11 @@ VectorStoresApi <- R6::R6Class(
     #' @param file_id The ID of the file to delete.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return DeleteVectorStoreFileResponse
-    DeleteVectorStoreFile = function(vector_store_id, file_id, data_file = NULL, ...) {
-      local_var_response <- self$DeleteVectorStoreFileWithHttpInfo(vector_store_id, file_id, data_file = data_file, ...)
+    DeleteVectorStoreFile = function(vector_store_id, file_id, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$DeleteVectorStoreFileWithHttpInfo(vector_store_id, file_id, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -879,9 +930,10 @@ VectorStoresApi <- R6::R6Class(
     #' @param file_id The ID of the file to delete.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (DeleteVectorStoreFileResponse) with additional information such as HTTP status code, headers
-    DeleteVectorStoreFileWithHttpInfo = function(vector_store_id, file_id, data_file = NULL, ...) {
+    DeleteVectorStoreFileWithHttpInfo = function(vector_store_id, file_id, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -945,6 +997,10 @@ VectorStoresApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "DeleteVectorStoreFileResponse"),
@@ -958,11 +1014,15 @@ VectorStoresApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -975,10 +1035,11 @@ VectorStoresApi <- R6::R6Class(
     #' @param vector_store_id The ID of the vector store to retrieve.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return VectorStoreObject
-    GetVectorStore = function(vector_store_id, data_file = NULL, ...) {
-      local_var_response <- self$GetVectorStoreWithHttpInfo(vector_store_id, data_file = data_file, ...)
+    GetVectorStore = function(vector_store_id, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$GetVectorStoreWithHttpInfo(vector_store_id, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -996,9 +1057,10 @@ VectorStoresApi <- R6::R6Class(
     #' @param vector_store_id The ID of the vector store to retrieve.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (VectorStoreObject) with additional information such as HTTP status code, headers
-    GetVectorStoreWithHttpInfo = function(vector_store_id, data_file = NULL, ...) {
+    GetVectorStoreWithHttpInfo = function(vector_store_id, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -1050,6 +1112,10 @@ VectorStoresApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "VectorStoreObject"),
@@ -1063,11 +1129,15 @@ VectorStoresApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -1081,10 +1151,11 @@ VectorStoresApi <- R6::R6Class(
     #' @param file_id The ID of the file being retrieved.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return VectorStoreFileObject
-    GetVectorStoreFile = function(vector_store_id, file_id, data_file = NULL, ...) {
-      local_var_response <- self$GetVectorStoreFileWithHttpInfo(vector_store_id, file_id, data_file = data_file, ...)
+    GetVectorStoreFile = function(vector_store_id, file_id, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$GetVectorStoreFileWithHttpInfo(vector_store_id, file_id, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -1103,9 +1174,10 @@ VectorStoresApi <- R6::R6Class(
     #' @param file_id The ID of the file being retrieved.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (VectorStoreFileObject) with additional information such as HTTP status code, headers
-    GetVectorStoreFileWithHttpInfo = function(vector_store_id, file_id, data_file = NULL, ...) {
+    GetVectorStoreFileWithHttpInfo = function(vector_store_id, file_id, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -1169,6 +1241,10 @@ VectorStoresApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "VectorStoreFileObject"),
@@ -1182,11 +1258,15 @@ VectorStoresApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -1200,10 +1280,11 @@ VectorStoresApi <- R6::R6Class(
     #' @param batch_id The ID of the file batch being retrieved.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return VectorStoreFileBatchObject
-    GetVectorStoreFileBatch = function(vector_store_id, batch_id, data_file = NULL, ...) {
-      local_var_response <- self$GetVectorStoreFileBatchWithHttpInfo(vector_store_id, batch_id, data_file = data_file, ...)
+    GetVectorStoreFileBatch = function(vector_store_id, batch_id, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$GetVectorStoreFileBatchWithHttpInfo(vector_store_id, batch_id, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -1222,9 +1303,10 @@ VectorStoresApi <- R6::R6Class(
     #' @param batch_id The ID of the file batch being retrieved.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (VectorStoreFileBatchObject) with additional information such as HTTP status code, headers
-    GetVectorStoreFileBatchWithHttpInfo = function(vector_store_id, batch_id, data_file = NULL, ...) {
+    GetVectorStoreFileBatchWithHttpInfo = function(vector_store_id, batch_id, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -1288,6 +1370,10 @@ VectorStoresApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "VectorStoreFileBatchObject"),
@@ -1301,11 +1387,15 @@ VectorStoresApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -1324,10 +1414,11 @@ VectorStoresApi <- R6::R6Class(
     #' @param filter (optional) Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return ListVectorStoreFilesResponse
-    ListFilesInVectorStoreBatch = function(vector_store_id, batch_id, limit = 20, order = "desc", after = NULL, before = NULL, filter = NULL, data_file = NULL, ...) {
-      local_var_response <- self$ListFilesInVectorStoreBatchWithHttpInfo(vector_store_id, batch_id, limit, order, after, before, filter, data_file = data_file, ...)
+    ListFilesInVectorStoreBatch = function(vector_store_id, batch_id, limit = 20, order = "desc", after = NULL, before = NULL, filter = NULL, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$ListFilesInVectorStoreBatchWithHttpInfo(vector_store_id, batch_id, limit, order, after, before, filter, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -1351,9 +1442,10 @@ VectorStoresApi <- R6::R6Class(
     #' @param filter (optional) Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (ListVectorStoreFilesResponse) with additional information such as HTTP status code, headers
-    ListFilesInVectorStoreBatchWithHttpInfo = function(vector_store_id, batch_id, limit = 20, order = "desc", after = NULL, before = NULL, filter = NULL, data_file = NULL, ...) {
+    ListFilesInVectorStoreBatchWithHttpInfo = function(vector_store_id, batch_id, limit = 20, order = "desc", after = NULL, before = NULL, filter = NULL, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -1453,6 +1545,10 @@ VectorStoresApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "ListVectorStoreFilesResponse"),
@@ -1466,11 +1562,15 @@ VectorStoresApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -1488,10 +1588,11 @@ VectorStoresApi <- R6::R6Class(
     #' @param filter (optional) Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return ListVectorStoreFilesResponse
-    ListVectorStoreFiles = function(vector_store_id, limit = 20, order = "desc", after = NULL, before = NULL, filter = NULL, data_file = NULL, ...) {
-      local_var_response <- self$ListVectorStoreFilesWithHttpInfo(vector_store_id, limit, order, after, before, filter, data_file = data_file, ...)
+    ListVectorStoreFiles = function(vector_store_id, limit = 20, order = "desc", after = NULL, before = NULL, filter = NULL, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$ListVectorStoreFilesWithHttpInfo(vector_store_id, limit, order, after, before, filter, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -1514,9 +1615,10 @@ VectorStoresApi <- R6::R6Class(
     #' @param filter (optional) Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (ListVectorStoreFilesResponse) with additional information such as HTTP status code, headers
-    ListVectorStoreFilesWithHttpInfo = function(vector_store_id, limit = 20, order = "desc", after = NULL, before = NULL, filter = NULL, data_file = NULL, ...) {
+    ListVectorStoreFilesWithHttpInfo = function(vector_store_id, limit = 20, order = "desc", after = NULL, before = NULL, filter = NULL, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -1604,6 +1706,10 @@ VectorStoresApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "ListVectorStoreFilesResponse"),
@@ -1617,11 +1723,15 @@ VectorStoresApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -1637,10 +1747,11 @@ VectorStoresApi <- R6::R6Class(
     #' @param before (optional) A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return ListVectorStoresResponse
-    ListVectorStores = function(limit = 20, order = "desc", after = NULL, before = NULL, data_file = NULL, ...) {
-      local_var_response <- self$ListVectorStoresWithHttpInfo(limit, order, after, before, data_file = data_file, ...)
+    ListVectorStores = function(limit = 20, order = "desc", after = NULL, before = NULL, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$ListVectorStoresWithHttpInfo(limit, order, after, before, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -1661,9 +1772,10 @@ VectorStoresApi <- R6::R6Class(
     #' @param before (optional) A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (ListVectorStoresResponse) with additional information such as HTTP status code, headers
-    ListVectorStoresWithHttpInfo = function(limit = 20, order = "desc", after = NULL, before = NULL, data_file = NULL, ...) {
+    ListVectorStoresWithHttpInfo = function(limit = 20, order = "desc", after = NULL, before = NULL, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -1730,6 +1842,10 @@ VectorStoresApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "ListVectorStoresResponse"),
@@ -1743,11 +1859,15 @@ VectorStoresApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)
@@ -1761,10 +1881,11 @@ VectorStoresApi <- R6::R6Class(
     #' @param update_vector_store_request 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return VectorStoreObject
-    ModifyVectorStore = function(vector_store_id, update_vector_store_request, data_file = NULL, ...) {
-      local_var_response <- self$ModifyVectorStoreWithHttpInfo(vector_store_id, update_vector_store_request, data_file = data_file, ...)
+    ModifyVectorStore = function(vector_store_id, update_vector_store_request, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$ModifyVectorStoreWithHttpInfo(vector_store_id, update_vector_store_request, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -1783,9 +1904,10 @@ VectorStoresApi <- R6::R6Class(
     #' @param update_vector_store_request 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (VectorStoreObject) with additional information such as HTTP status code, headers
-    ModifyVectorStoreWithHttpInfo = function(vector_store_id, update_vector_store_request, data_file = NULL, ...) {
+    ModifyVectorStoreWithHttpInfo = function(vector_store_id, update_vector_store_request, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -1851,6 +1973,10 @@ VectorStoresApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "VectorStoreObject"),
@@ -1864,11 +1990,15 @@ VectorStoresApi <- R6::R6Class(
       
       local_var_error_msg <- local_var_resp$response_as_text()      
       if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
-        ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
+        ApiResponse$new(content = paste("Server returned ", local_var_resp$status_code, " response status code."),
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
-        ApiResponse$new("API client error", local_var_resp)
+        ApiResponse$new(content = "API client error",
+                        response = local_var_resp,
+                        status_code = local_var_resp$status_code)
       } else if (local_var_resp$status_code >= 500 && local_var_resp$status_code <= 599) {
-        if (is.null(local_var_resp$response) || local_var_resp$response == "") {
+        if (is.null(local_var_resp$response) || all(local_var_resp$response == "")) {
           local_var_resp$response <- "API server error"
         }
         return(local_var_resp)

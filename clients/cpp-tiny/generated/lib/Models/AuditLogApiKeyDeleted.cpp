@@ -64,7 +64,7 @@ AuditLog_api_key_deleted::getId()
 }
 
 void
-AuditLog_api_key_deleted::setId(std::string  id)
+AuditLog_api_key_deleted::setId(std::string id)
 {
 	this->id = id;
 }

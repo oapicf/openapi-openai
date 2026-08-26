@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIFineTuneCompletionRequestInput::OAIFineTuneCompletionRequestInput(QString json) {
+OAIFineTuneCompletionRequestInput::OAIFineTuneCompletionRequestInput(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIFineTuneCompletionRequestInput::initializeModel() {
     m_completion_isValid = false;
 }
 
-void OAIFineTuneCompletionRequestInput::fromJson(QString jsonString) {
+void OAIFineTuneCompletionRequestInput::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

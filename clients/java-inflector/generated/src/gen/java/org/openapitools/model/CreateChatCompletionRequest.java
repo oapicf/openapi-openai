@@ -29,7 +29,7 @@ import org.openapitools.model.PredictionContent;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-26T05:15:28.776347668Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateChatCompletionRequest   {
   @JsonProperty("messages")
   private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
@@ -184,7 +184,7 @@ public class CreateChatCompletionRequest   {
   private ServiceTierEnum serviceTier = ServiceTierEnum.AUTO;
 
   @JsonProperty("stop")
-  private CreateChatCompletionRequestStop stop = null;
+  private CreateChatCompletionRequestStop stop;
 
   @JsonProperty("stream")
   private Boolean stream = false;
@@ -456,6 +456,7 @@ public class CreateChatCompletionRequest   {
   }
 
   /**
+   * Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
    **/
   public CreateChatCompletionRequest prediction(PredictionContent prediction) {
     this.prediction = prediction;
@@ -463,7 +464,7 @@ public class CreateChatCompletionRequest   {
   }
 
   
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. ")
   @JsonProperty("prediction")
   public PredictionContent getPrediction() {
     return prediction;
@@ -853,10 +854,7 @@ public class CreateChatCompletionRequest   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

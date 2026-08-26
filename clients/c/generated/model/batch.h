@@ -47,15 +47,15 @@ typedef struct batch_t {
     openai_api_batch_STATUS_e status; //enum
     char *output_file_id; // string
     char *error_file_id; // string
-    int created_at; //numeric
-    int in_progress_at; //numeric
-    int expires_at; //numeric
-    int finalizing_at; //numeric
-    int completed_at; //numeric
-    int failed_at; //numeric
-    int expired_at; //numeric
-    int cancelling_at; //numeric
-    int cancelled_at; //numeric
+    int *created_at; //numeric
+    int *in_progress_at; //numeric
+    int *expires_at; //numeric
+    int *finalizing_at; //numeric
+    int *completed_at; //numeric
+    int *failed_at; //numeric
+    int *expired_at; //numeric
+    int *cancelling_at; //numeric
+    int *cancelled_at; //numeric
     struct batch_request_counts_t *request_counts; //model
     object_t *metadata; //object
 
@@ -72,15 +72,15 @@ __attribute__((deprecated)) batch_t *batch_create(
     openai_api_batch_STATUS_e status,
     char *output_file_id,
     char *error_file_id,
-    int created_at,
-    int in_progress_at,
-    int expires_at,
-    int finalizing_at,
-    int completed_at,
-    int failed_at,
-    int expired_at,
-    int cancelling_at,
-    int cancelled_at,
+    int *created_at,
+    int *in_progress_at,
+    int *expires_at,
+    int *finalizing_at,
+    int *completed_at,
+    int *failed_at,
+    int *expired_at,
+    int *cancelling_at,
+    int *cancelled_at,
     batch_request_counts_t *request_counts,
     object_t *metadata
 );

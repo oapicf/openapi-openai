@@ -12,18 +12,21 @@ static audit_log_project_updated_changes_requested_t *audit_log_project_updated_
     if (!audit_log_project_updated_changes_requested_local_var) {
         return NULL;
     }
-    audit_log_project_updated_changes_requested_local_var->title = title;
-
+    memset(audit_log_project_updated_changes_requested_local_var, 0, sizeof(audit_log_project_updated_changes_requested_t));
     audit_log_project_updated_changes_requested_local_var->_library_owned = 1;
+    audit_log_project_updated_changes_requested_local_var->title = title;
     return audit_log_project_updated_changes_requested_local_var;
 }
 
 __attribute__((deprecated)) audit_log_project_updated_changes_requested_t *audit_log_project_updated_changes_requested_create(
     char *title
     ) {
-    return audit_log_project_updated_changes_requested_create_internal (
+    audit_log_project_updated_changes_requested_t *result = audit_log_project_updated_changes_requested_create_internal (
         title
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void audit_log_project_updated_changes_requested_free(audit_log_project_updated_changes_requested_t *audit_log_project_updated_changes_requested) {
@@ -64,6 +67,8 @@ audit_log_project_updated_changes_requested_t *audit_log_project_updated_changes
 
     audit_log_project_updated_changes_requested_t *audit_log_project_updated_changes_requested_local_var = NULL;
 
+    char *title_local_str = NULL;
+
     // audit_log_project_updated_changes_requested->title
     cJSON *title = cJSON_GetObjectItemCaseSensitive(audit_log_project_updated_changes_requestedJSON, "title");
     if (cJSON_IsNull(title)) {
@@ -77,12 +82,22 @@ audit_log_project_updated_changes_requested_t *audit_log_project_updated_changes
     }
 
 
+    if (title && !cJSON_IsNull(title)) title_local_str = strdup(title->valuestring);
+
     audit_log_project_updated_changes_requested_local_var = audit_log_project_updated_changes_requested_create_internal (
-        title && !cJSON_IsNull(title) ? strdup(title->valuestring) : NULL
+        title_local_str
         );
+
+    if (!audit_log_project_updated_changes_requested_local_var) {
+        goto end;
+    }
 
     return audit_log_project_updated_changes_requested_local_var;
 end:
+    if (title_local_str) {
+        free(title_local_str);
+        title_local_str = NULL;
+    }
     return NULL;
 
 }

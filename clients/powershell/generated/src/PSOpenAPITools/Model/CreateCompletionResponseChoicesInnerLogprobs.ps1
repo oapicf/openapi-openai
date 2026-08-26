@@ -51,10 +51,10 @@ function Initialize-CreateCompletionResponseChoicesInnerLogprobs {
 
 
         $PSO = [PSCustomObject]@{
-            "text_offset" = ${TextOffset}
-            "token_logprobs" = ${TokenLogprobs}
-            "tokens" = ${Tokens}
-            "top_logprobs" = ${TopLogprobs}
+            'text_offset' = ${TextOffset}
+            'token_logprobs' = ${TokenLogprobs}
+            'tokens' = ${Tokens}
+            'top_logprobs' = ${TopLogprobs}
         }
 
 
@@ -92,42 +92,42 @@ function ConvertFrom-JsonToCreateCompletionResponseChoicesInnerLogprobs {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateCompletionResponseChoicesInnerLogprobs
-        $AllProperties = ("text_offset", "token_logprobs", "tokens", "top_logprobs")
+        $AllProperties = ('text_offset', 'token_logprobs', 'tokens', 'top_logprobs')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "text_offset"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'text_offset'))) { #optional property not found
             $TextOffset = $null
         } else {
-            $TextOffset = $JsonParameters.PSobject.Properties["text_offset"].value
+            $TextOffset = $JsonParameters.PSobject.Properties['text_offset'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "token_logprobs"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'token_logprobs'))) { #optional property not found
             $TokenLogprobs = $null
         } else {
-            $TokenLogprobs = $JsonParameters.PSobject.Properties["token_logprobs"].value
+            $TokenLogprobs = $JsonParameters.PSobject.Properties['token_logprobs'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tokens'))) { #optional property not found
             $Tokens = $null
         } else {
-            $Tokens = $JsonParameters.PSobject.Properties["tokens"].value
+            $Tokens = $JsonParameters.PSobject.Properties['tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "top_logprobs"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'top_logprobs'))) { #optional property not found
             $TopLogprobs = $null
         } else {
-            $TopLogprobs = $JsonParameters.PSobject.Properties["top_logprobs"].value
+            $TopLogprobs = $JsonParameters.PSobject.Properties['top_logprobs'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "text_offset" = ${TextOffset}
-            "token_logprobs" = ${TokenLogprobs}
-            "tokens" = ${Tokens}
-            "top_logprobs" = ${TopLogprobs}
+            'text_offset' = ${TextOffset}
+            'token_logprobs' = ${TokenLogprobs}
+            'tokens' = ${Tokens}
+            'top_logprobs' = ${TopLogprobs}
         }
 
         return $PSO

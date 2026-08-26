@@ -26,7 +26,7 @@ message RealtimeServerEventConversationItemCreated {
     TYPE_CONVERSATION_ITEM_CREATED = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // The ID of the preceding item in the Conversation context, allows the  client to understand the order of the conversation. 
   string previous_item_id = 495766402;

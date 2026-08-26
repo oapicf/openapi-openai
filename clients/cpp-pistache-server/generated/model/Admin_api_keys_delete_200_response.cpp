@@ -30,6 +30,8 @@ Admin_api_keys_delete_200_response::Admin_api_keys_delete_200_response()
     
 }
 
+Admin_api_keys_delete_200_response::~Admin_api_keys_delete_200_response() = default;
+
 void Admin_api_keys_delete_200_response::validate() const
 {
     std::stringstream msg;

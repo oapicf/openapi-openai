@@ -1,4 +1,4 @@
-# # CreateCompletionResponseChoicesInner
+# CreateCompletionResponseChoicesInner
 
 ## Properties
 

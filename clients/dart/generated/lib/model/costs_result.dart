@@ -85,10 +85,8 @@ class CostsResult {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CostsResult[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CostsResult[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "CostsResult[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "CostsResult[object]" has a null value in JSON.');
         return true;
       }());
 
@@ -149,27 +147,28 @@ class CostsResult {
 }
 
 
-class CostsResultObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CostsResultObjectEnum._(this.value);
+enum CostsResultObjectEnum {
+  organizationPeriodCostsPeriodResult._(r'organization.costs.result'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CostsResultObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const organizationPeriodCostsPeriodResult = CostsResultObjectEnum._(r'organization.costs.result');
-
-  /// List of all possible values in this [enum][CostsResultObjectEnum].
-  static const values = <CostsResultObjectEnum>[
-    organizationPeriodCostsPeriodResult,
-  ];
-
+  /// Returns the instance of [CostsResultObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CostsResultObjectEnum? fromJson(dynamic value) => CostsResultObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CostsResultObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CostsResultObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CostsResultObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -191,9 +190,10 @@ class CostsResultObjectEnumTypeTransformer {
 
   const CostsResultObjectEnumTypeTransformer._();
 
-  String encode(CostsResultObjectEnum data) => data.value;
+  String encode(CostsResultObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CostsResultObjectEnum.
+  /// Returns the instance of [CostsResultObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -202,6 +202,9 @@ class CostsResultObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CostsResultObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CostsResultObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'organization.costs.result': return CostsResultObjectEnum.organizationPeriodCostsPeriodResult;
@@ -214,7 +217,7 @@ class CostsResultObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CostsResultObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CostsResultObjectEnumTypeTransformer? _instance;
 }
 

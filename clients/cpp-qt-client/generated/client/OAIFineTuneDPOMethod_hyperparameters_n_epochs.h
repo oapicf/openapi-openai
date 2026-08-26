@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIFineTuneDPOMethod_hyperparameters_n_epochs : public OAIObject {
 public:
     OAIFineTuneDPOMethod_hyperparameters_n_epochs();
-    OAIFineTuneDPOMethod_hyperparameters_n_epochs(QString json);
+    OAIFineTuneDPOMethod_hyperparameters_n_epochs(const QString &json);
     ~OAIFineTuneDPOMethod_hyperparameters_n_epochs() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

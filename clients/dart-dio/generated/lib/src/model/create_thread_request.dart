@@ -101,8 +101,9 @@ class _$CreateThreadRequestSerializer implements PrimitiveSerializer<CreateThrea
         case r'messages':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(CreateMessageRequest)]),
-          ) as BuiltList<CreateMessageRequest>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(CreateMessageRequest)]),
+          ) as BuiltList<CreateMessageRequest>?;
+          if (valueDes == null) continue;
           result.messages.replace(valueDes);
           break;
         case r'tool_resources':

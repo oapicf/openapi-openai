@@ -1,11 +1,17 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.CreateTranscriptionResponseJson
 import org.openapitools.model.CreateTranscriptionResponseVerboseJson
 import org.openapitools.model.TranscriptionSegment
 import org.openapitools.model.TranscriptionWord
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -19,31 +25,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param text The transcribed text.
- * @param language The language of the input audio.
- * @param duration The duration of the input audio.
- * @param words Extracted words and their corresponding timestamps.
- * @param segments Segments of the transcribed text and their corresponding details.
  */
-data class CreateTranscription200Response(
-
-    @Schema(example = "null", required = true, description = "The transcribed text.")
-    @get:JsonProperty("text", required = true) val text: kotlin.String,
-
-    @Schema(example = "null", required = true, description = "The language of the input audio.")
-    @get:JsonProperty("language", required = true) val language: kotlin.String,
-
-    @Schema(example = "null", required = true, description = "The duration of the input audio.")
-    @get:JsonProperty("duration", required = true) val duration: kotlin.String,
-
-    @field:Valid
-    @Schema(example = "null", description = "Extracted words and their corresponding timestamps.")
-    @get:JsonProperty("words") val words: kotlin.collections.List<TranscriptionWord>? = null,
-
-    @field:Valid
-    @Schema(example = "null", description = "Segments of the transcribed text and their corresponding details.")
-    @get:JsonProperty("segments") val segments: kotlin.collections.List<TranscriptionSegment>? = null
-) {
-
+sealed interface CreateTranscription200Response {
 }
 

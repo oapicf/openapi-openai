@@ -63,7 +63,7 @@ static realtime_response_create_params_t *realtime_response_create_params_create
     openai_api_realtime_response_create_params_OUTPUTAUDIOFORMAT_e output_audio_format,
     list_t *tools,
     char *tool_choice,
-    double temperature,
+    double *temperature,
     realtime_response_create_params_max_response_output_tokens_t *max_response_output_tokens,
     realtime_response_create_params_conversation_t *conversation,
     object_t *metadata,
@@ -73,6 +73,8 @@ static realtime_response_create_params_t *realtime_response_create_params_create
     if (!realtime_response_create_params_local_var) {
         return NULL;
     }
+    memset(realtime_response_create_params_local_var, 0, sizeof(realtime_response_create_params_t));
+    realtime_response_create_params_local_var->_library_owned = 1;
     realtime_response_create_params_local_var->modalities = modalities;
     realtime_response_create_params_local_var->instructions = instructions;
     realtime_response_create_params_local_var->voice = voice;
@@ -84,8 +86,6 @@ static realtime_response_create_params_t *realtime_response_create_params_create
     realtime_response_create_params_local_var->conversation = conversation;
     realtime_response_create_params_local_var->metadata = metadata;
     realtime_response_create_params_local_var->input = input;
-
-    realtime_response_create_params_local_var->_library_owned = 1;
     return realtime_response_create_params_local_var;
 }
 
@@ -96,25 +96,34 @@ __attribute__((deprecated)) realtime_response_create_params_t *realtime_response
     openai_api_realtime_response_create_params_OUTPUTAUDIOFORMAT_e output_audio_format,
     list_t *tools,
     char *tool_choice,
-    double temperature,
+    double *temperature,
     realtime_response_create_params_max_response_output_tokens_t *max_response_output_tokens,
     realtime_response_create_params_conversation_t *conversation,
     object_t *metadata,
     list_t *input
     ) {
-    return realtime_response_create_params_create_internal (
+    double *temperature_copy = NULL;
+    if (temperature) {
+        temperature_copy = malloc(sizeof(double));
+        if (temperature_copy) *temperature_copy = *temperature;
+    }
+    realtime_response_create_params_t *result = realtime_response_create_params_create_internal (
         modalities,
         instructions,
         voice,
         output_audio_format,
         tools,
         tool_choice,
-        temperature,
+        temperature_copy,
         max_response_output_tokens,
         conversation,
         metadata,
         input
         );
+    if (!result) {
+        free(temperature_copy);
+    }
+    return result;
 }
 
 void realtime_response_create_params_free(realtime_response_create_params_t *realtime_response_create_params) {
@@ -147,6 +156,10 @@ void realtime_response_create_params_free(realtime_response_create_params_t *rea
     if (realtime_response_create_params->tool_choice) {
         free(realtime_response_create_params->tool_choice);
         realtime_response_create_params->tool_choice = NULL;
+    }
+    if (realtime_response_create_params->temperature) {
+        free(realtime_response_create_params->temperature);
+        realtime_response_create_params->temperature = NULL;
     }
     if (realtime_response_create_params->max_response_output_tokens) {
         realtime_response_create_params_max_response_output_tokens_free(realtime_response_create_params->max_response_output_tokens);
@@ -246,7 +259,7 @@ cJSON *realtime_response_create_params_convertToJSON(realtime_response_create_pa
 
     // realtime_response_create_params->temperature
     if(realtime_response_create_params->temperature) {
-    if(cJSON_AddNumberToObject(item, "temperature", realtime_response_create_params->temperature) == NULL) {
+    if(cJSON_AddNumberToObject(item, "temperature", *realtime_response_create_params->temperature) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -325,8 +338,15 @@ realtime_response_create_params_t *realtime_response_create_params_parseFromJSON
     // define the local list for realtime_response_create_params->modalities
     list_t *modalitiesList = NULL;
 
+    char *instructions_local_str = NULL;
+
     // define the local list for realtime_response_create_params->tools
     list_t *toolsList = NULL;
+
+    char *tool_choice_local_str = NULL;
+
+    // define the local variable for realtime_response_create_params->temperature
+    double *temperature_local_var = NULL;
 
     // define the local variable for realtime_response_create_params->max_response_output_tokens
     realtime_response_create_params_max_response_output_tokens_t *max_response_output_tokens_local_nonprim = NULL;
@@ -445,6 +465,12 @@ realtime_response_create_params_t *realtime_response_create_params_parseFromJSON
     {
     goto end; //Numeric
     }
+    temperature_local_var = malloc(sizeof(double));
+    if(!temperature_local_var)
+    {
+        goto end;
+    }
+    *temperature_local_var = temperature->valuedouble;
     }
 
     // realtime_response_create_params->max_response_output_tokens
@@ -500,19 +526,26 @@ realtime_response_create_params_t *realtime_response_create_params_parseFromJSON
     }
 
 
+    if (instructions && !cJSON_IsNull(instructions)) instructions_local_str = strdup(instructions->valuestring);
+    if (tool_choice && !cJSON_IsNull(tool_choice)) tool_choice_local_str = strdup(tool_choice->valuestring);
+
     realtime_response_create_params_local_var = realtime_response_create_params_create_internal (
         modalities ? modalitiesList : NULL,
-        instructions && !cJSON_IsNull(instructions) ? strdup(instructions->valuestring) : NULL,
+        instructions_local_str,
         voice ? voiceVariable : openai_api_realtime_response_create_params_VOICE_NULL,
         output_audio_format ? output_audio_formatVariable : openai_api_realtime_response_create_params_OUTPUTAUDIOFORMAT_NULL,
         tools ? toolsList : NULL,
-        tool_choice && !cJSON_IsNull(tool_choice) ? strdup(tool_choice->valuestring) : NULL,
-        temperature ? temperature->valuedouble : 0,
+        tool_choice_local_str,
+        temperature_local_var,
         max_response_output_tokens ? max_response_output_tokens_local_nonprim : NULL,
         conversation ? conversation_local_nonprim : NULL,
         metadata ? metadata_local_object : NULL,
         input ? inputList : NULL
         );
+
+    if (!realtime_response_create_params_local_var) {
+        goto end;
+    }
 
     return realtime_response_create_params_local_var;
 end:
@@ -525,6 +558,10 @@ end:
         list_freeList(modalitiesList);
         modalitiesList = NULL;
     }
+    if (instructions_local_str) {
+        free(instructions_local_str);
+        instructions_local_str = NULL;
+    }
     if (toolsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, toolsList) {
@@ -533,6 +570,14 @@ end:
         }
         list_freeList(toolsList);
         toolsList = NULL;
+    }
+    if (tool_choice_local_str) {
+        free(tool_choice_local_str);
+        tool_choice_local_str = NULL;
+    }
+    if (temperature_local_var) {
+        free(temperature_local_var);
+        temperature_local_var = NULL;
     }
     if (max_response_output_tokens_local_nonprim) {
         realtime_response_create_params_max_response_output_tokens_free(max_response_output_tokens_local_nonprim);

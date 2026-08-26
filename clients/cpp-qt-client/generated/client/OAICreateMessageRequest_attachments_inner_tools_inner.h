@@ -33,13 +33,13 @@ namespace OpenAPI {
 class OAICreateMessageRequest_attachments_inner_tools_inner : public OAIObject {
 public:
     OAICreateMessageRequest_attachments_inner_tools_inner();
-    OAICreateMessageRequest_attachments_inner_tools_inner(QString json);
+    OAICreateMessageRequest_attachments_inner_tools_inner(const QString &json);
     ~OAICreateMessageRequest_attachments_inner_tools_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

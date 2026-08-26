@@ -33,7 +33,7 @@ class  CreateChatCompletionResponse_choices_inner_logprobs
 {
 public:
     CreateChatCompletionResponse_choices_inner_logprobs();
-    virtual ~CreateChatCompletionResponse_choices_inner_logprobs() = default;
+    virtual ~CreateChatCompletionResponse_choices_inner_logprobs();
 
 
     /// <summary>

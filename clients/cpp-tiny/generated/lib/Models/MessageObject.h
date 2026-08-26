@@ -56,98 +56,98 @@ public:
 
 	/*! \brief Set The identifier, which can be referenced in API endpoints.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The object type, which is always `thread.message`.
 	 */
 	std::string getObject();
 
 	/*! \brief Set The object type, which is always `thread.message`.
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get The Unix timestamp (in seconds) for when the message was created.
 	 */
 	int getCreatedAt();
 
 	/*! \brief Set The Unix timestamp (in seconds) for when the message was created.
 	 */
-	void setCreatedAt(int  created_at);
+	void setCreatedAt(int created_at);
 	/*! \brief Get The [thread](/docs/api-reference/threads) ID that this message belongs to.
 	 */
 	std::string getThreadId();
 
 	/*! \brief Set The [thread](/docs/api-reference/threads) ID that this message belongs to.
 	 */
-	void setThreadId(std::string  thread_id);
+	void setThreadId(std::string thread_id);
 	/*! \brief Get The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.
 	 */
 	std::string getStatus();
 
 	/*! \brief Set The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.
 	 */
-	void setStatus(std::string  status);
+	void setStatus(std::string status);
 	/*! \brief Get 
 	 */
 	MessageObject_incomplete_details getIncompleteDetails();
 
 	/*! \brief Set 
 	 */
-	void setIncompleteDetails(MessageObject_incomplete_details  incomplete_details);
+	void setIncompleteDetails(MessageObject_incomplete_details incomplete_details);
 	/*! \brief Get The Unix timestamp (in seconds) for when the message was completed.
 	 */
 	int getCompletedAt();
 
 	/*! \brief Set The Unix timestamp (in seconds) for when the message was completed.
 	 */
-	void setCompletedAt(int  completed_at);
+	void setCompletedAt(int completed_at);
 	/*! \brief Get The Unix timestamp (in seconds) for when the message was marked as incomplete.
 	 */
 	int getIncompleteAt();
 
 	/*! \brief Set The Unix timestamp (in seconds) for when the message was marked as incomplete.
 	 */
-	void setIncompleteAt(int  incomplete_at);
+	void setIncompleteAt(int incomplete_at);
 	/*! \brief Get The entity that produced the message. One of `user` or `assistant`.
 	 */
 	std::string getRole();
 
 	/*! \brief Set The entity that produced the message. One of `user` or `assistant`.
 	 */
-	void setRole(std::string  role);
+	void setRole(std::string role);
 	/*! \brief Get The content of the message in array of text and/or images.
 	 */
 	std::list<MessageObject_content_inner> getContent();
 
 	/*! \brief Set The content of the message in array of text and/or images.
 	 */
-	void setContent(std::list <MessageObject_content_inner> content);
+	void setContent(std::list<MessageObject_content_inner> content);
 	/*! \brief Get If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message.
 	 */
 	std::string getAssistantId();
 
 	/*! \brief Set If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message.
 	 */
-	void setAssistantId(std::string  assistant_id);
+	void setAssistantId(std::string assistant_id);
 	/*! \brief Get The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints.
 	 */
 	std::string getRunId();
 
 	/*! \brief Set The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints.
 	 */
-	void setRunId(std::string  run_id);
+	void setRunId(std::string run_id);
 	/*! \brief Get A list of files attached to the message, and the tools they were added to.
 	 */
 	std::list<CreateMessageRequest_attachments_inner> getAttachments();
 
 	/*! \brief Set A list of files attached to the message, and the tools they were added to.
 	 */
-	void setAttachments(std::list <CreateMessageRequest_attachments_inner> attachments);
+	void setAttachments(std::list<CreateMessageRequest_attachments_inner> attachments);
 	/*! \brief Get Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	 */
 	Object getMetadata();
 
 	/*! \brief Set Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	 */
-	void setMetadata(Object  metadata);
+	void setMetadata(Object metadata);
 
 
     private:

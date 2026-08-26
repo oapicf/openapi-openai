@@ -32,7 +32,7 @@ class  ModifyMessageRequest
 {
 public:
     ModifyMessageRequest();
-    virtual ~ModifyMessageRequest() = default;
+    virtual ~ModifyMessageRequest();
 
 
     /// <summary>

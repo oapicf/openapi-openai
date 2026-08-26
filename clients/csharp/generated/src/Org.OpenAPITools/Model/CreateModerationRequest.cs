@@ -63,7 +63,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Model
         /// </summary>
         [JsonPropertyName("model")]
-        public CreateModerationRequestModel? Model { get { return this.ModelOption; } set { this.ModelOption = new(value); } }
+        public CreateModerationRequestModel? Model { get { return this.ModelOption.Value; } set { this.ModelOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,8 +93,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateModerationRequest" />
     /// </summary>
-    public class CreateModerationRequestJsonConverter : JsonConverter<CreateModerationRequest>
+    public partial class CreateModerationRequestJsonConverter : JsonConverter<CreateModerationRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateModerationRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateModerationRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateModerationRequest" />
         /// </summary>

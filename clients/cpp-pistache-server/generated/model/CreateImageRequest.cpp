@@ -38,6 +38,8 @@ CreateImageRequest::CreateImageRequest()
     
 }
 
+CreateImageRequest::~CreateImageRequest() = default;
+
 void CreateImageRequest::validate() const
 {
     std::stringstream msg;

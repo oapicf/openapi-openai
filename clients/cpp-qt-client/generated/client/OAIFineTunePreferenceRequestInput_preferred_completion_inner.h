@@ -40,13 +40,13 @@ class OAIChatCompletionRequestAssistantMessage_function_call;
 class OAIFineTunePreferenceRequestInput_preferred_completion_inner : public OAIObject {
 public:
     OAIFineTunePreferenceRequestInput_preferred_completion_inner();
-    OAIFineTunePreferenceRequestInput_preferred_completion_inner(QString json);
+    OAIFineTunePreferenceRequestInput_preferred_completion_inner(const QString &json);
     ~OAIFineTunePreferenceRequestInput_preferred_completion_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     OAIChatCompletionRequestAssistantMessage_content getContent() const;
     void setContent(const OAIChatCompletionRequestAssistantMessage_content &content);

@@ -132,20 +132,20 @@ function Initialize-MessageObject {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "created_at" = ${CreatedAt}
-            "thread_id" = ${ThreadId}
-            "status" = ${Status}
-            "incomplete_details" = ${IncompleteDetails}
-            "completed_at" = ${CompletedAt}
-            "incomplete_at" = ${IncompleteAt}
-            "role" = ${Role}
-            "content" = ${Content}
-            "assistant_id" = ${AssistantId}
-            "run_id" = ${RunId}
-            "attachments" = ${Attachments}
-            "metadata" = ${Metadata}
+            'id' = ${Id}
+            'object' = ${Object}
+            'created_at' = ${CreatedAt}
+            'thread_id' = ${ThreadId}
+            'status' = ${Status}
+            'incomplete_details' = ${IncompleteDetails}
+            'completed_at' = ${CompletedAt}
+            'incomplete_at' = ${IncompleteAt}
+            'role' = ${Role}
+            'content' = ${Content}
+            'assistant_id' = ${AssistantId}
+            'run_id' = ${RunId}
+            'attachments' = ${Attachments}
+            'metadata' = ${Metadata}
         }
 
 
@@ -183,7 +183,7 @@ function ConvertFrom-JsonToMessageObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in MessageObject
-        $AllProperties = ("id", "object", "created_at", "thread_id", "status", "incomplete_details", "completed_at", "incomplete_at", "role", "content", "assistant_id", "run_id", "attachments", "metadata")
+        $AllProperties = ('id', 'object', 'created_at', 'thread_id', 'status', 'incomplete_details', 'completed_at', 'incomplete_at', 'role', 'content', 'assistant_id', 'run_id', 'attachments', 'metadata')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -194,105 +194,105 @@ function ConvertFrom-JsonToMessageObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created_at' missing."
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "thread_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'thread_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'thread_id' missing."
         } else {
-            $ThreadId = $JsonParameters.PSobject.Properties["thread_id"].value
+            $ThreadId = $JsonParameters.PSobject.Properties['thread_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'status'))) {
             throw "Error! JSON cannot be serialized due to the required property 'status' missing."
         } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
+            $Status = $JsonParameters.PSobject.Properties['status'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "incomplete_details"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'incomplete_details'))) {
             throw "Error! JSON cannot be serialized due to the required property 'incomplete_details' missing."
         } else {
-            $IncompleteDetails = $JsonParameters.PSobject.Properties["incomplete_details"].value
+            $IncompleteDetails = $JsonParameters.PSobject.Properties['incomplete_details'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "completed_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'completed_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'completed_at' missing."
         } else {
-            $CompletedAt = $JsonParameters.PSobject.Properties["completed_at"].value
+            $CompletedAt = $JsonParameters.PSobject.Properties['completed_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "incomplete_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'incomplete_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'incomplete_at' missing."
         } else {
-            $IncompleteAt = $JsonParameters.PSobject.Properties["incomplete_at"].value
+            $IncompleteAt = $JsonParameters.PSobject.Properties['incomplete_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "role"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'role'))) {
             throw "Error! JSON cannot be serialized due to the required property 'role' missing."
         } else {
-            $Role = $JsonParameters.PSobject.Properties["role"].value
+            $Role = $JsonParameters.PSobject.Properties['role'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'content'))) {
             throw "Error! JSON cannot be serialized due to the required property 'content' missing."
         } else {
-            $Content = $JsonParameters.PSobject.Properties["content"].value
+            $Content = $JsonParameters.PSobject.Properties['content'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "assistant_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'assistant_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'assistant_id' missing."
         } else {
-            $AssistantId = $JsonParameters.PSobject.Properties["assistant_id"].value
+            $AssistantId = $JsonParameters.PSobject.Properties['assistant_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "run_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'run_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'run_id' missing."
         } else {
-            $RunId = $JsonParameters.PSobject.Properties["run_id"].value
+            $RunId = $JsonParameters.PSobject.Properties['run_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "attachments"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'attachments'))) {
             throw "Error! JSON cannot be serialized due to the required property 'attachments' missing."
         } else {
-            $Attachments = $JsonParameters.PSobject.Properties["attachments"].value
+            $Attachments = $JsonParameters.PSobject.Properties['attachments'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) {
             throw "Error! JSON cannot be serialized due to the required property 'metadata' missing."
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "created_at" = ${CreatedAt}
-            "thread_id" = ${ThreadId}
-            "status" = ${Status}
-            "incomplete_details" = ${IncompleteDetails}
-            "completed_at" = ${CompletedAt}
-            "incomplete_at" = ${IncompleteAt}
-            "role" = ${Role}
-            "content" = ${Content}
-            "assistant_id" = ${AssistantId}
-            "run_id" = ${RunId}
-            "attachments" = ${Attachments}
-            "metadata" = ${Metadata}
+            'id' = ${Id}
+            'object' = ${Object}
+            'created_at' = ${CreatedAt}
+            'thread_id' = ${ThreadId}
+            'status' = ${Status}
+            'incomplete_details' = ${IncompleteDetails}
+            'completed_at' = ${CompletedAt}
+            'incomplete_at' = ${IncompleteAt}
+            'role' = ${Role}
+            'content' = ${Content}
+            'assistant_id' = ${AssistantId}
+            'run_id' = ${RunId}
+            'attachments' = ${Attachments}
+            'metadata' = ${Metadata}
         }
 
         return $PSO

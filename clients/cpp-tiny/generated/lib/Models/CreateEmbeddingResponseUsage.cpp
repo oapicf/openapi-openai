@@ -85,7 +85,7 @@ CreateEmbeddingResponse_usage::getPromptTokens()
 }
 
 void
-CreateEmbeddingResponse_usage::setPromptTokens(int  prompt_tokens)
+CreateEmbeddingResponse_usage::setPromptTokens(int prompt_tokens)
 {
 	this->prompt_tokens = prompt_tokens;
 }
@@ -97,7 +97,7 @@ CreateEmbeddingResponse_usage::getTotalTokens()
 }
 
 void
-CreateEmbeddingResponse_usage::setTotalTokens(int  total_tokens)
+CreateEmbeddingResponse_usage::setTotalTokens(int total_tokens)
 {
 	this->total_tokens = total_tokens;
 }

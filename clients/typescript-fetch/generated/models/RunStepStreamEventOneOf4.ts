@@ -29,7 +29,7 @@ import {
 export interface RunStepStreamEventOneOf4 {
     /**
      * 
-     * @type {string}
+     * @type {RunStepStreamEventOneOf4EventEnum}
      * @memberof RunStepStreamEventOneOf4
      */
     event: RunStepStreamEventOneOf4EventEnum;
@@ -56,6 +56,8 @@ export type RunStepStreamEventOneOf4EventEnum = typeof RunStepStreamEventOneOf4E
  */
 export function instanceOfRunStepStreamEventOneOf4(value: object): value is RunStepStreamEventOneOf4 {
     if (!('event' in value) || value['event'] === undefined) return false;
+    if (value['event'] !== 'thread.run.step.failed') return false;
+    
     if (!('data' in value) || value['data'] === undefined) return false;
     return true;
 }

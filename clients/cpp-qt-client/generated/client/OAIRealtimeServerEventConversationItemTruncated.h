@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIRealtimeServerEventConversationItemTruncated : public OAIObject {
 public:
     OAIRealtimeServerEventConversationItemTruncated();
-    OAIRealtimeServerEventConversationItemTruncated(QString json);
+    OAIRealtimeServerEventConversationItemTruncated(const QString &json);
     ~OAIRealtimeServerEventConversationItemTruncated() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getEventId() const;
     void setEventId(const QString &event_id);

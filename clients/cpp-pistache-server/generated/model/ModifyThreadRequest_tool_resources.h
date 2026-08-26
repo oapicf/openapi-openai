@@ -33,7 +33,7 @@ class  ModifyThreadRequest_tool_resources
 {
 public:
     ModifyThreadRequest_tool_resources();
-    virtual ~ModifyThreadRequest_tool_resources() = default;
+    virtual ~ModifyThreadRequest_tool_resources();
 
 
     /// <summary>

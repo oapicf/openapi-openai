@@ -55,10 +55,10 @@ class RunStepDetailsToolCallsCodeObjectCodeInterpreter {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepDetailsToolCallsCodeObjectCodeInterpreter[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepDetailsToolCallsCodeObjectCodeInterpreter[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'input'), 'Required key "RunStepDetailsToolCallsCodeObjectCodeInterpreter[input]" is missing from JSON.');
+        assert(json[r'input'] != null, 'Required key "RunStepDetailsToolCallsCodeObjectCodeInterpreter[input]" has a null value in JSON.');
+        assert(json.containsKey(r'outputs'), 'Required key "RunStepDetailsToolCallsCodeObjectCodeInterpreter[outputs]" is missing from JSON.');
+        assert(json[r'outputs'] != null, 'Required key "RunStepDetailsToolCallsCodeObjectCodeInterpreter[outputs]" has a null value in JSON.');
         return true;
       }());
 

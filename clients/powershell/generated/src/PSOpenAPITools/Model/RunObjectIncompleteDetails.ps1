@@ -37,7 +37,7 @@ function Initialize-RunObjectIncompleteDetails {
 
 
         $PSO = [PSCustomObject]@{
-            "reason" = ${Reason}
+            'reason' = ${Reason}
         }
 
 
@@ -75,21 +75,21 @@ function ConvertFrom-JsonToRunObjectIncompleteDetails {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunObjectIncompleteDetails
-        $AllProperties = ("reason")
+        $AllProperties = ('reason')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "reason"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'reason'))) { #optional property not found
             $Reason = $null
         } else {
-            $Reason = $JsonParameters.PSobject.Properties["reason"].value
+            $Reason = $JsonParameters.PSobject.Properties['reason'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "reason" = ${Reason}
+            'reason' = ${Reason}
         }
 
         return $PSO

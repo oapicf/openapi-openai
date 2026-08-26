@@ -150,7 +150,7 @@ RealtimeResponse_usage::getTotalTokens()
 }
 
 void
-RealtimeResponse_usage::setTotalTokens(int  total_tokens)
+RealtimeResponse_usage::setTotalTokens(int total_tokens)
 {
 	this->total_tokens = total_tokens;
 }
@@ -162,7 +162,7 @@ RealtimeResponse_usage::getInputTokens()
 }
 
 void
-RealtimeResponse_usage::setInputTokens(int  input_tokens)
+RealtimeResponse_usage::setInputTokens(int input_tokens)
 {
 	this->input_tokens = input_tokens;
 }
@@ -174,7 +174,7 @@ RealtimeResponse_usage::getOutputTokens()
 }
 
 void
-RealtimeResponse_usage::setOutputTokens(int  output_tokens)
+RealtimeResponse_usage::setOutputTokens(int output_tokens)
 {
 	this->output_tokens = output_tokens;
 }
@@ -186,7 +186,7 @@ RealtimeResponse_usage::getInputTokenDetails()
 }
 
 void
-RealtimeResponse_usage::setInputTokenDetails(RealtimeResponse_usage_input_token_details  input_token_details)
+RealtimeResponse_usage::setInputTokenDetails(RealtimeResponse_usage_input_token_details input_token_details)
 {
 	this->input_token_details = input_token_details;
 }
@@ -198,7 +198,7 @@ RealtimeResponse_usage::getOutputTokenDetails()
 }
 
 void
-RealtimeResponse_usage::setOutputTokenDetails(RealtimeResponse_usage_output_token_details  output_token_details)
+RealtimeResponse_usage::setOutputTokenDetails(RealtimeResponse_usage_output_token_details output_token_details)
 {
 	this->output_token_details = output_token_details;
 }

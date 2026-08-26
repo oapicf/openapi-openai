@@ -29,7 +29,7 @@ export interface RealtimeServerEventResponseAudioDone {
     eventId: string;
     /**
      * The event type, must be `response.audio.done`.
-     * @type {string}
+     * @type {RealtimeServerEventResponseAudioDoneTypeEnum}
      * @memberof RealtimeServerEventResponseAudioDone
      */
     type: RealtimeServerEventResponseAudioDoneTypeEnum;
@@ -73,12 +73,14 @@ export type RealtimeServerEventResponseAudioDoneTypeEnum = typeof RealtimeServer
  * Check if a given object implements the RealtimeServerEventResponseAudioDone interface.
  */
 export function instanceOfRealtimeServerEventResponseAudioDone(value: object): value is RealtimeServerEventResponseAudioDone {
-    if (!('eventId' in value) || value['eventId'] === undefined) return false;
+    if ((!('eventId' in (value as Record<string, any>)) && !('event_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['eventId'] === undefined && (value as Record<string, any>)['event_id'] === undefined)) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('responseId' in value) || value['responseId'] === undefined) return false;
-    if (!('itemId' in value) || value['itemId'] === undefined) return false;
-    if (!('outputIndex' in value) || value['outputIndex'] === undefined) return false;
-    if (!('contentIndex' in value) || value['contentIndex'] === undefined) return false;
+    if (value['type'] !== 'response.audio.done') return false;
+    
+    if ((!('responseId' in (value as Record<string, any>)) && !('response_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['responseId'] === undefined && (value as Record<string, any>)['response_id'] === undefined)) return false;
+    if ((!('itemId' in (value as Record<string, any>)) && !('item_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['itemId'] === undefined && (value as Record<string, any>)['item_id'] === undefined)) return false;
+    if ((!('outputIndex' in (value as Record<string, any>)) && !('output_index' in (value as Record<string, any>))) || ((value as Record<string, any>)['outputIndex'] === undefined && (value as Record<string, any>)['output_index'] === undefined)) return false;
+    if ((!('contentIndex' in (value as Record<string, any>)) && !('content_index' in (value as Record<string, any>))) || ((value as Record<string, any>)['contentIndex'] === undefined && (value as Record<string, any>)['content_index'] === undefined)) return false;
     return true;
 }
 

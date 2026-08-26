@@ -1,4 +1,4 @@
-# # CreateChatCompletionStreamResponseUsage
+# CreateChatCompletionStreamResponseUsage
 
 ## Properties
 

@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRealtimeResponseCreateParams_max_response_output_tokens::OAIRealtimeResponseCreateParams_max_response_output_tokens(QString json) {
+OAIRealtimeResponseCreateParams_max_response_output_tokens::OAIRealtimeResponseCreateParams_max_response_output_tokens(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -36,7 +36,7 @@ void OAIRealtimeResponseCreateParams_max_response_output_tokens::initializeModel
 
 }
 
-void OAIRealtimeResponseCreateParams_max_response_output_tokens::fromJson(QString jsonString) {
+void OAIRealtimeResponseCreateParams_max_response_output_tokens::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -1,0 +1,135 @@
+package org.openapitools.model;
+
+import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.FineTuningJobCheckpoint;
+import java.util.*;
+import java.util.Objects;
+import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.annotation.Generated;
+import java.time.*;
+import java.math.*;
+@Generated(value = "org.openapitools.codegen.languages.JavaDubboServerCodegen", comments = "Generator version: 7.24.0")
+
+public class ListFineTuningJobCheckpointsResponse implements Serializable {
+  private static final long serialVersionUID = 1L;
+
+  @JsonProperty("data")
+  private List<FineTuningJobCheckpoint> data = new ArrayList<>();
+
+  @JsonProperty("object")
+  private String _object;
+
+  @JsonProperty("first_id")
+  private String firstId;
+
+  @JsonProperty("last_id")
+  private String lastId;
+
+  @JsonProperty("has_more")
+  private Boolean hasMore;
+
+  /**
+   * 
+   * @return data
+   */
+  public List<FineTuningJobCheckpoint> getData() {
+    return data;
+  }
+
+  public void setData(List<FineTuningJobCheckpoint> data) {
+    this.data = data;
+  }
+
+  /**
+   * 
+   * @return _object
+   */
+  public String getObject() {
+    return _object;
+  }
+
+  public void setObject(String _object) {
+    this._object = _object;
+  }
+
+  /**
+   * 
+   * @return firstId
+   */
+  public String getFirstId() {
+    return firstId;
+  }
+
+  public void setFirstId(String firstId) {
+    this.firstId = firstId;
+  }
+
+  /**
+   * 
+   * @return lastId
+   */
+  public String getLastId() {
+    return lastId;
+  }
+
+  public void setLastId(String lastId) {
+    this.lastId = lastId;
+  }
+
+  /**
+   * 
+   * @return hasMore
+   */
+  public Boolean getHasMore() {
+    return hasMore;
+  }
+
+  public void setHasMore(Boolean hasMore) {
+    this.hasMore = hasMore;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ListFineTuningJobCheckpointsResponse listFineTuningJobCheckpointsResponse = (ListFineTuningJobCheckpointsResponse) o;
+    return Objects.equals(this.data, listFineTuningJobCheckpointsResponse.data) &&
+        Objects.equals(this._object, listFineTuningJobCheckpointsResponse._object) &&
+        Objects.equals(this.firstId, listFineTuningJobCheckpointsResponse.firstId) &&
+        Objects.equals(this.lastId, listFineTuningJobCheckpointsResponse.lastId) &&
+        Objects.equals(this.hasMore, listFineTuningJobCheckpointsResponse.hasMore);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(data, _object, firstId, lastId, hasMore);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class ListFineTuningJobCheckpointsResponse {\n");
+    
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    firstId: ").append(toIndentedString(firstId)).append("\n");
+    sb.append("    lastId: ").append(toIndentedString(lastId)).append("\n");
+    sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
+  }
+}

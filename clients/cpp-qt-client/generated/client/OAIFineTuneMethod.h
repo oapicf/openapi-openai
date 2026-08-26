@@ -29,17 +29,19 @@
 #include "OAIObject.h"
 
 namespace OpenAPI {
+class OAIFineTuneSupervisedMethod;
+class OAIFineTuneDPOMethod;
 
 class OAIFineTuneMethod : public OAIObject {
 public:
     OAIFineTuneMethod();
-    OAIFineTuneMethod(QString json);
+    OAIFineTuneMethod(const QString &json);
     ~OAIFineTuneMethod() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

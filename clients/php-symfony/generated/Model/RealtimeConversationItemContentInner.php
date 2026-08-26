@@ -49,7 +49,7 @@ class RealtimeConversationItemContentInner
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['input_audio', 'input_text', 'item_reference', 'text'])]
     #[Assert\Type("string")]
     protected ?string $type = null;
@@ -60,7 +60,7 @@ class RealtimeConversationItemContentInner
      * @var string|null
      * @SerializedName("text")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $text = null;
 
@@ -70,7 +70,7 @@ class RealtimeConversationItemContentInner
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -80,7 +80,7 @@ class RealtimeConversationItemContentInner
      * @var string|null
      * @SerializedName("audio")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $audio = null;
 
@@ -90,7 +90,7 @@ class RealtimeConversationItemContentInner
      * @var string|null
      * @SerializedName("transcript")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $transcript = null;
 
@@ -120,12 +120,12 @@ class RealtimeConversationItemContentInner
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The content type (`input_text`, `input_audio`, `item_reference`, `text`).
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The content type (`input_text`, `input_audio`, `item_reference`, `text`).
+     *
+     * @return $this
+     */
     public function setType(?string $type = null): self
     {
         $this->type = $type;
@@ -147,12 +147,12 @@ class RealtimeConversationItemContentInner
     }
 
     /**
-    * Sets text.
-    *
-    * @param string|null $text  The text content, used for `input_text` and `text` content types.
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param string|null $text  The text content, used for `input_text` and `text` content types.
+     *
+     * @return $this
+     */
     public function setText(?string $text = null): self
     {
         $this->text = $text;
@@ -174,12 +174,12 @@ class RealtimeConversationItemContentInner
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  ID of a previous conversation item to reference (for `item_reference` content types in `response.create` events). These can reference both client and server created items.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  ID of a previous conversation item to reference (for `item_reference` content types in `response.create` events). These can reference both client and server created items.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -201,12 +201,12 @@ class RealtimeConversationItemContentInner
     }
 
     /**
-    * Sets audio.
-    *
-    * @param string|null $audio  Base64-encoded audio bytes, used for `input_audio` content type.
-    *
-    * @return $this
-    */
+     * Sets audio.
+     *
+     * @param string|null $audio  Base64-encoded audio bytes, used for `input_audio` content type.
+     *
+     * @return $this
+     */
     public function setAudio(?string $audio = null): self
     {
         $this->audio = $audio;
@@ -228,12 +228,12 @@ class RealtimeConversationItemContentInner
     }
 
     /**
-    * Sets transcript.
-    *
-    * @param string|null $transcript  The transcript of the audio, used for `input_audio` content type.
-    *
-    * @return $this
-    */
+     * Sets transcript.
+     *
+     * @param string|null $transcript  The transcript of the audio, used for `input_audio` content type.
+     *
+     * @return $this
+     */
     public function setTranscript(?string $transcript = null): self
     {
         $this->transcript = $transcript;

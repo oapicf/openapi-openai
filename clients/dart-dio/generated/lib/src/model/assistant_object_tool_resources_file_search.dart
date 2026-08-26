@@ -75,8 +75,9 @@ class _$AssistantObjectToolResourcesFileSearchSerializer implements PrimitiveSer
         case r'vector_store_ids':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.vectorStoreIds.replace(valueDes);
           break;
         default:

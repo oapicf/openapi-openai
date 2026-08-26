@@ -69,11 +69,11 @@ function Initialize-CreateEmbeddingRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "input" = ${VarInput}
-            "model" = ${Model}
-            "encoding_format" = ${EncodingFormat}
-            "dimensions" = ${Dimensions}
-            "user" = ${User}
+            'input' = ${VarInput}
+            'model' = ${Model}
+            'encoding_format' = ${EncodingFormat}
+            'dimensions' = ${Dimensions}
+            'user' = ${User}
         }
 
 
@@ -111,7 +111,7 @@ function ConvertFrom-JsonToCreateEmbeddingRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateEmbeddingRequest
-        $AllProperties = ("input", "model", "encoding_format", "dimensions", "user")
+        $AllProperties = ('input', 'model', 'encoding_format', 'dimensions', 'user')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -122,42 +122,42 @@ function ConvertFrom-JsonToCreateEmbeddingRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'input' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "input"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'input'))) {
             throw "Error! JSON cannot be serialized due to the required property 'input' missing."
         } else {
-            $VarInput = $JsonParameters.PSobject.Properties["input"].value
+            $VarInput = $JsonParameters.PSobject.Properties['input'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) {
             throw "Error! JSON cannot be serialized due to the required property 'model' missing."
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "encoding_format"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'encoding_format'))) { #optional property not found
             $EncodingFormat = $null
         } else {
-            $EncodingFormat = $JsonParameters.PSobject.Properties["encoding_format"].value
+            $EncodingFormat = $JsonParameters.PSobject.Properties['encoding_format'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dimensions"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'dimensions'))) { #optional property not found
             $Dimensions = $null
         } else {
-            $Dimensions = $JsonParameters.PSobject.Properties["dimensions"].value
+            $Dimensions = $JsonParameters.PSobject.Properties['dimensions'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'user'))) { #optional property not found
             $User = $null
         } else {
-            $User = $JsonParameters.PSobject.Properties["user"].value
+            $User = $JsonParameters.PSobject.Properties['user'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "input" = ${VarInput}
-            "model" = ${Model}
-            "encoding_format" = ${EncodingFormat}
-            "dimensions" = ${Dimensions}
-            "user" = ${User}
+            'input' = ${VarInput}
+            'model' = ${Model}
+            'encoding_format' = ${EncodingFormat}
+            'dimensions' = ${Dimensions}
+            'user' = ${User}
         }
 
         return $PSO

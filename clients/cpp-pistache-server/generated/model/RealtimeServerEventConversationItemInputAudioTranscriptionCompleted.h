@@ -32,7 +32,7 @@ class  RealtimeServerEventConversationItemInputAudioTranscriptionCompleted
 {
 public:
     RealtimeServerEventConversationItemInputAudioTranscriptionCompleted();
-    virtual ~RealtimeServerEventConversationItemInputAudioTranscriptionCompleted() = default;
+    virtual ~RealtimeServerEventConversationItemInputAudioTranscriptionCompleted();
 
 
     /// <summary>

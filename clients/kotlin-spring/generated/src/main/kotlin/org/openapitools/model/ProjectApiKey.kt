@@ -27,23 +27,29 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ProjectApiKey(
 
-    @Schema(example = "null", required = true, description = "The object type, which is always `organization.project.api_key`")
+    @Schema(required = true, description = "The object type, which is always `organization.project.api_key`")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: ProjectApiKey.`Object`,
 
-    @Schema(example = "null", required = true, description = "The redacted value of the API key")
+    @Schema(required = true, description = "The redacted value of the API key")
+    @param:JsonProperty("redacted_value")
     @get:JsonProperty("redacted_value", required = true) val redactedValue: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The name of the API key")
+    @Schema(required = true, description = "The name of the API key")
+    @param:JsonProperty("name")
     @get:JsonProperty("name", required = true) val name: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The Unix timestamp (in seconds) of when the API key was created")
+    @Schema(required = true, description = "The Unix timestamp (in seconds) of when the API key was created")
+    @param:JsonProperty("created_at")
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The identifier, which can be referenced in API endpoints")
+    @Schema(required = true, description = "The identifier, which can be referenced in API endpoints")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("owner")
     @get:JsonProperty("owner", required = true) val owner: ProjectApiKeyOwner
 ) {
 
@@ -60,7 +66,7 @@ data class ProjectApiKey(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ProjectApiKey'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }

@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set The transcribed text.
 	 */
-	void setText(std::string  text);
+	void setText(std::string text);
 
 
     private:

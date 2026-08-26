@@ -49,7 +49,7 @@ class UsageCodeInterpreterSessionsResult
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['organization.usage.code_interpreter_sessions.result'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class UsageCodeInterpreterSessionsResult
      * @var int|null
      * @SerializedName("sessions")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $sessions = null;
@@ -72,7 +72,7 @@ class UsageCodeInterpreterSessionsResult
      * @var string|null
      * @SerializedName("project_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $projectId = null;
 
@@ -100,12 +100,12 @@ class UsageCodeInterpreterSessionsResult
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -127,12 +127,12 @@ class UsageCodeInterpreterSessionsResult
     }
 
     /**
-    * Sets sessions.
-    *
-    * @param int|null $sessions  The number of code interpreter sessions.
-    *
-    * @return $this
-    */
+     * Sets sessions.
+     *
+     * @param int|null $sessions  The number of code interpreter sessions.
+     *
+     * @return $this
+     */
     public function setSessions(?int $sessions): self
     {
         $this->sessions = $sessions;
@@ -154,12 +154,12 @@ class UsageCodeInterpreterSessionsResult
     }
 
     /**
-    * Sets projectId.
-    *
-    * @param string|null $projectId  When `group_by=project_id`, this field provides the project ID of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets projectId.
+     *
+     * @param string|null $projectId  When `group_by=project_id`, this field provides the project ID of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setProjectId(?string $projectId = null): self
     {
         $this->projectId = $projectId;

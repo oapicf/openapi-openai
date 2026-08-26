@@ -102,7 +102,7 @@ RunStepDetailsToolCallsObject::getType()
 }
 
 void
-RunStepDetailsToolCallsObject::setType(std::string  type)
+RunStepDetailsToolCallsObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -114,7 +114,7 @@ RunStepDetailsToolCallsObject::getToolCalls()
 }
 
 void
-RunStepDetailsToolCallsObject::setToolCalls(std::list <RunStepDetailsToolCallsObject_tool_calls_inner> tool_calls)
+RunStepDetailsToolCallsObject::setToolCalls(std::list<RunStepDetailsToolCallsObject_tool_calls_inner> tool_calls)
 {
 	this->tool_calls = tool_calls;
 }

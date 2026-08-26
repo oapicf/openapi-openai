@@ -1,4 +1,4 @@
-# # InviteDeleteResponse
+# InviteDeleteResponse
 
 ## Properties
 

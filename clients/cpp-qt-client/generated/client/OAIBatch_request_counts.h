@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIBatch_request_counts : public OAIObject {
 public:
     OAIBatch_request_counts();
-    OAIBatch_request_counts(QString json);
+    OAIBatch_request_counts(const QString &json);
     ~OAIBatch_request_counts() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getTotal() const;
     void setTotal(const qint32 &total);

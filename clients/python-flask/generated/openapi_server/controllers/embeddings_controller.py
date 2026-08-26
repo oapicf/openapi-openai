@@ -1,4 +1,4 @@
-import connexion
+import flask
 from typing import Dict
 from typing import Tuple
 from typing import Union
@@ -19,6 +19,6 @@ def create_embedding(body):  # noqa: E501
     :rtype: Union[CreateEmbeddingResponse, Tuple[CreateEmbeddingResponse, int], Tuple[CreateEmbeddingResponse, int, Dict[str, str]]
     """
     create_embedding_request = body
-    if connexion.request.is_json:
-        create_embedding_request = CreateEmbeddingRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        create_embedding_request = CreateEmbeddingRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'

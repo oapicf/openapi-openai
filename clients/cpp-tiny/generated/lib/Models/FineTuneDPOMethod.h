@@ -52,7 +52,7 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setHyperparameters(FineTuneDPOMethod_hyperparameters  hyperparameters);
+	void setHyperparameters(FineTuneDPOMethod_hyperparameters hyperparameters);
 
 
     private:

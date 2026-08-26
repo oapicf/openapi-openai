@@ -34,7 +34,7 @@ class  RealtimeConversationItem
 {
 public:
     RealtimeConversationItem();
-    virtual ~RealtimeConversationItem() = default;
+    virtual ~RealtimeConversationItem();
 
 
     /// <summary>

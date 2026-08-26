@@ -28,6 +28,8 @@ ListVectorStoreFilesResponse::ListVectorStoreFilesResponse()
     
 }
 
+ListVectorStoreFilesResponse::~ListVectorStoreFilesResponse() = default;
+
 void ListVectorStoreFilesResponse::validate() const
 {
     std::stringstream msg;

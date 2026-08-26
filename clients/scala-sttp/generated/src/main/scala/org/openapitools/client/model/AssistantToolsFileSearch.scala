@@ -16,7 +16,7 @@ case class AssistantToolsFileSearch(
   /* The type of tool being defined: `file_search` */
   `type`: AssistantToolsFileSearchEnums.`Type`,
   fileSearch: Option[AssistantToolsFileSearchFileSearch] = None
-)
+) extends CreateThreadAndRunRequestToolsInner
 
 object AssistantToolsFileSearchEnums {
 

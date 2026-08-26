@@ -1,4 +1,4 @@
-# # RealtimeServerEventResponseFunctionCallArgumentsDone
+# RealtimeServerEventResponseFunctionCallArgumentsDone
 
 ## Properties
 

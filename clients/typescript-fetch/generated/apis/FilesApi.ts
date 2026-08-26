@@ -12,21 +12,22 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  DeleteFileResponse,
-  ListFilesResponse,
-  OpenAIFile,
-} from '../models/index';
 import {
+    type DeleteFileResponse,
     DeleteFileResponseFromJSON,
     DeleteFileResponseToJSON,
+} from '../models/DeleteFileResponse';
+import {
+    type ListFilesResponse,
     ListFilesResponseFromJSON,
     ListFilesResponseToJSON,
+} from '../models/ListFilesResponse';
+import {
+    type OpenAIFile,
     OpenAIFileFromJSON,
     OpenAIFileToJSON,
-} from '../models/index';
+} from '../models/OpenAIFile';
 
 export interface CreateFileRequest {
     file: Blob;
@@ -58,9 +59,9 @@ export interface RetrieveFileRequest {
 export class FilesApi extends runtime.BaseAPI {
 
     /**
-     * Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+     * Creates request options for createFile without sending the request
      */
-    async createFileRaw(requestParameters: CreateFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OpenAIFile>> {
+    async createFileRequestOpts(requestParameters: CreateFileRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['file'] == null) {
             throw new runtime.RequiredError(
                 'file',
@@ -114,13 +115,21 @@ export class FilesApi extends runtime.BaseAPI {
 
         let urlPath = `/files`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+     */
+    async createFileRaw(requestParameters: CreateFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OpenAIFile>> {
+        const requestOptions = await this.createFileRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => OpenAIFileFromJSON(jsonValue));
     }
@@ -134,9 +143,9 @@ export class FilesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a file.
+     * Creates request options for deleteFile without sending the request
      */
-    async deleteFileRaw(requestParameters: DeleteFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteFileResponse>> {
+    async deleteFileRequestOpts(requestParameters: DeleteFileRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['fileId'] == null) {
             throw new runtime.RequiredError(
                 'fileId',
@@ -158,14 +167,22 @@ export class FilesApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/files/{file_id}`;
-        urlPath = urlPath.replace(`{${"file_id"}}`, encodeURIComponent(String(requestParameters['fileId'])));
+        urlPath = urlPath.replace('{file_id}', encodeURIComponent(String(requestParameters['fileId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete a file.
+     */
+    async deleteFileRaw(requestParameters: DeleteFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteFileResponse>> {
+        const requestOptions = await this.deleteFileRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => DeleteFileResponseFromJSON(jsonValue));
     }
@@ -179,9 +196,9 @@ export class FilesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns the contents of the specified file.
+     * Creates request options for downloadFile without sending the request
      */
-    async downloadFileRaw(requestParameters: DownloadFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async downloadFileRequestOpts(requestParameters: DownloadFileRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['fileId'] == null) {
             throw new runtime.RequiredError(
                 'fileId',
@@ -203,14 +220,22 @@ export class FilesApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/files/{file_id}/content`;
-        urlPath = urlPath.replace(`{${"file_id"}}`, encodeURIComponent(String(requestParameters['fileId'])));
+        urlPath = urlPath.replace('{file_id}', encodeURIComponent(String(requestParameters['fileId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns the contents of the specified file.
+     */
+    async downloadFileRaw(requestParameters: DownloadFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.downloadFileRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -228,9 +253,9 @@ export class FilesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of files.
+     * Creates request options for listFiles without sending the request
      */
-    async listFilesRaw(requestParameters: ListFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFilesResponse>> {
+    async listFilesRequestOpts(requestParameters: ListFilesRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['purpose'] != null) {
@@ -262,12 +287,20 @@ export class FilesApi extends runtime.BaseAPI {
 
         let urlPath = `/files`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns a list of files.
+     */
+    async listFilesRaw(requestParameters: ListFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFilesResponse>> {
+        const requestOptions = await this.listFilesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListFilesResponseFromJSON(jsonValue));
     }
@@ -281,9 +314,9 @@ export class FilesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns information about a specific file.
+     * Creates request options for retrieveFile without sending the request
      */
-    async retrieveFileRaw(requestParameters: RetrieveFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OpenAIFile>> {
+    async retrieveFileRequestOpts(requestParameters: RetrieveFileRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['fileId'] == null) {
             throw new runtime.RequiredError(
                 'fileId',
@@ -305,14 +338,22 @@ export class FilesApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/files/{file_id}`;
-        urlPath = urlPath.replace(`{${"file_id"}}`, encodeURIComponent(String(requestParameters['fileId'])));
+        urlPath = urlPath.replace('{file_id}', encodeURIComponent(String(requestParameters['fileId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns information about a specific file.
+     */
+    async retrieveFileRaw(requestParameters: RetrieveFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OpenAIFile>> {
+        const requestOptions = await this.retrieveFileRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => OpenAIFileFromJSON(jsonValue));
     }

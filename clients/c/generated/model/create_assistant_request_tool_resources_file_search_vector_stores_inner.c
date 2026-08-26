@@ -14,11 +14,11 @@ static create_assistant_request_tool_resources_file_search_vector_stores_inner_t
     if (!create_assistant_request_tool_resources_file_search_vector_stores_inner_local_var) {
         return NULL;
     }
+    memset(create_assistant_request_tool_resources_file_search_vector_stores_inner_local_var, 0, sizeof(create_assistant_request_tool_resources_file_search_vector_stores_inner_t));
+    create_assistant_request_tool_resources_file_search_vector_stores_inner_local_var->_library_owned = 1;
     create_assistant_request_tool_resources_file_search_vector_stores_inner_local_var->file_ids = file_ids;
     create_assistant_request_tool_resources_file_search_vector_stores_inner_local_var->chunking_strategy = chunking_strategy;
     create_assistant_request_tool_resources_file_search_vector_stores_inner_local_var->metadata = metadata;
-
-    create_assistant_request_tool_resources_file_search_vector_stores_inner_local_var->_library_owned = 1;
     return create_assistant_request_tool_resources_file_search_vector_stores_inner_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) create_assistant_request_tool_resources_file_search_
     create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_t *chunking_strategy,
     object_t *metadata
     ) {
-    return create_assistant_request_tool_resources_file_search_vector_stores_inner_create_internal (
+    create_assistant_request_tool_resources_file_search_vector_stores_inner_t *result = create_assistant_request_tool_resources_file_search_vector_stores_inner_create_internal (
         file_ids,
         chunking_strategy,
         metadata
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_assistant_request_tool_resources_file_search_vector_stores_inner_free(create_assistant_request_tool_resources_file_search_vector_stores_inner_t *create_assistant_request_tool_resources_file_search_vector_stores_inner) {
@@ -166,11 +169,16 @@ create_assistant_request_tool_resources_file_search_vector_stores_inner_t *creat
     }
 
 
+
     create_assistant_request_tool_resources_file_search_vector_stores_inner_local_var = create_assistant_request_tool_resources_file_search_vector_stores_inner_create_internal (
         file_ids ? file_idsList : NULL,
         chunking_strategy ? chunking_strategy_local_nonprim : NULL,
         metadata ? metadata_local_object : NULL
         );
+
+    if (!create_assistant_request_tool_resources_file_search_vector_stores_inner_local_var) {
+        goto end;
+    }
 
     return create_assistant_request_tool_resources_file_search_vector_stores_inner_local_var;
 end:

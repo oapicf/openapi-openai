@@ -31,7 +31,7 @@ typedef struct realtime_server_event_response_function_call_arguments_done_t {
     openai_api_realtime_server_event_response_function_call_arguments_done_TYPE_e type; //enum
     char *response_id; // string
     char *item_id; // string
-    int output_index; //numeric
+    int *output_index; //numeric
     char *call_id; // string
     char *arguments; // string
 
@@ -43,7 +43,7 @@ __attribute__((deprecated)) realtime_server_event_response_function_call_argumen
     openai_api_realtime_server_event_response_function_call_arguments_done_TYPE_e type,
     char *response_id,
     char *item_id,
-    int output_index,
+    int *output_index,
     char *call_id,
     char *arguments
 );

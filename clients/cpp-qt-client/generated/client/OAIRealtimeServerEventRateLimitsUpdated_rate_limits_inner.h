@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner : public OAIObject {
 public:
     OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner();
-    OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner(QString json);
+    OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner(const QString &json);
     ~OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getName() const;
     void setName(const QString &name);

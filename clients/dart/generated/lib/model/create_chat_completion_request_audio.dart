@@ -55,10 +55,10 @@ class CreateChatCompletionRequestAudio {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateChatCompletionRequestAudio[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateChatCompletionRequestAudio[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'voice'), 'Required key "CreateChatCompletionRequestAudio[voice]" is missing from JSON.');
+        assert(json[r'voice'] != null, 'Required key "CreateChatCompletionRequestAudio[voice]" has a null value in JSON.');
+        assert(json.containsKey(r'format'), 'Required key "CreateChatCompletionRequestAudio[format]" is missing from JSON.');
+        assert(json[r'format'] != null, 'Required key "CreateChatCompletionRequestAudio[format]" has a null value in JSON.');
         return true;
       }());
 
@@ -118,41 +118,35 @@ class CreateChatCompletionRequestAudio {
 }
 
 /// The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive). 
-class CreateChatCompletionRequestAudioVoiceEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateChatCompletionRequestAudioVoiceEnum._(this.value);
+enum CreateChatCompletionRequestAudioVoiceEnum {
+  alloy._(r'alloy'),
+  ash._(r'ash'),
+  ballad._(r'ballad'),
+  coral._(r'coral'),
+  echo._(r'echo'),
+  sage._(r'sage'),
+  shimmer._(r'shimmer'),
+  verse._(r'verse'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateChatCompletionRequestAudioVoiceEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const alloy = CreateChatCompletionRequestAudioVoiceEnum._(r'alloy');
-  static const ash = CreateChatCompletionRequestAudioVoiceEnum._(r'ash');
-  static const ballad = CreateChatCompletionRequestAudioVoiceEnum._(r'ballad');
-  static const coral = CreateChatCompletionRequestAudioVoiceEnum._(r'coral');
-  static const echo = CreateChatCompletionRequestAudioVoiceEnum._(r'echo');
-  static const sage = CreateChatCompletionRequestAudioVoiceEnum._(r'sage');
-  static const shimmer = CreateChatCompletionRequestAudioVoiceEnum._(r'shimmer');
-  static const verse = CreateChatCompletionRequestAudioVoiceEnum._(r'verse');
-
-  /// List of all possible values in this [enum][CreateChatCompletionRequestAudioVoiceEnum].
-  static const values = <CreateChatCompletionRequestAudioVoiceEnum>[
-    alloy,
-    ash,
-    ballad,
-    coral,
-    echo,
-    sage,
-    shimmer,
-    verse,
-  ];
-
+  /// Returns the instance of [CreateChatCompletionRequestAudioVoiceEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateChatCompletionRequestAudioVoiceEnum? fromJson(dynamic value) => CreateChatCompletionRequestAudioVoiceEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateChatCompletionRequestAudioVoiceEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateChatCompletionRequestAudioVoiceEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateChatCompletionRequestAudioVoiceEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -174,9 +168,10 @@ class CreateChatCompletionRequestAudioVoiceEnumTypeTransformer {
 
   const CreateChatCompletionRequestAudioVoiceEnumTypeTransformer._();
 
-  String encode(CreateChatCompletionRequestAudioVoiceEnum data) => data.value;
+  String encode(CreateChatCompletionRequestAudioVoiceEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateChatCompletionRequestAudioVoiceEnum.
+  /// Returns the instance of [CreateChatCompletionRequestAudioVoiceEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -185,6 +180,9 @@ class CreateChatCompletionRequestAudioVoiceEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateChatCompletionRequestAudioVoiceEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateChatCompletionRequestAudioVoiceEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'alloy': return CreateChatCompletionRequestAudioVoiceEnum.alloy;
@@ -204,41 +202,38 @@ class CreateChatCompletionRequestAudioVoiceEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateChatCompletionRequestAudioVoiceEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateChatCompletionRequestAudioVoiceEnumTypeTransformer? _instance;
 }
 
 
 /// Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`. 
-class CreateChatCompletionRequestAudioFormatEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateChatCompletionRequestAudioFormatEnum._(this.value);
+enum CreateChatCompletionRequestAudioFormatEnum {
+  wav._(r'wav'),
+  mp3._(r'mp3'),
+  flac._(r'flac'),
+  opus._(r'opus'),
+  pcm16._(r'pcm16'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateChatCompletionRequestAudioFormatEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const wav = CreateChatCompletionRequestAudioFormatEnum._(r'wav');
-  static const mp3 = CreateChatCompletionRequestAudioFormatEnum._(r'mp3');
-  static const flac = CreateChatCompletionRequestAudioFormatEnum._(r'flac');
-  static const opus = CreateChatCompletionRequestAudioFormatEnum._(r'opus');
-  static const pcm16 = CreateChatCompletionRequestAudioFormatEnum._(r'pcm16');
-
-  /// List of all possible values in this [enum][CreateChatCompletionRequestAudioFormatEnum].
-  static const values = <CreateChatCompletionRequestAudioFormatEnum>[
-    wav,
-    mp3,
-    flac,
-    opus,
-    pcm16,
-  ];
-
+  /// Returns the instance of [CreateChatCompletionRequestAudioFormatEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateChatCompletionRequestAudioFormatEnum? fromJson(dynamic value) => CreateChatCompletionRequestAudioFormatEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateChatCompletionRequestAudioFormatEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateChatCompletionRequestAudioFormatEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateChatCompletionRequestAudioFormatEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -260,9 +255,10 @@ class CreateChatCompletionRequestAudioFormatEnumTypeTransformer {
 
   const CreateChatCompletionRequestAudioFormatEnumTypeTransformer._();
 
-  String encode(CreateChatCompletionRequestAudioFormatEnum data) => data.value;
+  String encode(CreateChatCompletionRequestAudioFormatEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateChatCompletionRequestAudioFormatEnum.
+  /// Returns the instance of [CreateChatCompletionRequestAudioFormatEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -271,6 +267,9 @@ class CreateChatCompletionRequestAudioFormatEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateChatCompletionRequestAudioFormatEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateChatCompletionRequestAudioFormatEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'wav': return CreateChatCompletionRequestAudioFormatEnum.wav;
@@ -287,7 +286,7 @@ class CreateChatCompletionRequestAudioFormatEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateChatCompletionRequestAudioFormatEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateChatCompletionRequestAudioFormatEnumTypeTransformer? _instance;
 }
 

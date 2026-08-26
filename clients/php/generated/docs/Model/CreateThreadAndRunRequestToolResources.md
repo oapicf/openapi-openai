@@ -1,4 +1,4 @@
-# # CreateThreadAndRunRequestToolResources
+# CreateThreadAndRunRequestToolResources
 
 ## Properties
 

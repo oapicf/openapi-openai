@@ -24,7 +24,7 @@ message MessageDeltaObjectDelta {
     ROLE_ASSISTANT = 1;
   }
 
-  Role role = 3506294;
+  string role = 3506294;
 
   // The content of the message in array of text and/or images.
   repeated MessageDeltaObjectDeltaContentInner content = 414659706;

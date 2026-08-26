@@ -11828,18 +11828,18 @@ components:
       type: object
     AdminApiKey:
       example:
-        owner:
-          role: member
-          name: My Service Account
-          created_at: 1711471533
-          id: sa_456
-          type: service_account
-        name: Administration Key
-        created_at: 1711471533
+        object: organization.admin_api_key
         id: key_abc
+        name: Administration Key
         redacted_value: sk-admin...def
         value: sk-admin-1234abcd
-        object: organization.admin_api_key
+        created_at: 1711471533
+        owner:
+          type: service_account
+          id: sa_456
+          name: My Service Account
+          created_at: 1711471533
+          role: member
       properties:
         object:
           example: organization.admin_api_key
@@ -11865,35 +11865,35 @@ components:
       type: object
     ApiKeyList:
       example:
-        first_id: key_abc
-        data:
-        - owner:
-            role: member
-            name: My Service Account
-            created_at: 1711471533
-            id: sa_456
-            type: service_account
-          name: Administration Key
-          created_at: 1711471533
-          id: key_abc
-          redacted_value: sk-admin...def
-          value: sk-admin-1234abcd
-          object: organization.admin_api_key
-        - owner:
-            role: member
-            name: My Service Account
-            created_at: 1711471533
-            id: sa_456
-            type: service_account
-          name: Administration Key
-          created_at: 1711471533
-          id: key_abc
-          redacted_value: sk-admin...def
-          value: sk-admin-1234abcd
-          object: organization.admin_api_key
-        last_id: key_xyz
-        has_more: false
         object: list
+        data:
+        - object: organization.admin_api_key
+          id: key_abc
+          name: Administration Key
+          redacted_value: sk-admin...def
+          value: sk-admin-1234abcd
+          created_at: 1711471533
+          owner:
+            type: service_account
+            id: sa_456
+            name: My Service Account
+            created_at: 1711471533
+            role: member
+        - object: organization.admin_api_key
+          id: key_abc
+          name: Administration Key
+          redacted_value: sk-admin...def
+          value: sk-admin-1234abcd
+          created_at: 1711471533
+          owner:
+            type: service_account
+            id: sa_456
+            name: My Service Account
+            created_at: 1711471533
+            role: member
+        has_more: false
+        first_id: key_abc
+        last_id: key_xyz
       properties:
         object:
           example: list
@@ -11915,7 +11915,19 @@ components:
     AssistantObject:
       description: Represents an `assistant` that can call the model and use tools.
       example:
+        id: id
+        object: assistant
+        created_at: 0
+        name: name
+        description: description
+        model: model
         instructions: instructions
+        tools:
+        - type: code_interpreter
+        - type: code_interpreter
+        - type: code_interpreter
+        - type: code_interpreter
+        - type: code_interpreter
         tool_resources:
           code_interpreter:
             file_ids:
@@ -11928,21 +11940,9 @@ components:
             vector_store_ids:
             - vector_store_ids
         metadata: "{}"
-        created_at: 0
-        description: description
-        tools:
-        - type: code_interpreter
-        - type: code_interpreter
-        - type: code_interpreter
-        - type: code_interpreter
-        - type: code_interpreter
+        temperature: 1
         top_p: 1
         response_format: auto
-        name: name
-        temperature: 1
-        model: model
-        id: id
-        object: assistant
       properties:
         id:
           description: "The identifier, which can be referenced in API endpoints."
@@ -12200,106 +12200,106 @@ components:
     AuditLog:
       description: A log of a user action or configuration change within this organization.
       example:
-        rate_limit.updated:
-          changes_requested:
-            batch_1_day_max_input_tokens: 7
-            max_tokens_per_1_minute: 1
-            max_images_per_1_minute: 5
-            max_audio_megabytes_per_1_minute: 5
-            max_requests_per_1_minute: 6
-            max_requests_per_1_day: 2
-          id: id
-        user.updated:
-          changes_requested:
-            role: role
-          id: id
-        project:
-          name: name
-          id: id
-        service_account.deleted:
-          id: id
-        type: api_key.created
-        logout.failed:
-          error_message: error_message
-          error_code: error_code
-        login.failed:
-          error_message: error_message
-          error_code: error_code
-        service_account.updated:
-          changes_requested:
-            role: role
-          id: id
-        rate_limit.deleted:
-          id: id
         id: id
-        project.created:
-          data:
-            name: name
-            title: title
+        type: api_key.created
+        effective_at: 0
+        project:
           id: id
-        organization.updated:
-          changes_requested:
-            settings:
-              threads_ui_visibility: threads_ui_visibility
-              usage_dashboard_visibility: usage_dashboard_visibility
-            name: name
-            description: description
-            title: title
-          id: id
-        project.updated:
-          changes_requested:
-            title: title
-          id: id
-        project.archived:
-          id: id
-        user.added:
-          data:
-            role: role
-          id: id
-        invite.accepted:
-          id: id
-        invite.deleted:
-          id: id
+          name: name
         actor:
-          api_key:
-            service_account:
+          type: session
+          session:
+            user:
               id: id
+              email: email
+            ip_address: ip_address
+          api_key:
             id: id
             type: user
             user:
               id: id
               email: email
-          session:
-            ip_address: ip_address
-            user:
+            service_account:
               id: id
-              email: email
-          type: session
-        effective_at: 0
-        invite.sent:
-          data:
-            role: role
-            email: email
-          id: id
-        service_account.created:
-          data:
-            role: role
-          id: id
         api_key.created:
+          id: id
           data:
             scopes:
             - scopes
             - scopes
-          id: id
-        user.deleted:
-          id: id
-        api_key.deleted:
-          id: id
         api_key.updated:
+          id: id
           changes_requested:
             scopes:
             - scopes
             - scopes
+        api_key.deleted:
+          id: id
+        invite.sent:
+          id: id
+          data:
+            email: email
+            role: role
+        invite.accepted:
+          id: id
+        invite.deleted:
+          id: id
+        login.failed:
+          error_code: error_code
+          error_message: error_message
+        logout.failed:
+          error_code: error_code
+          error_message: error_message
+        organization.updated:
+          id: id
+          changes_requested:
+            title: title
+            description: description
+            name: name
+            settings:
+              threads_ui_visibility: threads_ui_visibility
+              usage_dashboard_visibility: usage_dashboard_visibility
+        project.created:
+          id: id
+          data:
+            name: name
+            title: title
+        project.updated:
+          id: id
+          changes_requested:
+            title: title
+        project.archived:
+          id: id
+        rate_limit.updated:
+          id: id
+          changes_requested:
+            max_requests_per_1_minute: 6
+            max_tokens_per_1_minute: 1
+            max_images_per_1_minute: 5
+            max_audio_megabytes_per_1_minute: 5
+            max_requests_per_1_day: 2
+            batch_1_day_max_input_tokens: 7
+        rate_limit.deleted:
+          id: id
+        service_account.created:
+          id: id
+          data:
+            role: role
+        service_account.updated:
+          id: id
+          changes_requested:
+            role: role
+        service_account.deleted:
+          id: id
+        user.added:
+          id: id
+          data:
+            role: role
+        user.updated:
+          id: id
+          changes_requested:
+            role: role
+        user.deleted:
           id: id
       properties:
         id:
@@ -12389,20 +12389,20 @@ components:
     AuditLogActor:
       description: The actor who performed the audit logged action.
       example:
-        api_key:
-          service_account:
+        type: session
+        session:
+          user:
             id: id
+            email: email
+          ip_address: ip_address
+        api_key:
           id: id
           type: user
           user:
             id: id
             email: email
-        session:
-          ip_address: ip_address
-          user:
+          service_account:
             id: id
-            email: email
-        type: session
       properties:
         type:
           description: The type of actor. Is either `session` or `api_key`.
@@ -12418,13 +12418,13 @@ components:
     AuditLogActorApiKey:
       description: The API Key used to perform the audit logged action.
       example:
-        service_account:
-          id: id
         id: id
         type: user
         user:
           id: id
           email: email
+        service_account:
+          id: id
       properties:
         id:
           description: The tracking id of the API key.
@@ -12452,10 +12452,10 @@ components:
     AuditLogActorSession:
       description: The session in which the audit logged action was performed.
       example:
-        ip_address: ip_address
         user:
           id: id
           email: email
+        ip_address: ip_address
       properties:
         user:
           $ref: "#/components/schemas/AuditLogActorUser"
@@ -12521,39 +12521,39 @@ components:
       type: object
     Batch:
       example:
-        cancelled_at: 2
-        metadata: "{}"
-        request_counts:
-          total: 4
-          completed: 7
-          failed: 1
+        id: id
+        object: batch
+        endpoint: endpoint
+        errors:
+          object: object
+          data:
+          - code: code
+            message: message
+            param: param
+            line: 0
+          - code: code
+            message: message
+            param: param
+            line: 0
         input_file_id: input_file_id
+        completion_window: completion_window
+        status: validating
         output_file_id: output_file_id
         error_file_id: error_file_id
         created_at: 6
         in_progress_at: 1
-        expired_at: 9
+        expires_at: 5
         finalizing_at: 5
         completed_at: 2
-        endpoint: endpoint
-        expires_at: 5
-        cancelling_at: 3
-        completion_window: completion_window
-        id: id
         failed_at: 7
-        errors:
-          data:
-          - code: code
-            param: param
-            line: 0
-            message: message
-          - code: code
-            param: param
-            line: 0
-            message: message
-          object: object
-        object: batch
-        status: validating
+        expired_at: 9
+        cancelling_at: 3
+        cancelled_at: 2
+        request_counts:
+          total: 4
+          completed: 7
+          failed: 1
+        metadata: "{}"
       properties:
         id:
           type: string
@@ -12729,8 +12729,8 @@ components:
     ChatCompletionFunctions:
       deprecated: true
       example:
-        name: name
         description: description
+        name: name
         parameters:
           key: ""
       properties:
@@ -12755,11 +12755,11 @@ components:
       type: object
     ChatCompletionMessageToolCall:
       example:
+        id: id
+        type: function
         function:
           name: name
           arguments: arguments
-        id: id
-        type: function
       properties:
         id:
           description: The ID of the tool call.
@@ -12875,9 +12875,9 @@ components:
         messages sent by the user. With o1 models and newer, `developer` messages
         replace the previous `system` messages.
       example:
+        content: ChatCompletionRequestDeveloperMessage_content
         role: developer
         name: name
-        content: ChatCompletionRequestDeveloperMessage_content
       properties:
         content:
           $ref: "#/components/schemas/ChatCompletionRequestDeveloperMessage_content"
@@ -13063,28 +13063,28 @@ components:
     ChatCompletionResponseMessage:
       description: A chat completion message generated by the model.
       example:
-        role: assistant
-        function_call:
-          name: name
-          arguments: arguments
+        content: content
         refusal: refusal
         tool_calls:
-        - function:
+        - id: id
+          type: function
+          function:
             name: name
             arguments: arguments
-          id: id
+        - id: id
           type: function
-        - function:
+          function:
             name: name
             arguments: arguments
-          id: id
-          type: function
+        role: assistant
+        function_call:
+          arguments: arguments
+          name: name
         audio:
-          expires_at: 6
-          transcript: transcript
-          data: data
           id: id
-        content: content
+          expires_at: 6
+          data: data
+          transcript: transcript
       properties:
         content:
           description: The contents of the message.
@@ -13134,6 +13134,7 @@ components:
             If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array. All other chunks will also include a `usage` field, but with a null value.
           type: boolean
       type: object
+      default: null
     ChatCompletionStreamResponseDelta:
       description: A chat completion delta generated by streamed model responses.
       properties:
@@ -13162,22 +13163,22 @@ components:
       type: object
     ChatCompletionTokenLogprob:
       example:
-        top_logprobs:
-        - logprob: 5.637376656633329
-          bytes:
-          - 2
-          - 2
-          token: token
-        - logprob: 5.637376656633329
-          bytes:
-          - 2
-          - 2
-          token: token
+        token: token
         logprob: 1.4658129805029452
         bytes:
         - 5
         - 5
-        token: token
+        top_logprobs:
+        - token: token
+          logprob: 5.637376656633329
+          bytes:
+          - 2
+          - 2
+        - token: token
+          logprob: 5.637376656633329
+          bytes:
+          - 2
+          - 2
       properties:
         token:
           description: The token.
@@ -13212,13 +13213,13 @@ components:
       type: object
     ChatCompletionTool:
       example:
+        type: function
         function:
-          name: name
           description: description
-          strict: false
+          name: name
           parameters:
             key: ""
-        type: function
+          strict: false
       properties:
         type:
           description: "The type of the tool. Currently, only `function` is supported."
@@ -13284,6 +13285,7 @@ components:
       example:
         completion_tokens: 9
         prompt_tokens: 3
+        total_tokens: 2
         completion_tokens_details:
           accepted_prediction_tokens: 4
           audio_tokens: 7
@@ -13292,7 +13294,6 @@ components:
         prompt_tokens_details:
           audio_tokens: 1
           cached_tokens: 6
-        total_tokens: 2
       properties:
         completion_tokens:
           description: Number of tokens in the generated completion.
@@ -13350,8 +13351,16 @@ components:
     CreateAssistantRequest:
       additionalProperties: false
       example:
-        top_p: 1
+        model: gpt-4o
+        name: name
+        description: description
         instructions: instructions
+        tools:
+        - type: code_interpreter
+        - type: code_interpreter
+        - type: code_interpreter
+        - type: code_interpreter
+        - type: code_interpreter
         tool_resources:
           code_interpreter:
             file_ids:
@@ -13364,27 +13373,19 @@ components:
             vector_store_ids:
             - vector_store_ids
             vector_stores:
-            - chunking_strategy:
+            - file_ids:
+              - file_ids
+              - file_ids
+              - file_ids
+              - file_ids
+              - file_ids
+              chunking_strategy:
                 type: auto
               metadata: "{}"
-              file_ids:
-              - file_ids
-              - file_ids
-              - file_ids
-              - file_ids
-              - file_ids
         metadata: "{}"
-        response_format: auto
-        name: name
         temperature: 1
-        description: description
-        model: gpt-4o
-        tools:
-        - type: code_interpreter
-        - type: code_interpreter
-        - type: code_interpreter
-        - type: code_interpreter
-        - type: code_interpreter
+        top_p: 1
+        response_format: auto
       properties:
         model:
           $ref: "#/components/schemas/CreateAssistantRequest_model"
@@ -13565,84 +13566,84 @@ components:
           }
     CreateChatCompletionRequest:
       example:
+        messages:
+        - content: ChatCompletionRequestDeveloperMessage_content
+          role: developer
+          name: name
+        - content: ChatCompletionRequestDeveloperMessage_content
+          role: developer
+          name: name
+        model: gpt-4o
+        store: false
         reasoning_effort: medium
-        top_logprobs: 2
         metadata:
           key: metadata
+        frequency_penalty: -1.6796687238155954
         logit_bias:
           key: 6
-        seed: 2147483647
-        functions:
-        - name: name
-          description: description
-          parameters:
-            key: ""
-        - name: name
-          description: description
-          parameters:
-            key: ""
-        - name: name
-          description: description
-          parameters:
-            key: ""
-        - name: name
-          description: description
-          parameters:
-            key: ""
-        - name: name
-          description: description
-          parameters:
-            key: ""
-        function_call: none
-        presence_penalty: -1.079145645226094
-        tools:
-        - function:
-            name: name
-            description: description
-            strict: false
-            parameters:
-              key: ""
-          type: function
-        - function:
-            name: name
-            description: description
-            strict: false
-            parameters:
-              key: ""
-          type: function
         logprobs: false
-        top_p: 1
+        top_logprobs: 2
+        max_tokens: 5
         max_completion_tokens: 5
-        frequency_penalty: -1.6796687238155954
+        "n": 1
         modalities:
         - text
         - text
-        response_format:
-          type: text
-        stream: false
-        temperature: 1
-        tool_choice: none
-        model: gpt-4o
-        service_tier: auto
+        prediction: ""
         audio:
           voice: alloy
           format: wav
-        max_tokens: 5
-        store: false
-        "n": 1
+        presence_penalty: -1.079145645226094
+        response_format:
+          type: text
+        seed: 2147483647
+        service_tier: auto
         stop: CreateChatCompletionRequest_stop
-        parallel_tool_calls: true
-        prediction: ""
-        messages:
-        - role: developer
-          name: name
-          content: ChatCompletionRequestDeveloperMessage_content
-        - role: developer
-          name: name
-          content: ChatCompletionRequestDeveloperMessage_content
+        stream: false
         stream_options:
           include_usage: true
+        temperature: 1
+        top_p: 1
+        tools:
+        - type: function
+          function:
+            description: description
+            name: name
+            parameters:
+              key: ""
+            strict: false
+        - type: function
+          function:
+            description: description
+            name: name
+            parameters:
+              key: ""
+            strict: false
+        tool_choice: none
+        parallel_tool_calls: true
         user: user-1234
+        function_call: none
+        functions:
+        - description: description
+          name: name
+          parameters:
+            key: ""
+        - description: description
+          name: name
+          parameters:
+            key: ""
+        - description: description
+          name: name
+          parameters:
+            key: ""
+        - description: description
+          name: name
+          parameters:
+            key: ""
+        - description: description
+          name: name
+          parameters:
+            key: ""
       properties:
         messages:
           description: |
@@ -13708,6 +13709,7 @@ components:
           nullable: true
           type: object
           x-oaiTypeLabel: map
+          default: null
         logprobs:
           default: false
           description: |
@@ -13773,6 +13775,11 @@ components:
         prediction:
           allOf:
           - $ref: "#/components/schemas/PredictionContent"
+          description: |
+            Configuration for a [Predicted Output](/docs/guides/predicted-outputs),
+            which can greatly improve response times when large parts of the model
+            response are known ahead of time. This is most common when you are
+            regenerating a file with only minor changes to most of the content.
           nullable: true
         audio:
           $ref: "#/components/schemas/CreateChatCompletionRequest_audio"
@@ -13888,10 +13895,201 @@ components:
       description: "Represents a chat completion response returned by model, based\
         \ on the provided input."
       example:
+        id: id
+        choices:
+        - finish_reason: stop
+          index: 0
+          message:
+            content: content
+            refusal: refusal
+            tool_calls:
+            - id: id
+              type: function
+              function:
+                name: name
+                arguments: arguments
+            - id: id
+              type: function
+              function:
+                name: name
+                arguments: arguments
+            role: assistant
+            function_call:
+              arguments: arguments
+              name: name
+            audio:
+              id: id
+              expires_at: 6
+              data: data
+              transcript: transcript
+          logprobs:
+            content:
+            - token: token
+              logprob: 1.4658129805029452
+              bytes:
+              - 5
+              - 5
+              top_logprobs:
+              - token: token
+                logprob: 5.637376656633329
+                bytes:
+                - 2
+                - 2
+              - token: token
+                logprob: 5.637376656633329
+                bytes:
+                - 2
+                - 2
+            - token: token
+              logprob: 1.4658129805029452
+              bytes:
+              - 5
+              - 5
+              top_logprobs:
+              - token: token
+                logprob: 5.637376656633329
+                bytes:
+                - 2
+                - 2
+              - token: token
+                logprob: 5.637376656633329
+                bytes:
+                - 2
+                - 2
+            refusal:
+            - token: token
+              logprob: 1.4658129805029452
+              bytes:
+              - 5
+              - 5
+              top_logprobs:
+              - token: token
+                logprob: 5.637376656633329
+                bytes:
+                - 2
+                - 2
+              - token: token
+                logprob: 5.637376656633329
+                bytes:
+                - 2
+                - 2
+            - token: token
+              logprob: 1.4658129805029452
+              bytes:
+              - 5
+              - 5
+              top_logprobs:
+              - token: token
+                logprob: 5.637376656633329
+                bytes:
+                - 2
+                - 2
+              - token: token
+                logprob: 5.637376656633329
+                bytes:
+                - 2
+                - 2
+        - finish_reason: stop
+          index: 0
+          message:
+            content: content
+            refusal: refusal
+            tool_calls:
+            - id: id
+              type: function
+              function:
+                name: name
+                arguments: arguments
+            - id: id
+              type: function
+              function:
+                name: name
+                arguments: arguments
+            role: assistant
+            function_call:
+              arguments: arguments
+              name: name
+            audio:
+              id: id
+              expires_at: 6
+              data: data
+              transcript: transcript
+          logprobs:
+            content:
+            - token: token
+              logprob: 1.4658129805029452
+              bytes:
+              - 5
+              - 5
+              top_logprobs:
+              - token: token
+                logprob: 5.637376656633329
+                bytes:
+                - 2
+                - 2
+              - token: token
+                logprob: 5.637376656633329
+                bytes:
+                - 2
+                - 2
+            - token: token
+              logprob: 1.4658129805029452
+              bytes:
+              - 5
+              - 5
+              top_logprobs:
+              - token: token
+                logprob: 5.637376656633329
+                bytes:
+                - 2
+                - 2
+              - token: token
+                logprob: 5.637376656633329
+                bytes:
+                - 2
+                - 2
+            refusal:
+            - token: token
+              logprob: 1.4658129805029452
+              bytes:
+              - 5
+              - 5
+              top_logprobs:
+              - token: token
+                logprob: 5.637376656633329
+                bytes:
+                - 2
+                - 2
+              - token: token
+                logprob: 5.637376656633329
+                bytes:
+                - 2
+                - 2
+            - token: token
+              logprob: 1.4658129805029452
+              bytes:
+              - 5
+              - 5
+              top_logprobs:
+              - token: token
+                logprob: 5.637376656633329
+                bytes:
+                - 2
+                - 2
+              - token: token
+                logprob: 5.637376656633329
+                bytes:
+                - 2
+                - 2
         created: 7
+        model: model
+        service_tier: scale
+        system_fingerprint: system_fingerprint
+        object: chat.completion
         usage:
           completion_tokens: 9
           prompt_tokens: 3
+          total_tokens: 2
           completion_tokens_details:
             accepted_prediction_tokens: 4
             audio_tokens: 7
@@ -13900,197 +14098,6 @@ components:
           prompt_tokens_details:
             audio_tokens: 1
             cached_tokens: 6
-          total_tokens: 2
-        model: model
-        service_tier: scale
-        id: id
-        choices:
-        - finish_reason: stop
-          index: 0
-          message:
-            role: assistant
-            function_call:
-              name: name
-              arguments: arguments
-            refusal: refusal
-            tool_calls:
-            - function:
-                name: name
-                arguments: arguments
-              id: id
-              type: function
-            - function:
-                name: name
-                arguments: arguments
-              id: id
-              type: function
-            audio:
-              expires_at: 6
-              transcript: transcript
-              data: data
-              id: id
-            content: content
-          logprobs:
-            refusal:
-            - top_logprobs:
-              - logprob: 5.637376656633329
-                bytes:
-                - 2
-                - 2
-                token: token
-              - logprob: 5.637376656633329
-                bytes:
-                - 2
-                - 2
-                token: token
-              logprob: 1.4658129805029452
-              bytes:
-              - 5
-              - 5
-              token: token
-            - top_logprobs:
-              - logprob: 5.637376656633329
-                bytes:
-                - 2
-                - 2
-                token: token
-              - logprob: 5.637376656633329
-                bytes:
-                - 2
-                - 2
-                token: token
-              logprob: 1.4658129805029452
-              bytes:
-              - 5
-              - 5
-              token: token
-            content:
-            - top_logprobs:
-              - logprob: 5.637376656633329
-                bytes:
-                - 2
-                - 2
-                token: token
-              - logprob: 5.637376656633329
-                bytes:
-                - 2
-                - 2
-                token: token
-              logprob: 1.4658129805029452
-              bytes:
-              - 5
-              - 5
-              token: token
-            - top_logprobs:
-              - logprob: 5.637376656633329
-                bytes:
-                - 2
-                - 2
-                token: token
-              - logprob: 5.637376656633329
-                bytes:
-                - 2
-                - 2
-                token: token
-              logprob: 1.4658129805029452
-              bytes:
-              - 5
-              - 5
-              token: token
-        - finish_reason: stop
-          index: 0
-          message:
-            role: assistant
-            function_call:
-              name: name
-              arguments: arguments
-            refusal: refusal
-            tool_calls:
-            - function:
-                name: name
-                arguments: arguments
-              id: id
-              type: function
-            - function:
-                name: name
-                arguments: arguments
-              id: id
-              type: function
-            audio:
-              expires_at: 6
-              transcript: transcript
-              data: data
-              id: id
-            content: content
-          logprobs:
-            refusal:
-            - top_logprobs:
-              - logprob: 5.637376656633329
-                bytes:
-                - 2
-                - 2
-                token: token
-              - logprob: 5.637376656633329
-                bytes:
-                - 2
-                - 2
-                token: token
-              logprob: 1.4658129805029452
-              bytes:
-              - 5
-              - 5
-              token: token
-            - top_logprobs:
-              - logprob: 5.637376656633329
-                bytes:
-                - 2
-                - 2
-                token: token
-              - logprob: 5.637376656633329
-                bytes:
-                - 2
-                - 2
-                token: token
-              logprob: 1.4658129805029452
-              bytes:
-              - 5
-              - 5
-              token: token
-            content:
-            - top_logprobs:
-              - logprob: 5.637376656633329
-                bytes:
-                - 2
-                - 2
-                token: token
-              - logprob: 5.637376656633329
-                bytes:
-                - 2
-                - 2
-                token: token
-              logprob: 1.4658129805029452
-              bytes:
-              - 5
-              - 5
-              token: token
-            - top_logprobs:
-              - logprob: 5.637376656633329
-                bytes:
-                - 2
-                - 2
-                token: token
-              - logprob: 5.637376656633329
-                bytes:
-                - 2
-                - 2
-                token: token
-              logprob: 1.4658129805029452
-              bytes:
-              - 5
-              - 5
-              token: token
-        system_fingerprint: system_fingerprint
-        object: chat.completion
       properties:
         id:
           description: A unique identifier for the chat completion.
@@ -14236,26 +14243,26 @@ components:
           {"id":"chatcmpl-123","object":"chat.completion.chunk","created":1694268190,"model":"gpt-4o-mini", "system_fingerprint": "fp_44709d6fcb", "choices":[{"index":0,"delta":{},"logprobs":null,"finish_reason":"stop"}]}
     CreateCompletionRequest:
       example:
+        model: CreateCompletionRequest_model
+        prompt: This is a test.
+        best_of: 1
+        echo: false
+        frequency_penalty: 0.4109824732281613
         logit_bias:
           key: 1
-        seed: -2147483648
-        max_tokens: 16
-        presence_penalty: 0.25495066265333133
-        echo: false
-        suffix: test.
-        "n": 1
         logprobs: 2
-        top_p: 1
-        frequency_penalty: 0.4109824732281613
-        best_of: 1
+        max_tokens: 16
+        "n": 1
+        presence_penalty: 0.25495066265333133
+        seed: -2147483648
         stop: |2+
 
         stream: false
-        temperature: 1
-        model: CreateCompletionRequest_model
         stream_options:
           include_usage: true
-        prompt: This is a test.
+        suffix: test.
+        temperature: 1
+        top_p: 1
         user: user-1234
       properties:
         model:
@@ -14302,6 +14309,7 @@ components:
           nullable: true
           type: object
           x-oaiTypeLabel: map
+          default: null
         logprobs:
           description: |
             Include the log probabilities on the `logprobs` most likely output tokens, as well the chosen tokens. For example, if `logprobs` is 5, the API will return a list of the 5 most likely tokens. The API will always return the `logprob` of the sampled token, so there may be up to `logprobs+1` elements in the response.
@@ -14311,6 +14319,7 @@ components:
           minimum: 0
           nullable: true
           type: integer
+          default: null
         max_tokens:
           default: 16
           description: |
@@ -14369,6 +14378,7 @@ components:
           example: test.
           nullable: true
           type: string
+          default: null
         temperature:
           default: 1
           description: |
@@ -14404,10 +14414,48 @@ components:
       description: |
         Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint).
       example:
+        id: id
+        choices:
+        - finish_reason: stop
+          index: 0
+          logprobs:
+            text_offset:
+            - 6
+            - 6
+            token_logprobs:
+            - 1.4658129805029452
+            - 1.4658129805029452
+            tokens:
+            - tokens
+            - tokens
+            top_logprobs:
+            - key: 5.962133916683182
+            - key: 5.962133916683182
+          text: text
+        - finish_reason: stop
+          index: 0
+          logprobs:
+            text_offset:
+            - 6
+            - 6
+            token_logprobs:
+            - 1.4658129805029452
+            - 1.4658129805029452
+            tokens:
+            - tokens
+            - tokens
+            top_logprobs:
+            - key: 5.962133916683182
+            - key: 5.962133916683182
+          text: text
         created: 5
+        model: model
+        system_fingerprint: system_fingerprint
+        object: text_completion
         usage:
           completion_tokens: 9
           prompt_tokens: 3
+          total_tokens: 2
           completion_tokens_details:
             accepted_prediction_tokens: 4
             audio_tokens: 7
@@ -14416,44 +14464,6 @@ components:
           prompt_tokens_details:
             audio_tokens: 1
             cached_tokens: 6
-          total_tokens: 2
-        model: model
-        id: id
-        choices:
-        - finish_reason: stop
-          index: 0
-          text: text
-          logprobs:
-            top_logprobs:
-            - key: 5.962133916683182
-            - key: 5.962133916683182
-            token_logprobs:
-            - 1.4658129805029452
-            - 1.4658129805029452
-            tokens:
-            - tokens
-            - tokens
-            text_offset:
-            - 6
-            - 6
-        - finish_reason: stop
-          index: 0
-          text: text
-          logprobs:
-            top_logprobs:
-            - key: 5.962133916683182
-            - key: 5.962133916683182
-            token_logprobs:
-            - 1.4658129805029452
-            - 1.4658129805029452
-            tokens:
-            - tokens
-            - tokens
-            text_offset:
-            - 6
-            - 6
-        system_fingerprint: system_fingerprint
-        object: text_completion
       properties:
         id:
           description: A unique identifier for the completion.
@@ -14518,10 +14528,10 @@ components:
       additionalProperties: false
       example:
         input: The quick brown fox jumped over the lazy dog
-        encoding_format: float
         model: text-embedding-3-small
-        user: user-1234
+        encoding_format: float
         dimensions: 1
+        user: user-1234
       properties:
         input:
           $ref: "#/components/schemas/CreateEmbeddingRequest_input"
@@ -14563,11 +14573,11 @@ components:
           - 6.027456183070403
           - 6.027456183070403
           object: embedding
+        model: model
+        object: list
         usage:
           prompt_tokens: 1
           total_tokens: 5
-        model: model
-        object: list
       properties:
         data:
           description: The list of embeddings generated by the model.
@@ -14615,45 +14625,45 @@ components:
       type: object
     CreateFineTuningJobRequest:
       example:
+        model: gpt-4o-mini
         training_file: file-abc123
+        hyperparameters:
+          batch_size: auto
+          learning_rate_multiplier: auto
+          n_epochs: auto
+        suffix: suffix
+        validation_file: file-abc123
+        integrations:
+        - type: wandb
+          wandb:
+            project: my-wandb-project
+            name: name
+            entity: entity
+            tags:
+            - custom-tag
+            - custom-tag
+        - type: wandb
+          wandb:
+            project: my-wandb-project
+            name: name
+            entity: entity
+            tags:
+            - custom-tag
+            - custom-tag
         seed: 42
         method:
+          type: supervised
           supervised:
             hyperparameters:
               batch_size: auto
-              n_epochs: auto
               learning_rate_multiplier: auto
+              n_epochs: auto
           dpo:
             hyperparameters:
-              batch_size: null
-              n_epochs: null
               beta: auto
+              batch_size: null
               learning_rate_multiplier: null
-          type: supervised
-        validation_file: file-abc123
-        hyperparameters:
-          batch_size: auto
-          n_epochs: auto
-          learning_rate_multiplier: auto
-        model: gpt-4o-mini
-        suffix: suffix
-        integrations:
-        - wandb:
-            name: name
-            project: my-wandb-project
-            entity: entity
-            tags:
-            - custom-tag
-            - custom-tag
-          type: wandb
-        - wandb:
-            name: name
-            project: my-wandb-project
-            entity: entity
-            tags:
-            - custom-tag
-            - custom-tag
-          type: wandb
+              n_epochs: null
       properties:
         model:
           $ref: "#/components/schemas/CreateFineTuningJobRequest_model"
@@ -14681,6 +14691,7 @@ components:
           minLength: 1
           nullable: true
           type: string
+          default: null
         validation_file:
           description: |
             The ID of an uploaded file that contains validation data.
@@ -14779,14 +14790,14 @@ components:
       type: object
     CreateImageRequest:
       example:
-        response_format: url
-        size: 1024x1024
-        model: dall-e-3
-        style: vivid
         prompt: A cute baby sea otter
-        user: user-1234
+        model: dall-e-3
         "n": 1
         quality: standard
+        response_format: url
+        size: 1024x1024
+        style: vivid
+        user: user-1234
       properties:
         prompt:
           description: A text description of the desired image(s). The maximum length
@@ -14910,8 +14921,8 @@ components:
     CreateMessageRequest:
       additionalProperties: false
       example:
-        metadata: "{}"
         role: user
+        content: CreateMessageRequest_content
         attachments:
         - file_id: file_id
           tools:
@@ -14921,7 +14932,7 @@ components:
           tools:
           - type: code_interpreter
           - type: code_interpreter
-        content: CreateMessageRequest_content
+        metadata: "{}"
       properties:
         role:
           description: |
@@ -14969,147 +14980,147 @@ components:
     CreateModerationResponse:
       description: Represents if a given text input is potentially harmful.
       example:
-        model: model
         id: id
+        model: model
         results:
-        - category_scores:
-            illicit/violent: 2.3021358869347655
-            self-harm/instructions: 3.616076749251911
-            harassment: 1.4658129805029452
-            violence/graphic: 1.2315135367772556
-            illicit: 5.637376656633329
-            self-harm/intent: 9.301444243932576
-            hate/threatening: 6.027456183070403
-            sexual/minors: 4.145608029883936
-            harassment/threatening: 5.962133916683182
+        - flagged: true
+          categories:
+            hate: true
+            hate/threatening: true
+            harassment: true
+            harassment/threatening: true
+            illicit: true
+            illicit/violent: true
+            self-harm: true
+            self-harm/intent: true
+            self-harm/instructions: true
+            sexual: true
+            sexual/minors: true
+            violence: true
+            violence/graphic: true
+          category_scores:
             hate: 0.8008281904610115
+            hate/threatening: 6.027456183070403
+            harassment: 1.4658129805029452
+            harassment/threatening: 5.962133916683182
+            illicit: 5.637376656633329
+            illicit/violent: 2.3021358869347655
             self-harm: 7.061401241503109
+            self-harm/intent: 9.301444243932576
+            self-harm/instructions: 3.616076749251911
             sexual: 2.027123023002322
+            sexual/minors: 4.145608029883936
             violence: 7.386281948385884
-          flagged: true
+            violence/graphic: 1.2315135367772556
           category_applied_input_types:
-            illicit/violent:
-            - text
-            - text
-            self-harm/instructions:
-            - text
-            - text
-            harassment:
-            - text
-            - text
-            violence/graphic:
-            - text
-            - text
-            illicit:
-            - text
-            - text
-            self-harm/intent:
+            hate:
             - text
             - text
             hate/threatening:
             - text
             - text
-            sexual/minors:
-            - text
-            - text
-            harassment/threatening:
-            - text
-            - text
-            hate:
-            - text
-            - text
-            self-harm:
-            - text
-            - text
-            sexual:
-            - text
-            - text
-            violence:
-            - text
-            - text
-          categories:
-            illicit/violent: true
-            self-harm/instructions: true
-            harassment: true
-            violence/graphic: true
-            illicit: true
-            self-harm/intent: true
-            hate/threatening: true
-            sexual/minors: true
-            harassment/threatening: true
-            hate: true
-            self-harm: true
-            sexual: true
-            violence: true
-        - category_scores:
-            illicit/violent: 2.3021358869347655
-            self-harm/instructions: 3.616076749251911
-            harassment: 1.4658129805029452
-            violence/graphic: 1.2315135367772556
-            illicit: 5.637376656633329
-            self-harm/intent: 9.301444243932576
-            hate/threatening: 6.027456183070403
-            sexual/minors: 4.145608029883936
-            harassment/threatening: 5.962133916683182
-            hate: 0.8008281904610115
-            self-harm: 7.061401241503109
-            sexual: 2.027123023002322
-            violence: 7.386281948385884
-          flagged: true
-          category_applied_input_types:
-            illicit/violent:
-            - text
-            - text
-            self-harm/instructions:
-            - text
-            - text
             harassment:
             - text
             - text
-            violence/graphic:
+            harassment/threatening:
             - text
             - text
             illicit:
             - text
             - text
-            self-harm/intent:
-            - text
-            - text
-            hate/threatening:
-            - text
-            - text
-            sexual/minors:
-            - text
-            - text
-            harassment/threatening:
-            - text
-            - text
-            hate:
+            illicit/violent:
             - text
             - text
             self-harm:
             - text
             - text
+            self-harm/intent:
+            - text
+            - text
+            self-harm/instructions:
+            - text
+            - text
             sexual:
+            - text
+            - text
+            sexual/minors:
             - text
             - text
             violence:
             - text
             - text
+            violence/graphic:
+            - text
+            - text
+        - flagged: true
           categories:
-            illicit/violent: true
-            self-harm/instructions: true
-            harassment: true
-            violence/graphic: true
-            illicit: true
-            self-harm/intent: true
-            hate/threatening: true
-            sexual/minors: true
-            harassment/threatening: true
             hate: true
+            hate/threatening: true
+            harassment: true
+            harassment/threatening: true
+            illicit: true
+            illicit/violent: true
             self-harm: true
+            self-harm/intent: true
+            self-harm/instructions: true
             sexual: true
+            sexual/minors: true
             violence: true
+            violence/graphic: true
+          category_scores:
+            hate: 0.8008281904610115
+            hate/threatening: 6.027456183070403
+            harassment: 1.4658129805029452
+            harassment/threatening: 5.962133916683182
+            illicit: 5.637376656633329
+            illicit/violent: 2.3021358869347655
+            self-harm: 7.061401241503109
+            self-harm/intent: 9.301444243932576
+            self-harm/instructions: 3.616076749251911
+            sexual: 2.027123023002322
+            sexual/minors: 4.145608029883936
+            violence: 7.386281948385884
+            violence/graphic: 1.2315135367772556
+          category_applied_input_types:
+            hate:
+            - text
+            - text
+            hate/threatening:
+            - text
+            - text
+            harassment:
+            - text
+            - text
+            harassment/threatening:
+            - text
+            - text
+            illicit:
+            - text
+            - text
+            illicit/violent:
+            - text
+            - text
+            self-harm:
+            - text
+            - text
+            self-harm/intent:
+            - text
+            - text
+            self-harm/instructions:
+            - text
+            - text
+            sexual:
+            - text
+            - text
+            sexual/minors:
+            - text
+            - text
+            violence:
+            - text
+            - text
+            violence/graphic:
+            - text
+            - text
       properties:
         id:
           description: The unique identifier for the moderation request.
@@ -15219,13 +15230,13 @@ components:
     CreateRunRequest:
       additionalProperties: false
       example:
+        assistant_id: assistant_id
+        model: gpt-4o
         instructions: instructions
         additional_instructions: additional_instructions
-        metadata: "{}"
-        assistant_id: assistant_id
         additional_messages:
-        - metadata: "{}"
-          role: user
+        - role: user
+          content: CreateMessageRequest_content
           attachments:
           - file_id: file_id
             tools:
@@ -15235,9 +15246,9 @@ components:
             tools:
             - type: code_interpreter
             - type: code_interpreter
+          metadata: "{}"
+        - role: user
           content: CreateMessageRequest_content
-        - metadata: "{}"
-          role: user
           attachments:
           - file_id: file_id
             tools:
@@ -15247,25 +15258,25 @@ components:
             tools:
             - type: code_interpreter
             - type: code_interpreter
-          content: CreateMessageRequest_content
+          metadata: "{}"
         tools:
         - type: code_interpreter
         - type: code_interpreter
         - type: code_interpreter
         - type: code_interpreter
         - type: code_interpreter
-        truncation_strategy:
-          last_messages: 1
-          type: auto
-        top_p: 1
-        max_completion_tokens: 256
-        response_format: auto
-        parallel_tool_calls: true
-        stream: true
+        metadata: "{}"
         temperature: 1
-        tool_choice: none
-        model: gpt-4o
+        top_p: 1
+        stream: true
         max_prompt_tokens: 256
+        max_completion_tokens: 256
+        truncation_strategy:
+          type: auto
+          last_messages: 1
+        tool_choice: none
+        parallel_tool_calls: true
+        response_format: auto
       properties:
         assistant_id:
           description: "The ID of the [assistant](/docs/api-reference/assistants)\
@@ -15360,10 +15371,10 @@ components:
     CreateSpeechRequest:
       additionalProperties: false
       example:
-        voice: alloy
-        input: input
-        response_format: mp3
         model: CreateSpeechRequest_model
+        input: input
+        voice: alloy
+        response_format: mp3
         speed: 0.5503105714228793
       properties:
         model:
@@ -15412,21 +15423,33 @@ components:
     CreateThreadAndRunRequest:
       additionalProperties: false
       example:
-        instructions: instructions
-        tool_resources:
-          code_interpreter:
-            file_ids:
-            - file_ids
-            - file_ids
-            - file_ids
-            - file_ids
-            - file_ids
-          file_search:
-            vector_store_ids:
-            - vector_store_ids
-        metadata: "{}"
         assistant_id: assistant_id
         thread:
+          messages:
+          - role: user
+            content: CreateMessageRequest_content
+            attachments:
+            - file_id: file_id
+              tools:
+              - type: code_interpreter
+              - type: code_interpreter
+            - file_id: file_id
+              tools:
+              - type: code_interpreter
+              - type: code_interpreter
+            metadata: "{}"
+          - role: user
+            content: CreateMessageRequest_content
+            attachments:
+            - file_id: file_id
+              tools:
+              - type: code_interpreter
+              - type: code_interpreter
+            - file_id: file_id
+              tools:
+              - type: code_interpreter
+              - type: code_interpreter
+            metadata: "{}"
           tool_resources:
             code_interpreter:
               file_ids:
@@ -15439,59 +15462,47 @@ components:
               vector_store_ids:
               - vector_store_ids
               vector_stores:
-              - chunking_strategy:
+              - file_ids:
+                - file_ids
+                - file_ids
+                - file_ids
+                - file_ids
+                - file_ids
+                chunking_strategy:
                   type: auto
                 metadata: "{}"
-                file_ids:
-                - file_ids
-                - file_ids
-                - file_ids
-                - file_ids
-                - file_ids
           metadata: "{}"
-          messages:
-          - metadata: "{}"
-            role: user
-            attachments:
-            - file_id: file_id
-              tools:
-              - type: code_interpreter
-              - type: code_interpreter
-            - file_id: file_id
-              tools:
-              - type: code_interpreter
-              - type: code_interpreter
-            content: CreateMessageRequest_content
-          - metadata: "{}"
-            role: user
-            attachments:
-            - file_id: file_id
-              tools:
-              - type: code_interpreter
-              - type: code_interpreter
-            - file_id: file_id
-              tools:
-              - type: code_interpreter
-              - type: code_interpreter
-            content: CreateMessageRequest_content
+        model: gpt-4o
+        instructions: instructions
         tools:
         - type: code_interpreter
         - type: code_interpreter
         - type: code_interpreter
         - type: code_interpreter
         - type: code_interpreter
-        truncation_strategy:
-          last_messages: 1
-          type: auto
-        top_p: 1
-        max_completion_tokens: 256
-        response_format: auto
-        parallel_tool_calls: true
-        stream: true
+        tool_resources:
+          code_interpreter:
+            file_ids:
+            - file_ids
+            - file_ids
+            - file_ids
+            - file_ids
+            - file_ids
+          file_search:
+            vector_store_ids:
+            - vector_store_ids
+        metadata: "{}"
         temperature: 1
-        tool_choice: none
-        model: gpt-4o
+        top_p: 1
+        stream: true
         max_prompt_tokens: 256
+        max_completion_tokens: 256
+        truncation_strategy:
+          type: auto
+          last_messages: 1
+        tool_choice: none
+        parallel_tool_calls: true
+        response_format: auto
       properties:
         assistant_id:
           description: "The ID of the [assistant](/docs/api-reference/assistants)\
@@ -15576,6 +15587,31 @@ components:
     CreateThreadRequest:
       additionalProperties: false
       example:
+        messages:
+        - role: user
+          content: CreateMessageRequest_content
+          attachments:
+          - file_id: file_id
+            tools:
+            - type: code_interpreter
+            - type: code_interpreter
+          - file_id: file_id
+            tools:
+            - type: code_interpreter
+            - type: code_interpreter
+          metadata: "{}"
+        - role: user
+          content: CreateMessageRequest_content
+          attachments:
+          - file_id: file_id
+            tools:
+            - type: code_interpreter
+            - type: code_interpreter
+          - file_id: file_id
+            tools:
+            - type: code_interpreter
+            - type: code_interpreter
+          metadata: "{}"
         tool_resources:
           code_interpreter:
             file_ids:
@@ -15588,41 +15624,16 @@ components:
             vector_store_ids:
             - vector_store_ids
             vector_stores:
-            - chunking_strategy:
+            - file_ids:
+              - file_ids
+              - file_ids
+              - file_ids
+              - file_ids
+              - file_ids
+              chunking_strategy:
                 type: auto
               metadata: "{}"
-              file_ids:
-              - file_ids
-              - file_ids
-              - file_ids
-              - file_ids
-              - file_ids
         metadata: "{}"
-        messages:
-        - metadata: "{}"
-          role: user
-          attachments:
-          - file_id: file_id
-            tools:
-            - type: code_interpreter
-            - type: code_interpreter
-          - file_id: file_id
-            tools:
-            - type: code_interpreter
-            - type: code_interpreter
-          content: CreateMessageRequest_content
-        - metadata: "{}"
-          role: user
-          attachments:
-          - file_id: file_id
-            tools:
-            - type: code_interpreter
-            - type: code_interpreter
-          - file_id: file_id
-            tools:
-            - type: code_interpreter
-            - type: code_interpreter
-          content: CreateMessageRequest_content
       properties:
         messages:
           description: "A list of [messages](/docs/api-reference/messages) to start\
@@ -15817,8 +15828,8 @@ components:
       example:
         filename: filename
         purpose: assistants
-        mime_type: mime_type
         bytes: 0
+        mime_type: mime_type
       properties:
         filename:
           description: |
@@ -15854,14 +15865,14 @@ components:
     CreateVectorStoreFileBatchRequest:
       additionalProperties: false
       example:
-        chunking_strategy:
-          type: auto
         file_ids:
         - file_ids
         - file_ids
         - file_ids
         - file_ids
         - file_ids
+        chunking_strategy:
+          type: auto
       properties:
         file_ids:
           description: "A list of [File](/docs/api-reference/files) IDs that the vector\
@@ -15880,9 +15891,9 @@ components:
     CreateVectorStoreFileRequest:
       additionalProperties: false
       example:
+        file_id: file_id
         chunking_strategy:
           type: auto
-        file_id: file_id
       properties:
         file_id:
           description: "A [File](/docs/api-reference/files) ID that the vector store\
@@ -15896,12 +15907,6 @@ components:
     CreateVectorStoreRequest:
       additionalProperties: false
       example:
-        chunking_strategy:
-          type: auto
-        metadata: "{}"
-        expires_after:
-          anchor: last_active_at
-          days: 339
         file_ids:
         - file_ids
         - file_ids
@@ -15909,6 +15914,12 @@ components:
         - file_ids
         - file_ids
         name: name
+        expires_after:
+          anchor: last_active_at
+          days: 339
+        chunking_strategy:
+          type: auto
+        metadata: "{}"
       properties:
         file_ids:
           description: "A list of [File](/docs/api-reference/files) IDs that the vector\
@@ -15944,8 +15955,8 @@ components:
       type: object
     DeleteAssistantResponse:
       example:
-        deleted: true
         id: id
+        deleted: true
         object: assistant.deleted
       properties:
         id:
@@ -15963,9 +15974,9 @@ components:
       type: object
     DeleteFileResponse:
       example:
-        deleted: true
         id: id
         object: file
+        deleted: true
       properties:
         id:
           type: string
@@ -15982,8 +15993,8 @@ components:
       type: object
     DeleteMessageResponse:
       example:
-        deleted: true
         id: id
+        deleted: true
         object: thread.message.deleted
       properties:
         id:
@@ -16001,8 +16012,8 @@ components:
       type: object
     DeleteModelResponse:
       example:
-        deleted: true
         id: id
+        deleted: true
         object: object
       properties:
         id:
@@ -16018,8 +16029,8 @@ components:
       type: object
     DeleteThreadResponse:
       example:
-        deleted: true
         id: id
+        deleted: true
         object: thread.deleted
       properties:
         id:
@@ -16037,8 +16048,8 @@ components:
       type: object
     DeleteVectorStoreFileResponse:
       example:
-        deleted: true
         id: id
+        deleted: true
         object: vector_store.file.deleted
       properties:
         id:
@@ -16056,8 +16067,8 @@ components:
       type: object
     DeleteVectorStoreResponse:
       example:
-        deleted: true
         id: id
+        deleted: true
         object: vector_store.deleted
       properties:
         id:
@@ -16135,8 +16146,8 @@ components:
     Error:
       example:
         code: code
-        param: param
         message: message
+        param: param
         type: type
       properties:
         code:
@@ -16177,8 +16188,8 @@ components:
       example:
         error:
           code: code
-          param: param
           message: message
+          param: param
           type: type
       properties:
         error:
@@ -16318,10 +16329,10 @@ components:
       description: Configuration for the DPO fine-tuning method.
       example:
         hyperparameters:
-          batch_size: null
-          n_epochs: null
           beta: auto
+          batch_size: null
           learning_rate_multiplier: null
+          n_epochs: null
       properties:
         hyperparameters:
           $ref: "#/components/schemas/FineTuneDPOMethod_hyperparameters"
@@ -16329,18 +16340,18 @@ components:
     FineTuneMethod:
       description: The method used for fine-tuning.
       example:
+        type: supervised
         supervised:
           hyperparameters:
             batch_size: auto
-            n_epochs: auto
             learning_rate_multiplier: auto
+            n_epochs: auto
         dpo:
           hyperparameters:
-            batch_size: null
-            n_epochs: null
             beta: auto
+            batch_size: null
             learning_rate_multiplier: null
-        type: supervised
+            n_epochs: null
       properties:
         type:
           description: The type of method. Is either `supervised` or `dpo`.
@@ -16400,22 +16411,22 @@ components:
       example:
         hyperparameters:
           batch_size: auto
-          n_epochs: auto
           learning_rate_multiplier: auto
+          n_epochs: auto
       properties:
         hyperparameters:
           $ref: "#/components/schemas/FineTuneSupervisedMethod_hyperparameters"
       type: object
     FineTuningIntegration:
       example:
+        type: wandb
         wandb:
-          name: name
           project: my-wandb-project
+          name: name
           entity: entity
           tags:
           - custom-tag
           - custom-tag
-        type: wandb
       properties:
         type:
           description: The type of the integration being enabled for the fine-tuning
@@ -16434,84 +16445,84 @@ components:
       description: |
         The `fine_tuning.job` object represents a fine-tuning job that has been created through the API.
       example:
-        training_file: training_file
-        result_files:
-        - file-abc123
-        - file-abc123
-        finished_at: 6
-        seed: 5
-        method:
-          supervised:
-            hyperparameters:
-              batch_size: auto
-              n_epochs: auto
-              learning_rate_multiplier: auto
-          dpo:
-            hyperparameters:
-              batch_size: null
-              n_epochs: null
-              beta: auto
-              learning_rate_multiplier: null
-          type: supervised
-        fine_tuned_model: fine_tuned_model
-        validation_file: validation_file
+        id: id
         created_at: 0
         error:
           code: code
-          param: param
           message: message
-        estimated_finish: 5
-        organization_id: organization_id
+          param: param
+        fine_tuned_model: fine_tuned_model
+        finished_at: 6
         hyperparameters:
           batch_size: auto
-          n_epochs: auto
           learning_rate_multiplier: auto
+          n_epochs: auto
         model: model
-        id: id
-        trained_tokens: 1
-        integrations:
-        - wandb:
-            name: name
-            project: my-wandb-project
-            entity: entity
-            tags:
-            - custom-tag
-            - custom-tag
-          type: wandb
-        - wandb:
-            name: name
-            project: my-wandb-project
-            entity: entity
-            tags:
-            - custom-tag
-            - custom-tag
-          type: wandb
-        - wandb:
-            name: name
-            project: my-wandb-project
-            entity: entity
-            tags:
-            - custom-tag
-            - custom-tag
-          type: wandb
-        - wandb:
-            name: name
-            project: my-wandb-project
-            entity: entity
-            tags:
-            - custom-tag
-            - custom-tag
-          type: wandb
-        - wandb:
-            name: name
-            project: my-wandb-project
-            entity: entity
-            tags:
-            - custom-tag
-            - custom-tag
-          type: wandb
         object: fine_tuning.job
+        organization_id: organization_id
+        result_files:
+        - file-abc123
+        - file-abc123
         status: validating_files
+        trained_tokens: 1
+        training_file: training_file
+        validation_file: validation_file
+        integrations:
+        - type: wandb
+          wandb:
+            project: my-wandb-project
+            name: name
+            entity: entity
+            tags:
+            - custom-tag
+            - custom-tag
+        - type: wandb
+          wandb:
+            project: my-wandb-project
+            name: name
+            entity: entity
+            tags:
+            - custom-tag
+            - custom-tag
+        - type: wandb
+          wandb:
+            project: my-wandb-project
+            name: name
+            entity: entity
+            tags:
+            - custom-tag
+            - custom-tag
+        - type: wandb
+          wandb:
+            project: my-wandb-project
+            name: name
+            entity: entity
+            tags:
+            - custom-tag
+            - custom-tag
+        - type: wandb
+          wandb:
+            project: my-wandb-project
+            name: name
+            entity: entity
+            tags:
+            - custom-tag
+            - custom-tag
+        seed: 5
+        estimated_finish: 5
+        method:
+          type: supervised
+          supervised:
+            hyperparameters:
+              batch_size: auto
+              learning_rate_multiplier: auto
+              n_epochs: auto
+          dpo:
+            hyperparameters:
+              beta: auto
+              batch_size: null
+              learning_rate_multiplier: null
+              n_epochs: null
       properties:
         id:
           description: "The object identifier, which can be referenced in the API\
@@ -16655,19 +16666,19 @@ components:
       description: |
         The `fine_tuning.job.checkpoint` object represents a model checkpoint for a fine-tuning job that is ready to use.
       example:
-        step_number: 6
-        created_at: 0
-        fine_tuning_job_id: fine_tuning_job_id
         id: id
-        metrics:
-          full_valid_mean_token_accuracy: 3.616076749251911
-          valid_loss: 2.3021358869347655
-          full_valid_loss: 9.301444243932576
-          train_mean_token_accuracy: 5.637376656633329
-          valid_mean_token_accuracy: 7.061401241503109
-          train_loss: 5.962133916683182
-          step: 1.4658129805029452
+        created_at: 0
         fine_tuned_model_checkpoint: fine_tuned_model_checkpoint
+        step_number: 6
+        metrics:
+          step: 1.4658129805029452
+          train_loss: 5.962133916683182
+          train_mean_token_accuracy: 5.637376656633329
+          valid_loss: 2.3021358869347655
+          valid_mean_token_accuracy: 7.061401241503109
+          full_valid_loss: 9.301444243932576
+          full_valid_mean_token_accuracy: 3.616076749251911
+        fine_tuning_job_id: fine_tuning_job_id
         object: fine_tuning.job.checkpoint
       properties:
         id:
@@ -16730,13 +16741,13 @@ components:
     FineTuningJobEvent:
       description: Fine-tuning job event object
       example:
-        data: "{}"
-        level: info
-        created_at: 0
+        object: fine_tuning.job.event
         id: id
+        created_at: 0
+        level: info
         message: message
         type: message
-        object: fine_tuning.job.event
+        data: "{}"
       properties:
         object:
           description: "The object type, which is always \"fine_tuning.job.event\"\
@@ -16791,11 +16802,11 @@ components:
           }
     FunctionObject:
       example:
-        name: name
         description: description
-        strict: false
+        name: name
         parameters:
           key: ""
+        strict: false
       properties:
         description:
           description: "A description of what the function does, used by the model\
@@ -16837,9 +16848,9 @@ components:
       description: Represents the url or the content of an image generated by the
         OpenAI API.
       example:
-        revised_prompt: revised_prompt
         b64_json: b64_json
         url: url
+        revised_prompt: revised_prompt
       properties:
         b64_json:
           description: "The base64-encoded JSON of the generated image, if `response_format`\
@@ -16863,14 +16874,14 @@ components:
           }
     ImagesResponse:
       example:
-        data:
-        - revised_prompt: revised_prompt
-          b64_json: b64_json
-          url: url
-        - revised_prompt: revised_prompt
-          b64_json: b64_json
-          url: url
         created: 0
+        data:
+        - b64_json: b64_json
+          url: url
+          revised_prompt: revised_prompt
+        - b64_json: b64_json
+          url: url
+          revised_prompt: revised_prompt
       properties:
         created:
           type: integer
@@ -16884,19 +16895,19 @@ components:
     Invite:
       description: Represents an individual `invite` to the organization.
       example:
-        role: owner
-        expires_at: 6
-        projects:
-        - role: member
-          id: id
-        - role: member
-          id: id
-        invited_at: 0
-        id: id
-        accepted_at: 1
-        email: email
         object: organization.invite
+        id: id
+        email: email
+        role: owner
         status: accepted
+        invited_at: 0
+        expires_at: 6
+        accepted_at: 1
+        projects:
+        - id: id
+          role: member
+        - id: id
+          role: member
       properties:
         object:
           description: "The object type, which is always `organization.invite`"
@@ -16968,9 +16979,9 @@ components:
           }
     InviteDeleteResponse:
       example:
-        deleted: true
-        id: id
         object: organization.invite.deleted
+        id: id
+        deleted: true
       properties:
         object:
           description: "The object type, which is always `organization.invite.deleted`"
@@ -16988,37 +16999,37 @@ components:
       type: object
     InviteListResponse:
       example:
-        first_id: first_id
+        object: list
         data:
-        - role: owner
-          expires_at: 6
-          projects:
-          - role: member
-            id: id
-          - role: member
-            id: id
-          invited_at: 0
+        - object: organization.invite
           id: id
-          accepted_at: 1
           email: email
-          object: organization.invite
+          role: owner
           status: accepted
-        - role: owner
-          expires_at: 6
-          projects:
-          - role: member
-            id: id
-          - role: member
-            id: id
           invited_at: 0
-          id: id
+          expires_at: 6
           accepted_at: 1
+          projects:
+          - id: id
+            role: member
+          - id: id
+            role: member
+        - object: organization.invite
+          id: id
           email: email
-          object: organization.invite
+          role: owner
           status: accepted
+          invited_at: 0
+          expires_at: 6
+          accepted_at: 1
+          projects:
+          - id: id
+            role: member
+          - id: id
+            role: member
+        first_id: first_id
         last_id: last_id
         has_more: true
-        object: list
       properties:
         object:
           description: "The object type, which is always `list`"
@@ -17045,13 +17056,13 @@ components:
       type: object
     InviteRequest:
       example:
+        email: email
         role: reader
         projects:
-        - role: member
-          id: id
-        - role: member
-          id: id
-        email: email
+        - id: id
+          role: member
+        - id: id
+          role: member
       properties:
         email:
           description: Send an email to this address
@@ -17075,9 +17086,21 @@ components:
       type: object
     ListAssistantsResponse:
       example:
-        first_id: asst_abc123
+        object: list
         data:
-        - instructions: instructions
+        - id: id
+          object: assistant
+          created_at: 0
+          name: name
+          description: description
+          model: model
+          instructions: instructions
+          tools:
+          - type: code_interpreter
+          - type: code_interpreter
+          - type: code_interpreter
+          - type: code_interpreter
+          - type: code_interpreter
           tool_resources:
             code_interpreter:
               file_ids:
@@ -17090,22 +17113,22 @@ components:
               vector_store_ids:
               - vector_store_ids
           metadata: "{}"
+          temperature: 1
+          top_p: 1
+          response_format: auto
+        - id: id
+          object: assistant
           created_at: 0
+          name: name
           description: description
+          model: model
+          instructions: instructions
           tools:
           - type: code_interpreter
           - type: code_interpreter
           - type: code_interpreter
           - type: code_interpreter
           - type: code_interpreter
-          top_p: 1
-          response_format: auto
-          name: name
-          temperature: 1
-          model: model
-          id: id
-          object: assistant
-        - instructions: instructions
           tool_resources:
             code_interpreter:
               file_ids:
@@ -17118,24 +17141,12 @@ components:
               vector_store_ids:
               - vector_store_ids
           metadata: "{}"
-          created_at: 0
-          description: description
-          tools:
-          - type: code_interpreter
-          - type: code_interpreter
-          - type: code_interpreter
-          - type: code_interpreter
-          - type: code_interpreter
+          temperature: 1
           top_p: 1
           response_format: auto
-          name: name
-          temperature: 1
-          model: model
-          id: id
-          object: assistant
+        first_id: asst_abc123
         last_id: asst_abc456
         has_more: false
-        object: list
       properties:
         object:
           example: list
@@ -17220,213 +17231,213 @@ components:
           }
     ListAuditLogsResponse:
       example:
-        first_id: audit_log-defb456h8dks
+        object: list
         data:
-        - rate_limit.updated:
-            changes_requested:
-              batch_1_day_max_input_tokens: 7
-              max_tokens_per_1_minute: 1
-              max_images_per_1_minute: 5
-              max_audio_megabytes_per_1_minute: 5
-              max_requests_per_1_minute: 6
-              max_requests_per_1_day: 2
-            id: id
-          user.updated:
-            changes_requested:
-              role: role
-            id: id
-          project:
-            name: name
-            id: id
-          service_account.deleted:
-            id: id
+        - id: id
           type: api_key.created
-          logout.failed:
-            error_message: error_message
-            error_code: error_code
-          login.failed:
-            error_message: error_message
-            error_code: error_code
-          service_account.updated:
-            changes_requested:
-              role: role
+          effective_at: 0
+          project:
             id: id
-          rate_limit.deleted:
-            id: id
-          id: id
-          project.created:
-            data:
-              name: name
-              title: title
-            id: id
-          organization.updated:
-            changes_requested:
-              settings:
-                threads_ui_visibility: threads_ui_visibility
-                usage_dashboard_visibility: usage_dashboard_visibility
-              name: name
-              description: description
-              title: title
-            id: id
-          project.updated:
-            changes_requested:
-              title: title
-            id: id
-          project.archived:
-            id: id
-          user.added:
-            data:
-              role: role
-            id: id
-          invite.accepted:
-            id: id
-          invite.deleted:
-            id: id
+            name: name
           actor:
-            api_key:
-              service_account:
+            type: session
+            session:
+              user:
                 id: id
+                email: email
+              ip_address: ip_address
+            api_key:
               id: id
               type: user
               user:
                 id: id
                 email: email
-            session:
-              ip_address: ip_address
-              user:
+              service_account:
                 id: id
-                email: email
-            type: session
-          effective_at: 0
-          invite.sent:
-            data:
-              role: role
-              email: email
-            id: id
-          service_account.created:
-            data:
-              role: role
-            id: id
           api_key.created:
+            id: id
             data:
               scopes:
               - scopes
               - scopes
+          api_key.updated:
             id: id
-          user.deleted:
-            id: id
+            changes_requested:
+              scopes:
+              - scopes
+              - scopes
           api_key.deleted:
             id: id
-          api_key.updated:
-            changes_requested:
-              scopes:
-              - scopes
-              - scopes
+          invite.sent:
             id: id
-        - rate_limit.updated:
-            changes_requested:
-              batch_1_day_max_input_tokens: 7
-              max_tokens_per_1_minute: 1
-              max_images_per_1_minute: 5
-              max_audio_megabytes_per_1_minute: 5
-              max_requests_per_1_minute: 6
-              max_requests_per_1_day: 2
-            id: id
-          user.updated:
-            changes_requested:
-              role: role
-            id: id
-          project:
-            name: name
-            id: id
-          service_account.deleted:
-            id: id
-          type: api_key.created
-          logout.failed:
-            error_message: error_message
-            error_code: error_code
-          login.failed:
-            error_message: error_message
-            error_code: error_code
-          service_account.updated:
-            changes_requested:
-              role: role
-            id: id
-          rate_limit.deleted:
-            id: id
-          id: id
-          project.created:
             data:
-              name: name
-              title: title
-            id: id
-          organization.updated:
-            changes_requested:
-              settings:
-                threads_ui_visibility: threads_ui_visibility
-                usage_dashboard_visibility: usage_dashboard_visibility
-              name: name
-              description: description
-              title: title
-            id: id
-          project.updated:
-            changes_requested:
-              title: title
-            id: id
-          project.archived:
-            id: id
-          user.added:
-            data:
+              email: email
               role: role
-            id: id
           invite.accepted:
             id: id
           invite.deleted:
             id: id
+          login.failed:
+            error_code: error_code
+            error_message: error_message
+          logout.failed:
+            error_code: error_code
+            error_message: error_message
+          organization.updated:
+            id: id
+            changes_requested:
+              title: title
+              description: description
+              name: name
+              settings:
+                threads_ui_visibility: threads_ui_visibility
+                usage_dashboard_visibility: usage_dashboard_visibility
+          project.created:
+            id: id
+            data:
+              name: name
+              title: title
+          project.updated:
+            id: id
+            changes_requested:
+              title: title
+          project.archived:
+            id: id
+          rate_limit.updated:
+            id: id
+            changes_requested:
+              max_requests_per_1_minute: 6
+              max_tokens_per_1_minute: 1
+              max_images_per_1_minute: 5
+              max_audio_megabytes_per_1_minute: 5
+              max_requests_per_1_day: 2
+              batch_1_day_max_input_tokens: 7
+          rate_limit.deleted:
+            id: id
+          service_account.created:
+            id: id
+            data:
+              role: role
+          service_account.updated:
+            id: id
+            changes_requested:
+              role: role
+          service_account.deleted:
+            id: id
+          user.added:
+            id: id
+            data:
+              role: role
+          user.updated:
+            id: id
+            changes_requested:
+              role: role
+          user.deleted:
+            id: id
+        - id: id
+          type: api_key.created
+          effective_at: 0
+          project:
+            id: id
+            name: name
           actor:
-            api_key:
-              service_account:
+            type: session
+            session:
+              user:
                 id: id
+                email: email
+              ip_address: ip_address
+            api_key:
               id: id
               type: user
               user:
                 id: id
                 email: email
-            session:
-              ip_address: ip_address
-              user:
+              service_account:
                 id: id
-                email: email
-            type: session
-          effective_at: 0
-          invite.sent:
-            data:
-              role: role
-              email: email
-            id: id
-          service_account.created:
-            data:
-              role: role
-            id: id
           api_key.created:
+            id: id
             data:
               scopes:
               - scopes
               - scopes
-            id: id
-          user.deleted:
-            id: id
-          api_key.deleted:
-            id: id
           api_key.updated:
+            id: id
             changes_requested:
               scopes:
               - scopes
               - scopes
+          api_key.deleted:
             id: id
+          invite.sent:
+            id: id
+            data:
+              email: email
+              role: role
+          invite.accepted:
+            id: id
+          invite.deleted:
+            id: id
+          login.failed:
+            error_code: error_code
+            error_message: error_message
+          logout.failed:
+            error_code: error_code
+            error_message: error_message
+          organization.updated:
+            id: id
+            changes_requested:
+              title: title
+              description: description
+              name: name
+              settings:
+                threads_ui_visibility: threads_ui_visibility
+                usage_dashboard_visibility: usage_dashboard_visibility
+          project.created:
+            id: id
+            data:
+              name: name
+              title: title
+          project.updated:
+            id: id
+            changes_requested:
+              title: title
+          project.archived:
+            id: id
+          rate_limit.updated:
+            id: id
+            changes_requested:
+              max_requests_per_1_minute: 6
+              max_tokens_per_1_minute: 1
+              max_images_per_1_minute: 5
+              max_audio_megabytes_per_1_minute: 5
+              max_requests_per_1_day: 2
+              batch_1_day_max_input_tokens: 7
+          rate_limit.deleted:
+            id: id
+          service_account.created:
+            id: id
+            data:
+              role: role
+          service_account.updated:
+            id: id
+            changes_requested:
+              role: role
+          service_account.deleted:
+            id: id
+          user.added:
+            id: id
+            data:
+              role: role
+          user.updated:
+            id: id
+            changes_requested:
+              role: role
+          user.deleted:
+            id: id
+        first_id: audit_log-defb456h8dks
         last_id: audit_log-hnbkd8s93s
         has_more: true
-        object: list
       properties:
         object:
           enum:
@@ -17453,74 +17464,74 @@ components:
       type: object
     ListBatchesResponse:
       example:
-        first_id: batch_abc123
         data:
-        - cancelled_at: 2
-          metadata: "{}"
-          request_counts:
-            total: 4
-            completed: 7
-            failed: 1
+        - id: id
+          object: batch
+          endpoint: endpoint
+          errors:
+            object: object
+            data:
+            - code: code
+              message: message
+              param: param
+              line: 0
+            - code: code
+              message: message
+              param: param
+              line: 0
           input_file_id: input_file_id
+          completion_window: completion_window
+          status: validating
           output_file_id: output_file_id
           error_file_id: error_file_id
           created_at: 6
           in_progress_at: 1
-          expired_at: 9
+          expires_at: 5
           finalizing_at: 5
           completed_at: 2
-          endpoint: endpoint
-          expires_at: 5
-          cancelling_at: 3
-          completion_window: completion_window
-          id: id
           failed_at: 7
-          errors:
-            data:
-            - code: code
-              param: param
-              line: 0
-              message: message
-            - code: code
-              param: param
-              line: 0
-              message: message
-            object: object
-          object: batch
-          status: validating
-        - cancelled_at: 2
-          metadata: "{}"
+          expired_at: 9
+          cancelling_at: 3
+          cancelled_at: 2
           request_counts:
             total: 4
             completed: 7
             failed: 1
+          metadata: "{}"
+        - id: id
+          object: batch
+          endpoint: endpoint
+          errors:
+            object: object
+            data:
+            - code: code
+              message: message
+              param: param
+              line: 0
+            - code: code
+              message: message
+              param: param
+              line: 0
           input_file_id: input_file_id
+          completion_window: completion_window
+          status: validating
           output_file_id: output_file_id
           error_file_id: error_file_id
           created_at: 6
           in_progress_at: 1
-          expired_at: 9
+          expires_at: 5
           finalizing_at: 5
           completed_at: 2
-          endpoint: endpoint
-          expires_at: 5
-          cancelling_at: 3
-          completion_window: completion_window
-          id: id
           failed_at: 7
-          errors:
-            data:
-            - code: code
-              param: param
-              line: 0
-              message: message
-            - code: code
-              param: param
-              line: 0
-              message: message
-            object: object
-          object: batch
-          status: validating
+          expired_at: 9
+          cancelling_at: 3
+          cancelled_at: 2
+          request_counts:
+            total: 4
+            completed: 7
+            failed: 1
+          metadata: "{}"
+        first_id: batch_abc123
         last_id: batch_abc456
         has_more: true
         object: list
@@ -17548,27 +17559,27 @@ components:
       type: object
     ListFilesResponse:
       example:
-        first_id: file-abc123
+        object: list
         data:
-        - filename: filename
-          purpose: assistants
+        - id: id
           bytes: 0
           created_at: 6
-          id: id
-          status_details: status_details
+          filename: filename
           object: file
-          status: uploaded
-        - filename: filename
           purpose: assistants
+          status: uploaded
+          status_details: status_details
+        - id: id
           bytes: 0
           created_at: 6
-          id: id
-          status_details: status_details
+          filename: filename
           object: file
+          purpose: assistants
           status: uploaded
+          status_details: status_details
+        first_id: file-abc123
         last_id: file-abc456
         has_more: false
-        object: list
       properties:
         object:
           example: list
@@ -17595,39 +17606,39 @@ components:
       type: object
     ListFineTuningJobCheckpointsResponse:
       example:
-        first_id: first_id
         data:
-        - step_number: 6
+        - id: id
           created_at: 0
-          fine_tuning_job_id: fine_tuning_job_id
-          id: id
-          metrics:
-            full_valid_mean_token_accuracy: 3.616076749251911
-            valid_loss: 2.3021358869347655
-            full_valid_loss: 9.301444243932576
-            train_mean_token_accuracy: 5.637376656633329
-            valid_mean_token_accuracy: 7.061401241503109
-            train_loss: 5.962133916683182
-            step: 1.4658129805029452
           fine_tuned_model_checkpoint: fine_tuned_model_checkpoint
+          step_number: 6
+          metrics:
+            step: 1.4658129805029452
+            train_loss: 5.962133916683182
+            train_mean_token_accuracy: 5.637376656633329
+            valid_loss: 2.3021358869347655
+            valid_mean_token_accuracy: 7.061401241503109
+            full_valid_loss: 9.301444243932576
+            full_valid_mean_token_accuracy: 3.616076749251911
+          fine_tuning_job_id: fine_tuning_job_id
           object: fine_tuning.job.checkpoint
-        - step_number: 6
+        - id: id
           created_at: 0
-          fine_tuning_job_id: fine_tuning_job_id
-          id: id
-          metrics:
-            full_valid_mean_token_accuracy: 3.616076749251911
-            valid_loss: 2.3021358869347655
-            full_valid_loss: 9.301444243932576
-            train_mean_token_accuracy: 5.637376656633329
-            valid_mean_token_accuracy: 7.061401241503109
-            train_loss: 5.962133916683182
-            step: 1.4658129805029452
           fine_tuned_model_checkpoint: fine_tuned_model_checkpoint
+          step_number: 6
+          metrics:
+            step: 1.4658129805029452
+            train_loss: 5.962133916683182
+            train_mean_token_accuracy: 5.637376656633329
+            valid_loss: 2.3021358869347655
+            valid_mean_token_accuracy: 7.061401241503109
+            full_valid_loss: 9.301444243932576
+            full_valid_mean_token_accuracy: 3.616076749251911
+          fine_tuning_job_id: fine_tuning_job_id
           object: fine_tuning.job.checkpoint
+        object: list
+        first_id: first_id
         last_id: last_id
         has_more: true
-        object: list
       properties:
         data:
           items:
@@ -17653,20 +17664,20 @@ components:
     ListFineTuningJobEventsResponse:
       example:
         data:
-        - data: "{}"
-          level: info
-          created_at: 0
+        - object: fine_tuning.job.event
           id: id
+          created_at: 0
+          level: info
           message: message
           type: message
-          object: fine_tuning.job.event
-        - data: "{}"
-          level: info
-          created_at: 0
+          data: "{}"
+        - object: fine_tuning.job.event
           id: id
+          created_at: 0
+          level: info
           message: message
           type: message
-          object: fine_tuning.job.event
+          data: "{}"
         object: list
       properties:
         data:
@@ -17683,10 +17694,27 @@ components:
       type: object
     ListMessagesResponse:
       example:
-        first_id: msg_abc123
+        object: list
         data:
-        - metadata: "{}"
+        - id: id
+          object: thread.message
+          created_at: 0
+          thread_id: thread_id
+          status: in_progress
+          incomplete_details:
+            reason: content_filter
+          completed_at: 6
+          incomplete_at: 1
           role: user
+          content:
+          - type: image_file
+            image_file:
+              file_id: file_id
+              detail: auto
+          - type: image_file
+            image_file:
+              file_id: file_id
+              detail: auto
           assistant_id: assistant_id
           run_id: run_id
           attachments:
@@ -17698,26 +17726,26 @@ components:
             tools:
             - type: code_interpreter
             - type: code_interpreter
+          metadata: "{}"
+        - id: id
+          object: thread.message
           created_at: 0
-          content:
-          - image_file:
-              file_id: file_id
-              detail: auto
-            type: image_file
-          - image_file:
-              file_id: file_id
-              detail: auto
-            type: image_file
-          completed_at: 6
           thread_id: thread_id
-          id: id
-          incomplete_at: 1
+          status: in_progress
           incomplete_details:
             reason: content_filter
-          object: thread.message
-          status: in_progress
-        - metadata: "{}"
+          completed_at: 6
+          incomplete_at: 1
           role: user
+          content:
+          - type: image_file
+            image_file:
+              file_id: file_id
+              detail: auto
+          - type: image_file
+            image_file:
+              file_id: file_id
+              detail: auto
           assistant_id: assistant_id
           run_id: run_id
           attachments:
@@ -17729,27 +17757,10 @@ components:
             tools:
             - type: code_interpreter
             - type: code_interpreter
-          created_at: 0
-          content:
-          - image_file:
-              file_id: file_id
-              detail: auto
-            type: image_file
-          - image_file:
-              file_id: file_id
-              detail: auto
-            type: image_file
-          completed_at: 6
-          thread_id: thread_id
-          id: id
-          incomplete_at: 1
-          incomplete_details:
-            reason: content_filter
-          object: thread.message
-          status: in_progress
+          metadata: "{}"
+        first_id: msg_abc123
         last_id: msg_abc123
         has_more: false
-        object: list
       properties:
         object:
           example: list
@@ -17775,16 +17786,16 @@ components:
       - object
     ListModelsResponse:
       example:
-        data:
-        - created: 0
-          owned_by: owned_by
-          id: id
-          object: model
-        - created: 0
-          owned_by: owned_by
-          id: id
-          object: model
         object: list
+        data:
+        - id: id
+          created: 0
+          object: model
+          owned_by: owned_by
+        - id: id
+          created: 0
+          object: model
+          owned_by: owned_by
       properties:
         object:
           enum:
@@ -17801,162 +17812,162 @@ components:
     ListPaginatedFineTuningJobsResponse:
       example:
         data:
-        - training_file: training_file
-          result_files:
-          - file-abc123
-          - file-abc123
-          finished_at: 6
-          seed: 5
-          method:
-            supervised:
-              hyperparameters:
-                batch_size: auto
-                n_epochs: auto
-                learning_rate_multiplier: auto
-            dpo:
-              hyperparameters:
-                batch_size: null
-                n_epochs: null
-                beta: auto
-                learning_rate_multiplier: null
-            type: supervised
-          fine_tuned_model: fine_tuned_model
-          validation_file: validation_file
+        - id: id
           created_at: 0
           error:
             code: code
-            param: param
             message: message
-          estimated_finish: 5
-          organization_id: organization_id
+            param: param
+          fine_tuned_model: fine_tuned_model
+          finished_at: 6
           hyperparameters:
             batch_size: auto
-            n_epochs: auto
             learning_rate_multiplier: auto
+            n_epochs: auto
           model: model
-          id: id
-          trained_tokens: 1
-          integrations:
-          - wandb:
-              name: name
-              project: my-wandb-project
-              entity: entity
-              tags:
-              - custom-tag
-              - custom-tag
-            type: wandb
-          - wandb:
-              name: name
-              project: my-wandb-project
-              entity: entity
-              tags:
-              - custom-tag
-              - custom-tag
-            type: wandb
-          - wandb:
-              name: name
-              project: my-wandb-project
-              entity: entity
-              tags:
-              - custom-tag
-              - custom-tag
-            type: wandb
-          - wandb:
-              name: name
-              project: my-wandb-project
-              entity: entity
-              tags:
-              - custom-tag
-              - custom-tag
-            type: wandb
-          - wandb:
-              name: name
-              project: my-wandb-project
-              entity: entity
-              tags:
-              - custom-tag
-              - custom-tag
-            type: wandb
           object: fine_tuning.job
-          status: validating_files
-        - training_file: training_file
+          organization_id: organization_id
           result_files:
           - file-abc123
           - file-abc123
-          finished_at: 6
+          status: validating_files
+          trained_tokens: 1
+          training_file: training_file
+          validation_file: validation_file
+          integrations:
+          - type: wandb
+            wandb:
+              project: my-wandb-project
+              name: name
+              entity: entity
+              tags:
+              - custom-tag
+              - custom-tag
+          - type: wandb
+            wandb:
+              project: my-wandb-project
+              name: name
+              entity: entity
+              tags:
+              - custom-tag
+              - custom-tag
+          - type: wandb
+            wandb:
+              project: my-wandb-project
+              name: name
+              entity: entity
+              tags:
+              - custom-tag
+              - custom-tag
+          - type: wandb
+            wandb:
+              project: my-wandb-project
+              name: name
+              entity: entity
+              tags:
+              - custom-tag
+              - custom-tag
+          - type: wandb
+            wandb:
+              project: my-wandb-project
+              name: name
+              entity: entity
+              tags:
+              - custom-tag
+              - custom-tag
           seed: 5
+          estimated_finish: 5
           method:
+            type: supervised
             supervised:
               hyperparameters:
                 batch_size: auto
-                n_epochs: auto
                 learning_rate_multiplier: auto
+                n_epochs: auto
             dpo:
               hyperparameters:
-                batch_size: null
-                n_epochs: null
                 beta: auto
+                batch_size: null
                 learning_rate_multiplier: null
-            type: supervised
-          fine_tuned_model: fine_tuned_model
-          validation_file: validation_file
+                n_epochs: null
+        - id: id
           created_at: 0
           error:
             code: code
-            param: param
             message: message
-          estimated_finish: 5
-          organization_id: organization_id
+            param: param
+          fine_tuned_model: fine_tuned_model
+          finished_at: 6
           hyperparameters:
             batch_size: auto
-            n_epochs: auto
             learning_rate_multiplier: auto
+            n_epochs: auto
           model: model
-          id: id
-          trained_tokens: 1
-          integrations:
-          - wandb:
-              name: name
-              project: my-wandb-project
-              entity: entity
-              tags:
-              - custom-tag
-              - custom-tag
-            type: wandb
-          - wandb:
-              name: name
-              project: my-wandb-project
-              entity: entity
-              tags:
-              - custom-tag
-              - custom-tag
-            type: wandb
-          - wandb:
-              name: name
-              project: my-wandb-project
-              entity: entity
-              tags:
-              - custom-tag
-              - custom-tag
-            type: wandb
-          - wandb:
-              name: name
-              project: my-wandb-project
-              entity: entity
-              tags:
-              - custom-tag
-              - custom-tag
-            type: wandb
-          - wandb:
-              name: name
-              project: my-wandb-project
-              entity: entity
-              tags:
-              - custom-tag
-              - custom-tag
-            type: wandb
           object: fine_tuning.job
+          organization_id: organization_id
+          result_files:
+          - file-abc123
+          - file-abc123
           status: validating_files
+          trained_tokens: 1
+          training_file: training_file
+          validation_file: validation_file
+          integrations:
+          - type: wandb
+            wandb:
+              project: my-wandb-project
+              name: name
+              entity: entity
+              tags:
+              - custom-tag
+              - custom-tag
+          - type: wandb
+            wandb:
+              project: my-wandb-project
+              name: name
+              entity: entity
+              tags:
+              - custom-tag
+              - custom-tag
+          - type: wandb
+            wandb:
+              project: my-wandb-project
+              name: name
+              entity: entity
+              tags:
+              - custom-tag
+              - custom-tag
+          - type: wandb
+            wandb:
+              project: my-wandb-project
+              name: name
+              entity: entity
+              tags:
+              - custom-tag
+              - custom-tag
+          - type: wandb
+            wandb:
+              project: my-wandb-project
+              name: name
+              entity: entity
+              tags:
+              - custom-tag
+              - custom-tag
+          seed: 5
+          estimated_finish: 5
+          method:
+            type: supervised
+            supervised:
+              hyperparameters:
+                batch_size: auto
+                learning_rate_multiplier: auto
+                n_epochs: auto
+            dpo:
+              hyperparameters:
+                beta: auto
+                batch_size: null
+                learning_rate_multiplier: null
+                n_epochs: null
         has_more: true
         object: list
       properties:
@@ -17977,59 +17988,59 @@ components:
       type: object
     ListRunStepsResponse:
       example:
-        first_id: step_abc123
+        object: list
         data:
-        - cancelled_at: 1
-          metadata: "{}"
+        - id: id
+          object: thread.run.step
+          created_at: 0
           assistant_id: assistant_id
+          thread_id: thread_id
           run_id: run_id
+          type: message_creation
+          status: in_progress
+          step_details:
+            type: message_creation
+            message_creation:
+              message_id: message_id
+          last_error:
+            code: server_error
+            message: message
+          expired_at: 6
+          cancelled_at: 1
+          failed_at: 5
+          completed_at: 5
+          metadata: "{}"
           usage:
             completion_tokens: 2
             prompt_tokens: 7
             total_tokens: 9
+        - id: id
+          object: thread.run.step
           created_at: 0
-          expired_at: 6
+          assistant_id: assistant_id
+          thread_id: thread_id
+          run_id: run_id
           type: message_creation
+          status: in_progress
           step_details:
+            type: message_creation
             message_creation:
               message_id: message_id
-            type: message_creation
-          completed_at: 5
-          thread_id: thread_id
-          id: id
           last_error:
             code: server_error
             message: message
+          expired_at: 6
+          cancelled_at: 1
           failed_at: 5
-          object: thread.run.step
-          status: in_progress
-        - cancelled_at: 1
+          completed_at: 5
           metadata: "{}"
-          assistant_id: assistant_id
-          run_id: run_id
           usage:
             completion_tokens: 2
             prompt_tokens: 7
             total_tokens: 9
-          created_at: 0
-          expired_at: 6
-          type: message_creation
-          step_details:
-            message_creation:
-              message_id: message_id
-            type: message_creation
-          completed_at: 5
-          thread_id: thread_id
-          id: id
-          last_error:
-            code: server_error
-            message: message
-          failed_at: 5
-          object: thread.run.step
-          status: in_progress
+        first_id: step_abc123
         last_id: step_abc456
         has_more: false
-        object: list
       properties:
         object:
           example: list
@@ -18055,117 +18066,117 @@ components:
       - object
     ListRunsResponse:
       example:
-        first_id: run_abc123
+        object: list
         data:
-        - cancelled_at: 5
-          instructions: instructions
-          metadata: "{}"
+        - id: id
+          object: thread.run
+          created_at: 0
+          thread_id: thread_id
           assistant_id: assistant_id
+          status: queued
           required_action:
+            type: submit_tool_outputs
             submit_tool_outputs:
               tool_calls:
-              - function:
+              - id: id
+                type: function
+                function:
                   name: name
                   arguments: arguments
-                id: id
+              - id: id
                 type: function
-              - function:
+                function:
                   name: name
                   arguments: arguments
-                id: id
-                type: function
-            type: submit_tool_outputs
-          usage:
-            completion_tokens: 7
-            prompt_tokens: 9
-            total_tokens: 3
-          created_at: 0
+          last_error:
+            code: server_error
+            message: message
+          expires_at: 6
+          started_at: 1
+          cancelled_at: 5
+          failed_at: 5
+          completed_at: 2
+          incomplete_details:
+            reason: max_completion_tokens
+          model: model
+          instructions: instructions
           tools:
           - type: code_interpreter
           - type: code_interpreter
           - type: code_interpreter
           - type: code_interpreter
           - type: code_interpreter
-          top_p: 4.145608029883936
-          max_completion_tokens: 256
-          thread_id: thread_id
-          expires_at: 6
-          response_format: auto
-          temperature: 2.027123023002322
-          tool_choice: none
-          model: model
-          id: id
-          last_error:
-            code: server_error
-            message: message
-          incomplete_details:
-            reason: max_completion_tokens
-          truncation_strategy:
-            last_messages: 1
-            type: auto
-          completed_at: 2
-          parallel_tool_calls: true
-          started_at: 1
-          failed_at: 5
-          max_prompt_tokens: 256
-          object: thread.run
-          status: queued
-        - cancelled_at: 5
-          instructions: instructions
           metadata: "{}"
-          assistant_id: assistant_id
-          required_action:
-            submit_tool_outputs:
-              tool_calls:
-              - function:
-                  name: name
-                  arguments: arguments
-                id: id
-                type: function
-              - function:
-                  name: name
-                  arguments: arguments
-                id: id
-                type: function
-            type: submit_tool_outputs
           usage:
             completion_tokens: 7
             prompt_tokens: 9
             total_tokens: 3
+          temperature: 2.027123023002322
+          top_p: 4.145608029883936
+          max_prompt_tokens: 256
+          max_completion_tokens: 256
+          truncation_strategy:
+            type: auto
+            last_messages: 1
+          tool_choice: none
+          parallel_tool_calls: true
+          response_format: auto
+        - id: id
+          object: thread.run
           created_at: 0
+          thread_id: thread_id
+          assistant_id: assistant_id
+          status: queued
+          required_action:
+            type: submit_tool_outputs
+            submit_tool_outputs:
+              tool_calls:
+              - id: id
+                type: function
+                function:
+                  name: name
+                  arguments: arguments
+              - id: id
+                type: function
+                function:
+                  name: name
+                  arguments: arguments
+          last_error:
+            code: server_error
+            message: message
+          expires_at: 6
+          started_at: 1
+          cancelled_at: 5
+          failed_at: 5
+          completed_at: 2
+          incomplete_details:
+            reason: max_completion_tokens
+          model: model
+          instructions: instructions
           tools:
           - type: code_interpreter
           - type: code_interpreter
           - type: code_interpreter
           - type: code_interpreter
           - type: code_interpreter
-          top_p: 4.145608029883936
-          max_completion_tokens: 256
-          thread_id: thread_id
-          expires_at: 6
-          response_format: auto
+          metadata: "{}"
+          usage:
+            completion_tokens: 7
+            prompt_tokens: 9
+            total_tokens: 3
           temperature: 2.027123023002322
-          tool_choice: none
-          model: model
-          id: id
-          last_error:
-            code: server_error
-            message: message
-          incomplete_details:
-            reason: max_completion_tokens
-          truncation_strategy:
-            last_messages: 1
-            type: auto
-          completed_at: 2
-          parallel_tool_calls: true
-          started_at: 1
-          failed_at: 5
+          top_p: 4.145608029883936
           max_prompt_tokens: 256
-          object: thread.run
-          status: queued
+          max_completion_tokens: 256
+          truncation_strategy:
+            type: auto
+            last_messages: 1
+          tool_choice: none
+          parallel_tool_calls: true
+          response_format: auto
+        first_id: run_abc123
         last_id: run_abc456
         has_more: false
-        object: list
       properties:
         object:
           example: list
@@ -18216,39 +18227,39 @@ components:
       - object
     ListVectorStoreFilesResponse:
       example:
-        first_id: file-abc123
+        object: list
         data:
-        - chunking_strategy:
-            static:
-              max_chunk_size_tokens: 685
-              chunk_overlap_tokens: 5
-            type: static
+        - id: id
+          object: vector_store.file
           usage_bytes: 0
           created_at: 6
-          id: id
+          vector_store_id: vector_store_id
+          status: in_progress
           last_error:
             code: server_error
             message: message
-          object: vector_store.file
-          vector_store_id: vector_store_id
-          status: in_progress
-        - chunking_strategy:
+          chunking_strategy:
+            type: static
             static:
               max_chunk_size_tokens: 685
               chunk_overlap_tokens: 5
-            type: static
+        - id: id
+          object: vector_store.file
           usage_bytes: 0
           created_at: 6
-          id: id
+          vector_store_id: vector_store_id
+          status: in_progress
           last_error:
             code: server_error
             message: message
-          object: vector_store.file
-          vector_store_id: vector_store_id
-          status: in_progress
+          chunking_strategy:
+            type: static
+            static:
+              max_chunk_size_tokens: 685
+              chunk_overlap_tokens: 5
+        first_id: file-abc123
         last_id: file-abc456
         has_more: false
-        object: list
       properties:
         object:
           example: list
@@ -18274,47 +18285,47 @@ components:
       - object
     ListVectorStoresResponse:
       example:
-        first_id: vs_abc123
+        object: list
         data:
-        - file_counts:
+        - id: id
+          object: vector_store
+          created_at: 0
+          name: name
+          usage_bytes: 6
+          file_counts:
             in_progress: 1
-            total: 7
-            cancelled: 2
             completed: 5
             failed: 5
-          metadata: "{}"
-          expires_at: 3
+            cancelled: 2
+            total: 7
+          status: expired
           expires_after:
             anchor: last_active_at
             days: 339
+          expires_at: 3
           last_active_at: 2
-          usage_bytes: 6
-          name: name
-          created_at: 0
-          id: id
+          metadata: "{}"
+        - id: id
           object: vector_store
-          status: expired
-        - file_counts:
+          created_at: 0
+          name: name
+          usage_bytes: 6
+          file_counts:
             in_progress: 1
-            total: 7
-            cancelled: 2
             completed: 5
             failed: 5
-          metadata: "{}"
-          expires_at: 3
+            cancelled: 2
+            total: 7
+          status: expired
           expires_after:
             anchor: last_active_at
             days: 339
+          expires_at: 3
           last_active_at: 2
-          usage_bytes: 6
-          name: name
-          created_at: 0
-          id: id
-          object: vector_store
-          status: expired
+          metadata: "{}"
+        first_id: vs_abc123
         last_id: vs_abc456
         has_more: false
-        object: list
       properties:
         object:
           example: list
@@ -18342,10 +18353,10 @@ components:
       description: "References an image [File](/docs/api-reference/files) in the content\
         \ of a message."
       example:
+        type: image_file
         image_file:
           file_id: file_id
           detail: auto
-        type: image_file
       properties:
         type:
           description: Always `image_file`.
@@ -18633,8 +18644,25 @@ components:
     MessageObject:
       description: "Represents a message within a [thread](/docs/api-reference/threads)."
       example:
-        metadata: "{}"
+        id: id
+        object: thread.message
+        created_at: 0
+        thread_id: thread_id
+        status: in_progress
+        incomplete_details:
+          reason: content_filter
+        completed_at: 6
+        incomplete_at: 1
         role: user
+        content:
+        - type: image_file
+          image_file:
+            file_id: file_id
+            detail: auto
+        - type: image_file
+          image_file:
+            file_id: file_id
+            detail: auto
         assistant_id: assistant_id
         run_id: run_id
         attachments:
@@ -18646,24 +18674,7 @@ components:
           tools:
           - type: code_interpreter
           - type: code_interpreter
-        created_at: 0
-        content:
-        - image_file:
-            file_id: file_id
-            detail: auto
-          type: image_file
-        - image_file:
-            file_id: file_id
-            detail: auto
-          type: image_file
-        completed_at: 6
-        thread_id: thread_id
-        id: id
-        incomplete_at: 1
-        incomplete_details:
-          reason: content_filter
-        object: thread.message
-        status: in_progress
+        metadata: "{}"
       properties:
         id:
           description: "The identifier, which can be referenced in API endpoints."
@@ -18801,10 +18812,10 @@ components:
     Model:
       description: Describes an OpenAI model offering that can be used with the API.
       example:
-        created: 0
-        owned_by: owned_by
         id: id
+        created: 0
         object: model
+        owned_by: owned_by
       properties:
         id:
           description: "The model identifier, which can be referenced in the API endpoints."
@@ -18838,8 +18849,16 @@ components:
     ModifyAssistantRequest:
       additionalProperties: false
       example:
-        top_p: 1
+        model: model
+        name: name
+        description: description
         instructions: instructions
+        tools:
+        - type: code_interpreter
+        - type: code_interpreter
+        - type: code_interpreter
+        - type: code_interpreter
+        - type: code_interpreter
         tool_resources:
           code_interpreter:
             file_ids:
@@ -18852,19 +18871,13 @@ components:
             vector_store_ids:
             - vector_store_ids
         metadata: "{}"
-        response_format: auto
-        name: name
         temperature: 1
-        description: description
-        model: model
-        tools:
-        - type: code_interpreter
-        - type: code_interpreter
-        - type: code_interpreter
-        - type: code_interpreter
-        - type: code_interpreter
+        top_p: 1
+        response_format: auto
       properties:
         model:
+          description: |
+            ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them.
           type: string
         name:
           description: |
@@ -18976,14 +18989,14 @@ components:
       description: The `File` object represents a document that has been uploaded
         to OpenAI.
       example:
-        filename: filename
-        purpose: assistants
+        id: id
         bytes: 0
         created_at: 6
-        id: id
-        status_details: status_details
+        filename: filename
         object: file
+        purpose: assistants
         status: uploaded
+        status_details: status_details
       properties:
         id:
           description: "The file identifier, which can be referenced in the API endpoints."
@@ -19091,11 +19104,11 @@ components:
     Project:
       description: Represents an individual project.
       example:
-        archived_at: 6
-        name: name
-        created_at: 0
         id: id
         object: organization.project
+        name: name
+        created_at: 0
+        archived_at: 6
         status: active
       properties:
         id:
@@ -19144,26 +19157,26 @@ components:
     ProjectApiKey:
       description: Represents an individual API key in a project.
       example:
-        owner:
-          service_account:
-            role: owner
-            name: name
-            created_at: 1
-            id: id
-            object: organization.project.service_account
-          type: user
-          user:
-            added_at: 6
-            role: owner
-            name: name
-            id: id
-            email: email
-            object: organization.project.user
+        object: organization.project.api_key
+        redacted_value: redacted_value
         name: name
         created_at: 0
-        redacted_value: redacted_value
         id: id
-        object: organization.project.api_key
+        owner:
+          type: user
+          user:
+            object: organization.project.user
+            id: id
+            name: name
+            email: email
+            role: owner
+            added_at: 6
+          service_account:
+            object: organization.project.service_account
+            id: id
+            name: name
+            role: owner
+            created_at: 1
       properties:
         object:
           description: "The object type, which is always `organization.project.api_key`"
@@ -19215,9 +19228,9 @@ components:
           }
     ProjectApiKeyDeleteResponse:
       example:
-        deleted: true
-        id: id
         object: organization.project.api_key.deleted
+        id: id
+        deleted: true
       properties:
         object:
           enum:
@@ -19234,51 +19247,51 @@ components:
       type: object
     ProjectApiKeyListResponse:
       example:
-        first_id: first_id
+        object: list
         data:
-        - owner:
-            service_account:
-              role: owner
-              name: name
-              created_at: 1
-              id: id
-              object: organization.project.service_account
-            type: user
-            user:
-              added_at: 6
-              role: owner
-              name: name
-              id: id
-              email: email
-              object: organization.project.user
+        - object: organization.project.api_key
+          redacted_value: redacted_value
           name: name
           created_at: 0
-          redacted_value: redacted_value
           id: id
-          object: organization.project.api_key
-        - owner:
-            service_account:
-              role: owner
-              name: name
-              created_at: 1
-              id: id
-              object: organization.project.service_account
+          owner:
             type: user
             user:
-              added_at: 6
-              role: owner
-              name: name
-              id: id
-              email: email
               object: organization.project.user
+              id: id
+              name: name
+              email: email
+              role: owner
+              added_at: 6
+            service_account:
+              object: organization.project.service_account
+              id: id
+              name: name
+              role: owner
+              created_at: 1
+        - object: organization.project.api_key
+          redacted_value: redacted_value
           name: name
           created_at: 0
-          redacted_value: redacted_value
           id: id
-          object: organization.project.api_key
+          owner:
+            type: user
+            user:
+              object: organization.project.user
+              id: id
+              name: name
+              email: email
+              role: owner
+              added_at: 6
+            service_account:
+              object: organization.project.service_account
+              id: id
+              name: name
+              role: owner
+              created_at: 1
+        first_id: first_id
         last_id: last_id
         has_more: true
-        object: list
       properties:
         object:
           enum:
@@ -19313,23 +19326,23 @@ components:
       type: object
     ProjectListResponse:
       example:
-        first_id: first_id
+        object: list
         data:
-        - archived_at: 6
+        - id: id
+          object: organization.project
           name: name
           created_at: 0
-          id: id
-          object: organization.project
+          archived_at: 6
           status: active
-        - archived_at: 6
+        - id: id
+          object: organization.project
           name: name
           created_at: 0
-          id: id
-          object: organization.project
+          archived_at: 6
           status: active
+        first_id: first_id
         last_id: last_id
         has_more: true
-        object: list
       properties:
         object:
           enum:
@@ -19355,15 +19368,15 @@ components:
     ProjectRateLimit:
       description: Represents a project rate limit config.
       example:
-        batch_1_day_max_input_tokens: 2
-        max_tokens_per_1_minute: 6
-        model: model
+        object: project.rate_limit
         id: id
+        model: model
+        max_requests_per_1_minute: 0
+        max_tokens_per_1_minute: 6
         max_images_per_1_minute: 1
         max_audio_megabytes_per_1_minute: 5
-        max_requests_per_1_minute: 0
-        object: project.rate_limit
         max_requests_per_1_day: 5
+        batch_1_day_max_input_tokens: 2
       properties:
         object:
           description: "The object type, which is always `project.rate_limit`"
@@ -19416,29 +19429,29 @@ components:
           }
     ProjectRateLimitListResponse:
       example:
-        first_id: first_id
+        object: list
         data:
-        - batch_1_day_max_input_tokens: 2
-          max_tokens_per_1_minute: 6
-          model: model
+        - object: project.rate_limit
           id: id
+          model: model
+          max_requests_per_1_minute: 0
+          max_tokens_per_1_minute: 6
           max_images_per_1_minute: 1
           max_audio_megabytes_per_1_minute: 5
-          max_requests_per_1_minute: 0
-          object: project.rate_limit
           max_requests_per_1_day: 5
-        - batch_1_day_max_input_tokens: 2
-          max_tokens_per_1_minute: 6
-          model: model
+          batch_1_day_max_input_tokens: 2
+        - object: project.rate_limit
           id: id
+          model: model
+          max_requests_per_1_minute: 0
+          max_tokens_per_1_minute: 6
           max_images_per_1_minute: 1
           max_audio_megabytes_per_1_minute: 5
-          max_requests_per_1_minute: 0
-          object: project.rate_limit
           max_requests_per_1_day: 5
+          batch_1_day_max_input_tokens: 2
+        first_id: first_id
         last_id: last_id
         has_more: true
-        object: list
       properties:
         object:
           enum:
@@ -19463,12 +19476,12 @@ components:
       type: object
     ProjectRateLimitUpdateRequest:
       example:
-        batch_1_day_max_input_tokens: 2
+        max_requests_per_1_minute: 0
         max_tokens_per_1_minute: 6
         max_images_per_1_minute: 1
         max_audio_megabytes_per_1_minute: 5
-        max_requests_per_1_minute: 0
         max_requests_per_1_day: 5
+        batch_1_day_max_input_tokens: 2
       properties:
         max_requests_per_1_minute:
           description: The maximum requests per minute.
@@ -19494,11 +19507,11 @@ components:
     ProjectServiceAccount:
       description: Represents an individual service account in a project.
       example:
-        role: owner
-        name: name
-        created_at: 1
-        id: id
         object: organization.project.service_account
+        id: id
+        name: name
+        role: owner
+        created_at: 1
       properties:
         object:
           description: "The object type, which is always `organization.project.service_account`"
@@ -19540,11 +19553,11 @@ components:
           }
     ProjectServiceAccountApiKey:
       example:
+        object: organization.project.service_account.api_key
+        value: value
         name: name
         created_at: 6
         id: id
-        value: value
-        object: organization.project.service_account.api_key
       properties:
         object:
           description: "The object type, which is always `organization.project.service_account.api_key`"
@@ -19578,17 +19591,17 @@ components:
       type: object
     ProjectServiceAccountCreateResponse:
       example:
+        object: organization.project.service_account
+        id: id
+        name: name
         role: member
+        created_at: 0
         api_key:
+          object: organization.project.service_account.api_key
+          value: value
           name: name
           created_at: 6
           id: id
-          value: value
-          object: organization.project.service_account.api_key
-        name: name
-        created_at: 0
-        id: id
-        object: organization.project.service_account
       properties:
         object:
           enum:
@@ -19617,9 +19630,9 @@ components:
       type: object
     ProjectServiceAccountDeleteResponse:
       example:
-        deleted: true
-        id: id
         object: organization.project.service_account.deleted
+        id: id
+        deleted: true
       properties:
         object:
           enum:
@@ -19636,21 +19649,21 @@ components:
       type: object
     ProjectServiceAccountListResponse:
       example:
-        first_id: first_id
+        object: list
         data:
-        - role: owner
-          name: name
-          created_at: 1
+        - object: organization.project.service_account
           id: id
-          object: organization.project.service_account
-        - role: owner
           name: name
+          role: owner
           created_at: 1
+        - object: organization.project.service_account
           id: id
-          object: organization.project.service_account
+          name: name
+          role: owner
+          created_at: 1
+        first_id: first_id
         last_id: last_id
         has_more: true
-        object: list
       properties:
         object:
           enum:
@@ -19686,12 +19699,12 @@ components:
     ProjectUser:
       description: Represents an individual user in a project.
       example:
-        added_at: 6
-        role: owner
-        name: name
-        id: id
-        email: email
         object: organization.project.user
+        id: id
+        name: name
+        email: email
+        role: owner
+        added_at: 6
       properties:
         object:
           description: "The object type, which is always `organization.project.user`"
@@ -19737,8 +19750,8 @@ components:
           }
     ProjectUserCreateRequest:
       example:
-        role: owner
         user_id: user_id
+        role: owner
       properties:
         user_id:
           description: The ID of the user.
@@ -19755,9 +19768,9 @@ components:
       type: object
     ProjectUserDeleteResponse:
       example:
-        deleted: true
-        id: id
         object: organization.project.user.deleted
+        id: id
+        deleted: true
       properties:
         object:
           enum:
@@ -19774,23 +19787,23 @@ components:
       type: object
     ProjectUserListResponse:
       example:
-        first_id: first_id
+        object: object
         data:
-        - added_at: 6
-          role: owner
-          name: name
+        - object: organization.project.user
           id: id
-          email: email
-          object: organization.project.user
-        - added_at: 6
-          role: owner
           name: name
-          id: id
           email: email
-          object: organization.project.user
+          role: owner
+          added_at: 6
+        - object: organization.project.user
+          id: id
+          name: name
+          email: email
+          role: owner
+          added_at: 6
+        first_id: first_id
         last_id: last_id
         has_more: true
-        object: object
       properties:
         object:
           type: string
@@ -21728,34 +21741,34 @@ components:
     RealtimeSessionCreateRequest:
       description: Realtime session object configuration.
       example:
-        voice: alloy
-        instructions: instructions
-        input_audio_format: pcm16
         modalities:
         - text
         - text
-        max_response_output_tokens: 5
+        model: gpt-4o-realtime-preview
+        instructions: instructions
+        voice: alloy
+        input_audio_format: pcm16
         output_audio_format: pcm16
         input_audio_transcription:
           model: model
-        temperature: 5.962133916683182
         turn_detection:
+          type: type
+          threshold: 0.8008281904610115
+          prefix_padding_ms: 6
           silence_duration_ms: 1
           create_response: true
-          prefix_padding_ms: 6
-          threshold: 0.8008281904610115
-          type: type
-        tool_choice: tool_choice
-        model: gpt-4o-realtime-preview
         tools:
-        - name: name
+        - type: function
+          name: name
           description: description
-          type: function
           parameters: "{}"
-        - name: name
+        - type: function
+          name: name
           description: description
-          type: function
           parameters: "{}"
+        tool_choice: tool_choice
+        temperature: 5.962133916683182
+        max_response_output_tokens: 5
       properties:
         modalities:
           description: |
@@ -21848,35 +21861,35 @@ components:
         A new Realtime session configuration, with an ephermeral key. Default TTL
         for keys is one minute.
       example:
-        voice: alloy
-        instructions: instructions
-        input_audio_format: input_audio_format
+        client_secret:
+          value: value
+          expires_at: 0
         modalities:
         - text
         - text
-        max_response_output_tokens: 2
+        instructions: instructions
+        voice: alloy
+        input_audio_format: input_audio_format
         output_audio_format: output_audio_format
         input_audio_transcription:
           model: model
-        temperature: 5.637376656633329
         turn_detection:
-          silence_duration_ms: 5
-          prefix_padding_ms: 1
-          threshold: 6.027456183070403
           type: type
-        tool_choice: tool_choice
-        client_secret:
-          expires_at: 0
-          value: value
+          threshold: 6.027456183070403
+          prefix_padding_ms: 1
+          silence_duration_ms: 5
         tools:
-        - name: name
+        - type: function
+          name: name
           description: description
-          type: function
           parameters: "{}"
-        - name: name
+        - type: function
+          name: name
           description: description
-          type: function
           parameters: "{}"
+        tool_choice: tool_choice
+        temperature: 5.637376656633329
+        max_response_output_tokens: 2
       properties:
         client_secret:
           $ref: "#/components/schemas/RealtimeSessionCreateResponse_client_secret"
@@ -22024,59 +22037,59 @@ components:
     RunObject:
       description: "Represents an execution run on a [thread](/docs/api-reference/threads)."
       example:
-        cancelled_at: 5
-        instructions: instructions
-        metadata: "{}"
+        id: id
+        object: thread.run
+        created_at: 0
+        thread_id: thread_id
         assistant_id: assistant_id
+        status: queued
         required_action:
+          type: submit_tool_outputs
           submit_tool_outputs:
             tool_calls:
-            - function:
+            - id: id
+              type: function
+              function:
                 name: name
                 arguments: arguments
-              id: id
+            - id: id
               type: function
-            - function:
+              function:
                 name: name
                 arguments: arguments
-              id: id
-              type: function
-          type: submit_tool_outputs
-        usage:
-          completion_tokens: 7
-          prompt_tokens: 9
-          total_tokens: 3
-        created_at: 0
+        last_error:
+          code: server_error
+          message: message
+        expires_at: 6
+        started_at: 1
+        cancelled_at: 5
+        failed_at: 5
+        completed_at: 2
+        incomplete_details:
+          reason: max_completion_tokens
+        model: model
+        instructions: instructions
         tools:
         - type: code_interpreter
         - type: code_interpreter
         - type: code_interpreter
         - type: code_interpreter
         - type: code_interpreter
-        top_p: 4.145608029883936
-        max_completion_tokens: 256
-        thread_id: thread_id
-        expires_at: 6
-        response_format: auto
+        metadata: "{}"
+        usage:
+          completion_tokens: 7
+          prompt_tokens: 9
+          total_tokens: 3
         temperature: 2.027123023002322
-        tool_choice: none
-        model: model
-        id: id
-        last_error:
-          code: server_error
-          message: message
-        incomplete_details:
-          reason: max_completion_tokens
-        truncation_strategy:
-          last_messages: 1
-          type: auto
-        completed_at: 2
-        parallel_tool_calls: true
-        started_at: 1
-        failed_at: 5
+        top_p: 4.145608029883936
         max_prompt_tokens: 256
-        object: thread.run
-        status: queued
+        max_completion_tokens: 256
+        truncation_strategy:
+          type: auto
+          last_messages: 1
+        tool_choice: none
+        parallel_tool_calls: true
+        response_format: auto
       properties:
         id:
           description: "The identifier, which can be referenced in API endpoints."
@@ -22468,9 +22481,9 @@ components:
     RunStepDetailsMessageCreationObject:
       description: Details of the message creation by the run step.
       example:
+        type: message_creation
         message_creation:
           message_id: message_id
-        type: message_creation
       properties:
         type:
           description: Always `message_creation`.
@@ -22644,30 +22657,30 @@ components:
       description: |
         Represents a step in execution of a run.
       example:
-        cancelled_at: 1
-        metadata: "{}"
+        id: id
+        object: thread.run.step
+        created_at: 0
         assistant_id: assistant_id
+        thread_id: thread_id
         run_id: run_id
+        type: message_creation
+        status: in_progress
+        step_details:
+          type: message_creation
+          message_creation:
+            message_id: message_id
+        last_error:
+          code: server_error
+          message: message
+        expired_at: 6
+        cancelled_at: 1
+        failed_at: 5
+        completed_at: 5
+        metadata: "{}"
         usage:
           completion_tokens: 2
           prompt_tokens: 7
           total_tokens: 9
-        created_at: 0
-        expired_at: 6
-        type: message_creation
-        step_details:
-          message_creation:
-            message_id: message_id
-          type: message_creation
-        completed_at: 5
-        thread_id: thread_id
-        id: id
-        last_error:
-          code: server_error
-          message: message
-        failed_at: 5
-        object: thread.run.step
-        status: in_progress
       properties:
         id:
           description: "The identifier of the run step, which can be referenced in\
@@ -22812,11 +22825,11 @@ components:
     RunToolCallObject:
       description: Tool call objects
       example:
+        id: id
+        type: function
         function:
           name: name
           arguments: arguments
-        id: id
-        type: function
       properties:
         id:
           description: "The ID of the tool call. This ID must be referenced when you\
@@ -22860,26 +22873,11 @@ components:
       type: object
     StaticChunkingStrategyRequestParam:
       additionalProperties: false
-      properties:
-        type:
-          description: Always `static`.
-          enum:
-          - static
-          type: string
-        static:
-          $ref: "#/components/schemas/StaticChunkingStrategy"
-      required:
-      - static
-      - type
-      title: Static Chunking Strategy
-      type: object
-    StaticChunkingStrategyResponseParam:
-      additionalProperties: false
       example:
+        type: static
         static:
           max_chunk_size_tokens: 685
           chunk_overlap_tokens: 5
-        type: static
       properties:
         type:
           description: Always `static`.
@@ -22896,12 +22894,12 @@ components:
     SubmitToolOutputsRunRequest:
       additionalProperties: false
       example:
-        stream: true
         tool_outputs:
-        - output: output
-          tool_call_id: tool_call_id
-        - output: output
-          tool_call_id: tool_call_id
+        - tool_call_id: tool_call_id
+          output: output
+        - tool_call_id: tool_call_id
+          output: output
+        stream: true
       properties:
         tool_outputs:
           description: A list of tools for which the outputs are being submitted.
@@ -22919,6 +22917,9 @@ components:
     ThreadObject:
       description: "Represents a thread that contains [messages](/docs/api-reference/messages)."
       example:
+        id: id
+        object: thread
+        created_at: 0
         tool_resources:
           code_interpreter:
             file_ids:
@@ -22931,9 +22932,6 @@ components:
             vector_store_ids:
             - vector_store_ids
         metadata: "{}"
-        created_at: 0
-        id: id
-        object: thread
       properties:
         id:
           description: "The identifier, which can be referenced in API endpoints."
@@ -23068,8 +23066,8 @@ components:
       description: Controls for how a thread will be truncated prior to the run. Use
         this to control the intial context window of the run.
       example:
-        last_messages: 1
         type: auto
+        last_messages: 1
       properties:
         type:
           description: "The truncation strategy to use for the thread. The default\
@@ -23094,11 +23092,11 @@ components:
     UpdateVectorStoreRequest:
       additionalProperties: false
       example:
-        metadata: "{}"
+        name: name
         expires_after:
           anchor: last_active_at
           days: 339
-        name: name
+        metadata: "{}"
       properties:
         name:
           description: The name of the vector store.
@@ -23117,23 +23115,23 @@ components:
       description: |
         The Upload object can accept byte chunks in the form of Parts.
       example:
+        id: id
+        created_at: 0
         filename: filename
+        bytes: 6
+        purpose: purpose
+        status: pending
         expires_at: 1
+        object: upload
         file:
-          filename: filename
-          purpose: assistants
+          id: id
           bytes: 0
           created_at: 6
-          id: id
-          status_details: status_details
+          filename: filename
           object: file
+          purpose: assistants
           status: uploaded
-        purpose: purpose
-        bytes: 6
-        created_at: 0
-        id: id
-        status: pending
-        object: upload
+          status_details: status_details
       properties:
         id:
           description: "The Upload unique identifier, which can be referenced in API\
@@ -23205,9 +23203,9 @@ components:
       description: |
         The upload Part represents a chunk of bytes we can add to an Upload object.
       example:
-        upload_id: upload_id
-        created_at: 0
         id: id
+        created_at: 0
+        upload_id: upload_id
         object: upload.part
       properties:
         id:
@@ -23374,18 +23372,18 @@ components:
     UsageCompletionsResult:
       description: The aggregated completions usage details of the specific time bucket.
       example:
+        object: organization.usage.completions.result
+        input_tokens: 1
+        input_cached_tokens: 5
+        output_tokens: 5
+        input_audio_tokens: 2
+        output_audio_tokens: 7
         num_model_requests: 9
         project_id: project_id
         user_id: user_id
-        output_audio_tokens: 7
-        batch: true
-        output_tokens: 5
-        model: model
-        input_cached_tokens: 5
-        input_audio_tokens: 2
-        input_tokens: 1
         api_key_id: api_key_id
-        object: organization.usage.completions.result
+        model: model
+        batch: true
       properties:
         object:
           enum:
@@ -23628,66 +23626,66 @@ components:
           }
     UsageResponse:
       example:
-        next_page: next_page
-        data:
-        - result:
-          - num_model_requests: 9
-            project_id: project_id
-            user_id: user_id
-            output_audio_tokens: 7
-            batch: true
-            output_tokens: 5
-            model: model
-            input_cached_tokens: 5
-            input_audio_tokens: 2
-            input_tokens: 1
-            api_key_id: api_key_id
-            object: organization.usage.completions.result
-          - num_model_requests: 9
-            project_id: project_id
-            user_id: user_id
-            output_audio_tokens: 7
-            batch: true
-            output_tokens: 5
-            model: model
-            input_cached_tokens: 5
-            input_audio_tokens: 2
-            input_tokens: 1
-            api_key_id: api_key_id
-            object: organization.usage.completions.result
-          start_time: 0
-          end_time: 6
-          object: bucket
-        - result:
-          - num_model_requests: 9
-            project_id: project_id
-            user_id: user_id
-            output_audio_tokens: 7
-            batch: true
-            output_tokens: 5
-            model: model
-            input_cached_tokens: 5
-            input_audio_tokens: 2
-            input_tokens: 1
-            api_key_id: api_key_id
-            object: organization.usage.completions.result
-          - num_model_requests: 9
-            project_id: project_id
-            user_id: user_id
-            output_audio_tokens: 7
-            batch: true
-            output_tokens: 5
-            model: model
-            input_cached_tokens: 5
-            input_audio_tokens: 2
-            input_tokens: 1
-            api_key_id: api_key_id
-            object: organization.usage.completions.result
-          start_time: 0
-          end_time: 6
-          object: bucket
-        has_more: true
         object: page
+        data:
+        - object: bucket
+          start_time: 0
+          end_time: 6
+          result:
+          - object: organization.usage.completions.result
+            input_tokens: 1
+            input_cached_tokens: 5
+            output_tokens: 5
+            input_audio_tokens: 2
+            output_audio_tokens: 7
+            num_model_requests: 9
+            project_id: project_id
+            user_id: user_id
+            api_key_id: api_key_id
+            model: model
+            batch: true
+          - object: organization.usage.completions.result
+            input_tokens: 1
+            input_cached_tokens: 5
+            output_tokens: 5
+            input_audio_tokens: 2
+            output_audio_tokens: 7
+            num_model_requests: 9
+            project_id: project_id
+            user_id: user_id
+            api_key_id: api_key_id
+            model: model
+            batch: true
+        - object: bucket
+          start_time: 0
+          end_time: 6
+          result:
+          - object: organization.usage.completions.result
+            input_tokens: 1
+            input_cached_tokens: 5
+            output_tokens: 5
+            input_audio_tokens: 2
+            output_audio_tokens: 7
+            num_model_requests: 9
+            project_id: project_id
+            user_id: user_id
+            api_key_id: api_key_id
+            model: model
+            batch: true
+          - object: organization.usage.completions.result
+            input_tokens: 1
+            input_cached_tokens: 5
+            output_tokens: 5
+            input_audio_tokens: 2
+            output_audio_tokens: 7
+            num_model_requests: 9
+            project_id: project_id
+            user_id: user_id
+            api_key_id: api_key_id
+            model: model
+            batch: true
+        has_more: true
+        next_page: next_page
       properties:
         object:
           enum:
@@ -23709,34 +23707,34 @@ components:
       type: object
     UsageTimeBucket:
       example:
-        result:
-        - num_model_requests: 9
-          project_id: project_id
-          user_id: user_id
-          output_audio_tokens: 7
-          batch: true
-          output_tokens: 5
-          model: model
-          input_cached_tokens: 5
-          input_audio_tokens: 2
-          input_tokens: 1
-          api_key_id: api_key_id
-          object: organization.usage.completions.result
-        - num_model_requests: 9
-          project_id: project_id
-          user_id: user_id
-          output_audio_tokens: 7
-          batch: true
-          output_tokens: 5
-          model: model
-          input_cached_tokens: 5
-          input_audio_tokens: 2
-          input_tokens: 1
-          api_key_id: api_key_id
-          object: organization.usage.completions.result
+        object: bucket
         start_time: 0
         end_time: 6
-        object: bucket
+        result:
+        - object: organization.usage.completions.result
+          input_tokens: 1
+          input_cached_tokens: 5
+          output_tokens: 5
+          input_audio_tokens: 2
+          output_audio_tokens: 7
+          num_model_requests: 9
+          project_id: project_id
+          user_id: user_id
+          api_key_id: api_key_id
+          model: model
+          batch: true
+        - object: organization.usage.completions.result
+          input_tokens: 1
+          input_cached_tokens: 5
+          output_tokens: 5
+          input_audio_tokens: 2
+          output_audio_tokens: 7
+          num_model_requests: 9
+          project_id: project_id
+          user_id: user_id
+          api_key_id: api_key_id
+          model: model
+          batch: true
       properties:
         object:
           enum:
@@ -23787,12 +23785,12 @@ components:
     User:
       description: Represents an individual `user` within an organization.
       example:
-        added_at: 0
-        role: owner
-        name: name
-        id: id
-        email: email
         object: organization.user
+        id: id
+        name: name
+        email: email
+        role: owner
+        added_at: 0
       properties:
         object:
           description: "The object type, which is always `organization.user`"
@@ -23838,9 +23836,9 @@ components:
           }
     UserDeleteResponse:
       example:
-        deleted: true
-        id: id
         object: organization.user.deleted
+        id: id
+        deleted: true
       properties:
         object:
           enum:
@@ -23857,23 +23855,23 @@ components:
       type: object
     UserListResponse:
       example:
-        first_id: first_id
+        object: list
         data:
-        - added_at: 0
-          role: owner
-          name: name
+        - object: organization.user
           id: id
-          email: email
-          object: organization.user
-        - added_at: 0
-          role: owner
           name: name
-          id: id
           email: email
-          object: organization.user
+          role: owner
+          added_at: 0
+        - object: organization.user
+          id: id
+          name: name
+          email: email
+          role: owner
+          added_at: 0
+        first_id: first_id
         last_id: last_id
         has_more: true
-        object: list
       properties:
         object:
           enum:
@@ -23935,17 +23933,17 @@ components:
     VectorStoreFileBatchObject:
       description: A batch of files attached to a vector store.
       example:
-        file_counts:
-          in_progress: 6
-          total: 2
-          cancelled: 5
-          completed: 1
-          failed: 5
-        created_at: 0
         id: id
         object: vector_store.files_batch
+        created_at: 0
         vector_store_id: vector_store_id
         status: in_progress
+        file_counts:
+          in_progress: 6
+          completed: 1
+          failed: 5
+          cancelled: 5
+          total: 2
       properties:
         id:
           description: "The identifier, which can be referenced in API endpoints."
@@ -24004,20 +24002,20 @@ components:
     VectorStoreFileObject:
       description: A list of files attached to a vector store.
       example:
-        chunking_strategy:
-          static:
-            max_chunk_size_tokens: 685
-            chunk_overlap_tokens: 5
-          type: static
+        id: id
+        object: vector_store.file
         usage_bytes: 0
         created_at: 6
-        id: id
+        vector_store_id: vector_store_id
+        status: in_progress
         last_error:
           code: server_error
           message: message
-        object: vector_store.file
-        vector_store_id: vector_store_id
-        status: in_progress
+        chunking_strategy:
+          type: static
+          static:
+            max_chunk_size_tokens: 685
+            chunk_overlap_tokens: 5
       properties:
         id:
           description: "The identifier, which can be referenced in API endpoints."
@@ -24087,24 +24085,24 @@ components:
       description: A vector store is a collection of processed files can be used by
         the `file_search` tool.
       example:
+        id: id
+        object: vector_store
+        created_at: 0
+        name: name
+        usage_bytes: 6
         file_counts:
           in_progress: 1
-          total: 7
-          cancelled: 2
           completed: 5
           failed: 5
-        metadata: "{}"
-        expires_at: 3
+          cancelled: 2
+          total: 7
+        status: expired
         expires_after:
           anchor: last_active_at
           days: 339
+        expires_at: 3
         last_active_at: 2
-        usage_bytes: 6
-        name: name
-        created_at: 0
-        id: id
-        object: vector_store
-        status: expired
+        metadata: "{}"
       properties:
         id:
           description: "The identifier, which can be referenced in API endpoints."
@@ -24242,9 +24240,9 @@ components:
       type: object
     admin_api_keys_delete_200_response:
       example:
-        deleted: true
         id: key_abc
         object: organization.admin_api_key.deleted
+        deleted: true
       properties:
         id:
           example: key_abc
@@ -24277,11 +24275,11 @@ components:
       type: object
     AdminApiKey_owner:
       example:
-        role: member
+        type: service_account
+        id: sa_456
         name: My Service Account
         created_at: 1711471533
-        id: sa_456
-        type: service_account
+        role: member
       properties:
         type:
           example: service_account
@@ -24384,8 +24382,8 @@ components:
       description: The project that the action was scoped to. Absent for actions not
         scoped to projects.
       example:
-        name: name
         id: id
+        name: name
       properties:
         id:
           description: The project ID.
@@ -24411,11 +24409,11 @@ components:
     AuditLog_api_key_created:
       description: The details for events with this `type`.
       example:
+        id: id
         data:
           scopes:
           - scopes
           - scopes
-        id: id
       properties:
         id:
           description: The tracking ID of the API key.
@@ -24440,11 +24438,11 @@ components:
     AuditLog_api_key_updated:
       description: The details for events with this `type`.
       example:
+        id: id
         changes_requested:
           scopes:
           - scopes
           - scopes
-        id: id
       properties:
         id:
           description: The tracking ID of the API key.
@@ -24464,8 +24462,8 @@ components:
     AuditLog_invite_sent_data:
       description: The payload used to create the invite.
       example:
-        role: role
         email: email
+        role: role
       properties:
         email:
           description: The email invited to the organization.
@@ -24478,10 +24476,10 @@ components:
     AuditLog_invite_sent:
       description: The details for events with this `type`.
       example:
-        data:
-          role: role
-          email: email
         id: id
+        data:
+          email: email
+          role: role
       properties:
         id:
           description: The ID of the invite.
@@ -24501,8 +24499,8 @@ components:
     AuditLog_login_failed:
       description: The details for events with this `type`.
       example:
-        error_message: error_message
         error_code: error_code
+        error_message: error_message
       properties:
         error_code:
           description: The error code of the failure.
@@ -24529,12 +24527,12 @@ components:
     AuditLog_organization_updated_changes_requested:
       description: The payload used to update the organization settings.
       example:
+        title: title
+        description: description
+        name: name
         settings:
           threads_ui_visibility: threads_ui_visibility
           usage_dashboard_visibility: usage_dashboard_visibility
-        name: name
-        description: description
-        title: title
       properties:
         title:
           description: The organization title.
@@ -24551,14 +24549,14 @@ components:
     AuditLog_organization_updated:
       description: The details for events with this `type`.
       example:
+        id: id
         changes_requested:
+          title: title
+          description: description
+          name: name
           settings:
             threads_ui_visibility: threads_ui_visibility
             usage_dashboard_visibility: usage_dashboard_visibility
-          name: name
-          description: description
-          title: title
-        id: id
       properties:
         id:
           description: The organization ID.
@@ -24582,10 +24580,10 @@ components:
     AuditLog_project_created:
       description: The details for events with this `type`.
       example:
+        id: id
         data:
           name: name
           title: title
-        id: id
       properties:
         id:
           description: The project ID.
@@ -24605,9 +24603,9 @@ components:
     AuditLog_project_updated:
       description: The details for events with this `type`.
       example:
+        id: id
         changes_requested:
           title: title
-        id: id
       properties:
         id:
           description: The project ID.
@@ -24627,12 +24625,12 @@ components:
     AuditLog_rate_limit_updated_changes_requested:
       description: The payload used to update the rate limits.
       example:
-        batch_1_day_max_input_tokens: 7
+        max_requests_per_1_minute: 6
         max_tokens_per_1_minute: 1
         max_images_per_1_minute: 5
         max_audio_megabytes_per_1_minute: 5
-        max_requests_per_1_minute: 6
         max_requests_per_1_day: 2
+        batch_1_day_max_input_tokens: 7
       properties:
         max_requests_per_1_minute:
           description: The maximum requests per minute.
@@ -24658,14 +24656,14 @@ components:
     AuditLog_rate_limit_updated:
       description: The details for events with this `type`.
       example:
+        id: id
         changes_requested:
-          batch_1_day_max_input_tokens: 7
+          max_requests_per_1_minute: 6
           max_tokens_per_1_minute: 1
           max_images_per_1_minute: 5
           max_audio_megabytes_per_1_minute: 5
-          max_requests_per_1_minute: 6
           max_requests_per_1_day: 2
-        id: id
+          batch_1_day_max_input_tokens: 7
       properties:
         id:
           description: The rate limit ID
@@ -24694,9 +24692,9 @@ components:
     AuditLog_service_account_created:
       description: The details for events with this `type`.
       example:
+        id: id
         data:
           role: role
-        id: id
       properties:
         id:
           description: The service account ID.
@@ -24716,9 +24714,9 @@ components:
     AuditLog_service_account_updated:
       description: The details for events with this `type`.
       example:
+        id: id
         changes_requested:
           role: role
-        id: id
       properties:
         id:
           description: The service account ID.
@@ -24747,9 +24745,9 @@ components:
     AuditLog_user_added:
       description: The details for events with this `type`.
       example:
+        id: id
         data:
           role: role
-        id: id
       properties:
         id:
           description: The user ID.
@@ -24769,9 +24767,9 @@ components:
     AuditLog_user_updated:
       description: The details for events with this `type`.
       example:
+        id: id
         changes_requested:
           role: role
-        id: id
       properties:
         id:
           description: The project ID.
@@ -24791,9 +24789,9 @@ components:
     Batch_errors_data_inner:
       example:
         code: code
+        message: message
         param: param
         line: 0
-        message: message
       properties:
         code:
           description: An error code identifying the error type.
@@ -24813,16 +24811,16 @@ components:
       type: object
     Batch_errors:
       example:
+        object: object
         data:
         - code: code
+          message: message
           param: param
           line: 0
-          message: message
         - code: code
+          message: message
           param: param
           line: 0
-          message: message
-        object: object
       properties:
         object:
           description: "The object type, which is always `list`."
@@ -25053,8 +25051,8 @@ components:
       description: "Deprecated and replaced by `tool_calls`. The name and arguments\
         \ of a function that should be called, as generated by the model."
       example:
-        name: name
         arguments: arguments
+        name: name
       properties:
         arguments:
           description: "The arguments to call the function with, as generated by the\
@@ -25074,10 +25072,10 @@ components:
         If the audio output modality is requested, this object contains data
         about the audio response from the model. [Learn more](/docs/guides/audio).
       example:
-        expires_at: 6
-        transcript: transcript
-        data: data
         id: id
+        expires_at: 6
+        data: data
+        transcript: transcript
       nullable: true
       properties:
         id:
@@ -25121,11 +25119,11 @@ components:
       type: object
     ChatCompletionTokenLogprob_top_logprobs_inner:
       example:
+        token: token
         logprob: 5.637376656633329
         bytes:
         - 2
         - 2
-        token: token
       properties:
         token:
           description: The token.
@@ -25252,22 +25250,6 @@ components:
           maxItems: 20
           type: array
       type: object
-    Auto_Chunking_Strategy:
-      additionalProperties: false
-      description: The default strategy. This strategy currently uses a `max_chunk_size_tokens`
-        of `800` and `chunk_overlap_tokens` of `400`.
-      example:
-        type: auto
-      properties:
-        type:
-          description: Always `auto`.
-          enum:
-          - auto
-          type: string
-      required:
-      - type
-      title: Auto Chunking Strategy
-      type: object
     Static_Chunking_Strategy_static:
       additionalProperties: false
       properties:
@@ -25306,21 +25288,21 @@ components:
       description: "The chunking strategy used to chunk the file(s). If not set, will\
         \ use the `auto` strategy."
       oneOf:
-      - $ref: "#/components/schemas/Auto_Chunking_Strategy"
+      - $ref: "#/components/schemas/AutoChunkingStrategyRequestParam"
       - $ref: "#/components/schemas/Static_Chunking_Strategy"
       type: object
       x-oaiExpandable: true
     CreateAssistantRequest_tool_resources_file_search_vector_stores_inner:
       example:
-        chunking_strategy:
-          type: auto
-        metadata: "{}"
         file_ids:
         - file_ids
         - file_ids
         - file_ids
         - file_ids
         - file_ids
+        chunking_strategy:
+          type: auto
+        metadata: "{}"
       properties:
         file_ids:
           description: |
@@ -25342,15 +25324,15 @@ components:
         vector_store_ids:
         - vector_store_ids
         vector_stores:
-        - chunking_strategy:
+        - file_ids:
+          - file_ids
+          - file_ids
+          - file_ids
+          - file_ids
+          - file_ids
+          chunking_strategy:
             type: auto
           metadata: "{}"
-          file_ids:
-          - file_ids
-          - file_ids
-          - file_ids
-          - file_ids
-          - file_ids
       nullable: true
       oneOf: []
       properties:
@@ -25384,15 +25366,15 @@ components:
           vector_store_ids:
           - vector_store_ids
           vector_stores:
-          - chunking_strategy:
+          - file_ids:
+            - file_ids
+            - file_ids
+            - file_ids
+            - file_ids
+            - file_ids
+            chunking_strategy:
               type: auto
             metadata: "{}"
-            file_ids:
-            - file_ids
-            - file_ids
-            - file_ids
-            - file_ids
-            - file_ids
       nullable: true
       properties:
         code_interpreter:
@@ -25572,72 +25554,72 @@ components:
     CreateChatCompletionResponse_choices_inner_logprobs:
       description: Log probability information for the choice.
       example:
-        refusal:
-        - top_logprobs:
-          - logprob: 5.637376656633329
-            bytes:
-            - 2
-            - 2
-            token: token
-          - logprob: 5.637376656633329
-            bytes:
-            - 2
-            - 2
-            token: token
-          logprob: 1.4658129805029452
-          bytes:
-          - 5
-          - 5
-          token: token
-        - top_logprobs:
-          - logprob: 5.637376656633329
-            bytes:
-            - 2
-            - 2
-            token: token
-          - logprob: 5.637376656633329
-            bytes:
-            - 2
-            - 2
-            token: token
-          logprob: 1.4658129805029452
-          bytes:
-          - 5
-          - 5
-          token: token
         content:
-        - top_logprobs:
-          - logprob: 5.637376656633329
-            bytes:
-            - 2
-            - 2
-            token: token
-          - logprob: 5.637376656633329
-            bytes:
-            - 2
-            - 2
-            token: token
+        - token: token
           logprob: 1.4658129805029452
           bytes:
           - 5
           - 5
-          token: token
-        - top_logprobs:
-          - logprob: 5.637376656633329
+          top_logprobs:
+          - token: token
+            logprob: 5.637376656633329
             bytes:
             - 2
             - 2
-            token: token
-          - logprob: 5.637376656633329
+          - token: token
+            logprob: 5.637376656633329
             bytes:
             - 2
             - 2
-            token: token
+        - token: token
           logprob: 1.4658129805029452
           bytes:
           - 5
           - 5
-          token: token
+          top_logprobs:
+          - token: token
+            logprob: 5.637376656633329
+            bytes:
+            - 2
+            - 2
+          - token: token
+            logprob: 5.637376656633329
+            bytes:
+            - 2
+            - 2
+        refusal:
+        - token: token
+          logprob: 1.4658129805029452
+          bytes:
+          - 5
+          - 5
+          top_logprobs:
+          - token: token
+            logprob: 5.637376656633329
+            bytes:
+            - 2
+            - 2
+          - token: token
+            logprob: 5.637376656633329
+            bytes:
+            - 2
+            - 2
+        - token: token
+          logprob: 1.4658129805029452
+          bytes:
+          - 5
+          - 5
+          top_logprobs:
+          - token: token
+            logprob: 5.637376656633329
+            bytes:
+            - 2
+            - 2
+          - token: token
+            logprob: 5.637376656633329
+            bytes:
+            - 2
+            - 2
       nullable: true
       properties:
         content:
@@ -25661,95 +25643,95 @@ components:
         finish_reason: stop
         index: 0
         message:
-          role: assistant
-          function_call:
-            name: name
-            arguments: arguments
+          content: content
           refusal: refusal
           tool_calls:
-          - function:
+          - id: id
+            type: function
+            function:
               name: name
               arguments: arguments
-            id: id
+          - id: id
             type: function
-          - function:
+            function:
               name: name
               arguments: arguments
-            id: id
-            type: function
+          role: assistant
+          function_call:
+            arguments: arguments
+            name: name
           audio:
-            expires_at: 6
-            transcript: transcript
-            data: data
             id: id
-          content: content
+            expires_at: 6
+            data: data
+            transcript: transcript
         logprobs:
-          refusal:
-          - top_logprobs:
-            - logprob: 5.637376656633329
-              bytes:
-              - 2
-              - 2
-              token: token
-            - logprob: 5.637376656633329
-              bytes:
-              - 2
-              - 2
-              token: token
-            logprob: 1.4658129805029452
-            bytes:
-            - 5
-            - 5
-            token: token
-          - top_logprobs:
-            - logprob: 5.637376656633329
-              bytes:
-              - 2
-              - 2
-              token: token
-            - logprob: 5.637376656633329
-              bytes:
-              - 2
-              - 2
-              token: token
-            logprob: 1.4658129805029452
-            bytes:
-            - 5
-            - 5
-            token: token
           content:
-          - top_logprobs:
-            - logprob: 5.637376656633329
-              bytes:
-              - 2
-              - 2
-              token: token
-            - logprob: 5.637376656633329
-              bytes:
-              - 2
-              - 2
-              token: token
+          - token: token
             logprob: 1.4658129805029452
             bytes:
             - 5
             - 5
-            token: token
-          - top_logprobs:
-            - logprob: 5.637376656633329
+            top_logprobs:
+            - token: token
+              logprob: 5.637376656633329
               bytes:
               - 2
               - 2
-              token: token
-            - logprob: 5.637376656633329
+            - token: token
+              logprob: 5.637376656633329
               bytes:
               - 2
               - 2
-              token: token
+          - token: token
             logprob: 1.4658129805029452
             bytes:
             - 5
             - 5
-            token: token
+            top_logprobs:
+            - token: token
+              logprob: 5.637376656633329
+              bytes:
+              - 2
+              - 2
+            - token: token
+              logprob: 5.637376656633329
+              bytes:
+              - 2
+              - 2
+          refusal:
+          - token: token
+            logprob: 1.4658129805029452
+            bytes:
+            - 5
+            - 5
+            top_logprobs:
+            - token: token
+              logprob: 5.637376656633329
+              bytes:
+              - 2
+              - 2
+            - token: token
+              logprob: 5.637376656633329
+              bytes:
+              - 2
+              - 2
+          - token: token
+            logprob: 1.4658129805029452
+            bytes:
+            - 5
+            - 5
+            top_logprobs:
+            - token: token
+              logprob: 5.637376656633329
+              bytes:
+              - 2
+              - 2
+            - token: token
+              logprob: 5.637376656633329
+              bytes:
+              - 2
+              - 2
       properties:
         finish_reason:
           description: |
@@ -25884,18 +25866,18 @@ components:
         type: array
     CreateCompletionResponse_choices_inner_logprobs:
       example:
-        top_logprobs:
-        - key: 5.962133916683182
-        - key: 5.962133916683182
+        text_offset:
+        - 6
+        - 6
         token_logprobs:
         - 1.4658129805029452
         - 1.4658129805029452
         tokens:
         - tokens
         - tokens
-        text_offset:
-        - 6
-        - 6
+        top_logprobs:
+        - key: 5.962133916683182
+        - key: 5.962133916683182
       nullable: true
       properties:
         text_offset:
@@ -25921,20 +25903,20 @@ components:
       example:
         finish_reason: stop
         index: 0
-        text: text
         logprobs:
-          top_logprobs:
-          - key: 5.962133916683182
-          - key: 5.962133916683182
+          text_offset:
+          - 6
+          - 6
           token_logprobs:
           - 1.4658129805029452
           - 1.4658129805029452
           tokens:
           - tokens
           - tokens
-          text_offset:
-          - 6
-          - 6
+          top_logprobs:
+          - key: 5.962133916683182
+          - key: 5.962133916683182
+        text: text
       properties:
         finish_reason:
           description: |
@@ -26083,8 +26065,8 @@ components:
         This value is now deprecated in favor of `method`, and should be passed in under the `method` parameter.
       example:
         batch_size: auto
-        n_epochs: auto
         learning_rate_multiplier: auto
+        n_epochs: auto
       properties:
         batch_size:
           $ref: "#/components/schemas/CreateFineTuningJobRequest_hyperparameters_batch_size"
@@ -26099,8 +26081,8 @@ components:
         metrics will be sent to. Optionally, you can set an explicit display name for your run, add tags
         to your run, and set a default entity (team, username, etc) to be associated with your run.
       example:
-        name: name
         project: my-wandb-project
+        name: name
         entity: entity
         tags:
         - custom-tag
@@ -26135,16 +26117,18 @@ components:
       type: object
     CreateFineTuningJobRequest_integrations_inner:
       example:
+        type: wandb
         wandb:
-          name: name
           project: my-wandb-project
+          name: name
           entity: entity
           tags:
           - custom-tag
           - custom-tag
-        type: wandb
       properties:
         type:
+          description: |
+            The type of integration to enable. Currently, only "wandb" (Weights and Biases) is supported.
           enum:
           - wandb
           type: string
@@ -26306,19 +26290,19 @@ components:
     CreateModerationResponse_results_inner_categories:
       description: "A list of the categories, and whether they are flagged or not."
       example:
-        illicit/violent: true
-        self-harm/instructions: true
-        harassment: true
-        violence/graphic: true
-        illicit: true
-        self-harm/intent: true
-        hate/threatening: true
-        sexual/minors: true
-        harassment/threatening: true
         hate: true
+        hate/threatening: true
+        harassment: true
+        harassment/threatening: true
+        illicit: true
+        illicit/violent: true
         self-harm: true
+        self-harm/intent: true
+        self-harm/instructions: true
         sexual: true
+        sexual/minors: true
         violence: true
+        violence/graphic: true
       properties:
         hate:
           description: "Content that expresses, incites, or promotes hate based on\
@@ -26399,19 +26383,19 @@ components:
       description: A list of the categories along with their scores as predicted by
         model.
       example:
-        illicit/violent: 2.3021358869347655
-        self-harm/instructions: 3.616076749251911
-        harassment: 1.4658129805029452
-        violence/graphic: 1.2315135367772556
-        illicit: 5.637376656633329
-        self-harm/intent: 9.301444243932576
-        hate/threatening: 6.027456183070403
-        sexual/minors: 4.145608029883936
-        harassment/threatening: 5.962133916683182
         hate: 0.8008281904610115
+        hate/threatening: 6.027456183070403
+        harassment: 1.4658129805029452
+        harassment/threatening: 5.962133916683182
+        illicit: 5.637376656633329
+        illicit/violent: 2.3021358869347655
         self-harm: 7.061401241503109
+        self-harm/intent: 9.301444243932576
+        self-harm/instructions: 3.616076749251911
         sexual: 2.027123023002322
+        sexual/minors: 4.145608029883936
         violence: 7.386281948385884
+        violence/graphic: 1.2315135367772556
       properties:
         hate:
           description: The score for the category 'hate'.
@@ -26471,43 +26455,43 @@ components:
       description: A list of the categories along with the input type(s) that the
         score applies to.
       example:
-        illicit/violent:
-        - text
-        - text
-        self-harm/instructions:
-        - text
-        - text
-        harassment:
-        - text
-        - text
-        violence/graphic:
-        - text
-        - text
-        illicit:
-        - text
-        - text
-        self-harm/intent:
+        hate:
         - text
         - text
         hate/threatening:
         - text
         - text
-        sexual/minors:
+        harassment:
         - text
         - text
         harassment/threatening:
         - text
         - text
-        hate:
+        illicit:
+        - text
+        - text
+        illicit/violent:
         - text
         - text
         self-harm:
         - text
         - text
+        self-harm/intent:
+        - text
+        - text
+        self-harm/instructions:
+        - text
+        - text
         sexual:
         - text
         - text
+        sexual/minors:
+        - text
+        - text
         violence:
+        - text
+        - text
+        violence/graphic:
         - text
         - text
       properties:
@@ -26625,75 +26609,75 @@ components:
       type: object
     CreateModerationResponse_results_inner:
       example:
-        category_scores:
-          illicit/violent: 2.3021358869347655
-          self-harm/instructions: 3.616076749251911
-          harassment: 1.4658129805029452
-          violence/graphic: 1.2315135367772556
-          illicit: 5.637376656633329
-          self-harm/intent: 9.301444243932576
-          hate/threatening: 6.027456183070403
-          sexual/minors: 4.145608029883936
-          harassment/threatening: 5.962133916683182
-          hate: 0.8008281904610115
-          self-harm: 7.061401241503109
-          sexual: 2.027123023002322
-          violence: 7.386281948385884
         flagged: true
+        categories:
+          hate: true
+          hate/threatening: true
+          harassment: true
+          harassment/threatening: true
+          illicit: true
+          illicit/violent: true
+          self-harm: true
+          self-harm/intent: true
+          self-harm/instructions: true
+          sexual: true
+          sexual/minors: true
+          violence: true
+          violence/graphic: true
+        category_scores:
+          hate: 0.8008281904610115
+          hate/threatening: 6.027456183070403
+          harassment: 1.4658129805029452
+          harassment/threatening: 5.962133916683182
+          illicit: 5.637376656633329
+          illicit/violent: 2.3021358869347655
+          self-harm: 7.061401241503109
+          self-harm/intent: 9.301444243932576
+          self-harm/instructions: 3.616076749251911
+          sexual: 2.027123023002322
+          sexual/minors: 4.145608029883936
+          violence: 7.386281948385884
+          violence/graphic: 1.2315135367772556
         category_applied_input_types:
-          illicit/violent:
-          - text
-          - text
-          self-harm/instructions:
-          - text
-          - text
-          harassment:
-          - text
-          - text
-          violence/graphic:
-          - text
-          - text
-          illicit:
-          - text
-          - text
-          self-harm/intent:
+          hate:
           - text
           - text
           hate/threatening:
           - text
           - text
-          sexual/minors:
+          harassment:
           - text
           - text
           harassment/threatening:
           - text
           - text
-          hate:
+          illicit:
+          - text
+          - text
+          illicit/violent:
           - text
           - text
           self-harm:
           - text
           - text
+          self-harm/intent:
+          - text
+          - text
+          self-harm/instructions:
+          - text
+          - text
           sexual:
+          - text
+          - text
+          sexual/minors:
           - text
           - text
           violence:
           - text
           - text
-        categories:
-          illicit/violent: true
-          self-harm/instructions: true
-          harassment: true
-          violence/graphic: true
-          illicit: true
-          self-harm/intent: true
-          hate/threatening: true
-          sexual/minors: true
-          harassment/threatening: true
-          hate: true
-          self-harm: true
-          sexual: true
-          violence: true
+          violence/graphic:
+          - text
+          - text
       properties:
         flagged:
           description: Whether any of the below categories are flagged.
@@ -26784,15 +26768,15 @@ components:
       type: object
     CreateThreadRequest_tool_resources_file_search_vector_stores_inner:
       example:
-        chunking_strategy:
-          type: auto
-        metadata: "{}"
         file_ids:
         - file_ids
         - file_ids
         - file_ids
         - file_ids
         - file_ids
+        chunking_strategy:
+          type: auto
+        metadata: "{}"
       properties:
         file_ids:
           description: |
@@ -26815,15 +26799,15 @@ components:
         vector_store_ids:
         - vector_store_ids
         vector_stores:
-        - chunking_strategy:
+        - file_ids:
+          - file_ids
+          - file_ids
+          - file_ids
+          - file_ids
+          - file_ids
+          chunking_strategy:
             type: auto
           metadata: "{}"
-          file_ids:
-          - file_ids
-          - file_ids
-          - file_ids
-          - file_ids
-          - file_ids
       nullable: true
       oneOf: []
       properties:
@@ -26857,15 +26841,15 @@ components:
           vector_store_ids:
           - vector_store_ids
           vector_stores:
-          - chunking_strategy:
+          - file_ids:
+            - file_ids
+            - file_ids
+            - file_ids
+            - file_ids
+            - file_ids
+            chunking_strategy:
               type: auto
             metadata: "{}"
-            file_ids:
-            - file_ids
-            - file_ids
-            - file_ids
-            - file_ids
-            - file_ids
       nullable: true
       properties:
         code_interpreter:
@@ -26947,10 +26931,10 @@ components:
     FineTuneDPOMethod_hyperparameters:
       description: The hyperparameters used for the fine-tuning job.
       example:
-        batch_size: null
-        n_epochs: null
         beta: auto
+        batch_size: null
         learning_rate_multiplier: null
+        n_epochs: null
       properties:
         beta:
           $ref: "#/components/schemas/FineTuneDPOMethod_hyperparameters_beta"
@@ -26987,8 +26971,8 @@ components:
       description: The hyperparameters used for the fine-tuning job.
       example:
         batch_size: auto
-        n_epochs: auto
         learning_rate_multiplier: auto
+        n_epochs: auto
       properties:
         batch_size:
           $ref: "#/components/schemas/FineTuneDPOMethod_hyperparameters_batch_size"
@@ -27002,8 +26986,8 @@ components:
         \ information on the cause of the failure."
       example:
         code: code
-        param: param
         message: message
+        param: param
       nullable: true
       properties:
         code:
@@ -27027,8 +27011,8 @@ components:
         only be returned when running `supervised` jobs.
       example:
         batch_size: auto
-        n_epochs: auto
         learning_rate_multiplier: auto
+        n_epochs: auto
       properties:
         batch_size:
           $ref: "#/components/schemas/CreateFineTuningJobRequest_hyperparameters_batch_size"
@@ -27044,13 +27028,13 @@ components:
     FineTuningJobCheckpoint_metrics:
       description: Metrics at the step number during the fine-tuning job.
       example:
-        full_valid_mean_token_accuracy: 3.616076749251911
-        valid_loss: 2.3021358869347655
-        full_valid_loss: 9.301444243932576
-        train_mean_token_accuracy: 5.637376656633329
-        valid_mean_token_accuracy: 7.061401241503109
-        train_loss: 5.962133916683182
         step: 1.4658129805029452
+        train_loss: 5.962133916683182
+        train_mean_token_accuracy: 5.637376656633329
+        valid_loss: 2.3021358869347655
+        valid_mean_token_accuracy: 7.061401241503109
+        full_valid_loss: 9.301444243932576
+        full_valid_mean_token_accuracy: 3.616076749251911
       properties:
         step:
           type: number
@@ -27069,8 +27053,8 @@ components:
       type: object
     Invite_projects_inner:
       example:
-        role: member
         id: id
+        role: member
       properties:
         id:
           description: Project's public ID
@@ -27084,8 +27068,8 @@ components:
       type: object
     InviteRequest_projects_inner:
       example:
-        role: member
         id: id
+        role: member
       properties:
         id:
           description: Project's public ID
@@ -27476,20 +27460,20 @@ components:
       x-oaiExpandable: true
     ProjectApiKey_owner:
       example:
-        service_account:
-          role: owner
-          name: name
-          created_at: 1
-          id: id
-          object: organization.project.service_account
         type: user
         user:
-          added_at: 6
-          role: owner
-          name: name
-          id: id
-          email: email
           object: organization.project.user
+          id: id
+          name: name
+          email: email
+          role: owner
+          added_at: 6
+        service_account:
+          object: organization.project.service_account
+          id: id
+          name: name
+          role: owner
+          created_at: 1
       properties:
         type:
           description: '`user` or `service_account`'
@@ -27620,9 +27604,9 @@ components:
       type: object
     RealtimeResponseCreateParams_tools_inner:
       example:
+        type: function
         name: name
         description: description
-        type: function
         parameters: "{}"
       properties:
         type:
@@ -27834,11 +27818,11 @@ components:
         \ off. Server \nVAD means that the model will detect the start and end of\
         \ speech based on \naudio volume and respond at the end of user speech.\n"
       example:
+        type: type
+        threshold: 0.8008281904610115
+        prefix_padding_ms: 6
         silence_duration_ms: 1
         create_response: true
-        prefix_padding_ms: 6
-        threshold: 0.8008281904610115
-        type: type
       properties:
         type:
           description: |
@@ -27868,8 +27852,8 @@ components:
     RealtimeSessionCreateResponse_client_secret:
       description: Ephemeral key returned by the API.
       example:
-        expires_at: 0
         value: value
+        expires_at: 0
       properties:
         value:
           description: |
@@ -27888,10 +27872,10 @@ components:
         \ off. Server \nVAD means that the model will detect the start and end of\
         \ speech based on \naudio volume and respond at the end of user speech.\n"
       example:
-        silence_duration_ms: 5
-        prefix_padding_ms: 1
-        threshold: 6.027456183070403
         type: type
+        threshold: 6.027456183070403
+        prefix_padding_ms: 1
+        silence_duration_ms: 5
       properties:
         type:
           description: |
@@ -27944,16 +27928,16 @@ components:
       description: Details on the tool outputs needed for this run to continue.
       example:
         tool_calls:
-        - function:
+        - id: id
+          type: function
+          function:
             name: name
             arguments: arguments
-          id: id
+        - id: id
           type: function
-        - function:
+          function:
             name: name
             arguments: arguments
-          id: id
-          type: function
       properties:
         tool_calls:
           description: A list of the relevant tool calls.
@@ -27967,19 +27951,19 @@ components:
       description: Details on the action required to continue the run. Will be `null`
         if no action is required.
       example:
+        type: submit_tool_outputs
         submit_tool_outputs:
           tool_calls:
-          - function:
+          - id: id
+            type: function
+            function:
               name: name
               arguments: arguments
-            id: id
+          - id: id
             type: function
-          - function:
+            function:
               name: name
               arguments: arguments
-            id: id
-            type: function
-        type: submit_tool_outputs
       nullable: true
       properties:
         type:
@@ -28500,8 +28484,8 @@ components:
       type: object
     SubmitToolOutputsRunRequest_tool_outputs_inner:
       example:
-        output: output
         tool_call_id: tool_call_id
+        output: output
       properties:
         tool_call_id:
           description: The ID of the tool call in the `required_action` object within
@@ -28526,10 +28510,10 @@ components:
     VectorStoreFileBatchObject_file_counts:
       example:
         in_progress: 6
-        total: 2
-        cancelled: 5
         completed: 1
         failed: 5
+        cancelled: 5
+        total: 2
       properties:
         in_progress:
           description: The number of files that are currently being processed.
@@ -28578,17 +28562,17 @@ components:
     VectorStoreFileObject_chunking_strategy:
       description: The strategy used to chunk the file.
       oneOf:
-      - $ref: "#/components/schemas/StaticChunkingStrategyResponseParam"
+      - $ref: "#/components/schemas/StaticChunkingStrategyRequestParam"
       - $ref: "#/components/schemas/OtherChunkingStrategyResponseParam"
       type: object
       x-oaiExpandable: true
     VectorStoreObject_file_counts:
       example:
         in_progress: 1
-        total: 7
-        cancelled: 2
         completed: 5
         failed: 5
+        cancelled: 2
+        total: 7
       properties:
         in_progress:
           description: The number of files that are currently being processed.

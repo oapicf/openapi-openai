@@ -33,13 +33,13 @@ class OAIMessageContentTextAnnotationsFileCitationObject_file_citation;
 class OAIMessageContentTextAnnotationsFileCitationObject : public OAIObject {
 public:
     OAIMessageContentTextAnnotationsFileCitationObject();
-    OAIMessageContentTextAnnotationsFileCitationObject(QString json);
+    OAIMessageContentTextAnnotationsFileCitationObject(const QString &json);
     ~OAIMessageContentTextAnnotationsFileCitationObject() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

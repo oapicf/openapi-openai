@@ -1,0 +1,7 @@
+## AuditLogsApi
+
+### List user actions and configuration changes within this organization.
+## List user actions and configuration changes within this organization.
+GET https://api.openai.com/v1/organization/audit_logs?effectiveAt={{effectiveAt}}&projectIdsLeft_Square_BracketRight_Square_Bracket={{projectIdsLeft_Square_BracketRight_Square_Bracket}}&eventTypesLeft_Square_BracketRight_Square_Bracket={{eventTypesLeft_Square_BracketRight_Square_Bracket}}&actorIdsLeft_Square_BracketRight_Square_Bracket={{actorIdsLeft_Square_BracketRight_Square_Bracket}}&actorEmailsLeft_Square_BracketRight_Square_Bracket={{actorEmailsLeft_Square_BracketRight_Square_Bracket}}&resourceIdsLeft_Square_BracketRight_Square_Bracket={{resourceIdsLeft_Square_BracketRight_Square_Bracket}}&limit={{limit}}&after={{after}}&before={{before}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}

@@ -16,7 +16,7 @@ part 'modify_assistant_request.g.dart';
 /// ModifyAssistantRequest
 ///
 /// Properties:
-/// * [model] 
+/// * [model] - ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
 /// * [name] - The name of the assistant. The maximum length is 256 characters. 
 /// * [description] - The description of the assistant. The maximum length is 512 characters. 
 /// * [instructions] - The system instructions that the assistant uses. The maximum length is 256,000 characters. 
@@ -28,6 +28,7 @@ part 'modify_assistant_request.g.dart';
 /// * [responseFormat] 
 @BuiltValue()
 abstract class ModifyAssistantRequest implements Built<ModifyAssistantRequest, ModifyAssistantRequestBuilder> {
+  /// ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
   @BuiltValueField(wireName: r'model')
   String? get model;
 
@@ -187,8 +188,9 @@ class _$ModifyAssistantRequestSerializer implements PrimitiveSerializer<ModifyAs
         case r'model':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.model = valueDes;
           break;
         case r'name':
@@ -218,8 +220,9 @@ class _$ModifyAssistantRequestSerializer implements PrimitiveSerializer<ModifyAs
         case r'tools':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(AssistantObjectToolsInner)]),
-          ) as BuiltList<AssistantObjectToolsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(AssistantObjectToolsInner)]),
+          ) as BuiltList<AssistantObjectToolsInner>?;
+          if (valueDes == null) continue;
           result.tools.replace(valueDes);
           break;
         case r'tool_resources':
@@ -257,8 +260,9 @@ class _$ModifyAssistantRequestSerializer implements PrimitiveSerializer<ModifyAs
         case r'response_format':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AssistantsApiResponseFormatOption),
-          ) as AssistantsApiResponseFormatOption;
+            specifiedType: const FullType.nullable(AssistantsApiResponseFormatOption),
+          ) as AssistantsApiResponseFormatOption?;
+          if (valueDes == null) continue;
           result.responseFormat.replace(valueDes);
           break;
         default:

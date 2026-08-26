@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 api/AssistantsApi.ts
 api/AudioApi.ts
 api/AuditLogsApi.ts
@@ -83,7 +82,6 @@ model/AuditLogUserAddedData.ts
 model/AuditLogUserDeleted.ts
 model/AuditLogUserUpdated.ts
 model/AuditLogUserUpdatedChangesRequested.ts
-model/AutoChunkingStrategy.ts
 model/AutoChunkingStrategyRequestParam.ts
 model/Batch.ts
 model/BatchErrors.ts
@@ -493,7 +491,6 @@ model/RunToolCallObject.ts
 model/RunToolCallObjectFunction.ts
 model/StaticChunkingStrategy.ts
 model/StaticChunkingStrategyRequestParam.ts
-model/StaticChunkingStrategyResponseParam.ts
 model/StaticChunkingStrategyStatic.ts
 model/SubmitToolOutputsRunRequest.ts
 model/SubmitToolOutputsRunRequestToolOutputsInner.ts

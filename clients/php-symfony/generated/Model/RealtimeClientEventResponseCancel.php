@@ -51,7 +51,7 @@ class RealtimeClientEventResponseCancel
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $eventId = null;
 
@@ -61,7 +61,7 @@ class RealtimeClientEventResponseCancel
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['response.cancel'])]
     #[Assert\Type("string")]
@@ -73,7 +73,7 @@ class RealtimeClientEventResponseCancel
      * @var string|null
      * @SerializedName("response_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $responseId = null;
 
@@ -101,12 +101,12 @@ class RealtimeClientEventResponseCancel
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  Optional client-generated ID used to identify this event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  Optional client-generated ID used to identify this event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId = null): self
     {
         $this->eventId = $eventId;
@@ -128,12 +128,12 @@ class RealtimeClientEventResponseCancel
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `response.cancel`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `response.cancel`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -155,12 +155,12 @@ class RealtimeClientEventResponseCancel
     }
 
     /**
-    * Sets responseId.
-    *
-    * @param string|null $responseId  A specific response ID to cancel - if not provided, will cancel an  in-progress response in the default conversation.
-    *
-    * @return $this
-    */
+     * Sets responseId.
+     *
+     * @param string|null $responseId  A specific response ID to cancel - if not provided, will cancel an  in-progress response in the default conversation.
+     *
+     * @return $this
+     */
     public function setResponseId(?string $responseId = null): self
     {
         $this->responseId = $responseId;

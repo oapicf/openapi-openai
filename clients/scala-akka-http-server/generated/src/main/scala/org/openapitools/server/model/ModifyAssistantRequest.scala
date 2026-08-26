@@ -2,7 +2,7 @@ package org.openapitools.server.model
 
 
 /**
- * @param model  for example: ''null''
+ * @param model ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them.  for example: ''null''
  * @param name The name of the assistant. The maximum length is 256 characters.  for example: ''null''
  * @param description The description of the assistant. The maximum length is 512 characters.  for example: ''null''
  * @param instructions The system instructions that the assistant uses. The maximum length is 256,000 characters.  for example: ''null''

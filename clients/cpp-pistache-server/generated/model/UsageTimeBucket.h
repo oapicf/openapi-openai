@@ -34,7 +34,7 @@ class  UsageTimeBucket
 {
 public:
     UsageTimeBucket();
-    virtual ~UsageTimeBucket() = default;
+    virtual ~UsageTimeBucket();
 
 
     /// <summary>

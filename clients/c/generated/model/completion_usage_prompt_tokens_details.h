@@ -19,15 +19,15 @@ typedef struct completion_usage_prompt_tokens_details_t completion_usage_prompt_
 
 
 typedef struct completion_usage_prompt_tokens_details_t {
-    int audio_tokens; //numeric
-    int cached_tokens; //numeric
+    int *audio_tokens; //numeric
+    int *cached_tokens; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } completion_usage_prompt_tokens_details_t;
 
 __attribute__((deprecated)) completion_usage_prompt_tokens_details_t *completion_usage_prompt_tokens_details_create(
-    int audio_tokens,
-    int cached_tokens
+    int *audio_tokens,
+    int *cached_tokens
 );
 
 void completion_usage_prompt_tokens_details_free(completion_usage_prompt_tokens_details_t *completion_usage_prompt_tokens_details);

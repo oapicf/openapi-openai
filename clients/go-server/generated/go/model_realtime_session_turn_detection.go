@@ -30,7 +30,8 @@ type RealtimeSessionTurnDetection struct {
 	SilenceDurationMs int32 `json:"silence_duration_ms,omitempty"`
 }
 
-// AssertRealtimeSessionTurnDetectionRequired checks if the required fields are not zero-ed
+// AssertRealtimeSessionTurnDetectionRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeSessionTurnDetectionRequired(obj RealtimeSessionTurnDetection) error {
 	return nil
 }

@@ -1,4 +1,4 @@
-# # ListModelsResponse
+# ListModelsResponse
 
 ## Properties
 

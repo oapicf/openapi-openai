@@ -16,13 +16,13 @@ static create_vector_store_request_t *create_vector_store_request_create_interna
     if (!create_vector_store_request_local_var) {
         return NULL;
     }
+    memset(create_vector_store_request_local_var, 0, sizeof(create_vector_store_request_t));
+    create_vector_store_request_local_var->_library_owned = 1;
     create_vector_store_request_local_var->file_ids = file_ids;
     create_vector_store_request_local_var->name = name;
     create_vector_store_request_local_var->expires_after = expires_after;
     create_vector_store_request_local_var->chunking_strategy = chunking_strategy;
     create_vector_store_request_local_var->metadata = metadata;
-
-    create_vector_store_request_local_var->_library_owned = 1;
     return create_vector_store_request_local_var;
 }
 
@@ -33,13 +33,16 @@ __attribute__((deprecated)) create_vector_store_request_t *create_vector_store_r
     create_vector_store_request_chunking_strategy_t *chunking_strategy,
     object_t *metadata
     ) {
-    return create_vector_store_request_create_internal (
+    create_vector_store_request_t *result = create_vector_store_request_create_internal (
         file_ids,
         name,
         expires_after,
         chunking_strategy,
         metadata
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_vector_store_request_free(create_vector_store_request_t *create_vector_store_request) {
@@ -158,6 +161,8 @@ create_vector_store_request_t *create_vector_store_request_parseFromJSON(cJSON *
     // define the local list for create_vector_store_request->file_ids
     list_t *file_idsList = NULL;
 
+    char *name_local_str = NULL;
+
     // define the local variable for create_vector_store_request->expires_after
     vector_store_expiration_after_t *expires_after_local_nonprim = NULL;
 
@@ -227,13 +232,19 @@ create_vector_store_request_t *create_vector_store_request_parseFromJSON(cJSON *
     }
 
 
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     create_vector_store_request_local_var = create_vector_store_request_create_internal (
         file_ids ? file_idsList : NULL,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
+        name_local_str,
         expires_after ? expires_after_local_nonprim : NULL,
         chunking_strategy ? chunking_strategy_local_nonprim : NULL,
         metadata ? metadata_local_object : NULL
         );
+
+    if (!create_vector_store_request_local_var) {
+        goto end;
+    }
 
     return create_vector_store_request_local_var;
 end:
@@ -245,6 +256,10 @@ end:
         }
         list_freeList(file_idsList);
         file_idsList = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
     }
     if (expires_after_local_nonprim) {
         vector_store_expiration_after_free(expires_after_local_nonprim);

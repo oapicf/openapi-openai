@@ -1,4 +1,4 @@
-# # ChatCompletionRequestAssistantMessageFunctionCall
+# ChatCompletionRequestAssistantMessageFunctionCall
 
 ## Properties
 

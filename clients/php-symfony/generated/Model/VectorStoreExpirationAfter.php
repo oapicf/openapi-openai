@@ -51,7 +51,7 @@ class VectorStoreExpirationAfter
      * @var string|null
      * @SerializedName("anchor")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['last_active_at'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class VectorStoreExpirationAfter
      * @var int|null
      * @SerializedName("days")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(1)]
@@ -93,12 +93,12 @@ class VectorStoreExpirationAfter
     }
 
     /**
-    * Sets anchor.
-    *
-    * @param string|null $anchor  Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`.
-    *
-    * @return $this
-    */
+     * Sets anchor.
+     *
+     * @param string|null $anchor  Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`.
+     *
+     * @return $this
+     */
     public function setAnchor(?string $anchor): self
     {
         $this->anchor = $anchor;
@@ -120,12 +120,12 @@ class VectorStoreExpirationAfter
     }
 
     /**
-    * Sets days.
-    *
-    * @param int|null $days  The number of days after the anchor time that the vector store will expire.
-    *
-    * @return $this
-    */
+     * Sets days.
+     *
+     * @param int|null $days  The number of days after the anchor time that the vector store will expire.
+     *
+     * @return $this
+     */
     public function setDays(?int $days): self
     {
         $this->days = $days;

@@ -27,7 +27,7 @@ export interface BatchRequestInput {
     customId?: string;
     /**
      * The HTTP method to be used for the request. Currently only `POST` is supported.
-     * @type {string}
+     * @type {BatchRequestInputMethodEnum}
      * @memberof BatchRequestInput
      */
     method?: BatchRequestInputMethodEnum;

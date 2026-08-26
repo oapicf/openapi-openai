@@ -169,7 +169,7 @@ ProjectRateLimitUpdateRequest::getMaxRequestsPer1Minute()
 }
 
 void
-ProjectRateLimitUpdateRequest::setMaxRequestsPer1Minute(int  max_requests_per_1_minute)
+ProjectRateLimitUpdateRequest::setMaxRequestsPer1Minute(int max_requests_per_1_minute)
 {
 	this->max_requests_per_1_minute = max_requests_per_1_minute;
 }
@@ -181,7 +181,7 @@ ProjectRateLimitUpdateRequest::getMaxTokensPer1Minute()
 }
 
 void
-ProjectRateLimitUpdateRequest::setMaxTokensPer1Minute(int  max_tokens_per_1_minute)
+ProjectRateLimitUpdateRequest::setMaxTokensPer1Minute(int max_tokens_per_1_minute)
 {
 	this->max_tokens_per_1_minute = max_tokens_per_1_minute;
 }
@@ -193,7 +193,7 @@ ProjectRateLimitUpdateRequest::getMaxImagesPer1Minute()
 }
 
 void
-ProjectRateLimitUpdateRequest::setMaxImagesPer1Minute(int  max_images_per_1_minute)
+ProjectRateLimitUpdateRequest::setMaxImagesPer1Minute(int max_images_per_1_minute)
 {
 	this->max_images_per_1_minute = max_images_per_1_minute;
 }
@@ -205,7 +205,7 @@ ProjectRateLimitUpdateRequest::getMaxAudioMegabytesPer1Minute()
 }
 
 void
-ProjectRateLimitUpdateRequest::setMaxAudioMegabytesPer1Minute(int  max_audio_megabytes_per_1_minute)
+ProjectRateLimitUpdateRequest::setMaxAudioMegabytesPer1Minute(int max_audio_megabytes_per_1_minute)
 {
 	this->max_audio_megabytes_per_1_minute = max_audio_megabytes_per_1_minute;
 }
@@ -217,7 +217,7 @@ ProjectRateLimitUpdateRequest::getMaxRequestsPer1Day()
 }
 
 void
-ProjectRateLimitUpdateRequest::setMaxRequestsPer1Day(int  max_requests_per_1_day)
+ProjectRateLimitUpdateRequest::setMaxRequestsPer1Day(int max_requests_per_1_day)
 {
 	this->max_requests_per_1_day = max_requests_per_1_day;
 }
@@ -229,7 +229,7 @@ ProjectRateLimitUpdateRequest::getBatch1DayMaxInputTokens()
 }
 
 void
-ProjectRateLimitUpdateRequest::setBatch1DayMaxInputTokens(int  batch_1_day_max_input_tokens)
+ProjectRateLimitUpdateRequest::setBatch1DayMaxInputTokens(int batch_1_day_max_input_tokens)
 {
 	this->batch_1_day_max_input_tokens = batch_1_day_max_input_tokens;
 }

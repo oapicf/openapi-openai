@@ -24,10 +24,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("CreateCompletionRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateCompletionRequest   {
   private CreateCompletionRequestModel model;
-  private CreateCompletionRequestPrompt prompt = <|endoftext|>;
+  private CreateCompletionRequestPrompt prompt;
   private Integer bestOf = 1;
   private Boolean echo = false;
   private BigDecimal frequencyPenalty = new BigDecimal("0");
@@ -37,7 +37,7 @@ public class CreateCompletionRequest   {
   private Integer n = 1;
   private BigDecimal presencePenalty = new BigDecimal("0");
   private Integer seed;
-  private CreateCompletionRequestStop stop = null;
+  private CreateCompletionRequestStop stop;
   private Boolean stream = false;
   private ChatCompletionStreamOptions streamOptions;
   private String suffix;
@@ -513,12 +513,8 @@ public class CreateCompletionRequest   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
 }
-

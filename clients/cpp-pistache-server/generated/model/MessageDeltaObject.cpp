@@ -26,6 +26,8 @@ MessageDeltaObject::MessageDeltaObject()
     
 }
 
+MessageDeltaObject::~MessageDeltaObject() = default;
+
 void MessageDeltaObject::validate() const
 {
     std::stringstream msg;

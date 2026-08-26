@@ -1,4 +1,4 @@
-# # UsageCodeInterpreterSessionsResult
+# UsageCodeInterpreterSessionsResult
 
 ## Properties
 

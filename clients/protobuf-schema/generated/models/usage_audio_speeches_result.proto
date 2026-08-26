@@ -21,7 +21,7 @@ message UsageAudioSpeechesResult {
     OBJECT_ORGANIZATION_USAGE_AUDIO_SPEECHES_RESULT = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The number of characters processed.
   int32 characters = 171682412;

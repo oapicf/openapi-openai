@@ -24,7 +24,7 @@ class ProjectsApi {
   ///
   /// * [String] projectId (required):
   ///   The ID of the project.
-  Future<Response> archiveProjectWithHttpInfo(String projectId,) async {
+  Future<Response> archiveProjectWithHttpInfo(String projectId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}/archive'
       .replaceAll('{project_id}', projectId);
@@ -47,6 +47,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -56,8 +57,8 @@ class ProjectsApi {
   ///
   /// * [String] projectId (required):
   ///   The ID of the project.
-  Future<Project?> archiveProject(String projectId,) async {
-    final response = await archiveProjectWithHttpInfo(projectId,);
+  Future<Project?> archiveProject(String projectId, { Future<void>? abortTrigger, }) async {
+    final response = await archiveProjectWithHttpInfo(projectId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -79,7 +80,7 @@ class ProjectsApi {
   ///
   /// * [ProjectCreateRequest] projectCreateRequest (required):
   ///   The project create request payload.
-  Future<Response> createProjectWithHttpInfo(ProjectCreateRequest projectCreateRequest,) async {
+  Future<Response> createProjectWithHttpInfo(ProjectCreateRequest projectCreateRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects';
 
@@ -101,6 +102,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -110,8 +112,8 @@ class ProjectsApi {
   ///
   /// * [ProjectCreateRequest] projectCreateRequest (required):
   ///   The project create request payload.
-  Future<Project?> createProject(ProjectCreateRequest projectCreateRequest,) async {
-    final response = await createProjectWithHttpInfo(projectCreateRequest,);
+  Future<Project?> createProject(ProjectCreateRequest projectCreateRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createProjectWithHttpInfo(projectCreateRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -136,7 +138,7 @@ class ProjectsApi {
   ///
   /// * [ProjectServiceAccountCreateRequest] projectServiceAccountCreateRequest (required):
   ///   The project service account create request payload.
-  Future<Response> createProjectServiceAccountWithHttpInfo(String projectId, ProjectServiceAccountCreateRequest projectServiceAccountCreateRequest,) async {
+  Future<Response> createProjectServiceAccountWithHttpInfo(String projectId, ProjectServiceAccountCreateRequest projectServiceAccountCreateRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}/service_accounts'
       .replaceAll('{project_id}', projectId);
@@ -159,6 +161,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -171,8 +174,8 @@ class ProjectsApi {
   ///
   /// * [ProjectServiceAccountCreateRequest] projectServiceAccountCreateRequest (required):
   ///   The project service account create request payload.
-  Future<ProjectServiceAccountCreateResponse?> createProjectServiceAccount(String projectId, ProjectServiceAccountCreateRequest projectServiceAccountCreateRequest,) async {
-    final response = await createProjectServiceAccountWithHttpInfo(projectId, projectServiceAccountCreateRequest,);
+  Future<ProjectServiceAccountCreateResponse?> createProjectServiceAccount(String projectId, ProjectServiceAccountCreateRequest projectServiceAccountCreateRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createProjectServiceAccountWithHttpInfo(projectId, projectServiceAccountCreateRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -197,7 +200,7 @@ class ProjectsApi {
   ///
   /// * [ProjectUserCreateRequest] projectUserCreateRequest (required):
   ///   The project user create request payload.
-  Future<Response> createProjectUserWithHttpInfo(String projectId, ProjectUserCreateRequest projectUserCreateRequest,) async {
+  Future<Response> createProjectUserWithHttpInfo(String projectId, ProjectUserCreateRequest projectUserCreateRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}/users'
       .replaceAll('{project_id}', projectId);
@@ -220,6 +223,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -232,8 +236,8 @@ class ProjectsApi {
   ///
   /// * [ProjectUserCreateRequest] projectUserCreateRequest (required):
   ///   The project user create request payload.
-  Future<ProjectUser?> createProjectUser(String projectId, ProjectUserCreateRequest projectUserCreateRequest,) async {
-    final response = await createProjectUserWithHttpInfo(projectId, projectUserCreateRequest,);
+  Future<ProjectUser?> createProjectUser(String projectId, ProjectUserCreateRequest projectUserCreateRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createProjectUserWithHttpInfo(projectId, projectUserCreateRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -258,7 +262,7 @@ class ProjectsApi {
   ///
   /// * [String] keyId (required):
   ///   The ID of the API key.
-  Future<Response> deleteProjectApiKeyWithHttpInfo(String projectId, String keyId,) async {
+  Future<Response> deleteProjectApiKeyWithHttpInfo(String projectId, String keyId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}/api_keys/{key_id}'
       .replaceAll('{project_id}', projectId)
@@ -282,6 +286,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -294,8 +299,8 @@ class ProjectsApi {
   ///
   /// * [String] keyId (required):
   ///   The ID of the API key.
-  Future<ProjectApiKeyDeleteResponse?> deleteProjectApiKey(String projectId, String keyId,) async {
-    final response = await deleteProjectApiKeyWithHttpInfo(projectId, keyId,);
+  Future<ProjectApiKeyDeleteResponse?> deleteProjectApiKey(String projectId, String keyId, { Future<void>? abortTrigger, }) async {
+    final response = await deleteProjectApiKeyWithHttpInfo(projectId, keyId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -320,7 +325,7 @@ class ProjectsApi {
   ///
   /// * [String] serviceAccountId (required):
   ///   The ID of the service account.
-  Future<Response> deleteProjectServiceAccountWithHttpInfo(String projectId, String serviceAccountId,) async {
+  Future<Response> deleteProjectServiceAccountWithHttpInfo(String projectId, String serviceAccountId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}/service_accounts/{service_account_id}'
       .replaceAll('{project_id}', projectId)
@@ -344,6 +349,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -356,8 +362,8 @@ class ProjectsApi {
   ///
   /// * [String] serviceAccountId (required):
   ///   The ID of the service account.
-  Future<ProjectServiceAccountDeleteResponse?> deleteProjectServiceAccount(String projectId, String serviceAccountId,) async {
-    final response = await deleteProjectServiceAccountWithHttpInfo(projectId, serviceAccountId,);
+  Future<ProjectServiceAccountDeleteResponse?> deleteProjectServiceAccount(String projectId, String serviceAccountId, { Future<void>? abortTrigger, }) async {
+    final response = await deleteProjectServiceAccountWithHttpInfo(projectId, serviceAccountId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -382,7 +388,7 @@ class ProjectsApi {
   ///
   /// * [String] userId (required):
   ///   The ID of the user.
-  Future<Response> deleteProjectUserWithHttpInfo(String projectId, String userId,) async {
+  Future<Response> deleteProjectUserWithHttpInfo(String projectId, String userId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}/users/{user_id}'
       .replaceAll('{project_id}', projectId)
@@ -406,6 +412,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -418,8 +425,8 @@ class ProjectsApi {
   ///
   /// * [String] userId (required):
   ///   The ID of the user.
-  Future<ProjectUserDeleteResponse?> deleteProjectUser(String projectId, String userId,) async {
-    final response = await deleteProjectUserWithHttpInfo(projectId, userId,);
+  Future<ProjectUserDeleteResponse?> deleteProjectUser(String projectId, String userId, { Future<void>? abortTrigger, }) async {
+    final response = await deleteProjectUserWithHttpInfo(projectId, userId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -447,7 +454,7 @@ class ProjectsApi {
   ///
   /// * [String] after:
   ///   A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-  Future<Response> listProjectApiKeysWithHttpInfo(String projectId, { int? limit, String? after, }) async {
+  Future<Response> listProjectApiKeysWithHttpInfo(String projectId, { int? limit, String? after, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}/api_keys'
       .replaceAll('{project_id}', projectId);
@@ -477,6 +484,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -492,8 +500,8 @@ class ProjectsApi {
   ///
   /// * [String] after:
   ///   A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-  Future<ProjectApiKeyListResponse?> listProjectApiKeys(String projectId, { int? limit, String? after, }) async {
-    final response = await listProjectApiKeysWithHttpInfo(projectId,  limit: limit, after: after, );
+  Future<ProjectApiKeyListResponse?> listProjectApiKeys(String projectId, { int? limit, String? after, Future<void>? abortTrigger, }) async {
+    final response = await listProjectApiKeysWithHttpInfo(projectId, limit: limit, after: after, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -524,7 +532,7 @@ class ProjectsApi {
   ///
   /// * [String] before:
   ///   A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, beginning with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-  Future<Response> listProjectRateLimitsWithHttpInfo(String projectId, { int? limit, String? after, String? before, }) async {
+  Future<Response> listProjectRateLimitsWithHttpInfo(String projectId, { int? limit, String? after, String? before, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}/rate_limits'
       .replaceAll('{project_id}', projectId);
@@ -557,6 +565,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -575,8 +584,8 @@ class ProjectsApi {
   ///
   /// * [String] before:
   ///   A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, beginning with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-  Future<ProjectRateLimitListResponse?> listProjectRateLimits(String projectId, { int? limit, String? after, String? before, }) async {
-    final response = await listProjectRateLimitsWithHttpInfo(projectId,  limit: limit, after: after, before: before, );
+  Future<ProjectRateLimitListResponse?> listProjectRateLimits(String projectId, { int? limit, String? after, String? before, Future<void>? abortTrigger, }) async {
+    final response = await listProjectRateLimitsWithHttpInfo(projectId, limit: limit, after: after, before: before, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -604,7 +613,7 @@ class ProjectsApi {
   ///
   /// * [String] after:
   ///   A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-  Future<Response> listProjectServiceAccountsWithHttpInfo(String projectId, { int? limit, String? after, }) async {
+  Future<Response> listProjectServiceAccountsWithHttpInfo(String projectId, { int? limit, String? after, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}/service_accounts'
       .replaceAll('{project_id}', projectId);
@@ -634,6 +643,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -649,8 +659,8 @@ class ProjectsApi {
   ///
   /// * [String] after:
   ///   A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-  Future<ProjectServiceAccountListResponse?> listProjectServiceAccounts(String projectId, { int? limit, String? after, }) async {
-    final response = await listProjectServiceAccountsWithHttpInfo(projectId,  limit: limit, after: after, );
+  Future<ProjectServiceAccountListResponse?> listProjectServiceAccounts(String projectId, { int? limit, String? after, Future<void>? abortTrigger, }) async {
+    final response = await listProjectServiceAccountsWithHttpInfo(projectId, limit: limit, after: after, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -678,7 +688,7 @@ class ProjectsApi {
   ///
   /// * [String] after:
   ///   A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-  Future<Response> listProjectUsersWithHttpInfo(String projectId, { int? limit, String? after, }) async {
+  Future<Response> listProjectUsersWithHttpInfo(String projectId, { int? limit, String? after, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}/users'
       .replaceAll('{project_id}', projectId);
@@ -708,6 +718,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -723,8 +734,8 @@ class ProjectsApi {
   ///
   /// * [String] after:
   ///   A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-  Future<ProjectUserListResponse?> listProjectUsers(String projectId, { int? limit, String? after, }) async {
-    final response = await listProjectUsersWithHttpInfo(projectId,  limit: limit, after: after, );
+  Future<ProjectUserListResponse?> listProjectUsers(String projectId, { int? limit, String? after, Future<void>? abortTrigger, }) async {
+    final response = await listProjectUsersWithHttpInfo(projectId, limit: limit, after: after, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -752,7 +763,7 @@ class ProjectsApi {
   ///
   /// * [bool] includeArchived:
   ///   If `true` returns all projects including those that have been `archived`. Archived projects are not included by default.
-  Future<Response> listProjectsWithHttpInfo({ int? limit, String? after, bool? includeArchived, }) async {
+  Future<Response> listProjectsWithHttpInfo({ int? limit, String? after, bool? includeArchived, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects';
 
@@ -784,6 +795,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -799,8 +811,8 @@ class ProjectsApi {
   ///
   /// * [bool] includeArchived:
   ///   If `true` returns all projects including those that have been `archived`. Archived projects are not included by default.
-  Future<ProjectListResponse?> listProjects({ int? limit, String? after, bool? includeArchived, }) async {
-    final response = await listProjectsWithHttpInfo( limit: limit, after: after, includeArchived: includeArchived, );
+  Future<ProjectListResponse?> listProjects({ int? limit, String? after, bool? includeArchived, Future<void>? abortTrigger, }) async {
+    final response = await listProjectsWithHttpInfo(limit: limit, after: after, includeArchived: includeArchived, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -825,7 +837,7 @@ class ProjectsApi {
   ///
   /// * [ProjectUpdateRequest] projectUpdateRequest (required):
   ///   The project update request payload.
-  Future<Response> modifyProjectWithHttpInfo(String projectId, ProjectUpdateRequest projectUpdateRequest,) async {
+  Future<Response> modifyProjectWithHttpInfo(String projectId, ProjectUpdateRequest projectUpdateRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}'
       .replaceAll('{project_id}', projectId);
@@ -848,6 +860,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -860,8 +873,8 @@ class ProjectsApi {
   ///
   /// * [ProjectUpdateRequest] projectUpdateRequest (required):
   ///   The project update request payload.
-  Future<Project?> modifyProject(String projectId, ProjectUpdateRequest projectUpdateRequest,) async {
-    final response = await modifyProjectWithHttpInfo(projectId, projectUpdateRequest,);
+  Future<Project?> modifyProject(String projectId, ProjectUpdateRequest projectUpdateRequest, { Future<void>? abortTrigger, }) async {
+    final response = await modifyProjectWithHttpInfo(projectId, projectUpdateRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -889,7 +902,7 @@ class ProjectsApi {
   ///
   /// * [ProjectUserUpdateRequest] projectUserUpdateRequest (required):
   ///   The project user update request payload.
-  Future<Response> modifyProjectUserWithHttpInfo(String projectId, String userId, ProjectUserUpdateRequest projectUserUpdateRequest,) async {
+  Future<Response> modifyProjectUserWithHttpInfo(String projectId, String userId, ProjectUserUpdateRequest projectUserUpdateRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}/users/{user_id}'
       .replaceAll('{project_id}', projectId)
@@ -913,6 +926,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -928,8 +942,8 @@ class ProjectsApi {
   ///
   /// * [ProjectUserUpdateRequest] projectUserUpdateRequest (required):
   ///   The project user update request payload.
-  Future<ProjectUser?> modifyProjectUser(String projectId, String userId, ProjectUserUpdateRequest projectUserUpdateRequest,) async {
-    final response = await modifyProjectUserWithHttpInfo(projectId, userId, projectUserUpdateRequest,);
+  Future<ProjectUser?> modifyProjectUser(String projectId, String userId, ProjectUserUpdateRequest projectUserUpdateRequest, { Future<void>? abortTrigger, }) async {
+    final response = await modifyProjectUserWithHttpInfo(projectId, userId, projectUserUpdateRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -951,7 +965,7 @@ class ProjectsApi {
   ///
   /// * [String] projectId (required):
   ///   The ID of the project.
-  Future<Response> retrieveProjectWithHttpInfo(String projectId,) async {
+  Future<Response> retrieveProjectWithHttpInfo(String projectId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}'
       .replaceAll('{project_id}', projectId);
@@ -974,6 +988,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -983,8 +998,8 @@ class ProjectsApi {
   ///
   /// * [String] projectId (required):
   ///   The ID of the project.
-  Future<Project?> retrieveProject(String projectId,) async {
-    final response = await retrieveProjectWithHttpInfo(projectId,);
+  Future<Project?> retrieveProject(String projectId, { Future<void>? abortTrigger, }) async {
+    final response = await retrieveProjectWithHttpInfo(projectId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1009,7 +1024,7 @@ class ProjectsApi {
   ///
   /// * [String] keyId (required):
   ///   The ID of the API key.
-  Future<Response> retrieveProjectApiKeyWithHttpInfo(String projectId, String keyId,) async {
+  Future<Response> retrieveProjectApiKeyWithHttpInfo(String projectId, String keyId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}/api_keys/{key_id}'
       .replaceAll('{project_id}', projectId)
@@ -1033,6 +1048,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1045,8 +1061,8 @@ class ProjectsApi {
   ///
   /// * [String] keyId (required):
   ///   The ID of the API key.
-  Future<ProjectApiKey?> retrieveProjectApiKey(String projectId, String keyId,) async {
-    final response = await retrieveProjectApiKeyWithHttpInfo(projectId, keyId,);
+  Future<ProjectApiKey?> retrieveProjectApiKey(String projectId, String keyId, { Future<void>? abortTrigger, }) async {
+    final response = await retrieveProjectApiKeyWithHttpInfo(projectId, keyId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1071,7 +1087,7 @@ class ProjectsApi {
   ///
   /// * [String] serviceAccountId (required):
   ///   The ID of the service account.
-  Future<Response> retrieveProjectServiceAccountWithHttpInfo(String projectId, String serviceAccountId,) async {
+  Future<Response> retrieveProjectServiceAccountWithHttpInfo(String projectId, String serviceAccountId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}/service_accounts/{service_account_id}'
       .replaceAll('{project_id}', projectId)
@@ -1095,6 +1111,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1107,8 +1124,8 @@ class ProjectsApi {
   ///
   /// * [String] serviceAccountId (required):
   ///   The ID of the service account.
-  Future<ProjectServiceAccount?> retrieveProjectServiceAccount(String projectId, String serviceAccountId,) async {
-    final response = await retrieveProjectServiceAccountWithHttpInfo(projectId, serviceAccountId,);
+  Future<ProjectServiceAccount?> retrieveProjectServiceAccount(String projectId, String serviceAccountId, { Future<void>? abortTrigger, }) async {
+    final response = await retrieveProjectServiceAccountWithHttpInfo(projectId, serviceAccountId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1133,7 +1150,7 @@ class ProjectsApi {
   ///
   /// * [String] userId (required):
   ///   The ID of the user.
-  Future<Response> retrieveProjectUserWithHttpInfo(String projectId, String userId,) async {
+  Future<Response> retrieveProjectUserWithHttpInfo(String projectId, String userId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}/users/{user_id}'
       .replaceAll('{project_id}', projectId)
@@ -1157,6 +1174,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1169,8 +1187,8 @@ class ProjectsApi {
   ///
   /// * [String] userId (required):
   ///   The ID of the user.
-  Future<ProjectUser?> retrieveProjectUser(String projectId, String userId,) async {
-    final response = await retrieveProjectUserWithHttpInfo(projectId, userId,);
+  Future<ProjectUser?> retrieveProjectUser(String projectId, String userId, { Future<void>? abortTrigger, }) async {
+    final response = await retrieveProjectUserWithHttpInfo(projectId, userId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1198,7 +1216,7 @@ class ProjectsApi {
   ///
   /// * [ProjectRateLimitUpdateRequest] projectRateLimitUpdateRequest (required):
   ///   The project rate limit update request payload.
-  Future<Response> updateProjectRateLimitsWithHttpInfo(String projectId, String rateLimitId, ProjectRateLimitUpdateRequest projectRateLimitUpdateRequest,) async {
+  Future<Response> updateProjectRateLimitsWithHttpInfo(String projectId, String rateLimitId, ProjectRateLimitUpdateRequest projectRateLimitUpdateRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/projects/{project_id}/rate_limits/{rate_limit_id}'
       .replaceAll('{project_id}', projectId)
@@ -1222,6 +1240,7 @@ class ProjectsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1237,8 +1256,8 @@ class ProjectsApi {
   ///
   /// * [ProjectRateLimitUpdateRequest] projectRateLimitUpdateRequest (required):
   ///   The project rate limit update request payload.
-  Future<ProjectRateLimit?> updateProjectRateLimits(String projectId, String rateLimitId, ProjectRateLimitUpdateRequest projectRateLimitUpdateRequest,) async {
-    final response = await updateProjectRateLimitsWithHttpInfo(projectId, rateLimitId, projectRateLimitUpdateRequest,);
+  Future<ProjectRateLimit?> updateProjectRateLimits(String projectId, String rateLimitId, ProjectRateLimitUpdateRequest projectRateLimitUpdateRequest, { Future<void>? abortTrigger, }) async {
+    final response = await updateProjectRateLimitsWithHttpInfo(projectId, rateLimitId, projectRateLimitUpdateRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

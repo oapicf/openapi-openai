@@ -15,14 +15,14 @@
  */
 public class OASCreateFineTuningJobRequestIntegra {
     /**
-     * Gets or Sets type
+     * The type of integration to enable. Currently, only "wandb" (Weights and Biases) is supported.\n
      */
     public enum TypeEnum {
         WANDB
     }
 
     /**
-     * Get type
+     * The type of integration to enable. Currently, only "wandb" (Weights and Biases) is supported.\n
      * @return type
      */
     public TypeEnum type { get; set; }

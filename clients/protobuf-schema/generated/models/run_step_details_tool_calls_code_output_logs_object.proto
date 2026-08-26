@@ -22,7 +22,7 @@ message RunStepDetailsToolCallsCodeOutputLogsObject {
     TYPE_LOGS = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // The text output from the Code Interpreter tool call.
   string logs = 3327407;

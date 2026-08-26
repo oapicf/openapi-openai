@@ -86,15 +86,17 @@ class _$AssistantObjectToolResourcesSerializer implements PrimitiveSerializer<As
         case r'code_interpreter':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AssistantObjectToolResourcesCodeInterpreter),
-          ) as AssistantObjectToolResourcesCodeInterpreter;
+            specifiedType: const FullType.nullable(AssistantObjectToolResourcesCodeInterpreter),
+          ) as AssistantObjectToolResourcesCodeInterpreter?;
+          if (valueDes == null) continue;
           result.codeInterpreter.replace(valueDes);
           break;
         case r'file_search':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AssistantObjectToolResourcesFileSearch),
-          ) as AssistantObjectToolResourcesFileSearch;
+            specifiedType: const FullType.nullable(AssistantObjectToolResourcesFileSearch),
+          ) as AssistantObjectToolResourcesFileSearch?;
+          if (valueDes == null) continue;
           result.fileSearch.replace(valueDes);
           break;
         default:

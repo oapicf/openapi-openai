@@ -1,10 +1,10 @@
-.openapi-generator-ignore
 Dockerfile
 README.md
 build.gradle.kts
 gradle.properties
 gradle/wrapper/gradle-wrapper.properties
 settings.gradle
+src/main/kotlin/org/openapitools/server/AllApis.kt
 src/main/kotlin/org/openapitools/server/AppMain.kt
 src/main/kotlin/org/openapitools/server/Configuration.kt
 src/main/kotlin/org/openapitools/server/Paths.kt
@@ -89,7 +89,6 @@ src/main/kotlin/org/openapitools/server/models/AuditLogUserAddedData.kt
 src/main/kotlin/org/openapitools/server/models/AuditLogUserDeleted.kt
 src/main/kotlin/org/openapitools/server/models/AuditLogUserUpdated.kt
 src/main/kotlin/org/openapitools/server/models/AuditLogUserUpdatedChangesRequested.kt
-src/main/kotlin/org/openapitools/server/models/AutoChunkingStrategy.kt
 src/main/kotlin/org/openapitools/server/models/AutoChunkingStrategyRequestParam.kt
 src/main/kotlin/org/openapitools/server/models/Batch.kt
 src/main/kotlin/org/openapitools/server/models/BatchErrors.kt
@@ -499,7 +498,6 @@ src/main/kotlin/org/openapitools/server/models/RunToolCallObject.kt
 src/main/kotlin/org/openapitools/server/models/RunToolCallObjectFunction.kt
 src/main/kotlin/org/openapitools/server/models/StaticChunkingStrategy.kt
 src/main/kotlin/org/openapitools/server/models/StaticChunkingStrategyRequestParam.kt
-src/main/kotlin/org/openapitools/server/models/StaticChunkingStrategyResponseParam.kt
 src/main/kotlin/org/openapitools/server/models/StaticChunkingStrategyStatic.kt
 src/main/kotlin/org/openapitools/server/models/SubmitToolOutputsRunRequest.kt
 src/main/kotlin/org/openapitools/server/models/SubmitToolOutputsRunRequestToolOutputsInner.kt

@@ -1,4 +1,4 @@
-# # ListAuditLogsResponse
+# ListAuditLogsResponse
 
 ## Properties
 

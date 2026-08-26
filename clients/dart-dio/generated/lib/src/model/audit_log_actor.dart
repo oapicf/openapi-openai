@@ -100,23 +100,26 @@ class _$AuditLogActorSerializer implements PrimitiveSerializer<AuditLogActor> {
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogActorTypeEnum),
-          ) as AuditLogActorTypeEnum;
+            specifiedType: const FullType.nullable(AuditLogActorTypeEnum),
+          ) as AuditLogActorTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'session':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogActorSession),
-          ) as AuditLogActorSession;
-          result.session = valueDes;
+            specifiedType: const FullType.nullable(AuditLogActorSession),
+          ) as AuditLogActorSession?;
+          if (valueDes == null) continue;
+          result.session.replace(valueDes);
           break;
         case r'api_key':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogActorApiKey),
-          ) as AuditLogActorApiKey;
-          result.apiKey = valueDes;
+            specifiedType: const FullType.nullable(AuditLogActorApiKey),
+          ) as AuditLogActorApiKey?;
+          if (valueDes == null) continue;
+          result.apiKey.replace(valueDes);
           break;
         default:
           unhandled.add(key);

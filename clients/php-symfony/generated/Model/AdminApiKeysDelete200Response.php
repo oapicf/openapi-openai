@@ -47,7 +47,7 @@ class AdminApiKeysDelete200Response
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -55,7 +55,7 @@ class AdminApiKeysDelete200Response
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $object = null;
 
@@ -63,7 +63,7 @@ class AdminApiKeysDelete200Response
      * @var bool|null
      * @SerializedName("deleted")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $deleted = null;
 
@@ -91,12 +91,12 @@ class AdminApiKeysDelete200Response
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -118,12 +118,12 @@ class AdminApiKeysDelete200Response
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object = null): self
     {
         $this->object = $object;
@@ -145,12 +145,12 @@ class AdminApiKeysDelete200Response
     }
 
     /**
-    * Sets deleted.
-    *
-    * @param bool|null $deleted
-    *
-    * @return $this
-    */
+     * Sets deleted.
+     *
+     * @param bool|null $deleted
+     *
+     * @return $this
+     */
     public function setDeleted(?bool $deleted = null): self
     {
         $this->deleted = $deleted;

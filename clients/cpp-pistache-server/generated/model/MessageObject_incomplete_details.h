@@ -32,7 +32,7 @@ class  MessageObject_incomplete_details
 {
 public:
     MessageObject_incomplete_details();
-    virtual ~MessageObject_incomplete_details() = default;
+    virtual ~MessageObject_incomplete_details();
 
 
     /// <summary>

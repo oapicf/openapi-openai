@@ -58,9 +58,9 @@ function Initialize-CreateModerationResponse {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "model" = ${Model}
-            "results" = ${Results}
+            'id' = ${Id}
+            'model' = ${Model}
+            'results' = ${Results}
         }
 
 
@@ -98,7 +98,7 @@ function ConvertFrom-JsonToCreateModerationResponse {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateModerationResponse
-        $AllProperties = ("id", "model", "results")
+        $AllProperties = ('id', 'model', 'results')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -109,28 +109,28 @@ function ConvertFrom-JsonToCreateModerationResponse {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) {
             throw "Error! JSON cannot be serialized due to the required property 'model' missing."
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "results"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'results'))) {
             throw "Error! JSON cannot be serialized due to the required property 'results' missing."
         } else {
-            $Results = $JsonParameters.PSobject.Properties["results"].value
+            $Results = $JsonParameters.PSobject.Properties['results'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "model" = ${Model}
-            "results" = ${Results}
+            'id' = ${Id}
+            'model' = ${Model}
+            'results' = ${Results}
         }
 
         return $PSO

@@ -85,7 +85,7 @@ RunToolCallObject_function::getName()
 }
 
 void
-RunToolCallObject_function::setName(std::string  name)
+RunToolCallObject_function::setName(std::string name)
 {
 	this->name = name;
 }
@@ -97,7 +97,7 @@ RunToolCallObject_function::getArguments()
 }
 
 void
-RunToolCallObject_function::setArguments(std::string  arguments)
+RunToolCallObject_function::setArguments(std::string arguments)
 {
 	this->arguments = arguments;
 }

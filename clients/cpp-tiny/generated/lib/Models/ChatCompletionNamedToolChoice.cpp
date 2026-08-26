@@ -86,7 +86,7 @@ ChatCompletionNamedToolChoice::getType()
 }
 
 void
-ChatCompletionNamedToolChoice::setType(std::string  type)
+ChatCompletionNamedToolChoice::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ ChatCompletionNamedToolChoice::getFunction()
 }
 
 void
-ChatCompletionNamedToolChoice::setFunction(AssistantsNamedToolChoice_function  function)
+ChatCompletionNamedToolChoice::setFunction(AssistantsNamedToolChoice_function function)
 {
 	this->function = function;
 }

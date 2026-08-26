@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // Project - Represents an individual project.
@@ -35,22 +40,100 @@ type Project struct {
 	// `active` or `archived`
 	Status string `json:"status"`
 }
-
-// AssertProjectRequired checks if the required fields are not zero-ed
-func AssertProjectRequired(obj Project) error {
-	elements := map[string]interface{}{
-		"id": obj.Id,
-		"object": obj.Object,
-		"name": obj.Name,
-		"created_at": obj.CreatedAt,
-		"status": obj.Status,
+// UnmarshalJSON validates required property keys then unmarshals into Project
+func (o *Project) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"id",
+		"object",
+		"name",
+		"created_at",
+		"status",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"id": false,
+		"object": false,
+		"name": false,
+		"created_at": false,
+		"status": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"id": {},
+		"object": {},
+		"name": {},
+		"created_at": {},
+		"archived_at": {},
+		"status": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded Project
+
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["name"]; exists {
+		if err = json.Unmarshal(value, &decoded.Name); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["created_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CreatedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["archived_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.ArchivedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["status"]; exists {
+		if err = json.Unmarshal(value, &decoded.Status); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertProjectRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertProjectRequired(obj Project) error {
 	return nil
 }
 

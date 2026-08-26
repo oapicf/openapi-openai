@@ -30,7 +30,7 @@ export interface RealtimeServerEventConversationItemDeleted {
     eventId: string;
     /**
      * The event type, must be `conversation.item.deleted`.
-     * @type {string}
+     * @type {RealtimeServerEventConversationItemDeletedTypeEnum}
      * @memberof RealtimeServerEventConversationItemDeleted
      */
     type: RealtimeServerEventConversationItemDeletedTypeEnum;
@@ -56,9 +56,11 @@ export type RealtimeServerEventConversationItemDeletedTypeEnum = typeof Realtime
  * Check if a given object implements the RealtimeServerEventConversationItemDeleted interface.
  */
 export function instanceOfRealtimeServerEventConversationItemDeleted(value: object): value is RealtimeServerEventConversationItemDeleted {
-    if (!('eventId' in value) || value['eventId'] === undefined) return false;
+    if ((!('eventId' in (value as Record<string, any>)) && !('event_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['eventId'] === undefined && (value as Record<string, any>)['event_id'] === undefined)) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('itemId' in value) || value['itemId'] === undefined) return false;
+    if (value['type'] !== 'conversation.item.deleted') return false;
+    
+    if ((!('itemId' in (value as Record<string, any>)) && !('item_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['itemId'] === undefined && (value as Record<string, any>)['item_id'] === undefined)) return false;
     return true;
 }
 

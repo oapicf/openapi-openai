@@ -32,7 +32,7 @@ class  RunStepDeltaStepDetailsMessageCreationObject_message_creation
 {
 public:
     RunStepDeltaStepDetailsMessageCreationObject_message_creation();
-    virtual ~RunStepDeltaStepDetailsMessageCreationObject_message_creation() = default;
+    virtual ~RunStepDeltaStepDetailsMessageCreationObject_message_creation();
 
 
     /// <summary>

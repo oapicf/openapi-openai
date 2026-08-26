@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.BatchesApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -33,7 +32,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.openAI.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:/v1}")
 class BatchesApiController() {
 
     @Operation(
@@ -46,7 +45,8 @@ class BatchesApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CANCEL_BATCH /* "/batches/{batch_id}/cancel" */],
+        // "/batches/{batch_id}/cancel"
+        value = [PATH_CANCEL_BATCH],
         produces = ["application/json"]
     )
     fun cancelBatch(
@@ -65,7 +65,8 @@ class BatchesApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_BATCH /* "/batches" */],
+        // "/batches"
+        value = [PATH_CREATE_BATCH],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -85,7 +86,8 @@ class BatchesApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_BATCHES /* "/batches" */],
+        // "/batches"
+        value = [PATH_LIST_BATCHES],
         produces = ["application/json"]
     )
     fun listBatches(
@@ -105,7 +107,8 @@ class BatchesApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_RETRIEVE_BATCH /* "/batches/{batch_id}" */],
+        // "/batches/{batch_id}"
+        value = [PATH_RETRIEVE_BATCH],
         produces = ["application/json"]
     )
     fun retrieveBatch(

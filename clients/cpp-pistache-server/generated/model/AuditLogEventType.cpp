@@ -24,6 +24,8 @@ AuditLogEventType::AuditLogEventType()
     
 }
 
+AuditLogEventType::~AuditLogEventType() = default;
+
 void AuditLogEventType::validate() const
 {
     std::stringstream msg;

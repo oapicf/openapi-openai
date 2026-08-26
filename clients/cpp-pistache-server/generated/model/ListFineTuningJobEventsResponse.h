@@ -34,7 +34,7 @@ class  ListFineTuningJobEventsResponse
 {
 public:
     ListFineTuningJobEventsResponse();
-    virtual ~ListFineTuningJobEventsResponse() = default;
+    virtual ~ListFineTuningJobEventsResponse();
 
 
     /// <summary>

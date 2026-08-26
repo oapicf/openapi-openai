@@ -51,10 +51,10 @@ function Initialize-CompletionUsageCompletionTokensDetails {
 
 
         $PSO = [PSCustomObject]@{
-            "accepted_prediction_tokens" = ${AcceptedPredictionTokens}
-            "audio_tokens" = ${AudioTokens}
-            "reasoning_tokens" = ${ReasoningTokens}
-            "rejected_prediction_tokens" = ${RejectedPredictionTokens}
+            'accepted_prediction_tokens' = ${AcceptedPredictionTokens}
+            'audio_tokens' = ${AudioTokens}
+            'reasoning_tokens' = ${ReasoningTokens}
+            'rejected_prediction_tokens' = ${RejectedPredictionTokens}
         }
 
 
@@ -92,42 +92,42 @@ function ConvertFrom-JsonToCompletionUsageCompletionTokensDetails {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CompletionUsageCompletionTokensDetails
-        $AllProperties = ("accepted_prediction_tokens", "audio_tokens", "reasoning_tokens", "rejected_prediction_tokens")
+        $AllProperties = ('accepted_prediction_tokens', 'audio_tokens', 'reasoning_tokens', 'rejected_prediction_tokens')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "accepted_prediction_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'accepted_prediction_tokens'))) { #optional property not found
             $AcceptedPredictionTokens = $null
         } else {
-            $AcceptedPredictionTokens = $JsonParameters.PSobject.Properties["accepted_prediction_tokens"].value
+            $AcceptedPredictionTokens = $JsonParameters.PSobject.Properties['accepted_prediction_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "audio_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'audio_tokens'))) { #optional property not found
             $AudioTokens = $null
         } else {
-            $AudioTokens = $JsonParameters.PSobject.Properties["audio_tokens"].value
+            $AudioTokens = $JsonParameters.PSobject.Properties['audio_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "reasoning_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'reasoning_tokens'))) { #optional property not found
             $ReasoningTokens = $null
         } else {
-            $ReasoningTokens = $JsonParameters.PSobject.Properties["reasoning_tokens"].value
+            $ReasoningTokens = $JsonParameters.PSobject.Properties['reasoning_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rejected_prediction_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'rejected_prediction_tokens'))) { #optional property not found
             $RejectedPredictionTokens = $null
         } else {
-            $RejectedPredictionTokens = $JsonParameters.PSobject.Properties["rejected_prediction_tokens"].value
+            $RejectedPredictionTokens = $JsonParameters.PSobject.Properties['rejected_prediction_tokens'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "accepted_prediction_tokens" = ${AcceptedPredictionTokens}
-            "audio_tokens" = ${AudioTokens}
-            "reasoning_tokens" = ${ReasoningTokens}
-            "rejected_prediction_tokens" = ${RejectedPredictionTokens}
+            'accepted_prediction_tokens' = ${AcceptedPredictionTokens}
+            'audio_tokens' = ${AudioTokens}
+            'reasoning_tokens' = ${ReasoningTokens}
+            'rejected_prediction_tokens' = ${RejectedPredictionTokens}
         }
 
         return $PSO

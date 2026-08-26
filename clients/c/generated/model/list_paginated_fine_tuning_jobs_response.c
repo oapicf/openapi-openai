@@ -24,31 +24,40 @@ openai_api_list_paginated_fine_tuning_jobs_response_OBJECT_e list_paginated_fine
 
 static list_paginated_fine_tuning_jobs_response_t *list_paginated_fine_tuning_jobs_response_create_internal(
     list_t *data,
-    int has_more,
+    int *has_more,
     openai_api_list_paginated_fine_tuning_jobs_response_OBJECT_e object
     ) {
     list_paginated_fine_tuning_jobs_response_t *list_paginated_fine_tuning_jobs_response_local_var = malloc(sizeof(list_paginated_fine_tuning_jobs_response_t));
     if (!list_paginated_fine_tuning_jobs_response_local_var) {
         return NULL;
     }
+    memset(list_paginated_fine_tuning_jobs_response_local_var, 0, sizeof(list_paginated_fine_tuning_jobs_response_t));
+    list_paginated_fine_tuning_jobs_response_local_var->_library_owned = 1;
     list_paginated_fine_tuning_jobs_response_local_var->data = data;
     list_paginated_fine_tuning_jobs_response_local_var->has_more = has_more;
     list_paginated_fine_tuning_jobs_response_local_var->object = object;
-
-    list_paginated_fine_tuning_jobs_response_local_var->_library_owned = 1;
     return list_paginated_fine_tuning_jobs_response_local_var;
 }
 
 __attribute__((deprecated)) list_paginated_fine_tuning_jobs_response_t *list_paginated_fine_tuning_jobs_response_create(
     list_t *data,
-    int has_more,
+    int *has_more,
     openai_api_list_paginated_fine_tuning_jobs_response_OBJECT_e object
     ) {
-    return list_paginated_fine_tuning_jobs_response_create_internal (
+    int *has_more_copy = NULL;
+    if (has_more) {
+        has_more_copy = malloc(sizeof(int));
+        if (has_more_copy) *has_more_copy = *has_more;
+    }
+    list_paginated_fine_tuning_jobs_response_t *result = list_paginated_fine_tuning_jobs_response_create_internal (
         data,
-        has_more,
+        has_more_copy,
         object
         );
+    if (!result) {
+        free(has_more_copy);
+    }
+    return result;
 }
 
 void list_paginated_fine_tuning_jobs_response_free(list_paginated_fine_tuning_jobs_response_t *list_paginated_fine_tuning_jobs_response) {
@@ -66,6 +75,10 @@ void list_paginated_fine_tuning_jobs_response_free(list_paginated_fine_tuning_jo
         }
         list_freeList(list_paginated_fine_tuning_jobs_response->data);
         list_paginated_fine_tuning_jobs_response->data = NULL;
+    }
+    if (list_paginated_fine_tuning_jobs_response->has_more) {
+        free(list_paginated_fine_tuning_jobs_response->has_more);
+        list_paginated_fine_tuning_jobs_response->has_more = NULL;
     }
     free(list_paginated_fine_tuning_jobs_response);
 }
@@ -98,7 +111,7 @@ cJSON *list_paginated_fine_tuning_jobs_response_convertToJSON(list_paginated_fin
     if (!list_paginated_fine_tuning_jobs_response->has_more) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "has_more", list_paginated_fine_tuning_jobs_response->has_more) == NULL) {
+    if(cJSON_AddBoolToObject(item, "has_more", *list_paginated_fine_tuning_jobs_response->has_more) == NULL) {
     goto fail; //Bool
     }
 
@@ -126,6 +139,9 @@ list_paginated_fine_tuning_jobs_response_t *list_paginated_fine_tuning_jobs_resp
 
     // define the local list for list_paginated_fine_tuning_jobs_response->data
     list_t *dataList = NULL;
+
+    // define the local variable for list_paginated_fine_tuning_jobs_response->has_more
+    int *has_more_local_var = NULL;
 
     // list_paginated_fine_tuning_jobs_response->data
     cJSON *data = cJSON_GetObjectItemCaseSensitive(list_paginated_fine_tuning_jobs_responseJSON, "data");
@@ -168,6 +184,12 @@ list_paginated_fine_tuning_jobs_response_t *list_paginated_fine_tuning_jobs_resp
     {
     goto end; //Bool
     }
+    has_more_local_var = malloc(sizeof(int));
+    if(!has_more_local_var)
+    {
+        goto end;
+    }
+    *has_more_local_var = has_more->valueint;
 
     // list_paginated_fine_tuning_jobs_response->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(list_paginated_fine_tuning_jobs_responseJSON, "object");
@@ -187,11 +209,16 @@ list_paginated_fine_tuning_jobs_response_t *list_paginated_fine_tuning_jobs_resp
     objectVariable = list_paginated_fine_tuning_jobs_response_object_FromString(object->valuestring);
 
 
+
     list_paginated_fine_tuning_jobs_response_local_var = list_paginated_fine_tuning_jobs_response_create_internal (
         dataList,
-        has_more->valueint,
+        has_more_local_var,
         objectVariable
         );
+
+    if (!list_paginated_fine_tuning_jobs_response_local_var) {
+        goto end;
+    }
 
     return list_paginated_fine_tuning_jobs_response_local_var;
 end:
@@ -203,6 +230,10 @@ end:
         }
         list_freeList(dataList);
         dataList = NULL;
+    }
+    if (has_more_local_var) {
+        free(has_more_local_var);
+        has_more_local_var = NULL;
     }
     return NULL;
 

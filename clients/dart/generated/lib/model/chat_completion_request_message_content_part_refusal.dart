@@ -55,10 +55,10 @@ class ChatCompletionRequestMessageContentPartRefusal {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ChatCompletionRequestMessageContentPartRefusal[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ChatCompletionRequestMessageContentPartRefusal[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "ChatCompletionRequestMessageContentPartRefusal[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "ChatCompletionRequestMessageContentPartRefusal[type]" has a null value in JSON.');
+        assert(json.containsKey(r'refusal'), 'Required key "ChatCompletionRequestMessageContentPartRefusal[refusal]" is missing from JSON.');
+        assert(json[r'refusal'] != null, 'Required key "ChatCompletionRequestMessageContentPartRefusal[refusal]" has a null value in JSON.');
         return true;
       }());
 
@@ -118,27 +118,28 @@ class ChatCompletionRequestMessageContentPartRefusal {
 }
 
 /// The type of the content part.
-class ChatCompletionRequestMessageContentPartRefusalTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ChatCompletionRequestMessageContentPartRefusalTypeEnum._(this.value);
+enum ChatCompletionRequestMessageContentPartRefusalTypeEnum {
+  refusal._(r'refusal'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ChatCompletionRequestMessageContentPartRefusalTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const refusal = ChatCompletionRequestMessageContentPartRefusalTypeEnum._(r'refusal');
-
-  /// List of all possible values in this [enum][ChatCompletionRequestMessageContentPartRefusalTypeEnum].
-  static const values = <ChatCompletionRequestMessageContentPartRefusalTypeEnum>[
-    refusal,
-  ];
-
+  /// Returns the instance of [ChatCompletionRequestMessageContentPartRefusalTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ChatCompletionRequestMessageContentPartRefusalTypeEnum? fromJson(dynamic value) => ChatCompletionRequestMessageContentPartRefusalTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ChatCompletionRequestMessageContentPartRefusalTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ChatCompletionRequestMessageContentPartRefusalTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ChatCompletionRequestMessageContentPartRefusalTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -160,9 +161,10 @@ class ChatCompletionRequestMessageContentPartRefusalTypeEnumTypeTransformer {
 
   const ChatCompletionRequestMessageContentPartRefusalTypeEnumTypeTransformer._();
 
-  String encode(ChatCompletionRequestMessageContentPartRefusalTypeEnum data) => data.value;
+  String encode(ChatCompletionRequestMessageContentPartRefusalTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ChatCompletionRequestMessageContentPartRefusalTypeEnum.
+  /// Returns the instance of [ChatCompletionRequestMessageContentPartRefusalTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -171,6 +173,9 @@ class ChatCompletionRequestMessageContentPartRefusalTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ChatCompletionRequestMessageContentPartRefusalTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ChatCompletionRequestMessageContentPartRefusalTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'refusal': return ChatCompletionRequestMessageContentPartRefusalTypeEnum.refusal;
@@ -183,7 +188,7 @@ class ChatCompletionRequestMessageContentPartRefusalTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ChatCompletionRequestMessageContentPartRefusalTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ChatCompletionRequestMessageContentPartRefusalTypeEnumTypeTransformer? _instance;
 }
 

@@ -14,7 +14,7 @@
 package com.github.oapicf.openapiopenai.model;
 
 import java.util.Objects;
-import com.github.oapicf.openapiopenai.model.AutoChunkingStrategy;
+import com.github.oapicf.openapiopenai.model.AutoChunkingStrategyRequestParam;
 import com.github.oapicf.openapiopenai.model.StaticChunkingStrategy;
 import com.github.oapicf.openapiopenai.model.StaticChunkingStrategyStatic;
 import com.google.gson.TypeAdapter;
@@ -60,7 +60,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy.class.getName());
 
@@ -72,7 +72,7 @@ public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunk
                 return null; // this class only serializes 'CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<AutoChunkingStrategy> adapterAutoChunkingStrategy = gson.getDelegateAdapter(this, TypeToken.get(AutoChunkingStrategy.class));
+            final TypeAdapter<AutoChunkingStrategyRequestParam> adapterAutoChunkingStrategyRequestParam = gson.getDelegateAdapter(this, TypeToken.get(AutoChunkingStrategyRequestParam.class));
             final TypeAdapter<StaticChunkingStrategy> adapterStaticChunkingStrategy = gson.getDelegateAdapter(this, TypeToken.get(StaticChunkingStrategy.class));
 
             return (TypeAdapter<T>) new TypeAdapter<CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy>() {
@@ -83,9 +83,9 @@ public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunk
                         return;
                     }
 
-                    // check if the actual instance is of the type `AutoChunkingStrategy`
-                    if (value.getActualInstance() instanceof AutoChunkingStrategy) {
-                        JsonElement element = adapterAutoChunkingStrategy.toJsonTree((AutoChunkingStrategy)value.getActualInstance());
+                    // check if the actual instance is of the type `AutoChunkingStrategyRequestParam`
+                    if (value.getActualInstance() instanceof AutoChunkingStrategyRequestParam) {
+                        JsonElement element = adapterAutoChunkingStrategyRequestParam.toJsonTree((AutoChunkingStrategyRequestParam)value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
@@ -95,7 +95,7 @@ public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunk
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: AutoChunkingStrategy, StaticChunkingStrategy");
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: AutoChunkingStrategyRequestParam, StaticChunkingStrategy");
                 }
 
                 @Override
@@ -107,17 +107,17 @@ public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunk
                     ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
 
-                    // deserialize AutoChunkingStrategy
+                    // deserialize AutoChunkingStrategyRequestParam
                     try {
                         // validate the JSON object to see if any exception is thrown
-                        AutoChunkingStrategy.validateJsonElement(jsonElement);
-                        actualAdapter = adapterAutoChunkingStrategy;
+                        AutoChunkingStrategyRequestParam.validateJsonElement(jsonElement);
+                        actualAdapter = adapterAutoChunkingStrategyRequestParam;
                         match++;
-                        log.log(Level.FINER, "Input data matches schema 'AutoChunkingStrategy'");
+                        log.log(Level.FINER, "Input data matches schema 'AutoChunkingStrategyRequestParam'");
                     } catch (Exception e) {
                         // deserialization failed, continue
-                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for AutoChunkingStrategy failed with `%s`.", e.getMessage()));
-                        log.log(Level.FINER, "Input data does not match schema 'AutoChunkingStrategy'", e);
+                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for AutoChunkingStrategyRequestParam failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'AutoChunkingStrategyRequestParam'", e);
                     }
                     // deserialize StaticChunkingStrategy
                     try {
@@ -157,7 +157,7 @@ public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunk
     }
 
     static {
-        schemas.put("AutoChunkingStrategy", AutoChunkingStrategy.class);
+        schemas.put("AutoChunkingStrategyRequestParam", AutoChunkingStrategyRequestParam.class);
         schemas.put("StaticChunkingStrategy", StaticChunkingStrategy.class);
     }
 
@@ -169,13 +169,13 @@ public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunk
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * AutoChunkingStrategy, StaticChunkingStrategy
+     * AutoChunkingStrategyRequestParam, StaticChunkingStrategy
      *
      * It could be an instance of the 'oneOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
-        if (instance instanceof AutoChunkingStrategy) {
+        if (instance instanceof AutoChunkingStrategyRequestParam) {
             super.setActualInstance(instance);
             return;
         }
@@ -185,14 +185,14 @@ public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunk
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be AutoChunkingStrategy, StaticChunkingStrategy");
+        throw new RuntimeException("Invalid instance type. Must be AutoChunkingStrategyRequestParam, StaticChunkingStrategy");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * AutoChunkingStrategy, StaticChunkingStrategy
+     * AutoChunkingStrategyRequestParam, StaticChunkingStrategy
      *
-     * @return The actual instance (AutoChunkingStrategy, StaticChunkingStrategy)
+     * @return The actual instance (AutoChunkingStrategyRequestParam, StaticChunkingStrategy)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -201,14 +201,15 @@ public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunk
     }
 
     /**
-     * Get the actual instance of `AutoChunkingStrategy`. If the actual instance is not `AutoChunkingStrategy`,
+     * Get the actual instance of `AutoChunkingStrategyRequestParam`. If the actual instance is not `AutoChunkingStrategyRequestParam`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `AutoChunkingStrategy`
-     * @throws ClassCastException if the instance is not `AutoChunkingStrategy`
+     * @return The actual instance of `AutoChunkingStrategyRequestParam`
+     * @throws ClassCastException if the instance is not `AutoChunkingStrategyRequestParam`
      */
-    public AutoChunkingStrategy getAutoChunkingStrategy() throws ClassCastException {
-        return (AutoChunkingStrategy)super.getActualInstance();
+    @SuppressWarnings("unchecked")
+    public AutoChunkingStrategyRequestParam getAutoChunkingStrategyRequestParam() throws ClassCastException {
+        return (AutoChunkingStrategyRequestParam)super.getActualInstance();
     }
 
     /**
@@ -218,6 +219,7 @@ public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunk
      * @return The actual instance of `StaticChunkingStrategy`
      * @throws ClassCastException if the instance is not `StaticChunkingStrategy`
      */
+    @SuppressWarnings("unchecked")
     public StaticChunkingStrategy getStaticChunkingStrategy() throws ClassCastException {
         return (StaticChunkingStrategy)super.getActualInstance();
     }
@@ -232,12 +234,12 @@ public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunk
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with AutoChunkingStrategy
+        // validate the json string with AutoChunkingStrategyRequestParam
         try {
-            AutoChunkingStrategy.validateJsonElement(jsonElement);
+            AutoChunkingStrategyRequestParam.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
-            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for AutoChunkingStrategy failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for AutoChunkingStrategyRequestParam failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
         // validate the json string with StaticChunkingStrategy
@@ -249,7 +251,7 @@ public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunk
             // continue to the next one
         }
         if (validCount != 1) {
-            throw new IOException(String.format(java.util.Locale.ROOT, "The JSON string is invalid for CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy with oneOf schemas: AutoChunkingStrategy, StaticChunkingStrategy. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+            throw new IOException(String.format(java.util.Locale.ROOT, "The JSON string is invalid for CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy with oneOf schemas: AutoChunkingStrategyRequestParam, StaticChunkingStrategy. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
         }
     }
 

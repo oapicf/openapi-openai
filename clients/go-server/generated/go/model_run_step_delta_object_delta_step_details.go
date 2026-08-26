@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // RunStepDeltaObjectDeltaStepDetails - The details of the run step.
@@ -25,18 +30,74 @@ type RunStepDeltaObjectDeltaStepDetails struct {
 	// An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
 	ToolCalls []RunStepDeltaStepDetailsToolCallsObjectToolCallsInner `json:"tool_calls,omitempty"`
 }
-
-// AssertRunStepDeltaObjectDeltaStepDetailsRequired checks if the required fields are not zero-ed
-func AssertRunStepDeltaObjectDeltaStepDetailsRequired(obj RunStepDeltaObjectDeltaStepDetails) error {
-	elements := map[string]interface{}{
-		"type": obj.Type,
+// UnmarshalJSON validates required property keys then unmarshals into RunStepDeltaObjectDeltaStepDetails
+func (o *RunStepDeltaObjectDeltaStepDetails) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"type",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"type": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"type": {},
+		"message_creation": {},
+		"tool_calls": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RunStepDeltaObjectDeltaStepDetails
+
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["message_creation"]; exists {
+		if err = json.Unmarshal(value, &decoded.MessageCreation); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["tool_calls"]; exists {
+		if err = json.Unmarshal(value, &decoded.ToolCalls); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRunStepDeltaObjectDeltaStepDetailsRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertRunStepDeltaObjectDeltaStepDetailsRequired(obj RunStepDeltaObjectDeltaStepDetails) error {
 	if err := AssertRunStepDeltaStepDetailsMessageCreationObjectMessageCreationRequired(obj.MessageCreation); err != nil {
 		return err
 	}

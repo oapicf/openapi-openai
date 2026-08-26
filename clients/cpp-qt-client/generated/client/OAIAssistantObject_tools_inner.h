@@ -38,13 +38,13 @@ class OAIFunctionObject;
 class OAIAssistantObject_tools_inner : public OAIObject {
 public:
     OAIAssistantObject_tools_inner();
-    OAIAssistantObject_tools_inner(QString json);
+    OAIAssistantObject_tools_inner(const QString &json);
     ~OAIAssistantObject_tools_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

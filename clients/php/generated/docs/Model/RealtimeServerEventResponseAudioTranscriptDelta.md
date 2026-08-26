@@ -1,4 +1,4 @@
-# # RealtimeServerEventResponseAudioTranscriptDelta
+# RealtimeServerEventResponseAudioTranscriptDelta
 
 ## Properties
 

@@ -131,8 +131,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AssistantToolsFileSearchTypeOnly" />
     /// </summary>
-    public class AssistantToolsFileSearchTypeOnlyJsonConverter : JsonConverter<AssistantToolsFileSearchTypeOnly>
+    public partial class AssistantToolsFileSearchTypeOnlyJsonConverter : JsonConverter<AssistantToolsFileSearchTypeOnly>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssistantToolsFileSearchTypeOnlyJsonConverter" /> class.
+        /// </summary>
+        public AssistantToolsFileSearchTypeOnlyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AssistantToolsFileSearchTypeOnly" />
         /// </summary>

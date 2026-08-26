@@ -60,10 +60,10 @@ function Initialize-CreateMessageRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "role" = ${Role}
-            "content" = ${Content}
-            "attachments" = ${Attachments}
-            "metadata" = ${Metadata}
+            'role' = ${Role}
+            'content' = ${Content}
+            'attachments' = ${Attachments}
+            'metadata' = ${Metadata}
         }
 
 
@@ -101,7 +101,7 @@ function ConvertFrom-JsonToCreateMessageRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateMessageRequest
-        $AllProperties = ("role", "content", "attachments", "metadata")
+        $AllProperties = ('role', 'content', 'attachments', 'metadata')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -112,35 +112,35 @@ function ConvertFrom-JsonToCreateMessageRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'role' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "role"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'role'))) {
             throw "Error! JSON cannot be serialized due to the required property 'role' missing."
         } else {
-            $Role = $JsonParameters.PSobject.Properties["role"].value
+            $Role = $JsonParameters.PSobject.Properties['role'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'content'))) {
             throw "Error! JSON cannot be serialized due to the required property 'content' missing."
         } else {
-            $Content = $JsonParameters.PSobject.Properties["content"].value
+            $Content = $JsonParameters.PSobject.Properties['content'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "attachments"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'attachments'))) { #optional property not found
             $Attachments = $null
         } else {
-            $Attachments = $JsonParameters.PSobject.Properties["attachments"].value
+            $Attachments = $JsonParameters.PSobject.Properties['attachments'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) { #optional property not found
             $Metadata = $null
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "role" = ${Role}
-            "content" = ${Content}
-            "attachments" = ${Attachments}
-            "metadata" = ${Metadata}
+            'role' = ${Role}
+            'content' = ${Content}
+            'attachments' = ${Attachments}
+            'metadata' = ${Metadata}
         }
 
         return $PSO

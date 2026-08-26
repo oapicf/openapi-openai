@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** | The type of actor. Is either &#x60;session&#x60; or &#x60;api_key&#x60;. | [optional] 
-**session** | [**OpenAPI\Server\Model\AuditLogActorSession**](.md) |  | [optional] 
-**apiKey** | [**OpenAPI\Server\Model\AuditLogActorApiKey**](.md) |  | [optional] 
+**session** | [**OpenAPI\Server\Model\AuditLogActorSession**](AuditLogActorSession.md) |  | [optional] 
+**apiKey** | [**OpenAPI\Server\Model\AuditLogActorApiKey**](AuditLogActorApiKey.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

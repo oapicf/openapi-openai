@@ -170,7 +170,7 @@ MessageDeltaContentTextAnnotationsFilePathObject::getIndex()
 }
 
 void
-MessageDeltaContentTextAnnotationsFilePathObject::setIndex(int  index)
+MessageDeltaContentTextAnnotationsFilePathObject::setIndex(int index)
 {
 	this->index = index;
 }
@@ -182,7 +182,7 @@ MessageDeltaContentTextAnnotationsFilePathObject::getType()
 }
 
 void
-MessageDeltaContentTextAnnotationsFilePathObject::setType(std::string  type)
+MessageDeltaContentTextAnnotationsFilePathObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -194,7 +194,7 @@ MessageDeltaContentTextAnnotationsFilePathObject::getText()
 }
 
 void
-MessageDeltaContentTextAnnotationsFilePathObject::setText(std::string  text)
+MessageDeltaContentTextAnnotationsFilePathObject::setText(std::string text)
 {
 	this->text = text;
 }
@@ -206,7 +206,7 @@ MessageDeltaContentTextAnnotationsFilePathObject::getFilePath()
 }
 
 void
-MessageDeltaContentTextAnnotationsFilePathObject::setFilePath(MessageDeltaContentTextAnnotationsFilePathObject_file_path  file_path)
+MessageDeltaContentTextAnnotationsFilePathObject::setFilePath(MessageDeltaContentTextAnnotationsFilePathObject_file_path file_path)
 {
 	this->file_path = file_path;
 }
@@ -218,7 +218,7 @@ MessageDeltaContentTextAnnotationsFilePathObject::getStartIndex()
 }
 
 void
-MessageDeltaContentTextAnnotationsFilePathObject::setStartIndex(int  start_index)
+MessageDeltaContentTextAnnotationsFilePathObject::setStartIndex(int start_index)
 {
 	this->start_index = start_index;
 }
@@ -230,7 +230,7 @@ MessageDeltaContentTextAnnotationsFilePathObject::getEndIndex()
 }
 
 void
-MessageDeltaContentTextAnnotationsFilePathObject::setEndIndex(int  end_index)
+MessageDeltaContentTextAnnotationsFilePathObject::setEndIndex(int end_index)
 {
 	this->end_index = end_index;
 }

@@ -27,6 +27,8 @@ CreateFineTuningJobRequest_hyperparameters::CreateFineTuningJobRequest_hyperpara
     
 }
 
+CreateFineTuningJobRequest_hyperparameters::~CreateFineTuningJobRequest_hyperparameters() = default;
+
 void CreateFineTuningJobRequest_hyperparameters::validate() const
 {
     std::stringstream msg;

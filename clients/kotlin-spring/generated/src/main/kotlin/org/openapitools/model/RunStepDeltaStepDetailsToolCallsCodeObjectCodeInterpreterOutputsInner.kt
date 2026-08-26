@@ -2,11 +2,17 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -20,45 +26,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param index The index of the output in the outputs array.
- * @param type Always `logs`.
- * @param logs The text output from the Code Interpreter tool call.
- * @param image 
  */
-data class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner(
-
-    @Schema(example = "null", required = true, description = "The index of the output in the outputs array.")
-    @get:JsonProperty("index", required = true) val index: kotlin.Int,
-
-    @Schema(example = "null", required = true, description = "Always `logs`.")
-    @get:JsonProperty("type", required = true) val type: RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner.Type,
-
-    @Schema(example = "null", description = "The text output from the Code Interpreter tool call.")
-    @get:JsonProperty("logs") val logs: kotlin.String? = null,
-
-    @field:Valid
-    @Schema(example = "null", description = "")
-    @get:JsonProperty("image") val image: RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage? = null
-) {
-
-    /**
-    * Always `logs`.
-    * Values: logs,image
-    */
-    enum class Type(@get:JsonValue val value: kotlin.String) {
-
-        logs("logs"),
-        image("image");
-
-        companion object {
-            @JvmStatic
-            @JsonCreator
-            fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner'")
-            }
-        }
-    }
-
+sealed interface RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner {
 }
 

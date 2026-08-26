@@ -30,10 +30,10 @@ static run_step_details_tool_calls_object_t *run_step_details_tool_calls_object_
     if (!run_step_details_tool_calls_object_local_var) {
         return NULL;
     }
+    memset(run_step_details_tool_calls_object_local_var, 0, sizeof(run_step_details_tool_calls_object_t));
+    run_step_details_tool_calls_object_local_var->_library_owned = 1;
     run_step_details_tool_calls_object_local_var->type = type;
     run_step_details_tool_calls_object_local_var->tool_calls = tool_calls;
-
-    run_step_details_tool_calls_object_local_var->_library_owned = 1;
     return run_step_details_tool_calls_object_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) run_step_details_tool_calls_object_t *run_step_detai
     openai_api_run_step_details_tool_calls_object_TYPE_e type,
     list_t *tool_calls
     ) {
-    return run_step_details_tool_calls_object_create_internal (
+    run_step_details_tool_calls_object_t *result = run_step_details_tool_calls_object_create_internal (
         type,
         tool_calls
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_step_details_tool_calls_object_free(run_step_details_tool_calls_object_t *run_step_details_tool_calls_object) {
@@ -159,10 +162,15 @@ run_step_details_tool_calls_object_t *run_step_details_tool_calls_object_parseFr
     }
 
 
+
     run_step_details_tool_calls_object_local_var = run_step_details_tool_calls_object_create_internal (
         typeVariable,
         tool_callsList
         );
+
+    if (!run_step_details_tool_calls_object_local_var) {
+        goto end;
+    }
 
     return run_step_details_tool_calls_object_local_var;
 end:

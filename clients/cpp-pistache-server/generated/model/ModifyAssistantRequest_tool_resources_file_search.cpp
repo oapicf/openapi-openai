@@ -25,6 +25,8 @@ ModifyAssistantRequest_tool_resources_file_search::ModifyAssistantRequest_tool_r
     
 }
 
+ModifyAssistantRequest_tool_resources_file_search::~ModifyAssistantRequest_tool_resources_file_search() = default;
+
 void ModifyAssistantRequest_tool_resources_file_search::validate() const
 {
     std::stringstream msg;

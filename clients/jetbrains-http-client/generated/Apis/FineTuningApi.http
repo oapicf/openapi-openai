@@ -1,0 +1,50 @@
+## FineTuningApi
+
+### Immediately cancel a fine-tune job. 
+## Immediately cancel a fine-tune job. 
+POST https://api.openai.com/v1/fine_tuning/jobs/{{fine_tuning_job_id}}/cancel
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+## Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+POST https://api.openai.com/v1/fine_tuning/jobs
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "model": "<string>",
+ "training_file": "<string>",
+ "hyperparameters": "<string>",
+ "suffix": "<string>",
+ "validation_file": "<string>",
+ "integrations": "<string>",
+ "seed": "<number>",
+ "method": "<string>"
+}
+
+
+### Get status updates for a fine-tuning job. 
+## Get status updates for a fine-tuning job. 
+GET https://api.openai.com/v1/fine_tuning/jobs/{{fine_tuning_job_id}}/events?after={{after}}&limit={{limit}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### List checkpoints for a fine-tuning job. 
+## List checkpoints for a fine-tuning job. 
+GET https://api.openai.com/v1/fine_tuning/jobs/{{fine_tuning_job_id}}/checkpoints?after={{after}}&limit={{limit}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### List your organization&#39;s fine-tuning jobs 
+## List your organization&#39;s fine-tuning jobs 
+GET https://api.openai.com/v1/fine_tuning/jobs?after={{after}}&limit={{limit}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+## Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+GET https://api.openai.com/v1/fine_tuning/jobs/{{fine_tuning_job_id}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}

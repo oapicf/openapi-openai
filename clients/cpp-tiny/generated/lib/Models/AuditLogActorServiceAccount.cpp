@@ -64,7 +64,7 @@ AuditLogActorServiceAccount::getId()
 }
 
 void
-AuditLogActorServiceAccount::setId(std::string  id)
+AuditLogActorServiceAccount::setId(std::string id)
 {
 	this->id = id;
 }

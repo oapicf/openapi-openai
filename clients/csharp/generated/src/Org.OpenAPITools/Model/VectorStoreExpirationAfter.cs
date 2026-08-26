@@ -153,8 +153,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="VectorStoreExpirationAfter" />
     /// </summary>
-    public class VectorStoreExpirationAfterJsonConverter : JsonConverter<VectorStoreExpirationAfter>
+    public partial class VectorStoreExpirationAfterJsonConverter : JsonConverter<VectorStoreExpirationAfter>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VectorStoreExpirationAfterJsonConverter" /> class.
+        /// </summary>
+        public VectorStoreExpirationAfterJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="VectorStoreExpirationAfter" />
         /// </summary>

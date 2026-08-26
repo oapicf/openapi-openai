@@ -55,9 +55,9 @@ function Initialize-InviteRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "email" = ${Email}
-            "role" = ${Role}
-            "projects" = ${Projects}
+            'email' = ${Email}
+            'role' = ${Role}
+            'projects' = ${Projects}
         }
 
 
@@ -95,7 +95,7 @@ function ConvertFrom-JsonToInviteRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in InviteRequest
-        $AllProperties = ("email", "role", "projects")
+        $AllProperties = ('email', 'role', 'projects')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -106,28 +106,28 @@ function ConvertFrom-JsonToInviteRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'email' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "email"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'email'))) {
             throw "Error! JSON cannot be serialized due to the required property 'email' missing."
         } else {
-            $Email = $JsonParameters.PSobject.Properties["email"].value
+            $Email = $JsonParameters.PSobject.Properties['email'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "role"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'role'))) {
             throw "Error! JSON cannot be serialized due to the required property 'role' missing."
         } else {
-            $Role = $JsonParameters.PSobject.Properties["role"].value
+            $Role = $JsonParameters.PSobject.Properties['role'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "projects"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'projects'))) { #optional property not found
             $Projects = $null
         } else {
-            $Projects = $JsonParameters.PSobject.Properties["projects"].value
+            $Projects = $JsonParameters.PSobject.Properties['projects'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "email" = ${Email}
-            "role" = ${Role}
-            "projects" = ${Projects}
+            'email' = ${Email}
+            'role' = ${Role}
+            'projects' = ${Projects}
         }
 
         return $PSO

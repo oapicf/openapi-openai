@@ -193,7 +193,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Logprobs
         /// </summary>
         [JsonPropertyName("logprobs")]
-        public CreateChatCompletionResponseChoicesInnerLogprobs? Logprobs { get { return this.LogprobsOption; } set { this.LogprobsOption = new(value); } }
+        public CreateChatCompletionResponseChoicesInnerLogprobs? Logprobs { get { return this.LogprobsOption.Value; } set { this.LogprobsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -225,8 +225,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateChatCompletionStreamResponseChoicesInner" />
     /// </summary>
-    public class CreateChatCompletionStreamResponseChoicesInnerJsonConverter : JsonConverter<CreateChatCompletionStreamResponseChoicesInner>
+    public partial class CreateChatCompletionStreamResponseChoicesInnerJsonConverter : JsonConverter<CreateChatCompletionStreamResponseChoicesInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateChatCompletionStreamResponseChoicesInnerJsonConverter" /> class.
+        /// </summary>
+        public CreateChatCompletionStreamResponseChoicesInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateChatCompletionStreamResponseChoicesInner" />
         /// </summary>
@@ -275,8 +285,7 @@ namespace Org.OpenAPITools.Model
                             break;
                         case "finish_reason":
                             string? finishReasonRawValue = utf8JsonReader.GetString();
-                            if (finishReasonRawValue != null)
-                                finishReason = new Option<CreateChatCompletionStreamResponseChoicesInner.FinishReasonEnum?>(CreateChatCompletionStreamResponseChoicesInner.FinishReasonEnumFromStringOrDefault(finishReasonRawValue));
+                            finishReason = new Option<CreateChatCompletionStreamResponseChoicesInner.FinishReasonEnum?>(finishReasonRawValue == null ? null : CreateChatCompletionStreamResponseChoicesInner.FinishReasonEnumFromStringOrDefault(finishReasonRawValue));
                             break;
                         default:
                             break;

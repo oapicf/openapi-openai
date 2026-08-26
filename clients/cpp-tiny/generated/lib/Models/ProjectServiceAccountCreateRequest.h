@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set The name of the service account being created.
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 
 
     private:

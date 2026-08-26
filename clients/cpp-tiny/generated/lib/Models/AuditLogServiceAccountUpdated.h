@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set The service account ID.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	AuditLog_service_account_updated_changes_requested getChangesRequested();
 
 	/*! \brief Set 
 	 */
-	void setChangesRequested(AuditLog_service_account_updated_changes_requested  changes_requested);
+	void setChangesRequested(AuditLog_service_account_updated_changes_requested changes_requested);
 
 
     private:

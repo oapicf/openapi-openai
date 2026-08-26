@@ -51,7 +51,7 @@ class RealtimeResponseUsageOutputTokenDetails
      * @var int|null
      * @SerializedName("text_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $textTokens = null;
 
@@ -61,7 +61,7 @@ class RealtimeResponseUsageOutputTokenDetails
      * @var int|null
      * @SerializedName("audio_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $audioTokens = null;
 
@@ -88,12 +88,12 @@ class RealtimeResponseUsageOutputTokenDetails
     }
 
     /**
-    * Sets textTokens.
-    *
-    * @param int|null $textTokens  The number of text tokens used in the Response.
-    *
-    * @return $this
-    */
+     * Sets textTokens.
+     *
+     * @param int|null $textTokens  The number of text tokens used in the Response.
+     *
+     * @return $this
+     */
     public function setTextTokens(?int $textTokens = null): self
     {
         $this->textTokens = $textTokens;
@@ -115,12 +115,12 @@ class RealtimeResponseUsageOutputTokenDetails
     }
 
     /**
-    * Sets audioTokens.
-    *
-    * @param int|null $audioTokens  The number of audio tokens used in the Response.
-    *
-    * @return $this
-    */
+     * Sets audioTokens.
+     *
+     * @param int|null $audioTokens  The number of audio tokens used in the Response.
+     *
+     * @return $this
+     */
     public function setAudioTokens(?int $audioTokens = null): self
     {
         $this->audioTokens = $audioTokens;

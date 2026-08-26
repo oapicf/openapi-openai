@@ -31,7 +31,7 @@ class  FineTuneDPOMethod_hyperparameters_n_epochs
 {
 public:
     FineTuneDPOMethod_hyperparameters_n_epochs();
-    virtual ~FineTuneDPOMethod_hyperparameters_n_epochs() = default;
+    virtual ~FineTuneDPOMethod_hyperparameters_n_epochs();
 
 
     /// <summary>

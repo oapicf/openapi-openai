@@ -18,7 +18,8 @@ package openapi
 type CreateCompletionRequestStop struct {
 }
 
-// AssertCreateCompletionRequestStopRequired checks if the required fields are not zero-ed
+// AssertCreateCompletionRequestStopRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateCompletionRequestStopRequired(obj CreateCompletionRequestStop) error {
 	return nil
 }

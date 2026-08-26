@@ -28,6 +28,8 @@ ListRunStepsResponse::ListRunStepsResponse()
     
 }
 
+ListRunStepsResponse::~ListRunStepsResponse() = default;
+
 void ListRunStepsResponse::validate() const
 {
     std::stringstream msg;

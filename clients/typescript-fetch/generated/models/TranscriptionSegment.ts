@@ -92,9 +92,9 @@ export function instanceOfTranscriptionSegment(value: object): value is Transcri
     if (!('text' in value) || value['text'] === undefined) return false;
     if (!('tokens' in value) || value['tokens'] === undefined) return false;
     if (!('temperature' in value) || value['temperature'] === undefined) return false;
-    if (!('avgLogprob' in value) || value['avgLogprob'] === undefined) return false;
-    if (!('compressionRatio' in value) || value['compressionRatio'] === undefined) return false;
-    if (!('noSpeechProb' in value) || value['noSpeechProb'] === undefined) return false;
+    if ((!('avgLogprob' in (value as Record<string, any>)) && !('avg_logprob' in (value as Record<string, any>))) || ((value as Record<string, any>)['avgLogprob'] === undefined && (value as Record<string, any>)['avg_logprob'] === undefined)) return false;
+    if ((!('compressionRatio' in (value as Record<string, any>)) && !('compression_ratio' in (value as Record<string, any>))) || ((value as Record<string, any>)['compressionRatio'] === undefined && (value as Record<string, any>)['compression_ratio'] === undefined)) return false;
+    if ((!('noSpeechProb' in (value as Record<string, any>)) && !('no_speech_prob' in (value as Record<string, any>))) || ((value as Record<string, any>)['noSpeechProb'] === undefined && (value as Record<string, any>)['no_speech_prob'] === undefined)) return false;
     return true;
 }
 

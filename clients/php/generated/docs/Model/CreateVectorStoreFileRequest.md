@@ -1,4 +1,4 @@
-# # CreateVectorStoreFileRequest
+# CreateVectorStoreFileRequest
 
 ## Properties
 

@@ -51,7 +51,7 @@ class RealtimeServerEventSessionUpdated
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $eventId = null;
@@ -62,7 +62,7 @@ class RealtimeServerEventSessionUpdated
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['session.updated'])]
     #[Assert\Type("string")]
@@ -72,7 +72,7 @@ class RealtimeServerEventSessionUpdated
      * @var RealtimeSession|null
      * @SerializedName("session")
      * @Type("OpenAPI\Server\Model\RealtimeSession")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RealtimeSession")]
@@ -102,12 +102,12 @@ class RealtimeServerEventSessionUpdated
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  The unique ID of the server event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  The unique ID of the server event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId): self
     {
         $this->eventId = $eventId;
@@ -129,12 +129,12 @@ class RealtimeServerEventSessionUpdated
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `session.updated`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `session.updated`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -156,12 +156,12 @@ class RealtimeServerEventSessionUpdated
     }
 
     /**
-    * Sets session.
-    *
-    * @param RealtimeSession|null $session
-    *
-    * @return $this
-    */
+     * Sets session.
+     *
+     * @param RealtimeSession|null $session
+     *
+     * @return $this
+     */
     public function setSession(?RealtimeSession $session): self
     {
         $this->session = $session;

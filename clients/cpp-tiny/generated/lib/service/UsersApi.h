@@ -24,7 +24,7 @@ class UsersApi : public Service {
 public:
     UsersApi() = default;
 
-    virtual ~UsersApi() = default;
+    virtual ~UsersApi();
 
     /**
     * Deletes a user from the organization..

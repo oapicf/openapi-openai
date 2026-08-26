@@ -1,4 +1,4 @@
-# # UserRoleUpdateRequest
+# UserRoleUpdateRequest
 
 ## Properties
 

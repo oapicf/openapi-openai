@@ -51,7 +51,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * Log probability information for the choice.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateChatCompletionResponseChoicesInnerLogprobs {
   public static final String SERIALIZED_NAME_CONTENT = "content";
   @SerializedName(SERIALIZED_NAME_CONTENT)
@@ -154,10 +154,7 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -200,26 +197,26 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the json data is an array
-      if (!jsonObj.get("content").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `content` to be an array in the JSON string but got `%s`", jsonObj.get("content").toString()));
+      if (jsonObj.get("content") != null && !jsonObj.get("content").isJsonNull()) {
+        if (!jsonObj.get("content").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `content` to be an array in the JSON string but got `%s`", jsonObj.get("content").toString()));
+        }
+        JsonArray jsonArraycontent = jsonObj.getAsJsonArray("content");
+        // validate the required field `content` (array)
+        for (int i = 0; i < jsonArraycontent.size(); i++) {
+          ChatCompletionTokenLogprob.validateJsonElement(jsonArraycontent.get(i));
+        }
       }
-
-      JsonArray jsonArraycontent = jsonObj.getAsJsonArray("content");
-      // validate the required field `content` (array)
-      for (int i = 0; i < jsonArraycontent.size(); i++) {
-        ChatCompletionTokenLogprob.validateJsonElement(jsonArraycontent.get(i));
-      };
-      // ensure the json data is an array
-      if (!jsonObj.get("refusal").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `refusal` to be an array in the JSON string but got `%s`", jsonObj.get("refusal").toString()));
+      if (jsonObj.get("refusal") != null && !jsonObj.get("refusal").isJsonNull()) {
+        if (!jsonObj.get("refusal").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `refusal` to be an array in the JSON string but got `%s`", jsonObj.get("refusal").toString()));
+        }
+        JsonArray jsonArrayrefusal = jsonObj.getAsJsonArray("refusal");
+        // validate the required field `refusal` (array)
+        for (int i = 0; i < jsonArrayrefusal.size(); i++) {
+          ChatCompletionTokenLogprob.validateJsonElement(jsonArrayrefusal.get(i));
+        }
       }
-
-      JsonArray jsonArrayrefusal = jsonObj.getAsJsonArray("refusal");
-      // validate the required field `refusal` (array)
-      for (int i = 0; i < jsonArrayrefusal.size(); i++) {
-        ChatCompletionTokenLogprob.validateJsonElement(jsonArrayrefusal.get(i));
-      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

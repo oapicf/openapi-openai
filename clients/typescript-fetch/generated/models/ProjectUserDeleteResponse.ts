@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface ProjectUserDeleteResponse {
     /**
      * 
-     * @type {string}
+     * @type {ProjectUserDeleteResponseObjectEnum}
      * @memberof ProjectUserDeleteResponse
      */
     object: ProjectUserDeleteResponseObjectEnum;
@@ -54,6 +54,8 @@ export type ProjectUserDeleteResponseObjectEnum = typeof ProjectUserDeleteRespon
  */
 export function instanceOfProjectUserDeleteResponse(value: object): value is ProjectUserDeleteResponse {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'organization.project.user.deleted') return false;
+    
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('deleted' in value) || value['deleted'] === undefined) return false;
     return true;

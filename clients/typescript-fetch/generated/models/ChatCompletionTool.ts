@@ -29,7 +29,7 @@ import {
 export interface ChatCompletionTool {
     /**
      * The type of the tool. Currently, only `function` is supported.
-     * @type {string}
+     * @type {ChatCompletionToolTypeEnum}
      * @memberof ChatCompletionTool
      */
     type: ChatCompletionToolTypeEnum;
@@ -56,7 +56,9 @@ export type ChatCompletionToolTypeEnum = typeof ChatCompletionToolTypeEnum[keyof
  */
 export function instanceOfChatCompletionTool(value: object): value is ChatCompletionTool {
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('_function' in value) || value['_function'] === undefined) return false;
+    if (value['type'] !== 'function') return false;
+    
+    if ((!('_function' in (value as Record<string, any>)) && !('function' in (value as Record<string, any>))) || ((value as Record<string, any>)['_function'] === undefined && (value as Record<string, any>)['function'] === undefined)) return false;
     return true;
 }
 

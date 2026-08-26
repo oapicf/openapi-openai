@@ -12,18 +12,21 @@ static run_object_required_action_submit_tool_outputs_t *run_object_required_act
     if (!run_object_required_action_submit_tool_outputs_local_var) {
         return NULL;
     }
-    run_object_required_action_submit_tool_outputs_local_var->tool_calls = tool_calls;
-
+    memset(run_object_required_action_submit_tool_outputs_local_var, 0, sizeof(run_object_required_action_submit_tool_outputs_t));
     run_object_required_action_submit_tool_outputs_local_var->_library_owned = 1;
+    run_object_required_action_submit_tool_outputs_local_var->tool_calls = tool_calls;
     return run_object_required_action_submit_tool_outputs_local_var;
 }
 
 __attribute__((deprecated)) run_object_required_action_submit_tool_outputs_t *run_object_required_action_submit_tool_outputs_create(
     list_t *tool_calls
     ) {
-    return run_object_required_action_submit_tool_outputs_create_internal (
+    run_object_required_action_submit_tool_outputs_t *result = run_object_required_action_submit_tool_outputs_create_internal (
         tool_calls
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_object_required_action_submit_tool_outputs_free(run_object_required_action_submit_tool_outputs_t *run_object_required_action_submit_tool_outputs) {
@@ -111,9 +114,14 @@ run_object_required_action_submit_tool_outputs_t *run_object_required_action_sub
     }
 
 
+
     run_object_required_action_submit_tool_outputs_local_var = run_object_required_action_submit_tool_outputs_create_internal (
         tool_callsList
         );
+
+    if (!run_object_required_action_submit_tool_outputs_local_var) {
+        goto end;
+    }
 
     return run_object_required_action_submit_tool_outputs_local_var;
 end:

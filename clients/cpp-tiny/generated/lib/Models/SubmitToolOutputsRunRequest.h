@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set A list of tools for which the outputs are being submitted.
 	 */
-	void setToolOutputs(std::list <SubmitToolOutputsRunRequest_tool_outputs_inner> tool_outputs);
+	void setToolOutputs(std::list<SubmitToolOutputsRunRequest_tool_outputs_inner> tool_outputs);
 	/*! \brief Get If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. 
 	 */
 	bool isStream();
 
 	/*! \brief Set If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. 
 	 */
-	void setStream(bool  stream);
+	void setStream(bool stream);
 
 
     private:

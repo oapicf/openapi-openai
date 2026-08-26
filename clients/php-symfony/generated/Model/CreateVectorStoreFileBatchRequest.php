@@ -49,7 +49,7 @@ class CreateVectorStoreFileBatchRequest
      * @var string[]|null
      * @SerializedName("file_ids")
      * @Type("array<string>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Type("string"),
@@ -62,7 +62,7 @@ class CreateVectorStoreFileBatchRequest
      * @var ChunkingStrategyRequestParam|null
      * @SerializedName("chunking_strategy")
      * @Type("OpenAPI\Server\Model\ChunkingStrategyRequestParam")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\ChunkingStrategyRequestParam")]
     protected ?ChunkingStrategyRequestParam $chunkingStrategy = null;
 
@@ -89,12 +89,12 @@ class CreateVectorStoreFileBatchRequest
     }
 
     /**
-    * Sets fileIds.
-    *
-    * @param string[]|null $fileIds  A list of [File](/docs/api-reference/files) IDs that the vector store should use. Useful for tools like `file_search` that can access files.
-    *
-    * @return $this
-    */
+     * Sets fileIds.
+     *
+     * @param string[]|null $fileIds  A list of [File](/docs/api-reference/files) IDs that the vector store should use. Useful for tools like `file_search` that can access files.
+     *
+     * @return $this
+     */
     public function setFileIds(?array $fileIds): self
     {
         $this->fileIds = $fileIds;
@@ -116,12 +116,12 @@ class CreateVectorStoreFileBatchRequest
     }
 
     /**
-    * Sets chunkingStrategy.
-    *
-    * @param ChunkingStrategyRequestParam|null $chunkingStrategy
-    *
-    * @return $this
-    */
+     * Sets chunkingStrategy.
+     *
+     * @param ChunkingStrategyRequestParam|null $chunkingStrategy
+     *
+     * @return $this
+     */
     public function setChunkingStrategy(?ChunkingStrategyRequestParam $chunkingStrategy = null): self
     {
         $this->chunkingStrategy = $chunkingStrategy;

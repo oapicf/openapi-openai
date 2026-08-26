@@ -54,21 +54,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setBatchSize(CreateFineTuningJobRequest_hyperparameters_batch_size  batch_size);
+	void setBatchSize(CreateFineTuningJobRequest_hyperparameters_batch_size batch_size);
 	/*! \brief Get 
 	 */
 	CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier getLearningRateMultiplier();
 
 	/*! \brief Set 
 	 */
-	void setLearningRateMultiplier(CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier  learning_rate_multiplier);
+	void setLearningRateMultiplier(CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier learning_rate_multiplier);
 	/*! \brief Get 
 	 */
 	CreateFineTuningJobRequest_hyperparameters_n_epochs getNEpochs();
 
 	/*! \brief Set 
 	 */
-	void setNEpochs(CreateFineTuningJobRequest_hyperparameters_n_epochs  n_epochs);
+	void setNEpochs(CreateFineTuningJobRequest_hyperparameters_n_epochs n_epochs);
 
 
     private:

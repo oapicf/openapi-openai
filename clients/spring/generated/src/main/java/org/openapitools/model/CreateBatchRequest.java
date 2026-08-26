@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -14,20 +15,20 @@ import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * CreateBatchRequest
  */
 
 @JsonTypeName("createBatch_request")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateBatchRequest {
 
   private String inputFileId;
@@ -106,7 +107,7 @@ public class CreateBatchRequest {
 
   private CompletionWindowEnum completionWindow;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Map<String, String>> metadata = JsonNullable.<Map<String, String>>undefined();
 
   public CreateBatchRequest() {
@@ -138,6 +139,7 @@ public class CreateBatchRequest {
     return inputFileId;
   }
 
+  @JsonProperty("input_file_id")
   public void setInputFileId(String inputFileId) {
     this.inputFileId = inputFileId;
   }
@@ -158,6 +160,7 @@ public class CreateBatchRequest {
     return endpoint;
   }
 
+  @JsonProperty("endpoint")
   public void setEndpoint(EndpointEnum endpoint) {
     this.endpoint = endpoint;
   }
@@ -178,6 +181,7 @@ public class CreateBatchRequest {
     return completionWindow;
   }
 
+  @JsonProperty("completion_window")
   public void setCompletionWindow(CompletionWindowEnum completionWindow) {
     this.completionWindow = completionWindow;
   }
@@ -257,11 +261,8 @@ public class CreateBatchRequest {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

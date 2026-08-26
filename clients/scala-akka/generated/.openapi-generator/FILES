@@ -1,4 +1,4 @@
-.openapi-generator-ignore
+.scalafmt.conf
 README.md
 build.sbt
 docs/AdminApiKey.md
@@ -64,7 +64,6 @@ docs/AuditLogUserDeleted.md
 docs/AuditLogUserUpdated.md
 docs/AuditLogUserUpdatedChangesRequested.md
 docs/AuditLogsApi.md
-docs/AutoChunkingStrategy.md
 docs/AutoChunkingStrategyRequestParam.md
 docs/Batch.md
 docs/BatchApi.md
@@ -487,7 +486,6 @@ docs/RunToolCallObject.md
 docs/RunToolCallObjectFunction.md
 docs/StaticChunkingStrategy.md
 docs/StaticChunkingStrategyRequestParam.md
-docs/StaticChunkingStrategyResponseParam.md
 docs/StaticChunkingStrategyStatic.md
 docs/SubmitToolOutputsRunRequest.md
 docs/SubmitToolOutputsRunRequestToolOutputsInner.md
@@ -528,6 +526,7 @@ docs/VectorStoreObjectFileCounts.md
 docs/VectorStoresApi.md
 pom.xml
 project/build.properties
+project/plugins.sbt
 src/main/resources/reference.conf
 src/main/scala/org/openapitools/client/api/AssistantsApi.scala
 src/main/scala/org/openapitools/client/api/AudioApi.scala
@@ -615,7 +614,6 @@ src/main/scala/org/openapitools/client/model/AuditLogUserAddedData.scala
 src/main/scala/org/openapitools/client/model/AuditLogUserDeleted.scala
 src/main/scala/org/openapitools/client/model/AuditLogUserUpdated.scala
 src/main/scala/org/openapitools/client/model/AuditLogUserUpdatedChangesRequested.scala
-src/main/scala/org/openapitools/client/model/AutoChunkingStrategy.scala
 src/main/scala/org/openapitools/client/model/AutoChunkingStrategyRequestParam.scala
 src/main/scala/org/openapitools/client/model/Batch.scala
 src/main/scala/org/openapitools/client/model/BatchErrors.scala
@@ -1025,7 +1023,6 @@ src/main/scala/org/openapitools/client/model/RunToolCallObject.scala
 src/main/scala/org/openapitools/client/model/RunToolCallObjectFunction.scala
 src/main/scala/org/openapitools/client/model/StaticChunkingStrategy.scala
 src/main/scala/org/openapitools/client/model/StaticChunkingStrategyRequestParam.scala
-src/main/scala/org/openapitools/client/model/StaticChunkingStrategyResponseParam.scala
 src/main/scala/org/openapitools/client/model/StaticChunkingStrategyStatic.scala
 src/main/scala/org/openapitools/client/model/SubmitToolOutputsRunRequest.scala
 src/main/scala/org/openapitools/client/model/SubmitToolOutputsRunRequestToolOutputsInner.scala

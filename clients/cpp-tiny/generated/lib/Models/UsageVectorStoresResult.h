@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get The vector stores usage in bytes.
 	 */
 	int getUsageBytes();
 
 	/*! \brief Set The vector stores usage in bytes.
 	 */
-	void setUsageBytes(int  usage_bytes);
+	void setUsageBytes(int usage_bytes);
 	/*! \brief Get When `group_by=project_id`, this field provides the project ID of the grouped usage result.
 	 */
 	std::string getProjectId();
 
 	/*! \brief Set When `group_by=project_id`, this field provides the project ID of the grouped usage result.
 	 */
-	void setProjectId(std::string  project_id);
+	void setProjectId(std::string project_id);
 
 
     private:

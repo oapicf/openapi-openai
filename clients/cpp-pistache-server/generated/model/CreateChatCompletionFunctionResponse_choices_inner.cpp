@@ -26,6 +26,8 @@ CreateChatCompletionFunctionResponse_choices_inner::CreateChatCompletionFunction
     
 }
 
+CreateChatCompletionFunctionResponse_choices_inner::~CreateChatCompletionFunctionResponse_choices_inner() = default;
+
 void CreateChatCompletionFunctionResponse_choices_inner::validate() const
 {
     std::stringstream msg;

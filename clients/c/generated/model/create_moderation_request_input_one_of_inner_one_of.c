@@ -30,10 +30,10 @@ static create_moderation_request_input_one_of_inner_one_of_t *create_moderation_
     if (!create_moderation_request_input_one_of_inner_one_of_local_var) {
         return NULL;
     }
+    memset(create_moderation_request_input_one_of_inner_one_of_local_var, 0, sizeof(create_moderation_request_input_one_of_inner_one_of_t));
+    create_moderation_request_input_one_of_inner_one_of_local_var->_library_owned = 1;
     create_moderation_request_input_one_of_inner_one_of_local_var->type = type;
     create_moderation_request_input_one_of_inner_one_of_local_var->image_url = image_url;
-
-    create_moderation_request_input_one_of_inner_one_of_local_var->_library_owned = 1;
     return create_moderation_request_input_one_of_inner_one_of_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) create_moderation_request_input_one_of_inner_one_of_
     openai_api_create_moderation_request_input_one_of_inner_one_of_TYPE_e type,
     create_moderation_request_input_one_of_inner_one_of_image_url_t *image_url
     ) {
-    return create_moderation_request_input_one_of_inner_one_of_create_internal (
+    create_moderation_request_input_one_of_inner_one_of_t *result = create_moderation_request_input_one_of_inner_one_of_create_internal (
         type,
         image_url
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_moderation_request_input_one_of_inner_one_of_free(create_moderation_request_input_one_of_inner_one_of_t *create_moderation_request_input_one_of_inner_one_of) {
@@ -134,10 +137,15 @@ create_moderation_request_input_one_of_inner_one_of_t *create_moderation_request
     image_url_local_nonprim = create_moderation_request_input_one_of_inner_one_of_image_url_parseFromJSON(image_url); //nonprimitive
 
 
+
     create_moderation_request_input_one_of_inner_one_of_local_var = create_moderation_request_input_one_of_inner_one_of_create_internal (
         typeVariable,
         image_url_local_nonprim
         );
+
+    if (!create_moderation_request_input_one_of_inner_one_of_local_var) {
+        goto end;
+    }
 
     return create_moderation_request_input_one_of_inner_one_of_local_var;
 end:

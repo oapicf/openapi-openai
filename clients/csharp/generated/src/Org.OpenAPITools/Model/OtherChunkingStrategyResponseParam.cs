@@ -131,8 +131,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="OtherChunkingStrategyResponseParam" />
     /// </summary>
-    public class OtherChunkingStrategyResponseParamJsonConverter : JsonConverter<OtherChunkingStrategyResponseParam>
+    public partial class OtherChunkingStrategyResponseParamJsonConverter : JsonConverter<OtherChunkingStrategyResponseParam>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OtherChunkingStrategyResponseParamJsonConverter" /> class.
+        /// </summary>
+        public OtherChunkingStrategyResponseParamJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OtherChunkingStrategyResponseParam" />
         /// </summary>

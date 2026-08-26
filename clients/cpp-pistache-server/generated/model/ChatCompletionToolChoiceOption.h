@@ -34,7 +34,7 @@ class  ChatCompletionToolChoiceOption
 {
 public:
     ChatCompletionToolChoiceOption();
-    virtual ~ChatCompletionToolChoiceOption() = default;
+    virtual ~ChatCompletionToolChoiceOption();
 
 
     /// <summary>

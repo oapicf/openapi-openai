@@ -54,10 +54,10 @@ class PredictionContent {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "PredictionContent[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "PredictionContent[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "PredictionContent[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "PredictionContent[type]" has a null value in JSON.');
+        assert(json.containsKey(r'content'), 'Required key "PredictionContent[content]" is missing from JSON.');
+        assert(json[r'content'] != null, 'Required key "PredictionContent[content]" has a null value in JSON.');
         return true;
       }());
 
@@ -117,27 +117,28 @@ class PredictionContent {
 }
 
 /// The type of the predicted content you want to provide. This type is currently always `content`. 
-class PredictionContentTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const PredictionContentTypeEnum._(this.value);
+enum PredictionContentTypeEnum {
+  content._(r'content'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const PredictionContentTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const content = PredictionContentTypeEnum._(r'content');
-
-  /// List of all possible values in this [enum][PredictionContentTypeEnum].
-  static const values = <PredictionContentTypeEnum>[
-    content,
-  ];
-
+  /// Returns the instance of [PredictionContentTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static PredictionContentTypeEnum? fromJson(dynamic value) => PredictionContentTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [PredictionContentTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<PredictionContentTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <PredictionContentTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -159,9 +160,10 @@ class PredictionContentTypeEnumTypeTransformer {
 
   const PredictionContentTypeEnumTypeTransformer._();
 
-  String encode(PredictionContentTypeEnum data) => data.value;
+  String encode(PredictionContentTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a PredictionContentTypeEnum.
+  /// Returns the instance of [PredictionContentTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -170,6 +172,9 @@ class PredictionContentTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   PredictionContentTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is PredictionContentTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'content': return PredictionContentTypeEnum.content;
@@ -182,7 +187,7 @@ class PredictionContentTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [PredictionContentTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static PredictionContentTypeEnumTypeTransformer? _instance;
 }
 

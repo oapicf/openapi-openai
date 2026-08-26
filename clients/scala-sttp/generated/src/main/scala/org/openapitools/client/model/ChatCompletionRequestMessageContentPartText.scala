@@ -21,7 +21,7 @@ case class ChatCompletionRequestMessageContentPartText(
   `type`: ChatCompletionRequestMessageContentPartTextEnums.`Type`,
   /* The text content. */
   text: String
-)
+) extends ChatCompletionRequestUserMessageContentPart
 
 object ChatCompletionRequestMessageContentPartTextEnums {
 

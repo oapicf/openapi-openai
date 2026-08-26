@@ -15,11 +15,9 @@ package org.openapitools.client.model
   /**
    * The strategy used to chunk the file.
    */
-case class VectorStoreFileObjectChunkingStrategy(
-  /* Always `static`. */
-  `type`: VectorStoreFileObjectChunkingStrategyEnums.`Type`,
-  static: StaticChunkingStrategy
-)
+trait VectorStoreFileObjectChunkingStrategy
+object VectorStoreFileObjectChunkingStrategy {
+}
 
 object VectorStoreFileObjectChunkingStrategyEnums {
 

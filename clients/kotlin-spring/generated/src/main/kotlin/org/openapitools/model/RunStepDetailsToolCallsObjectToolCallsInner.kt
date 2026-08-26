@@ -10,6 +10,9 @@ import org.openapitools.model.RunStepDetailsToolCallsFileSearchObject
 import org.openapitools.model.RunStepDetailsToolCallsFileSearchObjectFileSearch
 import org.openapitools.model.RunStepDetailsToolCallsFunctionObject
 import org.openapitools.model.RunStepDetailsToolCallsFunctionObjectFunction
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -23,52 +26,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param id The ID of the tool call object.
- * @param type The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
- * @param codeInterpreter 
- * @param fileSearch 
- * @param function 
  */
-data class RunStepDetailsToolCallsObjectToolCallsInner(
-
-    @Schema(example = "null", required = true, description = "The ID of the tool call object.")
-    @get:JsonProperty("id", required = true) val id: kotlin.String,
-
-    @Schema(example = "null", required = true, description = "The type of tool call. This is always going to be `code_interpreter` for this type of tool call.")
-    @get:JsonProperty("type", required = true) val type: RunStepDetailsToolCallsObjectToolCallsInner.Type,
-
-    @field:Valid
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("code_interpreter", required = true) val codeInterpreter: RunStepDetailsToolCallsCodeObjectCodeInterpreter,
-
-    @field:Valid
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("file_search", required = true) val fileSearch: RunStepDetailsToolCallsFileSearchObjectFileSearch,
-
-    @field:Valid
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("function", required = true) val function: RunStepDetailsToolCallsFunctionObjectFunction
-) {
-
-    /**
-    * The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
-    * Values: code_interpreter,file_search,function
-    */
-    enum class Type(@get:JsonValue val value: kotlin.String) {
-
-        code_interpreter("code_interpreter"),
-        file_search("file_search"),
-        function("function");
-
-        companion object {
-            @JvmStatic
-            @JsonCreator
-            fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RunStepDetailsToolCallsObjectToolCallsInner'")
-            }
-        }
-    }
-
+sealed interface RunStepDetailsToolCallsObjectToolCallsInner {
 }
 

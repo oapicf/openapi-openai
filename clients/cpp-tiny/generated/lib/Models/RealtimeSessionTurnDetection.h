@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set Type of turn detection, only `server_vad` is currently supported. 
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get Activation threshold for VAD (0.0 to 1.0), this defaults to 0.5. A  higher threshold will require louder audio to activate the model, and  thus might perform better in noisy environments. 
 	 */
 	long getThreshold();
 
 	/*! \brief Set Activation threshold for VAD (0.0 to 1.0), this defaults to 0.5. A  higher threshold will require louder audio to activate the model, and  thus might perform better in noisy environments. 
 	 */
-	void setThreshold(long  threshold);
+	void setThreshold(long threshold);
 	/*! \brief Get Amount of audio to include before the VAD detected speech (in  milliseconds). Defaults to 300ms. 
 	 */
 	int getPrefixPaddingMs();
 
 	/*! \brief Set Amount of audio to include before the VAD detected speech (in  milliseconds). Defaults to 300ms. 
 	 */
-	void setPrefixPaddingMs(int  prefix_padding_ms);
+	void setPrefixPaddingMs(int prefix_padding_ms);
 	/*! \brief Get Duration of silence to detect speech stop (in milliseconds). Defaults  to 500ms. With shorter values the model will respond more quickly,  but may jump in on short pauses from the user. 
 	 */
 	int getSilenceDurationMs();
 
 	/*! \brief Set Duration of silence to detect speech stop (in milliseconds). Defaults  to 500ms. With shorter values the model will respond more quickly,  but may jump in on short pauses from the user. 
 	 */
-	void setSilenceDurationMs(int  silence_duration_ms);
+	void setSilenceDurationMs(int silence_duration_ms);
 
 
     private:

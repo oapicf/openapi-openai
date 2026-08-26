@@ -47,7 +47,7 @@ class CreateSpeechRequest
      * @var CreateSpeechRequestModel|null
      * @SerializedName("model")
      * @Type("OpenAPI\Server\Model\CreateSpeechRequestModel")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\CreateSpeechRequestModel")]
@@ -59,7 +59,7 @@ class CreateSpeechRequest
      * @var string|null
      * @SerializedName("input")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     #[Assert\Length(max: 4096)]
@@ -71,7 +71,7 @@ class CreateSpeechRequest
      * @var string|null
      * @SerializedName("voice")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['alloy', 'echo', 'fable', 'onyx', 'nova', 'shimmer'])]
     #[Assert\Type("string")]
@@ -83,7 +83,7 @@ class CreateSpeechRequest
      * @var string|null
      * @SerializedName("response_format")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['mp3', 'opus', 'aac', 'flac', 'wav', 'pcm'])]
     #[Assert\Type("string")]
     protected ?string $responseFormat = 'mp3';
@@ -94,7 +94,7 @@ class CreateSpeechRequest
      * @var float|null
      * @SerializedName("speed")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(0.25)]
     #[Assert\LessThanOrEqual(4)]
@@ -126,12 +126,12 @@ class CreateSpeechRequest
     }
 
     /**
-    * Sets model.
-    *
-    * @param CreateSpeechRequestModel|null $model
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param CreateSpeechRequestModel|null $model
+     *
+     * @return $this
+     */
     public function setModel(?CreateSpeechRequestModel $model): self
     {
         $this->model = $model;
@@ -153,12 +153,12 @@ class CreateSpeechRequest
     }
 
     /**
-    * Sets input.
-    *
-    * @param string|null $input  The text to generate audio for. The maximum length is 4096 characters.
-    *
-    * @return $this
-    */
+     * Sets input.
+     *
+     * @param string|null $input  The text to generate audio for. The maximum length is 4096 characters.
+     *
+     * @return $this
+     */
     public function setInput(?string $input): self
     {
         $this->input = $input;
@@ -180,12 +180,12 @@ class CreateSpeechRequest
     }
 
     /**
-    * Sets voice.
-    *
-    * @param string|null $voice  The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
-    *
-    * @return $this
-    */
+     * Sets voice.
+     *
+     * @param string|null $voice  The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
+     *
+     * @return $this
+     */
     public function setVoice(?string $voice): self
     {
         $this->voice = $voice;
@@ -207,12 +207,12 @@ class CreateSpeechRequest
     }
 
     /**
-    * Sets responseFormat.
-    *
-    * @param string|null $responseFormat  The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
-    *
-    * @return $this
-    */
+     * Sets responseFormat.
+     *
+     * @param string|null $responseFormat  The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
+     *
+     * @return $this
+     */
     public function setResponseFormat(?string $responseFormat = null): self
     {
         $this->responseFormat = $responseFormat;
@@ -234,12 +234,12 @@ class CreateSpeechRequest
     }
 
     /**
-    * Sets speed.
-    *
-    * @param float|null $speed  The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.
-    *
-    * @return $this
-    */
+     * Sets speed.
+     *
+     * @param float|null $speed  The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.
+     *
+     * @return $this
+     */
     public function setSpeed(?float $speed = null): self
     {
         $this->speed = $speed;

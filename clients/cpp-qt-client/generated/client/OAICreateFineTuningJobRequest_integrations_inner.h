@@ -33,13 +33,13 @@ class OAICreateFineTuningJobRequest_integrations_inner_wandb;
 class OAICreateFineTuningJobRequest_integrations_inner : public OAIObject {
 public:
     OAICreateFineTuningJobRequest_integrations_inner();
-    OAICreateFineTuningJobRequest_integrations_inner(QString json);
+    OAICreateFineTuningJobRequest_integrations_inner(const QString &json);
     ~OAICreateFineTuningJobRequest_integrations_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

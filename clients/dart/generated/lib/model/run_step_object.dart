@@ -178,10 +178,31 @@ class RunStepObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "RunStepObject[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "RunStepObject[id]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "RunStepObject[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "RunStepObject[object]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "RunStepObject[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "RunStepObject[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'assistant_id'), 'Required key "RunStepObject[assistant_id]" is missing from JSON.');
+        assert(json[r'assistant_id'] != null, 'Required key "RunStepObject[assistant_id]" has a null value in JSON.');
+        assert(json.containsKey(r'thread_id'), 'Required key "RunStepObject[thread_id]" is missing from JSON.');
+        assert(json[r'thread_id'] != null, 'Required key "RunStepObject[thread_id]" has a null value in JSON.');
+        assert(json.containsKey(r'run_id'), 'Required key "RunStepObject[run_id]" is missing from JSON.');
+        assert(json[r'run_id'] != null, 'Required key "RunStepObject[run_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RunStepObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RunStepObject[type]" has a null value in JSON.');
+        assert(json.containsKey(r'status'), 'Required key "RunStepObject[status]" is missing from JSON.');
+        assert(json[r'status'] != null, 'Required key "RunStepObject[status]" has a null value in JSON.');
+        assert(json.containsKey(r'step_details'), 'Required key "RunStepObject[step_details]" is missing from JSON.');
+        assert(json[r'step_details'] != null, 'Required key "RunStepObject[step_details]" has a null value in JSON.');
+        assert(json.containsKey(r'last_error'), 'Required key "RunStepObject[last_error]" is missing from JSON.');
+        assert(json.containsKey(r'expired_at'), 'Required key "RunStepObject[expired_at]" is missing from JSON.');
+        assert(json.containsKey(r'cancelled_at'), 'Required key "RunStepObject[cancelled_at]" is missing from JSON.');
+        assert(json.containsKey(r'failed_at'), 'Required key "RunStepObject[failed_at]" is missing from JSON.');
+        assert(json.containsKey(r'completed_at'), 'Required key "RunStepObject[completed_at]" is missing from JSON.');
+        assert(json.containsKey(r'metadata'), 'Required key "RunStepObject[metadata]" is missing from JSON.');
+        assert(json.containsKey(r'usage'), 'Required key "RunStepObject[usage]" is missing from JSON.');
         return true;
       }());
 
@@ -269,27 +290,28 @@ class RunStepObject {
 }
 
 /// The object type, which is always `thread.run.step`.
-class RunStepObjectObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepObjectObjectEnum._(this.value);
+enum RunStepObjectObjectEnum {
+  threadPeriodRunPeriodStep._(r'thread.run.step'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepObjectObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodRunPeriodStep = RunStepObjectObjectEnum._(r'thread.run.step');
-
-  /// List of all possible values in this [enum][RunStepObjectObjectEnum].
-  static const values = <RunStepObjectObjectEnum>[
-    threadPeriodRunPeriodStep,
-  ];
-
+  /// Returns the instance of [RunStepObjectObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepObjectObjectEnum? fromJson(dynamic value) => RunStepObjectObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepObjectObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepObjectObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepObjectObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -311,9 +333,10 @@ class RunStepObjectObjectEnumTypeTransformer {
 
   const RunStepObjectObjectEnumTypeTransformer._();
 
-  String encode(RunStepObjectObjectEnum data) => data.value;
+  String encode(RunStepObjectObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepObjectObjectEnum.
+  /// Returns the instance of [RunStepObjectObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -322,6 +345,9 @@ class RunStepObjectObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepObjectObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepObjectObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.run.step': return RunStepObjectObjectEnum.threadPeriodRunPeriodStep;
@@ -334,35 +360,35 @@ class RunStepObjectObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStepObjectObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepObjectObjectEnumTypeTransformer? _instance;
 }
 
 
 /// The type of run step, which can be either `message_creation` or `tool_calls`.
-class RunStepObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepObjectTypeEnum._(this.value);
+enum RunStepObjectTypeEnum {
+  messageCreation._(r'message_creation'),
+  toolCalls._(r'tool_calls'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const messageCreation = RunStepObjectTypeEnum._(r'message_creation');
-  static const toolCalls = RunStepObjectTypeEnum._(r'tool_calls');
-
-  /// List of all possible values in this [enum][RunStepObjectTypeEnum].
-  static const values = <RunStepObjectTypeEnum>[
-    messageCreation,
-    toolCalls,
-  ];
-
+  /// Returns the instance of [RunStepObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepObjectTypeEnum? fromJson(dynamic value) => RunStepObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -384,9 +410,10 @@ class RunStepObjectTypeEnumTypeTransformer {
 
   const RunStepObjectTypeEnumTypeTransformer._();
 
-  String encode(RunStepObjectTypeEnum data) => data.value;
+  String encode(RunStepObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepObjectTypeEnum.
+  /// Returns the instance of [RunStepObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -395,6 +422,9 @@ class RunStepObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'message_creation': return RunStepObjectTypeEnum.messageCreation;
@@ -408,41 +438,38 @@ class RunStepObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStepObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepObjectTypeEnumTypeTransformer? _instance;
 }
 
 
 /// The status of the run step, which can be either `in_progress`, `cancelled`, `failed`, `completed`, or `expired`.
-class RunStepObjectStatusEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepObjectStatusEnum._(this.value);
+enum RunStepObjectStatusEnum {
+  inProgress._(r'in_progress'),
+  cancelled._(r'cancelled'),
+  failed._(r'failed'),
+  completed._(r'completed'),
+  expired._(r'expired'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepObjectStatusEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const inProgress = RunStepObjectStatusEnum._(r'in_progress');
-  static const cancelled = RunStepObjectStatusEnum._(r'cancelled');
-  static const failed = RunStepObjectStatusEnum._(r'failed');
-  static const completed = RunStepObjectStatusEnum._(r'completed');
-  static const expired = RunStepObjectStatusEnum._(r'expired');
-
-  /// List of all possible values in this [enum][RunStepObjectStatusEnum].
-  static const values = <RunStepObjectStatusEnum>[
-    inProgress,
-    cancelled,
-    failed,
-    completed,
-    expired,
-  ];
-
+  /// Returns the instance of [RunStepObjectStatusEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepObjectStatusEnum? fromJson(dynamic value) => RunStepObjectStatusEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepObjectStatusEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepObjectStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepObjectStatusEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -464,9 +491,10 @@ class RunStepObjectStatusEnumTypeTransformer {
 
   const RunStepObjectStatusEnumTypeTransformer._();
 
-  String encode(RunStepObjectStatusEnum data) => data.value;
+  String encode(RunStepObjectStatusEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepObjectStatusEnum.
+  /// Returns the instance of [RunStepObjectStatusEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -475,6 +503,9 @@ class RunStepObjectStatusEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepObjectStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepObjectStatusEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'in_progress': return RunStepObjectStatusEnum.inProgress;
@@ -491,7 +522,7 @@ class RunStepObjectStatusEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStepObjectStatusEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepObjectStatusEnumTypeTransformer? _instance;
 }
 

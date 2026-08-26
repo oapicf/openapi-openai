@@ -106,7 +106,7 @@ CreateChatCompletionStreamResponse_usage::getCompletionTokens()
 }
 
 void
-CreateChatCompletionStreamResponse_usage::setCompletionTokens(int  completion_tokens)
+CreateChatCompletionStreamResponse_usage::setCompletionTokens(int completion_tokens)
 {
 	this->completion_tokens = completion_tokens;
 }
@@ -118,7 +118,7 @@ CreateChatCompletionStreamResponse_usage::getPromptTokens()
 }
 
 void
-CreateChatCompletionStreamResponse_usage::setPromptTokens(int  prompt_tokens)
+CreateChatCompletionStreamResponse_usage::setPromptTokens(int prompt_tokens)
 {
 	this->prompt_tokens = prompt_tokens;
 }
@@ -130,7 +130,7 @@ CreateChatCompletionStreamResponse_usage::getTotalTokens()
 }
 
 void
-CreateChatCompletionStreamResponse_usage::setTotalTokens(int  total_tokens)
+CreateChatCompletionStreamResponse_usage::setTotalTokens(int total_tokens)
 {
 	this->total_tokens = total_tokens;
 }

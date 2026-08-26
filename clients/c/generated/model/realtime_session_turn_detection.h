@@ -28,18 +28,18 @@ openai_api_realtime_session_turn_detection_TYPE_e realtime_session_turn_detectio
 
 typedef struct realtime_session_turn_detection_t {
     openai_api_realtime_session_turn_detection_TYPE_e type; //enum
-    double threshold; //numeric
-    int prefix_padding_ms; //numeric
-    int silence_duration_ms; //numeric
+    double *threshold; //numeric
+    int *prefix_padding_ms; //numeric
+    int *silence_duration_ms; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } realtime_session_turn_detection_t;
 
 __attribute__((deprecated)) realtime_session_turn_detection_t *realtime_session_turn_detection_create(
     openai_api_realtime_session_turn_detection_TYPE_e type,
-    double threshold,
-    int prefix_padding_ms,
-    int silence_duration_ms
+    double *threshold,
+    int *prefix_padding_ms,
+    int *silence_duration_ms
 );
 
 void realtime_session_turn_detection_free(realtime_session_turn_detection_t *realtime_session_turn_detection);

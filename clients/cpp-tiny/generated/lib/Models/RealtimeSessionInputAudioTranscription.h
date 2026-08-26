@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set The model to use for transcription, `whisper-1` is the only currently  supported model. 
 	 */
-	void setModel(std::string  model);
+	void setModel(std::string model);
 
 
     private:

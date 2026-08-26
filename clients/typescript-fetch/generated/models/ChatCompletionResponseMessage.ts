@@ -61,7 +61,7 @@ export interface ChatCompletionResponseMessage {
     toolCalls?: Array<ChatCompletionMessageToolCall>;
     /**
      * The role of the author of this message.
-     * @type {string}
+     * @type {ChatCompletionResponseMessageRoleEnum}
      * @memberof ChatCompletionResponseMessage
      */
     role: ChatCompletionResponseMessageRoleEnum;
@@ -97,6 +97,8 @@ export function instanceOfChatCompletionResponseMessage(value: object): value is
     if (!('content' in value) || value['content'] === undefined) return false;
     if (!('refusal' in value) || value['refusal'] === undefined) return false;
     if (!('role' in value) || value['role'] === undefined) return false;
+    if (value['role'] !== 'assistant') return false;
+    
     return true;
 }
 
@@ -115,7 +117,7 @@ export function ChatCompletionResponseMessageFromJSONTyped(json: any, ignoreDisc
         'toolCalls': json['tool_calls'] == null ? undefined : ((json['tool_calls'] as Array<any>).map(ChatCompletionMessageToolCallFromJSON)),
         'role': json['role'],
         'functionCall': json['function_call'] == null ? undefined : ChatCompletionResponseMessageFunctionCallFromJSON(json['function_call']),
-        'audio': json['audio'] == null ? undefined : ChatCompletionResponseMessageAudioFromJSON(json['audio']),
+        'audio': json['audio'] === undefined ? undefined : json['audio'] === null ? null : ChatCompletionResponseMessageAudioFromJSON(json['audio']),
     };
 }
 

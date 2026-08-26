@@ -76,7 +76,7 @@ openai_api_create_image_request_STYLE_e create_image_request_style_FromString(ch
 static create_image_request_t *create_image_request_create_internal(
     char *prompt,
     create_image_request_model_t *model,
-    int n,
+    int *n,
     openai_api_create_image_request_QUALITY_e quality,
     openai_api_create_image_request_RESPONSEFORMAT_e response_format,
     openai_api_create_image_request_SIZE_e size,
@@ -87,6 +87,8 @@ static create_image_request_t *create_image_request_create_internal(
     if (!create_image_request_local_var) {
         return NULL;
     }
+    memset(create_image_request_local_var, 0, sizeof(create_image_request_t));
+    create_image_request_local_var->_library_owned = 1;
     create_image_request_local_var->prompt = prompt;
     create_image_request_local_var->model = model;
     create_image_request_local_var->n = n;
@@ -95,31 +97,38 @@ static create_image_request_t *create_image_request_create_internal(
     create_image_request_local_var->size = size;
     create_image_request_local_var->style = style;
     create_image_request_local_var->user = user;
-
-    create_image_request_local_var->_library_owned = 1;
     return create_image_request_local_var;
 }
 
 __attribute__((deprecated)) create_image_request_t *create_image_request_create(
     char *prompt,
     create_image_request_model_t *model,
-    int n,
+    int *n,
     openai_api_create_image_request_QUALITY_e quality,
     openai_api_create_image_request_RESPONSEFORMAT_e response_format,
     openai_api_create_image_request_SIZE_e size,
     openai_api_create_image_request_STYLE_e style,
     char *user
     ) {
-    return create_image_request_create_internal (
+    int *n_copy = NULL;
+    if (n) {
+        n_copy = malloc(sizeof(int));
+        if (n_copy) *n_copy = *n;
+    }
+    create_image_request_t *result = create_image_request_create_internal (
         prompt,
         model,
-        n,
+        n_copy,
         quality,
         response_format,
         size,
         style,
         user
         );
+    if (!result) {
+        free(n_copy);
+    }
+    return result;
 }
 
 void create_image_request_free(create_image_request_t *create_image_request) {
@@ -138,6 +147,10 @@ void create_image_request_free(create_image_request_t *create_image_request) {
     if (create_image_request->model) {
         create_image_request_model_free(create_image_request->model);
         create_image_request->model = NULL;
+    }
+    if (create_image_request->n) {
+        free(create_image_request->n);
+        create_image_request->n = NULL;
     }
     if (create_image_request->user) {
         free(create_image_request->user);
@@ -173,7 +186,7 @@ cJSON *create_image_request_convertToJSON(create_image_request_t *create_image_r
 
     // create_image_request->n
     if(create_image_request->n) {
-    if(cJSON_AddNumberToObject(item, "n", create_image_request->n) == NULL) {
+    if(cJSON_AddNumberToObject(item, "n", *create_image_request->n) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -234,8 +247,15 @@ create_image_request_t *create_image_request_parseFromJSON(cJSON *create_image_r
 
     create_image_request_t *create_image_request_local_var = NULL;
 
+    char *prompt_local_str = NULL;
+
     // define the local variable for create_image_request->model
     create_image_request_model_t *model_local_nonprim = NULL;
+
+    // define the local variable for create_image_request->n
+    int *n_local_var = NULL;
+
+    char *user_local_str = NULL;
 
     // create_image_request->prompt
     cJSON *prompt = cJSON_GetObjectItemCaseSensitive(create_image_requestJSON, "prompt");
@@ -271,6 +291,12 @@ create_image_request_t *create_image_request_parseFromJSON(cJSON *create_image_r
     {
     goto end; //Numeric
     }
+    n_local_var = malloc(sizeof(int));
+    if(!n_local_var)
+    {
+        goto end;
+    }
+    *n_local_var = n->valuedouble;
     }
 
     // create_image_request->quality
@@ -342,22 +368,41 @@ create_image_request_t *create_image_request_parseFromJSON(cJSON *create_image_r
     }
 
 
+    if (prompt && !cJSON_IsNull(prompt)) prompt_local_str = strdup(prompt->valuestring);
+    if (user && !cJSON_IsNull(user)) user_local_str = strdup(user->valuestring);
+
     create_image_request_local_var = create_image_request_create_internal (
-        strdup(prompt->valuestring),
+        prompt_local_str,
         model ? model_local_nonprim : NULL,
-        n ? n->valuedouble : 0,
+        n_local_var,
         quality ? qualityVariable : openai_api_create_image_request_QUALITY_NULL,
         response_format ? response_formatVariable : openai_api_create_image_request_RESPONSEFORMAT_NULL,
         size ? sizeVariable : openai_api_create_image_request_SIZE_NULL,
         style ? styleVariable : openai_api_create_image_request_STYLE_NULL,
-        user && !cJSON_IsNull(user) ? strdup(user->valuestring) : NULL
+        user_local_str
         );
+
+    if (!create_image_request_local_var) {
+        goto end;
+    }
 
     return create_image_request_local_var;
 end:
+    if (prompt_local_str) {
+        free(prompt_local_str);
+        prompt_local_str = NULL;
+    }
     if (model_local_nonprim) {
         create_image_request_model_free(model_local_nonprim);
         model_local_nonprim = NULL;
+    }
+    if (n_local_var) {
+        free(n_local_var);
+        n_local_var = NULL;
+    }
+    if (user_local_str) {
+        free(user_local_str);
+        user_local_str = NULL;
     }
     return NULL;
 

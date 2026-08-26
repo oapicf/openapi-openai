@@ -86,7 +86,7 @@ CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_s
 }
 
 void
-CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy::setType(std::string  type)
+CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_s
 }
 
 void
-CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy::setRStatic(Static_Chunking_Strategy_static  r_static)
+CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy::setRStatic(Static_Chunking_Strategy_static r_static)
 {
 	this->r_static = r_static;
 }

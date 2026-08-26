@@ -23,7 +23,8 @@ type AuditLogInviteSent struct {
 	Data AuditLogInviteSentData `json:"data,omitempty"`
 }
 
-// AssertAuditLogInviteSentRequired checks if the required fields are not zero-ed
+// AssertAuditLogInviteSentRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertAuditLogInviteSentRequired(obj AuditLogInviteSent) error {
 	if err := AssertAuditLogInviteSentDataRequired(obj.Data); err != nil {
 		return err

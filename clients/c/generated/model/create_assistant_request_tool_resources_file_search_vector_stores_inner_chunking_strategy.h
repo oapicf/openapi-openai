@@ -15,7 +15,7 @@
 
 typedef struct create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_t create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_t;
 
-#include "auto_chunking_strategy.h"
+#include "auto_chunking_strategy_request_param.h"
 #include "static_chunking_strategy.h"
 #include "static_chunking_strategy_static.h"
 

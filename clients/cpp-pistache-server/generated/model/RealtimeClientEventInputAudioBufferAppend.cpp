@@ -28,6 +28,8 @@ RealtimeClientEventInputAudioBufferAppend::RealtimeClientEventInputAudioBufferAp
     
 }
 
+RealtimeClientEventInputAudioBufferAppend::~RealtimeClientEventInputAudioBufferAppend() = default;
+
 void RealtimeClientEventInputAudioBufferAppend::validate() const
 {
     std::stringstream msg;

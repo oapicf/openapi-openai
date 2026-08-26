@@ -12,18 +12,21 @@ static audit_log_user_deleted_t *audit_log_user_deleted_create_internal(
     if (!audit_log_user_deleted_local_var) {
         return NULL;
     }
-    audit_log_user_deleted_local_var->id = id;
-
+    memset(audit_log_user_deleted_local_var, 0, sizeof(audit_log_user_deleted_t));
     audit_log_user_deleted_local_var->_library_owned = 1;
+    audit_log_user_deleted_local_var->id = id;
     return audit_log_user_deleted_local_var;
 }
 
 __attribute__((deprecated)) audit_log_user_deleted_t *audit_log_user_deleted_create(
     char *id
     ) {
-    return audit_log_user_deleted_create_internal (
+    audit_log_user_deleted_t *result = audit_log_user_deleted_create_internal (
         id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void audit_log_user_deleted_free(audit_log_user_deleted_t *audit_log_user_deleted) {
@@ -64,6 +67,8 @@ audit_log_user_deleted_t *audit_log_user_deleted_parseFromJSON(cJSON *audit_log_
 
     audit_log_user_deleted_t *audit_log_user_deleted_local_var = NULL;
 
+    char *id_local_str = NULL;
+
     // audit_log_user_deleted->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(audit_log_user_deletedJSON, "id");
     if (cJSON_IsNull(id)) {
@@ -77,12 +82,22 @@ audit_log_user_deleted_t *audit_log_user_deleted_parseFromJSON(cJSON *audit_log_
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     audit_log_user_deleted_local_var = audit_log_user_deleted_create_internal (
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL
+        id_local_str
         );
+
+    if (!audit_log_user_deleted_local_var) {
+        goto end;
+    }
 
     return audit_log_user_deleted_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     return NULL;
 
 }

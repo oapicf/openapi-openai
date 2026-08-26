@@ -65,10 +65,8 @@ class CompleteUploadRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CompleteUploadRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CompleteUploadRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'part_ids'), 'Required key "CompleteUploadRequest[part_ids]" is missing from JSON.');
+        assert(json[r'part_ids'] != null, 'Required key "CompleteUploadRequest[part_ids]" has a null value in JSON.');
         return true;
       }());
 

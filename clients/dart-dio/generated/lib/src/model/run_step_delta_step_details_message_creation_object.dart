@@ -93,8 +93,9 @@ class _$RunStepDeltaStepDetailsMessageCreationObjectSerializer implements Primit
         case r'message_creation':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RunStepDeltaStepDetailsMessageCreationObjectMessageCreation),
-          ) as RunStepDeltaStepDetailsMessageCreationObjectMessageCreation;
+            specifiedType: const FullType.nullable(RunStepDeltaStepDetailsMessageCreationObjectMessageCreation),
+          ) as RunStepDeltaStepDetailsMessageCreationObjectMessageCreation?;
+          if (valueDes == null) continue;
           result.messageCreation.replace(valueDes);
           break;
         default:

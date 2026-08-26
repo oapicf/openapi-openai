@@ -29,7 +29,7 @@ import {
 export interface MessageContentImageUrlObject {
     /**
      * The type of the content part.
-     * @type {string}
+     * @type {MessageContentImageUrlObjectTypeEnum}
      * @memberof MessageContentImageUrlObject
      */
     type: MessageContentImageUrlObjectTypeEnum;
@@ -56,7 +56,9 @@ export type MessageContentImageUrlObjectTypeEnum = typeof MessageContentImageUrl
  */
 export function instanceOfMessageContentImageUrlObject(value: object): value is MessageContentImageUrlObject {
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('imageUrl' in value) || value['imageUrl'] === undefined) return false;
+    if (value['type'] !== 'image_url') return false;
+    
+    if ((!('imageUrl' in (value as Record<string, any>)) && !('image_url' in (value as Record<string, any>))) || ((value as Record<string, any>)['imageUrl'] === undefined && (value as Record<string, any>)['image_url'] === undefined)) return false;
     return true;
 }
 

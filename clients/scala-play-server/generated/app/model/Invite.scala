@@ -14,7 +14,7 @@ import play.api.libs.json._
   * @param acceptedAt The Unix timestamp (in seconds) of when the invite was accepted.
   * @param projects The projects that were granted membership upon acceptance of the invite.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 case class Invite(
   `object`: Invite.Object.Value,
   id: String,

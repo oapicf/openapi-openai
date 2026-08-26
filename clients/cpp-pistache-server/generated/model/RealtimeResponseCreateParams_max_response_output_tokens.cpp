@@ -24,6 +24,8 @@ RealtimeResponseCreateParams_max_response_output_tokens::RealtimeResponseCreateP
     
 }
 
+RealtimeResponseCreateParams_max_response_output_tokens::~RealtimeResponseCreateParams_max_response_output_tokens() = default;
+
 void RealtimeResponseCreateParams_max_response_output_tokens::validate() const
 {
     std::stringstream msg;

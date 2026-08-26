@@ -35,7 +35,7 @@ export interface MessageDeltaContentTextObject {
     index: number;
     /**
      * Always `text`.
-     * @type {string}
+     * @type {MessageDeltaContentTextObjectTypeEnum}
      * @memberof MessageDeltaContentTextObject
      */
     type: MessageDeltaContentTextObjectTypeEnum;
@@ -63,6 +63,8 @@ export type MessageDeltaContentTextObjectTypeEnum = typeof MessageDeltaContentTe
 export function instanceOfMessageDeltaContentTextObject(value: object): value is MessageDeltaContentTextObject {
     if (!('index' in value) || value['index'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'text') return false;
+    
     return true;
 }
 

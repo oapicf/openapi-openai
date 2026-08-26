@@ -102,7 +102,7 @@ Batch_errors::getObject()
 }
 
 void
-Batch_errors::setObject(std::string  object)
+Batch_errors::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -114,7 +114,7 @@ Batch_errors::getData()
 }
 
 void
-Batch_errors::setData(std::list <Batch_errors_data_inner> data)
+Batch_errors::setData(std::list<Batch_errors_data_inner> data)
 {
 	this->data = data;
 }

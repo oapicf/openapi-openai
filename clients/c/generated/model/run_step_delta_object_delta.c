@@ -12,18 +12,21 @@ static run_step_delta_object_delta_t *run_step_delta_object_delta_create_interna
     if (!run_step_delta_object_delta_local_var) {
         return NULL;
     }
-    run_step_delta_object_delta_local_var->step_details = step_details;
-
+    memset(run_step_delta_object_delta_local_var, 0, sizeof(run_step_delta_object_delta_t));
     run_step_delta_object_delta_local_var->_library_owned = 1;
+    run_step_delta_object_delta_local_var->step_details = step_details;
     return run_step_delta_object_delta_local_var;
 }
 
 __attribute__((deprecated)) run_step_delta_object_delta_t *run_step_delta_object_delta_create(
     run_step_delta_object_delta_step_details_t *step_details
     ) {
-    return run_step_delta_object_delta_create_internal (
+    run_step_delta_object_delta_t *result = run_step_delta_object_delta_create_internal (
         step_details
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_step_delta_object_delta_free(run_step_delta_object_delta_t *run_step_delta_object_delta) {
@@ -82,9 +85,14 @@ run_step_delta_object_delta_t *run_step_delta_object_delta_parseFromJSON(cJSON *
     }
 
 
+
     run_step_delta_object_delta_local_var = run_step_delta_object_delta_create_internal (
         step_details ? step_details_local_nonprim : NULL
         );
+
+    if (!run_step_delta_object_delta_local_var) {
+        goto end;
+    }
 
     return run_step_delta_object_delta_local_var;
 end:

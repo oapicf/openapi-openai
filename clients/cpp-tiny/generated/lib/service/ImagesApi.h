@@ -23,7 +23,7 @@ class ImagesApi : public Service {
 public:
     ImagesApi() = default;
 
-    virtual ~ImagesApi() = default;
+    virtual ~ImagesApi();
 
     /**
     * Creates an image given a prompt..

@@ -50,8 +50,8 @@ function Initialize-ChatCompletionRequestMessageContentPartText {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "text" = ${Text}
+            'type' = ${Type}
+            'text' = ${Text}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToChatCompletionRequestMessageContentPartText {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ChatCompletionRequestMessageContentPartText
-        $AllProperties = ("type", "text")
+        $AllProperties = ('type', 'text')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToChatCompletionRequestMessageContentPartText {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "text"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'text'))) {
             throw "Error! JSON cannot be serialized due to the required property 'text' missing."
         } else {
-            $Text = $JsonParameters.PSobject.Properties["text"].value
+            $Text = $JsonParameters.PSobject.Properties['text'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "text" = ${Text}
+            'type' = ${Type}
+            'text' = ${Text}
         }
 
         return $PSO

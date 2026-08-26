@@ -27,7 +27,7 @@ message ThreadObject {
     OBJECT_THREAD = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The Unix timestamp (in seconds) for when the thread was created.
   int32 created_at = 295938284;

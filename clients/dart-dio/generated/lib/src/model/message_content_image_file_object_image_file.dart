@@ -94,8 +94,9 @@ class _$MessageContentImageFileObjectImageFileSerializer implements PrimitiveSer
         case r'detail':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MessageContentImageFileObjectImageFileDetailEnum),
-          ) as MessageContentImageFileObjectImageFileDetailEnum;
+            specifiedType: const FullType.nullable(MessageContentImageFileObjectImageFileDetailEnum),
+          ) as MessageContentImageFileObjectImageFileDetailEnum?;
+          if (valueDes == null) continue;
           result.detail = valueDes;
           break;
         default:

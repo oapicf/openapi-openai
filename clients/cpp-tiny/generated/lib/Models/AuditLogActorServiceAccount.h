@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set The service account id.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 
 
     private:

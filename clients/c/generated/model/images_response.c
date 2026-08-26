@@ -6,28 +6,37 @@
 
 
 static images_response_t *images_response_create_internal(
-    int created,
+    int *created,
     list_t *data
     ) {
     images_response_t *images_response_local_var = malloc(sizeof(images_response_t));
     if (!images_response_local_var) {
         return NULL;
     }
+    memset(images_response_local_var, 0, sizeof(images_response_t));
+    images_response_local_var->_library_owned = 1;
     images_response_local_var->created = created;
     images_response_local_var->data = data;
-
-    images_response_local_var->_library_owned = 1;
     return images_response_local_var;
 }
 
 __attribute__((deprecated)) images_response_t *images_response_create(
-    int created,
+    int *created,
     list_t *data
     ) {
-    return images_response_create_internal (
-        created,
+    int *created_copy = NULL;
+    if (created) {
+        created_copy = malloc(sizeof(int));
+        if (created_copy) *created_copy = *created;
+    }
+    images_response_t *result = images_response_create_internal (
+        created_copy,
         data
         );
+    if (!result) {
+        free(created_copy);
+    }
+    return result;
 }
 
 void images_response_free(images_response_t *images_response) {
@@ -39,6 +48,10 @@ void images_response_free(images_response_t *images_response) {
         return ;
     }
     listEntry_t *listEntry;
+    if (images_response->created) {
+        free(images_response->created);
+        images_response->created = NULL;
+    }
     if (images_response->data) {
         list_ForEach(listEntry, images_response->data) {
             image_free(listEntry->data);
@@ -56,7 +69,7 @@ cJSON *images_response_convertToJSON(images_response_t *images_response) {
     if (!images_response->created) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created", images_response->created) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created", *images_response->created) == NULL) {
     goto fail; //Numeric
     }
 
@@ -93,6 +106,9 @@ images_response_t *images_response_parseFromJSON(cJSON *images_responseJSON){
 
     images_response_t *images_response_local_var = NULL;
 
+    // define the local variable for images_response->created
+    int *created_local_var = NULL;
+
     // define the local list for images_response->data
     list_t *dataList = NULL;
 
@@ -110,6 +126,12 @@ images_response_t *images_response_parseFromJSON(cJSON *images_responseJSON){
     {
     goto end; //Numeric
     }
+    created_local_var = malloc(sizeof(int));
+    if(!created_local_var)
+    {
+        goto end;
+    }
+    *created_local_var = created->valuedouble;
 
     // images_response->data
     cJSON *data = cJSON_GetObjectItemCaseSensitive(images_responseJSON, "data");
@@ -139,13 +161,22 @@ images_response_t *images_response_parseFromJSON(cJSON *images_responseJSON){
     }
 
 
+
     images_response_local_var = images_response_create_internal (
-        created->valuedouble,
+        created_local_var,
         dataList
         );
 
+    if (!images_response_local_var) {
+        goto end;
+    }
+
     return images_response_local_var;
 end:
+    if (created_local_var) {
+        free(created_local_var);
+        created_local_var = NULL;
+    }
     if (dataList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, dataList) {

@@ -61,10 +61,12 @@ class ChatCompletionMessageToolCall {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ChatCompletionMessageToolCall[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ChatCompletionMessageToolCall[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "ChatCompletionMessageToolCall[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "ChatCompletionMessageToolCall[id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "ChatCompletionMessageToolCall[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "ChatCompletionMessageToolCall[type]" has a null value in JSON.');
+        assert(json.containsKey(r'function'), 'Required key "ChatCompletionMessageToolCall[function]" is missing from JSON.');
+        assert(json[r'function'] != null, 'Required key "ChatCompletionMessageToolCall[function]" has a null value in JSON.');
         return true;
       }());
 
@@ -126,27 +128,28 @@ class ChatCompletionMessageToolCall {
 }
 
 /// The type of the tool. Currently, only `function` is supported.
-class ChatCompletionMessageToolCallTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ChatCompletionMessageToolCallTypeEnum._(this.value);
+enum ChatCompletionMessageToolCallTypeEnum {
+  function_._(r'function'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ChatCompletionMessageToolCallTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const function_ = ChatCompletionMessageToolCallTypeEnum._(r'function');
-
-  /// List of all possible values in this [enum][ChatCompletionMessageToolCallTypeEnum].
-  static const values = <ChatCompletionMessageToolCallTypeEnum>[
-    function_,
-  ];
-
+  /// Returns the instance of [ChatCompletionMessageToolCallTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ChatCompletionMessageToolCallTypeEnum? fromJson(dynamic value) => ChatCompletionMessageToolCallTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ChatCompletionMessageToolCallTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ChatCompletionMessageToolCallTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ChatCompletionMessageToolCallTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -168,9 +171,10 @@ class ChatCompletionMessageToolCallTypeEnumTypeTransformer {
 
   const ChatCompletionMessageToolCallTypeEnumTypeTransformer._();
 
-  String encode(ChatCompletionMessageToolCallTypeEnum data) => data.value;
+  String encode(ChatCompletionMessageToolCallTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ChatCompletionMessageToolCallTypeEnum.
+  /// Returns the instance of [ChatCompletionMessageToolCallTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -179,6 +183,9 @@ class ChatCompletionMessageToolCallTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ChatCompletionMessageToolCallTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ChatCompletionMessageToolCallTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'function': return ChatCompletionMessageToolCallTypeEnum.function_;
@@ -191,7 +198,7 @@ class ChatCompletionMessageToolCallTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ChatCompletionMessageToolCallTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ChatCompletionMessageToolCallTypeEnumTypeTransformer? _instance;
 }
 

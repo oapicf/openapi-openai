@@ -34,7 +34,7 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ModifyAssistantRequest" /> class.
         /// </summary>
-        /// <param name="model">model</param>
+        /// <param name="model">ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. </param>
         /// <param name="name">The name of the assistant. The maximum length is 256 characters. </param>
         /// <param name="description">The description of the assistant. The maximum length is 512 characters. </param>
         /// <param name="instructions">The system instructions that the assistant uses. The maximum length is 256,000 characters. </param>
@@ -70,10 +70,11 @@ namespace Org.OpenAPITools.Model
         public Option<string?> ModelOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Model
+        /// ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
         /// </summary>
+        /// <value>ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. </value>
         [JsonPropertyName("model")]
-        public string? Model { get { return this.ModelOption; } set { this.ModelOption = new(value); } }
+        public string? Model { get { return this.ModelOption.Value; } set { this.ModelOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -87,7 +88,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The name of the assistant. The maximum length is 256 characters. </value>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -101,7 +102,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The description of the assistant. The maximum length is 512 characters. </value>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Instructions
@@ -115,7 +116,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The system instructions that the assistant uses. The maximum length is 256,000 characters. </value>
         [JsonPropertyName("instructions")]
-        public string? Instructions { get { return this.InstructionsOption; } set { this.InstructionsOption = new(value); } }
+        public string? Instructions { get { return this.InstructionsOption.Value; } set { this.InstructionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Tools
@@ -129,7 +130,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types &#x60;code_interpreter&#x60;, &#x60;file_search&#x60;, or &#x60;function&#x60;. </value>
         [JsonPropertyName("tools")]
-        public List<AssistantObjectToolsInner>? Tools { get { return this.ToolsOption; } set { this.ToolsOption = new(value); } }
+        public List<AssistantObjectToolsInner>? Tools { get { return this.ToolsOption.Value; } set { this.ToolsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ToolResources
@@ -142,7 +143,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ToolResources
         /// </summary>
         [JsonPropertyName("tool_resources")]
-        public ModifyAssistantRequestToolResources? ToolResources { get { return this.ToolResourcesOption; } set { this.ToolResourcesOption = new(value); } }
+        public ModifyAssistantRequestToolResources? ToolResources { get { return this.ToolResourcesOption.Value; } set { this.ToolResourcesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Metadata
@@ -156,7 +157,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. </value>
         [JsonPropertyName("metadata")]
-        public Object? Metadata { get { return this.MetadataOption; } set { this.MetadataOption = new(value); } }
+        public Object? Metadata { get { return this.MetadataOption.Value; } set { this.MetadataOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Temperature
@@ -171,7 +172,7 @@ namespace Org.OpenAPITools.Model
         /// <value>What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. </value>
         /* <example>1</example> */
         [JsonPropertyName("temperature")]
-        public decimal? Temperature { get { return this.TemperatureOption; } set { this.TemperatureOption = new(value); } }
+        public decimal? Temperature { get { return this.TemperatureOption.Value; } set { this.TemperatureOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TopP
@@ -186,7 +187,7 @@ namespace Org.OpenAPITools.Model
         /// <value>An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. </value>
         /* <example>1</example> */
         [JsonPropertyName("top_p")]
-        public decimal? TopP { get { return this.TopPOption; } set { this.TopPOption = new(value); } }
+        public decimal? TopP { get { return this.TopPOption.Value; } set { this.TopPOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ResponseFormat
@@ -199,7 +200,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ResponseFormat
         /// </summary>
         [JsonPropertyName("response_format")]
-        public AssistantsApiResponseFormatOption? ResponseFormat { get { return this.ResponseFormatOption; } set { this.ResponseFormatOption = new(value); } }
+        public AssistantsApiResponseFormatOption? ResponseFormat { get { return this.ResponseFormatOption.Value; } set { this.ResponseFormatOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -279,8 +280,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ModifyAssistantRequest" />
     /// </summary>
-    public class ModifyAssistantRequestJsonConverter : JsonConverter<ModifyAssistantRequest>
+    public partial class ModifyAssistantRequestJsonConverter : JsonConverter<ModifyAssistantRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ModifyAssistantRequestJsonConverter" /> class.
+        /// </summary>
+        public ModifyAssistantRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ModifyAssistantRequest" />
         /// </summary>

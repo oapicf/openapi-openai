@@ -27,7 +27,7 @@ class FilesApi {
   ///
   /// * [String] purpose (required):
   ///   The intended purpose of the uploaded file.  Use \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\"vision\\\" for Assistants image file inputs, \\\"batch\\\" for [Batch API](/docs/guides/batch), and \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning). 
-  Future<Response> createFileWithHttpInfo(MultipartFile file, String purpose,) async {
+  Future<Response> createFileWithHttpInfo(MultipartFile file, String purpose, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/files';
 
@@ -63,6 +63,7 @@ class FilesApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -75,8 +76,8 @@ class FilesApi {
   ///
   /// * [String] purpose (required):
   ///   The intended purpose of the uploaded file.  Use \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\"vision\\\" for Assistants image file inputs, \\\"batch\\\" for [Batch API](/docs/guides/batch), and \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning). 
-  Future<OpenAIFile?> createFile(MultipartFile file, String purpose,) async {
-    final response = await createFileWithHttpInfo(file, purpose,);
+  Future<OpenAIFile?> createFile(MultipartFile file, String purpose, { Future<void>? abortTrigger, }) async {
+    final response = await createFileWithHttpInfo(file, purpose, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -98,7 +99,7 @@ class FilesApi {
   ///
   /// * [String] fileId (required):
   ///   The ID of the file to use for this request.
-  Future<Response> deleteFileWithHttpInfo(String fileId,) async {
+  Future<Response> deleteFileWithHttpInfo(String fileId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/files/{file_id}'
       .replaceAll('{file_id}', fileId);
@@ -121,6 +122,7 @@ class FilesApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -130,8 +132,8 @@ class FilesApi {
   ///
   /// * [String] fileId (required):
   ///   The ID of the file to use for this request.
-  Future<DeleteFileResponse?> deleteFile(String fileId,) async {
-    final response = await deleteFileWithHttpInfo(fileId,);
+  Future<DeleteFileResponse?> deleteFile(String fileId, { Future<void>? abortTrigger, }) async {
+    final response = await deleteFileWithHttpInfo(fileId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -153,7 +155,7 @@ class FilesApi {
   ///
   /// * [String] fileId (required):
   ///   The ID of the file to use for this request.
-  Future<Response> downloadFileWithHttpInfo(String fileId,) async {
+  Future<Response> downloadFileWithHttpInfo(String fileId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/files/{file_id}/content'
       .replaceAll('{file_id}', fileId);
@@ -176,6 +178,7 @@ class FilesApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -185,8 +188,8 @@ class FilesApi {
   ///
   /// * [String] fileId (required):
   ///   The ID of the file to use for this request.
-  Future<String?> downloadFile(String fileId,) async {
-    final response = await downloadFileWithHttpInfo(fileId,);
+  Future<String?> downloadFile(String fileId, { Future<void>? abortTrigger, }) async {
+    final response = await downloadFileWithHttpInfo(fileId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -217,7 +220,7 @@ class FilesApi {
   ///
   /// * [String] after:
   ///   A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-  Future<Response> listFilesWithHttpInfo({ String? purpose, int? limit, String? order, String? after, }) async {
+  Future<Response> listFilesWithHttpInfo({ String? purpose, int? limit, String? order, String? after, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/files';
 
@@ -252,6 +255,7 @@ class FilesApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -270,8 +274,8 @@ class FilesApi {
   ///
   /// * [String] after:
   ///   A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-  Future<ListFilesResponse?> listFiles({ String? purpose, int? limit, String? order, String? after, }) async {
-    final response = await listFilesWithHttpInfo( purpose: purpose, limit: limit, order: order, after: after, );
+  Future<ListFilesResponse?> listFiles({ String? purpose, int? limit, String? order, String? after, Future<void>? abortTrigger, }) async {
+    final response = await listFilesWithHttpInfo(purpose: purpose, limit: limit, order: order, after: after, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -293,7 +297,7 @@ class FilesApi {
   ///
   /// * [String] fileId (required):
   ///   The ID of the file to use for this request.
-  Future<Response> retrieveFileWithHttpInfo(String fileId,) async {
+  Future<Response> retrieveFileWithHttpInfo(String fileId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/files/{file_id}'
       .replaceAll('{file_id}', fileId);
@@ -316,6 +320,7 @@ class FilesApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -325,8 +330,8 @@ class FilesApi {
   ///
   /// * [String] fileId (required):
   ///   The ID of the file to use for this request.
-  Future<OpenAIFile?> retrieveFile(String fileId,) async {
-    final response = await retrieveFileWithHttpInfo(fileId,);
+  Future<OpenAIFile?> retrieveFile(String fileId, { Future<void>? abortTrigger, }) async {
+    final response = await retrieveFileWithHttpInfo(fileId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

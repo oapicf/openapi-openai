@@ -101,7 +101,7 @@ export class ModelsApi {
      */
     public async deleteModel (model: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DeleteModelResponse;  }> {
         const localVarPath = this.basePath + '/models/{model}'
-            .replace('{' + 'model' + '}', encodeURIComponent(String(model)));
+            .replace('{model}', encodeURIComponent(String(model)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -238,7 +238,7 @@ export class ModelsApi {
      */
     public async retrieveModel (model: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Model;  }> {
         const localVarPath = this.basePath + '/models/{model}'
-            .replace('{' + 'model' + '}', encodeURIComponent(String(model)));
+            .replace('{model}', encodeURIComponent(String(model)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];

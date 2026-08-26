@@ -61,10 +61,12 @@ class RunStepDeltaObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepDeltaObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepDeltaObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "RunStepDeltaObject[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "RunStepDeltaObject[id]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "RunStepDeltaObject[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "RunStepDeltaObject[object]" has a null value in JSON.');
+        assert(json.containsKey(r'delta'), 'Required key "RunStepDeltaObject[delta]" is missing from JSON.');
+        assert(json[r'delta'] != null, 'Required key "RunStepDeltaObject[delta]" has a null value in JSON.');
         return true;
       }());
 
@@ -126,27 +128,28 @@ class RunStepDeltaObject {
 }
 
 /// The object type, which is always `thread.run.step.delta`.
-class RunStepDeltaObjectObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepDeltaObjectObjectEnum._(this.value);
+enum RunStepDeltaObjectObjectEnum {
+  threadPeriodRunPeriodStepPeriodDelta._(r'thread.run.step.delta'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepDeltaObjectObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodRunPeriodStepPeriodDelta = RunStepDeltaObjectObjectEnum._(r'thread.run.step.delta');
-
-  /// List of all possible values in this [enum][RunStepDeltaObjectObjectEnum].
-  static const values = <RunStepDeltaObjectObjectEnum>[
-    threadPeriodRunPeriodStepPeriodDelta,
-  ];
-
+  /// Returns the instance of [RunStepDeltaObjectObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepDeltaObjectObjectEnum? fromJson(dynamic value) => RunStepDeltaObjectObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepDeltaObjectObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepDeltaObjectObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepDeltaObjectObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -168,9 +171,10 @@ class RunStepDeltaObjectObjectEnumTypeTransformer {
 
   const RunStepDeltaObjectObjectEnumTypeTransformer._();
 
-  String encode(RunStepDeltaObjectObjectEnum data) => data.value;
+  String encode(RunStepDeltaObjectObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepDeltaObjectObjectEnum.
+  /// Returns the instance of [RunStepDeltaObjectObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -179,6 +183,9 @@ class RunStepDeltaObjectObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepDeltaObjectObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepDeltaObjectObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.run.step.delta': return RunStepDeltaObjectObjectEnum.threadPeriodRunPeriodStepPeriodDelta;
@@ -191,7 +198,7 @@ class RunStepDeltaObjectObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStepDeltaObjectObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepDeltaObjectObjectEnumTypeTransformer? _instance;
 }
 

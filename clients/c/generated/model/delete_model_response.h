@@ -20,7 +20,7 @@ typedef struct delete_model_response_t delete_model_response_t;
 
 typedef struct delete_model_response_t {
     char *id; // string
-    int deleted; //boolean
+    int *deleted; //boolean
     char *object; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -28,7 +28,7 @@ typedef struct delete_model_response_t {
 
 __attribute__((deprecated)) delete_model_response_t *delete_model_response_create(
     char *id,
-    int deleted,
+    int *deleted,
     char *object
 );
 

@@ -23,7 +23,7 @@ message RunStepObjectLastError {
     CODE_RATE_LIMIT_EXCEEDED = 1;
   }
 
-  Code code = 3059181;
+  string code = 3059181;
 
   // A human-readable description of the error.
   string message = 418054152;

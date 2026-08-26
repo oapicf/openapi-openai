@@ -33,7 +33,7 @@ class  AuditLog_user_added
 {
 public:
     AuditLog_user_added();
-    virtual ~AuditLog_user_added() = default;
+    virtual ~AuditLog_user_added();
 
 
     /// <summary>

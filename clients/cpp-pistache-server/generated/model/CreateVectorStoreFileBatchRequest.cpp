@@ -25,6 +25,8 @@ CreateVectorStoreFileBatchRequest::CreateVectorStoreFileBatchRequest()
     
 }
 
+CreateVectorStoreFileBatchRequest::~CreateVectorStoreFileBatchRequest() = default;
+
 void CreateVectorStoreFileBatchRequest::validate() const
 {
     std::stringstream msg;

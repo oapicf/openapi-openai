@@ -27,7 +27,7 @@ openai_api_embedding_OBJECT_e embedding_object_FromString(char* object);
 
 
 typedef struct embedding_t {
-    int index; //numeric
+    int *index; //numeric
     list_t *embedding; //primitive container
     openai_api_embedding_OBJECT_e object; //enum
 
@@ -35,7 +35,7 @@ typedef struct embedding_t {
 } embedding_t;
 
 __attribute__((deprecated)) embedding_t *embedding_create(
-    int index,
+    int *index,
     list_t *embedding,
     openai_api_embedding_OBJECT_e object
 );

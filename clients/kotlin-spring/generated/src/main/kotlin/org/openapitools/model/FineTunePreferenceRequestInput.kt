@@ -1,7 +1,10 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.FineTunePreferenceRequestInputInput
 import org.openapitools.model.FineTunePreferenceRequestInputPreferredCompletionInner
 import javax.validation.constraints.DecimalMax
@@ -24,17 +27,26 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class FineTunePreferenceRequestInput(
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("input")
     @get:JsonProperty("input") val input: FineTunePreferenceRequestInputInput? = null,
 
     @field:Valid
     @get:Size(max=1)
-    @Schema(example = "null", description = "The preferred completion message for the output.")
+    @Schema(description = "The preferred completion message for the output.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("preferred_completion")
     @get:JsonProperty("preferred_completion") val preferredCompletion: kotlin.collections.List<FineTunePreferenceRequestInputPreferredCompletionInner>? = null,
 
     @field:Valid
     @get:Size(max=1)
-    @Schema(example = "null", description = "The non-preferred completion message for the output.")
+    @Schema(description = "The non-preferred completion message for the output.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("non_preferred_completion")
     @get:JsonProperty("non_preferred_completion") val nonPreferredCompletion: kotlin.collections.List<FineTunePreferenceRequestInputPreferredCompletionInner>? = null
 ) {
 

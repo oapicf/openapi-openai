@@ -51,49 +51,49 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setStep(long  step);
+	void setStep(long step);
 	/*! \brief Get 
 	 */
 	long getTrainLoss();
 
 	/*! \brief Set 
 	 */
-	void setTrainLoss(long  train_loss);
+	void setTrainLoss(long train_loss);
 	/*! \brief Get 
 	 */
 	long getTrainMeanTokenAccuracy();
 
 	/*! \brief Set 
 	 */
-	void setTrainMeanTokenAccuracy(long  train_mean_token_accuracy);
+	void setTrainMeanTokenAccuracy(long train_mean_token_accuracy);
 	/*! \brief Get 
 	 */
 	long getValidLoss();
 
 	/*! \brief Set 
 	 */
-	void setValidLoss(long  valid_loss);
+	void setValidLoss(long valid_loss);
 	/*! \brief Get 
 	 */
 	long getValidMeanTokenAccuracy();
 
 	/*! \brief Set 
 	 */
-	void setValidMeanTokenAccuracy(long  valid_mean_token_accuracy);
+	void setValidMeanTokenAccuracy(long valid_mean_token_accuracy);
 	/*! \brief Get 
 	 */
 	long getFullValidLoss();
 
 	/*! \brief Set 
 	 */
-	void setFullValidLoss(long  full_valid_loss);
+	void setFullValidLoss(long full_valid_loss);
 	/*! \brief Get 
 	 */
 	long getFullValidMeanTokenAccuracy();
 
 	/*! \brief Set 
 	 */
-	void setFullValidMeanTokenAccuracy(long  full_valid_mean_token_accuracy);
+	void setFullValidMeanTokenAccuracy(long full_valid_mean_token_accuracy);
 
 
     private:

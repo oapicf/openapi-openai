@@ -28,6 +28,8 @@ CostsResult_amount::CostsResult_amount()
     
 }
 
+CostsResult_amount::~CostsResult_amount() = default;
+
 void CostsResult_amount::validate() const
 {
     std::stringstream msg;

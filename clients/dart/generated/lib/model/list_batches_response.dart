@@ -91,10 +91,12 @@ class ListBatchesResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ListBatchesResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ListBatchesResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'data'), 'Required key "ListBatchesResponse[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "ListBatchesResponse[data]" has a null value in JSON.');
+        assert(json.containsKey(r'has_more'), 'Required key "ListBatchesResponse[has_more]" is missing from JSON.');
+        assert(json[r'has_more'] != null, 'Required key "ListBatchesResponse[has_more]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "ListBatchesResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "ListBatchesResponse[object]" has a null value in JSON.');
         return true;
       }());
 
@@ -158,27 +160,28 @@ class ListBatchesResponse {
 }
 
 
-class ListBatchesResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ListBatchesResponseObjectEnum._(this.value);
+enum ListBatchesResponseObjectEnum {
+  list._(r'list'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ListBatchesResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const list = ListBatchesResponseObjectEnum._(r'list');
-
-  /// List of all possible values in this [enum][ListBatchesResponseObjectEnum].
-  static const values = <ListBatchesResponseObjectEnum>[
-    list,
-  ];
-
+  /// Returns the instance of [ListBatchesResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ListBatchesResponseObjectEnum? fromJson(dynamic value) => ListBatchesResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ListBatchesResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ListBatchesResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ListBatchesResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -200,9 +203,10 @@ class ListBatchesResponseObjectEnumTypeTransformer {
 
   const ListBatchesResponseObjectEnumTypeTransformer._();
 
-  String encode(ListBatchesResponseObjectEnum data) => data.value;
+  String encode(ListBatchesResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ListBatchesResponseObjectEnum.
+  /// Returns the instance of [ListBatchesResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -211,6 +215,9 @@ class ListBatchesResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ListBatchesResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ListBatchesResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'list': return ListBatchesResponseObjectEnum.list;
@@ -223,7 +230,7 @@ class ListBatchesResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ListBatchesResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ListBatchesResponseObjectEnumTypeTransformer? _instance;
 }
 

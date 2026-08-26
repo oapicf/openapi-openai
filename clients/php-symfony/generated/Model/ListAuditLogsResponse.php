@@ -47,7 +47,7 @@ class ListAuditLogsResponse
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['list'])]
     #[Assert\Type("string")]
@@ -57,7 +57,7 @@ class ListAuditLogsResponse
      * @var AuditLog[]|null
      * @SerializedName("data")
      * @Type("array<OpenAPI\Server\Model\AuditLog>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -69,7 +69,7 @@ class ListAuditLogsResponse
      * @var string|null
      * @SerializedName("first_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $firstId = null;
@@ -78,7 +78,7 @@ class ListAuditLogsResponse
      * @var string|null
      * @SerializedName("last_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $lastId = null;
@@ -87,7 +87,7 @@ class ListAuditLogsResponse
      * @var bool|null
      * @SerializedName("has_more")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $hasMore = null;
@@ -118,12 +118,12 @@ class ListAuditLogsResponse
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -145,12 +145,12 @@ class ListAuditLogsResponse
     }
 
     /**
-    * Sets data.
-    *
-    * @param AuditLog[]|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param AuditLog[]|null $data
+     *
+     * @return $this
+     */
     public function setData(?array $data): self
     {
         $this->data = $data;
@@ -172,12 +172,12 @@ class ListAuditLogsResponse
     }
 
     /**
-    * Sets firstId.
-    *
-    * @param string|null $firstId
-    *
-    * @return $this
-    */
+     * Sets firstId.
+     *
+     * @param string|null $firstId
+     *
+     * @return $this
+     */
     public function setFirstId(?string $firstId): self
     {
         $this->firstId = $firstId;
@@ -199,12 +199,12 @@ class ListAuditLogsResponse
     }
 
     /**
-    * Sets lastId.
-    *
-    * @param string|null $lastId
-    *
-    * @return $this
-    */
+     * Sets lastId.
+     *
+     * @param string|null $lastId
+     *
+     * @return $this
+     */
     public function setLastId(?string $lastId): self
     {
         $this->lastId = $lastId;
@@ -226,12 +226,12 @@ class ListAuditLogsResponse
     }
 
     /**
-    * Sets hasMore.
-    *
-    * @param bool|null $hasMore
-    *
-    * @return $this
-    */
+     * Sets hasMore.
+     *
+     * @param bool|null $hasMore
+     *
+     * @return $this
+     */
     public function setHasMore(?bool $hasMore): self
     {
         $this->hasMore = $hasMore;

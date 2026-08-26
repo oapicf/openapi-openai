@@ -32,7 +32,7 @@ class  RealtimeServerEventResponseTextDone
 {
 public:
     RealtimeServerEventResponseTextDone();
-    virtual ~RealtimeServerEventResponseTextDone() = default;
+    virtual ~RealtimeServerEventResponseTextDone();
 
 
     /// <summary>

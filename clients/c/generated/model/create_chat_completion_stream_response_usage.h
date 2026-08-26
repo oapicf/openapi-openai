@@ -19,17 +19,17 @@ typedef struct create_chat_completion_stream_response_usage_t create_chat_comple
 
 
 typedef struct create_chat_completion_stream_response_usage_t {
-    int completion_tokens; //numeric
-    int prompt_tokens; //numeric
-    int total_tokens; //numeric
+    int *completion_tokens; //numeric
+    int *prompt_tokens; //numeric
+    int *total_tokens; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } create_chat_completion_stream_response_usage_t;
 
 __attribute__((deprecated)) create_chat_completion_stream_response_usage_t *create_chat_completion_stream_response_usage_create(
-    int completion_tokens,
-    int prompt_tokens,
-    int total_tokens
+    int *completion_tokens,
+    int *prompt_tokens,
+    int *total_tokens
 );
 
 void create_chat_completion_stream_response_usage_free(create_chat_completion_stream_response_usage_t *create_chat_completion_stream_response_usage);

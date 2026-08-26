@@ -95,13 +95,13 @@ function Initialize-FineTuningJobCheckpoint {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "created_at" = ${CreatedAt}
-            "fine_tuned_model_checkpoint" = ${FineTunedModelCheckpoint}
-            "step_number" = ${StepNumber}
-            "metrics" = ${Metrics}
-            "fine_tuning_job_id" = ${FineTuningJobId}
-            "object" = ${Object}
+            'id' = ${Id}
+            'created_at' = ${CreatedAt}
+            'fine_tuned_model_checkpoint' = ${FineTunedModelCheckpoint}
+            'step_number' = ${StepNumber}
+            'metrics' = ${Metrics}
+            'fine_tuning_job_id' = ${FineTuningJobId}
+            'object' = ${Object}
         }
 
 
@@ -139,7 +139,7 @@ function ConvertFrom-JsonToFineTuningJobCheckpoint {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in FineTuningJobCheckpoint
-        $AllProperties = ("id", "created_at", "fine_tuned_model_checkpoint", "step_number", "metrics", "fine_tuning_job_id", "object")
+        $AllProperties = ('id', 'created_at', 'fine_tuned_model_checkpoint', 'step_number', 'metrics', 'fine_tuning_job_id', 'object')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -150,56 +150,56 @@ function ConvertFrom-JsonToFineTuningJobCheckpoint {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created_at' missing."
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fine_tuned_model_checkpoint"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'fine_tuned_model_checkpoint'))) {
             throw "Error! JSON cannot be serialized due to the required property 'fine_tuned_model_checkpoint' missing."
         } else {
-            $FineTunedModelCheckpoint = $JsonParameters.PSobject.Properties["fine_tuned_model_checkpoint"].value
+            $FineTunedModelCheckpoint = $JsonParameters.PSobject.Properties['fine_tuned_model_checkpoint'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "step_number"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'step_number'))) {
             throw "Error! JSON cannot be serialized due to the required property 'step_number' missing."
         } else {
-            $StepNumber = $JsonParameters.PSobject.Properties["step_number"].value
+            $StepNumber = $JsonParameters.PSobject.Properties['step_number'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metrics"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metrics'))) {
             throw "Error! JSON cannot be serialized due to the required property 'metrics' missing."
         } else {
-            $Metrics = $JsonParameters.PSobject.Properties["metrics"].value
+            $Metrics = $JsonParameters.PSobject.Properties['metrics'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fine_tuning_job_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'fine_tuning_job_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'fine_tuning_job_id' missing."
         } else {
-            $FineTuningJobId = $JsonParameters.PSobject.Properties["fine_tuning_job_id"].value
+            $FineTuningJobId = $JsonParameters.PSobject.Properties['fine_tuning_job_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "created_at" = ${CreatedAt}
-            "fine_tuned_model_checkpoint" = ${FineTunedModelCheckpoint}
-            "step_number" = ${StepNumber}
-            "metrics" = ${Metrics}
-            "fine_tuning_job_id" = ${FineTuningJobId}
-            "object" = ${Object}
+            'id' = ${Id}
+            'created_at' = ${CreatedAt}
+            'fine_tuned_model_checkpoint' = ${FineTunedModelCheckpoint}
+            'step_number' = ${StepNumber}
+            'metrics' = ${Metrics}
+            'fine_tuning_job_id' = ${FineTuningJobId}
+            'object' = ${Object}
         }
 
         return $PSO

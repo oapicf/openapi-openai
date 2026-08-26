@@ -1,4 +1,4 @@
-# # AuditLogActorSession
+# AuditLogActorSession
 
 ## Properties
 

@@ -48,6 +48,8 @@ CreateRunRequest::CreateRunRequest()
     
 }
 
+CreateRunRequest::~CreateRunRequest() = default;
+
 void CreateRunRequest::validate() const
 {
     std::stringstream msg;

@@ -25,6 +25,8 @@ ModifyRunRequest::ModifyRunRequest()
     
 }
 
+ModifyRunRequest::~ModifyRunRequest() = default;
+
 void ModifyRunRequest::validate() const
 {
     std::stringstream msg;

@@ -16,7 +16,7 @@ case class ResponseFormatJsonSchema(
   /* The type of response format being defined: `json_schema` */
   `type`: ResponseFormatJsonSchemaEnums.`Type`,
   jsonSchema: ResponseFormatJsonSchemaJsonSchema
-)
+) extends CreateChatCompletionRequestResponseFormat
 
 object ResponseFormatJsonSchemaEnums {
 

@@ -1,0 +1,51 @@
+import { CreateChatCompletionResponseChoicesInner } from './create-chat-completion-response-choices-inner';
+import { CompletionUsage } from './completion-usage';
+
+
+/**
+ * Represents a chat completion response returned by model, based on the provided input.
+ */
+export interface CreateChatCompletionResponse { 
+  /**
+   * A unique identifier for the chat completion.
+   */
+  id: string;
+  /**
+   * A list of chat completion choices. Can be more than one if `n` is greater than 1.
+   */
+  choices: Array<CreateChatCompletionResponseChoicesInner>;
+  /**
+   * The Unix timestamp (in seconds) of when the chat completion was created.
+   */
+  created: number;
+  /**
+   * The model used for the chat completion.
+   */
+  model: string;
+  /**
+   * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+   */
+  service_tier?: CreateChatCompletionResponse.ServiceTierEnum | null;
+  /**
+   * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
+   */
+  system_fingerprint?: string;
+  /**
+   * The object type, which is always `chat.completion`.
+   */
+  object: CreateChatCompletionResponse.ObjectEnum;
+  usage?: CompletionUsage;
+}
+export namespace CreateChatCompletionResponse {
+  export const ServiceTierEnum = {
+    Scale: 'scale',
+    Default: 'default'
+  } as const;
+  export type ServiceTierEnum = typeof ServiceTierEnum[keyof typeof ServiceTierEnum];
+  export const ObjectEnum = {
+    ChatCompletion: 'chat.completion'
+  } as const;
+  export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
+}
+
+

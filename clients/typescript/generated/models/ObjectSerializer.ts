@@ -58,7 +58,6 @@ export * from '../models/AuditLogUserAddedData';
 export * from '../models/AuditLogUserDeleted';
 export * from '../models/AuditLogUserUpdated';
 export * from '../models/AuditLogUserUpdatedChangesRequested';
-export * from '../models/AutoChunkingStrategy';
 export * from '../models/AutoChunkingStrategyRequestParam';
 export * from '../models/Batch';
 export * from '../models/BatchErrors';
@@ -468,7 +467,6 @@ export * from '../models/RunToolCallObject';
 export * from '../models/RunToolCallObjectFunction';
 export * from '../models/StaticChunkingStrategy';
 export * from '../models/StaticChunkingStrategyRequestParam';
-export * from '../models/StaticChunkingStrategyResponseParam';
 export * from '../models/StaticChunkingStrategyStatic';
 export * from '../models/SubmitToolOutputsRunRequest';
 export * from '../models/SubmitToolOutputsRunRequestToolOutputsInner';
@@ -564,7 +562,6 @@ import { AuditLogUserAddedData } from '../models/AuditLogUserAddedData';
 import { AuditLogUserDeleted } from '../models/AuditLogUserDeleted';
 import { AuditLogUserUpdated } from '../models/AuditLogUserUpdated';
 import { AuditLogUserUpdatedChangesRequested } from '../models/AuditLogUserUpdatedChangesRequested';
-import { AutoChunkingStrategy, AutoChunkingStrategyTypeEnum   } from '../models/AutoChunkingStrategy';
 import { AutoChunkingStrategyRequestParam, AutoChunkingStrategyRequestParamTypeEnum   } from '../models/AutoChunkingStrategyRequestParam';
 import { Batch , BatchObjectEnum      , BatchStatusEnum                } from '../models/Batch';
 import { BatchErrors } from '../models/BatchErrors';
@@ -974,7 +971,6 @@ import { RunToolCallObject , RunToolCallObjectTypeEnum    } from '../models/RunT
 import { RunToolCallObjectFunction } from '../models/RunToolCallObjectFunction';
 import { StaticChunkingStrategy, StaticChunkingStrategyTypeEnum    } from '../models/StaticChunkingStrategy';
 import { StaticChunkingStrategyRequestParam, StaticChunkingStrategyRequestParamTypeEnum    } from '../models/StaticChunkingStrategyRequestParam';
-import { StaticChunkingStrategyResponseParam, StaticChunkingStrategyResponseParamTypeEnum    } from '../models/StaticChunkingStrategyResponseParam';
 import { StaticChunkingStrategyStatic } from '../models/StaticChunkingStrategyStatic';
 import { SubmitToolOutputsRunRequest } from '../models/SubmitToolOutputsRunRequest';
 import { SubmitToolOutputsRunRequestToolOutputsInner } from '../models/SubmitToolOutputsRunRequestToolOutputsInner';
@@ -1039,7 +1035,6 @@ let enumsMap: Set<string> = new Set<string>([
     "AuditLogActorTypeEnum",
     "AuditLogActorApiKeyTypeEnum",
     "AuditLogEventType",
-    "AutoChunkingStrategyTypeEnum",
     "AutoChunkingStrategyRequestParamTypeEnum",
     "BatchObjectEnum",
     "BatchStatusEnum",
@@ -1339,7 +1334,6 @@ let enumsMap: Set<string> = new Set<string>([
     "RunToolCallObjectTypeEnum",
     "StaticChunkingStrategyTypeEnum",
     "StaticChunkingStrategyRequestParamTypeEnum",
-    "StaticChunkingStrategyResponseParamTypeEnum",
     "ThreadObjectObjectEnum",
     "ThreadStreamEventEventEnum",
     "TruncationObjectTypeEnum",
@@ -1432,7 +1426,6 @@ let typeMap: {[index: string]: any} = {
     "AuditLogUserDeleted": AuditLogUserDeleted,
     "AuditLogUserUpdated": AuditLogUserUpdated,
     "AuditLogUserUpdatedChangesRequested": AuditLogUserUpdatedChangesRequested,
-    "AutoChunkingStrategy": AutoChunkingStrategy,
     "AutoChunkingStrategyRequestParam": AutoChunkingStrategyRequestParam,
     "Batch": Batch,
     "BatchErrors": BatchErrors,
@@ -1841,7 +1834,6 @@ let typeMap: {[index: string]: any} = {
     "RunToolCallObjectFunction": RunToolCallObjectFunction,
     "StaticChunkingStrategy": StaticChunkingStrategy,
     "StaticChunkingStrategyRequestParam": StaticChunkingStrategyRequestParam,
-    "StaticChunkingStrategyResponseParam": StaticChunkingStrategyResponseParam,
     "StaticChunkingStrategyStatic": StaticChunkingStrategyStatic,
     "SubmitToolOutputsRunRequest": SubmitToolOutputsRunRequest,
     "SubmitToolOutputsRunRequestToolOutputsInner": SubmitToolOutputsRunRequestToolOutputsInner,

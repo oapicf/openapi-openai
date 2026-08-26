@@ -23,7 +23,7 @@ message ProjectApiKey {
     OBJECT_ORGANIZATION_PROJECT_API_KEY = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The redacted value of the API key
   string redacted_value = 276399922;

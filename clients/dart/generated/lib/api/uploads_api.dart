@@ -27,7 +27,7 @@ class UploadsApi {
   ///
   /// * [MultipartFile] data (required):
   ///   The chunk of bytes for this Part. 
-  Future<Response> addUploadPartWithHttpInfo(String uploadId, MultipartFile data,) async {
+  Future<Response> addUploadPartWithHttpInfo(String uploadId, MultipartFile data, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/uploads/{upload_id}/parts'
       .replaceAll('{upload_id}', uploadId);
@@ -60,6 +60,7 @@ class UploadsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -72,8 +73,8 @@ class UploadsApi {
   ///
   /// * [MultipartFile] data (required):
   ///   The chunk of bytes for this Part. 
-  Future<UploadPart?> addUploadPart(String uploadId, MultipartFile data,) async {
-    final response = await addUploadPartWithHttpInfo(uploadId, data,);
+  Future<UploadPart?> addUploadPart(String uploadId, MultipartFile data, { Future<void>? abortTrigger, }) async {
+    final response = await addUploadPartWithHttpInfo(uploadId, data, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -95,7 +96,7 @@ class UploadsApi {
   ///
   /// * [String] uploadId (required):
   ///   The ID of the Upload. 
-  Future<Response> cancelUploadWithHttpInfo(String uploadId,) async {
+  Future<Response> cancelUploadWithHttpInfo(String uploadId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/uploads/{upload_id}/cancel'
       .replaceAll('{upload_id}', uploadId);
@@ -118,6 +119,7 @@ class UploadsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -127,8 +129,8 @@ class UploadsApi {
   ///
   /// * [String] uploadId (required):
   ///   The ID of the Upload. 
-  Future<Upload?> cancelUpload(String uploadId,) async {
-    final response = await cancelUploadWithHttpInfo(uploadId,);
+  Future<Upload?> cancelUpload(String uploadId, { Future<void>? abortTrigger, }) async {
+    final response = await cancelUploadWithHttpInfo(uploadId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -152,7 +154,7 @@ class UploadsApi {
   ///   The ID of the Upload. 
   ///
   /// * [CompleteUploadRequest] completeUploadRequest (required):
-  Future<Response> completeUploadWithHttpInfo(String uploadId, CompleteUploadRequest completeUploadRequest,) async {
+  Future<Response> completeUploadWithHttpInfo(String uploadId, CompleteUploadRequest completeUploadRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/uploads/{upload_id}/complete'
       .replaceAll('{upload_id}', uploadId);
@@ -175,6 +177,7 @@ class UploadsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -186,8 +189,8 @@ class UploadsApi {
   ///   The ID of the Upload. 
   ///
   /// * [CompleteUploadRequest] completeUploadRequest (required):
-  Future<Upload?> completeUpload(String uploadId, CompleteUploadRequest completeUploadRequest,) async {
-    final response = await completeUploadWithHttpInfo(uploadId, completeUploadRequest,);
+  Future<Upload?> completeUpload(String uploadId, CompleteUploadRequest completeUploadRequest, { Future<void>? abortTrigger, }) async {
+    final response = await completeUploadWithHttpInfo(uploadId, completeUploadRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -208,7 +211,7 @@ class UploadsApi {
   /// Parameters:
   ///
   /// * [CreateUploadRequest] createUploadRequest (required):
-  Future<Response> createUploadWithHttpInfo(CreateUploadRequest createUploadRequest,) async {
+  Future<Response> createUploadWithHttpInfo(CreateUploadRequest createUploadRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/uploads';
 
@@ -230,6 +233,7 @@ class UploadsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -238,8 +242,8 @@ class UploadsApi {
   /// Parameters:
   ///
   /// * [CreateUploadRequest] createUploadRequest (required):
-  Future<Upload?> createUpload(CreateUploadRequest createUploadRequest,) async {
-    final response = await createUploadWithHttpInfo(createUploadRequest,);
+  Future<Upload?> createUpload(CreateUploadRequest createUploadRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createUploadWithHttpInfo(createUploadRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

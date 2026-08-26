@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -88,7 +87,6 @@ docs/AuditLogUserDeleted.md
 docs/AuditLogUserUpdated.md
 docs/AuditLogUserUpdatedChangesRequested.md
 docs/AuditLogsAPI.md
-docs/AutoChunkingStrategy.md
 docs/AutoChunkingStrategyRequestParam.md
 docs/Batch.md
 docs/BatchAPI.md
@@ -511,7 +509,6 @@ docs/RunToolCallObject.md
 docs/RunToolCallObjectFunction.md
 docs/StaticChunkingStrategy.md
 docs/StaticChunkingStrategyRequestParam.md
-docs/StaticChunkingStrategyResponseParam.md
 docs/StaticChunkingStrategyStatic.md
 docs/SubmitToolOutputsRunRequest.md
 docs/SubmitToolOutputsRunRequestToolOutputsInner.md
@@ -613,7 +610,6 @@ model_audit_log_user_added_data.go
 model_audit_log_user_deleted.go
 model_audit_log_user_updated.go
 model_audit_log_user_updated_changes_requested.go
-model_auto_chunking_strategy.go
 model_auto_chunking_strategy_request_param.go
 model_batch.go
 model_batch_errors.go
@@ -1023,7 +1019,6 @@ model_run_tool_call_object.go
 model_run_tool_call_object_function.go
 model_static_chunking_strategy.go
 model_static_chunking_strategy_request_param.go
-model_static_chunking_strategy_response_param.go
 model_static_chunking_strategy_static.go
 model_submit_tool_outputs_run_request.go
 model_submit_tool_outputs_run_request_tool_outputs_inner.go
@@ -1059,24 +1054,4 @@ model_vector_store_file_object_last_error.go
 model_vector_store_object.go
 model_vector_store_object_file_counts.go
 response.go
-test/api_assistants_test.go
-test/api_audio_test.go
-test/api_audit_logs_test.go
-test/api_batch_test.go
-test/api_chat_test.go
-test/api_completions_test.go
-test/api_default_test.go
-test/api_embeddings_test.go
-test/api_files_test.go
-test/api_fine_tuning_test.go
-test/api_images_test.go
-test/api_invites_test.go
-test/api_models_test.go
-test/api_moderations_test.go
-test/api_projects_test.go
-test/api_realtime_test.go
-test/api_uploads_test.go
-test/api_usage_test.go
-test/api_users_test.go
-test/api_vector_stores_test.go
 utils.go

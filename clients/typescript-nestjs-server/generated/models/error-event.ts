@@ -1,0 +1,17 @@
+
+
+/**
+ * Occurs when an [error](/docs/guides/error-codes#api-errors) occurs. This can happen due to an internal server error or a timeout.
+ */
+export interface ErrorEvent { 
+  event: ErrorEvent.EventEnum;
+  data: Error;
+}
+export namespace ErrorEvent {
+  export const EventEnum = {
+    Error: 'error'
+  } as const;
+  export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
+}
+
+

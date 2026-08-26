@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set Project's public ID
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get Project membership role
 	 */
 	std::string getRole();
 
 	/*! \brief Set Project membership role
 	 */
-	void setRole(std::string  role);
+	void setRole(std::string role);
 
 
     private:

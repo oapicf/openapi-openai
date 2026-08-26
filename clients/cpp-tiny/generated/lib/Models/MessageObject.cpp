@@ -373,7 +373,7 @@ MessageObject::getId()
 }
 
 void
-MessageObject::setId(std::string  id)
+MessageObject::setId(std::string id)
 {
 	this->id = id;
 }
@@ -385,7 +385,7 @@ MessageObject::getObject()
 }
 
 void
-MessageObject::setObject(std::string  object)
+MessageObject::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -397,7 +397,7 @@ MessageObject::getCreatedAt()
 }
 
 void
-MessageObject::setCreatedAt(int  created_at)
+MessageObject::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -409,7 +409,7 @@ MessageObject::getThreadId()
 }
 
 void
-MessageObject::setThreadId(std::string  thread_id)
+MessageObject::setThreadId(std::string thread_id)
 {
 	this->thread_id = thread_id;
 }
@@ -421,7 +421,7 @@ MessageObject::getStatus()
 }
 
 void
-MessageObject::setStatus(std::string  status)
+MessageObject::setStatus(std::string status)
 {
 	this->status = status;
 }
@@ -433,7 +433,7 @@ MessageObject::getIncompleteDetails()
 }
 
 void
-MessageObject::setIncompleteDetails(MessageObject_incomplete_details  incomplete_details)
+MessageObject::setIncompleteDetails(MessageObject_incomplete_details incomplete_details)
 {
 	this->incomplete_details = incomplete_details;
 }
@@ -445,7 +445,7 @@ MessageObject::getCompletedAt()
 }
 
 void
-MessageObject::setCompletedAt(int  completed_at)
+MessageObject::setCompletedAt(int completed_at)
 {
 	this->completed_at = completed_at;
 }
@@ -457,7 +457,7 @@ MessageObject::getIncompleteAt()
 }
 
 void
-MessageObject::setIncompleteAt(int  incomplete_at)
+MessageObject::setIncompleteAt(int incomplete_at)
 {
 	this->incomplete_at = incomplete_at;
 }
@@ -469,7 +469,7 @@ MessageObject::getRole()
 }
 
 void
-MessageObject::setRole(std::string  role)
+MessageObject::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -481,7 +481,7 @@ MessageObject::getContent()
 }
 
 void
-MessageObject::setContent(std::list <MessageObject_content_inner> content)
+MessageObject::setContent(std::list<MessageObject_content_inner> content)
 {
 	this->content = content;
 }
@@ -493,7 +493,7 @@ MessageObject::getAssistantId()
 }
 
 void
-MessageObject::setAssistantId(std::string  assistant_id)
+MessageObject::setAssistantId(std::string assistant_id)
 {
 	this->assistant_id = assistant_id;
 }
@@ -505,7 +505,7 @@ MessageObject::getRunId()
 }
 
 void
-MessageObject::setRunId(std::string  run_id)
+MessageObject::setRunId(std::string run_id)
 {
 	this->run_id = run_id;
 }
@@ -517,7 +517,7 @@ MessageObject::getAttachments()
 }
 
 void
-MessageObject::setAttachments(std::list <CreateMessageRequest_attachments_inner> attachments)
+MessageObject::setAttachments(std::list<CreateMessageRequest_attachments_inner> attachments)
 {
 	this->attachments = attachments;
 }
@@ -529,7 +529,7 @@ MessageObject::getMetadata()
 }
 
 void
-MessageObject::setMetadata(Object  metadata)
+MessageObject::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }

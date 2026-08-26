@@ -116,8 +116,8 @@ func NewAuditLogEventTypeFromValue(v string) (AuditLogEventType, error) {
 }
 
 
-
-// AssertAuditLogEventTypeRequired checks if the required fields are not zero-ed
+// AssertAuditLogEventTypeRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertAuditLogEventTypeRequired(obj AuditLogEventType) error {
 	return nil
 }

@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set The type of response format being defined: `json_schema`
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	ResponseFormatJsonSchema_json_schema getJsonSchema();
 
 	/*! \brief Set 
 	 */
-	void setJsonSchema(ResponseFormatJsonSchema_json_schema  json_schema);
+	void setJsonSchema(ResponseFormatJsonSchema_json_schema json_schema);
 
 
     private:

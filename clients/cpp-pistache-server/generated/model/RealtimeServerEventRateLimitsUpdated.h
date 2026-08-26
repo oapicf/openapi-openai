@@ -34,7 +34,7 @@ class  RealtimeServerEventRateLimitsUpdated
 {
 public:
     RealtimeServerEventRateLimitsUpdated();
-    virtual ~RealtimeServerEventRateLimitsUpdated() = default;
+    virtual ~RealtimeServerEventRateLimitsUpdated();
 
 
     /// <summary>

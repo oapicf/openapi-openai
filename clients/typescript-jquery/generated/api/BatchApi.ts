@@ -55,7 +55,7 @@ export class BatchApi {
     { response: JQueryXHR; body: models.Batch;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/batches/{batch_id}/cancel'.replace('{' + 'batch_id' + '}', encodeURIComponent(String(batchId)));
+        let localVarPath = this.basePath + '/batches/{batch_id}/cancel'.replace('{batch_id}', encodeURIComponent(String(batchId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -250,7 +250,7 @@ export class BatchApi {
     { response: JQueryXHR; body: models.Batch;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/batches/{batch_id}'.replace('{' + 'batch_id' + '}', encodeURIComponent(String(batchId)));
+        let localVarPath = this.basePath + '/batches/{batch_id}'.replace('{batch_id}', encodeURIComponent(String(batchId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};

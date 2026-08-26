@@ -43,6 +43,7 @@ public:
     void initializeServerConfigs();
     int setDefaultServerValue(int serverIndex,const QString &operation, const QString &variable,const QString &val);
     void setServerIndex(const QString &operation, int serverIndex);
+    void setServerIndex(int serverIndex);
     void setApiKey(const QString &apiKeyName, const QString &apiKey);
     void setBearerToken(const QString &token);
     void setUsername(const QString &username);
@@ -98,6 +99,13 @@ public:
 
 
 private:
+    enum class OauthMethod : int {
+        INVALID_VALUE_OPENAPI_GENERATED = 0,
+        ImplicitFlow = 1,
+        AuthorizationFlow = 2,
+        ClientCredentialsFlow = 3,
+        ResourceOwnerPasswordFlow = 4
+    };
     QMap<QString,int> _serverIndices;
     QMap<QString,QList<OAIServerConfiguration>> _serverConfigs;
     QMap<QString, QString> _apiKeys;
@@ -117,7 +125,7 @@ private:
     OauthImplicit _implicitFlow;
     OauthCredentials _credentialFlow;
     OauthPassword _passwordFlow;
-    int _OauthMethod = 0;
+    OauthMethod _OauthMethod = OauthMethod::INVALID_VALUE_OPENAPI_GENERATED;
 
     void cancelFineTuningJobCallback(OAIHttpRequestWorker *worker);
     void createFineTuningJobCallback(OAIHttpRequestWorker *worker);
@@ -143,42 +151,18 @@ Q_SIGNALS:
     void listPaginatedFineTuningJobsSignalFull(OAIHttpRequestWorker *worker, OAIListPaginatedFineTuningJobsResponse summary);
     void retrieveFineTuningJobSignalFull(OAIHttpRequestWorker *worker, OAIFineTuningJob summary);
 
-    Q_DECL_DEPRECATED_X("Use cancelFineTuningJobSignalError() instead")
-    void cancelFineTuningJobSignalE(OAIFineTuningJob summary, QNetworkReply::NetworkError error_type, QString error_str);
     void cancelFineTuningJobSignalError(OAIFineTuningJob summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createFineTuningJobSignalError() instead")
-    void createFineTuningJobSignalE(OAIFineTuningJob summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createFineTuningJobSignalError(OAIFineTuningJob summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listFineTuningEventsSignalError() instead")
-    void listFineTuningEventsSignalE(OAIListFineTuningJobEventsResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listFineTuningEventsSignalError(OAIListFineTuningJobEventsResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listFineTuningJobCheckpointsSignalError() instead")
-    void listFineTuningJobCheckpointsSignalE(OAIListFineTuningJobCheckpointsResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listFineTuningJobCheckpointsSignalError(OAIListFineTuningJobCheckpointsResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listPaginatedFineTuningJobsSignalError() instead")
-    void listPaginatedFineTuningJobsSignalE(OAIListPaginatedFineTuningJobsResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listPaginatedFineTuningJobsSignalError(OAIListPaginatedFineTuningJobsResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use retrieveFineTuningJobSignalError() instead")
-    void retrieveFineTuningJobSignalE(OAIFineTuningJob summary, QNetworkReply::NetworkError error_type, QString error_str);
     void retrieveFineTuningJobSignalError(OAIFineTuningJob summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
-    Q_DECL_DEPRECATED_X("Use cancelFineTuningJobSignalErrorFull() instead")
-    void cancelFineTuningJobSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void cancelFineTuningJobSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createFineTuningJobSignalErrorFull() instead")
-    void createFineTuningJobSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createFineTuningJobSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listFineTuningEventsSignalErrorFull() instead")
-    void listFineTuningEventsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listFineTuningEventsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listFineTuningJobCheckpointsSignalErrorFull() instead")
-    void listFineTuningJobCheckpointsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listFineTuningJobCheckpointsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listPaginatedFineTuningJobsSignalErrorFull() instead")
-    void listPaginatedFineTuningJobsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listPaginatedFineTuningJobsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use retrieveFineTuningJobSignalErrorFull() instead")
-    void retrieveFineTuningJobSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void retrieveFineTuningJobSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();

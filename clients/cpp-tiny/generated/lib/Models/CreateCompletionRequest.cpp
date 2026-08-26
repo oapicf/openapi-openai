@@ -417,7 +417,7 @@ CreateCompletionRequest::getModel()
 }
 
 void
-CreateCompletionRequest::setModel(CreateCompletionRequest_model  model)
+CreateCompletionRequest::setModel(CreateCompletionRequest_model model)
 {
 	this->model = model;
 }
@@ -429,7 +429,7 @@ CreateCompletionRequest::getPrompt()
 }
 
 void
-CreateCompletionRequest::setPrompt(CreateCompletionRequest_prompt  prompt)
+CreateCompletionRequest::setPrompt(CreateCompletionRequest_prompt prompt)
 {
 	this->prompt = prompt;
 }
@@ -441,7 +441,7 @@ CreateCompletionRequest::getBestOf()
 }
 
 void
-CreateCompletionRequest::setBestOf(int  best_of)
+CreateCompletionRequest::setBestOf(int best_of)
 {
 	this->best_of = best_of;
 }
@@ -453,7 +453,7 @@ CreateCompletionRequest::isEcho()
 }
 
 void
-CreateCompletionRequest::setEcho(bool  echo)
+CreateCompletionRequest::setEcho(bool echo)
 {
 	this->echo = echo;
 }
@@ -465,19 +465,19 @@ CreateCompletionRequest::getFrequencyPenalty()
 }
 
 void
-CreateCompletionRequest::setFrequencyPenalty(long  frequency_penalty)
+CreateCompletionRequest::setFrequencyPenalty(long frequency_penalty)
 {
 	this->frequency_penalty = frequency_penalty;
 }
 
-Map<string, string>
+std::map<std::string, int>
 CreateCompletionRequest::getLogitBias()
 {
 	return logit_bias;
 }
 
 void
-CreateCompletionRequest::setLogitBias(Map <string, string> logit_bias)
+CreateCompletionRequest::setLogitBias(std::map<std::string, int> logit_bias)
 {
 	this->logit_bias = logit_bias;
 }
@@ -489,7 +489,7 @@ CreateCompletionRequest::getLogprobs()
 }
 
 void
-CreateCompletionRequest::setLogprobs(int  logprobs)
+CreateCompletionRequest::setLogprobs(int logprobs)
 {
 	this->logprobs = logprobs;
 }
@@ -501,7 +501,7 @@ CreateCompletionRequest::getMaxTokens()
 }
 
 void
-CreateCompletionRequest::setMaxTokens(int  max_tokens)
+CreateCompletionRequest::setMaxTokens(int max_tokens)
 {
 	this->max_tokens = max_tokens;
 }
@@ -513,7 +513,7 @@ CreateCompletionRequest::getN()
 }
 
 void
-CreateCompletionRequest::setN(int  n)
+CreateCompletionRequest::setN(int n)
 {
 	this->n = n;
 }
@@ -525,7 +525,7 @@ CreateCompletionRequest::getPresencePenalty()
 }
 
 void
-CreateCompletionRequest::setPresencePenalty(long  presence_penalty)
+CreateCompletionRequest::setPresencePenalty(long presence_penalty)
 {
 	this->presence_penalty = presence_penalty;
 }
@@ -537,7 +537,7 @@ CreateCompletionRequest::getSeed()
 }
 
 void
-CreateCompletionRequest::setSeed(int  seed)
+CreateCompletionRequest::setSeed(int seed)
 {
 	this->seed = seed;
 }
@@ -549,7 +549,7 @@ CreateCompletionRequest::getStop()
 }
 
 void
-CreateCompletionRequest::setStop(CreateCompletionRequest_stop  stop)
+CreateCompletionRequest::setStop(CreateCompletionRequest_stop stop)
 {
 	this->stop = stop;
 }
@@ -561,7 +561,7 @@ CreateCompletionRequest::isStream()
 }
 
 void
-CreateCompletionRequest::setStream(bool  stream)
+CreateCompletionRequest::setStream(bool stream)
 {
 	this->stream = stream;
 }
@@ -573,7 +573,7 @@ CreateCompletionRequest::getStreamOptions()
 }
 
 void
-CreateCompletionRequest::setStreamOptions(ChatCompletionStreamOptions  stream_options)
+CreateCompletionRequest::setStreamOptions(ChatCompletionStreamOptions stream_options)
 {
 	this->stream_options = stream_options;
 }
@@ -585,7 +585,7 @@ CreateCompletionRequest::getSuffix()
 }
 
 void
-CreateCompletionRequest::setSuffix(std::string  suffix)
+CreateCompletionRequest::setSuffix(std::string suffix)
 {
 	this->suffix = suffix;
 }
@@ -597,7 +597,7 @@ CreateCompletionRequest::getTemperature()
 }
 
 void
-CreateCompletionRequest::setTemperature(long  temperature)
+CreateCompletionRequest::setTemperature(long temperature)
 {
 	this->temperature = temperature;
 }
@@ -609,7 +609,7 @@ CreateCompletionRequest::getTopP()
 }
 
 void
-CreateCompletionRequest::setTopP(long  top_p)
+CreateCompletionRequest::setTopP(long top_p)
 {
 	this->top_p = top_p;
 }
@@ -621,7 +621,7 @@ CreateCompletionRequest::getUser()
 }
 
 void
-CreateCompletionRequest::setUser(std::string  user)
+CreateCompletionRequest::setUser(std::string user)
 {
 	this->user = user;
 }

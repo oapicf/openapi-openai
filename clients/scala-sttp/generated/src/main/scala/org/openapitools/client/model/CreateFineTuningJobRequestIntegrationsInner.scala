@@ -13,6 +13,7 @@ package org.openapitools.client.model
 
 
 case class CreateFineTuningJobRequestIntegrationsInner(
+  /* The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported.  */
   `type`: CreateFineTuningJobRequestIntegrationsInnerEnums.`Type`,
   wandb: CreateFineTuningJobRequestIntegrationsInnerWandb
 )

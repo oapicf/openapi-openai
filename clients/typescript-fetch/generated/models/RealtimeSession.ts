@@ -66,7 +66,7 @@ export interface RealtimeSession {
      * The set of modalities the model can respond with. To disable audio,
      * set this to ["text"].
      * 
-     * @type {Array<string>}
+     * @type {Array<RealtimeSessionModalitiesEnum>}
      * @memberof RealtimeSession
      */
     modalities?: Array<RealtimeSessionModalitiesEnum>;
@@ -100,21 +100,21 @@ export interface RealtimeSession {
      * voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`, 
      * `shimmer` and `verse`.
      * 
-     * @type {string}
+     * @type {RealtimeSessionVoiceEnum}
      * @memberof RealtimeSession
      */
     voice?: RealtimeSessionVoiceEnum;
     /**
      * The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
      * 
-     * @type {string}
+     * @type {RealtimeSessionInputAudioFormatEnum}
      * @memberof RealtimeSession
      */
     inputAudioFormat?: RealtimeSessionInputAudioFormatEnum;
     /**
      * The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
      * 
-     * @type {string}
+     * @type {RealtimeSessionOutputAudioFormatEnum}
      * @memberof RealtimeSession
      */
     outputAudioFormat?: RealtimeSessionOutputAudioFormatEnum;
@@ -230,7 +230,7 @@ export function RealtimeSessionFromJSONTyped(json: any, ignoreDiscriminator: boo
         'inputAudioFormat': json['input_audio_format'] == null ? undefined : json['input_audio_format'],
         'outputAudioFormat': json['output_audio_format'] == null ? undefined : json['output_audio_format'],
         'inputAudioTranscription': json['input_audio_transcription'] == null ? undefined : RealtimeSessionInputAudioTranscriptionFromJSON(json['input_audio_transcription']),
-        'turnDetection': json['turn_detection'] == null ? undefined : RealtimeSessionTurnDetectionFromJSON(json['turn_detection']),
+        'turnDetection': json['turn_detection'] === undefined ? undefined : json['turn_detection'] === null ? null : RealtimeSessionTurnDetectionFromJSON(json['turn_detection']),
         'tools': json['tools'] == null ? undefined : ((json['tools'] as Array<any>).map(RealtimeResponseCreateParamsToolsInnerFromJSON)),
         'toolChoice': json['tool_choice'] == null ? undefined : json['tool_choice'],
         'temperature': json['temperature'] == null ? undefined : json['temperature'],

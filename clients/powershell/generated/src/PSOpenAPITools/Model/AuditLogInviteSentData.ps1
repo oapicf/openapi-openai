@@ -41,8 +41,8 @@ function Initialize-AuditLogInviteSentData {
 
 
         $PSO = [PSCustomObject]@{
-            "email" = ${Email}
-            "role" = ${Role}
+            'email' = ${Email}
+            'role' = ${Role}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToAuditLogInviteSentData {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AuditLogInviteSentData
-        $AllProperties = ("email", "role")
+        $AllProperties = ('email', 'role')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "email"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'email'))) { #optional property not found
             $Email = $null
         } else {
-            $Email = $JsonParameters.PSobject.Properties["email"].value
+            $Email = $JsonParameters.PSobject.Properties['email'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "role"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'role'))) { #optional property not found
             $Role = $null
         } else {
-            $Role = $JsonParameters.PSobject.Properties["role"].value
+            $Role = $JsonParameters.PSobject.Properties['role'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "email" = ${Email}
-            "role" = ${Role}
+            'email' = ${Email}
+            'role' = ${Role}
         }
 
         return $PSO

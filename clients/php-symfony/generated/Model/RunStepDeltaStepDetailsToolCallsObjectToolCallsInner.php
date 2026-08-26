@@ -49,7 +49,7 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
      * @var int|null
      * @SerializedName("index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $index = null;
@@ -60,7 +60,7 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -70,7 +70,7 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['code_interpreter', 'file_search', 'function'])]
     #[Assert\Type("string")]
@@ -80,7 +80,7 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
      * @var RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter|null
      * @SerializedName("code_interpreter")
      * @Type("OpenAPI\Server\Model\RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter")]
     protected ?RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter $codeInterpreter = null;
 
@@ -90,7 +90,7 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
      * @var array|null
      * @SerializedName("file_search")
      * @Type("array")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("array")]
     protected ?array $fileSearch = null;
@@ -99,7 +99,7 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
      * @var RunStepDeltaStepDetailsToolCallsFunctionObjectFunction|null
      * @SerializedName("function")
      * @Type("OpenAPI\Server\Model\RunStepDeltaStepDetailsToolCallsFunctionObjectFunction")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RunStepDeltaStepDetailsToolCallsFunctionObjectFunction")]
     protected ?RunStepDeltaStepDetailsToolCallsFunctionObjectFunction $function = null;
 
@@ -130,12 +130,12 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
     }
 
     /**
-    * Sets index.
-    *
-    * @param int|null $index  The index of the tool call in the tool calls array.
-    *
-    * @return $this
-    */
+     * Sets index.
+     *
+     * @param int|null $index  The index of the tool call in the tool calls array.
+     *
+     * @return $this
+     */
     public function setIndex(?int $index): self
     {
         $this->index = $index;
@@ -157,12 +157,12 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The ID of the tool call object.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The ID of the tool call object.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -184,12 +184,12 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -211,12 +211,12 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
     }
 
     /**
-    * Sets codeInterpreter.
-    *
-    * @param RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter|null $codeInterpreter
-    *
-    * @return $this
-    */
+     * Sets codeInterpreter.
+     *
+     * @param RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter|null $codeInterpreter
+     *
+     * @return $this
+     */
     public function setCodeInterpreter(?RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter $codeInterpreter = null): self
     {
         $this->codeInterpreter = $codeInterpreter;
@@ -238,12 +238,12 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
     }
 
     /**
-    * Sets fileSearch.
-    *
-    * @param array|null $fileSearch  For now, this is always going to be an empty object.
-    *
-    * @return $this
-    */
+     * Sets fileSearch.
+     *
+     * @param array|null $fileSearch  For now, this is always going to be an empty object.
+     *
+     * @return $this
+     */
     public function setFileSearch(?array $fileSearch): self
     {
         $this->fileSearch = $fileSearch;
@@ -265,12 +265,12 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
     }
 
     /**
-    * Sets function.
-    *
-    * @param RunStepDeltaStepDetailsToolCallsFunctionObjectFunction|null $function
-    *
-    * @return $this
-    */
+     * Sets function.
+     *
+     * @param RunStepDeltaStepDetailsToolCallsFunctionObjectFunction|null $function
+     *
+     * @return $this
+     */
     public function setFunction(?RunStepDeltaStepDetailsToolCallsFunctionObjectFunction $function = null): self
     {
         $this->function = $function;

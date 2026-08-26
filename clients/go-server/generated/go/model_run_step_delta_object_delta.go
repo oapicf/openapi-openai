@@ -20,7 +20,8 @@ type RunStepDeltaObjectDelta struct {
 	StepDetails RunStepDeltaObjectDeltaStepDetails `json:"step_details,omitempty"`
 }
 
-// AssertRunStepDeltaObjectDeltaRequired checks if the required fields are not zero-ed
+// AssertRunStepDeltaObjectDeltaRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRunStepDeltaObjectDeltaRequired(obj RunStepDeltaObjectDelta) error {
 	if err := AssertRunStepDeltaObjectDeltaStepDetailsRequired(obj.StepDetails); err != nil {
 		return err

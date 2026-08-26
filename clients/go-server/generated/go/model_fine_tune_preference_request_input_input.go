@@ -25,7 +25,8 @@ type FineTunePreferenceRequestInputInput struct {
 	ParallelToolCalls bool `json:"parallel_tool_calls,omitempty"`
 }
 
-// AssertFineTunePreferenceRequestInputInputRequired checks if the required fields are not zero-ed
+// AssertFineTunePreferenceRequestInputInputRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertFineTunePreferenceRequestInputInputRequired(obj FineTunePreferenceRequestInputInput) error {
 	for _, el := range obj.Messages {
 		if err := AssertFineTuneChatRequestInputMessagesInnerRequired(el); err != nil {

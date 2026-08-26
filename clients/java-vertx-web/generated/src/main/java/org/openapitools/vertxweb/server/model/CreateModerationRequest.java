@@ -10,7 +10,7 @@ import org.openapitools.vertxweb.server.model.CreateModerationRequestModel;
 public class CreateModerationRequest   {
   
   private CreateModerationRequestInput input;
-  private CreateModerationRequestModel model = omni-moderation-latest;
+  private CreateModerationRequestModel model;
 
   public CreateModerationRequest () {
 
@@ -74,9 +74,6 @@ public class CreateModerationRequest   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }

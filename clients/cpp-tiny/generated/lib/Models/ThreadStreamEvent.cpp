@@ -107,7 +107,7 @@ ThreadStreamEvent::isEnabled()
 }
 
 void
-ThreadStreamEvent::setEnabled(bool  enabled)
+ThreadStreamEvent::setEnabled(bool enabled)
 {
 	this->enabled = enabled;
 }
@@ -119,7 +119,7 @@ ThreadStreamEvent::getEvent()
 }
 
 void
-ThreadStreamEvent::setEvent(std::string  event)
+ThreadStreamEvent::setEvent(std::string event)
 {
 	this->event = event;
 }
@@ -131,7 +131,7 @@ ThreadStreamEvent::getData()
 }
 
 void
-ThreadStreamEvent::setData(ThreadObject  data)
+ThreadStreamEvent::setData(ThreadObject data)
 {
 	this->data = data;
 }

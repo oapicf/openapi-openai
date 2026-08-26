@@ -1,4 +1,4 @@
-# # ModifyAssistantRequestToolResources
+# ModifyAssistantRequestToolResources
 
 ## Properties
 

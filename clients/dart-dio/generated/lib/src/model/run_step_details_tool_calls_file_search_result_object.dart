@@ -127,8 +127,9 @@ class _$RunStepDetailsToolCallsFileSearchResultObjectSerializer implements Primi
         case r'content':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(RunStepDetailsToolCallsFileSearchResultObjectContentInner)]),
-          ) as BuiltList<RunStepDetailsToolCallsFileSearchResultObjectContentInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(RunStepDetailsToolCallsFileSearchResultObjectContentInner)]),
+          ) as BuiltList<RunStepDetailsToolCallsFileSearchResultObjectContentInner>?;
+          if (valueDes == null) continue;
           result.content.replace(valueDes);
           break;
         default:

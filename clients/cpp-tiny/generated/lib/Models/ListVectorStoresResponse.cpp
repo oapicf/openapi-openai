@@ -165,7 +165,7 @@ ListVectorStoresResponse::getObject()
 }
 
 void
-ListVectorStoresResponse::setObject(std::string  object)
+ListVectorStoresResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -177,7 +177,7 @@ ListVectorStoresResponse::getData()
 }
 
 void
-ListVectorStoresResponse::setData(std::list <VectorStoreObject> data)
+ListVectorStoresResponse::setData(std::list<VectorStoreObject> data)
 {
 	this->data = data;
 }
@@ -189,7 +189,7 @@ ListVectorStoresResponse::getFirstId()
 }
 
 void
-ListVectorStoresResponse::setFirstId(std::string  first_id)
+ListVectorStoresResponse::setFirstId(std::string first_id)
 {
 	this->first_id = first_id;
 }
@@ -201,7 +201,7 @@ ListVectorStoresResponse::getLastId()
 }
 
 void
-ListVectorStoresResponse::setLastId(std::string  last_id)
+ListVectorStoresResponse::setLastId(std::string last_id)
 {
 	this->last_id = last_id;
 }
@@ -213,7 +213,7 @@ ListVectorStoresResponse::isHasMore()
 }
 
 void
-ListVectorStoresResponse::setHasMore(bool  has_more)
+ListVectorStoresResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }

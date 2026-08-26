@@ -12,18 +12,17 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  RealtimeSessionCreateRequest,
-  RealtimeSessionCreateResponse,
-} from '../models/index';
 import {
+    type RealtimeSessionCreateRequest,
     RealtimeSessionCreateRequestFromJSON,
     RealtimeSessionCreateRequestToJSON,
+} from '../models/RealtimeSessionCreateRequest';
+import {
+    type RealtimeSessionCreateResponse,
     RealtimeSessionCreateResponseFromJSON,
     RealtimeSessionCreateResponseToJSON,
-} from '../models/index';
+} from '../models/RealtimeSessionCreateResponse';
 
 export interface CreateRealtimeSessionRequest {
     realtimeSessionCreateRequest: RealtimeSessionCreateRequest;
@@ -35,9 +34,9 @@ export interface CreateRealtimeSessionRequest {
 export class RealtimeApi extends runtime.BaseAPI {
 
     /**
-     * Create an ephemeral API token for use in client-side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API. 
+     * Creates request options for createRealtimeSession without sending the request
      */
-    async createRealtimeSessionRaw(requestParameters: CreateRealtimeSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RealtimeSessionCreateResponse>> {
+    async createRealtimeSessionRequestOpts(requestParameters: CreateRealtimeSessionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['realtimeSessionCreateRequest'] == null) {
             throw new runtime.RequiredError(
                 'realtimeSessionCreateRequest',
@@ -62,13 +61,21 @@ export class RealtimeApi extends runtime.BaseAPI {
 
         let urlPath = `/realtime/sessions`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: RealtimeSessionCreateRequestToJSON(requestParameters['realtimeSessionCreateRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create an ephemeral API token for use in client-side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API. 
+     */
+    async createRealtimeSessionRaw(requestParameters: CreateRealtimeSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RealtimeSessionCreateResponse>> {
+        const requestOptions = await this.createRealtimeSessionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => RealtimeSessionCreateResponseFromJSON(jsonValue));
     }

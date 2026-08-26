@@ -87,7 +87,7 @@ export class BatchService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<Batch>(`${this.basePath}/batches/${encodeURIComponent(String(batch_id))}/cancel`,
+                return this.httpClient.post<Batch>(`${this.basePath}/batches/${encodeURIComponent(String(batchId))}/cancel`,
                     null,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -256,7 +256,7 @@ export class BatchService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<Batch>(`${this.basePath}/batches/${encodeURIComponent(String(batch_id))}`,
+                return this.httpClient.get<Batch>(`${this.basePath}/batches/${encodeURIComponent(String(batchId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...retrieveBatchOpts?.config,

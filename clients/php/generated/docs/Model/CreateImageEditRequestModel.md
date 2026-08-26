@@ -1,4 +1,4 @@
-# # CreateImageEditRequestModel
+# CreateImageEditRequestModel
 
 ## Properties
 

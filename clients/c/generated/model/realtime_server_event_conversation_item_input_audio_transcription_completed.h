@@ -30,7 +30,7 @@ typedef struct realtime_server_event_conversation_item_input_audio_transcription
     char *event_id; // string
     openai_api_realtime_server_event_conversation_item_input_audio_transcription_completed_TYPE_e type; //enum
     char *item_id; // string
-    int content_index; //numeric
+    int *content_index; //numeric
     char *transcript; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -40,7 +40,7 @@ __attribute__((deprecated)) realtime_server_event_conversation_item_input_audio_
     char *event_id,
     openai_api_realtime_server_event_conversation_item_input_audio_transcription_completed_TYPE_e type,
     char *item_id,
-    int content_index,
+    int *content_index,
     char *transcript
 );
 

@@ -33,13 +33,13 @@ class OAIMessageContentTextObject_text;
 class OAIMessageContentTextObject : public OAIObject {
 public:
     OAIMessageContentTextObject();
-    OAIMessageContentTextObject(QString json);
+    OAIMessageContentTextObject(const QString &json);
     ~OAIMessageContentTextObject() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

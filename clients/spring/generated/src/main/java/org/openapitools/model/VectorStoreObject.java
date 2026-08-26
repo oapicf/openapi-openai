@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -13,20 +14,20 @@ import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * A vector store is a collection of processed files can be used by the &#x60;file_search&#x60; tool.
  */
 
 @Schema(name = "VectorStoreObject", description = "A vector store is a collection of processed files can be used by the `file_search` tool.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class VectorStoreObject {
 
   private String id;
@@ -113,8 +114,10 @@ public class VectorStoreObject {
 
   private StatusEnum status;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable VectorStoreExpirationAfter expiresAfter;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Integer> expiresAt = JsonNullable.<Integer>undefined();
 
   private JsonNullable<Integer> lastActiveAt = JsonNullable.<Integer>undefined();
@@ -156,6 +159,7 @@ public class VectorStoreObject {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
@@ -176,6 +180,7 @@ public class VectorStoreObject {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
@@ -196,6 +201,7 @@ public class VectorStoreObject {
     return createdAt;
   }
 
+  @JsonProperty("created_at")
   public void setCreatedAt(Integer createdAt) {
     this.createdAt = createdAt;
   }
@@ -216,6 +222,7 @@ public class VectorStoreObject {
     return name;
   }
 
+  @JsonProperty("name")
   public void setName(String name) {
     this.name = name;
   }
@@ -236,6 +243,7 @@ public class VectorStoreObject {
     return usageBytes;
   }
 
+  @JsonProperty("usage_bytes")
   public void setUsageBytes(Integer usageBytes) {
     this.usageBytes = usageBytes;
   }
@@ -256,6 +264,7 @@ public class VectorStoreObject {
     return fileCounts;
   }
 
+  @JsonProperty("file_counts")
   public void setFileCounts(VectorStoreObjectFileCounts fileCounts) {
     this.fileCounts = fileCounts;
   }
@@ -276,6 +285,7 @@ public class VectorStoreObject {
     return status;
   }
 
+  @JsonProperty("status")
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -296,6 +306,7 @@ public class VectorStoreObject {
     return expiresAfter;
   }
 
+  @JsonProperty("expires_after")
   public void setExpiresAfter(@Nullable VectorStoreExpirationAfter expiresAfter) {
     this.expiresAfter = expiresAfter;
   }
@@ -336,6 +347,7 @@ public class VectorStoreObject {
     return lastActiveAt;
   }
 
+  @JsonProperty("last_active_at")
   public void setLastActiveAt(JsonNullable<Integer> lastActiveAt) {
     this.lastActiveAt = lastActiveAt;
   }
@@ -356,6 +368,7 @@ public class VectorStoreObject {
     return metadata;
   }
 
+  @JsonProperty("metadata")
   public void setMetadata(JsonNullable<Object> metadata) {
     this.metadata = metadata;
   }
@@ -421,11 +434,8 @@ public class VectorStoreObject {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

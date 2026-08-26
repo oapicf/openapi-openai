@@ -31,7 +31,7 @@ class  List_audit_logs_effective_at_parameter
 {
 public:
     List_audit_logs_effective_at_parameter();
-    virtual ~List_audit_logs_effective_at_parameter() = default;
+    virtual ~List_audit_logs_effective_at_parameter();
 
 
     /// <summary>

@@ -22,7 +22,7 @@ message RunStepDetailsToolCallsFileSearchResultObjectContentInner {
     TYPE_TEXT = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // The text content of the file.
   string text = 3556653;

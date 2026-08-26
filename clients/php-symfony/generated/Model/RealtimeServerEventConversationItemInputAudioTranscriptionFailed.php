@@ -51,7 +51,7 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailed
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $eventId = null;
@@ -62,7 +62,7 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailed
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['conversation.item.input_audio_transcription.failed'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailed
      * @var string|null
      * @SerializedName("item_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $itemId = null;
@@ -85,7 +85,7 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailed
      * @var int|null
      * @SerializedName("content_index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $contentIndex = null;
@@ -94,7 +94,7 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailed
      * @var RealtimeServerEventConversationItemInputAudioTranscriptionFailedError|null
      * @SerializedName("error")
      * @Type("OpenAPI\Server\Model\RealtimeServerEventConversationItemInputAudioTranscriptionFailedError")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RealtimeServerEventConversationItemInputAudioTranscriptionFailedError")]
@@ -126,12 +126,12 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailed
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  The unique ID of the server event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  The unique ID of the server event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId): self
     {
         $this->eventId = $eventId;
@@ -153,12 +153,12 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailed
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `conversation.item.input_audio_transcription.failed`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `conversation.item.input_audio_transcription.failed`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -180,12 +180,12 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailed
     }
 
     /**
-    * Sets itemId.
-    *
-    * @param string|null $itemId  The ID of the user message item.
-    *
-    * @return $this
-    */
+     * Sets itemId.
+     *
+     * @param string|null $itemId  The ID of the user message item.
+     *
+     * @return $this
+     */
     public function setItemId(?string $itemId): self
     {
         $this->itemId = $itemId;
@@ -207,12 +207,12 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailed
     }
 
     /**
-    * Sets contentIndex.
-    *
-    * @param int|null $contentIndex  The index of the content part containing the audio.
-    *
-    * @return $this
-    */
+     * Sets contentIndex.
+     *
+     * @param int|null $contentIndex  The index of the content part containing the audio.
+     *
+     * @return $this
+     */
     public function setContentIndex(?int $contentIndex): self
     {
         $this->contentIndex = $contentIndex;
@@ -234,12 +234,12 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailed
     }
 
     /**
-    * Sets error.
-    *
-    * @param RealtimeServerEventConversationItemInputAudioTranscriptionFailedError|null $error
-    *
-    * @return $this
-    */
+     * Sets error.
+     *
+     * @param RealtimeServerEventConversationItemInputAudioTranscriptionFailedError|null $error
+     *
+     * @return $this
+     */
     public function setError(?RealtimeServerEventConversationItemInputAudioTranscriptionFailedError $error): self
     {
         $this->error = $error;

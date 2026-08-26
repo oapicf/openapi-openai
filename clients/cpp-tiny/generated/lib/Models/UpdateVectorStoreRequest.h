@@ -53,21 +53,21 @@ public:
 
 	/*! \brief Set The name of the vector store.
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get 
 	 */
 	VectorStoreExpirationAfter getExpiresAfter();
 
 	/*! \brief Set 
 	 */
-	void setExpiresAfter(VectorStoreExpirationAfter  expires_after);
+	void setExpiresAfter(VectorStoreExpirationAfter expires_after);
 	/*! \brief Get Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	 */
 	Object getMetadata();
 
 	/*! \brief Set Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	 */
-	void setMetadata(Object  metadata);
+	void setMetadata(Object metadata);
 
 
     private:

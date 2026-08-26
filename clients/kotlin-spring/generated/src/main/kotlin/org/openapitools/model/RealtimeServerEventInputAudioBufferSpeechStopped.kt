@@ -24,16 +24,20 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeServerEventInputAudioBufferSpeechStopped(
 
-    @Schema(example = "null", required = true, description = "The unique ID of the server event.")
+    @Schema(required = true, description = "The unique ID of the server event.")
+    @param:JsonProperty("event_id")
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The event type, must be `input_audio_buffer.speech_stopped`.")
+    @Schema(required = true, description = "The event type, must be `input_audio_buffer.speech_stopped`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventInputAudioBufferSpeechStopped.Type,
 
-    @Schema(example = "null", required = true, description = "Milliseconds since the session started when speech stopped. This will  correspond to the end of audio sent to the model, and thus includes the  `min_silence_duration_ms` configured in the Session. ")
+    @Schema(required = true, description = "Milliseconds since the session started when speech stopped. This will  correspond to the end of audio sent to the model, and thus includes the  `min_silence_duration_ms` configured in the Session. ")
+    @param:JsonProperty("audio_end_ms")
     @get:JsonProperty("audio_end_ms", required = true) val audioEndMs: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The ID of the user message item that will be created.")
+    @Schema(required = true, description = "The ID of the user message item that will be created.")
+    @param:JsonProperty("item_id")
     @get:JsonProperty("item_id", required = true) val itemId: kotlin.String
 ) {
 
@@ -50,7 +54,7 @@ data class RealtimeServerEventInputAudioBufferSpeechStopped(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeServerEventInputAudioBufferSpeechStopped'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

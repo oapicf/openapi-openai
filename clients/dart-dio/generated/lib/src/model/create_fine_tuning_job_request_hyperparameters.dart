@@ -99,22 +99,25 @@ class _$CreateFineTuningJobRequestHyperparametersSerializer implements Primitive
         case r'batch_size':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateFineTuningJobRequestHyperparametersBatchSize),
-          ) as CreateFineTuningJobRequestHyperparametersBatchSize;
+            specifiedType: const FullType.nullable(CreateFineTuningJobRequestHyperparametersBatchSize),
+          ) as CreateFineTuningJobRequestHyperparametersBatchSize?;
+          if (valueDes == null) continue;
           result.batchSize.replace(valueDes);
           break;
         case r'learning_rate_multiplier':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateFineTuningJobRequestHyperparametersLearningRateMultiplier),
-          ) as CreateFineTuningJobRequestHyperparametersLearningRateMultiplier;
+            specifiedType: const FullType.nullable(CreateFineTuningJobRequestHyperparametersLearningRateMultiplier),
+          ) as CreateFineTuningJobRequestHyperparametersLearningRateMultiplier?;
+          if (valueDes == null) continue;
           result.learningRateMultiplier.replace(valueDes);
           break;
         case r'n_epochs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateFineTuningJobRequestHyperparametersNEpochs),
-          ) as CreateFineTuningJobRequestHyperparametersNEpochs;
+            specifiedType: const FullType.nullable(CreateFineTuningJobRequestHyperparametersNEpochs),
+          ) as CreateFineTuningJobRequestHyperparametersNEpochs?;
+          if (valueDes == null) continue;
           result.nEpochs.replace(valueDes);
           break;
         default:

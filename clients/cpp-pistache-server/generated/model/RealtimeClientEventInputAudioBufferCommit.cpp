@@ -27,6 +27,8 @@ RealtimeClientEventInputAudioBufferCommit::RealtimeClientEventInputAudioBufferCo
     
 }
 
+RealtimeClientEventInputAudioBufferCommit::~RealtimeClientEventInputAudioBufferCommit() = default;
+
 void RealtimeClientEventInputAudioBufferCommit::validate() const
 {
     std::stringstream msg;

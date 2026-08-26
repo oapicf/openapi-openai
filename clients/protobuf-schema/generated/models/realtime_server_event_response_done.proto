@@ -26,7 +26,7 @@ message RealtimeServerEventResponseDone {
     TYPE_RESPONSE_DONE = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   RealtimeResponse response = 340323263;
 

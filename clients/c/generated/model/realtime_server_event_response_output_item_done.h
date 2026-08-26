@@ -31,7 +31,7 @@ typedef struct realtime_server_event_response_output_item_done_t {
     char *event_id; // string
     openai_api_realtime_server_event_response_output_item_done_TYPE_e type; //enum
     char *response_id; // string
-    int output_index; //numeric
+    int *output_index; //numeric
     struct realtime_conversation_item_t *item; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -41,7 +41,7 @@ __attribute__((deprecated)) realtime_server_event_response_output_item_done_t *r
     char *event_id,
     openai_api_realtime_server_event_response_output_item_done_TYPE_e type,
     char *response_id,
-    int output_index,
+    int *output_index,
     realtime_conversation_item_t *item
 );
 

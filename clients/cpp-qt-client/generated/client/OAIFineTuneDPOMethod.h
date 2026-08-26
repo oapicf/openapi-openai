@@ -32,13 +32,13 @@ class OAIFineTuneDPOMethod_hyperparameters;
 class OAIFineTuneDPOMethod : public OAIObject {
 public:
     OAIFineTuneDPOMethod();
-    OAIFineTuneDPOMethod(QString json);
+    OAIFineTuneDPOMethod(const QString &json);
     ~OAIFineTuneDPOMethod() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     OAIFineTuneDPOMethod_hyperparameters getHyperparameters() const;
     void setHyperparameters(const OAIFineTuneDPOMethod_hyperparameters &hyperparameters);

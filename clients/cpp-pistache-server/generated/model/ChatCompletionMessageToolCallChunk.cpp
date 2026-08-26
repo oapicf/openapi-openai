@@ -30,6 +30,8 @@ ChatCompletionMessageToolCallChunk::ChatCompletionMessageToolCallChunk()
     
 }
 
+ChatCompletionMessageToolCallChunk::~ChatCompletionMessageToolCallChunk() = default;
+
 void ChatCompletionMessageToolCallChunk::validate() const
 {
     std::stringstream msg;

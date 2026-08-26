@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.UploadsApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -34,7 +33,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.openAI.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:/v1}")
 class UploadsApiController() {
 
     @Operation(
@@ -47,7 +46,8 @@ class UploadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_ADD_UPLOAD_PART /* "/uploads/{upload_id}/parts" */],
+        // "/uploads/{upload_id}/parts"
+        value = [PATH_ADD_UPLOAD_PART],
         produces = ["application/json"],
         consumes = ["multipart/form-data"]
     )
@@ -68,7 +68,8 @@ class UploadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CANCEL_UPLOAD /* "/uploads/{upload_id}/cancel" */],
+        // "/uploads/{upload_id}/cancel"
+        value = [PATH_CANCEL_UPLOAD],
         produces = ["application/json"]
     )
     fun cancelUpload(
@@ -87,7 +88,8 @@ class UploadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_COMPLETE_UPLOAD /* "/uploads/{upload_id}/complete" */],
+        // "/uploads/{upload_id}/complete"
+        value = [PATH_COMPLETE_UPLOAD],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -108,7 +110,8 @@ class UploadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_UPLOAD /* "/uploads" */],
+        // "/uploads"
+        value = [PATH_CREATE_UPLOAD],
         produces = ["application/json"],
         consumes = ["application/json"]
     )

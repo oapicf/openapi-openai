@@ -25,6 +25,8 @@ AssistantToolsFileSearchTypeOnly::AssistantToolsFileSearchTypeOnly()
     
 }
 
+AssistantToolsFileSearchTypeOnly::~AssistantToolsFileSearchTypeOnly() = default;
+
 void AssistantToolsFileSearchTypeOnly::validate() const
 {
     std::stringstream msg;

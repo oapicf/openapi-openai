@@ -1,4 +1,4 @@
-# # DefaultProjectErrorResponse
+# DefaultProjectErrorResponse
 
 ## Properties
 

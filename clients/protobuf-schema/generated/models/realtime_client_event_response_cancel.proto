@@ -25,7 +25,7 @@ message RealtimeClientEventResponseCancel {
     TYPE_RESPONSE_CANCEL = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // A specific response ID to cancel - if not provided, will cancel an  in-progress response in the default conversation. 
   string response_id = 236939740;

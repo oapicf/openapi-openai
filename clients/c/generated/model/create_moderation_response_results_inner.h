@@ -22,7 +22,7 @@ typedef struct create_moderation_response_results_inner_t create_moderation_resp
 
 
 typedef struct create_moderation_response_results_inner_t {
-    int flagged; //boolean
+    int *flagged; //boolean
     struct create_moderation_response_results_inner_categories_t *categories; //model
     struct create_moderation_response_results_inner_category_scores_t *category_scores; //model
     struct create_moderation_response_results_inner_category_applied_input_types_t *category_applied_input_types; //model
@@ -31,7 +31,7 @@ typedef struct create_moderation_response_results_inner_t {
 } create_moderation_response_results_inner_t;
 
 __attribute__((deprecated)) create_moderation_response_results_inner_t *create_moderation_response_results_inner_create(
-    int flagged,
+    int *flagged,
     create_moderation_response_results_inner_categories_t *categories,
     create_moderation_response_results_inner_category_scores_t *category_scores,
     create_moderation_response_results_inner_category_applied_input_types_t *category_applied_input_types

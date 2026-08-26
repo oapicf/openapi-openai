@@ -33,7 +33,7 @@ class  TranscriptionSegment
 {
 public:
     TranscriptionSegment();
-    virtual ~TranscriptionSegment() = default;
+    virtual ~TranscriptionSegment();
 
 
     /// <summary>

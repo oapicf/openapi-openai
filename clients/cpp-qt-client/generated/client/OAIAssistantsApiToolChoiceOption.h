@@ -34,13 +34,13 @@ class OAIAssistantsNamedToolChoice_function;
 class OAIAssistantsApiToolChoiceOption : public OAIObject {
 public:
     OAIAssistantsApiToolChoiceOption();
-    OAIAssistantsApiToolChoiceOption(QString json);
+    OAIAssistantsApiToolChoiceOption(const QString &json);
     ~OAIAssistantsApiToolChoiceOption() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

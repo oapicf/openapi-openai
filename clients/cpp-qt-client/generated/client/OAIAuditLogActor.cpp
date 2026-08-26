@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIAuditLogActor::OAIAuditLogActor(QString json) {
+OAIAuditLogActor::OAIAuditLogActor(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIAuditLogActor::initializeModel() {
     m_api_key_isValid = false;
 }
 
-void OAIAuditLogActor::fromJson(QString jsonString) {
+void OAIAuditLogActor::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();
@@ -75,10 +75,10 @@ QJsonObject OAIAuditLogActor::asJsonObject() const {
     if (m_type_isSet) {
         obj.insert(QString("type"), ::OpenAPI::toJsonValue(m_type));
     }
-    if (m_session_isSet) {
+    if (m_session.isSet()) {
         obj.insert(QString("session"), ::OpenAPI::toJsonValue(m_session));
     }
-    if (m_api_key_isSet) {
+    if (m_api_key.isSet()) {
         obj.insert(QString("api_key"), ::OpenAPI::toJsonValue(m_api_key));
     }
     return obj;
@@ -140,12 +140,12 @@ bool OAIAuditLogActor::isSet() const {
             break;
         }
 
-        if (m_session_isSet) {
+        if (m_session.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_api_key_isSet) {
+        if (m_api_key.isSet()) {
             isObjectUpdated = true;
             break;
         }

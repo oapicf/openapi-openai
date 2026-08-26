@@ -27,6 +27,8 @@ MessageContentImageFileObject_image_file::MessageContentImageFileObject_image_fi
     
 }
 
+MessageContentImageFileObject_image_file::~MessageContentImageFileObject_image_file() = default;
+
 void MessageContentImageFileObject_image_file::validate() const
 {
     std::stringstream msg;

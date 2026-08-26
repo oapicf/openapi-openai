@@ -51,7 +51,7 @@ class RealtimeServerEventRateLimitsUpdated
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $eventId = null;
@@ -62,7 +62,7 @@ class RealtimeServerEventRateLimitsUpdated
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['rate_limits.updated'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class RealtimeServerEventRateLimitsUpdated
      * @var RealtimeServerEventRateLimitsUpdatedRateLimitsInner[]|null
      * @SerializedName("rate_limits")
      * @Type("array<OpenAPI\Server\Model\RealtimeServerEventRateLimitsUpdatedRateLimitsInner>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -106,12 +106,12 @@ class RealtimeServerEventRateLimitsUpdated
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  The unique ID of the server event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  The unique ID of the server event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId): self
     {
         $this->eventId = $eventId;
@@ -133,12 +133,12 @@ class RealtimeServerEventRateLimitsUpdated
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `rate_limits.updated`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `rate_limits.updated`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -160,12 +160,12 @@ class RealtimeServerEventRateLimitsUpdated
     }
 
     /**
-    * Sets rateLimits.
-    *
-    * @param RealtimeServerEventRateLimitsUpdatedRateLimitsInner[]|null $rateLimits  List of rate limit information.
-    *
-    * @return $this
-    */
+     * Sets rateLimits.
+     *
+     * @param RealtimeServerEventRateLimitsUpdatedRateLimitsInner[]|null $rateLimits  List of rate limit information.
+     *
+     * @return $this
+     */
     public function setRateLimits(?array $rateLimits): self
     {
         $this->rateLimits = $rateLimits;

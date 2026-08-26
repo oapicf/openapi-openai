@@ -34,7 +34,7 @@ export class FineTuningApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/fine_tuning/jobs/{fine_tuning_job_id}/cancel'
-            .replace('{' + 'fine_tuning_job_id' + '}', encodeURIComponent(String(fineTuningJobId)));
+            .replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -122,7 +122,7 @@ export class FineTuningApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/fine_tuning/jobs/{fine_tuning_job_id}/events'
-            .replace('{' + 'fine_tuning_job_id' + '}', encodeURIComponent(String(fineTuningJobId)));
+            .replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -173,7 +173,7 @@ export class FineTuningApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints'
-            .replace('{' + 'fine_tuning_job_id' + '}', encodeURIComponent(String(fineTuningJobId)));
+            .replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -263,7 +263,7 @@ export class FineTuningApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/fine_tuning/jobs/{fine_tuning_job_id}'
-            .replace('{' + 'fine_tuning_job_id' + '}', encodeURIComponent(String(fineTuningJobId)));
+            .replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

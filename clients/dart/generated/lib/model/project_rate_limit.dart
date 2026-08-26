@@ -144,10 +144,16 @@ class ProjectRateLimit {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectRateLimit[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectRateLimit[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "ProjectRateLimit[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "ProjectRateLimit[object]" has a null value in JSON.');
+        assert(json.containsKey(r'id'), 'Required key "ProjectRateLimit[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "ProjectRateLimit[id]" has a null value in JSON.');
+        assert(json.containsKey(r'model'), 'Required key "ProjectRateLimit[model]" is missing from JSON.');
+        assert(json[r'model'] != null, 'Required key "ProjectRateLimit[model]" has a null value in JSON.');
+        assert(json.containsKey(r'max_requests_per_1_minute'), 'Required key "ProjectRateLimit[max_requests_per_1_minute]" is missing from JSON.');
+        assert(json[r'max_requests_per_1_minute'] != null, 'Required key "ProjectRateLimit[max_requests_per_1_minute]" has a null value in JSON.');
+        assert(json.containsKey(r'max_tokens_per_1_minute'), 'Required key "ProjectRateLimit[max_tokens_per_1_minute]" is missing from JSON.');
+        assert(json[r'max_tokens_per_1_minute'] != null, 'Required key "ProjectRateLimit[max_tokens_per_1_minute]" has a null value in JSON.');
         return true;
       }());
 
@@ -217,27 +223,28 @@ class ProjectRateLimit {
 }
 
 /// The object type, which is always `project.rate_limit`
-class ProjectRateLimitObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ProjectRateLimitObjectEnum._(this.value);
+enum ProjectRateLimitObjectEnum {
+  projectPeriodRateLimit._(r'project.rate_limit'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ProjectRateLimitObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const projectPeriodRateLimit = ProjectRateLimitObjectEnum._(r'project.rate_limit');
-
-  /// List of all possible values in this [enum][ProjectRateLimitObjectEnum].
-  static const values = <ProjectRateLimitObjectEnum>[
-    projectPeriodRateLimit,
-  ];
-
+  /// Returns the instance of [ProjectRateLimitObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ProjectRateLimitObjectEnum? fromJson(dynamic value) => ProjectRateLimitObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ProjectRateLimitObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ProjectRateLimitObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ProjectRateLimitObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -259,9 +266,10 @@ class ProjectRateLimitObjectEnumTypeTransformer {
 
   const ProjectRateLimitObjectEnumTypeTransformer._();
 
-  String encode(ProjectRateLimitObjectEnum data) => data.value;
+  String encode(ProjectRateLimitObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ProjectRateLimitObjectEnum.
+  /// Returns the instance of [ProjectRateLimitObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -270,6 +278,9 @@ class ProjectRateLimitObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ProjectRateLimitObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ProjectRateLimitObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'project.rate_limit': return ProjectRateLimitObjectEnum.projectPeriodRateLimit;
@@ -282,7 +293,7 @@ class ProjectRateLimitObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ProjectRateLimitObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ProjectRateLimitObjectEnumTypeTransformer? _instance;
 }
 

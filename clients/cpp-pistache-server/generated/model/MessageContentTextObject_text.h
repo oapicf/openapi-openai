@@ -34,7 +34,7 @@ class  MessageContentTextObject_text
 {
 public:
     MessageContentTextObject_text();
-    virtual ~MessageContentTextObject_text() = default;
+    virtual ~MessageContentTextObject_text();
 
 
     /// <summary>

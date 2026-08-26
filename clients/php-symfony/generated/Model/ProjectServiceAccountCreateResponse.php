@@ -47,7 +47,7 @@ class ProjectServiceAccountCreateResponse
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['organization.project.service_account'])]
     #[Assert\Type("string")]
@@ -57,7 +57,7 @@ class ProjectServiceAccountCreateResponse
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -66,7 +66,7 @@ class ProjectServiceAccountCreateResponse
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $name = null;
@@ -77,7 +77,7 @@ class ProjectServiceAccountCreateResponse
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['member'])]
     #[Assert\Type("string")]
@@ -87,7 +87,7 @@ class ProjectServiceAccountCreateResponse
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -96,7 +96,7 @@ class ProjectServiceAccountCreateResponse
      * @var ProjectServiceAccountApiKey|null
      * @SerializedName("api_key")
      * @Type("OpenAPI\Server\Model\ProjectServiceAccountApiKey")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\ProjectServiceAccountApiKey")]
@@ -129,12 +129,12 @@ class ProjectServiceAccountCreateResponse
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -156,12 +156,12 @@ class ProjectServiceAccountCreateResponse
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -183,12 +183,12 @@ class ProjectServiceAccountCreateResponse
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name
+     *
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -210,12 +210,12 @@ class ProjectServiceAccountCreateResponse
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  Service accounts can only have one role of type `member`
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  Service accounts can only have one role of type `member`
+     *
+     * @return $this
+     */
     public function setRole(?string $role): self
     {
         $this->role = $role;
@@ -237,12 +237,12 @@ class ProjectServiceAccountCreateResponse
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -264,12 +264,12 @@ class ProjectServiceAccountCreateResponse
     }
 
     /**
-    * Sets apiKey.
-    *
-    * @param ProjectServiceAccountApiKey|null $apiKey
-    *
-    * @return $this
-    */
+     * Sets apiKey.
+     *
+     * @param ProjectServiceAccountApiKey|null $apiKey
+     *
+     * @return $this
+     */
     public function setApiKey(?ProjectServiceAccountApiKey $apiKey): self
     {
         $this->apiKey = $apiKey;

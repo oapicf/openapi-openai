@@ -46,7 +46,7 @@ typedef struct fine_tune_chat_request_input_messages_inner_t {
     char *content; // string
     openai_api_fine_tune_chat_request_input_messages_inner_ROLE_e role; //enum
     char *name; // string
-    int weight; //numeric
+    int *weight; //numeric
     char *refusal; // string
     struct chat_completion_request_assistant_message_audio_t *audio; //model
     list_t *tool_calls; //nonprimitive container
@@ -60,7 +60,7 @@ __attribute__((deprecated)) fine_tune_chat_request_input_messages_inner_t *fine_
     char *content,
     openai_api_fine_tune_chat_request_input_messages_inner_ROLE_e role,
     char *name,
-    int weight,
+    int *weight,
     char *refusal,
     chat_completion_request_assistant_message_audio_t *audio,
     list_t *tool_calls,

@@ -33,13 +33,13 @@ class OAIRealtimeConversationItem;
 class OAIRealtimeServerEventResponseOutputItemAdded : public OAIObject {
 public:
     OAIRealtimeServerEventResponseOutputItemAdded();
-    OAIRealtimeServerEventResponseOutputItemAdded(QString json);
+    OAIRealtimeServerEventResponseOutputItemAdded(const QString &json);
     ~OAIRealtimeServerEventResponseOutputItemAdded() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getEventId() const;
     void setEventId(const QString &event_id);

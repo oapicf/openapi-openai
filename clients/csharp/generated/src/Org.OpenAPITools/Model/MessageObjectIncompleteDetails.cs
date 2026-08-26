@@ -187,8 +187,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageObjectIncompleteDetails" />
     /// </summary>
-    public class MessageObjectIncompleteDetailsJsonConverter : JsonConverter<MessageObjectIncompleteDetails>
+    public partial class MessageObjectIncompleteDetailsJsonConverter : JsonConverter<MessageObjectIncompleteDetails>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageObjectIncompleteDetailsJsonConverter" /> class.
+        /// </summary>
+        public MessageObjectIncompleteDetailsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageObjectIncompleteDetails" />
         /// </summary>

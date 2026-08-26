@@ -37,7 +37,7 @@ class  AssistantObject_tools_inner
 {
 public:
     AssistantObject_tools_inner();
-    virtual ~AssistantObject_tools_inner() = default;
+    virtual ~AssistantObject_tools_inner();
 
 
     /// <summary>

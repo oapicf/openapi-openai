@@ -25,7 +25,7 @@ openai_api_create_completion_response_OBJECT_e create_completion_response_object
 static create_completion_response_t *create_completion_response_create_internal(
     char *id,
     list_t *choices,
-    int created,
+    int *created,
     char *model,
     char *system_fingerprint,
     openai_api_create_completion_response_OBJECT_e object,
@@ -35,6 +35,8 @@ static create_completion_response_t *create_completion_response_create_internal(
     if (!create_completion_response_local_var) {
         return NULL;
     }
+    memset(create_completion_response_local_var, 0, sizeof(create_completion_response_t));
+    create_completion_response_local_var->_library_owned = 1;
     create_completion_response_local_var->id = id;
     create_completion_response_local_var->choices = choices;
     create_completion_response_local_var->created = created;
@@ -42,29 +44,36 @@ static create_completion_response_t *create_completion_response_create_internal(
     create_completion_response_local_var->system_fingerprint = system_fingerprint;
     create_completion_response_local_var->object = object;
     create_completion_response_local_var->usage = usage;
-
-    create_completion_response_local_var->_library_owned = 1;
     return create_completion_response_local_var;
 }
 
 __attribute__((deprecated)) create_completion_response_t *create_completion_response_create(
     char *id,
     list_t *choices,
-    int created,
+    int *created,
     char *model,
     char *system_fingerprint,
     openai_api_create_completion_response_OBJECT_e object,
     completion_usage_t *usage
     ) {
-    return create_completion_response_create_internal (
+    int *created_copy = NULL;
+    if (created) {
+        created_copy = malloc(sizeof(int));
+        if (created_copy) *created_copy = *created;
+    }
+    create_completion_response_t *result = create_completion_response_create_internal (
         id,
         choices,
-        created,
+        created_copy,
         model,
         system_fingerprint,
         object,
         usage
         );
+    if (!result) {
+        free(created_copy);
+    }
+    return result;
 }
 
 void create_completion_response_free(create_completion_response_t *create_completion_response) {
@@ -86,6 +95,10 @@ void create_completion_response_free(create_completion_response_t *create_comple
         }
         list_freeList(create_completion_response->choices);
         create_completion_response->choices = NULL;
+    }
+    if (create_completion_response->created) {
+        free(create_completion_response->created);
+        create_completion_response->created = NULL;
     }
     if (create_completion_response->model) {
         free(create_completion_response->model);
@@ -139,7 +152,7 @@ cJSON *create_completion_response_convertToJSON(create_completion_response_t *cr
     if (!create_completion_response->created) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created", create_completion_response->created) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created", *create_completion_response->created) == NULL) {
     goto fail; //Numeric
     }
 
@@ -195,8 +208,17 @@ create_completion_response_t *create_completion_response_parseFromJSON(cJSON *cr
 
     create_completion_response_t *create_completion_response_local_var = NULL;
 
+    char *id_local_str = NULL;
+
     // define the local list for create_completion_response->choices
     list_t *choicesList = NULL;
+
+    // define the local variable for create_completion_response->created
+    int *created_local_var = NULL;
+
+    char *model_local_str = NULL;
+
+    char *system_fingerprint_local_str = NULL;
 
     // define the local variable for create_completion_response->usage
     completion_usage_t *usage_local_nonprim = NULL;
@@ -257,6 +279,12 @@ create_completion_response_t *create_completion_response_parseFromJSON(cJSON *cr
     {
     goto end; //Numeric
     }
+    created_local_var = malloc(sizeof(int));
+    if(!created_local_var)
+    {
+        goto end;
+    }
+    *created_local_var = created->valuedouble;
 
     // create_completion_response->model
     cJSON *model = cJSON_GetObjectItemCaseSensitive(create_completion_responseJSON, "model");
@@ -312,18 +340,30 @@ create_completion_response_t *create_completion_response_parseFromJSON(cJSON *cr
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (model && !cJSON_IsNull(model)) model_local_str = strdup(model->valuestring);
+    if (system_fingerprint && !cJSON_IsNull(system_fingerprint)) system_fingerprint_local_str = strdup(system_fingerprint->valuestring);
+
     create_completion_response_local_var = create_completion_response_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         choicesList,
-        created->valuedouble,
-        strdup(model->valuestring),
-        system_fingerprint && !cJSON_IsNull(system_fingerprint) ? strdup(system_fingerprint->valuestring) : NULL,
+        created_local_var,
+        model_local_str,
+        system_fingerprint_local_str,
         objectVariable,
         usage ? usage_local_nonprim : NULL
         );
 
+    if (!create_completion_response_local_var) {
+        goto end;
+    }
+
     return create_completion_response_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     if (choicesList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, choicesList) {
@@ -332,6 +372,18 @@ end:
         }
         list_freeList(choicesList);
         choicesList = NULL;
+    }
+    if (created_local_var) {
+        free(created_local_var);
+        created_local_var = NULL;
+    }
+    if (model_local_str) {
+        free(model_local_str);
+        model_local_str = NULL;
+    }
+    if (system_fingerprint_local_str) {
+        free(system_fingerprint_local_str);
+        system_fingerprint_local_str = NULL;
     }
     if (usage_local_nonprim) {
         completion_usage_free(usage_local_nonprim);

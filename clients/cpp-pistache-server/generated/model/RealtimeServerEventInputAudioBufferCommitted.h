@@ -32,7 +32,7 @@ class  RealtimeServerEventInputAudioBufferCommitted
 {
 public:
     RealtimeServerEventInputAudioBufferCommitted();
-    virtual ~RealtimeServerEventInputAudioBufferCommitted() = default;
+    virtual ~RealtimeServerEventInputAudioBufferCommitted();
 
 
     /// <summary>

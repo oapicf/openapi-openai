@@ -33,7 +33,7 @@ class  AssistantObject_tool_resources
 {
 public:
     AssistantObject_tool_resources();
-    virtual ~AssistantObject_tool_resources() = default;
+    virtual ~AssistantObject_tool_resources();
 
 
     /// <summary>

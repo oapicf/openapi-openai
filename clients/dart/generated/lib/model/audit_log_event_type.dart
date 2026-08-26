@@ -11,69 +11,49 @@
 part of openapi.api;
 
 /// The event type.
-class AuditLogEventType {
-  /// Instantiate a new enum with the provided [value].
-  const AuditLogEventType._(this.value);
+enum AuditLogEventType {
+  apiKeyPeriodCreated._(r'api_key.created'),
+  apiKeyPeriodUpdated._(r'api_key.updated'),
+  apiKeyPeriodDeleted._(r'api_key.deleted'),
+  invitePeriodSent._(r'invite.sent'),
+  invitePeriodAccepted._(r'invite.accepted'),
+  invitePeriodDeleted._(r'invite.deleted'),
+  loginPeriodSucceeded._(r'login.succeeded'),
+  loginPeriodFailed._(r'login.failed'),
+  logoutPeriodSucceeded._(r'logout.succeeded'),
+  logoutPeriodFailed._(r'logout.failed'),
+  organizationPeriodUpdated._(r'organization.updated'),
+  projectPeriodCreated._(r'project.created'),
+  projectPeriodUpdated._(r'project.updated'),
+  projectPeriodArchived._(r'project.archived'),
+  serviceAccountPeriodCreated._(r'service_account.created'),
+  serviceAccountPeriodUpdated._(r'service_account.updated'),
+  serviceAccountPeriodDeleted._(r'service_account.deleted'),
+  rateLimitPeriodUpdated._(r'rate_limit.updated'),
+  rateLimitPeriodDeleted._(r'rate_limit.deleted'),
+  userPeriodAdded._(r'user.added'),
+  userPeriodUpdated._(r'user.updated'),
+  userPeriodDeleted._(r'user.deleted'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const AuditLogEventType._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const apiKeyPeriodCreated = AuditLogEventType._(r'api_key.created');
-  static const apiKeyPeriodUpdated = AuditLogEventType._(r'api_key.updated');
-  static const apiKeyPeriodDeleted = AuditLogEventType._(r'api_key.deleted');
-  static const invitePeriodSent = AuditLogEventType._(r'invite.sent');
-  static const invitePeriodAccepted = AuditLogEventType._(r'invite.accepted');
-  static const invitePeriodDeleted = AuditLogEventType._(r'invite.deleted');
-  static const loginPeriodSucceeded = AuditLogEventType._(r'login.succeeded');
-  static const loginPeriodFailed = AuditLogEventType._(r'login.failed');
-  static const logoutPeriodSucceeded = AuditLogEventType._(r'logout.succeeded');
-  static const logoutPeriodFailed = AuditLogEventType._(r'logout.failed');
-  static const organizationPeriodUpdated = AuditLogEventType._(r'organization.updated');
-  static const projectPeriodCreated = AuditLogEventType._(r'project.created');
-  static const projectPeriodUpdated = AuditLogEventType._(r'project.updated');
-  static const projectPeriodArchived = AuditLogEventType._(r'project.archived');
-  static const serviceAccountPeriodCreated = AuditLogEventType._(r'service_account.created');
-  static const serviceAccountPeriodUpdated = AuditLogEventType._(r'service_account.updated');
-  static const serviceAccountPeriodDeleted = AuditLogEventType._(r'service_account.deleted');
-  static const rateLimitPeriodUpdated = AuditLogEventType._(r'rate_limit.updated');
-  static const rateLimitPeriodDeleted = AuditLogEventType._(r'rate_limit.deleted');
-  static const userPeriodAdded = AuditLogEventType._(r'user.added');
-  static const userPeriodUpdated = AuditLogEventType._(r'user.updated');
-  static const userPeriodDeleted = AuditLogEventType._(r'user.deleted');
-
-  /// List of all possible values in this [enum][AuditLogEventType].
-  static const values = <AuditLogEventType>[
-    apiKeyPeriodCreated,
-    apiKeyPeriodUpdated,
-    apiKeyPeriodDeleted,
-    invitePeriodSent,
-    invitePeriodAccepted,
-    invitePeriodDeleted,
-    loginPeriodSucceeded,
-    loginPeriodFailed,
-    logoutPeriodSucceeded,
-    logoutPeriodFailed,
-    organizationPeriodUpdated,
-    projectPeriodCreated,
-    projectPeriodUpdated,
-    projectPeriodArchived,
-    serviceAccountPeriodCreated,
-    serviceAccountPeriodUpdated,
-    serviceAccountPeriodDeleted,
-    rateLimitPeriodUpdated,
-    rateLimitPeriodDeleted,
-    userPeriodAdded,
-    userPeriodUpdated,
-    userPeriodDeleted,
-  ];
-
+  /// Returns the instance of [AuditLogEventType] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static AuditLogEventType? fromJson(dynamic value) => AuditLogEventTypeTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [AuditLogEventType]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<AuditLogEventType> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <AuditLogEventType>[];
     if (json is List && json.isNotEmpty) {
@@ -95,9 +75,11 @@ class AuditLogEventTypeTypeTransformer {
 
   const AuditLogEventTypeTypeTransformer._();
 
-  String encode(AuditLogEventType data) => data.value;
+  /// Encodes this enum as a value suitable for JSON.
+  String encode(AuditLogEventType data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a AuditLogEventType.
+  /// Returns the instance of [AuditLogEventType] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -106,6 +88,9 @@ class AuditLogEventTypeTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   AuditLogEventType? decode(dynamic data, {bool allowNull = true}) {
+    if (data is AuditLogEventType) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'api_key.created': return AuditLogEventType.apiKeyPeriodCreated;
@@ -139,7 +124,7 @@ class AuditLogEventTypeTypeTransformer {
     return null;
   }
 
-  /// Singleton [AuditLogEventTypeTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static AuditLogEventTypeTypeTransformer? _instance;
 }
 

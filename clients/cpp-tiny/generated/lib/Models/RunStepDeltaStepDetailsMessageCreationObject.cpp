@@ -86,7 +86,7 @@ RunStepDeltaStepDetailsMessageCreationObject::getType()
 }
 
 void
-RunStepDeltaStepDetailsMessageCreationObject::setType(std::string  type)
+RunStepDeltaStepDetailsMessageCreationObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ RunStepDeltaStepDetailsMessageCreationObject::getMessageCreation()
 }
 
 void
-RunStepDeltaStepDetailsMessageCreationObject::setMessageCreation(RunStepDeltaStepDetailsMessageCreationObject_message_creation  message_creation)
+RunStepDeltaStepDetailsMessageCreationObject::setMessageCreation(RunStepDeltaStepDetailsMessageCreationObject_message_creation message_creation)
 {
 	this->message_creation = message_creation;
 }

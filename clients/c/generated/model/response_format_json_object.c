@@ -29,18 +29,21 @@ static response_format_json_object_t *response_format_json_object_create_interna
     if (!response_format_json_object_local_var) {
         return NULL;
     }
-    response_format_json_object_local_var->type = type;
-
+    memset(response_format_json_object_local_var, 0, sizeof(response_format_json_object_t));
     response_format_json_object_local_var->_library_owned = 1;
+    response_format_json_object_local_var->type = type;
     return response_format_json_object_local_var;
 }
 
 __attribute__((deprecated)) response_format_json_object_t *response_format_json_object_create(
     openai_api_response_format_json_object_TYPE_e type
     ) {
-    return response_format_json_object_create_internal (
+    response_format_json_object_t *result = response_format_json_object_create_internal (
         type
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void response_format_json_object_free(response_format_json_object_t *response_format_json_object) {
@@ -97,9 +100,14 @@ response_format_json_object_t *response_format_json_object_parseFromJSON(cJSON *
     typeVariable = response_format_json_object_type_FromString(type->valuestring);
 
 
+
     response_format_json_object_local_var = response_format_json_object_create_internal (
         typeVariable
         );
+
+    if (!response_format_json_object_local_var) {
+        goto end;
+    }
 
     return response_format_json_object_local_var;
 end:

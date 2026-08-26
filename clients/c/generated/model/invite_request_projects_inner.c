@@ -30,10 +30,10 @@ static invite_request_projects_inner_t *invite_request_projects_inner_create_int
     if (!invite_request_projects_inner_local_var) {
         return NULL;
     }
+    memset(invite_request_projects_inner_local_var, 0, sizeof(invite_request_projects_inner_t));
+    invite_request_projects_inner_local_var->_library_owned = 1;
     invite_request_projects_inner_local_var->id = id;
     invite_request_projects_inner_local_var->role = role;
-
-    invite_request_projects_inner_local_var->_library_owned = 1;
     return invite_request_projects_inner_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) invite_request_projects_inner_t *invite_request_proj
     char *id,
     openai_api_invite_request_projects_inner_ROLE_e role
     ) {
-    return invite_request_projects_inner_create_internal (
+    invite_request_projects_inner_t *result = invite_request_projects_inner_create_internal (
         id,
         role
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void invite_request_projects_inner_free(invite_request_projects_inner_t *invite_request_projects_inner) {
@@ -96,6 +99,8 @@ invite_request_projects_inner_t *invite_request_projects_inner_parseFromJSON(cJS
 
     invite_request_projects_inner_t *invite_request_projects_inner_local_var = NULL;
 
+    char *id_local_str = NULL;
+
     // invite_request_projects_inner->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(invite_request_projects_innerJSON, "id");
     if (cJSON_IsNull(id)) {
@@ -129,13 +134,23 @@ invite_request_projects_inner_t *invite_request_projects_inner_parseFromJSON(cJS
     roleVariable = invite_request_projects_inner_role_FromString(role->valuestring);
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     invite_request_projects_inner_local_var = invite_request_projects_inner_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         roleVariable
         );
 
+    if (!invite_request_projects_inner_local_var) {
+        goto end;
+    }
+
     return invite_request_projects_inner_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     return NULL;
 
 }

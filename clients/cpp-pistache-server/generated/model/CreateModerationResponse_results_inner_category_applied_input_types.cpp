@@ -24,6 +24,8 @@ CreateModerationResponse_results_inner_category_applied_input_types::CreateModer
     
 }
 
+CreateModerationResponse_results_inner_category_applied_input_types::~CreateModerationResponse_results_inner_category_applied_input_types() = default;
+
 void CreateModerationResponse_results_inner_category_applied_input_types::validate() const
 {
     std::stringstream msg;

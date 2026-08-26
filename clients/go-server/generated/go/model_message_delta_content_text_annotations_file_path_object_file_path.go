@@ -20,7 +20,8 @@ type MessageDeltaContentTextAnnotationsFilePathObjectFilePath struct {
 	FileId string `json:"file_id,omitempty"`
 }
 
-// AssertMessageDeltaContentTextAnnotationsFilePathObjectFilePathRequired checks if the required fields are not zero-ed
+// AssertMessageDeltaContentTextAnnotationsFilePathObjectFilePathRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertMessageDeltaContentTextAnnotationsFilePathObjectFilePathRequired(obj MessageDeltaContentTextAnnotationsFilePathObjectFilePath) error {
 	return nil
 }

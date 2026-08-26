@@ -30,10 +30,10 @@ static run_step_details_tool_calls_code_output_image_object_t *run_step_details_
     if (!run_step_details_tool_calls_code_output_image_object_local_var) {
         return NULL;
     }
+    memset(run_step_details_tool_calls_code_output_image_object_local_var, 0, sizeof(run_step_details_tool_calls_code_output_image_object_t));
+    run_step_details_tool_calls_code_output_image_object_local_var->_library_owned = 1;
     run_step_details_tool_calls_code_output_image_object_local_var->type = type;
     run_step_details_tool_calls_code_output_image_object_local_var->image = image;
-
-    run_step_details_tool_calls_code_output_image_object_local_var->_library_owned = 1;
     return run_step_details_tool_calls_code_output_image_object_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) run_step_details_tool_calls_code_output_image_object
     openai_api_run_step_details_tool_calls_code_output_image_object_TYPE_e type,
     run_step_details_tool_calls_code_output_image_object_image_t *image
     ) {
-    return run_step_details_tool_calls_code_output_image_object_create_internal (
+    run_step_details_tool_calls_code_output_image_object_t *result = run_step_details_tool_calls_code_output_image_object_create_internal (
         type,
         image
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_step_details_tool_calls_code_output_image_object_free(run_step_details_tool_calls_code_output_image_object_t *run_step_details_tool_calls_code_output_image_object) {
@@ -134,10 +137,15 @@ run_step_details_tool_calls_code_output_image_object_t *run_step_details_tool_ca
     image_local_nonprim = run_step_details_tool_calls_code_output_image_object_image_parseFromJSON(image); //nonprimitive
 
 
+
     run_step_details_tool_calls_code_output_image_object_local_var = run_step_details_tool_calls_code_output_image_object_create_internal (
         typeVariable,
         image_local_nonprim
         );
+
+    if (!run_step_details_tool_calls_code_output_image_object_local_var) {
+        goto end;
+    }
 
     return run_step_details_tool_calls_code_output_image_object_local_var;
 end:

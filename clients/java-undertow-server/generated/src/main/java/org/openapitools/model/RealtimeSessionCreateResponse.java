@@ -33,7 +33,7 @@ import org.openapitools.model.RealtimeSessionInputAudioTranscription;
  */
 
 @ApiModel(description = "A new Realtime session configuration, with an ephermeral key. Default TTL for keys is one minute. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-26T05:15:47.876757065Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeSessionCreateResponse   {
   
   private RealtimeSessionCreateResponseClientSecret clientSecret;
@@ -360,10 +360,7 @@ public class RealtimeSessionCreateResponse   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

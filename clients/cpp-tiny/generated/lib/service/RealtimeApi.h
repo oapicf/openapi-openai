@@ -22,7 +22,7 @@ class RealtimeApi : public Service {
 public:
     RealtimeApi() = default;
 
-    virtual ~RealtimeApi() = default;
+    virtual ~RealtimeApi();
 
     /**
     * Create an ephemeral API token for use in client-side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API. .

@@ -19,37 +19,37 @@ typedef struct create_moderation_response_results_inner_categories_t create_mode
 
 
 typedef struct create_moderation_response_results_inner_categories_t {
-    int hate; //boolean
-    int hate_threatening; //boolean
-    int harassment; //boolean
-    int harassment_threatening; //boolean
-    int illicit; //boolean
-    int illicit_violent; //boolean
-    int self_harm; //boolean
-    int self_harm_intent; //boolean
-    int self_harm_instructions; //boolean
-    int sexual; //boolean
-    int sexual_minors; //boolean
-    int violence; //boolean
-    int violence_graphic; //boolean
+    int *hate; //boolean
+    int *hate_threatening; //boolean
+    int *harassment; //boolean
+    int *harassment_threatening; //boolean
+    int *illicit; //boolean
+    int *illicit_violent; //boolean
+    int *self_harm; //boolean
+    int *self_harm_intent; //boolean
+    int *self_harm_instructions; //boolean
+    int *sexual; //boolean
+    int *sexual_minors; //boolean
+    int *violence; //boolean
+    int *violence_graphic; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } create_moderation_response_results_inner_categories_t;
 
 __attribute__((deprecated)) create_moderation_response_results_inner_categories_t *create_moderation_response_results_inner_categories_create(
-    int hate,
-    int hate_threatening,
-    int harassment,
-    int harassment_threatening,
-    int illicit,
-    int illicit_violent,
-    int self_harm,
-    int self_harm_intent,
-    int self_harm_instructions,
-    int sexual,
-    int sexual_minors,
-    int violence,
-    int violence_graphic
+    int *hate,
+    int *hate_threatening,
+    int *harassment,
+    int *harassment_threatening,
+    int *illicit,
+    int *illicit_violent,
+    int *self_harm,
+    int *self_harm_intent,
+    int *self_harm_instructions,
+    int *sexual,
+    int *sexual_minors,
+    int *violence,
+    int *violence_graphic
 );
 
 void create_moderation_response_results_inner_categories_free(create_moderation_response_results_inner_categories_t *create_moderation_response_results_inner_categories);

@@ -42,7 +42,7 @@ export interface VectorStoreFileObject {
     id: string;
     /**
      * The object type, which is always `vector_store.file`.
-     * @type {string}
+     * @type {VectorStoreFileObjectObjectEnum}
      * @memberof VectorStoreFileObject
      */
     object: VectorStoreFileObjectObjectEnum;
@@ -66,7 +66,7 @@ export interface VectorStoreFileObject {
     vectorStoreId: string;
     /**
      * The status of the vector store file, which can be either `in_progress`, `completed`, `cancelled`, or `failed`. The status `completed` indicates that the vector store file is ready for use.
-     * @type {string}
+     * @type {VectorStoreFileObjectStatusEnum}
      * @memberof VectorStoreFileObject
      */
     status: VectorStoreFileObjectStatusEnum;
@@ -111,11 +111,13 @@ export type VectorStoreFileObjectStatusEnum = typeof VectorStoreFileObjectStatus
 export function instanceOfVectorStoreFileObject(value: object): value is VectorStoreFileObject {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
-    if (!('usageBytes' in value) || value['usageBytes'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-    if (!('vectorStoreId' in value) || value['vectorStoreId'] === undefined) return false;
+    if (value['object'] !== 'vector_store.file') return false;
+    
+    if ((!('usageBytes' in (value as Record<string, any>)) && !('usage_bytes' in (value as Record<string, any>))) || ((value as Record<string, any>)['usageBytes'] === undefined && (value as Record<string, any>)['usage_bytes'] === undefined)) return false;
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
+    if ((!('vectorStoreId' in (value as Record<string, any>)) && !('vector_store_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['vectorStoreId'] === undefined && (value as Record<string, any>)['vector_store_id'] === undefined)) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('lastError' in value) || value['lastError'] === undefined) return false;
+    if ((!('lastError' in (value as Record<string, any>)) && !('last_error' in (value as Record<string, any>))) || ((value as Record<string, any>)['lastError'] === undefined && (value as Record<string, any>)['last_error'] === undefined)) return false;
     return true;
 }
 

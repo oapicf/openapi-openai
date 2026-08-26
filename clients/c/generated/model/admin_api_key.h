@@ -25,7 +25,7 @@ typedef struct admin_api_key_t {
     char *name; // string
     char *redacted_value; // string
     char *value; // string
-    long created_at; //numeric
+    long *created_at; //numeric
     struct admin_api_key_owner_t *owner; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -37,7 +37,7 @@ __attribute__((deprecated)) admin_api_key_t *admin_api_key_create(
     char *name,
     char *redacted_value,
     char *value,
-    long created_at,
+    long *created_at,
     admin_api_key_owner_t *owner
 );
 

@@ -31,7 +31,7 @@ class  FineTuneDPOMethod_hyperparameters_beta
 {
 public:
     FineTuneDPOMethod_hyperparameters_beta();
-    virtual ~FineTuneDPOMethod_hyperparameters_beta() = default;
+    virtual ~FineTuneDPOMethod_hyperparameters_beta();
 
 
     /// <summary>

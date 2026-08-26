@@ -32,7 +32,7 @@ class  AssistantToolsFileSearchTypeOnly
 {
 public:
     AssistantToolsFileSearchTypeOnly();
-    virtual ~AssistantToolsFileSearchTypeOnly() = default;
+    virtual ~AssistantToolsFileSearchTypeOnly();
 
 
     /// <summary>

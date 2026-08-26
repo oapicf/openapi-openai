@@ -88,17 +88,40 @@ CreateModerationResponseResultsInner <- R6::R6Class(
       }
       if (!is.null(self$`categories`)) {
         CreateModerationResponseResultsInnerObject[["categories"]] <-
-          self$`categories`$toSimpleType()
+          self$extractSimpleType(self$`categories`)
       }
       if (!is.null(self$`category_scores`)) {
         CreateModerationResponseResultsInnerObject[["category_scores"]] <-
-          self$`category_scores`$toSimpleType()
+          self$extractSimpleType(self$`category_scores`)
       }
       if (!is.null(self$`category_applied_input_types`)) {
         CreateModerationResponseResultsInnerObject[["category_applied_input_types"]] <-
-          self$`category_applied_input_types`$toSimpleType()
+          self$extractSimpleType(self$`category_applied_input_types`)
       }
       return(CreateModerationResponseResultsInnerObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

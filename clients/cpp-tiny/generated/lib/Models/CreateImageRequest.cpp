@@ -212,7 +212,7 @@ CreateImageRequest::getPrompt()
 }
 
 void
-CreateImageRequest::setPrompt(std::string  prompt)
+CreateImageRequest::setPrompt(std::string prompt)
 {
 	this->prompt = prompt;
 }
@@ -224,7 +224,7 @@ CreateImageRequest::getModel()
 }
 
 void
-CreateImageRequest::setModel(CreateImageRequest_model  model)
+CreateImageRequest::setModel(CreateImageRequest_model model)
 {
 	this->model = model;
 }
@@ -236,7 +236,7 @@ CreateImageRequest::getN()
 }
 
 void
-CreateImageRequest::setN(int  n)
+CreateImageRequest::setN(int n)
 {
 	this->n = n;
 }
@@ -248,7 +248,7 @@ CreateImageRequest::getQuality()
 }
 
 void
-CreateImageRequest::setQuality(std::string  quality)
+CreateImageRequest::setQuality(std::string quality)
 {
 	this->quality = quality;
 }
@@ -260,7 +260,7 @@ CreateImageRequest::getResponseFormat()
 }
 
 void
-CreateImageRequest::setResponseFormat(std::string  response_format)
+CreateImageRequest::setResponseFormat(std::string response_format)
 {
 	this->response_format = response_format;
 }
@@ -272,7 +272,7 @@ CreateImageRequest::getSize()
 }
 
 void
-CreateImageRequest::setSize(std::string  size)
+CreateImageRequest::setSize(std::string size)
 {
 	this->size = size;
 }
@@ -284,7 +284,7 @@ CreateImageRequest::getStyle()
 }
 
 void
-CreateImageRequest::setStyle(std::string  style)
+CreateImageRequest::setStyle(std::string style)
 {
 	this->style = style;
 }
@@ -296,7 +296,7 @@ CreateImageRequest::getUser()
 }
 
 void
-CreateImageRequest::setUser(std::string  user)
+CreateImageRequest::setUser(std::string user)
 {
 	this->user = user;
 }

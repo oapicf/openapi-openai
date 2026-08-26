@@ -55,7 +55,7 @@ export interface VectorStoreObjectFileCounts {
  * Check if a given object implements the VectorStoreObjectFileCounts interface.
  */
 export function instanceOfVectorStoreObjectFileCounts(value: object): value is VectorStoreObjectFileCounts {
-    if (!('inProgress' in value) || value['inProgress'] === undefined) return false;
+    if ((!('inProgress' in (value as Record<string, any>)) && !('in_progress' in (value as Record<string, any>))) || ((value as Record<string, any>)['inProgress'] === undefined && (value as Record<string, any>)['in_progress'] === undefined)) return false;
     if (!('completed' in value) || value['completed'] === undefined) return false;
     if (!('failed' in value) || value['failed'] === undefined) return false;
     if (!('cancelled' in value) || value['cancelled'] === undefined) return false;

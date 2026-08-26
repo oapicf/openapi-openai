@@ -32,12 +32,12 @@ static create_embedding_response_t *create_embedding_response_create_internal(
     if (!create_embedding_response_local_var) {
         return NULL;
     }
+    memset(create_embedding_response_local_var, 0, sizeof(create_embedding_response_t));
+    create_embedding_response_local_var->_library_owned = 1;
     create_embedding_response_local_var->data = data;
     create_embedding_response_local_var->model = model;
     create_embedding_response_local_var->object = object;
     create_embedding_response_local_var->usage = usage;
-
-    create_embedding_response_local_var->_library_owned = 1;
     return create_embedding_response_local_var;
 }
 
@@ -47,12 +47,15 @@ __attribute__((deprecated)) create_embedding_response_t *create_embedding_respon
     openai_api_create_embedding_response_OBJECT_e object,
     create_embedding_response_usage_t *usage
     ) {
-    return create_embedding_response_create_internal (
+    create_embedding_response_t *result = create_embedding_response_create_internal (
         data,
         model,
         object,
         usage
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_embedding_response_free(create_embedding_response_t *create_embedding_response) {
@@ -153,6 +156,8 @@ create_embedding_response_t *create_embedding_response_parseFromJSON(cJSON *crea
     // define the local list for create_embedding_response->data
     list_t *dataList = NULL;
 
+    char *model_local_str = NULL;
+
     // define the local variable for create_embedding_response->usage
     create_embedding_response_usage_t *usage_local_nonprim = NULL;
 
@@ -228,12 +233,18 @@ create_embedding_response_t *create_embedding_response_parseFromJSON(cJSON *crea
     usage_local_nonprim = create_embedding_response_usage_parseFromJSON(usage); //nonprimitive
 
 
+    if (model && !cJSON_IsNull(model)) model_local_str = strdup(model->valuestring);
+
     create_embedding_response_local_var = create_embedding_response_create_internal (
         dataList,
-        strdup(model->valuestring),
+        model_local_str,
         objectVariable,
         usage_local_nonprim
         );
+
+    if (!create_embedding_response_local_var) {
+        goto end;
+    }
 
     return create_embedding_response_local_var;
 end:
@@ -245,6 +256,10 @@ end:
         }
         list_freeList(dataList);
         dataList = NULL;
+    }
+    if (model_local_str) {
+        free(model_local_str);
+        model_local_str = NULL;
     }
     if (usage_local_nonprim) {
         create_embedding_response_usage_free(usage_local_nonprim);

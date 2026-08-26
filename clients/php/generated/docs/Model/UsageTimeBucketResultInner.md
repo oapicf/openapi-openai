@@ -1,4 +1,4 @@
-# # UsageTimeBucketResultInner
+# UsageTimeBucketResultInner
 
 ## Properties
 

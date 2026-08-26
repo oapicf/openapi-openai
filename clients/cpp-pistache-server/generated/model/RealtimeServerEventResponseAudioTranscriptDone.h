@@ -32,7 +32,7 @@ class  RealtimeServerEventResponseAudioTranscriptDone
 {
 public:
     RealtimeServerEventResponseAudioTranscriptDone();
-    virtual ~RealtimeServerEventResponseAudioTranscriptDone() = default;
+    virtual ~RealtimeServerEventResponseAudioTranscriptDone();
 
 
     /// <summary>

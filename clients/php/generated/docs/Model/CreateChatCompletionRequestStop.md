@@ -1,4 +1,4 @@
-# # CreateChatCompletionRequestStop
+# CreateChatCompletionRequestStop
 
 ## Properties
 

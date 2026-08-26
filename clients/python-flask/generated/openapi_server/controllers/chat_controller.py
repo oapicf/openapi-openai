@@ -1,4 +1,4 @@
-import connexion
+import flask
 from typing import Dict
 from typing import Tuple
 from typing import Union
@@ -19,6 +19,6 @@ def create_chat_completion(body):  # noqa: E501
     :rtype: Union[CreateChatCompletionResponse, Tuple[CreateChatCompletionResponse, int], Tuple[CreateChatCompletionResponse, int, Dict[str, str]]
     """
     create_chat_completion_request = body
-    if connexion.request.is_json:
-        create_chat_completion_request = CreateChatCompletionRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        create_chat_completion_request = CreateChatCompletionRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'

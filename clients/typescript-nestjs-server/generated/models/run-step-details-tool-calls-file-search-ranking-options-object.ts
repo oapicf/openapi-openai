@@ -1,0 +1,23 @@
+
+
+/**
+ * The ranking options for the file search.
+ */
+export interface RunStepDetailsToolCallsFileSearchRankingOptionsObject { 
+  /**
+   * The ranker used for the file search.
+   */
+  ranker: RunStepDetailsToolCallsFileSearchRankingOptionsObject.RankerEnum;
+  /**
+   * The score threshold for the file search. All values must be a floating point number between 0 and 1.
+   */
+  score_threshold: number;
+}
+export namespace RunStepDetailsToolCallsFileSearchRankingOptionsObject {
+  export const RankerEnum = {
+    Default20240821: 'default_2024_08_21'
+  } as const;
+  export type RankerEnum = typeof RankerEnum[keyof typeof RankerEnum];
+}
+
+

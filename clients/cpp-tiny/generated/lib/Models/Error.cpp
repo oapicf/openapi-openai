@@ -127,7 +127,7 @@ Error::getCode()
 }
 
 void
-Error::setCode(std::string  code)
+Error::setCode(std::string code)
 {
 	this->code = code;
 }
@@ -139,7 +139,7 @@ Error::getMessage()
 }
 
 void
-Error::setMessage(std::string  message)
+Error::setMessage(std::string message)
 {
 	this->message = message;
 }
@@ -151,7 +151,7 @@ Error::getParam()
 }
 
 void
-Error::setParam(std::string  param)
+Error::setParam(std::string param)
 {
 	this->param = param;
 }
@@ -163,7 +163,7 @@ Error::getType()
 }
 
 void
-Error::setType(std::string  type)
+Error::setType(std::string type)
 {
 	this->type = type;
 }

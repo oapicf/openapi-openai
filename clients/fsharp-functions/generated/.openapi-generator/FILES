@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 OpenAPI/OpenAPI.fsproj
 OpenAPI/build.bat
 OpenAPI/build.sh
@@ -143,7 +142,6 @@ OpenAPI/src/model/AuditLogUserAddedData.fs
 OpenAPI/src/model/AuditLogUserDeleted.fs
 OpenAPI/src/model/AuditLogUserUpdated.fs
 OpenAPI/src/model/AuditLogUserUpdatedChangesRequested.fs
-OpenAPI/src/model/AutoChunkingStrategy.fs
 OpenAPI/src/model/AutoChunkingStrategyRequestParam.fs
 OpenAPI/src/model/Batch.fs
 OpenAPI/src/model/BatchErrors.fs
@@ -553,7 +551,6 @@ OpenAPI/src/model/RunToolCallObject.fs
 OpenAPI/src/model/RunToolCallObjectFunction.fs
 OpenAPI/src/model/StaticChunkingStrategy.fs
 OpenAPI/src/model/StaticChunkingStrategyRequestParam.fs
-OpenAPI/src/model/StaticChunkingStrategyResponseParam.fs
 OpenAPI/src/model/StaticChunkingStrategyStatic.fs
 OpenAPI/src/model/SubmitToolOutputsRunRequest.fs
 OpenAPI/src/model/SubmitToolOutputsRunRequestToolOutputsInner.fs

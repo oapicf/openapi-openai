@@ -127,7 +127,7 @@ Batch_errors_data_inner::getCode()
 }
 
 void
-Batch_errors_data_inner::setCode(std::string  code)
+Batch_errors_data_inner::setCode(std::string code)
 {
 	this->code = code;
 }
@@ -139,7 +139,7 @@ Batch_errors_data_inner::getMessage()
 }
 
 void
-Batch_errors_data_inner::setMessage(std::string  message)
+Batch_errors_data_inner::setMessage(std::string message)
 {
 	this->message = message;
 }
@@ -151,7 +151,7 @@ Batch_errors_data_inner::getParam()
 }
 
 void
-Batch_errors_data_inner::setParam(std::string  param)
+Batch_errors_data_inner::setParam(std::string param)
 {
 	this->param = param;
 }
@@ -163,7 +163,7 @@ Batch_errors_data_inner::getLine()
 }
 
 void
-Batch_errors_data_inner::setLine(int  line)
+Batch_errors_data_inner::setLine(int line)
 {
 	this->line = line;
 }

@@ -47,25 +47,25 @@ export interface CreateImageRequest {
     n?: number | null;
     /**
      * The quality of the image that will be generated. `hd` creates images with finer details and greater consistency across the image. This param is only supported for `dall-e-3`.
-     * @type {string}
+     * @type {CreateImageRequestQualityEnum}
      * @memberof CreateImageRequest
      */
     quality?: CreateImageRequestQualityEnum;
     /**
      * The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
-     * @type {string}
+     * @type {CreateImageRequestResponseFormatEnum}
      * @memberof CreateImageRequest
      */
     responseFormat?: CreateImageRequestResponseFormatEnum | null;
     /**
      * The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3` models.
-     * @type {string}
+     * @type {CreateImageRequestSizeEnum}
      * @memberof CreateImageRequest
      */
     size?: CreateImageRequestSizeEnum | null;
     /**
      * The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`.
-     * @type {string}
+     * @type {CreateImageRequestStyleEnum}
      * @memberof CreateImageRequest
      */
     style?: CreateImageRequestStyleEnum | null;
@@ -138,12 +138,12 @@ export function CreateImageRequestFromJSONTyped(json: any, ignoreDiscriminator: 
     return {
         
         'prompt': json['prompt'],
-        'model': json['model'] == null ? undefined : CreateImageRequestModelFromJSON(json['model']),
-        'n': json['n'] == null ? undefined : json['n'],
+        'model': json['model'] === undefined ? undefined : json['model'] === null ? null : CreateImageRequestModelFromJSON(json['model']),
+        'n': json['n'] === undefined ? undefined : json['n'] === null ? null : json['n'],
         'quality': json['quality'] == null ? undefined : json['quality'],
-        'responseFormat': json['response_format'] == null ? undefined : json['response_format'],
-        'size': json['size'] == null ? undefined : json['size'],
-        'style': json['style'] == null ? undefined : json['style'],
+        'responseFormat': json['response_format'] === undefined ? undefined : json['response_format'] === null ? null : json['response_format'],
+        'size': json['size'] === undefined ? undefined : json['size'] === null ? null : json['size'],
+        'style': json['style'] === undefined ? undefined : json['style'] === null ? null : json['style'],
         'user': json['user'] == null ? undefined : json['user'],
     };
 }

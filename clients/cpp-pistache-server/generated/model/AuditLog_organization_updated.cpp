@@ -27,6 +27,8 @@ AuditLog_organization_updated::AuditLog_organization_updated()
     
 }
 
+AuditLog_organization_updated::~AuditLog_organization_updated() = default;
+
 void AuditLog_organization_updated::validate() const
 {
     std::stringstream msg;

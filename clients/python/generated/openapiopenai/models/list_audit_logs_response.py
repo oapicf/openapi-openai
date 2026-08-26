@@ -18,11 +18,12 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from openapiopenai.models.audit_log import AuditLog
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class ListAuditLogsResponse(BaseModel):
     """
@@ -30,8 +31,8 @@ class ListAuditLogsResponse(BaseModel):
     """ # noqa: E501
     object: StrictStr
     data: List[AuditLog]
-    first_id: StrictStr
-    last_id: StrictStr
+    first_id: StrictStr = Field(json_schema_extra={"examples": ["audit_log-defb456h8dks"]})
+    last_id: StrictStr = Field(json_schema_extra={"examples": ["audit_log-hnbkd8s93s"]})
     has_more: StrictBool
     __properties: ClassVar[List[str]] = ["object", "data", "first_id", "last_id", "has_more"]
 
@@ -43,7 +44,8 @@ class ListAuditLogsResponse(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -55,8 +57,7 @@ class ListAuditLogsResponse(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

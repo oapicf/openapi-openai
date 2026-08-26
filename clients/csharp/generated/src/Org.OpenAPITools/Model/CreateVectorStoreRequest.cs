@@ -64,7 +64,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A list of [File](/docs/api-reference/files) IDs that the vector store should use. Useful for tools like &#x60;file_search&#x60; that can access files.</value>
         [JsonPropertyName("file_ids")]
-        public List<string>? FileIds { get { return this.FileIdsOption; } set { this.FileIdsOption = new(value); } }
+        public List<string>? FileIds { get { return this.FileIdsOption.Value; } set { this.FileIdsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -78,7 +78,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The name of the vector store.</value>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresAfter
@@ -91,7 +91,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ExpiresAfter
         /// </summary>
         [JsonPropertyName("expires_after")]
-        public VectorStoreExpirationAfter? ExpiresAfter { get { return this.ExpiresAfterOption; } set { this.ExpiresAfterOption = new(value); } }
+        public VectorStoreExpirationAfter? ExpiresAfter { get { return this.ExpiresAfterOption.Value; } set { this.ExpiresAfterOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ChunkingStrategy
@@ -104,7 +104,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ChunkingStrategy
         /// </summary>
         [JsonPropertyName("chunking_strategy")]
-        public CreateVectorStoreRequestChunkingStrategy? ChunkingStrategy { get { return this.ChunkingStrategyOption; } set { this.ChunkingStrategyOption = new(value); } }
+        public CreateVectorStoreRequestChunkingStrategy? ChunkingStrategy { get { return this.ChunkingStrategyOption.Value; } set { this.ChunkingStrategyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Metadata
@@ -118,7 +118,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. </value>
         [JsonPropertyName("metadata")]
-        public Object? Metadata { get { return this.MetadataOption; } set { this.MetadataOption = new(value); } }
+        public Object? Metadata { get { return this.MetadataOption.Value; } set { this.MetadataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -151,8 +151,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateVectorStoreRequest" />
     /// </summary>
-    public class CreateVectorStoreRequestJsonConverter : JsonConverter<CreateVectorStoreRequest>
+    public partial class CreateVectorStoreRequestJsonConverter : JsonConverter<CreateVectorStoreRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateVectorStoreRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateVectorStoreRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateVectorStoreRequest" />
         /// </summary>

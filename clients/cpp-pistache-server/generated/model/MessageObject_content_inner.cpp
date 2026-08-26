@@ -26,6 +26,8 @@ MessageObject_content_inner::MessageObject_content_inner()
     
 }
 
+MessageObject_content_inner::~MessageObject_content_inner() = default;
+
 void MessageObject_content_inner::validate() const
 {
     std::stringstream msg;

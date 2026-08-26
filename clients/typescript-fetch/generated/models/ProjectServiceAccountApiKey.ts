@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface ProjectServiceAccountApiKey {
     /**
      * The object type, which is always `organization.project.service_account.api_key`
-     * @type {string}
+     * @type {ProjectServiceAccountApiKeyObjectEnum}
      * @memberof ProjectServiceAccountApiKey
      */
     object: ProjectServiceAccountApiKeyObjectEnum;
@@ -66,9 +66,11 @@ export type ProjectServiceAccountApiKeyObjectEnum = typeof ProjectServiceAccount
  */
 export function instanceOfProjectServiceAccountApiKey(value: object): value is ProjectServiceAccountApiKey {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'organization.project.service_account.api_key') return false;
+    
     if (!('value' in value) || value['value'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
     if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }

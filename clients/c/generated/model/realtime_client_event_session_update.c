@@ -31,11 +31,11 @@ static realtime_client_event_session_update_t *realtime_client_event_session_upd
     if (!realtime_client_event_session_update_local_var) {
         return NULL;
     }
+    memset(realtime_client_event_session_update_local_var, 0, sizeof(realtime_client_event_session_update_t));
+    realtime_client_event_session_update_local_var->_library_owned = 1;
     realtime_client_event_session_update_local_var->event_id = event_id;
     realtime_client_event_session_update_local_var->type = type;
     realtime_client_event_session_update_local_var->session = session;
-
-    realtime_client_event_session_update_local_var->_library_owned = 1;
     return realtime_client_event_session_update_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) realtime_client_event_session_update_t *realtime_cli
     openai_api_realtime_client_event_session_update_TYPE_e type,
     realtime_session_create_request_t *session
     ) {
-    return realtime_client_event_session_update_create_internal (
+    realtime_client_event_session_update_t *result = realtime_client_event_session_update_create_internal (
         event_id,
         type,
         session
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_client_event_session_update_free(realtime_client_event_session_update_t *realtime_client_event_session_update) {
@@ -117,6 +120,8 @@ realtime_client_event_session_update_t *realtime_client_event_session_update_par
 
     realtime_client_event_session_update_t *realtime_client_event_session_update_local_var = NULL;
 
+    char *event_id_local_str = NULL;
+
     // define the local variable for realtime_client_event_session_update->session
     realtime_session_create_request_t *session_local_nonprim = NULL;
 
@@ -162,14 +167,24 @@ realtime_client_event_session_update_t *realtime_client_event_session_update_par
     session_local_nonprim = realtime_session_create_request_parseFromJSON(session); //nonprimitive
 
 
+    if (event_id && !cJSON_IsNull(event_id)) event_id_local_str = strdup(event_id->valuestring);
+
     realtime_client_event_session_update_local_var = realtime_client_event_session_update_create_internal (
-        event_id && !cJSON_IsNull(event_id) ? strdup(event_id->valuestring) : NULL,
+        event_id_local_str,
         typeVariable,
         session_local_nonprim
         );
 
+    if (!realtime_client_event_session_update_local_var) {
+        goto end;
+    }
+
     return realtime_client_event_session_update_local_var;
 end:
+    if (event_id_local_str) {
+        free(event_id_local_str);
+        event_id_local_str = NULL;
+    }
     if (session_local_nonprim) {
         realtime_session_create_request_free(session_local_nonprim);
         session_local_nonprim = NULL;

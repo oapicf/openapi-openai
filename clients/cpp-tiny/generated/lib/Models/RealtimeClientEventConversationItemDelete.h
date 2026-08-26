@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set Optional client-generated ID used to identify this event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `conversation.item.delete`.
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `conversation.item.delete`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The ID of the item to delete.
 	 */
 	std::string getItemId();
 
 	/*! \brief Set The ID of the item to delete.
 	 */
-	void setItemId(std::string  item_id);
+	void setItemId(std::string item_id);
 
 
     private:

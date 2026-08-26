@@ -53,21 +53,21 @@ public:
 
 	/*! \brief Set `user` or `service_account`
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	ProjectUser getUser();
 
 	/*! \brief Set 
 	 */
-	void setUser(ProjectUser  user);
+	void setUser(ProjectUser user);
 	/*! \brief Get 
 	 */
 	ProjectServiceAccount getServiceAccount();
 
 	/*! \brief Set 
 	 */
-	void setServiceAccount(ProjectServiceAccount  service_account);
+	void setServiceAccount(ProjectServiceAccount service_account);
 
 
     private:

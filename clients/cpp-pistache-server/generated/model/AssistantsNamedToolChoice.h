@@ -33,7 +33,7 @@ class  AssistantsNamedToolChoice
 {
 public:
     AssistantsNamedToolChoice();
-    virtual ~AssistantsNamedToolChoice() = default;
+    virtual ~AssistantsNamedToolChoice();
 
 
     /// <summary>

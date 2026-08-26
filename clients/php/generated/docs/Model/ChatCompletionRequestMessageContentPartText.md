@@ -1,4 +1,4 @@
-# # ChatCompletionRequestMessageContentPartText
+# ChatCompletionRequestMessageContentPartText
 
 ## Properties
 

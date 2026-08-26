@@ -83,10 +83,14 @@ class ThreadObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ThreadObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ThreadObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "ThreadObject[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "ThreadObject[id]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "ThreadObject[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "ThreadObject[object]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "ThreadObject[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "ThreadObject[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'tool_resources'), 'Required key "ThreadObject[tool_resources]" is missing from JSON.');
+        assert(json.containsKey(r'metadata'), 'Required key "ThreadObject[metadata]" is missing from JSON.');
         return true;
       }());
 
@@ -152,27 +156,28 @@ class ThreadObject {
 }
 
 /// The object type, which is always `thread`.
-class ThreadObjectObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ThreadObjectObjectEnum._(this.value);
+enum ThreadObjectObjectEnum {
+  thread._(r'thread'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ThreadObjectObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const thread = ThreadObjectObjectEnum._(r'thread');
-
-  /// List of all possible values in this [enum][ThreadObjectObjectEnum].
-  static const values = <ThreadObjectObjectEnum>[
-    thread,
-  ];
-
+  /// Returns the instance of [ThreadObjectObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ThreadObjectObjectEnum? fromJson(dynamic value) => ThreadObjectObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ThreadObjectObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ThreadObjectObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ThreadObjectObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -194,9 +199,10 @@ class ThreadObjectObjectEnumTypeTransformer {
 
   const ThreadObjectObjectEnumTypeTransformer._();
 
-  String encode(ThreadObjectObjectEnum data) => data.value;
+  String encode(ThreadObjectObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ThreadObjectObjectEnum.
+  /// Returns the instance of [ThreadObjectObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -205,6 +211,9 @@ class ThreadObjectObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ThreadObjectObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ThreadObjectObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread': return ThreadObjectObjectEnum.thread;
@@ -217,7 +226,7 @@ class ThreadObjectObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ThreadObjectObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ThreadObjectObjectEnumTypeTransformer? _instance;
 }
 

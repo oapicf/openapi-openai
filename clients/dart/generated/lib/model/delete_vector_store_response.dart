@@ -59,10 +59,12 @@ class DeleteVectorStoreResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "DeleteVectorStoreResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "DeleteVectorStoreResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "DeleteVectorStoreResponse[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "DeleteVectorStoreResponse[id]" has a null value in JSON.');
+        assert(json.containsKey(r'deleted'), 'Required key "DeleteVectorStoreResponse[deleted]" is missing from JSON.');
+        assert(json[r'deleted'] != null, 'Required key "DeleteVectorStoreResponse[deleted]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "DeleteVectorStoreResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "DeleteVectorStoreResponse[object]" has a null value in JSON.');
         return true;
       }());
 
@@ -124,27 +126,28 @@ class DeleteVectorStoreResponse {
 }
 
 
-class DeleteVectorStoreResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const DeleteVectorStoreResponseObjectEnum._(this.value);
+enum DeleteVectorStoreResponseObjectEnum {
+  vectorStorePeriodDeleted._(r'vector_store.deleted'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const DeleteVectorStoreResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const vectorStorePeriodDeleted = DeleteVectorStoreResponseObjectEnum._(r'vector_store.deleted');
-
-  /// List of all possible values in this [enum][DeleteVectorStoreResponseObjectEnum].
-  static const values = <DeleteVectorStoreResponseObjectEnum>[
-    vectorStorePeriodDeleted,
-  ];
-
+  /// Returns the instance of [DeleteVectorStoreResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static DeleteVectorStoreResponseObjectEnum? fromJson(dynamic value) => DeleteVectorStoreResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [DeleteVectorStoreResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<DeleteVectorStoreResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <DeleteVectorStoreResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -166,9 +169,10 @@ class DeleteVectorStoreResponseObjectEnumTypeTransformer {
 
   const DeleteVectorStoreResponseObjectEnumTypeTransformer._();
 
-  String encode(DeleteVectorStoreResponseObjectEnum data) => data.value;
+  String encode(DeleteVectorStoreResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a DeleteVectorStoreResponseObjectEnum.
+  /// Returns the instance of [DeleteVectorStoreResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -177,6 +181,9 @@ class DeleteVectorStoreResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   DeleteVectorStoreResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is DeleteVectorStoreResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'vector_store.deleted': return DeleteVectorStoreResponseObjectEnum.vectorStorePeriodDeleted;
@@ -189,7 +196,7 @@ class DeleteVectorStoreResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [DeleteVectorStoreResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static DeleteVectorStoreResponseObjectEnumTypeTransformer? _instance;
 }
 

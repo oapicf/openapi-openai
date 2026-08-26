@@ -28,7 +28,7 @@ public class CreateCompletionRequest  {
 
   @Valid
 
-  private CreateCompletionRequestPrompt prompt = <|endoftext|>;
+  private CreateCompletionRequestPrompt prompt;
 
  /**
   * Generates `best_of` completions server-side and returns the \"best\" (the one with the highest log probability per token). Results cannot be streamed.  When used with `n`, `best_of` controls the number of candidate completions and `n` specifies how many to return – `best_of` must be greater than `n`.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`. 
@@ -101,7 +101,7 @@ public class CreateCompletionRequest  {
 
   @Valid
 
-  private CreateCompletionRequestStop stop = null;
+  private CreateCompletionRequestStop stop;
 
  /**
   * Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). 
@@ -561,10 +561,7 @@ public class CreateCompletionRequest  {
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

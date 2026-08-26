@@ -21,7 +21,7 @@
 
 #include "StaticChunkingStrategy.h"
 #include <string>
-#include "StaticChunkingStrategyResponseParam.h"
+#include "StaticChunkingStrategyRequestParam.h"
 #include "OtherChunkingStrategyResponseParam.h"
 #include <nlohmann/json.hpp>
 
@@ -35,7 +35,7 @@ class  VectorStoreFileObject_chunking_strategy
 {
 public:
     VectorStoreFileObject_chunking_strategy();
-    virtual ~VectorStoreFileObject_chunking_strategy() = default;
+    virtual ~VectorStoreFileObject_chunking_strategy();
 
 
     /// <summary>

@@ -13,7 +13,7 @@ package org.openapitools.server.models
 
 import org.openapitools.server.models.OtherChunkingStrategyResponseParam
 import org.openapitools.server.models.StaticChunkingStrategy
-import org.openapitools.server.models.StaticChunkingStrategyResponseParam
+import org.openapitools.server.models.StaticChunkingStrategyRequestParam
 
 import kotlinx.serialization.Serializable
 /**

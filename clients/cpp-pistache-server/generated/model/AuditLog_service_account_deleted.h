@@ -32,7 +32,7 @@ class  AuditLog_service_account_deleted
 {
 public:
     AuditLog_service_account_deleted();
-    virtual ~AuditLog_service_account_deleted() = default;
+    virtual ~AuditLog_service_account_deleted();
 
 
     /// <summary>

@@ -31,6 +31,8 @@ MessageDeltaObject_delta_content_inner::MessageDeltaObject_delta_content_inner()
     
 }
 
+MessageDeltaObject_delta_content_inner::~MessageDeltaObject_delta_content_inner() = default;
+
 void MessageDeltaObject_delta_content_inner::validate() const
 {
     std::stringstream msg;

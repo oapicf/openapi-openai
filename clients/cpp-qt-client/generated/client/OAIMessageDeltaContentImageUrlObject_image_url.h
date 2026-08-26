@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIMessageDeltaContentImageUrlObject_image_url : public OAIObject {
 public:
     OAIMessageDeltaContentImageUrlObject_image_url();
-    OAIMessageDeltaContentImageUrlObject_image_url(QString json);
+    OAIMessageDeltaContentImageUrlObject_image_url(const QString &json);
     ~OAIMessageDeltaContentImageUrlObject_image_url() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getUrl() const;
     void setUrl(const QString &url);

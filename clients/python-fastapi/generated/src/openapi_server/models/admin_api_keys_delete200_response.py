@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 try:
     from typing import Self
@@ -32,9 +32,9 @@ class AdminApiKeysDelete200Response(BaseModel):
     """
     AdminApiKeysDelete200Response
     """ # noqa: E501
-    id: Optional[StrictStr] = None
-    object: Optional[StrictStr] = None
-    deleted: Optional[StrictBool] = None
+    id: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["key_abc"]})
+    object: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["organization.admin_api_key.deleted"]})
+    deleted: Optional[StrictBool] = Field(default=None, json_schema_extra={"examples": [True]})
     __properties: ClassVar[List[str]] = ["id", "object", "deleted"]
 
     model_config = {

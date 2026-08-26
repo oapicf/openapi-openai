@@ -86,15 +86,17 @@ class _$SubmitToolOutputsRunRequestToolOutputsInnerSerializer implements Primiti
         case r'tool_call_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.toolCallId = valueDes;
           break;
         case r'output':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.output = valueDes;
           break;
         default:

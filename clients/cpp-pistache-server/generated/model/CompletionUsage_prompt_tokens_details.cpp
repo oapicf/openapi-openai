@@ -28,6 +28,8 @@ CompletionUsage_prompt_tokens_details::CompletionUsage_prompt_tokens_details()
     
 }
 
+CompletionUsage_prompt_tokens_details::~CompletionUsage_prompt_tokens_details() = default;
+
 void CompletionUsage_prompt_tokens_details::validate() const
 {
     std::stringstream msg;

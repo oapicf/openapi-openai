@@ -53,10 +53,10 @@ class RunStreamEventOneOf8 {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStreamEventOneOf8[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStreamEventOneOf8[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event'), 'Required key "RunStreamEventOneOf8[event]" is missing from JSON.');
+        assert(json[r'event'] != null, 'Required key "RunStreamEventOneOf8[event]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "RunStreamEventOneOf8[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "RunStreamEventOneOf8[data]" has a null value in JSON.');
         return true;
       }());
 
@@ -116,27 +116,28 @@ class RunStreamEventOneOf8 {
 }
 
 
-class RunStreamEventOneOf8EventEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStreamEventOneOf8EventEnum._(this.value);
+enum RunStreamEventOneOf8EventEnum {
+  threadPeriodRunPeriodCancelled._(r'thread.run.cancelled'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStreamEventOneOf8EventEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodRunPeriodCancelled = RunStreamEventOneOf8EventEnum._(r'thread.run.cancelled');
-
-  /// List of all possible values in this [enum][RunStreamEventOneOf8EventEnum].
-  static const values = <RunStreamEventOneOf8EventEnum>[
-    threadPeriodRunPeriodCancelled,
-  ];
-
+  /// Returns the instance of [RunStreamEventOneOf8EventEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStreamEventOneOf8EventEnum? fromJson(dynamic value) => RunStreamEventOneOf8EventEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStreamEventOneOf8EventEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStreamEventOneOf8EventEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStreamEventOneOf8EventEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -158,9 +159,10 @@ class RunStreamEventOneOf8EventEnumTypeTransformer {
 
   const RunStreamEventOneOf8EventEnumTypeTransformer._();
 
-  String encode(RunStreamEventOneOf8EventEnum data) => data.value;
+  String encode(RunStreamEventOneOf8EventEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStreamEventOneOf8EventEnum.
+  /// Returns the instance of [RunStreamEventOneOf8EventEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -169,6 +171,9 @@ class RunStreamEventOneOf8EventEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStreamEventOneOf8EventEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStreamEventOneOf8EventEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.run.cancelled': return RunStreamEventOneOf8EventEnum.threadPeriodRunPeriodCancelled;
@@ -181,7 +186,7 @@ class RunStreamEventOneOf8EventEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStreamEventOneOf8EventEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStreamEventOneOf8EventEnumTypeTransformer? _instance;
 }
 

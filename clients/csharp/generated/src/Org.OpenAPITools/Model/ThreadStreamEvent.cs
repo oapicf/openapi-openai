@@ -124,7 +124,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Whether to enable input audio transcription.</value>
         [JsonPropertyName("enabled")]
-        public bool? Enabled { get { return this.EnabledOption; } set { this.EnabledOption = new(value); } }
+        public bool? Enabled { get { return this.EnabledOption.Value; } set { this.EnabledOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -155,8 +155,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ThreadStreamEvent" />
     /// </summary>
-    public class ThreadStreamEventJsonConverter : JsonConverter<ThreadStreamEvent>
+    public partial class ThreadStreamEventJsonConverter : JsonConverter<ThreadStreamEvent>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ThreadStreamEventJsonConverter" /> class.
+        /// </summary>
+        public ThreadStreamEventJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ThreadStreamEvent" />
         /// </summary>

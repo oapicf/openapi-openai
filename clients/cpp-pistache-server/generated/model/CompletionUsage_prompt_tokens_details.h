@@ -31,7 +31,7 @@ class  CompletionUsage_prompt_tokens_details
 {
 public:
     CompletionUsage_prompt_tokens_details();
-    virtual ~CompletionUsage_prompt_tokens_details() = default;
+    virtual ~CompletionUsage_prompt_tokens_details();
 
 
     /// <summary>

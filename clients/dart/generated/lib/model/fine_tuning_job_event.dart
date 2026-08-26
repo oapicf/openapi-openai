@@ -104,10 +104,16 @@ class FineTuningJobEvent {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "FineTuningJobEvent[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "FineTuningJobEvent[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "FineTuningJobEvent[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "FineTuningJobEvent[object]" has a null value in JSON.');
+        assert(json.containsKey(r'id'), 'Required key "FineTuningJobEvent[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "FineTuningJobEvent[id]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "FineTuningJobEvent[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "FineTuningJobEvent[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'level'), 'Required key "FineTuningJobEvent[level]" is missing from JSON.');
+        assert(json[r'level'] != null, 'Required key "FineTuningJobEvent[level]" has a null value in JSON.');
+        assert(json.containsKey(r'message'), 'Required key "FineTuningJobEvent[message]" is missing from JSON.');
+        assert(json[r'message'] != null, 'Required key "FineTuningJobEvent[message]" has a null value in JSON.');
         return true;
       }());
 
@@ -175,27 +181,28 @@ class FineTuningJobEvent {
 }
 
 /// The object type, which is always \"fine_tuning.job.event\".
-class FineTuningJobEventObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const FineTuningJobEventObjectEnum._(this.value);
+enum FineTuningJobEventObjectEnum {
+  fineTuningPeriodJobPeriodEvent._(r'fine_tuning.job.event'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const FineTuningJobEventObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const fineTuningPeriodJobPeriodEvent = FineTuningJobEventObjectEnum._(r'fine_tuning.job.event');
-
-  /// List of all possible values in this [enum][FineTuningJobEventObjectEnum].
-  static const values = <FineTuningJobEventObjectEnum>[
-    fineTuningPeriodJobPeriodEvent,
-  ];
-
+  /// Returns the instance of [FineTuningJobEventObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static FineTuningJobEventObjectEnum? fromJson(dynamic value) => FineTuningJobEventObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [FineTuningJobEventObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<FineTuningJobEventObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <FineTuningJobEventObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -217,9 +224,10 @@ class FineTuningJobEventObjectEnumTypeTransformer {
 
   const FineTuningJobEventObjectEnumTypeTransformer._();
 
-  String encode(FineTuningJobEventObjectEnum data) => data.value;
+  String encode(FineTuningJobEventObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a FineTuningJobEventObjectEnum.
+  /// Returns the instance of [FineTuningJobEventObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -228,6 +236,9 @@ class FineTuningJobEventObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   FineTuningJobEventObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is FineTuningJobEventObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'fine_tuning.job.event': return FineTuningJobEventObjectEnum.fineTuningPeriodJobPeriodEvent;
@@ -240,37 +251,36 @@ class FineTuningJobEventObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [FineTuningJobEventObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static FineTuningJobEventObjectEnumTypeTransformer? _instance;
 }
 
 
 /// The log level of the event.
-class FineTuningJobEventLevelEnum {
-  /// Instantiate a new enum with the provided [value].
-  const FineTuningJobEventLevelEnum._(this.value);
+enum FineTuningJobEventLevelEnum {
+  info._(r'info'),
+  warn._(r'warn'),
+  error._(r'error'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const FineTuningJobEventLevelEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const info = FineTuningJobEventLevelEnum._(r'info');
-  static const warn = FineTuningJobEventLevelEnum._(r'warn');
-  static const error = FineTuningJobEventLevelEnum._(r'error');
-
-  /// List of all possible values in this [enum][FineTuningJobEventLevelEnum].
-  static const values = <FineTuningJobEventLevelEnum>[
-    info,
-    warn,
-    error,
-  ];
-
+  /// Returns the instance of [FineTuningJobEventLevelEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static FineTuningJobEventLevelEnum? fromJson(dynamic value) => FineTuningJobEventLevelEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [FineTuningJobEventLevelEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<FineTuningJobEventLevelEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <FineTuningJobEventLevelEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -292,9 +302,10 @@ class FineTuningJobEventLevelEnumTypeTransformer {
 
   const FineTuningJobEventLevelEnumTypeTransformer._();
 
-  String encode(FineTuningJobEventLevelEnum data) => data.value;
+  String encode(FineTuningJobEventLevelEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a FineTuningJobEventLevelEnum.
+  /// Returns the instance of [FineTuningJobEventLevelEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -303,6 +314,9 @@ class FineTuningJobEventLevelEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   FineTuningJobEventLevelEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is FineTuningJobEventLevelEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'info': return FineTuningJobEventLevelEnum.info;
@@ -317,35 +331,35 @@ class FineTuningJobEventLevelEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [FineTuningJobEventLevelEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static FineTuningJobEventLevelEnumTypeTransformer? _instance;
 }
 
 
 /// The type of event.
-class FineTuningJobEventTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const FineTuningJobEventTypeEnum._(this.value);
+enum FineTuningJobEventTypeEnum {
+  message._(r'message'),
+  metrics._(r'metrics'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const FineTuningJobEventTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const message = FineTuningJobEventTypeEnum._(r'message');
-  static const metrics = FineTuningJobEventTypeEnum._(r'metrics');
-
-  /// List of all possible values in this [enum][FineTuningJobEventTypeEnum].
-  static const values = <FineTuningJobEventTypeEnum>[
-    message,
-    metrics,
-  ];
-
+  /// Returns the instance of [FineTuningJobEventTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static FineTuningJobEventTypeEnum? fromJson(dynamic value) => FineTuningJobEventTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [FineTuningJobEventTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<FineTuningJobEventTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <FineTuningJobEventTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -367,9 +381,10 @@ class FineTuningJobEventTypeEnumTypeTransformer {
 
   const FineTuningJobEventTypeEnumTypeTransformer._();
 
-  String encode(FineTuningJobEventTypeEnum data) => data.value;
+  String encode(FineTuningJobEventTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a FineTuningJobEventTypeEnum.
+  /// Returns the instance of [FineTuningJobEventTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -378,6 +393,9 @@ class FineTuningJobEventTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   FineTuningJobEventTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is FineTuningJobEventTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'message': return FineTuningJobEventTypeEnum.message;
@@ -391,7 +409,7 @@ class FineTuningJobEventTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [FineTuningJobEventTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static FineTuningJobEventTypeEnumTypeTransformer? _instance;
 }
 

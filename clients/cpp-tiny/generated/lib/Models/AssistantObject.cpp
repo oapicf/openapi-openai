@@ -336,7 +336,7 @@ AssistantObject::getId()
 }
 
 void
-AssistantObject::setId(std::string  id)
+AssistantObject::setId(std::string id)
 {
 	this->id = id;
 }
@@ -348,7 +348,7 @@ AssistantObject::getObject()
 }
 
 void
-AssistantObject::setObject(std::string  object)
+AssistantObject::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -360,7 +360,7 @@ AssistantObject::getCreatedAt()
 }
 
 void
-AssistantObject::setCreatedAt(int  created_at)
+AssistantObject::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -372,7 +372,7 @@ AssistantObject::getName()
 }
 
 void
-AssistantObject::setName(std::string  name)
+AssistantObject::setName(std::string name)
 {
 	this->name = name;
 }
@@ -384,7 +384,7 @@ AssistantObject::getDescription()
 }
 
 void
-AssistantObject::setDescription(std::string  description)
+AssistantObject::setDescription(std::string description)
 {
 	this->description = description;
 }
@@ -396,7 +396,7 @@ AssistantObject::getModel()
 }
 
 void
-AssistantObject::setModel(std::string  model)
+AssistantObject::setModel(std::string model)
 {
 	this->model = model;
 }
@@ -408,7 +408,7 @@ AssistantObject::getInstructions()
 }
 
 void
-AssistantObject::setInstructions(std::string  instructions)
+AssistantObject::setInstructions(std::string instructions)
 {
 	this->instructions = instructions;
 }
@@ -420,7 +420,7 @@ AssistantObject::getTools()
 }
 
 void
-AssistantObject::setTools(std::list <AssistantObject_tools_inner> tools)
+AssistantObject::setTools(std::list<AssistantObject_tools_inner> tools)
 {
 	this->tools = tools;
 }
@@ -432,7 +432,7 @@ AssistantObject::getToolResources()
 }
 
 void
-AssistantObject::setToolResources(AssistantObject_tool_resources  tool_resources)
+AssistantObject::setToolResources(AssistantObject_tool_resources tool_resources)
 {
 	this->tool_resources = tool_resources;
 }
@@ -444,7 +444,7 @@ AssistantObject::getMetadata()
 }
 
 void
-AssistantObject::setMetadata(Object  metadata)
+AssistantObject::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }
@@ -456,7 +456,7 @@ AssistantObject::getTemperature()
 }
 
 void
-AssistantObject::setTemperature(long  temperature)
+AssistantObject::setTemperature(long temperature)
 {
 	this->temperature = temperature;
 }
@@ -468,7 +468,7 @@ AssistantObject::getTopP()
 }
 
 void
-AssistantObject::setTopP(long  top_p)
+AssistantObject::setTopP(long top_p)
 {
 	this->top_p = top_p;
 }
@@ -480,7 +480,7 @@ AssistantObject::getResponseFormat()
 }
 
 void
-AssistantObject::setResponseFormat(AssistantsApiResponseFormatOption  response_format)
+AssistantObject::setResponseFormat(AssistantsApiResponseFormatOption response_format)
 {
 	this->response_format = response_format;
 }

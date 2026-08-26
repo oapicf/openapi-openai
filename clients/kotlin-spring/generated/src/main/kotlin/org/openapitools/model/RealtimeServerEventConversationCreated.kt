@@ -24,14 +24,17 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeServerEventConversationCreated(
 
-    @Schema(example = "null", required = true, description = "The unique ID of the server event.")
+    @Schema(required = true, description = "The unique ID of the server event.")
+    @param:JsonProperty("event_id")
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The event type, must be `conversation.created`.")
+    @Schema(required = true, description = "The event type, must be `conversation.created`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventConversationCreated.Type,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("conversation")
     @get:JsonProperty("conversation", required = true) val conversation: RealtimeServerEventConversationCreatedConversation
 ) {
 
@@ -48,7 +51,7 @@ data class RealtimeServerEventConversationCreated(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeServerEventConversationCreated'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

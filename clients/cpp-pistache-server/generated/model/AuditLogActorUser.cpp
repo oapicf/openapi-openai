@@ -28,6 +28,8 @@ AuditLogActorUser::AuditLogActorUser()
     
 }
 
+AuditLogActorUser::~AuditLogActorUser() = default;
+
 void AuditLogActorUser::validate() const
 {
     std::stringstream msg;

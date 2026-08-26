@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIAuditLog_api_key_deleted : public OAIObject {
 public:
     OAIAuditLog_api_key_deleted();
-    OAIAuditLog_api_key_deleted(QString json);
+    OAIAuditLog_api_key_deleted(const QString &json);
     ~OAIAuditLog_api_key_deleted() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

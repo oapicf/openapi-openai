@@ -33,7 +33,7 @@ export interface Model {
     created: number;
     /**
      * The object type, which is always "model".
-     * @type {string}
+     * @type {ModelObjectEnum}
      * @memberof Model
      */
     object: ModelObjectEnum;
@@ -62,7 +62,9 @@ export function instanceOfModel(value: object): value is Model {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('created' in value) || value['created'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
-    if (!('ownedBy' in value) || value['ownedBy'] === undefined) return false;
+    if (value['object'] !== 'model') return false;
+    
+    if ((!('ownedBy' in (value as Record<string, any>)) && !('owned_by' in (value as Record<string, any>))) || ((value as Record<string, any>)['ownedBy'] === undefined && (value as Record<string, any>)['owned_by'] === undefined)) return false;
     return true;
 }
 

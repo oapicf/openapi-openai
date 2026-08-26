@@ -26,6 +26,8 @@ AssistantsApiToolChoiceOption::AssistantsApiToolChoiceOption()
     
 }
 
+AssistantsApiToolChoiceOption::~AssistantsApiToolChoiceOption() = default;
+
 void AssistantsApiToolChoiceOption::validate() const
 {
     std::stringstream msg;

@@ -31,7 +31,7 @@ class  CreateModerationRequest_model
 {
 public:
     CreateModerationRequest_model();
-    virtual ~CreateModerationRequest_model() = default;
+    virtual ~CreateModerationRequest_model();
 
 
     /// <summary>

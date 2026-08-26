@@ -32,12 +32,12 @@ static costs_result_t *costs_result_create_internal(
     if (!costs_result_local_var) {
         return NULL;
     }
+    memset(costs_result_local_var, 0, sizeof(costs_result_t));
+    costs_result_local_var->_library_owned = 1;
     costs_result_local_var->object = object;
     costs_result_local_var->amount = amount;
     costs_result_local_var->line_item = line_item;
     costs_result_local_var->project_id = project_id;
-
-    costs_result_local_var->_library_owned = 1;
     return costs_result_local_var;
 }
 
@@ -47,12 +47,15 @@ __attribute__((deprecated)) costs_result_t *costs_result_create(
     char *line_item,
     char *project_id
     ) {
-    return costs_result_create_internal (
+    costs_result_t *result = costs_result_create_internal (
         object,
         amount,
         line_item,
         project_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void costs_result_free(costs_result_t *costs_result) {
@@ -135,6 +138,10 @@ costs_result_t *costs_result_parseFromJSON(cJSON *costs_resultJSON){
     // define the local variable for costs_result->amount
     costs_result_amount_t *amount_local_nonprim = NULL;
 
+    char *line_item_local_str = NULL;
+
+    char *project_id_local_str = NULL;
+
     // costs_result->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(costs_resultJSON, "object");
     if (cJSON_IsNull(object)) {
@@ -186,18 +193,33 @@ costs_result_t *costs_result_parseFromJSON(cJSON *costs_resultJSON){
     }
 
 
+    if (line_item && !cJSON_IsNull(line_item)) line_item_local_str = strdup(line_item->valuestring);
+    if (project_id && !cJSON_IsNull(project_id)) project_id_local_str = strdup(project_id->valuestring);
+
     costs_result_local_var = costs_result_create_internal (
         objectVariable,
         amount ? amount_local_nonprim : NULL,
-        line_item && !cJSON_IsNull(line_item) ? strdup(line_item->valuestring) : NULL,
-        project_id && !cJSON_IsNull(project_id) ? strdup(project_id->valuestring) : NULL
+        line_item_local_str,
+        project_id_local_str
         );
+
+    if (!costs_result_local_var) {
+        goto end;
+    }
 
     return costs_result_local_var;
 end:
     if (amount_local_nonprim) {
         costs_result_amount_free(amount_local_nonprim);
         amount_local_nonprim = NULL;
+    }
+    if (line_item_local_str) {
+        free(line_item_local_str);
+        line_item_local_str = NULL;
+    }
+    if (project_id_local_str) {
+        free(project_id_local_str);
+        project_id_local_str = NULL;
     }
     return NULL;
 

@@ -30,10 +30,10 @@ static assistants_api_tool_choice_option_t *assistants_api_tool_choice_option_cr
     if (!assistants_api_tool_choice_option_local_var) {
         return NULL;
     }
+    memset(assistants_api_tool_choice_option_local_var, 0, sizeof(assistants_api_tool_choice_option_t));
+    assistants_api_tool_choice_option_local_var->_library_owned = 1;
     assistants_api_tool_choice_option_local_var->type = type;
     assistants_api_tool_choice_option_local_var->function = function;
-
-    assistants_api_tool_choice_option_local_var->_library_owned = 1;
     return assistants_api_tool_choice_option_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) assistants_api_tool_choice_option_t *assistants_api_
     openai_api_assistants_api_tool_choice_option_TYPE_e type,
     assistants_named_tool_choice_function_t *function
     ) {
-    return assistants_api_tool_choice_option_create_internal (
+    assistants_api_tool_choice_option_t *result = assistants_api_tool_choice_option_create_internal (
         type,
         function
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void assistants_api_tool_choice_option_free(assistants_api_tool_choice_option_t *assistants_api_tool_choice_option) {
@@ -130,10 +133,15 @@ assistants_api_tool_choice_option_t *assistants_api_tool_choice_option_parseFrom
     }
 
 
+
     assistants_api_tool_choice_option_local_var = assistants_api_tool_choice_option_create_internal (
         typeVariable,
         function ? function_local_nonprim : NULL
         );
+
+    if (!assistants_api_tool_choice_option_local_var) {
+        goto end;
+    }
 
     return assistants_api_tool_choice_option_local_var;
 end:

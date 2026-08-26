@@ -63,7 +63,6 @@ HEADERS += \
     $${PWD}/OAIAuditLog_user_updated.h \
     $${PWD}/OAIAuditLog_user_updated_changes_requested.h \
     $${PWD}/OAIAutoChunkingStrategyRequestParam.h \
-    $${PWD}/OAIAuto_Chunking_Strategy.h \
     $${PWD}/OAIBatch.h \
     $${PWD}/OAIBatchRequestInput.h \
     $${PWD}/OAIBatchRequestOutput.h \
@@ -472,7 +471,6 @@ HEADERS += \
     $${PWD}/OAIRunToolCallObject_function.h \
     $${PWD}/OAIStaticChunkingStrategy.h \
     $${PWD}/OAIStaticChunkingStrategyRequestParam.h \
-    $${PWD}/OAIStaticChunkingStrategyResponseParam.h \
     $${PWD}/OAIStatic_Chunking_Strategy.h \
     $${PWD}/OAIStatic_Chunking_Strategy_static.h \
     $${PWD}/OAISubmitToolOutputsRunRequest.h \
@@ -602,7 +600,6 @@ SOURCES += \
     $${PWD}/OAIAuditLog_user_updated.cpp \
     $${PWD}/OAIAuditLog_user_updated_changes_requested.cpp \
     $${PWD}/OAIAutoChunkingStrategyRequestParam.cpp \
-    $${PWD}/OAIAuto_Chunking_Strategy.cpp \
     $${PWD}/OAIBatch.cpp \
     $${PWD}/OAIBatchRequestInput.cpp \
     $${PWD}/OAIBatchRequestOutput.cpp \
@@ -1011,7 +1008,6 @@ SOURCES += \
     $${PWD}/OAIRunToolCallObject_function.cpp \
     $${PWD}/OAIStaticChunkingStrategy.cpp \
     $${PWD}/OAIStaticChunkingStrategyRequestParam.cpp \
-    $${PWD}/OAIStaticChunkingStrategyResponseParam.cpp \
     $${PWD}/OAIStatic_Chunking_Strategy.cpp \
     $${PWD}/OAIStatic_Chunking_Strategy_static.cpp \
     $${PWD}/OAISubmitToolOutputsRunRequest.cpp \

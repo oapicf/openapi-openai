@@ -34,7 +34,7 @@ class  BatchRequestOutput
 {
 public:
     BatchRequestOutput();
-    virtual ~BatchRequestOutput() = default;
+    virtual ~BatchRequestOutput();
 
 
     /// <summary>

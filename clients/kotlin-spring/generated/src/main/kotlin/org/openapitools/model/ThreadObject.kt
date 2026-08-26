@@ -26,21 +26,26 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ThreadObject(
 
-    @Schema(example = "null", required = true, description = "The identifier, which can be referenced in API endpoints.")
+    @Schema(required = true, description = "The identifier, which can be referenced in API endpoints.")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The object type, which is always `thread`.")
+    @Schema(required = true, description = "The object type, which is always `thread`.")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: ThreadObject.`Object`,
 
-    @Schema(example = "null", required = true, description = "The Unix timestamp (in seconds) for when the thread was created.")
+    @Schema(required = true, description = "The Unix timestamp (in seconds) for when the thread was created.")
+    @param:JsonProperty("created_at")
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("tool_resources")
     @get:JsonProperty("tool_resources", required = true) val toolResources: ModifyThreadRequestToolResources?,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
+    @Schema(required = true, description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
+    @param:JsonProperty("metadata")
     @get:JsonProperty("metadata", required = true) val metadata: kotlin.Any?
 ) {
 
@@ -57,7 +62,7 @@ data class ThreadObject(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ThreadObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }

@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -29,20 +30,20 @@ import org.openapitools.model.AuditLogUserUpdated;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * A log of a user action or configuration change within this organization.
  */
 
 @Schema(name = "AuditLog", description = "A log of a user action or configuration change within this organization.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class AuditLog {
 
   private String id;
@@ -51,48 +52,69 @@ public class AuditLog {
 
   private Integer effectiveAt;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogProject project;
 
   private AuditLogActor actor;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogApiKeyCreated apiKeyCreated;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogApiKeyUpdated apiKeyUpdated;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogApiKeyDeleted apiKeyDeleted;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogInviteSent inviteSent;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogInviteAccepted inviteAccepted;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogInviteAccepted inviteDeleted;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogLoginFailed loginFailed;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogLoginFailed logoutFailed;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogOrganizationUpdated organizationUpdated;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogProjectCreated projectCreated;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogProjectUpdated projectUpdated;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogProjectArchived projectArchived;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogRateLimitUpdated rateLimitUpdated;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogRateLimitDeleted rateLimitDeleted;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogServiceAccountCreated serviceAccountCreated;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogServiceAccountUpdated serviceAccountUpdated;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogServiceAccountDeleted serviceAccountDeleted;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogUserAdded userAdded;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogUserUpdated userUpdated;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogUserDeleted userDeleted;
 
   public AuditLog() {
@@ -125,6 +147,7 @@ public class AuditLog {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
@@ -145,6 +168,7 @@ public class AuditLog {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(AuditLogEventType type) {
     this.type = type;
   }
@@ -165,6 +189,7 @@ public class AuditLog {
     return effectiveAt;
   }
 
+  @JsonProperty("effective_at")
   public void setEffectiveAt(Integer effectiveAt) {
     this.effectiveAt = effectiveAt;
   }
@@ -185,6 +210,7 @@ public class AuditLog {
     return project;
   }
 
+  @JsonProperty("project")
   public void setProject(@Nullable AuditLogProject project) {
     this.project = project;
   }
@@ -205,6 +231,7 @@ public class AuditLog {
     return actor;
   }
 
+  @JsonProperty("actor")
   public void setActor(AuditLogActor actor) {
     this.actor = actor;
   }
@@ -225,6 +252,7 @@ public class AuditLog {
     return apiKeyCreated;
   }
 
+  @JsonProperty("api_key.created")
   public void setApiKeyCreated(@Nullable AuditLogApiKeyCreated apiKeyCreated) {
     this.apiKeyCreated = apiKeyCreated;
   }
@@ -245,6 +273,7 @@ public class AuditLog {
     return apiKeyUpdated;
   }
 
+  @JsonProperty("api_key.updated")
   public void setApiKeyUpdated(@Nullable AuditLogApiKeyUpdated apiKeyUpdated) {
     this.apiKeyUpdated = apiKeyUpdated;
   }
@@ -265,6 +294,7 @@ public class AuditLog {
     return apiKeyDeleted;
   }
 
+  @JsonProperty("api_key.deleted")
   public void setApiKeyDeleted(@Nullable AuditLogApiKeyDeleted apiKeyDeleted) {
     this.apiKeyDeleted = apiKeyDeleted;
   }
@@ -285,6 +315,7 @@ public class AuditLog {
     return inviteSent;
   }
 
+  @JsonProperty("invite.sent")
   public void setInviteSent(@Nullable AuditLogInviteSent inviteSent) {
     this.inviteSent = inviteSent;
   }
@@ -305,6 +336,7 @@ public class AuditLog {
     return inviteAccepted;
   }
 
+  @JsonProperty("invite.accepted")
   public void setInviteAccepted(@Nullable AuditLogInviteAccepted inviteAccepted) {
     this.inviteAccepted = inviteAccepted;
   }
@@ -325,6 +357,7 @@ public class AuditLog {
     return inviteDeleted;
   }
 
+  @JsonProperty("invite.deleted")
   public void setInviteDeleted(@Nullable AuditLogInviteAccepted inviteDeleted) {
     this.inviteDeleted = inviteDeleted;
   }
@@ -345,6 +378,7 @@ public class AuditLog {
     return loginFailed;
   }
 
+  @JsonProperty("login.failed")
   public void setLoginFailed(@Nullable AuditLogLoginFailed loginFailed) {
     this.loginFailed = loginFailed;
   }
@@ -365,6 +399,7 @@ public class AuditLog {
     return logoutFailed;
   }
 
+  @JsonProperty("logout.failed")
   public void setLogoutFailed(@Nullable AuditLogLoginFailed logoutFailed) {
     this.logoutFailed = logoutFailed;
   }
@@ -385,6 +420,7 @@ public class AuditLog {
     return organizationUpdated;
   }
 
+  @JsonProperty("organization.updated")
   public void setOrganizationUpdated(@Nullable AuditLogOrganizationUpdated organizationUpdated) {
     this.organizationUpdated = organizationUpdated;
   }
@@ -405,6 +441,7 @@ public class AuditLog {
     return projectCreated;
   }
 
+  @JsonProperty("project.created")
   public void setProjectCreated(@Nullable AuditLogProjectCreated projectCreated) {
     this.projectCreated = projectCreated;
   }
@@ -425,6 +462,7 @@ public class AuditLog {
     return projectUpdated;
   }
 
+  @JsonProperty("project.updated")
   public void setProjectUpdated(@Nullable AuditLogProjectUpdated projectUpdated) {
     this.projectUpdated = projectUpdated;
   }
@@ -445,6 +483,7 @@ public class AuditLog {
     return projectArchived;
   }
 
+  @JsonProperty("project.archived")
   public void setProjectArchived(@Nullable AuditLogProjectArchived projectArchived) {
     this.projectArchived = projectArchived;
   }
@@ -465,6 +504,7 @@ public class AuditLog {
     return rateLimitUpdated;
   }
 
+  @JsonProperty("rate_limit.updated")
   public void setRateLimitUpdated(@Nullable AuditLogRateLimitUpdated rateLimitUpdated) {
     this.rateLimitUpdated = rateLimitUpdated;
   }
@@ -485,6 +525,7 @@ public class AuditLog {
     return rateLimitDeleted;
   }
 
+  @JsonProperty("rate_limit.deleted")
   public void setRateLimitDeleted(@Nullable AuditLogRateLimitDeleted rateLimitDeleted) {
     this.rateLimitDeleted = rateLimitDeleted;
   }
@@ -505,6 +546,7 @@ public class AuditLog {
     return serviceAccountCreated;
   }
 
+  @JsonProperty("service_account.created")
   public void setServiceAccountCreated(@Nullable AuditLogServiceAccountCreated serviceAccountCreated) {
     this.serviceAccountCreated = serviceAccountCreated;
   }
@@ -525,6 +567,7 @@ public class AuditLog {
     return serviceAccountUpdated;
   }
 
+  @JsonProperty("service_account.updated")
   public void setServiceAccountUpdated(@Nullable AuditLogServiceAccountUpdated serviceAccountUpdated) {
     this.serviceAccountUpdated = serviceAccountUpdated;
   }
@@ -545,6 +588,7 @@ public class AuditLog {
     return serviceAccountDeleted;
   }
 
+  @JsonProperty("service_account.deleted")
   public void setServiceAccountDeleted(@Nullable AuditLogServiceAccountDeleted serviceAccountDeleted) {
     this.serviceAccountDeleted = serviceAccountDeleted;
   }
@@ -565,6 +609,7 @@ public class AuditLog {
     return userAdded;
   }
 
+  @JsonProperty("user.added")
   public void setUserAdded(@Nullable AuditLogUserAdded userAdded) {
     this.userAdded = userAdded;
   }
@@ -585,6 +630,7 @@ public class AuditLog {
     return userUpdated;
   }
 
+  @JsonProperty("user.updated")
   public void setUserUpdated(@Nullable AuditLogUserUpdated userUpdated) {
     this.userUpdated = userUpdated;
   }
@@ -605,6 +651,7 @@ public class AuditLog {
     return userDeleted;
   }
 
+  @JsonProperty("user.deleted")
   public void setUserDeleted(@Nullable AuditLogUserDeleted userDeleted) {
     this.userDeleted = userDeleted;
   }
@@ -687,11 +734,8 @@ public class AuditLog {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

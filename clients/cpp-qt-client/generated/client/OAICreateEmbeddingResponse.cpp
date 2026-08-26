@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateEmbeddingResponse::OAICreateEmbeddingResponse(QString json) {
+OAICreateEmbeddingResponse::OAICreateEmbeddingResponse(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -47,7 +47,7 @@ void OAICreateEmbeddingResponse::initializeModel() {
     m_usage_isValid = false;
 }
 
-void OAICreateEmbeddingResponse::fromJson(QString jsonString) {
+void OAICreateEmbeddingResponse::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

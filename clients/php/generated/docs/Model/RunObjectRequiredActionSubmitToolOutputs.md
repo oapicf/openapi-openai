@@ -1,4 +1,4 @@
-# # RunObjectRequiredActionSubmitToolOutputs
+# RunObjectRequiredActionSubmitToolOutputs
 
 ## Properties
 

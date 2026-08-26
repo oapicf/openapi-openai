@@ -55,10 +55,10 @@ class ChatCompletionRequestMessageContentPartText {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ChatCompletionRequestMessageContentPartText[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ChatCompletionRequestMessageContentPartText[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "ChatCompletionRequestMessageContentPartText[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "ChatCompletionRequestMessageContentPartText[type]" has a null value in JSON.');
+        assert(json.containsKey(r'text'), 'Required key "ChatCompletionRequestMessageContentPartText[text]" is missing from JSON.');
+        assert(json[r'text'] != null, 'Required key "ChatCompletionRequestMessageContentPartText[text]" has a null value in JSON.');
         return true;
       }());
 
@@ -118,27 +118,28 @@ class ChatCompletionRequestMessageContentPartText {
 }
 
 /// The type of the content part.
-class ChatCompletionRequestMessageContentPartTextTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ChatCompletionRequestMessageContentPartTextTypeEnum._(this.value);
+enum ChatCompletionRequestMessageContentPartTextTypeEnum {
+  text._(r'text'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ChatCompletionRequestMessageContentPartTextTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = ChatCompletionRequestMessageContentPartTextTypeEnum._(r'text');
-
-  /// List of all possible values in this [enum][ChatCompletionRequestMessageContentPartTextTypeEnum].
-  static const values = <ChatCompletionRequestMessageContentPartTextTypeEnum>[
-    text,
-  ];
-
+  /// Returns the instance of [ChatCompletionRequestMessageContentPartTextTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ChatCompletionRequestMessageContentPartTextTypeEnum? fromJson(dynamic value) => ChatCompletionRequestMessageContentPartTextTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ChatCompletionRequestMessageContentPartTextTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ChatCompletionRequestMessageContentPartTextTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ChatCompletionRequestMessageContentPartTextTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -160,9 +161,10 @@ class ChatCompletionRequestMessageContentPartTextTypeEnumTypeTransformer {
 
   const ChatCompletionRequestMessageContentPartTextTypeEnumTypeTransformer._();
 
-  String encode(ChatCompletionRequestMessageContentPartTextTypeEnum data) => data.value;
+  String encode(ChatCompletionRequestMessageContentPartTextTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ChatCompletionRequestMessageContentPartTextTypeEnum.
+  /// Returns the instance of [ChatCompletionRequestMessageContentPartTextTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -171,6 +173,9 @@ class ChatCompletionRequestMessageContentPartTextTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ChatCompletionRequestMessageContentPartTextTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ChatCompletionRequestMessageContentPartTextTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return ChatCompletionRequestMessageContentPartTextTypeEnum.text;
@@ -183,7 +188,7 @@ class ChatCompletionRequestMessageContentPartTextTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ChatCompletionRequestMessageContentPartTextTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ChatCompletionRequestMessageContentPartTextTypeEnumTypeTransformer? _instance;
 }
 

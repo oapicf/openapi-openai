@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -16,20 +17,20 @@ import org.openapitools.model.RealtimeSessionInputAudioTranscription;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Realtime session object configuration.
  */
 
 @Schema(name = "RealtimeSessionCreateRequest", description = "Realtime session object configuration.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeSessionCreateRequest {
 
   /**
@@ -67,7 +68,7 @@ public class RealtimeSessionCreateRequest {
     }
   }
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<ModalitiesEnum> modalities = new ArrayList<>();
 
   /**
@@ -113,6 +114,7 @@ public class RealtimeSessionCreateRequest {
 
   private ModelEnum model;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String instructions;
 
   /**
@@ -162,6 +164,7 @@ public class RealtimeSessionCreateRequest {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable VoiceEnum voice;
 
   /**
@@ -201,6 +204,7 @@ public class RealtimeSessionCreateRequest {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable InputAudioFormatEnum inputAudioFormat;
 
   /**
@@ -240,19 +244,25 @@ public class RealtimeSessionCreateRequest {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable OutputAudioFormatEnum outputAudioFormat;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeSessionInputAudioTranscription inputAudioTranscription;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeSessionCreateRequestTurnDetection turnDetection;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid RealtimeResponseCreateParamsToolsInner> tools = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String toolChoice;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BigDecimal temperature;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeResponseCreateParamsMaxResponseOutputTokens maxResponseOutputTokens;
 
   public RealtimeSessionCreateRequest() {
@@ -290,6 +300,7 @@ public class RealtimeSessionCreateRequest {
     return modalities;
   }
 
+  @JsonProperty("modalities")
   public void setModalities(List<ModalitiesEnum> modalities) {
     this.modalities = modalities;
   }
@@ -310,6 +321,7 @@ public class RealtimeSessionCreateRequest {
     return model;
   }
 
+  @JsonProperty("model")
   public void setModel(ModelEnum model) {
     this.model = model;
   }
@@ -330,6 +342,7 @@ public class RealtimeSessionCreateRequest {
     return instructions;
   }
 
+  @JsonProperty("instructions")
   public void setInstructions(@Nullable String instructions) {
     this.instructions = instructions;
   }
@@ -350,6 +363,7 @@ public class RealtimeSessionCreateRequest {
     return voice;
   }
 
+  @JsonProperty("voice")
   public void setVoice(@Nullable VoiceEnum voice) {
     this.voice = voice;
   }
@@ -370,6 +384,7 @@ public class RealtimeSessionCreateRequest {
     return inputAudioFormat;
   }
 
+  @JsonProperty("input_audio_format")
   public void setInputAudioFormat(@Nullable InputAudioFormatEnum inputAudioFormat) {
     this.inputAudioFormat = inputAudioFormat;
   }
@@ -390,6 +405,7 @@ public class RealtimeSessionCreateRequest {
     return outputAudioFormat;
   }
 
+  @JsonProperty("output_audio_format")
   public void setOutputAudioFormat(@Nullable OutputAudioFormatEnum outputAudioFormat) {
     this.outputAudioFormat = outputAudioFormat;
   }
@@ -410,6 +426,7 @@ public class RealtimeSessionCreateRequest {
     return inputAudioTranscription;
   }
 
+  @JsonProperty("input_audio_transcription")
   public void setInputAudioTranscription(@Nullable RealtimeSessionInputAudioTranscription inputAudioTranscription) {
     this.inputAudioTranscription = inputAudioTranscription;
   }
@@ -430,6 +447,7 @@ public class RealtimeSessionCreateRequest {
     return turnDetection;
   }
 
+  @JsonProperty("turn_detection")
   public void setTurnDetection(@Nullable RealtimeSessionCreateRequestTurnDetection turnDetection) {
     this.turnDetection = turnDetection;
   }
@@ -458,6 +476,7 @@ public class RealtimeSessionCreateRequest {
     return tools;
   }
 
+  @JsonProperty("tools")
   public void setTools(List<@Valid RealtimeResponseCreateParamsToolsInner> tools) {
     this.tools = tools;
   }
@@ -478,6 +497,7 @@ public class RealtimeSessionCreateRequest {
     return toolChoice;
   }
 
+  @JsonProperty("tool_choice")
   public void setToolChoice(@Nullable String toolChoice) {
     this.toolChoice = toolChoice;
   }
@@ -498,6 +518,7 @@ public class RealtimeSessionCreateRequest {
     return temperature;
   }
 
+  @JsonProperty("temperature")
   public void setTemperature(@Nullable BigDecimal temperature) {
     this.temperature = temperature;
   }
@@ -518,6 +539,7 @@ public class RealtimeSessionCreateRequest {
     return maxResponseOutputTokens;
   }
 
+  @JsonProperty("max_response_output_tokens")
   public void setMaxResponseOutputTokens(@Nullable RealtimeResponseCreateParamsMaxResponseOutputTokens maxResponseOutputTokens) {
     this.maxResponseOutputTokens = maxResponseOutputTokens;
   }
@@ -574,11 +596,8 @@ public class RealtimeSessionCreateRequest {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

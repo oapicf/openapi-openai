@@ -53,10 +53,10 @@ class RunStepStreamEvent {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepStreamEvent[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepStreamEvent[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event'), 'Required key "RunStepStreamEvent[event]" is missing from JSON.');
+        assert(json[r'event'] != null, 'Required key "RunStepStreamEvent[event]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "RunStepStreamEvent[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "RunStepStreamEvent[data]" has a null value in JSON.');
         return true;
       }());
 
@@ -116,27 +116,28 @@ class RunStepStreamEvent {
 }
 
 
-class RunStepStreamEventEventEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepStreamEventEventEnum._(this.value);
+enum RunStepStreamEventEventEnum {
+  threadPeriodRunPeriodStepPeriodExpired._(r'thread.run.step.expired'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepStreamEventEventEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodRunPeriodStepPeriodExpired = RunStepStreamEventEventEnum._(r'thread.run.step.expired');
-
-  /// List of all possible values in this [enum][RunStepStreamEventEventEnum].
-  static const values = <RunStepStreamEventEventEnum>[
-    threadPeriodRunPeriodStepPeriodExpired,
-  ];
-
+  /// Returns the instance of [RunStepStreamEventEventEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepStreamEventEventEnum? fromJson(dynamic value) => RunStepStreamEventEventEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepStreamEventEventEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepStreamEventEventEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepStreamEventEventEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -158,9 +159,10 @@ class RunStepStreamEventEventEnumTypeTransformer {
 
   const RunStepStreamEventEventEnumTypeTransformer._();
 
-  String encode(RunStepStreamEventEventEnum data) => data.value;
+  String encode(RunStepStreamEventEventEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepStreamEventEventEnum.
+  /// Returns the instance of [RunStepStreamEventEventEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -169,6 +171,9 @@ class RunStepStreamEventEventEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepStreamEventEventEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepStreamEventEventEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.run.step.expired': return RunStepStreamEventEventEnum.threadPeriodRunPeriodStepPeriodExpired;
@@ -181,7 +186,7 @@ class RunStepStreamEventEventEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStepStreamEventEventEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepStreamEventEventEnumTypeTransformer? _instance;
 }
 

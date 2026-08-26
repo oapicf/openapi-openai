@@ -15,6 +15,7 @@ package org.openapitools.client.model
   /**
    * The contents of the developer message.
    */
-case class ChatCompletionRequestDeveloperMessageContent(
-)
+trait ChatCompletionRequestDeveloperMessageContent
+object ChatCompletionRequestDeveloperMessageContent {
+}
 

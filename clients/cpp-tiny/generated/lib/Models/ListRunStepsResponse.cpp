@@ -165,7 +165,7 @@ ListRunStepsResponse::getObject()
 }
 
 void
-ListRunStepsResponse::setObject(std::string  object)
+ListRunStepsResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -177,7 +177,7 @@ ListRunStepsResponse::getData()
 }
 
 void
-ListRunStepsResponse::setData(std::list <RunStepObject> data)
+ListRunStepsResponse::setData(std::list<RunStepObject> data)
 {
 	this->data = data;
 }
@@ -189,7 +189,7 @@ ListRunStepsResponse::getFirstId()
 }
 
 void
-ListRunStepsResponse::setFirstId(std::string  first_id)
+ListRunStepsResponse::setFirstId(std::string first_id)
 {
 	this->first_id = first_id;
 }
@@ -201,7 +201,7 @@ ListRunStepsResponse::getLastId()
 }
 
 void
-ListRunStepsResponse::setLastId(std::string  last_id)
+ListRunStepsResponse::setLastId(std::string last_id)
 {
 	this->last_id = last_id;
 }
@@ -213,7 +213,7 @@ ListRunStepsResponse::isHasMore()
 }
 
 void
-ListRunStepsResponse::setHasMore(bool  has_more)
+ListRunStepsResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }

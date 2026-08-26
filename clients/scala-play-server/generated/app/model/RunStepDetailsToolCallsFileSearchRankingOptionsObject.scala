@@ -7,7 +7,7 @@ import play.api.libs.json._
   * @param ranker The ranker used for the file search.
   * @param scoreThreshold The score threshold for the file search. All values must be a floating point number between 0 and 1.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 case class RunStepDetailsToolCallsFileSearchRankingOptionsObject(
   ranker: RunStepDetailsToolCallsFileSearchRankingOptionsObject.Ranker.Value,
   scoreThreshold: BigDecimal

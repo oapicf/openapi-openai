@@ -53,22 +53,22 @@ import com.github.oapicf.openapiopenai.JSON;
  * @deprecated
  */
 @Deprecated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateFineTuningJobRequestHyperparameters {
   public static final String SERIALIZED_NAME_BATCH_SIZE = "batch_size";
   @SerializedName(SERIALIZED_NAME_BATCH_SIZE)
   @javax.annotation.Nullable
-  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
+  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
 
   public static final String SERIALIZED_NAME_LEARNING_RATE_MULTIPLIER = "learning_rate_multiplier";
   @SerializedName(SERIALIZED_NAME_LEARNING_RATE_MULTIPLIER)
   @javax.annotation.Nullable
-  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
 
   public static final String SERIALIZED_NAME_N_EPOCHS = "n_epochs";
   @SerializedName(SERIALIZED_NAME_N_EPOCHS)
   @javax.annotation.Nullable
-  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
+  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
 
   public CreateFineTuningJobRequestHyperparameters() {
   }
@@ -166,10 +166,7 @@ public class CreateFineTuningJobRequestHyperparameters {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 

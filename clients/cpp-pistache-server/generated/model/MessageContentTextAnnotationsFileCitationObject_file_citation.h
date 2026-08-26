@@ -32,7 +32,7 @@ class  MessageContentTextAnnotationsFileCitationObject_file_citation
 {
 public:
     MessageContentTextAnnotationsFileCitationObject_file_citation();
-    virtual ~MessageContentTextAnnotationsFileCitationObject_file_citation() = default;
+    virtual ~MessageContentTextAnnotationsFileCitationObject_file_citation();
 
 
     /// <summary>

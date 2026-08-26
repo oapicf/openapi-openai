@@ -51,7 +51,7 @@ class RunStepDetailsToolCallsFileSearchRankingOptionsObject
      * @var string|null
      * @SerializedName("ranker")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['default_2024_08_21'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class RunStepDetailsToolCallsFileSearchRankingOptionsObject
      * @var float|null
      * @SerializedName("score_threshold")
      * @Type("float")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(0)]
@@ -93,12 +93,12 @@ class RunStepDetailsToolCallsFileSearchRankingOptionsObject
     }
 
     /**
-    * Sets ranker.
-    *
-    * @param string|null $ranker  The ranker used for the file search.
-    *
-    * @return $this
-    */
+     * Sets ranker.
+     *
+     * @param string|null $ranker  The ranker used for the file search.
+     *
+     * @return $this
+     */
     public function setRanker(?string $ranker): self
     {
         $this->ranker = $ranker;
@@ -120,12 +120,12 @@ class RunStepDetailsToolCallsFileSearchRankingOptionsObject
     }
 
     /**
-    * Sets scoreThreshold.
-    *
-    * @param float|null $scoreThreshold  The score threshold for the file search. All values must be a floating point number between 0 and 1.
-    *
-    * @return $this
-    */
+     * Sets scoreThreshold.
+     *
+     * @param float|null $scoreThreshold  The score threshold for the file search. All values must be a floating point number between 0 and 1.
+     *
+     * @return $this
+     */
     public function setScoreThreshold(?float $scoreThreshold): self
     {
         $this->scoreThreshold = $scoreThreshold;

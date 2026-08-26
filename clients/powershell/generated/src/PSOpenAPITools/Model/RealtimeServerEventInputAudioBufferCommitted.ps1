@@ -68,10 +68,10 @@ function Initialize-RealtimeServerEventInputAudioBufferCommitted {
 
 
         $PSO = [PSCustomObject]@{
-            "event_id" = ${EventId}
-            "type" = ${Type}
-            "previous_item_id" = ${PreviousItemId}
-            "item_id" = ${ItemId}
+            'event_id' = ${EventId}
+            'type' = ${Type}
+            'previous_item_id' = ${PreviousItemId}
+            'item_id' = ${ItemId}
         }
 
 
@@ -109,7 +109,7 @@ function ConvertFrom-JsonToRealtimeServerEventInputAudioBufferCommitted {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeServerEventInputAudioBufferCommitted
-        $AllProperties = ("event_id", "type", "previous_item_id", "item_id")
+        $AllProperties = ('event_id', 'type', 'previous_item_id', 'item_id')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -120,35 +120,35 @@ function ConvertFrom-JsonToRealtimeServerEventInputAudioBufferCommitted {
             throw "Error! Empty JSON cannot be serialized due to the required property 'event_id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "event_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'event_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'event_id' missing."
         } else {
-            $EventId = $JsonParameters.PSobject.Properties["event_id"].value
+            $EventId = $JsonParameters.PSobject.Properties['event_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "previous_item_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'previous_item_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'previous_item_id' missing."
         } else {
-            $PreviousItemId = $JsonParameters.PSobject.Properties["previous_item_id"].value
+            $PreviousItemId = $JsonParameters.PSobject.Properties['previous_item_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "item_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'item_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'item_id' missing."
         } else {
-            $ItemId = $JsonParameters.PSobject.Properties["item_id"].value
+            $ItemId = $JsonParameters.PSobject.Properties['item_id'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "event_id" = ${EventId}
-            "type" = ${Type}
-            "previous_item_id" = ${PreviousItemId}
-            "item_id" = ${ItemId}
+            'event_id' = ${EventId}
+            'type' = ${Type}
+            'previous_item_id' = ${PreviousItemId}
+            'item_id' = ${ItemId}
         }
 
         return $PSO

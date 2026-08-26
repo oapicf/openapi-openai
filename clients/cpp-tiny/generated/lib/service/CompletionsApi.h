@@ -22,7 +22,7 @@ class CompletionsApi : public Service {
 public:
     CompletionsApi() = default;
 
-    virtual ~CompletionsApi() = default;
+    virtual ~CompletionsApi();
 
     /**
     * Creates a completion for the provided prompt and parameters..

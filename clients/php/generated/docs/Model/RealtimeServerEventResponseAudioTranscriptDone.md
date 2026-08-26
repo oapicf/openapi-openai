@@ -1,4 +1,4 @@
-# # RealtimeServerEventResponseAudioTranscriptDone
+# RealtimeServerEventResponseAudioTranscriptDone
 
 ## Properties
 

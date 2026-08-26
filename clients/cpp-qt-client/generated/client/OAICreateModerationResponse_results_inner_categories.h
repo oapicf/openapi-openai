@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAICreateModerationResponse_results_inner_categories : public OAIObject {
 public:
     OAICreateModerationResponse_results_inner_categories();
-    OAICreateModerationResponse_results_inner_categories(QString json);
+    OAICreateModerationResponse_results_inner_categories(const QString &json);
     ~OAICreateModerationResponse_results_inner_categories() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     bool isHate() const;
     void setHate(const bool &hate);

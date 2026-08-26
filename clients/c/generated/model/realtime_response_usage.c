@@ -6,9 +6,9 @@
 
 
 static realtime_response_usage_t *realtime_response_usage_create_internal(
-    int total_tokens,
-    int input_tokens,
-    int output_tokens,
+    int *total_tokens,
+    int *input_tokens,
+    int *output_tokens,
     realtime_response_usage_input_token_details_t *input_token_details,
     realtime_response_usage_output_token_details_t *output_token_details
     ) {
@@ -16,30 +16,51 @@ static realtime_response_usage_t *realtime_response_usage_create_internal(
     if (!realtime_response_usage_local_var) {
         return NULL;
     }
+    memset(realtime_response_usage_local_var, 0, sizeof(realtime_response_usage_t));
+    realtime_response_usage_local_var->_library_owned = 1;
     realtime_response_usage_local_var->total_tokens = total_tokens;
     realtime_response_usage_local_var->input_tokens = input_tokens;
     realtime_response_usage_local_var->output_tokens = output_tokens;
     realtime_response_usage_local_var->input_token_details = input_token_details;
     realtime_response_usage_local_var->output_token_details = output_token_details;
-
-    realtime_response_usage_local_var->_library_owned = 1;
     return realtime_response_usage_local_var;
 }
 
 __attribute__((deprecated)) realtime_response_usage_t *realtime_response_usage_create(
-    int total_tokens,
-    int input_tokens,
-    int output_tokens,
+    int *total_tokens,
+    int *input_tokens,
+    int *output_tokens,
     realtime_response_usage_input_token_details_t *input_token_details,
     realtime_response_usage_output_token_details_t *output_token_details
     ) {
-    return realtime_response_usage_create_internal (
-        total_tokens,
-        input_tokens,
-        output_tokens,
+    int *total_tokens_copy = NULL;
+    if (total_tokens) {
+        total_tokens_copy = malloc(sizeof(int));
+        if (total_tokens_copy) *total_tokens_copy = *total_tokens;
+    }
+    int *input_tokens_copy = NULL;
+    if (input_tokens) {
+        input_tokens_copy = malloc(sizeof(int));
+        if (input_tokens_copy) *input_tokens_copy = *input_tokens;
+    }
+    int *output_tokens_copy = NULL;
+    if (output_tokens) {
+        output_tokens_copy = malloc(sizeof(int));
+        if (output_tokens_copy) *output_tokens_copy = *output_tokens;
+    }
+    realtime_response_usage_t *result = realtime_response_usage_create_internal (
+        total_tokens_copy,
+        input_tokens_copy,
+        output_tokens_copy,
         input_token_details,
         output_token_details
         );
+    if (!result) {
+        free(total_tokens_copy);
+        free(input_tokens_copy);
+        free(output_tokens_copy);
+    }
+    return result;
 }
 
 void realtime_response_usage_free(realtime_response_usage_t *realtime_response_usage) {
@@ -51,6 +72,18 @@ void realtime_response_usage_free(realtime_response_usage_t *realtime_response_u
         return ;
     }
     listEntry_t *listEntry;
+    if (realtime_response_usage->total_tokens) {
+        free(realtime_response_usage->total_tokens);
+        realtime_response_usage->total_tokens = NULL;
+    }
+    if (realtime_response_usage->input_tokens) {
+        free(realtime_response_usage->input_tokens);
+        realtime_response_usage->input_tokens = NULL;
+    }
+    if (realtime_response_usage->output_tokens) {
+        free(realtime_response_usage->output_tokens);
+        realtime_response_usage->output_tokens = NULL;
+    }
     if (realtime_response_usage->input_token_details) {
         realtime_response_usage_input_token_details_free(realtime_response_usage->input_token_details);
         realtime_response_usage->input_token_details = NULL;
@@ -67,7 +100,7 @@ cJSON *realtime_response_usage_convertToJSON(realtime_response_usage_t *realtime
 
     // realtime_response_usage->total_tokens
     if(realtime_response_usage->total_tokens) {
-    if(cJSON_AddNumberToObject(item, "total_tokens", realtime_response_usage->total_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "total_tokens", *realtime_response_usage->total_tokens) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -75,7 +108,7 @@ cJSON *realtime_response_usage_convertToJSON(realtime_response_usage_t *realtime
 
     // realtime_response_usage->input_tokens
     if(realtime_response_usage->input_tokens) {
-    if(cJSON_AddNumberToObject(item, "input_tokens", realtime_response_usage->input_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "input_tokens", *realtime_response_usage->input_tokens) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -83,7 +116,7 @@ cJSON *realtime_response_usage_convertToJSON(realtime_response_usage_t *realtime
 
     // realtime_response_usage->output_tokens
     if(realtime_response_usage->output_tokens) {
-    if(cJSON_AddNumberToObject(item, "output_tokens", realtime_response_usage->output_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "output_tokens", *realtime_response_usage->output_tokens) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -126,6 +159,15 @@ realtime_response_usage_t *realtime_response_usage_parseFromJSON(cJSON *realtime
 
     realtime_response_usage_t *realtime_response_usage_local_var = NULL;
 
+    // define the local variable for realtime_response_usage->total_tokens
+    int *total_tokens_local_var = NULL;
+
+    // define the local variable for realtime_response_usage->input_tokens
+    int *input_tokens_local_var = NULL;
+
+    // define the local variable for realtime_response_usage->output_tokens
+    int *output_tokens_local_var = NULL;
+
     // define the local variable for realtime_response_usage->input_token_details
     realtime_response_usage_input_token_details_t *input_token_details_local_nonprim = NULL;
 
@@ -142,6 +184,12 @@ realtime_response_usage_t *realtime_response_usage_parseFromJSON(cJSON *realtime
     {
     goto end; //Numeric
     }
+    total_tokens_local_var = malloc(sizeof(int));
+    if(!total_tokens_local_var)
+    {
+        goto end;
+    }
+    *total_tokens_local_var = total_tokens->valuedouble;
     }
 
     // realtime_response_usage->input_tokens
@@ -154,6 +202,12 @@ realtime_response_usage_t *realtime_response_usage_parseFromJSON(cJSON *realtime
     {
     goto end; //Numeric
     }
+    input_tokens_local_var = malloc(sizeof(int));
+    if(!input_tokens_local_var)
+    {
+        goto end;
+    }
+    *input_tokens_local_var = input_tokens->valuedouble;
     }
 
     // realtime_response_usage->output_tokens
@@ -166,6 +220,12 @@ realtime_response_usage_t *realtime_response_usage_parseFromJSON(cJSON *realtime
     {
     goto end; //Numeric
     }
+    output_tokens_local_var = malloc(sizeof(int));
+    if(!output_tokens_local_var)
+    {
+        goto end;
+    }
+    *output_tokens_local_var = output_tokens->valuedouble;
     }
 
     // realtime_response_usage->input_token_details
@@ -187,16 +247,33 @@ realtime_response_usage_t *realtime_response_usage_parseFromJSON(cJSON *realtime
     }
 
 
+
     realtime_response_usage_local_var = realtime_response_usage_create_internal (
-        total_tokens ? total_tokens->valuedouble : 0,
-        input_tokens ? input_tokens->valuedouble : 0,
-        output_tokens ? output_tokens->valuedouble : 0,
+        total_tokens_local_var,
+        input_tokens_local_var,
+        output_tokens_local_var,
         input_token_details ? input_token_details_local_nonprim : NULL,
         output_token_details ? output_token_details_local_nonprim : NULL
         );
 
+    if (!realtime_response_usage_local_var) {
+        goto end;
+    }
+
     return realtime_response_usage_local_var;
 end:
+    if (total_tokens_local_var) {
+        free(total_tokens_local_var);
+        total_tokens_local_var = NULL;
+    }
+    if (input_tokens_local_var) {
+        free(input_tokens_local_var);
+        input_tokens_local_var = NULL;
+    }
+    if (output_tokens_local_var) {
+        free(output_tokens_local_var);
+        output_tokens_local_var = NULL;
+    }
     if (input_token_details_local_nonprim) {
         realtime_response_usage_input_token_details_free(input_token_details_local_nonprim);
         input_token_details_local_nonprim = NULL;

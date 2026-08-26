@@ -25,7 +25,7 @@ message RealtimeServerEventInputAudioBufferSpeechStarted {
     TYPE_INPUT_AUDIO_BUFFER_SPEECH_STARTED = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // Milliseconds from the start of all audio written to the buffer during the  session when speech was first detected. This will correspond to the  beginning of audio sent to the model, and thus includes the  `prefix_padding_ms` configured in the Session. 
   int32 audio_start_ms = 371769108;

@@ -24,7 +24,7 @@ message ListFineTuningJobCheckpointsResponse {
     OBJECT_LIST = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   optional string first_id = 13016823;
 

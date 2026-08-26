@@ -123,7 +123,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The reason why the run is incomplete. This will point to which specific token limit was reached over the course of the run.</value>
         [JsonPropertyName("reason")]
-        public ReasonEnum? Reason { get { return this.ReasonOption; } set { this.ReasonOption = new(value); } }
+        public ReasonEnum? Reason { get { return this.ReasonOption.Value; } set { this.ReasonOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -152,8 +152,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunObjectIncompleteDetails" />
     /// </summary>
-    public class RunObjectIncompleteDetailsJsonConverter : JsonConverter<RunObjectIncompleteDetails>
+    public partial class RunObjectIncompleteDetailsJsonConverter : JsonConverter<RunObjectIncompleteDetails>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunObjectIncompleteDetailsJsonConverter" /> class.
+        /// </summary>
+        public RunObjectIncompleteDetailsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunObjectIncompleteDetails" />
         /// </summary>

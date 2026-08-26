@@ -71,10 +71,16 @@ class ListRunsResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ListRunsResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ListRunsResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "ListRunsResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "ListRunsResponse[object]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "ListRunsResponse[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "ListRunsResponse[data]" has a null value in JSON.');
+        assert(json.containsKey(r'first_id'), 'Required key "ListRunsResponse[first_id]" is missing from JSON.');
+        assert(json[r'first_id'] != null, 'Required key "ListRunsResponse[first_id]" has a null value in JSON.');
+        assert(json.containsKey(r'last_id'), 'Required key "ListRunsResponse[last_id]" is missing from JSON.');
+        assert(json[r'last_id'] != null, 'Required key "ListRunsResponse[last_id]" has a null value in JSON.');
+        assert(json.containsKey(r'has_more'), 'Required key "ListRunsResponse[has_more]" is missing from JSON.');
+        assert(json[r'has_more'] != null, 'Required key "ListRunsResponse[has_more]" has a null value in JSON.');
         return true;
       }());
 

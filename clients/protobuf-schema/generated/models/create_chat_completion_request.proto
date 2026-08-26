@@ -43,7 +43,7 @@ message CreateChatCompletionRequest {
     REASONING_EFFORT_HIGH = 2;
   }
 
-  Reasoning_effort reasoning_effort = 143814355;
+  string reasoning_effort = 143814355;
 
   // Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). 
   optional map<string, string> metadata = 450004177;
@@ -71,12 +71,13 @@ message CreateChatCompletionRequest {
 
   // Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` 
   enum Modalities {
-    MODALITIES_TEXT = 0;
-    MODALITIES_AUDIO = 1;
+    TEXT = ;
+    AUDIO = ;
   }
 
-  Modalities modalities = 361980099;
+  repeated string modalities = 361980099;
 
+  // Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
   PredictionContent prediction = 87492753;
 
   CreateChatCompletionRequestAudio audio = 93166550;
@@ -95,7 +96,7 @@ message CreateChatCompletionRequest {
     SERVICE_TIER_DEFAULT = 1;
   }
 
-  Service_tier service_tier = 360066348;
+  optional string service_tier = 360066348;
 
   CreateChatCompletionRequestStop stop = 3540994;
 

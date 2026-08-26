@@ -47,6 +47,7 @@ class CreateFineTuningJobRequestIntegrationsInner(Model):
     def type(self):
         """Gets the type of this CreateFineTuningJobRequestIntegrationsInner.
 
+        The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
 
         :return: The type of this CreateFineTuningJobRequestIntegrationsInner.
         :rtype: str
@@ -57,6 +58,7 @@ class CreateFineTuningJobRequestIntegrationsInner(Model):
     def type(self, type):
         """Sets the type of this CreateFineTuningJobRequestIntegrationsInner.
 
+        The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
 
         :param type: The type of this CreateFineTuningJobRequestIntegrationsInner.
         :type type: str

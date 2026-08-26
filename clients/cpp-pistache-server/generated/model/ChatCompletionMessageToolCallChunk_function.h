@@ -32,7 +32,7 @@ class  ChatCompletionMessageToolCallChunk_function
 {
 public:
     ChatCompletionMessageToolCallChunk_function();
-    virtual ~ChatCompletionMessageToolCallChunk_function() = default;
+    virtual ~ChatCompletionMessageToolCallChunk_function();
 
 
     /// <summary>

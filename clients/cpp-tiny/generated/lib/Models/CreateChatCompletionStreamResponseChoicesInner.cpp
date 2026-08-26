@@ -129,7 +129,7 @@ CreateChatCompletionStreamResponse_choices_inner::getDelta()
 }
 
 void
-CreateChatCompletionStreamResponse_choices_inner::setDelta(ChatCompletionStreamResponseDelta  delta)
+CreateChatCompletionStreamResponse_choices_inner::setDelta(ChatCompletionStreamResponseDelta delta)
 {
 	this->delta = delta;
 }
@@ -141,7 +141,7 @@ CreateChatCompletionStreamResponse_choices_inner::getLogprobs()
 }
 
 void
-CreateChatCompletionStreamResponse_choices_inner::setLogprobs(CreateChatCompletionResponse_choices_inner_logprobs  logprobs)
+CreateChatCompletionStreamResponse_choices_inner::setLogprobs(CreateChatCompletionResponse_choices_inner_logprobs logprobs)
 {
 	this->logprobs = logprobs;
 }
@@ -153,7 +153,7 @@ CreateChatCompletionStreamResponse_choices_inner::getFinishReason()
 }
 
 void
-CreateChatCompletionStreamResponse_choices_inner::setFinishReason(std::string  finish_reason)
+CreateChatCompletionStreamResponse_choices_inner::setFinishReason(std::string finish_reason)
 {
 	this->finish_reason = finish_reason;
 }
@@ -165,7 +165,7 @@ CreateChatCompletionStreamResponse_choices_inner::getIndex()
 }
 
 void
-CreateChatCompletionStreamResponse_choices_inner::setIndex(int  index)
+CreateChatCompletionStreamResponse_choices_inner::setIndex(int index)
 {
 	this->index = index;
 }

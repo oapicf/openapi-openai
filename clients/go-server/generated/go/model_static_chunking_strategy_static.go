@@ -14,6 +14,8 @@ package openapi
 
 import (
 	"errors"
+	"encoding/json"
+	"fmt"
 )
 
 
@@ -26,19 +28,70 @@ type StaticChunkingStrategyStatic struct {
 	// The number of tokens that overlap between chunks. The default value is `400`.  Note that the overlap must not exceed half of `max_chunk_size_tokens`. 
 	ChunkOverlapTokens int32 `json:"chunk_overlap_tokens"`
 }
-
-// AssertStaticChunkingStrategyStaticRequired checks if the required fields are not zero-ed
-func AssertStaticChunkingStrategyStaticRequired(obj StaticChunkingStrategyStatic) error {
-	elements := map[string]interface{}{
-		"max_chunk_size_tokens": obj.MaxChunkSizeTokens,
-		"chunk_overlap_tokens": obj.ChunkOverlapTokens,
+// UnmarshalJSON validates required property keys then unmarshals into StaticChunkingStrategyStatic
+func (o *StaticChunkingStrategyStatic) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"max_chunk_size_tokens",
+		"chunk_overlap_tokens",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"max_chunk_size_tokens": false,
+		"chunk_overlap_tokens": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"max_chunk_size_tokens": {},
+		"chunk_overlap_tokens": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded StaticChunkingStrategyStatic
+
+	if value, exists := allProperties["max_chunk_size_tokens"]; exists {
+		if err = json.Unmarshal(value, &decoded.MaxChunkSizeTokens); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["chunk_overlap_tokens"]; exists {
+		if err = json.Unmarshal(value, &decoded.ChunkOverlapTokens); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertStaticChunkingStrategyStaticRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertStaticChunkingStrategyStaticRequired(obj StaticChunkingStrategyStatic) error {
 	return nil
 }
 

@@ -14,11 +14,11 @@
 */
 
 
-#import "OAIAutoChunkingStrategy.h"
+#import "OAIAutoChunkingStrategyRequestParam.h"
 #import "OAIStaticChunkingStrategy.h"
 #import "OAIStaticChunkingStrategyStatic.h"
-@protocol OAIAutoChunkingStrategy;
-@class OAIAutoChunkingStrategy;
+@protocol OAIAutoChunkingStrategyRequestParam;
+@class OAIAutoChunkingStrategyRequestParam;
 @protocol OAIStaticChunkingStrategy;
 @class OAIStaticChunkingStrategy;
 @protocol OAIStaticChunkingStrategyStatic;

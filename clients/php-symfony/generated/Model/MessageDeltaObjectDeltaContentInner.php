@@ -49,7 +49,7 @@ class MessageDeltaObjectDeltaContentInner
      * @var int|null
      * @SerializedName("index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $index = null;
@@ -60,7 +60,7 @@ class MessageDeltaObjectDeltaContentInner
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['image_file', 'text', 'refusal', 'image_url'])]
     #[Assert\Type("string")]
@@ -70,7 +70,7 @@ class MessageDeltaObjectDeltaContentInner
      * @var MessageDeltaContentImageFileObjectImageFile|null
      * @SerializedName("image_file")
      * @Type("OpenAPI\Server\Model\MessageDeltaContentImageFileObjectImageFile")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\MessageDeltaContentImageFileObjectImageFile")]
     protected ?MessageDeltaContentImageFileObjectImageFile $imageFile = null;
 
@@ -78,7 +78,7 @@ class MessageDeltaObjectDeltaContentInner
      * @var MessageDeltaContentTextObjectText|null
      * @SerializedName("text")
      * @Type("OpenAPI\Server\Model\MessageDeltaContentTextObjectText")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\MessageDeltaContentTextObjectText")]
     protected ?MessageDeltaContentTextObjectText $text = null;
 
@@ -86,7 +86,7 @@ class MessageDeltaObjectDeltaContentInner
      * @var string|null
      * @SerializedName("refusal")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $refusal = null;
 
@@ -94,7 +94,7 @@ class MessageDeltaObjectDeltaContentInner
      * @var MessageDeltaContentImageUrlObjectImageUrl|null
      * @SerializedName("image_url")
      * @Type("OpenAPI\Server\Model\MessageDeltaContentImageUrlObjectImageUrl")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\MessageDeltaContentImageUrlObjectImageUrl")]
     protected ?MessageDeltaContentImageUrlObjectImageUrl $imageUrl = null;
 
@@ -125,12 +125,12 @@ class MessageDeltaObjectDeltaContentInner
     }
 
     /**
-    * Sets index.
-    *
-    * @param int|null $index  The index of the content part in the message.
-    *
-    * @return $this
-    */
+     * Sets index.
+     *
+     * @param int|null $index  The index of the content part in the message.
+     *
+     * @return $this
+     */
     public function setIndex(?int $index): self
     {
         $this->index = $index;
@@ -152,12 +152,12 @@ class MessageDeltaObjectDeltaContentInner
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `image_file`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `image_file`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -179,12 +179,12 @@ class MessageDeltaObjectDeltaContentInner
     }
 
     /**
-    * Sets imageFile.
-    *
-    * @param MessageDeltaContentImageFileObjectImageFile|null $imageFile
-    *
-    * @return $this
-    */
+     * Sets imageFile.
+     *
+     * @param MessageDeltaContentImageFileObjectImageFile|null $imageFile
+     *
+     * @return $this
+     */
     public function setImageFile(?MessageDeltaContentImageFileObjectImageFile $imageFile = null): self
     {
         $this->imageFile = $imageFile;
@@ -206,12 +206,12 @@ class MessageDeltaObjectDeltaContentInner
     }
 
     /**
-    * Sets text.
-    *
-    * @param MessageDeltaContentTextObjectText|null $text
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param MessageDeltaContentTextObjectText|null $text
+     *
+     * @return $this
+     */
     public function setText(?MessageDeltaContentTextObjectText $text = null): self
     {
         $this->text = $text;
@@ -233,12 +233,12 @@ class MessageDeltaObjectDeltaContentInner
     }
 
     /**
-    * Sets refusal.
-    *
-    * @param string|null $refusal
-    *
-    * @return $this
-    */
+     * Sets refusal.
+     *
+     * @param string|null $refusal
+     *
+     * @return $this
+     */
     public function setRefusal(?string $refusal = null): self
     {
         $this->refusal = $refusal;
@@ -260,12 +260,12 @@ class MessageDeltaObjectDeltaContentInner
     }
 
     /**
-    * Sets imageUrl.
-    *
-    * @param MessageDeltaContentImageUrlObjectImageUrl|null $imageUrl
-    *
-    * @return $this
-    */
+     * Sets imageUrl.
+     *
+     * @param MessageDeltaContentImageUrlObjectImageUrl|null $imageUrl
+     *
+     * @return $this
+     */
     public function setImageUrl(?MessageDeltaContentImageUrlObjectImageUrl $imageUrl = null): self
     {
         $this->imageUrl = $imageUrl;

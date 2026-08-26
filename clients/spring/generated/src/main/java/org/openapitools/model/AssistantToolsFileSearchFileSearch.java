@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -9,13 +10,13 @@ import org.openapitools.model.FileSearchRankingOptions;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Overrides for the file search tool.
@@ -23,11 +24,13 @@ import javax.annotation.Generated;
 
 @Schema(name = "AssistantToolsFileSearch_file_search", description = "Overrides for the file search tool.")
 @JsonTypeName("AssistantToolsFileSearch_file_search")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class AssistantToolsFileSearchFileSearch {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer maxNumResults;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable FileSearchRankingOptions rankingOptions;
 
   public AssistantToolsFileSearchFileSearch maxNumResults(@Nullable Integer maxNumResults) {
@@ -48,6 +51,7 @@ public class AssistantToolsFileSearchFileSearch {
     return maxNumResults;
   }
 
+  @JsonProperty("max_num_results")
   public void setMaxNumResults(@Nullable Integer maxNumResults) {
     this.maxNumResults = maxNumResults;
   }
@@ -68,6 +72,7 @@ public class AssistantToolsFileSearchFileSearch {
     return rankingOptions;
   }
 
+  @JsonProperty("ranking_options")
   public void setRankingOptions(@Nullable FileSearchRankingOptions rankingOptions) {
     this.rankingOptions = rankingOptions;
   }
@@ -104,11 +109,8 @@ public class AssistantToolsFileSearchFileSearch {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

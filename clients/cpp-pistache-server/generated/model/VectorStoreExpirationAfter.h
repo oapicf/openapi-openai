@@ -32,7 +32,7 @@ class  VectorStoreExpirationAfter
 {
 public:
     VectorStoreExpirationAfter();
-    virtual ~VectorStoreExpirationAfter() = default;
+    virtual ~VectorStoreExpirationAfter();
 
 
     /// <summary>

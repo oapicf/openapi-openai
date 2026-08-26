@@ -190,7 +190,7 @@ UsageModerationsResult::getObject()
 }
 
 void
-UsageModerationsResult::setObject(std::string  object)
+UsageModerationsResult::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -202,7 +202,7 @@ UsageModerationsResult::getInputTokens()
 }
 
 void
-UsageModerationsResult::setInputTokens(int  input_tokens)
+UsageModerationsResult::setInputTokens(int input_tokens)
 {
 	this->input_tokens = input_tokens;
 }
@@ -214,7 +214,7 @@ UsageModerationsResult::getNumModelRequests()
 }
 
 void
-UsageModerationsResult::setNumModelRequests(int  num_model_requests)
+UsageModerationsResult::setNumModelRequests(int num_model_requests)
 {
 	this->num_model_requests = num_model_requests;
 }
@@ -226,7 +226,7 @@ UsageModerationsResult::getProjectId()
 }
 
 void
-UsageModerationsResult::setProjectId(std::string  project_id)
+UsageModerationsResult::setProjectId(std::string project_id)
 {
 	this->project_id = project_id;
 }
@@ -238,7 +238,7 @@ UsageModerationsResult::getUserId()
 }
 
 void
-UsageModerationsResult::setUserId(std::string  user_id)
+UsageModerationsResult::setUserId(std::string user_id)
 {
 	this->user_id = user_id;
 }
@@ -250,7 +250,7 @@ UsageModerationsResult::getApiKeyId()
 }
 
 void
-UsageModerationsResult::setApiKeyId(std::string  api_key_id)
+UsageModerationsResult::setApiKeyId(std::string api_key_id)
 {
 	this->api_key_id = api_key_id;
 }
@@ -262,7 +262,7 @@ UsageModerationsResult::getModel()
 }
 
 void
-UsageModerationsResult::setModel(std::string  model)
+UsageModerationsResult::setModel(std::string model)
 {
 	this->model = model;
 }

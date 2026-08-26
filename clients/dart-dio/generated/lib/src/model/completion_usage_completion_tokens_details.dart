@@ -110,29 +110,33 @@ class _$CompletionUsageCompletionTokensDetailsSerializer implements PrimitiveSer
         case r'accepted_prediction_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.acceptedPredictionTokens = valueDes;
           break;
         case r'audio_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.audioTokens = valueDes;
           break;
         case r'reasoning_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.reasoningTokens = valueDes;
           break;
         case r'rejected_prediction_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.rejectedPredictionTokens = valueDes;
           break;
         default:

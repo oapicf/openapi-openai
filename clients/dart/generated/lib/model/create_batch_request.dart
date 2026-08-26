@@ -73,10 +73,12 @@ class CreateBatchRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateBatchRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateBatchRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'input_file_id'), 'Required key "CreateBatchRequest[input_file_id]" is missing from JSON.');
+        assert(json[r'input_file_id'] != null, 'Required key "CreateBatchRequest[input_file_id]" has a null value in JSON.');
+        assert(json.containsKey(r'endpoint'), 'Required key "CreateBatchRequest[endpoint]" is missing from JSON.');
+        assert(json[r'endpoint'] != null, 'Required key "CreateBatchRequest[endpoint]" has a null value in JSON.');
+        assert(json.containsKey(r'completion_window'), 'Required key "CreateBatchRequest[completion_window]" is missing from JSON.');
+        assert(json[r'completion_window'] != null, 'Required key "CreateBatchRequest[completion_window]" has a null value in JSON.');
         return true;
       }());
 
@@ -139,31 +141,30 @@ class CreateBatchRequest {
 }
 
 /// The endpoint to be used for all requests in the batch. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported. Note that `/v1/embeddings` batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.
-class CreateBatchRequestEndpointEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateBatchRequestEndpointEnum._(this.value);
+enum CreateBatchRequestEndpointEnum {
+  slashV1SlashChatSlashCompletions._(r'/v1/chat/completions'),
+  slashV1SlashEmbeddings._(r'/v1/embeddings'),
+  slashV1SlashCompletions._(r'/v1/completions'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateBatchRequestEndpointEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const slashV1SlashChatSlashCompletions = CreateBatchRequestEndpointEnum._(r'/v1/chat/completions');
-  static const slashV1SlashEmbeddings = CreateBatchRequestEndpointEnum._(r'/v1/embeddings');
-  static const slashV1SlashCompletions = CreateBatchRequestEndpointEnum._(r'/v1/completions');
-
-  /// List of all possible values in this [enum][CreateBatchRequestEndpointEnum].
-  static const values = <CreateBatchRequestEndpointEnum>[
-    slashV1SlashChatSlashCompletions,
-    slashV1SlashEmbeddings,
-    slashV1SlashCompletions,
-  ];
-
+  /// Returns the instance of [CreateBatchRequestEndpointEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateBatchRequestEndpointEnum? fromJson(dynamic value) => CreateBatchRequestEndpointEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateBatchRequestEndpointEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateBatchRequestEndpointEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateBatchRequestEndpointEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -185,9 +186,10 @@ class CreateBatchRequestEndpointEnumTypeTransformer {
 
   const CreateBatchRequestEndpointEnumTypeTransformer._();
 
-  String encode(CreateBatchRequestEndpointEnum data) => data.value;
+  String encode(CreateBatchRequestEndpointEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateBatchRequestEndpointEnum.
+  /// Returns the instance of [CreateBatchRequestEndpointEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -196,6 +198,9 @@ class CreateBatchRequestEndpointEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateBatchRequestEndpointEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateBatchRequestEndpointEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'/v1/chat/completions': return CreateBatchRequestEndpointEnum.slashV1SlashChatSlashCompletions;
@@ -210,33 +215,34 @@ class CreateBatchRequestEndpointEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateBatchRequestEndpointEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateBatchRequestEndpointEnumTypeTransformer? _instance;
 }
 
 
 /// The time frame within which the batch should be processed. Currently only `24h` is supported.
-class CreateBatchRequestCompletionWindowEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateBatchRequestCompletionWindowEnum._(this.value);
+enum CreateBatchRequestCompletionWindowEnum {
+  n24h._(r'24h'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateBatchRequestCompletionWindowEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const n24h = CreateBatchRequestCompletionWindowEnum._(r'24h');
-
-  /// List of all possible values in this [enum][CreateBatchRequestCompletionWindowEnum].
-  static const values = <CreateBatchRequestCompletionWindowEnum>[
-    n24h,
-  ];
-
+  /// Returns the instance of [CreateBatchRequestCompletionWindowEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateBatchRequestCompletionWindowEnum? fromJson(dynamic value) => CreateBatchRequestCompletionWindowEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateBatchRequestCompletionWindowEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateBatchRequestCompletionWindowEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateBatchRequestCompletionWindowEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -258,9 +264,10 @@ class CreateBatchRequestCompletionWindowEnumTypeTransformer {
 
   const CreateBatchRequestCompletionWindowEnumTypeTransformer._();
 
-  String encode(CreateBatchRequestCompletionWindowEnum data) => data.value;
+  String encode(CreateBatchRequestCompletionWindowEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateBatchRequestCompletionWindowEnum.
+  /// Returns the instance of [CreateBatchRequestCompletionWindowEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -269,6 +276,9 @@ class CreateBatchRequestCompletionWindowEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateBatchRequestCompletionWindowEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateBatchRequestCompletionWindowEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'24h': return CreateBatchRequestCompletionWindowEnum.n24h;
@@ -281,7 +291,7 @@ class CreateBatchRequestCompletionWindowEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateBatchRequestCompletionWindowEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateBatchRequestCompletionWindowEnumTypeTransformer? _instance;
 }
 

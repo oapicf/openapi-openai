@@ -1,4 +1,4 @@
-# # ListAuditLogsEffectiveAtParameter
+# ListAuditLogsEffectiveAtParameter
 
 ## Properties
 

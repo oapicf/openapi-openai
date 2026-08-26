@@ -64,7 +64,7 @@ ProjectUserUpdateRequest::getRole()
 }
 
 void
-ProjectUserUpdateRequest::setRole(std::string  role)
+ProjectUserUpdateRequest::setRole(std::string role)
 {
 	this->role = role;
 }

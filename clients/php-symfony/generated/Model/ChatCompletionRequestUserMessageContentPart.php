@@ -49,7 +49,7 @@ class ChatCompletionRequestUserMessageContentPart
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['text', 'image_url', 'input_audio'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class ChatCompletionRequestUserMessageContentPart
      * @var string|null
      * @SerializedName("text")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $text = null;
@@ -70,7 +70,7 @@ class ChatCompletionRequestUserMessageContentPart
      * @var ChatCompletionRequestMessageContentPartImageImageUrl|null
      * @SerializedName("image_url")
      * @Type("OpenAPI\Server\Model\ChatCompletionRequestMessageContentPartImageImageUrl")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionRequestMessageContentPartImageImageUrl")]
@@ -80,7 +80,7 @@ class ChatCompletionRequestUserMessageContentPart
      * @var ChatCompletionRequestMessageContentPartAudioInputAudio|null
      * @SerializedName("input_audio")
      * @Type("OpenAPI\Server\Model\ChatCompletionRequestMessageContentPartAudioInputAudio")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionRequestMessageContentPartAudioInputAudio")]
@@ -111,12 +111,12 @@ class ChatCompletionRequestUserMessageContentPart
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of the content part.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of the content part.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -138,12 +138,12 @@ class ChatCompletionRequestUserMessageContentPart
     }
 
     /**
-    * Sets text.
-    *
-    * @param string|null $text  The text content.
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param string|null $text  The text content.
+     *
+     * @return $this
+     */
     public function setText(?string $text): self
     {
         $this->text = $text;
@@ -165,12 +165,12 @@ class ChatCompletionRequestUserMessageContentPart
     }
 
     /**
-    * Sets imageUrl.
-    *
-    * @param ChatCompletionRequestMessageContentPartImageImageUrl|null $imageUrl
-    *
-    * @return $this
-    */
+     * Sets imageUrl.
+     *
+     * @param ChatCompletionRequestMessageContentPartImageImageUrl|null $imageUrl
+     *
+     * @return $this
+     */
     public function setImageUrl(?ChatCompletionRequestMessageContentPartImageImageUrl $imageUrl): self
     {
         $this->imageUrl = $imageUrl;
@@ -192,12 +192,12 @@ class ChatCompletionRequestUserMessageContentPart
     }
 
     /**
-    * Sets inputAudio.
-    *
-    * @param ChatCompletionRequestMessageContentPartAudioInputAudio|null $inputAudio
-    *
-    * @return $this
-    */
+     * Sets inputAudio.
+     *
+     * @param ChatCompletionRequestMessageContentPartAudioInputAudio|null $inputAudio
+     *
+     * @return $this
+     */
     public function setInputAudio(?ChatCompletionRequestMessageContentPartAudioInputAudio $inputAudio): self
     {
         $this->inputAudio = $inputAudio;

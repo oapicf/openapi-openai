@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // RealtimeServerEventSessionCreated - Returned when a Session is created. Emitted automatically when a new  connection is established as the first server event. This event will contain  the default Session configuration. 
@@ -25,12 +30,79 @@ type RealtimeServerEventSessionCreated struct {
 
 	Session RealtimeSession `json:"session"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into RealtimeServerEventSessionCreated
+func (o *RealtimeServerEventSessionCreated) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"event_id",
+		"type",
+		"session",
+	}
 
-// AssertRealtimeServerEventSessionCreatedRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"event_id": false,
+		"type": false,
+		"session": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"event_id": {},
+		"type": {},
+		"session": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RealtimeServerEventSessionCreated
+
+	if value, exists := allProperties["event_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.EventId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["session"]; exists {
+		if err = json.Unmarshal(value, &decoded.Session); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRealtimeServerEventSessionCreatedRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeServerEventSessionCreatedRequired(obj RealtimeServerEventSessionCreated) error {
 	elements := map[string]interface{}{
-		"event_id": obj.EventId,
-		"type": obj.Type,
 		"session": obj.Session,
 	}
 	for name, el := range elements {

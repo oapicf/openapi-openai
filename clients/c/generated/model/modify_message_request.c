@@ -12,18 +12,21 @@ static modify_message_request_t *modify_message_request_create_internal(
     if (!modify_message_request_local_var) {
         return NULL;
     }
-    modify_message_request_local_var->metadata = metadata;
-
+    memset(modify_message_request_local_var, 0, sizeof(modify_message_request_t));
     modify_message_request_local_var->_library_owned = 1;
+    modify_message_request_local_var->metadata = metadata;
     return modify_message_request_local_var;
 }
 
 __attribute__((deprecated)) modify_message_request_t *modify_message_request_create(
     object_t *metadata
     ) {
-    return modify_message_request_create_internal (
+    modify_message_request_t *result = modify_message_request_create_internal (
         metadata
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void modify_message_request_free(modify_message_request_t *modify_message_request) {
@@ -80,9 +83,14 @@ modify_message_request_t *modify_message_request_parseFromJSON(cJSON *modify_mes
     }
 
 
+
     modify_message_request_local_var = modify_message_request_create_internal (
         metadata ? metadata_local_object : NULL
         );
+
+    if (!modify_message_request_local_var) {
+        goto end;
+    }
 
     return modify_message_request_local_var;
 end:

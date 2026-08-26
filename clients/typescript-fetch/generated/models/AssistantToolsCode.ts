@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface AssistantToolsCode {
     /**
      * The type of tool being defined: `code_interpreter`
-     * @type {string}
+     * @type {AssistantToolsCodeTypeEnum}
      * @memberof AssistantToolsCode
      */
     type: AssistantToolsCodeTypeEnum;
@@ -42,6 +42,8 @@ export type AssistantToolsCodeTypeEnum = typeof AssistantToolsCodeTypeEnum[keyof
  */
 export function instanceOfAssistantToolsCode(value: object): value is AssistantToolsCode {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'code_interpreter') return false;
+    
     return true;
 }
 

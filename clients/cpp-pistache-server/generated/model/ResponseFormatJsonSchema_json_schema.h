@@ -34,7 +34,7 @@ class  ResponseFormatJsonSchema_json_schema
 {
 public:
     ResponseFormatJsonSchema_json_schema();
-    virtual ~ResponseFormatJsonSchema_json_schema() = default;
+    virtual ~ResponseFormatJsonSchema_json_schema();
 
 
     /// <summary>

@@ -1,4 +1,4 @@
-# # ChatCompletionFunctionCallOption
+# ChatCompletionFunctionCallOption
 
 ## Properties
 

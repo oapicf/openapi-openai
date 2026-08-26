@@ -51,7 +51,7 @@ class CreateModerationRequestInputOneOfInnerOneOf1
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['text'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class CreateModerationRequestInputOneOfInnerOneOf1
      * @var string|null
      * @SerializedName("text")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $text = null;
@@ -91,12 +91,12 @@ class CreateModerationRequestInputOneOfInnerOneOf1
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `text`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `text`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -118,12 +118,12 @@ class CreateModerationRequestInputOneOfInnerOneOf1
     }
 
     /**
-    * Sets text.
-    *
-    * @param string|null $text  A string of text to classify.
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param string|null $text  A string of text to classify.
+     *
+     * @return $this
+     */
     public function setText(?string $text): self
     {
         $this->text = $text;

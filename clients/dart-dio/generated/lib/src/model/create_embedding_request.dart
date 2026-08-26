@@ -135,22 +135,25 @@ class _$CreateEmbeddingRequestSerializer implements PrimitiveSerializer<CreateEm
         case r'encoding_format':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateEmbeddingRequestEncodingFormatEnum),
-          ) as CreateEmbeddingRequestEncodingFormatEnum;
+            specifiedType: const FullType.nullable(CreateEmbeddingRequestEncodingFormatEnum),
+          ) as CreateEmbeddingRequestEncodingFormatEnum?;
+          if (valueDes == null) continue;
           result.encodingFormat = valueDes;
           break;
         case r'dimensions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.dimensions = valueDes;
           break;
         case r'user':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.user = valueDes;
           break;
         default:

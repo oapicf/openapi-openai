@@ -1,4 +1,4 @@
-# # CreateThreadRequestToolResourcesFileSearch
+# CreateThreadRequestToolResourcesFileSearch
 
 ## Properties
 

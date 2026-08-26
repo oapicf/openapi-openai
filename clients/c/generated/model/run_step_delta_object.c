@@ -31,11 +31,11 @@ static run_step_delta_object_t *run_step_delta_object_create_internal(
     if (!run_step_delta_object_local_var) {
         return NULL;
     }
+    memset(run_step_delta_object_local_var, 0, sizeof(run_step_delta_object_t));
+    run_step_delta_object_local_var->_library_owned = 1;
     run_step_delta_object_local_var->id = id;
     run_step_delta_object_local_var->object = object;
     run_step_delta_object_local_var->delta = delta;
-
-    run_step_delta_object_local_var->_library_owned = 1;
     return run_step_delta_object_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) run_step_delta_object_t *run_step_delta_object_creat
     openai_api_run_step_delta_object_OBJECT_e object,
     run_step_delta_object_delta_t *delta
     ) {
-    return run_step_delta_object_create_internal (
+    run_step_delta_object_t *result = run_step_delta_object_create_internal (
         id,
         object,
         delta
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_step_delta_object_free(run_step_delta_object_t *run_step_delta_object) {
@@ -118,6 +121,8 @@ run_step_delta_object_t *run_step_delta_object_parseFromJSON(cJSON *run_step_del
 
     run_step_delta_object_t *run_step_delta_object_local_var = NULL;
 
+    char *id_local_str = NULL;
+
     // define the local variable for run_step_delta_object->delta
     run_step_delta_object_delta_t *delta_local_nonprim = NULL;
 
@@ -166,14 +171,24 @@ run_step_delta_object_t *run_step_delta_object_parseFromJSON(cJSON *run_step_del
     delta_local_nonprim = run_step_delta_object_delta_parseFromJSON(delta); //nonprimitive
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     run_step_delta_object_local_var = run_step_delta_object_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         objectVariable,
         delta_local_nonprim
         );
 
+    if (!run_step_delta_object_local_var) {
+        goto end;
+    }
+
     return run_step_delta_object_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     if (delta_local_nonprim) {
         run_step_delta_object_delta_free(delta_local_nonprim);
         delta_local_nonprim = NULL;

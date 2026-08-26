@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type MessageContentImageFileObjectImageFile struct {
@@ -22,18 +27,68 @@ type MessageContentImageFileObjectImageFile struct {
 	// Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
 	Detail string `json:"detail,omitempty"`
 }
-
-// AssertMessageContentImageFileObjectImageFileRequired checks if the required fields are not zero-ed
-func AssertMessageContentImageFileObjectImageFileRequired(obj MessageContentImageFileObjectImageFile) error {
-	elements := map[string]interface{}{
-		"file_id": obj.FileId,
+// UnmarshalJSON validates required property keys then unmarshals into MessageContentImageFileObjectImageFile
+func (o *MessageContentImageFileObjectImageFile) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"file_id",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"file_id": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"file_id": {},
+		"detail": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded MessageContentImageFileObjectImageFile
+
+	if value, exists := allProperties["file_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.FileId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["detail"]; exists {
+		if err = json.Unmarshal(value, &decoded.Detail); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertMessageContentImageFileObjectImageFileRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertMessageContentImageFileObjectImageFileRequired(obj MessageContentImageFileObjectImageFile) error {
 	return nil
 }
 

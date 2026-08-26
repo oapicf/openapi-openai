@@ -18,9 +18,9 @@ pub struct FineTuneMethod {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     pub r#type: Option<Type>,
     #[serde(rename = "supervised", skip_serializing_if = "Option::is_none")]
-    pub supervised: Option<models::FineTuneSupervisedMethod>,
+    pub supervised: Option<Box<models::FineTuneSupervisedMethod>>,
     #[serde(rename = "dpo", skip_serializing_if = "Option::is_none")]
-    pub dpo: Option<models::FineTuneDpoMethod>,
+    pub dpo: Option<Box<models::FineTuneDpoMethod>>,
 }
 
 impl FineTuneMethod {

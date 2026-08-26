@@ -68,10 +68,10 @@ function Initialize-UsageTimeBucket {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "start_time" = ${StartTime}
-            "end_time" = ${EndTime}
-            "result" = ${Result}
+            'object' = ${Object}
+            'start_time' = ${StartTime}
+            'end_time' = ${EndTime}
+            'result' = ${Result}
         }
 
 
@@ -109,7 +109,7 @@ function ConvertFrom-JsonToUsageTimeBucket {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in UsageTimeBucket
-        $AllProperties = ("object", "start_time", "end_time", "result")
+        $AllProperties = ('object', 'start_time', 'end_time', 'result')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -120,35 +120,35 @@ function ConvertFrom-JsonToUsageTimeBucket {
             throw "Error! Empty JSON cannot be serialized due to the required property 'object' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "start_time"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'start_time'))) {
             throw "Error! JSON cannot be serialized due to the required property 'start_time' missing."
         } else {
-            $StartTime = $JsonParameters.PSobject.Properties["start_time"].value
+            $StartTime = $JsonParameters.PSobject.Properties['start_time'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "end_time"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'end_time'))) {
             throw "Error! JSON cannot be serialized due to the required property 'end_time' missing."
         } else {
-            $EndTime = $JsonParameters.PSobject.Properties["end_time"].value
+            $EndTime = $JsonParameters.PSobject.Properties['end_time'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "result"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'result'))) {
             throw "Error! JSON cannot be serialized due to the required property 'result' missing."
         } else {
-            $Result = $JsonParameters.PSobject.Properties["result"].value
+            $Result = $JsonParameters.PSobject.Properties['result'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "start_time" = ${StartTime}
-            "end_time" = ${EndTime}
-            "result" = ${Result}
+            'object' = ${Object}
+            'start_time' = ${StartTime}
+            'end_time' = ${EndTime}
+            'result' = ${Result}
         }
 
         return $PSO

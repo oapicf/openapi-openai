@@ -26,6 +26,8 @@ CreateEmbeddingResponse_usage::CreateEmbeddingResponse_usage()
     
 }
 
+CreateEmbeddingResponse_usage::~CreateEmbeddingResponse_usage() = default;
+
 void CreateEmbeddingResponse_usage::validate() const
 {
     std::stringstream msg;

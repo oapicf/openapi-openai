@@ -107,13 +107,36 @@ CompletionUsage <- R6::R6Class(
       }
       if (!is.null(self$`completion_tokens_details`)) {
         CompletionUsageObject[["completion_tokens_details"]] <-
-          self$`completion_tokens_details`$toSimpleType()
+          self$extractSimpleType(self$`completion_tokens_details`)
       }
       if (!is.null(self$`prompt_tokens_details`)) {
         CompletionUsageObject[["prompt_tokens_details"]] <-
-          self$`prompt_tokens_details`$toSimpleType()
+          self$extractSimpleType(self$`prompt_tokens_details`)
       }
       return(CompletionUsageObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

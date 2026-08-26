@@ -29,7 +29,7 @@ import {
 export interface RunStreamEventOneOf3 {
     /**
      * 
-     * @type {string}
+     * @type {RunStreamEventOneOf3EventEnum}
      * @memberof RunStreamEventOneOf3
      */
     event: RunStreamEventOneOf3EventEnum;
@@ -56,6 +56,8 @@ export type RunStreamEventOneOf3EventEnum = typeof RunStreamEventOneOf3EventEnum
  */
 export function instanceOfRunStreamEventOneOf3(value: object): value is RunStreamEventOneOf3 {
     if (!('event' in value) || value['event'] === undefined) return false;
+    if (value['event'] !== 'thread.run.requires_action') return false;
+    
     if (!('data' in value) || value['data'] === undefined) return false;
     return true;
 }

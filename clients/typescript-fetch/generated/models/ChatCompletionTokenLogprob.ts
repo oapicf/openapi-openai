@@ -60,7 +60,7 @@ export function instanceOfChatCompletionTokenLogprob(value: object): value is Ch
     if (!('token' in value) || value['token'] === undefined) return false;
     if (!('logprob' in value) || value['logprob'] === undefined) return false;
     if (!('bytes' in value) || value['bytes'] === undefined) return false;
-    if (!('topLogprobs' in value) || value['topLogprobs'] === undefined) return false;
+    if ((!('topLogprobs' in (value as Record<string, any>)) && !('top_logprobs' in (value as Record<string, any>))) || ((value as Record<string, any>)['topLogprobs'] === undefined && (value as Record<string, any>)['top_logprobs'] === undefined)) return false;
     return true;
 }
 

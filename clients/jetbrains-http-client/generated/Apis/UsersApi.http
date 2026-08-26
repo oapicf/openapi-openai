@@ -1,0 +1,31 @@
+## UsersApi
+
+### Deletes a user from the organization.
+## Deletes a user from the organization.
+DELETE https://api.openai.com/v1/organization/users/{{user_id}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Lists all of the users in the organization.
+## Lists all of the users in the organization.
+GET https://api.openai.com/v1/organization/users?limit={{limit}}&after={{after}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Modifies a user&#39;s role in the organization.
+## Modifies a user&#39;s role in the organization.
+POST https://api.openai.com/v1/organization/users/{{user_id}}
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "role": "<string>"
+}
+
+
+### Retrieves a user by their identifier.
+## Retrieves a user by their identifier.
+GET https://api.openai.com/v1/organization/users/{{user_id}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}

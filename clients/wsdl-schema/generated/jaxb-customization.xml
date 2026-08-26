@@ -96,11 +96,6 @@
 	        <jaxb:typesafeEnumMember value="auto" name="AUTO" />
 	    </jaxb:typesafeEnumClass>
     </jaxws:bindings>
-    <jaxws:bindings node="xsd:simpleType[@name='Type']">
-    	<jaxb:typesafeEnumClass>
-	        <jaxb:typesafeEnumMember value="auto" name="AUTO" />
-	    </jaxb:typesafeEnumClass>
-    </jaxws:bindings>
     <jaxws:bindings node="xsd:simpleType[@name='Object']">
     	<jaxb:typesafeEnumClass>
 	        <jaxb:typesafeEnumMember value="batch" name="BATCH" />
@@ -1795,11 +1790,6 @@
     <jaxws:bindings node="xsd:simpleType[@name='Type']">
     	<jaxb:typesafeEnumClass>
 	        <jaxb:typesafeEnumMember value="function" name="FUNCTION" />
-	    </jaxb:typesafeEnumClass>
-    </jaxws:bindings>
-    <jaxws:bindings node="xsd:simpleType[@name='Type']">
-    	<jaxb:typesafeEnumClass>
-	        <jaxb:typesafeEnumMember value="static" name="STATIC" />
 	    </jaxb:typesafeEnumClass>
     </jaxws:bindings>
     <jaxws:bindings node="xsd:simpleType[@name='Type']">

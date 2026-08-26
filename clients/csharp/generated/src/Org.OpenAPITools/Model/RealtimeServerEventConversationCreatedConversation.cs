@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The unique ID of the conversation.</value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Object
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The object type, must be &#x60;realtime.conversation&#x60;.</value>
         [JsonPropertyName("object")]
-        public string? Object { get { return this.ObjectOption; } set { this.ObjectOption = new(value); } }
+        public string? Object { get { return this.ObjectOption.Value; } set { this.ObjectOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeServerEventConversationCreatedConversation" />
     /// </summary>
-    public class RealtimeServerEventConversationCreatedConversationJsonConverter : JsonConverter<RealtimeServerEventConversationCreatedConversation>
+    public partial class RealtimeServerEventConversationCreatedConversationJsonConverter : JsonConverter<RealtimeServerEventConversationCreatedConversation>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeServerEventConversationCreatedConversationJsonConverter" /> class.
+        /// </summary>
+        public RealtimeServerEventConversationCreatedConversationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeServerEventConversationCreatedConversation" />
         /// </summary>

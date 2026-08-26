@@ -32,7 +32,7 @@ class  RealtimeClientEventConversationItemDelete
 {
 public:
     RealtimeClientEventConversationItemDelete();
-    virtual ~RealtimeClientEventConversationItemDelete() = default;
+    virtual ~RealtimeClientEventConversationItemDelete();
 
 
     /// <summary>

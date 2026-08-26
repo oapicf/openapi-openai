@@ -36,13 +36,13 @@ class OAICreateEmbeddingResponse_usage;
 class OAICreateEmbeddingResponse : public OAIObject {
 public:
     OAICreateEmbeddingResponse();
-    OAICreateEmbeddingResponse(QString json);
+    OAICreateEmbeddingResponse(const QString &json);
     ~OAICreateEmbeddingResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QList<OAIEmbedding> getData() const;
     void setData(const QList<OAIEmbedding> &data);

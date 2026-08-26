@@ -38,7 +38,7 @@ export interface RealtimeClientEventConversationItemTruncate {
     eventId?: string;
     /**
      * The event type, must be `conversation.item.truncate`.
-     * @type {string}
+     * @type {RealtimeClientEventConversationItemTruncateTypeEnum}
      * @memberof RealtimeClientEventConversationItemTruncate
      */
     type: RealtimeClientEventConversationItemTruncateTypeEnum;
@@ -82,9 +82,11 @@ export type RealtimeClientEventConversationItemTruncateTypeEnum = typeof Realtim
  */
 export function instanceOfRealtimeClientEventConversationItemTruncate(value: object): value is RealtimeClientEventConversationItemTruncate {
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('itemId' in value) || value['itemId'] === undefined) return false;
-    if (!('contentIndex' in value) || value['contentIndex'] === undefined) return false;
-    if (!('audioEndMs' in value) || value['audioEndMs'] === undefined) return false;
+    if (value['type'] !== 'conversation.item.truncate') return false;
+    
+    if ((!('itemId' in (value as Record<string, any>)) && !('item_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['itemId'] === undefined && (value as Record<string, any>)['item_id'] === undefined)) return false;
+    if ((!('contentIndex' in (value as Record<string, any>)) && !('content_index' in (value as Record<string, any>))) || ((value as Record<string, any>)['contentIndex'] === undefined && (value as Record<string, any>)['content_index'] === undefined)) return false;
+    if ((!('audioEndMs' in (value as Record<string, any>)) && !('audio_end_ms' in (value as Record<string, any>))) || ((value as Record<string, any>)['audioEndMs'] === undefined && (value as Record<string, any>)['audio_end_ms'] === undefined)) return false;
     return true;
 }
 

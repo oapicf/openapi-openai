@@ -106,7 +106,7 @@ RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject::getIndex()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject::setIndex(int  index)
+RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject::setIndex(int index)
 {
 	this->index = index;
 }
@@ -118,7 +118,7 @@ RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject::getType()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject::setType(std::string  type)
+RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -130,7 +130,7 @@ RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject::getLogs()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject::setLogs(std::string  logs)
+RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject::setLogs(std::string logs)
 {
 	this->logs = logs;
 }

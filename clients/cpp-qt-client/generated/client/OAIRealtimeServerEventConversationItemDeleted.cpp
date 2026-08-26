@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRealtimeServerEventConversationItemDeleted::OAIRealtimeServerEventConversationItemDeleted(QString json) {
+OAIRealtimeServerEventConversationItemDeleted::OAIRealtimeServerEventConversationItemDeleted(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIRealtimeServerEventConversationItemDeleted::initializeModel() {
     m_item_id_isValid = false;
 }
 
-void OAIRealtimeServerEventConversationItemDeleted::fromJson(QString jsonString) {
+void OAIRealtimeServerEventConversationItemDeleted::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

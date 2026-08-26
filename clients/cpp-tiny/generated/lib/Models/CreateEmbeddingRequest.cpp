@@ -150,7 +150,7 @@ CreateEmbeddingRequest::getInput()
 }
 
 void
-CreateEmbeddingRequest::setInput(CreateEmbeddingRequest_input  input)
+CreateEmbeddingRequest::setInput(CreateEmbeddingRequest_input input)
 {
 	this->input = input;
 }
@@ -162,7 +162,7 @@ CreateEmbeddingRequest::getModel()
 }
 
 void
-CreateEmbeddingRequest::setModel(CreateEmbeddingRequest_model  model)
+CreateEmbeddingRequest::setModel(CreateEmbeddingRequest_model model)
 {
 	this->model = model;
 }
@@ -174,7 +174,7 @@ CreateEmbeddingRequest::getEncodingFormat()
 }
 
 void
-CreateEmbeddingRequest::setEncodingFormat(std::string  encoding_format)
+CreateEmbeddingRequest::setEncodingFormat(std::string encoding_format)
 {
 	this->encoding_format = encoding_format;
 }
@@ -186,7 +186,7 @@ CreateEmbeddingRequest::getDimensions()
 }
 
 void
-CreateEmbeddingRequest::setDimensions(int  dimensions)
+CreateEmbeddingRequest::setDimensions(int dimensions)
 {
 	this->dimensions = dimensions;
 }
@@ -198,7 +198,7 @@ CreateEmbeddingRequest::getUser()
 }
 
 void
-CreateEmbeddingRequest::setUser(std::string  user)
+CreateEmbeddingRequest::setUser(std::string user)
 {
 	this->user = user;
 }

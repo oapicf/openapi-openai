@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface UsageCompletionsResult {
     /**
      * 
-     * @type {string}
+     * @type {UsageCompletionsResultObjectEnum}
      * @memberof UsageCompletionsResult
      */
     object: UsageCompletionsResultObjectEnum;
@@ -108,9 +108,11 @@ export type UsageCompletionsResultObjectEnum = typeof UsageCompletionsResultObje
  */
 export function instanceOfUsageCompletionsResult(value: object): value is UsageCompletionsResult {
     if (!('object' in value) || value['object'] === undefined) return false;
-    if (!('inputTokens' in value) || value['inputTokens'] === undefined) return false;
-    if (!('outputTokens' in value) || value['outputTokens'] === undefined) return false;
-    if (!('numModelRequests' in value) || value['numModelRequests'] === undefined) return false;
+    if (value['object'] !== 'organization.usage.completions.result') return false;
+    
+    if ((!('inputTokens' in (value as Record<string, any>)) && !('input_tokens' in (value as Record<string, any>))) || ((value as Record<string, any>)['inputTokens'] === undefined && (value as Record<string, any>)['input_tokens'] === undefined)) return false;
+    if ((!('outputTokens' in (value as Record<string, any>)) && !('output_tokens' in (value as Record<string, any>))) || ((value as Record<string, any>)['outputTokens'] === undefined && (value as Record<string, any>)['output_tokens'] === undefined)) return false;
+    if ((!('numModelRequests' in (value as Record<string, any>)) && !('num_model_requests' in (value as Record<string, any>))) || ((value as Record<string, any>)['numModelRequests'] === undefined && (value as Record<string, any>)['num_model_requests'] === undefined)) return false;
     return true;
 }
 
@@ -131,11 +133,11 @@ export function UsageCompletionsResultFromJSONTyped(json: any, ignoreDiscriminat
         'inputAudioTokens': json['input_audio_tokens'] == null ? undefined : json['input_audio_tokens'],
         'outputAudioTokens': json['output_audio_tokens'] == null ? undefined : json['output_audio_tokens'],
         'numModelRequests': json['num_model_requests'],
-        'projectId': json['project_id'] == null ? undefined : json['project_id'],
-        'userId': json['user_id'] == null ? undefined : json['user_id'],
-        'apiKeyId': json['api_key_id'] == null ? undefined : json['api_key_id'],
-        'model': json['model'] == null ? undefined : json['model'],
-        'batch': json['batch'] == null ? undefined : json['batch'],
+        'projectId': json['project_id'] === undefined ? undefined : json['project_id'] === null ? null : json['project_id'],
+        'userId': json['user_id'] === undefined ? undefined : json['user_id'] === null ? null : json['user_id'],
+        'apiKeyId': json['api_key_id'] === undefined ? undefined : json['api_key_id'] === null ? null : json['api_key_id'],
+        'model': json['model'] === undefined ? undefined : json['model'] === null ? null : json['model'],
+        'batch': json['batch'] === undefined ? undefined : json['batch'] === null ? null : json['batch'],
     };
 }
 

@@ -24,6 +24,8 @@ CreateImageEditRequest_model::CreateImageEditRequest_model()
     
 }
 
+CreateImageEditRequest_model::~CreateImageEditRequest_model() = default;
+
 void CreateImageEditRequest_model::validate() const
 {
     std::stringstream msg;

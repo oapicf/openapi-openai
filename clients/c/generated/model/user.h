@@ -40,7 +40,7 @@ typedef struct user_t {
     char *name; // string
     char *email; // string
     openai_api_user_ROLE_e role; //enum
-    int added_at; //numeric
+    int *added_at; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } user_t;
@@ -51,7 +51,7 @@ __attribute__((deprecated)) user_t *user_create(
     char *name,
     char *email,
     openai_api_user_ROLE_e role,
-    int added_at
+    int *added_at
 );
 
 void user_free(user_t *user);

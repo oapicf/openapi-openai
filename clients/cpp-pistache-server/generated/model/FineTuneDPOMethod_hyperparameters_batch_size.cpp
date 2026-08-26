@@ -24,6 +24,8 @@ FineTuneDPOMethod_hyperparameters_batch_size::FineTuneDPOMethod_hyperparameters_
     
 }
 
+FineTuneDPOMethod_hyperparameters_batch_size::~FineTuneDPOMethod_hyperparameters_batch_size() = default;
+
 void FineTuneDPOMethod_hyperparameters_batch_size::validate() const
 {
     std::stringstream msg;

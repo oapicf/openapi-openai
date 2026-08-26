@@ -34,6 +34,8 @@ Upload::Upload()
     
 }
 
+Upload::~Upload() = default;
+
 void Upload::validate() const
 {
     std::stringstream msg;

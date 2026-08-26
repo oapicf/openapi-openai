@@ -74,8 +74,9 @@ class _$RunStepDeltaObjectDeltaSerializer implements PrimitiveSerializer<RunStep
         case r'step_details':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RunStepDeltaObjectDeltaStepDetails),
-          ) as RunStepDeltaObjectDeltaStepDetails;
+            specifiedType: const FullType.nullable(RunStepDeltaObjectDeltaStepDetails),
+          ) as RunStepDeltaObjectDeltaStepDetails?;
+          if (valueDes == null) continue;
           result.stepDetails.replace(valueDes);
           break;
         default:

@@ -28,6 +28,8 @@ MessageDeltaContentImageUrlObject_image_url::MessageDeltaContentImageUrlObject_i
     
 }
 
+MessageDeltaContentImageUrlObject_image_url::~MessageDeltaContentImageUrlObject_image_url() = default;
+
 void MessageDeltaContentImageUrlObject_image_url::validate() const
 {
     std::stringstream msg;

@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIAuditLog_project_archived::OAIAuditLog_project_archived(QString json) {
+OAIAuditLog_project_archived::OAIAuditLog_project_archived(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -38,7 +38,7 @@ void OAIAuditLog_project_archived::initializeModel() {
     m_id_isValid = false;
 }
 
-void OAIAuditLog_project_archived::fromJson(QString jsonString) {
+void OAIAuditLog_project_archived::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

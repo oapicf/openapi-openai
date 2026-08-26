@@ -26,7 +26,7 @@ message RealtimeServerEventResponseOutputItemDone {
     TYPE_RESPONSE_OUTPUT_ITEM_DONE = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // The ID of the Response to which the item belongs.
   string response_id = 236939740;

@@ -32,7 +32,7 @@ class  ChatCompletionRequestMessageContentPartText
 {
 public:
     ChatCompletionRequestMessageContentPartText();
-    virtual ~ChatCompletionRequestMessageContentPartText() = default;
+    virtual ~ChatCompletionRequestMessageContentPartText();
 
 
     /// <summary>

@@ -51,7 +51,7 @@ class RealtimeClientEventInputAudioBufferClear
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $eventId = null;
 
@@ -61,7 +61,7 @@ class RealtimeClientEventInputAudioBufferClear
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['input_audio_buffer.clear'])]
     #[Assert\Type("string")]
@@ -90,12 +90,12 @@ class RealtimeClientEventInputAudioBufferClear
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  Optional client-generated ID used to identify this event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  Optional client-generated ID used to identify this event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId = null): self
     {
         $this->eventId = $eventId;
@@ -117,12 +117,12 @@ class RealtimeClientEventInputAudioBufferClear
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `input_audio_buffer.clear`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `input_audio_buffer.clear`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;

@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set The text content of the word.
 	 */
-	void setWord(std::string  word);
+	void setWord(std::string word);
 	/*! \brief Get Start time of the word in seconds.
 	 */
 	float getStart();
 
 	/*! \brief Set Start time of the word in seconds.
 	 */
-	void setStart(float  start);
+	void setStart(float start);
 	/*! \brief Get End time of the word in seconds.
 	 */
 	float getEnd();
 
 	/*! \brief Set End time of the word in seconds.
 	 */
-	void setEnd(float  end);
+	void setEnd(float end);
 
 
     private:

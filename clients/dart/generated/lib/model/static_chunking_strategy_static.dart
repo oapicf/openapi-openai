@@ -58,10 +58,10 @@ class StaticChunkingStrategyStatic {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "StaticChunkingStrategyStatic[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "StaticChunkingStrategyStatic[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'max_chunk_size_tokens'), 'Required key "StaticChunkingStrategyStatic[max_chunk_size_tokens]" is missing from JSON.');
+        assert(json[r'max_chunk_size_tokens'] != null, 'Required key "StaticChunkingStrategyStatic[max_chunk_size_tokens]" has a null value in JSON.');
+        assert(json.containsKey(r'chunk_overlap_tokens'), 'Required key "StaticChunkingStrategyStatic[chunk_overlap_tokens]" is missing from JSON.');
+        assert(json[r'chunk_overlap_tokens'] != null, 'Required key "StaticChunkingStrategyStatic[chunk_overlap_tokens]" has a null value in JSON.');
         return true;
       }());
 

@@ -126,7 +126,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Optional client-generated ID used to identify this event.</value>
         [JsonPropertyName("event_id")]
-        public string? EventId { get { return this.EventIdOption; } set { this.EventIdOption = new(value); } }
+        public string? EventId { get { return this.EventIdOption.Value; } set { this.EventIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -157,8 +157,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeClientEventSessionUpdate" />
     /// </summary>
-    public class RealtimeClientEventSessionUpdateJsonConverter : JsonConverter<RealtimeClientEventSessionUpdate>
+    public partial class RealtimeClientEventSessionUpdateJsonConverter : JsonConverter<RealtimeClientEventSessionUpdate>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeClientEventSessionUpdateJsonConverter" /> class.
+        /// </summary>
+        public RealtimeClientEventSessionUpdateJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeClientEventSessionUpdate" />
         /// </summary>

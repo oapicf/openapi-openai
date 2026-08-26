@@ -127,7 +127,7 @@ RealtimeServerEventInputAudioBufferSpeechStarted::getEventId()
 }
 
 void
-RealtimeServerEventInputAudioBufferSpeechStarted::setEventId(std::string  event_id)
+RealtimeServerEventInputAudioBufferSpeechStarted::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -139,7 +139,7 @@ RealtimeServerEventInputAudioBufferSpeechStarted::getType()
 }
 
 void
-RealtimeServerEventInputAudioBufferSpeechStarted::setType(std::string  type)
+RealtimeServerEventInputAudioBufferSpeechStarted::setType(std::string type)
 {
 	this->type = type;
 }
@@ -151,7 +151,7 @@ RealtimeServerEventInputAudioBufferSpeechStarted::getAudioStartMs()
 }
 
 void
-RealtimeServerEventInputAudioBufferSpeechStarted::setAudioStartMs(int  audio_start_ms)
+RealtimeServerEventInputAudioBufferSpeechStarted::setAudioStartMs(int audio_start_ms)
 {
 	this->audio_start_ms = audio_start_ms;
 }
@@ -163,7 +163,7 @@ RealtimeServerEventInputAudioBufferSpeechStarted::getItemId()
 }
 
 void
-RealtimeServerEventInputAudioBufferSpeechStarted::setItemId(std::string  item_id)
+RealtimeServerEventInputAudioBufferSpeechStarted::setItemId(std::string item_id)
 {
 	this->item_id = item_id;
 }

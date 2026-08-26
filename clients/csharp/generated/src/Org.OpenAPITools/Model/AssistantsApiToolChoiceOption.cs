@@ -90,8 +90,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AssistantsApiToolChoiceOption" />
     /// </summary>
-    public class AssistantsApiToolChoiceOptionJsonConverter : JsonConverter<AssistantsApiToolChoiceOption>
+    public partial class AssistantsApiToolChoiceOptionJsonConverter : JsonConverter<AssistantsApiToolChoiceOption>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssistantsApiToolChoiceOptionJsonConverter" /> class.
+        /// </summary>
+        public AssistantsApiToolChoiceOptionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AssistantsApiToolChoiceOption" />
         /// </summary>

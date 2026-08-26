@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.CreateSpeechRequestModel
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -27,22 +30,31 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class CreateSpeechRequest(
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("model")
     @get:JsonProperty("model", required = true) val model: CreateSpeechRequestModel,
 
     @get:Size(max=4096)
-    @Schema(example = "null", required = true, description = "The text to generate audio for. The maximum length is 4096 characters.")
+    @Schema(required = true, description = "The text to generate audio for. The maximum length is 4096 characters.")
+    @param:JsonProperty("input")
     @get:JsonProperty("input", required = true) val input: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).")
+    @Schema(required = true, description = "The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).")
+    @param:JsonProperty("voice")
     @get:JsonProperty("voice", required = true) val voice: CreateSpeechRequest.Voice,
 
-    @Schema(example = "null", description = "The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.")
+    @Schema(description = "The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("response_format")
     @get:JsonProperty("response_format") val responseFormat: CreateSpeechRequest.ResponseFormat? = ResponseFormat.mp3,
 
     @get:DecimalMin(value="0.25")
     @get:DecimalMax(value="4")
-    @Schema(example = "null", description = "The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.")
+    @Schema(description = "The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("speed")
     @get:JsonProperty("speed") val speed: java.math.BigDecimal? = java.math.BigDecimal("1")
 ) {
 
@@ -64,7 +76,7 @@ data class CreateSpeechRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): Voice {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateSpeechRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Voice'")
             }
         }
     }
@@ -87,7 +99,7 @@ data class CreateSpeechRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): ResponseFormat {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateSpeechRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ResponseFormat'")
             }
         }
     }

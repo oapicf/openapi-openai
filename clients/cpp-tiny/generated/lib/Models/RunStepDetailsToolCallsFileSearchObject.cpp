@@ -107,7 +107,7 @@ RunStepDetailsToolCallsFileSearchObject::getId()
 }
 
 void
-RunStepDetailsToolCallsFileSearchObject::setId(std::string  id)
+RunStepDetailsToolCallsFileSearchObject::setId(std::string id)
 {
 	this->id = id;
 }
@@ -119,7 +119,7 @@ RunStepDetailsToolCallsFileSearchObject::getType()
 }
 
 void
-RunStepDetailsToolCallsFileSearchObject::setType(std::string  type)
+RunStepDetailsToolCallsFileSearchObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -131,7 +131,7 @@ RunStepDetailsToolCallsFileSearchObject::getFileSearch()
 }
 
 void
-RunStepDetailsToolCallsFileSearchObject::setFileSearch(RunStepDetailsToolCallsFileSearchObject_file_search  file_search)
+RunStepDetailsToolCallsFileSearchObject::setFileSearch(RunStepDetailsToolCallsFileSearchObject_file_search file_search)
 {
 	this->file_search = file_search;
 }

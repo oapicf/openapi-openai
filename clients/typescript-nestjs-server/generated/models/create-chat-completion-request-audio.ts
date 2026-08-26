@@ -1,0 +1,38 @@
+
+
+/**
+ * Parameters for audio output. Required when audio output is requested with `modalities: [\"audio\"]`. [Learn more](/docs/guides/audio). 
+ */
+export interface CreateChatCompletionRequestAudio { 
+  /**
+   * The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive). 
+   */
+  voice: CreateChatCompletionRequestAudio.VoiceEnum;
+  /**
+   * Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`. 
+   */
+  format: CreateChatCompletionRequestAudio.FormatEnum;
+}
+export namespace CreateChatCompletionRequestAudio {
+  export const VoiceEnum = {
+    Alloy: 'alloy',
+    Ash: 'ash',
+    Ballad: 'ballad',
+    Coral: 'coral',
+    Echo: 'echo',
+    Sage: 'sage',
+    Shimmer: 'shimmer',
+    Verse: 'verse'
+  } as const;
+  export type VoiceEnum = typeof VoiceEnum[keyof typeof VoiceEnum];
+  export const FormatEnum = {
+    Wav: 'wav',
+    Mp3: 'mp3',
+    Flac: 'flac',
+    Opus: 'opus',
+    Pcm16: 'pcm16'
+  } as const;
+  export type FormatEnum = typeof FormatEnum[keyof typeof FormatEnum];
+}
+
+

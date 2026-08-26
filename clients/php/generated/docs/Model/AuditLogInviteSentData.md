@@ -1,4 +1,4 @@
-# # AuditLogInviteSentData
+# AuditLogInviteSentData
 
 ## Properties
 

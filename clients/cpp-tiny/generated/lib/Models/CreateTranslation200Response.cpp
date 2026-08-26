@@ -144,7 +144,7 @@ CreateTranslation_200_response::getText()
 }
 
 void
-CreateTranslation_200_response::setText(std::string  text)
+CreateTranslation_200_response::setText(std::string text)
 {
 	this->text = text;
 }
@@ -156,7 +156,7 @@ CreateTranslation_200_response::getLanguage()
 }
 
 void
-CreateTranslation_200_response::setLanguage(std::string  language)
+CreateTranslation_200_response::setLanguage(std::string language)
 {
 	this->language = language;
 }
@@ -168,7 +168,7 @@ CreateTranslation_200_response::getDuration()
 }
 
 void
-CreateTranslation_200_response::setDuration(std::string  duration)
+CreateTranslation_200_response::setDuration(std::string duration)
 {
 	this->duration = duration;
 }
@@ -180,7 +180,7 @@ CreateTranslation_200_response::getSegments()
 }
 
 void
-CreateTranslation_200_response::setSegments(std::list <TranscriptionSegment> segments)
+CreateTranslation_200_response::setSegments(std::list<TranscriptionSegment> segments)
 {
 	this->segments = segments;
 }

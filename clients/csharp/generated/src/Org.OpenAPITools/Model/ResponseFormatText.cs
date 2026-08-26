@@ -131,8 +131,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ResponseFormatText" />
     /// </summary>
-    public class ResponseFormatTextJsonConverter : JsonConverter<ResponseFormatText>
+    public partial class ResponseFormatTextJsonConverter : JsonConverter<ResponseFormatText>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResponseFormatTextJsonConverter" /> class.
+        /// </summary>
+        public ResponseFormatTextJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ResponseFormatText" />
         /// </summary>

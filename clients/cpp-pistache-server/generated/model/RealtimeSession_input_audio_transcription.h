@@ -32,7 +32,7 @@ class  RealtimeSession_input_audio_transcription
 {
 public:
     RealtimeSession_input_audio_transcription();
-    virtual ~RealtimeSession_input_audio_transcription() = default;
+    virtual ~RealtimeSession_input_audio_transcription();
 
 
     /// <summary>

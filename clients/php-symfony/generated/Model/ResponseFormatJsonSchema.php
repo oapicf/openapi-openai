@@ -49,7 +49,7 @@ class ResponseFormatJsonSchema
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['json_schema'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class ResponseFormatJsonSchema
      * @var ResponseFormatJsonSchemaJsonSchema|null
      * @SerializedName("json_schema")
      * @Type("OpenAPI\Server\Model\ResponseFormatJsonSchemaJsonSchema")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\ResponseFormatJsonSchemaJsonSchema")]
@@ -88,12 +88,12 @@ class ResponseFormatJsonSchema
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of response format being defined: `json_schema`
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of response format being defined: `json_schema`
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -115,12 +115,12 @@ class ResponseFormatJsonSchema
     }
 
     /**
-    * Sets jsonSchema.
-    *
-    * @param ResponseFormatJsonSchemaJsonSchema|null $jsonSchema
-    *
-    * @return $this
-    */
+     * Sets jsonSchema.
+     *
+     * @param ResponseFormatJsonSchemaJsonSchema|null $jsonSchema
+     *
+     * @return $this
+     */
     public function setJsonSchema(?ResponseFormatJsonSchemaJsonSchema $jsonSchema): self
     {
         $this->jsonSchema = $jsonSchema;

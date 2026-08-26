@@ -39,6 +39,7 @@ public:
     void initializeServerConfigs();
     int setDefaultServerValue(int serverIndex,const QString &operation, const QString &variable,const QString &val);
     void setServerIndex(const QString &operation, int serverIndex);
+    void setServerIndex(int serverIndex);
     void setApiKey(const QString &apiKeyName, const QString &apiKey);
     void setBearerToken(const QString &token);
     void setUsername(const QString &username);
@@ -179,6 +180,13 @@ public:
 
 
 private:
+    enum class OauthMethod : int {
+        INVALID_VALUE_OPENAPI_GENERATED = 0,
+        ImplicitFlow = 1,
+        AuthorizationFlow = 2,
+        ClientCredentialsFlow = 3,
+        ResourceOwnerPasswordFlow = 4
+    };
     QMap<QString,int> _serverIndices;
     QMap<QString,QList<OAIServerConfiguration>> _serverConfigs;
     QMap<QString, QString> _apiKeys;
@@ -198,7 +206,7 @@ private:
     OauthImplicit _implicitFlow;
     OauthCredentials _credentialFlow;
     OauthPassword _passwordFlow;
-    int _OauthMethod = 0;
+    OauthMethod _OauthMethod = OauthMethod::INVALID_VALUE_OPENAPI_GENERATED;
 
     void usageAudioSpeechesCallback(OAIHttpRequestWorker *worker);
     void usageAudioTranscriptionsCallback(OAIHttpRequestWorker *worker);
@@ -233,60 +241,24 @@ Q_SIGNALS:
     void usageModerationsSignalFull(OAIHttpRequestWorker *worker, OAIUsageResponse summary);
     void usageVectorStoresSignalFull(OAIHttpRequestWorker *worker, OAIUsageResponse summary);
 
-    Q_DECL_DEPRECATED_X("Use usageAudioSpeechesSignalError() instead")
-    void usageAudioSpeechesSignalE(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void usageAudioSpeechesSignalError(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use usageAudioTranscriptionsSignalError() instead")
-    void usageAudioTranscriptionsSignalE(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void usageAudioTranscriptionsSignalError(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use usageCodeInterpreterSessionsSignalError() instead")
-    void usageCodeInterpreterSessionsSignalE(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void usageCodeInterpreterSessionsSignalError(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use usageCompletionsSignalError() instead")
-    void usageCompletionsSignalE(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void usageCompletionsSignalError(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use usageCostsSignalError() instead")
-    void usageCostsSignalE(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void usageCostsSignalError(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use usageEmbeddingsSignalError() instead")
-    void usageEmbeddingsSignalE(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void usageEmbeddingsSignalError(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use usageImagesSignalError() instead")
-    void usageImagesSignalE(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void usageImagesSignalError(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use usageModerationsSignalError() instead")
-    void usageModerationsSignalE(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void usageModerationsSignalError(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use usageVectorStoresSignalError() instead")
-    void usageVectorStoresSignalE(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void usageVectorStoresSignalError(OAIUsageResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
-    Q_DECL_DEPRECATED_X("Use usageAudioSpeechesSignalErrorFull() instead")
-    void usageAudioSpeechesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void usageAudioSpeechesSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use usageAudioTranscriptionsSignalErrorFull() instead")
-    void usageAudioTranscriptionsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void usageAudioTranscriptionsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use usageCodeInterpreterSessionsSignalErrorFull() instead")
-    void usageCodeInterpreterSessionsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void usageCodeInterpreterSessionsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use usageCompletionsSignalErrorFull() instead")
-    void usageCompletionsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void usageCompletionsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use usageCostsSignalErrorFull() instead")
-    void usageCostsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void usageCostsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use usageEmbeddingsSignalErrorFull() instead")
-    void usageEmbeddingsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void usageEmbeddingsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use usageImagesSignalErrorFull() instead")
-    void usageImagesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void usageImagesSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use usageModerationsSignalErrorFull() instead")
-    void usageModerationsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void usageModerationsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use usageVectorStoresSignalErrorFull() instead")
-    void usageVectorStoresSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void usageVectorStoresSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();

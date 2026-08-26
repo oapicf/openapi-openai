@@ -41,12 +41,12 @@ openai_api_upload_OBJECT_e upload_object_FromString(char* object){
 
 static upload_t *upload_create_internal(
     char *id,
-    int created_at,
+    int *created_at,
     char *filename,
-    int bytes,
+    int *bytes,
     char *purpose,
     openai_api_upload_STATUS_e status,
-    int expires_at,
+    int *expires_at,
     openai_api_upload_OBJECT_e object,
     open_ai_file_t *file
     ) {
@@ -54,6 +54,8 @@ static upload_t *upload_create_internal(
     if (!upload_local_var) {
         return NULL;
     }
+    memset(upload_local_var, 0, sizeof(upload_t));
+    upload_local_var->_library_owned = 1;
     upload_local_var->id = id;
     upload_local_var->created_at = created_at;
     upload_local_var->filename = filename;
@@ -63,33 +65,52 @@ static upload_t *upload_create_internal(
     upload_local_var->expires_at = expires_at;
     upload_local_var->object = object;
     upload_local_var->file = file;
-
-    upload_local_var->_library_owned = 1;
     return upload_local_var;
 }
 
 __attribute__((deprecated)) upload_t *upload_create(
     char *id,
-    int created_at,
+    int *created_at,
     char *filename,
-    int bytes,
+    int *bytes,
     char *purpose,
     openai_api_upload_STATUS_e status,
-    int expires_at,
+    int *expires_at,
     openai_api_upload_OBJECT_e object,
     open_ai_file_t *file
     ) {
-    return upload_create_internal (
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    int *bytes_copy = NULL;
+    if (bytes) {
+        bytes_copy = malloc(sizeof(int));
+        if (bytes_copy) *bytes_copy = *bytes;
+    }
+    int *expires_at_copy = NULL;
+    if (expires_at) {
+        expires_at_copy = malloc(sizeof(int));
+        if (expires_at_copy) *expires_at_copy = *expires_at;
+    }
+    upload_t *result = upload_create_internal (
         id,
-        created_at,
+        created_at_copy,
         filename,
-        bytes,
+        bytes_copy,
         purpose,
         status,
-        expires_at,
+        expires_at_copy,
         object,
         file
         );
+    if (!result) {
+        free(created_at_copy);
+        free(bytes_copy);
+        free(expires_at_copy);
+    }
+    return result;
 }
 
 void upload_free(upload_t *upload) {
@@ -105,13 +126,25 @@ void upload_free(upload_t *upload) {
         free(upload->id);
         upload->id = NULL;
     }
+    if (upload->created_at) {
+        free(upload->created_at);
+        upload->created_at = NULL;
+    }
     if (upload->filename) {
         free(upload->filename);
         upload->filename = NULL;
     }
+    if (upload->bytes) {
+        free(upload->bytes);
+        upload->bytes = NULL;
+    }
     if (upload->purpose) {
         free(upload->purpose);
         upload->purpose = NULL;
+    }
+    if (upload->expires_at) {
+        free(upload->expires_at);
+        upload->expires_at = NULL;
     }
     if (upload->file) {
         open_ai_file_free(upload->file);
@@ -136,7 +169,7 @@ cJSON *upload_convertToJSON(upload_t *upload) {
     if (!upload->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", upload->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *upload->created_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -154,7 +187,7 @@ cJSON *upload_convertToJSON(upload_t *upload) {
     if (!upload->bytes) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "bytes", upload->bytes) == NULL) {
+    if(cJSON_AddNumberToObject(item, "bytes", *upload->bytes) == NULL) {
     goto fail; //Numeric
     }
 
@@ -182,7 +215,7 @@ cJSON *upload_convertToJSON(upload_t *upload) {
     if (!upload->expires_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "expires_at", upload->expires_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "expires_at", *upload->expires_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -220,6 +253,21 @@ upload_t *upload_parseFromJSON(cJSON *uploadJSON){
 
     upload_t *upload_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    // define the local variable for upload->created_at
+    int *created_at_local_var = NULL;
+
+    char *filename_local_str = NULL;
+
+    // define the local variable for upload->bytes
+    int *bytes_local_var = NULL;
+
+    char *purpose_local_str = NULL;
+
+    // define the local variable for upload->expires_at
+    int *expires_at_local_var = NULL;
+
     // define the local variable for upload->file
     open_ai_file_t *file_local_nonprim = NULL;
 
@@ -252,6 +300,12 @@ upload_t *upload_parseFromJSON(cJSON *uploadJSON){
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
     // upload->filename
     cJSON *filename = cJSON_GetObjectItemCaseSensitive(uploadJSON, "filename");
@@ -282,6 +336,12 @@ upload_t *upload_parseFromJSON(cJSON *uploadJSON){
     {
     goto end; //Numeric
     }
+    bytes_local_var = malloc(sizeof(int));
+    if(!bytes_local_var)
+    {
+        goto end;
+    }
+    *bytes_local_var = bytes->valuedouble;
 
     // upload->purpose
     cJSON *purpose = cJSON_GetObjectItemCaseSensitive(uploadJSON, "purpose");
@@ -329,6 +389,12 @@ upload_t *upload_parseFromJSON(cJSON *uploadJSON){
     {
     goto end; //Numeric
     }
+    expires_at_local_var = malloc(sizeof(int));
+    if(!expires_at_local_var)
+    {
+        goto end;
+    }
+    *expires_at_local_var = expires_at->valuedouble;
 
     // upload->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(uploadJSON, "object");
@@ -354,20 +420,52 @@ upload_t *upload_parseFromJSON(cJSON *uploadJSON){
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (filename && !cJSON_IsNull(filename)) filename_local_str = strdup(filename->valuestring);
+    if (purpose && !cJSON_IsNull(purpose)) purpose_local_str = strdup(purpose->valuestring);
+
     upload_local_var = upload_create_internal (
-        strdup(id->valuestring),
-        created_at->valuedouble,
-        strdup(filename->valuestring),
-        bytes->valuedouble,
-        strdup(purpose->valuestring),
+        id_local_str,
+        created_at_local_var,
+        filename_local_str,
+        bytes_local_var,
+        purpose_local_str,
         statusVariable,
-        expires_at->valuedouble,
+        expires_at_local_var,
         object ? objectVariable : openai_api_upload_OBJECT_NULL,
         file ? file_local_nonprim : NULL
         );
 
+    if (!upload_local_var) {
+        goto end;
+    }
+
     return upload_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
+    if (filename_local_str) {
+        free(filename_local_str);
+        filename_local_str = NULL;
+    }
+    if (bytes_local_var) {
+        free(bytes_local_var);
+        bytes_local_var = NULL;
+    }
+    if (purpose_local_str) {
+        free(purpose_local_str);
+        purpose_local_str = NULL;
+    }
+    if (expires_at_local_var) {
+        free(expires_at_local_var);
+        expires_at_local_var = NULL;
+    }
     if (file_local_nonprim) {
         open_ai_file_free(file_local_nonprim);
         file_local_nonprim = NULL;

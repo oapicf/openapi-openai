@@ -37,13 +37,13 @@ class OAIMessageContentTextAnnotationsFilePathObject_file_path;
 class OAIMessageContentTextObject_text_annotations_inner : public OAIObject {
 public:
     OAIMessageContentTextObject_text_annotations_inner();
-    OAIMessageContentTextObject_text_annotations_inner(QString json);
+    OAIMessageContentTextObject_text_annotations_inner(const QString &json);
     ~OAIMessageContentTextObject_text_annotations_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

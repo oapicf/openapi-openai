@@ -51,7 +51,7 @@ class Upload
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class Upload
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -73,7 +73,7 @@ class Upload
      * @var string|null
      * @SerializedName("filename")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $filename = null;
@@ -84,7 +84,7 @@ class Upload
      * @var int|null
      * @SerializedName("bytes")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $bytes = null;
@@ -95,7 +95,7 @@ class Upload
      * @var string|null
      * @SerializedName("purpose")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $purpose = null;
@@ -106,7 +106,7 @@ class Upload
      * @var string|null
      * @SerializedName("status")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['pending', 'completed', 'cancelled', 'expired'])]
     #[Assert\Type("string")]
@@ -118,7 +118,7 @@ class Upload
      * @var int|null
      * @SerializedName("expires_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $expiresAt = null;
@@ -129,7 +129,7 @@ class Upload
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['upload'])]
     #[Assert\Type("string")]
     protected ?string $object = null;
@@ -138,7 +138,7 @@ class Upload
      * @var OpenAIFile|null
      * @SerializedName("file")
      * @Type("OpenAPI\Server\Model\OpenAIFile")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\OpenAIFile")]
     protected ?OpenAIFile $file = null;
 
@@ -172,12 +172,12 @@ class Upload
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The Upload unique identifier, which can be referenced in API endpoints.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The Upload unique identifier, which can be referenced in API endpoints.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -199,12 +199,12 @@ class Upload
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) for when the Upload was created.
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) for when the Upload was created.
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -226,12 +226,12 @@ class Upload
     }
 
     /**
-    * Sets filename.
-    *
-    * @param string|null $filename  The name of the file to be uploaded.
-    *
-    * @return $this
-    */
+     * Sets filename.
+     *
+     * @param string|null $filename  The name of the file to be uploaded.
+     *
+     * @return $this
+     */
     public function setFilename(?string $filename): self
     {
         $this->filename = $filename;
@@ -253,12 +253,12 @@ class Upload
     }
 
     /**
-    * Sets bytes.
-    *
-    * @param int|null $bytes  The intended number of bytes to be uploaded.
-    *
-    * @return $this
-    */
+     * Sets bytes.
+     *
+     * @param int|null $bytes  The intended number of bytes to be uploaded.
+     *
+     * @return $this
+     */
     public function setBytes(?int $bytes): self
     {
         $this->bytes = $bytes;
@@ -280,12 +280,12 @@ class Upload
     }
 
     /**
-    * Sets purpose.
-    *
-    * @param string|null $purpose  The intended purpose of the file. [Please refer here](/docs/api-reference/files/object#files/object-purpose) for acceptable values.
-    *
-    * @return $this
-    */
+     * Sets purpose.
+     *
+     * @param string|null $purpose  The intended purpose of the file. [Please refer here](/docs/api-reference/files/object#files/object-purpose) for acceptable values.
+     *
+     * @return $this
+     */
     public function setPurpose(?string $purpose): self
     {
         $this->purpose = $purpose;
@@ -307,12 +307,12 @@ class Upload
     }
 
     /**
-    * Sets status.
-    *
-    * @param string|null $status  The status of the Upload.
-    *
-    * @return $this
-    */
+     * Sets status.
+     *
+     * @param string|null $status  The status of the Upload.
+     *
+     * @return $this
+     */
     public function setStatus(?string $status): self
     {
         $this->status = $status;
@@ -334,12 +334,12 @@ class Upload
     }
 
     /**
-    * Sets expiresAt.
-    *
-    * @param int|null $expiresAt  The Unix timestamp (in seconds) for when the Upload was created.
-    *
-    * @return $this
-    */
+     * Sets expiresAt.
+     *
+     * @param int|null $expiresAt  The Unix timestamp (in seconds) for when the Upload was created.
+     *
+     * @return $this
+     */
     public function setExpiresAt(?int $expiresAt): self
     {
         $this->expiresAt = $expiresAt;
@@ -361,12 +361,12 @@ class Upload
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always \"upload\".
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always \"upload\".
+     *
+     * @return $this
+     */
     public function setObject(?string $object = null): self
     {
         $this->object = $object;
@@ -388,12 +388,12 @@ class Upload
     }
 
     /**
-    * Sets file.
-    *
-    * @param OpenAIFile|null $file
-    *
-    * @return $this
-    */
+     * Sets file.
+     *
+     * @param OpenAIFile|null $file
+     *
+     * @return $this
+     */
     public function setFile(?OpenAIFile $file = null): self
     {
         $this->file = $file;

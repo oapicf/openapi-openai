@@ -32,7 +32,7 @@ typedef struct list_fine_tuning_job_checkpoints_response_t {
     openai_api_list_fine_tuning_job_checkpoints_response_OBJECT_e object; //enum
     char *first_id; // string
     char *last_id; // string
-    int has_more; //boolean
+    int *has_more; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } list_fine_tuning_job_checkpoints_response_t;
@@ -42,7 +42,7 @@ __attribute__((deprecated)) list_fine_tuning_job_checkpoints_response_t *list_fi
     openai_api_list_fine_tuning_job_checkpoints_response_OBJECT_e object,
     char *first_id,
     char *last_id,
-    int has_more
+    int *has_more
 );
 
 void list_fine_tuning_job_checkpoints_response_free(list_fine_tuning_job_checkpoints_response_t *list_fine_tuning_job_checkpoints_response);

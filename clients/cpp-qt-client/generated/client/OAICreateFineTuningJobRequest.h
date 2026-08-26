@@ -39,13 +39,13 @@ class OAIFineTuneMethod;
 class OAICreateFineTuningJobRequest : public OAIObject {
 public:
     OAICreateFineTuningJobRequest();
-    OAICreateFineTuningJobRequest(QString json);
+    OAICreateFineTuningJobRequest(const QString &json);
     ~OAICreateFineTuningJobRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     OAICreateFineTuningJobRequest_model getModel() const;
     void setModel(const OAICreateFineTuningJobRequest_model &model);

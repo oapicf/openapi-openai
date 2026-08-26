@@ -1,4 +1,4 @@
-# # ModifyThreadRequest
+# ModifyThreadRequest
 
 ## Properties
 

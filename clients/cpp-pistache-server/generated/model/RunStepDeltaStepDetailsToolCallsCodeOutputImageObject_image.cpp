@@ -26,6 +26,8 @@ RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image::RunStepDeltaStepDet
     
 }
 
+RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image::~RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image() = default;
+
 void RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image::validate() const
 {
     std::stringstream msg;

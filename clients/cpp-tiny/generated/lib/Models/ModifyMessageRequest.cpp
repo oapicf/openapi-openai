@@ -65,7 +65,7 @@ ModifyMessageRequest::getMetadata()
 }
 
 void
-ModifyMessageRequest::setMetadata(Object  metadata)
+ModifyMessageRequest::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }

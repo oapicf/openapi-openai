@@ -25,7 +25,8 @@ type CreateThreadRequestToolResourcesFileSearchVectorStoresInner struct {
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 }
 
-// AssertCreateThreadRequestToolResourcesFileSearchVectorStoresInnerRequired checks if the required fields are not zero-ed
+// AssertCreateThreadRequestToolResourcesFileSearchVectorStoresInnerRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateThreadRequestToolResourcesFileSearchVectorStoresInnerRequired(obj CreateThreadRequestToolResourcesFileSearchVectorStoresInner) error {
 	if err := AssertCreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyRequired(obj.ChunkingStrategy); err != nil {
 		return err

@@ -105,7 +105,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<Project>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}/archive`,
+                return this.httpClient.post<Project>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}/archive`,
                     null,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -226,7 +226,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<ProjectServiceAccountCreateResponse>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}/service_accounts`,
+                return this.httpClient.post<ProjectServiceAccountCreateResponse>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}/service_accounts`,
                     projectServiceAccountCreateRequest,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -289,7 +289,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<ProjectUser>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}/users`,
+                return this.httpClient.post<ProjectUser>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}/users`,
                     projectUserCreateRequest,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -347,7 +347,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.delete<ProjectApiKeyDeleteResponse>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}/api_keys/${encodeURIComponent(String(key_id))}`,
+                return this.httpClient.delete<ProjectApiKeyDeleteResponse>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}/api_keys/${encodeURIComponent(String(keyId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...deleteProjectApiKeyOpts?.config,
@@ -404,7 +404,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.delete<ProjectServiceAccountDeleteResponse>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}/service_accounts/${encodeURIComponent(String(service_account_id))}`,
+                return this.httpClient.delete<ProjectServiceAccountDeleteResponse>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}/service_accounts/${encodeURIComponent(String(serviceAccountId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...deleteProjectServiceAccountOpts?.config,
@@ -461,7 +461,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.delete<ProjectUserDeleteResponse>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}/users/${encodeURIComponent(String(user_id))}`,
+                return this.httpClient.delete<ProjectUserDeleteResponse>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}/users/${encodeURIComponent(String(userId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...deleteProjectUserOpts?.config,
@@ -523,7 +523,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<ProjectApiKeyListResponse>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}/api_keys`,
+                return this.httpClient.get<ProjectApiKeyListResponse>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}/api_keys`,
                     {
                         params: queryParameters,
                         withCredentials: this.configuration.withCredentials,
@@ -590,7 +590,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<ProjectRateLimitListResponse>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}/rate_limits`,
+                return this.httpClient.get<ProjectRateLimitListResponse>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}/rate_limits`,
                     {
                         params: queryParameters,
                         withCredentials: this.configuration.withCredentials,
@@ -653,7 +653,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<ProjectServiceAccountListResponse>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}/service_accounts`,
+                return this.httpClient.get<ProjectServiceAccountListResponse>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}/service_accounts`,
                     {
                         params: queryParameters,
                         withCredentials: this.configuration.withCredentials,
@@ -716,7 +716,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<ProjectUserListResponse>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}/users`,
+                return this.httpClient.get<ProjectUserListResponse>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}/users`,
                     {
                         params: queryParameters,
                         withCredentials: this.configuration.withCredentials,
@@ -841,7 +841,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<Project>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}`,
+                return this.httpClient.post<Project>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}`,
                     projectUpdateRequest,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -909,7 +909,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<ProjectUser>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}/users/${encodeURIComponent(String(user_id))}`,
+                return this.httpClient.post<ProjectUser>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}/users/${encodeURIComponent(String(userId))}`,
                     projectUserUpdateRequest,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -962,7 +962,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<Project>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}`,
+                return this.httpClient.get<Project>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...retrieveProjectOpts?.config,
@@ -1019,7 +1019,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<ProjectApiKey>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}/api_keys/${encodeURIComponent(String(key_id))}`,
+                return this.httpClient.get<ProjectApiKey>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}/api_keys/${encodeURIComponent(String(keyId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...retrieveProjectApiKeyOpts?.config,
@@ -1076,7 +1076,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<ProjectServiceAccount>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}/service_accounts/${encodeURIComponent(String(service_account_id))}`,
+                return this.httpClient.get<ProjectServiceAccount>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}/service_accounts/${encodeURIComponent(String(serviceAccountId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...retrieveProjectServiceAccountOpts?.config,
@@ -1133,7 +1133,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<ProjectUser>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}/users/${encodeURIComponent(String(user_id))}`,
+                return this.httpClient.get<ProjectUser>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}/users/${encodeURIComponent(String(userId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...retrieveProjectUserOpts?.config,
@@ -1200,7 +1200,7 @@ export class ProjectsService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<ProjectRateLimit>(`${this.basePath}/organization/projects/${encodeURIComponent(String(project_id))}/rate_limits/${encodeURIComponent(String(rate_limit_id))}`,
+                return this.httpClient.post<ProjectRateLimit>(`${this.basePath}/organization/projects/${encodeURIComponent(String(projectId))}/rate_limits/${encodeURIComponent(String(rateLimitId))}`,
                     projectRateLimitUpdateRequest,
                     {
                         withCredentials: this.configuration.withCredentials,

@@ -4,9 +4,9 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
+import 'package:openapi/src/model/auto_chunking_strategy_request_param.dart';
 import 'package:openapi/src/model/static_chunking_strategy.dart';
 import 'package:openapi/src/model/static_chunking_strategy_static.dart';
-import 'package:openapi/src/model/auto_chunking_strategy.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:one_of/one_of.dart';
@@ -20,7 +20,7 @@ part 'create_assistant_request_tool_resources_file_search_vector_stores_inner_ch
 /// * [static_] 
 @BuiltValue()
 abstract class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy implements Built<CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy, CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyBuilder> {
-  /// One Of [AutoChunkingStrategy], [StaticChunkingStrategy]
+  /// One Of [AutoChunkingStrategyRequestParam], [StaticChunkingStrategy]
   OneOf get oneOf;
 
   CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy._();
@@ -66,7 +66,7 @@ class _$CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingSt
   }) {
     final result = CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyBuilder();
     Object? oneOfDataSrc;
-    final targetType = const FullType(OneOf, [FullType(AutoChunkingStrategy), FullType(StaticChunkingStrategy), ]);
+    final targetType = const FullType(OneOf, [FullType(AutoChunkingStrategyRequestParam), FullType(StaticChunkingStrategy), ]);
     oneOfDataSrc = serialized;
     result.oneOf = serializers.deserialize(oneOfDataSrc, specifiedType: targetType) as OneOf;
     return result.build();

@@ -28,8 +28,8 @@ openai_api_usage_audio_transcriptions_result_OBJECT_e usage_audio_transcriptions
 
 typedef struct usage_audio_transcriptions_result_t {
     openai_api_usage_audio_transcriptions_result_OBJECT_e object; //enum
-    int seconds; //numeric
-    int num_model_requests; //numeric
+    int *seconds; //numeric
+    int *num_model_requests; //numeric
     char *project_id; // string
     char *user_id; // string
     char *api_key_id; // string
@@ -40,8 +40,8 @@ typedef struct usage_audio_transcriptions_result_t {
 
 __attribute__((deprecated)) usage_audio_transcriptions_result_t *usage_audio_transcriptions_result_create(
     openai_api_usage_audio_transcriptions_result_OBJECT_e object,
-    int seconds,
-    int num_model_requests,
+    int *seconds,
+    int *num_model_requests,
     char *project_id,
     char *user_id,
     char *api_key_id,

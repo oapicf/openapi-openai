@@ -31,11 +31,11 @@ static realtime_server_event_rate_limits_updated_t *realtime_server_event_rate_l
     if (!realtime_server_event_rate_limits_updated_local_var) {
         return NULL;
     }
+    memset(realtime_server_event_rate_limits_updated_local_var, 0, sizeof(realtime_server_event_rate_limits_updated_t));
+    realtime_server_event_rate_limits_updated_local_var->_library_owned = 1;
     realtime_server_event_rate_limits_updated_local_var->event_id = event_id;
     realtime_server_event_rate_limits_updated_local_var->type = type;
     realtime_server_event_rate_limits_updated_local_var->rate_limits = rate_limits;
-
-    realtime_server_event_rate_limits_updated_local_var->_library_owned = 1;
     return realtime_server_event_rate_limits_updated_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) realtime_server_event_rate_limits_updated_t *realtim
     openai_api_realtime_server_event_rate_limits_updated_TYPE_e type,
     list_t *rate_limits
     ) {
-    return realtime_server_event_rate_limits_updated_create_internal (
+    realtime_server_event_rate_limits_updated_t *result = realtime_server_event_rate_limits_updated_create_internal (
         event_id,
         type,
         rate_limits
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_server_event_rate_limits_updated_free(realtime_server_event_rate_limits_updated_t *realtime_server_event_rate_limits_updated) {
@@ -128,6 +131,8 @@ realtime_server_event_rate_limits_updated_t *realtime_server_event_rate_limits_u
 
     realtime_server_event_rate_limits_updated_t *realtime_server_event_rate_limits_updated_local_var = NULL;
 
+    char *event_id_local_str = NULL;
+
     // define the local list for realtime_server_event_rate_limits_updated->rate_limits
     list_t *rate_limitsList = NULL;
 
@@ -191,14 +196,24 @@ realtime_server_event_rate_limits_updated_t *realtime_server_event_rate_limits_u
     }
 
 
+    if (event_id && !cJSON_IsNull(event_id)) event_id_local_str = strdup(event_id->valuestring);
+
     realtime_server_event_rate_limits_updated_local_var = realtime_server_event_rate_limits_updated_create_internal (
-        strdup(event_id->valuestring),
+        event_id_local_str,
         typeVariable,
         rate_limitsList
         );
 
+    if (!realtime_server_event_rate_limits_updated_local_var) {
+        goto end;
+    }
+
     return realtime_server_event_rate_limits_updated_local_var;
 end:
+    if (event_id_local_str) {
+        free(event_id_local_str);
+        event_id_local_str = NULL;
+    }
     if (rate_limitsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, rate_limitsList) {

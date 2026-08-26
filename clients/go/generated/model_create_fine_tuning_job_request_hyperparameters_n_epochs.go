@@ -85,7 +85,16 @@ func (dst *CreateFineTuningJobRequestHyperparametersNEpochs) UnmarshalJSON(data 
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(CreateFineTuningJobRequestHyperparametersNEpochs)")
+        if err != nil {
+            return fmt.Errorf("data failed to match schemas in oneOf(CreateFineTuningJobRequestHyperparametersNEpochs): %v", err)
+        } else {
+            return fmt.Errorf("data failed to match schemas in oneOf(CreateFineTuningJobRequestHyperparametersNEpochs)")
+        }
+        if err != nil {
+            return fmt.Errorf("data failed to match schemas in oneOf(CreateFineTuningJobRequestHyperparametersNEpochs): %v", err)
+        } else {
+            return fmt.Errorf("data failed to match schemas in oneOf(CreateFineTuningJobRequestHyperparametersNEpochs)")
+        }
 	}
 }
 

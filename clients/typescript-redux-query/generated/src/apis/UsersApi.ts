@@ -66,7 +66,7 @@ function deleteUserRaw<T>(requestParameters: DeleteUserRequest, requestConfig: r
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/users/{user_id}`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))),
+        url: `${runtime.Configuration.basePath}/organization/users/{user_id}`.replace('{user_id}', encodeURIComponent(String(requestParameters.userId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -173,7 +173,7 @@ function modifyUserRaw<T>(requestParameters: ModifyUserRequest, requestConfig: r
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/users/{user_id}`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))),
+        url: `${runtime.Configuration.basePath}/organization/users/{user_id}`.replace('{user_id}', encodeURIComponent(String(requestParameters.userId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -220,7 +220,7 @@ function retrieveUserRaw<T>(requestParameters: RetrieveUserRequest, requestConfi
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/users/{user_id}`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))),
+        url: `${runtime.Configuration.basePath}/organization/users/{user_id}`.replace('{user_id}', encodeURIComponent(String(requestParameters.userId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,

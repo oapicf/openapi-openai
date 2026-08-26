@@ -22,7 +22,7 @@ message InviteDeleteResponse {
     OBJECT_ORGANIZATION_INVITE_DELETED = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   string id = 3355;
 

@@ -35,7 +35,7 @@ export interface ThreadStreamEvent {
     enabled?: boolean;
     /**
      * 
-     * @type {string}
+     * @type {ThreadStreamEventEventEnum}
      * @memberof ThreadStreamEvent
      */
     event: ThreadStreamEventEventEnum;
@@ -62,6 +62,8 @@ export type ThreadStreamEventEventEnum = typeof ThreadStreamEventEventEnum[keyof
  */
 export function instanceOfThreadStreamEvent(value: object): value is ThreadStreamEvent {
     if (!('event' in value) || value['event'] === undefined) return false;
+    if (value['event'] !== 'thread.created') return false;
+    
     if (!('data' in value) || value['data'] === undefined) return false;
     return true;
 }

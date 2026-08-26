@@ -42,6 +42,8 @@ RealtimeSessionCreateRequest::RealtimeSessionCreateRequest()
     
 }
 
+RealtimeSessionCreateRequest::~RealtimeSessionCreateRequest() = default;
+
 void RealtimeSessionCreateRequest::validate() const
 {
     std::stringstream msg;

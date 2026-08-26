@@ -34,7 +34,7 @@ class  ThreadObject
 {
 public:
     ThreadObject();
-    virtual ~ThreadObject() = default;
+    virtual ~ThreadObject();
 
 
     /// <summary>

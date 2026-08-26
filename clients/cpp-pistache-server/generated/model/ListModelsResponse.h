@@ -34,7 +34,7 @@ class  ListModelsResponse
 {
 public:
     ListModelsResponse();
-    virtual ~ListModelsResponse() = default;
+    virtual ~ListModelsResponse();
 
 
     /// <summary>

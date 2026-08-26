@@ -89,8 +89,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner" />
     /// </summary>
-    public class RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerJsonConverter : JsonConverter<RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>
+    public partial class RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerJsonConverter : JsonConverter<RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerJsonConverter" /> class.
+        /// </summary>
+        public RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner" />
         /// </summary>

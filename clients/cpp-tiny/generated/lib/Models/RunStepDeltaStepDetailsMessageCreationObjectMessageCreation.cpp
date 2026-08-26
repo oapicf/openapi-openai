@@ -64,7 +64,7 @@ RunStepDeltaStepDetailsMessageCreationObject_message_creation::getMessageId()
 }
 
 void
-RunStepDeltaStepDetailsMessageCreationObject_message_creation::setMessageId(std::string  message_id)
+RunStepDeltaStepDetailsMessageCreationObject_message_creation::setMessageId(std::string message_id)
 {
 	this->message_id = message_id;
 }

@@ -36,6 +36,8 @@ static chat_completion_request_message_t *chat_completion_request_message_create
     if (!chat_completion_request_message_local_var) {
         return NULL;
     }
+    memset(chat_completion_request_message_local_var, 0, sizeof(chat_completion_request_message_t));
+    chat_completion_request_message_local_var->_library_owned = 1;
     chat_completion_request_message_local_var->content = content;
     chat_completion_request_message_local_var->role = role;
     chat_completion_request_message_local_var->name = name;
@@ -44,8 +46,6 @@ static chat_completion_request_message_t *chat_completion_request_message_create
     chat_completion_request_message_local_var->tool_calls = tool_calls;
     chat_completion_request_message_local_var->function_call = function_call;
     chat_completion_request_message_local_var->tool_call_id = tool_call_id;
-
-    chat_completion_request_message_local_var->_library_owned = 1;
     return chat_completion_request_message_local_var;
 }
 
@@ -59,7 +59,7 @@ __attribute__((deprecated)) chat_completion_request_message_t *chat_completion_r
     chat_completion_request_assistant_message_function_call_t *function_call,
     char *tool_call_id
     ) {
-    return chat_completion_request_message_create_internal (
+    chat_completion_request_message_t *result = chat_completion_request_message_create_internal (
         content,
         role,
         name,
@@ -69,6 +69,9 @@ __attribute__((deprecated)) chat_completion_request_message_t *chat_completion_r
         function_call,
         tool_call_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_request_message_free(chat_completion_request_message_t *chat_completion_request_message) {
@@ -219,6 +222,12 @@ chat_completion_request_message_t *chat_completion_request_message_parseFromJSON
 
     chat_completion_request_message_t *chat_completion_request_message_local_var = NULL;
 
+    char *content_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    char *refusal_local_str = NULL;
+
     // define the local variable for chat_completion_request_message->audio
     chat_completion_request_assistant_message_audio_t *audio_local_nonprim = NULL;
 
@@ -227,6 +236,8 @@ chat_completion_request_message_t *chat_completion_request_message_parseFromJSON
 
     // define the local variable for chat_completion_request_message->function_call
     chat_completion_request_assistant_message_function_call_t *function_call_local_nonprim = NULL;
+
+    char *tool_call_id_local_str = NULL;
 
     // chat_completion_request_message->content
     cJSON *content = cJSON_GetObjectItemCaseSensitive(chat_completion_request_messageJSON, "content");
@@ -345,19 +356,40 @@ chat_completion_request_message_t *chat_completion_request_message_parseFromJSON
     }
 
 
+    if (content && !cJSON_IsNull(content)) content_local_str = strdup(content->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (refusal && !cJSON_IsNull(refusal)) refusal_local_str = strdup(refusal->valuestring);
+    if (tool_call_id && !cJSON_IsNull(tool_call_id)) tool_call_id_local_str = strdup(tool_call_id->valuestring);
+
     chat_completion_request_message_local_var = chat_completion_request_message_create_internal (
-        strdup(content->valuestring),
+        content_local_str,
         roleVariable,
-        strdup(name->valuestring),
-        refusal && !cJSON_IsNull(refusal) ? strdup(refusal->valuestring) : NULL,
+        name_local_str,
+        refusal_local_str,
         audio ? audio_local_nonprim : NULL,
         tool_calls ? tool_callsList : NULL,
         function_call ? function_call_local_nonprim : NULL,
-        strdup(tool_call_id->valuestring)
+        tool_call_id_local_str
         );
+
+    if (!chat_completion_request_message_local_var) {
+        goto end;
+    }
 
     return chat_completion_request_message_local_var;
 end:
+    if (content_local_str) {
+        free(content_local_str);
+        content_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (refusal_local_str) {
+        free(refusal_local_str);
+        refusal_local_str = NULL;
+    }
     if (audio_local_nonprim) {
         chat_completion_request_assistant_message_audio_free(audio_local_nonprim);
         audio_local_nonprim = NULL;
@@ -374,6 +406,10 @@ end:
     if (function_call_local_nonprim) {
         chat_completion_request_assistant_message_function_call_free(function_call_local_nonprim);
         function_call_local_nonprim = NULL;
+    }
+    if (tool_call_id_local_str) {
+        free(tool_call_id_local_str);
+        tool_call_id_local_str = NULL;
     }
     return NULL;
 

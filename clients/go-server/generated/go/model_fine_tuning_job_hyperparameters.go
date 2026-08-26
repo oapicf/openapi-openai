@@ -24,7 +24,8 @@ type FineTuningJobHyperparameters struct {
 	NEpochs CreateFineTuningJobRequestHyperparametersNEpochs `json:"n_epochs,omitempty"`
 }
 
-// AssertFineTuningJobHyperparametersRequired checks if the required fields are not zero-ed
+// AssertFineTuningJobHyperparametersRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertFineTuningJobHyperparametersRequired(obj FineTuningJobHyperparameters) error {
 	if err := AssertCreateFineTuningJobRequestHyperparametersBatchSizeRequired(obj.BatchSize); err != nil {
 		return err

@@ -32,7 +32,7 @@ class  DoneEvent
 {
 public:
     DoneEvent();
-    virtual ~DoneEvent() = default;
+    virtual ~DoneEvent();
 
 
     /// <summary>

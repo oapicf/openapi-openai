@@ -25,6 +25,8 @@ RunStepStreamEvent_oneOf_3::RunStepStreamEvent_oneOf_3()
     
 }
 
+RunStepStreamEvent_oneOf_3::~RunStepStreamEvent_oneOf_3() = default;
+
 void RunStepStreamEvent_oneOf_3::validate() const
 {
     std::stringstream msg;

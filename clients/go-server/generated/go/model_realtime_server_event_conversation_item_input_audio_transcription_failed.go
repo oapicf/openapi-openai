@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // RealtimeServerEventConversationItemInputAudioTranscriptionFailed - Returned when input audio transcription is configured, and a transcription  request for a user message failed. These events are separate from other  `error` events so that the client can identify the related Item. 
@@ -31,14 +36,95 @@ type RealtimeServerEventConversationItemInputAudioTranscriptionFailed struct {
 
 	Error RealtimeServerEventConversationItemInputAudioTranscriptionFailedError `json:"error"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into RealtimeServerEventConversationItemInputAudioTranscriptionFailed
+func (o *RealtimeServerEventConversationItemInputAudioTranscriptionFailed) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"event_id",
+		"type",
+		"item_id",
+		"content_index",
+		"error",
+	}
 
-// AssertRealtimeServerEventConversationItemInputAudioTranscriptionFailedRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"event_id": false,
+		"type": false,
+		"item_id": false,
+		"content_index": false,
+		"error": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"event_id": {},
+		"type": {},
+		"item_id": {},
+		"content_index": {},
+		"error": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RealtimeServerEventConversationItemInputAudioTranscriptionFailed
+
+	if value, exists := allProperties["event_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.EventId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["item_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.ItemId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["content_index"]; exists {
+		if err = json.Unmarshal(value, &decoded.ContentIndex); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["error"]; exists {
+		if err = json.Unmarshal(value, &decoded.Error); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRealtimeServerEventConversationItemInputAudioTranscriptionFailedRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeServerEventConversationItemInputAudioTranscriptionFailedRequired(obj RealtimeServerEventConversationItemInputAudioTranscriptionFailed) error {
 	elements := map[string]interface{}{
-		"event_id": obj.EventId,
-		"type": obj.Type,
-		"item_id": obj.ItemId,
-		"content_index": obj.ContentIndex,
 		"error": obj.Error,
 	}
 	for name, el := range elements {

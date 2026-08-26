@@ -106,7 +106,7 @@ RunCompletionUsage::getCompletionTokens()
 }
 
 void
-RunCompletionUsage::setCompletionTokens(int  completion_tokens)
+RunCompletionUsage::setCompletionTokens(int completion_tokens)
 {
 	this->completion_tokens = completion_tokens;
 }
@@ -118,7 +118,7 @@ RunCompletionUsage::getPromptTokens()
 }
 
 void
-RunCompletionUsage::setPromptTokens(int  prompt_tokens)
+RunCompletionUsage::setPromptTokens(int prompt_tokens)
 {
 	this->prompt_tokens = prompt_tokens;
 }
@@ -130,7 +130,7 @@ RunCompletionUsage::getTotalTokens()
 }
 
 void
-RunCompletionUsage::setTotalTokens(int  total_tokens)
+RunCompletionUsage::setTotalTokens(int total_tokens)
 {
 	this->total_tokens = total_tokens;
 }

@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // UsageModerationsResult - The aggregated moderations usage details of the specific time bucket.
@@ -37,20 +42,102 @@ type UsageModerationsResult struct {
 	// When `group_by=model`, this field provides the model name of the grouped usage result.
 	Model *string `json:"model,omitempty"`
 }
-
-// AssertUsageModerationsResultRequired checks if the required fields are not zero-ed
-func AssertUsageModerationsResultRequired(obj UsageModerationsResult) error {
-	elements := map[string]interface{}{
-		"object": obj.Object,
-		"input_tokens": obj.InputTokens,
-		"num_model_requests": obj.NumModelRequests,
+// UnmarshalJSON validates required property keys then unmarshals into UsageModerationsResult
+func (o *UsageModerationsResult) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"object",
+		"input_tokens",
+		"num_model_requests",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"object": false,
+		"input_tokens": false,
+		"num_model_requests": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"object": {},
+		"input_tokens": {},
+		"num_model_requests": {},
+		"project_id": {},
+		"user_id": {},
+		"api_key_id": {},
+		"model": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded UsageModerationsResult
+
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["input_tokens"]; exists {
+		if err = json.Unmarshal(value, &decoded.InputTokens); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["num_model_requests"]; exists {
+		if err = json.Unmarshal(value, &decoded.NumModelRequests); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["project_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.ProjectId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["user_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.UserId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["api_key_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.ApiKeyId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["model"]; exists {
+		if err = json.Unmarshal(value, &decoded.Model); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertUsageModerationsResultRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertUsageModerationsResultRequired(obj UsageModerationsResult) error {
 	return nil
 }
 

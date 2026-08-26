@@ -84,7 +84,7 @@ export interface RunObject {
     id: string;
     /**
      * The object type, which is always `thread.run`.
-     * @type {string}
+     * @type {RunObjectObjectEnum}
      * @memberof RunObject
      */
     object: RunObjectObjectEnum;
@@ -108,7 +108,7 @@ export interface RunObject {
     assistantId: string;
     /**
      * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
-     * @type {string}
+     * @type {RunObjectStatusEnum}
      * @memberof RunObject
      */
     status: RunObjectStatusEnum;
@@ -275,29 +275,31 @@ export type RunObjectStatusEnum = typeof RunObjectStatusEnum[keyof typeof RunObj
 export function instanceOfRunObject(value: object): value is RunObject {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-    if (!('threadId' in value) || value['threadId'] === undefined) return false;
-    if (!('assistantId' in value) || value['assistantId'] === undefined) return false;
+    if (value['object'] !== 'thread.run') return false;
+    
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
+    if ((!('threadId' in (value as Record<string, any>)) && !('thread_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['threadId'] === undefined && (value as Record<string, any>)['thread_id'] === undefined)) return false;
+    if ((!('assistantId' in (value as Record<string, any>)) && !('assistant_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['assistantId'] === undefined && (value as Record<string, any>)['assistant_id'] === undefined)) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('requiredAction' in value) || value['requiredAction'] === undefined) return false;
-    if (!('lastError' in value) || value['lastError'] === undefined) return false;
-    if (!('expiresAt' in value) || value['expiresAt'] === undefined) return false;
-    if (!('startedAt' in value) || value['startedAt'] === undefined) return false;
-    if (!('cancelledAt' in value) || value['cancelledAt'] === undefined) return false;
-    if (!('failedAt' in value) || value['failedAt'] === undefined) return false;
-    if (!('completedAt' in value) || value['completedAt'] === undefined) return false;
-    if (!('incompleteDetails' in value) || value['incompleteDetails'] === undefined) return false;
+    if ((!('requiredAction' in (value as Record<string, any>)) && !('required_action' in (value as Record<string, any>))) || ((value as Record<string, any>)['requiredAction'] === undefined && (value as Record<string, any>)['required_action'] === undefined)) return false;
+    if ((!('lastError' in (value as Record<string, any>)) && !('last_error' in (value as Record<string, any>))) || ((value as Record<string, any>)['lastError'] === undefined && (value as Record<string, any>)['last_error'] === undefined)) return false;
+    if ((!('expiresAt' in (value as Record<string, any>)) && !('expires_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['expiresAt'] === undefined && (value as Record<string, any>)['expires_at'] === undefined)) return false;
+    if ((!('startedAt' in (value as Record<string, any>)) && !('started_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['startedAt'] === undefined && (value as Record<string, any>)['started_at'] === undefined)) return false;
+    if ((!('cancelledAt' in (value as Record<string, any>)) && !('cancelled_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['cancelledAt'] === undefined && (value as Record<string, any>)['cancelled_at'] === undefined)) return false;
+    if ((!('failedAt' in (value as Record<string, any>)) && !('failed_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['failedAt'] === undefined && (value as Record<string, any>)['failed_at'] === undefined)) return false;
+    if ((!('completedAt' in (value as Record<string, any>)) && !('completed_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['completedAt'] === undefined && (value as Record<string, any>)['completed_at'] === undefined)) return false;
+    if ((!('incompleteDetails' in (value as Record<string, any>)) && !('incomplete_details' in (value as Record<string, any>))) || ((value as Record<string, any>)['incompleteDetails'] === undefined && (value as Record<string, any>)['incomplete_details'] === undefined)) return false;
     if (!('model' in value) || value['model'] === undefined) return false;
     if (!('instructions' in value) || value['instructions'] === undefined) return false;
     if (!('tools' in value) || value['tools'] === undefined) return false;
     if (!('metadata' in value) || value['metadata'] === undefined) return false;
     if (!('usage' in value) || value['usage'] === undefined) return false;
-    if (!('maxPromptTokens' in value) || value['maxPromptTokens'] === undefined) return false;
-    if (!('maxCompletionTokens' in value) || value['maxCompletionTokens'] === undefined) return false;
-    if (!('truncationStrategy' in value) || value['truncationStrategy'] === undefined) return false;
-    if (!('toolChoice' in value) || value['toolChoice'] === undefined) return false;
-    if (!('parallelToolCalls' in value) || value['parallelToolCalls'] === undefined) return false;
-    if (!('responseFormat' in value) || value['responseFormat'] === undefined) return false;
+    if ((!('maxPromptTokens' in (value as Record<string, any>)) && !('max_prompt_tokens' in (value as Record<string, any>))) || ((value as Record<string, any>)['maxPromptTokens'] === undefined && (value as Record<string, any>)['max_prompt_tokens'] === undefined)) return false;
+    if ((!('maxCompletionTokens' in (value as Record<string, any>)) && !('max_completion_tokens' in (value as Record<string, any>))) || ((value as Record<string, any>)['maxCompletionTokens'] === undefined && (value as Record<string, any>)['max_completion_tokens'] === undefined)) return false;
+    if ((!('truncationStrategy' in (value as Record<string, any>)) && !('truncation_strategy' in (value as Record<string, any>))) || ((value as Record<string, any>)['truncationStrategy'] === undefined && (value as Record<string, any>)['truncation_strategy'] === undefined)) return false;
+    if ((!('toolChoice' in (value as Record<string, any>)) && !('tool_choice' in (value as Record<string, any>))) || ((value as Record<string, any>)['toolChoice'] === undefined && (value as Record<string, any>)['tool_choice'] === undefined)) return false;
+    if ((!('parallelToolCalls' in (value as Record<string, any>)) && !('parallel_tool_calls' in (value as Record<string, any>))) || ((value as Record<string, any>)['parallelToolCalls'] === undefined && (value as Record<string, any>)['parallel_tool_calls'] === undefined)) return false;
+    if ((!('responseFormat' in (value as Record<string, any>)) && !('response_format' in (value as Record<string, any>))) || ((value as Record<string, any>)['responseFormat'] === undefined && (value as Record<string, any>)['response_format'] === undefined)) return false;
     return true;
 }
 
@@ -330,8 +332,8 @@ export function RunObjectFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'tools': ((json['tools'] as Array<any>).map(AssistantObjectToolsInnerFromJSON)),
         'metadata': json['metadata'],
         'usage': RunCompletionUsageFromJSON(json['usage']),
-        'temperature': json['temperature'] == null ? undefined : json['temperature'],
-        'topP': json['top_p'] == null ? undefined : json['top_p'],
+        'temperature': json['temperature'] === undefined ? undefined : json['temperature'] === null ? null : json['temperature'],
+        'topP': json['top_p'] === undefined ? undefined : json['top_p'] === null ? null : json['top_p'],
         'maxPromptTokens': json['max_prompt_tokens'],
         'maxCompletionTokens': json['max_completion_tokens'],
         'truncationStrategy': TruncationObjectFromJSON(json['truncation_strategy']),

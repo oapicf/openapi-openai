@@ -102,7 +102,7 @@ ListModelsResponse::getObject()
 }
 
 void
-ListModelsResponse::setObject(std::string  object)
+ListModelsResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -114,7 +114,7 @@ ListModelsResponse::getData()
 }
 
 void
-ListModelsResponse::setData(std::list <Model> data)
+ListModelsResponse::setData(std::list<Model> data)
 {
 	this->data = data;
 }

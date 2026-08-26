@@ -103,10 +103,6 @@ class RealtimeServerEventResponseContentPartAddedPart {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventResponseContentPartAddedPart[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventResponseContentPartAddedPart[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
@@ -166,29 +162,29 @@ class RealtimeServerEventResponseContentPartAddedPart {
 }
 
 /// The content type (\"text\", \"audio\").
-class RealtimeServerEventResponseContentPartAddedPartTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventResponseContentPartAddedPartTypeEnum._(this.value);
+enum RealtimeServerEventResponseContentPartAddedPartTypeEnum {
+  audio._(r'audio'),
+  text._(r'text'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventResponseContentPartAddedPartTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const audio = RealtimeServerEventResponseContentPartAddedPartTypeEnum._(r'audio');
-  static const text = RealtimeServerEventResponseContentPartAddedPartTypeEnum._(r'text');
-
-  /// List of all possible values in this [enum][RealtimeServerEventResponseContentPartAddedPartTypeEnum].
-  static const values = <RealtimeServerEventResponseContentPartAddedPartTypeEnum>[
-    audio,
-    text,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventResponseContentPartAddedPartTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventResponseContentPartAddedPartTypeEnum? fromJson(dynamic value) => RealtimeServerEventResponseContentPartAddedPartTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventResponseContentPartAddedPartTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventResponseContentPartAddedPartTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventResponseContentPartAddedPartTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -210,9 +206,10 @@ class RealtimeServerEventResponseContentPartAddedPartTypeEnumTypeTransformer {
 
   const RealtimeServerEventResponseContentPartAddedPartTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventResponseContentPartAddedPartTypeEnum data) => data.value;
+  String encode(RealtimeServerEventResponseContentPartAddedPartTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventResponseContentPartAddedPartTypeEnum.
+  /// Returns the instance of [RealtimeServerEventResponseContentPartAddedPartTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -221,6 +218,9 @@ class RealtimeServerEventResponseContentPartAddedPartTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventResponseContentPartAddedPartTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventResponseContentPartAddedPartTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'audio': return RealtimeServerEventResponseContentPartAddedPartTypeEnum.audio;
@@ -234,7 +234,7 @@ class RealtimeServerEventResponseContentPartAddedPartTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeServerEventResponseContentPartAddedPartTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventResponseContentPartAddedPartTypeEnumTypeTransformer? _instance;
 }
 

@@ -158,15 +158,17 @@ class _$FineTuneChatCompletionRequestAssistantMessageSerializer implements Primi
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'weight':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FineTuneChatCompletionRequestAssistantMessageWeightEnum),
-          ) as FineTuneChatCompletionRequestAssistantMessageWeightEnum;
+            specifiedType: const FullType.nullable(FineTuneChatCompletionRequestAssistantMessageWeightEnum),
+          ) as FineTuneChatCompletionRequestAssistantMessageWeightEnum?;
+          if (valueDes == null) continue;
           result.weight = valueDes;
           break;
         case r'audio':
@@ -180,8 +182,9 @@ class _$FineTuneChatCompletionRequestAssistantMessageSerializer implements Primi
         case r'tool_calls':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ChatCompletionMessageToolCall)]),
-          ) as BuiltList<ChatCompletionMessageToolCall>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ChatCompletionMessageToolCall)]),
+          ) as BuiltList<ChatCompletionMessageToolCall>?;
+          if (valueDes == null) continue;
           result.toolCalls.replace(valueDes);
           break;
         case r'content':

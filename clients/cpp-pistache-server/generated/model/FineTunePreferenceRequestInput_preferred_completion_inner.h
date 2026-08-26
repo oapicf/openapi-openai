@@ -38,7 +38,7 @@ class  FineTunePreferenceRequestInput_preferred_completion_inner
 {
 public:
     FineTunePreferenceRequestInput_preferred_completion_inner();
-    virtual ~FineTunePreferenceRequestInput_preferred_completion_inner() = default;
+    virtual ~FineTunePreferenceRequestInput_preferred_completion_inner();
 
 
     /// <summary>

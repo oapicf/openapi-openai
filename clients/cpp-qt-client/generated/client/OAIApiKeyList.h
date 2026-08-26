@@ -34,13 +34,13 @@ class OAIAdminApiKey;
 class OAIApiKeyList : public OAIObject {
 public:
     OAIApiKeyList();
-    OAIApiKeyList(QString json);
+    OAIApiKeyList(const QString &json);
     ~OAIApiKeyList() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getObject() const;
     void setObject(const QString &object);

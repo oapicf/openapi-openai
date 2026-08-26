@@ -53,21 +53,21 @@ public:
 
 	/*! \brief Set The type of method. Is either `supervised` or `dpo`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	FineTuneSupervisedMethod getSupervised();
 
 	/*! \brief Set 
 	 */
-	void setSupervised(FineTuneSupervisedMethod  supervised);
+	void setSupervised(FineTuneSupervisedMethod supervised);
 	/*! \brief Get 
 	 */
 	FineTuneDPOMethod getDpo();
 
 	/*! \brief Set 
 	 */
-	void setDpo(FineTuneDPOMethod  dpo);
+	void setDpo(FineTuneDPOMethod dpo);
 
 
     private:

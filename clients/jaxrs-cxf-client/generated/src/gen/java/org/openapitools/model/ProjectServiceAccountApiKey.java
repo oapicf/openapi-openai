@@ -193,10 +193,7 @@ ORGANIZATION_PROJECT_SERVICE_ACCOUNT_API_KEY(String.valueOf("organization.projec
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

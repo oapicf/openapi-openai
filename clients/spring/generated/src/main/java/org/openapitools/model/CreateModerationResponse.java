@@ -11,27 +11,26 @@ import org.openapitools.model.CreateModerationResponseResultsInner;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Represents if a given text input is potentially harmful.
  */
 
 @Schema(name = "CreateModerationResponse", description = "Represents if a given text input is potentially harmful.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateModerationResponse {
 
   private String id;
 
   private String model;
 
-  @Valid
   private List<@Valid CreateModerationResponseResultsInner> results = new ArrayList<>();
 
   public CreateModerationResponse() {
@@ -63,6 +62,7 @@ public class CreateModerationResponse {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
@@ -83,6 +83,7 @@ public class CreateModerationResponse {
     return model;
   }
 
+  @JsonProperty("model")
   public void setModel(String model) {
     this.model = model;
   }
@@ -111,6 +112,7 @@ public class CreateModerationResponse {
     return results;
   }
 
+  @JsonProperty("results")
   public void setResults(List<@Valid CreateModerationResponseResultsInner> results) {
     this.results = results;
   }
@@ -149,11 +151,8 @@ public class CreateModerationResponse {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

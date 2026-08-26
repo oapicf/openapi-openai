@@ -127,7 +127,7 @@ CreateUploadRequest::getFilename()
 }
 
 void
-CreateUploadRequest::setFilename(std::string  filename)
+CreateUploadRequest::setFilename(std::string filename)
 {
 	this->filename = filename;
 }
@@ -139,7 +139,7 @@ CreateUploadRequest::getPurpose()
 }
 
 void
-CreateUploadRequest::setPurpose(std::string  purpose)
+CreateUploadRequest::setPurpose(std::string purpose)
 {
 	this->purpose = purpose;
 }
@@ -151,7 +151,7 @@ CreateUploadRequest::getBytes()
 }
 
 void
-CreateUploadRequest::setBytes(int  bytes)
+CreateUploadRequest::setBytes(int bytes)
 {
 	this->bytes = bytes;
 }
@@ -163,7 +163,7 @@ CreateUploadRequest::getMimeType()
 }
 
 void
-CreateUploadRequest::setMimeType(std::string  mime_type)
+CreateUploadRequest::setMimeType(std::string mime_type)
 {
 	this->mime_type = mime_type;
 }

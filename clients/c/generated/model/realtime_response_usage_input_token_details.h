@@ -19,17 +19,17 @@ typedef struct realtime_response_usage_input_token_details_t realtime_response_u
 
 
 typedef struct realtime_response_usage_input_token_details_t {
-    int cached_tokens; //numeric
-    int text_tokens; //numeric
-    int audio_tokens; //numeric
+    int *cached_tokens; //numeric
+    int *text_tokens; //numeric
+    int *audio_tokens; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } realtime_response_usage_input_token_details_t;
 
 __attribute__((deprecated)) realtime_response_usage_input_token_details_t *realtime_response_usage_input_token_details_create(
-    int cached_tokens,
-    int text_tokens,
-    int audio_tokens
+    int *cached_tokens,
+    int *text_tokens,
+    int *audio_tokens
 );
 
 void realtime_response_usage_input_token_details_free(realtime_response_usage_input_token_details_t *realtime_response_usage_input_token_details);

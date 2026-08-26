@@ -9,20 +9,20 @@ import org.openapitools.model.RealtimeServerEventConversationItemInputAudioTrans
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Returned when input audio transcription is configured, and a transcription  request for a user message failed. These events are separate from other  &#x60;error&#x60; events so that the client can identify the related Item. 
  */
 
 @Schema(name = "RealtimeServerEventConversationItemInputAudioTranscriptionFailed", description = "Returned when input audio transcription is configured, and a transcription  request for a user message failed. These events are separate from other  `error` events so that the client can identify the related Item. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
 
   private String eventId;
@@ -99,6 +99,7 @@ public class RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
     return eventId;
   }
 
+  @JsonProperty("event_id")
   public void setEventId(String eventId) {
     this.eventId = eventId;
   }
@@ -119,6 +120,7 @@ public class RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -139,6 +141,7 @@ public class RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
     return itemId;
   }
 
+  @JsonProperty("item_id")
   public void setItemId(String itemId) {
     this.itemId = itemId;
   }
@@ -159,6 +162,7 @@ public class RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
     return contentIndex;
   }
 
+  @JsonProperty("content_index")
   public void setContentIndex(Integer contentIndex) {
     this.contentIndex = contentIndex;
   }
@@ -179,6 +183,7 @@ public class RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
     return error;
   }
 
+  @JsonProperty("error")
   public void setError(RealtimeServerEventConversationItemInputAudioTranscriptionFailedError error) {
     this.error = error;
   }
@@ -221,11 +226,8 @@ public class RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

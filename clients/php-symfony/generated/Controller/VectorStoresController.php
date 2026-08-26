@@ -98,14 +98,14 @@ class VectorStoresController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($vectorStoreId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($batchId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -192,7 +192,7 @@ class VectorStoresController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateVectorStoreRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateVectorStoreRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($createVectorStoreRequest, $asserts);
         if ($response instanceof Response) {
@@ -281,14 +281,14 @@ class VectorStoresController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($vectorStoreId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateVectorStoreFileRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateVectorStoreFileRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($createVectorStoreFileRequest, $asserts);
         if ($response instanceof Response) {
@@ -377,14 +377,14 @@ class VectorStoresController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($vectorStoreId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateVectorStoreFileBatchRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateVectorStoreFileBatchRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($createVectorStoreFileBatchRequest, $asserts);
         if ($response instanceof Response) {
@@ -463,7 +463,7 @@ class VectorStoresController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($vectorStoreId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -542,14 +542,14 @@ class VectorStoresController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($vectorStoreId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($fileId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -627,7 +627,7 @@ class VectorStoresController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($vectorStoreId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -706,14 +706,14 @@ class VectorStoresController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($vectorStoreId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($fileId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -792,14 +792,14 @@ class VectorStoresController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($vectorStoreId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($batchId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -888,46 +888,46 @@ class VectorStoresController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($vectorStoreId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($batchId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ 'asc', 'desc' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($order, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($after, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($before, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ 'in_progress', 'completed', 'failed', 'cancelled' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($filter, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1015,39 +1015,39 @@ class VectorStoresController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($vectorStoreId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ 'asc', 'desc' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($order, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($after, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($before, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ 'in_progress', 'completed', 'failed', 'cancelled' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($filter, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1131,26 +1131,26 @@ class VectorStoresController extends Controller
 
         // Validate the input values
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ 'asc', 'desc' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($order, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($after, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($before, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1238,14 +1238,14 @@ class VectorStoresController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($vectorStoreId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\UpdateVectorStoreRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\UpdateVectorStoreRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($updateVectorStoreRequest, $asserts);
         if ($response instanceof Response) {

@@ -23,7 +23,7 @@ message TruncationObject {
     TYPE_LAST_MESSAGES = 1;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // The number of most recent messages from the thread when constructing the context for the run.
   optional int32 last_messages = 125053141;

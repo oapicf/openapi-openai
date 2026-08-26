@@ -15,7 +15,7 @@
 #include "OpenAPIBaseModel.h"
 #include "OpenAPIOtherChunkingStrategyResponseParam.h"
 #include "OpenAPIStaticChunkingStrategy.h"
-#include "OpenAPIStaticChunkingStrategyResponseParam.h"
+#include "OpenAPIStaticChunkingStrategyRequestParam.h"
 
 namespace OpenAPI
 {

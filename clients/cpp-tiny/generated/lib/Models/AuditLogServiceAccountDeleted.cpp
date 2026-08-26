@@ -64,7 +64,7 @@ AuditLog_service_account_deleted::getId()
 }
 
 void
-AuditLog_service_account_deleted::setId(std::string  id)
+AuditLog_service_account_deleted::setId(std::string id)
 {
 	this->id = id;
 }

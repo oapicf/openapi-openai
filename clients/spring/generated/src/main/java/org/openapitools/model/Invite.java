@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -12,20 +13,20 @@ import org.openapitools.model.InviteProjectsInner;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Represents an individual &#x60;invite&#x60; to the organization.
  */
 
 @Schema(name = "Invite", description = "Represents an individual `invite` to the organization.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class Invite {
 
   /**
@@ -147,9 +148,10 @@ public class Invite {
 
   private Integer expiresAt;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer acceptedAt;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid InviteProjectsInner> projects = new ArrayList<>();
 
   public Invite() {
@@ -185,6 +187,7 @@ public class Invite {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
@@ -205,6 +208,7 @@ public class Invite {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
@@ -225,6 +229,7 @@ public class Invite {
     return email;
   }
 
+  @JsonProperty("email")
   public void setEmail(String email) {
     this.email = email;
   }
@@ -245,6 +250,7 @@ public class Invite {
     return role;
   }
 
+  @JsonProperty("role")
   public void setRole(RoleEnum role) {
     this.role = role;
   }
@@ -265,6 +271,7 @@ public class Invite {
     return status;
   }
 
+  @JsonProperty("status")
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -285,6 +292,7 @@ public class Invite {
     return invitedAt;
   }
 
+  @JsonProperty("invited_at")
   public void setInvitedAt(Integer invitedAt) {
     this.invitedAt = invitedAt;
   }
@@ -305,6 +313,7 @@ public class Invite {
     return expiresAt;
   }
 
+  @JsonProperty("expires_at")
   public void setExpiresAt(Integer expiresAt) {
     this.expiresAt = expiresAt;
   }
@@ -325,6 +334,7 @@ public class Invite {
     return acceptedAt;
   }
 
+  @JsonProperty("accepted_at")
   public void setAcceptedAt(@Nullable Integer acceptedAt) {
     this.acceptedAt = acceptedAt;
   }
@@ -353,6 +363,7 @@ public class Invite {
     return projects;
   }
 
+  @JsonProperty("projects")
   public void setProjects(List<@Valid InviteProjectsInner> projects) {
     this.projects = projects;
   }
@@ -403,11 +414,8 @@ public class Invite {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

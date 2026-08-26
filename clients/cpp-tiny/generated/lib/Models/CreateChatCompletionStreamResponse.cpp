@@ -229,7 +229,7 @@ CreateChatCompletionStreamResponse::getId()
 }
 
 void
-CreateChatCompletionStreamResponse::setId(std::string  id)
+CreateChatCompletionStreamResponse::setId(std::string id)
 {
 	this->id = id;
 }
@@ -241,7 +241,7 @@ CreateChatCompletionStreamResponse::getChoices()
 }
 
 void
-CreateChatCompletionStreamResponse::setChoices(std::list <CreateChatCompletionStreamResponse_choices_inner> choices)
+CreateChatCompletionStreamResponse::setChoices(std::list<CreateChatCompletionStreamResponse_choices_inner> choices)
 {
 	this->choices = choices;
 }
@@ -253,7 +253,7 @@ CreateChatCompletionStreamResponse::getCreated()
 }
 
 void
-CreateChatCompletionStreamResponse::setCreated(int  created)
+CreateChatCompletionStreamResponse::setCreated(int created)
 {
 	this->created = created;
 }
@@ -265,7 +265,7 @@ CreateChatCompletionStreamResponse::getModel()
 }
 
 void
-CreateChatCompletionStreamResponse::setModel(std::string  model)
+CreateChatCompletionStreamResponse::setModel(std::string model)
 {
 	this->model = model;
 }
@@ -277,7 +277,7 @@ CreateChatCompletionStreamResponse::getServiceTier()
 }
 
 void
-CreateChatCompletionStreamResponse::setServiceTier(std::string  service_tier)
+CreateChatCompletionStreamResponse::setServiceTier(std::string service_tier)
 {
 	this->service_tier = service_tier;
 }
@@ -289,7 +289,7 @@ CreateChatCompletionStreamResponse::getSystemFingerprint()
 }
 
 void
-CreateChatCompletionStreamResponse::setSystemFingerprint(std::string  system_fingerprint)
+CreateChatCompletionStreamResponse::setSystemFingerprint(std::string system_fingerprint)
 {
 	this->system_fingerprint = system_fingerprint;
 }
@@ -301,7 +301,7 @@ CreateChatCompletionStreamResponse::getObject()
 }
 
 void
-CreateChatCompletionStreamResponse::setObject(std::string  object)
+CreateChatCompletionStreamResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -313,7 +313,7 @@ CreateChatCompletionStreamResponse::getUsage()
 }
 
 void
-CreateChatCompletionStreamResponse::setUsage(CreateChatCompletionStreamResponse_usage  usage)
+CreateChatCompletionStreamResponse::setUsage(CreateChatCompletionStreamResponse_usage usage)
 {
 	this->usage = usage;
 }

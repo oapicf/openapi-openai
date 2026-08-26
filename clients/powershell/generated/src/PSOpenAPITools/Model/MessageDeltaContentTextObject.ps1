@@ -55,9 +55,9 @@ function Initialize-MessageDeltaContentTextObject {
 
 
         $PSO = [PSCustomObject]@{
-            "index" = ${Index}
-            "type" = ${Type}
-            "text" = ${Text}
+            'index' = ${Index}
+            'type' = ${Type}
+            'text' = ${Text}
         }
 
 
@@ -95,7 +95,7 @@ function ConvertFrom-JsonToMessageDeltaContentTextObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in MessageDeltaContentTextObject
-        $AllProperties = ("index", "type", "text")
+        $AllProperties = ('index', 'type', 'text')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -106,28 +106,28 @@ function ConvertFrom-JsonToMessageDeltaContentTextObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'index' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "index"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'index'))) {
             throw "Error! JSON cannot be serialized due to the required property 'index' missing."
         } else {
-            $Index = $JsonParameters.PSobject.Properties["index"].value
+            $Index = $JsonParameters.PSobject.Properties['index'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "text"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'text'))) { #optional property not found
             $Text = $null
         } else {
-            $Text = $JsonParameters.PSobject.Properties["text"].value
+            $Text = $JsonParameters.PSobject.Properties['text'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "index" = ${Index}
-            "type" = ${Type}
-            "text" = ${Text}
+            'index' = ${Index}
+            'type' = ${Type}
+            'text' = ${Text}
         }
 
         return $PSO

@@ -31,7 +31,7 @@ class  VectorStoreObject_file_counts
 {
 public:
     VectorStoreObject_file_counts();
-    virtual ~VectorStoreObject_file_counts() = default;
+    virtual ~VectorStoreObject_file_counts();
 
 
     /// <summary>

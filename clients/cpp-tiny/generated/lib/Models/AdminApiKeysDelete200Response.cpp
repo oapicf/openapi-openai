@@ -106,7 +106,7 @@ Admin_api_keys_delete_200_response::getId()
 }
 
 void
-Admin_api_keys_delete_200_response::setId(std::string  id)
+Admin_api_keys_delete_200_response::setId(std::string id)
 {
 	this->id = id;
 }
@@ -118,7 +118,7 @@ Admin_api_keys_delete_200_response::getObject()
 }
 
 void
-Admin_api_keys_delete_200_response::setObject(std::string  object)
+Admin_api_keys_delete_200_response::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -130,7 +130,7 @@ Admin_api_keys_delete_200_response::isDeleted()
 }
 
 void
-Admin_api_keys_delete_200_response::setDeleted(bool  deleted)
+Admin_api_keys_delete_200_response::setDeleted(bool deleted)
 {
 	this->deleted = deleted;
 }

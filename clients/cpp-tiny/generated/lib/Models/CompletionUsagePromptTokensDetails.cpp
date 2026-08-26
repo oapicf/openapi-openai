@@ -85,7 +85,7 @@ CompletionUsage_prompt_tokens_details::getAudioTokens()
 }
 
 void
-CompletionUsage_prompt_tokens_details::setAudioTokens(int  audio_tokens)
+CompletionUsage_prompt_tokens_details::setAudioTokens(int audio_tokens)
 {
 	this->audio_tokens = audio_tokens;
 }
@@ -97,7 +97,7 @@ CompletionUsage_prompt_tokens_details::getCachedTokens()
 }
 
 void
-CompletionUsage_prompt_tokens_details::setCachedTokens(int  cached_tokens)
+CompletionUsage_prompt_tokens_details::setCachedTokens(int cached_tokens)
 {
 	this->cached_tokens = cached_tokens;
 }

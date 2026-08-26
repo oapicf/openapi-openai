@@ -106,7 +106,7 @@ Image::getB64Json()
 }
 
 void
-Image::setB64Json(std::string  b64_json)
+Image::setB64Json(std::string b64_json)
 {
 	this->b64_json = b64_json;
 }
@@ -118,7 +118,7 @@ Image::getUrl()
 }
 
 void
-Image::setUrl(std::string  url)
+Image::setUrl(std::string url)
 {
 	this->url = url;
 }
@@ -130,7 +130,7 @@ Image::getRevisedPrompt()
 }
 
 void
-Image::setRevisedPrompt(std::string  revised_prompt)
+Image::setRevisedPrompt(std::string revised_prompt)
 {
 	this->revised_prompt = revised_prompt;
 }

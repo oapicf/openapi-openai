@@ -1,0 +1,704 @@
+package org.openapitools.server.model;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.server.model.ChatCompletionFunctions;
+import org.openapitools.server.model.ChatCompletionRequestMessage;
+import org.openapitools.server.model.ChatCompletionStreamOptions;
+import org.openapitools.server.model.ChatCompletionTool;
+import org.openapitools.server.model.ChatCompletionToolChoiceOption;
+import org.openapitools.server.model.CreateChatCompletionRequestAudio;
+import org.openapitools.server.model.CreateChatCompletionRequestFunctionCall;
+import org.openapitools.server.model.CreateChatCompletionRequestModel;
+import org.openapitools.server.model.CreateChatCompletionRequestResponseFormat;
+import org.openapitools.server.model.CreateChatCompletionRequestStop;
+import org.openapitools.server.model.PredictionContent;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+
+
+public class CreateChatCompletionRequest   {
+
+    private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
+    private CreateChatCompletionRequestModel model;
+    private Boolean store = false;
+
+    /**
+    * **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
+    */
+    public enum ReasoningEffortEnum {
+        LOW("low"),
+        MEDIUM("medium"),
+        HIGH("high");
+
+        private String value;
+
+        ReasoningEffortEnum(String value) {
+            this.value = value;
+        }
+
+        @JsonValue
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+
+        @JsonCreator
+        public static ReasoningEffortEnum fromValue(String text) {
+            for (ReasoningEffortEnum b : ReasoningEffortEnum.values()) {
+                if (String.valueOf(b.value).equals(text)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + text + "'");
+        }
+    }
+
+
+    private ReasoningEffortEnum reasoningEffort = ReasoningEffortEnum.MEDIUM;
+    private Map<String, String> metadata;
+    private BigDecimal frequencyPenalty = new BigDecimal("0");
+    private Map<String, Integer> logitBias;
+    private Boolean logprobs = false;
+    private Integer topLogprobs;
+    private Integer maxTokens;
+    private Integer maxCompletionTokens;
+    private Integer n = 1;
+
+    /**
+    * Gets or Sets modalities
+    */
+    public enum ModalitiesEnum {
+        TEXT("text"),
+        AUDIO("audio");
+
+        private String value;
+
+        ModalitiesEnum(String value) {
+            this.value = value;
+        }
+
+        @JsonValue
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+
+        @JsonCreator
+        public static ModalitiesEnum fromValue(String text) {
+            for (ModalitiesEnum b : ModalitiesEnum.values()) {
+                if (String.valueOf(b.value).equals(text)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + text + "'");
+        }
+    }
+
+
+    private List<ModalitiesEnum> modalities;
+    private PredictionContent prediction;
+    private CreateChatCompletionRequestAudio audio;
+    private BigDecimal presencePenalty = new BigDecimal("0");
+    private CreateChatCompletionRequestResponseFormat responseFormat;
+    private Integer seed;
+
+    /**
+    * Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. 
+    */
+    public enum ServiceTierEnum {
+        AUTO("auto"),
+        DEFAULT("default");
+
+        private String value;
+
+        ServiceTierEnum(String value) {
+            this.value = value;
+        }
+
+        @JsonValue
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+
+        @JsonCreator
+        public static ServiceTierEnum fromValue(String text) {
+            for (ServiceTierEnum b : ServiceTierEnum.values()) {
+                if (String.valueOf(b.value).equals(text)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + text + "'");
+        }
+    }
+
+
+    private ServiceTierEnum serviceTier = ServiceTierEnum.AUTO;
+    private CreateChatCompletionRequestStop stop;
+    private Boolean stream = false;
+    private ChatCompletionStreamOptions streamOptions;
+    private BigDecimal temperature = new BigDecimal("1");
+    private BigDecimal topP = new BigDecimal("1");
+    private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
+    private ChatCompletionToolChoiceOption toolChoice;
+    private Boolean parallelToolCalls = true;
+    private String user;
+    private CreateChatCompletionRequestFunctionCall functionCall;
+    private List<@Valid ChatCompletionFunctions> functions = new ArrayList<>();
+
+    /**
+     * Default constructor.
+     */
+    public CreateChatCompletionRequest() {
+    // JSON-B / Jackson
+    }
+
+    /**
+     * Create CreateChatCompletionRequest.
+     *
+     * @param messages A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
+     * @param model model
+     * @param store Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. 
+     * @param reasoningEffort **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are &#x60;low&#x60;, &#x60;medium&#x60;, and &#x60;high&#x60;. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
+     * @param metadata Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). 
+     * @param frequencyPenalty Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim. 
+     * @param logitBias Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. 
+     * @param logprobs Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the &#x60;content&#x60; of &#x60;message&#x60;. 
+     * @param topLogprobs An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. &#x60;logprobs&#x60; must be set to &#x60;true&#x60; if this parameter is used. 
+     * @param maxTokens The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of &#x60;max_completion_tokens&#x60;, and is not compatible with [o1 series models](/docs/guides/reasoning). 
+     * @param maxCompletionTokens An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). 
+     * @param n How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep &#x60;n&#x60; as &#x60;1&#x60; to minimize costs.
+     * @param modalities Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  &#x60;[\&quot;text\&quot;]&#x60;  The &#x60;gpt-4o-audio-preview&#x60; model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  &#x60;[\&quot;text\&quot;, \&quot;audio\&quot;]&#x60; 
+     * @param prediction Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
+     * @param audio audio
+     * @param presencePenalty Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics. 
+     * @param responseFormat responseFormat
+     * @param seed This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same &#x60;seed&#x60; and parameters should return the same result. Determinism is not guaranteed, and you should refer to the &#x60;system_fingerprint&#x60; response parameter to monitor changes in the backend. 
+     * @param serviceTier Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to &#39;auto&#39;, and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to &#39;auto&#39;, and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to &#39;default&#39;, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is &#39;auto&#39;.    When this parameter is set, the response body will include the &#x60;service_tier&#x60; utilized. 
+     * @param stop stop
+     * @param stream If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a &#x60;data: [DONE]&#x60; message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). 
+     * @param streamOptions streamOptions
+     * @param temperature What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or &#x60;top_p&#x60; but not both. 
+     * @param topP An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or &#x60;temperature&#x60; but not both. 
+     * @param tools A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. 
+     * @param toolChoice toolChoice
+     * @param parallelToolCalls Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+     * @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
+     * @param functionCall functionCall
+     * @param functions Deprecated in favor of &#x60;tools&#x60;.  A list of functions the model may generate JSON inputs for. 
+     */
+    public CreateChatCompletionRequest(
+        List<ChatCompletionRequestMessage> messages, 
+        CreateChatCompletionRequestModel model, 
+        Boolean store, 
+        ReasoningEffortEnum reasoningEffort, 
+        Map<String, String> metadata, 
+        BigDecimal frequencyPenalty, 
+        Map<String, Integer> logitBias, 
+        Boolean logprobs, 
+        Integer topLogprobs, 
+        Integer maxTokens, 
+        Integer maxCompletionTokens, 
+        Integer n, 
+        List<ModalitiesEnum> modalities, 
+        PredictionContent prediction, 
+        CreateChatCompletionRequestAudio audio, 
+        BigDecimal presencePenalty, 
+        CreateChatCompletionRequestResponseFormat responseFormat, 
+        Integer seed, 
+        ServiceTierEnum serviceTier, 
+        CreateChatCompletionRequestStop stop, 
+        Boolean stream, 
+        ChatCompletionStreamOptions streamOptions, 
+        BigDecimal temperature, 
+        BigDecimal topP, 
+        List<@Valid ChatCompletionTool> tools, 
+        ChatCompletionToolChoiceOption toolChoice, 
+        Boolean parallelToolCalls, 
+        String user, 
+        CreateChatCompletionRequestFunctionCall functionCall, 
+        List<@Valid ChatCompletionFunctions> functions
+    ) {
+        this.messages = messages;
+        this.model = model;
+        this.store = store;
+        this.reasoningEffort = reasoningEffort;
+        this.metadata = metadata;
+        this.frequencyPenalty = frequencyPenalty;
+        this.logitBias = logitBias;
+        this.logprobs = logprobs;
+        this.topLogprobs = topLogprobs;
+        this.maxTokens = maxTokens;
+        this.maxCompletionTokens = maxCompletionTokens;
+        this.n = n;
+        this.modalities = modalities;
+        this.prediction = prediction;
+        this.audio = audio;
+        this.presencePenalty = presencePenalty;
+        this.responseFormat = responseFormat;
+        this.seed = seed;
+        this.serviceTier = serviceTier;
+        this.stop = stop;
+        this.stream = stream;
+        this.streamOptions = streamOptions;
+        this.temperature = temperature;
+        this.topP = topP;
+        this.tools = tools;
+        this.toolChoice = toolChoice;
+        this.parallelToolCalls = parallelToolCalls;
+        this.user = user;
+        this.functionCall = functionCall;
+        this.functions = functions;
+    }
+
+
+
+    /**
+     * A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
+     * @return messages
+     */
+    public List<ChatCompletionRequestMessage> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<ChatCompletionRequestMessage> messages) {
+        this.messages = messages;
+    }
+
+    /**
+     * Get model
+     * @return model
+     */
+    public CreateChatCompletionRequestModel getModel() {
+        return model;
+    }
+
+    public void setModel(CreateChatCompletionRequestModel model) {
+        this.model = model;
+    }
+
+    /**
+     * Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. 
+     * @return store
+     */
+    public Boolean getStore() {
+        return store;
+    }
+
+    public void setStore(Boolean store) {
+        this.store = store;
+    }
+
+    /**
+     * **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
+     * @return reasoningEffort
+     */
+    public ReasoningEffortEnum getReasoningEffort() {
+        return reasoningEffort;
+    }
+
+    public void setReasoningEffort(ReasoningEffortEnum reasoningEffort) {
+        this.reasoningEffort = reasoningEffort;
+    }
+
+    /**
+     * Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). 
+     * @return metadata
+     */
+    public Map<String, String> getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(Map<String, String> metadata) {
+        this.metadata = metadata;
+    }
+
+    /**
+     * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. 
+     * minimum: -2
+     * maximum: 2
+     * @return frequencyPenalty
+     */
+    public BigDecimal getFrequencyPenalty() {
+        return frequencyPenalty;
+    }
+
+    public void setFrequencyPenalty(BigDecimal frequencyPenalty) {
+        this.frequencyPenalty = frequencyPenalty;
+    }
+
+    /**
+     * Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. 
+     * @return logitBias
+     */
+    public Map<String, Integer> getLogitBias() {
+        return logitBias;
+    }
+
+    public void setLogitBias(Map<String, Integer> logitBias) {
+        this.logitBias = logitBias;
+    }
+
+    /**
+     * Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. 
+     * @return logprobs
+     */
+    public Boolean getLogprobs() {
+        return logprobs;
+    }
+
+    public void setLogprobs(Boolean logprobs) {
+        this.logprobs = logprobs;
+    }
+
+    /**
+     * An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. 
+     * minimum: 0
+     * maximum: 20
+     * @return topLogprobs
+     */
+    public Integer getTopLogprobs() {
+        return topLogprobs;
+    }
+
+    public void setTopLogprobs(Integer topLogprobs) {
+        this.topLogprobs = topLogprobs;
+    }
+
+    /**
+     * The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning). 
+     * @return maxTokens
+     */
+    public Integer getMaxTokens() {
+        return maxTokens;
+    }
+
+    public void setMaxTokens(Integer maxTokens) {
+        this.maxTokens = maxTokens;
+    }
+
+    /**
+     * An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). 
+     * @return maxCompletionTokens
+     */
+    public Integer getMaxCompletionTokens() {
+        return maxCompletionTokens;
+    }
+
+    public void setMaxCompletionTokens(Integer maxCompletionTokens) {
+        this.maxCompletionTokens = maxCompletionTokens;
+    }
+
+    /**
+     * How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.
+     * minimum: 1
+     * maximum: 128
+     * @return n
+     */
+    public Integer getN() {
+        return n;
+    }
+
+    public void setN(Integer n) {
+        this.n = n;
+    }
+
+    /**
+     * Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` 
+     * @return modalities
+     */
+    public List<ModalitiesEnum> getModalities() {
+        return modalities;
+    }
+
+    public void setModalities(List<ModalitiesEnum> modalities) {
+        this.modalities = modalities;
+    }
+
+    /**
+     * Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
+     * @return prediction
+     */
+    public PredictionContent getPrediction() {
+        return prediction;
+    }
+
+    public void setPrediction(PredictionContent prediction) {
+        this.prediction = prediction;
+    }
+
+    /**
+     * Get audio
+     * @return audio
+     */
+    public CreateChatCompletionRequestAudio getAudio() {
+        return audio;
+    }
+
+    public void setAudio(CreateChatCompletionRequestAudio audio) {
+        this.audio = audio;
+    }
+
+    /**
+     * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. 
+     * minimum: -2
+     * maximum: 2
+     * @return presencePenalty
+     */
+    public BigDecimal getPresencePenalty() {
+        return presencePenalty;
+    }
+
+    public void setPresencePenalty(BigDecimal presencePenalty) {
+        this.presencePenalty = presencePenalty;
+    }
+
+    /**
+     * Get responseFormat
+     * @return responseFormat
+     */
+    public CreateChatCompletionRequestResponseFormat getResponseFormat() {
+        return responseFormat;
+    }
+
+    public void setResponseFormat(CreateChatCompletionRequestResponseFormat responseFormat) {
+        this.responseFormat = responseFormat;
+    }
+
+    /**
+     * This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. 
+     * minimum: -9223372036854776000
+     * maximum: 9223372036854776000
+     * @return seed
+     */
+    public Integer getSeed() {
+        return seed;
+    }
+
+    public void setSeed(Integer seed) {
+        this.seed = seed;
+    }
+
+    /**
+     * Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. 
+     * @return serviceTier
+     */
+    public ServiceTierEnum getServiceTier() {
+        return serviceTier;
+    }
+
+    public void setServiceTier(ServiceTierEnum serviceTier) {
+        this.serviceTier = serviceTier;
+    }
+
+    /**
+     * Get stop
+     * @return stop
+     */
+    public CreateChatCompletionRequestStop getStop() {
+        return stop;
+    }
+
+    public void setStop(CreateChatCompletionRequestStop stop) {
+        this.stop = stop;
+    }
+
+    /**
+     * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). 
+     * @return stream
+     */
+    public Boolean getStream() {
+        return stream;
+    }
+
+    public void setStream(Boolean stream) {
+        this.stream = stream;
+    }
+
+    /**
+     * Get streamOptions
+     * @return streamOptions
+     */
+    public ChatCompletionStreamOptions getStreamOptions() {
+        return streamOptions;
+    }
+
+    public void setStreamOptions(ChatCompletionStreamOptions streamOptions) {
+        this.streamOptions = streamOptions;
+    }
+
+    /**
+     * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both. 
+     * minimum: 0
+     * maximum: 2
+     * @return temperature
+     */
+    public BigDecimal getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(BigDecimal temperature) {
+        this.temperature = temperature;
+    }
+
+    /**
+     * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or `temperature` but not both. 
+     * minimum: 0
+     * maximum: 1
+     * @return topP
+     */
+    public BigDecimal getTopP() {
+        return topP;
+    }
+
+    public void setTopP(BigDecimal topP) {
+        this.topP = topP;
+    }
+
+    /**
+     * A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. 
+     * @return tools
+     */
+    public List<@Valid ChatCompletionTool> getTools() {
+        return tools;
+    }
+
+    public void setTools(List<@Valid ChatCompletionTool> tools) {
+        this.tools = tools;
+    }
+
+    /**
+     * Get toolChoice
+     * @return toolChoice
+     */
+    public ChatCompletionToolChoiceOption getToolChoice() {
+        return toolChoice;
+    }
+
+    public void setToolChoice(ChatCompletionToolChoiceOption toolChoice) {
+        this.toolChoice = toolChoice;
+    }
+
+    /**
+     * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+     * @return parallelToolCalls
+     */
+    public Boolean getParallelToolCalls() {
+        return parallelToolCalls;
+    }
+
+    public void setParallelToolCalls(Boolean parallelToolCalls) {
+        this.parallelToolCalls = parallelToolCalls;
+    }
+
+    /**
+     * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
+     * @return user
+     */
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    /**
+     * Get functionCall
+     * @return functionCall
+     */
+    public CreateChatCompletionRequestFunctionCall getFunctionCall() {
+        return functionCall;
+    }
+
+    public void setFunctionCall(CreateChatCompletionRequestFunctionCall functionCall) {
+        this.functionCall = functionCall;
+    }
+
+    /**
+     * Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for. 
+     * @return functions
+     */
+    public List<@Valid ChatCompletionFunctions> getFunctions() {
+        return functions;
+    }
+
+    public void setFunctions(List<@Valid ChatCompletionFunctions> functions) {
+        this.functions = functions;
+    }
+
+    /**
+      * Create a string representation of this pojo.
+    **/
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class CreateChatCompletionRequest {\n");
+        
+        sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
+        sb.append("    model: ").append(toIndentedString(model)).append("\n");
+        sb.append("    store: ").append(toIndentedString(store)).append("\n");
+        sb.append("    reasoningEffort: ").append(toIndentedString(reasoningEffort)).append("\n");
+        sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+        sb.append("    frequencyPenalty: ").append(toIndentedString(frequencyPenalty)).append("\n");
+        sb.append("    logitBias: ").append(toIndentedString(logitBias)).append("\n");
+        sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
+        sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
+        sb.append("    maxTokens: ").append(toIndentedString(maxTokens)).append("\n");
+        sb.append("    maxCompletionTokens: ").append(toIndentedString(maxCompletionTokens)).append("\n");
+        sb.append("    n: ").append(toIndentedString(n)).append("\n");
+        sb.append("    modalities: ").append(toIndentedString(modalities)).append("\n");
+        sb.append("    prediction: ").append(toIndentedString(prediction)).append("\n");
+        sb.append("    audio: ").append(toIndentedString(audio)).append("\n");
+        sb.append("    presencePenalty: ").append(toIndentedString(presencePenalty)).append("\n");
+        sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
+        sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
+        sb.append("    serviceTier: ").append(toIndentedString(serviceTier)).append("\n");
+        sb.append("    stop: ").append(toIndentedString(stop)).append("\n");
+        sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
+        sb.append("    streamOptions: ").append(toIndentedString(streamOptions)).append("\n");
+        sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+        sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
+        sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
+        sb.append("    toolChoice: ").append(toIndentedString(toolChoice)).append("\n");
+        sb.append("    parallelToolCalls: ").append(toIndentedString(parallelToolCalls)).append("\n");
+        sb.append("    user: ").append(toIndentedString(user)).append("\n");
+        sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
+        sb.append("    functions: ").append(toIndentedString(functions)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+    */
+    private static String toIndentedString(Object o) {
+        return o == null ? "null" : o.toString().replace("\n", "\n    ");
+    }
+}
+

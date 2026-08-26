@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIChatCompletionStreamOptions : public OAIObject {
 public:
     OAIChatCompletionStreamOptions();
-    OAIChatCompletionStreamOptions(QString json);
+    OAIChatCompletionStreamOptions(const QString &json);
     ~OAIChatCompletionStreamOptions() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     bool isIncludeUsage() const;
     void setIncludeUsage(const bool &include_usage);

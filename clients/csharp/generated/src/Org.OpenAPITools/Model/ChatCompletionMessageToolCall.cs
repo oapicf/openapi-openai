@@ -150,8 +150,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ChatCompletionMessageToolCall" />
     /// </summary>
-    public class ChatCompletionMessageToolCallJsonConverter : JsonConverter<ChatCompletionMessageToolCall>
+    public partial class ChatCompletionMessageToolCallJsonConverter : JsonConverter<ChatCompletionMessageToolCall>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChatCompletionMessageToolCallJsonConverter" /> class.
+        /// </summary>
+        public ChatCompletionMessageToolCallJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ChatCompletionMessageToolCall" />
         /// </summary>

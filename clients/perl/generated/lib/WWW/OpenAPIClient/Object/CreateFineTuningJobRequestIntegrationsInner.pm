@@ -223,7 +223,7 @@ __PACKAGE__->method_documentation({
     'type' => {
         datatype => 'string',
         base_name => 'type',
-        description => '',
+        description => 'The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. ',
         format => '',
         read_only => '',
             },

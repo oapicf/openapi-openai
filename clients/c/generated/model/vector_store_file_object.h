@@ -39,8 +39,8 @@ openai_api_vector_store_file_object_STATUS_e vector_store_file_object_status_Fro
 typedef struct vector_store_file_object_t {
     char *id; // string
     openai_api_vector_store_file_object_OBJECT_e object; //enum
-    int usage_bytes; //numeric
-    int created_at; //numeric
+    int *usage_bytes; //numeric
+    int *created_at; //numeric
     char *vector_store_id; // string
     openai_api_vector_store_file_object_STATUS_e status; //enum
     struct vector_store_file_object_last_error_t *last_error; //model
@@ -52,8 +52,8 @@ typedef struct vector_store_file_object_t {
 __attribute__((deprecated)) vector_store_file_object_t *vector_store_file_object_create(
     char *id,
     openai_api_vector_store_file_object_OBJECT_e object,
-    int usage_bytes,
-    int created_at,
+    int *usage_bytes,
+    int *created_at,
     char *vector_store_id,
     openai_api_vector_store_file_object_STATUS_e status,
     vector_store_file_object_last_error_t *last_error,

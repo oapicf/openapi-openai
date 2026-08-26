@@ -25,19 +25,24 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeServerEventConversationItemTruncated(
 
-    @Schema(example = "null", required = true, description = "The unique ID of the server event.")
+    @Schema(required = true, description = "The unique ID of the server event.")
+    @param:JsonProperty("event_id")
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The event type, must be `conversation.item.truncated`.")
+    @Schema(required = true, description = "The event type, must be `conversation.item.truncated`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventConversationItemTruncated.Type,
 
-    @Schema(example = "null", required = true, description = "The ID of the assistant message item that was truncated.")
+    @Schema(required = true, description = "The ID of the assistant message item that was truncated.")
+    @param:JsonProperty("item_id")
     @get:JsonProperty("item_id", required = true) val itemId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The index of the content part that was truncated.")
+    @Schema(required = true, description = "The index of the content part that was truncated.")
+    @param:JsonProperty("content_index")
     @get:JsonProperty("content_index", required = true) val contentIndex: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The duration up to which the audio was truncated, in milliseconds. ")
+    @Schema(required = true, description = "The duration up to which the audio was truncated, in milliseconds. ")
+    @param:JsonProperty("audio_end_ms")
     @get:JsonProperty("audio_end_ms", required = true) val audioEndMs: kotlin.Int
 ) {
 
@@ -54,7 +59,7 @@ data class RealtimeServerEventConversationItemTruncated(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeServerEventConversationItemTruncated'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

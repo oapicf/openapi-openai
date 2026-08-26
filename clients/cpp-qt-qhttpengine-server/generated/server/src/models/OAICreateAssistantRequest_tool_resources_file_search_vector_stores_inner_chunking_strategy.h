@@ -21,7 +21,7 @@
 
 #include <QJsonObject>
 
-#include "OAIAuto_Chunking_Strategy.h"
+#include "OAIAutoChunkingStrategyRequestParam.h"
 #include "OAIStatic_Chunking_Strategy.h"
 #include "OAIStatic_Chunking_Strategy_static.h"
 #include <QString>

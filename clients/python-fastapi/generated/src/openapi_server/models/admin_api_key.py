@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from openapi_server.models.admin_api_key_owner import AdminApiKeyOwner
 try:
@@ -33,12 +33,12 @@ class AdminApiKey(BaseModel):
     """
     AdminApiKey
     """ # noqa: E501
-    object: Optional[StrictStr] = None
-    id: Optional[StrictStr] = None
-    name: Optional[StrictStr] = None
-    redacted_value: Optional[StrictStr] = None
-    value: Optional[StrictStr] = None
-    created_at: Optional[StrictInt] = None
+    object: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["organization.admin_api_key"]})
+    id: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["key_abc"]})
+    name: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Administration Key"]})
+    redacted_value: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["sk-admin...def"]})
+    value: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["sk-admin-1234abcd"]})
+    created_at: Optional[StrictInt] = Field(default=None, json_schema_extra={"examples": [1711471533]})
     owner: Optional[AdminApiKeyOwner] = None
     __properties: ClassVar[List[str]] = ["object", "id", "name", "redacted_value", "value", "created_at", "owner"]
 

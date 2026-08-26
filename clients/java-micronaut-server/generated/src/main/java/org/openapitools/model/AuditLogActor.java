@@ -34,7 +34,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   AuditLogActor.JSON_PROPERTY_API_KEY
 })
 @JsonTypeName("AuditLogActor")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-01-29T14:08:04.353155660Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class AuditLogActor {
     /**
@@ -114,6 +114,7 @@ public class AuditLogActor {
      * Get session
      * @return session
      */
+    @Valid
     @Nullable
     @Schema(name = "session", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     @JsonProperty(JSON_PROPERTY_SESSION)
@@ -137,6 +138,7 @@ public class AuditLogActor {
      * Get apiKey
      * @return apiKey
      */
+    @Valid
     @Nullable
     @Schema(name = "api_key", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     @JsonProperty(JSON_PROPERTY_API_KEY)
@@ -186,10 +188,7 @@ public class AuditLogActor {
      * (except the first line).
      */
     private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
+        return o == null ? "null" : o.toString().replace("\n", "\n    ");
     }
 
 }

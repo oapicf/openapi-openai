@@ -51,7 +51,7 @@ class ChatCompletionStreamOptions
      * @var bool|null
      * @SerializedName("include_usage")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $includeUsage = null;
 
@@ -77,12 +77,12 @@ class ChatCompletionStreamOptions
     }
 
     /**
-    * Sets includeUsage.
-    *
-    * @param bool|null $includeUsage  If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array. All other chunks will also include a `usage` field, but with a null value.
-    *
-    * @return $this
-    */
+     * Sets includeUsage.
+     *
+     * @param bool|null $includeUsage  If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array. All other chunks will also include a `usage` field, but with a null value.
+     *
+     * @return $this
+     */
     public function setIncludeUsage(?bool $includeUsage = null): self
     {
         $this->includeUsage = $includeUsage;

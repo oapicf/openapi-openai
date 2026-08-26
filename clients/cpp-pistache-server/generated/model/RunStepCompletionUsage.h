@@ -31,7 +31,7 @@ class  RunStepCompletionUsage
 {
 public:
     RunStepCompletionUsage();
-    virtual ~RunStepCompletionUsage() = default;
+    virtual ~RunStepCompletionUsage();
 
 
     /// <summary>

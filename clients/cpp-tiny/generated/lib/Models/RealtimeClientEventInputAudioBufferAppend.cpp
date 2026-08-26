@@ -106,7 +106,7 @@ RealtimeClientEventInputAudioBufferAppend::getEventId()
 }
 
 void
-RealtimeClientEventInputAudioBufferAppend::setEventId(std::string  event_id)
+RealtimeClientEventInputAudioBufferAppend::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -118,7 +118,7 @@ RealtimeClientEventInputAudioBufferAppend::getType()
 }
 
 void
-RealtimeClientEventInputAudioBufferAppend::setType(std::string  type)
+RealtimeClientEventInputAudioBufferAppend::setType(std::string type)
 {
 	this->type = type;
 }
@@ -130,7 +130,7 @@ RealtimeClientEventInputAudioBufferAppend::getAudio()
 }
 
 void
-RealtimeClientEventInputAudioBufferAppend::setAudio(std::string  audio)
+RealtimeClientEventInputAudioBufferAppend::setAudio(std::string audio)
 {
 	this->audio = audio;
 }

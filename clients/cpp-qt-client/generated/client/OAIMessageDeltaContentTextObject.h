@@ -33,13 +33,13 @@ class OAIMessageDeltaContentTextObject_text;
 class OAIMessageDeltaContentTextObject : public OAIObject {
 public:
     OAIMessageDeltaContentTextObject();
-    OAIMessageDeltaContentTextObject(QString json);
+    OAIMessageDeltaContentTextObject(const QString &json);
     ~OAIMessageDeltaContentTextObject() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getIndex() const;
     void setIndex(const qint32 &index);

@@ -34,13 +34,13 @@ class OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner;
 class OAIRealtimeServerEventRateLimitsUpdated : public OAIObject {
 public:
     OAIRealtimeServerEventRateLimitsUpdated();
-    OAIRealtimeServerEventRateLimitsUpdated(QString json);
+    OAIRealtimeServerEventRateLimitsUpdated(const QString &json);
     ~OAIRealtimeServerEventRateLimitsUpdated() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getEventId() const;
     void setEventId(const QString &event_id);

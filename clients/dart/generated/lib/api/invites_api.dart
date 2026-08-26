@@ -24,7 +24,7 @@ class InvitesApi {
   ///
   /// * [String] inviteId (required):
   ///   The ID of the invite to delete.
-  Future<Response> deleteInviteWithHttpInfo(String inviteId,) async {
+  Future<Response> deleteInviteWithHttpInfo(String inviteId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/invites/{invite_id}'
       .replaceAll('{invite_id}', inviteId);
@@ -47,6 +47,7 @@ class InvitesApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -56,8 +57,8 @@ class InvitesApi {
   ///
   /// * [String] inviteId (required):
   ///   The ID of the invite to delete.
-  Future<InviteDeleteResponse?> deleteInvite(String inviteId,) async {
-    final response = await deleteInviteWithHttpInfo(inviteId,);
+  Future<InviteDeleteResponse?> deleteInvite(String inviteId, { Future<void>? abortTrigger, }) async {
+    final response = await deleteInviteWithHttpInfo(inviteId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -79,7 +80,7 @@ class InvitesApi {
   ///
   /// * [InviteRequest] inviteRequest (required):
   ///   The invite request payload.
-  Future<Response> inviteUserWithHttpInfo(InviteRequest inviteRequest,) async {
+  Future<Response> inviteUserWithHttpInfo(InviteRequest inviteRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/invites';
 
@@ -101,6 +102,7 @@ class InvitesApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -110,8 +112,8 @@ class InvitesApi {
   ///
   /// * [InviteRequest] inviteRequest (required):
   ///   The invite request payload.
-  Future<Invite?> inviteUser(InviteRequest inviteRequest,) async {
-    final response = await inviteUserWithHttpInfo(inviteRequest,);
+  Future<Invite?> inviteUser(InviteRequest inviteRequest, { Future<void>? abortTrigger, }) async {
+    final response = await inviteUserWithHttpInfo(inviteRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -136,7 +138,7 @@ class InvitesApi {
   ///
   /// * [String] after:
   ///   A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-  Future<Response> listInvitesWithHttpInfo({ int? limit, String? after, }) async {
+  Future<Response> listInvitesWithHttpInfo({ int? limit, String? after, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/invites';
 
@@ -165,6 +167,7 @@ class InvitesApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -177,8 +180,8 @@ class InvitesApi {
   ///
   /// * [String] after:
   ///   A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-  Future<InviteListResponse?> listInvites({ int? limit, String? after, }) async {
-    final response = await listInvitesWithHttpInfo( limit: limit, after: after, );
+  Future<InviteListResponse?> listInvites({ int? limit, String? after, Future<void>? abortTrigger, }) async {
+    final response = await listInvitesWithHttpInfo(limit: limit, after: after, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -200,7 +203,7 @@ class InvitesApi {
   ///
   /// * [String] inviteId (required):
   ///   The ID of the invite to retrieve.
-  Future<Response> retrieveInviteWithHttpInfo(String inviteId,) async {
+  Future<Response> retrieveInviteWithHttpInfo(String inviteId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/invites/{invite_id}'
       .replaceAll('{invite_id}', inviteId);
@@ -223,6 +226,7 @@ class InvitesApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -232,8 +236,8 @@ class InvitesApi {
   ///
   /// * [String] inviteId (required):
   ///   The ID of the invite to retrieve.
-  Future<Invite?> retrieveInvite(String inviteId,) async {
-    final response = await retrieveInviteWithHttpInfo(inviteId,);
+  Future<Invite?> retrieveInvite(String inviteId, { Future<void>? abortTrigger, }) async {
+    final response = await retrieveInviteWithHttpInfo(inviteId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

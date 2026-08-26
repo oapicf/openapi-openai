@@ -33,7 +33,7 @@ class  AssistantObject_tool_resources_file_search
 {
 public:
     AssistantObject_tool_resources_file_search();
-    virtual ~AssistantObject_tool_resources_file_search() = default;
+    virtual ~AssistantObject_tool_resources_file_search();
 
 
     /// <summary>

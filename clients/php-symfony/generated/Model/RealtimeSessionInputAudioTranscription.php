@@ -51,7 +51,7 @@ class RealtimeSessionInputAudioTranscription
      * @var string|null
      * @SerializedName("model")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $model = null;
 
@@ -77,12 +77,12 @@ class RealtimeSessionInputAudioTranscription
     }
 
     /**
-    * Sets model.
-    *
-    * @param string|null $model  The model to use for transcription, `whisper-1` is the only currently  supported model.
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param string|null $model  The model to use for transcription, `whisper-1` is the only currently  supported model.
+     *
+     * @return $this
+     */
     public function setModel(?string $model = null): self
     {
         $this->model = $model;

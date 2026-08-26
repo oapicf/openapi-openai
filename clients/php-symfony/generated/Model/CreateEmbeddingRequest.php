@@ -47,7 +47,7 @@ class CreateEmbeddingRequest
      * @var CreateEmbeddingRequestInput|null
      * @SerializedName("input")
      * @Type("OpenAPI\Server\Model\CreateEmbeddingRequestInput")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\CreateEmbeddingRequestInput")]
@@ -57,7 +57,7 @@ class CreateEmbeddingRequest
      * @var CreateEmbeddingRequestModel|null
      * @SerializedName("model")
      * @Type("OpenAPI\Server\Model\CreateEmbeddingRequestModel")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\CreateEmbeddingRequestModel")]
@@ -69,7 +69,7 @@ class CreateEmbeddingRequest
      * @var string|null
      * @SerializedName("encoding_format")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['float', 'base64'])]
     #[Assert\Type("string")]
     protected ?string $encodingFormat = 'float';
@@ -80,7 +80,7 @@ class CreateEmbeddingRequest
      * @var int|null
      * @SerializedName("dimensions")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(1)]
     protected ?int $dimensions = null;
@@ -91,7 +91,7 @@ class CreateEmbeddingRequest
      * @var string|null
      * @SerializedName("user")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $user = null;
 
@@ -121,12 +121,12 @@ class CreateEmbeddingRequest
     }
 
     /**
-    * Sets input.
-    *
-    * @param CreateEmbeddingRequestInput|null $input
-    *
-    * @return $this
-    */
+     * Sets input.
+     *
+     * @param CreateEmbeddingRequestInput|null $input
+     *
+     * @return $this
+     */
     public function setInput(?CreateEmbeddingRequestInput $input): self
     {
         $this->input = $input;
@@ -148,12 +148,12 @@ class CreateEmbeddingRequest
     }
 
     /**
-    * Sets model.
-    *
-    * @param CreateEmbeddingRequestModel|null $model
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param CreateEmbeddingRequestModel|null $model
+     *
+     * @return $this
+     */
     public function setModel(?CreateEmbeddingRequestModel $model): self
     {
         $this->model = $model;
@@ -175,12 +175,12 @@ class CreateEmbeddingRequest
     }
 
     /**
-    * Sets encodingFormat.
-    *
-    * @param string|null $encodingFormat  The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
-    *
-    * @return $this
-    */
+     * Sets encodingFormat.
+     *
+     * @param string|null $encodingFormat  The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
+     *
+     * @return $this
+     */
     public function setEncodingFormat(?string $encodingFormat = null): self
     {
         $this->encodingFormat = $encodingFormat;
@@ -202,12 +202,12 @@ class CreateEmbeddingRequest
     }
 
     /**
-    * Sets dimensions.
-    *
-    * @param int|null $dimensions  The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models.
-    *
-    * @return $this
-    */
+     * Sets dimensions.
+     *
+     * @param int|null $dimensions  The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models.
+     *
+     * @return $this
+     */
     public function setDimensions(?int $dimensions = null): self
     {
         $this->dimensions = $dimensions;
@@ -229,12 +229,12 @@ class CreateEmbeddingRequest
     }
 
     /**
-    * Sets user.
-    *
-    * @param string|null $user  A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).
-    *
-    * @return $this
-    */
+     * Sets user.
+     *
+     * @param string|null $user  A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).
+     *
+     * @return $this
+     */
     public function setUser(?string $user = null): self
     {
         $this->user = $user;

@@ -127,8 +127,9 @@ class _$CreateTranslationResponseVerboseJsonSerializer implements PrimitiveSeria
         case r'segments':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(TranscriptionSegment)]),
-          ) as BuiltList<TranscriptionSegment>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(TranscriptionSegment)]),
+          ) as BuiltList<TranscriptionSegment>?;
+          if (valueDes == null) continue;
           result.segments.replace(valueDes);
           break;
         default:

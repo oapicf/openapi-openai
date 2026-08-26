@@ -26,6 +26,8 @@ ChatCompletionRequestAssistantMessage_function_call::ChatCompletionRequestAssist
     
 }
 
+ChatCompletionRequestAssistantMessage_function_call::~ChatCompletionRequestAssistantMessage_function_call() = default;
+
 void ChatCompletionRequestAssistantMessage_function_call::validate() const
 {
     std::stringstream msg;

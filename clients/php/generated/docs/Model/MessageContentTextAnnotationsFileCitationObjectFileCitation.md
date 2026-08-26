@@ -1,4 +1,4 @@
-# # MessageContentTextAnnotationsFileCitationObjectFileCitation
+# MessageContentTextAnnotationsFileCitationObjectFileCitation
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # MessageDeltaContentRefusalObject
+# MessageDeltaContentRefusalObject
 
 ## Properties
 

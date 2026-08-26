@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIChatCompletionRole : public OAIEnum {
 public:
     OAIChatCompletionRole();
-    OAIChatCompletionRole(QString json);
+    OAIChatCompletionRole(const QString &json);
     ~OAIChatCompletionRole() override;
 
     QString asJson() const override;
     QJsonValue asJsonValue() const override;
     void fromJsonValue(QJsonValue json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     enum class eOAIChatCompletionRole {
         INVALID_VALUE_OPENAPI_GENERATED = 0,

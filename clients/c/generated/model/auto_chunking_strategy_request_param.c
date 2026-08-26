@@ -29,18 +29,21 @@ static auto_chunking_strategy_request_param_t *auto_chunking_strategy_request_pa
     if (!auto_chunking_strategy_request_param_local_var) {
         return NULL;
     }
-    auto_chunking_strategy_request_param_local_var->type = type;
-
+    memset(auto_chunking_strategy_request_param_local_var, 0, sizeof(auto_chunking_strategy_request_param_t));
     auto_chunking_strategy_request_param_local_var->_library_owned = 1;
+    auto_chunking_strategy_request_param_local_var->type = type;
     return auto_chunking_strategy_request_param_local_var;
 }
 
 __attribute__((deprecated)) auto_chunking_strategy_request_param_t *auto_chunking_strategy_request_param_create(
     openai_api_auto_chunking_strategy_request_param_TYPE_e type
     ) {
-    return auto_chunking_strategy_request_param_create_internal (
+    auto_chunking_strategy_request_param_t *result = auto_chunking_strategy_request_param_create_internal (
         type
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void auto_chunking_strategy_request_param_free(auto_chunking_strategy_request_param_t *auto_chunking_strategy_request_param) {
@@ -97,9 +100,14 @@ auto_chunking_strategy_request_param_t *auto_chunking_strategy_request_param_par
     typeVariable = auto_chunking_strategy_request_param_type_FromString(type->valuestring);
 
 
+
     auto_chunking_strategy_request_param_local_var = auto_chunking_strategy_request_param_create_internal (
         typeVariable
         );
+
+    if (!auto_chunking_strategy_request_param_local_var) {
+        goto end;
+    }
 
     return auto_chunking_strategy_request_param_local_var;
 end:

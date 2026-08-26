@@ -113,10 +113,8 @@ class ChatCompletionRequestAssistantMessage {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ChatCompletionRequestAssistantMessage[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ChatCompletionRequestAssistantMessage[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'role'), 'Required key "ChatCompletionRequestAssistantMessage[role]" is missing from JSON.');
+        assert(json[r'role'] != null, 'Required key "ChatCompletionRequestAssistantMessage[role]" has a null value in JSON.');
         return true;
       }());
 
@@ -180,27 +178,28 @@ class ChatCompletionRequestAssistantMessage {
 }
 
 /// The role of the messages author, in this case `assistant`.
-class ChatCompletionRequestAssistantMessageRoleEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ChatCompletionRequestAssistantMessageRoleEnum._(this.value);
+enum ChatCompletionRequestAssistantMessageRoleEnum {
+  assistant._(r'assistant'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ChatCompletionRequestAssistantMessageRoleEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const assistant = ChatCompletionRequestAssistantMessageRoleEnum._(r'assistant');
-
-  /// List of all possible values in this [enum][ChatCompletionRequestAssistantMessageRoleEnum].
-  static const values = <ChatCompletionRequestAssistantMessageRoleEnum>[
-    assistant,
-  ];
-
+  /// Returns the instance of [ChatCompletionRequestAssistantMessageRoleEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ChatCompletionRequestAssistantMessageRoleEnum? fromJson(dynamic value) => ChatCompletionRequestAssistantMessageRoleEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ChatCompletionRequestAssistantMessageRoleEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ChatCompletionRequestAssistantMessageRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ChatCompletionRequestAssistantMessageRoleEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -222,9 +221,10 @@ class ChatCompletionRequestAssistantMessageRoleEnumTypeTransformer {
 
   const ChatCompletionRequestAssistantMessageRoleEnumTypeTransformer._();
 
-  String encode(ChatCompletionRequestAssistantMessageRoleEnum data) => data.value;
+  String encode(ChatCompletionRequestAssistantMessageRoleEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ChatCompletionRequestAssistantMessageRoleEnum.
+  /// Returns the instance of [ChatCompletionRequestAssistantMessageRoleEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -233,6 +233,9 @@ class ChatCompletionRequestAssistantMessageRoleEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ChatCompletionRequestAssistantMessageRoleEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ChatCompletionRequestAssistantMessageRoleEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'assistant': return ChatCompletionRequestAssistantMessageRoleEnum.assistant;
@@ -245,7 +248,7 @@ class ChatCompletionRequestAssistantMessageRoleEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ChatCompletionRequestAssistantMessageRoleEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ChatCompletionRequestAssistantMessageRoleEnumTypeTransformer? _instance;
 }
 

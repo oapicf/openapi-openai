@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set Ephemeral key usable in client environments to authenticate connections to the Realtime API. Use this in client-side environments rather than a standard API token, which should only be used server-side. 
 	 */
-	void setValue(std::string  value);
+	void setValue(std::string value);
 	/*! \brief Get Timestamp for when the token expires. Currently, all tokens expire after one minute. 
 	 */
 	int getExpiresAt();
 
 	/*! \brief Set Timestamp for when the token expires. Currently, all tokens expire after one minute. 
 	 */
-	void setExpiresAt(int  expires_at);
+	void setExpiresAt(int expires_at);
 
 
     private:

@@ -1,0 +1,24 @@
+import { RealtimeResponseUsageOutputTokenDetails } from './realtime-response-usage-output-token-details';
+import { RealtimeResponseUsageInputTokenDetails } from './realtime-response-usage-input-token-details';
+
+
+/**
+ * Usage statistics for the Response, this will correspond to billing. A  Realtime API session will maintain a conversation context and append new  Items to the Conversation, thus output from previous turns (text and  audio tokens) will become the input for later turns. 
+ */
+export interface RealtimeResponseUsage { 
+  /**
+   * The total number of tokens in the Response including input and output  text and audio tokens. 
+   */
+  total_tokens?: number;
+  /**
+   * The number of input tokens used in the Response, including text and  audio tokens. 
+   */
+  input_tokens?: number;
+  /**
+   * The number of output tokens sent in the Response, including text and  audio tokens. 
+   */
+  output_tokens?: number;
+  input_token_details?: RealtimeResponseUsageInputTokenDetails;
+  output_token_details?: RealtimeResponseUsageOutputTokenDetails;
+}
+

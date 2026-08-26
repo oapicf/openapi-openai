@@ -29,7 +29,7 @@ openai_api_project_api_key_delete_response_OBJECT_e project_api_key_delete_respo
 typedef struct project_api_key_delete_response_t {
     openai_api_project_api_key_delete_response_OBJECT_e object; //enum
     char *id; // string
-    int deleted; //boolean
+    int *deleted; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } project_api_key_delete_response_t;
@@ -37,7 +37,7 @@ typedef struct project_api_key_delete_response_t {
 __attribute__((deprecated)) project_api_key_delete_response_t *project_api_key_delete_response_create(
     openai_api_project_api_key_delete_response_OBJECT_e object,
     char *id,
-    int deleted
+    int *deleted
 );
 
 void project_api_key_delete_response_free(project_api_key_delete_response_t *project_api_key_delete_response);

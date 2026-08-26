@@ -72,10 +72,10 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'index'), 'Required key "RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject[index]" is missing from JSON.');
+        assert(json[r'index'] != null, 'Required key "RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject[index]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -136,27 +136,28 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject {
 }
 
 /// Always `logs`.
-class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum._(this.value);
+enum RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum {
+  logs._(r'logs'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const logs = RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum._(r'logs');
-
-  /// List of all possible values in this [enum][RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum].
-  static const values = <RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum>[
-    logs,
-  ];
-
+  /// Returns the instance of [RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum? fromJson(dynamic value) => RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -178,9 +179,10 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnumTypeTransforme
 
   const RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnumTypeTransformer._();
 
-  String encode(RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum data) => data.value;
+  String encode(RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum.
+  /// Returns the instance of [RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -189,6 +191,9 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnumTypeTransforme
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'logs': return RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum.logs;
@@ -201,7 +206,7 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnumTypeTransforme
     return null;
   }
 
-  /// Singleton [RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnumTypeTransformer? _instance;
 }
 

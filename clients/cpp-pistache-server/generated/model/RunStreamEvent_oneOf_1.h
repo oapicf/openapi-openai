@@ -33,7 +33,7 @@ class  RunStreamEvent_oneOf_1
 {
 public:
     RunStreamEvent_oneOf_1();
-    virtual ~RunStreamEvent_oneOf_1() = default;
+    virtual ~RunStreamEvent_oneOf_1();
 
 
     /// <summary>

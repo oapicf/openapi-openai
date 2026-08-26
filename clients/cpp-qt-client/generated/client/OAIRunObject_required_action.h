@@ -33,13 +33,13 @@ class OAIRunObject_required_action_submit_tool_outputs;
 class OAIRunObject_required_action : public OAIObject {
 public:
     OAIRunObject_required_action();
-    OAIRunObject_required_action(QString json);
+    OAIRunObject_required_action(const QString &json);
     ~OAIRunObject_required_action() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

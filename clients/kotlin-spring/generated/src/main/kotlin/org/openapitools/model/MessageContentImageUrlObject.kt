@@ -23,13 +23,15 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class MessageContentImageUrlObject(
 
-    @Schema(example = "null", required = true, description = "The type of the content part.")
+    @Schema(required = true, description = "The type of the content part.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: MessageContentImageUrlObject.Type,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("image_url")
     @get:JsonProperty("image_url", required = true) val imageUrl: MessageContentImageUrlObjectImageUrl
-) {
+) : ArrayOfContentPartsInner, MessageObjectContentInner {
 
     /**
     * The type of the content part.
@@ -44,7 +46,7 @@ data class MessageContentImageUrlObject(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'MessageContentImageUrlObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

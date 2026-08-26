@@ -35,13 +35,13 @@ class OAIBatchRequestOutput_error;
 class OAIBatchRequestOutput : public OAIObject {
 public:
     OAIBatchRequestOutput();
-    OAIBatchRequestOutput(QString json);
+    OAIBatchRequestOutput(const QString &json);
     ~OAIBatchRequestOutput() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

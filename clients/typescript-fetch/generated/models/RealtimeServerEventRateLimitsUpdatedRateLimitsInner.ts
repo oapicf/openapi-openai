@@ -22,7 +22,7 @@ export interface RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
     /**
      * The name of the rate limit (`requests`, `tokens`).
      * 
-     * @type {string}
+     * @type {RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum}
      * @memberof RealtimeServerEventRateLimitsUpdatedRateLimitsInner
      */
     name?: RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum;

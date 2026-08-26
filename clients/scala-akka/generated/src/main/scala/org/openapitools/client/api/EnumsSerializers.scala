@@ -32,7 +32,6 @@ object EnumsSerializers {
     new EnumNameSerializer(AssistantsNamedToolChoiceEnums.`Type`) :+
     new EnumNameSerializer(AuditLogActorEnums.`Type`) :+
     new EnumNameSerializer(AuditLogActorApiKeyEnums.`Type`) :+
-    new EnumNameSerializer(AutoChunkingStrategyEnums.`Type`) :+
     new EnumNameSerializer(AutoChunkingStrategyRequestParamEnums.`Type`) :+
     new EnumNameSerializer(BatchEnums.`Object`) :+
     new EnumNameSerializer(BatchEnums.Status) :+
@@ -331,7 +330,6 @@ object EnumsSerializers {
     new EnumNameSerializer(RunToolCallObjectEnums.`Type`) :+
     new EnumNameSerializer(StaticChunkingStrategyEnums.`Type`) :+
     new EnumNameSerializer(StaticChunkingStrategyRequestParamEnums.`Type`) :+
-    new EnumNameSerializer(StaticChunkingStrategyResponseParamEnums.`Type`) :+
     new EnumNameSerializer(ThreadObjectEnums.`Object`) :+
     new EnumNameSerializer(ThreadStreamEventEnums.Event) :+
     new EnumNameSerializer(TruncationObjectEnums.`Type`) :+

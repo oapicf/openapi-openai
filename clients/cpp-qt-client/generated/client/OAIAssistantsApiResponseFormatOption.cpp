@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIAssistantsApiResponseFormatOption::OAIAssistantsApiResponseFormatOption(QString json) {
+OAIAssistantsApiResponseFormatOption::OAIAssistantsApiResponseFormatOption(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIAssistantsApiResponseFormatOption::initializeModel() {
     m_json_schema_isValid = false;
 }
 
-void OAIAssistantsApiResponseFormatOption::fromJson(QString jsonString) {
+void OAIAssistantsApiResponseFormatOption::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

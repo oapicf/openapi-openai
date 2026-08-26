@@ -51,32 +51,32 @@ function ConvertFrom-JsonToVectorStoreFileObjectChunkingStrategy {
             Write-Debug "Failed to match 'OtherChunkingStrategyResponseParam' defined in oneOf (VectorStoreFileObjectChunkingStrategy). Proceeding to the next one if any."
         }
 
-        # try to match StaticChunkingStrategyResponseParam defined in the oneOf schemas
+        # try to match StaticChunkingStrategyRequestParam defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToStaticChunkingStrategyResponseParam $Json
+            $matchInstance = ConvertFrom-JsonToStaticChunkingStrategyRequestParam $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
-                    $matchType = "StaticChunkingStrategyResponseParam"
+                    $matchType = "StaticChunkingStrategyRequestParam"
                     $match++
                     break
                 }
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'StaticChunkingStrategyResponseParam' defined in oneOf (VectorStoreFileObjectChunkingStrategy). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'StaticChunkingStrategyRequestParam' defined in oneOf (VectorStoreFileObjectChunkingStrategy). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {
-            throw "Error! The JSON payload matches more than one type defined in oneOf schemas ([OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam]). JSON Payload: $($Json)"
+            throw "Error! The JSON payload matches more than one type defined in oneOf schemas ([OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam]). JSON Payload: $($Json)"
         } elseif ($match -eq 1) {
             return [PSCustomObject]@{
                 "ActualType" = ${matchType}
                 "ActualInstance" = ${matchInstance}
-                "OneOfSchemas" = @("OtherChunkingStrategyResponseParam", "StaticChunkingStrategyResponseParam")
+                "OneOfSchemas" = @("OtherChunkingStrategyResponseParam", "StaticChunkingStrategyRequestParam")
             }
         } else {
-            throw "Error! The JSON payload doesn't matches any type defined in oneOf schemas ([OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam]). JSON Payload: $($Json)"
+            throw "Error! The JSON payload doesn't matches any type defined in oneOf schemas ([OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam]). JSON Payload: $($Json)"
         }
     }
 }

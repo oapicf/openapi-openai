@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIUsageImagesResult::OAIUsageImagesResult(QString json) {
+OAIUsageImagesResult::OAIUsageImagesResult(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -62,7 +62,7 @@ void OAIUsageImagesResult::initializeModel() {
     m_model_isValid = false;
 }
 
-void OAIUsageImagesResult::fromJson(QString jsonString) {
+void OAIUsageImagesResult::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

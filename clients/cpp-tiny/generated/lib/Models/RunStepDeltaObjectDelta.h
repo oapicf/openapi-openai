@@ -52,7 +52,7 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setStepDetails(RunStepDeltaObject_delta_step_details  step_details);
+	void setStepDetails(RunStepDeltaObject_delta_step_details step_details);
 
 
     private:

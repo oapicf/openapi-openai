@@ -56,21 +56,21 @@ public:
 
 	/*! \brief Set Always `message_creation`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	RunStepDetailsMessageCreationObject_message_creation getMessageCreation();
 
 	/*! \brief Set 
 	 */
-	void setMessageCreation(RunStepDetailsMessageCreationObject_message_creation  message_creation);
+	void setMessageCreation(RunStepDetailsMessageCreationObject_message_creation message_creation);
 	/*! \brief Get An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
 	 */
 	std::list<RunStepDetailsToolCallsObject_tool_calls_inner> getToolCalls();
 
 	/*! \brief Set An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
 	 */
-	void setToolCalls(std::list <RunStepDetailsToolCallsObject_tool_calls_inner> tool_calls);
+	void setToolCalls(std::list<RunStepDetailsToolCallsObject_tool_calls_inner> tool_calls);
 
 
     private:

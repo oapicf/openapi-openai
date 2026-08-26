@@ -27,6 +27,8 @@ MessageContentImageUrlObject_image_url::MessageContentImageUrlObject_image_url()
     
 }
 
+MessageContentImageUrlObject_image_url::~MessageContentImageUrlObject_image_url() = default;
+
 void MessageContentImageUrlObject_image_url::validate() const
 {
     std::stringstream msg;

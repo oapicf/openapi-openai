@@ -31,6 +31,8 @@ RealtimeServerEventResponseTextDelta::RealtimeServerEventResponseTextDelta()
     
 }
 
+RealtimeServerEventResponseTextDelta::~RealtimeServerEventResponseTextDelta() = default;
+
 void RealtimeServerEventResponseTextDelta::validate() const
 {
     std::stringstream msg;

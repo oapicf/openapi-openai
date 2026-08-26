@@ -23,7 +23,7 @@ typedef struct fine_tune_preference_request_input_input_t fine_tune_preference_r
 typedef struct fine_tune_preference_request_input_input_t {
     list_t *messages; //nonprimitive container
     list_t *tools; //nonprimitive container
-    int parallel_tool_calls; //boolean
+    int *parallel_tool_calls; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } fine_tune_preference_request_input_input_t;
@@ -31,7 +31,7 @@ typedef struct fine_tune_preference_request_input_input_t {
 __attribute__((deprecated)) fine_tune_preference_request_input_input_t *fine_tune_preference_request_input_input_create(
     list_t *messages,
     list_t *tools,
-    int parallel_tool_calls
+    int *parallel_tool_calls
 );
 
 void fine_tune_preference_request_input_input_free(fine_tune_preference_request_input_input_t *fine_tune_preference_request_input_input);

@@ -49,7 +49,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * CreateCompletionResponseChoicesInner
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateCompletionResponseChoicesInner {
   /**
    * The reason the model stopped generating tokens. This will be &#x60;stop&#x60; if the model hit a natural stop point or a provided stop sequence, &#x60;length&#x60; if the maximum number of tokens specified in the request was reached, or &#x60;content_filter&#x60; if content was omitted due to a flag from our content filters. 
@@ -242,10 +242,7 @@ public class CreateCompletionResponseChoicesInner {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -293,8 +290,10 @@ public class CreateCompletionResponseChoicesInner {
       }
       // validate the required field `finish_reason`
       FinishReasonEnum.validateJsonElement(jsonObj.get("finish_reason"));
+      if (jsonObj.get("logprobs") != null && !jsonObj.get("logprobs").isJsonNull()) {
       // validate the required field `logprobs`
       CreateCompletionResponseChoicesInnerLogprobs.validateJsonElement(jsonObj.get("logprobs"));
+      }
       if (!jsonObj.get("text").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `text` to be a primitive type in the JSON string but got `%s`", jsonObj.get("text").toString()));
       }

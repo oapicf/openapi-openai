@@ -32,7 +32,7 @@ class  UsageModerationsResult
 {
 public:
     UsageModerationsResult();
-    virtual ~UsageModerationsResult() = default;
+    virtual ~UsageModerationsResult();
 
 
     /// <summary>

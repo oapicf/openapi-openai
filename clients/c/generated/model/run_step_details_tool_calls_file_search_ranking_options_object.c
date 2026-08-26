@@ -24,27 +24,36 @@ openai_api_run_step_details_tool_calls_file_search_ranking_options_object_RANKER
 
 static run_step_details_tool_calls_file_search_ranking_options_object_t *run_step_details_tool_calls_file_search_ranking_options_object_create_internal(
     openai_api_run_step_details_tool_calls_file_search_ranking_options_object_RANKER_e ranker,
-    double score_threshold
+    double *score_threshold
     ) {
     run_step_details_tool_calls_file_search_ranking_options_object_t *run_step_details_tool_calls_file_search_ranking_options_object_local_var = malloc(sizeof(run_step_details_tool_calls_file_search_ranking_options_object_t));
     if (!run_step_details_tool_calls_file_search_ranking_options_object_local_var) {
         return NULL;
     }
+    memset(run_step_details_tool_calls_file_search_ranking_options_object_local_var, 0, sizeof(run_step_details_tool_calls_file_search_ranking_options_object_t));
+    run_step_details_tool_calls_file_search_ranking_options_object_local_var->_library_owned = 1;
     run_step_details_tool_calls_file_search_ranking_options_object_local_var->ranker = ranker;
     run_step_details_tool_calls_file_search_ranking_options_object_local_var->score_threshold = score_threshold;
-
-    run_step_details_tool_calls_file_search_ranking_options_object_local_var->_library_owned = 1;
     return run_step_details_tool_calls_file_search_ranking_options_object_local_var;
 }
 
 __attribute__((deprecated)) run_step_details_tool_calls_file_search_ranking_options_object_t *run_step_details_tool_calls_file_search_ranking_options_object_create(
     openai_api_run_step_details_tool_calls_file_search_ranking_options_object_RANKER_e ranker,
-    double score_threshold
+    double *score_threshold
     ) {
-    return run_step_details_tool_calls_file_search_ranking_options_object_create_internal (
+    double *score_threshold_copy = NULL;
+    if (score_threshold) {
+        score_threshold_copy = malloc(sizeof(double));
+        if (score_threshold_copy) *score_threshold_copy = *score_threshold;
+    }
+    run_step_details_tool_calls_file_search_ranking_options_object_t *result = run_step_details_tool_calls_file_search_ranking_options_object_create_internal (
         ranker,
-        score_threshold
+        score_threshold_copy
         );
+    if (!result) {
+        free(score_threshold_copy);
+    }
+    return result;
 }
 
 void run_step_details_tool_calls_file_search_ranking_options_object_free(run_step_details_tool_calls_file_search_ranking_options_object_t *run_step_details_tool_calls_file_search_ranking_options_object) {
@@ -56,6 +65,10 @@ void run_step_details_tool_calls_file_search_ranking_options_object_free(run_ste
         return ;
     }
     listEntry_t *listEntry;
+    if (run_step_details_tool_calls_file_search_ranking_options_object->score_threshold) {
+        free(run_step_details_tool_calls_file_search_ranking_options_object->score_threshold);
+        run_step_details_tool_calls_file_search_ranking_options_object->score_threshold = NULL;
+    }
     free(run_step_details_tool_calls_file_search_ranking_options_object);
 }
 
@@ -76,7 +89,7 @@ cJSON *run_step_details_tool_calls_file_search_ranking_options_object_convertToJ
     if (!run_step_details_tool_calls_file_search_ranking_options_object->score_threshold) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "score_threshold", run_step_details_tool_calls_file_search_ranking_options_object->score_threshold) == NULL) {
+    if(cJSON_AddNumberToObject(item, "score_threshold", *run_step_details_tool_calls_file_search_ranking_options_object->score_threshold) == NULL) {
     goto fail; //Numeric
     }
 
@@ -91,6 +104,9 @@ fail:
 run_step_details_tool_calls_file_search_ranking_options_object_t *run_step_details_tool_calls_file_search_ranking_options_object_parseFromJSON(cJSON *run_step_details_tool_calls_file_search_ranking_options_objectJSON){
 
     run_step_details_tool_calls_file_search_ranking_options_object_t *run_step_details_tool_calls_file_search_ranking_options_object_local_var = NULL;
+
+    // define the local variable for run_step_details_tool_calls_file_search_ranking_options_object->score_threshold
+    double *score_threshold_local_var = NULL;
 
     // run_step_details_tool_calls_file_search_ranking_options_object->ranker
     cJSON *ranker = cJSON_GetObjectItemCaseSensitive(run_step_details_tool_calls_file_search_ranking_options_objectJSON, "ranker");
@@ -123,15 +139,30 @@ run_step_details_tool_calls_file_search_ranking_options_object_t *run_step_detai
     {
     goto end; //Numeric
     }
+    score_threshold_local_var = malloc(sizeof(double));
+    if(!score_threshold_local_var)
+    {
+        goto end;
+    }
+    *score_threshold_local_var = score_threshold->valuedouble;
+
 
 
     run_step_details_tool_calls_file_search_ranking_options_object_local_var = run_step_details_tool_calls_file_search_ranking_options_object_create_internal (
         rankerVariable,
-        score_threshold->valuedouble
+        score_threshold_local_var
         );
+
+    if (!run_step_details_tool_calls_file_search_ranking_options_object_local_var) {
+        goto end;
+    }
 
     return run_step_details_tool_calls_file_search_ranking_options_object_local_var;
 end:
+    if (score_threshold_local_var) {
+        free(score_threshold_local_var);
+        score_threshold_local_var = NULL;
+    }
     return NULL;
 
 }

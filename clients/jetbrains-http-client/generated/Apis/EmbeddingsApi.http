@@ -1,0 +1,17 @@
+## EmbeddingsApi
+
+### Creates an embedding vector representing the input text.
+## Creates an embedding vector representing the input text.
+POST https://api.openai.com/v1/embeddings
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "input": "<string>",
+ "model": "<string>",
+ "encoding_format": "<string>",
+ "dimensions": "<number>",
+ "user": "<string>"
+}
+

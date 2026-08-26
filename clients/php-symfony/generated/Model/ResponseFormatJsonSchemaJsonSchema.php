@@ -49,7 +49,7 @@ class ResponseFormatJsonSchemaJsonSchema
      * @var string|null
      * @SerializedName("description")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $description = null;
 
@@ -59,7 +59,7 @@ class ResponseFormatJsonSchemaJsonSchema
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $name = null;
@@ -70,7 +70,7 @@ class ResponseFormatJsonSchemaJsonSchema
      * @var []|null
      * @SerializedName("schema")
      * @Type("array<string, AnyType>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("AnyType"),
     ])]
@@ -82,7 +82,7 @@ class ResponseFormatJsonSchemaJsonSchema
      * @var bool|null
      * @SerializedName("strict")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $strict = false;
 
@@ -111,12 +111,12 @@ class ResponseFormatJsonSchemaJsonSchema
     }
 
     /**
-    * Sets description.
-    *
-    * @param string|null $description  A description of what the response format is for, used by the model to determine how to respond in the format.
-    *
-    * @return $this
-    */
+     * Sets description.
+     *
+     * @param string|null $description  A description of what the response format is for, used by the model to determine how to respond in the format.
+     *
+     * @return $this
+     */
     public function setDescription(?string $description = null): self
     {
         $this->description = $description;
@@ -138,12 +138,12 @@ class ResponseFormatJsonSchemaJsonSchema
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the response format. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the response format. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
+     *
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -165,12 +165,12 @@ class ResponseFormatJsonSchemaJsonSchema
     }
 
     /**
-    * Sets schema.
-    *
-    * @param []|null $schema  The schema for the response format, described as a JSON Schema object.
-    *
-    * @return $this
-    */
+     * Sets schema.
+     *
+     * @param []|null $schema  The schema for the response format, described as a JSON Schema object.
+     *
+     * @return $this
+     */
     public function setSchema(?array $schema = null): self
     {
         $this->schema = $schema;
@@ -192,12 +192,12 @@ class ResponseFormatJsonSchemaJsonSchema
     }
 
     /**
-    * Sets strict.
-    *
-    * @param bool|null $strict  Whether to enable strict schema adherence when generating the output. If set to true, the model will always follow the exact schema defined in the `schema` field. Only a subset of JSON Schema is supported when `strict` is `true`. To learn more, read the [Structured Outputs guide](/docs/guides/structured-outputs).
-    *
-    * @return $this
-    */
+     * Sets strict.
+     *
+     * @param bool|null $strict  Whether to enable strict schema adherence when generating the output. If set to true, the model will always follow the exact schema defined in the `schema` field. Only a subset of JSON Schema is supported when `strict` is `true`. To learn more, read the [Structured Outputs guide](/docs/guides/structured-outputs).
+     *
+     * @return $this
+     */
     public function setStrict(?bool $strict = null): self
     {
         $this->strict = $strict;

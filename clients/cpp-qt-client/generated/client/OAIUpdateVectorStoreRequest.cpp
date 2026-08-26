@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIUpdateVectorStoreRequest::OAIUpdateVectorStoreRequest(QString json) {
+OAIUpdateVectorStoreRequest::OAIUpdateVectorStoreRequest(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIUpdateVectorStoreRequest::initializeModel() {
     m_metadata_isValid = false;
 }
 
-void OAIUpdateVectorStoreRequest::fromJson(QString jsonString) {
+void OAIUpdateVectorStoreRequest::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -145,7 +145,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Function
         /// </summary>
         [JsonPropertyName("function")]
-        public AssistantsNamedToolChoiceFunction? Function { get { return this.FunctionOption; } set { this.FunctionOption = new(value); } }
+        public AssistantsNamedToolChoiceFunction? Function { get { return this.FunctionOption.Value; } set { this.FunctionOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -175,8 +175,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AssistantsNamedToolChoice" />
     /// </summary>
-    public class AssistantsNamedToolChoiceJsonConverter : JsonConverter<AssistantsNamedToolChoice>
+    public partial class AssistantsNamedToolChoiceJsonConverter : JsonConverter<AssistantsNamedToolChoice>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssistantsNamedToolChoiceJsonConverter" /> class.
+        /// </summary>
+        public AssistantsNamedToolChoiceJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AssistantsNamedToolChoice" />
         /// </summary>

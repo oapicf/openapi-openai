@@ -56,11 +56,11 @@ function Initialize-RealtimeSessionCreateRequestTurnDetection {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "threshold" = ${Threshold}
-            "prefix_padding_ms" = ${PrefixPaddingMs}
-            "silence_duration_ms" = ${SilenceDurationMs}
-            "create_response" = ${CreateResponse}
+            'type' = ${Type}
+            'threshold' = ${Threshold}
+            'prefix_padding_ms' = ${PrefixPaddingMs}
+            'silence_duration_ms' = ${SilenceDurationMs}
+            'create_response' = ${CreateResponse}
         }
 
 
@@ -98,49 +98,49 @@ function ConvertFrom-JsonToRealtimeSessionCreateRequestTurnDetection {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeSessionCreateRequestTurnDetection
-        $AllProperties = ("type", "threshold", "prefix_padding_ms", "silence_duration_ms", "create_response")
+        $AllProperties = ('type', 'threshold', 'prefix_padding_ms', 'silence_duration_ms', 'create_response')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) { #optional property not found
             $Type = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "threshold"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'threshold'))) { #optional property not found
             $Threshold = $null
         } else {
-            $Threshold = $JsonParameters.PSobject.Properties["threshold"].value
+            $Threshold = $JsonParameters.PSobject.Properties['threshold'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prefix_padding_ms"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'prefix_padding_ms'))) { #optional property not found
             $PrefixPaddingMs = $null
         } else {
-            $PrefixPaddingMs = $JsonParameters.PSobject.Properties["prefix_padding_ms"].value
+            $PrefixPaddingMs = $JsonParameters.PSobject.Properties['prefix_padding_ms'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "silence_duration_ms"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'silence_duration_ms'))) { #optional property not found
             $SilenceDurationMs = $null
         } else {
-            $SilenceDurationMs = $JsonParameters.PSobject.Properties["silence_duration_ms"].value
+            $SilenceDurationMs = $JsonParameters.PSobject.Properties['silence_duration_ms'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "create_response"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'create_response'))) { #optional property not found
             $CreateResponse = $null
         } else {
-            $CreateResponse = $JsonParameters.PSobject.Properties["create_response"].value
+            $CreateResponse = $JsonParameters.PSobject.Properties['create_response'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "threshold" = ${Threshold}
-            "prefix_padding_ms" = ${PrefixPaddingMs}
-            "silence_duration_ms" = ${SilenceDurationMs}
-            "create_response" = ${CreateResponse}
+            'type' = ${Type}
+            'threshold' = ${Threshold}
+            'prefix_padding_ms' = ${PrefixPaddingMs}
+            'silence_duration_ms' = ${SilenceDurationMs}
+            'create_response' = ${CreateResponse}
         }
 
         return $PSO

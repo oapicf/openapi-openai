@@ -51,7 +51,7 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['auto', 'static'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
      * @var StaticChunkingStrategyStatic|null
      * @SerializedName("static")
      * @Type("OpenAPI\Server\Model\StaticChunkingStrategyStatic")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\StaticChunkingStrategyStatic")]
@@ -90,12 +90,12 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `auto`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `auto`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -117,12 +117,12 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
     }
 
     /**
-    * Sets static.
-    *
-    * @param StaticChunkingStrategyStatic|null $static
-    *
-    * @return $this
-    */
+     * Sets static.
+     *
+     * @param StaticChunkingStrategyStatic|null $static
+     *
+     * @return $this
+     */
     public function setStatic(?StaticChunkingStrategyStatic $static): self
     {
         $this->static = $static;

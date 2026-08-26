@@ -24,6 +24,8 @@ CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier::CreateFineT
     
 }
 
+CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier::~CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier() = default;
+
 void CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier::validate() const
 {
     std::stringstream msg;

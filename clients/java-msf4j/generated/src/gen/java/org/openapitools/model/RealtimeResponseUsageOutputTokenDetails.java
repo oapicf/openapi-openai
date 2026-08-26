@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about the output tokens used in the Response.
  */
 @ApiModel(description = "Details about the output tokens used in the Response.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeResponseUsageOutputTokenDetails   {
   @JsonProperty("text_tokens")
   private Integer textTokens;
@@ -90,10 +90,7 @@ public class RealtimeResponseUsageOutputTokenDetails   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

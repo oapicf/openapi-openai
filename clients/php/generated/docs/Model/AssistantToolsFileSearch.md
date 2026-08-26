@@ -1,4 +1,4 @@
-# # AssistantToolsFileSearch
+# AssistantToolsFileSearch
 
 ## Properties
 

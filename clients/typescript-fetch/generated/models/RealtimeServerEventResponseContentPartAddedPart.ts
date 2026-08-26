@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventResponseContentPartAddedPart {
     /**
      * The content type ("text", "audio").
-     * @type {string}
+     * @type {RealtimeServerEventResponseContentPartAddedPartTypeEnum}
      * @memberof RealtimeServerEventResponseContentPartAddedPart
      */
     type?: RealtimeServerEventResponseContentPartAddedPartTypeEnum;

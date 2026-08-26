@@ -174,10 +174,20 @@ class AssistantObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AssistantObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AssistantObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "AssistantObject[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "AssistantObject[id]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "AssistantObject[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "AssistantObject[object]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "AssistantObject[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "AssistantObject[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'name'), 'Required key "AssistantObject[name]" is missing from JSON.');
+        assert(json.containsKey(r'description'), 'Required key "AssistantObject[description]" is missing from JSON.');
+        assert(json.containsKey(r'model'), 'Required key "AssistantObject[model]" is missing from JSON.');
+        assert(json[r'model'] != null, 'Required key "AssistantObject[model]" has a null value in JSON.');
+        assert(json.containsKey(r'instructions'), 'Required key "AssistantObject[instructions]" is missing from JSON.');
+        assert(json.containsKey(r'tools'), 'Required key "AssistantObject[tools]" is missing from JSON.');
+        assert(json[r'tools'] != null, 'Required key "AssistantObject[tools]" has a null value in JSON.');
+        assert(json.containsKey(r'metadata'), 'Required key "AssistantObject[metadata]" is missing from JSON.');
         return true;
       }());
 
@@ -259,27 +269,28 @@ class AssistantObject {
 }
 
 /// The object type, which is always `assistant`.
-class AssistantObjectObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const AssistantObjectObjectEnum._(this.value);
+enum AssistantObjectObjectEnum {
+  assistant._(r'assistant'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const AssistantObjectObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const assistant = AssistantObjectObjectEnum._(r'assistant');
-
-  /// List of all possible values in this [enum][AssistantObjectObjectEnum].
-  static const values = <AssistantObjectObjectEnum>[
-    assistant,
-  ];
-
+  /// Returns the instance of [AssistantObjectObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static AssistantObjectObjectEnum? fromJson(dynamic value) => AssistantObjectObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [AssistantObjectObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<AssistantObjectObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <AssistantObjectObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -301,9 +312,10 @@ class AssistantObjectObjectEnumTypeTransformer {
 
   const AssistantObjectObjectEnumTypeTransformer._();
 
-  String encode(AssistantObjectObjectEnum data) => data.value;
+  String encode(AssistantObjectObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a AssistantObjectObjectEnum.
+  /// Returns the instance of [AssistantObjectObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -312,6 +324,9 @@ class AssistantObjectObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   AssistantObjectObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is AssistantObjectObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'assistant': return AssistantObjectObjectEnum.assistant;
@@ -324,7 +339,7 @@ class AssistantObjectObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [AssistantObjectObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static AssistantObjectObjectEnumTypeTransformer? _instance;
 }
 

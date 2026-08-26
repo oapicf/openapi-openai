@@ -1,4 +1,4 @@
-# # AssistantsApiToolChoiceOption
+# AssistantsApiToolChoiceOption
 
 ## Properties
 

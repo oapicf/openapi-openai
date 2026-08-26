@@ -64,8 +64,8 @@ export function BatchErrorsDataInnerFromJSONTyped(json: any, ignoreDiscriminator
         
         'code': json['code'] == null ? undefined : json['code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'param': json['param'] == null ? undefined : json['param'],
-        'line': json['line'] == null ? undefined : json['line'],
+        'param': json['param'] === undefined ? undefined : json['param'] === null ? null : json['param'],
+        'line': json['line'] === undefined ? undefined : json['line'] === null ? null : json['line'],
     };
 }
 

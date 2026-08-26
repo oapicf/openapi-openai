@@ -32,7 +32,7 @@ class  ResponseFormatText
 {
 public:
     ResponseFormatText();
-    virtual ~ResponseFormatText() = default;
+    virtual ~ResponseFormatText();
 
 
     /// <summary>

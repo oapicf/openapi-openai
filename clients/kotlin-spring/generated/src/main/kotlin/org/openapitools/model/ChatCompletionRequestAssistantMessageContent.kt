@@ -2,6 +2,9 @@ package org.openapitools.model
 
 import java.util.Objects
 import org.openapitools.model.ChatCompletionRequestAssistantMessageContentPart
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -16,9 +19,6 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * The contents of the assistant message. Required unless `tool_calls` or `function_call` is specified. 
  */
-class ChatCompletionRequestAssistantMessageContent(
-
-) {
-
+sealed interface ChatCompletionRequestAssistantMessageContent {
 }
 

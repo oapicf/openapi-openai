@@ -30,10 +30,10 @@ static run_step_delta_step_details_message_creation_object_t *run_step_delta_ste
     if (!run_step_delta_step_details_message_creation_object_local_var) {
         return NULL;
     }
+    memset(run_step_delta_step_details_message_creation_object_local_var, 0, sizeof(run_step_delta_step_details_message_creation_object_t));
+    run_step_delta_step_details_message_creation_object_local_var->_library_owned = 1;
     run_step_delta_step_details_message_creation_object_local_var->type = type;
     run_step_delta_step_details_message_creation_object_local_var->message_creation = message_creation;
-
-    run_step_delta_step_details_message_creation_object_local_var->_library_owned = 1;
     return run_step_delta_step_details_message_creation_object_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) run_step_delta_step_details_message_creation_object_
     openai_api_run_step_delta_step_details_message_creation_object_TYPE_e type,
     run_step_delta_step_details_message_creation_object_message_creation_t *message_creation
     ) {
-    return run_step_delta_step_details_message_creation_object_create_internal (
+    run_step_delta_step_details_message_creation_object_t *result = run_step_delta_step_details_message_creation_object_create_internal (
         type,
         message_creation
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_step_delta_step_details_message_creation_object_free(run_step_delta_step_details_message_creation_object_t *run_step_delta_step_details_message_creation_object) {
@@ -130,10 +133,15 @@ run_step_delta_step_details_message_creation_object_t *run_step_delta_step_detai
     }
 
 
+
     run_step_delta_step_details_message_creation_object_local_var = run_step_delta_step_details_message_creation_object_create_internal (
         typeVariable,
         message_creation ? message_creation_local_nonprim : NULL
         );
+
+    if (!run_step_delta_step_details_message_creation_object_local_var) {
+        goto end;
+    }
 
     return run_step_delta_step_details_message_creation_object_local_var;
 end:

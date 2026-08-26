@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIMessageContentImageUrlObject::OAIMessageContentImageUrlObject(QString json) {
+OAIMessageContentImageUrlObject::OAIMessageContentImageUrlObject(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIMessageContentImageUrlObject::initializeModel() {
     m_image_url_isValid = false;
 }
 
-void OAIMessageContentImageUrlObject::fromJson(QString jsonString) {
+void OAIMessageContentImageUrlObject::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

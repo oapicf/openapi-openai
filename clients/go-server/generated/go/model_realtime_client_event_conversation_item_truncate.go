@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // RealtimeClientEventConversationItemTruncate - Send this event to truncate a previous assistant message’s audio. The server  will produce audio faster than realtime, so this event is useful when the user  interrupts to truncate audio that has already been sent to the client but not  yet played. This will synchronize the server's understanding of the audio with  the client's playback.  Truncating audio will delete the server-side text transcript to ensure there  is not text in the context that hasn't been heard by the user.  If successful, the server will respond with a `conversation.item.truncated`  event.  
@@ -32,21 +37,92 @@ type RealtimeClientEventConversationItemTruncate struct {
 	// Inclusive duration up to which audio is truncated, in milliseconds. If  the audio_end_ms is greater than the actual audio duration, the server  will respond with an error. 
 	AudioEndMs int32 `json:"audio_end_ms"`
 }
-
-// AssertRealtimeClientEventConversationItemTruncateRequired checks if the required fields are not zero-ed
-func AssertRealtimeClientEventConversationItemTruncateRequired(obj RealtimeClientEventConversationItemTruncate) error {
-	elements := map[string]interface{}{
-		"type": obj.Type,
-		"item_id": obj.ItemId,
-		"content_index": obj.ContentIndex,
-		"audio_end_ms": obj.AudioEndMs,
+// UnmarshalJSON validates required property keys then unmarshals into RealtimeClientEventConversationItemTruncate
+func (o *RealtimeClientEventConversationItemTruncate) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"type",
+		"item_id",
+		"content_index",
+		"audio_end_ms",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"type": false,
+		"item_id": false,
+		"content_index": false,
+		"audio_end_ms": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"event_id": {},
+		"type": {},
+		"item_id": {},
+		"content_index": {},
+		"audio_end_ms": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RealtimeClientEventConversationItemTruncate
+
+	if value, exists := allProperties["event_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.EventId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["item_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.ItemId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["content_index"]; exists {
+		if err = json.Unmarshal(value, &decoded.ContentIndex); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["audio_end_ms"]; exists {
+		if err = json.Unmarshal(value, &decoded.AudioEndMs); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRealtimeClientEventConversationItemTruncateRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertRealtimeClientEventConversationItemTruncateRequired(obj RealtimeClientEventConversationItemTruncate) error {
 	return nil
 }
 

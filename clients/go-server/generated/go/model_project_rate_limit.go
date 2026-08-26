@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // ProjectRateLimit - Represents a project rate limit config.
@@ -44,22 +49,118 @@ type ProjectRateLimit struct {
 	// The maximum batch input tokens per day. Only present for relevant models.
 	Batch1DayMaxInputTokens int32 `json:"batch_1_day_max_input_tokens,omitempty"`
 }
-
-// AssertProjectRateLimitRequired checks if the required fields are not zero-ed
-func AssertProjectRateLimitRequired(obj ProjectRateLimit) error {
-	elements := map[string]interface{}{
-		"object": obj.Object,
-		"id": obj.Id,
-		"model": obj.Model,
-		"max_requests_per_1_minute": obj.MaxRequestsPer1Minute,
-		"max_tokens_per_1_minute": obj.MaxTokensPer1Minute,
+// UnmarshalJSON validates required property keys then unmarshals into ProjectRateLimit
+func (o *ProjectRateLimit) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"object",
+		"id",
+		"model",
+		"max_requests_per_1_minute",
+		"max_tokens_per_1_minute",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"object": false,
+		"id": false,
+		"model": false,
+		"max_requests_per_1_minute": false,
+		"max_tokens_per_1_minute": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"object": {},
+		"id": {},
+		"model": {},
+		"max_requests_per_1_minute": {},
+		"max_tokens_per_1_minute": {},
+		"max_images_per_1_minute": {},
+		"max_audio_megabytes_per_1_minute": {},
+		"max_requests_per_1_day": {},
+		"batch_1_day_max_input_tokens": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded ProjectRateLimit
+
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["model"]; exists {
+		if err = json.Unmarshal(value, &decoded.Model); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["max_requests_per_1_minute"]; exists {
+		if err = json.Unmarshal(value, &decoded.MaxRequestsPer1Minute); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["max_tokens_per_1_minute"]; exists {
+		if err = json.Unmarshal(value, &decoded.MaxTokensPer1Minute); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["max_images_per_1_minute"]; exists {
+		if err = json.Unmarshal(value, &decoded.MaxImagesPer1Minute); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["max_audio_megabytes_per_1_minute"]; exists {
+		if err = json.Unmarshal(value, &decoded.MaxAudioMegabytesPer1Minute); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["max_requests_per_1_day"]; exists {
+		if err = json.Unmarshal(value, &decoded.MaxRequestsPer1Day); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["batch_1_day_max_input_tokens"]; exists {
+		if err = json.Unmarshal(value, &decoded.Batch1DayMaxInputTokens); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertProjectRateLimitRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertProjectRateLimitRequired(obj ProjectRateLimit) error {
 	return nil
 }
 

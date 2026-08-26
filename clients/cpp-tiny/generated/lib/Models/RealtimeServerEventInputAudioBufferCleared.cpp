@@ -85,7 +85,7 @@ RealtimeServerEventInputAudioBufferCleared::getEventId()
 }
 
 void
-RealtimeServerEventInputAudioBufferCleared::setEventId(std::string  event_id)
+RealtimeServerEventInputAudioBufferCleared::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -97,7 +97,7 @@ RealtimeServerEventInputAudioBufferCleared::getType()
 }
 
 void
-RealtimeServerEventInputAudioBufferCleared::setType(std::string  type)
+RealtimeServerEventInputAudioBufferCleared::setType(std::string type)
 {
 	this->type = type;
 }

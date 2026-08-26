@@ -473,7 +473,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The sampling temperature used for this run. If not set, defaults to 1.</value>
         [JsonPropertyName("temperature")]
-        public decimal? Temperature { get { return this.TemperatureOption; } set { this.TemperatureOption = new(value); } }
+        public decimal? Temperature { get { return this.TemperatureOption.Value; } set { this.TemperatureOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TopP
@@ -487,7 +487,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The nucleus sampling value used for this run. If not set, defaults to 1.</value>
         [JsonPropertyName("top_p")]
-        public decimal? TopP { get { return this.TopPOption; } set { this.TopPOption = new(value); } }
+        public decimal? TopP { get { return this.TopPOption.Value; } set { this.TopPOption = new(value); } }
 
         /// <summary>
         /// The maximum number of prompt tokens specified to have been used over the course of the run. 
@@ -575,8 +575,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunObject" />
     /// </summary>
-    public class RunObjectJsonConverter : JsonConverter<RunObject>
+    public partial class RunObjectJsonConverter : JsonConverter<RunObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunObjectJsonConverter" /> class.
+        /// </summary>
+        public RunObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunObject" />
         /// </summary>

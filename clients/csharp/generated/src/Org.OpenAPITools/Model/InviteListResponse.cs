@@ -130,7 +130,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The first &#x60;invite_id&#x60; in the retrieved &#x60;list&#x60;</value>
         [JsonPropertyName("first_id")]
-        public string? FirstId { get { return this.FirstIdOption; } set { this.FirstIdOption = new(value); } }
+        public string? FirstId { get { return this.FirstIdOption.Value; } set { this.FirstIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastId
@@ -144,7 +144,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The last &#x60;invite_id&#x60; in the retrieved &#x60;list&#x60;</value>
         [JsonPropertyName("last_id")]
-        public string? LastId { get { return this.LastIdOption; } set { this.LastIdOption = new(value); } }
+        public string? LastId { get { return this.LastIdOption.Value; } set { this.LastIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of HasMore
@@ -158,7 +158,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The &#x60;has_more&#x60; property is used for pagination to indicate there are additional results.</value>
         [JsonPropertyName("has_more")]
-        public bool? HasMore { get { return this.HasMoreOption; } set { this.HasMoreOption = new(value); } }
+        public bool? HasMore { get { return this.HasMoreOption.Value; } set { this.HasMoreOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -191,8 +191,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="InviteListResponse" />
     /// </summary>
-    public class InviteListResponseJsonConverter : JsonConverter<InviteListResponse>
+    public partial class InviteListResponseJsonConverter : JsonConverter<InviteListResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InviteListResponseJsonConverter" /> class.
+        /// </summary>
+        public InviteListResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="InviteListResponse" />
         /// </summary>

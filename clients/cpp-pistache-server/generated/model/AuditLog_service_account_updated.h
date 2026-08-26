@@ -33,7 +33,7 @@ class  AuditLog_service_account_updated
 {
 public:
     AuditLog_service_account_updated();
-    virtual ~AuditLog_service_account_updated() = default;
+    virtual ~AuditLog_service_account_updated();
 
 
     /// <summary>

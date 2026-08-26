@@ -148,7 +148,7 @@ RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::getEventId(
 }
 
 void
-RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::setEventId(std::string  event_id)
+RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -160,7 +160,7 @@ RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::getType()
 }
 
 void
-RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::setType(std::string  type)
+RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::setType(std::string type)
 {
 	this->type = type;
 }
@@ -172,7 +172,7 @@ RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::getItemId()
 }
 
 void
-RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::setItemId(std::string  item_id)
+RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::setItemId(std::string item_id)
 {
 	this->item_id = item_id;
 }
@@ -184,7 +184,7 @@ RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::getContentI
 }
 
 void
-RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::setContentIndex(int  content_index)
+RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::setContentIndex(int content_index)
 {
 	this->content_index = content_index;
 }
@@ -196,7 +196,7 @@ RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::getTranscri
 }
 
 void
-RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::setTranscript(std::string  transcript)
+RealtimeServerEventConversationItemInputAudioTranscriptionCompleted::setTranscript(std::string transcript)
 {
 	this->transcript = transcript;
 }

@@ -25,30 +25,39 @@ openai_api_invite_delete_response_OBJECT_e invite_delete_response_object_FromStr
 static invite_delete_response_t *invite_delete_response_create_internal(
     openai_api_invite_delete_response_OBJECT_e object,
     char *id,
-    int deleted
+    int *deleted
     ) {
     invite_delete_response_t *invite_delete_response_local_var = malloc(sizeof(invite_delete_response_t));
     if (!invite_delete_response_local_var) {
         return NULL;
     }
+    memset(invite_delete_response_local_var, 0, sizeof(invite_delete_response_t));
+    invite_delete_response_local_var->_library_owned = 1;
     invite_delete_response_local_var->object = object;
     invite_delete_response_local_var->id = id;
     invite_delete_response_local_var->deleted = deleted;
-
-    invite_delete_response_local_var->_library_owned = 1;
     return invite_delete_response_local_var;
 }
 
 __attribute__((deprecated)) invite_delete_response_t *invite_delete_response_create(
     openai_api_invite_delete_response_OBJECT_e object,
     char *id,
-    int deleted
+    int *deleted
     ) {
-    return invite_delete_response_create_internal (
+    int *deleted_copy = NULL;
+    if (deleted) {
+        deleted_copy = malloc(sizeof(int));
+        if (deleted_copy) *deleted_copy = *deleted;
+    }
+    invite_delete_response_t *result = invite_delete_response_create_internal (
         object,
         id,
-        deleted
+        deleted_copy
         );
+    if (!result) {
+        free(deleted_copy);
+    }
+    return result;
 }
 
 void invite_delete_response_free(invite_delete_response_t *invite_delete_response) {
@@ -63,6 +72,10 @@ void invite_delete_response_free(invite_delete_response_t *invite_delete_respons
     if (invite_delete_response->id) {
         free(invite_delete_response->id);
         invite_delete_response->id = NULL;
+    }
+    if (invite_delete_response->deleted) {
+        free(invite_delete_response->deleted);
+        invite_delete_response->deleted = NULL;
     }
     free(invite_delete_response);
 }
@@ -93,7 +106,7 @@ cJSON *invite_delete_response_convertToJSON(invite_delete_response_t *invite_del
     if (!invite_delete_response->deleted) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "deleted", invite_delete_response->deleted) == NULL) {
+    if(cJSON_AddBoolToObject(item, "deleted", *invite_delete_response->deleted) == NULL) {
     goto fail; //Bool
     }
 
@@ -108,6 +121,11 @@ fail:
 invite_delete_response_t *invite_delete_response_parseFromJSON(cJSON *invite_delete_responseJSON){
 
     invite_delete_response_t *invite_delete_response_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    // define the local variable for invite_delete_response->deleted
+    int *deleted_local_var = NULL;
 
     // invite_delete_response->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(invite_delete_responseJSON, "object");
@@ -155,16 +173,36 @@ invite_delete_response_t *invite_delete_response_parseFromJSON(cJSON *invite_del
     {
     goto end; //Bool
     }
+    deleted_local_var = malloc(sizeof(int));
+    if(!deleted_local_var)
+    {
+        goto end;
+    }
+    *deleted_local_var = deleted->valueint;
 
+
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
 
     invite_delete_response_local_var = invite_delete_response_create_internal (
         objectVariable,
-        strdup(id->valuestring),
-        deleted->valueint
+        id_local_str,
+        deleted_local_var
         );
+
+    if (!invite_delete_response_local_var) {
+        goto end;
+    }
 
     return invite_delete_response_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (deleted_local_var) {
+        free(deleted_local_var);
+        deleted_local_var = NULL;
+    }
     return NULL;
 
 }

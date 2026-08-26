@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type FineTunePreferenceRequestInputPreferredCompletionInner struct {
@@ -35,18 +40,98 @@ type FineTunePreferenceRequestInputPreferredCompletionInner struct {
 	// Deprecated
 	FunctionCall *ChatCompletionRequestAssistantMessageFunctionCall `json:"function_call,omitempty"`
 }
-
-// AssertFineTunePreferenceRequestInputPreferredCompletionInnerRequired checks if the required fields are not zero-ed
-func AssertFineTunePreferenceRequestInputPreferredCompletionInnerRequired(obj FineTunePreferenceRequestInputPreferredCompletionInner) error {
-	elements := map[string]interface{}{
-		"role": obj.Role,
+// UnmarshalJSON validates required property keys then unmarshals into FineTunePreferenceRequestInputPreferredCompletionInner
+func (o *FineTunePreferenceRequestInputPreferredCompletionInner) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"role",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"role": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"content": {},
+		"refusal": {},
+		"role": {},
+		"name": {},
+		"audio": {},
+		"tool_calls": {},
+		"function_call": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded FineTunePreferenceRequestInputPreferredCompletionInner
+
+	if value, exists := allProperties["content"]; exists {
+		if err = json.Unmarshal(value, &decoded.Content); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["refusal"]; exists {
+		if err = json.Unmarshal(value, &decoded.Refusal); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["role"]; exists {
+		if err = json.Unmarshal(value, &decoded.Role); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["name"]; exists {
+		if err = json.Unmarshal(value, &decoded.Name); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["audio"]; exists {
+		if err = json.Unmarshal(value, &decoded.Audio); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["tool_calls"]; exists {
+		if err = json.Unmarshal(value, &decoded.ToolCalls); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["function_call"]; exists {
+		if err = json.Unmarshal(value, &decoded.FunctionCall); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertFineTunePreferenceRequestInputPreferredCompletionInnerRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertFineTunePreferenceRequestInputPreferredCompletionInnerRequired(obj FineTunePreferenceRequestInputPreferredCompletionInner) error {
 	if obj.Content != nil {
 		if err := AssertChatCompletionRequestAssistantMessageContentRequired(*obj.Content); err != nil {
 			return err

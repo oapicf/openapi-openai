@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 README.md
 pom.xml
 src/main/java/org/openapitools/vertxweb/server/ApiResponse.java
@@ -123,7 +122,6 @@ src/main/java/org/openapitools/vertxweb/server/model/AuditLogUserAddedData.java
 src/main/java/org/openapitools/vertxweb/server/model/AuditLogUserDeleted.java
 src/main/java/org/openapitools/vertxweb/server/model/AuditLogUserUpdated.java
 src/main/java/org/openapitools/vertxweb/server/model/AuditLogUserUpdatedChangesRequested.java
-src/main/java/org/openapitools/vertxweb/server/model/AutoChunkingStrategy.java
 src/main/java/org/openapitools/vertxweb/server/model/AutoChunkingStrategyRequestParam.java
 src/main/java/org/openapitools/vertxweb/server/model/Batch.java
 src/main/java/org/openapitools/vertxweb/server/model/BatchErrors.java
@@ -533,7 +531,6 @@ src/main/java/org/openapitools/vertxweb/server/model/RunToolCallObject.java
 src/main/java/org/openapitools/vertxweb/server/model/RunToolCallObjectFunction.java
 src/main/java/org/openapitools/vertxweb/server/model/StaticChunkingStrategy.java
 src/main/java/org/openapitools/vertxweb/server/model/StaticChunkingStrategyRequestParam.java
-src/main/java/org/openapitools/vertxweb/server/model/StaticChunkingStrategyResponseParam.java
 src/main/java/org/openapitools/vertxweb/server/model/StaticChunkingStrategyStatic.java
 src/main/java/org/openapitools/vertxweb/server/model/SubmitToolOutputsRunRequest.java
 src/main/java/org/openapitools/vertxweb/server/model/SubmitToolOutputsRunRequestToolOutputsInner.java

@@ -107,7 +107,7 @@ RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::getType()
 }
 
 void
-RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::setType(std::string  type)
+RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -119,7 +119,7 @@ RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::getLogs()
 }
 
 void
-RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::setLogs(std::string  logs)
+RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::setLogs(std::string logs)
 {
 	this->logs = logs;
 }
@@ -131,7 +131,7 @@ RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::getImage()
 }
 
 void
-RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::setImage(RunStepDetailsToolCallsCodeOutputImageObject_image  image)
+RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::setImage(RunStepDetailsToolCallsCodeOutputImageObject_image image)
 {
 	this->image = image;
 }

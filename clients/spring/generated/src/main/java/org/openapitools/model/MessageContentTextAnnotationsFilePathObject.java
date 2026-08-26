@@ -10,20 +10,20 @@ import org.springframework.lang.Nullable;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * A URL for the file that&#39;s generated when the assistant used the &#x60;code_interpreter&#x60; tool to generate a file.
  */
 
 @Schema(name = "MessageContentTextAnnotationsFilePathObject", description = "A URL for the file that's generated when the assistant used the `code_interpreter` tool to generate a file.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class MessageContentTextAnnotationsFilePathObject implements MessageContentTextObjectTextAnnotationsInner {
 
   /**
@@ -100,6 +100,7 @@ public class MessageContentTextAnnotationsFilePathObject implements MessageConte
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -120,6 +121,7 @@ public class MessageContentTextAnnotationsFilePathObject implements MessageConte
     return text;
   }
 
+  @JsonProperty("text")
   public void setText(String text) {
     this.text = text;
   }
@@ -140,6 +142,7 @@ public class MessageContentTextAnnotationsFilePathObject implements MessageConte
     return filePath;
   }
 
+  @JsonProperty("file_path")
   public void setFilePath(MessageContentTextAnnotationsFilePathObjectFilePath filePath) {
     this.filePath = filePath;
   }
@@ -161,6 +164,7 @@ public class MessageContentTextAnnotationsFilePathObject implements MessageConte
     return startIndex;
   }
 
+  @JsonProperty("start_index")
   public void setStartIndex(Integer startIndex) {
     this.startIndex = startIndex;
   }
@@ -182,6 +186,7 @@ public class MessageContentTextAnnotationsFilePathObject implements MessageConte
     return endIndex;
   }
 
+  @JsonProperty("end_index")
   public void setEndIndex(Integer endIndex) {
     this.endIndex = endIndex;
   }
@@ -224,11 +229,8 @@ public class MessageContentTextAnnotationsFilePathObject implements MessageConte
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

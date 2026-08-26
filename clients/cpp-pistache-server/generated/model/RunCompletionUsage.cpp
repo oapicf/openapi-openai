@@ -27,6 +27,8 @@ RunCompletionUsage::RunCompletionUsage()
     
 }
 
+RunCompletionUsage::~RunCompletionUsage() = default;
+
 void RunCompletionUsage::validate() const
 {
     std::stringstream msg;

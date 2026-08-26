@@ -26,6 +26,8 @@ CompleteUploadRequest::CompleteUploadRequest()
     
 }
 
+CompleteUploadRequest::~CompleteUploadRequest() = default;
+
 void CompleteUploadRequest::validate() const
 {
     std::stringstream msg;

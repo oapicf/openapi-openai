@@ -42,8 +42,8 @@ function Initialize-InviteProjectsInner {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "role" = ${Role}
+            'id' = ${Id}
+            'role' = ${Role}
         }
 
 
@@ -81,28 +81,28 @@ function ConvertFrom-JsonToInviteProjectsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in InviteProjectsInner
-        $AllProperties = ("id", "role")
+        $AllProperties = ('id', 'role')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) { #optional property not found
             $Id = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "role"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'role'))) { #optional property not found
             $Role = $null
         } else {
-            $Role = $JsonParameters.PSobject.Properties["role"].value
+            $Role = $JsonParameters.PSobject.Properties['role'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "role" = ${Role}
+            'id' = ${Id}
+            'role' = ${Role}
         }
 
         return $PSO

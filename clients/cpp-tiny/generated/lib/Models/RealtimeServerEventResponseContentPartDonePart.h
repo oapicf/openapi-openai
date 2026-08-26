@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set The content type (\"text\", \"audio\").
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The text content (if type is \"text\").
 	 */
 	std::string getText();
 
 	/*! \brief Set The text content (if type is \"text\").
 	 */
-	void setText(std::string  text);
+	void setText(std::string text);
 	/*! \brief Get Base64-encoded audio data (if type is \"audio\").
 	 */
 	std::string getAudio();
 
 	/*! \brief Set Base64-encoded audio data (if type is \"audio\").
 	 */
-	void setAudio(std::string  audio);
+	void setAudio(std::string audio);
 	/*! \brief Get The transcript of the audio (if type is \"audio\").
 	 */
 	std::string getTranscript();
 
 	/*! \brief Set The transcript of the audio (if type is \"audio\").
 	 */
-	void setTranscript(std::string  transcript);
+	void setTranscript(std::string transcript);
 
 
     private:

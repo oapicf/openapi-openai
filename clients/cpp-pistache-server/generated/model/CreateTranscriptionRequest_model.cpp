@@ -24,6 +24,8 @@ CreateTranscriptionRequest_model::CreateTranscriptionRequest_model()
     
 }
 
+CreateTranscriptionRequest_model::~CreateTranscriptionRequest_model() = default;
+
 void CreateTranscriptionRequest_model::validate() const
 {
     std::stringstream msg;

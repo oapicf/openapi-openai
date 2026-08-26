@@ -31,6 +31,8 @@ Project::Project()
     
 }
 
+Project::~Project() = default;
+
 void Project::validate() const
 {
     std::stringstream msg;

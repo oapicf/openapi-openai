@@ -140,15 +140,17 @@ class _$CreateTranscriptionResponseVerboseJsonSerializer implements PrimitiveSer
         case r'words':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(TranscriptionWord)]),
-          ) as BuiltList<TranscriptionWord>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(TranscriptionWord)]),
+          ) as BuiltList<TranscriptionWord>?;
+          if (valueDes == null) continue;
           result.words.replace(valueDes);
           break;
         case r'segments':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(TranscriptionSegment)]),
-          ) as BuiltList<TranscriptionSegment>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(TranscriptionSegment)]),
+          ) as BuiltList<TranscriptionSegment>?;
+          if (valueDes == null) continue;
           result.segments.replace(valueDes);
           break;
         default:

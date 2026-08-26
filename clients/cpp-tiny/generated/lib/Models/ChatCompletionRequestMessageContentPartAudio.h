@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set The type of the content part. Always `input_audio`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	ChatCompletionRequestMessageContentPartAudio_input_audio getInputAudio();
 
 	/*! \brief Set 
 	 */
-	void setInputAudio(ChatCompletionRequestMessageContentPartAudio_input_audio  input_audio);
+	void setInputAudio(ChatCompletionRequestMessageContentPartAudio_input_audio input_audio);
 
 
     private:

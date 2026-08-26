@@ -22,12 +22,14 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ChatCompletionRequestMessageContentPartText(
 
-    @Schema(example = "null", required = true, description = "The type of the content part.")
+    @Schema(required = true, description = "The type of the content part.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: ChatCompletionRequestMessageContentPartText.Type,
 
-    @Schema(example = "null", required = true, description = "The text content.")
+    @Schema(required = true, description = "The text content.")
+    @param:JsonProperty("text")
     @get:JsonProperty("text", required = true) val text: kotlin.String
-) {
+) : ChatCompletionRequestAssistantMessageContentPart, ChatCompletionRequestUserMessageContentPart {
 
     /**
     * The type of the content part.
@@ -42,7 +44,7 @@ data class ChatCompletionRequestMessageContentPartText(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ChatCompletionRequestMessageContentPartText'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

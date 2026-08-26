@@ -140,8 +140,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageContentRefusalObject" />
     /// </summary>
-    public class MessageContentRefusalObjectJsonConverter : JsonConverter<MessageContentRefusalObject>
+    public partial class MessageContentRefusalObjectJsonConverter : JsonConverter<MessageContentRefusalObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageContentRefusalObjectJsonConverter" /> class.
+        /// </summary>
+        public MessageContentRefusalObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageContentRefusalObject" />
         /// </summary>

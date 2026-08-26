@@ -12,12 +12,9 @@
 package org.openapitools.client.model
 
 
-case class CreateThreadAndRunRequestToolsInner(
-  /* The type of tool being defined: `code_interpreter` */
-  `type`: CreateThreadAndRunRequestToolsInnerEnums.`Type`,
-  fileSearch: Option[AssistantToolsFileSearchFileSearch] = None,
-  function: FunctionObject
-)
+trait CreateThreadAndRunRequestToolsInner
+object CreateThreadAndRunRequestToolsInner {
+}
 
 object CreateThreadAndRunRequestToolsInnerEnums {
 

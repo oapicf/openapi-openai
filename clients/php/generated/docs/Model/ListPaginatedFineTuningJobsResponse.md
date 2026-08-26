@@ -1,4 +1,4 @@
-# # ListPaginatedFineTuningJobsResponse
+# ListPaginatedFineTuningJobsResponse
 
 ## Properties
 

@@ -51,7 +51,7 @@ class RunStepDetailsToolCallsFileSearchResultObject
      * @var string|null
      * @SerializedName("file_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $fileId = null;
@@ -62,7 +62,7 @@ class RunStepDetailsToolCallsFileSearchResultObject
      * @var string|null
      * @SerializedName("file_name")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $fileName = null;
@@ -73,7 +73,7 @@ class RunStepDetailsToolCallsFileSearchResultObject
      * @var float|null
      * @SerializedName("score")
      * @Type("float")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(0)]
@@ -86,7 +86,7 @@ class RunStepDetailsToolCallsFileSearchResultObject
      * @var RunStepDetailsToolCallsFileSearchResultObjectContentInner[]|null
      * @SerializedName("content")
      * @Type("array<OpenAPI\Server\Model\RunStepDetailsToolCallsFileSearchResultObjectContentInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\RunStepDetailsToolCallsFileSearchResultObjectContentInner"),
     ])]
@@ -117,12 +117,12 @@ class RunStepDetailsToolCallsFileSearchResultObject
     }
 
     /**
-    * Sets fileId.
-    *
-    * @param string|null $fileId  The ID of the file that result was found in.
-    *
-    * @return $this
-    */
+     * Sets fileId.
+     *
+     * @param string|null $fileId  The ID of the file that result was found in.
+     *
+     * @return $this
+     */
     public function setFileId(?string $fileId): self
     {
         $this->fileId = $fileId;
@@ -144,12 +144,12 @@ class RunStepDetailsToolCallsFileSearchResultObject
     }
 
     /**
-    * Sets fileName.
-    *
-    * @param string|null $fileName  The name of the file that result was found in.
-    *
-    * @return $this
-    */
+     * Sets fileName.
+     *
+     * @param string|null $fileName  The name of the file that result was found in.
+     *
+     * @return $this
+     */
     public function setFileName(?string $fileName): self
     {
         $this->fileName = $fileName;
@@ -171,12 +171,12 @@ class RunStepDetailsToolCallsFileSearchResultObject
     }
 
     /**
-    * Sets score.
-    *
-    * @param float|null $score  The score of the result. All values must be a floating point number between 0 and 1.
-    *
-    * @return $this
-    */
+     * Sets score.
+     *
+     * @param float|null $score  The score of the result. All values must be a floating point number between 0 and 1.
+     *
+     * @return $this
+     */
     public function setScore(?float $score): self
     {
         $this->score = $score;
@@ -198,12 +198,12 @@ class RunStepDetailsToolCallsFileSearchResultObject
     }
 
     /**
-    * Sets content.
-    *
-    * @param RunStepDetailsToolCallsFileSearchResultObjectContentInner[]|null $content  The content of the result that was found. The content is only included if requested via the include query parameter.
-    *
-    * @return $this
-    */
+     * Sets content.
+     *
+     * @param RunStepDetailsToolCallsFileSearchResultObjectContentInner[]|null $content  The content of the result that was found. The content is only included if requested via the include query parameter.
+     *
+     * @return $this
+     */
     public function setContent(?array $content = null): self
     {
         $this->content = $content;

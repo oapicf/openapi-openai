@@ -169,7 +169,7 @@ AuditLog_rate_limit_updated_changes_requested::getMaxRequestsPer1Minute()
 }
 
 void
-AuditLog_rate_limit_updated_changes_requested::setMaxRequestsPer1Minute(int  max_requests_per_1_minute)
+AuditLog_rate_limit_updated_changes_requested::setMaxRequestsPer1Minute(int max_requests_per_1_minute)
 {
 	this->max_requests_per_1_minute = max_requests_per_1_minute;
 }
@@ -181,7 +181,7 @@ AuditLog_rate_limit_updated_changes_requested::getMaxTokensPer1Minute()
 }
 
 void
-AuditLog_rate_limit_updated_changes_requested::setMaxTokensPer1Minute(int  max_tokens_per_1_minute)
+AuditLog_rate_limit_updated_changes_requested::setMaxTokensPer1Minute(int max_tokens_per_1_minute)
 {
 	this->max_tokens_per_1_minute = max_tokens_per_1_minute;
 }
@@ -193,7 +193,7 @@ AuditLog_rate_limit_updated_changes_requested::getMaxImagesPer1Minute()
 }
 
 void
-AuditLog_rate_limit_updated_changes_requested::setMaxImagesPer1Minute(int  max_images_per_1_minute)
+AuditLog_rate_limit_updated_changes_requested::setMaxImagesPer1Minute(int max_images_per_1_minute)
 {
 	this->max_images_per_1_minute = max_images_per_1_minute;
 }
@@ -205,7 +205,7 @@ AuditLog_rate_limit_updated_changes_requested::getMaxAudioMegabytesPer1Minute()
 }
 
 void
-AuditLog_rate_limit_updated_changes_requested::setMaxAudioMegabytesPer1Minute(int  max_audio_megabytes_per_1_minute)
+AuditLog_rate_limit_updated_changes_requested::setMaxAudioMegabytesPer1Minute(int max_audio_megabytes_per_1_minute)
 {
 	this->max_audio_megabytes_per_1_minute = max_audio_megabytes_per_1_minute;
 }
@@ -217,7 +217,7 @@ AuditLog_rate_limit_updated_changes_requested::getMaxRequestsPer1Day()
 }
 
 void
-AuditLog_rate_limit_updated_changes_requested::setMaxRequestsPer1Day(int  max_requests_per_1_day)
+AuditLog_rate_limit_updated_changes_requested::setMaxRequestsPer1Day(int max_requests_per_1_day)
 {
 	this->max_requests_per_1_day = max_requests_per_1_day;
 }
@@ -229,7 +229,7 @@ AuditLog_rate_limit_updated_changes_requested::getBatch1DayMaxInputTokens()
 }
 
 void
-AuditLog_rate_limit_updated_changes_requested::setBatch1DayMaxInputTokens(int  batch_1_day_max_input_tokens)
+AuditLog_rate_limit_updated_changes_requested::setBatch1DayMaxInputTokens(int batch_1_day_max_input_tokens)
 {
 	this->batch_1_day_max_input_tokens = batch_1_day_max_input_tokens;
 }

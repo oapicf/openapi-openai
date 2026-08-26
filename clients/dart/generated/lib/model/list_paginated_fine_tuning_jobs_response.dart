@@ -59,10 +59,12 @@ class ListPaginatedFineTuningJobsResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ListPaginatedFineTuningJobsResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ListPaginatedFineTuningJobsResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'data'), 'Required key "ListPaginatedFineTuningJobsResponse[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "ListPaginatedFineTuningJobsResponse[data]" has a null value in JSON.');
+        assert(json.containsKey(r'has_more'), 'Required key "ListPaginatedFineTuningJobsResponse[has_more]" is missing from JSON.');
+        assert(json[r'has_more'] != null, 'Required key "ListPaginatedFineTuningJobsResponse[has_more]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "ListPaginatedFineTuningJobsResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "ListPaginatedFineTuningJobsResponse[object]" has a null value in JSON.');
         return true;
       }());
 
@@ -124,27 +126,28 @@ class ListPaginatedFineTuningJobsResponse {
 }
 
 
-class ListPaginatedFineTuningJobsResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ListPaginatedFineTuningJobsResponseObjectEnum._(this.value);
+enum ListPaginatedFineTuningJobsResponseObjectEnum {
+  list._(r'list'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ListPaginatedFineTuningJobsResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const list = ListPaginatedFineTuningJobsResponseObjectEnum._(r'list');
-
-  /// List of all possible values in this [enum][ListPaginatedFineTuningJobsResponseObjectEnum].
-  static const values = <ListPaginatedFineTuningJobsResponseObjectEnum>[
-    list,
-  ];
-
+  /// Returns the instance of [ListPaginatedFineTuningJobsResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ListPaginatedFineTuningJobsResponseObjectEnum? fromJson(dynamic value) => ListPaginatedFineTuningJobsResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ListPaginatedFineTuningJobsResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ListPaginatedFineTuningJobsResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ListPaginatedFineTuningJobsResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -166,9 +169,10 @@ class ListPaginatedFineTuningJobsResponseObjectEnumTypeTransformer {
 
   const ListPaginatedFineTuningJobsResponseObjectEnumTypeTransformer._();
 
-  String encode(ListPaginatedFineTuningJobsResponseObjectEnum data) => data.value;
+  String encode(ListPaginatedFineTuningJobsResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ListPaginatedFineTuningJobsResponseObjectEnum.
+  /// Returns the instance of [ListPaginatedFineTuningJobsResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -177,6 +181,9 @@ class ListPaginatedFineTuningJobsResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ListPaginatedFineTuningJobsResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ListPaginatedFineTuningJobsResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'list': return ListPaginatedFineTuningJobsResponseObjectEnum.list;
@@ -189,7 +196,7 @@ class ListPaginatedFineTuningJobsResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ListPaginatedFineTuningJobsResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ListPaginatedFineTuningJobsResponseObjectEnumTypeTransformer? _instance;
 }
 

@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set The upload Part unique identifier, which can be referenced in API endpoints.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The Unix timestamp (in seconds) for when the Part was created.
 	 */
 	int getCreatedAt();
 
 	/*! \brief Set The Unix timestamp (in seconds) for when the Part was created.
 	 */
-	void setCreatedAt(int  created_at);
+	void setCreatedAt(int created_at);
 	/*! \brief Get The ID of the Upload object that this Part was added to.
 	 */
 	std::string getUploadId();
 
 	/*! \brief Set The ID of the Upload object that this Part was added to.
 	 */
-	void setUploadId(std::string  upload_id);
+	void setUploadId(std::string upload_id);
 	/*! \brief Get The object type, which is always `upload.part`.
 	 */
 	std::string getObject();
 
 	/*! \brief Set The object type, which is always `upload.part`.
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 
 
     private:

@@ -109,7 +109,7 @@ FineTuneSupervisedMethod_hyperparameters::getBatchSize()
 }
 
 void
-FineTuneSupervisedMethod_hyperparameters::setBatchSize(FineTuneDPOMethod_hyperparameters_batch_size  batch_size)
+FineTuneSupervisedMethod_hyperparameters::setBatchSize(FineTuneDPOMethod_hyperparameters_batch_size batch_size)
 {
 	this->batch_size = batch_size;
 }
@@ -121,7 +121,7 @@ FineTuneSupervisedMethod_hyperparameters::getLearningRateMultiplier()
 }
 
 void
-FineTuneSupervisedMethod_hyperparameters::setLearningRateMultiplier(FineTuneDPOMethod_hyperparameters_learning_rate_multiplier  learning_rate_multiplier)
+FineTuneSupervisedMethod_hyperparameters::setLearningRateMultiplier(FineTuneDPOMethod_hyperparameters_learning_rate_multiplier learning_rate_multiplier)
 {
 	this->learning_rate_multiplier = learning_rate_multiplier;
 }
@@ -133,7 +133,7 @@ FineTuneSupervisedMethod_hyperparameters::getNEpochs()
 }
 
 void
-FineTuneSupervisedMethod_hyperparameters::setNEpochs(FineTuneDPOMethod_hyperparameters_n_epochs  n_epochs)
+FineTuneSupervisedMethod_hyperparameters::setNEpochs(FineTuneDPOMethod_hyperparameters_n_epochs n_epochs)
 {
 	this->n_epochs = n_epochs;
 }

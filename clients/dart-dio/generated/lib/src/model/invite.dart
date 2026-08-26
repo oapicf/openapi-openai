@@ -210,15 +210,17 @@ class _$InviteSerializer implements PrimitiveSerializer<Invite> {
         case r'accepted_at':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.acceptedAt = valueDes;
           break;
         case r'projects':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(InviteProjectsInner)]),
-          ) as BuiltList<InviteProjectsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(InviteProjectsInner)]),
+          ) as BuiltList<InviteProjectsInner>?;
+          if (valueDes == null) continue;
           result.projects.replace(valueDes);
           break;
         default:

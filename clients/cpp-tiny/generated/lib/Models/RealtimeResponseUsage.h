@@ -53,35 +53,35 @@ public:
 
 	/*! \brief Set The total number of tokens in the Response including input and output  text and audio tokens. 
 	 */
-	void setTotalTokens(int  total_tokens);
+	void setTotalTokens(int total_tokens);
 	/*! \brief Get The number of input tokens used in the Response, including text and  audio tokens. 
 	 */
 	int getInputTokens();
 
 	/*! \brief Set The number of input tokens used in the Response, including text and  audio tokens. 
 	 */
-	void setInputTokens(int  input_tokens);
+	void setInputTokens(int input_tokens);
 	/*! \brief Get The number of output tokens sent in the Response, including text and  audio tokens. 
 	 */
 	int getOutputTokens();
 
 	/*! \brief Set The number of output tokens sent in the Response, including text and  audio tokens. 
 	 */
-	void setOutputTokens(int  output_tokens);
+	void setOutputTokens(int output_tokens);
 	/*! \brief Get 
 	 */
 	RealtimeResponse_usage_input_token_details getInputTokenDetails();
 
 	/*! \brief Set 
 	 */
-	void setInputTokenDetails(RealtimeResponse_usage_input_token_details  input_token_details);
+	void setInputTokenDetails(RealtimeResponse_usage_input_token_details input_token_details);
 	/*! \brief Get 
 	 */
 	RealtimeResponse_usage_output_token_details getOutputTokenDetails();
 
 	/*! \brief Set 
 	 */
-	void setOutputTokenDetails(RealtimeResponse_usage_output_token_details  output_token_details);
+	void setOutputTokenDetails(RealtimeResponse_usage_output_token_details output_token_details);
 
 
     private:

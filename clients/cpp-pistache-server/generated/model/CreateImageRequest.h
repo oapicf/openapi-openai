@@ -33,7 +33,7 @@ class  CreateImageRequest
 {
 public:
     CreateImageRequest();
-    virtual ~CreateImageRequest() = default;
+    virtual ~CreateImageRequest();
 
 
     /// <summary>

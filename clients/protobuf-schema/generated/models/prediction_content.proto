@@ -23,7 +23,7 @@ message PredictionContent {
     TYPE_CONTENT = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   PredictionContentContent content = 414659706;
 

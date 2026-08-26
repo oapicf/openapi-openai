@@ -26,6 +26,8 @@ ListPaginatedFineTuningJobsResponse::ListPaginatedFineTuningJobsResponse()
     
 }
 
+ListPaginatedFineTuningJobsResponse::~ListPaginatedFineTuningJobsResponse() = default;
+
 void ListPaginatedFineTuningJobsResponse::validate() const
 {
     std::stringstream msg;

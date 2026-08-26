@@ -49,7 +49,7 @@ class CreateTranslationResponseVerboseJson
      * @var string|null
      * @SerializedName("language")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $language = null;
@@ -60,7 +60,7 @@ class CreateTranslationResponseVerboseJson
      * @var string|null
      * @SerializedName("duration")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $duration = null;
@@ -71,7 +71,7 @@ class CreateTranslationResponseVerboseJson
      * @var string|null
      * @SerializedName("text")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $text = null;
@@ -82,7 +82,7 @@ class CreateTranslationResponseVerboseJson
      * @var TranscriptionSegment[]|null
      * @SerializedName("segments")
      * @Type("array<OpenAPI\Server\Model\TranscriptionSegment>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\TranscriptionSegment"),
     ])]
@@ -113,12 +113,12 @@ class CreateTranslationResponseVerboseJson
     }
 
     /**
-    * Sets language.
-    *
-    * @param string|null $language  The language of the output translation (always `english`).
-    *
-    * @return $this
-    */
+     * Sets language.
+     *
+     * @param string|null $language  The language of the output translation (always `english`).
+     *
+     * @return $this
+     */
     public function setLanguage(?string $language): self
     {
         $this->language = $language;
@@ -140,12 +140,12 @@ class CreateTranslationResponseVerboseJson
     }
 
     /**
-    * Sets duration.
-    *
-    * @param string|null $duration  The duration of the input audio.
-    *
-    * @return $this
-    */
+     * Sets duration.
+     *
+     * @param string|null $duration  The duration of the input audio.
+     *
+     * @return $this
+     */
     public function setDuration(?string $duration): self
     {
         $this->duration = $duration;
@@ -167,12 +167,12 @@ class CreateTranslationResponseVerboseJson
     }
 
     /**
-    * Sets text.
-    *
-    * @param string|null $text  The translated text.
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param string|null $text  The translated text.
+     *
+     * @return $this
+     */
     public function setText(?string $text): self
     {
         $this->text = $text;
@@ -194,12 +194,12 @@ class CreateTranslationResponseVerboseJson
     }
 
     /**
-    * Sets segments.
-    *
-    * @param TranscriptionSegment[]|null $segments  Segments of the translated text and their corresponding details.
-    *
-    * @return $this
-    */
+     * Sets segments.
+     *
+     * @param TranscriptionSegment[]|null $segments  Segments of the translated text and their corresponding details.
+     *
+     * @return $this
+     */
     public function setSegments(?array $segments = null): self
     {
         $this->segments = $segments;

@@ -51,7 +51,7 @@ class CreateChatCompletionFunctionResponse
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class CreateChatCompletionFunctionResponse
      * @var CreateChatCompletionFunctionResponseChoicesInner[]|null
      * @SerializedName("choices")
      * @Type("array<OpenAPI\Server\Model\CreateChatCompletionFunctionResponseChoicesInner>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -76,7 +76,7 @@ class CreateChatCompletionFunctionResponse
      * @var int|null
      * @SerializedName("created")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $created = null;
@@ -87,7 +87,7 @@ class CreateChatCompletionFunctionResponse
      * @var string|null
      * @SerializedName("model")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $model = null;
@@ -98,7 +98,7 @@ class CreateChatCompletionFunctionResponse
      * @var string|null
      * @SerializedName("system_fingerprint")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $systemFingerprint = null;
 
@@ -108,7 +108,7 @@ class CreateChatCompletionFunctionResponse
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['chat.completion'])]
     #[Assert\Type("string")]
@@ -118,7 +118,7 @@ class CreateChatCompletionFunctionResponse
      * @var CompletionUsage|null
      * @SerializedName("usage")
      * @Type("OpenAPI\Server\Model\CompletionUsage")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CompletionUsage")]
     protected ?CompletionUsage $usage = null;
 
@@ -150,12 +150,12 @@ class CreateChatCompletionFunctionResponse
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  A unique identifier for the chat completion.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  A unique identifier for the chat completion.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -177,12 +177,12 @@ class CreateChatCompletionFunctionResponse
     }
 
     /**
-    * Sets choices.
-    *
-    * @param CreateChatCompletionFunctionResponseChoicesInner[]|null $choices  A list of chat completion choices. Can be more than one if `n` is greater than 1.
-    *
-    * @return $this
-    */
+     * Sets choices.
+     *
+     * @param CreateChatCompletionFunctionResponseChoicesInner[]|null $choices  A list of chat completion choices. Can be more than one if `n` is greater than 1.
+     *
+     * @return $this
+     */
     public function setChoices(?array $choices): self
     {
         $this->choices = $choices;
@@ -204,12 +204,12 @@ class CreateChatCompletionFunctionResponse
     }
 
     /**
-    * Sets created.
-    *
-    * @param int|null $created  The Unix timestamp (in seconds) of when the chat completion was created.
-    *
-    * @return $this
-    */
+     * Sets created.
+     *
+     * @param int|null $created  The Unix timestamp (in seconds) of when the chat completion was created.
+     *
+     * @return $this
+     */
     public function setCreated(?int $created): self
     {
         $this->created = $created;
@@ -231,12 +231,12 @@ class CreateChatCompletionFunctionResponse
     }
 
     /**
-    * Sets model.
-    *
-    * @param string|null $model  The model used for the chat completion.
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param string|null $model  The model used for the chat completion.
+     *
+     * @return $this
+     */
     public function setModel(?string $model): self
     {
         $this->model = $model;
@@ -258,12 +258,12 @@ class CreateChatCompletionFunctionResponse
     }
 
     /**
-    * Sets systemFingerprint.
-    *
-    * @param string|null $systemFingerprint  This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.
-    *
-    * @return $this
-    */
+     * Sets systemFingerprint.
+     *
+     * @param string|null $systemFingerprint  This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.
+     *
+     * @return $this
+     */
     public function setSystemFingerprint(?string $systemFingerprint = null): self
     {
         $this->systemFingerprint = $systemFingerprint;
@@ -285,12 +285,12 @@ class CreateChatCompletionFunctionResponse
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `chat.completion`.
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `chat.completion`.
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -312,12 +312,12 @@ class CreateChatCompletionFunctionResponse
     }
 
     /**
-    * Sets usage.
-    *
-    * @param CompletionUsage|null $usage
-    *
-    * @return $this
-    */
+     * Sets usage.
+     *
+     * @param CompletionUsage|null $usage
+     *
+     * @return $this
+     */
     public function setUsage(?CompletionUsage $usage = null): self
     {
         $this->usage = $usage;

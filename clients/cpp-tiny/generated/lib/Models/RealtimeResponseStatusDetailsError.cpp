@@ -85,7 +85,7 @@ RealtimeResponse_status_details_error::getType()
 }
 
 void
-RealtimeResponse_status_details_error::setType(std::string  type)
+RealtimeResponse_status_details_error::setType(std::string type)
 {
 	this->type = type;
 }
@@ -97,7 +97,7 @@ RealtimeResponse_status_details_error::getCode()
 }
 
 void
-RealtimeResponse_status_details_error::setCode(std::string  code)
+RealtimeResponse_status_details_error::setCode(std::string code)
 {
 	this->code = code;
 }

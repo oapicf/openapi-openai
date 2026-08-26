@@ -29,7 +29,7 @@ export interface RealtimeServerEventInputAudioBufferCleared {
     eventId: string;
     /**
      * The event type, must be `input_audio_buffer.cleared`.
-     * @type {string}
+     * @type {RealtimeServerEventInputAudioBufferClearedTypeEnum}
      * @memberof RealtimeServerEventInputAudioBufferCleared
      */
     type: RealtimeServerEventInputAudioBufferClearedTypeEnum;
@@ -49,8 +49,10 @@ export type RealtimeServerEventInputAudioBufferClearedTypeEnum = typeof Realtime
  * Check if a given object implements the RealtimeServerEventInputAudioBufferCleared interface.
  */
 export function instanceOfRealtimeServerEventInputAudioBufferCleared(value: object): value is RealtimeServerEventInputAudioBufferCleared {
-    if (!('eventId' in value) || value['eventId'] === undefined) return false;
+    if ((!('eventId' in (value as Record<string, any>)) && !('event_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['eventId'] === undefined && (value as Record<string, any>)['event_id'] === undefined)) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'input_audio_buffer.cleared') return false;
+    
     return true;
 }
 

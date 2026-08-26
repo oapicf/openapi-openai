@@ -33,7 +33,7 @@ class  CreateModerationRequest
 {
 public:
     CreateModerationRequest();
-    virtual ~CreateModerationRequest() = default;
+    virtual ~CreateModerationRequest();
 
 
     /// <summary>

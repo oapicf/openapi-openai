@@ -33,7 +33,7 @@ class  ChatCompletionRequestMessageContentPartImage
 {
 public:
     ChatCompletionRequestMessageContentPartImage();
-    virtual ~ChatCompletionRequestMessageContentPartImage() = default;
+    virtual ~ChatCompletionRequestMessageContentPartImage();
 
 
     /// <summary>

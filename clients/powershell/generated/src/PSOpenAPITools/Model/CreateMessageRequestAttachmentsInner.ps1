@@ -41,8 +41,8 @@ function Initialize-CreateMessageRequestAttachmentsInner {
 
 
         $PSO = [PSCustomObject]@{
-            "file_id" = ${FileId}
-            "tools" = ${Tools}
+            'file_id' = ${FileId}
+            'tools' = ${Tools}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToCreateMessageRequestAttachmentsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateMessageRequestAttachmentsInner
-        $AllProperties = ("file_id", "tools")
+        $AllProperties = ('file_id', 'tools')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_id'))) { #optional property not found
             $FileId = $null
         } else {
-            $FileId = $JsonParameters.PSobject.Properties["file_id"].value
+            $FileId = $JsonParameters.PSobject.Properties['file_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tools"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tools'))) { #optional property not found
             $Tools = $null
         } else {
-            $Tools = $JsonParameters.PSobject.Properties["tools"].value
+            $Tools = $JsonParameters.PSobject.Properties['tools'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "file_id" = ${FileId}
-            "tools" = ${Tools}
+            'file_id' = ${FileId}
+            'tools' = ${Tools}
         }
 
         return $PSO

@@ -34,13 +34,13 @@ class OAIMessageDeltaContentTextObject_text_annotations_inner;
 class OAIMessageDeltaContentTextObject_text : public OAIObject {
 public:
     OAIMessageDeltaContentTextObject_text();
-    OAIMessageDeltaContentTextObject_text(QString json);
+    OAIMessageDeltaContentTextObject_text(const QString &json);
     ~OAIMessageDeltaContentTextObject_text() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getValue() const;
     void setValue(const QString &value);

@@ -51,7 +51,7 @@ class ChatCompletionRequestMessageContentPartImage
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['image_url'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class ChatCompletionRequestMessageContentPartImage
      * @var ChatCompletionRequestMessageContentPartImageImageUrl|null
      * @SerializedName("image_url")
      * @Type("OpenAPI\Server\Model\ChatCompletionRequestMessageContentPartImageImageUrl")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionRequestMessageContentPartImageImageUrl")]
@@ -90,12 +90,12 @@ class ChatCompletionRequestMessageContentPartImage
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of the content part.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of the content part.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -117,12 +117,12 @@ class ChatCompletionRequestMessageContentPartImage
     }
 
     /**
-    * Sets imageUrl.
-    *
-    * @param ChatCompletionRequestMessageContentPartImageImageUrl|null $imageUrl
-    *
-    * @return $this
-    */
+     * Sets imageUrl.
+     *
+     * @param ChatCompletionRequestMessageContentPartImageImageUrl|null $imageUrl
+     *
+     * @return $this
+     */
     public function setImageUrl(?ChatCompletionRequestMessageContentPartImageImageUrl $imageUrl): self
     {
         $this->imageUrl = $imageUrl;

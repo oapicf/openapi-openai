@@ -30,10 +30,10 @@ static message_content_refusal_object_t *message_content_refusal_object_create_i
     if (!message_content_refusal_object_local_var) {
         return NULL;
     }
+    memset(message_content_refusal_object_local_var, 0, sizeof(message_content_refusal_object_t));
+    message_content_refusal_object_local_var->_library_owned = 1;
     message_content_refusal_object_local_var->type = type;
     message_content_refusal_object_local_var->refusal = refusal;
-
-    message_content_refusal_object_local_var->_library_owned = 1;
     return message_content_refusal_object_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) message_content_refusal_object_t *message_content_re
     openai_api_message_content_refusal_object_TYPE_e type,
     char *refusal
     ) {
-    return message_content_refusal_object_create_internal (
+    message_content_refusal_object_t *result = message_content_refusal_object_create_internal (
         type,
         refusal
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_content_refusal_object_free(message_content_refusal_object_t *message_content_refusal_object) {
@@ -96,6 +99,8 @@ message_content_refusal_object_t *message_content_refusal_object_parseFromJSON(c
 
     message_content_refusal_object_t *message_content_refusal_object_local_var = NULL;
 
+    char *refusal_local_str = NULL;
+
     // message_content_refusal_object->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(message_content_refusal_objectJSON, "type");
     if (cJSON_IsNull(type)) {
@@ -129,13 +134,23 @@ message_content_refusal_object_t *message_content_refusal_object_parseFromJSON(c
     }
 
 
+    if (refusal && !cJSON_IsNull(refusal)) refusal_local_str = strdup(refusal->valuestring);
+
     message_content_refusal_object_local_var = message_content_refusal_object_create_internal (
         typeVariable,
-        strdup(refusal->valuestring)
+        refusal_local_str
         );
+
+    if (!message_content_refusal_object_local_var) {
+        goto end;
+    }
 
     return message_content_refusal_object_local_var;
 end:
+    if (refusal_local_str) {
+        free(refusal_local_str);
+        refusal_local_str = NULL;
+    }
     return NULL;
 
 }

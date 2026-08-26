@@ -102,7 +102,7 @@ ImagesResponse::getCreated()
 }
 
 void
-ImagesResponse::setCreated(int  created)
+ImagesResponse::setCreated(int created)
 {
 	this->created = created;
 }
@@ -114,7 +114,7 @@ ImagesResponse::getData()
 }
 
 void
-ImagesResponse::setData(std::list <Image> data)
+ImagesResponse::setData(std::list<Image> data)
 {
 	this->data = data;
 }

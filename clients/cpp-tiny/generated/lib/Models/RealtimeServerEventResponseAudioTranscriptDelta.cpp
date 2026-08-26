@@ -190,7 +190,7 @@ RealtimeServerEventResponseAudioTranscriptDelta::getEventId()
 }
 
 void
-RealtimeServerEventResponseAudioTranscriptDelta::setEventId(std::string  event_id)
+RealtimeServerEventResponseAudioTranscriptDelta::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -202,7 +202,7 @@ RealtimeServerEventResponseAudioTranscriptDelta::getType()
 }
 
 void
-RealtimeServerEventResponseAudioTranscriptDelta::setType(std::string  type)
+RealtimeServerEventResponseAudioTranscriptDelta::setType(std::string type)
 {
 	this->type = type;
 }
@@ -214,7 +214,7 @@ RealtimeServerEventResponseAudioTranscriptDelta::getResponseId()
 }
 
 void
-RealtimeServerEventResponseAudioTranscriptDelta::setResponseId(std::string  response_id)
+RealtimeServerEventResponseAudioTranscriptDelta::setResponseId(std::string response_id)
 {
 	this->response_id = response_id;
 }
@@ -226,7 +226,7 @@ RealtimeServerEventResponseAudioTranscriptDelta::getItemId()
 }
 
 void
-RealtimeServerEventResponseAudioTranscriptDelta::setItemId(std::string  item_id)
+RealtimeServerEventResponseAudioTranscriptDelta::setItemId(std::string item_id)
 {
 	this->item_id = item_id;
 }
@@ -238,7 +238,7 @@ RealtimeServerEventResponseAudioTranscriptDelta::getOutputIndex()
 }
 
 void
-RealtimeServerEventResponseAudioTranscriptDelta::setOutputIndex(int  output_index)
+RealtimeServerEventResponseAudioTranscriptDelta::setOutputIndex(int output_index)
 {
 	this->output_index = output_index;
 }
@@ -250,7 +250,7 @@ RealtimeServerEventResponseAudioTranscriptDelta::getContentIndex()
 }
 
 void
-RealtimeServerEventResponseAudioTranscriptDelta::setContentIndex(int  content_index)
+RealtimeServerEventResponseAudioTranscriptDelta::setContentIndex(int content_index)
 {
 	this->content_index = content_index;
 }
@@ -262,7 +262,7 @@ RealtimeServerEventResponseAudioTranscriptDelta::getDelta()
 }
 
 void
-RealtimeServerEventResponseAudioTranscriptDelta::setDelta(std::string  delta)
+RealtimeServerEventResponseAudioTranscriptDelta::setDelta(std::string delta)
 {
 	this->delta = delta;
 }

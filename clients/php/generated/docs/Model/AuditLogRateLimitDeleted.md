@@ -1,4 +1,4 @@
-# # AuditLogRateLimitDeleted
+# AuditLogRateLimitDeleted
 
 ## Properties
 

@@ -51,10 +51,10 @@ function Initialize-AuditLogOrganizationUpdatedChangesRequested {
 
 
         $PSO = [PSCustomObject]@{
-            "title" = ${Title}
-            "description" = ${Description}
-            "name" = ${Name}
-            "settings" = ${Settings}
+            'title' = ${Title}
+            'description' = ${Description}
+            'name' = ${Name}
+            'settings' = ${Settings}
         }
 
 
@@ -92,42 +92,42 @@ function ConvertFrom-JsonToAuditLogOrganizationUpdatedChangesRequested {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AuditLogOrganizationUpdatedChangesRequested
-        $AllProperties = ("title", "description", "name", "settings")
+        $AllProperties = ('title', 'description', 'name', 'settings')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "title"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'title'))) { #optional property not found
             $Title = $null
         } else {
-            $Title = $JsonParameters.PSobject.Properties["title"].value
+            $Title = $JsonParameters.PSobject.Properties['title'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'description'))) { #optional property not found
             $Description = $null
         } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
+            $Description = $JsonParameters.PSobject.Properties['description'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) { #optional property not found
             $Name = $null
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "settings"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'settings'))) { #optional property not found
             $Settings = $null
         } else {
-            $Settings = $JsonParameters.PSobject.Properties["settings"].value
+            $Settings = $JsonParameters.PSobject.Properties['settings'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "title" = ${Title}
-            "description" = ${Description}
-            "name" = ${Name}
-            "settings" = ${Settings}
+            'title' = ${Title}
+            'description' = ${Description}
+            'name' = ${Name}
+            'settings' = ${Settings}
         }
 
         return $PSO

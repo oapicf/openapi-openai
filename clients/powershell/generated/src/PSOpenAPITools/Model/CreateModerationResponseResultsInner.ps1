@@ -67,10 +67,10 @@ function Initialize-CreateModerationResponseResultsInner {
 
 
         $PSO = [PSCustomObject]@{
-            "flagged" = ${Flagged}
-            "categories" = ${Categories}
-            "category_scores" = ${CategoryScores}
-            "category_applied_input_types" = ${CategoryAppliedInputTypes}
+            'flagged' = ${Flagged}
+            'categories' = ${Categories}
+            'category_scores' = ${CategoryScores}
+            'category_applied_input_types' = ${CategoryAppliedInputTypes}
         }
 
 
@@ -108,7 +108,7 @@ function ConvertFrom-JsonToCreateModerationResponseResultsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateModerationResponseResultsInner
-        $AllProperties = ("flagged", "categories", "category_scores", "category_applied_input_types")
+        $AllProperties = ('flagged', 'categories', 'category_scores', 'category_applied_input_types')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -119,35 +119,35 @@ function ConvertFrom-JsonToCreateModerationResponseResultsInner {
             throw "Error! Empty JSON cannot be serialized due to the required property 'flagged' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "flagged"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'flagged'))) {
             throw "Error! JSON cannot be serialized due to the required property 'flagged' missing."
         } else {
-            $Flagged = $JsonParameters.PSobject.Properties["flagged"].value
+            $Flagged = $JsonParameters.PSobject.Properties['flagged'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "categories"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'categories'))) {
             throw "Error! JSON cannot be serialized due to the required property 'categories' missing."
         } else {
-            $Categories = $JsonParameters.PSobject.Properties["categories"].value
+            $Categories = $JsonParameters.PSobject.Properties['categories'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "category_scores"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'category_scores'))) {
             throw "Error! JSON cannot be serialized due to the required property 'category_scores' missing."
         } else {
-            $CategoryScores = $JsonParameters.PSobject.Properties["category_scores"].value
+            $CategoryScores = $JsonParameters.PSobject.Properties['category_scores'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "category_applied_input_types"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'category_applied_input_types'))) {
             throw "Error! JSON cannot be serialized due to the required property 'category_applied_input_types' missing."
         } else {
-            $CategoryAppliedInputTypes = $JsonParameters.PSobject.Properties["category_applied_input_types"].value
+            $CategoryAppliedInputTypes = $JsonParameters.PSobject.Properties['category_applied_input_types'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "flagged" = ${Flagged}
-            "categories" = ${Categories}
-            "category_scores" = ${CategoryScores}
-            "category_applied_input_types" = ${CategoryAppliedInputTypes}
+            'flagged' = ${Flagged}
+            'categories' = ${Categories}
+            'category_scores' = ${CategoryScores}
+            'category_applied_input_types' = ${CategoryAppliedInputTypes}
         }
 
         return $PSO

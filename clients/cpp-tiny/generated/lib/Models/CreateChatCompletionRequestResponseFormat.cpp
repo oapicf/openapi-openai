@@ -86,7 +86,7 @@ CreateChatCompletionRequest_response_format::getType()
 }
 
 void
-CreateChatCompletionRequest_response_format::setType(std::string  type)
+CreateChatCompletionRequest_response_format::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ CreateChatCompletionRequest_response_format::getJsonSchema()
 }
 
 void
-CreateChatCompletionRequest_response_format::setJsonSchema(ResponseFormatJsonSchema_json_schema  json_schema)
+CreateChatCompletionRequest_response_format::setJsonSchema(ResponseFormatJsonSchema_json_schema json_schema)
 {
 	this->json_schema = json_schema;
 }

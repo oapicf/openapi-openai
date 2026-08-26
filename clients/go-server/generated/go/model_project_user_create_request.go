@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type ProjectUserCreateRequest struct {
@@ -22,19 +27,70 @@ type ProjectUserCreateRequest struct {
 	// `owner` or `member`
 	Role string `json:"role"`
 }
-
-// AssertProjectUserCreateRequestRequired checks if the required fields are not zero-ed
-func AssertProjectUserCreateRequestRequired(obj ProjectUserCreateRequest) error {
-	elements := map[string]interface{}{
-		"user_id": obj.UserId,
-		"role": obj.Role,
+// UnmarshalJSON validates required property keys then unmarshals into ProjectUserCreateRequest
+func (o *ProjectUserCreateRequest) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"user_id",
+		"role",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"user_id": false,
+		"role": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"user_id": {},
+		"role": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded ProjectUserCreateRequest
+
+	if value, exists := allProperties["user_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.UserId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["role"]; exists {
+		if err = json.Unmarshal(value, &decoded.Role); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertProjectUserCreateRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertProjectUserCreateRequestRequired(obj ProjectUserCreateRequest) error {
 	return nil
 }
 

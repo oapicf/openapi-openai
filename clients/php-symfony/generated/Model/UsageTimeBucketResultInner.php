@@ -47,7 +47,7 @@ class UsageTimeBucketResultInner
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['organization.costs.result'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class UsageTimeBucketResultInner
      * @var int|null
      * @SerializedName("input_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $inputTokens = null;
@@ -70,7 +70,7 @@ class UsageTimeBucketResultInner
      * @var int|null
      * @SerializedName("input_cached_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $inputCachedTokens = null;
 
@@ -80,7 +80,7 @@ class UsageTimeBucketResultInner
      * @var int|null
      * @SerializedName("output_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $outputTokens = null;
@@ -91,7 +91,7 @@ class UsageTimeBucketResultInner
      * @var int|null
      * @SerializedName("input_audio_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $inputAudioTokens = null;
 
@@ -101,7 +101,7 @@ class UsageTimeBucketResultInner
      * @var int|null
      * @SerializedName("output_audio_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $outputAudioTokens = null;
 
@@ -111,7 +111,7 @@ class UsageTimeBucketResultInner
      * @var int|null
      * @SerializedName("num_model_requests")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $numModelRequests = null;
@@ -122,7 +122,7 @@ class UsageTimeBucketResultInner
      * @var string|null
      * @SerializedName("project_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $projectId = null;
 
@@ -132,7 +132,7 @@ class UsageTimeBucketResultInner
      * @var string|null
      * @SerializedName("user_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $userId = null;
 
@@ -142,7 +142,7 @@ class UsageTimeBucketResultInner
      * @var string|null
      * @SerializedName("api_key_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $apiKeyId = null;
 
@@ -152,7 +152,7 @@ class UsageTimeBucketResultInner
      * @var string|null
      * @SerializedName("model")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $model = null;
 
@@ -162,7 +162,7 @@ class UsageTimeBucketResultInner
      * @var bool|null
      * @SerializedName("batch")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $batch = null;
 
@@ -172,7 +172,7 @@ class UsageTimeBucketResultInner
      * @var int|null
      * @SerializedName("images")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $images = null;
@@ -183,7 +183,7 @@ class UsageTimeBucketResultInner
      * @var string|null
      * @SerializedName("source")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $source = null;
 
@@ -193,7 +193,7 @@ class UsageTimeBucketResultInner
      * @var string|null
      * @SerializedName("size")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $size = null;
 
@@ -203,7 +203,7 @@ class UsageTimeBucketResultInner
      * @var int|null
      * @SerializedName("characters")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $characters = null;
@@ -214,7 +214,7 @@ class UsageTimeBucketResultInner
      * @var int|null
      * @SerializedName("seconds")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $seconds = null;
@@ -225,7 +225,7 @@ class UsageTimeBucketResultInner
      * @var int|null
      * @SerializedName("usage_bytes")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $usageBytes = null;
@@ -236,7 +236,7 @@ class UsageTimeBucketResultInner
      * @var int|null
      * @SerializedName("sessions")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $sessions = null;
@@ -245,7 +245,7 @@ class UsageTimeBucketResultInner
      * @var CostsResultAmount|null
      * @SerializedName("amount")
      * @Type("OpenAPI\Server\Model\CostsResultAmount")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CostsResultAmount")]
     protected ?CostsResultAmount $amount = null;
 
@@ -255,7 +255,7 @@ class UsageTimeBucketResultInner
      * @var string|null
      * @SerializedName("line_item")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $lineItem = null;
 
@@ -301,12 +301,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -328,12 +328,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets inputTokens.
-    *
-    * @param int|null $inputTokens  The aggregated number of input tokens used.
-    *
-    * @return $this
-    */
+     * Sets inputTokens.
+     *
+     * @param int|null $inputTokens  The aggregated number of input tokens used.
+     *
+     * @return $this
+     */
     public function setInputTokens(?int $inputTokens): self
     {
         $this->inputTokens = $inputTokens;
@@ -355,12 +355,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets inputCachedTokens.
-    *
-    * @param int|null $inputCachedTokens  The aggregated number of text input tokens that has been cached from previous requests. For customers subscribe to scale tier, this includes scale tier tokens.
-    *
-    * @return $this
-    */
+     * Sets inputCachedTokens.
+     *
+     * @param int|null $inputCachedTokens  The aggregated number of text input tokens that has been cached from previous requests. For customers subscribe to scale tier, this includes scale tier tokens.
+     *
+     * @return $this
+     */
     public function setInputCachedTokens(?int $inputCachedTokens = null): self
     {
         $this->inputCachedTokens = $inputCachedTokens;
@@ -382,12 +382,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets outputTokens.
-    *
-    * @param int|null $outputTokens  The aggregated number of text output tokens used. For customers subscribe to scale tier, this includes scale tier tokens.
-    *
-    * @return $this
-    */
+     * Sets outputTokens.
+     *
+     * @param int|null $outputTokens  The aggregated number of text output tokens used. For customers subscribe to scale tier, this includes scale tier tokens.
+     *
+     * @return $this
+     */
     public function setOutputTokens(?int $outputTokens): self
     {
         $this->outputTokens = $outputTokens;
@@ -409,12 +409,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets inputAudioTokens.
-    *
-    * @param int|null $inputAudioTokens  The aggregated number of audio input tokens used, including cached tokens.
-    *
-    * @return $this
-    */
+     * Sets inputAudioTokens.
+     *
+     * @param int|null $inputAudioTokens  The aggregated number of audio input tokens used, including cached tokens.
+     *
+     * @return $this
+     */
     public function setInputAudioTokens(?int $inputAudioTokens = null): self
     {
         $this->inputAudioTokens = $inputAudioTokens;
@@ -436,12 +436,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets outputAudioTokens.
-    *
-    * @param int|null $outputAudioTokens  The aggregated number of audio output tokens used.
-    *
-    * @return $this
-    */
+     * Sets outputAudioTokens.
+     *
+     * @param int|null $outputAudioTokens  The aggregated number of audio output tokens used.
+     *
+     * @return $this
+     */
     public function setOutputAudioTokens(?int $outputAudioTokens = null): self
     {
         $this->outputAudioTokens = $outputAudioTokens;
@@ -463,12 +463,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets numModelRequests.
-    *
-    * @param int|null $numModelRequests  The count of requests made to the model.
-    *
-    * @return $this
-    */
+     * Sets numModelRequests.
+     *
+     * @param int|null $numModelRequests  The count of requests made to the model.
+     *
+     * @return $this
+     */
     public function setNumModelRequests(?int $numModelRequests): self
     {
         $this->numModelRequests = $numModelRequests;
@@ -490,12 +490,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets projectId.
-    *
-    * @param string|null $projectId  When `group_by=project_id`, this field provides the project ID of the grouped costs result.
-    *
-    * @return $this
-    */
+     * Sets projectId.
+     *
+     * @param string|null $projectId  When `group_by=project_id`, this field provides the project ID of the grouped costs result.
+     *
+     * @return $this
+     */
     public function setProjectId(?string $projectId = null): self
     {
         $this->projectId = $projectId;
@@ -517,12 +517,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets userId.
-    *
-    * @param string|null $userId  When `group_by=user_id`, this field provides the user ID of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets userId.
+     *
+     * @param string|null $userId  When `group_by=user_id`, this field provides the user ID of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setUserId(?string $userId = null): self
     {
         $this->userId = $userId;
@@ -544,12 +544,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets apiKeyId.
-    *
-    * @param string|null $apiKeyId  When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets apiKeyId.
+     *
+     * @param string|null $apiKeyId  When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setApiKeyId(?string $apiKeyId = null): self
     {
         $this->apiKeyId = $apiKeyId;
@@ -571,12 +571,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets model.
-    *
-    * @param string|null $model  When `group_by=model`, this field provides the model name of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param string|null $model  When `group_by=model`, this field provides the model name of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setModel(?string $model = null): self
     {
         $this->model = $model;
@@ -598,12 +598,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets batch.
-    *
-    * @param bool|null $batch  When `group_by=batch`, this field tells whether the grouped usage result is batch or not.
-    *
-    * @return $this
-    */
+     * Sets batch.
+     *
+     * @param bool|null $batch  When `group_by=batch`, this field tells whether the grouped usage result is batch or not.
+     *
+     * @return $this
+     */
     public function setBatch(?bool $batch = null): self
     {
         $this->batch = $batch;
@@ -625,12 +625,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets images.
-    *
-    * @param int|null $images  The number of images processed.
-    *
-    * @return $this
-    */
+     * Sets images.
+     *
+     * @param int|null $images  The number of images processed.
+     *
+     * @return $this
+     */
     public function setImages(?int $images): self
     {
         $this->images = $images;
@@ -652,12 +652,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets source.
-    *
-    * @param string|null $source  When `group_by=source`, this field provides the source of the grouped usage result, possible values are `image.generation`, `image.edit`, `image.variation`.
-    *
-    * @return $this
-    */
+     * Sets source.
+     *
+     * @param string|null $source  When `group_by=source`, this field provides the source of the grouped usage result, possible values are `image.generation`, `image.edit`, `image.variation`.
+     *
+     * @return $this
+     */
     public function setSource(?string $source = null): self
     {
         $this->source = $source;
@@ -679,12 +679,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets size.
-    *
-    * @param string|null $size  When `group_by=size`, this field provides the image size of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets size.
+     *
+     * @param string|null $size  When `group_by=size`, this field provides the image size of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setSize(?string $size = null): self
     {
         $this->size = $size;
@@ -706,12 +706,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets characters.
-    *
-    * @param int|null $characters  The number of characters processed.
-    *
-    * @return $this
-    */
+     * Sets characters.
+     *
+     * @param int|null $characters  The number of characters processed.
+     *
+     * @return $this
+     */
     public function setCharacters(?int $characters): self
     {
         $this->characters = $characters;
@@ -733,12 +733,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets seconds.
-    *
-    * @param int|null $seconds  The number of seconds processed.
-    *
-    * @return $this
-    */
+     * Sets seconds.
+     *
+     * @param int|null $seconds  The number of seconds processed.
+     *
+     * @return $this
+     */
     public function setSeconds(?int $seconds): self
     {
         $this->seconds = $seconds;
@@ -760,12 +760,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets usageBytes.
-    *
-    * @param int|null $usageBytes  The vector stores usage in bytes.
-    *
-    * @return $this
-    */
+     * Sets usageBytes.
+     *
+     * @param int|null $usageBytes  The vector stores usage in bytes.
+     *
+     * @return $this
+     */
     public function setUsageBytes(?int $usageBytes): self
     {
         $this->usageBytes = $usageBytes;
@@ -787,12 +787,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets sessions.
-    *
-    * @param int|null $sessions  The number of code interpreter sessions.
-    *
-    * @return $this
-    */
+     * Sets sessions.
+     *
+     * @param int|null $sessions  The number of code interpreter sessions.
+     *
+     * @return $this
+     */
     public function setSessions(?int $sessions): self
     {
         $this->sessions = $sessions;
@@ -814,12 +814,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets amount.
-    *
-    * @param CostsResultAmount|null $amount
-    *
-    * @return $this
-    */
+     * Sets amount.
+     *
+     * @param CostsResultAmount|null $amount
+     *
+     * @return $this
+     */
     public function setAmount(?CostsResultAmount $amount = null): self
     {
         $this->amount = $amount;
@@ -841,12 +841,12 @@ class UsageTimeBucketResultInner
     }
 
     /**
-    * Sets lineItem.
-    *
-    * @param string|null $lineItem  When `group_by=line_item`, this field provides the line item of the grouped costs result.
-    *
-    * @return $this
-    */
+     * Sets lineItem.
+     *
+     * @param string|null $lineItem  When `group_by=line_item`, this field provides the line item of the grouped costs result.
+     *
+     * @return $this
+     */
     public function setLineItem(?string $lineItem = null): self
     {
         $this->lineItem = $lineItem;

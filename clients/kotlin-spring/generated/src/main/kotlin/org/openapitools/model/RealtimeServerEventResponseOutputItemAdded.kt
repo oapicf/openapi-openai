@@ -26,20 +26,25 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeServerEventResponseOutputItemAdded(
 
-    @Schema(example = "null", required = true, description = "The unique ID of the server event.")
+    @Schema(required = true, description = "The unique ID of the server event.")
+    @param:JsonProperty("event_id")
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The event type, must be `response.output_item.added`.")
+    @Schema(required = true, description = "The event type, must be `response.output_item.added`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventResponseOutputItemAdded.Type,
 
-    @Schema(example = "null", required = true, description = "The ID of the Response to which the item belongs.")
+    @Schema(required = true, description = "The ID of the Response to which the item belongs.")
+    @param:JsonProperty("response_id")
     @get:JsonProperty("response_id", required = true) val responseId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The index of the output item in the Response.")
+    @Schema(required = true, description = "The index of the output item in the Response.")
+    @param:JsonProperty("output_index")
     @get:JsonProperty("output_index", required = true) val outputIndex: kotlin.Int,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("item")
     @get:JsonProperty("item", required = true) val item: RealtimeConversationItem
 ) {
 
@@ -56,7 +61,7 @@ data class RealtimeServerEventResponseOutputItemAdded(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeServerEventResponseOutputItemAdded'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

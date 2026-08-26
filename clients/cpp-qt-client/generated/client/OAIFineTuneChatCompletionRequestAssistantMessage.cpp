@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIFineTuneChatCompletionRequestAssistantMessage::OAIFineTuneChatCompletionRequestAssistantMessage(QString json) {
+OAIFineTuneChatCompletionRequestAssistantMessage::OAIFineTuneChatCompletionRequestAssistantMessage(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -59,7 +59,7 @@ void OAIFineTuneChatCompletionRequestAssistantMessage::initializeModel() {
     m_weight_isValid = false;
 }
 
-void OAIFineTuneChatCompletionRequestAssistantMessage::fromJson(QString jsonString) {
+void OAIFineTuneChatCompletionRequestAssistantMessage::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -54,8 +54,8 @@ function Initialize-FileSearchRankingOptions {
 
 
         $PSO = [PSCustomObject]@{
-            "ranker" = ${Ranker}
-            "score_threshold" = ${ScoreThreshold}
+            'ranker' = ${Ranker}
+            'score_threshold' = ${ScoreThreshold}
         }
 
 
@@ -93,7 +93,7 @@ function ConvertFrom-JsonToFileSearchRankingOptions {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in FileSearchRankingOptions
-        $AllProperties = ("ranker", "score_threshold")
+        $AllProperties = ('ranker', 'score_threshold')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -104,21 +104,21 @@ function ConvertFrom-JsonToFileSearchRankingOptions {
             throw "Error! Empty JSON cannot be serialized due to the required property 'score_threshold' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "score_threshold"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'score_threshold'))) {
             throw "Error! JSON cannot be serialized due to the required property 'score_threshold' missing."
         } else {
-            $ScoreThreshold = $JsonParameters.PSobject.Properties["score_threshold"].value
+            $ScoreThreshold = $JsonParameters.PSobject.Properties['score_threshold'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ranker"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'ranker'))) { #optional property not found
             $Ranker = $null
         } else {
-            $Ranker = $JsonParameters.PSobject.Properties["ranker"].value
+            $Ranker = $JsonParameters.PSobject.Properties['ranker'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "ranker" = ${Ranker}
-            "score_threshold" = ${ScoreThreshold}
+            'ranker' = ${Ranker}
+            'score_threshold' = ${ScoreThreshold}
         }
 
         return $PSO

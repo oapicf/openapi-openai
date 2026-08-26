@@ -55,9 +55,9 @@ function Initialize-UsageVectorStoresResult {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "usage_bytes" = ${UsageBytes}
-            "project_id" = ${ProjectId}
+            'object' = ${Object}
+            'usage_bytes' = ${UsageBytes}
+            'project_id' = ${ProjectId}
         }
 
 
@@ -95,7 +95,7 @@ function ConvertFrom-JsonToUsageVectorStoresResult {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in UsageVectorStoresResult
-        $AllProperties = ("object", "usage_bytes", "project_id")
+        $AllProperties = ('object', 'usage_bytes', 'project_id')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -106,28 +106,28 @@ function ConvertFrom-JsonToUsageVectorStoresResult {
             throw "Error! Empty JSON cannot be serialized due to the required property 'object' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "usage_bytes"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'usage_bytes'))) {
             throw "Error! JSON cannot be serialized due to the required property 'usage_bytes' missing."
         } else {
-            $UsageBytes = $JsonParameters.PSobject.Properties["usage_bytes"].value
+            $UsageBytes = $JsonParameters.PSobject.Properties['usage_bytes'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "project_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'project_id'))) { #optional property not found
             $ProjectId = $null
         } else {
-            $ProjectId = $JsonParameters.PSobject.Properties["project_id"].value
+            $ProjectId = $JsonParameters.PSobject.Properties['project_id'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "usage_bytes" = ${UsageBytes}
-            "project_id" = ${ProjectId}
+            'object' = ${Object}
+            'usage_bytes' = ${UsageBytes}
+            'project_id' = ${ProjectId}
         }
 
         return $PSO

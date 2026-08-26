@@ -15,9 +15,9 @@ import {
     OtherChunkingStrategyResponseParam,
     OtherChunkingStrategyResponseParamFromJSON,
     OtherChunkingStrategyResponseParamToJSON,
-    StaticChunkingStrategyResponseParam,
-    StaticChunkingStrategyResponseParamFromJSON,
-    StaticChunkingStrategyResponseParamToJSON,
+    StaticChunkingStrategyRequestParam,
+    StaticChunkingStrategyRequestParamFromJSON,
+    StaticChunkingStrategyRequestParamToJSON,
 } from './';
 
 /**
@@ -25,6 +25,6 @@ import {
  * The strategy used to chunk the file.
  * @export
  */
-export type VectorStoreFileObjectChunkingStrategy = OtherChunkingStrategyResponseParam | StaticChunkingStrategyResponseParam;
+export type VectorStoreFileObjectChunkingStrategy = OtherChunkingStrategyResponseParam | StaticChunkingStrategyRequestParam;
 
 

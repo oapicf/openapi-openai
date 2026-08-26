@@ -1,4 +1,4 @@
-# # CreateCompletionResponse
+# CreateCompletionResponse
 
 ## Properties
 

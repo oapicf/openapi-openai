@@ -51,7 +51,7 @@ class User
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['organization.user'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class User
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -74,7 +74,7 @@ class User
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $name = null;
@@ -85,7 +85,7 @@ class User
      * @var string|null
      * @SerializedName("email")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $email = null;
@@ -96,7 +96,7 @@ class User
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['owner', 'reader'])]
     #[Assert\Type("string")]
@@ -108,7 +108,7 @@ class User
      * @var int|null
      * @SerializedName("added_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $addedAt = null;
@@ -140,12 +140,12 @@ class User
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `organization.user`
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `organization.user`
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -167,12 +167,12 @@ class User
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The identifier, which can be referenced in API endpoints
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The identifier, which can be referenced in API endpoints
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -194,12 +194,12 @@ class User
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the user
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the user
+     *
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -221,12 +221,12 @@ class User
     }
 
     /**
-    * Sets email.
-    *
-    * @param string|null $email  The email address of the user
-    *
-    * @return $this
-    */
+     * Sets email.
+     *
+     * @param string|null $email  The email address of the user
+     *
+     * @return $this
+     */
     public function setEmail(?string $email): self
     {
         $this->email = $email;
@@ -248,12 +248,12 @@ class User
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  `owner` or `reader`
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  `owner` or `reader`
+     *
+     * @return $this
+     */
     public function setRole(?string $role): self
     {
         $this->role = $role;
@@ -275,12 +275,12 @@ class User
     }
 
     /**
-    * Sets addedAt.
-    *
-    * @param int|null $addedAt  The Unix timestamp (in seconds) of when the user was added.
-    *
-    * @return $this
-    */
+     * Sets addedAt.
+     *
+     * @param int|null $addedAt  The Unix timestamp (in seconds) of when the user was added.
+     *
+     * @return $this
+     */
     public function setAddedAt(?int $addedAt): self
     {
         $this->addedAt = $addedAt;

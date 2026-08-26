@@ -39,7 +39,7 @@ message CreateCompletionResponse {
     OBJECT_TEXT_COMPLETION = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   CompletionUsage usage = 111574433;
 

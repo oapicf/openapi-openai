@@ -149,7 +149,7 @@ MessageContentTextAnnotationsFilePathObject::getType()
 }
 
 void
-MessageContentTextAnnotationsFilePathObject::setType(std::string  type)
+MessageContentTextAnnotationsFilePathObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -161,7 +161,7 @@ MessageContentTextAnnotationsFilePathObject::getText()
 }
 
 void
-MessageContentTextAnnotationsFilePathObject::setText(std::string  text)
+MessageContentTextAnnotationsFilePathObject::setText(std::string text)
 {
 	this->text = text;
 }
@@ -173,7 +173,7 @@ MessageContentTextAnnotationsFilePathObject::getFilePath()
 }
 
 void
-MessageContentTextAnnotationsFilePathObject::setFilePath(MessageContentTextAnnotationsFilePathObject_file_path  file_path)
+MessageContentTextAnnotationsFilePathObject::setFilePath(MessageContentTextAnnotationsFilePathObject_file_path file_path)
 {
 	this->file_path = file_path;
 }
@@ -185,7 +185,7 @@ MessageContentTextAnnotationsFilePathObject::getStartIndex()
 }
 
 void
-MessageContentTextAnnotationsFilePathObject::setStartIndex(int  start_index)
+MessageContentTextAnnotationsFilePathObject::setStartIndex(int start_index)
 {
 	this->start_index = start_index;
 }
@@ -197,7 +197,7 @@ MessageContentTextAnnotationsFilePathObject::getEndIndex()
 }
 
 void
-MessageContentTextAnnotationsFilePathObject::setEndIndex(int  end_index)
+MessageContentTextAnnotationsFilePathObject::setEndIndex(int end_index)
 {
 	this->end_index = end_index;
 }

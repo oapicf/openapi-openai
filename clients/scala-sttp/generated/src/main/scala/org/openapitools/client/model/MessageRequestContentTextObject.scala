@@ -21,7 +21,7 @@ case class MessageRequestContentTextObject(
   `type`: MessageRequestContentTextObjectEnums.`Type`,
   /* Text content to be sent to the model */
   text: String
-)
+) extends ArrayOfContentPartsInner
 
 object MessageRequestContentTextObjectEnums {
 

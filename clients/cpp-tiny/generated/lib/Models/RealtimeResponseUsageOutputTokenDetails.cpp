@@ -85,7 +85,7 @@ RealtimeResponse_usage_output_token_details::getTextTokens()
 }
 
 void
-RealtimeResponse_usage_output_token_details::setTextTokens(int  text_tokens)
+RealtimeResponse_usage_output_token_details::setTextTokens(int text_tokens)
 {
 	this->text_tokens = text_tokens;
 }
@@ -97,7 +97,7 @@ RealtimeResponse_usage_output_token_details::getAudioTokens()
 }
 
 void
-RealtimeResponse_usage_output_token_details::setAudioTokens(int  audio_tokens)
+RealtimeResponse_usage_output_token_details::setAudioTokens(int audio_tokens)
 {
 	this->audio_tokens = audio_tokens;
 }

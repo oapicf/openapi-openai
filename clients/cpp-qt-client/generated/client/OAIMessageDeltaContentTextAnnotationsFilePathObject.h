@@ -33,13 +33,13 @@ class OAIMessageDeltaContentTextAnnotationsFilePathObject_file_path;
 class OAIMessageDeltaContentTextAnnotationsFilePathObject : public OAIObject {
 public:
     OAIMessageDeltaContentTextAnnotationsFilePathObject();
-    OAIMessageDeltaContentTextAnnotationsFilePathObject(QString json);
+    OAIMessageDeltaContentTextAnnotationsFilePathObject(const QString &json);
     ~OAIMessageDeltaContentTextAnnotationsFilePathObject() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getIndex() const;
     void setIndex(const qint32 &index);

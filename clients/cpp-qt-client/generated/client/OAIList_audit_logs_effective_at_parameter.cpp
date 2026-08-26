@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIList_audit_logs_effective_at_parameter::OAIList_audit_logs_effective_at_parameter(QString json) {
+OAIList_audit_logs_effective_at_parameter::OAIList_audit_logs_effective_at_parameter(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -47,7 +47,7 @@ void OAIList_audit_logs_effective_at_parameter::initializeModel() {
     m_lte_isValid = false;
 }
 
-void OAIList_audit_logs_effective_at_parameter::fromJson(QString jsonString) {
+void OAIList_audit_logs_effective_at_parameter::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

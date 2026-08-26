@@ -14,11 +14,11 @@ static image_t *image_create_internal(
     if (!image_local_var) {
         return NULL;
     }
+    memset(image_local_var, 0, sizeof(image_t));
+    image_local_var->_library_owned = 1;
     image_local_var->b64_json = b64_json;
     image_local_var->url = url;
     image_local_var->revised_prompt = revised_prompt;
-
-    image_local_var->_library_owned = 1;
     return image_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) image_t *image_create(
     char *url,
     char *revised_prompt
     ) {
-    return image_create_internal (
+    image_t *result = image_create_internal (
         b64_json,
         url,
         revised_prompt
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void image_free(image_t *image) {
@@ -96,6 +99,12 @@ image_t *image_parseFromJSON(cJSON *imageJSON){
 
     image_t *image_local_var = NULL;
 
+    char *b64_json_local_str = NULL;
+
+    char *url_local_str = NULL;
+
+    char *revised_prompt_local_str = NULL;
+
     // image->b64_json
     cJSON *b64_json = cJSON_GetObjectItemCaseSensitive(imageJSON, "b64_json");
     if (cJSON_IsNull(b64_json)) {
@@ -133,14 +142,34 @@ image_t *image_parseFromJSON(cJSON *imageJSON){
     }
 
 
+    if (b64_json && !cJSON_IsNull(b64_json)) b64_json_local_str = strdup(b64_json->valuestring);
+    if (url && !cJSON_IsNull(url)) url_local_str = strdup(url->valuestring);
+    if (revised_prompt && !cJSON_IsNull(revised_prompt)) revised_prompt_local_str = strdup(revised_prompt->valuestring);
+
     image_local_var = image_create_internal (
-        b64_json && !cJSON_IsNull(b64_json) ? strdup(b64_json->valuestring) : NULL,
-        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL,
-        revised_prompt && !cJSON_IsNull(revised_prompt) ? strdup(revised_prompt->valuestring) : NULL
+        b64_json_local_str,
+        url_local_str,
+        revised_prompt_local_str
         );
+
+    if (!image_local_var) {
+        goto end;
+    }
 
     return image_local_var;
 end:
+    if (b64_json_local_str) {
+        free(b64_json_local_str);
+        b64_json_local_str = NULL;
+    }
+    if (url_local_str) {
+        free(url_local_str);
+        url_local_str = NULL;
+    }
+    if (revised_prompt_local_str) {
+        free(revised_prompt_local_str);
+        revised_prompt_local_str = NULL;
+    }
     return NULL;
 
 }

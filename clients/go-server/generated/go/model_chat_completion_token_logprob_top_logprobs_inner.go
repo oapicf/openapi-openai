@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type ChatCompletionTokenLogprobTopLogprobsInner struct {
@@ -25,20 +30,78 @@ type ChatCompletionTokenLogprobTopLogprobsInner struct {
 	// A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be `null` if there is no bytes representation for the token.
 	Bytes *[]int32 `json:"bytes"`
 }
-
-// AssertChatCompletionTokenLogprobTopLogprobsInnerRequired checks if the required fields are not zero-ed
-func AssertChatCompletionTokenLogprobTopLogprobsInnerRequired(obj ChatCompletionTokenLogprobTopLogprobsInner) error {
-	elements := map[string]interface{}{
-		"token": obj.Token,
-		"logprob": obj.Logprob,
-		"bytes": obj.Bytes,
+// UnmarshalJSON validates required property keys then unmarshals into ChatCompletionTokenLogprobTopLogprobsInner
+func (o *ChatCompletionTokenLogprobTopLogprobsInner) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"token",
+		"logprob",
+		"bytes",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"token": false,
+		"logprob": false,
+		"bytes": true,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"token": {},
+		"logprob": {},
+		"bytes": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded ChatCompletionTokenLogprobTopLogprobsInner
+
+	if value, exists := allProperties["token"]; exists {
+		if err = json.Unmarshal(value, &decoded.Token); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["logprob"]; exists {
+		if err = json.Unmarshal(value, &decoded.Logprob); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["bytes"]; exists {
+		if err = json.Unmarshal(value, &decoded.Bytes); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertChatCompletionTokenLogprobTopLogprobsInnerRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertChatCompletionTokenLogprobTopLogprobsInnerRequired(obj ChatCompletionTokenLogprobTopLogprobsInner) error {
 	return nil
 }
 

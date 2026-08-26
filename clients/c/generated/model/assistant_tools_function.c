@@ -30,10 +30,10 @@ static assistant_tools_function_t *assistant_tools_function_create_internal(
     if (!assistant_tools_function_local_var) {
         return NULL;
     }
+    memset(assistant_tools_function_local_var, 0, sizeof(assistant_tools_function_t));
+    assistant_tools_function_local_var->_library_owned = 1;
     assistant_tools_function_local_var->type = type;
     assistant_tools_function_local_var->function = function;
-
-    assistant_tools_function_local_var->_library_owned = 1;
     return assistant_tools_function_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) assistant_tools_function_t *assistant_tools_function
     openai_api_assistant_tools_function_TYPE_e type,
     function_object_t *function
     ) {
-    return assistant_tools_function_create_internal (
+    assistant_tools_function_t *result = assistant_tools_function_create_internal (
         type,
         function
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void assistant_tools_function_free(assistant_tools_function_t *assistant_tools_function) {
@@ -134,10 +137,15 @@ assistant_tools_function_t *assistant_tools_function_parseFromJSON(cJSON *assist
     function_local_nonprim = function_object_parseFromJSON(function); //nonprimitive
 
 
+
     assistant_tools_function_local_var = assistant_tools_function_create_internal (
         typeVariable,
         function_local_nonprim
         );
+
+    if (!assistant_tools_function_local_var) {
+        goto end;
+    }
 
     return assistant_tools_function_local_var;
 end:

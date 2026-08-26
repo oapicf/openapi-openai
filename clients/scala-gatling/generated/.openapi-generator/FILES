@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 build.gradle
 src/gatling/resources/conf/CD.conf
 src/gatling/resources/conf/CI.conf
@@ -87,7 +86,6 @@ src/gatling/scala/org/openapitools/client/model/AuditLogUserAddedData.scala
 src/gatling/scala/org/openapitools/client/model/AuditLogUserDeleted.scala
 src/gatling/scala/org/openapitools/client/model/AuditLogUserUpdated.scala
 src/gatling/scala/org/openapitools/client/model/AuditLogUserUpdatedChangesRequested.scala
-src/gatling/scala/org/openapitools/client/model/AutoChunkingStrategy.scala
 src/gatling/scala/org/openapitools/client/model/AutoChunkingStrategyRequestParam.scala
 src/gatling/scala/org/openapitools/client/model/Batch.scala
 src/gatling/scala/org/openapitools/client/model/BatchErrors.scala
@@ -497,7 +495,6 @@ src/gatling/scala/org/openapitools/client/model/RunToolCallObject.scala
 src/gatling/scala/org/openapitools/client/model/RunToolCallObjectFunction.scala
 src/gatling/scala/org/openapitools/client/model/StaticChunkingStrategy.scala
 src/gatling/scala/org/openapitools/client/model/StaticChunkingStrategyRequestParam.scala
-src/gatling/scala/org/openapitools/client/model/StaticChunkingStrategyResponseParam.scala
 src/gatling/scala/org/openapitools/client/model/StaticChunkingStrategyStatic.scala
 src/gatling/scala/org/openapitools/client/model/SubmitToolOutputsRunRequest.scala
 src/gatling/scala/org/openapitools/client/model/SubmitToolOutputsRunRequestToolOutputsInner.scala

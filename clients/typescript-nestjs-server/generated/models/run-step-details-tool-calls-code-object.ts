@@ -1,0 +1,25 @@
+import { RunStepDetailsToolCallsCodeObjectCodeInterpreter } from './run-step-details-tool-calls-code-object-code-interpreter';
+
+
+/**
+ * Details of the Code Interpreter tool call the run step was involved in.
+ */
+export interface RunStepDetailsToolCallsCodeObject { 
+  /**
+   * The ID of the tool call.
+   */
+  id: string;
+  /**
+   * The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
+   */
+  type: RunStepDetailsToolCallsCodeObject.TypeEnum;
+  code_interpreter: RunStepDetailsToolCallsCodeObjectCodeInterpreter;
+}
+export namespace RunStepDetailsToolCallsCodeObject {
+  export const TypeEnum = {
+    CodeInterpreter: 'code_interpreter'
+  } as const;
+  export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
+}
+
+

@@ -66,7 +66,7 @@ async def list_models(
     response_model_by_alias=True,
 )
 async def retrieve_model(
-    model: Annotated[StrictStr, Field(description="The ID of the model to use for this request")] = Path(..., description="The ID of the model to use for this request"),
+    model: Annotated[StrictStr, Field(description="The ID of the model to use for this request")] = Path(..., description="The ID of the model to use for this request", examples=["gpt-4o-mini"]),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -86,7 +86,7 @@ async def retrieve_model(
     response_model_by_alias=True,
 )
 async def delete_model(
-    model: Annotated[StrictStr, Field(description="The model to delete")] = Path(..., description="The model to delete"),
+    model: Annotated[StrictStr, Field(description="The model to delete")] = Path(..., description="The model to delete", examples=["ft:gpt-4o-mini:acemeco:suffix:abc123"]),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),

@@ -85,7 +85,7 @@ AuditLog_organization_updated_changes_requested_settings::getThreadsUiVisibility
 }
 
 void
-AuditLog_organization_updated_changes_requested_settings::setThreadsUiVisibility(std::string  threads_ui_visibility)
+AuditLog_organization_updated_changes_requested_settings::setThreadsUiVisibility(std::string threads_ui_visibility)
 {
 	this->threads_ui_visibility = threads_ui_visibility;
 }
@@ -97,7 +97,7 @@ AuditLog_organization_updated_changes_requested_settings::getUsageDashboardVisib
 }
 
 void
-AuditLog_organization_updated_changes_requested_settings::setUsageDashboardVisibility(std::string  usage_dashboard_visibility)
+AuditLog_organization_updated_changes_requested_settings::setUsageDashboardVisibility(std::string usage_dashboard_visibility)
 {
 	this->usage_dashboard_visibility = usage_dashboard_visibility;
 }

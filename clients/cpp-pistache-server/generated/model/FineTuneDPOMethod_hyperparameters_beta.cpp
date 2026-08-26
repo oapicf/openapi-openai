@@ -24,6 +24,8 @@ FineTuneDPOMethod_hyperparameters_beta::FineTuneDPOMethod_hyperparameters_beta()
     
 }
 
+FineTuneDPOMethod_hyperparameters_beta::~FineTuneDPOMethod_hyperparameters_beta() = default;
+
 void FineTuneDPOMethod_hyperparameters_beta::validate() const
 {
     std::stringstream msg;

@@ -30,10 +30,10 @@ static chat_completion_request_message_content_part_audio_t *chat_completion_req
     if (!chat_completion_request_message_content_part_audio_local_var) {
         return NULL;
     }
+    memset(chat_completion_request_message_content_part_audio_local_var, 0, sizeof(chat_completion_request_message_content_part_audio_t));
+    chat_completion_request_message_content_part_audio_local_var->_library_owned = 1;
     chat_completion_request_message_content_part_audio_local_var->type = type;
     chat_completion_request_message_content_part_audio_local_var->input_audio = input_audio;
-
-    chat_completion_request_message_content_part_audio_local_var->_library_owned = 1;
     return chat_completion_request_message_content_part_audio_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) chat_completion_request_message_content_part_audio_t
     openai_api_chat_completion_request_message_content_part_audio_TYPE_e type,
     chat_completion_request_message_content_part_audio_input_audio_t *input_audio
     ) {
-    return chat_completion_request_message_content_part_audio_create_internal (
+    chat_completion_request_message_content_part_audio_t *result = chat_completion_request_message_content_part_audio_create_internal (
         type,
         input_audio
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_request_message_content_part_audio_free(chat_completion_request_message_content_part_audio_t *chat_completion_request_message_content_part_audio) {
@@ -134,10 +137,15 @@ chat_completion_request_message_content_part_audio_t *chat_completion_request_me
     input_audio_local_nonprim = chat_completion_request_message_content_part_audio_input_audio_parseFromJSON(input_audio); //nonprimitive
 
 
+
     chat_completion_request_message_content_part_audio_local_var = chat_completion_request_message_content_part_audio_create_internal (
         typeVariable,
         input_audio_local_nonprim
         );
+
+    if (!chat_completion_request_message_content_part_audio_local_var) {
+        goto end;
+    }
 
     return chat_completion_request_message_content_part_audio_local_var;
 end:

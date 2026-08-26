@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIFineTuneMethod::OAIFineTuneMethod(QString json) {
+OAIFineTuneMethod::OAIFineTuneMethod(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIFineTuneMethod::initializeModel() {
     m_dpo_isValid = false;
 }
 
-void OAIFineTuneMethod::fromJson(QString jsonString) {
+void OAIFineTuneMethod::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();
@@ -75,10 +75,10 @@ QJsonObject OAIFineTuneMethod::asJsonObject() const {
     if (m_type_isSet) {
         obj.insert(QString("type"), ::OpenAPI::toJsonValue(m_type));
     }
-    if (m_supervised_isSet) {
+    if (m_supervised.isSet()) {
         obj.insert(QString("supervised"), ::OpenAPI::toJsonValue(m_supervised));
     }
-    if (m_dpo_isSet) {
+    if (m_dpo.isSet()) {
         obj.insert(QString("dpo"), ::OpenAPI::toJsonValue(m_dpo));
     }
     return obj;
@@ -140,12 +140,12 @@ bool OAIFineTuneMethod::isSet() const {
             break;
         }
 
-        if (m_supervised_isSet) {
+        if (m_supervised.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_dpo_isSet) {
+        if (m_dpo.isSet()) {
             isObjectUpdated = true;
             break;
         }

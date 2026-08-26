@@ -59,10 +59,12 @@ class DeleteThreadResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "DeleteThreadResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "DeleteThreadResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "DeleteThreadResponse[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "DeleteThreadResponse[id]" has a null value in JSON.');
+        assert(json.containsKey(r'deleted'), 'Required key "DeleteThreadResponse[deleted]" is missing from JSON.');
+        assert(json[r'deleted'] != null, 'Required key "DeleteThreadResponse[deleted]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "DeleteThreadResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "DeleteThreadResponse[object]" has a null value in JSON.');
         return true;
       }());
 
@@ -124,27 +126,28 @@ class DeleteThreadResponse {
 }
 
 
-class DeleteThreadResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const DeleteThreadResponseObjectEnum._(this.value);
+enum DeleteThreadResponseObjectEnum {
+  threadPeriodDeleted._(r'thread.deleted'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const DeleteThreadResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodDeleted = DeleteThreadResponseObjectEnum._(r'thread.deleted');
-
-  /// List of all possible values in this [enum][DeleteThreadResponseObjectEnum].
-  static const values = <DeleteThreadResponseObjectEnum>[
-    threadPeriodDeleted,
-  ];
-
+  /// Returns the instance of [DeleteThreadResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static DeleteThreadResponseObjectEnum? fromJson(dynamic value) => DeleteThreadResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [DeleteThreadResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<DeleteThreadResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <DeleteThreadResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -166,9 +169,10 @@ class DeleteThreadResponseObjectEnumTypeTransformer {
 
   const DeleteThreadResponseObjectEnumTypeTransformer._();
 
-  String encode(DeleteThreadResponseObjectEnum data) => data.value;
+  String encode(DeleteThreadResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a DeleteThreadResponseObjectEnum.
+  /// Returns the instance of [DeleteThreadResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -177,6 +181,9 @@ class DeleteThreadResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   DeleteThreadResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is DeleteThreadResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.deleted': return DeleteThreadResponseObjectEnum.threadPeriodDeleted;
@@ -189,7 +196,7 @@ class DeleteThreadResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [DeleteThreadResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static DeleteThreadResponseObjectEnumTypeTransformer? _instance;
 }
 

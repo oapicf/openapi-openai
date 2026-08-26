@@ -32,7 +32,7 @@ class  RunStepDeltaObject_delta
 {
 public:
     RunStepDeltaObject_delta();
-    virtual ~RunStepDeltaObject_delta() = default;
+    virtual ~RunStepDeltaObject_delta();
 
 
     /// <summary>

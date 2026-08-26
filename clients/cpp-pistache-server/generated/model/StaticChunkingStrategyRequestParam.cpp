@@ -25,6 +25,8 @@ StaticChunkingStrategyRequestParam::StaticChunkingStrategyRequestParam()
     
 }
 
+StaticChunkingStrategyRequestParam::~StaticChunkingStrategyRequestParam() = default;
+
 void StaticChunkingStrategyRequestParam::validate() const
 {
     std::stringstream msg;

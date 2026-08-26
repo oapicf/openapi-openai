@@ -32,7 +32,7 @@ class  RunStepDetailsToolCallsFileSearchRankingOptionsObject
 {
 public:
     RunStepDetailsToolCallsFileSearchRankingOptionsObject();
-    virtual ~RunStepDetailsToolCallsFileSearchRankingOptionsObject() = default;
+    virtual ~RunStepDetailsToolCallsFileSearchRankingOptionsObject();
 
 
     /// <summary>

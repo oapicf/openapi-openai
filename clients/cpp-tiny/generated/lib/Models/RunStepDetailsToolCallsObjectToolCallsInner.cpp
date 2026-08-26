@@ -151,7 +151,7 @@ RunStepDetailsToolCallsObject_tool_calls_inner::getId()
 }
 
 void
-RunStepDetailsToolCallsObject_tool_calls_inner::setId(std::string  id)
+RunStepDetailsToolCallsObject_tool_calls_inner::setId(std::string id)
 {
 	this->id = id;
 }
@@ -163,7 +163,7 @@ RunStepDetailsToolCallsObject_tool_calls_inner::getType()
 }
 
 void
-RunStepDetailsToolCallsObject_tool_calls_inner::setType(std::string  type)
+RunStepDetailsToolCallsObject_tool_calls_inner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -175,7 +175,7 @@ RunStepDetailsToolCallsObject_tool_calls_inner::getCodeInterpreter()
 }
 
 void
-RunStepDetailsToolCallsObject_tool_calls_inner::setCodeInterpreter(RunStepDetailsToolCallsCodeObject_code_interpreter  code_interpreter)
+RunStepDetailsToolCallsObject_tool_calls_inner::setCodeInterpreter(RunStepDetailsToolCallsCodeObject_code_interpreter code_interpreter)
 {
 	this->code_interpreter = code_interpreter;
 }
@@ -187,7 +187,7 @@ RunStepDetailsToolCallsObject_tool_calls_inner::getFileSearch()
 }
 
 void
-RunStepDetailsToolCallsObject_tool_calls_inner::setFileSearch(RunStepDetailsToolCallsFileSearchObject_file_search  file_search)
+RunStepDetailsToolCallsObject_tool_calls_inner::setFileSearch(RunStepDetailsToolCallsFileSearchObject_file_search file_search)
 {
 	this->file_search = file_search;
 }
@@ -199,7 +199,7 @@ RunStepDetailsToolCallsObject_tool_calls_inner::getFunction()
 }
 
 void
-RunStepDetailsToolCallsObject_tool_calls_inner::setFunction(RunStepDetailsToolCallsFunctionObject_function  function)
+RunStepDetailsToolCallsObject_tool_calls_inner::setFunction(RunStepDetailsToolCallsFunctionObject_function function)
 {
 	this->function = function;
 }

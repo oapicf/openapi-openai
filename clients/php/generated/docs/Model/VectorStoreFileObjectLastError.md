@@ -1,4 +1,4 @@
-# # VectorStoreFileObjectLastError
+# VectorStoreFileObjectLastError
 
 ## Properties
 

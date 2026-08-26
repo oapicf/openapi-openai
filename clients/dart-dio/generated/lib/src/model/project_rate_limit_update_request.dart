@@ -134,43 +134,49 @@ class _$ProjectRateLimitUpdateRequestSerializer implements PrimitiveSerializer<P
         case r'max_requests_per_1_minute':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.maxRequestsPer1Minute = valueDes;
           break;
         case r'max_tokens_per_1_minute':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.maxTokensPer1Minute = valueDes;
           break;
         case r'max_images_per_1_minute':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.maxImagesPer1Minute = valueDes;
           break;
         case r'max_audio_megabytes_per_1_minute':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.maxAudioMegabytesPer1Minute = valueDes;
           break;
         case r'max_requests_per_1_day':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.maxRequestsPer1Day = valueDes;
           break;
         case r'batch_1_day_max_input_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.batch1DayMaxInputTokens = valueDes;
           break;
         default:

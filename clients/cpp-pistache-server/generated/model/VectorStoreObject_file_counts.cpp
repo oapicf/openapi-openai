@@ -29,6 +29,8 @@ VectorStoreObject_file_counts::VectorStoreObject_file_counts()
     
 }
 
+VectorStoreObject_file_counts::~VectorStoreObject_file_counts() = default;
+
 void VectorStoreObject_file_counts::validate() const
 {
     std::stringstream msg;

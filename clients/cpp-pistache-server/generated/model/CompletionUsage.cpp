@@ -29,6 +29,8 @@ CompletionUsage::CompletionUsage()
     
 }
 
+CompletionUsage::~CompletionUsage() = default;
+
 void CompletionUsage::validate() const
 {
     std::stringstream msg;

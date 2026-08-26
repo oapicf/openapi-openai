@@ -13,7 +13,7 @@
 #pragma once
 
 #include "OpenAPIBaseModel.h"
-#include "OpenAPIAutoChunkingStrategy.h"
+#include "OpenAPIAutoChunkingStrategyRequestParam.h"
 #include "OpenAPIStaticChunkingStrategy.h"
 #include "OpenAPIStaticChunkingStrategyStatic.h"
 

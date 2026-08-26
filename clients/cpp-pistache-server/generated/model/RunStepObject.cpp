@@ -36,6 +36,8 @@ RunStepObject::RunStepObject()
     
 }
 
+RunStepObject::~RunStepObject() = default;
+
 void RunStepObject::validate() const
 {
     std::stringstream msg;

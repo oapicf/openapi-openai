@@ -49,7 +49,7 @@ export interface AssistantObject {
     id: string;
     /**
      * The object type, which is always `assistant`.
-     * @type {string}
+     * @type {AssistantObjectObjectEnum}
      * @memberof AssistantObject
      */
     object: AssistantObjectObjectEnum;
@@ -147,7 +147,9 @@ export type AssistantObjectObjectEnum = typeof AssistantObjectObjectEnum[keyof t
 export function instanceOfAssistantObject(value: object): value is AssistantObject {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (value['object'] !== 'assistant') return false;
+    
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
     if (!('model' in value) || value['model'] === undefined) return false;
@@ -175,10 +177,10 @@ export function AssistantObjectFromJSONTyped(json: any, ignoreDiscriminator: boo
         'model': json['model'],
         'instructions': json['instructions'],
         'tools': ((json['tools'] as Array<any>).map(AssistantObjectToolsInnerFromJSON)),
-        'toolResources': json['tool_resources'] == null ? undefined : AssistantObjectToolResourcesFromJSON(json['tool_resources']),
+        'toolResources': json['tool_resources'] === undefined ? undefined : json['tool_resources'] === null ? null : AssistantObjectToolResourcesFromJSON(json['tool_resources']),
         'metadata': json['metadata'],
-        'temperature': json['temperature'] == null ? undefined : json['temperature'],
-        'topP': json['top_p'] == null ? undefined : json['top_p'],
+        'temperature': json['temperature'] === undefined ? undefined : json['temperature'] === null ? null : json['temperature'],
+        'topP': json['top_p'] === undefined ? undefined : json['top_p'] === null ? null : json['top_p'],
         'responseFormat': json['response_format'] == null ? undefined : AssistantsApiResponseFormatOptionFromJSON(json['response_format']),
     };
 }

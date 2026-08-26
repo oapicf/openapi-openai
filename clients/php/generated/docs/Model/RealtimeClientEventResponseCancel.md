@@ -1,4 +1,4 @@
-# # RealtimeClientEventResponseCancel
+# RealtimeClientEventResponseCancel
 
 ## Properties
 

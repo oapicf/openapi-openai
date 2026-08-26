@@ -165,7 +165,7 @@ InviteListResponse::getObject()
 }
 
 void
-InviteListResponse::setObject(std::string  object)
+InviteListResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -177,7 +177,7 @@ InviteListResponse::getData()
 }
 
 void
-InviteListResponse::setData(std::list <Invite> data)
+InviteListResponse::setData(std::list<Invite> data)
 {
 	this->data = data;
 }
@@ -189,7 +189,7 @@ InviteListResponse::getFirstId()
 }
 
 void
-InviteListResponse::setFirstId(std::string  first_id)
+InviteListResponse::setFirstId(std::string first_id)
 {
 	this->first_id = first_id;
 }
@@ -201,7 +201,7 @@ InviteListResponse::getLastId()
 }
 
 void
-InviteListResponse::setLastId(std::string  last_id)
+InviteListResponse::setLastId(std::string last_id)
 {
 	this->last_id = last_id;
 }
@@ -213,7 +213,7 @@ InviteListResponse::isHasMore()
 }
 
 void
-InviteListResponse::setHasMore(bool  has_more)
+InviteListResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }

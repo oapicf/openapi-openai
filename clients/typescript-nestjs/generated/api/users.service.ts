@@ -88,7 +88,7 @@ export class UsersService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.delete<UserDeleteResponse>(`${this.basePath}/organization/users/${encodeURIComponent(String(user_id))}`,
+                return this.httpClient.delete<UserDeleteResponse>(`${this.basePath}/organization/users/${encodeURIComponent(String(userId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...deleteUserOpts?.config,
@@ -208,7 +208,7 @@ export class UsersService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<User>(`${this.basePath}/organization/users/${encodeURIComponent(String(user_id))}`,
+                return this.httpClient.post<User>(`${this.basePath}/organization/users/${encodeURIComponent(String(userId))}`,
                     userRoleUpdateRequest,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -261,7 +261,7 @@ export class UsersService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<User>(`${this.basePath}/organization/users/${encodeURIComponent(String(user_id))}`,
+                return this.httpClient.get<User>(`${this.basePath}/organization/users/${encodeURIComponent(String(userId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...retrieveUserOpts?.config,

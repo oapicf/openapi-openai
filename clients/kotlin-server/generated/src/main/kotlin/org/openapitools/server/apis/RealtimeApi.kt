@@ -29,48 +29,46 @@ import org.openapitools.server.models.RealtimeSessionCreateRequest
 import org.openapitools.server.models.RealtimeSessionCreateResponse
 
 fun Route.RealtimeApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createRealtimeSession> {
+    post<Paths.createRealtimeSession> { createRealtimeSession ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "voice" : "alloy",
-              "instructions" : "instructions",
-              "input_audio_format" : "input_audio_format",
+              "client_secret" : {
+                "value" : "value",
+                "expires_at" : 0
+              },
               "modalities" : [ "text", "text" ],
-              "max_response_output_tokens" : 2,
+              "instructions" : "instructions",
+              "voice" : "alloy",
+              "input_audio_format" : "input_audio_format",
               "output_audio_format" : "output_audio_format",
               "input_audio_transcription" : {
                 "model" : "model"
               },
-              "temperature" : 5.637376656633329,
               "turn_detection" : {
-                "silence_duration_ms" : 5,
-                "prefix_padding_ms" : 1,
+                "type" : "type",
                 "threshold" : 6.027456183070403,
-                "type" : "type"
-              },
-              "tool_choice" : "tool_choice",
-              "client_secret" : {
-                "expires_at" : 0,
-                "value" : "value"
+                "prefix_padding_ms" : 1,
+                "silence_duration_ms" : 5
               },
               "tools" : [ {
+                "type" : "function",
                 "name" : "name",
                 "description" : "description",
-                "type" : "function",
                 "parameters" : "{}"
               }, {
+                "type" : "function",
                 "name" : "name",
                 "description" : "description",
-                "type" : "function",
                 "parameters" : "{}"
-              } ]
+              } ],
+              "tool_choice" : "tool_choice",
+              "temperature" : 5.637376656633329,
+              "max_response_output_tokens" : 2
             }"""
             
             when (exampleContentType) {
@@ -81,5 +79,4 @@ fun Route.RealtimeApi() {
         
     }
     }
-
 }

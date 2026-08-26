@@ -21,7 +21,7 @@ pub enum CreateModerationRequestInput {
     /// An array of strings to classify for moderation.
     ArrayVecString(Vec<String>),
     /// An array of multi-modal inputs to the moderation model.
-    ArrayVecmodels::CreateModerationRequestInputOneOfInner(Vec<models::CreateModerationRequestInputOneOfInner>),
+    ArrayVecCreateModerationRequest_input_oneOf_inner(Vec<models::CreateModerationRequestInputOneOfInner>),
 }
 
 impl Default for CreateModerationRequestInput {

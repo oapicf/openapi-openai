@@ -13,9 +13,9 @@ import org.openapitools.vertxweb.server.model.CreateFineTuningJobRequestHyperpar
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FineTuningJobHyperparameters   {
   
-  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
-  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
-  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
+  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
+  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
+  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
 
   public FineTuningJobHyperparameters () {
 
@@ -91,9 +91,6 @@ public class FineTuningJobHyperparameters   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }

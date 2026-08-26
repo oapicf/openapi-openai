@@ -45,7 +45,7 @@ export interface CreateVectorStoreFileBatchRequest {
  * Check if a given object implements the CreateVectorStoreFileBatchRequest interface.
  */
 export function instanceOfCreateVectorStoreFileBatchRequest(value: object): value is CreateVectorStoreFileBatchRequest {
-    if (!('fileIds' in value) || value['fileIds'] === undefined) return false;
+    if ((!('fileIds' in (value as Record<string, any>)) && !('file_ids' in (value as Record<string, any>))) || ((value as Record<string, any>)['fileIds'] === undefined && (value as Record<string, any>)['file_ids'] === undefined)) return false;
     return true;
 }
 

@@ -31,11 +31,11 @@ static create_thread_and_run_request_tools_inner_t *create_thread_and_run_reques
     if (!create_thread_and_run_request_tools_inner_local_var) {
         return NULL;
     }
+    memset(create_thread_and_run_request_tools_inner_local_var, 0, sizeof(create_thread_and_run_request_tools_inner_t));
+    create_thread_and_run_request_tools_inner_local_var->_library_owned = 1;
     create_thread_and_run_request_tools_inner_local_var->type = type;
     create_thread_and_run_request_tools_inner_local_var->file_search = file_search;
     create_thread_and_run_request_tools_inner_local_var->function = function;
-
-    create_thread_and_run_request_tools_inner_local_var->_library_owned = 1;
     return create_thread_and_run_request_tools_inner_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) create_thread_and_run_request_tools_inner_t *create_
     assistant_tools_file_search_file_search_t *file_search,
     function_object_t *function
     ) {
-    return create_thread_and_run_request_tools_inner_create_internal (
+    create_thread_and_run_request_tools_inner_t *result = create_thread_and_run_request_tools_inner_create_internal (
         type,
         file_search,
         function
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_thread_and_run_request_tools_inner_free(create_thread_and_run_request_tools_inner_t *create_thread_and_run_request_tools_inner) {
@@ -167,11 +170,16 @@ create_thread_and_run_request_tools_inner_t *create_thread_and_run_request_tools
     function_local_nonprim = function_object_parseFromJSON(function); //nonprimitive
 
 
+
     create_thread_and_run_request_tools_inner_local_var = create_thread_and_run_request_tools_inner_create_internal (
         typeVariable,
         file_search ? file_search_local_nonprim : NULL,
         function_local_nonprim
         );
+
+    if (!create_thread_and_run_request_tools_inner_local_var) {
+        goto end;
+    }
 
     return create_thread_and_run_request_tools_inner_local_var;
 end:

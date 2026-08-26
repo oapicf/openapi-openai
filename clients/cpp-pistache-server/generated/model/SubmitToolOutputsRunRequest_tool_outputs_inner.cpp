@@ -28,6 +28,8 @@ SubmitToolOutputsRunRequest_tool_outputs_inner::SubmitToolOutputsRunRequest_tool
     
 }
 
+SubmitToolOutputsRunRequest_tool_outputs_inner::~SubmitToolOutputsRunRequest_tool_outputs_inner() = default;
+
 void SubmitToolOutputsRunRequest_tool_outputs_inner::validate() const
 {
     std::stringstream msg;

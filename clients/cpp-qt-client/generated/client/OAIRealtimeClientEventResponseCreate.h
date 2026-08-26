@@ -33,13 +33,13 @@ class OAIRealtimeResponseCreateParams;
 class OAIRealtimeClientEventResponseCreate : public OAIObject {
 public:
     OAIRealtimeClientEventResponseCreate();
-    OAIRealtimeClientEventResponseCreate(QString json);
+    OAIRealtimeClientEventResponseCreate(const QString &json);
     ~OAIRealtimeClientEventResponseCreate() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getEventId() const;
     void setEventId(const QString &event_id);

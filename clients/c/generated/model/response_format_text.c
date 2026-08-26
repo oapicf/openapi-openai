@@ -29,18 +29,21 @@ static response_format_text_t *response_format_text_create_internal(
     if (!response_format_text_local_var) {
         return NULL;
     }
-    response_format_text_local_var->type = type;
-
+    memset(response_format_text_local_var, 0, sizeof(response_format_text_t));
     response_format_text_local_var->_library_owned = 1;
+    response_format_text_local_var->type = type;
     return response_format_text_local_var;
 }
 
 __attribute__((deprecated)) response_format_text_t *response_format_text_create(
     openai_api_response_format_text_TYPE_e type
     ) {
-    return response_format_text_create_internal (
+    response_format_text_t *result = response_format_text_create_internal (
         type
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void response_format_text_free(response_format_text_t *response_format_text) {
@@ -97,9 +100,14 @@ response_format_text_t *response_format_text_parseFromJSON(cJSON *response_forma
     typeVariable = response_format_text_type_FromString(type->valuestring);
 
 
+
     response_format_text_local_var = response_format_text_create_internal (
         typeVariable
         );
+
+    if (!response_format_text_local_var) {
+        goto end;
+    }
 
     return response_format_text_local_var;
 end:

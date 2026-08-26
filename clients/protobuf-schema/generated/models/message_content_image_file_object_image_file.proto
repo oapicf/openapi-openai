@@ -27,7 +27,7 @@ message MessageContentImageFileObjectImageFile {
     DETAIL_HIGH = 2;
   }
 
-  Detail detail = 261482417;
+  string detail = 261482417;
 
 }
 

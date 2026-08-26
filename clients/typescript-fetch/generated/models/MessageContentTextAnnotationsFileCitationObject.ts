@@ -29,7 +29,7 @@ import {
 export interface MessageContentTextAnnotationsFileCitationObject {
     /**
      * Always `file_citation`.
-     * @type {string}
+     * @type {MessageContentTextAnnotationsFileCitationObjectTypeEnum}
      * @memberof MessageContentTextAnnotationsFileCitationObject
      */
     type: MessageContentTextAnnotationsFileCitationObjectTypeEnum;
@@ -74,10 +74,12 @@ export type MessageContentTextAnnotationsFileCitationObjectTypeEnum = typeof Mes
  */
 export function instanceOfMessageContentTextAnnotationsFileCitationObject(value: object): value is MessageContentTextAnnotationsFileCitationObject {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'file_citation') return false;
+    
     if (!('text' in value) || value['text'] === undefined) return false;
-    if (!('fileCitation' in value) || value['fileCitation'] === undefined) return false;
-    if (!('startIndex' in value) || value['startIndex'] === undefined) return false;
-    if (!('endIndex' in value) || value['endIndex'] === undefined) return false;
+    if ((!('fileCitation' in (value as Record<string, any>)) && !('file_citation' in (value as Record<string, any>))) || ((value as Record<string, any>)['fileCitation'] === undefined && (value as Record<string, any>)['file_citation'] === undefined)) return false;
+    if ((!('startIndex' in (value as Record<string, any>)) && !('start_index' in (value as Record<string, any>))) || ((value as Record<string, any>)['startIndex'] === undefined && (value as Record<string, any>)['start_index'] === undefined)) return false;
+    if ((!('endIndex' in (value as Record<string, any>)) && !('end_index' in (value as Record<string, any>))) || ((value as Record<string, any>)['endIndex'] === undefined && (value as Record<string, any>)['end_index'] === undefined)) return false;
     return true;
 }
 

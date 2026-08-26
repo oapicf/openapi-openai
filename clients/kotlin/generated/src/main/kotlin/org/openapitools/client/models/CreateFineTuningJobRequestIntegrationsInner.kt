@@ -8,9 +8,17 @@
 
 @file:Suppress(
     "ArrayInDataClass",
+    "DuplicatedCode",
     "EnumEntryName",
     "RemoveRedundantQualifierName",
-    "UnusedImport"
+    "RemoveRedundantCallsOfConversionMethods",
+    "REDUNDANT_CALL_OF_CONVERSION_METHOD",
+    "RedundantUnitReturnType",
+    "RemoveEmptyClassBody",
+    "UnnecessaryVariable",
+    "UnusedImport",
+    "UnnecessaryVariable",
+    "unused"
 )
 
 package org.openapitools.client.models
@@ -23,13 +31,14 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param type 
+ * @param type The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
  * @param wandb 
  */
 
 
 data class CreateFineTuningJobRequestIntegrationsInner (
 
+    /* The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported.  */
     @Json(name = "type")
     val type: CreateFineTuningJobRequestIntegrationsInner.Type,
 
@@ -39,7 +48,7 @@ data class CreateFineTuningJobRequestIntegrationsInner (
 ) {
 
     /**
-     * 
+     * The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
      *
      * Values: wandb
      */

@@ -29,18 +29,21 @@ static message_object_incomplete_details_t *message_object_incomplete_details_cr
     if (!message_object_incomplete_details_local_var) {
         return NULL;
     }
-    message_object_incomplete_details_local_var->reason = reason;
-
+    memset(message_object_incomplete_details_local_var, 0, sizeof(message_object_incomplete_details_t));
     message_object_incomplete_details_local_var->_library_owned = 1;
+    message_object_incomplete_details_local_var->reason = reason;
     return message_object_incomplete_details_local_var;
 }
 
 __attribute__((deprecated)) message_object_incomplete_details_t *message_object_incomplete_details_create(
     openai_api_message_object_incomplete_details_REASON_e reason
     ) {
-    return message_object_incomplete_details_create_internal (
+    message_object_incomplete_details_t *result = message_object_incomplete_details_create_internal (
         reason
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_object_incomplete_details_free(message_object_incomplete_details_t *message_object_incomplete_details) {
@@ -97,9 +100,14 @@ message_object_incomplete_details_t *message_object_incomplete_details_parseFrom
     reasonVariable = message_object_incomplete_details_reason_FromString(reason->valuestring);
 
 
+
     message_object_incomplete_details_local_var = message_object_incomplete_details_create_internal (
         reasonVariable
         );
+
+    if (!message_object_incomplete_details_local_var) {
+        goto end;
+    }
 
     return message_object_incomplete_details_local_var;
 end:

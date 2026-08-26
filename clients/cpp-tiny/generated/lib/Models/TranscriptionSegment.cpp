@@ -271,7 +271,7 @@ TranscriptionSegment::getId()
 }
 
 void
-TranscriptionSegment::setId(int  id)
+TranscriptionSegment::setId(int id)
 {
 	this->id = id;
 }
@@ -283,7 +283,7 @@ TranscriptionSegment::getSeek()
 }
 
 void
-TranscriptionSegment::setSeek(int  seek)
+TranscriptionSegment::setSeek(int seek)
 {
 	this->seek = seek;
 }
@@ -295,7 +295,7 @@ TranscriptionSegment::getStart()
 }
 
 void
-TranscriptionSegment::setStart(float  start)
+TranscriptionSegment::setStart(float start)
 {
 	this->start = start;
 }
@@ -307,7 +307,7 @@ TranscriptionSegment::getEnd()
 }
 
 void
-TranscriptionSegment::setEnd(float  end)
+TranscriptionSegment::setEnd(float end)
 {
 	this->end = end;
 }
@@ -319,7 +319,7 @@ TranscriptionSegment::getText()
 }
 
 void
-TranscriptionSegment::setText(std::string  text)
+TranscriptionSegment::setText(std::string text)
 {
 	this->text = text;
 }
@@ -331,7 +331,7 @@ TranscriptionSegment::getTokens()
 }
 
 void
-TranscriptionSegment::setTokens(std::list <int> tokens)
+TranscriptionSegment::setTokens(std::list<int> tokens)
 {
 	this->tokens = tokens;
 }
@@ -343,7 +343,7 @@ TranscriptionSegment::getTemperature()
 }
 
 void
-TranscriptionSegment::setTemperature(float  temperature)
+TranscriptionSegment::setTemperature(float temperature)
 {
 	this->temperature = temperature;
 }
@@ -355,7 +355,7 @@ TranscriptionSegment::getAvgLogprob()
 }
 
 void
-TranscriptionSegment::setAvgLogprob(float  avg_logprob)
+TranscriptionSegment::setAvgLogprob(float avg_logprob)
 {
 	this->avg_logprob = avg_logprob;
 }
@@ -367,7 +367,7 @@ TranscriptionSegment::getCompressionRatio()
 }
 
 void
-TranscriptionSegment::setCompressionRatio(float  compression_ratio)
+TranscriptionSegment::setCompressionRatio(float compression_ratio)
 {
 	this->compression_ratio = compression_ratio;
 }
@@ -379,7 +379,7 @@ TranscriptionSegment::getNoSpeechProb()
 }
 
 void
-TranscriptionSegment::setNoSpeechProb(float  no_speech_prob)
+TranscriptionSegment::setNoSpeechProb(float no_speech_prob)
 {
 	this->no_speech_prob = no_speech_prob;
 }

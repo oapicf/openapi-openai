@@ -33,7 +33,7 @@ class  MessageStreamEvent_oneOf
 {
 public:
     MessageStreamEvent_oneOf();
-    virtual ~MessageStreamEvent_oneOf() = default;
+    virtual ~MessageStreamEvent_oneOf();
 
 
     /// <summary>

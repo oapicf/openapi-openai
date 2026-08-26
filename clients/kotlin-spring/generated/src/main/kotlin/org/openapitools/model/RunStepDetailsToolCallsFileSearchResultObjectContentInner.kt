@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -22,10 +25,16 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RunStepDetailsToolCallsFileSearchResultObjectContentInner(
 
-    @Schema(example = "null", description = "The type of the content.")
+    @Schema(description = "The type of the content.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("type")
     @get:JsonProperty("type") val type: RunStepDetailsToolCallsFileSearchResultObjectContentInner.Type? = null,
 
-    @Schema(example = "null", description = "The text content of the file.")
+    @Schema(description = "The text content of the file.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("text")
     @get:JsonProperty("text") val text: kotlin.String? = null
 ) {
 
@@ -42,7 +51,7 @@ data class RunStepDetailsToolCallsFileSearchResultObjectContentInner(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RunStepDetailsToolCallsFileSearchResultObjectContentInner'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

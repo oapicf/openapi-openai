@@ -22,16 +22,20 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class Error(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("code")
     @get:JsonProperty("code", required = true) val code: kotlin.String?,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("message")
     @get:JsonProperty("message", required = true) val message: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("param")
     @get:JsonProperty("param", required = true) val `param`: kotlin.String?,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: kotlin.String
 ) {
 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **event_id** | **String** | The unique ID of the server event. | 
-**r#type** | **String** | The event type, must be `input_audio_buffer.committed`. | 
+**r#type** | **Type** | The event type, must be `input_audio_buffer.committed`. (enum: input_audio_buffer.committed) | 
 **previous_item_id** | **String** | The ID of the preceding item after which the new item will be inserted.  | 
 **item_id** | **String** | The ID of the user message item that will be created. | 
 

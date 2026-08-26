@@ -91,8 +91,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="PredictionContentContent" />
     /// </summary>
-    public class PredictionContentContentJsonConverter : JsonConverter<PredictionContentContent>
+    public partial class PredictionContentContentJsonConverter : JsonConverter<PredictionContentContent>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PredictionContentContentJsonConverter" /> class.
+        /// </summary>
+        public PredictionContentContentJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PredictionContentContent" />
         /// </summary>

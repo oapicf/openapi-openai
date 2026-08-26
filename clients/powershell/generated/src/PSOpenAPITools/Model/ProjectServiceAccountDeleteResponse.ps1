@@ -59,9 +59,9 @@ function Initialize-ProjectServiceAccountDeleteResponse {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "id" = ${Id}
-            "deleted" = ${Deleted}
+            'object' = ${Object}
+            'id' = ${Id}
+            'deleted' = ${Deleted}
         }
 
 
@@ -99,7 +99,7 @@ function ConvertFrom-JsonToProjectServiceAccountDeleteResponse {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ProjectServiceAccountDeleteResponse
-        $AllProperties = ("object", "id", "deleted")
+        $AllProperties = ('object', 'id', 'deleted')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -110,28 +110,28 @@ function ConvertFrom-JsonToProjectServiceAccountDeleteResponse {
             throw "Error! Empty JSON cannot be serialized due to the required property 'object' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "deleted"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'deleted'))) {
             throw "Error! JSON cannot be serialized due to the required property 'deleted' missing."
         } else {
-            $Deleted = $JsonParameters.PSobject.Properties["deleted"].value
+            $Deleted = $JsonParameters.PSobject.Properties['deleted'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "id" = ${Id}
-            "deleted" = ${Deleted}
+            'object' = ${Object}
+            'id' = ${Id}
+            'deleted' = ${Deleted}
         }
 
         return $PSO

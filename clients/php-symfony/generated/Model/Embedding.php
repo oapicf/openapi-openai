@@ -51,7 +51,7 @@ class Embedding
      * @var int|null
      * @SerializedName("index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $index = null;
@@ -62,7 +62,7 @@ class Embedding
      * @var float[]|null
      * @SerializedName("embedding")
      * @Type("array<float>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Type("float"),
@@ -75,7 +75,7 @@ class Embedding
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['embedding'])]
     #[Assert\Type("string")]
@@ -105,12 +105,12 @@ class Embedding
     }
 
     /**
-    * Sets index.
-    *
-    * @param int|null $index  The index of the embedding in the list of embeddings.
-    *
-    * @return $this
-    */
+     * Sets index.
+     *
+     * @param int|null $index  The index of the embedding in the list of embeddings.
+     *
+     * @return $this
+     */
     public function setIndex(?int $index): self
     {
         $this->index = $index;
@@ -132,12 +132,12 @@ class Embedding
     }
 
     /**
-    * Sets embedding.
-    *
-    * @param float[]|null $embedding  The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings).
-    *
-    * @return $this
-    */
+     * Sets embedding.
+     *
+     * @param float[]|null $embedding  The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings).
+     *
+     * @return $this
+     */
     public function setEmbedding(?array $embedding): self
     {
         $this->embedding = $embedding;
@@ -159,12 +159,12 @@ class Embedding
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always \"embedding\".
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always \"embedding\".
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;

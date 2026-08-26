@@ -25,6 +25,8 @@ ImagesResponse::ImagesResponse()
     
 }
 
+ImagesResponse::~ImagesResponse() = default;
+
 void ImagesResponse::validate() const
 {
     std::stringstream msg;

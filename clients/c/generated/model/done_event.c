@@ -47,10 +47,10 @@ static done_event_t *done_event_create_internal(
     if (!done_event_local_var) {
         return NULL;
     }
+    memset(done_event_local_var, 0, sizeof(done_event_t));
+    done_event_local_var->_library_owned = 1;
     done_event_local_var->event = event;
     done_event_local_var->data = data;
-
-    done_event_local_var->_library_owned = 1;
     return done_event_local_var;
 }
 
@@ -58,10 +58,13 @@ __attribute__((deprecated)) done_event_t *done_event_create(
     openai_api_done_event_EVENT_e event,
     openai_api_done_event_DATA_e data
     ) {
-    return done_event_create_internal (
+    done_event_t *result = done_event_create_internal (
         event,
         data
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void done_event_free(done_event_t *done_event) {
@@ -145,10 +148,15 @@ done_event_t *done_event_parseFromJSON(cJSON *done_eventJSON){
     dataVariable = done_event_data_FromString(data->valuestring);
 
 
+
     done_event_local_var = done_event_create_internal (
         eventVariable,
         dataVariable
         );
+
+    if (!done_event_local_var) {
+        goto end;
+    }
 
     return done_event_local_var;
 end:

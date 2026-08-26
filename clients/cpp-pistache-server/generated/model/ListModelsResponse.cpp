@@ -25,6 +25,8 @@ ListModelsResponse::ListModelsResponse()
     
 }
 
+ListModelsResponse::~ListModelsResponse() = default;
+
 void ListModelsResponse::validate() const
 {
     std::stringstream msg;

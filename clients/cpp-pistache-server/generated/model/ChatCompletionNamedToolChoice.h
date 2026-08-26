@@ -33,7 +33,7 @@ class  ChatCompletionNamedToolChoice
 {
 public:
     ChatCompletionNamedToolChoice();
-    virtual ~ChatCompletionNamedToolChoice() = default;
+    virtual ~ChatCompletionNamedToolChoice();
 
 
     /// <summary>

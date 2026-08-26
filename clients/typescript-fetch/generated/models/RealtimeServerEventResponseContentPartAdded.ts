@@ -37,7 +37,7 @@ export interface RealtimeServerEventResponseContentPartAdded {
     eventId: string;
     /**
      * The event type, must be `response.content_part.added`.
-     * @type {string}
+     * @type {RealtimeServerEventResponseContentPartAddedTypeEnum}
      * @memberof RealtimeServerEventResponseContentPartAdded
      */
     type: RealtimeServerEventResponseContentPartAddedTypeEnum;
@@ -87,12 +87,14 @@ export type RealtimeServerEventResponseContentPartAddedTypeEnum = typeof Realtim
  * Check if a given object implements the RealtimeServerEventResponseContentPartAdded interface.
  */
 export function instanceOfRealtimeServerEventResponseContentPartAdded(value: object): value is RealtimeServerEventResponseContentPartAdded {
-    if (!('eventId' in value) || value['eventId'] === undefined) return false;
+    if ((!('eventId' in (value as Record<string, any>)) && !('event_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['eventId'] === undefined && (value as Record<string, any>)['event_id'] === undefined)) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('responseId' in value) || value['responseId'] === undefined) return false;
-    if (!('itemId' in value) || value['itemId'] === undefined) return false;
-    if (!('outputIndex' in value) || value['outputIndex'] === undefined) return false;
-    if (!('contentIndex' in value) || value['contentIndex'] === undefined) return false;
+    if (value['type'] !== 'response.content_part.added') return false;
+    
+    if ((!('responseId' in (value as Record<string, any>)) && !('response_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['responseId'] === undefined && (value as Record<string, any>)['response_id'] === undefined)) return false;
+    if ((!('itemId' in (value as Record<string, any>)) && !('item_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['itemId'] === undefined && (value as Record<string, any>)['item_id'] === undefined)) return false;
+    if ((!('outputIndex' in (value as Record<string, any>)) && !('output_index' in (value as Record<string, any>))) || ((value as Record<string, any>)['outputIndex'] === undefined && (value as Record<string, any>)['output_index'] === undefined)) return false;
+    if ((!('contentIndex' in (value as Record<string, any>)) && !('content_index' in (value as Record<string, any>))) || ((value as Record<string, any>)['contentIndex'] === undefined && (value as Record<string, any>)['content_index'] === undefined)) return false;
     if (!('part' in value) || value['part'] === undefined) return false;
     return true;
 }

@@ -41,8 +41,8 @@ function Initialize-MessageDeltaContentTextObjectText {
 
 
         $PSO = [PSCustomObject]@{
-            "value" = ${Value}
-            "annotations" = ${Annotations}
+            'value' = ${Value}
+            'annotations' = ${Annotations}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToMessageDeltaContentTextObjectText {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in MessageDeltaContentTextObjectText
-        $AllProperties = ("value", "annotations")
+        $AllProperties = ('value', 'annotations')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "value"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'value'))) { #optional property not found
             $Value = $null
         } else {
-            $Value = $JsonParameters.PSobject.Properties["value"].value
+            $Value = $JsonParameters.PSobject.Properties['value'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "annotations"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'annotations'))) { #optional property not found
             $Annotations = $null
         } else {
-            $Annotations = $JsonParameters.PSobject.Properties["annotations"].value
+            $Annotations = $JsonParameters.PSobject.Properties['annotations'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "value" = ${Value}
-            "annotations" = ${Annotations}
+            'value' = ${Value}
+            'annotations' = ${Annotations}
         }
 
         return $PSO

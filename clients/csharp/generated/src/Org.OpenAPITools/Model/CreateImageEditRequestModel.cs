@@ -55,7 +55,7 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Gets or Sets String
         /// </summary>
-        public string? String { get { return this.StringOption; } set { this.StringOption = new(value); } }
+        public string? String { get { return this.StringOption.Value; } set { this.StringOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -83,8 +83,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateImageEditRequestModel" />
     /// </summary>
-    public class CreateImageEditRequestModelJsonConverter : JsonConverter<CreateImageEditRequestModel>
+    public partial class CreateImageEditRequestModelJsonConverter : JsonConverter<CreateImageEditRequestModel>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateImageEditRequestModelJsonConverter" /> class.
+        /// </summary>
+        public CreateImageEditRequestModelJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateImageEditRequestModel" />
         /// </summary>

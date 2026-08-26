@@ -32,7 +32,7 @@ class  TruncationObject
 {
 public:
     TruncationObject();
-    virtual ~TruncationObject() = default;
+    virtual ~TruncationObject();
 
 
     /// <summary>

@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The project name.
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get The title of the project as seen on the dashboard.
 	 */
 	std::string getTitle();
 
 	/*! \brief Set The title of the project as seen on the dashboard.
 	 */
-	void setTitle(std::string  title);
+	void setTitle(std::string title);
 
 
     private:

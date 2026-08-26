@@ -33,6 +33,8 @@ FineTunePreferenceRequestInput_preferred_completion_inner::FineTunePreferenceReq
     
 }
 
+FineTunePreferenceRequestInput_preferred_completion_inner::~FineTunePreferenceRequestInput_preferred_completion_inner() = default;
+
 void FineTunePreferenceRequestInput_preferred_completion_inner::validate() const
 {
     std::stringstream msg;

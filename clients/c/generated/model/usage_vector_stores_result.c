@@ -24,31 +24,40 @@ openai_api_usage_vector_stores_result_OBJECT_e usage_vector_stores_result_object
 
 static usage_vector_stores_result_t *usage_vector_stores_result_create_internal(
     openai_api_usage_vector_stores_result_OBJECT_e object,
-    int usage_bytes,
+    int *usage_bytes,
     char *project_id
     ) {
     usage_vector_stores_result_t *usage_vector_stores_result_local_var = malloc(sizeof(usage_vector_stores_result_t));
     if (!usage_vector_stores_result_local_var) {
         return NULL;
     }
+    memset(usage_vector_stores_result_local_var, 0, sizeof(usage_vector_stores_result_t));
+    usage_vector_stores_result_local_var->_library_owned = 1;
     usage_vector_stores_result_local_var->object = object;
     usage_vector_stores_result_local_var->usage_bytes = usage_bytes;
     usage_vector_stores_result_local_var->project_id = project_id;
-
-    usage_vector_stores_result_local_var->_library_owned = 1;
     return usage_vector_stores_result_local_var;
 }
 
 __attribute__((deprecated)) usage_vector_stores_result_t *usage_vector_stores_result_create(
     openai_api_usage_vector_stores_result_OBJECT_e object,
-    int usage_bytes,
+    int *usage_bytes,
     char *project_id
     ) {
-    return usage_vector_stores_result_create_internal (
+    int *usage_bytes_copy = NULL;
+    if (usage_bytes) {
+        usage_bytes_copy = malloc(sizeof(int));
+        if (usage_bytes_copy) *usage_bytes_copy = *usage_bytes;
+    }
+    usage_vector_stores_result_t *result = usage_vector_stores_result_create_internal (
         object,
-        usage_bytes,
+        usage_bytes_copy,
         project_id
         );
+    if (!result) {
+        free(usage_bytes_copy);
+    }
+    return result;
 }
 
 void usage_vector_stores_result_free(usage_vector_stores_result_t *usage_vector_stores_result) {
@@ -60,6 +69,10 @@ void usage_vector_stores_result_free(usage_vector_stores_result_t *usage_vector_
         return ;
     }
     listEntry_t *listEntry;
+    if (usage_vector_stores_result->usage_bytes) {
+        free(usage_vector_stores_result->usage_bytes);
+        usage_vector_stores_result->usage_bytes = NULL;
+    }
     if (usage_vector_stores_result->project_id) {
         free(usage_vector_stores_result->project_id);
         usage_vector_stores_result->project_id = NULL;
@@ -84,7 +97,7 @@ cJSON *usage_vector_stores_result_convertToJSON(usage_vector_stores_result_t *us
     if (!usage_vector_stores_result->usage_bytes) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "usage_bytes", usage_vector_stores_result->usage_bytes) == NULL) {
+    if(cJSON_AddNumberToObject(item, "usage_bytes", *usage_vector_stores_result->usage_bytes) == NULL) {
     goto fail; //Numeric
     }
 
@@ -107,6 +120,11 @@ fail:
 usage_vector_stores_result_t *usage_vector_stores_result_parseFromJSON(cJSON *usage_vector_stores_resultJSON){
 
     usage_vector_stores_result_t *usage_vector_stores_result_local_var = NULL;
+
+    // define the local variable for usage_vector_stores_result->usage_bytes
+    int *usage_bytes_local_var = NULL;
+
+    char *project_id_local_str = NULL;
 
     // usage_vector_stores_result->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(usage_vector_stores_resultJSON, "object");
@@ -139,6 +157,12 @@ usage_vector_stores_result_t *usage_vector_stores_result_parseFromJSON(cJSON *us
     {
     goto end; //Numeric
     }
+    usage_bytes_local_var = malloc(sizeof(int));
+    if(!usage_bytes_local_var)
+    {
+        goto end;
+    }
+    *usage_bytes_local_var = usage_bytes->valuedouble;
 
     // usage_vector_stores_result->project_id
     cJSON *project_id = cJSON_GetObjectItemCaseSensitive(usage_vector_stores_resultJSON, "project_id");
@@ -153,14 +177,28 @@ usage_vector_stores_result_t *usage_vector_stores_result_parseFromJSON(cJSON *us
     }
 
 
+    if (project_id && !cJSON_IsNull(project_id)) project_id_local_str = strdup(project_id->valuestring);
+
     usage_vector_stores_result_local_var = usage_vector_stores_result_create_internal (
         objectVariable,
-        usage_bytes->valuedouble,
-        project_id && !cJSON_IsNull(project_id) ? strdup(project_id->valuestring) : NULL
+        usage_bytes_local_var,
+        project_id_local_str
         );
+
+    if (!usage_vector_stores_result_local_var) {
+        goto end;
+    }
 
     return usage_vector_stores_result_local_var;
 end:
+    if (usage_bytes_local_var) {
+        free(usage_bytes_local_var);
+        usage_bytes_local_var = NULL;
+    }
+    if (project_id_local_str) {
+        free(project_id_local_str);
+        project_id_local_str = NULL;
+    }
     return NULL;
 
 }

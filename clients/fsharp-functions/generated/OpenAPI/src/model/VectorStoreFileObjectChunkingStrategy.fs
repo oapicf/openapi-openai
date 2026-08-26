@@ -5,7 +5,7 @@ open System.Collections.Generic
 open Newtonsoft.Json
 open OpenAPI.Model.OtherChunkingStrategyResponseParam
 open OpenAPI.Model.StaticChunkingStrategy
-open OpenAPI.Model.StaticChunkingStrategyResponseParam
+open OpenAPI.Model.StaticChunkingStrategyRequestParam
 
 module VectorStoreFileObjectChunkingStrategy =
 

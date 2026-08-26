@@ -52,21 +52,21 @@ public:
 
 	/*! \brief Set The role of the messages author, in this case `tool`.
 	 */
-	void setRole(std::string  role);
+	void setRole(std::string role);
 	/*! \brief Get 
 	 */
 	ChatCompletionRequestToolMessage_content getContent();
 
 	/*! \brief Set 
 	 */
-	void setContent(ChatCompletionRequestToolMessage_content  content);
+	void setContent(ChatCompletionRequestToolMessage_content content);
 	/*! \brief Get Tool call that this message is responding to.
 	 */
 	std::string getToolCallId();
 
 	/*! \brief Set Tool call that this message is responding to.
 	 */
-	void setToolCallId(std::string  tool_call_id);
+	void setToolCallId(std::string tool_call_id);
 
 
     private:

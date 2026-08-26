@@ -1,4 +1,4 @@
-# # CreateVectorStoreRequestChunkingStrategy
+# CreateVectorStoreRequestChunkingStrategy
 
 ## Properties
 

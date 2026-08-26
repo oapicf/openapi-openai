@@ -24,6 +24,7 @@ from openapiopenai.models.completion_usage import CompletionUsage
 from openapiopenai.models.create_chat_completion_response_choices_inner import CreateChatCompletionResponseChoicesInner
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class CreateChatCompletionResponse(BaseModel):
     """
@@ -33,7 +34,7 @@ class CreateChatCompletionResponse(BaseModel):
     choices: List[CreateChatCompletionResponseChoicesInner] = Field(description="A list of chat completion choices. Can be more than one if `n` is greater than 1.")
     created: StrictInt = Field(description="The Unix timestamp (in seconds) of when the chat completion was created.")
     model: StrictStr = Field(description="The model used for the chat completion.")
-    service_tier: Optional[StrictStr] = Field(default=None, description="The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.")
+    service_tier: Optional[StrictStr] = Field(default=None, description="The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.", json_schema_extra={"examples": ["scale"]})
     system_fingerprint: Optional[StrictStr] = Field(default=None, description="This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. ")
     object: StrictStr = Field(description="The object type, which is always `chat.completion`.")
     usage: Optional[CompletionUsage] = None
@@ -57,7 +58,8 @@ class CreateChatCompletionResponse(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -69,8 +71,7 @@ class CreateChatCompletionResponse(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

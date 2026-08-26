@@ -19,23 +19,23 @@ typedef struct project_rate_limit_update_request_t project_rate_limit_update_req
 
 
 typedef struct project_rate_limit_update_request_t {
-    int max_requests_per_1_minute; //numeric
-    int max_tokens_per_1_minute; //numeric
-    int max_images_per_1_minute; //numeric
-    int max_audio_megabytes_per_1_minute; //numeric
-    int max_requests_per_1_day; //numeric
-    int batch_1_day_max_input_tokens; //numeric
+    int *max_requests_per_1_minute; //numeric
+    int *max_tokens_per_1_minute; //numeric
+    int *max_images_per_1_minute; //numeric
+    int *max_audio_megabytes_per_1_minute; //numeric
+    int *max_requests_per_1_day; //numeric
+    int *batch_1_day_max_input_tokens; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } project_rate_limit_update_request_t;
 
 __attribute__((deprecated)) project_rate_limit_update_request_t *project_rate_limit_update_request_create(
-    int max_requests_per_1_minute,
-    int max_tokens_per_1_minute,
-    int max_images_per_1_minute,
-    int max_audio_megabytes_per_1_minute,
-    int max_requests_per_1_day,
-    int batch_1_day_max_input_tokens
+    int *max_requests_per_1_minute,
+    int *max_tokens_per_1_minute,
+    int *max_images_per_1_minute,
+    int *max_audio_megabytes_per_1_minute,
+    int *max_requests_per_1_day,
+    int *batch_1_day_max_input_tokens
 );
 
 void project_rate_limit_update_request_free(project_rate_limit_update_request_t *project_rate_limit_update_request);

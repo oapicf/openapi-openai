@@ -92,6 +92,7 @@ class CreateChatCompletionRequest {
   /// Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` 
   List<CreateChatCompletionRequestModalitiesEnum>? modalities;
 
+  /// Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
   PredictionContent? prediction;
 
   CreateChatCompletionRequestAudio? audio;
@@ -390,10 +391,10 @@ class CreateChatCompletionRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateChatCompletionRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateChatCompletionRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'messages'), 'Required key "CreateChatCompletionRequest[messages]" is missing from JSON.');
+        assert(json[r'messages'] != null, 'Required key "CreateChatCompletionRequest[messages]" has a null value in JSON.');
+        assert(json.containsKey(r'model'), 'Required key "CreateChatCompletionRequest[model]" is missing from JSON.');
+        assert(json[r'model'] != null, 'Required key "CreateChatCompletionRequest[model]" has a null value in JSON.');
         return true;
       }());
 
@@ -401,7 +402,7 @@ class CreateChatCompletionRequest {
         messages: ChatCompletionRequestMessage.listFromJson(json[r'messages']),
         model: CreateChatCompletionRequestModel.fromJson(json[r'model'])!,
         store: mapValueOfType<bool>(json, r'store') ?? false,
-        reasoningEffort: CreateChatCompletionRequestReasoningEffortEnum.fromJson(json[r'reasoning_effort']) ?? 'medium',
+        reasoningEffort: CreateChatCompletionRequestReasoningEffortEnum.fromJson(json[r'reasoning_effort']) ?? const CreateChatCompletionRequestReasoningEffortEnum._('medium'),
         metadata: mapCastOfType<String, String>(json, r'metadata') ?? const {},
         frequencyPenalty: json[r'frequency_penalty'] == null
             ? 0
@@ -420,7 +421,7 @@ class CreateChatCompletionRequest {
             : num.parse('${json[r'presence_penalty']}'),
         responseFormat: CreateChatCompletionRequestResponseFormat.fromJson(json[r'response_format']),
         seed: mapValueOfType<int>(json, r'seed'),
-        serviceTier: CreateChatCompletionRequestServiceTierEnum.fromJson(json[r'service_tier']) ?? 'auto',
+        serviceTier: CreateChatCompletionRequestServiceTierEnum.fromJson(json[r'service_tier']) ?? const CreateChatCompletionRequestServiceTierEnum._('auto'),
         stop: CreateChatCompletionRequestStop.fromJson(json[r'stop']),
         stream: mapValueOfType<bool>(json, r'stream') ?? false,
         streamOptions: ChatCompletionStreamOptions.fromJson(json[r'stream_options']),
@@ -489,31 +490,30 @@ class CreateChatCompletionRequest {
 }
 
 /// **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
-class CreateChatCompletionRequestReasoningEffortEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateChatCompletionRequestReasoningEffortEnum._(this.value);
+enum CreateChatCompletionRequestReasoningEffortEnum {
+  low._(r'low'),
+  medium._(r'medium'),
+  high._(r'high'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateChatCompletionRequestReasoningEffortEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const low = CreateChatCompletionRequestReasoningEffortEnum._(r'low');
-  static const medium = CreateChatCompletionRequestReasoningEffortEnum._(r'medium');
-  static const high = CreateChatCompletionRequestReasoningEffortEnum._(r'high');
-
-  /// List of all possible values in this [enum][CreateChatCompletionRequestReasoningEffortEnum].
-  static const values = <CreateChatCompletionRequestReasoningEffortEnum>[
-    low,
-    medium,
-    high,
-  ];
-
+  /// Returns the instance of [CreateChatCompletionRequestReasoningEffortEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateChatCompletionRequestReasoningEffortEnum? fromJson(dynamic value) => CreateChatCompletionRequestReasoningEffortEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateChatCompletionRequestReasoningEffortEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateChatCompletionRequestReasoningEffortEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateChatCompletionRequestReasoningEffortEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -535,9 +535,10 @@ class CreateChatCompletionRequestReasoningEffortEnumTypeTransformer {
 
   const CreateChatCompletionRequestReasoningEffortEnumTypeTransformer._();
 
-  String encode(CreateChatCompletionRequestReasoningEffortEnum data) => data.value;
+  String encode(CreateChatCompletionRequestReasoningEffortEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateChatCompletionRequestReasoningEffortEnum.
+  /// Returns the instance of [CreateChatCompletionRequestReasoningEffortEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -546,6 +547,9 @@ class CreateChatCompletionRequestReasoningEffortEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateChatCompletionRequestReasoningEffortEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateChatCompletionRequestReasoningEffortEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'low': return CreateChatCompletionRequestReasoningEffortEnum.low;
@@ -560,35 +564,35 @@ class CreateChatCompletionRequestReasoningEffortEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateChatCompletionRequestReasoningEffortEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateChatCompletionRequestReasoningEffortEnumTypeTransformer? _instance;
 }
 
 
 
-class CreateChatCompletionRequestModalitiesEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateChatCompletionRequestModalitiesEnum._(this.value);
+enum CreateChatCompletionRequestModalitiesEnum {
+  text._(r'text'),
+  audio._(r'audio'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateChatCompletionRequestModalitiesEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = CreateChatCompletionRequestModalitiesEnum._(r'text');
-  static const audio = CreateChatCompletionRequestModalitiesEnum._(r'audio');
-
-  /// List of all possible values in this [enum][CreateChatCompletionRequestModalitiesEnum].
-  static const values = <CreateChatCompletionRequestModalitiesEnum>[
-    text,
-    audio,
-  ];
-
+  /// Returns the instance of [CreateChatCompletionRequestModalitiesEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateChatCompletionRequestModalitiesEnum? fromJson(dynamic value) => CreateChatCompletionRequestModalitiesEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateChatCompletionRequestModalitiesEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateChatCompletionRequestModalitiesEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateChatCompletionRequestModalitiesEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -610,9 +614,10 @@ class CreateChatCompletionRequestModalitiesEnumTypeTransformer {
 
   const CreateChatCompletionRequestModalitiesEnumTypeTransformer._();
 
-  String encode(CreateChatCompletionRequestModalitiesEnum data) => data.value;
+  String encode(CreateChatCompletionRequestModalitiesEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateChatCompletionRequestModalitiesEnum.
+  /// Returns the instance of [CreateChatCompletionRequestModalitiesEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -621,6 +626,9 @@ class CreateChatCompletionRequestModalitiesEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateChatCompletionRequestModalitiesEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateChatCompletionRequestModalitiesEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return CreateChatCompletionRequestModalitiesEnum.text;
@@ -634,35 +642,35 @@ class CreateChatCompletionRequestModalitiesEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateChatCompletionRequestModalitiesEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateChatCompletionRequestModalitiesEnumTypeTransformer? _instance;
 }
 
 
 /// Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. 
-class CreateChatCompletionRequestServiceTierEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateChatCompletionRequestServiceTierEnum._(this.value);
+enum CreateChatCompletionRequestServiceTierEnum {
+  auto._(r'auto'),
+  default_._(r'default'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateChatCompletionRequestServiceTierEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const auto = CreateChatCompletionRequestServiceTierEnum._(r'auto');
-  static const default_ = CreateChatCompletionRequestServiceTierEnum._(r'default');
-
-  /// List of all possible values in this [enum][CreateChatCompletionRequestServiceTierEnum].
-  static const values = <CreateChatCompletionRequestServiceTierEnum>[
-    auto,
-    default_,
-  ];
-
+  /// Returns the instance of [CreateChatCompletionRequestServiceTierEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateChatCompletionRequestServiceTierEnum? fromJson(dynamic value) => CreateChatCompletionRequestServiceTierEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateChatCompletionRequestServiceTierEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateChatCompletionRequestServiceTierEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateChatCompletionRequestServiceTierEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -684,9 +692,10 @@ class CreateChatCompletionRequestServiceTierEnumTypeTransformer {
 
   const CreateChatCompletionRequestServiceTierEnumTypeTransformer._();
 
-  String encode(CreateChatCompletionRequestServiceTierEnum data) => data.value;
+  String encode(CreateChatCompletionRequestServiceTierEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateChatCompletionRequestServiceTierEnum.
+  /// Returns the instance of [CreateChatCompletionRequestServiceTierEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -695,6 +704,9 @@ class CreateChatCompletionRequestServiceTierEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateChatCompletionRequestServiceTierEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateChatCompletionRequestServiceTierEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'auto': return CreateChatCompletionRequestServiceTierEnum.auto;
@@ -708,7 +720,7 @@ class CreateChatCompletionRequestServiceTierEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateChatCompletionRequestServiceTierEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateChatCompletionRequestServiceTierEnumTypeTransformer? _instance;
 }
 

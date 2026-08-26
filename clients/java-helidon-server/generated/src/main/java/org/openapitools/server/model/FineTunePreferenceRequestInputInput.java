@@ -1,0 +1,105 @@
+package org.openapitools.server.model;
+
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.openapitools.server.model.ChatCompletionTool;
+import org.openapitools.server.model.FineTuneChatRequestInputMessagesInner;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+
+
+public class FineTunePreferenceRequestInputInput   {
+
+    private List<FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
+    private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
+    private Boolean parallelToolCalls = true;
+
+    /**
+     * Default constructor.
+     */
+    public FineTunePreferenceRequestInputInput() {
+    // JSON-B / Jackson
+    }
+
+    /**
+     * Create FineTunePreferenceRequestInputInput.
+     *
+     * @param messages messages
+     * @param tools A list of tools the model may generate JSON inputs for.
+     * @param parallelToolCalls Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+     */
+    public FineTunePreferenceRequestInputInput(
+        List<FineTuneChatRequestInputMessagesInner> messages, 
+        List<@Valid ChatCompletionTool> tools, 
+        Boolean parallelToolCalls
+    ) {
+        this.messages = messages;
+        this.tools = tools;
+        this.parallelToolCalls = parallelToolCalls;
+    }
+
+
+
+    /**
+     * Get messages
+     * @return messages
+     */
+    public List<FineTuneChatRequestInputMessagesInner> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<FineTuneChatRequestInputMessagesInner> messages) {
+        this.messages = messages;
+    }
+
+    /**
+     * A list of tools the model may generate JSON inputs for.
+     * @return tools
+     */
+    public List<@Valid ChatCompletionTool> getTools() {
+        return tools;
+    }
+
+    public void setTools(List<@Valid ChatCompletionTool> tools) {
+        this.tools = tools;
+    }
+
+    /**
+     * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+     * @return parallelToolCalls
+     */
+    public Boolean getParallelToolCalls() {
+        return parallelToolCalls;
+    }
+
+    public void setParallelToolCalls(Boolean parallelToolCalls) {
+        this.parallelToolCalls = parallelToolCalls;
+    }
+
+    /**
+      * Create a string representation of this pojo.
+    **/
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class FineTunePreferenceRequestInputInput {\n");
+        
+        sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
+        sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
+        sb.append("    parallelToolCalls: ").append(toIndentedString(parallelToolCalls)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+    */
+    private static String toIndentedString(Object o) {
+        return o == null ? "null" : o.toString().replace("\n", "\n    ");
+    }
+}
+

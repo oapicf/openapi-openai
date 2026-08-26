@@ -189,8 +189,9 @@ class _$CreateImageRequestSerializer implements PrimitiveSerializer<CreateImageR
         case r'quality':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateImageRequestQualityEnum),
-          ) as CreateImageRequestQualityEnum;
+            specifiedType: const FullType.nullable(CreateImageRequestQualityEnum),
+          ) as CreateImageRequestQualityEnum?;
+          if (valueDes == null) continue;
           result.quality = valueDes;
           break;
         case r'response_format':
@@ -220,8 +221,9 @@ class _$CreateImageRequestSerializer implements PrimitiveSerializer<CreateImageR
         case r'user':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.user = valueDes;
           break;
         default:

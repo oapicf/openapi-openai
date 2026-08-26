@@ -191,7 +191,7 @@ AdminApiKey::getObject()
 }
 
 void
-AdminApiKey::setObject(std::string  object)
+AdminApiKey::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -203,7 +203,7 @@ AdminApiKey::getId()
 }
 
 void
-AdminApiKey::setId(std::string  id)
+AdminApiKey::setId(std::string id)
 {
 	this->id = id;
 }
@@ -215,7 +215,7 @@ AdminApiKey::getName()
 }
 
 void
-AdminApiKey::setName(std::string  name)
+AdminApiKey::setName(std::string name)
 {
 	this->name = name;
 }
@@ -227,7 +227,7 @@ AdminApiKey::getRedactedValue()
 }
 
 void
-AdminApiKey::setRedactedValue(std::string  redacted_value)
+AdminApiKey::setRedactedValue(std::string redacted_value)
 {
 	this->redacted_value = redacted_value;
 }
@@ -239,7 +239,7 @@ AdminApiKey::getValue()
 }
 
 void
-AdminApiKey::setValue(std::string  value)
+AdminApiKey::setValue(std::string value)
 {
 	this->value = value;
 }
@@ -251,7 +251,7 @@ AdminApiKey::getCreatedAt()
 }
 
 void
-AdminApiKey::setCreatedAt(long  created_at)
+AdminApiKey::setCreatedAt(long created_at)
 {
 	this->created_at = created_at;
 }
@@ -263,7 +263,7 @@ AdminApiKey::getOwner()
 }
 
 void
-AdminApiKey::setOwner(AdminApiKey_owner  owner)
+AdminApiKey::setOwner(AdminApiKey_owner owner)
 {
 	this->owner = owner;
 }

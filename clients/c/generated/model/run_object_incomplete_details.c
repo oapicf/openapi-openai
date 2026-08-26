@@ -29,18 +29,21 @@ static run_object_incomplete_details_t *run_object_incomplete_details_create_int
     if (!run_object_incomplete_details_local_var) {
         return NULL;
     }
-    run_object_incomplete_details_local_var->reason = reason;
-
+    memset(run_object_incomplete_details_local_var, 0, sizeof(run_object_incomplete_details_t));
     run_object_incomplete_details_local_var->_library_owned = 1;
+    run_object_incomplete_details_local_var->reason = reason;
     return run_object_incomplete_details_local_var;
 }
 
 __attribute__((deprecated)) run_object_incomplete_details_t *run_object_incomplete_details_create(
     openai_api_run_object_incomplete_details_REASON_e reason
     ) {
-    return run_object_incomplete_details_create_internal (
+    run_object_incomplete_details_t *result = run_object_incomplete_details_create_internal (
         reason
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_object_incomplete_details_free(run_object_incomplete_details_t *run_object_incomplete_details) {
@@ -93,9 +96,14 @@ run_object_incomplete_details_t *run_object_incomplete_details_parseFromJSON(cJS
     }
 
 
+
     run_object_incomplete_details_local_var = run_object_incomplete_details_create_internal (
         reason ? reasonVariable : openai_api_run_object_incomplete_details_REASON_NULL
         );
+
+    if (!run_object_incomplete_details_local_var) {
+        goto end;
+    }
 
     return run_object_incomplete_details_local_var;
 end:

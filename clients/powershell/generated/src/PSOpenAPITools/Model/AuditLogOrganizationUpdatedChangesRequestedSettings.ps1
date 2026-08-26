@@ -41,8 +41,8 @@ function Initialize-AuditLogOrganizationUpdatedChangesRequestedSettings {
 
 
         $PSO = [PSCustomObject]@{
-            "threads_ui_visibility" = ${ThreadsUiVisibility}
-            "usage_dashboard_visibility" = ${UsageDashboardVisibility}
+            'threads_ui_visibility' = ${ThreadsUiVisibility}
+            'usage_dashboard_visibility' = ${UsageDashboardVisibility}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToAuditLogOrganizationUpdatedChangesRequestedSettings {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AuditLogOrganizationUpdatedChangesRequestedSettings
-        $AllProperties = ("threads_ui_visibility", "usage_dashboard_visibility")
+        $AllProperties = ('threads_ui_visibility', 'usage_dashboard_visibility')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "threads_ui_visibility"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'threads_ui_visibility'))) { #optional property not found
             $ThreadsUiVisibility = $null
         } else {
-            $ThreadsUiVisibility = $JsonParameters.PSobject.Properties["threads_ui_visibility"].value
+            $ThreadsUiVisibility = $JsonParameters.PSobject.Properties['threads_ui_visibility'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "usage_dashboard_visibility"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'usage_dashboard_visibility'))) { #optional property not found
             $UsageDashboardVisibility = $null
         } else {
-            $UsageDashboardVisibility = $JsonParameters.PSobject.Properties["usage_dashboard_visibility"].value
+            $UsageDashboardVisibility = $JsonParameters.PSobject.Properties['usage_dashboard_visibility'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "threads_ui_visibility" = ${ThreadsUiVisibility}
-            "usage_dashboard_visibility" = ${UsageDashboardVisibility}
+            'threads_ui_visibility' = ${ThreadsUiVisibility}
+            'usage_dashboard_visibility' = ${UsageDashboardVisibility}
         }
 
         return $PSO

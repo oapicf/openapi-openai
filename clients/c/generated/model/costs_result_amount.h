@@ -19,14 +19,14 @@ typedef struct costs_result_amount_t costs_result_amount_t;
 
 
 typedef struct costs_result_amount_t {
-    double value; //numeric
+    double *value; //numeric
     char *currency; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } costs_result_amount_t;
 
 __attribute__((deprecated)) costs_result_amount_t *costs_result_amount_create(
-    double value,
+    double *value,
     char *currency
 );
 

@@ -99,7 +99,7 @@ class DefaultController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\AdminApiKeysCreateRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\AdminApiKeysCreateRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($adminApiKeysCreateRequest, $asserts);
         if ($response instanceof Response) {
@@ -178,7 +178,7 @@ class DefaultController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($keyId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -256,7 +256,7 @@ class DefaultController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($keyId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -338,20 +338,20 @@ class DefaultController extends Controller
 
         // Validate the input values
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($after, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Choice([ 'asc', 'desc' ]);
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($order, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;

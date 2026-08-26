@@ -24,35 +24,50 @@ openai_api_usage_time_bucket_OBJECT_e usage_time_bucket_object_FromString(char* 
 
 static usage_time_bucket_t *usage_time_bucket_create_internal(
     openai_api_usage_time_bucket_OBJECT_e object,
-    int start_time,
-    int end_time,
+    int *start_time,
+    int *end_time,
     list_t *result
     ) {
     usage_time_bucket_t *usage_time_bucket_local_var = malloc(sizeof(usage_time_bucket_t));
     if (!usage_time_bucket_local_var) {
         return NULL;
     }
+    memset(usage_time_bucket_local_var, 0, sizeof(usage_time_bucket_t));
+    usage_time_bucket_local_var->_library_owned = 1;
     usage_time_bucket_local_var->object = object;
     usage_time_bucket_local_var->start_time = start_time;
     usage_time_bucket_local_var->end_time = end_time;
     usage_time_bucket_local_var->result = result;
-
-    usage_time_bucket_local_var->_library_owned = 1;
     return usage_time_bucket_local_var;
 }
 
 __attribute__((deprecated)) usage_time_bucket_t *usage_time_bucket_create(
     openai_api_usage_time_bucket_OBJECT_e object,
-    int start_time,
-    int end_time,
+    int *start_time,
+    int *end_time,
     list_t *result
     ) {
-    return usage_time_bucket_create_internal (
+    int *start_time_copy = NULL;
+    if (start_time) {
+        start_time_copy = malloc(sizeof(int));
+        if (start_time_copy) *start_time_copy = *start_time;
+    }
+    int *end_time_copy = NULL;
+    if (end_time) {
+        end_time_copy = malloc(sizeof(int));
+        if (end_time_copy) *end_time_copy = *end_time;
+    }
+    usage_time_bucket_t *result = usage_time_bucket_create_internal (
         object,
-        start_time,
-        end_time,
+        start_time_copy,
+        end_time_copy,
         result
         );
+    if (!result) {
+        free(start_time_copy);
+        free(end_time_copy);
+    }
+    return result;
 }
 
 void usage_time_bucket_free(usage_time_bucket_t *usage_time_bucket) {
@@ -64,6 +79,14 @@ void usage_time_bucket_free(usage_time_bucket_t *usage_time_bucket) {
         return ;
     }
     listEntry_t *listEntry;
+    if (usage_time_bucket->start_time) {
+        free(usage_time_bucket->start_time);
+        usage_time_bucket->start_time = NULL;
+    }
+    if (usage_time_bucket->end_time) {
+        free(usage_time_bucket->end_time);
+        usage_time_bucket->end_time = NULL;
+    }
     if (usage_time_bucket->result) {
         list_ForEach(listEntry, usage_time_bucket->result) {
             usage_time_bucket_result_inner_free(listEntry->data);
@@ -91,7 +114,7 @@ cJSON *usage_time_bucket_convertToJSON(usage_time_bucket_t *usage_time_bucket) {
     if (!usage_time_bucket->start_time) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "start_time", usage_time_bucket->start_time) == NULL) {
+    if(cJSON_AddNumberToObject(item, "start_time", *usage_time_bucket->start_time) == NULL) {
     goto fail; //Numeric
     }
 
@@ -100,7 +123,7 @@ cJSON *usage_time_bucket_convertToJSON(usage_time_bucket_t *usage_time_bucket) {
     if (!usage_time_bucket->end_time) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "end_time", usage_time_bucket->end_time) == NULL) {
+    if(cJSON_AddNumberToObject(item, "end_time", *usage_time_bucket->end_time) == NULL) {
     goto fail; //Numeric
     }
 
@@ -137,6 +160,12 @@ usage_time_bucket_t *usage_time_bucket_parseFromJSON(cJSON *usage_time_bucketJSO
 
     usage_time_bucket_t *usage_time_bucket_local_var = NULL;
 
+    // define the local variable for usage_time_bucket->start_time
+    int *start_time_local_var = NULL;
+
+    // define the local variable for usage_time_bucket->end_time
+    int *end_time_local_var = NULL;
+
     // define the local list for usage_time_bucket->result
     list_t *resultList = NULL;
 
@@ -171,6 +200,12 @@ usage_time_bucket_t *usage_time_bucket_parseFromJSON(cJSON *usage_time_bucketJSO
     {
     goto end; //Numeric
     }
+    start_time_local_var = malloc(sizeof(int));
+    if(!start_time_local_var)
+    {
+        goto end;
+    }
+    *start_time_local_var = start_time->valuedouble;
 
     // usage_time_bucket->end_time
     cJSON *end_time = cJSON_GetObjectItemCaseSensitive(usage_time_bucketJSON, "end_time");
@@ -186,6 +221,12 @@ usage_time_bucket_t *usage_time_bucket_parseFromJSON(cJSON *usage_time_bucketJSO
     {
     goto end; //Numeric
     }
+    end_time_local_var = malloc(sizeof(int));
+    if(!end_time_local_var)
+    {
+        goto end;
+    }
+    *end_time_local_var = end_time->valuedouble;
 
     // usage_time_bucket->result
     cJSON *result = cJSON_GetObjectItemCaseSensitive(usage_time_bucketJSON, "result");
@@ -215,15 +256,28 @@ usage_time_bucket_t *usage_time_bucket_parseFromJSON(cJSON *usage_time_bucketJSO
     }
 
 
+
     usage_time_bucket_local_var = usage_time_bucket_create_internal (
         objectVariable,
-        start_time->valuedouble,
-        end_time->valuedouble,
+        start_time_local_var,
+        end_time_local_var,
         resultList
         );
 
+    if (!usage_time_bucket_local_var) {
+        goto end;
+    }
+
     return usage_time_bucket_local_var;
 end:
+    if (start_time_local_var) {
+        free(start_time_local_var);
+        start_time_local_var = NULL;
+    }
+    if (end_time_local_var) {
+        free(end_time_local_var);
+        end_time_local_var = NULL;
+    }
     if (resultList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, resultList) {

@@ -1,4 +1,4 @@
-# # DeleteVectorStoreResponse
+# DeleteVectorStoreResponse
 
 ## Properties
 

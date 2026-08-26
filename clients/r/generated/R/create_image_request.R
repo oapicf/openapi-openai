@@ -140,7 +140,7 @@ CreateImageRequest <- R6::R6Class(
       }
       if (!is.null(self$`model`)) {
         CreateImageRequestObject[["model"]] <-
-          self$`model`$toSimpleType()
+          self$extractSimpleType(self$`model`)
       }
       if (!is.null(self$`n`)) {
         CreateImageRequestObject[["n"]] <-
@@ -167,6 +167,29 @@ CreateImageRequest <- R6::R6Class(
           self$`user`
       }
       return(CreateImageRequestObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

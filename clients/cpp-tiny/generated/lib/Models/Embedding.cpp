@@ -124,7 +124,7 @@ Embedding::getIndex()
 }
 
 void
-Embedding::setIndex(int  index)
+Embedding::setIndex(int index)
 {
 	this->index = index;
 }
@@ -136,7 +136,7 @@ Embedding::getEmbedding()
 }
 
 void
-Embedding::setEmbedding(std::list <long> embedding)
+Embedding::setEmbedding(std::list<long> embedding)
 {
 	this->embedding = embedding;
 }
@@ -148,7 +148,7 @@ Embedding::getObject()
 }
 
 void
-Embedding::setObject(std::string  object)
+Embedding::setObject(std::string object)
 {
 	this->object = object;
 }

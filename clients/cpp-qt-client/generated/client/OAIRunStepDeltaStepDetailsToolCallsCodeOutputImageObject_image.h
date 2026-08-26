@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image : public OAIObject {
 public:
     OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image();
-    OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image(QString json);
+    OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image(const QString &json);
     ~OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getFileId() const;
     void setFileId(const QString &file_id);

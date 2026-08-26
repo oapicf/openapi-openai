@@ -30,10 +30,10 @@ static message_content_text_object_t *message_content_text_object_create_interna
     if (!message_content_text_object_local_var) {
         return NULL;
     }
+    memset(message_content_text_object_local_var, 0, sizeof(message_content_text_object_t));
+    message_content_text_object_local_var->_library_owned = 1;
     message_content_text_object_local_var->type = type;
     message_content_text_object_local_var->text = text;
-
-    message_content_text_object_local_var->_library_owned = 1;
     return message_content_text_object_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) message_content_text_object_t *message_content_text_
     openai_api_message_content_text_object_TYPE_e type,
     message_content_text_object_text_t *text
     ) {
-    return message_content_text_object_create_internal (
+    message_content_text_object_t *result = message_content_text_object_create_internal (
         type,
         text
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_content_text_object_free(message_content_text_object_t *message_content_text_object) {
@@ -134,10 +137,15 @@ message_content_text_object_t *message_content_text_object_parseFromJSON(cJSON *
     text_local_nonprim = message_content_text_object_text_parseFromJSON(text); //nonprimitive
 
 
+
     message_content_text_object_local_var = message_content_text_object_create_internal (
         typeVariable,
         text_local_nonprim
         );
+
+    if (!message_content_text_object_local_var) {
+        goto end;
+    }
 
     return message_content_text_object_local_var;
 end:

@@ -53,10 +53,10 @@ class MessageStreamEventOneOf4 {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageStreamEventOneOf4[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageStreamEventOneOf4[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event'), 'Required key "MessageStreamEventOneOf4[event]" is missing from JSON.');
+        assert(json[r'event'] != null, 'Required key "MessageStreamEventOneOf4[event]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "MessageStreamEventOneOf4[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "MessageStreamEventOneOf4[data]" has a null value in JSON.');
         return true;
       }());
 
@@ -116,27 +116,28 @@ class MessageStreamEventOneOf4 {
 }
 
 
-class MessageStreamEventOneOf4EventEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageStreamEventOneOf4EventEnum._(this.value);
+enum MessageStreamEventOneOf4EventEnum {
+  threadPeriodMessagePeriodIncomplete._(r'thread.message.incomplete'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageStreamEventOneOf4EventEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodMessagePeriodIncomplete = MessageStreamEventOneOf4EventEnum._(r'thread.message.incomplete');
-
-  /// List of all possible values in this [enum][MessageStreamEventOneOf4EventEnum].
-  static const values = <MessageStreamEventOneOf4EventEnum>[
-    threadPeriodMessagePeriodIncomplete,
-  ];
-
+  /// Returns the instance of [MessageStreamEventOneOf4EventEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageStreamEventOneOf4EventEnum? fromJson(dynamic value) => MessageStreamEventOneOf4EventEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageStreamEventOneOf4EventEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageStreamEventOneOf4EventEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageStreamEventOneOf4EventEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -158,9 +159,10 @@ class MessageStreamEventOneOf4EventEnumTypeTransformer {
 
   const MessageStreamEventOneOf4EventEnumTypeTransformer._();
 
-  String encode(MessageStreamEventOneOf4EventEnum data) => data.value;
+  String encode(MessageStreamEventOneOf4EventEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageStreamEventOneOf4EventEnum.
+  /// Returns the instance of [MessageStreamEventOneOf4EventEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -169,6 +171,9 @@ class MessageStreamEventOneOf4EventEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageStreamEventOneOf4EventEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageStreamEventOneOf4EventEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.message.incomplete': return MessageStreamEventOneOf4EventEnum.threadPeriodMessagePeriodIncomplete;
@@ -181,7 +186,7 @@ class MessageStreamEventOneOf4EventEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageStreamEventOneOf4EventEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageStreamEventOneOf4EventEnumTypeTransformer? _instance;
 }
 

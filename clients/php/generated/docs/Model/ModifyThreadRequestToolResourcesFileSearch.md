@@ -1,4 +1,4 @@
-# # ModifyThreadRequestToolResourcesFileSearch
+# ModifyThreadRequestToolResourcesFileSearch
 
 ## Properties
 

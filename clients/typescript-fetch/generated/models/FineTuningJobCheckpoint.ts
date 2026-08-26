@@ -66,7 +66,7 @@ export interface FineTuningJobCheckpoint {
     fineTuningJobId: string;
     /**
      * The object type, which is always "fine_tuning.job.checkpoint".
-     * @type {string}
+     * @type {FineTuningJobCheckpointObjectEnum}
      * @memberof FineTuningJobCheckpoint
      */
     object: FineTuningJobCheckpointObjectEnum;
@@ -87,12 +87,14 @@ export type FineTuningJobCheckpointObjectEnum = typeof FineTuningJobCheckpointOb
  */
 export function instanceOfFineTuningJobCheckpoint(value: object): value is FineTuningJobCheckpoint {
     if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-    if (!('fineTunedModelCheckpoint' in value) || value['fineTunedModelCheckpoint'] === undefined) return false;
-    if (!('stepNumber' in value) || value['stepNumber'] === undefined) return false;
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
+    if ((!('fineTunedModelCheckpoint' in (value as Record<string, any>)) && !('fine_tuned_model_checkpoint' in (value as Record<string, any>))) || ((value as Record<string, any>)['fineTunedModelCheckpoint'] === undefined && (value as Record<string, any>)['fine_tuned_model_checkpoint'] === undefined)) return false;
+    if ((!('stepNumber' in (value as Record<string, any>)) && !('step_number' in (value as Record<string, any>))) || ((value as Record<string, any>)['stepNumber'] === undefined && (value as Record<string, any>)['step_number'] === undefined)) return false;
     if (!('metrics' in value) || value['metrics'] === undefined) return false;
-    if (!('fineTuningJobId' in value) || value['fineTuningJobId'] === undefined) return false;
+    if ((!('fineTuningJobId' in (value as Record<string, any>)) && !('fine_tuning_job_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['fineTuningJobId'] === undefined && (value as Record<string, any>)['fine_tuning_job_id'] === undefined)) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'fine_tuning.job.checkpoint') return false;
+    
     return true;
 }
 

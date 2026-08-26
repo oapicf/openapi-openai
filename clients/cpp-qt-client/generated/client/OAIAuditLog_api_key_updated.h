@@ -33,13 +33,13 @@ class OAIAuditLog_api_key_updated_changes_requested;
 class OAIAuditLog_api_key_updated : public OAIObject {
 public:
     OAIAuditLog_api_key_updated();
-    OAIAuditLog_api_key_updated(QString json);
+    OAIAuditLog_api_key_updated(const QString &json);
     ~OAIAuditLog_api_key_updated() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

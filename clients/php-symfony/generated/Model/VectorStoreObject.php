@@ -51,7 +51,7 @@ class VectorStoreObject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class VectorStoreObject
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['vector_store'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class VectorStoreObject
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -85,7 +85,7 @@ class VectorStoreObject
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $name = null;
@@ -96,7 +96,7 @@ class VectorStoreObject
      * @var int|null
      * @SerializedName("usage_bytes")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $usageBytes = null;
@@ -105,7 +105,7 @@ class VectorStoreObject
      * @var VectorStoreObjectFileCounts|null
      * @SerializedName("file_counts")
      * @Type("OpenAPI\Server\Model\VectorStoreObjectFileCounts")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\VectorStoreObjectFileCounts")]
@@ -117,7 +117,7 @@ class VectorStoreObject
      * @var string|null
      * @SerializedName("status")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['expired', 'in_progress', 'completed'])]
     #[Assert\Type("string")]
@@ -127,7 +127,7 @@ class VectorStoreObject
      * @var VectorStoreExpirationAfter|null
      * @SerializedName("expires_after")
      * @Type("OpenAPI\Server\Model\VectorStoreExpirationAfter")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\VectorStoreExpirationAfter")]
     protected ?VectorStoreExpirationAfter $expiresAfter = null;
 
@@ -137,7 +137,7 @@ class VectorStoreObject
      * @var int|null
      * @SerializedName("expires_at")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $expiresAt = null;
 
@@ -147,7 +147,7 @@ class VectorStoreObject
      * @var int|null
      * @SerializedName("last_active_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $lastActiveAt = null;
@@ -158,7 +158,7 @@ class VectorStoreObject
      * @var array|null
      * @SerializedName("metadata")
      * @Type("array")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("array")]
     protected ?array $metadata = null;
@@ -195,12 +195,12 @@ class VectorStoreObject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The identifier, which can be referenced in API endpoints.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The identifier, which can be referenced in API endpoints.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -222,12 +222,12 @@ class VectorStoreObject
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `vector_store`.
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `vector_store`.
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -249,12 +249,12 @@ class VectorStoreObject
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) for when the vector store was created.
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) for when the vector store was created.
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -276,12 +276,12 @@ class VectorStoreObject
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the vector store.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the vector store.
+     *
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -303,12 +303,12 @@ class VectorStoreObject
     }
 
     /**
-    * Sets usageBytes.
-    *
-    * @param int|null $usageBytes  The total number of bytes used by the files in the vector store.
-    *
-    * @return $this
-    */
+     * Sets usageBytes.
+     *
+     * @param int|null $usageBytes  The total number of bytes used by the files in the vector store.
+     *
+     * @return $this
+     */
     public function setUsageBytes(?int $usageBytes): self
     {
         $this->usageBytes = $usageBytes;
@@ -330,12 +330,12 @@ class VectorStoreObject
     }
 
     /**
-    * Sets fileCounts.
-    *
-    * @param VectorStoreObjectFileCounts|null $fileCounts
-    *
-    * @return $this
-    */
+     * Sets fileCounts.
+     *
+     * @param VectorStoreObjectFileCounts|null $fileCounts
+     *
+     * @return $this
+     */
     public function setFileCounts(?VectorStoreObjectFileCounts $fileCounts): self
     {
         $this->fileCounts = $fileCounts;
@@ -357,12 +357,12 @@ class VectorStoreObject
     }
 
     /**
-    * Sets status.
-    *
-    * @param string|null $status  The status of the vector store, which can be either `expired`, `in_progress`, or `completed`. A status of `completed` indicates that the vector store is ready for use.
-    *
-    * @return $this
-    */
+     * Sets status.
+     *
+     * @param string|null $status  The status of the vector store, which can be either `expired`, `in_progress`, or `completed`. A status of `completed` indicates that the vector store is ready for use.
+     *
+     * @return $this
+     */
     public function setStatus(?string $status): self
     {
         $this->status = $status;
@@ -384,12 +384,12 @@ class VectorStoreObject
     }
 
     /**
-    * Sets expiresAfter.
-    *
-    * @param VectorStoreExpirationAfter|null $expiresAfter
-    *
-    * @return $this
-    */
+     * Sets expiresAfter.
+     *
+     * @param VectorStoreExpirationAfter|null $expiresAfter
+     *
+     * @return $this
+     */
     public function setExpiresAfter(?VectorStoreExpirationAfter $expiresAfter = null): self
     {
         $this->expiresAfter = $expiresAfter;
@@ -411,12 +411,12 @@ class VectorStoreObject
     }
 
     /**
-    * Sets expiresAt.
-    *
-    * @param int|null $expiresAt  The Unix timestamp (in seconds) for when the vector store will expire.
-    *
-    * @return $this
-    */
+     * Sets expiresAt.
+     *
+     * @param int|null $expiresAt  The Unix timestamp (in seconds) for when the vector store will expire.
+     *
+     * @return $this
+     */
     public function setExpiresAt(?int $expiresAt = null): self
     {
         $this->expiresAt = $expiresAt;
@@ -438,12 +438,12 @@ class VectorStoreObject
     }
 
     /**
-    * Sets lastActiveAt.
-    *
-    * @param int|null $lastActiveAt  The Unix timestamp (in seconds) for when the vector store was last active.
-    *
-    * @return $this
-    */
+     * Sets lastActiveAt.
+     *
+     * @param int|null $lastActiveAt  The Unix timestamp (in seconds) for when the vector store was last active.
+     *
+     * @return $this
+     */
     public function setLastActiveAt(?int $lastActiveAt): self
     {
         $this->lastActiveAt = $lastActiveAt;
@@ -465,12 +465,12 @@ class VectorStoreObject
     }
 
     /**
-    * Sets metadata.
-    *
-    * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
-    *
-    * @return $this
-    */
+     * Sets metadata.
+     *
+     * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
+     *
+     * @return $this
+     */
     public function setMetadata(?array $metadata): self
     {
         $this->metadata = $metadata;

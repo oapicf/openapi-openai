@@ -34,7 +34,7 @@ class  FunctionObject
 {
 public:
     FunctionObject();
-    virtual ~FunctionObject() = default;
+    virtual ~FunctionObject();
 
 
     /// <summary>

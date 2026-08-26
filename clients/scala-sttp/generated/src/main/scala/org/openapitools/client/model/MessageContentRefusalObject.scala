@@ -20,7 +20,7 @@ case class MessageContentRefusalObject(
   /* Always `refusal`. */
   `type`: MessageContentRefusalObjectEnums.`Type`,
   refusal: String
-)
+) extends MessageObjectContentInner
 
 object MessageContentRefusalObjectEnums {
 

@@ -32,7 +32,7 @@ class  RealtimeServerEventResponseAudioTranscriptDelta
 {
 public:
     RealtimeServerEventResponseAudioTranscriptDelta();
-    virtual ~RealtimeServerEventResponseAudioTranscriptDelta() = default;
+    virtual ~RealtimeServerEventResponseAudioTranscriptDelta();
 
 
     /// <summary>

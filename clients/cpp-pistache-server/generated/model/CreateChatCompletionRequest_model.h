@@ -31,7 +31,7 @@ class  CreateChatCompletionRequest_model
 {
 public:
     CreateChatCompletionRequest_model();
-    virtual ~CreateChatCompletionRequest_model() = default;
+    virtual ~CreateChatCompletionRequest_model();
 
 
     /// <summary>

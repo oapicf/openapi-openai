@@ -104,8 +104,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ArrayOfContentPartsInner" />
     /// </summary>
-    public class ArrayOfContentPartsInnerJsonConverter : JsonConverter<ArrayOfContentPartsInner>
+    public partial class ArrayOfContentPartsInnerJsonConverter : JsonConverter<ArrayOfContentPartsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ArrayOfContentPartsInnerJsonConverter" /> class.
+        /// </summary>
+        public ArrayOfContentPartsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ArrayOfContentPartsInner" />
         /// </summary>

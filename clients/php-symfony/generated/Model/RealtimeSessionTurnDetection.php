@@ -51,7 +51,7 @@ class RealtimeSessionTurnDetection
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['server_vad'])]
     #[Assert\Type("string")]
     protected ?string $type = null;
@@ -62,7 +62,7 @@ class RealtimeSessionTurnDetection
      * @var float|null
      * @SerializedName("threshold")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     protected ?float $threshold = null;
 
@@ -72,7 +72,7 @@ class RealtimeSessionTurnDetection
      * @var int|null
      * @SerializedName("prefix_padding_ms")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $prefixPaddingMs = null;
 
@@ -82,7 +82,7 @@ class RealtimeSessionTurnDetection
      * @var int|null
      * @SerializedName("silence_duration_ms")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $silenceDurationMs = null;
 
@@ -111,12 +111,12 @@ class RealtimeSessionTurnDetection
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Type of turn detection, only `server_vad` is currently supported.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Type of turn detection, only `server_vad` is currently supported.
+     *
+     * @return $this
+     */
     public function setType(?string $type = null): self
     {
         $this->type = $type;
@@ -138,12 +138,12 @@ class RealtimeSessionTurnDetection
     }
 
     /**
-    * Sets threshold.
-    *
-    * @param float|null $threshold  Activation threshold for VAD (0.0 to 1.0), this defaults to 0.5. A  higher threshold will require louder audio to activate the model, and  thus might perform better in noisy environments.
-    *
-    * @return $this
-    */
+     * Sets threshold.
+     *
+     * @param float|null $threshold  Activation threshold for VAD (0.0 to 1.0), this defaults to 0.5. A  higher threshold will require louder audio to activate the model, and  thus might perform better in noisy environments.
+     *
+     * @return $this
+     */
     public function setThreshold(?float $threshold = null): self
     {
         $this->threshold = $threshold;
@@ -165,12 +165,12 @@ class RealtimeSessionTurnDetection
     }
 
     /**
-    * Sets prefixPaddingMs.
-    *
-    * @param int|null $prefixPaddingMs  Amount of audio to include before the VAD detected speech (in  milliseconds). Defaults to 300ms.
-    *
-    * @return $this
-    */
+     * Sets prefixPaddingMs.
+     *
+     * @param int|null $prefixPaddingMs  Amount of audio to include before the VAD detected speech (in  milliseconds). Defaults to 300ms.
+     *
+     * @return $this
+     */
     public function setPrefixPaddingMs(?int $prefixPaddingMs = null): self
     {
         $this->prefixPaddingMs = $prefixPaddingMs;
@@ -192,12 +192,12 @@ class RealtimeSessionTurnDetection
     }
 
     /**
-    * Sets silenceDurationMs.
-    *
-    * @param int|null $silenceDurationMs  Duration of silence to detect speech stop (in milliseconds). Defaults  to 500ms. With shorter values the model will respond more quickly,  but may jump in on short pauses from the user.
-    *
-    * @return $this
-    */
+     * Sets silenceDurationMs.
+     *
+     * @param int|null $silenceDurationMs  Duration of silence to detect speech stop (in milliseconds). Defaults  to 500ms. With shorter values the model will respond more quickly,  but may jump in on short pauses from the user.
+     *
+     * @return $this
+     */
     public function setSilenceDurationMs(?int $silenceDurationMs = null): self
     {
         $this->silenceDurationMs = $silenceDurationMs;

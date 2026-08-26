@@ -34,7 +34,7 @@ class  ListFineTuningJobCheckpointsResponse
 {
 public:
     ListFineTuningJobCheckpointsResponse();
-    virtual ~ListFineTuningJobCheckpointsResponse() = default;
+    virtual ~ListFineTuningJobCheckpointsResponse();
 
 
     /// <summary>

@@ -57,21 +57,21 @@ public:
 
 	/*! \brief Set Whether to enable input audio transcription.
 	 */
-	void setEnabled(bool  enabled);
+	void setEnabled(bool enabled);
 	/*! \brief Get 
 	 */
 	std::string getEvent();
 
 	/*! \brief Set 
 	 */
-	void setEvent(std::string  event);
+	void setEvent(std::string event);
 	/*! \brief Get 
 	 */
 	std::string getData();
 
 	/*! \brief Set 
 	 */
-	void setData(std::string  data);
+	void setData(std::string data);
 
 
     private:

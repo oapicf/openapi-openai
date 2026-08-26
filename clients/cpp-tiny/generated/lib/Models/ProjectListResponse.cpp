@@ -165,7 +165,7 @@ ProjectListResponse::getObject()
 }
 
 void
-ProjectListResponse::setObject(std::string  object)
+ProjectListResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -177,7 +177,7 @@ ProjectListResponse::getData()
 }
 
 void
-ProjectListResponse::setData(std::list <Project> data)
+ProjectListResponse::setData(std::list<Project> data)
 {
 	this->data = data;
 }
@@ -189,7 +189,7 @@ ProjectListResponse::getFirstId()
 }
 
 void
-ProjectListResponse::setFirstId(std::string  first_id)
+ProjectListResponse::setFirstId(std::string first_id)
 {
 	this->first_id = first_id;
 }
@@ -201,7 +201,7 @@ ProjectListResponse::getLastId()
 }
 
 void
-ProjectListResponse::setLastId(std::string  last_id)
+ProjectListResponse::setLastId(std::string last_id)
 {
 	this->last_id = last_id;
 }
@@ -213,7 +213,7 @@ ProjectListResponse::isHasMore()
 }
 
 void
-ProjectListResponse::setHasMore(bool  has_more)
+ProjectListResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }

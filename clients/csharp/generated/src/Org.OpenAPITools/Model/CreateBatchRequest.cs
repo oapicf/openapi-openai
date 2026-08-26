@@ -217,7 +217,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Optional custom metadata for the batch.</value>
         [JsonPropertyName("metadata")]
-        public Dictionary<string, string>? Metadata { get { return this.MetadataOption; } set { this.MetadataOption = new(value); } }
+        public Dictionary<string, string>? Metadata { get { return this.MetadataOption.Value; } set { this.MetadataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -249,8 +249,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateBatchRequest" />
     /// </summary>
-    public class CreateBatchRequestJsonConverter : JsonConverter<CreateBatchRequest>
+    public partial class CreateBatchRequestJsonConverter : JsonConverter<CreateBatchRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateBatchRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateBatchRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateBatchRequest" />
         /// </summary>

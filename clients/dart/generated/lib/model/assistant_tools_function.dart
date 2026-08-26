@@ -54,10 +54,10 @@ class AssistantToolsFunction {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AssistantToolsFunction[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AssistantToolsFunction[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "AssistantToolsFunction[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "AssistantToolsFunction[type]" has a null value in JSON.');
+        assert(json.containsKey(r'function'), 'Required key "AssistantToolsFunction[function]" is missing from JSON.');
+        assert(json[r'function'] != null, 'Required key "AssistantToolsFunction[function]" has a null value in JSON.');
         return true;
       }());
 
@@ -117,27 +117,28 @@ class AssistantToolsFunction {
 }
 
 /// The type of tool being defined: `function`
-class AssistantToolsFunctionTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const AssistantToolsFunctionTypeEnum._(this.value);
+enum AssistantToolsFunctionTypeEnum {
+  function_._(r'function'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const AssistantToolsFunctionTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const function_ = AssistantToolsFunctionTypeEnum._(r'function');
-
-  /// List of all possible values in this [enum][AssistantToolsFunctionTypeEnum].
-  static const values = <AssistantToolsFunctionTypeEnum>[
-    function_,
-  ];
-
+  /// Returns the instance of [AssistantToolsFunctionTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static AssistantToolsFunctionTypeEnum? fromJson(dynamic value) => AssistantToolsFunctionTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [AssistantToolsFunctionTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<AssistantToolsFunctionTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <AssistantToolsFunctionTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -159,9 +160,10 @@ class AssistantToolsFunctionTypeEnumTypeTransformer {
 
   const AssistantToolsFunctionTypeEnumTypeTransformer._();
 
-  String encode(AssistantToolsFunctionTypeEnum data) => data.value;
+  String encode(AssistantToolsFunctionTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a AssistantToolsFunctionTypeEnum.
+  /// Returns the instance of [AssistantToolsFunctionTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -170,6 +172,9 @@ class AssistantToolsFunctionTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   AssistantToolsFunctionTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is AssistantToolsFunctionTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'function': return AssistantToolsFunctionTypeEnum.function_;
@@ -182,7 +187,7 @@ class AssistantToolsFunctionTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [AssistantToolsFunctionTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static AssistantToolsFunctionTypeEnumTypeTransformer? _instance;
 }
 

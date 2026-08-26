@@ -32,6 +32,8 @@ FineTuningJobEvent::FineTuningJobEvent()
     
 }
 
+FineTuningJobEvent::~FineTuningJobEvent() = default;
+
 void FineTuningJobEvent::validate() const
 {
     std::stringstream msg;

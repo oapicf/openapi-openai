@@ -49,7 +49,7 @@ class CreateBatchRequest
      * @var string|null
      * @SerializedName("input_file_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $inputFileId = null;
@@ -60,7 +60,7 @@ class CreateBatchRequest
      * @var string|null
      * @SerializedName("endpoint")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['/v1/chat/completions', '/v1/embeddings', '/v1/completions'])]
     #[Assert\Type("string")]
@@ -72,7 +72,7 @@ class CreateBatchRequest
      * @var string|null
      * @SerializedName("completion_window")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['24h'])]
     #[Assert\Type("string")]
@@ -84,7 +84,7 @@ class CreateBatchRequest
      * @var string[]|null
      * @SerializedName("metadata")
      * @Type("array<string, string>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("string"),
     ])]
@@ -115,12 +115,12 @@ class CreateBatchRequest
     }
 
     /**
-    * Sets inputFileId.
-    *
-    * @param string|null $inputFileId  The ID of an uploaded file that contains requests for the new batch.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your input file must be formatted as a [JSONL file](/docs/api-reference/batch/request-input), and must be uploaded with the purpose `batch`. The file can contain up to 50,000 requests, and can be up to 200 MB in size.
-    *
-    * @return $this
-    */
+     * Sets inputFileId.
+     *
+     * @param string|null $inputFileId  The ID of an uploaded file that contains requests for the new batch.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your input file must be formatted as a [JSONL file](/docs/api-reference/batch/request-input), and must be uploaded with the purpose `batch`. The file can contain up to 50,000 requests, and can be up to 200 MB in size.
+     *
+     * @return $this
+     */
     public function setInputFileId(?string $inputFileId): self
     {
         $this->inputFileId = $inputFileId;
@@ -142,12 +142,12 @@ class CreateBatchRequest
     }
 
     /**
-    * Sets endpoint.
-    *
-    * @param string|null $endpoint  The endpoint to be used for all requests in the batch. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported. Note that `/v1/embeddings` batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.
-    *
-    * @return $this
-    */
+     * Sets endpoint.
+     *
+     * @param string|null $endpoint  The endpoint to be used for all requests in the batch. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported. Note that `/v1/embeddings` batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.
+     *
+     * @return $this
+     */
     public function setEndpoint(?string $endpoint): self
     {
         $this->endpoint = $endpoint;
@@ -169,12 +169,12 @@ class CreateBatchRequest
     }
 
     /**
-    * Sets completionWindow.
-    *
-    * @param string|null $completionWindow  The time frame within which the batch should be processed. Currently only `24h` is supported.
-    *
-    * @return $this
-    */
+     * Sets completionWindow.
+     *
+     * @param string|null $completionWindow  The time frame within which the batch should be processed. Currently only `24h` is supported.
+     *
+     * @return $this
+     */
     public function setCompletionWindow(?string $completionWindow): self
     {
         $this->completionWindow = $completionWindow;
@@ -196,12 +196,12 @@ class CreateBatchRequest
     }
 
     /**
-    * Sets metadata.
-    *
-    * @param string[]|null $metadata  Optional custom metadata for the batch.
-    *
-    * @return $this
-    */
+     * Sets metadata.
+     *
+     * @param string[]|null $metadata  Optional custom metadata for the batch.
+     *
+     * @return $this
+     */
     public function setMetadata(?array $metadata = null): self
     {
         $this->metadata = $metadata;

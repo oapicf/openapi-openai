@@ -28,6 +28,8 @@ UsageCodeInterpreterSessionsResult::UsageCodeInterpreterSessionsResult()
     
 }
 
+UsageCodeInterpreterSessionsResult::~UsageCodeInterpreterSessionsResult() = default;
+
 void UsageCodeInterpreterSessionsResult::validate() const
 {
     std::stringstream msg;

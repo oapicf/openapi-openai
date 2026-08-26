@@ -9,20 +9,20 @@ import org.openapitools.model.VectorStoreFileBatchObjectFileCounts;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * A batch of files attached to a vector store.
  */
 
 @Schema(name = "VectorStoreFileBatchObject", description = "A batch of files attached to a vector store.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class VectorStoreFileBatchObject {
 
   private String id;
@@ -141,6 +141,7 @@ public class VectorStoreFileBatchObject {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
@@ -161,6 +162,7 @@ public class VectorStoreFileBatchObject {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
@@ -181,6 +183,7 @@ public class VectorStoreFileBatchObject {
     return createdAt;
   }
 
+  @JsonProperty("created_at")
   public void setCreatedAt(Integer createdAt) {
     this.createdAt = createdAt;
   }
@@ -201,6 +204,7 @@ public class VectorStoreFileBatchObject {
     return vectorStoreId;
   }
 
+  @JsonProperty("vector_store_id")
   public void setVectorStoreId(String vectorStoreId) {
     this.vectorStoreId = vectorStoreId;
   }
@@ -221,6 +225,7 @@ public class VectorStoreFileBatchObject {
     return status;
   }
 
+  @JsonProperty("status")
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -241,6 +246,7 @@ public class VectorStoreFileBatchObject {
     return fileCounts;
   }
 
+  @JsonProperty("file_counts")
   public void setFileCounts(VectorStoreFileBatchObjectFileCounts fileCounts) {
     this.fileCounts = fileCounts;
   }
@@ -285,11 +291,8 @@ public class VectorStoreFileBatchObject {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

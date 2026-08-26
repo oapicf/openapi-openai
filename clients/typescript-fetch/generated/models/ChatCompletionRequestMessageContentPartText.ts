@@ -22,7 +22,7 @@ import { mapValues } from '../runtime';
 export interface ChatCompletionRequestMessageContentPartText {
     /**
      * The type of the content part.
-     * @type {string}
+     * @type {ChatCompletionRequestMessageContentPartTextTypeEnum}
      * @memberof ChatCompletionRequestMessageContentPartText
      */
     type: ChatCompletionRequestMessageContentPartTextTypeEnum;
@@ -49,6 +49,8 @@ export type ChatCompletionRequestMessageContentPartTextTypeEnum = typeof ChatCom
  */
 export function instanceOfChatCompletionRequestMessageContentPartText(value: object): value is ChatCompletionRequestMessageContentPartText {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'text') return false;
+    
     if (!('text' in value) || value['text'] === undefined) return false;
     return true;
 }

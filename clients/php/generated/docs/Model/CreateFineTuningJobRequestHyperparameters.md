@@ -1,4 +1,4 @@
-# # CreateFineTuningJobRequestHyperparameters
+# CreateFineTuningJobRequestHyperparameters
 
 ## Properties
 

@@ -113,7 +113,7 @@ ChatCompletionRequestAssistantMessage <- R6::R6Class(
       ChatCompletionRequestAssistantMessageObject <- list()
       if (!is.null(self$`content`)) {
         ChatCompletionRequestAssistantMessageObject[["content"]] <-
-          self$`content`$toSimpleType()
+          self$extractSimpleType(self$`content`)
       }
       if (!is.null(self$`refusal`)) {
         ChatCompletionRequestAssistantMessageObject[["refusal"]] <-
@@ -129,17 +129,40 @@ ChatCompletionRequestAssistantMessage <- R6::R6Class(
       }
       if (!is.null(self$`audio`)) {
         ChatCompletionRequestAssistantMessageObject[["audio"]] <-
-          self$`audio`$toSimpleType()
+          self$extractSimpleType(self$`audio`)
       }
       if (!is.null(self$`tool_calls`)) {
         ChatCompletionRequestAssistantMessageObject[["tool_calls"]] <-
-          lapply(self$`tool_calls`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`tool_calls`)
       }
       if (!is.null(self$`function_call`)) {
         ChatCompletionRequestAssistantMessageObject[["function_call"]] <-
-          self$`function_call`$toSimpleType()
+          self$extractSimpleType(self$`function_call`)
       }
       return(ChatCompletionRequestAssistantMessageObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

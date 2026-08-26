@@ -1,4 +1,4 @@
-# # CreateCompletionResponseChoicesInnerLogprobs
+# CreateCompletionResponseChoicesInnerLogprobs
 
 ## Properties
 

@@ -59,7 +59,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets BatchSize
         /// </summary>
         [JsonPropertyName("batch_size")]
-        public FineTuneDPOMethodHyperparametersBatchSize? BatchSize { get { return this.BatchSizeOption; } set { this.BatchSizeOption = new(value); } }
+        public FineTuneDPOMethodHyperparametersBatchSize? BatchSize { get { return this.BatchSizeOption.Value; } set { this.BatchSizeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LearningRateMultiplier
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets LearningRateMultiplier
         /// </summary>
         [JsonPropertyName("learning_rate_multiplier")]
-        public FineTuneDPOMethodHyperparametersLearningRateMultiplier? LearningRateMultiplier { get { return this.LearningRateMultiplierOption; } set { this.LearningRateMultiplierOption = new(value); } }
+        public FineTuneDPOMethodHyperparametersLearningRateMultiplier? LearningRateMultiplier { get { return this.LearningRateMultiplierOption.Value; } set { this.LearningRateMultiplierOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of NEpochs
@@ -85,7 +85,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets NEpochs
         /// </summary>
         [JsonPropertyName("n_epochs")]
-        public FineTuneDPOMethodHyperparametersNEpochs? NEpochs { get { return this.NEpochsOption; } set { this.NEpochsOption = new(value); } }
+        public FineTuneDPOMethodHyperparametersNEpochs? NEpochs { get { return this.NEpochsOption.Value; } set { this.NEpochsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTuneSupervisedMethodHyperparameters" />
     /// </summary>
-    public class FineTuneSupervisedMethodHyperparametersJsonConverter : JsonConverter<FineTuneSupervisedMethodHyperparameters>
+    public partial class FineTuneSupervisedMethodHyperparametersJsonConverter : JsonConverter<FineTuneSupervisedMethodHyperparameters>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTuneSupervisedMethodHyperparametersJsonConverter" /> class.
+        /// </summary>
+        public FineTuneSupervisedMethodHyperparametersJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTuneSupervisedMethodHyperparameters" />
         /// </summary>

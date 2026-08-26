@@ -27,7 +27,7 @@ export interface ProjectUserCreateRequest {
     userId: string;
     /**
      * `owner` or `member`
-     * @type {string}
+     * @type {ProjectUserCreateRequestRoleEnum}
      * @memberof ProjectUserCreateRequest
      */
     role: ProjectUserCreateRequestRoleEnum;
@@ -48,7 +48,7 @@ export type ProjectUserCreateRequestRoleEnum = typeof ProjectUserCreateRequestRo
  * Check if a given object implements the ProjectUserCreateRequest interface.
  */
 export function instanceOfProjectUserCreateRequest(value: object): value is ProjectUserCreateRequest {
-    if (!('userId' in value) || value['userId'] === undefined) return false;
+    if ((!('userId' in (value as Record<string, any>)) && !('user_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['userId'] === undefined && (value as Record<string, any>)['user_id'] === undefined)) return false;
     if (!('role' in value) || value['role'] === undefined) return false;
     return true;
 }

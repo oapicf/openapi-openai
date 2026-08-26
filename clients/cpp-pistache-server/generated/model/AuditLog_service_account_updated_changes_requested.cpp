@@ -26,6 +26,8 @@ AuditLog_service_account_updated_changes_requested::AuditLog_service_account_upd
     
 }
 
+AuditLog_service_account_updated_changes_requested::~AuditLog_service_account_updated_changes_requested() = default;
+
 void AuditLog_service_account_updated_changes_requested::validate() const
 {
     std::stringstream msg;

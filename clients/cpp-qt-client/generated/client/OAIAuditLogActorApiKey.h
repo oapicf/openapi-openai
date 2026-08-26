@@ -35,13 +35,13 @@ class OAIAuditLogActorServiceAccount;
 class OAIAuditLogActorApiKey : public OAIObject {
 public:
     OAIAuditLogActorApiKey();
-    OAIAuditLogActorApiKey(QString json);
+    OAIAuditLogActorApiKey(const QString &json);
     ~OAIAuditLogActorApiKey() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

@@ -14,6 +14,8 @@ package openapi
 
 import (
 	"errors"
+	"encoding/json"
+	"fmt"
 )
 
 
@@ -37,19 +39,100 @@ type MessageDeltaContentTextObjectTextAnnotationsInner struct {
 
 	FilePath MessageDeltaContentTextAnnotationsFilePathObjectFilePath `json:"file_path,omitempty"`
 }
-
-// AssertMessageDeltaContentTextObjectTextAnnotationsInnerRequired checks if the required fields are not zero-ed
-func AssertMessageDeltaContentTextObjectTextAnnotationsInnerRequired(obj MessageDeltaContentTextObjectTextAnnotationsInner) error {
-	elements := map[string]interface{}{
-		"index": obj.Index,
-		"type": obj.Type,
+// UnmarshalJSON validates required property keys then unmarshals into MessageDeltaContentTextObjectTextAnnotationsInner
+func (o *MessageDeltaContentTextObjectTextAnnotationsInner) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"index",
+		"type",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"index": false,
+		"type": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"index": {},
+		"type": {},
+		"text": {},
+		"file_citation": {},
+		"start_index": {},
+		"end_index": {},
+		"file_path": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded MessageDeltaContentTextObjectTextAnnotationsInner
+
+	if value, exists := allProperties["index"]; exists {
+		if err = json.Unmarshal(value, &decoded.Index); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["text"]; exists {
+		if err = json.Unmarshal(value, &decoded.Text); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["file_citation"]; exists {
+		if err = json.Unmarshal(value, &decoded.FileCitation); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["start_index"]; exists {
+		if err = json.Unmarshal(value, &decoded.StartIndex); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["end_index"]; exists {
+		if err = json.Unmarshal(value, &decoded.EndIndex); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["file_path"]; exists {
+		if err = json.Unmarshal(value, &decoded.FilePath); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertMessageDeltaContentTextObjectTextAnnotationsInnerRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertMessageDeltaContentTextObjectTextAnnotationsInnerRequired(obj MessageDeltaContentTextObjectTextAnnotationsInner) error {
 	if err := AssertMessageDeltaContentTextAnnotationsFileCitationObjectFileCitationRequired(obj.FileCitation); err != nil {
 		return err
 	}

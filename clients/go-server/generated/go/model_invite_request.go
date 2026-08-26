@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type InviteRequest struct {
@@ -25,19 +30,76 @@ type InviteRequest struct {
 	// An array of projects to which membership is granted at the same time the org invite is accepted. If omitted, the user will be invited to the default project for compatibility with legacy behavior.
 	Projects []InviteRequestProjectsInner `json:"projects,omitempty"`
 }
-
-// AssertInviteRequestRequired checks if the required fields are not zero-ed
-func AssertInviteRequestRequired(obj InviteRequest) error {
-	elements := map[string]interface{}{
-		"email": obj.Email,
-		"role": obj.Role,
+// UnmarshalJSON validates required property keys then unmarshals into InviteRequest
+func (o *InviteRequest) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"email",
+		"role",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"email": false,
+		"role": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"email": {},
+		"role": {},
+		"projects": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded InviteRequest
+
+	if value, exists := allProperties["email"]; exists {
+		if err = json.Unmarshal(value, &decoded.Email); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["role"]; exists {
+		if err = json.Unmarshal(value, &decoded.Role); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["projects"]; exists {
+		if err = json.Unmarshal(value, &decoded.Projects); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertInviteRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertInviteRequestRequired(obj InviteRequest) error {
 	for _, el := range obj.Projects {
 		if err := AssertInviteRequestProjectsInnerRequired(el); err != nil {
 			return err

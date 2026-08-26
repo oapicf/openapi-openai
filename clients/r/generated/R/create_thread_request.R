@@ -75,17 +75,40 @@ CreateThreadRequest <- R6::R6Class(
       CreateThreadRequestObject <- list()
       if (!is.null(self$`messages`)) {
         CreateThreadRequestObject[["messages"]] <-
-          lapply(self$`messages`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`messages`)
       }
       if (!is.null(self$`tool_resources`)) {
         CreateThreadRequestObject[["tool_resources"]] <-
-          self$`tool_resources`$toSimpleType()
+          self$extractSimpleType(self$`tool_resources`)
       }
       if (!is.null(self$`metadata`)) {
         CreateThreadRequestObject[["metadata"]] <-
           self$`metadata`
       }
       return(CreateThreadRequestObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set The ID of the invite.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 
 
     private:

@@ -20,4 +20,4 @@ import * as models from './models';
  * The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.
  * @export
  */
-export type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = models.AutoChunkingStrategy | models.StaticChunkingStrategy;
+export type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = models.AutoChunkingStrategyRequestParam | models.StaticChunkingStrategy;

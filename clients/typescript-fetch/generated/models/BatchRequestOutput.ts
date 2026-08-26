@@ -79,8 +79,8 @@ export function BatchRequestOutputFromJSONTyped(json: any, ignoreDiscriminator: 
         
         'id': json['id'] == null ? undefined : json['id'],
         'customId': json['custom_id'] == null ? undefined : json['custom_id'],
-        'response': json['response'] == null ? undefined : BatchRequestOutputResponseFromJSON(json['response']),
-        'error': json['error'] == null ? undefined : BatchRequestOutputErrorFromJSON(json['error']),
+        'response': json['response'] === undefined ? undefined : json['response'] === null ? null : BatchRequestOutputResponseFromJSON(json['response']),
+        'error': json['error'] === undefined ? undefined : json['error'] === null ? null : BatchRequestOutputErrorFromJSON(json['error']),
     };
 }
 

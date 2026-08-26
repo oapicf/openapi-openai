@@ -121,8 +121,6 @@
 
 #include "AutoChunkingStrategyRequestParamTest.cpp"
 
-#include "Auto_Chunking_StrategyTest.cpp"
-
 #include "BatchTest.cpp"
 
 #include "BatchRequestInputTest.cpp"
@@ -939,8 +937,6 @@
 
 #include "StaticChunkingStrategyRequestParamTest.cpp"
 
-#include "StaticChunkingStrategyResponseParamTest.cpp"
-
 #include "Static_Chunking_StrategyTest.cpp"
 
 #include "Static_Chunking_Strategy_staticTest.cpp"
@@ -1422,10 +1418,6 @@ void runTests(){
     
     
     RUN_TEST(test_AutoChunkingStrategyRequestParam_type_is_assigned_from_json);
-    
-    
-    
-    RUN_TEST(test_Auto_Chunking_Strategy_type_is_assigned_from_json);
     
     
     
@@ -5363,11 +5355,6 @@ void runTests(){
     
     
     
-    RUN_TEST(test_StaticChunkingStrategyResponseParam_type_is_assigned_from_json);
-    
-    
-    
-    
     RUN_TEST(test_Static_Chunking_Strategy_type_is_assigned_from_json);
     
     
@@ -6328,10 +6315,6 @@ void runTests(){
     
     
     RUN_TEST(test_AutoChunkingStrategyRequestParam_type_is_converted_to_json);
-    
-    
-    
-    RUN_TEST(test_Auto_Chunking_Strategy_type_is_converted_to_json);
     
     
     
@@ -10265,11 +10248,6 @@ void runTests(){
     
     
     RUN_TEST(test_StaticChunkingStrategyRequestParam_type_is_converted_to_json);
-    
-    
-    
-    
-    RUN_TEST(test_StaticChunkingStrategyResponseParam_type_is_converted_to_json);
     
     
     

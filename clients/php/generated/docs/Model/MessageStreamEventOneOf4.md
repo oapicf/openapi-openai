@@ -1,4 +1,4 @@
-# # MessageStreamEventOneOf4
+# MessageStreamEventOneOf4
 
 ## Properties
 

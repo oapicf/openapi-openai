@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set The unique ID of the server event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `input_audio_buffer.speech_started`.
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `input_audio_buffer.speech_started`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get Milliseconds from the start of all audio written to the buffer during the  session when speech was first detected. This will correspond to the  beginning of audio sent to the model, and thus includes the  `prefix_padding_ms` configured in the Session. 
 	 */
 	int getAudioStartMs();
 
 	/*! \brief Set Milliseconds from the start of all audio written to the buffer during the  session when speech was first detected. This will correspond to the  beginning of audio sent to the model, and thus includes the  `prefix_padding_ms` configured in the Session. 
 	 */
-	void setAudioStartMs(int  audio_start_ms);
+	void setAudioStartMs(int audio_start_ms);
 	/*! \brief Get The ID of the user message item that will be created when speech stops. 
 	 */
 	std::string getItemId();
 
 	/*! \brief Set The ID of the user message item that will be created when speech stops. 
 	 */
-	void setItemId(std::string  item_id);
+	void setItemId(std::string item_id);
 
 
     private:

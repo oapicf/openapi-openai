@@ -89,8 +89,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTuneDPOMethodHyperparametersLearningRateMultiplier" />
     /// </summary>
-    public class FineTuneDPOMethodHyperparametersLearningRateMultiplierJsonConverter : JsonConverter<FineTuneDPOMethodHyperparametersLearningRateMultiplier>
+    public partial class FineTuneDPOMethodHyperparametersLearningRateMultiplierJsonConverter : JsonConverter<FineTuneDPOMethodHyperparametersLearningRateMultiplier>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTuneDPOMethodHyperparametersLearningRateMultiplierJsonConverter" /> class.
+        /// </summary>
+        public FineTuneDPOMethodHyperparametersLearningRateMultiplierJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTuneDPOMethodHyperparametersLearningRateMultiplier" />
         /// </summary>

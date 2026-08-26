@@ -26,7 +26,7 @@ message RunStepDetailsToolCallsCodeObject {
     TYPE_CODE_INTERPRETER = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   RunStepDetailsToolCallsCodeObjectCodeInterpreter code_interpreter = 383989976;
 

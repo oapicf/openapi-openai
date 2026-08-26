@@ -49,7 +49,7 @@ class CreateVectorStoreRequest
      * @var string[]|null
      * @SerializedName("file_ids")
      * @Type("array<string>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("string"),
     ])]
@@ -62,7 +62,7 @@ class CreateVectorStoreRequest
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $name = null;
 
@@ -70,7 +70,7 @@ class CreateVectorStoreRequest
      * @var VectorStoreExpirationAfter|null
      * @SerializedName("expires_after")
      * @Type("OpenAPI\Server\Model\VectorStoreExpirationAfter")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\VectorStoreExpirationAfter")]
     protected ?VectorStoreExpirationAfter $expiresAfter = null;
 
@@ -78,7 +78,7 @@ class CreateVectorStoreRequest
      * @var CreateVectorStoreRequestChunkingStrategy|null
      * @SerializedName("chunking_strategy")
      * @Type("OpenAPI\Server\Model\CreateVectorStoreRequestChunkingStrategy")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateVectorStoreRequestChunkingStrategy")]
     protected ?CreateVectorStoreRequestChunkingStrategy $chunkingStrategy = null;
 
@@ -88,7 +88,7 @@ class CreateVectorStoreRequest
      * @var array|null
      * @SerializedName("metadata")
      * @Type("array")
-    */
+     */
     #[Assert\Type("array")]
     protected ?array $metadata = null;
 
@@ -118,12 +118,12 @@ class CreateVectorStoreRequest
     }
 
     /**
-    * Sets fileIds.
-    *
-    * @param string[]|null $fileIds  A list of [File](/docs/api-reference/files) IDs that the vector store should use. Useful for tools like `file_search` that can access files.
-    *
-    * @return $this
-    */
+     * Sets fileIds.
+     *
+     * @param string[]|null $fileIds  A list of [File](/docs/api-reference/files) IDs that the vector store should use. Useful for tools like `file_search` that can access files.
+     *
+     * @return $this
+     */
     public function setFileIds(?array $fileIds = null): self
     {
         $this->fileIds = $fileIds;
@@ -145,12 +145,12 @@ class CreateVectorStoreRequest
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the vector store.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the vector store.
+     *
+     * @return $this
+     */
     public function setName(?string $name = null): self
     {
         $this->name = $name;
@@ -172,12 +172,12 @@ class CreateVectorStoreRequest
     }
 
     /**
-    * Sets expiresAfter.
-    *
-    * @param VectorStoreExpirationAfter|null $expiresAfter
-    *
-    * @return $this
-    */
+     * Sets expiresAfter.
+     *
+     * @param VectorStoreExpirationAfter|null $expiresAfter
+     *
+     * @return $this
+     */
     public function setExpiresAfter(?VectorStoreExpirationAfter $expiresAfter = null): self
     {
         $this->expiresAfter = $expiresAfter;
@@ -199,12 +199,12 @@ class CreateVectorStoreRequest
     }
 
     /**
-    * Sets chunkingStrategy.
-    *
-    * @param CreateVectorStoreRequestChunkingStrategy|null $chunkingStrategy
-    *
-    * @return $this
-    */
+     * Sets chunkingStrategy.
+     *
+     * @param CreateVectorStoreRequestChunkingStrategy|null $chunkingStrategy
+     *
+     * @return $this
+     */
     public function setChunkingStrategy(?CreateVectorStoreRequestChunkingStrategy $chunkingStrategy = null): self
     {
         $this->chunkingStrategy = $chunkingStrategy;
@@ -226,12 +226,12 @@ class CreateVectorStoreRequest
     }
 
     /**
-    * Sets metadata.
-    *
-    * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
-    *
-    * @return $this
-    */
+     * Sets metadata.
+     *
+     * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
+     *
+     * @return $this
+     */
     public function setMetadata(?array $metadata = null): self
     {
         $this->metadata = $metadata;

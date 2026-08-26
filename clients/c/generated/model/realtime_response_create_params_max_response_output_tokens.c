@@ -11,15 +11,18 @@ static realtime_response_create_params_max_response_output_tokens_t *realtime_re
     if (!realtime_response_create_params_max_response_output_tokens_local_var) {
         return NULL;
     }
-
+    memset(realtime_response_create_params_max_response_output_tokens_local_var, 0, sizeof(realtime_response_create_params_max_response_output_tokens_t));
     realtime_response_create_params_max_response_output_tokens_local_var->_library_owned = 1;
     return realtime_response_create_params_max_response_output_tokens_local_var;
 }
 
 __attribute__((deprecated)) realtime_response_create_params_max_response_output_tokens_t *realtime_response_create_params_max_response_output_tokens_create(
     ) {
-    return realtime_response_create_params_max_response_output_tokens_create_internal (
+    realtime_response_create_params_max_response_output_tokens_t *result = realtime_response_create_params_max_response_output_tokens_create_internal (
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_response_create_params_max_response_output_tokens_free(realtime_response_create_params_max_response_output_tokens_t *realtime_response_create_params_max_response_output_tokens) {
@@ -49,8 +52,13 @@ realtime_response_create_params_max_response_output_tokens_t *realtime_response_
     realtime_response_create_params_max_response_output_tokens_t *realtime_response_create_params_max_response_output_tokens_local_var = NULL;
 
 
+
     realtime_response_create_params_max_response_output_tokens_local_var = realtime_response_create_params_max_response_output_tokens_create_internal (
         );
+
+    if (!realtime_response_create_params_max_response_output_tokens_local_var) {
+        goto end;
+    }
 
     return realtime_response_create_params_max_response_output_tokens_local_var;
 end:

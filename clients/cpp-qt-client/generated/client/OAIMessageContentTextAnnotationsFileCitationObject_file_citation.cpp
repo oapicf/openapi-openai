@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIMessageContentTextAnnotationsFileCitationObject_file_citation::OAIMessageContentTextAnnotationsFileCitationObject_file_citation(QString json) {
+OAIMessageContentTextAnnotationsFileCitationObject_file_citation::OAIMessageContentTextAnnotationsFileCitationObject_file_citation(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -38,7 +38,7 @@ void OAIMessageContentTextAnnotationsFileCitationObject_file_citation::initializ
     m_file_id_isValid = false;
 }
 
-void OAIMessageContentTextAnnotationsFileCitationObject_file_citation::fromJson(QString jsonString) {
+void OAIMessageContentTextAnnotationsFileCitationObject_file_citation::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -56,7 +56,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The ID of the file that was generated.</value>
         [JsonPropertyName("file_id")]
-        public string? FileId { get { return this.FileIdOption; } set { this.FileIdOption = new(value); } }
+        public string? FileId { get { return this.FileIdOption.Value; } set { this.FileIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageDeltaContentTextAnnotationsFilePathObjectFilePath" />
     /// </summary>
-    public class MessageDeltaContentTextAnnotationsFilePathObjectFilePathJsonConverter : JsonConverter<MessageDeltaContentTextAnnotationsFilePathObjectFilePath>
+    public partial class MessageDeltaContentTextAnnotationsFilePathObjectFilePathJsonConverter : JsonConverter<MessageDeltaContentTextAnnotationsFilePathObjectFilePath>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageDeltaContentTextAnnotationsFilePathObjectFilePathJsonConverter" /> class.
+        /// </summary>
+        public MessageDeltaContentTextAnnotationsFilePathObjectFilePathJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageDeltaContentTextAnnotationsFilePathObjectFilePath" />
         /// </summary>

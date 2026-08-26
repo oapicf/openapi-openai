@@ -22,12 +22,14 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class VectorStoreExpirationAfter(
 
-    @Schema(example = "null", required = true, description = "Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`.")
+    @Schema(required = true, description = "Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`.")
+    @param:JsonProperty("anchor")
     @get:JsonProperty("anchor", required = true) val anchor: VectorStoreExpirationAfter.Anchor,
 
     @get:Min(value=1)
     @get:Max(value=365)
-    @Schema(example = "null", required = true, description = "The number of days after the anchor time that the vector store will expire.")
+    @Schema(required = true, description = "The number of days after the anchor time that the vector store will expire.")
+    @param:JsonProperty("days")
     @get:JsonProperty("days", required = true) val days: kotlin.Int
 ) {
 
@@ -44,7 +46,7 @@ data class VectorStoreExpirationAfter(
             @JsonCreator
             fun forValue(value: kotlin.String): Anchor {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'VectorStoreExpirationAfter'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Anchor'")
             }
         }
     }

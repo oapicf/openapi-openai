@@ -24,6 +24,8 @@ CreateFineTuningJobRequest_hyperparameters_batch_size::CreateFineTuningJobReques
     
 }
 
+CreateFineTuningJobRequest_hyperparameters_batch_size::~CreateFineTuningJobRequest_hyperparameters_batch_size() = default;
+
 void CreateFineTuningJobRequest_hyperparameters_batch_size::validate() const
 {
     std::stringstream msg;

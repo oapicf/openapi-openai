@@ -22,7 +22,7 @@ export interface RealtimeConversationItemContentInner {
     /**
      * The content type (`input_text`, `input_audio`, `item_reference`, `text`).
      * 
-     * @type {string}
+     * @type {RealtimeConversationItemContentInnerTypeEnum}
      * @memberof RealtimeConversationItemContentInner
      */
     type?: RealtimeConversationItemContentInnerTypeEnum;

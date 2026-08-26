@@ -28,6 +28,8 @@ ChatCompletionFunctions::ChatCompletionFunctions()
     
 }
 
+ChatCompletionFunctions::~ChatCompletionFunctions() = default;
+
 void ChatCompletionFunctions::validate() const
 {
     std::stringstream msg;

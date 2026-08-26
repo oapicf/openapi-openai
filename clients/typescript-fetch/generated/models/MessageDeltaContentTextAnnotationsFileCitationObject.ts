@@ -35,7 +35,7 @@ export interface MessageDeltaContentTextAnnotationsFileCitationObject {
     index: number;
     /**
      * Always `file_citation`.
-     * @type {string}
+     * @type {MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum}
      * @memberof MessageDeltaContentTextAnnotationsFileCitationObject
      */
     type: MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum;
@@ -81,6 +81,8 @@ export type MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum = typeo
 export function instanceOfMessageDeltaContentTextAnnotationsFileCitationObject(value: object): value is MessageDeltaContentTextAnnotationsFileCitationObject {
     if (!('index' in value) || value['index'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'file_citation') return false;
+    
     return true;
 }
 

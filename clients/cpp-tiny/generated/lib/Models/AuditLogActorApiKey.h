@@ -53,28 +53,28 @@ public:
 
 	/*! \brief Set The tracking id of the API key.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The type of API key. Can be either `user` or `service_account`.
 	 */
 	std::string getType();
 
 	/*! \brief Set The type of API key. Can be either `user` or `service_account`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	AuditLogActorUser getUser();
 
 	/*! \brief Set 
 	 */
-	void setUser(AuditLogActorUser  user);
+	void setUser(AuditLogActorUser user);
 	/*! \brief Get 
 	 */
 	AuditLogActorServiceAccount getServiceAccount();
 
 	/*! \brief Set 
 	 */
-	void setServiceAccount(AuditLogActorServiceAccount  service_account);
+	void setServiceAccount(AuditLogActorServiceAccount service_account);
 
 
     private:

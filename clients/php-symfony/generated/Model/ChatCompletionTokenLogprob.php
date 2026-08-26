@@ -49,7 +49,7 @@ class ChatCompletionTokenLogprob
      * @var string|null
      * @SerializedName("token")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $token = null;
@@ -60,7 +60,7 @@ class ChatCompletionTokenLogprob
      * @var float|null
      * @SerializedName("logprob")
      * @Type("float")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("float")]
     protected ?float $logprob = null;
@@ -71,7 +71,7 @@ class ChatCompletionTokenLogprob
      * @var int[]|null
      * @SerializedName("bytes")
      * @Type("array<int>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Type("int"),
@@ -84,7 +84,7 @@ class ChatCompletionTokenLogprob
      * @var ChatCompletionTokenLogprobTopLogprobsInner[]|null
      * @SerializedName("top_logprobs")
      * @Type("array<OpenAPI\Server\Model\ChatCompletionTokenLogprobTopLogprobsInner>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -117,12 +117,12 @@ class ChatCompletionTokenLogprob
     }
 
     /**
-    * Sets token.
-    *
-    * @param string|null $token  The token.
-    *
-    * @return $this
-    */
+     * Sets token.
+     *
+     * @param string|null $token  The token.
+     *
+     * @return $this
+     */
     public function setToken(?string $token): self
     {
         $this->token = $token;
@@ -144,12 +144,12 @@ class ChatCompletionTokenLogprob
     }
 
     /**
-    * Sets logprob.
-    *
-    * @param float|null $logprob  The log probability of this token, if it is within the top 20 most likely tokens. Otherwise, the value `-9999.0` is used to signify that the token is very unlikely.
-    *
-    * @return $this
-    */
+     * Sets logprob.
+     *
+     * @param float|null $logprob  The log probability of this token, if it is within the top 20 most likely tokens. Otherwise, the value `-9999.0` is used to signify that the token is very unlikely.
+     *
+     * @return $this
+     */
     public function setLogprob(?float $logprob): self
     {
         $this->logprob = $logprob;
@@ -171,12 +171,12 @@ class ChatCompletionTokenLogprob
     }
 
     /**
-    * Sets bytes.
-    *
-    * @param int[]|null $bytes  A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be `null` if there is no bytes representation for the token.
-    *
-    * @return $this
-    */
+     * Sets bytes.
+     *
+     * @param int[]|null $bytes  A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be `null` if there is no bytes representation for the token.
+     *
+     * @return $this
+     */
     public function setBytes(?array $bytes): self
     {
         $this->bytes = $bytes;
@@ -198,12 +198,12 @@ class ChatCompletionTokenLogprob
     }
 
     /**
-    * Sets topLogprobs.
-    *
-    * @param ChatCompletionTokenLogprobTopLogprobsInner[]|null $topLogprobs  List of the most likely tokens and their log probability, at this token position. In rare cases, there may be fewer than the number of requested `top_logprobs` returned.
-    *
-    * @return $this
-    */
+     * Sets topLogprobs.
+     *
+     * @param ChatCompletionTokenLogprobTopLogprobsInner[]|null $topLogprobs  List of the most likely tokens and their log probability, at this token position. In rare cases, there may be fewer than the number of requested `top_logprobs` returned.
+     *
+     * @return $this
+     */
     public function setTopLogprobs(?array $topLogprobs): self
     {
         $this->topLogprobs = $topLogprobs;

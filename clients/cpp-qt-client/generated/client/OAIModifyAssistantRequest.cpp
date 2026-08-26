@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIModifyAssistantRequest::OAIModifyAssistantRequest(QString json) {
+OAIModifyAssistantRequest::OAIModifyAssistantRequest(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -65,7 +65,7 @@ void OAIModifyAssistantRequest::initializeModel() {
     m_response_format_isValid = false;
 }
 
-void OAIModifyAssistantRequest::fromJson(QString jsonString) {
+void OAIModifyAssistantRequest::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

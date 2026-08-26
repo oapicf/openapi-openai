@@ -31,11 +31,11 @@ static assistant_object_tools_inner_t *assistant_object_tools_inner_create_inter
     if (!assistant_object_tools_inner_local_var) {
         return NULL;
     }
+    memset(assistant_object_tools_inner_local_var, 0, sizeof(assistant_object_tools_inner_t));
+    assistant_object_tools_inner_local_var->_library_owned = 1;
     assistant_object_tools_inner_local_var->type = type;
     assistant_object_tools_inner_local_var->file_search = file_search;
     assistant_object_tools_inner_local_var->function = function;
-
-    assistant_object_tools_inner_local_var->_library_owned = 1;
     return assistant_object_tools_inner_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) assistant_object_tools_inner_t *assistant_object_too
     assistant_tools_file_search_file_search_t *file_search,
     function_object_t *function
     ) {
-    return assistant_object_tools_inner_create_internal (
+    assistant_object_tools_inner_t *result = assistant_object_tools_inner_create_internal (
         type,
         file_search,
         function
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void assistant_object_tools_inner_free(assistant_object_tools_inner_t *assistant_object_tools_inner) {
@@ -167,11 +170,16 @@ assistant_object_tools_inner_t *assistant_object_tools_inner_parseFromJSON(cJSON
     function_local_nonprim = function_object_parseFromJSON(function); //nonprimitive
 
 
+
     assistant_object_tools_inner_local_var = assistant_object_tools_inner_create_internal (
         typeVariable,
         file_search ? file_search_local_nonprim : NULL,
         function_local_nonprim
         );
+
+    if (!assistant_object_tools_inner_local_var) {
+        goto end;
+    }
 
     return assistant_object_tools_inner_local_var;
 end:

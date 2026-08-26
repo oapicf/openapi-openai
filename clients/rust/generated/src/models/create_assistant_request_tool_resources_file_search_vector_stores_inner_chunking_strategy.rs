@@ -16,13 +16,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy {
-    AutoChunkingStrategy(Box<models::AutoChunkingStrategy>),
+    AutoChunkingStrategyRequestParam(Box<models::AutoChunkingStrategyRequestParam>),
     StaticChunkingStrategy(Box<models::StaticChunkingStrategy>),
 }
 
 impl Default for CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy {
     fn default() -> Self {
-        Self::AutoChunkingStrategy(Default::default())
+        Self::AutoChunkingStrategyRequestParam(Default::default())
     }
 }
 /// Always `auto`.

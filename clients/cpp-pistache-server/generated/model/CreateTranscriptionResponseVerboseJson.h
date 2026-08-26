@@ -35,7 +35,7 @@ class  CreateTranscriptionResponseVerboseJson
 {
 public:
     CreateTranscriptionResponseVerboseJson();
-    virtual ~CreateTranscriptionResponseVerboseJson() = default;
+    virtual ~CreateTranscriptionResponseVerboseJson();
 
 
     /// <summary>

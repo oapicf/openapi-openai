@@ -28,6 +28,8 @@ AssistantStreamEvent::AssistantStreamEvent()
     
 }
 
+AssistantStreamEvent::~AssistantStreamEvent() = default;
+
 void AssistantStreamEvent::validate() const
 {
     std::stringstream msg;

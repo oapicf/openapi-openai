@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setCodeInterpreter(ModifyAssistantRequest_tool_resources_code_interpreter  code_interpreter);
+	void setCodeInterpreter(ModifyAssistantRequest_tool_resources_code_interpreter code_interpreter);
 	/*! \brief Get 
 	 */
 	ModifyAssistantRequest_tool_resources_file_search getFileSearch();
 
 	/*! \brief Set 
 	 */
-	void setFileSearch(ModifyAssistantRequest_tool_resources_file_search  file_search);
+	void setFileSearch(ModifyAssistantRequest_tool_resources_file_search file_search);
 
 
     private:

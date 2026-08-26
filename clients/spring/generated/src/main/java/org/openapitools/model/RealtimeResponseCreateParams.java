@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -18,20 +19,20 @@ import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Create a new Realtime response with these parameters
  */
 
 @Schema(name = "RealtimeResponseCreateParams", description = "Create a new Realtime response with these parameters")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeResponseCreateParams {
 
   /**
@@ -69,9 +70,10 @@ public class RealtimeResponseCreateParams {
     }
   }
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<ModalitiesEnum> modalities = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String instructions;
 
   /**
@@ -121,6 +123,7 @@ public class RealtimeResponseCreateParams {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable VoiceEnum voice;
 
   /**
@@ -160,22 +163,28 @@ public class RealtimeResponseCreateParams {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable OutputAudioFormatEnum outputAudioFormat;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid RealtimeResponseCreateParamsToolsInner> tools = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String toolChoice;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BigDecimal temperature;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeResponseCreateParamsMaxResponseOutputTokens maxResponseOutputTokens;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeResponseCreateParamsConversation conversation;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid RealtimeConversationItem> input = new ArrayList<>();
 
   public RealtimeResponseCreateParams modalities(List<ModalitiesEnum> modalities) {
@@ -202,6 +211,7 @@ public class RealtimeResponseCreateParams {
     return modalities;
   }
 
+  @JsonProperty("modalities")
   public void setModalities(List<ModalitiesEnum> modalities) {
     this.modalities = modalities;
   }
@@ -222,6 +232,7 @@ public class RealtimeResponseCreateParams {
     return instructions;
   }
 
+  @JsonProperty("instructions")
   public void setInstructions(@Nullable String instructions) {
     this.instructions = instructions;
   }
@@ -242,6 +253,7 @@ public class RealtimeResponseCreateParams {
     return voice;
   }
 
+  @JsonProperty("voice")
   public void setVoice(@Nullable VoiceEnum voice) {
     this.voice = voice;
   }
@@ -262,6 +274,7 @@ public class RealtimeResponseCreateParams {
     return outputAudioFormat;
   }
 
+  @JsonProperty("output_audio_format")
   public void setOutputAudioFormat(@Nullable OutputAudioFormatEnum outputAudioFormat) {
     this.outputAudioFormat = outputAudioFormat;
   }
@@ -290,6 +303,7 @@ public class RealtimeResponseCreateParams {
     return tools;
   }
 
+  @JsonProperty("tools")
   public void setTools(List<@Valid RealtimeResponseCreateParamsToolsInner> tools) {
     this.tools = tools;
   }
@@ -310,6 +324,7 @@ public class RealtimeResponseCreateParams {
     return toolChoice;
   }
 
+  @JsonProperty("tool_choice")
   public void setToolChoice(@Nullable String toolChoice) {
     this.toolChoice = toolChoice;
   }
@@ -330,6 +345,7 @@ public class RealtimeResponseCreateParams {
     return temperature;
   }
 
+  @JsonProperty("temperature")
   public void setTemperature(@Nullable BigDecimal temperature) {
     this.temperature = temperature;
   }
@@ -350,6 +366,7 @@ public class RealtimeResponseCreateParams {
     return maxResponseOutputTokens;
   }
 
+  @JsonProperty("max_response_output_tokens")
   public void setMaxResponseOutputTokens(@Nullable RealtimeResponseCreateParamsMaxResponseOutputTokens maxResponseOutputTokens) {
     this.maxResponseOutputTokens = maxResponseOutputTokens;
   }
@@ -370,6 +387,7 @@ public class RealtimeResponseCreateParams {
     return conversation;
   }
 
+  @JsonProperty("conversation")
   public void setConversation(@Nullable RealtimeResponseCreateParamsConversation conversation) {
     this.conversation = conversation;
   }
@@ -418,6 +436,7 @@ public class RealtimeResponseCreateParams {
     return input;
   }
 
+  @JsonProperty("input")
   public void setInput(List<@Valid RealtimeConversationItem> input) {
     this.input = input;
   }
@@ -483,11 +502,8 @@ public class RealtimeResponseCreateParams {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

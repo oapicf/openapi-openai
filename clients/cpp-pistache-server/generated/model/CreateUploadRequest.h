@@ -32,7 +32,7 @@ class  CreateUploadRequest
 {
 public:
     CreateUploadRequest();
-    virtual ~CreateUploadRequest() = default;
+    virtual ~CreateUploadRequest();
 
 
     /// <summary>

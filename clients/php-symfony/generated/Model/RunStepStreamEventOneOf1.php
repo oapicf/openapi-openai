@@ -49,7 +49,7 @@ class RunStepStreamEventOneOf1
      * @var string|null
      * @SerializedName("event")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['thread.run.step.in_progress'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class RunStepStreamEventOneOf1
      * @var RunStepObject|null
      * @SerializedName("data")
      * @Type("OpenAPI\Server\Model\RunStepObject")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunStepObject")]
@@ -88,12 +88,12 @@ class RunStepStreamEventOneOf1
     }
 
     /**
-    * Sets event.
-    *
-    * @param string|null $event
-    *
-    * @return $this
-    */
+     * Sets event.
+     *
+     * @param string|null $event
+     *
+     * @return $this
+     */
     public function setEvent(?string $event): self
     {
         $this->event = $event;
@@ -115,12 +115,12 @@ class RunStepStreamEventOneOf1
     }
 
     /**
-    * Sets data.
-    *
-    * @param RunStepObject|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param RunStepObject|null $data
+     *
+     * @return $this
+     */
     public function setData(?RunStepObject $data): self
     {
         $this->data = $data;

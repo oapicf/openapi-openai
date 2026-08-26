@@ -33,7 +33,7 @@ class  CompleteUploadRequest
 {
 public:
     CompleteUploadRequest();
-    virtual ~CompleteUploadRequest() = default;
+    virtual ~CompleteUploadRequest();
 
 
     /// <summary>

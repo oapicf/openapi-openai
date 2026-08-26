@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.AssistantsApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -35,7 +34,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.openAI.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:/v1}")
 class AssistantsApiController() {
 
     @Operation(
@@ -48,7 +47,8 @@ class AssistantsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_ASSISTANT /* "/assistants" */],
+        // "/assistants"
+        value = [PATH_CREATE_ASSISTANT],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -68,7 +68,8 @@ class AssistantsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = [PATH_DELETE_ASSISTANT /* "/assistants/{assistant_id}" */],
+        // "/assistants/{assistant_id}"
+        value = [PATH_DELETE_ASSISTANT],
         produces = ["application/json"]
     )
     fun deleteAssistant(
@@ -87,7 +88,8 @@ class AssistantsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_ASSISTANT /* "/assistants/{assistant_id}" */],
+        // "/assistants/{assistant_id}"
+        value = [PATH_GET_ASSISTANT],
         produces = ["application/json"]
     )
     fun getAssistant(
@@ -106,7 +108,8 @@ class AssistantsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_ASSISTANTS /* "/assistants" */],
+        // "/assistants"
+        value = [PATH_LIST_ASSISTANTS],
         produces = ["application/json"]
     )
     fun listAssistants(
@@ -128,7 +131,8 @@ class AssistantsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_MODIFY_ASSISTANT /* "/assistants/{assistant_id}" */],
+        // "/assistants/{assistant_id}"
+        value = [PATH_MODIFY_ASSISTANT],
         produces = ["application/json"],
         consumes = ["application/json"]
     )

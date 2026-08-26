@@ -23,7 +23,7 @@ message ChatCompletionRequestToolMessage {
     ROLE_TOOL = 0;
   }
 
-  Role role = 3506294;
+  string role = 3506294;
 
   ChatCompletionRequestToolMessageContent content = 414659706;
 

@@ -24,7 +24,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("FineTuneChatCompletionRequestAssistantMessage")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTuneChatCompletionRequestAssistantMessage   {
   private ChatCompletionRequestAssistantMessageContent content;
   private String refusal;
@@ -79,6 +79,7 @@ public class FineTuneChatCompletionRequestAssistantMessage   {
   private String name;
   private ChatCompletionRequestAssistantMessageAudio audio;
   private @Valid List<@Valid ChatCompletionMessageToolCall> toolCalls = new ArrayList<>();
+  @Deprecated
   private ChatCompletionRequestAssistantMessageFunctionCall functionCall;
   public enum WeightEnum {
 
@@ -274,12 +275,18 @@ public class FineTuneChatCompletionRequestAssistantMessage   {
     return this;
   }
   /**
+   * @deprecated
    **/
+  @Deprecated
   public FineTuneChatCompletionRequestAssistantMessage functionCall(ChatCompletionRequestAssistantMessageFunctionCall functionCall) {
     this.functionCall = functionCall;
     return this;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   
   @ApiModelProperty(value = "")
   @JsonProperty("function_call")
@@ -287,6 +294,10 @@ public class FineTuneChatCompletionRequestAssistantMessage   {
     return functionCall;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @JsonProperty("function_call")
   public void setFunctionCall(ChatCompletionRequestAssistantMessageFunctionCall functionCall) {
     this.functionCall = functionCall;
@@ -359,12 +370,8 @@ public class FineTuneChatCompletionRequestAssistantMessage   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
 }
-

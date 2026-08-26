@@ -29,6 +29,7 @@ from typing_extensions import Annotated
 from openapi_server.models.delete_file_response import DeleteFileResponse
 from openapi_server.models.list_files_response import ListFilesResponse
 from openapi_server.models.open_ai_file import OpenAIFile
+from fastapi import File, UploadFile
 from openapi_server.security_api import get_token_ApiKeyAuth
 
 router = APIRouter()
@@ -50,7 +51,7 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
 async def list_files(
     purpose: Annotated[Optional[StrictStr], Field(description="Only return files with the given purpose.")] = Query(None, description="Only return files with the given purpose.", alias="purpose"),
     limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000. ")] = Query(10000, description="A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000. ", alias="limit"),
-    order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query(desc, description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
+    order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query('desc', description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
     after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
@@ -71,7 +72,7 @@ async def list_files(
     response_model_by_alias=True,
 )
 async def create_file(
-    file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The File object (not file name) to be uploaded. ")] = Form(None, description="The File object (not file name) to be uploaded. "),
+    file: UploadFile = File(..., description="The File object (not file name) to be uploaded. "),
     purpose: Annotated[StrictStr, Field(description="The intended purpose of the uploaded file.  Use \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\"vision\\\" for Assistants image file inputs, \\\"batch\\\" for [Batch API](/docs/guides/batch), and \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning). ")] = Form(None, description="The intended purpose of the uploaded file.  Use \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\&quot;vision\\\&quot; for Assistants image file inputs, \\\&quot;batch\\\&quot; for [Batch API](/docs/guides/batch), and \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning). "),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth

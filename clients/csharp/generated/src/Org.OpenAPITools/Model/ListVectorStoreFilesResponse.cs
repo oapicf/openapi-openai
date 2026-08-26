@@ -117,8 +117,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ListVectorStoreFilesResponse" />
     /// </summary>
-    public class ListVectorStoreFilesResponseJsonConverter : JsonConverter<ListVectorStoreFilesResponse>
+    public partial class ListVectorStoreFilesResponseJsonConverter : JsonConverter<ListVectorStoreFilesResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListVectorStoreFilesResponseJsonConverter" /> class.
+        /// </summary>
+        public ListVectorStoreFilesResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ListVectorStoreFilesResponse" />
         /// </summary>

@@ -102,7 +102,7 @@ SubmitToolOutputsRunRequest::getToolOutputs()
 }
 
 void
-SubmitToolOutputsRunRequest::setToolOutputs(std::list <SubmitToolOutputsRunRequest_tool_outputs_inner> tool_outputs)
+SubmitToolOutputsRunRequest::setToolOutputs(std::list<SubmitToolOutputsRunRequest_tool_outputs_inner> tool_outputs)
 {
 	this->tool_outputs = tool_outputs;
 }
@@ -114,7 +114,7 @@ SubmitToolOutputsRunRequest::isStream()
 }
 
 void
-SubmitToolOutputsRunRequest::setStream(bool  stream)
+SubmitToolOutputsRunRequest::setStream(bool stream)
 {
 	this->stream = stream;
 }

@@ -33,13 +33,13 @@ class OAIMessageDeltaContentImageUrlObject_image_url;
 class OAIMessageDeltaContentImageUrlObject : public OAIObject {
 public:
     OAIMessageDeltaContentImageUrlObject();
-    OAIMessageDeltaContentImageUrlObject(QString json);
+    OAIMessageDeltaContentImageUrlObject(const QString &json);
     ~OAIMessageDeltaContentImageUrlObject() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getIndex() const;
     void setIndex(const qint32 &index);

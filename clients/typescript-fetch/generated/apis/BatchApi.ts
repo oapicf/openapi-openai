@@ -12,21 +12,22 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  Batch,
-  CreateBatchRequest,
-  ListBatchesResponse,
-} from '../models/index';
 import {
+    type Batch,
     BatchFromJSON,
     BatchToJSON,
+} from '../models/Batch';
+import {
+    type CreateBatchRequest,
     CreateBatchRequestFromJSON,
     CreateBatchRequestToJSON,
+} from '../models/CreateBatchRequest';
+import {
+    type ListBatchesResponse,
     ListBatchesResponseFromJSON,
     ListBatchesResponseToJSON,
-} from '../models/index';
+} from '../models/ListBatchesResponse';
 
 export interface CancelBatchRequest {
     batchId: string;
@@ -51,9 +52,9 @@ export interface RetrieveBatchRequest {
 export class BatchApi extends runtime.BaseAPI {
 
     /**
-     * Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+     * Creates request options for cancelBatch without sending the request
      */
-    async cancelBatchRaw(requestParameters: CancelBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Batch>> {
+    async cancelBatchRequestOpts(requestParameters: CancelBatchRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['batchId'] == null) {
             throw new runtime.RequiredError(
                 'batchId',
@@ -75,14 +76,22 @@ export class BatchApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/batches/{batch_id}/cancel`;
-        urlPath = urlPath.replace(`{${"batch_id"}}`, encodeURIComponent(String(requestParameters['batchId'])));
+        urlPath = urlPath.replace('{batch_id}', encodeURIComponent(String(requestParameters['batchId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+     */
+    async cancelBatchRaw(requestParameters: CancelBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Batch>> {
+        const requestOptions = await this.cancelBatchRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => BatchFromJSON(jsonValue));
     }
@@ -96,9 +105,9 @@ export class BatchApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates and executes a batch from an uploaded file of requests
+     * Creates request options for createBatch without sending the request
      */
-    async createBatchRaw(requestParameters: CreateBatchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Batch>> {
+    async createBatchRequestOpts(requestParameters: CreateBatchOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createBatchRequest'] == null) {
             throw new runtime.RequiredError(
                 'createBatchRequest',
@@ -123,13 +132,21 @@ export class BatchApi extends runtime.BaseAPI {
 
         let urlPath = `/batches`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateBatchRequestToJSON(requestParameters['createBatchRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates and executes a batch from an uploaded file of requests
+     */
+    async createBatchRaw(requestParameters: CreateBatchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Batch>> {
+        const requestOptions = await this.createBatchRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => BatchFromJSON(jsonValue));
     }
@@ -143,9 +160,9 @@ export class BatchApi extends runtime.BaseAPI {
     }
 
     /**
-     * List your organization\'s batches.
+     * Creates request options for listBatches without sending the request
      */
-    async listBatchesRaw(requestParameters: ListBatchesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListBatchesResponse>> {
+    async listBatchesRequestOpts(requestParameters: ListBatchesRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['after'] != null) {
@@ -169,12 +186,20 @@ export class BatchApi extends runtime.BaseAPI {
 
         let urlPath = `/batches`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List your organization\'s batches.
+     */
+    async listBatchesRaw(requestParameters: ListBatchesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListBatchesResponse>> {
+        const requestOptions = await this.listBatchesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListBatchesResponseFromJSON(jsonValue));
     }
@@ -188,9 +213,9 @@ export class BatchApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves a batch.
+     * Creates request options for retrieveBatch without sending the request
      */
-    async retrieveBatchRaw(requestParameters: RetrieveBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Batch>> {
+    async retrieveBatchRequestOpts(requestParameters: RetrieveBatchRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['batchId'] == null) {
             throw new runtime.RequiredError(
                 'batchId',
@@ -212,14 +237,22 @@ export class BatchApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/batches/{batch_id}`;
-        urlPath = urlPath.replace(`{${"batch_id"}}`, encodeURIComponent(String(requestParameters['batchId'])));
+        urlPath = urlPath.replace('{batch_id}', encodeURIComponent(String(requestParameters['batchId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves a batch.
+     */
+    async retrieveBatchRaw(requestParameters: RetrieveBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Batch>> {
+        const requestOptions = await this.retrieveBatchRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => BatchFromJSON(jsonValue));
     }

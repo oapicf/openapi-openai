@@ -23,7 +23,7 @@ class AudioApi {
   /// Parameters:
   ///
   /// * [CreateSpeechRequest] createSpeechRequest (required):
-  Future<Response> createSpeechWithHttpInfo(CreateSpeechRequest createSpeechRequest,) async {
+  Future<Response> createSpeechWithHttpInfo(CreateSpeechRequest createSpeechRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/audio/speech';
 
@@ -45,6 +45,7 @@ class AudioApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -53,8 +54,8 @@ class AudioApi {
   /// Parameters:
   ///
   /// * [CreateSpeechRequest] createSpeechRequest (required):
-  Future<MultipartFile?> createSpeech(CreateSpeechRequest createSpeechRequest,) async {
-    final response = await createSpeechWithHttpInfo(createSpeechRequest,);
+  Future<MultipartFile?> createSpeech(CreateSpeechRequest createSpeechRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createSpeechWithHttpInfo(createSpeechRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -92,7 +93,7 @@ class AudioApi {
   ///
   /// * [List<String>] timestampGranularitiesLeftSquareBracketRightSquareBracket:
   ///   The timestamp granularities to populate for this transcription. `response_format` must be set `verbose_json` to use timestamp granularities. Either or both of these options are supported: `word`, or `segment`. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. 
-  Future<Response> createTranscriptionWithHttpInfo(MultipartFile file, CreateTranscriptionRequestModel model, { String? language, String? prompt, AudioResponseFormat? responseFormat, num? temperature, List<String>? timestampGranularitiesLeftSquareBracketRightSquareBracket, }) async {
+  Future<Response> createTranscriptionWithHttpInfo(MultipartFile file, CreateTranscriptionRequestModel model, { String? language, String? prompt, AudioResponseFormat? responseFormat, num? temperature, List<String>? timestampGranularitiesLeftSquareBracketRightSquareBracket, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/audio/transcriptions';
 
@@ -148,6 +149,7 @@ class AudioApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -173,8 +175,8 @@ class AudioApi {
   ///
   /// * [List<String>] timestampGranularitiesLeftSquareBracketRightSquareBracket:
   ///   The timestamp granularities to populate for this transcription. `response_format` must be set `verbose_json` to use timestamp granularities. Either or both of these options are supported: `word`, or `segment`. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. 
-  Future<CreateTranscription200Response?> createTranscription(MultipartFile file, CreateTranscriptionRequestModel model, { String? language, String? prompt, AudioResponseFormat? responseFormat, num? temperature, List<String>? timestampGranularitiesLeftSquareBracketRightSquareBracket, }) async {
-    final response = await createTranscriptionWithHttpInfo(file, model,  language: language, prompt: prompt, responseFormat: responseFormat, temperature: temperature, timestampGranularitiesLeftSquareBracketRightSquareBracket: timestampGranularitiesLeftSquareBracketRightSquareBracket, );
+  Future<CreateTranscription200Response?> createTranscription(MultipartFile file, CreateTranscriptionRequestModel model, { String? language, String? prompt, AudioResponseFormat? responseFormat, num? temperature, List<String>? timestampGranularitiesLeftSquareBracketRightSquareBracket, Future<void>? abortTrigger, }) async {
+    final response = await createTranscriptionWithHttpInfo(file, model, language: language, prompt: prompt, responseFormat: responseFormat, temperature: temperature, timestampGranularitiesLeftSquareBracketRightSquareBracket: timestampGranularitiesLeftSquareBracketRightSquareBracket, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -206,7 +208,7 @@ class AudioApi {
   ///
   /// * [num] temperature:
   ///   The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
-  Future<Response> createTranslationWithHttpInfo(MultipartFile file, CreateTranscriptionRequestModel model, { String? prompt, AudioResponseFormat? responseFormat, num? temperature, }) async {
+  Future<Response> createTranslationWithHttpInfo(MultipartFile file, CreateTranscriptionRequestModel model, { String? prompt, AudioResponseFormat? responseFormat, num? temperature, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/audio/translations';
 
@@ -254,6 +256,7 @@ class AudioApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -273,8 +276,8 @@ class AudioApi {
   ///
   /// * [num] temperature:
   ///   The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
-  Future<CreateTranslation200Response?> createTranslation(MultipartFile file, CreateTranscriptionRequestModel model, { String? prompt, AudioResponseFormat? responseFormat, num? temperature, }) async {
-    final response = await createTranslationWithHttpInfo(file, model,  prompt: prompt, responseFormat: responseFormat, temperature: temperature, );
+  Future<CreateTranslation200Response?> createTranslation(MultipartFile file, CreateTranscriptionRequestModel model, { String? prompt, AudioResponseFormat? responseFormat, num? temperature, Future<void>? abortTrigger, }) async {
+    final response = await createTranslationWithHttpInfo(file, model, prompt: prompt, responseFormat: responseFormat, temperature: temperature, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

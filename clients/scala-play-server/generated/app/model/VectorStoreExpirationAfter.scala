@@ -7,7 +7,7 @@ import play.api.libs.json._
   * @param anchor Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`.
   * @param days The number of days after the anchor time that the vector store will expire.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 case class VectorStoreExpirationAfter(
   anchor: VectorStoreExpirationAfter.Anchor.Value,
   days: Int

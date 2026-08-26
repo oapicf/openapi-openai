@@ -26,6 +26,8 @@ AuditLog_rate_limit_deleted::AuditLog_rate_limit_deleted()
     
 }
 
+AuditLog_rate_limit_deleted::~AuditLog_rate_limit_deleted() = default;
+
 void AuditLog_rate_limit_deleted::validate() const
 {
     std::stringstream msg;

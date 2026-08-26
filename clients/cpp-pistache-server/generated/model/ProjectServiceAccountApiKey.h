@@ -32,7 +32,7 @@ class  ProjectServiceAccountApiKey
 {
 public:
     ProjectServiceAccountApiKey();
-    virtual ~ProjectServiceAccountApiKey() = default;
+    virtual ~ProjectServiceAccountApiKey();
 
 
     /// <summary>

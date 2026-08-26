@@ -98,8 +98,9 @@ class _$RealtimeClientEventResponseCancelSerializer implements PrimitiveSerializ
         case r'event_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.eventId = valueDes;
           break;
         case r'type':
@@ -112,8 +113,9 @@ class _$RealtimeClientEventResponseCancelSerializer implements PrimitiveSerializ
         case r'response_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.responseId = valueDes;
           break;
         default:

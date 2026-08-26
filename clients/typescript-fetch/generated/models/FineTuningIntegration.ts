@@ -29,7 +29,7 @@ import {
 export interface FineTuningIntegration {
     /**
      * The type of the integration being enabled for the fine-tuning job
-     * @type {string}
+     * @type {FineTuningIntegrationTypeEnum}
      * @memberof FineTuningIntegration
      */
     type: FineTuningIntegrationTypeEnum;
@@ -56,6 +56,8 @@ export type FineTuningIntegrationTypeEnum = typeof FineTuningIntegrationTypeEnum
  */
 export function instanceOfFineTuningIntegration(value: object): value is FineTuningIntegration {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'wandb') return false;
+    
     if (!('wandb' in value) || value['wandb'] === undefined) return false;
     return true;
 }

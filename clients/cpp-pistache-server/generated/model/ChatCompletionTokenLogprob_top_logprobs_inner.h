@@ -33,7 +33,7 @@ class  ChatCompletionTokenLogprob_top_logprobs_inner
 {
 public:
     ChatCompletionTokenLogprob_top_logprobs_inner();
-    virtual ~ChatCompletionTokenLogprob_top_logprobs_inner() = default;
+    virtual ~ChatCompletionTokenLogprob_top_logprobs_inner();
 
 
     /// <summary>

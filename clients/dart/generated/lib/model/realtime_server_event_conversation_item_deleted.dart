@@ -62,10 +62,12 @@ class RealtimeServerEventConversationItemDeleted {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventConversationItemDeleted[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventConversationItemDeleted[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event_id'), 'Required key "RealtimeServerEventConversationItemDeleted[event_id]" is missing from JSON.');
+        assert(json[r'event_id'] != null, 'Required key "RealtimeServerEventConversationItemDeleted[event_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RealtimeServerEventConversationItemDeleted[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeServerEventConversationItemDeleted[type]" has a null value in JSON.');
+        assert(json.containsKey(r'item_id'), 'Required key "RealtimeServerEventConversationItemDeleted[item_id]" is missing from JSON.');
+        assert(json[r'item_id'] != null, 'Required key "RealtimeServerEventConversationItemDeleted[item_id]" has a null value in JSON.');
         return true;
       }());
 
@@ -127,27 +129,28 @@ class RealtimeServerEventConversationItemDeleted {
 }
 
 /// The event type, must be `conversation.item.deleted`.
-class RealtimeServerEventConversationItemDeletedTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventConversationItemDeletedTypeEnum._(this.value);
+enum RealtimeServerEventConversationItemDeletedTypeEnum {
+  conversationPeriodItemPeriodDeleted._(r'conversation.item.deleted'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventConversationItemDeletedTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const conversationPeriodItemPeriodDeleted = RealtimeServerEventConversationItemDeletedTypeEnum._(r'conversation.item.deleted');
-
-  /// List of all possible values in this [enum][RealtimeServerEventConversationItemDeletedTypeEnum].
-  static const values = <RealtimeServerEventConversationItemDeletedTypeEnum>[
-    conversationPeriodItemPeriodDeleted,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventConversationItemDeletedTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventConversationItemDeletedTypeEnum? fromJson(dynamic value) => RealtimeServerEventConversationItemDeletedTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventConversationItemDeletedTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventConversationItemDeletedTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventConversationItemDeletedTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -169,9 +172,10 @@ class RealtimeServerEventConversationItemDeletedTypeEnumTypeTransformer {
 
   const RealtimeServerEventConversationItemDeletedTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventConversationItemDeletedTypeEnum data) => data.value;
+  String encode(RealtimeServerEventConversationItemDeletedTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventConversationItemDeletedTypeEnum.
+  /// Returns the instance of [RealtimeServerEventConversationItemDeletedTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -180,6 +184,9 @@ class RealtimeServerEventConversationItemDeletedTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventConversationItemDeletedTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventConversationItemDeletedTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'conversation.item.deleted': return RealtimeServerEventConversationItemDeletedTypeEnum.conversationPeriodItemPeriodDeleted;
@@ -192,7 +199,7 @@ class RealtimeServerEventConversationItemDeletedTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeServerEventConversationItemDeletedTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventConversationItemDeletedTypeEnumTypeTransformer? _instance;
 }
 

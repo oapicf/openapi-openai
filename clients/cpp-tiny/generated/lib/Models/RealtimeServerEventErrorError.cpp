@@ -148,7 +148,7 @@ RealtimeServerEventError_error::getType()
 }
 
 void
-RealtimeServerEventError_error::setType(std::string  type)
+RealtimeServerEventError_error::setType(std::string type)
 {
 	this->type = type;
 }
@@ -160,7 +160,7 @@ RealtimeServerEventError_error::getCode()
 }
 
 void
-RealtimeServerEventError_error::setCode(std::string  code)
+RealtimeServerEventError_error::setCode(std::string code)
 {
 	this->code = code;
 }
@@ -172,7 +172,7 @@ RealtimeServerEventError_error::getMessage()
 }
 
 void
-RealtimeServerEventError_error::setMessage(std::string  message)
+RealtimeServerEventError_error::setMessage(std::string message)
 {
 	this->message = message;
 }
@@ -184,7 +184,7 @@ RealtimeServerEventError_error::getParam()
 }
 
 void
-RealtimeServerEventError_error::setParam(std::string  param)
+RealtimeServerEventError_error::setParam(std::string param)
 {
 	this->param = param;
 }
@@ -196,7 +196,7 @@ RealtimeServerEventError_error::getEventId()
 }
 
 void
-RealtimeServerEventError_error::setEventId(std::string  event_id)
+RealtimeServerEventError_error::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }

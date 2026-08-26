@@ -354,29 +354,33 @@ class _$CreateRunRequestSerializer implements PrimitiveSerializer<CreateRunReque
         case r'truncation_strategy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(TruncationObject),
-          ) as TruncationObject;
+            specifiedType: const FullType.nullable(TruncationObject),
+          ) as TruncationObject?;
+          if (valueDes == null) continue;
           result.truncationStrategy.replace(valueDes);
           break;
         case r'tool_choice':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AssistantsApiToolChoiceOption),
-          ) as AssistantsApiToolChoiceOption;
+            specifiedType: const FullType.nullable(AssistantsApiToolChoiceOption),
+          ) as AssistantsApiToolChoiceOption?;
+          if (valueDes == null) continue;
           result.toolChoice.replace(valueDes);
           break;
         case r'parallel_tool_calls':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.parallelToolCalls = valueDes;
           break;
         case r'response_format':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AssistantsApiResponseFormatOption),
-          ) as AssistantsApiResponseFormatOption;
+            specifiedType: const FullType.nullable(AssistantsApiResponseFormatOption),
+          ) as AssistantsApiResponseFormatOption?;
+          if (valueDes == null) continue;
           result.responseFormat.replace(valueDes);
           break;
         default:

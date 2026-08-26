@@ -85,7 +85,7 @@ CreateChatCompletionRequest_audio::getVoice()
 }
 
 void
-CreateChatCompletionRequest_audio::setVoice(std::string  voice)
+CreateChatCompletionRequest_audio::setVoice(std::string voice)
 {
 	this->voice = voice;
 }
@@ -97,7 +97,7 @@ CreateChatCompletionRequest_audio::getFormat()
 }
 
 void
-CreateChatCompletionRequest_audio::setFormat(std::string  format)
+CreateChatCompletionRequest_audio::setFormat(std::string format)
 {
 	this->format = format;
 }

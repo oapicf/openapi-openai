@@ -46,7 +46,7 @@ typedef struct fine_tune_chat_completion_request_assistant_message_t {
     struct chat_completion_request_assistant_message_audio_t *audio; //model
     list_t *tool_calls; //nonprimitive container
     struct chat_completion_request_assistant_message_function_call_t *function_call; //model
-    int weight; //numeric
+    int *weight; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } fine_tune_chat_completion_request_assistant_message_t;
@@ -59,7 +59,7 @@ __attribute__((deprecated)) fine_tune_chat_completion_request_assistant_message_
     chat_completion_request_assistant_message_audio_t *audio,
     list_t *tool_calls,
     chat_completion_request_assistant_message_function_call_t *function_call,
-    int weight
+    int *weight
 );
 
 void fine_tune_chat_completion_request_assistant_message_free(fine_tune_chat_completion_request_assistant_message_t *fine_tune_chat_completion_request_assistant_message);

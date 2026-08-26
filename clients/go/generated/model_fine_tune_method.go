@@ -22,8 +22,8 @@ var _ MappedNullable = &FineTuneMethod{}
 type FineTuneMethod struct {
 	// The type of method. Is either `supervised` or `dpo`.
 	Type *string `json:"type,omitempty"`
-	Supervised FineTuneSupervisedMethod `json:"supervised,omitempty"`
-	Dpo FineTuneDPOMethod `json:"dpo,omitempty"`
+	Supervised *FineTuneSupervisedMethod `json:"supervised,omitempty"`
+	Dpo *FineTuneDPOMethod `json:"dpo,omitempty"`
 }
 
 // NewFineTuneMethod instantiates a new FineTuneMethod object
@@ -81,14 +81,14 @@ func (o *FineTuneMethod) GetSupervised() FineTuneSupervisedMethod {
 		var ret FineTuneSupervisedMethod
 		return ret
 	}
-	return o.Supervised
+	return *o.Supervised
 }
 
 // GetSupervisedOk returns a tuple with the Supervised field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FineTuneMethod) GetSupervisedOk() (FineTuneSupervisedMethod, bool) {
+func (o *FineTuneMethod) GetSupervisedOk() (*FineTuneSupervisedMethod, bool) {
 	if o == nil || IsNil(o.Supervised) {
-		return FineTuneSupervisedMethod{}, false
+		return nil, false
 	}
 	return o.Supervised, true
 }
@@ -104,7 +104,7 @@ func (o *FineTuneMethod) HasSupervised() bool {
 
 // SetSupervised gets a reference to the given FineTuneSupervisedMethod and assigns it to the Supervised field.
 func (o *FineTuneMethod) SetSupervised(v FineTuneSupervisedMethod) {
-	o.Supervised = v
+	o.Supervised = &v
 }
 
 // GetDpo returns the Dpo field value if set, zero value otherwise.
@@ -113,14 +113,14 @@ func (o *FineTuneMethod) GetDpo() FineTuneDPOMethod {
 		var ret FineTuneDPOMethod
 		return ret
 	}
-	return o.Dpo
+	return *o.Dpo
 }
 
 // GetDpoOk returns a tuple with the Dpo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FineTuneMethod) GetDpoOk() (FineTuneDPOMethod, bool) {
+func (o *FineTuneMethod) GetDpoOk() (*FineTuneDPOMethod, bool) {
 	if o == nil || IsNil(o.Dpo) {
-		return FineTuneDPOMethod{}, false
+		return nil, false
 	}
 	return o.Dpo, true
 }
@@ -136,7 +136,7 @@ func (o *FineTuneMethod) HasDpo() bool {
 
 // SetDpo gets a reference to the given FineTuneDPOMethod and assigns it to the Dpo field.
 func (o *FineTuneMethod) SetDpo(v FineTuneDPOMethod) {
-	o.Dpo = v
+	o.Dpo = &v
 }
 
 func (o FineTuneMethod) MarshalJSON() ([]byte, error) {

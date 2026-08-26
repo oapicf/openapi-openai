@@ -165,7 +165,7 @@ ProjectApiKeyListResponse::getObject()
 }
 
 void
-ProjectApiKeyListResponse::setObject(std::string  object)
+ProjectApiKeyListResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -177,7 +177,7 @@ ProjectApiKeyListResponse::getData()
 }
 
 void
-ProjectApiKeyListResponse::setData(std::list <ProjectApiKey> data)
+ProjectApiKeyListResponse::setData(std::list<ProjectApiKey> data)
 {
 	this->data = data;
 }
@@ -189,7 +189,7 @@ ProjectApiKeyListResponse::getFirstId()
 }
 
 void
-ProjectApiKeyListResponse::setFirstId(std::string  first_id)
+ProjectApiKeyListResponse::setFirstId(std::string first_id)
 {
 	this->first_id = first_id;
 }
@@ -201,7 +201,7 @@ ProjectApiKeyListResponse::getLastId()
 }
 
 void
-ProjectApiKeyListResponse::setLastId(std::string  last_id)
+ProjectApiKeyListResponse::setLastId(std::string last_id)
 {
 	this->last_id = last_id;
 }
@@ -213,7 +213,7 @@ ProjectApiKeyListResponse::isHasMore()
 }
 
 void
-ProjectApiKeyListResponse::setHasMore(bool  has_more)
+ProjectApiKeyListResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }

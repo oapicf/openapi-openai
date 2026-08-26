@@ -51,7 +51,7 @@ class AuditLogProject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -61,7 +61,7 @@ class AuditLogProject
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $name = null;
 
@@ -88,12 +88,12 @@ class AuditLogProject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The project ID.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The project ID.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -115,12 +115,12 @@ class AuditLogProject
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The project title.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The project title.
+     *
+     * @return $this
+     */
     public function setName(?string $name = null): self
     {
         $this->name = $name;

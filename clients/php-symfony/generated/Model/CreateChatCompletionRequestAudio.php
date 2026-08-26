@@ -51,7 +51,7 @@ class CreateChatCompletionRequestAudio
      * @var string|null
      * @SerializedName("voice")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['alloy', 'ash', 'ballad', 'coral', 'echo', 'sage', 'shimmer', 'verse'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class CreateChatCompletionRequestAudio
      * @var string|null
      * @SerializedName("format")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['wav', 'mp3', 'flac', 'opus', 'pcm16'])]
     #[Assert\Type("string")]
@@ -92,12 +92,12 @@ class CreateChatCompletionRequestAudio
     }
 
     /**
-    * Sets voice.
-    *
-    * @param string|null $voice  The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive).
-    *
-    * @return $this
-    */
+     * Sets voice.
+     *
+     * @param string|null $voice  The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive).
+     *
+     * @return $this
+     */
     public function setVoice(?string $voice): self
     {
         $this->voice = $voice;
@@ -119,12 +119,12 @@ class CreateChatCompletionRequestAudio
     }
 
     /**
-    * Sets format.
-    *
-    * @param string|null $format  Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`.
-    *
-    * @return $this
-    */
+     * Sets format.
+     *
+     * @param string|null $format  Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`.
+     *
+     * @return $this
+     */
     public function setFormat(?string $format): self
     {
         $this->format = $format;

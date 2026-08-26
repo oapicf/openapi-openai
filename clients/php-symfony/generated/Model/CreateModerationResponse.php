@@ -51,7 +51,7 @@ class CreateModerationResponse
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class CreateModerationResponse
      * @var string|null
      * @SerializedName("model")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $model = null;
@@ -73,7 +73,7 @@ class CreateModerationResponse
      * @var CreateModerationResponseResultsInner[]|null
      * @SerializedName("results")
      * @Type("array<OpenAPI\Server\Model\CreateModerationResponseResultsInner>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -105,12 +105,12 @@ class CreateModerationResponse
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The unique identifier for the moderation request.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The unique identifier for the moderation request.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -132,12 +132,12 @@ class CreateModerationResponse
     }
 
     /**
-    * Sets model.
-    *
-    * @param string|null $model  The model used to generate the moderation results.
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param string|null $model  The model used to generate the moderation results.
+     *
+     * @return $this
+     */
     public function setModel(?string $model): self
     {
         $this->model = $model;
@@ -159,12 +159,12 @@ class CreateModerationResponse
     }
 
     /**
-    * Sets results.
-    *
-    * @param CreateModerationResponseResultsInner[]|null $results  A list of moderation objects.
-    *
-    * @return $this
-    */
+     * Sets results.
+     *
+     * @param CreateModerationResponseResultsInner[]|null $results  A list of moderation objects.
+     *
+     * @return $this
+     */
     public function setResults(?array $results): self
     {
         $this->results = $results;

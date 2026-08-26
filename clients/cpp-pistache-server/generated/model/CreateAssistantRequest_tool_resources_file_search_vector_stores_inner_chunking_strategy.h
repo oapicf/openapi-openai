@@ -21,8 +21,8 @@
 
 #include "Static_Chunking_Strategy_static.h"
 #include <string>
-#include "Auto_Chunking_Strategy.h"
 #include "Static_Chunking_Strategy.h"
+#include "AutoChunkingStrategyRequestParam.h"
 #include <nlohmann/json.hpp>
 
 namespace org::openapitools::server::model
@@ -35,7 +35,7 @@ class  CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chu
 {
 public:
     CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy();
-    virtual ~CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy() = default;
+    virtual ~CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy();
 
 
     /// <summary>

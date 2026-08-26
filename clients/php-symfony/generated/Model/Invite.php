@@ -51,7 +51,7 @@ class Invite
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['organization.invite'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class Invite
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -74,7 +74,7 @@ class Invite
      * @var string|null
      * @SerializedName("email")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $email = null;
@@ -85,7 +85,7 @@ class Invite
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['owner', 'reader'])]
     #[Assert\Type("string")]
@@ -97,7 +97,7 @@ class Invite
      * @var string|null
      * @SerializedName("status")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['accepted', 'expired', 'pending'])]
     #[Assert\Type("string")]
@@ -109,7 +109,7 @@ class Invite
      * @var int|null
      * @SerializedName("invited_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $invitedAt = null;
@@ -120,7 +120,7 @@ class Invite
      * @var int|null
      * @SerializedName("expires_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $expiresAt = null;
@@ -131,7 +131,7 @@ class Invite
      * @var int|null
      * @SerializedName("accepted_at")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $acceptedAt = null;
 
@@ -141,7 +141,7 @@ class Invite
      * @var InviteProjectsInner[]|null
      * @SerializedName("projects")
      * @Type("array<OpenAPI\Server\Model\InviteProjectsInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\InviteProjectsInner"),
     ])]
@@ -177,12 +177,12 @@ class Invite
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `organization.invite`
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `organization.invite`
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -204,12 +204,12 @@ class Invite
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The identifier, which can be referenced in API endpoints
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The identifier, which can be referenced in API endpoints
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -231,12 +231,12 @@ class Invite
     }
 
     /**
-    * Sets email.
-    *
-    * @param string|null $email  The email address of the individual to whom the invite was sent
-    *
-    * @return $this
-    */
+     * Sets email.
+     *
+     * @param string|null $email  The email address of the individual to whom the invite was sent
+     *
+     * @return $this
+     */
     public function setEmail(?string $email): self
     {
         $this->email = $email;
@@ -258,12 +258,12 @@ class Invite
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  `owner` or `reader`
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  `owner` or `reader`
+     *
+     * @return $this
+     */
     public function setRole(?string $role): self
     {
         $this->role = $role;
@@ -285,12 +285,12 @@ class Invite
     }
 
     /**
-    * Sets status.
-    *
-    * @param string|null $status  `accepted`,`expired`, or `pending`
-    *
-    * @return $this
-    */
+     * Sets status.
+     *
+     * @param string|null $status  `accepted`,`expired`, or `pending`
+     *
+     * @return $this
+     */
     public function setStatus(?string $status): self
     {
         $this->status = $status;
@@ -312,12 +312,12 @@ class Invite
     }
 
     /**
-    * Sets invitedAt.
-    *
-    * @param int|null $invitedAt  The Unix timestamp (in seconds) of when the invite was sent.
-    *
-    * @return $this
-    */
+     * Sets invitedAt.
+     *
+     * @param int|null $invitedAt  The Unix timestamp (in seconds) of when the invite was sent.
+     *
+     * @return $this
+     */
     public function setInvitedAt(?int $invitedAt): self
     {
         $this->invitedAt = $invitedAt;
@@ -339,12 +339,12 @@ class Invite
     }
 
     /**
-    * Sets expiresAt.
-    *
-    * @param int|null $expiresAt  The Unix timestamp (in seconds) of when the invite expires.
-    *
-    * @return $this
-    */
+     * Sets expiresAt.
+     *
+     * @param int|null $expiresAt  The Unix timestamp (in seconds) of when the invite expires.
+     *
+     * @return $this
+     */
     public function setExpiresAt(?int $expiresAt): self
     {
         $this->expiresAt = $expiresAt;
@@ -366,12 +366,12 @@ class Invite
     }
 
     /**
-    * Sets acceptedAt.
-    *
-    * @param int|null $acceptedAt  The Unix timestamp (in seconds) of when the invite was accepted.
-    *
-    * @return $this
-    */
+     * Sets acceptedAt.
+     *
+     * @param int|null $acceptedAt  The Unix timestamp (in seconds) of when the invite was accepted.
+     *
+     * @return $this
+     */
     public function setAcceptedAt(?int $acceptedAt = null): self
     {
         $this->acceptedAt = $acceptedAt;
@@ -393,12 +393,12 @@ class Invite
     }
 
     /**
-    * Sets projects.
-    *
-    * @param InviteProjectsInner[]|null $projects  The projects that were granted membership upon acceptance of the invite.
-    *
-    * @return $this
-    */
+     * Sets projects.
+     *
+     * @param InviteProjectsInner[]|null $projects  The projects that were granted membership upon acceptance of the invite.
+     *
+     * @return $this
+     */
     public function setProjects(?array $projects = null): self
     {
         $this->projects = $projects;

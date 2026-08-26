@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -10,13 +11,13 @@ import org.openapitools.model.RealtimeResponseUsageOutputTokenDetails;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Usage statistics for the Response, this will correspond to billing. A  Realtime API session will maintain a conversation context and append new  Items to the Conversation, thus output from previous turns (text and  audio tokens) will become the input for later turns. 
@@ -24,17 +25,22 @@ import javax.annotation.Generated;
 
 @Schema(name = "RealtimeResponse_usage", description = "Usage statistics for the Response, this will correspond to billing. A  Realtime API session will maintain a conversation context and append new  Items to the Conversation, thus output from previous turns (text and  audio tokens) will become the input for later turns. ")
 @JsonTypeName("RealtimeResponse_usage")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeResponseUsage {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer totalTokens;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer inputTokens;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer outputTokens;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeResponseUsageInputTokenDetails inputTokenDetails;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeResponseUsageOutputTokenDetails outputTokenDetails;
 
   public RealtimeResponseUsage totalTokens(@Nullable Integer totalTokens) {
@@ -53,6 +59,7 @@ public class RealtimeResponseUsage {
     return totalTokens;
   }
 
+  @JsonProperty("total_tokens")
   public void setTotalTokens(@Nullable Integer totalTokens) {
     this.totalTokens = totalTokens;
   }
@@ -73,6 +80,7 @@ public class RealtimeResponseUsage {
     return inputTokens;
   }
 
+  @JsonProperty("input_tokens")
   public void setInputTokens(@Nullable Integer inputTokens) {
     this.inputTokens = inputTokens;
   }
@@ -93,6 +101,7 @@ public class RealtimeResponseUsage {
     return outputTokens;
   }
 
+  @JsonProperty("output_tokens")
   public void setOutputTokens(@Nullable Integer outputTokens) {
     this.outputTokens = outputTokens;
   }
@@ -113,6 +122,7 @@ public class RealtimeResponseUsage {
     return inputTokenDetails;
   }
 
+  @JsonProperty("input_token_details")
   public void setInputTokenDetails(@Nullable RealtimeResponseUsageInputTokenDetails inputTokenDetails) {
     this.inputTokenDetails = inputTokenDetails;
   }
@@ -133,6 +143,7 @@ public class RealtimeResponseUsage {
     return outputTokenDetails;
   }
 
+  @JsonProperty("output_token_details")
   public void setOutputTokenDetails(@Nullable RealtimeResponseUsageOutputTokenDetails outputTokenDetails) {
     this.outputTokenDetails = outputTokenDetails;
   }
@@ -175,11 +186,8 @@ public class RealtimeResponseUsage {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

@@ -107,7 +107,7 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -194,7 +194,7 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\ProjectCreateRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\ProjectCreateRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($projectCreateRequest, $asserts);
         if ($response instanceof Response) {
@@ -283,14 +283,14 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\ProjectServiceAccountCreateRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\ProjectServiceAccountCreateRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($projectServiceAccountCreateRequest, $asserts);
         if ($response instanceof Response) {
@@ -380,14 +380,14 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\ProjectUserCreateRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\ProjectUserCreateRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($projectUserCreateRequest, $asserts);
         if ($response instanceof Response) {
@@ -468,14 +468,14 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($keyId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -555,14 +555,14 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($serviceAccountId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -641,14 +641,14 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($userId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -731,19 +731,19 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($after, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -827,25 +827,25 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($after, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($before, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -927,19 +927,19 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($after, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1022,19 +1022,19 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($after, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1102,7 +1102,7 @@ class ProjectsController extends Controller
         // Read out all input parameter values into variables
         $limit = $request->query->get('limit', 20);
         $after = $request->query->get('after');
-        $includeArchived = $request->query->get('includeArchived', false);
+        $includeArchived = $request->query->get('include_archived', false);
 
         // Use the default value if no value was provided
 
@@ -1117,19 +1117,19 @@ class ProjectsController extends Controller
 
         // Validate the input values
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($after, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("bool");
+        $asserts[] = new Assert\Type('bool');
         $response = $this->validate($includeArchived, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1217,14 +1217,14 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\ProjectUpdateRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\ProjectUpdateRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($projectUpdateRequest, $asserts);
         if ($response instanceof Response) {
@@ -1315,21 +1315,21 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($userId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\ProjectUserUpdateRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\ProjectUserUpdateRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($projectUserUpdateRequest, $asserts);
         if ($response instanceof Response) {
@@ -1409,7 +1409,7 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1488,14 +1488,14 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($keyId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1574,14 +1574,14 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($serviceAccountId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1660,14 +1660,14 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($userId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -1756,21 +1756,21 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($projectId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($rateLimitId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\ProjectRateLimitUpdateRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\ProjectRateLimitUpdateRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($projectRateLimitUpdateRequest, $asserts);
         if ($response instanceof Response) {

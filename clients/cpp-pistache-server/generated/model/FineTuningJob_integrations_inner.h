@@ -34,7 +34,7 @@ class  FineTuningJob_integrations_inner
 {
 public:
     FineTuningJob_integrations_inner();
-    virtual ~FineTuningJob_integrations_inner() = default;
+    virtual ~FineTuningJob_integrations_inner();
 
 
     /// <summary>

@@ -24,16 +24,20 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class CreateUploadRequest(
 
-    @Schema(example = "null", required = true, description = "The name of the file to upload. ")
+    @Schema(required = true, description = "The name of the file to upload. ")
+    @param:JsonProperty("filename")
     @get:JsonProperty("filename", required = true) val filename: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The intended purpose of the uploaded file.  See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose). ")
+    @Schema(required = true, description = "The intended purpose of the uploaded file.  See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose). ")
+    @param:JsonProperty("purpose")
     @get:JsonProperty("purpose", required = true) val purpose: CreateUploadRequest.Purpose,
 
-    @Schema(example = "null", required = true, description = "The number of bytes in the file you are uploading. ")
+    @Schema(required = true, description = "The number of bytes in the file you are uploading. ")
+    @param:JsonProperty("bytes")
     @get:JsonProperty("bytes", required = true) val bytes: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The MIME type of the file.  This must fall within the supported MIME types for your file purpose. See the supported MIME types for assistants and vision. ")
+    @Schema(required = true, description = "The MIME type of the file.  This must fall within the supported MIME types for your file purpose. See the supported MIME types for assistants and vision. ")
+    @param:JsonProperty("mime_type")
     @get:JsonProperty("mime_type", required = true) val mimeType: kotlin.String
 ) {
 
@@ -53,7 +57,7 @@ data class CreateUploadRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): Purpose {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateUploadRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Purpose'")
             }
         }
     }

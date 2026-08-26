@@ -49,7 +49,7 @@ class ModifyAssistantRequestToolResources
      * @var ModifyAssistantRequestToolResourcesCodeInterpreter|null
      * @SerializedName("code_interpreter")
      * @Type("OpenAPI\Server\Model\ModifyAssistantRequestToolResourcesCodeInterpreter")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\ModifyAssistantRequestToolResourcesCodeInterpreter")]
     protected ?ModifyAssistantRequestToolResourcesCodeInterpreter $codeInterpreter = null;
 
@@ -57,7 +57,7 @@ class ModifyAssistantRequestToolResources
      * @var ModifyAssistantRequestToolResourcesFileSearch|null
      * @SerializedName("file_search")
      * @Type("OpenAPI\Server\Model\ModifyAssistantRequestToolResourcesFileSearch")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\ModifyAssistantRequestToolResourcesFileSearch")]
     protected ?ModifyAssistantRequestToolResourcesFileSearch $fileSearch = null;
 
@@ -84,12 +84,12 @@ class ModifyAssistantRequestToolResources
     }
 
     /**
-    * Sets codeInterpreter.
-    *
-    * @param ModifyAssistantRequestToolResourcesCodeInterpreter|null $codeInterpreter
-    *
-    * @return $this
-    */
+     * Sets codeInterpreter.
+     *
+     * @param ModifyAssistantRequestToolResourcesCodeInterpreter|null $codeInterpreter
+     *
+     * @return $this
+     */
     public function setCodeInterpreter(?ModifyAssistantRequestToolResourcesCodeInterpreter $codeInterpreter = null): self
     {
         $this->codeInterpreter = $codeInterpreter;
@@ -111,12 +111,12 @@ class ModifyAssistantRequestToolResources
     }
 
     /**
-    * Sets fileSearch.
-    *
-    * @param ModifyAssistantRequestToolResourcesFileSearch|null $fileSearch
-    *
-    * @return $this
-    */
+     * Sets fileSearch.
+     *
+     * @param ModifyAssistantRequestToolResourcesFileSearch|null $fileSearch
+     *
+     * @return $this
+     */
     public function setFileSearch(?ModifyAssistantRequestToolResourcesFileSearch $fileSearch = null): self
     {
         $this->fileSearch = $fileSearch;

@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIAuditLogEventType : public OAIEnum {
 public:
     OAIAuditLogEventType();
-    OAIAuditLogEventType(QString json);
+    OAIAuditLogEventType(const QString &json);
     ~OAIAuditLogEventType() override;
 
     QString asJson() const override;
     QJsonValue asJsonValue() const override;
     void fromJsonValue(QJsonValue json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     enum class eOAIAuditLogEventType {
         INVALID_VALUE_OPENAPI_GENERATED = 0,

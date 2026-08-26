@@ -107,10 +107,20 @@ class OpenAIFile {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "OpenAIFile[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "OpenAIFile[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "OpenAIFile[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "OpenAIFile[id]" has a null value in JSON.');
+        assert(json.containsKey(r'bytes'), 'Required key "OpenAIFile[bytes]" is missing from JSON.');
+        assert(json[r'bytes'] != null, 'Required key "OpenAIFile[bytes]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "OpenAIFile[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "OpenAIFile[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'filename'), 'Required key "OpenAIFile[filename]" is missing from JSON.');
+        assert(json[r'filename'] != null, 'Required key "OpenAIFile[filename]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "OpenAIFile[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "OpenAIFile[object]" has a null value in JSON.');
+        assert(json.containsKey(r'purpose'), 'Required key "OpenAIFile[purpose]" is missing from JSON.');
+        assert(json[r'purpose'] != null, 'Required key "OpenAIFile[purpose]" has a null value in JSON.');
+        assert(json.containsKey(r'status'), 'Required key "OpenAIFile[status]" is missing from JSON.');
+        assert(json[r'status'] != null, 'Required key "OpenAIFile[status]" has a null value in JSON.');
         return true;
       }());
 
@@ -181,27 +191,28 @@ class OpenAIFile {
 }
 
 /// The object type, which is always `file`.
-class OpenAIFileObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const OpenAIFileObjectEnum._(this.value);
+enum OpenAIFileObjectEnum {
+  file._(r'file'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const OpenAIFileObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const file = OpenAIFileObjectEnum._(r'file');
-
-  /// List of all possible values in this [enum][OpenAIFileObjectEnum].
-  static const values = <OpenAIFileObjectEnum>[
-    file,
-  ];
-
+  /// Returns the instance of [OpenAIFileObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static OpenAIFileObjectEnum? fromJson(dynamic value) => OpenAIFileObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [OpenAIFileObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<OpenAIFileObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <OpenAIFileObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -223,9 +234,10 @@ class OpenAIFileObjectEnumTypeTransformer {
 
   const OpenAIFileObjectEnumTypeTransformer._();
 
-  String encode(OpenAIFileObjectEnum data) => data.value;
+  String encode(OpenAIFileObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a OpenAIFileObjectEnum.
+  /// Returns the instance of [OpenAIFileObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -234,6 +246,9 @@ class OpenAIFileObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   OpenAIFileObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is OpenAIFileObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'file': return OpenAIFileObjectEnum.file;
@@ -246,45 +261,40 @@ class OpenAIFileObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [OpenAIFileObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static OpenAIFileObjectEnumTypeTransformer? _instance;
 }
 
 
 /// The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
-class OpenAIFilePurposeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const OpenAIFilePurposeEnum._(this.value);
+enum OpenAIFilePurposeEnum {
+  assistants._(r'assistants'),
+  assistantsOutput._(r'assistants_output'),
+  batch._(r'batch'),
+  batchOutput._(r'batch_output'),
+  fineTune._(r'fine-tune'),
+  fineTuneResults._(r'fine-tune-results'),
+  vision._(r'vision'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const OpenAIFilePurposeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const assistants = OpenAIFilePurposeEnum._(r'assistants');
-  static const assistantsOutput = OpenAIFilePurposeEnum._(r'assistants_output');
-  static const batch = OpenAIFilePurposeEnum._(r'batch');
-  static const batchOutput = OpenAIFilePurposeEnum._(r'batch_output');
-  static const fineTune = OpenAIFilePurposeEnum._(r'fine-tune');
-  static const fineTuneResults = OpenAIFilePurposeEnum._(r'fine-tune-results');
-  static const vision = OpenAIFilePurposeEnum._(r'vision');
-
-  /// List of all possible values in this [enum][OpenAIFilePurposeEnum].
-  static const values = <OpenAIFilePurposeEnum>[
-    assistants,
-    assistantsOutput,
-    batch,
-    batchOutput,
-    fineTune,
-    fineTuneResults,
-    vision,
-  ];
-
+  /// Returns the instance of [OpenAIFilePurposeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static OpenAIFilePurposeEnum? fromJson(dynamic value) => OpenAIFilePurposeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [OpenAIFilePurposeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<OpenAIFilePurposeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <OpenAIFilePurposeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -306,9 +316,10 @@ class OpenAIFilePurposeEnumTypeTransformer {
 
   const OpenAIFilePurposeEnumTypeTransformer._();
 
-  String encode(OpenAIFilePurposeEnum data) => data.value;
+  String encode(OpenAIFilePurposeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a OpenAIFilePurposeEnum.
+  /// Returns the instance of [OpenAIFilePurposeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -317,6 +328,9 @@ class OpenAIFilePurposeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   OpenAIFilePurposeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is OpenAIFilePurposeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'assistants': return OpenAIFilePurposeEnum.assistants;
@@ -335,37 +349,36 @@ class OpenAIFilePurposeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [OpenAIFilePurposeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static OpenAIFilePurposeEnumTypeTransformer? _instance;
 }
 
 
 /// Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
-class OpenAIFileStatusEnum {
-  /// Instantiate a new enum with the provided [value].
-  const OpenAIFileStatusEnum._(this.value);
+enum OpenAIFileStatusEnum {
+  uploaded._(r'uploaded'),
+  processed._(r'processed'),
+  error._(r'error'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const OpenAIFileStatusEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const uploaded = OpenAIFileStatusEnum._(r'uploaded');
-  static const processed = OpenAIFileStatusEnum._(r'processed');
-  static const error = OpenAIFileStatusEnum._(r'error');
-
-  /// List of all possible values in this [enum][OpenAIFileStatusEnum].
-  static const values = <OpenAIFileStatusEnum>[
-    uploaded,
-    processed,
-    error,
-  ];
-
+  /// Returns the instance of [OpenAIFileStatusEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static OpenAIFileStatusEnum? fromJson(dynamic value) => OpenAIFileStatusEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [OpenAIFileStatusEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<OpenAIFileStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <OpenAIFileStatusEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -387,9 +400,10 @@ class OpenAIFileStatusEnumTypeTransformer {
 
   const OpenAIFileStatusEnumTypeTransformer._();
 
-  String encode(OpenAIFileStatusEnum data) => data.value;
+  String encode(OpenAIFileStatusEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a OpenAIFileStatusEnum.
+  /// Returns the instance of [OpenAIFileStatusEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -398,6 +412,9 @@ class OpenAIFileStatusEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   OpenAIFileStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is OpenAIFileStatusEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'uploaded': return OpenAIFileStatusEnum.uploaded;
@@ -412,7 +429,7 @@ class OpenAIFileStatusEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [OpenAIFileStatusEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static OpenAIFileStatusEnumTypeTransformer? _instance;
 }
 

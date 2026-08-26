@@ -51,7 +51,7 @@ class RealtimeSessionCreateRequest
      * @var string[]|null
      * @SerializedName("modalities")
      * @Type("array<string>")
-    */
+     */
     #[Assert\All([
         new Assert\Choice(['text', 'audio']),
     ])]
@@ -66,7 +66,7 @@ class RealtimeSessionCreateRequest
      * @var string|null
      * @SerializedName("model")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['gpt-4o-realtime-preview', 'gpt-4o-realtime-preview-2024-10-01', 'gpt-4o-realtime-preview-2024-12-17', 'gpt-4o-mini-realtime-preview', 'gpt-4o-mini-realtime-preview-2024-12-17'])]
     #[Assert\Type("string")]
@@ -78,7 +78,7 @@ class RealtimeSessionCreateRequest
      * @var string|null
      * @SerializedName("instructions")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $instructions = null;
 
@@ -88,7 +88,7 @@ class RealtimeSessionCreateRequest
      * @var string|null
      * @SerializedName("voice")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['alloy', 'ash', 'ballad', 'coral', 'echo', 'sage', 'shimmer', 'verse'])]
     #[Assert\Type("string")]
     protected ?string $voice = null;
@@ -99,7 +99,7 @@ class RealtimeSessionCreateRequest
      * @var string|null
      * @SerializedName("input_audio_format")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['pcm16', 'g711_ulaw', 'g711_alaw'])]
     #[Assert\Type("string")]
     protected ?string $inputAudioFormat = null;
@@ -110,7 +110,7 @@ class RealtimeSessionCreateRequest
      * @var string|null
      * @SerializedName("output_audio_format")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['pcm16', 'g711_ulaw', 'g711_alaw'])]
     #[Assert\Type("string")]
     protected ?string $outputAudioFormat = null;
@@ -119,7 +119,7 @@ class RealtimeSessionCreateRequest
      * @var RealtimeSessionInputAudioTranscription|null
      * @SerializedName("input_audio_transcription")
      * @Type("OpenAPI\Server\Model\RealtimeSessionInputAudioTranscription")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RealtimeSessionInputAudioTranscription")]
     protected ?RealtimeSessionInputAudioTranscription $inputAudioTranscription = null;
 
@@ -127,7 +127,7 @@ class RealtimeSessionCreateRequest
      * @var RealtimeSessionCreateRequestTurnDetection|null
      * @SerializedName("turn_detection")
      * @Type("OpenAPI\Server\Model\RealtimeSessionCreateRequestTurnDetection")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RealtimeSessionCreateRequestTurnDetection")]
     protected ?RealtimeSessionCreateRequestTurnDetection $turnDetection = null;
 
@@ -137,7 +137,7 @@ class RealtimeSessionCreateRequest
      * @var RealtimeResponseCreateParamsToolsInner[]|null
      * @SerializedName("tools")
      * @Type("array<OpenAPI\Server\Model\RealtimeResponseCreateParamsToolsInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\RealtimeResponseCreateParamsToolsInner"),
     ])]
@@ -149,7 +149,7 @@ class RealtimeSessionCreateRequest
      * @var string|null
      * @SerializedName("tool_choice")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $toolChoice = null;
 
@@ -159,7 +159,7 @@ class RealtimeSessionCreateRequest
      * @var float|null
      * @SerializedName("temperature")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     protected ?float $temperature = null;
 
@@ -167,7 +167,7 @@ class RealtimeSessionCreateRequest
      * @var RealtimeResponseCreateParamsMaxResponseOutputTokens|null
      * @SerializedName("max_response_output_tokens")
      * @Type("OpenAPI\Server\Model\RealtimeResponseCreateParamsMaxResponseOutputTokens")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RealtimeResponseCreateParamsMaxResponseOutputTokens")]
     protected ?RealtimeResponseCreateParamsMaxResponseOutputTokens $maxResponseOutputTokens = null;
 
@@ -204,12 +204,12 @@ class RealtimeSessionCreateRequest
     }
 
     /**
-    * Sets modalities.
-    *
-    * @param string[]|null $modalities  The set of modalities the model can respond with. To disable audio, set this to [\"text\"].
-    *
-    * @return $this
-    */
+     * Sets modalities.
+     *
+     * @param string[]|null $modalities  The set of modalities the model can respond with. To disable audio, set this to [\"text\"].
+     *
+     * @return $this
+     */
     public function setModalities(?array $modalities = null): self
     {
         $this->modalities = $modalities;
@@ -231,12 +231,12 @@ class RealtimeSessionCreateRequest
     }
 
     /**
-    * Sets model.
-    *
-    * @param string|null $model  The Realtime model used for this session.
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param string|null $model  The Realtime model used for this session.
+     *
+     * @return $this
+     */
     public function setModel(?string $model): self
     {
         $this->model = $model;
@@ -258,12 +258,12 @@ class RealtimeSessionCreateRequest
     }
 
     /**
-    * Sets instructions.
-    *
-    * @param string|null $instructions  The default system instructions (i.e. system message) prepended to model  calls. This field allows the client to guide the model on desired  responses. The model can be instructed on response content and format,  (e.g. \"be extremely succinct\", \"act friendly\", \"here are examples of good  responses\") and on audio behavior (e.g. \"talk quickly\", \"inject emotion  into your voice\", \"laugh frequently\"). The instructions are not guaranteed  to be followed by the model, but they provide guidance to the model on the  desired behavior.  Note that the server sets default instructions which will be used if this  field is not set and are visible in the `session.created` event at the  start of the session.
-    *
-    * @return $this
-    */
+     * Sets instructions.
+     *
+     * @param string|null $instructions  The default system instructions (i.e. system message) prepended to model  calls. This field allows the client to guide the model on desired  responses. The model can be instructed on response content and format,  (e.g. \"be extremely succinct\", \"act friendly\", \"here are examples of good  responses\") and on audio behavior (e.g. \"talk quickly\", \"inject emotion  into your voice\", \"laugh frequently\"). The instructions are not guaranteed  to be followed by the model, but they provide guidance to the model on the  desired behavior.  Note that the server sets default instructions which will be used if this  field is not set and are visible in the `session.created` event at the  start of the session.
+     *
+     * @return $this
+     */
     public function setInstructions(?string $instructions = null): self
     {
         $this->instructions = $instructions;
@@ -285,12 +285,12 @@ class RealtimeSessionCreateRequest
     }
 
     /**
-    * Sets voice.
-    *
-    * @param string|null $voice  The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`.
-    *
-    * @return $this
-    */
+     * Sets voice.
+     *
+     * @param string|null $voice  The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`.
+     *
+     * @return $this
+     */
     public function setVoice(?string $voice = null): self
     {
         $this->voice = $voice;
@@ -312,12 +312,12 @@ class RealtimeSessionCreateRequest
     }
 
     /**
-    * Sets inputAudioFormat.
-    *
-    * @param string|null $inputAudioFormat  The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
-    *
-    * @return $this
-    */
+     * Sets inputAudioFormat.
+     *
+     * @param string|null $inputAudioFormat  The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
+     *
+     * @return $this
+     */
     public function setInputAudioFormat(?string $inputAudioFormat = null): self
     {
         $this->inputAudioFormat = $inputAudioFormat;
@@ -339,12 +339,12 @@ class RealtimeSessionCreateRequest
     }
 
     /**
-    * Sets outputAudioFormat.
-    *
-    * @param string|null $outputAudioFormat  The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
-    *
-    * @return $this
-    */
+     * Sets outputAudioFormat.
+     *
+     * @param string|null $outputAudioFormat  The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
+     *
+     * @return $this
+     */
     public function setOutputAudioFormat(?string $outputAudioFormat = null): self
     {
         $this->outputAudioFormat = $outputAudioFormat;
@@ -366,12 +366,12 @@ class RealtimeSessionCreateRequest
     }
 
     /**
-    * Sets inputAudioTranscription.
-    *
-    * @param RealtimeSessionInputAudioTranscription|null $inputAudioTranscription
-    *
-    * @return $this
-    */
+     * Sets inputAudioTranscription.
+     *
+     * @param RealtimeSessionInputAudioTranscription|null $inputAudioTranscription
+     *
+     * @return $this
+     */
     public function setInputAudioTranscription(?RealtimeSessionInputAudioTranscription $inputAudioTranscription = null): self
     {
         $this->inputAudioTranscription = $inputAudioTranscription;
@@ -393,12 +393,12 @@ class RealtimeSessionCreateRequest
     }
 
     /**
-    * Sets turnDetection.
-    *
-    * @param RealtimeSessionCreateRequestTurnDetection|null $turnDetection
-    *
-    * @return $this
-    */
+     * Sets turnDetection.
+     *
+     * @param RealtimeSessionCreateRequestTurnDetection|null $turnDetection
+     *
+     * @return $this
+     */
     public function setTurnDetection(?RealtimeSessionCreateRequestTurnDetection $turnDetection = null): self
     {
         $this->turnDetection = $turnDetection;
@@ -420,12 +420,12 @@ class RealtimeSessionCreateRequest
     }
 
     /**
-    * Sets tools.
-    *
-    * @param RealtimeResponseCreateParamsToolsInner[]|null $tools  Tools (functions) available to the model.
-    *
-    * @return $this
-    */
+     * Sets tools.
+     *
+     * @param RealtimeResponseCreateParamsToolsInner[]|null $tools  Tools (functions) available to the model.
+     *
+     * @return $this
+     */
     public function setTools(?array $tools = null): self
     {
         $this->tools = $tools;
@@ -447,12 +447,12 @@ class RealtimeSessionCreateRequest
     }
 
     /**
-    * Sets toolChoice.
-    *
-    * @param string|null $toolChoice  How the model chooses tools. Options are `auto`, `none`, `required`, or  specify a function.
-    *
-    * @return $this
-    */
+     * Sets toolChoice.
+     *
+     * @param string|null $toolChoice  How the model chooses tools. Options are `auto`, `none`, `required`, or  specify a function.
+     *
+     * @return $this
+     */
     public function setToolChoice(?string $toolChoice = null): self
     {
         $this->toolChoice = $toolChoice;
@@ -474,12 +474,12 @@ class RealtimeSessionCreateRequest
     }
 
     /**
-    * Sets temperature.
-    *
-    * @param float|null $temperature  Sampling temperature for the model, limited to [0.6, 1.2]. Defaults to 0.8.
-    *
-    * @return $this
-    */
+     * Sets temperature.
+     *
+     * @param float|null $temperature  Sampling temperature for the model, limited to [0.6, 1.2]. Defaults to 0.8.
+     *
+     * @return $this
+     */
     public function setTemperature(?float $temperature = null): self
     {
         $this->temperature = $temperature;
@@ -501,12 +501,12 @@ class RealtimeSessionCreateRequest
     }
 
     /**
-    * Sets maxResponseOutputTokens.
-    *
-    * @param RealtimeResponseCreateParamsMaxResponseOutputTokens|null $maxResponseOutputTokens
-    *
-    * @return $this
-    */
+     * Sets maxResponseOutputTokens.
+     *
+     * @param RealtimeResponseCreateParamsMaxResponseOutputTokens|null $maxResponseOutputTokens
+     *
+     * @return $this
+     */
     public function setMaxResponseOutputTokens(?RealtimeResponseCreateParamsMaxResponseOutputTokens $maxResponseOutputTokens = null): self
     {
         $this->maxResponseOutputTokens = $maxResponseOutputTokens;

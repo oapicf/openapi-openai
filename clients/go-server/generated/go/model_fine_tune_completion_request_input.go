@@ -24,7 +24,8 @@ type FineTuneCompletionRequestInput struct {
 	Completion string `json:"completion,omitempty"`
 }
 
-// AssertFineTuneCompletionRequestInputRequired checks if the required fields are not zero-ed
+// AssertFineTuneCompletionRequestInputRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertFineTuneCompletionRequestInputRequired(obj FineTuneCompletionRequestInput) error {
 	return nil
 }

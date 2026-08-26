@@ -81,10 +81,8 @@ class RealtimeClientEventResponseCreate {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeClientEventResponseCreate[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeClientEventResponseCreate[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "RealtimeClientEventResponseCreate[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeClientEventResponseCreate[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -144,27 +142,28 @@ class RealtimeClientEventResponseCreate {
 }
 
 /// The event type, must be `response.create`.
-class RealtimeClientEventResponseCreateTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeClientEventResponseCreateTypeEnum._(this.value);
+enum RealtimeClientEventResponseCreateTypeEnum {
+  responsePeriodCreate._(r'response.create'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeClientEventResponseCreateTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const responsePeriodCreate = RealtimeClientEventResponseCreateTypeEnum._(r'response.create');
-
-  /// List of all possible values in this [enum][RealtimeClientEventResponseCreateTypeEnum].
-  static const values = <RealtimeClientEventResponseCreateTypeEnum>[
-    responsePeriodCreate,
-  ];
-
+  /// Returns the instance of [RealtimeClientEventResponseCreateTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeClientEventResponseCreateTypeEnum? fromJson(dynamic value) => RealtimeClientEventResponseCreateTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeClientEventResponseCreateTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeClientEventResponseCreateTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeClientEventResponseCreateTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -186,9 +185,10 @@ class RealtimeClientEventResponseCreateTypeEnumTypeTransformer {
 
   const RealtimeClientEventResponseCreateTypeEnumTypeTransformer._();
 
-  String encode(RealtimeClientEventResponseCreateTypeEnum data) => data.value;
+  String encode(RealtimeClientEventResponseCreateTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeClientEventResponseCreateTypeEnum.
+  /// Returns the instance of [RealtimeClientEventResponseCreateTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -197,6 +197,9 @@ class RealtimeClientEventResponseCreateTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeClientEventResponseCreateTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeClientEventResponseCreateTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'response.create': return RealtimeClientEventResponseCreateTypeEnum.responsePeriodCreate;
@@ -209,7 +212,7 @@ class RealtimeClientEventResponseCreateTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeClientEventResponseCreateTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeClientEventResponseCreateTypeEnumTypeTransformer? _instance;
 }
 

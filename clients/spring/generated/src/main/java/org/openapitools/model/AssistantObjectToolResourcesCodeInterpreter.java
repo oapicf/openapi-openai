@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -11,23 +12,23 @@ import java.util.List;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * AssistantObjectToolResourcesCodeInterpreter
  */
 
 @JsonTypeName("AssistantObject_tool_resources_code_interpreter")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class AssistantObjectToolResourcesCodeInterpreter {
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<String> fileIds = new ArrayList<>();
 
   public AssistantObjectToolResourcesCodeInterpreter fileIds(List<String> fileIds) {
@@ -54,6 +55,7 @@ public class AssistantObjectToolResourcesCodeInterpreter {
     return fileIds;
   }
 
+  @JsonProperty("file_ids")
   public void setFileIds(List<String> fileIds) {
     this.fileIds = fileIds;
   }
@@ -88,11 +90,8 @@ public class AssistantObjectToolResourcesCodeInterpreter {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

@@ -24,16 +24,20 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeServerEventInputAudioBufferSpeechStarted(
 
-    @Schema(example = "null", required = true, description = "The unique ID of the server event.")
+    @Schema(required = true, description = "The unique ID of the server event.")
+    @param:JsonProperty("event_id")
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The event type, must be `input_audio_buffer.speech_started`.")
+    @Schema(required = true, description = "The event type, must be `input_audio_buffer.speech_started`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventInputAudioBufferSpeechStarted.Type,
 
-    @Schema(example = "null", required = true, description = "Milliseconds from the start of all audio written to the buffer during the  session when speech was first detected. This will correspond to the  beginning of audio sent to the model, and thus includes the  `prefix_padding_ms` configured in the Session. ")
+    @Schema(required = true, description = "Milliseconds from the start of all audio written to the buffer during the  session when speech was first detected. This will correspond to the  beginning of audio sent to the model, and thus includes the  `prefix_padding_ms` configured in the Session. ")
+    @param:JsonProperty("audio_start_ms")
     @get:JsonProperty("audio_start_ms", required = true) val audioStartMs: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The ID of the user message item that will be created when speech stops. ")
+    @Schema(required = true, description = "The ID of the user message item that will be created when speech stops. ")
+    @param:JsonProperty("item_id")
     @get:JsonProperty("item_id", required = true) val itemId: kotlin.String
 ) {
 
@@ -50,7 +54,7 @@ data class RealtimeServerEventInputAudioBufferSpeechStarted(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeServerEventInputAudioBufferSpeechStarted'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

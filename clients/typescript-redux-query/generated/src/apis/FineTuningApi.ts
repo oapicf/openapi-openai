@@ -80,7 +80,7 @@ function cancelFineTuningJobRaw<T>(requestParameters: CancelFineTuningJobRequest
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/fine_tuning/jobs/{fine_tuning_job_id}/cancel`.replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(requestParameters.fineTuningJobId))),
+        url: `${runtime.Configuration.basePath}/fine_tuning/jobs/{fine_tuning_job_id}/cancel`.replace('{fine_tuning_job_id}', encodeURIComponent(String(requestParameters.fineTuningJobId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -187,7 +187,7 @@ function listFineTuningEventsRaw<T>(requestParameters: ListFineTuningEventsReque
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/fine_tuning/jobs/{fine_tuning_job_id}/events`.replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(requestParameters.fineTuningJobId))),
+        url: `${runtime.Configuration.basePath}/fine_tuning/jobs/{fine_tuning_job_id}/events`.replace('{fine_tuning_job_id}', encodeURIComponent(String(requestParameters.fineTuningJobId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -245,7 +245,7 @@ function listFineTuningJobCheckpointsRaw<T>(requestParameters: ListFineTuningJob
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints`.replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(requestParameters.fineTuningJobId))),
+        url: `${runtime.Configuration.basePath}/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints`.replace('{fine_tuning_job_id}', encodeURIComponent(String(requestParameters.fineTuningJobId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -346,7 +346,7 @@ function retrieveFineTuningJobRaw<T>(requestParameters: RetrieveFineTuningJobReq
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/fine_tuning/jobs/{fine_tuning_job_id}`.replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(requestParameters.fineTuningJobId))),
+        url: `${runtime.Configuration.basePath}/fine_tuning/jobs/{fine_tuning_job_id}`.replace('{fine_tuning_job_id}', encodeURIComponent(String(requestParameters.fineTuningJobId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,

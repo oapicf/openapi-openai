@@ -190,7 +190,7 @@ RealtimeServerEventResponseFunctionCallArgumentsDelta::getEventId()
 }
 
 void
-RealtimeServerEventResponseFunctionCallArgumentsDelta::setEventId(std::string  event_id)
+RealtimeServerEventResponseFunctionCallArgumentsDelta::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -202,7 +202,7 @@ RealtimeServerEventResponseFunctionCallArgumentsDelta::getType()
 }
 
 void
-RealtimeServerEventResponseFunctionCallArgumentsDelta::setType(std::string  type)
+RealtimeServerEventResponseFunctionCallArgumentsDelta::setType(std::string type)
 {
 	this->type = type;
 }
@@ -214,7 +214,7 @@ RealtimeServerEventResponseFunctionCallArgumentsDelta::getResponseId()
 }
 
 void
-RealtimeServerEventResponseFunctionCallArgumentsDelta::setResponseId(std::string  response_id)
+RealtimeServerEventResponseFunctionCallArgumentsDelta::setResponseId(std::string response_id)
 {
 	this->response_id = response_id;
 }
@@ -226,7 +226,7 @@ RealtimeServerEventResponseFunctionCallArgumentsDelta::getItemId()
 }
 
 void
-RealtimeServerEventResponseFunctionCallArgumentsDelta::setItemId(std::string  item_id)
+RealtimeServerEventResponseFunctionCallArgumentsDelta::setItemId(std::string item_id)
 {
 	this->item_id = item_id;
 }
@@ -238,7 +238,7 @@ RealtimeServerEventResponseFunctionCallArgumentsDelta::getOutputIndex()
 }
 
 void
-RealtimeServerEventResponseFunctionCallArgumentsDelta::setOutputIndex(int  output_index)
+RealtimeServerEventResponseFunctionCallArgumentsDelta::setOutputIndex(int output_index)
 {
 	this->output_index = output_index;
 }
@@ -250,7 +250,7 @@ RealtimeServerEventResponseFunctionCallArgumentsDelta::getCallId()
 }
 
 void
-RealtimeServerEventResponseFunctionCallArgumentsDelta::setCallId(std::string  call_id)
+RealtimeServerEventResponseFunctionCallArgumentsDelta::setCallId(std::string call_id)
 {
 	this->call_id = call_id;
 }
@@ -262,7 +262,7 @@ RealtimeServerEventResponseFunctionCallArgumentsDelta::getDelta()
 }
 
 void
-RealtimeServerEventResponseFunctionCallArgumentsDelta::setDelta(std::string  delta)
+RealtimeServerEventResponseFunctionCallArgumentsDelta::setDelta(std::string delta)
 {
 	this->delta = delta;
 }

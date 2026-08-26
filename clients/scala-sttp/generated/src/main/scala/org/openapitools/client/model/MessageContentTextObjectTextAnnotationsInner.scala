@@ -12,16 +12,30 @@
 package org.openapitools.client.model
 
 
-case class MessageContentTextObjectTextAnnotationsInner(
+sealed trait MessageContentTextObjectTextAnnotationsInner
+object MessageContentTextObjectTextAnnotationsInner {
+}
+
+case class MessageContentTextAnnotationsFileCitationObject(
   /* Always `file_citation`. */
-  `type`: MessageContentTextObjectTextAnnotationsInnerEnums.`Type`,
+  `type`: MessageContentTextAnnotationsFileCitationObjectEnums.`Type`,
   /* The text in the message content that needs to be replaced. */
   text: String,
   fileCitation: MessageContentTextAnnotationsFileCitationObjectFileCitation,
   startIndex: Int,
-  endIndex: Int,
-  filePath: MessageContentTextAnnotationsFilePathObjectFilePath
-)
+  endIndex: Int
+) extends MessageContentTextObjectTextAnnotationsInner
+
+case class MessageContentTextAnnotationsFilePathObject(
+  /* Always `file_path`. */
+  `type`: MessageContentTextAnnotationsFilePathObjectEnums.`Type`,
+  /* The text in the message content that needs to be replaced. */
+  text: String,
+  filePath: MessageContentTextAnnotationsFilePathObjectFilePath,
+  startIndex: Int,
+  endIndex: Int
+) extends MessageContentTextObjectTextAnnotationsInner
+
 
 object MessageContentTextObjectTextAnnotationsInnerEnums {
 

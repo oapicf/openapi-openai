@@ -34,7 +34,7 @@ message RunObject {
     OBJECT_THREAD_RUN = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The Unix timestamp (in seconds) for when the run was created.
   int32 created_at = 295938284;
@@ -58,7 +58,7 @@ message RunObject {
     STATUS_EXPIRED = 8;
   }
 
-  Status status = 355610639;
+  string status = 355610639;
 
   RunObjectRequiredAction required_action = 106090199;
 

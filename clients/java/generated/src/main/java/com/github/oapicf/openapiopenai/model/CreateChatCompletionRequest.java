@@ -65,7 +65,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * CreateChatCompletionRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateChatCompletionRequest {
   public static final String SERIALIZED_NAME_MESSAGES = "messages";
   @SerializedName(SERIALIZED_NAME_MESSAGES)
@@ -324,7 +324,7 @@ public class CreateChatCompletionRequest {
   public static final String SERIALIZED_NAME_STOP = "stop";
   @SerializedName(SERIALIZED_NAME_STOP)
   @javax.annotation.Nullable
-  private CreateChatCompletionRequestStop stop = null;
+  private CreateChatCompletionRequestStop stop;
 
   public static final String SERIALIZED_NAME_STREAM = "stream";
   @SerializedName(SERIALIZED_NAME_STREAM)
@@ -676,7 +676,7 @@ public class CreateChatCompletionRequest {
   }
 
   /**
-   * Get prediction
+   * Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
    * @return prediction
    */
   @javax.annotation.Nullable
@@ -1126,10 +1126,7 @@ public class CreateChatCompletionRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -1172,16 +1169,16 @@ public class CreateChatCompletionRequest {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the json data is an array
-      if (!jsonObj.get("messages").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `messages` to be an array in the JSON string but got `%s`", jsonObj.get("messages").toString()));
+      if (jsonObj.get("messages") != null) {
+        if (!jsonObj.get("messages").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `messages` to be an array in the JSON string but got `%s`", jsonObj.get("messages").toString()));
+        }
+        JsonArray jsonArraymessages = jsonObj.getAsJsonArray("messages");
+        // validate the required field `messages` (array)
+        for (int i = 0; i < jsonArraymessages.size(); i++) {
+          ChatCompletionRequestMessage.validateJsonElement(jsonArraymessages.get(i));
+        }
       }
-
-      JsonArray jsonArraymessages = jsonObj.getAsJsonArray("messages");
-      // validate the required field `messages` (array)
-      for (int i = 0; i < jsonArraymessages.size(); i++) {
-        ChatCompletionRequestMessage.validateJsonElement(jsonArraymessages.get(i));
-      };
       // validate the required field `model`
       CreateChatCompletionRequestModel.validateJsonElement(jsonObj.get("model"));
       if ((jsonObj.get("reasoning_effort") != null && !jsonObj.get("reasoning_effort").isJsonNull()) && !jsonObj.get("reasoning_effort").isJsonPrimitive()) {

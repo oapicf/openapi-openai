@@ -23,7 +23,7 @@ message UserRoleUpdateRequest {
     ROLE_READER = 1;
   }
 
-  Role role = 3506294;
+  string role = 3506294;
 
 }
 

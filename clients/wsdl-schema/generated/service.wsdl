@@ -622,8 +622,8 @@
               <xs:documentation>The type of actor. Is either &#x60;session&#x60; or &#x60;api_key&#x60;.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" name="session" type="xs:anyType" />
-          <xs:element minOccurs="0" name="api_key" type="xs:anyType" />
+          <xs:element minOccurs="0" name="session" type="schemas:AuditLogActorSession" />
+          <xs:element minOccurs="0" name="api_key" type="schemas:AuditLogActorApiKey" />
         </xs:sequence>
       </xs:complexType>
       <xs:complexType name="AuditLogActorApiKey">
@@ -1124,18 +1124,6 @@
           <xs:element minOccurs="0" name="role" type="xs:string">
             <xs:annotation>
               <xs:documentation>The role of the user. Is either &#x60;owner&#x60; or &#x60;member&#x60;.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="AutoChunkingStrategy">
-        <xs:annotation>
-          <xs:documentation>The default strategy. This strategy currently uses a &#x60;max_chunk_size_tokens&#x60; of &#x60;800&#x60; and &#x60;chunk_overlap_tokens&#x60; of &#x60;400&#x60;.</xs:documentation>
-        </xs:annotation>
-        <xs:sequence>
-          <xs:element minOccurs="1" name="type" type="schemas:Type">
-            <xs:annotation>
-              <xs:documentation>Always &#x60;auto&#x60;.</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -2434,7 +2422,11 @@
               <xs:documentation>Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  &#x60;[\&quot;text\&quot;]&#x60;  The &#x60;gpt-4o-audio-preview&#x60; model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  &#x60;[\&quot;text\&quot;, \&quot;audio\&quot;]&#x60; </xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" name="prediction" type="schemas:PredictionContent" />
+          <xs:element minOccurs="0" name="prediction" type="schemas:PredictionContent">
+            <xs:annotation>
+              <xs:documentation>Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
           <xs:element minOccurs="0" name="audio" type="schemas:CreateChatCompletionRequest_audio" />
           <xs:element minOccurs="0" default="0" name="presence_penalty">
             <xs:simpleType>
@@ -3094,7 +3086,11 @@
       </xs:complexType>
       <xs:complexType name="CreateFineTuningJobRequestIntegrationsInner">
         <xs:sequence>
-          <xs:element minOccurs="1" name="type" type="schemas:Type" />
+          <xs:element minOccurs="1" name="type" type="schemas:Type">
+            <xs:annotation>
+              <xs:documentation>The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
           <xs:element minOccurs="1" name="wandb" type="schemas:CreateFineTuningJobRequest_integrations_inner_wandb" />
         </xs:sequence>
       </xs:complexType>
@@ -4373,8 +4369,8 @@
               <xs:documentation>The type of method. Is either &#x60;supervised&#x60; or &#x60;dpo&#x60;.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" name="supervised" type="xs:anyType" />
-          <xs:element minOccurs="0" name="dpo" type="xs:anyType" />
+          <xs:element minOccurs="0" name="supervised" type="schemas:FineTuneSupervisedMethod" />
+          <xs:element minOccurs="0" name="dpo" type="schemas:FineTuneDPOMethod" />
         </xs:sequence>
       </xs:complexType>
       <xs:complexType name="FineTunePreferenceRequestInput">
@@ -5707,7 +5703,11 @@
       </xs:complexType>
       <xs:complexType name="ModifyAssistantRequest">
         <xs:sequence>
-          <xs:element minOccurs="0" name="model" type="xs:string" />
+          <xs:element minOccurs="0" name="model" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
           <xs:element minOccurs="0" name="name">
             <xs:simpleType>
               <xs:annotation>
@@ -9234,16 +9234,6 @@
           <xs:element minOccurs="1" name="static" type="schemas:StaticChunkingStrategy" />
         </xs:sequence>
       </xs:complexType>
-      <xs:complexType name="StaticChunkingStrategyResponseParam">
-        <xs:sequence>
-          <xs:element minOccurs="1" name="type" type="schemas:Type">
-            <xs:annotation>
-              <xs:documentation>Always &#x60;static&#x60;.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="1" name="static" type="schemas:StaticChunkingStrategy" />
-        </xs:sequence>
-      </xs:complexType>
       <xs:complexType name="StaticChunkingStrategyStatic">
         <xs:sequence>
           <xs:element minOccurs="1" name="max_chunk_size_tokens">
@@ -10360,14 +10350,6 @@
           <xs:enumeration value="auto" />
         </xs:restriction>
       </xs:simpleType>
-      <xs:simpleType name="Type">
-        <xs:annotation>
-          <xs:documentation>Always &#x60;auto&#x60;.</xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="auto" />
-        </xs:restriction>
-      </xs:simpleType>
       <xs:simpleType name="Object">
         <xs:annotation>
           <xs:documentation>The object type, which is always &#x60;batch&#x60;.</xs:documentation>
@@ -10803,6 +10785,9 @@
         </xs:restriction>
       </xs:simpleType>
       <xs:simpleType name="Type">
+        <xs:annotation>
+          <xs:documentation>The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. </xs:documentation>
+        </xs:annotation>
         <xs:restriction base="xs:string">
           <xs:enumeration value="wandb" />
         </xs:restriction>
@@ -12791,14 +12776,6 @@
         </xs:annotation>
         <xs:restriction base="xs:string">
           <xs:enumeration value="function" />
-        </xs:restriction>
-      </xs:simpleType>
-      <xs:simpleType name="Type">
-        <xs:annotation>
-          <xs:documentation>Always &#x60;static&#x60;.</xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="static" />
         </xs:restriction>
       </xs:simpleType>
       <xs:simpleType name="Type">

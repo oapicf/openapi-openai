@@ -48,21 +48,19 @@ import org.openapitools.server.models.ProjectUserListResponse
 import org.openapitools.server.models.ProjectUserUpdateRequest
 
 fun Route.ProjectsApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    post<Paths.archiveProject> {
+    post<Paths.archiveProject> { archiveProject ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "archived_at" : 6,
-              "name" : "name",
-              "created_at" : 0,
               "id" : "id",
               "object" : "organization.project",
+              "name" : "name",
+              "created_at" : 0,
+              "archived_at" : 6,
               "status" : "active"
             }"""
             
@@ -74,20 +72,19 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createProject> {
+    post<Paths.createProject> { createProject ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "archived_at" : 6,
-              "name" : "name",
-              "created_at" : 0,
               "id" : "id",
               "object" : "organization.project",
+              "name" : "name",
+              "created_at" : 0,
+              "archived_at" : 6,
               "status" : "active"
             }"""
             
@@ -99,27 +96,26 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createProjectServiceAccount> {
+    post<Paths.createProjectServiceAccount> { createProjectServiceAccount ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "object" : "organization.project.service_account",
+              "id" : "id",
+              "name" : "name",
               "role" : "member",
+              "created_at" : 0,
               "api_key" : {
+                "object" : "organization.project.service_account.api_key",
+                "value" : "value",
                 "name" : "name",
                 "created_at" : 6,
-                "id" : "id",
-                "value" : "value",
-                "object" : "organization.project.service_account.api_key"
-              },
-              "name" : "name",
-              "created_at" : 0,
-              "id" : "id",
-              "object" : "organization.project.service_account"
+                "id" : "id"
+              }
             }"""
             
             when (exampleContentType) {
@@ -130,21 +126,20 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createProjectUser> {
+    post<Paths.createProjectUser> { createProjectUser ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "added_at" : 6,
-              "role" : "owner",
-              "name" : "name",
+              "object" : "organization.project.user",
               "id" : "id",
+              "name" : "name",
               "email" : "email",
-              "object" : "organization.project.user"
+              "role" : "owner",
+              "added_at" : 6
             }"""
             
             when (exampleContentType) {
@@ -155,18 +150,17 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    delete<Paths.deleteProjectApiKey> {
+    delete<Paths.deleteProjectApiKey> { deleteProjectApiKey ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "deleted" : true,
+              "object" : "organization.project.api_key.deleted",
               "id" : "id",
-              "object" : "organization.project.api_key.deleted"
+              "deleted" : true
             }"""
             
             when (exampleContentType) {
@@ -177,18 +171,17 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    delete<Paths.deleteProjectServiceAccount> {
+    delete<Paths.deleteProjectServiceAccount> { deleteProjectServiceAccount ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "deleted" : true,
+              "object" : "organization.project.service_account.deleted",
               "id" : "id",
-              "object" : "organization.project.service_account.deleted"
+              "deleted" : true
             }"""
             
             when (exampleContentType) {
@@ -199,18 +192,17 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    delete<Paths.deleteProjectUser> {
+    delete<Paths.deleteProjectUser> { deleteProjectUser ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "deleted" : true,
+              "object" : "organization.project.user.deleted",
               "id" : "id",
-              "object" : "organization.project.user.deleted"
+              "deleted" : true
             }"""
             
             when (exampleContentType) {
@@ -221,68 +213,67 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listProjectApiKeys> {
+    get<Paths.listProjectApiKeys> { listProjectApiKeys ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "first_id" : "first_id",
+              "object" : "list",
               "data" : [ {
+                "object" : "organization.project.api_key",
+                "redacted_value" : "redacted_value",
+                "name" : "name",
+                "created_at" : 0,
+                "id" : "id",
                 "owner" : {
-                  "service_account" : {
-                    "role" : "owner",
-                    "name" : "name",
-                    "created_at" : 1,
-                    "id" : "id",
-                    "object" : "organization.project.service_account"
-                  },
                   "type" : "user",
                   "user" : {
-                    "added_at" : 6,
-                    "role" : "owner",
-                    "name" : "name",
+                    "object" : "organization.project.user",
                     "id" : "id",
+                    "name" : "name",
                     "email" : "email",
-                    "object" : "organization.project.user"
+                    "role" : "owner",
+                    "added_at" : 6
+                  },
+                  "service_account" : {
+                    "object" : "organization.project.service_account",
+                    "id" : "id",
+                    "name" : "name",
+                    "role" : "owner",
+                    "created_at" : 1
                   }
-                },
+                }
+              }, {
+                "object" : "organization.project.api_key",
+                "redacted_value" : "redacted_value",
                 "name" : "name",
                 "created_at" : 0,
-                "redacted_value" : "redacted_value",
                 "id" : "id",
-                "object" : "organization.project.api_key"
-              }, {
                 "owner" : {
-                  "service_account" : {
-                    "role" : "owner",
-                    "name" : "name",
-                    "created_at" : 1,
-                    "id" : "id",
-                    "object" : "organization.project.service_account"
-                  },
                   "type" : "user",
                   "user" : {
-                    "added_at" : 6,
-                    "role" : "owner",
-                    "name" : "name",
+                    "object" : "organization.project.user",
                     "id" : "id",
+                    "name" : "name",
                     "email" : "email",
-                    "object" : "organization.project.user"
+                    "role" : "owner",
+                    "added_at" : 6
+                  },
+                  "service_account" : {
+                    "object" : "organization.project.service_account",
+                    "id" : "id",
+                    "name" : "name",
+                    "role" : "owner",
+                    "created_at" : 1
                   }
-                },
-                "name" : "name",
-                "created_at" : 0,
-                "redacted_value" : "redacted_value",
-                "id" : "id",
-                "object" : "organization.project.api_key"
+                }
               } ],
+              "first_id" : "first_id",
               "last_id" : "last_id",
-              "has_more" : true,
-              "object" : "list"
+              "has_more" : true
             }"""
             
             when (exampleContentType) {
@@ -293,40 +284,39 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listProjectRateLimits> {
+    get<Paths.listProjectRateLimits> { listProjectRateLimits ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "first_id" : "first_id",
+              "object" : "list",
               "data" : [ {
-                "batch_1_day_max_input_tokens" : 2,
-                "max_tokens_per_1_minute" : 6,
-                "model" : "model",
+                "object" : "project.rate_limit",
                 "id" : "id",
+                "model" : "model",
+                "max_requests_per_1_minute" : 0,
+                "max_tokens_per_1_minute" : 6,
                 "max_images_per_1_minute" : 1,
                 "max_audio_megabytes_per_1_minute" : 5,
-                "max_requests_per_1_minute" : 0,
-                "object" : "project.rate_limit",
-                "max_requests_per_1_day" : 5
+                "max_requests_per_1_day" : 5,
+                "batch_1_day_max_input_tokens" : 2
               }, {
-                "batch_1_day_max_input_tokens" : 2,
-                "max_tokens_per_1_minute" : 6,
-                "model" : "model",
+                "object" : "project.rate_limit",
                 "id" : "id",
+                "model" : "model",
+                "max_requests_per_1_minute" : 0,
+                "max_tokens_per_1_minute" : 6,
                 "max_images_per_1_minute" : 1,
                 "max_audio_megabytes_per_1_minute" : 5,
-                "max_requests_per_1_minute" : 0,
-                "object" : "project.rate_limit",
-                "max_requests_per_1_day" : 5
+                "max_requests_per_1_day" : 5,
+                "batch_1_day_max_input_tokens" : 2
               } ],
+              "first_id" : "first_id",
               "last_id" : "last_id",
-              "has_more" : true,
-              "object" : "list"
+              "has_more" : true
             }"""
             
             when (exampleContentType) {
@@ -337,32 +327,31 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listProjectServiceAccounts> {
+    get<Paths.listProjectServiceAccounts> { listProjectServiceAccounts ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "first_id" : "first_id",
+              "object" : "list",
               "data" : [ {
-                "role" : "owner",
-                "name" : "name",
-                "created_at" : 1,
+                "object" : "organization.project.service_account",
                 "id" : "id",
-                "object" : "organization.project.service_account"
+                "name" : "name",
+                "role" : "owner",
+                "created_at" : 1
               }, {
-                "role" : "owner",
-                "name" : "name",
-                "created_at" : 1,
+                "object" : "organization.project.service_account",
                 "id" : "id",
-                "object" : "organization.project.service_account"
+                "name" : "name",
+                "role" : "owner",
+                "created_at" : 1
               } ],
+              "first_id" : "first_id",
               "last_id" : "last_id",
-              "has_more" : true,
-              "object" : "list"
+              "has_more" : true
             }"""
             
             when (exampleContentType) {
@@ -373,34 +362,33 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listProjectUsers> {
+    get<Paths.listProjectUsers> { listProjectUsers ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "first_id" : "first_id",
+              "object" : "object",
               "data" : [ {
-                "added_at" : 6,
-                "role" : "owner",
-                "name" : "name",
+                "object" : "organization.project.user",
                 "id" : "id",
+                "name" : "name",
                 "email" : "email",
-                "object" : "organization.project.user"
+                "role" : "owner",
+                "added_at" : 6
               }, {
-                "added_at" : 6,
-                "role" : "owner",
-                "name" : "name",
+                "object" : "organization.project.user",
                 "id" : "id",
+                "name" : "name",
                 "email" : "email",
-                "object" : "organization.project.user"
+                "role" : "owner",
+                "added_at" : 6
               } ],
+              "first_id" : "first_id",
               "last_id" : "last_id",
-              "has_more" : true,
-              "object" : "object"
+              "has_more" : true
             }"""
             
             when (exampleContentType) {
@@ -411,34 +399,33 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listProjects> {
+    get<Paths.listProjects> { listProjects ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "first_id" : "first_id",
+              "object" : "list",
               "data" : [ {
-                "archived_at" : 6,
-                "name" : "name",
-                "created_at" : 0,
                 "id" : "id",
                 "object" : "organization.project",
-                "status" : "active"
-              }, {
-                "archived_at" : 6,
                 "name" : "name",
                 "created_at" : 0,
+                "archived_at" : 6,
+                "status" : "active"
+              }, {
                 "id" : "id",
                 "object" : "organization.project",
+                "name" : "name",
+                "created_at" : 0,
+                "archived_at" : 6,
                 "status" : "active"
               } ],
+              "first_id" : "first_id",
               "last_id" : "last_id",
-              "has_more" : true,
-              "object" : "list"
+              "has_more" : true
             }"""
             
             when (exampleContentType) {
@@ -449,20 +436,19 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.modifyProject> {
+    post<Paths.modifyProject> { modifyProject ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "archived_at" : 6,
-              "name" : "name",
-              "created_at" : 0,
               "id" : "id",
               "object" : "organization.project",
+              "name" : "name",
+              "created_at" : 0,
+              "archived_at" : 6,
               "status" : "active"
             }"""
             
@@ -474,21 +460,20 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.modifyProjectUser> {
+    post<Paths.modifyProjectUser> { modifyProjectUser ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "added_at" : 6,
-              "role" : "owner",
-              "name" : "name",
+              "object" : "organization.project.user",
               "id" : "id",
+              "name" : "name",
               "email" : "email",
-              "object" : "organization.project.user"
+              "role" : "owner",
+              "added_at" : 6
             }"""
             
             when (exampleContentType) {
@@ -499,20 +484,19 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.retrieveProject> {
+    get<Paths.retrieveProject> { retrieveProject ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "archived_at" : 6,
-              "name" : "name",
-              "created_at" : 0,
               "id" : "id",
               "object" : "organization.project",
+              "name" : "name",
+              "created_at" : 0,
+              "archived_at" : 6,
               "status" : "active"
             }"""
             
@@ -524,38 +508,37 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.retrieveProjectApiKey> {
+    get<Paths.retrieveProjectApiKey> { retrieveProjectApiKey ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "object" : "organization.project.api_key",
+              "redacted_value" : "redacted_value",
+              "name" : "name",
+              "created_at" : 0,
+              "id" : "id",
               "owner" : {
-                "service_account" : {
-                  "role" : "owner",
-                  "name" : "name",
-                  "created_at" : 1,
-                  "id" : "id",
-                  "object" : "organization.project.service_account"
-                },
                 "type" : "user",
                 "user" : {
-                  "added_at" : 6,
-                  "role" : "owner",
-                  "name" : "name",
+                  "object" : "organization.project.user",
                   "id" : "id",
+                  "name" : "name",
                   "email" : "email",
-                  "object" : "organization.project.user"
+                  "role" : "owner",
+                  "added_at" : 6
+                },
+                "service_account" : {
+                  "object" : "organization.project.service_account",
+                  "id" : "id",
+                  "name" : "name",
+                  "role" : "owner",
+                  "created_at" : 1
                 }
-              },
-              "name" : "name",
-              "created_at" : 0,
-              "redacted_value" : "redacted_value",
-              "id" : "id",
-              "object" : "organization.project.api_key"
+              }
             }"""
             
             when (exampleContentType) {
@@ -566,20 +549,19 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.retrieveProjectServiceAccount> {
+    get<Paths.retrieveProjectServiceAccount> { retrieveProjectServiceAccount ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "role" : "owner",
-              "name" : "name",
-              "created_at" : 1,
+              "object" : "organization.project.service_account",
               "id" : "id",
-              "object" : "organization.project.service_account"
+              "name" : "name",
+              "role" : "owner",
+              "created_at" : 1
             }"""
             
             when (exampleContentType) {
@@ -590,21 +572,20 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.retrieveProjectUser> {
+    get<Paths.retrieveProjectUser> { retrieveProjectUser ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "added_at" : 6,
-              "role" : "owner",
-              "name" : "name",
+              "object" : "organization.project.user",
               "id" : "id",
+              "name" : "name",
               "email" : "email",
-              "object" : "organization.project.user"
+              "role" : "owner",
+              "added_at" : 6
             }"""
             
             when (exampleContentType) {
@@ -615,24 +596,23 @@ fun Route.ProjectsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.updateProjectRateLimits> {
+    post<Paths.updateProjectRateLimits> { updateProjectRateLimits ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "batch_1_day_max_input_tokens" : 2,
-              "max_tokens_per_1_minute" : 6,
-              "model" : "model",
+              "object" : "project.rate_limit",
               "id" : "id",
+              "model" : "model",
+              "max_requests_per_1_minute" : 0,
+              "max_tokens_per_1_minute" : 6,
               "max_images_per_1_minute" : 1,
               "max_audio_megabytes_per_1_minute" : 5,
-              "max_requests_per_1_minute" : 0,
-              "object" : "project.rate_limit",
-              "max_requests_per_1_day" : 5
+              "max_requests_per_1_day" : 5,
+              "batch_1_day_max_input_tokens" : 2
             }"""
             
             when (exampleContentType) {
@@ -643,5 +623,4 @@ fun Route.ProjectsApi() {
         
     }
     }
-
 }

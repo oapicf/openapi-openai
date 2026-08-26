@@ -12,27 +12,32 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  CreateFineTuningJobRequest,
-  FineTuningJob,
-  ListFineTuningJobCheckpointsResponse,
-  ListFineTuningJobEventsResponse,
-  ListPaginatedFineTuningJobsResponse,
-} from '../models/index';
 import {
+    type CreateFineTuningJobRequest,
     CreateFineTuningJobRequestFromJSON,
     CreateFineTuningJobRequestToJSON,
+} from '../models/CreateFineTuningJobRequest';
+import {
+    type FineTuningJob,
     FineTuningJobFromJSON,
     FineTuningJobToJSON,
+} from '../models/FineTuningJob';
+import {
+    type ListFineTuningJobCheckpointsResponse,
     ListFineTuningJobCheckpointsResponseFromJSON,
     ListFineTuningJobCheckpointsResponseToJSON,
+} from '../models/ListFineTuningJobCheckpointsResponse';
+import {
+    type ListFineTuningJobEventsResponse,
     ListFineTuningJobEventsResponseFromJSON,
     ListFineTuningJobEventsResponseToJSON,
+} from '../models/ListFineTuningJobEventsResponse';
+import {
+    type ListPaginatedFineTuningJobsResponse,
     ListPaginatedFineTuningJobsResponseFromJSON,
     ListPaginatedFineTuningJobsResponseToJSON,
-} from '../models/index';
+} from '../models/ListPaginatedFineTuningJobsResponse';
 
 export interface CancelFineTuningJobRequest {
     fineTuningJobId: string;
@@ -69,9 +74,9 @@ export interface RetrieveFineTuningJobRequest {
 export class FineTuningApi extends runtime.BaseAPI {
 
     /**
-     * Immediately cancel a fine-tune job. 
+     * Creates request options for cancelFineTuningJob without sending the request
      */
-    async cancelFineTuningJobRaw(requestParameters: CancelFineTuningJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FineTuningJob>> {
+    async cancelFineTuningJobRequestOpts(requestParameters: CancelFineTuningJobRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['fineTuningJobId'] == null) {
             throw new runtime.RequiredError(
                 'fineTuningJobId',
@@ -93,14 +98,22 @@ export class FineTuningApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/fine_tuning/jobs/{fine_tuning_job_id}/cancel`;
-        urlPath = urlPath.replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(requestParameters['fineTuningJobId'])));
+        urlPath = urlPath.replace('{fine_tuning_job_id}', encodeURIComponent(String(requestParameters['fineTuningJobId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Immediately cancel a fine-tune job. 
+     */
+    async cancelFineTuningJobRaw(requestParameters: CancelFineTuningJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FineTuningJob>> {
+        const requestOptions = await this.cancelFineTuningJobRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => FineTuningJobFromJSON(jsonValue));
     }
@@ -114,9 +127,9 @@ export class FineTuningApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+     * Creates request options for createFineTuningJob without sending the request
      */
-    async createFineTuningJobRaw(requestParameters: CreateFineTuningJobOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FineTuningJob>> {
+    async createFineTuningJobRequestOpts(requestParameters: CreateFineTuningJobOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createFineTuningJobRequest'] == null) {
             throw new runtime.RequiredError(
                 'createFineTuningJobRequest',
@@ -141,13 +154,21 @@ export class FineTuningApi extends runtime.BaseAPI {
 
         let urlPath = `/fine_tuning/jobs`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateFineTuningJobRequestToJSON(requestParameters['createFineTuningJobRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+     */
+    async createFineTuningJobRaw(requestParameters: CreateFineTuningJobOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FineTuningJob>> {
+        const requestOptions = await this.createFineTuningJobRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => FineTuningJobFromJSON(jsonValue));
     }
@@ -161,9 +182,9 @@ export class FineTuningApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get status updates for a fine-tuning job. 
+     * Creates request options for listFineTuningEvents without sending the request
      */
-    async listFineTuningEventsRaw(requestParameters: ListFineTuningEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFineTuningJobEventsResponse>> {
+    async listFineTuningEventsRequestOpts(requestParameters: ListFineTuningEventsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['fineTuningJobId'] == null) {
             throw new runtime.RequiredError(
                 'fineTuningJobId',
@@ -193,14 +214,22 @@ export class FineTuningApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/fine_tuning/jobs/{fine_tuning_job_id}/events`;
-        urlPath = urlPath.replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(requestParameters['fineTuningJobId'])));
+        urlPath = urlPath.replace('{fine_tuning_job_id}', encodeURIComponent(String(requestParameters['fineTuningJobId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get status updates for a fine-tuning job. 
+     */
+    async listFineTuningEventsRaw(requestParameters: ListFineTuningEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFineTuningJobEventsResponse>> {
+        const requestOptions = await this.listFineTuningEventsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListFineTuningJobEventsResponseFromJSON(jsonValue));
     }
@@ -214,9 +243,9 @@ export class FineTuningApi extends runtime.BaseAPI {
     }
 
     /**
-     * List checkpoints for a fine-tuning job. 
+     * Creates request options for listFineTuningJobCheckpoints without sending the request
      */
-    async listFineTuningJobCheckpointsRaw(requestParameters: ListFineTuningJobCheckpointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFineTuningJobCheckpointsResponse>> {
+    async listFineTuningJobCheckpointsRequestOpts(requestParameters: ListFineTuningJobCheckpointsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['fineTuningJobId'] == null) {
             throw new runtime.RequiredError(
                 'fineTuningJobId',
@@ -246,14 +275,22 @@ export class FineTuningApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints`;
-        urlPath = urlPath.replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(requestParameters['fineTuningJobId'])));
+        urlPath = urlPath.replace('{fine_tuning_job_id}', encodeURIComponent(String(requestParameters['fineTuningJobId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List checkpoints for a fine-tuning job. 
+     */
+    async listFineTuningJobCheckpointsRaw(requestParameters: ListFineTuningJobCheckpointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFineTuningJobCheckpointsResponse>> {
+        const requestOptions = await this.listFineTuningJobCheckpointsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListFineTuningJobCheckpointsResponseFromJSON(jsonValue));
     }
@@ -267,9 +304,9 @@ export class FineTuningApi extends runtime.BaseAPI {
     }
 
     /**
-     * List your organization\'s fine-tuning jobs 
+     * Creates request options for listPaginatedFineTuningJobs without sending the request
      */
-    async listPaginatedFineTuningJobsRaw(requestParameters: ListPaginatedFineTuningJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListPaginatedFineTuningJobsResponse>> {
+    async listPaginatedFineTuningJobsRequestOpts(requestParameters: ListPaginatedFineTuningJobsRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['after'] != null) {
@@ -293,12 +330,20 @@ export class FineTuningApi extends runtime.BaseAPI {
 
         let urlPath = `/fine_tuning/jobs`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List your organization\'s fine-tuning jobs 
+     */
+    async listPaginatedFineTuningJobsRaw(requestParameters: ListPaginatedFineTuningJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListPaginatedFineTuningJobsResponse>> {
+        const requestOptions = await this.listPaginatedFineTuningJobsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListPaginatedFineTuningJobsResponseFromJSON(jsonValue));
     }
@@ -312,9 +357,9 @@ export class FineTuningApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+     * Creates request options for retrieveFineTuningJob without sending the request
      */
-    async retrieveFineTuningJobRaw(requestParameters: RetrieveFineTuningJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FineTuningJob>> {
+    async retrieveFineTuningJobRequestOpts(requestParameters: RetrieveFineTuningJobRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['fineTuningJobId'] == null) {
             throw new runtime.RequiredError(
                 'fineTuningJobId',
@@ -336,14 +381,22 @@ export class FineTuningApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/fine_tuning/jobs/{fine_tuning_job_id}`;
-        urlPath = urlPath.replace(`{${"fine_tuning_job_id"}}`, encodeURIComponent(String(requestParameters['fineTuningJobId'])));
+        urlPath = urlPath.replace('{fine_tuning_job_id}', encodeURIComponent(String(requestParameters['fineTuningJobId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
+     */
+    async retrieveFineTuningJobRaw(requestParameters: RetrieveFineTuningJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FineTuningJob>> {
+        const requestOptions = await this.retrieveFineTuningJobRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => FineTuningJobFromJSON(jsonValue));
     }

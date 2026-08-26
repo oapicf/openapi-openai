@@ -33,7 +33,7 @@ class  RealtimeResponse_usage
 {
 public:
     RealtimeResponse_usage();
-    virtual ~RealtimeResponse_usage() = default;
+    virtual ~RealtimeResponse_usage();
 
 
     /// <summary>

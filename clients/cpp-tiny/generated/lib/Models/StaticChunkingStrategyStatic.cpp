@@ -85,7 +85,7 @@ Static_Chunking_Strategy_static::getMaxChunkSizeTokens()
 }
 
 void
-Static_Chunking_Strategy_static::setMaxChunkSizeTokens(int  max_chunk_size_tokens)
+Static_Chunking_Strategy_static::setMaxChunkSizeTokens(int max_chunk_size_tokens)
 {
 	this->max_chunk_size_tokens = max_chunk_size_tokens;
 }
@@ -97,7 +97,7 @@ Static_Chunking_Strategy_static::getChunkOverlapTokens()
 }
 
 void
-Static_Chunking_Strategy_static::setChunkOverlapTokens(int  chunk_overlap_tokens)
+Static_Chunking_Strategy_static::setChunkOverlapTokens(int chunk_overlap_tokens)
 {
 	this->chunk_overlap_tokens = chunk_overlap_tokens;
 }

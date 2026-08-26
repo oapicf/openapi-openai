@@ -94,8 +94,9 @@ class _$ChatCompletionRequestMessageContentPartImageImageUrlSerializer implement
         case r'detail':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum),
-          ) as ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum;
+            specifiedType: const FullType.nullable(ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum),
+          ) as ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum?;
+          if (valueDes == null) continue;
           result.detail = valueDes;
           break;
         default:

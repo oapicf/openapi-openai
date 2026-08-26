@@ -98,8 +98,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateModerationResponse" />
     /// </summary>
-    public class CreateModerationResponseJsonConverter : JsonConverter<CreateModerationResponse>
+    public partial class CreateModerationResponseJsonConverter : JsonConverter<CreateModerationResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateModerationResponseJsonConverter" /> class.
+        /// </summary>
+        public CreateModerationResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateModerationResponse" />
         /// </summary>

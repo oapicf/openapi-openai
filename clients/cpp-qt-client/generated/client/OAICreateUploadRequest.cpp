@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateUploadRequest::OAICreateUploadRequest(QString json) {
+OAICreateUploadRequest::OAICreateUploadRequest(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -47,7 +47,7 @@ void OAICreateUploadRequest::initializeModel() {
     m_mime_type_isValid = false;
 }
 
-void OAICreateUploadRequest::fromJson(QString jsonString) {
+void OAICreateUploadRequest::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

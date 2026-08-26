@@ -72,10 +72,12 @@ class RunStepDetailsToolCallsFileSearchResultObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepDetailsToolCallsFileSearchResultObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepDetailsToolCallsFileSearchResultObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'file_id'), 'Required key "RunStepDetailsToolCallsFileSearchResultObject[file_id]" is missing from JSON.');
+        assert(json[r'file_id'] != null, 'Required key "RunStepDetailsToolCallsFileSearchResultObject[file_id]" has a null value in JSON.');
+        assert(json.containsKey(r'file_name'), 'Required key "RunStepDetailsToolCallsFileSearchResultObject[file_name]" is missing from JSON.');
+        assert(json[r'file_name'] != null, 'Required key "RunStepDetailsToolCallsFileSearchResultObject[file_name]" has a null value in JSON.');
+        assert(json.containsKey(r'score'), 'Required key "RunStepDetailsToolCallsFileSearchResultObject[score]" is missing from JSON.');
+        assert(json[r'score'] != null, 'Required key "RunStepDetailsToolCallsFileSearchResultObject[score]" has a null value in JSON.');
         return true;
       }());
 

@@ -47,6 +47,8 @@ AuditLog::AuditLog()
     
 }
 
+AuditLog::~AuditLog() = default;
+
 void AuditLog::validate() const
 {
     std::stringstream msg;

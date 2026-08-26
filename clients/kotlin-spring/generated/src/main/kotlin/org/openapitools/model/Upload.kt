@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.OpenAIFile
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -30,32 +33,45 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class Upload(
 
-    @Schema(example = "null", required = true, description = "The Upload unique identifier, which can be referenced in API endpoints.")
+    @Schema(required = true, description = "The Upload unique identifier, which can be referenced in API endpoints.")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The Unix timestamp (in seconds) for when the Upload was created.")
+    @Schema(required = true, description = "The Unix timestamp (in seconds) for when the Upload was created.")
+    @param:JsonProperty("created_at")
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The name of the file to be uploaded.")
+    @Schema(required = true, description = "The name of the file to be uploaded.")
+    @param:JsonProperty("filename")
     @get:JsonProperty("filename", required = true) val filename: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The intended number of bytes to be uploaded.")
+    @Schema(required = true, description = "The intended number of bytes to be uploaded.")
+    @param:JsonProperty("bytes")
     @get:JsonProperty("bytes", required = true) val bytes: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The intended purpose of the file. [Please refer here](/docs/api-reference/files/object#files/object-purpose) for acceptable values.")
+    @Schema(required = true, description = "The intended purpose of the file. [Please refer here](/docs/api-reference/files/object#files/object-purpose) for acceptable values.")
+    @param:JsonProperty("purpose")
     @get:JsonProperty("purpose", required = true) val purpose: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The status of the Upload.")
+    @Schema(required = true, description = "The status of the Upload.")
+    @param:JsonProperty("status")
     @get:JsonProperty("status", required = true) val status: Upload.Status,
 
-    @Schema(example = "null", required = true, description = "The Unix timestamp (in seconds) for when the Upload was created.")
+    @Schema(required = true, description = "The Unix timestamp (in seconds) for when the Upload was created.")
+    @param:JsonProperty("expires_at")
     @get:JsonProperty("expires_at", required = true) val expiresAt: kotlin.Int,
 
-    @Schema(example = "null", description = "The object type, which is always \"upload\".")
+    @Schema(description = "The object type, which is always \"upload\".")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("object")
     @get:JsonProperty("object") val `object`: Upload.`Object`? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("file")
     @get:JsonProperty("file") val file: OpenAIFile? = null
 ) {
 
@@ -75,7 +91,7 @@ data class Upload(
             @JsonCreator
             fun forValue(value: kotlin.String): Status {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Upload'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Status'")
             }
         }
     }
@@ -93,7 +109,7 @@ data class Upload(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Upload'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }

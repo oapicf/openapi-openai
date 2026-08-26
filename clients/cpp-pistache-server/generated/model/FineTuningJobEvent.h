@@ -33,7 +33,7 @@ class  FineTuningJobEvent
 {
 public:
     FineTuningJobEvent();
-    virtual ~FineTuningJobEvent() = default;
+    virtual ~FineTuningJobEvent();
 
 
     /// <summary>

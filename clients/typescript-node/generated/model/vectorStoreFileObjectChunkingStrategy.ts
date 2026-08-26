@@ -13,7 +13,7 @@
 import { RequestFile } from './models';
 import { OtherChunkingStrategyResponseParam } from './otherChunkingStrategyResponseParam';
 import { StaticChunkingStrategy } from './staticChunkingStrategy';
-import { StaticChunkingStrategyResponseParam } from './staticChunkingStrategyResponseParam';
+import { StaticChunkingStrategyRequestParam } from './staticChunkingStrategyRequestParam';
 
 /**
 * The strategy used to chunk the file.

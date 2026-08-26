@@ -31,11 +31,11 @@ static run_step_details_tool_calls_file_search_object_t *run_step_details_tool_c
     if (!run_step_details_tool_calls_file_search_object_local_var) {
         return NULL;
     }
+    memset(run_step_details_tool_calls_file_search_object_local_var, 0, sizeof(run_step_details_tool_calls_file_search_object_t));
+    run_step_details_tool_calls_file_search_object_local_var->_library_owned = 1;
     run_step_details_tool_calls_file_search_object_local_var->id = id;
     run_step_details_tool_calls_file_search_object_local_var->type = type;
     run_step_details_tool_calls_file_search_object_local_var->file_search = file_search;
-
-    run_step_details_tool_calls_file_search_object_local_var->_library_owned = 1;
     return run_step_details_tool_calls_file_search_object_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) run_step_details_tool_calls_file_search_object_t *ru
     openai_api_run_step_details_tool_calls_file_search_object_TYPE_e type,
     run_step_details_tool_calls_file_search_object_file_search_t *file_search
     ) {
-    return run_step_details_tool_calls_file_search_object_create_internal (
+    run_step_details_tool_calls_file_search_object_t *result = run_step_details_tool_calls_file_search_object_create_internal (
         id,
         type,
         file_search
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_step_details_tool_calls_file_search_object_free(run_step_details_tool_calls_file_search_object_t *run_step_details_tool_calls_file_search_object) {
@@ -118,6 +121,8 @@ run_step_details_tool_calls_file_search_object_t *run_step_details_tool_calls_fi
 
     run_step_details_tool_calls_file_search_object_t *run_step_details_tool_calls_file_search_object_local_var = NULL;
 
+    char *id_local_str = NULL;
+
     // define the local variable for run_step_details_tool_calls_file_search_object->file_search
     run_step_details_tool_calls_file_search_object_file_search_t *file_search_local_nonprim = NULL;
 
@@ -166,14 +171,24 @@ run_step_details_tool_calls_file_search_object_t *run_step_details_tool_calls_fi
     file_search_local_nonprim = run_step_details_tool_calls_file_search_object_file_search_parseFromJSON(file_search); //nonprimitive
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     run_step_details_tool_calls_file_search_object_local_var = run_step_details_tool_calls_file_search_object_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         typeVariable,
         file_search_local_nonprim
         );
 
+    if (!run_step_details_tool_calls_file_search_object_local_var) {
+        goto end;
+    }
+
     return run_step_details_tool_calls_file_search_object_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     if (file_search_local_nonprim) {
         run_step_details_tool_calls_file_search_object_file_search_free(file_search_local_nonprim);
         file_search_local_nonprim = NULL;

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **String** | The object type, which is always `organization.invite.deleted` | 
+**object** | **Object** | The object type, which is always `organization.invite.deleted` (enum: organization.invite.deleted) | 
 **id** | **String** |  | 
 **deleted** | **bool** |  | 
 

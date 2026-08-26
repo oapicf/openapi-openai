@@ -67,10 +67,14 @@ class ArrayOfContentPartsInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ArrayOfContentPartsInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ArrayOfContentPartsInner[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "ArrayOfContentPartsInner[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "ArrayOfContentPartsInner[type]" has a null value in JSON.');
+        assert(json.containsKey(r'image_file'), 'Required key "ArrayOfContentPartsInner[image_file]" is missing from JSON.');
+        assert(json[r'image_file'] != null, 'Required key "ArrayOfContentPartsInner[image_file]" has a null value in JSON.');
+        assert(json.containsKey(r'image_url'), 'Required key "ArrayOfContentPartsInner[image_url]" is missing from JSON.');
+        assert(json[r'image_url'] != null, 'Required key "ArrayOfContentPartsInner[image_url]" has a null value in JSON.');
+        assert(json.containsKey(r'text'), 'Required key "ArrayOfContentPartsInner[text]" is missing from JSON.');
+        assert(json[r'text'] != null, 'Required key "ArrayOfContentPartsInner[text]" has a null value in JSON.');
         return true;
       }());
 
@@ -134,31 +138,30 @@ class ArrayOfContentPartsInner {
 }
 
 /// Always `image_file`.
-class ArrayOfContentPartsInnerTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ArrayOfContentPartsInnerTypeEnum._(this.value);
+enum ArrayOfContentPartsInnerTypeEnum {
+  imageFile._(r'image_file'),
+  imageUrl._(r'image_url'),
+  text._(r'text'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ArrayOfContentPartsInnerTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const imageFile = ArrayOfContentPartsInnerTypeEnum._(r'image_file');
-  static const imageUrl = ArrayOfContentPartsInnerTypeEnum._(r'image_url');
-  static const text = ArrayOfContentPartsInnerTypeEnum._(r'text');
-
-  /// List of all possible values in this [enum][ArrayOfContentPartsInnerTypeEnum].
-  static const values = <ArrayOfContentPartsInnerTypeEnum>[
-    imageFile,
-    imageUrl,
-    text,
-  ];
-
+  /// Returns the instance of [ArrayOfContentPartsInnerTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ArrayOfContentPartsInnerTypeEnum? fromJson(dynamic value) => ArrayOfContentPartsInnerTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ArrayOfContentPartsInnerTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ArrayOfContentPartsInnerTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ArrayOfContentPartsInnerTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -180,9 +183,10 @@ class ArrayOfContentPartsInnerTypeEnumTypeTransformer {
 
   const ArrayOfContentPartsInnerTypeEnumTypeTransformer._();
 
-  String encode(ArrayOfContentPartsInnerTypeEnum data) => data.value;
+  String encode(ArrayOfContentPartsInnerTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ArrayOfContentPartsInnerTypeEnum.
+  /// Returns the instance of [ArrayOfContentPartsInnerTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -191,6 +195,9 @@ class ArrayOfContentPartsInnerTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ArrayOfContentPartsInnerTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ArrayOfContentPartsInnerTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'image_file': return ArrayOfContentPartsInnerTypeEnum.imageFile;
@@ -205,7 +212,7 @@ class ArrayOfContentPartsInnerTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ArrayOfContentPartsInnerTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ArrayOfContentPartsInnerTypeEnumTypeTransformer? _instance;
 }
 

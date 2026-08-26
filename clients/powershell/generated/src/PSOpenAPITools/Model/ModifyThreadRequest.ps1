@@ -41,8 +41,8 @@ function Initialize-ModifyThreadRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "tool_resources" = ${ToolResources}
-            "metadata" = ${Metadata}
+            'tool_resources' = ${ToolResources}
+            'metadata' = ${Metadata}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToModifyThreadRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ModifyThreadRequest
-        $AllProperties = ("tool_resources", "metadata")
+        $AllProperties = ('tool_resources', 'metadata')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tool_resources"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tool_resources'))) { #optional property not found
             $ToolResources = $null
         } else {
-            $ToolResources = $JsonParameters.PSobject.Properties["tool_resources"].value
+            $ToolResources = $JsonParameters.PSobject.Properties['tool_resources'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) { #optional property not found
             $Metadata = $null
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "tool_resources" = ${ToolResources}
-            "metadata" = ${Metadata}
+            'tool_resources' = ${ToolResources}
+            'metadata' = ${Metadata}
         }
 
         return $PSO

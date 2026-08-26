@@ -32,7 +32,7 @@ class  UsageCompletionsResult
 {
 public:
     UsageCompletionsResult();
-    virtual ~UsageCompletionsResult() = default;
+    virtual ~UsageCompletionsResult();
 
 
     /// <summary>

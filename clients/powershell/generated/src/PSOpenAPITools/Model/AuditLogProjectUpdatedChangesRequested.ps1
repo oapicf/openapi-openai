@@ -36,7 +36,7 @@ function Initialize-AuditLogProjectUpdatedChangesRequested {
 
 
         $PSO = [PSCustomObject]@{
-            "title" = ${Title}
+            'title' = ${Title}
         }
 
 
@@ -74,21 +74,21 @@ function ConvertFrom-JsonToAuditLogProjectUpdatedChangesRequested {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AuditLogProjectUpdatedChangesRequested
-        $AllProperties = ("title")
+        $AllProperties = ('title')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "title"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'title'))) { #optional property not found
             $Title = $null
         } else {
-            $Title = $JsonParameters.PSobject.Properties["title"].value
+            $Title = $JsonParameters.PSobject.Properties['title'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "title" = ${Title}
+            'title' = ${Title}
         }
 
         return $PSO

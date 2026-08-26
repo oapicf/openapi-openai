@@ -19,14 +19,14 @@ import (
 
 // CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy - The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.
 type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy struct {
-	AutoChunkingStrategy *AutoChunkingStrategy
+	AutoChunkingStrategyRequestParam *AutoChunkingStrategyRequestParam
 	StaticChunkingStrategy *StaticChunkingStrategy
 }
 
-// AutoChunkingStrategyAsCreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy is a convenience function that returns AutoChunkingStrategy wrapped in CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
-func AutoChunkingStrategyAsCreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy(v *AutoChunkingStrategy) CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy {
+// AutoChunkingStrategyRequestParamAsCreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy is a convenience function that returns AutoChunkingStrategyRequestParam wrapped in CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
+func AutoChunkingStrategyRequestParamAsCreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy(v *AutoChunkingStrategyRequestParam) CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy {
 	return CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy{
-		AutoChunkingStrategy: v,
+		AutoChunkingStrategyRequestParam: v,
 	}
 }
 
@@ -42,21 +42,21 @@ func StaticChunkingStrategyAsCreateAssistantRequestToolResourcesFileSearchVector
 func (dst *CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into AutoChunkingStrategy
-	err = newStrictDecoder(data).Decode(&dst.AutoChunkingStrategy)
+	// try to unmarshal data into AutoChunkingStrategyRequestParam
+	err = newStrictDecoder(data).Decode(&dst.AutoChunkingStrategyRequestParam)
 	if err == nil {
-		jsonAutoChunkingStrategy, _ := json.Marshal(dst.AutoChunkingStrategy)
-		if string(jsonAutoChunkingStrategy) == "{}" { // empty struct
-			dst.AutoChunkingStrategy = nil
+		jsonAutoChunkingStrategyRequestParam, _ := json.Marshal(dst.AutoChunkingStrategyRequestParam)
+		if string(jsonAutoChunkingStrategyRequestParam) == "{}" { // empty struct
+			dst.AutoChunkingStrategyRequestParam = nil
 		} else {
-			if err = validator.Validate(dst.AutoChunkingStrategy); err != nil {
-				dst.AutoChunkingStrategy = nil
+			if err = validator.Validate(dst.AutoChunkingStrategyRequestParam); err != nil {
+				dst.AutoChunkingStrategyRequestParam = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.AutoChunkingStrategy = nil
+		dst.AutoChunkingStrategyRequestParam = nil
 	}
 
 	// try to unmarshal data into StaticChunkingStrategy
@@ -78,21 +78,30 @@ func (dst *CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkin
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.AutoChunkingStrategy = nil
+		dst.AutoChunkingStrategyRequestParam = nil
 		dst.StaticChunkingStrategy = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy)")
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy)")
+        if err != nil {
+            return fmt.Errorf("data failed to match schemas in oneOf(CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy): %v", err)
+        } else {
+            return fmt.Errorf("data failed to match schemas in oneOf(CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy)")
+        }
+        if err != nil {
+            return fmt.Errorf("data failed to match schemas in oneOf(CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy): %v", err)
+        } else {
+            return fmt.Errorf("data failed to match schemas in oneOf(CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy)")
+        }
 	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy) MarshalJSON() ([]byte, error) {
-	if src.AutoChunkingStrategy != nil {
-		return json.Marshal(&src.AutoChunkingStrategy)
+	if src.AutoChunkingStrategyRequestParam != nil {
+		return json.Marshal(&src.AutoChunkingStrategyRequestParam)
 	}
 
 	if src.StaticChunkingStrategy != nil {
@@ -107,8 +116,8 @@ func (obj *CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkin
 	if obj == nil {
 		return nil
 	}
-	if obj.AutoChunkingStrategy != nil {
-		return obj.AutoChunkingStrategy
+	if obj.AutoChunkingStrategyRequestParam != nil {
+		return obj.AutoChunkingStrategyRequestParam
 	}
 
 	if obj.StaticChunkingStrategy != nil {
@@ -121,8 +130,8 @@ func (obj *CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkin
 
 // Get the actual instance value
 func (obj CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy) GetActualInstanceValue() (interface{}) {
-	if obj.AutoChunkingStrategy != nil {
-		return *obj.AutoChunkingStrategy
+	if obj.AutoChunkingStrategyRequestParam != nil {
+		return *obj.AutoChunkingStrategyRequestParam
 	}
 
 	if obj.StaticChunkingStrategy != nil {

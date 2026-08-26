@@ -49,7 +49,7 @@ class CreateAssistantRequestToolResourcesFileSearch
      * @var string[]|null
      * @SerializedName("vector_store_ids")
      * @Type("array<string>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("string"),
     ])]
@@ -62,7 +62,7 @@ class CreateAssistantRequestToolResourcesFileSearch
      * @var CreateAssistantRequestToolResourcesFileSearchVectorStoresInner[]|null
      * @SerializedName("vector_stores")
      * @Type("array<OpenAPI\Server\Model\CreateAssistantRequestToolResourcesFileSearchVectorStoresInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\CreateAssistantRequestToolResourcesFileSearchVectorStoresInner"),
     ])]
@@ -92,12 +92,12 @@ class CreateAssistantRequestToolResourcesFileSearch
     }
 
     /**
-    * Sets vectorStoreIds.
-    *
-    * @param string[]|null $vectorStoreIds  The [vector store](/docs/api-reference/vector-stores/object) attached to this assistant. There can be a maximum of 1 vector store attached to the assistant.
-    *
-    * @return $this
-    */
+     * Sets vectorStoreIds.
+     *
+     * @param string[]|null $vectorStoreIds  The [vector store](/docs/api-reference/vector-stores/object) attached to this assistant. There can be a maximum of 1 vector store attached to the assistant.
+     *
+     * @return $this
+     */
     public function setVectorStoreIds(?array $vectorStoreIds = null): self
     {
         $this->vectorStoreIds = $vectorStoreIds;
@@ -119,12 +119,12 @@ class CreateAssistantRequestToolResourcesFileSearch
     }
 
     /**
-    * Sets vectorStores.
-    *
-    * @param CreateAssistantRequestToolResourcesFileSearchVectorStoresInner[]|null $vectorStores  A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this assistant. There can be a maximum of 1 vector store attached to the assistant.
-    *
-    * @return $this
-    */
+     * Sets vectorStores.
+     *
+     * @param CreateAssistantRequestToolResourcesFileSearchVectorStoresInner[]|null $vectorStores  A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this assistant. There can be a maximum of 1 vector store attached to the assistant.
+     *
+     * @return $this
+     */
     public function setVectorStores(?array $vectorStores = null): self
     {
         $this->vectorStores = $vectorStores;

@@ -20,7 +20,7 @@ import (
 // VectorStoreFileObjectChunkingStrategy - The strategy used to chunk the file.
 type VectorStoreFileObjectChunkingStrategy struct {
 	OtherChunkingStrategyResponseParam *OtherChunkingStrategyResponseParam
-	StaticChunkingStrategyResponseParam *StaticChunkingStrategyResponseParam
+	StaticChunkingStrategyRequestParam *StaticChunkingStrategyRequestParam
 }
 
 // OtherChunkingStrategyResponseParamAsVectorStoreFileObjectChunkingStrategy is a convenience function that returns OtherChunkingStrategyResponseParam wrapped in VectorStoreFileObjectChunkingStrategy
@@ -30,10 +30,10 @@ func OtherChunkingStrategyResponseParamAsVectorStoreFileObjectChunkingStrategy(v
 	}
 }
 
-// StaticChunkingStrategyResponseParamAsVectorStoreFileObjectChunkingStrategy is a convenience function that returns StaticChunkingStrategyResponseParam wrapped in VectorStoreFileObjectChunkingStrategy
-func StaticChunkingStrategyResponseParamAsVectorStoreFileObjectChunkingStrategy(v *StaticChunkingStrategyResponseParam) VectorStoreFileObjectChunkingStrategy {
+// StaticChunkingStrategyRequestParamAsVectorStoreFileObjectChunkingStrategy is a convenience function that returns StaticChunkingStrategyRequestParam wrapped in VectorStoreFileObjectChunkingStrategy
+func StaticChunkingStrategyRequestParamAsVectorStoreFileObjectChunkingStrategy(v *StaticChunkingStrategyRequestParam) VectorStoreFileObjectChunkingStrategy {
 	return VectorStoreFileObjectChunkingStrategy{
-		StaticChunkingStrategyResponseParam: v,
+		StaticChunkingStrategyRequestParam: v,
 	}
 }
 
@@ -59,33 +59,42 @@ func (dst *VectorStoreFileObjectChunkingStrategy) UnmarshalJSON(data []byte) err
 		dst.OtherChunkingStrategyResponseParam = nil
 	}
 
-	// try to unmarshal data into StaticChunkingStrategyResponseParam
-	err = newStrictDecoder(data).Decode(&dst.StaticChunkingStrategyResponseParam)
+	// try to unmarshal data into StaticChunkingStrategyRequestParam
+	err = newStrictDecoder(data).Decode(&dst.StaticChunkingStrategyRequestParam)
 	if err == nil {
-		jsonStaticChunkingStrategyResponseParam, _ := json.Marshal(dst.StaticChunkingStrategyResponseParam)
-		if string(jsonStaticChunkingStrategyResponseParam) == "{}" { // empty struct
-			dst.StaticChunkingStrategyResponseParam = nil
+		jsonStaticChunkingStrategyRequestParam, _ := json.Marshal(dst.StaticChunkingStrategyRequestParam)
+		if string(jsonStaticChunkingStrategyRequestParam) == "{}" { // empty struct
+			dst.StaticChunkingStrategyRequestParam = nil
 		} else {
-			if err = validator.Validate(dst.StaticChunkingStrategyResponseParam); err != nil {
-				dst.StaticChunkingStrategyResponseParam = nil
+			if err = validator.Validate(dst.StaticChunkingStrategyRequestParam); err != nil {
+				dst.StaticChunkingStrategyRequestParam = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.StaticChunkingStrategyResponseParam = nil
+		dst.StaticChunkingStrategyRequestParam = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.OtherChunkingStrategyResponseParam = nil
-		dst.StaticChunkingStrategyResponseParam = nil
+		dst.StaticChunkingStrategyRequestParam = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(VectorStoreFileObjectChunkingStrategy)")
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(VectorStoreFileObjectChunkingStrategy)")
+        if err != nil {
+            return fmt.Errorf("data failed to match schemas in oneOf(VectorStoreFileObjectChunkingStrategy): %v", err)
+        } else {
+            return fmt.Errorf("data failed to match schemas in oneOf(VectorStoreFileObjectChunkingStrategy)")
+        }
+        if err != nil {
+            return fmt.Errorf("data failed to match schemas in oneOf(VectorStoreFileObjectChunkingStrategy): %v", err)
+        } else {
+            return fmt.Errorf("data failed to match schemas in oneOf(VectorStoreFileObjectChunkingStrategy)")
+        }
 	}
 }
 
@@ -95,8 +104,8 @@ func (src VectorStoreFileObjectChunkingStrategy) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.OtherChunkingStrategyResponseParam)
 	}
 
-	if src.StaticChunkingStrategyResponseParam != nil {
-		return json.Marshal(&src.StaticChunkingStrategyResponseParam)
+	if src.StaticChunkingStrategyRequestParam != nil {
+		return json.Marshal(&src.StaticChunkingStrategyRequestParam)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -111,8 +120,8 @@ func (obj *VectorStoreFileObjectChunkingStrategy) GetActualInstance() (interface
 		return obj.OtherChunkingStrategyResponseParam
 	}
 
-	if obj.StaticChunkingStrategyResponseParam != nil {
-		return obj.StaticChunkingStrategyResponseParam
+	if obj.StaticChunkingStrategyRequestParam != nil {
+		return obj.StaticChunkingStrategyRequestParam
 	}
 
 	// all schemas are nil
@@ -125,8 +134,8 @@ func (obj VectorStoreFileObjectChunkingStrategy) GetActualInstanceValue() (inter
 		return *obj.OtherChunkingStrategyResponseParam
 	}
 
-	if obj.StaticChunkingStrategyResponseParam != nil {
-		return *obj.StaticChunkingStrategyResponseParam
+	if obj.StaticChunkingStrategyRequestParam != nil {
+		return *obj.StaticChunkingStrategyRequestParam
 	}
 
 	// all schemas are nil

@@ -15,12 +15,12 @@ static error_t *error_create_internal(
     if (!error_local_var) {
         return NULL;
     }
+    memset(error_local_var, 0, sizeof(error_t));
+    error_local_var->_library_owned = 1;
     error_local_var->code = code;
     error_local_var->message = message;
     error_local_var->param = param;
     error_local_var->type = type;
-
-    error_local_var->_library_owned = 1;
     return error_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) error_t *error_create(
     char *param,
     char *type
     ) {
-    return error_create_internal (
+    error_t *result = error_create_internal (
         code,
         message,
         param,
         type
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void error_free(error_t *error) {
@@ -116,6 +119,14 @@ error_t *error_parseFromJSON(cJSON *errorJSON){
 
     error_t *error_local_var = NULL;
 
+    char *code_local_str = NULL;
+
+    char *message_local_str = NULL;
+
+    char *param_local_str = NULL;
+
+    char *type_local_str = NULL;
+
     // error->code
     cJSON *code = cJSON_GetObjectItemCaseSensitive(errorJSON, "code");
     if (cJSON_IsNull(code)) {
@@ -177,15 +188,40 @@ error_t *error_parseFromJSON(cJSON *errorJSON){
     }
 
 
+    if (code && !cJSON_IsNull(code)) code_local_str = strdup(code->valuestring);
+    if (message && !cJSON_IsNull(message)) message_local_str = strdup(message->valuestring);
+    if (param && !cJSON_IsNull(param)) param_local_str = strdup(param->valuestring);
+    if (type && !cJSON_IsNull(type)) type_local_str = strdup(type->valuestring);
+
     error_local_var = error_create_internal (
-        strdup(code->valuestring),
-        strdup(message->valuestring),
-        strdup(param->valuestring),
-        strdup(type->valuestring)
+        code_local_str,
+        message_local_str,
+        param_local_str,
+        type_local_str
         );
+
+    if (!error_local_var) {
+        goto end;
+    }
 
     return error_local_var;
 end:
+    if (code_local_str) {
+        free(code_local_str);
+        code_local_str = NULL;
+    }
+    if (message_local_str) {
+        free(message_local_str);
+        message_local_str = NULL;
+    }
+    if (param_local_str) {
+        free(param_local_str);
+        param_local_str = NULL;
+    }
+    if (type_local_str) {
+        free(type_local_str);
+        type_local_str = NULL;
+    }
     return NULL;
 
 }

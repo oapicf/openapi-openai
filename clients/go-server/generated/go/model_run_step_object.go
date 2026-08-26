@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // RunStepObject - Represents a step in execution of a run. 
@@ -62,26 +67,184 @@ type RunStepObject struct {
 
 	Usage *RunStepCompletionUsage `json:"usage"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into RunStepObject
+func (o *RunStepObject) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"id",
+		"object",
+		"created_at",
+		"assistant_id",
+		"thread_id",
+		"run_id",
+		"type",
+		"status",
+		"step_details",
+		"last_error",
+		"expired_at",
+		"cancelled_at",
+		"failed_at",
+		"completed_at",
+		"metadata",
+		"usage",
+	}
 
-// AssertRunStepObjectRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"id": false,
+		"object": false,
+		"created_at": false,
+		"assistant_id": false,
+		"thread_id": false,
+		"run_id": false,
+		"type": false,
+		"status": false,
+		"step_details": false,
+		"last_error": true,
+		"expired_at": true,
+		"cancelled_at": true,
+		"failed_at": true,
+		"completed_at": true,
+		"metadata": true,
+		"usage": true,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"id": {},
+		"object": {},
+		"created_at": {},
+		"assistant_id": {},
+		"thread_id": {},
+		"run_id": {},
+		"type": {},
+		"status": {},
+		"step_details": {},
+		"last_error": {},
+		"expired_at": {},
+		"cancelled_at": {},
+		"failed_at": {},
+		"completed_at": {},
+		"metadata": {},
+		"usage": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RunStepObject
+
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["created_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CreatedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["assistant_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.AssistantId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["thread_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.ThreadId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["run_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.RunId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["status"]; exists {
+		if err = json.Unmarshal(value, &decoded.Status); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["step_details"]; exists {
+		if err = json.Unmarshal(value, &decoded.StepDetails); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["last_error"]; exists {
+		if err = json.Unmarshal(value, &decoded.LastError); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["expired_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.ExpiredAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["cancelled_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CancelledAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["failed_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.FailedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["completed_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CompletedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["metadata"]; exists {
+		if err = json.Unmarshal(value, &decoded.Metadata); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["usage"]; exists {
+		if err = json.Unmarshal(value, &decoded.Usage); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRunStepObjectRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRunStepObjectRequired(obj RunStepObject) error {
 	elements := map[string]interface{}{
-		"id": obj.Id,
-		"object": obj.Object,
-		"created_at": obj.CreatedAt,
-		"assistant_id": obj.AssistantId,
-		"thread_id": obj.ThreadId,
-		"run_id": obj.RunId,
-		"type": obj.Type,
-		"status": obj.Status,
 		"step_details": obj.StepDetails,
-		"last_error": obj.LastError,
-		"expired_at": obj.ExpiredAt,
-		"cancelled_at": obj.CancelledAt,
-		"failed_at": obj.FailedAt,
-		"completed_at": obj.CompletedAt,
-		"metadata": obj.Metadata,
-		"usage": obj.Usage,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {

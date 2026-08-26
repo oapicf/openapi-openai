@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIPredictionContent::OAIPredictionContent(QString json) {
+OAIPredictionContent::OAIPredictionContent(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIPredictionContent::initializeModel() {
     m_content_isValid = false;
 }
 
-void OAIPredictionContent::fromJson(QString jsonString) {
+void OAIPredictionContent::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

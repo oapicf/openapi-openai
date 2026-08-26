@@ -51,7 +51,7 @@ class MessageContentRefusalObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['refusal'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class MessageContentRefusalObject
      * @var string|null
      * @SerializedName("refusal")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $refusal = null;
@@ -89,12 +89,12 @@ class MessageContentRefusalObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `refusal`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `refusal`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -116,12 +116,12 @@ class MessageContentRefusalObject
     }
 
     /**
-    * Sets refusal.
-    *
-    * @param string|null $refusal
-    *
-    * @return $this
-    */
+     * Sets refusal.
+     *
+     * @param string|null $refusal
+     *
+     * @return $this
+     */
     public function setRefusal(?string $refusal): self
     {
         $this->refusal = $refusal;

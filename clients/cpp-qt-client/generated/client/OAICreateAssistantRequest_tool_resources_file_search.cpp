@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateAssistantRequest_tool_resources_file_search::OAICreateAssistantRequest_tool_resources_file_search(QString json) {
+OAICreateAssistantRequest_tool_resources_file_search::OAICreateAssistantRequest_tool_resources_file_search(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAICreateAssistantRequest_tool_resources_file_search::initializeModel() {
     m_vector_stores_isValid = false;
 }
 
-void OAICreateAssistantRequest_tool_resources_file_search::fromJson(QString jsonString) {
+void OAICreateAssistantRequest_tool_resources_file_search::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

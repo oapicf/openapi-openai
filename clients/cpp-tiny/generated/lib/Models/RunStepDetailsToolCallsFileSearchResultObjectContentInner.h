@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The type of the content.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The text content of the file.
 	 */
 	std::string getText();
 
 	/*! \brief Set The text content of the file.
 	 */
-	void setText(std::string  text);
+	void setText(std::string text);
 
 
     private:

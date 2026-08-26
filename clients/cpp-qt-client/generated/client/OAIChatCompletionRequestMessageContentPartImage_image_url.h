@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIChatCompletionRequestMessageContentPartImage_image_url : public OAIObject {
 public:
     OAIChatCompletionRequestMessageContentPartImage_image_url();
-    OAIChatCompletionRequestMessageContentPartImage_image_url(QString json);
+    OAIChatCompletionRequestMessageContentPartImage_image_url(const QString &json);
     ~OAIChatCompletionRequestMessageContentPartImage_image_url() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getUrl() const;
     void setUrl(const QString &url);

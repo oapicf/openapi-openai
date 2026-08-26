@@ -47,7 +47,7 @@ class UsageTimeBucket
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['bucket'])]
     #[Assert\Type("string")]
@@ -57,7 +57,7 @@ class UsageTimeBucket
      * @var int|null
      * @SerializedName("start_time")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $startTime = null;
@@ -66,7 +66,7 @@ class UsageTimeBucket
      * @var int|null
      * @SerializedName("end_time")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $endTime = null;
@@ -75,7 +75,7 @@ class UsageTimeBucket
      * @var UsageTimeBucketResultInner[]|null
      * @SerializedName("result")
      * @Type("array<OpenAPI\Server\Model\UsageTimeBucketResultInner>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -108,12 +108,12 @@ class UsageTimeBucket
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -135,12 +135,12 @@ class UsageTimeBucket
     }
 
     /**
-    * Sets startTime.
-    *
-    * @param int|null $startTime
-    *
-    * @return $this
-    */
+     * Sets startTime.
+     *
+     * @param int|null $startTime
+     *
+     * @return $this
+     */
     public function setStartTime(?int $startTime): self
     {
         $this->startTime = $startTime;
@@ -162,12 +162,12 @@ class UsageTimeBucket
     }
 
     /**
-    * Sets endTime.
-    *
-    * @param int|null $endTime
-    *
-    * @return $this
-    */
+     * Sets endTime.
+     *
+     * @param int|null $endTime
+     *
+     * @return $this
+     */
     public function setEndTime(?int $endTime): self
     {
         $this->endTime = $endTime;
@@ -189,12 +189,12 @@ class UsageTimeBucket
     }
 
     /**
-    * Sets result.
-    *
-    * @param UsageTimeBucketResultInner[]|null $result
-    *
-    * @return $this
-    */
+     * Sets result.
+     *
+     * @param UsageTimeBucketResultInner[]|null $result
+     *
+     * @return $this
+     */
     public function setResult(?array $result): self
     {
         $this->result = $result;

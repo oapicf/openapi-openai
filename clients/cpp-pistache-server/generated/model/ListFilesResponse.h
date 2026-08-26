@@ -34,7 +34,7 @@ class  ListFilesResponse
 {
 public:
     ListFilesResponse();
-    virtual ~ListFilesResponse() = default;
+    virtual ~ListFilesResponse();
 
 
     /// <summary>

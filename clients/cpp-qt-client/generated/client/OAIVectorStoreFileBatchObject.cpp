@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIVectorStoreFileBatchObject::OAIVectorStoreFileBatchObject(QString json) {
+OAIVectorStoreFileBatchObject::OAIVectorStoreFileBatchObject(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -53,7 +53,7 @@ void OAIVectorStoreFileBatchObject::initializeModel() {
     m_file_counts_isValid = false;
 }
 
-void OAIVectorStoreFileBatchObject::fromJson(QString jsonString) {
+void OAIVectorStoreFileBatchObject::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

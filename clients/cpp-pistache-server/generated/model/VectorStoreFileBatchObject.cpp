@@ -29,6 +29,8 @@ VectorStoreFileBatchObject::VectorStoreFileBatchObject()
     
 }
 
+VectorStoreFileBatchObject::~VectorStoreFileBatchObject() = default;
+
 void VectorStoreFileBatchObject::validate() const
 {
     std::stringstream msg;

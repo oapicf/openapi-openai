@@ -53,35 +53,35 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setData(std::list <FineTuningJobCheckpoint> data);
+	void setData(std::list<FineTuningJobCheckpoint> data);
 	/*! \brief Get 
 	 */
 	std::string getObject();
 
 	/*! \brief Set 
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get 
 	 */
 	std::string getFirstId();
 
 	/*! \brief Set 
 	 */
-	void setFirstId(std::string  first_id);
+	void setFirstId(std::string first_id);
 	/*! \brief Get 
 	 */
 	std::string getLastId();
 
 	/*! \brief Set 
 	 */
-	void setLastId(std::string  last_id);
+	void setLastId(std::string last_id);
 	/*! \brief Get 
 	 */
 	bool isHasMore();
 
 	/*! \brief Set 
 	 */
-	void setHasMore(bool  has_more);
+	void setHasMore(bool has_more);
 
 
     private:

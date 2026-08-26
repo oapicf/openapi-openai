@@ -62,7 +62,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>An error code identifying the error type.</value>
         [JsonPropertyName("code")]
-        public string? Code { get { return this.CodeOption; } set { this.CodeOption = new(value); } }
+        public string? Code { get { return this.CodeOption.Value; } set { this.CodeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Message
@@ -76,7 +76,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A human-readable message providing more details about the error.</value>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Param
@@ -90,7 +90,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The name of the parameter that caused the error, if applicable.</value>
         [JsonPropertyName("param")]
-        public string? Param { get { return this.ParamOption; } set { this.ParamOption = new(value); } }
+        public string? Param { get { return this.ParamOption.Value; } set { this.ParamOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Line
@@ -104,7 +104,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The line number of the input file where the error occurred, if applicable.</value>
         [JsonPropertyName("line")]
-        public int? Line { get { return this.LineOption; } set { this.LineOption = new(value); } }
+        public int? Line { get { return this.LineOption.Value; } set { this.LineOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -136,8 +136,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="BatchErrorsDataInner" />
     /// </summary>
-    public class BatchErrorsDataInnerJsonConverter : JsonConverter<BatchErrorsDataInner>
+    public partial class BatchErrorsDataInnerJsonConverter : JsonConverter<BatchErrorsDataInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BatchErrorsDataInnerJsonConverter" /> class.
+        /// </summary>
+        public BatchErrorsDataInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="BatchErrorsDataInner" />
         /// </summary>

@@ -23,7 +23,7 @@ message FineTuningIntegration {
     TYPE_WANDB = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   CreateFineTuningJobRequestIntegrationsInnerWandb wandb = 112897634;
 

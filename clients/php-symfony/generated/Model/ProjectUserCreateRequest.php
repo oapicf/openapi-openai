@@ -49,7 +49,7 @@ class ProjectUserCreateRequest
      * @var string|null
      * @SerializedName("user_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $userId = null;
@@ -60,7 +60,7 @@ class ProjectUserCreateRequest
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['owner', 'member'])]
     #[Assert\Type("string")]
@@ -89,12 +89,12 @@ class ProjectUserCreateRequest
     }
 
     /**
-    * Sets userId.
-    *
-    * @param string|null $userId  The ID of the user.
-    *
-    * @return $this
-    */
+     * Sets userId.
+     *
+     * @param string|null $userId  The ID of the user.
+     *
+     * @return $this
+     */
     public function setUserId(?string $userId): self
     {
         $this->userId = $userId;
@@ -116,12 +116,12 @@ class ProjectUserCreateRequest
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  `owner` or `member`
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  `owner` or `member`
+     *
+     * @return $this
+     */
     public function setRole(?string $role): self
     {
         $this->role = $role;

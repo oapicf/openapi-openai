@@ -23,7 +23,7 @@ message StaticChunkingStrategyRequestParam {
     TYPE_STATIC = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   StaticChunkingStrategy static = 355611027;
 

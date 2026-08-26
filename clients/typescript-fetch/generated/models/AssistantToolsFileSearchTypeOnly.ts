@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface AssistantToolsFileSearchTypeOnly {
     /**
      * The type of tool being defined: `file_search`
-     * @type {string}
+     * @type {AssistantToolsFileSearchTypeOnlyTypeEnum}
      * @memberof AssistantToolsFileSearchTypeOnly
      */
     type: AssistantToolsFileSearchTypeOnlyTypeEnum;
@@ -42,6 +42,8 @@ export type AssistantToolsFileSearchTypeOnlyTypeEnum = typeof AssistantToolsFile
  */
 export function instanceOfAssistantToolsFileSearchTypeOnly(value: object): value is AssistantToolsFileSearchTypeOnly {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'file_search') return false;
+    
     return true;
 }
 

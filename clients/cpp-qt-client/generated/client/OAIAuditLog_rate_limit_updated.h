@@ -33,13 +33,13 @@ class OAIAuditLog_rate_limit_updated_changes_requested;
 class OAIAuditLog_rate_limit_updated : public OAIObject {
 public:
     OAIAuditLog_rate_limit_updated();
-    OAIAuditLog_rate_limit_updated(QString json);
+    OAIAuditLog_rate_limit_updated(const QString &json);
     ~OAIAuditLog_rate_limit_updated() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

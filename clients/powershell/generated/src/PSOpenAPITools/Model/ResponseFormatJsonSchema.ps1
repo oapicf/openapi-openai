@@ -50,8 +50,8 @@ function Initialize-ResponseFormatJsonSchema {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "json_schema" = ${JsonSchema}
+            'type' = ${Type}
+            'json_schema' = ${JsonSchema}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToResponseFormatJsonSchema {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ResponseFormatJsonSchema
-        $AllProperties = ("type", "json_schema")
+        $AllProperties = ('type', 'json_schema')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToResponseFormatJsonSchema {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "json_schema"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'json_schema'))) {
             throw "Error! JSON cannot be serialized due to the required property 'json_schema' missing."
         } else {
-            $JsonSchema = $JsonParameters.PSobject.Properties["json_schema"].value
+            $JsonSchema = $JsonParameters.PSobject.Properties['json_schema'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "json_schema" = ${JsonSchema}
+            'type' = ${Type}
+            'json_schema' = ${JsonSchema}
         }
 
         return $PSO

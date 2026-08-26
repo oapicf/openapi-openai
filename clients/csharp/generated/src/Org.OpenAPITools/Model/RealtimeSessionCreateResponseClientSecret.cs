@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Ephemeral key usable in client environments to authenticate connections to the Realtime API. Use this in client-side environments rather than a standard API token, which should only be used server-side. </value>
         [JsonPropertyName("value")]
-        public string? Value { get { return this.ValueOption; } set { this.ValueOption = new(value); } }
+        public string? Value { get { return this.ValueOption.Value; } set { this.ValueOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresAt
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Timestamp for when the token expires. Currently, all tokens expire after one minute. </value>
         [JsonPropertyName("expires_at")]
-        public int? ExpiresAt { get { return this.ExpiresAtOption; } set { this.ExpiresAtOption = new(value); } }
+        public int? ExpiresAt { get { return this.ExpiresAtOption.Value; } set { this.ExpiresAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeSessionCreateResponseClientSecret" />
     /// </summary>
-    public class RealtimeSessionCreateResponseClientSecretJsonConverter : JsonConverter<RealtimeSessionCreateResponseClientSecret>
+    public partial class RealtimeSessionCreateResponseClientSecretJsonConverter : JsonConverter<RealtimeSessionCreateResponseClientSecret>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeSessionCreateResponseClientSecretJsonConverter" /> class.
+        /// </summary>
+        public RealtimeSessionCreateResponseClientSecretJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeSessionCreateResponseClientSecret" />
         /// </summary>

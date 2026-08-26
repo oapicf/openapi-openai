@@ -107,7 +107,7 @@ MessageDeltaContentImageFileObject::getIndex()
 }
 
 void
-MessageDeltaContentImageFileObject::setIndex(int  index)
+MessageDeltaContentImageFileObject::setIndex(int index)
 {
 	this->index = index;
 }
@@ -119,7 +119,7 @@ MessageDeltaContentImageFileObject::getType()
 }
 
 void
-MessageDeltaContentImageFileObject::setType(std::string  type)
+MessageDeltaContentImageFileObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -131,7 +131,7 @@ MessageDeltaContentImageFileObject::getImageFile()
 }
 
 void
-MessageDeltaContentImageFileObject::setImageFile(MessageDeltaContentImageFileObject_image_file  image_file)
+MessageDeltaContentImageFileObject::setImageFile(MessageDeltaContentImageFileObject_image_file image_file)
 {
 	this->image_file = image_file;
 }

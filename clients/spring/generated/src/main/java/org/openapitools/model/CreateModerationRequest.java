@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.CreateModerationRequestInput;
@@ -9,24 +10,25 @@ import org.openapitools.model.CreateModerationRequestModel;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * CreateModerationRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateModerationRequest {
 
   private CreateModerationRequestInput input;
 
-  private CreateModerationRequestModel model = omni-moderation-latest;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private @Nullable CreateModerationRequestModel model;
 
   public CreateModerationRequest() {
     super();
@@ -55,11 +57,12 @@ public class CreateModerationRequest {
     return input;
   }
 
+  @JsonProperty("input")
   public void setInput(CreateModerationRequestInput input) {
     this.input = input;
   }
 
-  public CreateModerationRequest model(CreateModerationRequestModel model) {
+  public CreateModerationRequest model(@Nullable CreateModerationRequestModel model) {
     this.model = model;
     return this;
   }
@@ -71,11 +74,12 @@ public class CreateModerationRequest {
   @Valid 
   @Schema(name = "model", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("model")
-  public CreateModerationRequestModel getModel() {
+  public @Nullable CreateModerationRequestModel getModel() {
     return model;
   }
 
-  public void setModel(CreateModerationRequestModel model) {
+  @JsonProperty("model")
+  public void setModel(@Nullable CreateModerationRequestModel model) {
     this.model = model;
   }
 
@@ -111,11 +115,8 @@ public class CreateModerationRequest {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

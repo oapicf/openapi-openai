@@ -25,7 +25,7 @@ message RealtimeServerEventResponseFunctionCallArgumentsDone {
     TYPE_RESPONSE_FUNCTION_CALL_ARGUMENTS_DONE = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // The ID of the response.
   string response_id = 236939740;

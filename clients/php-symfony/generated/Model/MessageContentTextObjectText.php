@@ -49,7 +49,7 @@ class MessageContentTextObjectText
      * @var string|null
      * @SerializedName("value")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $value = null;
@@ -58,7 +58,7 @@ class MessageContentTextObjectText
      * @var MessageContentTextObjectTextAnnotationsInner[]|null
      * @SerializedName("annotations")
      * @Type("array<OpenAPI\Server\Model\MessageContentTextObjectTextAnnotationsInner>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -89,12 +89,12 @@ class MessageContentTextObjectText
     }
 
     /**
-    * Sets value.
-    *
-    * @param string|null $value  The data that makes up the text.
-    *
-    * @return $this
-    */
+     * Sets value.
+     *
+     * @param string|null $value  The data that makes up the text.
+     *
+     * @return $this
+     */
     public function setValue(?string $value): self
     {
         $this->value = $value;
@@ -116,12 +116,12 @@ class MessageContentTextObjectText
     }
 
     /**
-    * Sets annotations.
-    *
-    * @param MessageContentTextObjectTextAnnotationsInner[]|null $annotations
-    *
-    * @return $this
-    */
+     * Sets annotations.
+     *
+     * @param MessageContentTextObjectTextAnnotationsInner[]|null $annotations
+     *
+     * @return $this
+     */
     public function setAnnotations(?array $annotations): self
     {
         $this->annotations = $annotations;

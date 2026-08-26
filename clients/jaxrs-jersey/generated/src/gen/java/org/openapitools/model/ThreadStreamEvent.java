@@ -33,7 +33,7 @@ import javax.validation.Valid;
   ThreadStreamEvent.JSON_PROPERTY_EVENT,
   ThreadStreamEvent.JSON_PROPERTY_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-01-29T14:09:10.882541726Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ThreadStreamEvent   {
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   @JsonProperty(JSON_PROPERTY_ENABLED)
@@ -177,10 +177,7 @@ public class ThreadStreamEvent   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

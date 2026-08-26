@@ -11,13 +11,15 @@ static admin_api_key_t *admin_api_key_create_internal(
     char *name,
     char *redacted_value,
     char *value,
-    long created_at,
+    long *created_at,
     admin_api_key_owner_t *owner
     ) {
     admin_api_key_t *admin_api_key_local_var = malloc(sizeof(admin_api_key_t));
     if (!admin_api_key_local_var) {
         return NULL;
     }
+    memset(admin_api_key_local_var, 0, sizeof(admin_api_key_t));
+    admin_api_key_local_var->_library_owned = 1;
     admin_api_key_local_var->object = object;
     admin_api_key_local_var->id = id;
     admin_api_key_local_var->name = name;
@@ -25,8 +27,6 @@ static admin_api_key_t *admin_api_key_create_internal(
     admin_api_key_local_var->value = value;
     admin_api_key_local_var->created_at = created_at;
     admin_api_key_local_var->owner = owner;
-
-    admin_api_key_local_var->_library_owned = 1;
     return admin_api_key_local_var;
 }
 
@@ -36,18 +36,27 @@ __attribute__((deprecated)) admin_api_key_t *admin_api_key_create(
     char *name,
     char *redacted_value,
     char *value,
-    long created_at,
+    long *created_at,
     admin_api_key_owner_t *owner
     ) {
-    return admin_api_key_create_internal (
+    long *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(long));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    admin_api_key_t *result = admin_api_key_create_internal (
         object,
         id,
         name,
         redacted_value,
         value,
-        created_at,
+        created_at_copy,
         owner
         );
+    if (!result) {
+        free(created_at_copy);
+    }
+    return result;
 }
 
 void admin_api_key_free(admin_api_key_t *admin_api_key) {
@@ -78,6 +87,10 @@ void admin_api_key_free(admin_api_key_t *admin_api_key) {
     if (admin_api_key->value) {
         free(admin_api_key->value);
         admin_api_key->value = NULL;
+    }
+    if (admin_api_key->created_at) {
+        free(admin_api_key->created_at);
+        admin_api_key->created_at = NULL;
     }
     if (admin_api_key->owner) {
         admin_api_key_owner_free(admin_api_key->owner);
@@ -131,7 +144,7 @@ cJSON *admin_api_key_convertToJSON(admin_api_key_t *admin_api_key) {
 
     // admin_api_key->created_at
     if(admin_api_key->created_at) {
-    if(cJSON_AddNumberToObject(item, "created_at", admin_api_key->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *admin_api_key->created_at) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -160,6 +173,19 @@ fail:
 admin_api_key_t *admin_api_key_parseFromJSON(cJSON *admin_api_keyJSON){
 
     admin_api_key_t *admin_api_key_local_var = NULL;
+
+    char *object_local_str = NULL;
+
+    char *id_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    char *redacted_value_local_str = NULL;
+
+    char *value_local_str = NULL;
+
+    // define the local variable for admin_api_key->created_at
+    long *created_at_local_var = NULL;
 
     // define the local variable for admin_api_key->owner
     admin_api_key_owner_t *owner_local_nonprim = NULL;
@@ -234,6 +260,12 @@ admin_api_key_t *admin_api_key_parseFromJSON(cJSON *admin_api_keyJSON){
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(long));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
     }
 
     // admin_api_key->owner
@@ -246,18 +278,52 @@ admin_api_key_t *admin_api_key_parseFromJSON(cJSON *admin_api_keyJSON){
     }
 
 
+    if (object && !cJSON_IsNull(object)) object_local_str = strdup(object->valuestring);
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (redacted_value && !cJSON_IsNull(redacted_value)) redacted_value_local_str = strdup(redacted_value->valuestring);
+    if (value && !cJSON_IsNull(value)) value_local_str = strdup(value->valuestring);
+
     admin_api_key_local_var = admin_api_key_create_internal (
-        object && !cJSON_IsNull(object) ? strdup(object->valuestring) : NULL,
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        redacted_value && !cJSON_IsNull(redacted_value) ? strdup(redacted_value->valuestring) : NULL,
-        value && !cJSON_IsNull(value) ? strdup(value->valuestring) : NULL,
-        created_at ? created_at->valuedouble : 0,
+        object_local_str,
+        id_local_str,
+        name_local_str,
+        redacted_value_local_str,
+        value_local_str,
+        created_at_local_var,
         owner ? owner_local_nonprim : NULL
         );
 
+    if (!admin_api_key_local_var) {
+        goto end;
+    }
+
     return admin_api_key_local_var;
 end:
+    if (object_local_str) {
+        free(object_local_str);
+        object_local_str = NULL;
+    }
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (redacted_value_local_str) {
+        free(redacted_value_local_str);
+        redacted_value_local_str = NULL;
+    }
+    if (value_local_str) {
+        free(value_local_str);
+        value_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
     if (owner_local_nonprim) {
         admin_api_key_owner_free(owner_local_nonprim);
         owner_local_nonprim = NULL;

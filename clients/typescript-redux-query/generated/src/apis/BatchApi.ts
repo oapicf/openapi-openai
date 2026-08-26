@@ -62,7 +62,7 @@ function cancelBatchRaw<T>(requestParameters: CancelBatchRequest, requestConfig:
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/batches/{batch_id}/cancel`.replace(`{${"batch_id"}}`, encodeURIComponent(String(requestParameters.batchId))),
+        url: `${runtime.Configuration.basePath}/batches/{batch_id}/cancel`.replace('{batch_id}', encodeURIComponent(String(requestParameters.batchId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -212,7 +212,7 @@ function retrieveBatchRaw<T>(requestParameters: RetrieveBatchRequest, requestCon
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/batches/{batch_id}`.replace(`{${"batch_id"}}`, encodeURIComponent(String(requestParameters.batchId))),
+        url: `${runtime.Configuration.basePath}/batches/{batch_id}`.replace('{batch_id}', encodeURIComponent(String(requestParameters.batchId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,

@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set Always `text`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get A string of text to classify.
 	 */
 	std::string getText();
 
 	/*! \brief Set A string of text to classify.
 	 */
-	void setText(std::string  text);
+	void setText(std::string text);
 
 
     private:

@@ -51,7 +51,7 @@ class BatchRequestCounts
      * @var int|null
      * @SerializedName("total")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $total = null;
@@ -62,7 +62,7 @@ class BatchRequestCounts
      * @var int|null
      * @SerializedName("completed")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $completed = null;
@@ -73,7 +73,7 @@ class BatchRequestCounts
      * @var int|null
      * @SerializedName("failed")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $failed = null;
@@ -102,12 +102,12 @@ class BatchRequestCounts
     }
 
     /**
-    * Sets total.
-    *
-    * @param int|null $total  Total number of requests in the batch.
-    *
-    * @return $this
-    */
+     * Sets total.
+     *
+     * @param int|null $total  Total number of requests in the batch.
+     *
+     * @return $this
+     */
     public function setTotal(?int $total): self
     {
         $this->total = $total;
@@ -129,12 +129,12 @@ class BatchRequestCounts
     }
 
     /**
-    * Sets completed.
-    *
-    * @param int|null $completed  Number of requests that have been completed successfully.
-    *
-    * @return $this
-    */
+     * Sets completed.
+     *
+     * @param int|null $completed  Number of requests that have been completed successfully.
+     *
+     * @return $this
+     */
     public function setCompleted(?int $completed): self
     {
         $this->completed = $completed;
@@ -156,12 +156,12 @@ class BatchRequestCounts
     }
 
     /**
-    * Sets failed.
-    *
-    * @param int|null $failed  Number of requests that have failed.
-    *
-    * @return $this
-    */
+     * Sets failed.
+     *
+     * @param int|null $failed  Number of requests that have failed.
+     *
+     * @return $this
+     */
     public function setFailed(?int $failed): self
     {
         $this->failed = $failed;

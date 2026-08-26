@@ -1,4 +1,4 @@
-# # ChatCompletionStreamResponseDelta
+# ChatCompletionStreamResponseDelta
 
 ## Properties
 

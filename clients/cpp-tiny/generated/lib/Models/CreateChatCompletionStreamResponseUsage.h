@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set Number of tokens in the generated completion.
 	 */
-	void setCompletionTokens(int  completion_tokens);
+	void setCompletionTokens(int completion_tokens);
 	/*! \brief Get Number of tokens in the prompt.
 	 */
 	int getPromptTokens();
 
 	/*! \brief Set Number of tokens in the prompt.
 	 */
-	void setPromptTokens(int  prompt_tokens);
+	void setPromptTokens(int prompt_tokens);
 	/*! \brief Get Total number of tokens used in the request (prompt + completion).
 	 */
 	int getTotalTokens();
 
 	/*! \brief Set Total number of tokens used in the request (prompt + completion).
 	 */
-	void setTotalTokens(int  total_tokens);
+	void setTotalTokens(int total_tokens);
 
 
     private:

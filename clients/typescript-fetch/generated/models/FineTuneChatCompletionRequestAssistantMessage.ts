@@ -62,7 +62,7 @@ export interface FineTuneChatCompletionRequestAssistantMessage {
     refusal?: string | null;
     /**
      * The role of the messages author, in this case `assistant`.
-     * @type {string}
+     * @type {FineTuneChatCompletionRequestAssistantMessageRoleEnum}
      * @memberof FineTuneChatCompletionRequestAssistantMessage
      */
     role: FineTuneChatCompletionRequestAssistantMessageRoleEnum;
@@ -93,7 +93,7 @@ export interface FineTuneChatCompletionRequestAssistantMessage {
     functionCall?: ChatCompletionRequestAssistantMessageFunctionCall | null;
     /**
      * Controls whether the assistant message is trained against (0 or 1)
-     * @type {number}
+     * @type {FineTuneChatCompletionRequestAssistantMessageWeightEnum}
      * @memberof FineTuneChatCompletionRequestAssistantMessage
      */
     weight?: FineTuneChatCompletionRequestAssistantMessageWeightEnum;
@@ -123,6 +123,8 @@ export type FineTuneChatCompletionRequestAssistantMessageWeightEnum = typeof Fin
  */
 export function instanceOfFineTuneChatCompletionRequestAssistantMessage(value: object): value is FineTuneChatCompletionRequestAssistantMessage {
     if (!('role' in value) || value['role'] === undefined) return false;
+    if (value['role'] !== 'assistant') return false;
+    
     return true;
 }
 
@@ -136,13 +138,13 @@ export function FineTuneChatCompletionRequestAssistantMessageFromJSONTyped(json:
     }
     return {
         
-        'content': json['content'] == null ? undefined : ChatCompletionRequestAssistantMessageContentFromJSON(json['content']),
-        'refusal': json['refusal'] == null ? undefined : json['refusal'],
+        'content': json['content'] === undefined ? undefined : json['content'] === null ? null : ChatCompletionRequestAssistantMessageContentFromJSON(json['content']),
+        'refusal': json['refusal'] === undefined ? undefined : json['refusal'] === null ? null : json['refusal'],
         'role': json['role'],
         'name': json['name'] == null ? undefined : json['name'],
-        'audio': json['audio'] == null ? undefined : ChatCompletionRequestAssistantMessageAudioFromJSON(json['audio']),
+        'audio': json['audio'] === undefined ? undefined : json['audio'] === null ? null : ChatCompletionRequestAssistantMessageAudioFromJSON(json['audio']),
         'toolCalls': json['tool_calls'] == null ? undefined : ((json['tool_calls'] as Array<any>).map(ChatCompletionMessageToolCallFromJSON)),
-        'functionCall': json['function_call'] == null ? undefined : ChatCompletionRequestAssistantMessageFunctionCallFromJSON(json['function_call']),
+        'functionCall': json['function_call'] === undefined ? undefined : json['function_call'] === null ? null : ChatCompletionRequestAssistantMessageFunctionCallFromJSON(json['function_call']),
         'weight': json['weight'] == null ? undefined : json['weight'],
     };
 }

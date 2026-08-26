@@ -86,15 +86,17 @@ class _$MessageDeltaContentTextAnnotationsFileCitationObjectFileCitationSerializ
         case r'file_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.fileId = valueDes;
           break;
         case r'quote':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.quote = valueDes;
           break;
         default:

@@ -40,22 +40,22 @@ openai_api_fine_tuning_job_STATUS_e fine_tuning_job_status_FromString(char* stat
 
 typedef struct fine_tuning_job_t {
     char *id; // string
-    int created_at; //numeric
+    int *created_at; //numeric
     struct fine_tuning_job_error_t *error; //model
     char *fine_tuned_model; // string
-    int finished_at; //numeric
+    int *finished_at; //numeric
     struct fine_tuning_job_hyperparameters_t *hyperparameters; //model
     char *model; // string
     openai_api_fine_tuning_job_OBJECT_e object; //enum
     char *organization_id; // string
     list_t *result_files; //primitive container
     openai_api_fine_tuning_job_STATUS_e status; //enum
-    int trained_tokens; //numeric
+    int *trained_tokens; //numeric
     char *training_file; // string
     char *validation_file; // string
     list_t *integrations; //nonprimitive container
-    int seed; //numeric
-    int estimated_finish; //numeric
+    int *seed; //numeric
+    int *estimated_finish; //numeric
     struct fine_tune_method_t *method; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -63,22 +63,22 @@ typedef struct fine_tuning_job_t {
 
 __attribute__((deprecated)) fine_tuning_job_t *fine_tuning_job_create(
     char *id,
-    int created_at,
+    int *created_at,
     fine_tuning_job_error_t *error,
     char *fine_tuned_model,
-    int finished_at,
+    int *finished_at,
     fine_tuning_job_hyperparameters_t *hyperparameters,
     char *model,
     openai_api_fine_tuning_job_OBJECT_e object,
     char *organization_id,
     list_t *result_files,
     openai_api_fine_tuning_job_STATUS_e status,
-    int trained_tokens,
+    int *trained_tokens,
     char *training_file,
     char *validation_file,
     list_t *integrations,
-    int seed,
-    int estimated_finish,
+    int *seed,
+    int *estimated_finish,
     fine_tune_method_t *method
 );
 

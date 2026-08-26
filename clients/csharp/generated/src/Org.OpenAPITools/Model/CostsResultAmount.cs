@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The numeric value of the cost.</value>
         [JsonPropertyName("value")]
-        public decimal? Value { get { return this.ValueOption; } set { this.ValueOption = new(value); } }
+        public decimal? Value { get { return this.ValueOption.Value; } set { this.ValueOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Lowercase ISO-4217 currency e.g. \&quot;usd\&quot;</value>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CostsResultAmount" />
     /// </summary>
-    public class CostsResultAmountJsonConverter : JsonConverter<CostsResultAmount>
+    public partial class CostsResultAmountJsonConverter : JsonConverter<CostsResultAmount>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CostsResultAmountJsonConverter" /> class.
+        /// </summary>
+        public CostsResultAmountJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CostsResultAmount" />
         /// </summary>

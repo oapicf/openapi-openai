@@ -25,6 +25,8 @@ PredictionContent::PredictionContent()
     
 }
 
+PredictionContent::~PredictionContent() = default;
+
 void PredictionContent::validate() const
 {
     std::stringstream msg;

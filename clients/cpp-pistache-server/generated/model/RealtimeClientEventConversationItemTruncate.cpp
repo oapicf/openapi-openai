@@ -30,6 +30,8 @@ RealtimeClientEventConversationItemTruncate::RealtimeClientEventConversationItem
     
 }
 
+RealtimeClientEventConversationItemTruncate::~RealtimeClientEventConversationItemTruncate() = default;
+
 void RealtimeClientEventConversationItemTruncate::validate() const
 {
     std::stringstream msg;

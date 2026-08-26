@@ -146,7 +146,7 @@ export class DefaultService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.delete<AdminApiKeysDelete200Response>(`${this.basePath}/organization/admin_api_keys/${encodeURIComponent(String(key_id))}`,
+                return this.httpClient.delete<AdminApiKeysDelete200Response>(`${this.basePath}/organization/admin_api_keys/${encodeURIComponent(String(keyId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...adminApiKeysDeleteOpts?.config,
@@ -198,7 +198,7 @@ export class DefaultService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<AdminApiKey>(`${this.basePath}/organization/admin_api_keys/${encodeURIComponent(String(key_id))}`,
+                return this.httpClient.get<AdminApiKey>(`${this.basePath}/organization/admin_api_keys/${encodeURIComponent(String(keyId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...adminApiKeysGetOpts?.config,

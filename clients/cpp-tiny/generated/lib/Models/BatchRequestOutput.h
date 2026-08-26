@@ -53,28 +53,28 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get A developer-provided per-request id that will be used to match outputs to inputs.
 	 */
 	std::string getCustomId();
 
 	/*! \brief Set A developer-provided per-request id that will be used to match outputs to inputs.
 	 */
-	void setCustomId(std::string  custom_id);
+	void setCustomId(std::string custom_id);
 	/*! \brief Get 
 	 */
 	BatchRequestOutput_response getResponse();
 
 	/*! \brief Set 
 	 */
-	void setResponse(BatchRequestOutput_response  response);
+	void setResponse(BatchRequestOutput_response response);
 	/*! \brief Get 
 	 */
 	BatchRequestOutput_error getError();
 
 	/*! \brief Set 
 	 */
-	void setError(BatchRequestOutput_error  error);
+	void setError(BatchRequestOutput_error error);
 
 
     private:

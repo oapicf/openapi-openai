@@ -49,7 +49,7 @@ class RealtimeResponseCreateParamsToolsInner
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['function'])]
     #[Assert\Type("string")]
     protected ?string $type = null;
@@ -60,7 +60,7 @@ class RealtimeResponseCreateParamsToolsInner
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $name = null;
 
@@ -70,7 +70,7 @@ class RealtimeResponseCreateParamsToolsInner
      * @var string|null
      * @SerializedName("description")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $description = null;
 
@@ -80,7 +80,7 @@ class RealtimeResponseCreateParamsToolsInner
      * @var array|null
      * @SerializedName("parameters")
      * @Type("array")
-    */
+     */
     #[Assert\Type("array")]
     protected ?array $parameters = null;
 
@@ -109,12 +109,12 @@ class RealtimeResponseCreateParamsToolsInner
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of the tool, i.e. `function`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of the tool, i.e. `function`.
+     *
+     * @return $this
+     */
     public function setType(?string $type = null): self
     {
         $this->type = $type;
@@ -136,12 +136,12 @@ class RealtimeResponseCreateParamsToolsInner
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the function.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the function.
+     *
+     * @return $this
+     */
     public function setName(?string $name = null): self
     {
         $this->name = $name;
@@ -163,12 +163,12 @@ class RealtimeResponseCreateParamsToolsInner
     }
 
     /**
-    * Sets description.
-    *
-    * @param string|null $description  The description of the function, including guidance on when and how  to call it, and guidance about what to tell the user when calling  (if anything).
-    *
-    * @return $this
-    */
+     * Sets description.
+     *
+     * @param string|null $description  The description of the function, including guidance on when and how  to call it, and guidance about what to tell the user when calling  (if anything).
+     *
+     * @return $this
+     */
     public function setDescription(?string $description = null): self
     {
         $this->description = $description;
@@ -190,12 +190,12 @@ class RealtimeResponseCreateParamsToolsInner
     }
 
     /**
-    * Sets parameters.
-    *
-    * @param array|null $parameters  Parameters of the function in JSON Schema.
-    *
-    * @return $this
-    */
+     * Sets parameters.
+     *
+     * @param array|null $parameters  Parameters of the function in JSON Schema.
+     *
+     * @return $this
+     */
     public function setParameters(?array $parameters = null): self
     {
         $this->parameters = $parameters;

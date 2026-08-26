@@ -1,4 +1,4 @@
-# # AuditLogApiKeyDeleted
+# AuditLogApiKeyDeleted
 
 ## Properties
 

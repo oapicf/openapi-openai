@@ -1,4 +1,4 @@
-# # FineTuningJobError
+# FineTuningJobError
 
 ## Properties
 

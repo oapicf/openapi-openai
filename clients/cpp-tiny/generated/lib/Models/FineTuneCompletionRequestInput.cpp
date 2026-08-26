@@ -85,7 +85,7 @@ FineTuneCompletionRequestInput::getPrompt()
 }
 
 void
-FineTuneCompletionRequestInput::setPrompt(std::string  prompt)
+FineTuneCompletionRequestInput::setPrompt(std::string prompt)
 {
 	this->prompt = prompt;
 }
@@ -97,7 +97,7 @@ FineTuneCompletionRequestInput::getCompletion()
 }
 
 void
-FineTuneCompletionRequestInput::setCompletion(std::string  completion)
+FineTuneCompletionRequestInput::setCompletion(std::string completion)
 {
 	this->completion = completion;
 }

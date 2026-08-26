@@ -1,4 +1,4 @@
-# # StaticChunkingStrategyStatic
+# StaticChunkingStrategyStatic
 
 ## Properties
 

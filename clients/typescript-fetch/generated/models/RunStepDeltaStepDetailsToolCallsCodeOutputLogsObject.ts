@@ -27,7 +27,7 @@ export interface RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject {
     index: number;
     /**
      * Always `logs`.
-     * @type {string}
+     * @type {RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum}
      * @memberof RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
      */
     type: RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum;
@@ -55,6 +55,8 @@ export type RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum = typeo
 export function instanceOfRunStepDeltaStepDetailsToolCallsCodeOutputLogsObject(value: object): value is RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject {
     if (!('index' in value) || value['index'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'logs') return false;
+    
     return true;
 }
 

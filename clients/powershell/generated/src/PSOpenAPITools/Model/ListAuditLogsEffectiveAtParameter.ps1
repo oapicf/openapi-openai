@@ -51,10 +51,10 @@ function Initialize-ListAuditLogsEffectiveAtParameter {
 
 
         $PSO = [PSCustomObject]@{
-            "gt" = ${Gt}
-            "gte" = ${Gte}
-            "lt" = ${Lt}
-            "lte" = ${Lte}
+            'gt' = ${Gt}
+            'gte' = ${Gte}
+            'lt' = ${Lt}
+            'lte' = ${Lte}
         }
 
 
@@ -92,42 +92,42 @@ function ConvertFrom-JsonToListAuditLogsEffectiveAtParameter {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ListAuditLogsEffectiveAtParameter
-        $AllProperties = ("gt", "gte", "lt", "lte")
+        $AllProperties = ('gt', 'gte', 'lt', 'lte')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "gt"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'gt'))) { #optional property not found
             $Gt = $null
         } else {
-            $Gt = $JsonParameters.PSobject.Properties["gt"].value
+            $Gt = $JsonParameters.PSobject.Properties['gt'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "gte"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'gte'))) { #optional property not found
             $Gte = $null
         } else {
-            $Gte = $JsonParameters.PSobject.Properties["gte"].value
+            $Gte = $JsonParameters.PSobject.Properties['gte'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lt"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'lt'))) { #optional property not found
             $Lt = $null
         } else {
-            $Lt = $JsonParameters.PSobject.Properties["lt"].value
+            $Lt = $JsonParameters.PSobject.Properties['lt'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lte"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'lte'))) { #optional property not found
             $Lte = $null
         } else {
-            $Lte = $JsonParameters.PSobject.Properties["lte"].value
+            $Lte = $JsonParameters.PSobject.Properties['lte'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "gt" = ${Gt}
-            "gte" = ${Gte}
-            "lt" = ${Lt}
-            "lte" = ${Lte}
+            'gt' = ${Gt}
+            'gte' = ${Gte}
+            'lt' = ${Lt}
+            'lte' = ${Lte}
         }
 
         return $PSO

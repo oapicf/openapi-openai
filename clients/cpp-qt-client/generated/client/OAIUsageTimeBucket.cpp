@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIUsageTimeBucket::OAIUsageTimeBucket(QString json) {
+OAIUsageTimeBucket::OAIUsageTimeBucket(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -47,7 +47,7 @@ void OAIUsageTimeBucket::initializeModel() {
     m_result_isValid = false;
 }
 
-void OAIUsageTimeBucket::fromJson(QString jsonString) {
+void OAIUsageTimeBucket::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

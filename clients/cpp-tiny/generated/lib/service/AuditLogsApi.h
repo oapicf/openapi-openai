@@ -23,7 +23,7 @@ class AuditLogsApi : public Service {
 public:
     AuditLogsApi() = default;
 
-    virtual ~AuditLogsApi() = default;
+    virtual ~AuditLogsApi();
 
     /**
     * List user actions and configuration changes within this organization..

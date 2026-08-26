@@ -53,7 +53,7 @@ public:
 
 	/*! \brief Set A list of the relevant tool calls.
 	 */
-	void setToolCalls(std::list <RunToolCallObject> tool_calls);
+	void setToolCalls(std::list<RunToolCallObject> tool_calls);
 
 
     private:

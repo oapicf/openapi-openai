@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The input prompt for this training example.
 	 */
-	void setPrompt(std::string  prompt);
+	void setPrompt(std::string prompt);
 	/*! \brief Get The desired completion for this training example.
 	 */
 	std::string getCompletion();
 
 	/*! \brief Set The desired completion for this training example.
 	 */
-	void setCompletion(std::string  completion);
+	void setCompletion(std::string completion);
 
 
     private:

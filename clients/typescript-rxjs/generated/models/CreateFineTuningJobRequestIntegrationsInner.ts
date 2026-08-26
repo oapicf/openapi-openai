@@ -21,6 +21,7 @@ import type {
  */
 export interface CreateFineTuningJobRequestIntegrationsInner {
     /**
+     * The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
      * @type {string}
      * @memberof CreateFineTuningJobRequestIntegrationsInner
      */

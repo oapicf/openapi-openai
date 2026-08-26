@@ -32,7 +32,7 @@ class  Admin_api_keys_delete_200_response
 {
 public:
     Admin_api_keys_delete_200_response();
-    virtual ~Admin_api_keys_delete_200_response() = default;
+    virtual ~Admin_api_keys_delete_200_response();
 
 
     /// <summary>

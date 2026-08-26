@@ -31,7 +31,7 @@ class  ProjectRateLimitUpdateRequest
 {
 public:
     ProjectRateLimitUpdateRequest();
-    virtual ~ProjectRateLimitUpdateRequest() = default;
+    virtual ~ProjectRateLimitUpdateRequest();
 
 
     /// <summary>

@@ -25,6 +25,8 @@ CreateModerationRequest::CreateModerationRequest()
     
 }
 
+CreateModerationRequest::~CreateModerationRequest() = default;
+
 void CreateModerationRequest::validate() const
 {
     std::stringstream msg;

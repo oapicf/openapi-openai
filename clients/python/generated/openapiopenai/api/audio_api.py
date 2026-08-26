@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     OpenAI API
 
@@ -11,6 +9,7 @@
 
     Do not edit the class manually.
 """  # noqa: E501
+
 
 import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
@@ -60,7 +59,7 @@ class AudioApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> bytearray:
+    ) -> bytes:
         """Generates audio from the input text.
 
 
@@ -97,7 +96,7 @@ class AudioApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -126,7 +125,7 @@ class AudioApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[bytearray]:
+    ) -> ApiResponse[bytes]:
         """Generates audio from the input text.
 
 
@@ -163,7 +162,7 @@ class AudioApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -229,7 +228,7 @@ class AudioApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -342,7 +341,7 @@ class AudioApi:
 
 
         :param file: The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  (required)
-        :type file: bytearray
+        :type file: bytes
         :param model: (required)
         :type model: CreateTranscriptionRequestModel
         :param language: The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
@@ -432,7 +431,7 @@ class AudioApi:
 
 
         :param file: The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  (required)
-        :type file: bytearray
+        :type file: bytes
         :param model: (required)
         :type model: CreateTranscriptionRequestModel
         :param language: The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
@@ -522,7 +521,7 @@ class AudioApi:
 
 
         :param file: The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  (required)
-        :type file: bytearray
+        :type file: bytes
         :param model: (required)
         :type model: CreateTranscriptionRequestModel
         :param language: The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
@@ -702,7 +701,7 @@ class AudioApi:
 
 
         :param file: The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  (required)
-        :type file: bytearray
+        :type file: bytes
         :param model: (required)
         :type model: CreateTranscriptionRequestModel
         :param prompt: An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. 
@@ -784,7 +783,7 @@ class AudioApi:
 
 
         :param file: The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  (required)
-        :type file: bytearray
+        :type file: bytes
         :param model: (required)
         :type model: CreateTranscriptionRequestModel
         :param prompt: An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. 
@@ -866,7 +865,7 @@ class AudioApi:
 
 
         :param file: The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  (required)
-        :type file: bytearray
+        :type file: bytes
         :param model: (required)
         :type model: CreateTranscriptionRequestModel
         :param prompt: An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. 

@@ -49,7 +49,7 @@ class CreateFineTuningJobRequestHyperparameters
      * @var CreateFineTuningJobRequestHyperparametersBatchSize|null
      * @SerializedName("batch_size")
      * @Type("OpenAPI\Server\Model\CreateFineTuningJobRequestHyperparametersBatchSize")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateFineTuningJobRequestHyperparametersBatchSize")]
     protected ?CreateFineTuningJobRequestHyperparametersBatchSize $batchSize = null;
 
@@ -57,7 +57,7 @@ class CreateFineTuningJobRequestHyperparameters
      * @var CreateFineTuningJobRequestHyperparametersLearningRateMultiplier|null
      * @SerializedName("learning_rate_multiplier")
      * @Type("OpenAPI\Server\Model\CreateFineTuningJobRequestHyperparametersLearningRateMultiplier")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateFineTuningJobRequestHyperparametersLearningRateMultiplier")]
     protected ?CreateFineTuningJobRequestHyperparametersLearningRateMultiplier $learningRateMultiplier = null;
 
@@ -65,7 +65,7 @@ class CreateFineTuningJobRequestHyperparameters
      * @var CreateFineTuningJobRequestHyperparametersNEpochs|null
      * @SerializedName("n_epochs")
      * @Type("OpenAPI\Server\Model\CreateFineTuningJobRequestHyperparametersNEpochs")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateFineTuningJobRequestHyperparametersNEpochs")]
     protected ?CreateFineTuningJobRequestHyperparametersNEpochs $nEpochs = null;
 
@@ -93,12 +93,12 @@ class CreateFineTuningJobRequestHyperparameters
     }
 
     /**
-    * Sets batchSize.
-    *
-    * @param CreateFineTuningJobRequestHyperparametersBatchSize|null $batchSize
-    *
-    * @return $this
-    */
+     * Sets batchSize.
+     *
+     * @param CreateFineTuningJobRequestHyperparametersBatchSize|null $batchSize
+     *
+     * @return $this
+     */
     public function setBatchSize(?CreateFineTuningJobRequestHyperparametersBatchSize $batchSize = null): self
     {
         $this->batchSize = $batchSize;
@@ -120,12 +120,12 @@ class CreateFineTuningJobRequestHyperparameters
     }
 
     /**
-    * Sets learningRateMultiplier.
-    *
-    * @param CreateFineTuningJobRequestHyperparametersLearningRateMultiplier|null $learningRateMultiplier
-    *
-    * @return $this
-    */
+     * Sets learningRateMultiplier.
+     *
+     * @param CreateFineTuningJobRequestHyperparametersLearningRateMultiplier|null $learningRateMultiplier
+     *
+     * @return $this
+     */
     public function setLearningRateMultiplier(?CreateFineTuningJobRequestHyperparametersLearningRateMultiplier $learningRateMultiplier = null): self
     {
         $this->learningRateMultiplier = $learningRateMultiplier;
@@ -147,12 +147,12 @@ class CreateFineTuningJobRequestHyperparameters
     }
 
     /**
-    * Sets nEpochs.
-    *
-    * @param CreateFineTuningJobRequestHyperparametersNEpochs|null $nEpochs
-    *
-    * @return $this
-    */
+     * Sets nEpochs.
+     *
+     * @param CreateFineTuningJobRequestHyperparametersNEpochs|null $nEpochs
+     *
+     * @return $this
+     */
     public function setNEpochs(?CreateFineTuningJobRequestHyperparametersNEpochs $nEpochs = null): self
     {
         $this->nEpochs = $nEpochs;

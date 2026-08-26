@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAICostsResult_amount : public OAIObject {
 public:
     OAICostsResult_amount();
-    OAICostsResult_amount(QString json);
+    OAICostsResult_amount(const QString &json);
     ~OAICostsResult_amount() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     double getValue() const;
     void setValue(const double &value);

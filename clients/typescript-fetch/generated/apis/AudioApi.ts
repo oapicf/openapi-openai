@@ -12,27 +12,32 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  AudioResponseFormat,
-  CreateSpeechRequest,
-  CreateTranscription200Response,
-  CreateTranscriptionRequestModel,
-  CreateTranslation200Response,
-} from '../models/index';
 import {
+    type AudioResponseFormat,
     AudioResponseFormatFromJSON,
     AudioResponseFormatToJSON,
+} from '../models/AudioResponseFormat';
+import {
+    type CreateSpeechRequest,
     CreateSpeechRequestFromJSON,
     CreateSpeechRequestToJSON,
+} from '../models/CreateSpeechRequest';
+import {
+    type CreateTranscription200Response,
     CreateTranscription200ResponseFromJSON,
     CreateTranscription200ResponseToJSON,
+} from '../models/CreateTranscription200Response';
+import {
+    type CreateTranscriptionRequestModel,
     CreateTranscriptionRequestModelFromJSON,
     CreateTranscriptionRequestModelToJSON,
+} from '../models/CreateTranscriptionRequestModel';
+import {
+    type CreateTranslation200Response,
     CreateTranslation200ResponseFromJSON,
     CreateTranslation200ResponseToJSON,
-} from '../models/index';
+} from '../models/CreateTranslation200Response';
 
 export interface CreateSpeechOperationRequest {
     createSpeechRequest: CreateSpeechRequest;
@@ -62,9 +67,9 @@ export interface CreateTranslationRequest {
 export class AudioApi extends runtime.BaseAPI {
 
     /**
-     * Generates audio from the input text.
+     * Creates request options for createSpeech without sending the request
      */
-    async createSpeechRaw(requestParameters: CreateSpeechOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
+    async createSpeechRequestOpts(requestParameters: CreateSpeechOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createSpeechRequest'] == null) {
             throw new runtime.RequiredError(
                 'createSpeechRequest',
@@ -89,13 +94,21 @@ export class AudioApi extends runtime.BaseAPI {
 
         let urlPath = `/audio/speech`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateSpeechRequestToJSON(requestParameters['createSpeechRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Generates audio from the input text.
+     */
+    async createSpeechRaw(requestParameters: CreateSpeechOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
+        const requestOptions = await this.createSpeechRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.BlobApiResponse(response);
     }
@@ -109,9 +122,9 @@ export class AudioApi extends runtime.BaseAPI {
     }
 
     /**
-     * Transcribes audio into the input language.
+     * Creates request options for createTranscription without sending the request
      */
-    async createTranscriptionRaw(requestParameters: CreateTranscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTranscription200Response>> {
+    async createTranscriptionRequestOpts(requestParameters: CreateTranscriptionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['file'] == null) {
             throw new runtime.RequiredError(
                 'file',
@@ -185,13 +198,21 @@ export class AudioApi extends runtime.BaseAPI {
 
         let urlPath = `/audio/transcriptions`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Transcribes audio into the input language.
+     */
+    async createTranscriptionRaw(requestParameters: CreateTranscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTranscription200Response>> {
+        const requestOptions = await this.createTranscriptionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateTranscription200ResponseFromJSON(jsonValue));
     }
@@ -205,9 +226,9 @@ export class AudioApi extends runtime.BaseAPI {
     }
 
     /**
-     * Translates audio into English.
+     * Creates request options for createTranslation without sending the request
      */
-    async createTranslationRaw(requestParameters: CreateTranslationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTranslation200Response>> {
+    async createTranslationRequestOpts(requestParameters: CreateTranslationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['file'] == null) {
             throw new runtime.RequiredError(
                 'file',
@@ -273,13 +294,21 @@ export class AudioApi extends runtime.BaseAPI {
 
         let urlPath = `/audio/translations`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Translates audio into English.
+     */
+    async createTranslationRaw(requestParameters: CreateTranslationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTranslation200Response>> {
+        const requestOptions = await this.createTranslationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateTranslation200ResponseFromJSON(jsonValue));
     }

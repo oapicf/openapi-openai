@@ -87,14 +87,14 @@ function Initialize-CreateImageRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "prompt" = ${Prompt}
-            "model" = ${Model}
-            "n" = ${N}
-            "quality" = ${Quality}
-            "response_format" = ${ResponseFormat}
-            "size" = ${Size}
-            "style" = ${Style}
-            "user" = ${User}
+            'prompt' = ${Prompt}
+            'model' = ${Model}
+            'n' = ${N}
+            'quality' = ${Quality}
+            'response_format' = ${ResponseFormat}
+            'size' = ${Size}
+            'style' = ${Style}
+            'user' = ${User}
         }
 
 
@@ -132,7 +132,7 @@ function ConvertFrom-JsonToCreateImageRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateImageRequest
-        $AllProperties = ("prompt", "model", "n", "quality", "response_format", "size", "style", "user")
+        $AllProperties = ('prompt', 'model', 'n', 'quality', 'response_format', 'size', 'style', 'user')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -143,63 +143,63 @@ function ConvertFrom-JsonToCreateImageRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'prompt' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prompt"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'prompt'))) {
             throw "Error! JSON cannot be serialized due to the required property 'prompt' missing."
         } else {
-            $Prompt = $JsonParameters.PSobject.Properties["prompt"].value
+            $Prompt = $JsonParameters.PSobject.Properties['prompt'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) { #optional property not found
             $Model = $null
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "n"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'n'))) { #optional property not found
             $N = $null
         } else {
-            $N = $JsonParameters.PSobject.Properties["n"].value
+            $N = $JsonParameters.PSobject.Properties['n'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "quality"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'quality'))) { #optional property not found
             $Quality = $null
         } else {
-            $Quality = $JsonParameters.PSobject.Properties["quality"].value
+            $Quality = $JsonParameters.PSobject.Properties['quality'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "response_format"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'response_format'))) { #optional property not found
             $ResponseFormat = $null
         } else {
-            $ResponseFormat = $JsonParameters.PSobject.Properties["response_format"].value
+            $ResponseFormat = $JsonParameters.PSobject.Properties['response_format'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "size"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'size'))) { #optional property not found
             $Size = $null
         } else {
-            $Size = $JsonParameters.PSobject.Properties["size"].value
+            $Size = $JsonParameters.PSobject.Properties['size'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "style"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'style'))) { #optional property not found
             $Style = $null
         } else {
-            $Style = $JsonParameters.PSobject.Properties["style"].value
+            $Style = $JsonParameters.PSobject.Properties['style'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'user'))) { #optional property not found
             $User = $null
         } else {
-            $User = $JsonParameters.PSobject.Properties["user"].value
+            $User = $JsonParameters.PSobject.Properties['user'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "prompt" = ${Prompt}
-            "model" = ${Model}
-            "n" = ${N}
-            "quality" = ${Quality}
-            "response_format" = ${ResponseFormat}
-            "size" = ${Size}
-            "style" = ${Style}
-            "user" = ${User}
+            'prompt' = ${Prompt}
+            'model' = ${Model}
+            'n' = ${N}
+            'quality' = ${Quality}
+            'response_format' = ${ResponseFormat}
+            'size' = ${Size}
+            'style' = ${Style}
+            'user' = ${User}
         }
 
         return $PSO

@@ -30,7 +30,7 @@ class CreateModerationRequestInput(BaseModel):
     Input (or inputs) to classify. Can be a single string, an array of strings, or an array of multi-modal input objects similar to other models. 
     """
     # data type: str
-    oneof_schema_1_validator: Optional[StrictStr] = Field(default='', description="A string of text to classify for moderation.")
+    oneof_schema_1_validator: Optional[StrictStr] = Field(default='', description="A string of text to classify for moderation.", json_schema_extra={"examples": ["I want to kill them."]})
     # data type: List[str]
     oneof_schema_2_validator: Optional[List[StrictStr]] = Field(default=None, description="An array of strings to classify for moderation.")
     # data type: List[CreateModerationRequestInputOneOfInner]

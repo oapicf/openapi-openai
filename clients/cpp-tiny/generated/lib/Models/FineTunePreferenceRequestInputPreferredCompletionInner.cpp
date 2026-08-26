@@ -210,7 +210,7 @@ FineTunePreferenceRequestInput_preferred_completion_inner::getContent()
 }
 
 void
-FineTunePreferenceRequestInput_preferred_completion_inner::setContent(ChatCompletionRequestAssistantMessage_content  content)
+FineTunePreferenceRequestInput_preferred_completion_inner::setContent(ChatCompletionRequestAssistantMessage_content content)
 {
 	this->content = content;
 }
@@ -222,7 +222,7 @@ FineTunePreferenceRequestInput_preferred_completion_inner::getRefusal()
 }
 
 void
-FineTunePreferenceRequestInput_preferred_completion_inner::setRefusal(std::string  refusal)
+FineTunePreferenceRequestInput_preferred_completion_inner::setRefusal(std::string refusal)
 {
 	this->refusal = refusal;
 }
@@ -234,7 +234,7 @@ FineTunePreferenceRequestInput_preferred_completion_inner::getRole()
 }
 
 void
-FineTunePreferenceRequestInput_preferred_completion_inner::setRole(std::string  role)
+FineTunePreferenceRequestInput_preferred_completion_inner::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -246,7 +246,7 @@ FineTunePreferenceRequestInput_preferred_completion_inner::getName()
 }
 
 void
-FineTunePreferenceRequestInput_preferred_completion_inner::setName(std::string  name)
+FineTunePreferenceRequestInput_preferred_completion_inner::setName(std::string name)
 {
 	this->name = name;
 }
@@ -258,7 +258,7 @@ FineTunePreferenceRequestInput_preferred_completion_inner::getAudio()
 }
 
 void
-FineTunePreferenceRequestInput_preferred_completion_inner::setAudio(ChatCompletionRequestAssistantMessage_audio  audio)
+FineTunePreferenceRequestInput_preferred_completion_inner::setAudio(ChatCompletionRequestAssistantMessage_audio audio)
 {
 	this->audio = audio;
 }
@@ -270,7 +270,7 @@ FineTunePreferenceRequestInput_preferred_completion_inner::getToolCalls()
 }
 
 void
-FineTunePreferenceRequestInput_preferred_completion_inner::setToolCalls(std::list <ChatCompletionMessageToolCall> tool_calls)
+FineTunePreferenceRequestInput_preferred_completion_inner::setToolCalls(std::list<ChatCompletionMessageToolCall> tool_calls)
 {
 	this->tool_calls = tool_calls;
 }
@@ -282,7 +282,7 @@ FineTunePreferenceRequestInput_preferred_completion_inner::getFunctionCall()
 }
 
 void
-FineTunePreferenceRequestInput_preferred_completion_inner::setFunctionCall(ChatCompletionRequestAssistantMessage_function_call  function_call)
+FineTunePreferenceRequestInput_preferred_completion_inner::setFunctionCall(ChatCompletionRequestAssistantMessage_function_call function_call)
 {
 	this->function_call = function_call;
 }

@@ -38,7 +38,7 @@ class  RealtimeSession
 {
 public:
     RealtimeSession();
-    virtual ~RealtimeSession() = default;
+    virtual ~RealtimeSession();
 
 
     /// <summary>

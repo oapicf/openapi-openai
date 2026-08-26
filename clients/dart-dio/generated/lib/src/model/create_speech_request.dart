@@ -142,15 +142,17 @@ class _$CreateSpeechRequestSerializer implements PrimitiveSerializer<CreateSpeec
         case r'response_format':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateSpeechRequestResponseFormatEnum),
-          ) as CreateSpeechRequestResponseFormatEnum;
+            specifiedType: const FullType.nullable(CreateSpeechRequestResponseFormatEnum),
+          ) as CreateSpeechRequestResponseFormatEnum?;
+          if (valueDes == null) continue;
           result.responseFormat = valueDes;
           break;
         case r'speed':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.speed = valueDes;
           break;
         default:

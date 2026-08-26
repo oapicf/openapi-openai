@@ -29,7 +29,7 @@ import {
 export interface ProjectApiKeyListResponse {
     /**
      * 
-     * @type {string}
+     * @type {ProjectApiKeyListResponseObjectEnum}
      * @memberof ProjectApiKeyListResponse
      */
     object: ProjectApiKeyListResponseObjectEnum;
@@ -74,10 +74,12 @@ export type ProjectApiKeyListResponseObjectEnum = typeof ProjectApiKeyListRespon
  */
 export function instanceOfProjectApiKeyListResponse(value: object): value is ProjectApiKeyListResponse {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'list') return false;
+    
     if (!('data' in value) || value['data'] === undefined) return false;
-    if (!('firstId' in value) || value['firstId'] === undefined) return false;
-    if (!('lastId' in value) || value['lastId'] === undefined) return false;
-    if (!('hasMore' in value) || value['hasMore'] === undefined) return false;
+    if ((!('firstId' in (value as Record<string, any>)) && !('first_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['firstId'] === undefined && (value as Record<string, any>)['first_id'] === undefined)) return false;
+    if ((!('lastId' in (value as Record<string, any>)) && !('last_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['lastId'] === undefined && (value as Record<string, any>)['last_id'] === undefined)) return false;
+    if ((!('hasMore' in (value as Record<string, any>)) && !('has_more' in (value as Record<string, any>))) || ((value as Record<string, any>)['hasMore'] === undefined && (value as Record<string, any>)['has_more'] === undefined)) return false;
     return true;
 }
 

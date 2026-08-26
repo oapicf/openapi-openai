@@ -50,9 +50,9 @@ function Initialize-ChatCompletionFunctions {
 
 
         $PSO = [PSCustomObject]@{
-            "description" = ${Description}
-            "name" = ${Name}
-            "parameters" = ${Parameters}
+            'description' = ${Description}
+            'name' = ${Name}
+            'parameters' = ${Parameters}
         }
 
 
@@ -90,7 +90,7 @@ function ConvertFrom-JsonToChatCompletionFunctions {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ChatCompletionFunctions
-        $AllProperties = ("description", "name", "parameters")
+        $AllProperties = ('description', 'name', 'parameters')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -101,28 +101,28 @@ function ConvertFrom-JsonToChatCompletionFunctions {
             throw "Error! Empty JSON cannot be serialized due to the required property 'name' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) {
             throw "Error! JSON cannot be serialized due to the required property 'name' missing."
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'description'))) { #optional property not found
             $Description = $null
         } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
+            $Description = $JsonParameters.PSobject.Properties['description'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "parameters"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'parameters'))) { #optional property not found
             $Parameters = $null
         } else {
-            $Parameters = $JsonParameters.PSobject.Properties["parameters"].value
+            $Parameters = $JsonParameters.PSobject.Properties['parameters'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "description" = ${Description}
-            "name" = ${Name}
-            "parameters" = ${Parameters}
+            'description' = ${Description}
+            'name' = ${Name}
+            'parameters' = ${Parameters}
         }
 
         return $PSO

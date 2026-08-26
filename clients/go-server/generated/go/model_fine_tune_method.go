@@ -25,12 +25,25 @@ type FineTuneMethod struct {
 	Dpo FineTuneDpoMethod `json:"dpo,omitempty"`
 }
 
-// AssertFineTuneMethodRequired checks if the required fields are not zero-ed
+// AssertFineTuneMethodRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertFineTuneMethodRequired(obj FineTuneMethod) error {
+	if err := AssertFineTuneSupervisedMethodRequired(obj.Supervised); err != nil {
+		return err
+	}
+	if err := AssertFineTuneDpoMethodRequired(obj.Dpo); err != nil {
+		return err
+	}
 	return nil
 }
 
 // AssertFineTuneMethodConstraints checks if the values respects the defined constraints
 func AssertFineTuneMethodConstraints(obj FineTuneMethod) error {
+	if err := AssertFineTuneSupervisedMethodConstraints(obj.Supervised); err != nil {
+		return err
+	}
+	if err := AssertFineTuneDpoMethodConstraints(obj.Dpo); err != nil {
+		return err
+	}
 	return nil
 }

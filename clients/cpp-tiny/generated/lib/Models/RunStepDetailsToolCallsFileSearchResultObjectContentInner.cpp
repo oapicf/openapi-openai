@@ -85,7 +85,7 @@ RunStepDetailsToolCallsFileSearchResultObject_content_inner::getType()
 }
 
 void
-RunStepDetailsToolCallsFileSearchResultObject_content_inner::setType(std::string  type)
+RunStepDetailsToolCallsFileSearchResultObject_content_inner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -97,7 +97,7 @@ RunStepDetailsToolCallsFileSearchResultObject_content_inner::getText()
 }
 
 void
-RunStepDetailsToolCallsFileSearchResultObject_content_inner::setText(std::string  text)
+RunStepDetailsToolCallsFileSearchResultObject_content_inner::setText(std::string text)
 {
 	this->text = text;
 }

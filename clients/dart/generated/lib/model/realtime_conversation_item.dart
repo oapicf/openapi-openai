@@ -177,10 +177,6 @@ class RealtimeConversationItem {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeConversationItem[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeConversationItem[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
@@ -246,31 +242,30 @@ class RealtimeConversationItem {
 }
 
 /// The type of the item (`message`, `function_call`, `function_call_output`). 
-class RealtimeConversationItemTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeConversationItemTypeEnum._(this.value);
+enum RealtimeConversationItemTypeEnum {
+  message._(r'message'),
+  functionCall._(r'function_call'),
+  functionCallOutput._(r'function_call_output'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeConversationItemTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const message = RealtimeConversationItemTypeEnum._(r'message');
-  static const functionCall = RealtimeConversationItemTypeEnum._(r'function_call');
-  static const functionCallOutput = RealtimeConversationItemTypeEnum._(r'function_call_output');
-
-  /// List of all possible values in this [enum][RealtimeConversationItemTypeEnum].
-  static const values = <RealtimeConversationItemTypeEnum>[
-    message,
-    functionCall,
-    functionCallOutput,
-  ];
-
+  /// Returns the instance of [RealtimeConversationItemTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeConversationItemTypeEnum? fromJson(dynamic value) => RealtimeConversationItemTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeConversationItemTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeConversationItemTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeConversationItemTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -292,9 +287,10 @@ class RealtimeConversationItemTypeEnumTypeTransformer {
 
   const RealtimeConversationItemTypeEnumTypeTransformer._();
 
-  String encode(RealtimeConversationItemTypeEnum data) => data.value;
+  String encode(RealtimeConversationItemTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeConversationItemTypeEnum.
+  /// Returns the instance of [RealtimeConversationItemTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -303,6 +299,9 @@ class RealtimeConversationItemTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeConversationItemTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeConversationItemTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'message': return RealtimeConversationItemTypeEnum.message;
@@ -317,33 +316,34 @@ class RealtimeConversationItemTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeConversationItemTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeConversationItemTypeEnumTypeTransformer? _instance;
 }
 
 
 /// Identifier for the API object being returned - always `realtime.item`. 
-class RealtimeConversationItemObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeConversationItemObjectEnum._(this.value);
+enum RealtimeConversationItemObjectEnum {
+  realtimePeriodItem._(r'realtime.item'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeConversationItemObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const realtimePeriodItem = RealtimeConversationItemObjectEnum._(r'realtime.item');
-
-  /// List of all possible values in this [enum][RealtimeConversationItemObjectEnum].
-  static const values = <RealtimeConversationItemObjectEnum>[
-    realtimePeriodItem,
-  ];
-
+  /// Returns the instance of [RealtimeConversationItemObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeConversationItemObjectEnum? fromJson(dynamic value) => RealtimeConversationItemObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeConversationItemObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeConversationItemObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeConversationItemObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -365,9 +365,10 @@ class RealtimeConversationItemObjectEnumTypeTransformer {
 
   const RealtimeConversationItemObjectEnumTypeTransformer._();
 
-  String encode(RealtimeConversationItemObjectEnum data) => data.value;
+  String encode(RealtimeConversationItemObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeConversationItemObjectEnum.
+  /// Returns the instance of [RealtimeConversationItemObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -376,6 +377,9 @@ class RealtimeConversationItemObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeConversationItemObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeConversationItemObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'realtime.item': return RealtimeConversationItemObjectEnum.realtimePeriodItem;
@@ -388,35 +392,35 @@ class RealtimeConversationItemObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeConversationItemObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeConversationItemObjectEnumTypeTransformer? _instance;
 }
 
 
 /// The status of the item (`completed`, `incomplete`). These have no effect  on the conversation, but are accepted for consistency with the  `conversation.item.created` event. 
-class RealtimeConversationItemStatusEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeConversationItemStatusEnum._(this.value);
+enum RealtimeConversationItemStatusEnum {
+  completed._(r'completed'),
+  incomplete._(r'incomplete'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeConversationItemStatusEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const completed = RealtimeConversationItemStatusEnum._(r'completed');
-  static const incomplete = RealtimeConversationItemStatusEnum._(r'incomplete');
-
-  /// List of all possible values in this [enum][RealtimeConversationItemStatusEnum].
-  static const values = <RealtimeConversationItemStatusEnum>[
-    completed,
-    incomplete,
-  ];
-
+  /// Returns the instance of [RealtimeConversationItemStatusEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeConversationItemStatusEnum? fromJson(dynamic value) => RealtimeConversationItemStatusEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeConversationItemStatusEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeConversationItemStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeConversationItemStatusEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -438,9 +442,10 @@ class RealtimeConversationItemStatusEnumTypeTransformer {
 
   const RealtimeConversationItemStatusEnumTypeTransformer._();
 
-  String encode(RealtimeConversationItemStatusEnum data) => data.value;
+  String encode(RealtimeConversationItemStatusEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeConversationItemStatusEnum.
+  /// Returns the instance of [RealtimeConversationItemStatusEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -449,6 +454,9 @@ class RealtimeConversationItemStatusEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeConversationItemStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeConversationItemStatusEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'completed': return RealtimeConversationItemStatusEnum.completed;
@@ -462,37 +470,36 @@ class RealtimeConversationItemStatusEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeConversationItemStatusEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeConversationItemStatusEnumTypeTransformer? _instance;
 }
 
 
 /// The role of the message sender (`user`, `assistant`, `system`), only  applicable for `message` items. 
-class RealtimeConversationItemRoleEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeConversationItemRoleEnum._(this.value);
+enum RealtimeConversationItemRoleEnum {
+  user._(r'user'),
+  assistant._(r'assistant'),
+  system._(r'system'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeConversationItemRoleEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const user = RealtimeConversationItemRoleEnum._(r'user');
-  static const assistant = RealtimeConversationItemRoleEnum._(r'assistant');
-  static const system = RealtimeConversationItemRoleEnum._(r'system');
-
-  /// List of all possible values in this [enum][RealtimeConversationItemRoleEnum].
-  static const values = <RealtimeConversationItemRoleEnum>[
-    user,
-    assistant,
-    system,
-  ];
-
+  /// Returns the instance of [RealtimeConversationItemRoleEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeConversationItemRoleEnum? fromJson(dynamic value) => RealtimeConversationItemRoleEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeConversationItemRoleEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeConversationItemRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeConversationItemRoleEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -514,9 +521,10 @@ class RealtimeConversationItemRoleEnumTypeTransformer {
 
   const RealtimeConversationItemRoleEnumTypeTransformer._();
 
-  String encode(RealtimeConversationItemRoleEnum data) => data.value;
+  String encode(RealtimeConversationItemRoleEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeConversationItemRoleEnum.
+  /// Returns the instance of [RealtimeConversationItemRoleEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -525,6 +533,9 @@ class RealtimeConversationItemRoleEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeConversationItemRoleEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeConversationItemRoleEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'user': return RealtimeConversationItemRoleEnum.user;
@@ -539,7 +550,7 @@ class RealtimeConversationItemRoleEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeConversationItemRoleEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeConversationItemRoleEnumTypeTransformer? _instance;
 }
 

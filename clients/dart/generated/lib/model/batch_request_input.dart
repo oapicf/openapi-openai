@@ -86,10 +86,6 @@ class BatchRequestInput {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "BatchRequestInput[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "BatchRequestInput[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
@@ -148,27 +144,28 @@ class BatchRequestInput {
 }
 
 /// The HTTP method to be used for the request. Currently only `POST` is supported.
-class BatchRequestInputMethodEnum {
-  /// Instantiate a new enum with the provided [value].
-  const BatchRequestInputMethodEnum._(this.value);
+enum BatchRequestInputMethodEnum {
+  POST._(r'POST'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const BatchRequestInputMethodEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const POST = BatchRequestInputMethodEnum._(r'POST');
-
-  /// List of all possible values in this [enum][BatchRequestInputMethodEnum].
-  static const values = <BatchRequestInputMethodEnum>[
-    POST,
-  ];
-
+  /// Returns the instance of [BatchRequestInputMethodEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static BatchRequestInputMethodEnum? fromJson(dynamic value) => BatchRequestInputMethodEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [BatchRequestInputMethodEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<BatchRequestInputMethodEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <BatchRequestInputMethodEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -190,9 +187,10 @@ class BatchRequestInputMethodEnumTypeTransformer {
 
   const BatchRequestInputMethodEnumTypeTransformer._();
 
-  String encode(BatchRequestInputMethodEnum data) => data.value;
+  String encode(BatchRequestInputMethodEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a BatchRequestInputMethodEnum.
+  /// Returns the instance of [BatchRequestInputMethodEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -201,6 +199,9 @@ class BatchRequestInputMethodEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   BatchRequestInputMethodEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is BatchRequestInputMethodEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'POST': return BatchRequestInputMethodEnum.POST;
@@ -213,7 +214,7 @@ class BatchRequestInputMethodEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [BatchRequestInputMethodEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static BatchRequestInputMethodEnumTypeTransformer? _instance;
 }
 

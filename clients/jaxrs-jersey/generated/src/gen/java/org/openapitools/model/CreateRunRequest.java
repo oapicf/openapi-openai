@@ -53,7 +53,7 @@ import javax.validation.Valid;
   CreateRunRequest.JSON_PROPERTY_PARALLEL_TOOL_CALLS,
   CreateRunRequest.JSON_PROPERTY_RESPONSE_FORMAT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-01-29T14:09:10.882541726Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateRunRequest   {
   public static final String JSON_PROPERTY_ASSISTANT_ID = "assistant_id";
   @JsonProperty(JSON_PROPERTY_ASSISTANT_ID)
@@ -524,10 +524,7 @@ public class CreateRunRequest   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

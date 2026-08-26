@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIAdmin_api_keys_delete_200_response::OAIAdmin_api_keys_delete_200_response(QString json) {
+OAIAdmin_api_keys_delete_200_response::OAIAdmin_api_keys_delete_200_response(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIAdmin_api_keys_delete_200_response::initializeModel() {
     m_deleted_isValid = false;
 }
 
-void OAIAdmin_api_keys_delete_200_response::fromJson(QString jsonString) {
+void OAIAdmin_api_keys_delete_200_response::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

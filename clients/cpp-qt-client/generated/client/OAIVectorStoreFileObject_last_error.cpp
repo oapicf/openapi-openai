@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIVectorStoreFileObject_last_error::OAIVectorStoreFileObject_last_error(QString json) {
+OAIVectorStoreFileObject_last_error::OAIVectorStoreFileObject_last_error(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIVectorStoreFileObject_last_error::initializeModel() {
     m_message_isValid = false;
 }
 
-void OAIVectorStoreFileObject_last_error::fromJson(QString jsonString) {
+void OAIVectorStoreFileObject_last_error::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

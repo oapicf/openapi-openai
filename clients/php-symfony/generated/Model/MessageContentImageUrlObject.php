@@ -51,7 +51,7 @@ class MessageContentImageUrlObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['image_url'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class MessageContentImageUrlObject
      * @var MessageContentImageUrlObjectImageUrl|null
      * @SerializedName("image_url")
      * @Type("OpenAPI\Server\Model\MessageContentImageUrlObjectImageUrl")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\MessageContentImageUrlObjectImageUrl")]
@@ -90,12 +90,12 @@ class MessageContentImageUrlObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of the content part.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of the content part.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -117,12 +117,12 @@ class MessageContentImageUrlObject
     }
 
     /**
-    * Sets imageUrl.
-    *
-    * @param MessageContentImageUrlObjectImageUrl|null $imageUrl
-    *
-    * @return $this
-    */
+     * Sets imageUrl.
+     *
+     * @param MessageContentImageUrlObjectImageUrl|null $imageUrl
+     *
+     * @return $this
+     */
     public function setImageUrl(?MessageContentImageUrlObjectImageUrl $imageUrl): self
     {
         $this->imageUrl = $imageUrl;

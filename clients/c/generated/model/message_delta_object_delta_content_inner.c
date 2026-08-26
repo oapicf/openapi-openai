@@ -23,7 +23,7 @@ openai_api_message_delta_object_delta_content_inner_TYPE_e message_delta_object_
 }
 
 static message_delta_object_delta_content_inner_t *message_delta_object_delta_content_inner_create_internal(
-    int index,
+    int *index,
     openai_api_message_delta_object_delta_content_inner_TYPE_e type,
     message_delta_content_image_file_object_image_file_t *image_file,
     message_delta_content_text_object_text_t *text,
@@ -34,33 +34,42 @@ static message_delta_object_delta_content_inner_t *message_delta_object_delta_co
     if (!message_delta_object_delta_content_inner_local_var) {
         return NULL;
     }
+    memset(message_delta_object_delta_content_inner_local_var, 0, sizeof(message_delta_object_delta_content_inner_t));
+    message_delta_object_delta_content_inner_local_var->_library_owned = 1;
     message_delta_object_delta_content_inner_local_var->index = index;
     message_delta_object_delta_content_inner_local_var->type = type;
     message_delta_object_delta_content_inner_local_var->image_file = image_file;
     message_delta_object_delta_content_inner_local_var->text = text;
     message_delta_object_delta_content_inner_local_var->refusal = refusal;
     message_delta_object_delta_content_inner_local_var->image_url = image_url;
-
-    message_delta_object_delta_content_inner_local_var->_library_owned = 1;
     return message_delta_object_delta_content_inner_local_var;
 }
 
 __attribute__((deprecated)) message_delta_object_delta_content_inner_t *message_delta_object_delta_content_inner_create(
-    int index,
+    int *index,
     openai_api_message_delta_object_delta_content_inner_TYPE_e type,
     message_delta_content_image_file_object_image_file_t *image_file,
     message_delta_content_text_object_text_t *text,
     char *refusal,
     message_delta_content_image_url_object_image_url_t *image_url
     ) {
-    return message_delta_object_delta_content_inner_create_internal (
-        index,
+    int *index_copy = NULL;
+    if (index) {
+        index_copy = malloc(sizeof(int));
+        if (index_copy) *index_copy = *index;
+    }
+    message_delta_object_delta_content_inner_t *result = message_delta_object_delta_content_inner_create_internal (
+        index_copy,
         type,
         image_file,
         text,
         refusal,
         image_url
         );
+    if (!result) {
+        free(index_copy);
+    }
+    return result;
 }
 
 void message_delta_object_delta_content_inner_free(message_delta_object_delta_content_inner_t *message_delta_object_delta_content_inner) {
@@ -72,6 +81,10 @@ void message_delta_object_delta_content_inner_free(message_delta_object_delta_co
         return ;
     }
     listEntry_t *listEntry;
+    if (message_delta_object_delta_content_inner->index) {
+        free(message_delta_object_delta_content_inner->index);
+        message_delta_object_delta_content_inner->index = NULL;
+    }
     if (message_delta_object_delta_content_inner->image_file) {
         message_delta_content_image_file_object_image_file_free(message_delta_object_delta_content_inner->image_file);
         message_delta_object_delta_content_inner->image_file = NULL;
@@ -98,7 +111,7 @@ cJSON *message_delta_object_delta_content_inner_convertToJSON(message_delta_obje
     if (!message_delta_object_delta_content_inner->index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "index", message_delta_object_delta_content_inner->index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "index", *message_delta_object_delta_content_inner->index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -171,11 +184,16 @@ message_delta_object_delta_content_inner_t *message_delta_object_delta_content_i
 
     message_delta_object_delta_content_inner_t *message_delta_object_delta_content_inner_local_var = NULL;
 
+    // define the local variable for message_delta_object_delta_content_inner->index
+    int *index_local_var = NULL;
+
     // define the local variable for message_delta_object_delta_content_inner->image_file
     message_delta_content_image_file_object_image_file_t *image_file_local_nonprim = NULL;
 
     // define the local variable for message_delta_object_delta_content_inner->text
     message_delta_content_text_object_text_t *text_local_nonprim = NULL;
+
+    char *refusal_local_str = NULL;
 
     // define the local variable for message_delta_object_delta_content_inner->image_url
     message_delta_content_image_url_object_image_url_t *image_url_local_nonprim = NULL;
@@ -194,6 +212,12 @@ message_delta_object_delta_content_inner_t *message_delta_object_delta_content_i
     {
     goto end; //Numeric
     }
+    index_local_var = malloc(sizeof(int));
+    if(!index_local_var)
+    {
+        goto end;
+    }
+    *index_local_var = index->valuedouble;
 
     // message_delta_object_delta_content_inner->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(message_delta_object_delta_content_innerJSON, "type");
@@ -252,17 +276,27 @@ message_delta_object_delta_content_inner_t *message_delta_object_delta_content_i
     }
 
 
+    if (refusal && !cJSON_IsNull(refusal)) refusal_local_str = strdup(refusal->valuestring);
+
     message_delta_object_delta_content_inner_local_var = message_delta_object_delta_content_inner_create_internal (
-        index->valuedouble,
+        index_local_var,
         typeVariable,
         image_file ? image_file_local_nonprim : NULL,
         text ? text_local_nonprim : NULL,
-        refusal && !cJSON_IsNull(refusal) ? strdup(refusal->valuestring) : NULL,
+        refusal_local_str,
         image_url ? image_url_local_nonprim : NULL
         );
 
+    if (!message_delta_object_delta_content_inner_local_var) {
+        goto end;
+    }
+
     return message_delta_object_delta_content_inner_local_var;
 end:
+    if (index_local_var) {
+        free(index_local_var);
+        index_local_var = NULL;
+    }
     if (image_file_local_nonprim) {
         message_delta_content_image_file_object_image_file_free(image_file_local_nonprim);
         image_file_local_nonprim = NULL;
@@ -270,6 +304,10 @@ end:
     if (text_local_nonprim) {
         message_delta_content_text_object_text_free(text_local_nonprim);
         text_local_nonprim = NULL;
+    }
+    if (refusal_local_str) {
+        free(refusal_local_str);
+        refusal_local_str = NULL;
     }
     if (image_url_local_nonprim) {
         message_delta_content_image_url_object_image_url_free(image_url_local_nonprim);

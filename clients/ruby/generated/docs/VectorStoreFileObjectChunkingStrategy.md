@@ -15,7 +15,7 @@ OpenApiOpenAIClient::VectorStoreFileObjectChunkingStrategy.openapi_one_of
 # =>
 # [
 #   :'OtherChunkingStrategyResponseParam',
-#   :'StaticChunkingStrategyResponseParam'
+#   :'StaticChunkingStrategyRequestParam'
 # ]
 ```
 
@@ -44,6 +44,6 @@ OpenApiOpenAIClient::VectorStoreFileObjectChunkingStrategy.build(data_that_doesn
 #### Return type
 
 - `OtherChunkingStrategyResponseParam`
-- `StaticChunkingStrategyResponseParam`
+- `StaticChunkingStrategyRequestParam`
 - `nil` (if no type matches)
 

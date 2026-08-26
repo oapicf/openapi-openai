@@ -87,7 +87,7 @@ CreateModerationRequest::getInput()
 }
 
 void
-CreateModerationRequest::setInput(CreateModerationRequest_input  input)
+CreateModerationRequest::setInput(CreateModerationRequest_input input)
 {
 	this->input = input;
 }
@@ -99,7 +99,7 @@ CreateModerationRequest::getModel()
 }
 
 void
-CreateModerationRequest::setModel(CreateModerationRequest_model  model)
+CreateModerationRequest::setModel(CreateModerationRequest_model model)
 {
 	this->model = model;
 }

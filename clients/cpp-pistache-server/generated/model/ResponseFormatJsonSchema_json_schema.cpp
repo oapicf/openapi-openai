@@ -30,6 +30,8 @@ ResponseFormatJsonSchema_json_schema::ResponseFormatJsonSchema_json_schema()
     
 }
 
+ResponseFormatJsonSchema_json_schema::~ResponseFormatJsonSchema_json_schema() = default;
+
 void ResponseFormatJsonSchema_json_schema::validate() const
 {
     std::stringstream msg;

@@ -27,7 +27,8 @@ type ApiKeyList struct {
 	LastId string `json:"last_id,omitempty"`
 }
 
-// AssertApiKeyListRequired checks if the required fields are not zero-ed
+// AssertApiKeyListRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertApiKeyListRequired(obj ApiKeyList) error {
 	for _, el := range obj.Data {
 		if err := AssertAdminApiKeyRequired(el); err != nil {

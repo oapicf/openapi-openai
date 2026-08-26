@@ -98,8 +98,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="BatchRequestCounts" />
     /// </summary>
-    public class BatchRequestCountsJsonConverter : JsonConverter<BatchRequestCounts>
+    public partial class BatchRequestCountsJsonConverter : JsonConverter<BatchRequestCounts>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BatchRequestCountsJsonConverter" /> class.
+        /// </summary>
+        public BatchRequestCountsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="BatchRequestCounts" />
         /// </summary>

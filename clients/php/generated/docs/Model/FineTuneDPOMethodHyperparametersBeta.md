@@ -1,4 +1,4 @@
-# # FineTuneDPOMethodHyperparametersBeta
+# FineTuneDPOMethodHyperparametersBeta
 
 ## Properties
 

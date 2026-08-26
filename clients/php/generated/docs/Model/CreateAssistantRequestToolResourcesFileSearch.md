@@ -1,4 +1,4 @@
-# # CreateAssistantRequestToolResourcesFileSearch
+# CreateAssistantRequestToolResourcesFileSearch
 
 ## Properties
 

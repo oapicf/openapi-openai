@@ -35,13 +35,13 @@ class OAIStaticChunkingStrategy;
 class OAIChunkingStrategyRequestParam : public OAIObject {
 public:
     OAIChunkingStrategyRequestParam();
-    OAIChunkingStrategyRequestParam(QString json);
+    OAIChunkingStrategyRequestParam(const QString &json);
     ~OAIChunkingStrategyRequestParam() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

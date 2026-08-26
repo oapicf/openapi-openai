@@ -91,8 +91,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateCompletionRequestStop" />
     /// </summary>
-    public class CreateCompletionRequestStopJsonConverter : JsonConverter<CreateCompletionRequestStop>
+    public partial class CreateCompletionRequestStopJsonConverter : JsonConverter<CreateCompletionRequestStop>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateCompletionRequestStopJsonConverter" /> class.
+        /// </summary>
+        public CreateCompletionRequestStopJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateCompletionRequestStop" />
         /// </summary>

@@ -230,7 +230,7 @@ ChatCompletionRequestMessage::getContent()
 }
 
 void
-ChatCompletionRequestMessage::setContent(std::string  content)
+ChatCompletionRequestMessage::setContent(std::string content)
 {
 	this->content = content;
 }
@@ -242,7 +242,7 @@ ChatCompletionRequestMessage::getRole()
 }
 
 void
-ChatCompletionRequestMessage::setRole(std::string  role)
+ChatCompletionRequestMessage::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -254,7 +254,7 @@ ChatCompletionRequestMessage::getName()
 }
 
 void
-ChatCompletionRequestMessage::setName(std::string  name)
+ChatCompletionRequestMessage::setName(std::string name)
 {
 	this->name = name;
 }
@@ -266,7 +266,7 @@ ChatCompletionRequestMessage::getRefusal()
 }
 
 void
-ChatCompletionRequestMessage::setRefusal(std::string  refusal)
+ChatCompletionRequestMessage::setRefusal(std::string refusal)
 {
 	this->refusal = refusal;
 }
@@ -278,7 +278,7 @@ ChatCompletionRequestMessage::getAudio()
 }
 
 void
-ChatCompletionRequestMessage::setAudio(ChatCompletionRequestAssistantMessage_audio  audio)
+ChatCompletionRequestMessage::setAudio(ChatCompletionRequestAssistantMessage_audio audio)
 {
 	this->audio = audio;
 }
@@ -290,7 +290,7 @@ ChatCompletionRequestMessage::getToolCalls()
 }
 
 void
-ChatCompletionRequestMessage::setToolCalls(std::list <ChatCompletionMessageToolCall> tool_calls)
+ChatCompletionRequestMessage::setToolCalls(std::list<ChatCompletionMessageToolCall> tool_calls)
 {
 	this->tool_calls = tool_calls;
 }
@@ -302,7 +302,7 @@ ChatCompletionRequestMessage::getFunctionCall()
 }
 
 void
-ChatCompletionRequestMessage::setFunctionCall(ChatCompletionRequestAssistantMessage_function_call  function_call)
+ChatCompletionRequestMessage::setFunctionCall(ChatCompletionRequestAssistantMessage_function_call function_call)
 {
 	this->function_call = function_call;
 }
@@ -314,7 +314,7 @@ ChatCompletionRequestMessage::getToolCallId()
 }
 
 void
-ChatCompletionRequestMessage::setToolCallId(std::string  tool_call_id)
+ChatCompletionRequestMessage::setToolCallId(std::string tool_call_id)
 {
 	this->tool_call_id = tool_call_id;
 }

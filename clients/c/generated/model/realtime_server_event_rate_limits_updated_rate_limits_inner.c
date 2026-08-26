@@ -24,35 +24,56 @@ openai_api_realtime_server_event_rate_limits_updated_rate_limits_inner_NAME_e re
 
 static realtime_server_event_rate_limits_updated_rate_limits_inner_t *realtime_server_event_rate_limits_updated_rate_limits_inner_create_internal(
     openai_api_realtime_server_event_rate_limits_updated_rate_limits_inner_NAME_e name,
-    int limit,
-    int remaining,
-    double reset_seconds
+    int *limit,
+    int *remaining,
+    double *reset_seconds
     ) {
     realtime_server_event_rate_limits_updated_rate_limits_inner_t *realtime_server_event_rate_limits_updated_rate_limits_inner_local_var = malloc(sizeof(realtime_server_event_rate_limits_updated_rate_limits_inner_t));
     if (!realtime_server_event_rate_limits_updated_rate_limits_inner_local_var) {
         return NULL;
     }
+    memset(realtime_server_event_rate_limits_updated_rate_limits_inner_local_var, 0, sizeof(realtime_server_event_rate_limits_updated_rate_limits_inner_t));
+    realtime_server_event_rate_limits_updated_rate_limits_inner_local_var->_library_owned = 1;
     realtime_server_event_rate_limits_updated_rate_limits_inner_local_var->name = name;
     realtime_server_event_rate_limits_updated_rate_limits_inner_local_var->limit = limit;
     realtime_server_event_rate_limits_updated_rate_limits_inner_local_var->remaining = remaining;
     realtime_server_event_rate_limits_updated_rate_limits_inner_local_var->reset_seconds = reset_seconds;
-
-    realtime_server_event_rate_limits_updated_rate_limits_inner_local_var->_library_owned = 1;
     return realtime_server_event_rate_limits_updated_rate_limits_inner_local_var;
 }
 
 __attribute__((deprecated)) realtime_server_event_rate_limits_updated_rate_limits_inner_t *realtime_server_event_rate_limits_updated_rate_limits_inner_create(
     openai_api_realtime_server_event_rate_limits_updated_rate_limits_inner_NAME_e name,
-    int limit,
-    int remaining,
-    double reset_seconds
+    int *limit,
+    int *remaining,
+    double *reset_seconds
     ) {
-    return realtime_server_event_rate_limits_updated_rate_limits_inner_create_internal (
+    int *limit_copy = NULL;
+    if (limit) {
+        limit_copy = malloc(sizeof(int));
+        if (limit_copy) *limit_copy = *limit;
+    }
+    int *remaining_copy = NULL;
+    if (remaining) {
+        remaining_copy = malloc(sizeof(int));
+        if (remaining_copy) *remaining_copy = *remaining;
+    }
+    double *reset_seconds_copy = NULL;
+    if (reset_seconds) {
+        reset_seconds_copy = malloc(sizeof(double));
+        if (reset_seconds_copy) *reset_seconds_copy = *reset_seconds;
+    }
+    realtime_server_event_rate_limits_updated_rate_limits_inner_t *result = realtime_server_event_rate_limits_updated_rate_limits_inner_create_internal (
         name,
-        limit,
-        remaining,
-        reset_seconds
+        limit_copy,
+        remaining_copy,
+        reset_seconds_copy
         );
+    if (!result) {
+        free(limit_copy);
+        free(remaining_copy);
+        free(reset_seconds_copy);
+    }
+    return result;
 }
 
 void realtime_server_event_rate_limits_updated_rate_limits_inner_free(realtime_server_event_rate_limits_updated_rate_limits_inner_t *realtime_server_event_rate_limits_updated_rate_limits_inner) {
@@ -64,6 +85,18 @@ void realtime_server_event_rate_limits_updated_rate_limits_inner_free(realtime_s
         return ;
     }
     listEntry_t *listEntry;
+    if (realtime_server_event_rate_limits_updated_rate_limits_inner->limit) {
+        free(realtime_server_event_rate_limits_updated_rate_limits_inner->limit);
+        realtime_server_event_rate_limits_updated_rate_limits_inner->limit = NULL;
+    }
+    if (realtime_server_event_rate_limits_updated_rate_limits_inner->remaining) {
+        free(realtime_server_event_rate_limits_updated_rate_limits_inner->remaining);
+        realtime_server_event_rate_limits_updated_rate_limits_inner->remaining = NULL;
+    }
+    if (realtime_server_event_rate_limits_updated_rate_limits_inner->reset_seconds) {
+        free(realtime_server_event_rate_limits_updated_rate_limits_inner->reset_seconds);
+        realtime_server_event_rate_limits_updated_rate_limits_inner->reset_seconds = NULL;
+    }
     free(realtime_server_event_rate_limits_updated_rate_limits_inner);
 }
 
@@ -81,7 +114,7 @@ cJSON *realtime_server_event_rate_limits_updated_rate_limits_inner_convertToJSON
 
     // realtime_server_event_rate_limits_updated_rate_limits_inner->limit
     if(realtime_server_event_rate_limits_updated_rate_limits_inner->limit) {
-    if(cJSON_AddNumberToObject(item, "limit", realtime_server_event_rate_limits_updated_rate_limits_inner->limit) == NULL) {
+    if(cJSON_AddNumberToObject(item, "limit", *realtime_server_event_rate_limits_updated_rate_limits_inner->limit) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -89,7 +122,7 @@ cJSON *realtime_server_event_rate_limits_updated_rate_limits_inner_convertToJSON
 
     // realtime_server_event_rate_limits_updated_rate_limits_inner->remaining
     if(realtime_server_event_rate_limits_updated_rate_limits_inner->remaining) {
-    if(cJSON_AddNumberToObject(item, "remaining", realtime_server_event_rate_limits_updated_rate_limits_inner->remaining) == NULL) {
+    if(cJSON_AddNumberToObject(item, "remaining", *realtime_server_event_rate_limits_updated_rate_limits_inner->remaining) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -97,7 +130,7 @@ cJSON *realtime_server_event_rate_limits_updated_rate_limits_inner_convertToJSON
 
     // realtime_server_event_rate_limits_updated_rate_limits_inner->reset_seconds
     if(realtime_server_event_rate_limits_updated_rate_limits_inner->reset_seconds) {
-    if(cJSON_AddNumberToObject(item, "reset_seconds", realtime_server_event_rate_limits_updated_rate_limits_inner->reset_seconds) == NULL) {
+    if(cJSON_AddNumberToObject(item, "reset_seconds", *realtime_server_event_rate_limits_updated_rate_limits_inner->reset_seconds) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -113,6 +146,15 @@ fail:
 realtime_server_event_rate_limits_updated_rate_limits_inner_t *realtime_server_event_rate_limits_updated_rate_limits_inner_parseFromJSON(cJSON *realtime_server_event_rate_limits_updated_rate_limits_innerJSON){
 
     realtime_server_event_rate_limits_updated_rate_limits_inner_t *realtime_server_event_rate_limits_updated_rate_limits_inner_local_var = NULL;
+
+    // define the local variable for realtime_server_event_rate_limits_updated_rate_limits_inner->limit
+    int *limit_local_var = NULL;
+
+    // define the local variable for realtime_server_event_rate_limits_updated_rate_limits_inner->remaining
+    int *remaining_local_var = NULL;
+
+    // define the local variable for realtime_server_event_rate_limits_updated_rate_limits_inner->reset_seconds
+    double *reset_seconds_local_var = NULL;
 
     // realtime_server_event_rate_limits_updated_rate_limits_inner->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(realtime_server_event_rate_limits_updated_rate_limits_innerJSON, "name");
@@ -138,6 +180,12 @@ realtime_server_event_rate_limits_updated_rate_limits_inner_t *realtime_server_e
     {
     goto end; //Numeric
     }
+    limit_local_var = malloc(sizeof(int));
+    if(!limit_local_var)
+    {
+        goto end;
+    }
+    *limit_local_var = limit->valuedouble;
     }
 
     // realtime_server_event_rate_limits_updated_rate_limits_inner->remaining
@@ -150,6 +198,12 @@ realtime_server_event_rate_limits_updated_rate_limits_inner_t *realtime_server_e
     {
     goto end; //Numeric
     }
+    remaining_local_var = malloc(sizeof(int));
+    if(!remaining_local_var)
+    {
+        goto end;
+    }
+    *remaining_local_var = remaining->valuedouble;
     }
 
     // realtime_server_event_rate_limits_updated_rate_limits_inner->reset_seconds
@@ -162,18 +216,41 @@ realtime_server_event_rate_limits_updated_rate_limits_inner_t *realtime_server_e
     {
     goto end; //Numeric
     }
+    reset_seconds_local_var = malloc(sizeof(double));
+    if(!reset_seconds_local_var)
+    {
+        goto end;
     }
+    *reset_seconds_local_var = reset_seconds->valuedouble;
+    }
+
 
 
     realtime_server_event_rate_limits_updated_rate_limits_inner_local_var = realtime_server_event_rate_limits_updated_rate_limits_inner_create_internal (
         name ? nameVariable : openai_api_realtime_server_event_rate_limits_updated_rate_limits_inner_NAME_NULL,
-        limit ? limit->valuedouble : 0,
-        remaining ? remaining->valuedouble : 0,
-        reset_seconds ? reset_seconds->valuedouble : 0
+        limit_local_var,
+        remaining_local_var,
+        reset_seconds_local_var
         );
+
+    if (!realtime_server_event_rate_limits_updated_rate_limits_inner_local_var) {
+        goto end;
+    }
 
     return realtime_server_event_rate_limits_updated_rate_limits_inner_local_var;
 end:
+    if (limit_local_var) {
+        free(limit_local_var);
+        limit_local_var = NULL;
+    }
+    if (remaining_local_var) {
+        free(remaining_local_var);
+        remaining_local_var = NULL;
+    }
+    if (reset_seconds_local_var) {
+        free(reset_seconds_local_var);
+        reset_seconds_local_var = NULL;
+    }
     return NULL;
 
 }

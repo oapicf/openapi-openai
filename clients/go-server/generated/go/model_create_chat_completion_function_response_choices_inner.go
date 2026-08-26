@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type CreateChatCompletionFunctionResponseChoicesInner struct {
@@ -24,12 +29,79 @@ type CreateChatCompletionFunctionResponseChoicesInner struct {
 
 	Message ChatCompletionResponseMessage `json:"message"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into CreateChatCompletionFunctionResponseChoicesInner
+func (o *CreateChatCompletionFunctionResponseChoicesInner) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"finish_reason",
+		"index",
+		"message",
+	}
 
-// AssertCreateChatCompletionFunctionResponseChoicesInnerRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"finish_reason": false,
+		"index": false,
+		"message": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"finish_reason": {},
+		"index": {},
+		"message": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CreateChatCompletionFunctionResponseChoicesInner
+
+	if value, exists := allProperties["finish_reason"]; exists {
+		if err = json.Unmarshal(value, &decoded.FinishReason); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["index"]; exists {
+		if err = json.Unmarshal(value, &decoded.Index); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["message"]; exists {
+		if err = json.Unmarshal(value, &decoded.Message); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCreateChatCompletionFunctionResponseChoicesInnerRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateChatCompletionFunctionResponseChoicesInnerRequired(obj CreateChatCompletionFunctionResponseChoicesInner) error {
 	elements := map[string]interface{}{
-		"finish_reason": obj.FinishReason,
-		"index": obj.Index,
 		"message": obj.Message,
 	}
 	for name, el := range elements {

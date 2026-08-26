@@ -51,7 +51,7 @@ class RunStepDeltaStepDetailsToolCallsCodeObject
      * @var int|null
      * @SerializedName("index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $index = null;
@@ -62,7 +62,7 @@ class RunStepDeltaStepDetailsToolCallsCodeObject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -72,7 +72,7 @@ class RunStepDeltaStepDetailsToolCallsCodeObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['code_interpreter'])]
     #[Assert\Type("string")]
@@ -82,7 +82,7 @@ class RunStepDeltaStepDetailsToolCallsCodeObject
      * @var RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter|null
      * @SerializedName("code_interpreter")
      * @Type("OpenAPI\Server\Model\RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter")]
     protected ?RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter $codeInterpreter = null;
 
@@ -111,12 +111,12 @@ class RunStepDeltaStepDetailsToolCallsCodeObject
     }
 
     /**
-    * Sets index.
-    *
-    * @param int|null $index  The index of the tool call in the tool calls array.
-    *
-    * @return $this
-    */
+     * Sets index.
+     *
+     * @param int|null $index  The index of the tool call in the tool calls array.
+     *
+     * @return $this
+     */
     public function setIndex(?int $index): self
     {
         $this->index = $index;
@@ -138,12 +138,12 @@ class RunStepDeltaStepDetailsToolCallsCodeObject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The ID of the tool call.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The ID of the tool call.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;
@@ -165,12 +165,12 @@ class RunStepDeltaStepDetailsToolCallsCodeObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -192,12 +192,12 @@ class RunStepDeltaStepDetailsToolCallsCodeObject
     }
 
     /**
-    * Sets codeInterpreter.
-    *
-    * @param RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter|null $codeInterpreter
-    *
-    * @return $this
-    */
+     * Sets codeInterpreter.
+     *
+     * @param RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter|null $codeInterpreter
+     *
+     * @return $this
+     */
     public function setCodeInterpreter(?RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter $codeInterpreter = null): self
     {
         $this->codeInterpreter = $codeInterpreter;

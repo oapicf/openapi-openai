@@ -139,7 +139,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Specifies the detail level of the image if specified by the user. &#x60;low&#x60; uses fewer tokens, you can opt in to high resolution using &#x60;high&#x60;.</value>
         [JsonPropertyName("detail")]
-        public DetailEnum? Detail { get { return this.DetailOption; } set { this.DetailOption = new(value); } }
+        public DetailEnum? Detail { get { return this.DetailOption.Value; } set { this.DetailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FileId
@@ -153,7 +153,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The [File](/docs/api-reference/files) ID of the image in the message content. Set &#x60;purpose&#x3D;\&quot;vision\&quot;&#x60; when uploading the File if you need to later display the file content.</value>
         [JsonPropertyName("file_id")]
-        public string? FileId { get { return this.FileIdOption; } set { this.FileIdOption = new(value); } }
+        public string? FileId { get { return this.FileIdOption.Value; } set { this.FileIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -183,8 +183,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageDeltaContentImageFileObjectImageFile" />
     /// </summary>
-    public class MessageDeltaContentImageFileObjectImageFileJsonConverter : JsonConverter<MessageDeltaContentImageFileObjectImageFile>
+    public partial class MessageDeltaContentImageFileObjectImageFileJsonConverter : JsonConverter<MessageDeltaContentImageFileObjectImageFile>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageDeltaContentImageFileObjectImageFileJsonConverter" /> class.
+        /// </summary>
+        public MessageDeltaContentImageFileObjectImageFileJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageDeltaContentImageFileObjectImageFile" />
         /// </summary>

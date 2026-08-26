@@ -22,7 +22,7 @@ class ModerationsApi : public Service {
 public:
     ModerationsApi() = default;
 
-    virtual ~ModerationsApi() = default;
+    virtual ~ModerationsApi();
 
     /**
     * Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). .

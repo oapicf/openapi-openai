@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **event_id** | **String** | The unique ID of the server event. | 
-**r#type** | **String** | The event type, must be `conversation.item.input_audio_transcription.completed`.  | 
+**r#type** | **Type** | The event type, must be `conversation.item.input_audio_transcription.completed`.  (enum: conversation.item.input_audio_transcription.completed) | 
 **item_id** | **String** | The ID of the user message item containing the audio. | 
 **content_index** | **i32** | The index of the content part containing the audio. | 
 **transcript** | **String** | The transcribed text. | 

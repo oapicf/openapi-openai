@@ -161,26 +161,26 @@ function Initialize-Batch {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "endpoint" = ${Endpoint}
-            "errors" = ${Errors}
-            "input_file_id" = ${InputFileId}
-            "completion_window" = ${CompletionWindow}
-            "status" = ${Status}
-            "output_file_id" = ${OutputFileId}
-            "error_file_id" = ${ErrorFileId}
-            "created_at" = ${CreatedAt}
-            "in_progress_at" = ${InProgressAt}
-            "expires_at" = ${ExpiresAt}
-            "finalizing_at" = ${FinalizingAt}
-            "completed_at" = ${CompletedAt}
-            "failed_at" = ${FailedAt}
-            "expired_at" = ${ExpiredAt}
-            "cancelling_at" = ${CancellingAt}
-            "cancelled_at" = ${CancelledAt}
-            "request_counts" = ${RequestCounts}
-            "metadata" = ${Metadata}
+            'id' = ${Id}
+            'object' = ${Object}
+            'endpoint' = ${Endpoint}
+            'errors' = ${Errors}
+            'input_file_id' = ${InputFileId}
+            'completion_window' = ${CompletionWindow}
+            'status' = ${Status}
+            'output_file_id' = ${OutputFileId}
+            'error_file_id' = ${ErrorFileId}
+            'created_at' = ${CreatedAt}
+            'in_progress_at' = ${InProgressAt}
+            'expires_at' = ${ExpiresAt}
+            'finalizing_at' = ${FinalizingAt}
+            'completed_at' = ${CompletedAt}
+            'failed_at' = ${FailedAt}
+            'expired_at' = ${ExpiredAt}
+            'cancelling_at' = ${CancellingAt}
+            'cancelled_at' = ${CancelledAt}
+            'request_counts' = ${RequestCounts}
+            'metadata' = ${Metadata}
         }
 
 
@@ -218,7 +218,7 @@ function ConvertFrom-JsonToBatch {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in Batch
-        $AllProperties = ("id", "object", "endpoint", "errors", "input_file_id", "completion_window", "status", "output_file_id", "error_file_id", "created_at", "in_progress_at", "expires_at", "finalizing_at", "completed_at", "failed_at", "expired_at", "cancelling_at", "cancelled_at", "request_counts", "metadata")
+        $AllProperties = ('id', 'object', 'endpoint', 'errors', 'input_file_id', 'completion_window', 'status', 'output_file_id', 'error_file_id', 'created_at', 'in_progress_at', 'expires_at', 'finalizing_at', 'completed_at', 'failed_at', 'expired_at', 'cancelling_at', 'cancelled_at', 'request_counts', 'metadata')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -229,147 +229,147 @@ function ConvertFrom-JsonToBatch {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "endpoint"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'endpoint'))) {
             throw "Error! JSON cannot be serialized due to the required property 'endpoint' missing."
         } else {
-            $Endpoint = $JsonParameters.PSobject.Properties["endpoint"].value
+            $Endpoint = $JsonParameters.PSobject.Properties['endpoint'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "input_file_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'input_file_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'input_file_id' missing."
         } else {
-            $InputFileId = $JsonParameters.PSobject.Properties["input_file_id"].value
+            $InputFileId = $JsonParameters.PSobject.Properties['input_file_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "completion_window"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'completion_window'))) {
             throw "Error! JSON cannot be serialized due to the required property 'completion_window' missing."
         } else {
-            $CompletionWindow = $JsonParameters.PSobject.Properties["completion_window"].value
+            $CompletionWindow = $JsonParameters.PSobject.Properties['completion_window'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'status'))) {
             throw "Error! JSON cannot be serialized due to the required property 'status' missing."
         } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
+            $Status = $JsonParameters.PSobject.Properties['status'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created_at' missing."
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "errors"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'errors'))) { #optional property not found
             $Errors = $null
         } else {
-            $Errors = $JsonParameters.PSobject.Properties["errors"].value
+            $Errors = $JsonParameters.PSobject.Properties['errors'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "output_file_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'output_file_id'))) { #optional property not found
             $OutputFileId = $null
         } else {
-            $OutputFileId = $JsonParameters.PSobject.Properties["output_file_id"].value
+            $OutputFileId = $JsonParameters.PSobject.Properties['output_file_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "error_file_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'error_file_id'))) { #optional property not found
             $ErrorFileId = $null
         } else {
-            $ErrorFileId = $JsonParameters.PSobject.Properties["error_file_id"].value
+            $ErrorFileId = $JsonParameters.PSobject.Properties['error_file_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "in_progress_at"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'in_progress_at'))) { #optional property not found
             $InProgressAt = $null
         } else {
-            $InProgressAt = $JsonParameters.PSobject.Properties["in_progress_at"].value
+            $InProgressAt = $JsonParameters.PSobject.Properties['in_progress_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expires_at"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'expires_at'))) { #optional property not found
             $ExpiresAt = $null
         } else {
-            $ExpiresAt = $JsonParameters.PSobject.Properties["expires_at"].value
+            $ExpiresAt = $JsonParameters.PSobject.Properties['expires_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "finalizing_at"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'finalizing_at'))) { #optional property not found
             $FinalizingAt = $null
         } else {
-            $FinalizingAt = $JsonParameters.PSobject.Properties["finalizing_at"].value
+            $FinalizingAt = $JsonParameters.PSobject.Properties['finalizing_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "completed_at"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'completed_at'))) { #optional property not found
             $CompletedAt = $null
         } else {
-            $CompletedAt = $JsonParameters.PSobject.Properties["completed_at"].value
+            $CompletedAt = $JsonParameters.PSobject.Properties['completed_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "failed_at"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'failed_at'))) { #optional property not found
             $FailedAt = $null
         } else {
-            $FailedAt = $JsonParameters.PSobject.Properties["failed_at"].value
+            $FailedAt = $JsonParameters.PSobject.Properties['failed_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expired_at"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'expired_at'))) { #optional property not found
             $ExpiredAt = $null
         } else {
-            $ExpiredAt = $JsonParameters.PSobject.Properties["expired_at"].value
+            $ExpiredAt = $JsonParameters.PSobject.Properties['expired_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cancelling_at"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'cancelling_at'))) { #optional property not found
             $CancellingAt = $null
         } else {
-            $CancellingAt = $JsonParameters.PSobject.Properties["cancelling_at"].value
+            $CancellingAt = $JsonParameters.PSobject.Properties['cancelling_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cancelled_at"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'cancelled_at'))) { #optional property not found
             $CancelledAt = $null
         } else {
-            $CancelledAt = $JsonParameters.PSobject.Properties["cancelled_at"].value
+            $CancelledAt = $JsonParameters.PSobject.Properties['cancelled_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "request_counts"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'request_counts'))) { #optional property not found
             $RequestCounts = $null
         } else {
-            $RequestCounts = $JsonParameters.PSobject.Properties["request_counts"].value
+            $RequestCounts = $JsonParameters.PSobject.Properties['request_counts'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) { #optional property not found
             $Metadata = $null
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "endpoint" = ${Endpoint}
-            "errors" = ${Errors}
-            "input_file_id" = ${InputFileId}
-            "completion_window" = ${CompletionWindow}
-            "status" = ${Status}
-            "output_file_id" = ${OutputFileId}
-            "error_file_id" = ${ErrorFileId}
-            "created_at" = ${CreatedAt}
-            "in_progress_at" = ${InProgressAt}
-            "expires_at" = ${ExpiresAt}
-            "finalizing_at" = ${FinalizingAt}
-            "completed_at" = ${CompletedAt}
-            "failed_at" = ${FailedAt}
-            "expired_at" = ${ExpiredAt}
-            "cancelling_at" = ${CancellingAt}
-            "cancelled_at" = ${CancelledAt}
-            "request_counts" = ${RequestCounts}
-            "metadata" = ${Metadata}
+            'id' = ${Id}
+            'object' = ${Object}
+            'endpoint' = ${Endpoint}
+            'errors' = ${Errors}
+            'input_file_id' = ${InputFileId}
+            'completion_window' = ${CompletionWindow}
+            'status' = ${Status}
+            'output_file_id' = ${OutputFileId}
+            'error_file_id' = ${ErrorFileId}
+            'created_at' = ${CreatedAt}
+            'in_progress_at' = ${InProgressAt}
+            'expires_at' = ${ExpiresAt}
+            'finalizing_at' = ${FinalizingAt}
+            'completed_at' = ${CompletedAt}
+            'failed_at' = ${FailedAt}
+            'expired_at' = ${ExpiredAt}
+            'cancelling_at' = ${CancellingAt}
+            'cancelled_at' = ${CancelledAt}
+            'request_counts' = ${RequestCounts}
+            'metadata' = ${Metadata}
         }
 
         return $PSO

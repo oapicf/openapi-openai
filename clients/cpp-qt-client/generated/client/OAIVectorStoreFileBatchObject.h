@@ -33,13 +33,13 @@ class OAIVectorStoreFileBatchObject_file_counts;
 class OAIVectorStoreFileBatchObject : public OAIObject {
 public:
     OAIVectorStoreFileBatchObject();
-    OAIVectorStoreFileBatchObject(QString json);
+    OAIVectorStoreFileBatchObject(const QString &json);
     ~OAIVectorStoreFileBatchObject() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

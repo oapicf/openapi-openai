@@ -152,10 +152,8 @@ class CreateAssistantRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateAssistantRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateAssistantRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'model'), 'Required key "CreateAssistantRequest[model]" is missing from JSON.');
+        assert(json[r'model'] != null, 'Required key "CreateAssistantRequest[model]" has a null value in JSON.');
         return true;
       }());
 

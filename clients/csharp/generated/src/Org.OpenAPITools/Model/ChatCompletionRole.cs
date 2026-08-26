@@ -193,6 +193,9 @@ namespace Org.OpenAPITools.Model
         /// <returns></returns>
         public override ChatCompletionRole? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
+            if (reader.TokenType == JsonTokenType.Null)
+                return null;
+
             string? rawValue = reader.GetString();
 
             ChatCompletionRole? result = rawValue == null
@@ -213,7 +216,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="options"></param>
         public override void Write(Utf8JsonWriter writer, ChatCompletionRole? chatCompletionRole, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(chatCompletionRole.HasValue ? ChatCompletionRoleValueConverter.ToJsonValue(chatCompletionRole.Value).ToString() : "null");
+            if (chatCompletionRole.HasValue)
+                writer.WriteStringValue(ChatCompletionRoleValueConverter.ToJsonValue(chatCompletionRole.Value).ToString());
+            else
+                writer.WriteNullValue();
         }
     }
 }

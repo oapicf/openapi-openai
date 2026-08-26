@@ -31,11 +31,11 @@ static fine_tune_method_t *fine_tune_method_create_internal(
     if (!fine_tune_method_local_var) {
         return NULL;
     }
+    memset(fine_tune_method_local_var, 0, sizeof(fine_tune_method_t));
+    fine_tune_method_local_var->_library_owned = 1;
     fine_tune_method_local_var->type = type;
     fine_tune_method_local_var->supervised = supervised;
     fine_tune_method_local_var->dpo = dpo;
-
-    fine_tune_method_local_var->_library_owned = 1;
     return fine_tune_method_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) fine_tune_method_t *fine_tune_method_create(
     fine_tune_supervised_method_t *supervised,
     fine_tune_dpo_method_t *dpo
     ) {
-    return fine_tune_method_create_internal (
+    fine_tune_method_t *result = fine_tune_method_create_internal (
         type,
         supervised,
         dpo
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void fine_tune_method_free(fine_tune_method_t *fine_tune_method) {
@@ -61,11 +64,11 @@ void fine_tune_method_free(fine_tune_method_t *fine_tune_method) {
     }
     listEntry_t *listEntry;
     if (fine_tune_method->supervised) {
-        object_free(fine_tune_method->supervised);
+        fine_tune_supervised_method_free(fine_tune_method->supervised);
         fine_tune_method->supervised = NULL;
     }
     if (fine_tune_method->dpo) {
-        object_free(fine_tune_method->dpo);
+        fine_tune_dpo_method_free(fine_tune_method->dpo);
         fine_tune_method->dpo = NULL;
     }
     free(fine_tune_method);
@@ -85,11 +88,11 @@ cJSON *fine_tune_method_convertToJSON(fine_tune_method_t *fine_tune_method) {
 
     // fine_tune_method->supervised
     if(fine_tune_method->supervised) {
-    cJSON *supervised_object = object_convertToJSON(fine_tune_method->supervised);
-    if(supervised_object == NULL) {
+    cJSON *supervised_local_JSON = fine_tune_supervised_method_convertToJSON(fine_tune_method->supervised);
+    if(supervised_local_JSON == NULL) {
     goto fail; //model
     }
-    cJSON_AddItemToObject(item, "supervised", supervised_object);
+    cJSON_AddItemToObject(item, "supervised", supervised_local_JSON);
     if(item->child == NULL) {
     goto fail;
     }
@@ -98,11 +101,11 @@ cJSON *fine_tune_method_convertToJSON(fine_tune_method_t *fine_tune_method) {
 
     // fine_tune_method->dpo
     if(fine_tune_method->dpo) {
-    cJSON *dpo_object = object_convertToJSON(fine_tune_method->dpo);
-    if(dpo_object == NULL) {
+    cJSON *dpo_local_JSON = fine_tune_dpo_method_convertToJSON(fine_tune_method->dpo);
+    if(dpo_local_JSON == NULL) {
     goto fail; //model
     }
-    cJSON_AddItemToObject(item, "dpo", dpo_object);
+    cJSON_AddItemToObject(item, "dpo", dpo_local_JSON);
     if(item->child == NULL) {
     goto fail;
     }
@@ -119,6 +122,12 @@ fail:
 fine_tune_method_t *fine_tune_method_parseFromJSON(cJSON *fine_tune_methodJSON){
 
     fine_tune_method_t *fine_tune_method_local_var = NULL;
+
+    // define the local variable for fine_tune_method->supervised
+    fine_tune_supervised_method_t *supervised_local_nonprim = NULL;
+
+    // define the local variable for fine_tune_method->dpo
+    fine_tune_dpo_method_t *dpo_local_nonprim = NULL;
 
     // fine_tune_method->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(fine_tune_methodJSON, "type");
@@ -139,9 +148,8 @@ fine_tune_method_t *fine_tune_method_parseFromJSON(cJSON *fine_tune_methodJSON){
     if (cJSON_IsNull(supervised)) {
         supervised = NULL;
     }
-    object_t *supervised_local_object = NULL;
     if (supervised) { 
-    supervised_local_object = object_parseFromJSON(supervised); //object
+    supervised_local_nonprim = fine_tune_supervised_method_parseFromJSON(supervised); //nonprimitive
     }
 
     // fine_tune_method->dpo
@@ -149,20 +157,32 @@ fine_tune_method_t *fine_tune_method_parseFromJSON(cJSON *fine_tune_methodJSON){
     if (cJSON_IsNull(dpo)) {
         dpo = NULL;
     }
-    object_t *dpo_local_object = NULL;
     if (dpo) { 
-    dpo_local_object = object_parseFromJSON(dpo); //object
+    dpo_local_nonprim = fine_tune_dpo_method_parseFromJSON(dpo); //nonprimitive
     }
+
 
 
     fine_tune_method_local_var = fine_tune_method_create_internal (
         type ? typeVariable : openai_api_fine_tune_method_TYPE_NULL,
-        supervised ? supervised_local_object : NULL,
-        dpo ? dpo_local_object : NULL
+        supervised ? supervised_local_nonprim : NULL,
+        dpo ? dpo_local_nonprim : NULL
         );
+
+    if (!fine_tune_method_local_var) {
+        goto end;
+    }
 
     return fine_tune_method_local_var;
 end:
+    if (supervised_local_nonprim) {
+        fine_tune_supervised_method_free(supervised_local_nonprim);
+        supervised_local_nonprim = NULL;
+    }
+    if (dpo_local_nonprim) {
+        fine_tune_dpo_method_free(dpo_local_nonprim);
+        dpo_local_nonprim = NULL;
+    }
     return NULL;
 
 }

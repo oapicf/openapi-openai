@@ -35,7 +35,7 @@ export interface VectorStoreFileBatchObject {
     id: string;
     /**
      * The object type, which is always `vector_store.file_batch`.
-     * @type {string}
+     * @type {VectorStoreFileBatchObjectObjectEnum}
      * @memberof VectorStoreFileBatchObject
      */
     object: VectorStoreFileBatchObjectObjectEnum;
@@ -53,7 +53,7 @@ export interface VectorStoreFileBatchObject {
     vectorStoreId: string;
     /**
      * The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.
-     * @type {string}
+     * @type {VectorStoreFileBatchObjectStatusEnum}
      * @memberof VectorStoreFileBatchObject
      */
     status: VectorStoreFileBatchObjectStatusEnum;
@@ -92,10 +92,12 @@ export type VectorStoreFileBatchObjectStatusEnum = typeof VectorStoreFileBatchOb
 export function instanceOfVectorStoreFileBatchObject(value: object): value is VectorStoreFileBatchObject {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-    if (!('vectorStoreId' in value) || value['vectorStoreId'] === undefined) return false;
+    if (value['object'] !== 'vector_store.files_batch') return false;
+    
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
+    if ((!('vectorStoreId' in (value as Record<string, any>)) && !('vector_store_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['vectorStoreId'] === undefined && (value as Record<string, any>)['vector_store_id'] === undefined)) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('fileCounts' in value) || value['fileCounts'] === undefined) return false;
+    if ((!('fileCounts' in (value as Record<string, any>)) && !('file_counts' in (value as Record<string, any>))) || ((value as Record<string, any>)['fileCounts'] === undefined && (value as Record<string, any>)['file_counts'] === undefined)) return false;
     return true;
 }
 

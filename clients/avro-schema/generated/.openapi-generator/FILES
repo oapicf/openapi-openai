@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 AdminApiKey.avsc
 AdminApiKeyOwner.avsc
 AdminApiKeysCreateRequest.avsc
@@ -59,7 +58,6 @@ AuditLogUserAddedData.avsc
 AuditLogUserDeleted.avsc
 AuditLogUserUpdated.avsc
 AuditLogUserUpdatedChangesRequested.avsc
-AutoChunkingStrategy.avsc
 AutoChunkingStrategyRequestParam.avsc
 Batch.avsc
 BatchErrors.avsc
@@ -469,7 +467,6 @@ RunToolCallObject.avsc
 RunToolCallObjectFunction.avsc
 StaticChunkingStrategy.avsc
 StaticChunkingStrategyRequestParam.avsc
-StaticChunkingStrategyResponseParam.avsc
 StaticChunkingStrategyStatic.avsc
 SubmitToolOutputsRunRequest.avsc
 SubmitToolOutputsRunRequestToolOutputsInner.avsc

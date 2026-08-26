@@ -100,7 +100,7 @@ export class VectorStoresService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<VectorStoreFileBatchObject>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vector_store_id))}/file_batches/${encodeURIComponent(String(batch_id))}/cancel`,
+                return this.httpClient.post<VectorStoreFileBatchObject>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vectorStoreId))}/file_batches/${encodeURIComponent(String(batchId))}/cancel`,
                     null,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -221,7 +221,7 @@ export class VectorStoresService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<VectorStoreFileObject>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vector_store_id))}/files`,
+                return this.httpClient.post<VectorStoreFileObject>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vectorStoreId))}/files`,
                     createVectorStoreFileRequest,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -284,7 +284,7 @@ export class VectorStoresService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<VectorStoreFileBatchObject>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vector_store_id))}/file_batches`,
+                return this.httpClient.post<VectorStoreFileBatchObject>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vectorStoreId))}/file_batches`,
                     createVectorStoreFileBatchRequest,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -337,7 +337,7 @@ export class VectorStoresService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.delete<DeleteVectorStoreResponse>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vector_store_id))}`,
+                return this.httpClient.delete<DeleteVectorStoreResponse>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vectorStoreId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...deleteVectorStoreOpts?.config,
@@ -394,7 +394,7 @@ export class VectorStoresService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.delete<DeleteVectorStoreFileResponse>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vector_store_id))}/files/${encodeURIComponent(String(file_id))}`,
+                return this.httpClient.delete<DeleteVectorStoreFileResponse>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vectorStoreId))}/files/${encodeURIComponent(String(fileId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...deleteVectorStoreFileOpts?.config,
@@ -446,7 +446,7 @@ export class VectorStoresService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<VectorStoreObject>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vector_store_id))}`,
+                return this.httpClient.get<VectorStoreObject>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vectorStoreId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...getVectorStoreOpts?.config,
@@ -503,7 +503,7 @@ export class VectorStoresService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<VectorStoreFileObject>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vector_store_id))}/files/${encodeURIComponent(String(file_id))}`,
+                return this.httpClient.get<VectorStoreFileObject>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vectorStoreId))}/files/${encodeURIComponent(String(fileId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...getVectorStoreFileOpts?.config,
@@ -560,7 +560,7 @@ export class VectorStoresService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<VectorStoreFileBatchObject>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vector_store_id))}/file_batches/${encodeURIComponent(String(batch_id))}`,
+                return this.httpClient.get<VectorStoreFileBatchObject>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vectorStoreId))}/file_batches/${encodeURIComponent(String(batchId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...getVectorStoreFileBatchOpts?.config,
@@ -639,7 +639,7 @@ export class VectorStoresService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<ListVectorStoreFilesResponse>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vector_store_id))}/file_batches/${encodeURIComponent(String(batch_id))}/files`,
+                return this.httpClient.get<ListVectorStoreFilesResponse>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vectorStoreId))}/file_batches/${encodeURIComponent(String(batchId))}/files`,
                     {
                         params: queryParameters,
                         withCredentials: this.configuration.withCredentials,
@@ -714,7 +714,7 @@ export class VectorStoresService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<ListVectorStoreFilesResponse>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vector_store_id))}/files`,
+                return this.httpClient.get<ListVectorStoreFilesResponse>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vectorStoreId))}/files`,
                     {
                         params: queryParameters,
                         withCredentials: this.configuration.withCredentials,
@@ -843,7 +843,7 @@ export class VectorStoresService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<VectorStoreObject>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vector_store_id))}`,
+                return this.httpClient.post<VectorStoreObject>(`${this.basePath}/vector_stores/${encodeURIComponent(String(vectorStoreId))}`,
                     updateVectorStoreRequest,
                     {
                         withCredentials: this.configuration.withCredentials,

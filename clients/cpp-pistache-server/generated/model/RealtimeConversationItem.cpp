@@ -43,6 +43,8 @@ RealtimeConversationItem::RealtimeConversationItem()
     
 }
 
+RealtimeConversationItem::~RealtimeConversationItem() = default;
+
 void RealtimeConversationItem::validate() const
 {
     std::stringstream msg;

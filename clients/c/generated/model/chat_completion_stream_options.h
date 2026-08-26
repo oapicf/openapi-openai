@@ -19,13 +19,13 @@ typedef struct chat_completion_stream_options_t chat_completion_stream_options_t
 
 
 typedef struct chat_completion_stream_options_t {
-    int include_usage; //boolean
+    int *include_usage; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } chat_completion_stream_options_t;
 
 __attribute__((deprecated)) chat_completion_stream_options_t *chat_completion_stream_options_create(
-    int include_usage
+    int *include_usage
 );
 
 void chat_completion_stream_options_free(chat_completion_stream_options_t *chat_completion_stream_options);

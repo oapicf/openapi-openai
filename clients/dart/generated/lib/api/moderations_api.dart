@@ -23,7 +23,7 @@ class ModerationsApi {
   /// Parameters:
   ///
   /// * [CreateModerationRequest] createModerationRequest (required):
-  Future<Response> createModerationWithHttpInfo(CreateModerationRequest createModerationRequest,) async {
+  Future<Response> createModerationWithHttpInfo(CreateModerationRequest createModerationRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/moderations';
 
@@ -45,6 +45,7 @@ class ModerationsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -53,8 +54,8 @@ class ModerationsApi {
   /// Parameters:
   ///
   /// * [CreateModerationRequest] createModerationRequest (required):
-  Future<CreateModerationResponse?> createModeration(CreateModerationRequest createModerationRequest,) async {
-    final response = await createModerationWithHttpInfo(createModerationRequest,);
+  Future<CreateModerationResponse?> createModeration(CreateModerationRequest createModerationRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createModerationWithHttpInfo(createModerationRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

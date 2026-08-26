@@ -24,7 +24,8 @@ type MessageDeltaObjectDelta struct {
 	Content []MessageDeltaObjectDeltaContentInner `json:"content,omitempty"`
 }
 
-// AssertMessageDeltaObjectDeltaRequired checks if the required fields are not zero-ed
+// AssertMessageDeltaObjectDeltaRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertMessageDeltaObjectDeltaRequired(obj MessageDeltaObjectDelta) error {
 	for _, el := range obj.Content {
 		if err := AssertMessageDeltaObjectDeltaContentInnerRequired(el); err != nil {

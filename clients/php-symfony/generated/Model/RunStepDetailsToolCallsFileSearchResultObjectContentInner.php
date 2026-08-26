@@ -49,7 +49,7 @@ class RunStepDetailsToolCallsFileSearchResultObjectContentInner
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['text'])]
     #[Assert\Type("string")]
     protected ?string $type = null;
@@ -60,7 +60,7 @@ class RunStepDetailsToolCallsFileSearchResultObjectContentInner
      * @var string|null
      * @SerializedName("text")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $text = null;
 
@@ -87,12 +87,12 @@ class RunStepDetailsToolCallsFileSearchResultObjectContentInner
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of the content.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of the content.
+     *
+     * @return $this
+     */
     public function setType(?string $type = null): self
     {
         $this->type = $type;
@@ -114,12 +114,12 @@ class RunStepDetailsToolCallsFileSearchResultObjectContentInner
     }
 
     /**
-    * Sets text.
-    *
-    * @param string|null $text  The text content of the file.
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param string|null $text  The text content of the file.
+     *
+     * @return $this
+     */
     public function setText(?string $text = null): self
     {
         $this->text = $text;

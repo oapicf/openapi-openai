@@ -29,7 +29,7 @@ import {
 export interface RunObjectRequiredAction {
     /**
      * For now, this is always `submit_tool_outputs`.
-     * @type {string}
+     * @type {RunObjectRequiredActionTypeEnum}
      * @memberof RunObjectRequiredAction
      */
     type: RunObjectRequiredActionTypeEnum;
@@ -56,7 +56,9 @@ export type RunObjectRequiredActionTypeEnum = typeof RunObjectRequiredActionType
  */
 export function instanceOfRunObjectRequiredAction(value: object): value is RunObjectRequiredAction {
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('submitToolOutputs' in value) || value['submitToolOutputs'] === undefined) return false;
+    if (value['type'] !== 'submit_tool_outputs') return false;
+    
+    if ((!('submitToolOutputs' in (value as Record<string, any>)) && !('submit_tool_outputs' in (value as Record<string, any>))) || ((value as Record<string, any>)['submitToolOutputs'] === undefined && (value as Record<string, any>)['submit_tool_outputs'] === undefined)) return false;
     return true;
 }
 

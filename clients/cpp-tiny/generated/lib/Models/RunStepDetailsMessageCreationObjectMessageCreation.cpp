@@ -64,7 +64,7 @@ RunStepDetailsMessageCreationObject_message_creation::getMessageId()
 }
 
 void
-RunStepDetailsMessageCreationObject_message_creation::setMessageId(std::string  message_id)
+RunStepDetailsMessageCreationObject_message_creation::setMessageId(std::string message_id)
 {
 	this->message_id = message_id;
 }

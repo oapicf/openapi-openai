@@ -33,7 +33,7 @@ class  RealtimeServerEventResponseDone
 {
 public:
     RealtimeServerEventResponseDone();
-    virtual ~RealtimeServerEventResponseDone() = default;
+    virtual ~RealtimeServerEventResponseDone();
 
 
     /// <summary>

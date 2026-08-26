@@ -51,7 +51,7 @@ class RealtimeResponseUsage
      * @var int|null
      * @SerializedName("total_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $totalTokens = null;
 
@@ -61,7 +61,7 @@ class RealtimeResponseUsage
      * @var int|null
      * @SerializedName("input_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $inputTokens = null;
 
@@ -71,7 +71,7 @@ class RealtimeResponseUsage
      * @var int|null
      * @SerializedName("output_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $outputTokens = null;
 
@@ -79,7 +79,7 @@ class RealtimeResponseUsage
      * @var RealtimeResponseUsageInputTokenDetails|null
      * @SerializedName("input_token_details")
      * @Type("OpenAPI\Server\Model\RealtimeResponseUsageInputTokenDetails")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RealtimeResponseUsageInputTokenDetails")]
     protected ?RealtimeResponseUsageInputTokenDetails $inputTokenDetails = null;
 
@@ -87,7 +87,7 @@ class RealtimeResponseUsage
      * @var RealtimeResponseUsageOutputTokenDetails|null
      * @SerializedName("output_token_details")
      * @Type("OpenAPI\Server\Model\RealtimeResponseUsageOutputTokenDetails")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RealtimeResponseUsageOutputTokenDetails")]
     protected ?RealtimeResponseUsageOutputTokenDetails $outputTokenDetails = null;
 
@@ -117,12 +117,12 @@ class RealtimeResponseUsage
     }
 
     /**
-    * Sets totalTokens.
-    *
-    * @param int|null $totalTokens  The total number of tokens in the Response including input and output  text and audio tokens.
-    *
-    * @return $this
-    */
+     * Sets totalTokens.
+     *
+     * @param int|null $totalTokens  The total number of tokens in the Response including input and output  text and audio tokens.
+     *
+     * @return $this
+     */
     public function setTotalTokens(?int $totalTokens = null): self
     {
         $this->totalTokens = $totalTokens;
@@ -144,12 +144,12 @@ class RealtimeResponseUsage
     }
 
     /**
-    * Sets inputTokens.
-    *
-    * @param int|null $inputTokens  The number of input tokens used in the Response, including text and  audio tokens.
-    *
-    * @return $this
-    */
+     * Sets inputTokens.
+     *
+     * @param int|null $inputTokens  The number of input tokens used in the Response, including text and  audio tokens.
+     *
+     * @return $this
+     */
     public function setInputTokens(?int $inputTokens = null): self
     {
         $this->inputTokens = $inputTokens;
@@ -171,12 +171,12 @@ class RealtimeResponseUsage
     }
 
     /**
-    * Sets outputTokens.
-    *
-    * @param int|null $outputTokens  The number of output tokens sent in the Response, including text and  audio tokens.
-    *
-    * @return $this
-    */
+     * Sets outputTokens.
+     *
+     * @param int|null $outputTokens  The number of output tokens sent in the Response, including text and  audio tokens.
+     *
+     * @return $this
+     */
     public function setOutputTokens(?int $outputTokens = null): self
     {
         $this->outputTokens = $outputTokens;
@@ -198,12 +198,12 @@ class RealtimeResponseUsage
     }
 
     /**
-    * Sets inputTokenDetails.
-    *
-    * @param RealtimeResponseUsageInputTokenDetails|null $inputTokenDetails
-    *
-    * @return $this
-    */
+     * Sets inputTokenDetails.
+     *
+     * @param RealtimeResponseUsageInputTokenDetails|null $inputTokenDetails
+     *
+     * @return $this
+     */
     public function setInputTokenDetails(?RealtimeResponseUsageInputTokenDetails $inputTokenDetails = null): self
     {
         $this->inputTokenDetails = $inputTokenDetails;
@@ -225,12 +225,12 @@ class RealtimeResponseUsage
     }
 
     /**
-    * Sets outputTokenDetails.
-    *
-    * @param RealtimeResponseUsageOutputTokenDetails|null $outputTokenDetails
-    *
-    * @return $this
-    */
+     * Sets outputTokenDetails.
+     *
+     * @param RealtimeResponseUsageOutputTokenDetails|null $outputTokenDetails
+     *
+     * @return $this
+     */
     public function setOutputTokenDetails(?RealtimeResponseUsageOutputTokenDetails $outputTokenDetails = null): self
     {
         $this->outputTokenDetails = $outputTokenDetails;

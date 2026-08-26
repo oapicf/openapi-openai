@@ -1,0 +1,32 @@
+
+
+/**
+ * The content part that was added.
+ */
+export interface RealtimeServerEventResponseContentPartAddedPart { 
+  /**
+   * The content type (\"text\", \"audio\").
+   */
+  type?: RealtimeServerEventResponseContentPartAddedPart.TypeEnum;
+  /**
+   * The text content (if type is \"text\").
+   */
+  text?: string;
+  /**
+   * Base64-encoded audio data (if type is \"audio\").
+   */
+  audio?: string;
+  /**
+   * The transcript of the audio (if type is \"audio\").
+   */
+  transcript?: string;
+}
+export namespace RealtimeServerEventResponseContentPartAddedPart {
+  export const TypeEnum = {
+    Audio: 'audio',
+    Text: 'text'
+  } as const;
+  export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
+}
+
+

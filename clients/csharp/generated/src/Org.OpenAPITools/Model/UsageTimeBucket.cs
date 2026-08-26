@@ -156,8 +156,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="UsageTimeBucket" />
     /// </summary>
-    public class UsageTimeBucketJsonConverter : JsonConverter<UsageTimeBucket>
+    public partial class UsageTimeBucketJsonConverter : JsonConverter<UsageTimeBucket>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UsageTimeBucketJsonConverter" /> class.
+        /// </summary>
+        public UsageTimeBucketJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UsageTimeBucket" />
         /// </summary>

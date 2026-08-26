@@ -33,13 +33,13 @@ namespace OpenAPI {
 class OAIResponseFormatJsonSchema_json_schema : public OAIObject {
 public:
     OAIResponseFormatJsonSchema_json_schema();
-    OAIResponseFormatJsonSchema_json_schema(QString json);
+    OAIResponseFormatJsonSchema_json_schema(const QString &json);
     ~OAIResponseFormatJsonSchema_json_schema() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getDescription() const;
     void setDescription(const QString &description);

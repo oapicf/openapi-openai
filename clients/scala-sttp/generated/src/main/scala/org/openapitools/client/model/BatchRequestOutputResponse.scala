@@ -11,6 +11,7 @@
  */
 package org.openapitools.client.model
 
+import org.json4s.JValue
 
 case class BatchRequestOutputResponse(
   /* The HTTP status code of the response */
@@ -18,6 +19,6 @@ case class BatchRequestOutputResponse(
   /* An unique identifier for the OpenAI API request. Please include this request ID when contacting support. */
   requestId: Option[String] = None,
   /* The JSON body of the response */
-  body: Option[Any] = None
+  body: Option[JValue] = None
 )
 

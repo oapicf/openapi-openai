@@ -12,24 +12,27 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  AdminApiKey,
-  AdminApiKeysCreateRequest,
-  AdminApiKeysDelete200Response,
-  ApiKeyList,
-} from '../models/index';
 import {
+    type AdminApiKey,
     AdminApiKeyFromJSON,
     AdminApiKeyToJSON,
+} from '../models/AdminApiKey';
+import {
+    type AdminApiKeysCreateRequest,
     AdminApiKeysCreateRequestFromJSON,
     AdminApiKeysCreateRequestToJSON,
+} from '../models/AdminApiKeysCreateRequest';
+import {
+    type AdminApiKeysDelete200Response,
     AdminApiKeysDelete200ResponseFromJSON,
     AdminApiKeysDelete200ResponseToJSON,
+} from '../models/AdminApiKeysDelete200Response';
+import {
+    type ApiKeyList,
     ApiKeyListFromJSON,
     ApiKeyListToJSON,
-} from '../models/index';
+} from '../models/ApiKeyList';
 
 export interface AdminApiKeysCreateOperationRequest {
     adminApiKeysCreateRequest: AdminApiKeysCreateRequest;
@@ -55,10 +58,9 @@ export interface AdminApiKeysListRequest {
 export class DefaultApi extends runtime.BaseAPI {
 
     /**
-     * Create a new admin-level API key for the organization.
-     * Create an organization admin API key
+     * Creates request options for adminApiKeysCreate without sending the request
      */
-    async adminApiKeysCreateRaw(requestParameters: AdminApiKeysCreateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminApiKey>> {
+    async adminApiKeysCreateRequestOpts(requestParameters: AdminApiKeysCreateOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['adminApiKeysCreateRequest'] == null) {
             throw new runtime.RequiredError(
                 'adminApiKeysCreateRequest',
@@ -83,13 +85,22 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/admin_api_keys`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: AdminApiKeysCreateRequestToJSON(requestParameters['adminApiKeysCreateRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a new admin-level API key for the organization.
+     * Create an organization admin API key
+     */
+    async adminApiKeysCreateRaw(requestParameters: AdminApiKeysCreateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminApiKey>> {
+        const requestOptions = await this.adminApiKeysCreateRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AdminApiKeyFromJSON(jsonValue));
     }
@@ -104,10 +115,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete the specified admin API key.
-     * Delete an organization admin API key
+     * Creates request options for adminApiKeysDelete without sending the request
      */
-    async adminApiKeysDeleteRaw(requestParameters: AdminApiKeysDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminApiKeysDelete200Response>> {
+    async adminApiKeysDeleteRequestOpts(requestParameters: AdminApiKeysDeleteRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['keyId'] == null) {
             throw new runtime.RequiredError(
                 'keyId',
@@ -129,14 +139,23 @@ export class DefaultApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/admin_api_keys/{key_id}`;
-        urlPath = urlPath.replace(`{${"key_id"}}`, encodeURIComponent(String(requestParameters['keyId'])));
+        urlPath = urlPath.replace('{key_id}', encodeURIComponent(String(requestParameters['keyId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete the specified admin API key.
+     * Delete an organization admin API key
+     */
+    async adminApiKeysDeleteRaw(requestParameters: AdminApiKeysDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminApiKeysDelete200Response>> {
+        const requestOptions = await this.adminApiKeysDeleteRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AdminApiKeysDelete200ResponseFromJSON(jsonValue));
     }
@@ -151,10 +170,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get details for a specific organization API key by its ID.
-     * Retrieve a single organization API key
+     * Creates request options for adminApiKeysGet without sending the request
      */
-    async adminApiKeysGetRaw(requestParameters: AdminApiKeysGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminApiKey>> {
+    async adminApiKeysGetRequestOpts(requestParameters: AdminApiKeysGetRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['keyId'] == null) {
             throw new runtime.RequiredError(
                 'keyId',
@@ -176,14 +194,23 @@ export class DefaultApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/organization/admin_api_keys/{key_id}`;
-        urlPath = urlPath.replace(`{${"key_id"}}`, encodeURIComponent(String(requestParameters['keyId'])));
+        urlPath = urlPath.replace('{key_id}', encodeURIComponent(String(requestParameters['keyId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get details for a specific organization API key by its ID.
+     * Retrieve a single organization API key
+     */
+    async adminApiKeysGetRaw(requestParameters: AdminApiKeysGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminApiKey>> {
+        const requestOptions = await this.adminApiKeysGetRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AdminApiKeyFromJSON(jsonValue));
     }
@@ -198,10 +225,9 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve a paginated list of organization admin API keys.
-     * List organization API keys
+     * Creates request options for adminApiKeysList without sending the request
      */
-    async adminApiKeysListRaw(requestParameters: AdminApiKeysListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiKeyList>> {
+    async adminApiKeysListRequestOpts(requestParameters: AdminApiKeysListRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['after'] != null) {
@@ -229,12 +255,21 @@ export class DefaultApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/admin_api_keys`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve a paginated list of organization admin API keys.
+     * List organization API keys
+     */
+    async adminApiKeysListRaw(requestParameters: AdminApiKeysListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiKeyList>> {
+        const requestOptions = await this.adminApiKeysListRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiKeyListFromJSON(jsonValue));
     }

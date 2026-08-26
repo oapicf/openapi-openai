@@ -65,10 +65,10 @@ class UsageVectorStoresResult {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UsageVectorStoresResult[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UsageVectorStoresResult[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "UsageVectorStoresResult[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "UsageVectorStoresResult[object]" has a null value in JSON.');
+        assert(json.containsKey(r'usage_bytes'), 'Required key "UsageVectorStoresResult[usage_bytes]" is missing from JSON.');
+        assert(json[r'usage_bytes'] != null, 'Required key "UsageVectorStoresResult[usage_bytes]" has a null value in JSON.');
         return true;
       }());
 
@@ -129,27 +129,28 @@ class UsageVectorStoresResult {
 }
 
 
-class UsageVectorStoresResultObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const UsageVectorStoresResultObjectEnum._(this.value);
+enum UsageVectorStoresResultObjectEnum {
+  organizationPeriodUsagePeriodVectorStoresPeriodResult._(r'organization.usage.vector_stores.result'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const UsageVectorStoresResultObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const organizationPeriodUsagePeriodVectorStoresPeriodResult = UsageVectorStoresResultObjectEnum._(r'organization.usage.vector_stores.result');
-
-  /// List of all possible values in this [enum][UsageVectorStoresResultObjectEnum].
-  static const values = <UsageVectorStoresResultObjectEnum>[
-    organizationPeriodUsagePeriodVectorStoresPeriodResult,
-  ];
-
+  /// Returns the instance of [UsageVectorStoresResultObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static UsageVectorStoresResultObjectEnum? fromJson(dynamic value) => UsageVectorStoresResultObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [UsageVectorStoresResultObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<UsageVectorStoresResultObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <UsageVectorStoresResultObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -171,9 +172,10 @@ class UsageVectorStoresResultObjectEnumTypeTransformer {
 
   const UsageVectorStoresResultObjectEnumTypeTransformer._();
 
-  String encode(UsageVectorStoresResultObjectEnum data) => data.value;
+  String encode(UsageVectorStoresResultObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a UsageVectorStoresResultObjectEnum.
+  /// Returns the instance of [UsageVectorStoresResultObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -182,6 +184,9 @@ class UsageVectorStoresResultObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   UsageVectorStoresResultObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is UsageVectorStoresResultObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'organization.usage.vector_stores.result': return UsageVectorStoresResultObjectEnum.organizationPeriodUsagePeriodVectorStoresPeriodResult;
@@ -194,7 +199,7 @@ class UsageVectorStoresResultObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [UsageVectorStoresResultObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static UsageVectorStoresResultObjectEnumTypeTransformer? _instance;
 }
 

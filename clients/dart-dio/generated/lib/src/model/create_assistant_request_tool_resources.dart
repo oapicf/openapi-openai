@@ -86,8 +86,9 @@ class _$CreateAssistantRequestToolResourcesSerializer implements PrimitiveSerial
         case r'code_interpreter':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateAssistantRequestToolResourcesCodeInterpreter),
-          ) as CreateAssistantRequestToolResourcesCodeInterpreter;
+            specifiedType: const FullType.nullable(CreateAssistantRequestToolResourcesCodeInterpreter),
+          ) as CreateAssistantRequestToolResourcesCodeInterpreter?;
+          if (valueDes == null) continue;
           result.codeInterpreter.replace(valueDes);
           break;
         case r'file_search':

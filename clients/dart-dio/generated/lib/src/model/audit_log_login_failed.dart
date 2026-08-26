@@ -86,15 +86,17 @@ class _$AuditLogLoginFailedSerializer implements PrimitiveSerializer<AuditLogLog
         case r'error_code':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.errorCode = valueDes;
           break;
         case r'error_message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.errorMessage = valueDes;
           break;
         default:

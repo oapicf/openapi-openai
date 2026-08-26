@@ -23,13 +23,15 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RunStepDetailsToolCallsObject(
 
-    @Schema(example = "null", required = true, description = "Always `tool_calls`.")
+    @Schema(required = true, description = "Always `tool_calls`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RunStepDetailsToolCallsObject.Type,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. ")
+    @Schema(required = true, description = "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. ")
+    @param:JsonProperty("tool_calls")
     @get:JsonProperty("tool_calls", required = true) val toolCalls: kotlin.collections.List<RunStepDetailsToolCallsObjectToolCallsInner>
-) {
+) : RunStepObjectStepDetails {
 
     /**
     * Always `tool_calls`.
@@ -44,7 +46,7 @@ data class RunStepDetailsToolCallsObject(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RunStepDetailsToolCallsObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

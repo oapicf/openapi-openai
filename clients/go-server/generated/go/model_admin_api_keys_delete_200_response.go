@@ -23,7 +23,8 @@ type AdminApiKeysDelete200Response struct {
 	Deleted bool `json:"deleted,omitempty"`
 }
 
-// AssertAdminApiKeysDelete200ResponseRequired checks if the required fields are not zero-ed
+// AssertAdminApiKeysDelete200ResponseRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertAdminApiKeysDelete200ResponseRequired(obj AdminApiKeysDelete200Response) error {
 	return nil
 }

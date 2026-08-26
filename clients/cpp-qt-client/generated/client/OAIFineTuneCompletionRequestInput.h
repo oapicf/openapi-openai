@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIFineTuneCompletionRequestInput : public OAIObject {
 public:
     OAIFineTuneCompletionRequestInput();
-    OAIFineTuneCompletionRequestInput(QString json);
+    OAIFineTuneCompletionRequestInput(const QString &json);
     ~OAIFineTuneCompletionRequestInput() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getPrompt() const;
     void setPrompt(const QString &prompt);

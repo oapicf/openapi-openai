@@ -47,12 +47,14 @@ static fine_tune_chat_completion_request_assistant_message_t *fine_tune_chat_com
     chat_completion_request_assistant_message_audio_t *audio,
     list_t *tool_calls,
     chat_completion_request_assistant_message_function_call_t *function_call,
-    int weight
+    int *weight
     ) {
     fine_tune_chat_completion_request_assistant_message_t *fine_tune_chat_completion_request_assistant_message_local_var = malloc(sizeof(fine_tune_chat_completion_request_assistant_message_t));
     if (!fine_tune_chat_completion_request_assistant_message_local_var) {
         return NULL;
     }
+    memset(fine_tune_chat_completion_request_assistant_message_local_var, 0, sizeof(fine_tune_chat_completion_request_assistant_message_t));
+    fine_tune_chat_completion_request_assistant_message_local_var->_library_owned = 1;
     fine_tune_chat_completion_request_assistant_message_local_var->content = content;
     fine_tune_chat_completion_request_assistant_message_local_var->refusal = refusal;
     fine_tune_chat_completion_request_assistant_message_local_var->role = role;
@@ -61,8 +63,6 @@ static fine_tune_chat_completion_request_assistant_message_t *fine_tune_chat_com
     fine_tune_chat_completion_request_assistant_message_local_var->tool_calls = tool_calls;
     fine_tune_chat_completion_request_assistant_message_local_var->function_call = function_call;
     fine_tune_chat_completion_request_assistant_message_local_var->weight = weight;
-
-    fine_tune_chat_completion_request_assistant_message_local_var->_library_owned = 1;
     return fine_tune_chat_completion_request_assistant_message_local_var;
 }
 
@@ -74,9 +74,14 @@ __attribute__((deprecated)) fine_tune_chat_completion_request_assistant_message_
     chat_completion_request_assistant_message_audio_t *audio,
     list_t *tool_calls,
     chat_completion_request_assistant_message_function_call_t *function_call,
-    int weight
+    int *weight
     ) {
-    return fine_tune_chat_completion_request_assistant_message_create_internal (
+    int *weight_copy = NULL;
+    if (weight) {
+        weight_copy = malloc(sizeof(int));
+        if (weight_copy) *weight_copy = *weight;
+    }
+    fine_tune_chat_completion_request_assistant_message_t *result = fine_tune_chat_completion_request_assistant_message_create_internal (
         content,
         refusal,
         role,
@@ -84,8 +89,12 @@ __attribute__((deprecated)) fine_tune_chat_completion_request_assistant_message_
         audio,
         tool_calls,
         function_call,
-        weight
+        weight_copy
         );
+    if (!result) {
+        free(weight_copy);
+    }
+    return result;
 }
 
 void fine_tune_chat_completion_request_assistant_message_free(fine_tune_chat_completion_request_assistant_message_t *fine_tune_chat_completion_request_assistant_message) {
@@ -123,6 +132,10 @@ void fine_tune_chat_completion_request_assistant_message_free(fine_tune_chat_com
     if (fine_tune_chat_completion_request_assistant_message->function_call) {
         chat_completion_request_assistant_message_function_call_free(fine_tune_chat_completion_request_assistant_message->function_call);
         fine_tune_chat_completion_request_assistant_message->function_call = NULL;
+    }
+    if (fine_tune_chat_completion_request_assistant_message->weight) {
+        free(fine_tune_chat_completion_request_assistant_message->weight);
+        fine_tune_chat_completion_request_assistant_message->weight = NULL;
     }
     free(fine_tune_chat_completion_request_assistant_message);
 }
@@ -217,7 +230,7 @@ cJSON *fine_tune_chat_completion_request_assistant_message_convertToJSON(fine_tu
 
     // fine_tune_chat_completion_request_assistant_message->weight
     if(fine_tune_chat_completion_request_assistant_message->weight != openai_api_fine_tune_chat_completion_request_assistant_message_WEIGHT_NULL) {
-    if(cJSON_AddNumberToObject(item, "weight", fine_tune_chat_completion_request_assistant_message->weight) == NULL) {
+    if(cJSON_AddNumberToObject(item, "weight", *fine_tune_chat_completion_request_assistant_message->weight) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -237,6 +250,10 @@ fine_tune_chat_completion_request_assistant_message_t *fine_tune_chat_completion
     // define the local variable for fine_tune_chat_completion_request_assistant_message->content
     chat_completion_request_assistant_message_content_t *content_local_nonprim = NULL;
 
+    char *refusal_local_str = NULL;
+
+    char *name_local_str = NULL;
+
     // define the local variable for fine_tune_chat_completion_request_assistant_message->audio
     chat_completion_request_assistant_message_audio_t *audio_local_nonprim = NULL;
 
@@ -245,6 +262,9 @@ fine_tune_chat_completion_request_assistant_message_t *fine_tune_chat_completion
 
     // define the local variable for fine_tune_chat_completion_request_assistant_message->function_call
     chat_completion_request_assistant_message_function_call_t *function_call_local_nonprim = NULL;
+
+    // define the local variable for fine_tune_chat_completion_request_assistant_message->weight
+    int *weight_local_var = NULL;
 
     // fine_tune_chat_completion_request_assistant_message->content
     cJSON *content = cJSON_GetObjectItemCaseSensitive(fine_tune_chat_completion_request_assistant_messageJSON, "content");
@@ -348,25 +368,46 @@ fine_tune_chat_completion_request_assistant_message_t *fine_tune_chat_completion
     {
     goto end; //Numeric
     }
+    weight_local_var = malloc(sizeof(int));
+    if(!weight_local_var)
+    {
+        goto end;
+    }
+    *weight_local_var = weight->valuedouble;
     }
 
 
+    if (refusal && !cJSON_IsNull(refusal)) refusal_local_str = strdup(refusal->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     fine_tune_chat_completion_request_assistant_message_local_var = fine_tune_chat_completion_request_assistant_message_create_internal (
         content ? content_local_nonprim : NULL,
-        refusal && !cJSON_IsNull(refusal) ? strdup(refusal->valuestring) : NULL,
+        refusal_local_str,
         roleVariable,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
+        name_local_str,
         audio ? audio_local_nonprim : NULL,
         tool_calls ? tool_callsList : NULL,
         function_call ? function_call_local_nonprim : NULL,
-        weight ? weight->valuedouble : 0
+        weight_local_var
         );
+
+    if (!fine_tune_chat_completion_request_assistant_message_local_var) {
+        goto end;
+    }
 
     return fine_tune_chat_completion_request_assistant_message_local_var;
 end:
     if (content_local_nonprim) {
         chat_completion_request_assistant_message_content_free(content_local_nonprim);
         content_local_nonprim = NULL;
+    }
+    if (refusal_local_str) {
+        free(refusal_local_str);
+        refusal_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
     }
     if (audio_local_nonprim) {
         chat_completion_request_assistant_message_audio_free(audio_local_nonprim);
@@ -384,6 +425,10 @@ end:
     if (function_call_local_nonprim) {
         chat_completion_request_assistant_message_function_call_free(function_call_local_nonprim);
         function_call_local_nonprim = NULL;
+    }
+    if (weight_local_var) {
+        free(weight_local_var);
+        weight_local_var = NULL;
     }
     return NULL;
 

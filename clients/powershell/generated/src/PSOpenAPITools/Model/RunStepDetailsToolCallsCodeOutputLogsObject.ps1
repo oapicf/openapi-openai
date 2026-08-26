@@ -50,8 +50,8 @@ function Initialize-RunStepDetailsToolCallsCodeOutputLogsObject {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "logs" = ${Logs}
+            'type' = ${Type}
+            'logs' = ${Logs}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToRunStepDetailsToolCallsCodeOutputLogsObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDetailsToolCallsCodeOutputLogsObject
-        $AllProperties = ("type", "logs")
+        $AllProperties = ('type', 'logs')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToRunStepDetailsToolCallsCodeOutputLogsObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "logs"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'logs'))) {
             throw "Error! JSON cannot be serialized due to the required property 'logs' missing."
         } else {
-            $Logs = $JsonParameters.PSobject.Properties["logs"].value
+            $Logs = $JsonParameters.PSobject.Properties['logs'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "logs" = ${Logs}
+            'type' = ${Type}
+            'logs' = ${Logs}
         }
 
         return $PSO

@@ -11,15 +11,18 @@ static create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t
     if (!create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_local_var) {
         return NULL;
     }
-
+    memset(create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_local_var, 0, sizeof(create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t));
     create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_local_var->_library_owned = 1;
     return create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_local_var;
 }
 
 __attribute__((deprecated)) create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t *create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_create(
     ) {
-    return create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_create_internal (
+    create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t *result = create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_create_internal (
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_free(create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t *create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier) {
@@ -49,8 +52,13 @@ create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t *creat
     create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t *create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_local_var = NULL;
 
 
+
     create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_local_var = create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_create_internal (
         );
+
+    if (!create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_local_var) {
+        goto end;
+    }
 
     return create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_local_var;
 end:

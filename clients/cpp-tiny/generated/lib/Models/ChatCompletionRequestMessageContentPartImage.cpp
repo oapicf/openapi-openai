@@ -86,7 +86,7 @@ ChatCompletionRequestMessageContentPartImage::getType()
 }
 
 void
-ChatCompletionRequestMessageContentPartImage::setType(std::string  type)
+ChatCompletionRequestMessageContentPartImage::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ ChatCompletionRequestMessageContentPartImage::getImageUrl()
 }
 
 void
-ChatCompletionRequestMessageContentPartImage::setImageUrl(ChatCompletionRequestMessageContentPartImage_image_url  image_url)
+ChatCompletionRequestMessageContentPartImage::setImageUrl(ChatCompletionRequestMessageContentPartImage_image_url image_url)
 {
 	this->image_url = image_url;
 }

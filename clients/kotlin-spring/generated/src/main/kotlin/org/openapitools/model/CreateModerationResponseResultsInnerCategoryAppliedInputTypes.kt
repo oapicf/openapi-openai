@@ -33,43 +33,56 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class CreateModerationResponseResultsInnerCategoryAppliedInputTypes(
 
-    @Schema(example = "null", required = true, description = "The applied input type(s) for the category 'hate'.")
+    @Schema(required = true, description = "The applied input type(s) for the category 'hate'.")
+    @param:JsonProperty("hate")
     @get:JsonProperty("hate", required = true) val hate: kotlin.collections.List<CreateModerationResponseResultsInnerCategoryAppliedInputTypes.Hate>,
 
-    @Schema(example = "null", required = true, description = "The applied input type(s) for the category 'hate/threatening'.")
+    @Schema(required = true, description = "The applied input type(s) for the category 'hate/threatening'.")
+    @param:JsonProperty("hate/threatening")
     @get:JsonProperty("hate/threatening", required = true) val hateThreatening: kotlin.collections.List<CreateModerationResponseResultsInnerCategoryAppliedInputTypes.HateThreatening>,
 
-    @Schema(example = "null", required = true, description = "The applied input type(s) for the category 'harassment'.")
+    @Schema(required = true, description = "The applied input type(s) for the category 'harassment'.")
+    @param:JsonProperty("harassment")
     @get:JsonProperty("harassment", required = true) val harassment: kotlin.collections.List<CreateModerationResponseResultsInnerCategoryAppliedInputTypes.Harassment>,
 
-    @Schema(example = "null", required = true, description = "The applied input type(s) for the category 'harassment/threatening'.")
+    @Schema(required = true, description = "The applied input type(s) for the category 'harassment/threatening'.")
+    @param:JsonProperty("harassment/threatening")
     @get:JsonProperty("harassment/threatening", required = true) val harassmentThreatening: kotlin.collections.List<CreateModerationResponseResultsInnerCategoryAppliedInputTypes.HarassmentThreatening>,
 
-    @Schema(example = "null", required = true, description = "The applied input type(s) for the category 'illicit'.")
+    @Schema(required = true, description = "The applied input type(s) for the category 'illicit'.")
+    @param:JsonProperty("illicit")
     @get:JsonProperty("illicit", required = true) val illicit: kotlin.collections.List<CreateModerationResponseResultsInnerCategoryAppliedInputTypes.Illicit>,
 
-    @Schema(example = "null", required = true, description = "The applied input type(s) for the category 'illicit/violent'.")
+    @Schema(required = true, description = "The applied input type(s) for the category 'illicit/violent'.")
+    @param:JsonProperty("illicit/violent")
     @get:JsonProperty("illicit/violent", required = true) val illicitViolent: kotlin.collections.List<CreateModerationResponseResultsInnerCategoryAppliedInputTypes.IllicitViolent>,
 
-    @Schema(example = "null", required = true, description = "The applied input type(s) for the category 'self-harm'.")
+    @Schema(required = true, description = "The applied input type(s) for the category 'self-harm'.")
+    @param:JsonProperty("self-harm")
     @get:JsonProperty("self-harm", required = true) val selfHarm: kotlin.collections.List<CreateModerationResponseResultsInnerCategoryAppliedInputTypes.SelfHarm>,
 
-    @Schema(example = "null", required = true, description = "The applied input type(s) for the category 'self-harm/intent'.")
+    @Schema(required = true, description = "The applied input type(s) for the category 'self-harm/intent'.")
+    @param:JsonProperty("self-harm/intent")
     @get:JsonProperty("self-harm/intent", required = true) val selfHarmIntent: kotlin.collections.List<CreateModerationResponseResultsInnerCategoryAppliedInputTypes.SelfHarmIntent>,
 
-    @Schema(example = "null", required = true, description = "The applied input type(s) for the category 'self-harm/instructions'.")
+    @Schema(required = true, description = "The applied input type(s) for the category 'self-harm/instructions'.")
+    @param:JsonProperty("self-harm/instructions")
     @get:JsonProperty("self-harm/instructions", required = true) val selfHarmInstructions: kotlin.collections.List<CreateModerationResponseResultsInnerCategoryAppliedInputTypes.SelfHarmInstructions>,
 
-    @Schema(example = "null", required = true, description = "The applied input type(s) for the category 'sexual'.")
+    @Schema(required = true, description = "The applied input type(s) for the category 'sexual'.")
+    @param:JsonProperty("sexual")
     @get:JsonProperty("sexual", required = true) val sexual: kotlin.collections.List<CreateModerationResponseResultsInnerCategoryAppliedInputTypes.Sexual>,
 
-    @Schema(example = "null", required = true, description = "The applied input type(s) for the category 'sexual/minors'.")
+    @Schema(required = true, description = "The applied input type(s) for the category 'sexual/minors'.")
+    @param:JsonProperty("sexual/minors")
     @get:JsonProperty("sexual/minors", required = true) val sexualMinors: kotlin.collections.List<CreateModerationResponseResultsInnerCategoryAppliedInputTypes.SexualMinors>,
 
-    @Schema(example = "null", required = true, description = "The applied input type(s) for the category 'violence'.")
+    @Schema(required = true, description = "The applied input type(s) for the category 'violence'.")
+    @param:JsonProperty("violence")
     @get:JsonProperty("violence", required = true) val violence: kotlin.collections.List<CreateModerationResponseResultsInnerCategoryAppliedInputTypes.Violence>,
 
-    @Schema(example = "null", required = true, description = "The applied input type(s) for the category 'violence/graphic'.")
+    @Schema(required = true, description = "The applied input type(s) for the category 'violence/graphic'.")
+    @param:JsonProperty("violence/graphic")
     @get:JsonProperty("violence/graphic", required = true) val violenceGraphic: kotlin.collections.List<CreateModerationResponseResultsInnerCategoryAppliedInputTypes.ViolenceGraphic>
 ) {
 
@@ -86,7 +99,7 @@ data class CreateModerationResponseResultsInnerCategoryAppliedInputTypes(
             @JsonCreator
             fun forValue(value: kotlin.String): Hate {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateModerationResponseResultsInnerCategoryAppliedInputTypes'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Hate'")
             }
         }
     }
@@ -104,7 +117,7 @@ data class CreateModerationResponseResultsInnerCategoryAppliedInputTypes(
             @JsonCreator
             fun forValue(value: kotlin.String): HateThreatening {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateModerationResponseResultsInnerCategoryAppliedInputTypes'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'HateThreatening'")
             }
         }
     }
@@ -122,7 +135,7 @@ data class CreateModerationResponseResultsInnerCategoryAppliedInputTypes(
             @JsonCreator
             fun forValue(value: kotlin.String): Harassment {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateModerationResponseResultsInnerCategoryAppliedInputTypes'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Harassment'")
             }
         }
     }
@@ -140,7 +153,7 @@ data class CreateModerationResponseResultsInnerCategoryAppliedInputTypes(
             @JsonCreator
             fun forValue(value: kotlin.String): HarassmentThreatening {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateModerationResponseResultsInnerCategoryAppliedInputTypes'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'HarassmentThreatening'")
             }
         }
     }
@@ -158,7 +171,7 @@ data class CreateModerationResponseResultsInnerCategoryAppliedInputTypes(
             @JsonCreator
             fun forValue(value: kotlin.String): Illicit {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateModerationResponseResultsInnerCategoryAppliedInputTypes'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Illicit'")
             }
         }
     }
@@ -176,7 +189,7 @@ data class CreateModerationResponseResultsInnerCategoryAppliedInputTypes(
             @JsonCreator
             fun forValue(value: kotlin.String): IllicitViolent {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateModerationResponseResultsInnerCategoryAppliedInputTypes'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'IllicitViolent'")
             }
         }
     }
@@ -195,7 +208,7 @@ data class CreateModerationResponseResultsInnerCategoryAppliedInputTypes(
             @JsonCreator
             fun forValue(value: kotlin.String): SelfHarm {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateModerationResponseResultsInnerCategoryAppliedInputTypes'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SelfHarm'")
             }
         }
     }
@@ -214,7 +227,7 @@ data class CreateModerationResponseResultsInnerCategoryAppliedInputTypes(
             @JsonCreator
             fun forValue(value: kotlin.String): SelfHarmIntent {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateModerationResponseResultsInnerCategoryAppliedInputTypes'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SelfHarmIntent'")
             }
         }
     }
@@ -233,7 +246,7 @@ data class CreateModerationResponseResultsInnerCategoryAppliedInputTypes(
             @JsonCreator
             fun forValue(value: kotlin.String): SelfHarmInstructions {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateModerationResponseResultsInnerCategoryAppliedInputTypes'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SelfHarmInstructions'")
             }
         }
     }
@@ -252,7 +265,7 @@ data class CreateModerationResponseResultsInnerCategoryAppliedInputTypes(
             @JsonCreator
             fun forValue(value: kotlin.String): Sexual {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateModerationResponseResultsInnerCategoryAppliedInputTypes'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Sexual'")
             }
         }
     }
@@ -270,7 +283,7 @@ data class CreateModerationResponseResultsInnerCategoryAppliedInputTypes(
             @JsonCreator
             fun forValue(value: kotlin.String): SexualMinors {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateModerationResponseResultsInnerCategoryAppliedInputTypes'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'SexualMinors'")
             }
         }
     }
@@ -289,7 +302,7 @@ data class CreateModerationResponseResultsInnerCategoryAppliedInputTypes(
             @JsonCreator
             fun forValue(value: kotlin.String): Violence {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateModerationResponseResultsInnerCategoryAppliedInputTypes'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Violence'")
             }
         }
     }
@@ -308,7 +321,7 @@ data class CreateModerationResponseResultsInnerCategoryAppliedInputTypes(
             @JsonCreator
             fun forValue(value: kotlin.String): ViolenceGraphic {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateModerationResponseResultsInnerCategoryAppliedInputTypes'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ViolenceGraphic'")
             }
         }
     }

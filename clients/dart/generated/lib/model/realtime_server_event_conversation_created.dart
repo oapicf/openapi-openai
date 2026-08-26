@@ -61,10 +61,12 @@ class RealtimeServerEventConversationCreated {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventConversationCreated[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventConversationCreated[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event_id'), 'Required key "RealtimeServerEventConversationCreated[event_id]" is missing from JSON.');
+        assert(json[r'event_id'] != null, 'Required key "RealtimeServerEventConversationCreated[event_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RealtimeServerEventConversationCreated[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeServerEventConversationCreated[type]" has a null value in JSON.');
+        assert(json.containsKey(r'conversation'), 'Required key "RealtimeServerEventConversationCreated[conversation]" is missing from JSON.');
+        assert(json[r'conversation'] != null, 'Required key "RealtimeServerEventConversationCreated[conversation]" has a null value in JSON.');
         return true;
       }());
 
@@ -126,27 +128,28 @@ class RealtimeServerEventConversationCreated {
 }
 
 /// The event type, must be `conversation.created`.
-class RealtimeServerEventConversationCreatedTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventConversationCreatedTypeEnum._(this.value);
+enum RealtimeServerEventConversationCreatedTypeEnum {
+  conversationPeriodCreated._(r'conversation.created'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventConversationCreatedTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const conversationPeriodCreated = RealtimeServerEventConversationCreatedTypeEnum._(r'conversation.created');
-
-  /// List of all possible values in this [enum][RealtimeServerEventConversationCreatedTypeEnum].
-  static const values = <RealtimeServerEventConversationCreatedTypeEnum>[
-    conversationPeriodCreated,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventConversationCreatedTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventConversationCreatedTypeEnum? fromJson(dynamic value) => RealtimeServerEventConversationCreatedTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventConversationCreatedTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventConversationCreatedTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventConversationCreatedTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -168,9 +171,10 @@ class RealtimeServerEventConversationCreatedTypeEnumTypeTransformer {
 
   const RealtimeServerEventConversationCreatedTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventConversationCreatedTypeEnum data) => data.value;
+  String encode(RealtimeServerEventConversationCreatedTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventConversationCreatedTypeEnum.
+  /// Returns the instance of [RealtimeServerEventConversationCreatedTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -179,6 +183,9 @@ class RealtimeServerEventConversationCreatedTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventConversationCreatedTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventConversationCreatedTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'conversation.created': return RealtimeServerEventConversationCreatedTypeEnum.conversationPeriodCreated;
@@ -191,7 +198,7 @@ class RealtimeServerEventConversationCreatedTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeServerEventConversationCreatedTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventConversationCreatedTypeEnumTypeTransformer? _instance;
 }
 

@@ -33,7 +33,7 @@ class  RealtimeClientEventSessionUpdate
 {
 public:
     RealtimeClientEventSessionUpdate();
-    virtual ~RealtimeClientEventSessionUpdate() = default;
+    virtual ~RealtimeClientEventSessionUpdate();
 
 
     /// <summary>

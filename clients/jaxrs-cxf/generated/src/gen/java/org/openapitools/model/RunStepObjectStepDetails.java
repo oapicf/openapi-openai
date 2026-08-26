@@ -179,10 +179,7 @@ MESSAGE_CREATION(String.valueOf("message_creation")), TOOL_CALLS(String.valueOf(
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

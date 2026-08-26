@@ -115,8 +115,9 @@ class _$RunStepDeltaStepDetailsToolCallsCodeObjectSerializer implements Primitiv
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'type':
@@ -129,8 +130,9 @@ class _$RunStepDeltaStepDetailsToolCallsCodeObjectSerializer implements Primitiv
         case r'code_interpreter':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter),
-          ) as RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter;
+            specifiedType: const FullType.nullable(RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter),
+          ) as RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter?;
+          if (valueDes == null) continue;
           result.codeInterpreter.replace(valueDes);
           break;
         default:

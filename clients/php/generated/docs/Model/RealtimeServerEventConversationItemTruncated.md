@@ -1,4 +1,4 @@
-# # RealtimeServerEventConversationItemTruncated
+# RealtimeServerEventConversationItemTruncated
 
 ## Properties
 

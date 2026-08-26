@@ -51,7 +51,7 @@ class RunStepDetailsToolCallsCodeObjectCodeInterpreter
      * @var string|null
      * @SerializedName("input")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $input = null;
@@ -62,7 +62,7 @@ class RunStepDetailsToolCallsCodeObjectCodeInterpreter
      * @var RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner[]|null
      * @SerializedName("outputs")
      * @Type("array<OpenAPI\Server\Model\RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -93,12 +93,12 @@ class RunStepDetailsToolCallsCodeObjectCodeInterpreter
     }
 
     /**
-    * Sets input.
-    *
-    * @param string|null $input  The input to the Code Interpreter tool call.
-    *
-    * @return $this
-    */
+     * Sets input.
+     *
+     * @param string|null $input  The input to the Code Interpreter tool call.
+     *
+     * @return $this
+     */
     public function setInput(?string $input): self
     {
         $this->input = $input;
@@ -120,12 +120,12 @@ class RunStepDetailsToolCallsCodeObjectCodeInterpreter
     }
 
     /**
-    * Sets outputs.
-    *
-    * @param RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner[]|null $outputs  The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.
-    *
-    * @return $this
-    */
+     * Sets outputs.
+     *
+     * @param RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner[]|null $outputs  The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.
+     *
+     * @return $this
+     */
     public function setOutputs(?array $outputs): self
     {
         $this->outputs = $outputs;

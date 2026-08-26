@@ -1,4 +1,4 @@
-# # ResponseFormatJsonSchema
+# ResponseFormatJsonSchema
 
 ## Properties
 

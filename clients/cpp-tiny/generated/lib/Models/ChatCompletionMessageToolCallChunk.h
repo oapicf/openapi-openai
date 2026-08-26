@@ -52,28 +52,28 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setIndex(int  index);
+	void setIndex(int index);
 	/*! \brief Get The ID of the tool call.
 	 */
 	std::string getId();
 
 	/*! \brief Set The ID of the tool call.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The type of the tool. Currently, only `function` is supported.
 	 */
 	std::string getType();
 
 	/*! \brief Set The type of the tool. Currently, only `function` is supported.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	ChatCompletionMessageToolCallChunk_function getFunction();
 
 	/*! \brief Set 
 	 */
-	void setFunction(ChatCompletionMessageToolCallChunk_function  function);
+	void setFunction(ChatCompletionMessageToolCallChunk_function function);
 
 
     private:

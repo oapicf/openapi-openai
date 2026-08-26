@@ -35,7 +35,7 @@ class  ChunkingStrategyRequestParam
 {
 public:
     ChunkingStrategyRequestParam();
-    virtual ~ChunkingStrategyRequestParam() = default;
+    virtual ~ChunkingStrategyRequestParam();
 
 
     /// <summary>

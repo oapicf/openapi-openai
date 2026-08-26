@@ -18,7 +18,7 @@ package org.openapitools.client.model
 case class ErrorEvent(
   event: ErrorEventEnums.Event,
   data: Error
-)
+) extends AssistantStreamEvent
 
 object ErrorEventEnums {
 

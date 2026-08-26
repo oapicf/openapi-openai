@@ -27,19 +27,19 @@ static project_service_account_list_response_t *project_service_account_list_res
     list_t *data,
     char *first_id,
     char *last_id,
-    int has_more
+    int *has_more
     ) {
     project_service_account_list_response_t *project_service_account_list_response_local_var = malloc(sizeof(project_service_account_list_response_t));
     if (!project_service_account_list_response_local_var) {
         return NULL;
     }
+    memset(project_service_account_list_response_local_var, 0, sizeof(project_service_account_list_response_t));
+    project_service_account_list_response_local_var->_library_owned = 1;
     project_service_account_list_response_local_var->object = object;
     project_service_account_list_response_local_var->data = data;
     project_service_account_list_response_local_var->first_id = first_id;
     project_service_account_list_response_local_var->last_id = last_id;
     project_service_account_list_response_local_var->has_more = has_more;
-
-    project_service_account_list_response_local_var->_library_owned = 1;
     return project_service_account_list_response_local_var;
 }
 
@@ -48,15 +48,24 @@ __attribute__((deprecated)) project_service_account_list_response_t *project_ser
     list_t *data,
     char *first_id,
     char *last_id,
-    int has_more
+    int *has_more
     ) {
-    return project_service_account_list_response_create_internal (
+    int *has_more_copy = NULL;
+    if (has_more) {
+        has_more_copy = malloc(sizeof(int));
+        if (has_more_copy) *has_more_copy = *has_more;
+    }
+    project_service_account_list_response_t *result = project_service_account_list_response_create_internal (
         object,
         data,
         first_id,
         last_id,
-        has_more
+        has_more_copy
         );
+    if (!result) {
+        free(has_more_copy);
+    }
+    return result;
 }
 
 void project_service_account_list_response_free(project_service_account_list_response_t *project_service_account_list_response) {
@@ -82,6 +91,10 @@ void project_service_account_list_response_free(project_service_account_list_res
     if (project_service_account_list_response->last_id) {
         free(project_service_account_list_response->last_id);
         project_service_account_list_response->last_id = NULL;
+    }
+    if (project_service_account_list_response->has_more) {
+        free(project_service_account_list_response->has_more);
+        project_service_account_list_response->has_more = NULL;
     }
     free(project_service_account_list_response);
 }
@@ -142,7 +155,7 @@ cJSON *project_service_account_list_response_convertToJSON(project_service_accou
     if (!project_service_account_list_response->has_more) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "has_more", project_service_account_list_response->has_more) == NULL) {
+    if(cJSON_AddBoolToObject(item, "has_more", *project_service_account_list_response->has_more) == NULL) {
     goto fail; //Bool
     }
 
@@ -160,6 +173,13 @@ project_service_account_list_response_t *project_service_account_list_response_p
 
     // define the local list for project_service_account_list_response->data
     list_t *dataList = NULL;
+
+    char *first_id_local_str = NULL;
+
+    char *last_id_local_str = NULL;
+
+    // define the local variable for project_service_account_list_response->has_more
+    int *has_more_local_var = NULL;
 
     // project_service_account_list_response->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(project_service_account_list_responseJSON, "object");
@@ -249,15 +269,28 @@ project_service_account_list_response_t *project_service_account_list_response_p
     {
     goto end; //Bool
     }
+    has_more_local_var = malloc(sizeof(int));
+    if(!has_more_local_var)
+    {
+        goto end;
+    }
+    *has_more_local_var = has_more->valueint;
 
+
+    if (first_id && !cJSON_IsNull(first_id)) first_id_local_str = strdup(first_id->valuestring);
+    if (last_id && !cJSON_IsNull(last_id)) last_id_local_str = strdup(last_id->valuestring);
 
     project_service_account_list_response_local_var = project_service_account_list_response_create_internal (
         objectVariable,
         dataList,
-        strdup(first_id->valuestring),
-        strdup(last_id->valuestring),
-        has_more->valueint
+        first_id_local_str,
+        last_id_local_str,
+        has_more_local_var
         );
+
+    if (!project_service_account_list_response_local_var) {
+        goto end;
+    }
 
     return project_service_account_list_response_local_var;
 end:
@@ -269,6 +302,18 @@ end:
         }
         list_freeList(dataList);
         dataList = NULL;
+    }
+    if (first_id_local_str) {
+        free(first_id_local_str);
+        first_id_local_str = NULL;
+    }
+    if (last_id_local_str) {
+        free(last_id_local_str);
+        last_id_local_str = NULL;
+    }
+    if (has_more_local_var) {
+        free(has_more_local_var);
+        has_more_local_var = NULL;
     }
     return NULL;
 

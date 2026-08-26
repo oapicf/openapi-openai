@@ -85,7 +85,7 @@ TruncationObject::getType()
 }
 
 void
-TruncationObject::setType(std::string  type)
+TruncationObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -97,7 +97,7 @@ TruncationObject::getLastMessages()
 }
 
 void
-TruncationObject::setLastMessages(int  last_messages)
+TruncationObject::setLastMessages(int last_messages)
 {
 	this->last_messages = last_messages;
 }

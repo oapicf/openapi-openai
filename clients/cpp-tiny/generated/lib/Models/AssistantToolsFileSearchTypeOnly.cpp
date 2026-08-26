@@ -64,7 +64,7 @@ AssistantToolsFileSearchTypeOnly::getType()
 }
 
 void
-AssistantToolsFileSearchTypeOnly::setType(std::string  type)
+AssistantToolsFileSearchTypeOnly::setType(std::string type)
 {
 	this->type = type;
 }

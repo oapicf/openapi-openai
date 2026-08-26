@@ -34,13 +34,13 @@ class OAIVectorStoreObject;
 class OAIListVectorStoresResponse : public OAIObject {
 public:
     OAIListVectorStoresResponse();
-    OAIListVectorStoresResponse(QString json);
+    OAIListVectorStoresResponse(const QString &json);
     ~OAIListVectorStoresResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getObject() const;
     void setObject(const QString &object);

@@ -27,7 +27,7 @@ export interface MessageDeltaContentImageUrlObjectImageUrl {
     url?: string;
     /**
      * Specifies the detail level of the image. `low` uses fewer tokens, you can opt in to high resolution using `high`.
-     * @type {string}
+     * @type {MessageDeltaContentImageUrlObjectImageUrlDetailEnum}
      * @memberof MessageDeltaContentImageUrlObjectImageUrl
      */
     detail?: MessageDeltaContentImageUrlObjectImageUrlDetailEnum;

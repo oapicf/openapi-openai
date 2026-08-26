@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIChatCompletionTokenLogprob_top_logprobs_inner::OAIChatCompletionTokenLogprob_top_logprobs_inner(QString json) {
+OAIChatCompletionTokenLogprob_top_logprobs_inner::OAIChatCompletionTokenLogprob_top_logprobs_inner(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIChatCompletionTokenLogprob_top_logprobs_inner::initializeModel() {
     m_bytes_isValid = false;
 }
 
-void OAIChatCompletionTokenLogprob_top_logprobs_inner::fromJson(QString jsonString) {
+void OAIChatCompletionTokenLogprob_top_logprobs_inner::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

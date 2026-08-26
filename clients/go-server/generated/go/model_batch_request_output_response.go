@@ -26,7 +26,8 @@ type BatchRequestOutputResponse struct {
 	Body map[string]interface{} `json:"body,omitempty"`
 }
 
-// AssertBatchRequestOutputResponseRequired checks if the required fields are not zero-ed
+// AssertBatchRequestOutputResponseRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertBatchRequestOutputResponseRequired(obj BatchRequestOutputResponse) error {
 	return nil
 }

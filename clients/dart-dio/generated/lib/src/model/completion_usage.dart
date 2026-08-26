@@ -137,15 +137,17 @@ class _$CompletionUsageSerializer implements PrimitiveSerializer<CompletionUsage
         case r'completion_tokens_details':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CompletionUsageCompletionTokensDetails),
-          ) as CompletionUsageCompletionTokensDetails;
+            specifiedType: const FullType.nullable(CompletionUsageCompletionTokensDetails),
+          ) as CompletionUsageCompletionTokensDetails?;
+          if (valueDes == null) continue;
           result.completionTokensDetails.replace(valueDes);
           break;
         case r'prompt_tokens_details':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CompletionUsagePromptTokensDetails),
-          ) as CompletionUsagePromptTokensDetails;
+            specifiedType: const FullType.nullable(CompletionUsagePromptTokensDetails),
+          ) as CompletionUsagePromptTokensDetails?;
+          if (valueDes == null) continue;
           result.promptTokensDetails.replace(valueDes);
           break;
         default:

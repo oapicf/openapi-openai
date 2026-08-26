@@ -1,4 +1,4 @@
-# # RealtimeConversationItem
+# RealtimeConversationItem
 
 ## Properties
 

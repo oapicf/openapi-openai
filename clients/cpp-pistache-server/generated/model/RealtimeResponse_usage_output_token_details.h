@@ -31,7 +31,7 @@ class  RealtimeResponse_usage_output_token_details
 {
 public:
     RealtimeResponse_usage_output_token_details();
-    virtual ~RealtimeResponse_usage_output_token_details() = default;
+    virtual ~RealtimeResponse_usage_output_token_details();
 
 
     /// <summary>

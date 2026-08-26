@@ -170,7 +170,7 @@ VectorStoreFileBatchObject::getId()
 }
 
 void
-VectorStoreFileBatchObject::setId(std::string  id)
+VectorStoreFileBatchObject::setId(std::string id)
 {
 	this->id = id;
 }
@@ -182,7 +182,7 @@ VectorStoreFileBatchObject::getObject()
 }
 
 void
-VectorStoreFileBatchObject::setObject(std::string  object)
+VectorStoreFileBatchObject::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -194,7 +194,7 @@ VectorStoreFileBatchObject::getCreatedAt()
 }
 
 void
-VectorStoreFileBatchObject::setCreatedAt(int  created_at)
+VectorStoreFileBatchObject::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -206,7 +206,7 @@ VectorStoreFileBatchObject::getVectorStoreId()
 }
 
 void
-VectorStoreFileBatchObject::setVectorStoreId(std::string  vector_store_id)
+VectorStoreFileBatchObject::setVectorStoreId(std::string vector_store_id)
 {
 	this->vector_store_id = vector_store_id;
 }
@@ -218,7 +218,7 @@ VectorStoreFileBatchObject::getStatus()
 }
 
 void
-VectorStoreFileBatchObject::setStatus(std::string  status)
+VectorStoreFileBatchObject::setStatus(std::string status)
 {
 	this->status = status;
 }
@@ -230,7 +230,7 @@ VectorStoreFileBatchObject::getFileCounts()
 }
 
 void
-VectorStoreFileBatchObject::setFileCounts(VectorStoreFileBatchObject_file_counts  file_counts)
+VectorStoreFileBatchObject::setFileCounts(VectorStoreFileBatchObject_file_counts file_counts)
 {
 	this->file_counts = file_counts;
 }

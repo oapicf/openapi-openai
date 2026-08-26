@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **String** |  | 
+**object** | **Object** |  (enum: page) | 
 **data** | [**Vec<models::UsageTimeBucket>**](UsageTimeBucket.md) |  | 
 **has_more** | **bool** |  | 
 **next_page** | **String** |  | 

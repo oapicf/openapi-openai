@@ -48,10 +48,8 @@ class ProjectUserUpdateRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectUserUpdateRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectUserUpdateRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'role'), 'Required key "ProjectUserUpdateRequest[role]" is missing from JSON.');
+        assert(json[r'role'] != null, 'Required key "ProjectUserUpdateRequest[role]" has a null value in JSON.');
         return true;
       }());
 
@@ -109,29 +107,29 @@ class ProjectUserUpdateRequest {
 }
 
 /// `owner` or `member`
-class ProjectUserUpdateRequestRoleEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ProjectUserUpdateRequestRoleEnum._(this.value);
+enum ProjectUserUpdateRequestRoleEnum {
+  owner._(r'owner'),
+  member._(r'member'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ProjectUserUpdateRequestRoleEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const owner = ProjectUserUpdateRequestRoleEnum._(r'owner');
-  static const member = ProjectUserUpdateRequestRoleEnum._(r'member');
-
-  /// List of all possible values in this [enum][ProjectUserUpdateRequestRoleEnum].
-  static const values = <ProjectUserUpdateRequestRoleEnum>[
-    owner,
-    member,
-  ];
-
+  /// Returns the instance of [ProjectUserUpdateRequestRoleEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ProjectUserUpdateRequestRoleEnum? fromJson(dynamic value) => ProjectUserUpdateRequestRoleEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ProjectUserUpdateRequestRoleEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ProjectUserUpdateRequestRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ProjectUserUpdateRequestRoleEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -153,9 +151,10 @@ class ProjectUserUpdateRequestRoleEnumTypeTransformer {
 
   const ProjectUserUpdateRequestRoleEnumTypeTransformer._();
 
-  String encode(ProjectUserUpdateRequestRoleEnum data) => data.value;
+  String encode(ProjectUserUpdateRequestRoleEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ProjectUserUpdateRequestRoleEnum.
+  /// Returns the instance of [ProjectUserUpdateRequestRoleEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -164,6 +163,9 @@ class ProjectUserUpdateRequestRoleEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ProjectUserUpdateRequestRoleEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ProjectUserUpdateRequestRoleEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'owner': return ProjectUserUpdateRequestRoleEnum.owner;
@@ -177,7 +179,7 @@ class ProjectUserUpdateRequestRoleEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ProjectUserUpdateRequestRoleEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ProjectUserUpdateRequestRoleEnumTypeTransformer? _instance;
 }
 

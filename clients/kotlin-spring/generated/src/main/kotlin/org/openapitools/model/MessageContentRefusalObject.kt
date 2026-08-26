@@ -22,12 +22,14 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class MessageContentRefusalObject(
 
-    @Schema(example = "null", required = true, description = "Always `refusal`.")
+    @Schema(required = true, description = "Always `refusal`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: MessageContentRefusalObject.Type,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("refusal")
     @get:JsonProperty("refusal", required = true) val refusal: kotlin.String
-) {
+) : MessageObjectContentInner {
 
     /**
     * Always `refusal`.
@@ -42,7 +44,7 @@ data class MessageContentRefusalObject(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'MessageContentRefusalObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

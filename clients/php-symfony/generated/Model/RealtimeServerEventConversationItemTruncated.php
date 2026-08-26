@@ -51,7 +51,7 @@ class RealtimeServerEventConversationItemTruncated
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $eventId = null;
@@ -62,7 +62,7 @@ class RealtimeServerEventConversationItemTruncated
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['conversation.item.truncated'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class RealtimeServerEventConversationItemTruncated
      * @var string|null
      * @SerializedName("item_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $itemId = null;
@@ -85,7 +85,7 @@ class RealtimeServerEventConversationItemTruncated
      * @var int|null
      * @SerializedName("content_index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $contentIndex = null;
@@ -96,7 +96,7 @@ class RealtimeServerEventConversationItemTruncated
      * @var int|null
      * @SerializedName("audio_end_ms")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $audioEndMs = null;
@@ -127,12 +127,12 @@ class RealtimeServerEventConversationItemTruncated
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  The unique ID of the server event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  The unique ID of the server event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId): self
     {
         $this->eventId = $eventId;
@@ -154,12 +154,12 @@ class RealtimeServerEventConversationItemTruncated
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `conversation.item.truncated`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `conversation.item.truncated`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -181,12 +181,12 @@ class RealtimeServerEventConversationItemTruncated
     }
 
     /**
-    * Sets itemId.
-    *
-    * @param string|null $itemId  The ID of the assistant message item that was truncated.
-    *
-    * @return $this
-    */
+     * Sets itemId.
+     *
+     * @param string|null $itemId  The ID of the assistant message item that was truncated.
+     *
+     * @return $this
+     */
     public function setItemId(?string $itemId): self
     {
         $this->itemId = $itemId;
@@ -208,12 +208,12 @@ class RealtimeServerEventConversationItemTruncated
     }
 
     /**
-    * Sets contentIndex.
-    *
-    * @param int|null $contentIndex  The index of the content part that was truncated.
-    *
-    * @return $this
-    */
+     * Sets contentIndex.
+     *
+     * @param int|null $contentIndex  The index of the content part that was truncated.
+     *
+     * @return $this
+     */
     public function setContentIndex(?int $contentIndex): self
     {
         $this->contentIndex = $contentIndex;
@@ -235,12 +235,12 @@ class RealtimeServerEventConversationItemTruncated
     }
 
     /**
-    * Sets audioEndMs.
-    *
-    * @param int|null $audioEndMs  The duration up to which the audio was truncated, in milliseconds.
-    *
-    * @return $this
-    */
+     * Sets audioEndMs.
+     *
+     * @param int|null $audioEndMs  The duration up to which the audio was truncated, in milliseconds.
+     *
+     * @return $this
+     */
     public function setAudioEndMs(?int $audioEndMs): self
     {
         $this->audioEndMs = $audioEndMs;

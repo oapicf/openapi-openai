@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The project ID.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The project title.
 	 */
 	std::string getName();
 
 	/*! \brief Set The project title.
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 
 
     private:

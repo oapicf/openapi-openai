@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAICompletionUsage_completion_tokens_details : public OAIObject {
 public:
     OAICompletionUsage_completion_tokens_details();
-    OAICompletionUsage_completion_tokens_details(QString json);
+    OAICompletionUsage_completion_tokens_details(const QString &json);
     ~OAICompletionUsage_completion_tokens_details() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getAcceptedPredictionTokens() const;
     void setAcceptedPredictionTokens(const qint32 &accepted_prediction_tokens);

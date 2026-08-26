@@ -303,11 +303,11 @@ RunObject <- R6::R6Class(
       }
       if (!is.null(self$`required_action`)) {
         RunObjectObject[["required_action"]] <-
-          self$`required_action`$toSimpleType()
+          self$extractSimpleType(self$`required_action`)
       }
       if (!is.null(self$`last_error`)) {
         RunObjectObject[["last_error"]] <-
-          self$`last_error`$toSimpleType()
+          self$extractSimpleType(self$`last_error`)
       }
       if (!is.null(self$`expires_at`)) {
         RunObjectObject[["expires_at"]] <-
@@ -331,7 +331,7 @@ RunObject <- R6::R6Class(
       }
       if (!is.null(self$`incomplete_details`)) {
         RunObjectObject[["incomplete_details"]] <-
-          self$`incomplete_details`$toSimpleType()
+          self$extractSimpleType(self$`incomplete_details`)
       }
       if (!is.null(self$`model`)) {
         RunObjectObject[["model"]] <-
@@ -343,7 +343,7 @@ RunObject <- R6::R6Class(
       }
       if (!is.null(self$`tools`)) {
         RunObjectObject[["tools"]] <-
-          lapply(self$`tools`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`tools`)
       }
       if (!is.null(self$`metadata`)) {
         RunObjectObject[["metadata"]] <-
@@ -351,7 +351,7 @@ RunObject <- R6::R6Class(
       }
       if (!is.null(self$`usage`)) {
         RunObjectObject[["usage"]] <-
-          self$`usage`$toSimpleType()
+          self$extractSimpleType(self$`usage`)
       }
       if (!is.null(self$`temperature`)) {
         RunObjectObject[["temperature"]] <-
@@ -371,11 +371,11 @@ RunObject <- R6::R6Class(
       }
       if (!is.null(self$`truncation_strategy`)) {
         RunObjectObject[["truncation_strategy"]] <-
-          self$`truncation_strategy`$toSimpleType()
+          self$extractSimpleType(self$`truncation_strategy`)
       }
       if (!is.null(self$`tool_choice`)) {
         RunObjectObject[["tool_choice"]] <-
-          self$`tool_choice`$toSimpleType()
+          self$extractSimpleType(self$`tool_choice`)
       }
       if (!is.null(self$`parallel_tool_calls`)) {
         RunObjectObject[["parallel_tool_calls"]] <-
@@ -383,9 +383,32 @@ RunObject <- R6::R6Class(
       }
       if (!is.null(self$`response_format`)) {
         RunObjectObject[["response_format"]] <-
-          self$`response_format`$toSimpleType()
+          self$extractSimpleType(self$`response_format`)
       }
       return(RunObjectObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

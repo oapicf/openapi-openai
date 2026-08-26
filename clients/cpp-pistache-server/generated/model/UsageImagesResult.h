@@ -32,7 +32,7 @@ class  UsageImagesResult
 {
 public:
     UsageImagesResult();
-    virtual ~UsageImagesResult() = default;
+    virtual ~UsageImagesResult();
 
 
     /// <summary>

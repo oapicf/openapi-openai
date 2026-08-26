@@ -86,7 +86,7 @@ AuditLog_service_account_created::getId()
 }
 
 void
-AuditLog_service_account_created::setId(std::string  id)
+AuditLog_service_account_created::setId(std::string id)
 {
 	this->id = id;
 }
@@ -98,7 +98,7 @@ AuditLog_service_account_created::getData()
 }
 
 void
-AuditLog_service_account_created::setData(AuditLog_service_account_created_data  data)
+AuditLog_service_account_created::setData(AuditLog_service_account_created_data data)
 {
 	this->data = data;
 }

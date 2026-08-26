@@ -10,13 +10,13 @@ import org.openapitools.model.RunObjectRequiredActionSubmitToolOutputs;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Details on the action required to continue the run. Will be &#x60;null&#x60; if no action is required.
@@ -24,7 +24,7 @@ import javax.annotation.Generated;
 
 @Schema(name = "RunObject_required_action", description = "Details on the action required to continue the run. Will be `null` if no action is required.")
 @JsonTypeName("RunObject_required_action")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RunObjectRequiredAction {
 
   /**
@@ -92,6 +92,7 @@ public class RunObjectRequiredAction {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -112,6 +113,7 @@ public class RunObjectRequiredAction {
     return submitToolOutputs;
   }
 
+  @JsonProperty("submit_tool_outputs")
   public void setSubmitToolOutputs(RunObjectRequiredActionSubmitToolOutputs submitToolOutputs) {
     this.submitToolOutputs = submitToolOutputs;
   }
@@ -149,10 +151,7 @@ public class RunObjectRequiredAction {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

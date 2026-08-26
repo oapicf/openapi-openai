@@ -50,8 +50,8 @@ function Initialize-TruncationObject {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "last_messages" = ${LastMessages}
+            'type' = ${Type}
+            'last_messages' = ${LastMessages}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToTruncationObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in TruncationObject
-        $AllProperties = ("type", "last_messages")
+        $AllProperties = ('type', 'last_messages')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToTruncationObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "last_messages"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'last_messages'))) { #optional property not found
             $LastMessages = $null
         } else {
-            $LastMessages = $JsonParameters.PSobject.Properties["last_messages"].value
+            $LastMessages = $JsonParameters.PSobject.Properties['last_messages'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "last_messages" = ${LastMessages}
+            'type' = ${Type}
+            'last_messages' = ${LastMessages}
         }
 
         return $PSO

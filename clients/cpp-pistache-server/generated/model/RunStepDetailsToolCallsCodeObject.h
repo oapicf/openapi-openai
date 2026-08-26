@@ -33,7 +33,7 @@ class  RunStepDetailsToolCallsCodeObject
 {
 public:
     RunStepDetailsToolCallsCodeObject();
-    virtual ~RunStepDetailsToolCallsCodeObject() = default;
+    virtual ~RunStepDetailsToolCallsCodeObject();
 
 
     /// <summary>

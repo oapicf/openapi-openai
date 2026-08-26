@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface CreateModerationRequestInputOneOfInnerOneOf1 {
     /**
      * Always `text`.
-     * @type {string}
+     * @type {CreateModerationRequestInputOneOfInnerOneOf1TypeEnum}
      * @memberof CreateModerationRequestInputOneOfInnerOneOf1
      */
     type: CreateModerationRequestInputOneOfInnerOneOf1TypeEnum;
@@ -48,6 +48,8 @@ export type CreateModerationRequestInputOneOfInnerOneOf1TypeEnum = typeof Create
  */
 export function instanceOfCreateModerationRequestInputOneOfInnerOneOf1(value: object): value is CreateModerationRequestInputOneOfInnerOneOf1 {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'text') return false;
+    
     if (!('text' in value) || value['text'] === undefined) return false;
     return true;
 }

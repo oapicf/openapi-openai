@@ -1,4 +1,4 @@
-# # RunStepObject
+# RunStepObject
 
 ## Properties
 

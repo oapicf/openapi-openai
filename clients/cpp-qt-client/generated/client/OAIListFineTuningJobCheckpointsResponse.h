@@ -34,13 +34,13 @@ class OAIFineTuningJobCheckpoint;
 class OAIListFineTuningJobCheckpointsResponse : public OAIObject {
 public:
     OAIListFineTuningJobCheckpointsResponse();
-    OAIListFineTuningJobCheckpointsResponse(QString json);
+    OAIListFineTuningJobCheckpointsResponse(const QString &json);
     ~OAIListFineTuningJobCheckpointsResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QList<OAIFineTuningJobCheckpoint> getData() const;
     void setData(const QList<OAIFineTuningJobCheckpoint> &data);

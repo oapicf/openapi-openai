@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateImageEditRequest_model::OAICreateImageEditRequest_model(QString json) {
+OAICreateImageEditRequest_model::OAICreateImageEditRequest_model(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -36,7 +36,7 @@ void OAICreateImageEditRequest_model::initializeModel() {
 
 }
 
-void OAICreateImageEditRequest_model::fromJson(QString jsonString) {
+void OAICreateImageEditRequest_model::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

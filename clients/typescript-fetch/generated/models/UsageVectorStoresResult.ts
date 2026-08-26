@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface UsageVectorStoresResult {
     /**
      * 
-     * @type {string}
+     * @type {UsageVectorStoresResultObjectEnum}
      * @memberof UsageVectorStoresResult
      */
     object: UsageVectorStoresResultObjectEnum;
@@ -54,7 +54,9 @@ export type UsageVectorStoresResultObjectEnum = typeof UsageVectorStoresResultOb
  */
 export function instanceOfUsageVectorStoresResult(value: object): value is UsageVectorStoresResult {
     if (!('object' in value) || value['object'] === undefined) return false;
-    if (!('usageBytes' in value) || value['usageBytes'] === undefined) return false;
+    if (value['object'] !== 'organization.usage.vector_stores.result') return false;
+    
+    if ((!('usageBytes' in (value as Record<string, any>)) && !('usage_bytes' in (value as Record<string, any>))) || ((value as Record<string, any>)['usageBytes'] === undefined && (value as Record<string, any>)['usage_bytes'] === undefined)) return false;
     return true;
 }
 
@@ -70,7 +72,7 @@ export function UsageVectorStoresResultFromJSONTyped(json: any, ignoreDiscrimina
         
         'object': json['object'],
         'usageBytes': json['usage_bytes'],
-        'projectId': json['project_id'] == null ? undefined : json['project_id'],
+        'projectId': json['project_id'] === undefined ? undefined : json['project_id'] === null ? null : json['project_id'],
     };
 }
 

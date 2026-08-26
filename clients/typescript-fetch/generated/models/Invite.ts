@@ -29,7 +29,7 @@ import {
 export interface Invite {
     /**
      * The object type, which is always `organization.invite`
-     * @type {string}
+     * @type {InviteObjectEnum}
      * @memberof Invite
      */
     object: InviteObjectEnum;
@@ -47,13 +47,13 @@ export interface Invite {
     email: string;
     /**
      * `owner` or `reader`
-     * @type {string}
+     * @type {InviteRoleEnum}
      * @memberof Invite
      */
     role: InviteRoleEnum;
     /**
      * `accepted`,`expired`, or `pending`
-     * @type {string}
+     * @type {InviteStatusEnum}
      * @memberof Invite
      */
     status: InviteStatusEnum;
@@ -117,12 +117,14 @@ export type InviteStatusEnum = typeof InviteStatusEnum[keyof typeof InviteStatus
  */
 export function instanceOfInvite(value: object): value is Invite {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'organization.invite') return false;
+    
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('email' in value) || value['email'] === undefined) return false;
     if (!('role' in value) || value['role'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('invitedAt' in value) || value['invitedAt'] === undefined) return false;
-    if (!('expiresAt' in value) || value['expiresAt'] === undefined) return false;
+    if ((!('invitedAt' in (value as Record<string, any>)) && !('invited_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['invitedAt'] === undefined && (value as Record<string, any>)['invited_at'] === undefined)) return false;
+    if ((!('expiresAt' in (value as Record<string, any>)) && !('expires_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['expiresAt'] === undefined && (value as Record<string, any>)['expires_at'] === undefined)) return false;
     return true;
 }
 

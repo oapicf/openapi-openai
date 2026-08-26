@@ -1,0 +1,28 @@
+
+
+export interface RunStepDeltaStepDetailsToolCallsFileSearchObject { 
+  /**
+   * The index of the tool call in the tool calls array.
+   */
+  index: number;
+  /**
+   * The ID of the tool call object.
+   */
+  id?: string;
+  /**
+   * The type of tool call. This is always going to be `file_search` for this type of tool call.
+   */
+  type: RunStepDeltaStepDetailsToolCallsFileSearchObject.TypeEnum;
+  /**
+   * For now, this is always going to be an empty object.
+   */
+  file_search: object;
+}
+export namespace RunStepDeltaStepDetailsToolCallsFileSearchObject {
+  export const TypeEnum = {
+    FileSearch: 'file_search'
+  } as const;
+  export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
+}
+
+

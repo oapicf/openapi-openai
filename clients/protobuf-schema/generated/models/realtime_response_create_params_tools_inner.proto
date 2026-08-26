@@ -23,7 +23,7 @@ message RealtimeResponseCreateParamsToolsInner {
     TYPE_FUNCTION = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // The name of the function.
   string name = 3373707;

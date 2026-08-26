@@ -12,18 +12,34 @@
 package org.openapitools.client.model
 
 
-case class MessageDeltaContentTextObjectTextAnnotationsInner(
+sealed trait MessageDeltaContentTextObjectTextAnnotationsInner
+object MessageDeltaContentTextObjectTextAnnotationsInner {
+}
+
+case class MessageDeltaContentTextAnnotationsFileCitationObject(
   /* The index of the annotation in the text content part. */
   index: Int,
   /* Always `file_citation`. */
-  `type`: MessageDeltaContentTextObjectTextAnnotationsInnerEnums.`Type`,
+  `type`: MessageDeltaContentTextAnnotationsFileCitationObjectEnums.`Type`,
   /* The text in the message content that needs to be replaced. */
   text: Option[String] = None,
   fileCitation: Option[MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation] = None,
   startIndex: Option[Int] = None,
-  endIndex: Option[Int] = None,
-  filePath: Option[MessageDeltaContentTextAnnotationsFilePathObjectFilePath] = None
-)
+  endIndex: Option[Int] = None
+) extends MessageDeltaContentTextObjectTextAnnotationsInner
+
+case class MessageDeltaContentTextAnnotationsFilePathObject(
+  /* The index of the annotation in the text content part. */
+  index: Int,
+  /* Always `file_path`. */
+  `type`: MessageDeltaContentTextAnnotationsFilePathObjectEnums.`Type`,
+  /* The text in the message content that needs to be replaced. */
+  text: Option[String] = None,
+  filePath: Option[MessageDeltaContentTextAnnotationsFilePathObjectFilePath] = None,
+  startIndex: Option[Int] = None,
+  endIndex: Option[Int] = None
+) extends MessageDeltaContentTextObjectTextAnnotationsInner
+
 
 object MessageDeltaContentTextObjectTextAnnotationsInnerEnums {
 

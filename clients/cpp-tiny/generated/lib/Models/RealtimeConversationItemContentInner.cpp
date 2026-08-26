@@ -148,7 +148,7 @@ RealtimeConversationItem_content_inner::getType()
 }
 
 void
-RealtimeConversationItem_content_inner::setType(std::string  type)
+RealtimeConversationItem_content_inner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -160,7 +160,7 @@ RealtimeConversationItem_content_inner::getText()
 }
 
 void
-RealtimeConversationItem_content_inner::setText(std::string  text)
+RealtimeConversationItem_content_inner::setText(std::string text)
 {
 	this->text = text;
 }
@@ -172,7 +172,7 @@ RealtimeConversationItem_content_inner::getId()
 }
 
 void
-RealtimeConversationItem_content_inner::setId(std::string  id)
+RealtimeConversationItem_content_inner::setId(std::string id)
 {
 	this->id = id;
 }
@@ -184,7 +184,7 @@ RealtimeConversationItem_content_inner::getAudio()
 }
 
 void
-RealtimeConversationItem_content_inner::setAudio(std::string  audio)
+RealtimeConversationItem_content_inner::setAudio(std::string audio)
 {
 	this->audio = audio;
 }
@@ -196,7 +196,7 @@ RealtimeConversationItem_content_inner::getTranscript()
 }
 
 void
-RealtimeConversationItem_content_inner::setTranscript(std::string  transcript)
+RealtimeConversationItem_content_inner::setTranscript(std::string transcript)
 {
 	this->transcript = transcript;
 }

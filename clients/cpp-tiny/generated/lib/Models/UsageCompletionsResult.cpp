@@ -295,7 +295,7 @@ UsageCompletionsResult::getObject()
 }
 
 void
-UsageCompletionsResult::setObject(std::string  object)
+UsageCompletionsResult::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -307,7 +307,7 @@ UsageCompletionsResult::getInputTokens()
 }
 
 void
-UsageCompletionsResult::setInputTokens(int  input_tokens)
+UsageCompletionsResult::setInputTokens(int input_tokens)
 {
 	this->input_tokens = input_tokens;
 }
@@ -319,7 +319,7 @@ UsageCompletionsResult::getInputCachedTokens()
 }
 
 void
-UsageCompletionsResult::setInputCachedTokens(int  input_cached_tokens)
+UsageCompletionsResult::setInputCachedTokens(int input_cached_tokens)
 {
 	this->input_cached_tokens = input_cached_tokens;
 }
@@ -331,7 +331,7 @@ UsageCompletionsResult::getOutputTokens()
 }
 
 void
-UsageCompletionsResult::setOutputTokens(int  output_tokens)
+UsageCompletionsResult::setOutputTokens(int output_tokens)
 {
 	this->output_tokens = output_tokens;
 }
@@ -343,7 +343,7 @@ UsageCompletionsResult::getInputAudioTokens()
 }
 
 void
-UsageCompletionsResult::setInputAudioTokens(int  input_audio_tokens)
+UsageCompletionsResult::setInputAudioTokens(int input_audio_tokens)
 {
 	this->input_audio_tokens = input_audio_tokens;
 }
@@ -355,7 +355,7 @@ UsageCompletionsResult::getOutputAudioTokens()
 }
 
 void
-UsageCompletionsResult::setOutputAudioTokens(int  output_audio_tokens)
+UsageCompletionsResult::setOutputAudioTokens(int output_audio_tokens)
 {
 	this->output_audio_tokens = output_audio_tokens;
 }
@@ -367,7 +367,7 @@ UsageCompletionsResult::getNumModelRequests()
 }
 
 void
-UsageCompletionsResult::setNumModelRequests(int  num_model_requests)
+UsageCompletionsResult::setNumModelRequests(int num_model_requests)
 {
 	this->num_model_requests = num_model_requests;
 }
@@ -379,7 +379,7 @@ UsageCompletionsResult::getProjectId()
 }
 
 void
-UsageCompletionsResult::setProjectId(std::string  project_id)
+UsageCompletionsResult::setProjectId(std::string project_id)
 {
 	this->project_id = project_id;
 }
@@ -391,7 +391,7 @@ UsageCompletionsResult::getUserId()
 }
 
 void
-UsageCompletionsResult::setUserId(std::string  user_id)
+UsageCompletionsResult::setUserId(std::string user_id)
 {
 	this->user_id = user_id;
 }
@@ -403,7 +403,7 @@ UsageCompletionsResult::getApiKeyId()
 }
 
 void
-UsageCompletionsResult::setApiKeyId(std::string  api_key_id)
+UsageCompletionsResult::setApiKeyId(std::string api_key_id)
 {
 	this->api_key_id = api_key_id;
 }
@@ -415,7 +415,7 @@ UsageCompletionsResult::getModel()
 }
 
 void
-UsageCompletionsResult::setModel(std::string  model)
+UsageCompletionsResult::setModel(std::string model)
 {
 	this->model = model;
 }
@@ -427,7 +427,7 @@ UsageCompletionsResult::isBatch()
 }
 
 void
-UsageCompletionsResult::setBatch(bool  batch)
+UsageCompletionsResult::setBatch(bool batch)
 {
 	this->batch = batch;
 }

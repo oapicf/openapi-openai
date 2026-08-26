@@ -38,7 +38,7 @@ class  CreateAssistantRequest
 {
 public:
     CreateAssistantRequest();
-    virtual ~CreateAssistantRequest() = default;
+    virtual ~CreateAssistantRequest();
 
 
     /// <summary>

@@ -4,6 +4,9 @@ import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -29,33 +32,42 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class UsageImagesResult(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: UsageImagesResult.`Object`,
 
-    @Schema(example = "null", required = true, description = "The number of images processed.")
+    @Schema(required = true, description = "The number of images processed.")
+    @param:JsonProperty("images")
     @get:JsonProperty("images", required = true) val images: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The count of requests made to the model.")
+    @Schema(required = true, description = "The count of requests made to the model.")
+    @param:JsonProperty("num_model_requests")
     @get:JsonProperty("num_model_requests", required = true) val numModelRequests: kotlin.Int,
 
-    @Schema(example = "null", description = "When `group_by=source`, this field provides the source of the grouped usage result, possible values are `image.generation`, `image.edit`, `image.variation`.")
+    @Schema(description = "When `group_by=source`, this field provides the source of the grouped usage result, possible values are `image.generation`, `image.edit`, `image.variation`.")
+    @param:JsonProperty("source")
     @get:JsonProperty("source") val source: kotlin.String? = null,
 
-    @Schema(example = "null", description = "When `group_by=size`, this field provides the image size of the grouped usage result.")
+    @Schema(description = "When `group_by=size`, this field provides the image size of the grouped usage result.")
+    @param:JsonProperty("size")
     @get:JsonProperty("size") val propertySize: kotlin.String? = null,
 
-    @Schema(example = "null", description = "When `group_by=project_id`, this field provides the project ID of the grouped usage result.")
+    @Schema(description = "When `group_by=project_id`, this field provides the project ID of the grouped usage result.")
+    @param:JsonProperty("project_id")
     @get:JsonProperty("project_id") val projectId: kotlin.String? = null,
 
-    @Schema(example = "null", description = "When `group_by=user_id`, this field provides the user ID of the grouped usage result.")
+    @Schema(description = "When `group_by=user_id`, this field provides the user ID of the grouped usage result.")
+    @param:JsonProperty("user_id")
     @get:JsonProperty("user_id") val userId: kotlin.String? = null,
 
-    @Schema(example = "null", description = "When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.")
+    @Schema(description = "When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.")
+    @param:JsonProperty("api_key_id")
     @get:JsonProperty("api_key_id") val apiKeyId: kotlin.String? = null,
 
-    @Schema(example = "null", description = "When `group_by=model`, this field provides the model name of the grouped usage result.")
+    @Schema(description = "When `group_by=model`, this field provides the model name of the grouped usage result.")
+    @param:JsonProperty("model")
     @get:JsonProperty("model") val model: kotlin.String? = null
-) {
+) : UsageTimeBucketResultInner {
 
     /**
     * 
@@ -70,7 +82,7 @@ data class UsageImagesResult(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'UsageImagesResult'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }

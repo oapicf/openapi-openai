@@ -1,4 +1,4 @@
-# # AuditLogProjectUpdated
+# AuditLogProjectUpdated
 
 ## Properties
 

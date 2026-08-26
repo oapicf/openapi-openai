@@ -55,7 +55,7 @@ export class UsersApi {
     { response: JQueryXHR; body: models.UserDeleteResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/users/{user_id}'.replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
+        let localVarPath = this.basePath + '/organization/users/{user_id}'.replace('{user_id}', encodeURIComponent(String(userId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -184,7 +184,7 @@ export class UsersApi {
     { response: JQueryXHR; body: models.User;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/users/{user_id}'.replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
+        let localVarPath = this.basePath + '/organization/users/{user_id}'.replace('{user_id}', encodeURIComponent(String(userId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -256,7 +256,7 @@ export class UsersApi {
     { response: JQueryXHR; body: models.User;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/organization/users/{user_id}'.replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
+        let localVarPath = this.basePath + '/organization/users/{user_id}'.replace('{user_id}', encodeURIComponent(String(userId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};

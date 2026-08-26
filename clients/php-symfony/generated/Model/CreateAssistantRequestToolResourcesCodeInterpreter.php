@@ -49,7 +49,7 @@ class CreateAssistantRequestToolResourcesCodeInterpreter
      * @var string[]|null
      * @SerializedName("file_ids")
      * @Type("array<string>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("string"),
     ])]
@@ -78,12 +78,12 @@ class CreateAssistantRequestToolResourcesCodeInterpreter
     }
 
     /**
-    * Sets fileIds.
-    *
-    * @param string[]|null $fileIds  A list of [file](/docs/api-reference/files) IDs made available to the `code_interpreter` tool. There can be a maximum of 20 files associated with the tool.
-    *
-    * @return $this
-    */
+     * Sets fileIds.
+     *
+     * @param string[]|null $fileIds  A list of [file](/docs/api-reference/files) IDs made available to the `code_interpreter` tool. There can be a maximum of 20 files associated with the tool.
+     *
+     * @return $this
+     */
     public function setFileIds(?array $fileIds = null): self
     {
         $this->fileIds = $fileIds;

@@ -68,10 +68,10 @@ function Initialize-Model {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "created" = ${Created}
-            "object" = ${Object}
-            "owned_by" = ${OwnedBy}
+            'id' = ${Id}
+            'created' = ${Created}
+            'object' = ${Object}
+            'owned_by' = ${OwnedBy}
         }
 
 
@@ -109,7 +109,7 @@ function ConvertFrom-JsonToModel {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in Model
-        $AllProperties = ("id", "created", "object", "owned_by")
+        $AllProperties = ('id', 'created', 'object', 'owned_by')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -120,35 +120,35 @@ function ConvertFrom-JsonToModel {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created' missing."
         } else {
-            $Created = $JsonParameters.PSobject.Properties["created"].value
+            $Created = $JsonParameters.PSobject.Properties['created'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "owned_by"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'owned_by'))) {
             throw "Error! JSON cannot be serialized due to the required property 'owned_by' missing."
         } else {
-            $OwnedBy = $JsonParameters.PSobject.Properties["owned_by"].value
+            $OwnedBy = $JsonParameters.PSobject.Properties['owned_by'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "created" = ${Created}
-            "object" = ${Object}
-            "owned_by" = ${OwnedBy}
+            'id' = ${Id}
+            'created' = ${Created}
+            'object' = ${Object}
+            'owned_by' = ${OwnedBy}
         }
 
         return $PSO

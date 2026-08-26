@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set The base64-encoded JSON of the generated image, if `response_format` is `b64_json`.
 	 */
-	void setB64Json(std::string  b64_json);
+	void setB64Json(std::string b64_json);
 	/*! \brief Get The URL of the generated image, if `response_format` is `url` (default).
 	 */
 	std::string getUrl();
 
 	/*! \brief Set The URL of the generated image, if `response_format` is `url` (default).
 	 */
-	void setUrl(std::string  url);
+	void setUrl(std::string url);
 	/*! \brief Get The prompt that was used to generate the image, if there was any revision to the prompt.
 	 */
 	std::string getRevisedPrompt();
 
 	/*! \brief Set The prompt that was used to generate the image, if there was any revision to the prompt.
 	 */
-	void setRevisedPrompt(std::string  revised_prompt);
+	void setRevisedPrompt(std::string revised_prompt);
 
 
     private:

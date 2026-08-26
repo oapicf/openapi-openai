@@ -64,7 +64,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The total number of tokens in the Response including input and output  text and audio tokens. </value>
         [JsonPropertyName("total_tokens")]
-        public int? TotalTokens { get { return this.TotalTokensOption; } set { this.TotalTokensOption = new(value); } }
+        public int? TotalTokens { get { return this.TotalTokensOption.Value; } set { this.TotalTokensOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of InputTokens
@@ -78,7 +78,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The number of input tokens used in the Response, including text and  audio tokens. </value>
         [JsonPropertyName("input_tokens")]
-        public int? InputTokens { get { return this.InputTokensOption; } set { this.InputTokensOption = new(value); } }
+        public int? InputTokens { get { return this.InputTokensOption.Value; } set { this.InputTokensOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OutputTokens
@@ -92,7 +92,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The number of output tokens sent in the Response, including text and  audio tokens. </value>
         [JsonPropertyName("output_tokens")]
-        public int? OutputTokens { get { return this.OutputTokensOption; } set { this.OutputTokensOption = new(value); } }
+        public int? OutputTokens { get { return this.OutputTokensOption.Value; } set { this.OutputTokensOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of InputTokenDetails
@@ -105,7 +105,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets InputTokenDetails
         /// </summary>
         [JsonPropertyName("input_token_details")]
-        public RealtimeResponseUsageInputTokenDetails? InputTokenDetails { get { return this.InputTokenDetailsOption; } set { this.InputTokenDetailsOption = new(value); } }
+        public RealtimeResponseUsageInputTokenDetails? InputTokenDetails { get { return this.InputTokenDetailsOption.Value; } set { this.InputTokenDetailsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OutputTokenDetails
@@ -118,7 +118,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets OutputTokenDetails
         /// </summary>
         [JsonPropertyName("output_token_details")]
-        public RealtimeResponseUsageOutputTokenDetails? OutputTokenDetails { get { return this.OutputTokenDetailsOption; } set { this.OutputTokenDetailsOption = new(value); } }
+        public RealtimeResponseUsageOutputTokenDetails? OutputTokenDetails { get { return this.OutputTokenDetailsOption.Value; } set { this.OutputTokenDetailsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -151,8 +151,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeResponseUsage" />
     /// </summary>
-    public class RealtimeResponseUsageJsonConverter : JsonConverter<RealtimeResponseUsage>
+    public partial class RealtimeResponseUsageJsonConverter : JsonConverter<RealtimeResponseUsage>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeResponseUsageJsonConverter" /> class.
+        /// </summary>
+        public RealtimeResponseUsageJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeResponseUsage" />
         /// </summary>

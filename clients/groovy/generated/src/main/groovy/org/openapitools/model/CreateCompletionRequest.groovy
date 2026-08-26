@@ -16,7 +16,7 @@ class CreateCompletionRequest {
     
     CreateCompletionRequestModel model
     
-    CreateCompletionRequestPrompt prompt = <|endoftext|>
+    CreateCompletionRequestPrompt prompt
     /* Generates `best_of` completions server-side and returns the \"best\" (the one with the highest log probability per token). Results cannot be streamed.  When used with `n`, `best_of` controls the number of candidate completions and `n` specifies how many to return – `best_of` must be greater than `n`.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`.  */
     Integer bestOf = 1
     /* Echo back the prompt in addition to the completion  */
@@ -36,7 +36,7 @@ class CreateCompletionRequest {
     /* If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.  Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.  */
     Integer seed
     
-    CreateCompletionRequestStop stop = null
+    CreateCompletionRequestStop stop
     /* Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions).  */
     Boolean stream = false
     

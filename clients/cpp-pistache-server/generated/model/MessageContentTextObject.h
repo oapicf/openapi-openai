@@ -33,7 +33,7 @@ class  MessageContentTextObject
 {
 public:
     MessageContentTextObject();
-    virtual ~MessageContentTextObject() = default;
+    virtual ~MessageContentTextObject();
 
 
     /// <summary>

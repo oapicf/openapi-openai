@@ -71,10 +71,10 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepDeltaStepDetailsToolCallsCodeOutputImageObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepDeltaStepDetailsToolCallsCodeOutputImageObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'index'), 'Required key "RunStepDeltaStepDetailsToolCallsCodeOutputImageObject[index]" is missing from JSON.');
+        assert(json[r'index'] != null, 'Required key "RunStepDeltaStepDetailsToolCallsCodeOutputImageObject[index]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RunStepDeltaStepDetailsToolCallsCodeOutputImageObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RunStepDeltaStepDetailsToolCallsCodeOutputImageObject[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -135,27 +135,28 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject {
 }
 
 /// Always `image`.
-class RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum._(this.value);
+enum RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum {
+  image._(r'image'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const image = RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum._(r'image');
-
-  /// List of all possible values in this [enum][RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum].
-  static const values = <RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum>[
-    image,
-  ];
-
+  /// Returns the instance of [RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum? fromJson(dynamic value) => RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -177,9 +178,10 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnumTypeTransform
 
   const RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnumTypeTransformer._();
 
-  String encode(RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum data) => data.value;
+  String encode(RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum.
+  /// Returns the instance of [RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -188,6 +190,9 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnumTypeTransform
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'image': return RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum.image;
@@ -200,7 +205,7 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnumTypeTransform
     return null;
   }
 
-  /// Singleton [RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnumTypeTransformer? _instance;
 }
 

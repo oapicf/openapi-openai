@@ -32,7 +32,7 @@ class  DeleteMessageResponse
 {
 public:
     DeleteMessageResponse();
-    virtual ~DeleteMessageResponse() = default;
+    virtual ~DeleteMessageResponse();
 
 
     /// <summary>

@@ -66,10 +66,11 @@ class ChatCompletionTokenLogprobTopLogprobsInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ChatCompletionTokenLogprobTopLogprobsInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ChatCompletionTokenLogprobTopLogprobsInner[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'token'), 'Required key "ChatCompletionTokenLogprobTopLogprobsInner[token]" is missing from JSON.');
+        assert(json[r'token'] != null, 'Required key "ChatCompletionTokenLogprobTopLogprobsInner[token]" has a null value in JSON.');
+        assert(json.containsKey(r'logprob'), 'Required key "ChatCompletionTokenLogprobTopLogprobsInner[logprob]" is missing from JSON.');
+        assert(json[r'logprob'] != null, 'Required key "ChatCompletionTokenLogprobTopLogprobsInner[logprob]" has a null value in JSON.');
+        assert(json.containsKey(r'bytes'), 'Required key "ChatCompletionTokenLogprobTopLogprobsInner[bytes]" is missing from JSON.');
         return true;
       }());
 

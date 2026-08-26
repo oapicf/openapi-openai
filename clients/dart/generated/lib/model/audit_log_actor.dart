@@ -84,17 +84,13 @@ class AuditLogActor {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AuditLogActor[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AuditLogActor[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
       return AuditLogActor(
         type: AuditLogActorTypeEnum.fromJson(json[r'type']),
-        session: mapValueOfType<AuditLogActorSession>(json, r'session'),
-        apiKey: mapValueOfType<AuditLogActorApiKey>(json, r'api_key'),
+        session: AuditLogActorSession.fromJson(json[r'session']),
+        apiKey: AuditLogActorApiKey.fromJson(json[r'api_key']),
       );
     }
     return null;
@@ -146,29 +142,29 @@ class AuditLogActor {
 }
 
 /// The type of actor. Is either `session` or `api_key`.
-class AuditLogActorTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const AuditLogActorTypeEnum._(this.value);
+enum AuditLogActorTypeEnum {
+  session._(r'session'),
+  apiKey._(r'api_key'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const AuditLogActorTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const session = AuditLogActorTypeEnum._(r'session');
-  static const apiKey = AuditLogActorTypeEnum._(r'api_key');
-
-  /// List of all possible values in this [enum][AuditLogActorTypeEnum].
-  static const values = <AuditLogActorTypeEnum>[
-    session,
-    apiKey,
-  ];
-
+  /// Returns the instance of [AuditLogActorTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static AuditLogActorTypeEnum? fromJson(dynamic value) => AuditLogActorTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [AuditLogActorTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<AuditLogActorTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <AuditLogActorTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -190,9 +186,10 @@ class AuditLogActorTypeEnumTypeTransformer {
 
   const AuditLogActorTypeEnumTypeTransformer._();
 
-  String encode(AuditLogActorTypeEnum data) => data.value;
+  String encode(AuditLogActorTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a AuditLogActorTypeEnum.
+  /// Returns the instance of [AuditLogActorTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -201,6 +198,9 @@ class AuditLogActorTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   AuditLogActorTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is AuditLogActorTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'session': return AuditLogActorTypeEnum.session;
@@ -214,7 +214,7 @@ class AuditLogActorTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [AuditLogActorTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static AuditLogActorTypeEnumTypeTransformer? _instance;
 }
 

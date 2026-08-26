@@ -32,7 +32,7 @@ class  ProjectUserCreateRequest
 {
 public:
     ProjectUserCreateRequest();
-    virtual ~ProjectUserCreateRequest() = default;
+    virtual ~ProjectUserCreateRequest();
 
 
     /// <summary>

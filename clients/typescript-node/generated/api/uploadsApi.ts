@@ -103,7 +103,7 @@ export class UploadsApi {
      */
     public async addUploadPart (uploadId: string, data: RequestFile, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UploadPart;  }> {
         const localVarPath = this.basePath + '/uploads/{upload_id}/parts'
-            .replace('{' + 'upload_id' + '}', encodeURIComponent(String(uploadId)));
+            .replace('{upload_id}', encodeURIComponent(String(uploadId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -185,7 +185,7 @@ export class UploadsApi {
      */
     public async cancelUpload (uploadId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Upload;  }> {
         const localVarPath = this.basePath + '/uploads/{upload_id}/cancel'
-            .replace('{' + 'upload_id' + '}', encodeURIComponent(String(uploadId)));
+            .replace('{upload_id}', encodeURIComponent(String(uploadId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -258,7 +258,7 @@ export class UploadsApi {
      */
     public async completeUpload (uploadId: string, completeUploadRequest: CompleteUploadRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Upload;  }> {
         const localVarPath = this.basePath + '/uploads/{upload_id}/complete'
-            .replace('{' + 'upload_id' + '}', encodeURIComponent(String(uploadId)));
+            .replace('{upload_id}', encodeURIComponent(String(uploadId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];

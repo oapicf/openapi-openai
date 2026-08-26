@@ -8,34 +8,43 @@
 static run_step_details_tool_calls_file_search_result_object_t *run_step_details_tool_calls_file_search_result_object_create_internal(
     char *file_id,
     char *file_name,
-    double score,
+    double *score,
     list_t *content
     ) {
     run_step_details_tool_calls_file_search_result_object_t *run_step_details_tool_calls_file_search_result_object_local_var = malloc(sizeof(run_step_details_tool_calls_file_search_result_object_t));
     if (!run_step_details_tool_calls_file_search_result_object_local_var) {
         return NULL;
     }
+    memset(run_step_details_tool_calls_file_search_result_object_local_var, 0, sizeof(run_step_details_tool_calls_file_search_result_object_t));
+    run_step_details_tool_calls_file_search_result_object_local_var->_library_owned = 1;
     run_step_details_tool_calls_file_search_result_object_local_var->file_id = file_id;
     run_step_details_tool_calls_file_search_result_object_local_var->file_name = file_name;
     run_step_details_tool_calls_file_search_result_object_local_var->score = score;
     run_step_details_tool_calls_file_search_result_object_local_var->content = content;
-
-    run_step_details_tool_calls_file_search_result_object_local_var->_library_owned = 1;
     return run_step_details_tool_calls_file_search_result_object_local_var;
 }
 
 __attribute__((deprecated)) run_step_details_tool_calls_file_search_result_object_t *run_step_details_tool_calls_file_search_result_object_create(
     char *file_id,
     char *file_name,
-    double score,
+    double *score,
     list_t *content
     ) {
-    return run_step_details_tool_calls_file_search_result_object_create_internal (
+    double *score_copy = NULL;
+    if (score) {
+        score_copy = malloc(sizeof(double));
+        if (score_copy) *score_copy = *score;
+    }
+    run_step_details_tool_calls_file_search_result_object_t *result = run_step_details_tool_calls_file_search_result_object_create_internal (
         file_id,
         file_name,
-        score,
+        score_copy,
         content
         );
+    if (!result) {
+        free(score_copy);
+    }
+    return result;
 }
 
 void run_step_details_tool_calls_file_search_result_object_free(run_step_details_tool_calls_file_search_result_object_t *run_step_details_tool_calls_file_search_result_object) {
@@ -54,6 +63,10 @@ void run_step_details_tool_calls_file_search_result_object_free(run_step_details
     if (run_step_details_tool_calls_file_search_result_object->file_name) {
         free(run_step_details_tool_calls_file_search_result_object->file_name);
         run_step_details_tool_calls_file_search_result_object->file_name = NULL;
+    }
+    if (run_step_details_tool_calls_file_search_result_object->score) {
+        free(run_step_details_tool_calls_file_search_result_object->score);
+        run_step_details_tool_calls_file_search_result_object->score = NULL;
     }
     if (run_step_details_tool_calls_file_search_result_object->content) {
         list_ForEach(listEntry, run_step_details_tool_calls_file_search_result_object->content) {
@@ -90,7 +103,7 @@ cJSON *run_step_details_tool_calls_file_search_result_object_convertToJSON(run_s
     if (!run_step_details_tool_calls_file_search_result_object->score) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "score", run_step_details_tool_calls_file_search_result_object->score) == NULL) {
+    if(cJSON_AddNumberToObject(item, "score", *run_step_details_tool_calls_file_search_result_object->score) == NULL) {
     goto fail; //Numeric
     }
 
@@ -125,6 +138,13 @@ fail:
 run_step_details_tool_calls_file_search_result_object_t *run_step_details_tool_calls_file_search_result_object_parseFromJSON(cJSON *run_step_details_tool_calls_file_search_result_objectJSON){
 
     run_step_details_tool_calls_file_search_result_object_t *run_step_details_tool_calls_file_search_result_object_local_var = NULL;
+
+    char *file_id_local_str = NULL;
+
+    char *file_name_local_str = NULL;
+
+    // define the local variable for run_step_details_tool_calls_file_search_result_object->score
+    double *score_local_var = NULL;
 
     // define the local list for run_step_details_tool_calls_file_search_result_object->content
     list_t *contentList = NULL;
@@ -173,6 +193,12 @@ run_step_details_tool_calls_file_search_result_object_t *run_step_details_tool_c
     {
     goto end; //Numeric
     }
+    score_local_var = malloc(sizeof(double));
+    if(!score_local_var)
+    {
+        goto end;
+    }
+    *score_local_var = score->valuedouble;
 
     // run_step_details_tool_calls_file_search_result_object->content
     cJSON *content = cJSON_GetObjectItemCaseSensitive(run_step_details_tool_calls_file_search_result_objectJSON, "content");
@@ -199,15 +225,34 @@ run_step_details_tool_calls_file_search_result_object_t *run_step_details_tool_c
     }
 
 
+    if (file_id && !cJSON_IsNull(file_id)) file_id_local_str = strdup(file_id->valuestring);
+    if (file_name && !cJSON_IsNull(file_name)) file_name_local_str = strdup(file_name->valuestring);
+
     run_step_details_tool_calls_file_search_result_object_local_var = run_step_details_tool_calls_file_search_result_object_create_internal (
-        strdup(file_id->valuestring),
-        strdup(file_name->valuestring),
-        score->valuedouble,
+        file_id_local_str,
+        file_name_local_str,
+        score_local_var,
         content ? contentList : NULL
         );
 
+    if (!run_step_details_tool_calls_file_search_result_object_local_var) {
+        goto end;
+    }
+
     return run_step_details_tool_calls_file_search_result_object_local_var;
 end:
+    if (file_id_local_str) {
+        free(file_id_local_str);
+        file_id_local_str = NULL;
+    }
+    if (file_name_local_str) {
+        free(file_name_local_str);
+        file_name_local_str = NULL;
+    }
+    if (score_local_var) {
+        free(score_local_var);
+        score_local_var = NULL;
+    }
     if (contentList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, contentList) {

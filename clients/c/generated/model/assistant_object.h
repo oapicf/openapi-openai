@@ -33,7 +33,7 @@ openai_api_assistant_object_OBJECT_e assistant_object_object_FromString(char* ob
 typedef struct assistant_object_t {
     char *id; // string
     openai_api_assistant_object_OBJECT_e object; //enum
-    int created_at; //numeric
+    int *created_at; //numeric
     char *name; // string
     char *description; // string
     char *model; // string
@@ -41,8 +41,8 @@ typedef struct assistant_object_t {
     list_t *tools; //nonprimitive container
     struct assistant_object_tool_resources_t *tool_resources; //model
     object_t *metadata; //object
-    double temperature; //numeric
-    double top_p; //numeric
+    double *temperature; //numeric
+    double *top_p; //numeric
     struct assistants_api_response_format_option_t *response_format; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -51,7 +51,7 @@ typedef struct assistant_object_t {
 __attribute__((deprecated)) assistant_object_t *assistant_object_create(
     char *id,
     openai_api_assistant_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     char *name,
     char *description,
     char *model,
@@ -59,8 +59,8 @@ __attribute__((deprecated)) assistant_object_t *assistant_object_create(
     list_t *tools,
     assistant_object_tool_resources_t *tool_resources,
     object_t *metadata,
-    double temperature,
-    double top_p,
+    double *temperature,
+    double *top_p,
     assistants_api_response_format_option_t *response_format
 );
 

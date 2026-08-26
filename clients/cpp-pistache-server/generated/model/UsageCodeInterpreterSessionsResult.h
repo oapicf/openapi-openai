@@ -32,7 +32,7 @@ class  UsageCodeInterpreterSessionsResult
 {
 public:
     UsageCodeInterpreterSessionsResult();
-    virtual ~UsageCodeInterpreterSessionsResult() = default;
+    virtual ~UsageCodeInterpreterSessionsResult();
 
 
     /// <summary>

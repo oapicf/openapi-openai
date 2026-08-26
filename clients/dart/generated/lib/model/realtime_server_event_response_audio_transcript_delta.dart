@@ -90,10 +90,20 @@ class RealtimeServerEventResponseAudioTranscriptDelta {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventResponseAudioTranscriptDelta[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventResponseAudioTranscriptDelta[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event_id'), 'Required key "RealtimeServerEventResponseAudioTranscriptDelta[event_id]" is missing from JSON.');
+        assert(json[r'event_id'] != null, 'Required key "RealtimeServerEventResponseAudioTranscriptDelta[event_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RealtimeServerEventResponseAudioTranscriptDelta[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeServerEventResponseAudioTranscriptDelta[type]" has a null value in JSON.');
+        assert(json.containsKey(r'response_id'), 'Required key "RealtimeServerEventResponseAudioTranscriptDelta[response_id]" is missing from JSON.');
+        assert(json[r'response_id'] != null, 'Required key "RealtimeServerEventResponseAudioTranscriptDelta[response_id]" has a null value in JSON.');
+        assert(json.containsKey(r'item_id'), 'Required key "RealtimeServerEventResponseAudioTranscriptDelta[item_id]" is missing from JSON.');
+        assert(json[r'item_id'] != null, 'Required key "RealtimeServerEventResponseAudioTranscriptDelta[item_id]" has a null value in JSON.');
+        assert(json.containsKey(r'output_index'), 'Required key "RealtimeServerEventResponseAudioTranscriptDelta[output_index]" is missing from JSON.');
+        assert(json[r'output_index'] != null, 'Required key "RealtimeServerEventResponseAudioTranscriptDelta[output_index]" has a null value in JSON.');
+        assert(json.containsKey(r'content_index'), 'Required key "RealtimeServerEventResponseAudioTranscriptDelta[content_index]" is missing from JSON.');
+        assert(json[r'content_index'] != null, 'Required key "RealtimeServerEventResponseAudioTranscriptDelta[content_index]" has a null value in JSON.');
+        assert(json.containsKey(r'delta'), 'Required key "RealtimeServerEventResponseAudioTranscriptDelta[delta]" is missing from JSON.');
+        assert(json[r'delta'] != null, 'Required key "RealtimeServerEventResponseAudioTranscriptDelta[delta]" has a null value in JSON.');
         return true;
       }());
 
@@ -163,27 +173,28 @@ class RealtimeServerEventResponseAudioTranscriptDelta {
 }
 
 /// The event type, must be `response.audio_transcript.delta`.
-class RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum._(this.value);
+enum RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum {
+  responsePeriodAudioTranscriptPeriodDelta._(r'response.audio_transcript.delta'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const responsePeriodAudioTranscriptPeriodDelta = RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum._(r'response.audio_transcript.delta');
-
-  /// List of all possible values in this [enum][RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum].
-  static const values = <RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum>[
-    responsePeriodAudioTranscriptPeriodDelta,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum? fromJson(dynamic value) => RealtimeServerEventResponseAudioTranscriptDeltaTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -205,9 +216,10 @@ class RealtimeServerEventResponseAudioTranscriptDeltaTypeEnumTypeTransformer {
 
   const RealtimeServerEventResponseAudioTranscriptDeltaTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum data) => data.value;
+  String encode(RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum.
+  /// Returns the instance of [RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -216,6 +228,9 @@ class RealtimeServerEventResponseAudioTranscriptDeltaTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'response.audio_transcript.delta': return RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum.responsePeriodAudioTranscriptPeriodDelta;
@@ -228,7 +243,7 @@ class RealtimeServerEventResponseAudioTranscriptDeltaTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeServerEventResponseAudioTranscriptDeltaTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventResponseAudioTranscriptDeltaTypeEnumTypeTransformer? _instance;
 }
 

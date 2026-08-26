@@ -43,13 +43,13 @@ class OAIChatCompletionRequestAssistantMessage_function_call;
 class OAIFineTuneChatRequestInput_messages_inner : public OAIObject {
 public:
     OAIFineTuneChatRequestInput_messages_inner();
-    OAIFineTuneChatRequestInput_messages_inner(QString json);
+    OAIFineTuneChatRequestInput_messages_inner(const QString &json);
     ~OAIFineTuneChatRequestInput_messages_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getContent() const;
     void setContent(const QString &content);

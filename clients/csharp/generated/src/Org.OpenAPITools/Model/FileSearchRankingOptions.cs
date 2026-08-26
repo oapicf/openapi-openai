@@ -125,7 +125,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The ranker to use for the file search. If not specified will use the &#x60;auto&#x60; ranker.</value>
         [JsonPropertyName("ranker")]
-        public RankerEnum? Ranker { get { return this.RankerOption; } set { this.RankerOption = new(value); } }
+        public RankerEnum? Ranker { get { return this.RankerOption.Value; } set { this.RankerOption = new(value); } }
 
         /// <summary>
         /// The score threshold for the file search. All values must be a floating point number between 0 and 1.
@@ -174,8 +174,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FileSearchRankingOptions" />
     /// </summary>
-    public class FileSearchRankingOptionsJsonConverter : JsonConverter<FileSearchRankingOptions>
+    public partial class FileSearchRankingOptionsJsonConverter : JsonConverter<FileSearchRankingOptions>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileSearchRankingOptionsJsonConverter" /> class.
+        /// </summary>
+        public FileSearchRankingOptionsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FileSearchRankingOptions" />
         /// </summary>

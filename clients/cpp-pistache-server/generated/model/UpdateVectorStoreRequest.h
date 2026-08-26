@@ -34,7 +34,7 @@ class  UpdateVectorStoreRequest
 {
 public:
     UpdateVectorStoreRequest();
-    virtual ~UpdateVectorStoreRequest() = default;
+    virtual ~UpdateVectorStoreRequest();
 
 
     /// <summary>

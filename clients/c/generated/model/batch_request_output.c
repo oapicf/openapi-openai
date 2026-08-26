@@ -15,12 +15,12 @@ static batch_request_output_t *batch_request_output_create_internal(
     if (!batch_request_output_local_var) {
         return NULL;
     }
+    memset(batch_request_output_local_var, 0, sizeof(batch_request_output_t));
+    batch_request_output_local_var->_library_owned = 1;
     batch_request_output_local_var->id = id;
     batch_request_output_local_var->custom_id = custom_id;
     batch_request_output_local_var->response = response;
     batch_request_output_local_var->error = error;
-
-    batch_request_output_local_var->_library_owned = 1;
     return batch_request_output_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) batch_request_output_t *batch_request_output_create(
     batch_request_output_response_t *response,
     batch_request_output_error_t *error
     ) {
-    return batch_request_output_create_internal (
+    batch_request_output_t *result = batch_request_output_create_internal (
         id,
         custom_id,
         response,
         error
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void batch_request_output_free(batch_request_output_t *batch_request_output) {
@@ -122,6 +125,10 @@ batch_request_output_t *batch_request_output_parseFromJSON(cJSON *batch_request_
 
     batch_request_output_t *batch_request_output_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    char *custom_id_local_str = NULL;
+
     // define the local variable for batch_request_output->response
     batch_request_output_response_t *response_local_nonprim = NULL;
 
@@ -171,15 +178,30 @@ batch_request_output_t *batch_request_output_parseFromJSON(cJSON *batch_request_
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (custom_id && !cJSON_IsNull(custom_id)) custom_id_local_str = strdup(custom_id->valuestring);
+
     batch_request_output_local_var = batch_request_output_create_internal (
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        custom_id && !cJSON_IsNull(custom_id) ? strdup(custom_id->valuestring) : NULL,
+        id_local_str,
+        custom_id_local_str,
         response ? response_local_nonprim : NULL,
         error ? error_local_nonprim : NULL
         );
 
+    if (!batch_request_output_local_var) {
+        goto end;
+    }
+
     return batch_request_output_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (custom_id_local_str) {
+        free(custom_id_local_str);
+        custom_id_local_str = NULL;
+    }
     if (response_local_nonprim) {
         batch_request_output_response_free(response_local_nonprim);
         response_local_nonprim = NULL;

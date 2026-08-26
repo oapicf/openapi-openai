@@ -1,0 +1,16 @@
+
+
+/**
+ * A description of the error that caused the response to fail,  populated when the `status` is `failed`. 
+ */
+export interface RealtimeResponseStatusDetailsError { 
+  /**
+   * The type of error.
+   */
+  type?: string;
+  /**
+   * Error code, if any.
+   */
+  code?: string;
+}
+

@@ -12,7 +12,7 @@ import play.api.libs.json._
   * @param callId The ID of the function call.
   * @param delta The arguments delta as a JSON string.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 case class RealtimeServerEventResponseFunctionCallArgumentsDelta(
   eventId: String,
   `type`: RealtimeServerEventResponseFunctionCallArgumentsDelta.Type.Value,

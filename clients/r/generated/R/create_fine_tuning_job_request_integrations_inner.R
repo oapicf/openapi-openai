@@ -7,7 +7,7 @@
 #' @title CreateFineTuningJobRequestIntegrationsInner
 #' @description CreateFineTuningJobRequestIntegrationsInner Class
 #' @format An \code{R6Class} generator object
-#' @field type  character
+#' @field type The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. character
 #' @field wandb  \link{CreateFineTuningJobRequestIntegrationsInnerWandb}
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -21,7 +21,7 @@ CreateFineTuningJobRequestIntegrationsInner <- R6::R6Class(
     #' @description
     #' Initialize a new CreateFineTuningJobRequestIntegrationsInner class.
     #'
-    #' @param type type
+    #' @param type The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported.
     #' @param wandb wandb
     #' @param ... Other optional arguments.
     initialize = function(`type`, `wandb`, ...) {
@@ -77,9 +77,32 @@ CreateFineTuningJobRequestIntegrationsInner <- R6::R6Class(
       }
       if (!is.null(self$`wandb`)) {
         CreateFineTuningJobRequestIntegrationsInnerObject[["wandb"]] <-
-          self$`wandb`$toSimpleType()
+          self$extractSimpleType(self$`wandb`)
       }
       return(CreateFineTuningJobRequestIntegrationsInnerObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

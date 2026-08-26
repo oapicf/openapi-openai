@@ -12,14 +12,9 @@
 package org.openapitools.client.model
 
 
-case class ArrayOfContentPartsInner(
-  /* Always `image_file`. */
-  `type`: ArrayOfContentPartsInnerEnums.`Type`,
-  imageFile: MessageContentImageFileObjectImageFile,
-  imageUrl: MessageContentImageUrlObjectImageUrl,
-  /* Text content to be sent to the model */
-  text: String
-)
+trait ArrayOfContentPartsInner
+object ArrayOfContentPartsInner {
+}
 
 object ArrayOfContentPartsInnerEnums {
 

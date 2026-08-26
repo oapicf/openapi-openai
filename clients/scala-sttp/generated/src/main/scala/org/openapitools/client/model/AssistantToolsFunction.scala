@@ -16,7 +16,7 @@ case class AssistantToolsFunction(
   /* The type of tool being defined: `function` */
   `type`: AssistantToolsFunctionEnums.`Type`,
   function: FunctionObject
-)
+) extends CreateThreadAndRunRequestToolsInner
 
 object AssistantToolsFunctionEnums {
 

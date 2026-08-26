@@ -418,7 +418,7 @@ CreateRunRequest::getAssistantId()
 }
 
 void
-CreateRunRequest::setAssistantId(std::string  assistant_id)
+CreateRunRequest::setAssistantId(std::string assistant_id)
 {
 	this->assistant_id = assistant_id;
 }
@@ -430,7 +430,7 @@ CreateRunRequest::getModel()
 }
 
 void
-CreateRunRequest::setModel(CreateRunRequest_model  model)
+CreateRunRequest::setModel(CreateRunRequest_model model)
 {
 	this->model = model;
 }
@@ -442,7 +442,7 @@ CreateRunRequest::getInstructions()
 }
 
 void
-CreateRunRequest::setInstructions(std::string  instructions)
+CreateRunRequest::setInstructions(std::string instructions)
 {
 	this->instructions = instructions;
 }
@@ -454,7 +454,7 @@ CreateRunRequest::getAdditionalInstructions()
 }
 
 void
-CreateRunRequest::setAdditionalInstructions(std::string  additional_instructions)
+CreateRunRequest::setAdditionalInstructions(std::string additional_instructions)
 {
 	this->additional_instructions = additional_instructions;
 }
@@ -466,7 +466,7 @@ CreateRunRequest::getAdditionalMessages()
 }
 
 void
-CreateRunRequest::setAdditionalMessages(std::list <CreateMessageRequest> additional_messages)
+CreateRunRequest::setAdditionalMessages(std::list<CreateMessageRequest> additional_messages)
 {
 	this->additional_messages = additional_messages;
 }
@@ -478,7 +478,7 @@ CreateRunRequest::getTools()
 }
 
 void
-CreateRunRequest::setTools(std::list <AssistantObject_tools_inner> tools)
+CreateRunRequest::setTools(std::list<AssistantObject_tools_inner> tools)
 {
 	this->tools = tools;
 }
@@ -490,7 +490,7 @@ CreateRunRequest::getMetadata()
 }
 
 void
-CreateRunRequest::setMetadata(Object  metadata)
+CreateRunRequest::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }
@@ -502,7 +502,7 @@ CreateRunRequest::getTemperature()
 }
 
 void
-CreateRunRequest::setTemperature(long  temperature)
+CreateRunRequest::setTemperature(long temperature)
 {
 	this->temperature = temperature;
 }
@@ -514,7 +514,7 @@ CreateRunRequest::getTopP()
 }
 
 void
-CreateRunRequest::setTopP(long  top_p)
+CreateRunRequest::setTopP(long top_p)
 {
 	this->top_p = top_p;
 }
@@ -526,7 +526,7 @@ CreateRunRequest::isStream()
 }
 
 void
-CreateRunRequest::setStream(bool  stream)
+CreateRunRequest::setStream(bool stream)
 {
 	this->stream = stream;
 }
@@ -538,7 +538,7 @@ CreateRunRequest::getMaxPromptTokens()
 }
 
 void
-CreateRunRequest::setMaxPromptTokens(int  max_prompt_tokens)
+CreateRunRequest::setMaxPromptTokens(int max_prompt_tokens)
 {
 	this->max_prompt_tokens = max_prompt_tokens;
 }
@@ -550,7 +550,7 @@ CreateRunRequest::getMaxCompletionTokens()
 }
 
 void
-CreateRunRequest::setMaxCompletionTokens(int  max_completion_tokens)
+CreateRunRequest::setMaxCompletionTokens(int max_completion_tokens)
 {
 	this->max_completion_tokens = max_completion_tokens;
 }
@@ -562,7 +562,7 @@ CreateRunRequest::getTruncationStrategy()
 }
 
 void
-CreateRunRequest::setTruncationStrategy(TruncationObject  truncation_strategy)
+CreateRunRequest::setTruncationStrategy(TruncationObject truncation_strategy)
 {
 	this->truncation_strategy = truncation_strategy;
 }
@@ -574,7 +574,7 @@ CreateRunRequest::getToolChoice()
 }
 
 void
-CreateRunRequest::setToolChoice(AssistantsApiToolChoiceOption  tool_choice)
+CreateRunRequest::setToolChoice(AssistantsApiToolChoiceOption tool_choice)
 {
 	this->tool_choice = tool_choice;
 }
@@ -586,7 +586,7 @@ CreateRunRequest::isParallelToolCalls()
 }
 
 void
-CreateRunRequest::setParallelToolCalls(bool  parallel_tool_calls)
+CreateRunRequest::setParallelToolCalls(bool parallel_tool_calls)
 {
 	this->parallel_tool_calls = parallel_tool_calls;
 }
@@ -598,7 +598,7 @@ CreateRunRequest::getResponseFormat()
 }
 
 void
-CreateRunRequest::setResponseFormat(AssistantsApiResponseFormatOption  response_format)
+CreateRunRequest::setResponseFormat(AssistantsApiResponseFormatOption response_format)
 {
 	this->response_format = response_format;
 }

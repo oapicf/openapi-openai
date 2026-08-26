@@ -20,7 +20,7 @@ typedef struct chat_completion_token_logprob_top_logprobs_inner_t chat_completio
 
 typedef struct chat_completion_token_logprob_top_logprobs_inner_t {
     char *token; // string
-    double logprob; //numeric
+    double *logprob; //numeric
     list_t *bytes; //primitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -28,7 +28,7 @@ typedef struct chat_completion_token_logprob_top_logprobs_inner_t {
 
 __attribute__((deprecated)) chat_completion_token_logprob_top_logprobs_inner_t *chat_completion_token_logprob_top_logprobs_inner_create(
     char *token,
-    double logprob,
+    double *logprob,
     list_t *bytes
 );
 

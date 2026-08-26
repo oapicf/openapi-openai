@@ -32,7 +32,7 @@ class  MessageRequestContentTextObject
 {
 public:
     MessageRequestContentTextObject();
-    virtual ~MessageRequestContentTextObject() = default;
+    virtual ~MessageRequestContentTextObject();
 
 
     /// <summary>

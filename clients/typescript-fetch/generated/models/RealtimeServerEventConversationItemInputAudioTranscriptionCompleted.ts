@@ -39,7 +39,7 @@ export interface RealtimeServerEventConversationItemInputAudioTranscriptionCompl
      * The event type, must be
      * `conversation.item.input_audio_transcription.completed`.
      * 
-     * @type {string}
+     * @type {RealtimeServerEventConversationItemInputAudioTranscriptionCompletedTypeEnum}
      * @memberof RealtimeServerEventConversationItemInputAudioTranscriptionCompleted
      */
     type: RealtimeServerEventConversationItemInputAudioTranscriptionCompletedTypeEnum;
@@ -77,10 +77,12 @@ export type RealtimeServerEventConversationItemInputAudioTranscriptionCompletedT
  * Check if a given object implements the RealtimeServerEventConversationItemInputAudioTranscriptionCompleted interface.
  */
 export function instanceOfRealtimeServerEventConversationItemInputAudioTranscriptionCompleted(value: object): value is RealtimeServerEventConversationItemInputAudioTranscriptionCompleted {
-    if (!('eventId' in value) || value['eventId'] === undefined) return false;
+    if ((!('eventId' in (value as Record<string, any>)) && !('event_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['eventId'] === undefined && (value as Record<string, any>)['event_id'] === undefined)) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('itemId' in value) || value['itemId'] === undefined) return false;
-    if (!('contentIndex' in value) || value['contentIndex'] === undefined) return false;
+    if (value['type'] !== 'conversation.item.input_audio_transcription.completed') return false;
+    
+    if ((!('itemId' in (value as Record<string, any>)) && !('item_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['itemId'] === undefined && (value as Record<string, any>)['item_id'] === undefined)) return false;
+    if ((!('contentIndex' in (value as Record<string, any>)) && !('content_index' in (value as Record<string, any>))) || ((value as Record<string, any>)['contentIndex'] === undefined && (value as Record<string, any>)['content_index'] === undefined)) return false;
     if (!('transcript' in value) || value['transcript'] === undefined) return false;
     return true;
 }

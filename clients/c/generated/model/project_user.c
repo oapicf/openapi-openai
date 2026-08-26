@@ -45,20 +45,20 @@ static project_user_t *project_user_create_internal(
     char *name,
     char *email,
     openai_api_project_user_ROLE_e role,
-    int added_at
+    int *added_at
     ) {
     project_user_t *project_user_local_var = malloc(sizeof(project_user_t));
     if (!project_user_local_var) {
         return NULL;
     }
+    memset(project_user_local_var, 0, sizeof(project_user_t));
+    project_user_local_var->_library_owned = 1;
     project_user_local_var->object = object;
     project_user_local_var->id = id;
     project_user_local_var->name = name;
     project_user_local_var->email = email;
     project_user_local_var->role = role;
     project_user_local_var->added_at = added_at;
-
-    project_user_local_var->_library_owned = 1;
     return project_user_local_var;
 }
 
@@ -68,16 +68,25 @@ __attribute__((deprecated)) project_user_t *project_user_create(
     char *name,
     char *email,
     openai_api_project_user_ROLE_e role,
-    int added_at
+    int *added_at
     ) {
-    return project_user_create_internal (
+    int *added_at_copy = NULL;
+    if (added_at) {
+        added_at_copy = malloc(sizeof(int));
+        if (added_at_copy) *added_at_copy = *added_at;
+    }
+    project_user_t *result = project_user_create_internal (
         object,
         id,
         name,
         email,
         role,
-        added_at
+        added_at_copy
         );
+    if (!result) {
+        free(added_at_copy);
+    }
+    return result;
 }
 
 void project_user_free(project_user_t *project_user) {
@@ -100,6 +109,10 @@ void project_user_free(project_user_t *project_user) {
     if (project_user->email) {
         free(project_user->email);
         project_user->email = NULL;
+    }
+    if (project_user->added_at) {
+        free(project_user->added_at);
+        project_user->added_at = NULL;
     }
     free(project_user);
 }
@@ -158,7 +171,7 @@ cJSON *project_user_convertToJSON(project_user_t *project_user) {
     if (!project_user->added_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "added_at", project_user->added_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "added_at", *project_user->added_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -173,6 +186,15 @@ fail:
 project_user_t *project_user_parseFromJSON(cJSON *project_userJSON){
 
     project_user_t *project_user_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    char *email_local_str = NULL;
+
+    // define the local variable for project_user->added_at
+    int *added_at_local_var = NULL;
 
     // project_user->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(project_userJSON, "object");
@@ -267,19 +289,49 @@ project_user_t *project_user_parseFromJSON(cJSON *project_userJSON){
     {
     goto end; //Numeric
     }
+    added_at_local_var = malloc(sizeof(int));
+    if(!added_at_local_var)
+    {
+        goto end;
+    }
+    *added_at_local_var = added_at->valuedouble;
 
+
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (email && !cJSON_IsNull(email)) email_local_str = strdup(email->valuestring);
 
     project_user_local_var = project_user_create_internal (
         objectVariable,
-        strdup(id->valuestring),
-        strdup(name->valuestring),
-        strdup(email->valuestring),
+        id_local_str,
+        name_local_str,
+        email_local_str,
         roleVariable,
-        added_at->valuedouble
+        added_at_local_var
         );
+
+    if (!project_user_local_var) {
+        goto end;
+    }
 
     return project_user_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (email_local_str) {
+        free(email_local_str);
+        email_local_str = NULL;
+    }
+    if (added_at_local_var) {
+        free(added_at_local_var);
+        added_at_local_var = NULL;
+    }
     return NULL;
 
 }

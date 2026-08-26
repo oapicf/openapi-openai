@@ -30,6 +30,8 @@ CreateSpeechRequest::CreateSpeechRequest()
     
 }
 
+CreateSpeechRequest::~CreateSpeechRequest() = default;
+
 void CreateSpeechRequest::validate() const
 {
     std::stringstream msg;

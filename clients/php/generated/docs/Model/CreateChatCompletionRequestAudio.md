@@ -1,4 +1,4 @@
-# # CreateChatCompletionRequestAudio
+# CreateChatCompletionRequestAudio
 
 ## Properties
 

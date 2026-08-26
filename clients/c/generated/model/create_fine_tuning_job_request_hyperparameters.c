@@ -14,11 +14,11 @@ static create_fine_tuning_job_request_hyperparameters_t *create_fine_tuning_job_
     if (!create_fine_tuning_job_request_hyperparameters_local_var) {
         return NULL;
     }
+    memset(create_fine_tuning_job_request_hyperparameters_local_var, 0, sizeof(create_fine_tuning_job_request_hyperparameters_t));
+    create_fine_tuning_job_request_hyperparameters_local_var->_library_owned = 1;
     create_fine_tuning_job_request_hyperparameters_local_var->batch_size = batch_size;
     create_fine_tuning_job_request_hyperparameters_local_var->learning_rate_multiplier = learning_rate_multiplier;
     create_fine_tuning_job_request_hyperparameters_local_var->n_epochs = n_epochs;
-
-    create_fine_tuning_job_request_hyperparameters_local_var->_library_owned = 1;
     return create_fine_tuning_job_request_hyperparameters_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) create_fine_tuning_job_request_hyperparameters_t *cr
     create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t *learning_rate_multiplier,
     create_fine_tuning_job_request_hyperparameters_n_epochs_t *n_epochs
     ) {
-    return create_fine_tuning_job_request_hyperparameters_create_internal (
+    create_fine_tuning_job_request_hyperparameters_t *result = create_fine_tuning_job_request_hyperparameters_create_internal (
         batch_size,
         learning_rate_multiplier,
         n_epochs
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_fine_tuning_job_request_hyperparameters_free(create_fine_tuning_job_request_hyperparameters_t *create_fine_tuning_job_request_hyperparameters) {
@@ -148,11 +151,16 @@ create_fine_tuning_job_request_hyperparameters_t *create_fine_tuning_job_request
     }
 
 
+
     create_fine_tuning_job_request_hyperparameters_local_var = create_fine_tuning_job_request_hyperparameters_create_internal (
         batch_size ? batch_size_local_nonprim : NULL,
         learning_rate_multiplier ? learning_rate_multiplier_local_nonprim : NULL,
         n_epochs ? n_epochs_local_nonprim : NULL
         );
+
+    if (!create_fine_tuning_job_request_hyperparameters_local_var) {
+        goto end;
+    }
 
     return create_fine_tuning_job_request_hyperparameters_local_var;
 end:

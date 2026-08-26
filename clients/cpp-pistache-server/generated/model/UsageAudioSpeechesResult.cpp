@@ -35,6 +35,8 @@ UsageAudioSpeechesResult::UsageAudioSpeechesResult()
     
 }
 
+UsageAudioSpeechesResult::~UsageAudioSpeechesResult() = default;
+
 void UsageAudioSpeechesResult::validate() const
 {
     std::stringstream msg;

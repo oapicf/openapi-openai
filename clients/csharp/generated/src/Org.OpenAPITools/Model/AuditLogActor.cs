@@ -127,7 +127,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The type of actor. Is either &#x60;session&#x60; or &#x60;api_key&#x60;.</value>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Session
@@ -140,7 +140,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Session
         /// </summary>
         [JsonPropertyName("session")]
-        public AuditLogActorSession? Session { get { return this.SessionOption; } set { this.SessionOption = new(value); } }
+        public AuditLogActorSession? Session { get { return this.SessionOption.Value; } set { this.SessionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ApiKey
@@ -153,7 +153,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ApiKey
         /// </summary>
         [JsonPropertyName("api_key")]
-        public AuditLogActorApiKey? ApiKey { get { return this.ApiKeyOption; } set { this.ApiKeyOption = new(value); } }
+        public AuditLogActorApiKey? ApiKey { get { return this.ApiKeyOption.Value; } set { this.ApiKeyOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -184,8 +184,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogActor" />
     /// </summary>
-    public class AuditLogActorJsonConverter : JsonConverter<AuditLogActor>
+    public partial class AuditLogActorJsonConverter : JsonConverter<AuditLogActor>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogActorJsonConverter" /> class.
+        /// </summary>
+        public AuditLogActorJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogActor" />
         /// </summary>

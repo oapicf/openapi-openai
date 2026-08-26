@@ -3,12 +3,12 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from openapi_server.models.base_model import Model
-from openapi_server.models.auto_chunking_strategy import AutoChunkingStrategy
+from openapi_server.models.auto_chunking_strategy_request_param import AutoChunkingStrategyRequestParam
 from openapi_server.models.static_chunking_strategy import StaticChunkingStrategy
 from openapi_server.models.static_chunking_strategy_static import StaticChunkingStrategyStatic
 from openapi_server import util
 
-from openapi_server.models.auto_chunking_strategy import AutoChunkingStrategy  # noqa: E501
+from openapi_server.models.auto_chunking_strategy_request_param import AutoChunkingStrategyRequestParam  # noqa: E501
 from openapi_server.models.static_chunking_strategy import StaticChunkingStrategy  # noqa: E501
 from openapi_server.models.static_chunking_strategy_static import StaticChunkingStrategyStatic  # noqa: E501
 

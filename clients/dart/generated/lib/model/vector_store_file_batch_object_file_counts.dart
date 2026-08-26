@@ -76,10 +76,16 @@ class VectorStoreFileBatchObjectFileCounts {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "VectorStoreFileBatchObjectFileCounts[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "VectorStoreFileBatchObjectFileCounts[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'in_progress'), 'Required key "VectorStoreFileBatchObjectFileCounts[in_progress]" is missing from JSON.');
+        assert(json[r'in_progress'] != null, 'Required key "VectorStoreFileBatchObjectFileCounts[in_progress]" has a null value in JSON.');
+        assert(json.containsKey(r'completed'), 'Required key "VectorStoreFileBatchObjectFileCounts[completed]" is missing from JSON.');
+        assert(json[r'completed'] != null, 'Required key "VectorStoreFileBatchObjectFileCounts[completed]" has a null value in JSON.');
+        assert(json.containsKey(r'failed'), 'Required key "VectorStoreFileBatchObjectFileCounts[failed]" is missing from JSON.');
+        assert(json[r'failed'] != null, 'Required key "VectorStoreFileBatchObjectFileCounts[failed]" has a null value in JSON.');
+        assert(json.containsKey(r'cancelled'), 'Required key "VectorStoreFileBatchObjectFileCounts[cancelled]" is missing from JSON.');
+        assert(json[r'cancelled'] != null, 'Required key "VectorStoreFileBatchObjectFileCounts[cancelled]" has a null value in JSON.');
+        assert(json.containsKey(r'total'), 'Required key "VectorStoreFileBatchObjectFileCounts[total]" is missing from JSON.');
+        assert(json[r'total'] != null, 'Required key "VectorStoreFileBatchObjectFileCounts[total]" has a null value in JSON.');
         return true;
       }());
 

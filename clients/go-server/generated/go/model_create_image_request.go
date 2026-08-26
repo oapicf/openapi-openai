@@ -14,6 +14,8 @@ package openapi
 
 import (
 	"errors"
+	"encoding/json"
+	"fmt"
 )
 
 
@@ -43,18 +45,104 @@ type CreateImageRequest struct {
 	// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 	User string `json:"user,omitempty"`
 }
-
-// AssertCreateImageRequestRequired checks if the required fields are not zero-ed
-func AssertCreateImageRequestRequired(obj CreateImageRequest) error {
-	elements := map[string]interface{}{
-		"prompt": obj.Prompt,
+// UnmarshalJSON validates required property keys then unmarshals into CreateImageRequest
+func (o *CreateImageRequest) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"prompt",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"prompt": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"prompt": {},
+		"model": {},
+		"n": {},
+		"quality": {},
+		"response_format": {},
+		"size": {},
+		"style": {},
+		"user": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CreateImageRequest
+
+	if value, exists := allProperties["prompt"]; exists {
+		if err = json.Unmarshal(value, &decoded.Prompt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["model"]; exists {
+		if err = json.Unmarshal(value, &decoded.Model); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["n"]; exists {
+		if err = json.Unmarshal(value, &decoded.N); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["quality"]; exists {
+		if err = json.Unmarshal(value, &decoded.Quality); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["response_format"]; exists {
+		if err = json.Unmarshal(value, &decoded.ResponseFormat); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["size"]; exists {
+		if err = json.Unmarshal(value, &decoded.Size); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["style"]; exists {
+		if err = json.Unmarshal(value, &decoded.Style); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["user"]; exists {
+		if err = json.Unmarshal(value, &decoded.User); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCreateImageRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertCreateImageRequestRequired(obj CreateImageRequest) error {
 	if obj.Model != nil {
 		if err := AssertCreateImageRequestModelRequired(*obj.Model); err != nil {
 			return err

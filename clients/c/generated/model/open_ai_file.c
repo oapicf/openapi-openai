@@ -58,8 +58,8 @@ openai_api_open_ai_file_STATUS_e open_ai_file_status_FromString(char* status){
 
 static open_ai_file_t *open_ai_file_create_internal(
     char *id,
-    int bytes,
-    int created_at,
+    int *bytes,
+    int *created_at,
     char *filename,
     openai_api_open_ai_file_OBJECT_e object,
     openai_api_open_ai_file_PURPOSE_e purpose,
@@ -70,6 +70,8 @@ static open_ai_file_t *open_ai_file_create_internal(
     if (!open_ai_file_local_var) {
         return NULL;
     }
+    memset(open_ai_file_local_var, 0, sizeof(open_ai_file_t));
+    open_ai_file_local_var->_library_owned = 1;
     open_ai_file_local_var->id = id;
     open_ai_file_local_var->bytes = bytes;
     open_ai_file_local_var->created_at = created_at;
@@ -78,31 +80,44 @@ static open_ai_file_t *open_ai_file_create_internal(
     open_ai_file_local_var->purpose = purpose;
     open_ai_file_local_var->status = status;
     open_ai_file_local_var->status_details = status_details;
-
-    open_ai_file_local_var->_library_owned = 1;
     return open_ai_file_local_var;
 }
 
 __attribute__((deprecated)) open_ai_file_t *open_ai_file_create(
     char *id,
-    int bytes,
-    int created_at,
+    int *bytes,
+    int *created_at,
     char *filename,
     openai_api_open_ai_file_OBJECT_e object,
     openai_api_open_ai_file_PURPOSE_e purpose,
     openai_api_open_ai_file_STATUS_e status,
     char *status_details
     ) {
-    return open_ai_file_create_internal (
+    int *bytes_copy = NULL;
+    if (bytes) {
+        bytes_copy = malloc(sizeof(int));
+        if (bytes_copy) *bytes_copy = *bytes;
+    }
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    open_ai_file_t *result = open_ai_file_create_internal (
         id,
-        bytes,
-        created_at,
+        bytes_copy,
+        created_at_copy,
         filename,
         object,
         purpose,
         status,
         status_details
         );
+    if (!result) {
+        free(bytes_copy);
+        free(created_at_copy);
+    }
+    return result;
 }
 
 void open_ai_file_free(open_ai_file_t *open_ai_file) {
@@ -117,6 +132,14 @@ void open_ai_file_free(open_ai_file_t *open_ai_file) {
     if (open_ai_file->id) {
         free(open_ai_file->id);
         open_ai_file->id = NULL;
+    }
+    if (open_ai_file->bytes) {
+        free(open_ai_file->bytes);
+        open_ai_file->bytes = NULL;
+    }
+    if (open_ai_file->created_at) {
+        free(open_ai_file->created_at);
+        open_ai_file->created_at = NULL;
     }
     if (open_ai_file->filename) {
         free(open_ai_file->filename);
@@ -145,7 +168,7 @@ cJSON *open_ai_file_convertToJSON(open_ai_file_t *open_ai_file) {
     if (!open_ai_file->bytes) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "bytes", open_ai_file->bytes) == NULL) {
+    if(cJSON_AddNumberToObject(item, "bytes", *open_ai_file->bytes) == NULL) {
     goto fail; //Numeric
     }
 
@@ -154,7 +177,7 @@ cJSON *open_ai_file_convertToJSON(open_ai_file_t *open_ai_file) {
     if (!open_ai_file->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", open_ai_file->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *open_ai_file->created_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -217,6 +240,18 @@ open_ai_file_t *open_ai_file_parseFromJSON(cJSON *open_ai_fileJSON){
 
     open_ai_file_t *open_ai_file_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    // define the local variable for open_ai_file->bytes
+    int *bytes_local_var = NULL;
+
+    // define the local variable for open_ai_file->created_at
+    int *created_at_local_var = NULL;
+
+    char *filename_local_str = NULL;
+
+    char *status_details_local_str = NULL;
+
     // open_ai_file->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(open_ai_fileJSON, "id");
     if (cJSON_IsNull(id)) {
@@ -246,6 +281,12 @@ open_ai_file_t *open_ai_file_parseFromJSON(cJSON *open_ai_fileJSON){
     {
     goto end; //Numeric
     }
+    bytes_local_var = malloc(sizeof(int));
+    if(!bytes_local_var)
+    {
+        goto end;
+    }
+    *bytes_local_var = bytes->valuedouble;
 
     // open_ai_file->created_at
     cJSON *created_at = cJSON_GetObjectItemCaseSensitive(open_ai_fileJSON, "created_at");
@@ -261,6 +302,12 @@ open_ai_file_t *open_ai_file_parseFromJSON(cJSON *open_ai_fileJSON){
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
     // open_ai_file->filename
     cJSON *filename = cJSON_GetObjectItemCaseSensitive(open_ai_fileJSON, "filename");
@@ -341,19 +388,47 @@ open_ai_file_t *open_ai_file_parseFromJSON(cJSON *open_ai_fileJSON){
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (filename && !cJSON_IsNull(filename)) filename_local_str = strdup(filename->valuestring);
+    if (status_details && !cJSON_IsNull(status_details)) status_details_local_str = strdup(status_details->valuestring);
+
     open_ai_file_local_var = open_ai_file_create_internal (
-        strdup(id->valuestring),
-        bytes->valuedouble,
-        created_at->valuedouble,
-        strdup(filename->valuestring),
+        id_local_str,
+        bytes_local_var,
+        created_at_local_var,
+        filename_local_str,
         objectVariable,
         purposeVariable,
         statusVariable,
-        status_details && !cJSON_IsNull(status_details) ? strdup(status_details->valuestring) : NULL
+        status_details_local_str
         );
+
+    if (!open_ai_file_local_var) {
+        goto end;
+    }
 
     return open_ai_file_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (bytes_local_var) {
+        free(bytes_local_var);
+        bytes_local_var = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
+    if (filename_local_str) {
+        free(filename_local_str);
+        filename_local_str = NULL;
+    }
+    if (status_details_local_str) {
+        free(status_details_local_str);
+        status_details_local_str = NULL;
+    }
     return NULL;
 
 }

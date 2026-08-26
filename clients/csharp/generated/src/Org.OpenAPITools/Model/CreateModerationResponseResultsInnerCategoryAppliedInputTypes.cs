@@ -958,8 +958,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateModerationResponseResultsInnerCategoryAppliedInputTypes" />
     /// </summary>
-    public class CreateModerationResponseResultsInnerCategoryAppliedInputTypesJsonConverter : JsonConverter<CreateModerationResponseResultsInnerCategoryAppliedInputTypes>
+    public partial class CreateModerationResponseResultsInnerCategoryAppliedInputTypesJsonConverter : JsonConverter<CreateModerationResponseResultsInnerCategoryAppliedInputTypes>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateModerationResponseResultsInnerCategoryAppliedInputTypesJsonConverter" /> class.
+        /// </summary>
+        public CreateModerationResponseResultsInnerCategoryAppliedInputTypesJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateModerationResponseResultsInnerCategoryAppliedInputTypes" />
         /// </summary>

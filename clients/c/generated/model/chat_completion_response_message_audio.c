@@ -7,7 +7,7 @@
 
 static chat_completion_response_message_audio_t *chat_completion_response_message_audio_create_internal(
     char *id,
-    int expires_at,
+    int *expires_at,
     char *data,
     char *transcript
     ) {
@@ -15,27 +15,36 @@ static chat_completion_response_message_audio_t *chat_completion_response_messag
     if (!chat_completion_response_message_audio_local_var) {
         return NULL;
     }
+    memset(chat_completion_response_message_audio_local_var, 0, sizeof(chat_completion_response_message_audio_t));
+    chat_completion_response_message_audio_local_var->_library_owned = 1;
     chat_completion_response_message_audio_local_var->id = id;
     chat_completion_response_message_audio_local_var->expires_at = expires_at;
     chat_completion_response_message_audio_local_var->data = data;
     chat_completion_response_message_audio_local_var->transcript = transcript;
-
-    chat_completion_response_message_audio_local_var->_library_owned = 1;
     return chat_completion_response_message_audio_local_var;
 }
 
 __attribute__((deprecated)) chat_completion_response_message_audio_t *chat_completion_response_message_audio_create(
     char *id,
-    int expires_at,
+    int *expires_at,
     char *data,
     char *transcript
     ) {
-    return chat_completion_response_message_audio_create_internal (
+    int *expires_at_copy = NULL;
+    if (expires_at) {
+        expires_at_copy = malloc(sizeof(int));
+        if (expires_at_copy) *expires_at_copy = *expires_at;
+    }
+    chat_completion_response_message_audio_t *result = chat_completion_response_message_audio_create_internal (
         id,
-        expires_at,
+        expires_at_copy,
         data,
         transcript
         );
+    if (!result) {
+        free(expires_at_copy);
+    }
+    return result;
 }
 
 void chat_completion_response_message_audio_free(chat_completion_response_message_audio_t *chat_completion_response_message_audio) {
@@ -50,6 +59,10 @@ void chat_completion_response_message_audio_free(chat_completion_response_messag
     if (chat_completion_response_message_audio->id) {
         free(chat_completion_response_message_audio->id);
         chat_completion_response_message_audio->id = NULL;
+    }
+    if (chat_completion_response_message_audio->expires_at) {
+        free(chat_completion_response_message_audio->expires_at);
+        chat_completion_response_message_audio->expires_at = NULL;
     }
     if (chat_completion_response_message_audio->data) {
         free(chat_completion_response_message_audio->data);
@@ -78,7 +91,7 @@ cJSON *chat_completion_response_message_audio_convertToJSON(chat_completion_resp
     if (!chat_completion_response_message_audio->expires_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "expires_at", chat_completion_response_message_audio->expires_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "expires_at", *chat_completion_response_message_audio->expires_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -112,6 +125,15 @@ chat_completion_response_message_audio_t *chat_completion_response_message_audio
 
     chat_completion_response_message_audio_t *chat_completion_response_message_audio_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    // define the local variable for chat_completion_response_message_audio->expires_at
+    int *expires_at_local_var = NULL;
+
+    char *data_local_str = NULL;
+
+    char *transcript_local_str = NULL;
+
     // chat_completion_response_message_audio->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(chat_completion_response_message_audioJSON, "id");
     if (cJSON_IsNull(id)) {
@@ -141,6 +163,12 @@ chat_completion_response_message_audio_t *chat_completion_response_message_audio
     {
     goto end; //Numeric
     }
+    expires_at_local_var = malloc(sizeof(int));
+    if(!expires_at_local_var)
+    {
+        goto end;
+    }
+    *expires_at_local_var = expires_at->valuedouble;
 
     // chat_completion_response_message_audio->data
     cJSON *data = cJSON_GetObjectItemCaseSensitive(chat_completion_response_message_audioJSON, "data");
@@ -173,15 +201,39 @@ chat_completion_response_message_audio_t *chat_completion_response_message_audio
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (data && !cJSON_IsNull(data)) data_local_str = strdup(data->valuestring);
+    if (transcript && !cJSON_IsNull(transcript)) transcript_local_str = strdup(transcript->valuestring);
+
     chat_completion_response_message_audio_local_var = chat_completion_response_message_audio_create_internal (
-        strdup(id->valuestring),
-        expires_at->valuedouble,
-        strdup(data->valuestring),
-        strdup(transcript->valuestring)
+        id_local_str,
+        expires_at_local_var,
+        data_local_str,
+        transcript_local_str
         );
+
+    if (!chat_completion_response_message_audio_local_var) {
+        goto end;
+    }
 
     return chat_completion_response_message_audio_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (expires_at_local_var) {
+        free(expires_at_local_var);
+        expires_at_local_var = NULL;
+    }
+    if (data_local_str) {
+        free(data_local_str);
+        data_local_str = NULL;
+    }
+    if (transcript_local_str) {
+        free(transcript_local_str);
+        transcript_local_str = NULL;
+    }
     return NULL;
 
 }

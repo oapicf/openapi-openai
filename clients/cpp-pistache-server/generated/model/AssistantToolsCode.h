@@ -32,7 +32,7 @@ class  AssistantToolsCode
 {
 public:
     AssistantToolsCode();
-    virtual ~AssistantToolsCode() = default;
+    virtual ~AssistantToolsCode();
 
 
     /// <summary>

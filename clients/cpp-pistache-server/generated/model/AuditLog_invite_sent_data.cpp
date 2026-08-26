@@ -28,6 +28,8 @@ AuditLog_invite_sent_data::AuditLog_invite_sent_data()
     
 }
 
+AuditLog_invite_sent_data::~AuditLog_invite_sent_data() = default;
+
 void AuditLog_invite_sent_data::validate() const
 {
     std::stringstream msg;

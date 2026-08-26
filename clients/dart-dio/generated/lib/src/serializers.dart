@@ -74,7 +74,6 @@ import 'package:openapi/src/model/audit_log_user_added_data.dart';
 import 'package:openapi/src/model/audit_log_user_deleted.dart';
 import 'package:openapi/src/model/audit_log_user_updated.dart';
 import 'package:openapi/src/model/audit_log_user_updated_changes_requested.dart';
-import 'package:openapi/src/model/auto_chunking_strategy.dart';
 import 'package:openapi/src/model/auto_chunking_strategy_request_param.dart';
 import 'package:openapi/src/model/batch.dart';
 import 'package:openapi/src/model/batch_errors.dart';
@@ -484,7 +483,6 @@ import 'package:openapi/src/model/run_tool_call_object.dart';
 import 'package:openapi/src/model/run_tool_call_object_function.dart';
 import 'package:openapi/src/model/static_chunking_strategy.dart';
 import 'package:openapi/src/model/static_chunking_strategy_request_param.dart';
-import 'package:openapi/src/model/static_chunking_strategy_response_param.dart';
 import 'package:openapi/src/model/static_chunking_strategy_static.dart';
 import 'package:openapi/src/model/submit_tool_outputs_run_request.dart';
 import 'package:openapi/src/model/submit_tool_outputs_run_request_tool_outputs_inner.dart';
@@ -583,7 +581,6 @@ part 'serializers.g.dart';
   AuditLogUserDeleted,
   AuditLogUserUpdated,
   AuditLogUserUpdatedChangesRequested,
-  AutoChunkingStrategy,
   AutoChunkingStrategyRequestParam,
   Batch,
   BatchErrors,
@@ -993,7 +990,6 @@ part 'serializers.g.dart';
   RunToolCallObjectFunction,
   StaticChunkingStrategy,
   StaticChunkingStrategyRequestParam,
-  StaticChunkingStrategyResponseParam,
   StaticChunkingStrategyStatic,
   SubmitToolOutputsRunRequest,
   SubmitToolOutputsRunRequestToolOutputsInner,
@@ -1031,16 +1027,320 @@ part 'serializers.g.dart';
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner)]),
+        () => ListBuilder<RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ChatCompletionMessageToolCall)]),
+        () => ListBuilder<ChatCompletionMessageToolCall>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(FineTuningJob)]),
+        () => ListBuilder<FineTuningJob>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RunStepDetailsToolCallsFileSearchResultObjectContentInner)]),
+        () => ListBuilder<RunStepDetailsToolCallsFileSearchResultObjectContentInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ChatCompletionTokenLogprobTopLogprobsInner)]),
+        () => ListBuilder<ChatCompletionTokenLogprobTopLogprobsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RunObject)]),
+        () => ListBuilder<RunObject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(MessageObjectContentInner)]),
+        () => ListBuilder<MessageObjectContentInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ChatCompletionFunctions)]),
+        () => ListBuilder<ChatCompletionFunctions>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(UsageTimeBucketResultInner)]),
+        () => ListBuilder<UsageTimeBucketResultInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreateMessageRequestAttachmentsInnerToolsInner)]),
+        () => ListBuilder<CreateMessageRequestAttachmentsInnerToolsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(FineTuningJobEvent)]),
+        () => ListBuilder<FineTuningJobEvent>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ProjectRateLimit)]),
+        () => ListBuilder<ProjectRateLimit>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreateMessageRequestAttachmentsInner)]),
+        () => ListBuilder<CreateMessageRequestAttachmentsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SubmitToolOutputsRunRequestToolOutputsInner)]),
+        () => ListBuilder<SubmitToolOutputsRunRequestToolOutputsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Invite)]),
+        () => ListBuilder<Invite>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(TranscriptionWord)]),
+        () => ListBuilder<TranscriptionWord>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(TranscriptionSegment)]),
+        () => ListBuilder<TranscriptionSegment>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(MessageDeltaContentTextObjectTextAnnotationsInner)]),
+        () => ListBuilder<MessageDeltaContentTextObjectTextAnnotationsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ProjectApiKey)]),
+        () => ListBuilder<ProjectApiKey>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AuditLogEventType)]),
+        () => ListBuilder<AuditLogEventType>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ProjectUser)]),
+        () => ListBuilder<ProjectUser>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ChatCompletionMessageToolCallChunk)]),
+        () => ListBuilder<ChatCompletionMessageToolCallChunk>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreateChatCompletionResponseChoicesInner)]),
+        () => ListBuilder<CreateChatCompletionResponseChoicesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RealtimeConversationItemContentInner)]),
+        () => ListBuilder<RealtimeConversationItemContentInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(User)]),
+        () => ListBuilder<User>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(MessageDeltaObjectDeltaContentInner)]),
+        () => ListBuilder<MessageDeltaObjectDeltaContentInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RealtimeServerEventRateLimitsUpdatedRateLimitsInner)]),
+        () => ListBuilder<RealtimeServerEventRateLimitsUpdatedRateLimitsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AuditLog)]),
+        () => ListBuilder<AuditLog>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner)]),
+        () => ListBuilder<RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(InviteProjectsInner)]),
+        () => ListBuilder<InviteProjectsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ThreadObject)]),
+        () => ListBuilder<ThreadObject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreateMessageRequest)]),
+        () => ListBuilder<CreateMessageRequest>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Embedding)]),
+        () => ListBuilder<Embedding>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OpenAIFile)]),
+        () => ListBuilder<OpenAIFile>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(VectorStoreFileObject)]),
+        () => ListBuilder<VectorStoreFileObject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreateFineTuningJobRequestIntegrationsInner)]),
+        () => ListBuilder<CreateFineTuningJobRequestIntegrationsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(MessageContentTextObjectTextAnnotationsInner)]),
+        () => ListBuilder<MessageContentTextObjectTextAnnotationsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(FineTuningJobIntegrationsInner)]),
+        () => ListBuilder<FineTuningJobIntegrationsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(FineTunePreferenceRequestInputPreferredCompletionInner)]),
+        () => ListBuilder<FineTunePreferenceRequestInputPreferredCompletionInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ChatCompletionTool)]),
+        () => ListBuilder<ChatCompletionTool>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RunStepObject)]),
+        () => ListBuilder<RunStepObject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ProjectServiceAccount)]),
+        () => ListBuilder<ProjectServiceAccount>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(BatchErrorsDataInner)]),
+        () => ListBuilder<BatchErrorsDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreateAssistantRequestToolResourcesFileSearchVectorStoresInner)]),
+        () => ListBuilder<CreateAssistantRequestToolResourcesFileSearchVectorStoresInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(String)]),
+        () => MapBuilder<String, String>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RunToolCallObject)]),
+        () => ListBuilder<RunToolCallObject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreateChatCompletionFunctionResponseChoicesInner)]),
+        () => ListBuilder<CreateChatCompletionFunctionResponseChoicesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreateChatCompletionStreamResponseChoicesInner)]),
+        () => ListBuilder<CreateChatCompletionStreamResponseChoicesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RealtimeResponseCreateParamsToolsInner)]),
+        () => ListBuilder<RealtimeResponseCreateParamsToolsInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltMap, [FullType(String), FullType(num)]),
         () => MapBuilder<String, num>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AssistantObject)]),
+        () => ListBuilder<AssistantObject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Model)]),
+        () => ListBuilder<Model>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(VectorStoreObject)]),
+        () => ListBuilder<VectorStoreObject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Project)]),
+        () => ListBuilder<Project>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ChatCompletionRequestMessage)]),
+        () => ListBuilder<ChatCompletionRequestMessage>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RunStepDetailsToolCallsFileSearchResultObject)]),
+        () => ListBuilder<RunStepDetailsToolCallsFileSearchResultObject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(int)]),
+        () => MapBuilder<String, int>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Image)]),
+        () => ListBuilder<Image>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(UsageTimeBucket)]),
+        () => ListBuilder<UsageTimeBucket>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(num)]),
+        () => ListBuilder<num>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AssistantObjectToolsInner)]),
+        () => ListBuilder<AssistantObjectToolsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(BuiltMap, [FullType(String), FullType(num)])]),
+        () => ListBuilder<BuiltMap<String, num>>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(MessageObject)]),
+        () => ListBuilder<MessageObject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(InviteRequestProjectsInner)]),
+        () => ListBuilder<InviteRequestProjectsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RunStepDetailsToolCallsObjectToolCallsInner)]),
+        () => ListBuilder<RunStepDetailsToolCallsObjectToolCallsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreateThreadRequestToolResourcesFileSearchVectorStoresInner)]),
+        () => ListBuilder<CreateThreadRequestToolResourcesFileSearchVectorStoresInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(FineTuneChatRequestInputMessagesInner)]),
+        () => ListBuilder<FineTuneChatRequestInputMessagesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreateCompletionResponseChoicesInner)]),
+        () => ListBuilder<CreateCompletionResponseChoicesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RunStepDeltaStepDetailsToolCallsObjectToolCallsInner)]),
+        () => ListBuilder<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreateThreadAndRunRequestToolsInner)]),
+        () => ListBuilder<CreateThreadAndRunRequestToolsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(int)]),
+        () => ListBuilder<int>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ChatCompletionTokenLogprob)]),
+        () => ListBuilder<ChatCompletionTokenLogprob>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+        () => MapBuilder<String, JsonObject?>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreateModerationResponseResultsInner)]),
+        () => ListBuilder<CreateModerationResponseResultsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AdminApiKey)]),
+        () => ListBuilder<AdminApiKey>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(String)]),
         () => ListBuilder<String>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(AuditLogEventType)]),
-        () => ListBuilder<AuditLogEventType>(),
+        const FullType(BuiltList, [FullType(RealtimeConversationItem)]),
+        () => ListBuilder<RealtimeConversationItem>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Batch)]),
+        () => ListBuilder<Batch>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(FineTuningJobCheckpoint)]),
+        () => ListBuilder<FineTuningJobCheckpoint>(),
       )
       ..add(ChatCompletionRequestAssistantMessage.serializer)
       ..add(const OneOfSerializer())

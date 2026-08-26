@@ -24,8 +24,8 @@ openai_api_usage_audio_transcriptions_result_OBJECT_e usage_audio_transcriptions
 
 static usage_audio_transcriptions_result_t *usage_audio_transcriptions_result_create_internal(
     openai_api_usage_audio_transcriptions_result_OBJECT_e object,
-    int seconds,
-    int num_model_requests,
+    int *seconds,
+    int *num_model_requests,
     char *project_id,
     char *user_id,
     char *api_key_id,
@@ -35,6 +35,8 @@ static usage_audio_transcriptions_result_t *usage_audio_transcriptions_result_cr
     if (!usage_audio_transcriptions_result_local_var) {
         return NULL;
     }
+    memset(usage_audio_transcriptions_result_local_var, 0, sizeof(usage_audio_transcriptions_result_t));
+    usage_audio_transcriptions_result_local_var->_library_owned = 1;
     usage_audio_transcriptions_result_local_var->object = object;
     usage_audio_transcriptions_result_local_var->seconds = seconds;
     usage_audio_transcriptions_result_local_var->num_model_requests = num_model_requests;
@@ -42,29 +44,42 @@ static usage_audio_transcriptions_result_t *usage_audio_transcriptions_result_cr
     usage_audio_transcriptions_result_local_var->user_id = user_id;
     usage_audio_transcriptions_result_local_var->api_key_id = api_key_id;
     usage_audio_transcriptions_result_local_var->model = model;
-
-    usage_audio_transcriptions_result_local_var->_library_owned = 1;
     return usage_audio_transcriptions_result_local_var;
 }
 
 __attribute__((deprecated)) usage_audio_transcriptions_result_t *usage_audio_transcriptions_result_create(
     openai_api_usage_audio_transcriptions_result_OBJECT_e object,
-    int seconds,
-    int num_model_requests,
+    int *seconds,
+    int *num_model_requests,
     char *project_id,
     char *user_id,
     char *api_key_id,
     char *model
     ) {
-    return usage_audio_transcriptions_result_create_internal (
+    int *seconds_copy = NULL;
+    if (seconds) {
+        seconds_copy = malloc(sizeof(int));
+        if (seconds_copy) *seconds_copy = *seconds;
+    }
+    int *num_model_requests_copy = NULL;
+    if (num_model_requests) {
+        num_model_requests_copy = malloc(sizeof(int));
+        if (num_model_requests_copy) *num_model_requests_copy = *num_model_requests;
+    }
+    usage_audio_transcriptions_result_t *result = usage_audio_transcriptions_result_create_internal (
         object,
-        seconds,
-        num_model_requests,
+        seconds_copy,
+        num_model_requests_copy,
         project_id,
         user_id,
         api_key_id,
         model
         );
+    if (!result) {
+        free(seconds_copy);
+        free(num_model_requests_copy);
+    }
+    return result;
 }
 
 void usage_audio_transcriptions_result_free(usage_audio_transcriptions_result_t *usage_audio_transcriptions_result) {
@@ -76,6 +91,14 @@ void usage_audio_transcriptions_result_free(usage_audio_transcriptions_result_t 
         return ;
     }
     listEntry_t *listEntry;
+    if (usage_audio_transcriptions_result->seconds) {
+        free(usage_audio_transcriptions_result->seconds);
+        usage_audio_transcriptions_result->seconds = NULL;
+    }
+    if (usage_audio_transcriptions_result->num_model_requests) {
+        free(usage_audio_transcriptions_result->num_model_requests);
+        usage_audio_transcriptions_result->num_model_requests = NULL;
+    }
     if (usage_audio_transcriptions_result->project_id) {
         free(usage_audio_transcriptions_result->project_id);
         usage_audio_transcriptions_result->project_id = NULL;
@@ -112,7 +135,7 @@ cJSON *usage_audio_transcriptions_result_convertToJSON(usage_audio_transcription
     if (!usage_audio_transcriptions_result->seconds) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "seconds", usage_audio_transcriptions_result->seconds) == NULL) {
+    if(cJSON_AddNumberToObject(item, "seconds", *usage_audio_transcriptions_result->seconds) == NULL) {
     goto fail; //Numeric
     }
 
@@ -121,7 +144,7 @@ cJSON *usage_audio_transcriptions_result_convertToJSON(usage_audio_transcription
     if (!usage_audio_transcriptions_result->num_model_requests) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "num_model_requests", usage_audio_transcriptions_result->num_model_requests) == NULL) {
+    if(cJSON_AddNumberToObject(item, "num_model_requests", *usage_audio_transcriptions_result->num_model_requests) == NULL) {
     goto fail; //Numeric
     }
 
@@ -169,6 +192,20 @@ usage_audio_transcriptions_result_t *usage_audio_transcriptions_result_parseFrom
 
     usage_audio_transcriptions_result_t *usage_audio_transcriptions_result_local_var = NULL;
 
+    // define the local variable for usage_audio_transcriptions_result->seconds
+    int *seconds_local_var = NULL;
+
+    // define the local variable for usage_audio_transcriptions_result->num_model_requests
+    int *num_model_requests_local_var = NULL;
+
+    char *project_id_local_str = NULL;
+
+    char *user_id_local_str = NULL;
+
+    char *api_key_id_local_str = NULL;
+
+    char *model_local_str = NULL;
+
     // usage_audio_transcriptions_result->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(usage_audio_transcriptions_resultJSON, "object");
     if (cJSON_IsNull(object)) {
@@ -200,6 +237,12 @@ usage_audio_transcriptions_result_t *usage_audio_transcriptions_result_parseFrom
     {
     goto end; //Numeric
     }
+    seconds_local_var = malloc(sizeof(int));
+    if(!seconds_local_var)
+    {
+        goto end;
+    }
+    *seconds_local_var = seconds->valuedouble;
 
     // usage_audio_transcriptions_result->num_model_requests
     cJSON *num_model_requests = cJSON_GetObjectItemCaseSensitive(usage_audio_transcriptions_resultJSON, "num_model_requests");
@@ -215,6 +258,12 @@ usage_audio_transcriptions_result_t *usage_audio_transcriptions_result_parseFrom
     {
     goto end; //Numeric
     }
+    num_model_requests_local_var = malloc(sizeof(int));
+    if(!num_model_requests_local_var)
+    {
+        goto end;
+    }
+    *num_model_requests_local_var = num_model_requests->valuedouble;
 
     // usage_audio_transcriptions_result->project_id
     cJSON *project_id = cJSON_GetObjectItemCaseSensitive(usage_audio_transcriptions_resultJSON, "project_id");
@@ -265,18 +314,51 @@ usage_audio_transcriptions_result_t *usage_audio_transcriptions_result_parseFrom
     }
 
 
+    if (project_id && !cJSON_IsNull(project_id)) project_id_local_str = strdup(project_id->valuestring);
+    if (user_id && !cJSON_IsNull(user_id)) user_id_local_str = strdup(user_id->valuestring);
+    if (api_key_id && !cJSON_IsNull(api_key_id)) api_key_id_local_str = strdup(api_key_id->valuestring);
+    if (model && !cJSON_IsNull(model)) model_local_str = strdup(model->valuestring);
+
     usage_audio_transcriptions_result_local_var = usage_audio_transcriptions_result_create_internal (
         objectVariable,
-        seconds->valuedouble,
-        num_model_requests->valuedouble,
-        project_id && !cJSON_IsNull(project_id) ? strdup(project_id->valuestring) : NULL,
-        user_id && !cJSON_IsNull(user_id) ? strdup(user_id->valuestring) : NULL,
-        api_key_id && !cJSON_IsNull(api_key_id) ? strdup(api_key_id->valuestring) : NULL,
-        model && !cJSON_IsNull(model) ? strdup(model->valuestring) : NULL
+        seconds_local_var,
+        num_model_requests_local_var,
+        project_id_local_str,
+        user_id_local_str,
+        api_key_id_local_str,
+        model_local_str
         );
+
+    if (!usage_audio_transcriptions_result_local_var) {
+        goto end;
+    }
 
     return usage_audio_transcriptions_result_local_var;
 end:
+    if (seconds_local_var) {
+        free(seconds_local_var);
+        seconds_local_var = NULL;
+    }
+    if (num_model_requests_local_var) {
+        free(num_model_requests_local_var);
+        num_model_requests_local_var = NULL;
+    }
+    if (project_id_local_str) {
+        free(project_id_local_str);
+        project_id_local_str = NULL;
+    }
+    if (user_id_local_str) {
+        free(user_id_local_str);
+        user_id_local_str = NULL;
+    }
+    if (api_key_id_local_str) {
+        free(api_key_id_local_str);
+        api_key_id_local_str = NULL;
+    }
+    if (model_local_str) {
+        free(model_local_str);
+        model_local_str = NULL;
+    }
     return NULL;
 
 }

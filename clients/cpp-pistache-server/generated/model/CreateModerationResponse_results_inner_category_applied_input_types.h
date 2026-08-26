@@ -33,7 +33,7 @@ class  CreateModerationResponse_results_inner_category_applied_input_types
 {
 public:
     CreateModerationResponse_results_inner_category_applied_input_types();
-    virtual ~CreateModerationResponse_results_inner_category_applied_input_types() = default;
+    virtual ~CreateModerationResponse_results_inner_category_applied_input_types();
 
 
     /// <summary>

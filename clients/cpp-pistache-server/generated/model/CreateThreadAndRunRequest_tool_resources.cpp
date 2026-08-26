@@ -26,6 +26,8 @@ CreateThreadAndRunRequest_tool_resources::CreateThreadAndRunRequest_tool_resourc
     
 }
 
+CreateThreadAndRunRequest_tool_resources::~CreateThreadAndRunRequest_tool_resources() = default;
+
 void CreateThreadAndRunRequest_tool_resources::validate() const
 {
     std::stringstream msg;

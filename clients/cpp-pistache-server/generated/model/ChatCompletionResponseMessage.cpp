@@ -30,6 +30,8 @@ ChatCompletionResponseMessage::ChatCompletionResponseMessage()
     
 }
 
+ChatCompletionResponseMessage::~ChatCompletionResponseMessage() = default;
+
 void ChatCompletionResponseMessage::validate() const
 {
     std::stringstream msg;

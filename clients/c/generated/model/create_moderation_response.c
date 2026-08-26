@@ -14,11 +14,11 @@ static create_moderation_response_t *create_moderation_response_create_internal(
     if (!create_moderation_response_local_var) {
         return NULL;
     }
+    memset(create_moderation_response_local_var, 0, sizeof(create_moderation_response_t));
+    create_moderation_response_local_var->_library_owned = 1;
     create_moderation_response_local_var->id = id;
     create_moderation_response_local_var->model = model;
     create_moderation_response_local_var->results = results;
-
-    create_moderation_response_local_var->_library_owned = 1;
     return create_moderation_response_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) create_moderation_response_t *create_moderation_resp
     char *model,
     list_t *results
     ) {
-    return create_moderation_response_create_internal (
+    create_moderation_response_t *result = create_moderation_response_create_internal (
         id,
         model,
         results
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_moderation_response_free(create_moderation_response_t *create_moderation_response) {
@@ -114,6 +117,10 @@ create_moderation_response_t *create_moderation_response_parseFromJSON(cJSON *cr
 
     create_moderation_response_t *create_moderation_response_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    char *model_local_str = NULL;
+
     // define the local list for create_moderation_response->results
     list_t *resultsList = NULL;
 
@@ -175,14 +182,29 @@ create_moderation_response_t *create_moderation_response_parseFromJSON(cJSON *cr
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (model && !cJSON_IsNull(model)) model_local_str = strdup(model->valuestring);
+
     create_moderation_response_local_var = create_moderation_response_create_internal (
-        strdup(id->valuestring),
-        strdup(model->valuestring),
+        id_local_str,
+        model_local_str,
         resultsList
         );
 
+    if (!create_moderation_response_local_var) {
+        goto end;
+    }
+
     return create_moderation_response_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (model_local_str) {
+        free(model_local_str);
+        model_local_str = NULL;
+    }
     if (resultsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, resultsList) {

@@ -9,20 +9,20 @@ import org.openapitools.model.RealtimeSession;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Returned when a session is updated with a &#x60;session.update&#x60; event, unless  there is an error. 
  */
 
 @Schema(name = "RealtimeServerEventSessionUpdated", description = "Returned when a session is updated with a `session.update` event, unless  there is an error. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeServerEventSessionUpdated {
 
   private String eventId;
@@ -93,6 +93,7 @@ public class RealtimeServerEventSessionUpdated {
     return eventId;
   }
 
+  @JsonProperty("event_id")
   public void setEventId(String eventId) {
     this.eventId = eventId;
   }
@@ -113,6 +114,7 @@ public class RealtimeServerEventSessionUpdated {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -133,6 +135,7 @@ public class RealtimeServerEventSessionUpdated {
     return session;
   }
 
+  @JsonProperty("session")
   public void setSession(RealtimeSession session) {
     this.session = session;
   }
@@ -171,11 +174,8 @@ public class RealtimeServerEventSessionUpdated {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

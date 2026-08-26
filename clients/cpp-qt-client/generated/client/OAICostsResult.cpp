@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICostsResult::OAICostsResult(QString json) {
+OAICostsResult::OAICostsResult(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -47,7 +47,7 @@ void OAICostsResult::initializeModel() {
     m_project_id_isValid = false;
 }
 
-void OAICostsResult::fromJson(QString jsonString) {
+void OAICostsResult::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

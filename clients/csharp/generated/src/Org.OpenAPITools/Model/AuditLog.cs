@@ -129,7 +129,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Project
         /// </summary>
         [JsonPropertyName("project")]
-        public AuditLogProject? Project { get { return this.ProjectOption; } set { this.ProjectOption = new(value); } }
+        public AuditLogProject? Project { get { return this.ProjectOption.Value; } set { this.ProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ApiKeyCreated
@@ -142,7 +142,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ApiKeyCreated
         /// </summary>
         [JsonPropertyName("api_key.created")]
-        public AuditLogApiKeyCreated? ApiKeyCreated { get { return this.ApiKeyCreatedOption; } set { this.ApiKeyCreatedOption = new(value); } }
+        public AuditLogApiKeyCreated? ApiKeyCreated { get { return this.ApiKeyCreatedOption.Value; } set { this.ApiKeyCreatedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ApiKeyUpdated
@@ -155,7 +155,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ApiKeyUpdated
         /// </summary>
         [JsonPropertyName("api_key.updated")]
-        public AuditLogApiKeyUpdated? ApiKeyUpdated { get { return this.ApiKeyUpdatedOption; } set { this.ApiKeyUpdatedOption = new(value); } }
+        public AuditLogApiKeyUpdated? ApiKeyUpdated { get { return this.ApiKeyUpdatedOption.Value; } set { this.ApiKeyUpdatedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ApiKeyDeleted
@@ -168,7 +168,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ApiKeyDeleted
         /// </summary>
         [JsonPropertyName("api_key.deleted")]
-        public AuditLogApiKeyDeleted? ApiKeyDeleted { get { return this.ApiKeyDeletedOption; } set { this.ApiKeyDeletedOption = new(value); } }
+        public AuditLogApiKeyDeleted? ApiKeyDeleted { get { return this.ApiKeyDeletedOption.Value; } set { this.ApiKeyDeletedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of InviteSent
@@ -181,7 +181,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets InviteSent
         /// </summary>
         [JsonPropertyName("invite.sent")]
-        public AuditLogInviteSent? InviteSent { get { return this.InviteSentOption; } set { this.InviteSentOption = new(value); } }
+        public AuditLogInviteSent? InviteSent { get { return this.InviteSentOption.Value; } set { this.InviteSentOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of InviteAccepted
@@ -194,7 +194,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets InviteAccepted
         /// </summary>
         [JsonPropertyName("invite.accepted")]
-        public AuditLogInviteAccepted? InviteAccepted { get { return this.InviteAcceptedOption; } set { this.InviteAcceptedOption = new(value); } }
+        public AuditLogInviteAccepted? InviteAccepted { get { return this.InviteAcceptedOption.Value; } set { this.InviteAcceptedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of InviteDeleted
@@ -207,7 +207,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets InviteDeleted
         /// </summary>
         [JsonPropertyName("invite.deleted")]
-        public AuditLogInviteAccepted? InviteDeleted { get { return this.InviteDeletedOption; } set { this.InviteDeletedOption = new(value); } }
+        public AuditLogInviteAccepted? InviteDeleted { get { return this.InviteDeletedOption.Value; } set { this.InviteDeletedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LoginFailed
@@ -220,7 +220,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets LoginFailed
         /// </summary>
         [JsonPropertyName("login.failed")]
-        public AuditLogLoginFailed? LoginFailed { get { return this.LoginFailedOption; } set { this.LoginFailedOption = new(value); } }
+        public AuditLogLoginFailed? LoginFailed { get { return this.LoginFailedOption.Value; } set { this.LoginFailedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LogoutFailed
@@ -233,7 +233,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets LogoutFailed
         /// </summary>
         [JsonPropertyName("logout.failed")]
-        public AuditLogLoginFailed? LogoutFailed { get { return this.LogoutFailedOption; } set { this.LogoutFailedOption = new(value); } }
+        public AuditLogLoginFailed? LogoutFailed { get { return this.LogoutFailedOption.Value; } set { this.LogoutFailedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OrganizationUpdated
@@ -246,7 +246,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets OrganizationUpdated
         /// </summary>
         [JsonPropertyName("organization.updated")]
-        public AuditLogOrganizationUpdated? OrganizationUpdated { get { return this.OrganizationUpdatedOption; } set { this.OrganizationUpdatedOption = new(value); } }
+        public AuditLogOrganizationUpdated? OrganizationUpdated { get { return this.OrganizationUpdatedOption.Value; } set { this.OrganizationUpdatedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectCreated
@@ -259,7 +259,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ProjectCreated
         /// </summary>
         [JsonPropertyName("project.created")]
-        public AuditLogProjectCreated? ProjectCreated { get { return this.ProjectCreatedOption; } set { this.ProjectCreatedOption = new(value); } }
+        public AuditLogProjectCreated? ProjectCreated { get { return this.ProjectCreatedOption.Value; } set { this.ProjectCreatedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectUpdated
@@ -272,7 +272,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ProjectUpdated
         /// </summary>
         [JsonPropertyName("project.updated")]
-        public AuditLogProjectUpdated? ProjectUpdated { get { return this.ProjectUpdatedOption; } set { this.ProjectUpdatedOption = new(value); } }
+        public AuditLogProjectUpdated? ProjectUpdated { get { return this.ProjectUpdatedOption.Value; } set { this.ProjectUpdatedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectArchived
@@ -285,7 +285,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ProjectArchived
         /// </summary>
         [JsonPropertyName("project.archived")]
-        public AuditLogProjectArchived? ProjectArchived { get { return this.ProjectArchivedOption; } set { this.ProjectArchivedOption = new(value); } }
+        public AuditLogProjectArchived? ProjectArchived { get { return this.ProjectArchivedOption.Value; } set { this.ProjectArchivedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RateLimitUpdated
@@ -298,7 +298,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets RateLimitUpdated
         /// </summary>
         [JsonPropertyName("rate_limit.updated")]
-        public AuditLogRateLimitUpdated? RateLimitUpdated { get { return this.RateLimitUpdatedOption; } set { this.RateLimitUpdatedOption = new(value); } }
+        public AuditLogRateLimitUpdated? RateLimitUpdated { get { return this.RateLimitUpdatedOption.Value; } set { this.RateLimitUpdatedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RateLimitDeleted
@@ -311,7 +311,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets RateLimitDeleted
         /// </summary>
         [JsonPropertyName("rate_limit.deleted")]
-        public AuditLogRateLimitDeleted? RateLimitDeleted { get { return this.RateLimitDeletedOption; } set { this.RateLimitDeletedOption = new(value); } }
+        public AuditLogRateLimitDeleted? RateLimitDeleted { get { return this.RateLimitDeletedOption.Value; } set { this.RateLimitDeletedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ServiceAccountCreated
@@ -324,7 +324,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ServiceAccountCreated
         /// </summary>
         [JsonPropertyName("service_account.created")]
-        public AuditLogServiceAccountCreated? ServiceAccountCreated { get { return this.ServiceAccountCreatedOption; } set { this.ServiceAccountCreatedOption = new(value); } }
+        public AuditLogServiceAccountCreated? ServiceAccountCreated { get { return this.ServiceAccountCreatedOption.Value; } set { this.ServiceAccountCreatedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ServiceAccountUpdated
@@ -337,7 +337,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ServiceAccountUpdated
         /// </summary>
         [JsonPropertyName("service_account.updated")]
-        public AuditLogServiceAccountUpdated? ServiceAccountUpdated { get { return this.ServiceAccountUpdatedOption; } set { this.ServiceAccountUpdatedOption = new(value); } }
+        public AuditLogServiceAccountUpdated? ServiceAccountUpdated { get { return this.ServiceAccountUpdatedOption.Value; } set { this.ServiceAccountUpdatedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ServiceAccountDeleted
@@ -350,7 +350,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ServiceAccountDeleted
         /// </summary>
         [JsonPropertyName("service_account.deleted")]
-        public AuditLogServiceAccountDeleted? ServiceAccountDeleted { get { return this.ServiceAccountDeletedOption; } set { this.ServiceAccountDeletedOption = new(value); } }
+        public AuditLogServiceAccountDeleted? ServiceAccountDeleted { get { return this.ServiceAccountDeletedOption.Value; } set { this.ServiceAccountDeletedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UserAdded
@@ -363,7 +363,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets UserAdded
         /// </summary>
         [JsonPropertyName("user.added")]
-        public AuditLogUserAdded? UserAdded { get { return this.UserAddedOption; } set { this.UserAddedOption = new(value); } }
+        public AuditLogUserAdded? UserAdded { get { return this.UserAddedOption.Value; } set { this.UserAddedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UserUpdated
@@ -376,7 +376,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets UserUpdated
         /// </summary>
         [JsonPropertyName("user.updated")]
-        public AuditLogUserUpdated? UserUpdated { get { return this.UserUpdatedOption; } set { this.UserUpdatedOption = new(value); } }
+        public AuditLogUserUpdated? UserUpdated { get { return this.UserUpdatedOption.Value; } set { this.UserUpdatedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UserDeleted
@@ -389,7 +389,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets UserDeleted
         /// </summary>
         [JsonPropertyName("user.deleted")]
-        public AuditLogUserDeleted? UserDeleted { get { return this.UserDeletedOption; } set { this.UserDeletedOption = new(value); } }
+        public AuditLogUserDeleted? UserDeleted { get { return this.UserDeletedOption.Value; } set { this.UserDeletedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -442,8 +442,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLog" />
     /// </summary>
-    public class AuditLogJsonConverter : JsonConverter<AuditLog>
+    public partial class AuditLogJsonConverter : JsonConverter<AuditLog>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogJsonConverter" /> class.
+        /// </summary>
+        public AuditLogJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLog" />
         /// </summary>
@@ -506,9 +516,7 @@ namespace Org.OpenAPITools.Model
                             id = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
-                            string? typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                                type = new Option<AuditLogEventType?>(AuditLogEventTypeValueConverter.FromStringOrDefault(typeRawValue));
+                            type = new Option<AuditLogEventType?>(JsonSerializer.Deserialize<AuditLogEventType?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "effective_at":
                             effectiveAt = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());

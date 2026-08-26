@@ -60,7 +60,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The name of the function.</value>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Arguments
@@ -74,7 +74,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The arguments passed to the function.</value>
         [JsonPropertyName("arguments")]
-        public string? Arguments { get { return this.ArgumentsOption; } set { this.ArgumentsOption = new(value); } }
+        public string? Arguments { get { return this.ArgumentsOption.Value; } set { this.ArgumentsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Output
@@ -88,7 +88,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The output of the function. This will be &#x60;null&#x60; if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet.</value>
         [JsonPropertyName("output")]
-        public string? Output { get { return this.OutputOption; } set { this.OutputOption = new(value); } }
+        public string? Output { get { return this.OutputOption.Value; } set { this.OutputOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -119,8 +119,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDeltaStepDetailsToolCallsFunctionObjectFunction" />
     /// </summary>
-    public class RunStepDeltaStepDetailsToolCallsFunctionObjectFunctionJsonConverter : JsonConverter<RunStepDeltaStepDetailsToolCallsFunctionObjectFunction>
+    public partial class RunStepDeltaStepDetailsToolCallsFunctionObjectFunctionJsonConverter : JsonConverter<RunStepDeltaStepDetailsToolCallsFunctionObjectFunction>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDeltaStepDetailsToolCallsFunctionObjectFunctionJsonConverter" /> class.
+        /// </summary>
+        public RunStepDeltaStepDetailsToolCallsFunctionObjectFunctionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDeltaStepDetailsToolCallsFunctionObjectFunction" />
         /// </summary>

@@ -86,7 +86,7 @@ ErrorEvent::getEvent()
 }
 
 void
-ErrorEvent::setEvent(std::string  event)
+ErrorEvent::setEvent(std::string event)
 {
 	this->event = event;
 }
@@ -98,7 +98,7 @@ ErrorEvent::getData()
 }
 
 void
-ErrorEvent::setData(Error  data)
+ErrorEvent::setData(Error data)
 {
 	this->data = data;
 }

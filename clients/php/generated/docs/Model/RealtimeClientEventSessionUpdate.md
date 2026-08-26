@@ -1,4 +1,4 @@
-# # RealtimeClientEventSessionUpdate
+# RealtimeClientEventSessionUpdate
 
 ## Properties
 

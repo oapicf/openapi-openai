@@ -277,7 +277,7 @@ VectorStoreObject::getId()
 }
 
 void
-VectorStoreObject::setId(std::string  id)
+VectorStoreObject::setId(std::string id)
 {
 	this->id = id;
 }
@@ -289,7 +289,7 @@ VectorStoreObject::getObject()
 }
 
 void
-VectorStoreObject::setObject(std::string  object)
+VectorStoreObject::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -301,7 +301,7 @@ VectorStoreObject::getCreatedAt()
 }
 
 void
-VectorStoreObject::setCreatedAt(int  created_at)
+VectorStoreObject::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -313,7 +313,7 @@ VectorStoreObject::getName()
 }
 
 void
-VectorStoreObject::setName(std::string  name)
+VectorStoreObject::setName(std::string name)
 {
 	this->name = name;
 }
@@ -325,7 +325,7 @@ VectorStoreObject::getUsageBytes()
 }
 
 void
-VectorStoreObject::setUsageBytes(int  usage_bytes)
+VectorStoreObject::setUsageBytes(int usage_bytes)
 {
 	this->usage_bytes = usage_bytes;
 }
@@ -337,7 +337,7 @@ VectorStoreObject::getFileCounts()
 }
 
 void
-VectorStoreObject::setFileCounts(VectorStoreObject_file_counts  file_counts)
+VectorStoreObject::setFileCounts(VectorStoreObject_file_counts file_counts)
 {
 	this->file_counts = file_counts;
 }
@@ -349,7 +349,7 @@ VectorStoreObject::getStatus()
 }
 
 void
-VectorStoreObject::setStatus(std::string  status)
+VectorStoreObject::setStatus(std::string status)
 {
 	this->status = status;
 }
@@ -361,7 +361,7 @@ VectorStoreObject::getExpiresAfter()
 }
 
 void
-VectorStoreObject::setExpiresAfter(VectorStoreExpirationAfter  expires_after)
+VectorStoreObject::setExpiresAfter(VectorStoreExpirationAfter expires_after)
 {
 	this->expires_after = expires_after;
 }
@@ -373,7 +373,7 @@ VectorStoreObject::getExpiresAt()
 }
 
 void
-VectorStoreObject::setExpiresAt(int  expires_at)
+VectorStoreObject::setExpiresAt(int expires_at)
 {
 	this->expires_at = expires_at;
 }
@@ -385,7 +385,7 @@ VectorStoreObject::getLastActiveAt()
 }
 
 void
-VectorStoreObject::setLastActiveAt(int  last_active_at)
+VectorStoreObject::setLastActiveAt(int last_active_at)
 {
 	this->last_active_at = last_active_at;
 }
@@ -397,7 +397,7 @@ VectorStoreObject::getMetadata()
 }
 
 void
-VectorStoreObject::setMetadata(Object  metadata)
+VectorStoreObject::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }

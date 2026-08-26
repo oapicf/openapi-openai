@@ -51,7 +51,7 @@ class RealtimeResponseStatusDetails
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['completed', 'cancelled', 'failed', 'incomplete'])]
     #[Assert\Type("string")]
     protected ?string $type = null;
@@ -62,7 +62,7 @@ class RealtimeResponseStatusDetails
      * @var string|null
      * @SerializedName("reason")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['turn_detected', 'client_cancelled', 'max_output_tokens', 'content_filter'])]
     #[Assert\Type("string")]
     protected ?string $reason = null;
@@ -71,7 +71,7 @@ class RealtimeResponseStatusDetails
      * @var RealtimeResponseStatusDetailsError|null
      * @SerializedName("error")
      * @Type("OpenAPI\Server\Model\RealtimeResponseStatusDetailsError")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RealtimeResponseStatusDetailsError")]
     protected ?RealtimeResponseStatusDetailsError $error = null;
 
@@ -99,12 +99,12 @@ class RealtimeResponseStatusDetails
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of error that caused the response to fail, corresponding  with the `status` field (`completed`, `cancelled`, `incomplete`,  `failed`).
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of error that caused the response to fail, corresponding  with the `status` field (`completed`, `cancelled`, `incomplete`,  `failed`).
+     *
+     * @return $this
+     */
     public function setType(?string $type = null): self
     {
         $this->type = $type;
@@ -126,12 +126,12 @@ class RealtimeResponseStatusDetails
     }
 
     /**
-    * Sets reason.
-    *
-    * @param string|null $reason  The reason the Response did not complete. For a `cancelled` Response,  one of `turn_detected` (the server VAD detected a new start of speech)  or `client_cancelled` (the client sent a cancel event). For an  `incomplete` Response, one of `max_output_tokens` or `content_filter`  (the server-side safety filter activated and cut off the response).
-    *
-    * @return $this
-    */
+     * Sets reason.
+     *
+     * @param string|null $reason  The reason the Response did not complete. For a `cancelled` Response,  one of `turn_detected` (the server VAD detected a new start of speech)  or `client_cancelled` (the client sent a cancel event). For an  `incomplete` Response, one of `max_output_tokens` or `content_filter`  (the server-side safety filter activated and cut off the response).
+     *
+     * @return $this
+     */
     public function setReason(?string $reason = null): self
     {
         $this->reason = $reason;
@@ -153,12 +153,12 @@ class RealtimeResponseStatusDetails
     }
 
     /**
-    * Sets error.
-    *
-    * @param RealtimeResponseStatusDetailsError|null $error
-    *
-    * @return $this
-    */
+     * Sets error.
+     *
+     * @param RealtimeResponseStatusDetailsError|null $error
+     *
+     * @return $this
+     */
     public function setError(?RealtimeResponseStatusDetailsError $error = null): self
     {
         $this->error = $error;

@@ -56,7 +56,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The project ID.</value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogProjectArchived" />
     /// </summary>
-    public class AuditLogProjectArchivedJsonConverter : JsonConverter<AuditLogProjectArchived>
+    public partial class AuditLogProjectArchivedJsonConverter : JsonConverter<AuditLogProjectArchived>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogProjectArchivedJsonConverter" /> class.
+        /// </summary>
+        public AuditLogProjectArchivedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogProjectArchived" />
         /// </summary>

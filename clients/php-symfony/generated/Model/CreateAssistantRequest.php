@@ -47,7 +47,7 @@ class CreateAssistantRequest
      * @var CreateAssistantRequestModel|null
      * @SerializedName("model")
      * @Type("OpenAPI\Server\Model\CreateAssistantRequestModel")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\CreateAssistantRequestModel")]
@@ -59,7 +59,7 @@ class CreateAssistantRequest
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     #[Assert\Length(max: 256)]
     protected ?string $name = null;
@@ -70,7 +70,7 @@ class CreateAssistantRequest
      * @var string|null
      * @SerializedName("description")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     #[Assert\Length(max: 512)]
     protected ?string $description = null;
@@ -81,7 +81,7 @@ class CreateAssistantRequest
      * @var string|null
      * @SerializedName("instructions")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     #[Assert\Length(max: 256000)]
     protected ?string $instructions = null;
@@ -92,7 +92,7 @@ class CreateAssistantRequest
      * @var AssistantObjectToolsInner[]|null
      * @SerializedName("tools")
      * @Type("array<OpenAPI\Server\Model\AssistantObjectToolsInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\AssistantObjectToolsInner"),
     ])]
@@ -103,7 +103,7 @@ class CreateAssistantRequest
      * @var CreateAssistantRequestToolResources|null
      * @SerializedName("tool_resources")
      * @Type("OpenAPI\Server\Model\CreateAssistantRequestToolResources")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateAssistantRequestToolResources")]
     protected ?CreateAssistantRequestToolResources $toolResources = null;
 
@@ -113,7 +113,7 @@ class CreateAssistantRequest
      * @var array|null
      * @SerializedName("metadata")
      * @Type("array")
-    */
+     */
     #[Assert\Type("array")]
     protected ?array $metadata = null;
 
@@ -123,7 +123,7 @@ class CreateAssistantRequest
      * @var float|null
      * @SerializedName("temperature")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(0)]
     #[Assert\LessThanOrEqual(2)]
@@ -135,7 +135,7 @@ class CreateAssistantRequest
      * @var float|null
      * @SerializedName("top_p")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(0)]
     #[Assert\LessThanOrEqual(1)]
@@ -145,7 +145,7 @@ class CreateAssistantRequest
      * @var AssistantsApiResponseFormatOption|null
      * @SerializedName("response_format")
      * @Type("OpenAPI\Server\Model\AssistantsApiResponseFormatOption")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AssistantsApiResponseFormatOption")]
     protected ?AssistantsApiResponseFormatOption $responseFormat = null;
 
@@ -180,12 +180,12 @@ class CreateAssistantRequest
     }
 
     /**
-    * Sets model.
-    *
-    * @param CreateAssistantRequestModel|null $model
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param CreateAssistantRequestModel|null $model
+     *
+     * @return $this
+     */
     public function setModel(?CreateAssistantRequestModel $model): self
     {
         $this->model = $model;
@@ -207,12 +207,12 @@ class CreateAssistantRequest
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the assistant. The maximum length is 256 characters.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the assistant. The maximum length is 256 characters.
+     *
+     * @return $this
+     */
     public function setName(?string $name = null): self
     {
         $this->name = $name;
@@ -234,12 +234,12 @@ class CreateAssistantRequest
     }
 
     /**
-    * Sets description.
-    *
-    * @param string|null $description  The description of the assistant. The maximum length is 512 characters.
-    *
-    * @return $this
-    */
+     * Sets description.
+     *
+     * @param string|null $description  The description of the assistant. The maximum length is 512 characters.
+     *
+     * @return $this
+     */
     public function setDescription(?string $description = null): self
     {
         $this->description = $description;
@@ -261,12 +261,12 @@ class CreateAssistantRequest
     }
 
     /**
-    * Sets instructions.
-    *
-    * @param string|null $instructions  The system instructions that the assistant uses. The maximum length is 256,000 characters.
-    *
-    * @return $this
-    */
+     * Sets instructions.
+     *
+     * @param string|null $instructions  The system instructions that the assistant uses. The maximum length is 256,000 characters.
+     *
+     * @return $this
+     */
     public function setInstructions(?string $instructions = null): self
     {
         $this->instructions = $instructions;
@@ -288,12 +288,12 @@ class CreateAssistantRequest
     }
 
     /**
-    * Sets tools.
-    *
-    * @param AssistantObjectToolsInner[]|null $tools  A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`.
-    *
-    * @return $this
-    */
+     * Sets tools.
+     *
+     * @param AssistantObjectToolsInner[]|null $tools  A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`.
+     *
+     * @return $this
+     */
     public function setTools(?array $tools = null): self
     {
         $this->tools = $tools;
@@ -315,12 +315,12 @@ class CreateAssistantRequest
     }
 
     /**
-    * Sets toolResources.
-    *
-    * @param CreateAssistantRequestToolResources|null $toolResources
-    *
-    * @return $this
-    */
+     * Sets toolResources.
+     *
+     * @param CreateAssistantRequestToolResources|null $toolResources
+     *
+     * @return $this
+     */
     public function setToolResources(?CreateAssistantRequestToolResources $toolResources = null): self
     {
         $this->toolResources = $toolResources;
@@ -342,12 +342,12 @@ class CreateAssistantRequest
     }
 
     /**
-    * Sets metadata.
-    *
-    * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
-    *
-    * @return $this
-    */
+     * Sets metadata.
+     *
+     * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
+     *
+     * @return $this
+     */
     public function setMetadata(?array $metadata = null): self
     {
         $this->metadata = $metadata;
@@ -369,12 +369,12 @@ class CreateAssistantRequest
     }
 
     /**
-    * Sets temperature.
-    *
-    * @param float|null $temperature  What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
-    *
-    * @return $this
-    */
+     * Sets temperature.
+     *
+     * @param float|null $temperature  What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+     *
+     * @return $this
+     */
     public function setTemperature(?float $temperature = null): self
     {
         $this->temperature = $temperature;
@@ -396,12 +396,12 @@ class CreateAssistantRequest
     }
 
     /**
-    * Sets topP.
-    *
-    * @param float|null $topP  An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both.
-    *
-    * @return $this
-    */
+     * Sets topP.
+     *
+     * @param float|null $topP  An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both.
+     *
+     * @return $this
+     */
     public function setTopP(?float $topP = null): self
     {
         $this->topP = $topP;
@@ -423,12 +423,12 @@ class CreateAssistantRequest
     }
 
     /**
-    * Sets responseFormat.
-    *
-    * @param AssistantsApiResponseFormatOption|null $responseFormat
-    *
-    * @return $this
-    */
+     * Sets responseFormat.
+     *
+     * @param AssistantsApiResponseFormatOption|null $responseFormat
+     *
+     * @return $this
+     */
     public function setResponseFormat(?AssistantsApiResponseFormatOption $responseFormat = null): self
     {
         $this->responseFormat = $responseFormat;

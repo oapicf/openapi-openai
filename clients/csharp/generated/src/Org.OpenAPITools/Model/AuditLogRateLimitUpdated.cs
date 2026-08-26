@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The rate limit ID</value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ChangesRequested
@@ -71,7 +71,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ChangesRequested
         /// </summary>
         [JsonPropertyName("changes_requested")]
-        public AuditLogRateLimitUpdatedChangesRequested? ChangesRequested { get { return this.ChangesRequestedOption; } set { this.ChangesRequestedOption = new(value); } }
+        public AuditLogRateLimitUpdatedChangesRequested? ChangesRequested { get { return this.ChangesRequestedOption.Value; } set { this.ChangesRequestedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogRateLimitUpdated" />
     /// </summary>
-    public class AuditLogRateLimitUpdatedJsonConverter : JsonConverter<AuditLogRateLimitUpdated>
+    public partial class AuditLogRateLimitUpdatedJsonConverter : JsonConverter<AuditLogRateLimitUpdated>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogRateLimitUpdatedJsonConverter" /> class.
+        /// </summary>
+        public AuditLogRateLimitUpdatedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogRateLimitUpdated" />
         /// </summary>

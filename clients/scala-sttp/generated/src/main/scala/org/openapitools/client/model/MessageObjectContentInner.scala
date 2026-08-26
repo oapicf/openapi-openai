@@ -12,14 +12,9 @@
 package org.openapitools.client.model
 
 
-case class MessageObjectContentInner(
-  /* Always `image_file`. */
-  `type`: MessageObjectContentInnerEnums.`Type`,
-  imageFile: MessageContentImageFileObjectImageFile,
-  imageUrl: MessageContentImageUrlObjectImageUrl,
-  text: MessageContentTextObjectText,
-  refusal: String
-)
+trait MessageObjectContentInner
+object MessageObjectContentInner {
+}
 
 object MessageObjectContentInnerEnums {
 

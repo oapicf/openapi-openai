@@ -55,9 +55,8 @@
     <Compile Include="src/model/SubmitToolOutputsRunRequestToolOutputsInner.fs" />
     <Compile Include="src/model/SubmitToolOutputsRunRequest.fs" />
     <Compile Include="src/model/StaticChunkingStrategy.fs" />
-    <Compile Include="src/model/StaticChunkingStrategyResponseParam.fs" />
-    <Compile Include="src/model/VectorStoreFileObjectChunkingStrategy.fs" />
     <Compile Include="src/model/StaticChunkingStrategyRequestParam.fs" />
+    <Compile Include="src/model/VectorStoreFileObjectChunkingStrategy.fs" />
     <Compile Include="src/model/RunToolCallObjectFunction.fs" />
     <Compile Include="src/model/RunToolCallObject.fs" />
     <Compile Include="src/model/ResponseFormatJsonSchemaJsonSchema.fs" />
@@ -337,7 +336,7 @@
     <Compile Include="src/model/CreateTranscriptionResponseJson.fs" />
     <Compile Include="src/model/CreateTranscriptionRequestModel.fs" />
     <Compile Include="src/model/CreateTranscription200Response.fs" />
-    <Compile Include="src/model/AutoChunkingStrategy.fs" />
+    <Compile Include="src/model/CreateVectorStoreFileRequest.fs" />
     <Compile Include="src/model/CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy.fs" />
     <Compile Include="src/model/CreateThreadRequestToolResourcesFileSearchVectorStoresInner.fs" />
     <Compile Include="src/model/MessageStreamEventOneOf.fs" />
@@ -415,7 +414,7 @@
     <Compile Include="src/model/CompletionUsage.fs" />
     <Compile Include="src/model/CreateCompletionResponse.fs" />
     <Compile Include="src/model/CompleteUploadRequest.fs" />
-    <Compile Include="src/model/CreateVectorStoreFileRequest.fs" />
+    <Compile Include="src/model/CreateAssistantRequestToolResources.fs" />
     <Compile Include="src/model/ChatCompletionNamedToolChoice.fs" />
     <Compile Include="src/model/ChatCompletionTool.fs" />
     <Compile Include="src/model/ChatCompletionTokenLogprob.fs" />
@@ -465,7 +464,6 @@
     <Compile Include="src/model/Batch.fs" />
     <Compile Include="src/model/ListBatchesResponse.fs" />
     <Compile Include="src/model/CreateVectorStoreFileBatchRequest.fs" />
-    <Compile Include="src/model/CreateAssistantRequestToolResources.fs" />
     <Compile Include="src/model/AuditLogUserUpdatedChangesRequested.fs" />
     <Compile Include="src/model/AuditLogUserUpdated.fs" />
     <Compile Include="src/model/AuditLogUserDeleted.fs" />

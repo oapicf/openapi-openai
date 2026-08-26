@@ -48,9 +48,9 @@ function Initialize-RealtimeResponseStatusDetails {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "reason" = ${Reason}
-            "error" = ${VarError}
+            'type' = ${Type}
+            'reason' = ${Reason}
+            'error' = ${VarError}
         }
 
 
@@ -88,35 +88,35 @@ function ConvertFrom-JsonToRealtimeResponseStatusDetails {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeResponseStatusDetails
-        $AllProperties = ("type", "reason", "error")
+        $AllProperties = ('type', 'reason', 'error')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) { #optional property not found
             $Type = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "reason"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'reason'))) { #optional property not found
             $Reason = $null
         } else {
-            $Reason = $JsonParameters.PSobject.Properties["reason"].value
+            $Reason = $JsonParameters.PSobject.Properties['reason'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "error"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'error'))) { #optional property not found
             $VarError = $null
         } else {
-            $VarError = $JsonParameters.PSobject.Properties["error"].value
+            $VarError = $JsonParameters.PSobject.Properties['error'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "reason" = ${Reason}
-            "error" = ${VarError}
+            'type' = ${Type}
+            'reason' = ${Reason}
+            'error' = ${VarError}
         }
 
         return $PSO

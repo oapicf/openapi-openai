@@ -50,8 +50,8 @@ function Initialize-ProjectUserCreateRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "user_id" = ${UserId}
-            "role" = ${Role}
+            'user_id' = ${UserId}
+            'role' = ${Role}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToProjectUserCreateRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ProjectUserCreateRequest
-        $AllProperties = ("user_id", "role")
+        $AllProperties = ('user_id', 'role')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToProjectUserCreateRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'user_id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'user_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'user_id' missing."
         } else {
-            $UserId = $JsonParameters.PSobject.Properties["user_id"].value
+            $UserId = $JsonParameters.PSobject.Properties['user_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "role"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'role'))) {
             throw "Error! JSON cannot be serialized due to the required property 'role' missing."
         } else {
-            $Role = $JsonParameters.PSobject.Properties["role"].value
+            $Role = $JsonParameters.PSobject.Properties['role'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "user_id" = ${UserId}
-            "role" = ${Role}
+            'user_id' = ${UserId}
+            'role' = ${Role}
         }
 
         return $PSO

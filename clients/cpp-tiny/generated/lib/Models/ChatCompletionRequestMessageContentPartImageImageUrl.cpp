@@ -85,7 +85,7 @@ ChatCompletionRequestMessageContentPartImage_image_url::getUrl()
 }
 
 void
-ChatCompletionRequestMessageContentPartImage_image_url::setUrl(std::string  url)
+ChatCompletionRequestMessageContentPartImage_image_url::setUrl(std::string url)
 {
 	this->url = url;
 }
@@ -97,7 +97,7 @@ ChatCompletionRequestMessageContentPartImage_image_url::getDetail()
 }
 
 void
-ChatCompletionRequestMessageContentPartImage_image_url::setDetail(std::string  detail)
+ChatCompletionRequestMessageContentPartImage_image_url::setDetail(std::string detail)
 {
 	this->detail = detail;
 }

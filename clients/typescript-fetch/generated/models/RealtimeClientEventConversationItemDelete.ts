@@ -31,7 +31,7 @@ export interface RealtimeClientEventConversationItemDelete {
     eventId?: string;
     /**
      * The event type, must be `conversation.item.delete`.
-     * @type {string}
+     * @type {RealtimeClientEventConversationItemDeleteTypeEnum}
      * @memberof RealtimeClientEventConversationItemDelete
      */
     type: RealtimeClientEventConversationItemDeleteTypeEnum;
@@ -58,7 +58,9 @@ export type RealtimeClientEventConversationItemDeleteTypeEnum = typeof RealtimeC
  */
 export function instanceOfRealtimeClientEventConversationItemDelete(value: object): value is RealtimeClientEventConversationItemDelete {
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('itemId' in value) || value['itemId'] === undefined) return false;
+    if (value['type'] !== 'conversation.item.delete') return false;
+    
+    if ((!('itemId' in (value as Record<string, any>)) && !('item_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['itemId'] === undefined && (value as Record<string, any>)['item_id'] === undefined)) return false;
     return true;
 }
 

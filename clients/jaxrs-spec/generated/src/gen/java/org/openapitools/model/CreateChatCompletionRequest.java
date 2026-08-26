@@ -34,7 +34,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("CreateChatCompletionRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateChatCompletionRequest   {
   private @Valid List<ChatCompletionRequestMessage> messages = new ArrayList<>();
   private CreateChatCompletionRequestModel model;
@@ -92,6 +92,7 @@ public class CreateChatCompletionRequest   {
   private @Valid Map<String, Integer> logitBias;
   private Boolean logprobs = false;
   private Integer topLogprobs;
+  @Deprecated
   private Integer maxTokens;
   private Integer maxCompletionTokens;
   private Integer n = 1;
@@ -196,7 +197,7 @@ public class CreateChatCompletionRequest   {
 }
 
   private ServiceTierEnum serviceTier = ServiceTierEnum.AUTO;
-  private CreateChatCompletionRequestStop stop = null;
+  private CreateChatCompletionRequestStop stop;
   private Boolean stream = false;
   private ChatCompletionStreamOptions streamOptions;
   private BigDecimal temperature = new BigDecimal("1");
@@ -205,7 +206,9 @@ public class CreateChatCompletionRequest   {
   private ChatCompletionToolChoiceOption toolChoice;
   private Boolean parallelToolCalls = true;
   private String user;
+  @Deprecated
   private CreateChatCompletionRequestFunctionCall functionCall;
+  @Deprecated
   private @Valid List<@Valid ChatCompletionFunctions> functions = new ArrayList<>();
 
   public CreateChatCompletionRequest() {
@@ -453,12 +456,18 @@ public class CreateChatCompletionRequest   {
 
   /**
    * The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of &#x60;max_completion_tokens&#x60;, and is not compatible with [o1 series models](/docs/guides/reasoning). 
+   * @deprecated
    **/
+  @Deprecated
   public CreateChatCompletionRequest maxTokens(Integer maxTokens) {
     this.maxTokens = maxTokens;
     return this;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   
   @ApiModelProperty(value = "The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning). ")
   @JsonProperty("max_tokens")
@@ -466,6 +475,10 @@ public class CreateChatCompletionRequest   {
     return maxTokens;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @JsonProperty("max_tokens")
   public void setMaxTokens(Integer maxTokens) {
     this.maxTokens = maxTokens;
@@ -550,6 +563,7 @@ public class CreateChatCompletionRequest   {
     return this;
   }
   /**
+   * Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
    **/
   public CreateChatCompletionRequest prediction(PredictionContent prediction) {
     this.prediction = prediction;
@@ -557,7 +571,7 @@ public class CreateChatCompletionRequest   {
   }
 
   
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. ")
   @JsonProperty("prediction")
   @Valid public PredictionContent getPrediction() {
     return prediction;
@@ -868,12 +882,18 @@ public class CreateChatCompletionRequest   {
   }
 
   /**
+   * @deprecated
    **/
+  @Deprecated
   public CreateChatCompletionRequest functionCall(CreateChatCompletionRequestFunctionCall functionCall) {
     this.functionCall = functionCall;
     return this;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   
   @ApiModelProperty(value = "")
   @JsonProperty("function_call")
@@ -881,6 +901,10 @@ public class CreateChatCompletionRequest   {
     return functionCall;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @JsonProperty("function_call")
   public void setFunctionCall(CreateChatCompletionRequestFunctionCall functionCall) {
     this.functionCall = functionCall;
@@ -888,12 +912,18 @@ public class CreateChatCompletionRequest   {
 
   /**
    * Deprecated in favor of &#x60;tools&#x60;.  A list of functions the model may generate JSON inputs for. 
+   * @deprecated
    **/
+  @Deprecated
   public CreateChatCompletionRequest functions(List<@Valid ChatCompletionFunctions> functions) {
     this.functions = functions;
     return this;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   
   @ApiModelProperty(value = "Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for. ")
   @JsonProperty("functions")
@@ -901,11 +931,19 @@ public class CreateChatCompletionRequest   {
     return functions;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @JsonProperty("functions")
   public void setFunctions(List<@Valid ChatCompletionFunctions> functions) {
     this.functions = functions;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   public CreateChatCompletionRequest addFunctionsItem(ChatCompletionFunctions functionsItem) {
     if (this.functions == null) {
       this.functions = new ArrayList<>();
@@ -915,6 +953,10 @@ public class CreateChatCompletionRequest   {
     return this;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   public CreateChatCompletionRequest removeFunctionsItem(ChatCompletionFunctions functionsItem) {
     if (functionsItem != null && this.functions != null) {
       this.functions.remove(functionsItem);
@@ -1013,12 +1055,8 @@ public class CreateChatCompletionRequest   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
 }
-

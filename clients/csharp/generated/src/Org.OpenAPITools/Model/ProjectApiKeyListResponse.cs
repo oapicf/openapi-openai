@@ -165,8 +165,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectApiKeyListResponse" />
     /// </summary>
-    public class ProjectApiKeyListResponseJsonConverter : JsonConverter<ProjectApiKeyListResponse>
+    public partial class ProjectApiKeyListResponseJsonConverter : JsonConverter<ProjectApiKeyListResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectApiKeyListResponseJsonConverter" /> class.
+        /// </summary>
+        public ProjectApiKeyListResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProjectApiKeyListResponse" />
         /// </summary>

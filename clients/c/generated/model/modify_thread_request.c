@@ -13,10 +13,10 @@ static modify_thread_request_t *modify_thread_request_create_internal(
     if (!modify_thread_request_local_var) {
         return NULL;
     }
+    memset(modify_thread_request_local_var, 0, sizeof(modify_thread_request_t));
+    modify_thread_request_local_var->_library_owned = 1;
     modify_thread_request_local_var->tool_resources = tool_resources;
     modify_thread_request_local_var->metadata = metadata;
-
-    modify_thread_request_local_var->_library_owned = 1;
     return modify_thread_request_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) modify_thread_request_t *modify_thread_request_creat
     modify_thread_request_tool_resources_t *tool_resources,
     object_t *metadata
     ) {
-    return modify_thread_request_create_internal (
+    modify_thread_request_t *result = modify_thread_request_create_internal (
         tool_resources,
         metadata
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void modify_thread_request_free(modify_thread_request_t *modify_thread_request) {
@@ -113,10 +116,15 @@ modify_thread_request_t *modify_thread_request_parseFromJSON(cJSON *modify_threa
     }
 
 
+
     modify_thread_request_local_var = modify_thread_request_create_internal (
         tool_resources ? tool_resources_local_nonprim : NULL,
         metadata ? metadata_local_object : NULL
         );
+
+    if (!modify_thread_request_local_var) {
+        goto end;
+    }
 
     return modify_thread_request_local_var;
 end:

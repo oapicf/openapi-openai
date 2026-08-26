@@ -85,7 +85,7 @@ VectorStoreExpirationAfter::getAnchor()
 }
 
 void
-VectorStoreExpirationAfter::setAnchor(std::string  anchor)
+VectorStoreExpirationAfter::setAnchor(std::string anchor)
 {
 	this->anchor = anchor;
 }
@@ -97,7 +97,7 @@ VectorStoreExpirationAfter::getDays()
 }
 
 void
-VectorStoreExpirationAfter::setDays(int  days)
+VectorStoreExpirationAfter::setDays(int days)
 {
 	this->days = days;
 }

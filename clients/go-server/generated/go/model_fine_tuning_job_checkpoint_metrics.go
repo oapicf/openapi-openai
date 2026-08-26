@@ -32,7 +32,8 @@ type FineTuningJobCheckpointMetrics struct {
 	FullValidMeanTokenAccuracy float32 `json:"full_valid_mean_token_accuracy,omitempty"`
 }
 
-// AssertFineTuningJobCheckpointMetricsRequired checks if the required fields are not zero-ed
+// AssertFineTuningJobCheckpointMetricsRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertFineTuningJobCheckpointMetricsRequired(obj FineTuningJobCheckpointMetrics) error {
 	return nil
 }

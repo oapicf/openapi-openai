@@ -51,7 +51,7 @@ class RunStepObjectStepDetails
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['message_creation', 'tool_calls'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class RunStepObjectStepDetails
      * @var RunStepDetailsMessageCreationObjectMessageCreation|null
      * @SerializedName("message_creation")
      * @Type("OpenAPI\Server\Model\RunStepDetailsMessageCreationObjectMessageCreation")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunStepDetailsMessageCreationObjectMessageCreation")]
@@ -73,7 +73,7 @@ class RunStepObjectStepDetails
      * @var RunStepDetailsToolCallsObjectToolCallsInner[]|null
      * @SerializedName("tool_calls")
      * @Type("array<OpenAPI\Server\Model\RunStepDetailsToolCallsObjectToolCallsInner>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -105,12 +105,12 @@ class RunStepObjectStepDetails
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `message_creation`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `message_creation`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -132,12 +132,12 @@ class RunStepObjectStepDetails
     }
 
     /**
-    * Sets messageCreation.
-    *
-    * @param RunStepDetailsMessageCreationObjectMessageCreation|null $messageCreation
-    *
-    * @return $this
-    */
+     * Sets messageCreation.
+     *
+     * @param RunStepDetailsMessageCreationObjectMessageCreation|null $messageCreation
+     *
+     * @return $this
+     */
     public function setMessageCreation(?RunStepDetailsMessageCreationObjectMessageCreation $messageCreation): self
     {
         $this->messageCreation = $messageCreation;
@@ -159,12 +159,12 @@ class RunStepObjectStepDetails
     }
 
     /**
-    * Sets toolCalls.
-    *
-    * @param RunStepDetailsToolCallsObjectToolCallsInner[]|null $toolCalls  An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`.
-    *
-    * @return $this
-    */
+     * Sets toolCalls.
+     *
+     * @param RunStepDetailsToolCallsObjectToolCallsInner[]|null $toolCalls  An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`.
+     *
+     * @return $this
+     */
     public function setToolCalls(?array $toolCalls): self
     {
         $this->toolCalls = $toolCalls;

@@ -29,6 +29,8 @@ CreateTranscriptionResponseVerboseJson::CreateTranscriptionResponseVerboseJson()
     
 }
 
+CreateTranscriptionResponseVerboseJson::~CreateTranscriptionResponseVerboseJson() = default;
+
 void CreateTranscriptionResponseVerboseJson::validate() const
 {
     std::stringstream msg;

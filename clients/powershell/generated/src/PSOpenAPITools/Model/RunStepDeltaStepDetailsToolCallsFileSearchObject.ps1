@@ -64,10 +64,10 @@ function Initialize-RunStepDeltaStepDetailsToolCallsFileSearchObject {
 
 
         $PSO = [PSCustomObject]@{
-            "index" = ${Index}
-            "id" = ${Id}
-            "type" = ${Type}
-            "file_search" = ${FileSearch}
+            'index' = ${Index}
+            'id' = ${Id}
+            'type' = ${Type}
+            'file_search' = ${FileSearch}
         }
 
 
@@ -105,7 +105,7 @@ function ConvertFrom-JsonToRunStepDeltaStepDetailsToolCallsFileSearchObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDeltaStepDetailsToolCallsFileSearchObject
-        $AllProperties = ("index", "id", "type", "file_search")
+        $AllProperties = ('index', 'id', 'type', 'file_search')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -116,35 +116,35 @@ function ConvertFrom-JsonToRunStepDeltaStepDetailsToolCallsFileSearchObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'index' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "index"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'index'))) {
             throw "Error! JSON cannot be serialized due to the required property 'index' missing."
         } else {
-            $Index = $JsonParameters.PSobject.Properties["index"].value
+            $Index = $JsonParameters.PSobject.Properties['index'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_search"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_search'))) {
             throw "Error! JSON cannot be serialized due to the required property 'file_search' missing."
         } else {
-            $FileSearch = $JsonParameters.PSobject.Properties["file_search"].value
+            $FileSearch = $JsonParameters.PSobject.Properties['file_search'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) { #optional property not found
             $Id = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "index" = ${Index}
-            "id" = ${Id}
-            "type" = ${Type}
-            "file_search" = ${FileSearch}
+            'index' = ${Index}
+            'id' = ${Id}
+            'type' = ${Type}
+            'file_search' = ${FileSearch}
         }
 
         return $PSO

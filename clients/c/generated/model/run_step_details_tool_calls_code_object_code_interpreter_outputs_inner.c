@@ -31,11 +31,11 @@ static run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_t 
     if (!run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var) {
         return NULL;
     }
+    memset(run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var, 0, sizeof(run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_t));
+    run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var->_library_owned = 1;
     run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var->type = type;
     run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var->logs = logs;
     run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var->image = image;
-
-    run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var->_library_owned = 1;
     return run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) run_step_details_tool_calls_code_object_code_interpr
     char *logs,
     run_step_details_tool_calls_code_output_image_object_image_t *image
     ) {
-    return run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_create_internal (
+    run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_t *result = run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_create_internal (
         type,
         logs,
         image
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_free(run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_t *run_step_details_tool_calls_code_object_code_interpreter_outputs_inner) {
@@ -118,6 +121,8 @@ run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_t *run_st
 
     run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_t *run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var = NULL;
 
+    char *logs_local_str = NULL;
+
     // define the local variable for run_step_details_tool_calls_code_object_code_interpreter_outputs_inner->image
     run_step_details_tool_calls_code_output_image_object_image_t *image_local_nonprim = NULL;
 
@@ -166,14 +171,24 @@ run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_t *run_st
     image_local_nonprim = run_step_details_tool_calls_code_output_image_object_image_parseFromJSON(image); //nonprimitive
 
 
+    if (logs && !cJSON_IsNull(logs)) logs_local_str = strdup(logs->valuestring);
+
     run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var = run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_create_internal (
         typeVariable,
-        strdup(logs->valuestring),
+        logs_local_str,
         image_local_nonprim
         );
 
+    if (!run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var) {
+        goto end;
+    }
+
     return run_step_details_tool_calls_code_object_code_interpreter_outputs_inner_local_var;
 end:
+    if (logs_local_str) {
+        free(logs_local_str);
+        logs_local_str = NULL;
+    }
     if (image_local_nonprim) {
         run_step_details_tool_calls_code_output_image_object_image_free(image_local_nonprim);
         image_local_nonprim = NULL;

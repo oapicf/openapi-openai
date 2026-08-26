@@ -48,10 +48,8 @@ class RunStepDetailsMessageCreationObjectMessageCreation {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepDetailsMessageCreationObjectMessageCreation[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepDetailsMessageCreationObjectMessageCreation[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'message_id'), 'Required key "RunStepDetailsMessageCreationObjectMessageCreation[message_id]" is missing from JSON.');
+        assert(json[r'message_id'] != null, 'Required key "RunStepDetailsMessageCreationObjectMessageCreation[message_id]" has a null value in JSON.');
         return true;
       }());
 

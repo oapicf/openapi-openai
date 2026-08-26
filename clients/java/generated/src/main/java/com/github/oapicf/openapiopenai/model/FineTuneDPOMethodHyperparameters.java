@@ -52,27 +52,27 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * The hyperparameters used for the fine-tuning job.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTuneDPOMethodHyperparameters {
   public static final String SERIALIZED_NAME_BETA = "beta";
   @SerializedName(SERIALIZED_NAME_BETA)
   @javax.annotation.Nullable
-  private FineTuneDPOMethodHyperparametersBeta beta = auto;
+  private FineTuneDPOMethodHyperparametersBeta beta;
 
   public static final String SERIALIZED_NAME_BATCH_SIZE = "batch_size";
   @SerializedName(SERIALIZED_NAME_BATCH_SIZE)
   @javax.annotation.Nullable
-  private FineTuneDPOMethodHyperparametersBatchSize batchSize = auto;
+  private FineTuneDPOMethodHyperparametersBatchSize batchSize;
 
   public static final String SERIALIZED_NAME_LEARNING_RATE_MULTIPLIER = "learning_rate_multiplier";
   @SerializedName(SERIALIZED_NAME_LEARNING_RATE_MULTIPLIER)
   @javax.annotation.Nullable
-  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier;
 
   public static final String SERIALIZED_NAME_N_EPOCHS = "n_epochs";
   @SerializedName(SERIALIZED_NAME_N_EPOCHS)
   @javax.annotation.Nullable
-  private FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto;
+  private FineTuneDPOMethodHyperparametersNEpochs nEpochs;
 
   public FineTuneDPOMethodHyperparameters() {
   }
@@ -191,10 +191,7 @@ public class FineTuneDPOMethodHyperparameters {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 

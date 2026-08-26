@@ -8,8 +8,8 @@ The method used for fine-tuning.
 Name | Type
 ------------ | -------------
 `type` | string
-`supervised` | [FineTuneSupervisedMethod](.md)
-`dpo` | [FineTuneDPOMethod](.md)
+`supervised` | [FineTuneSupervisedMethod](FineTuneSupervisedMethod.md)
+`dpo` | [FineTuneDPOMethod](FineTuneDPOMethod.md)
 
 ## Example
 

@@ -49,7 +49,7 @@ class CreateModerationResponseResultsInner
      * @var bool|null
      * @SerializedName("flagged")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $flagged = null;
@@ -58,7 +58,7 @@ class CreateModerationResponseResultsInner
      * @var CreateModerationResponseResultsInnerCategories|null
      * @SerializedName("categories")
      * @Type("OpenAPI\Server\Model\CreateModerationResponseResultsInnerCategories")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\CreateModerationResponseResultsInnerCategories")]
@@ -68,7 +68,7 @@ class CreateModerationResponseResultsInner
      * @var CreateModerationResponseResultsInnerCategoryScores|null
      * @SerializedName("category_scores")
      * @Type("OpenAPI\Server\Model\CreateModerationResponseResultsInnerCategoryScores")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\CreateModerationResponseResultsInnerCategoryScores")]
@@ -78,7 +78,7 @@ class CreateModerationResponseResultsInner
      * @var CreateModerationResponseResultsInnerCategoryAppliedInputTypes|null
      * @SerializedName("category_applied_input_types")
      * @Type("OpenAPI\Server\Model\CreateModerationResponseResultsInnerCategoryAppliedInputTypes")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\CreateModerationResponseResultsInnerCategoryAppliedInputTypes")]
@@ -109,12 +109,12 @@ class CreateModerationResponseResultsInner
     }
 
     /**
-    * Sets flagged.
-    *
-    * @param bool|null $flagged  Whether any of the below categories are flagged.
-    *
-    * @return $this
-    */
+     * Sets flagged.
+     *
+     * @param bool|null $flagged  Whether any of the below categories are flagged.
+     *
+     * @return $this
+     */
     public function setFlagged(?bool $flagged): self
     {
         $this->flagged = $flagged;
@@ -136,12 +136,12 @@ class CreateModerationResponseResultsInner
     }
 
     /**
-    * Sets categories.
-    *
-    * @param CreateModerationResponseResultsInnerCategories|null $categories
-    *
-    * @return $this
-    */
+     * Sets categories.
+     *
+     * @param CreateModerationResponseResultsInnerCategories|null $categories
+     *
+     * @return $this
+     */
     public function setCategories(?CreateModerationResponseResultsInnerCategories $categories): self
     {
         $this->categories = $categories;
@@ -163,12 +163,12 @@ class CreateModerationResponseResultsInner
     }
 
     /**
-    * Sets categoryScores.
-    *
-    * @param CreateModerationResponseResultsInnerCategoryScores|null $categoryScores
-    *
-    * @return $this
-    */
+     * Sets categoryScores.
+     *
+     * @param CreateModerationResponseResultsInnerCategoryScores|null $categoryScores
+     *
+     * @return $this
+     */
     public function setCategoryScores(?CreateModerationResponseResultsInnerCategoryScores $categoryScores): self
     {
         $this->categoryScores = $categoryScores;
@@ -190,12 +190,12 @@ class CreateModerationResponseResultsInner
     }
 
     /**
-    * Sets categoryAppliedInputTypes.
-    *
-    * @param CreateModerationResponseResultsInnerCategoryAppliedInputTypes|null $categoryAppliedInputTypes
-    *
-    * @return $this
-    */
+     * Sets categoryAppliedInputTypes.
+     *
+     * @param CreateModerationResponseResultsInnerCategoryAppliedInputTypes|null $categoryAppliedInputTypes
+     *
+     * @return $this
+     */
     public function setCategoryAppliedInputTypes(?CreateModerationResponseResultsInnerCategoryAppliedInputTypes $categoryAppliedInputTypes): self
     {
         $this->categoryAppliedInputTypes = $categoryAppliedInputTypes;

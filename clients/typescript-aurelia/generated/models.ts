@@ -786,22 +786,6 @@ export interface AuditLogUserUpdatedChangesRequested {
 /**
  * The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`.
  */
-export interface AutoChunkingStrategy {
-  /**
-   * Always `auto`.
-   */
-  type: AutoChunkingStrategyTypeEnum;
-}
-
-/**
- * Enum for the type property.
- */
-export type AutoChunkingStrategyTypeEnum = 'auto';
-
-
-/**
- * The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`.
- */
 export interface AutoChunkingStrategyRequestParam {
   /**
    * Always `auto`.
@@ -1827,7 +1811,7 @@ export interface CreateAssistantRequestToolResourcesFileSearchVectorStoresInner 
  * The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.
  * @export
  */
-export type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = AutoChunkingStrategy | StaticChunkingStrategy;
+export type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = AutoChunkingStrategyRequestParam | StaticChunkingStrategy;
 
 
 export interface CreateBatchRequest {
@@ -1965,6 +1949,9 @@ export interface CreateChatCompletionRequest {
    * Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` 
    */
   modalities?: Array<CreateChatCompletionRequestModalitiesEnum>;
+  /**
+   * Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
+   */
   prediction?: PredictionContent;
   audio?: CreateChatCompletionRequestAudio;
   /**
@@ -2526,6 +2513,9 @@ export type CreateFineTuningJobRequestHyperparametersNEpochs = number | string;
 
 
 export interface CreateFineTuningJobRequestIntegrationsInner {
+  /**
+   * The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
+   */
   type: CreateFineTuningJobRequestIntegrationsInnerTypeEnum;
   wandb: CreateFineTuningJobRequestIntegrationsInnerWandb;
 }
@@ -5011,6 +5001,9 @@ export interface ModelError {
 
 
 export interface ModifyAssistantRequest {
+  /**
+   * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
+   */
   model?: string;
   /**
    * The name of the assistant. The maximum length is 256 characters. 
@@ -8672,20 +8665,6 @@ export interface StaticChunkingStrategyRequestParam {
 export type StaticChunkingStrategyRequestParamTypeEnum = 'static';
 
 
-export interface StaticChunkingStrategyResponseParam {
-  /**
-   * Always `static`.
-   */
-  type: StaticChunkingStrategyResponseParamTypeEnum;
-  _static: StaticChunkingStrategy;
-}
-
-/**
- * Enum for the type property.
- */
-export type StaticChunkingStrategyResponseParamTypeEnum = 'static';
-
-
 export interface StaticChunkingStrategyStatic {
   /**
    * The maximum number of tokens in each chunk. The default value is `800`. The minimum value is `100` and the maximum value is `4096`.
@@ -9473,7 +9452,7 @@ export type VectorStoreFileObjectStatusEnum = 'in_progress' | 'completed' | 'can
  * The strategy used to chunk the file.
  * @export
  */
-export type VectorStoreFileObjectChunkingStrategy = OtherChunkingStrategyResponseParam | StaticChunkingStrategyResponseParam;
+export type VectorStoreFileObjectChunkingStrategy = OtherChunkingStrategyResponseParam | StaticChunkingStrategyRequestParam;
 
 
 /**

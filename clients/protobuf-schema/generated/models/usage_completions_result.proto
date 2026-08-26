@@ -21,7 +21,7 @@ message UsageCompletionsResult {
     OBJECT_ORGANIZATION_USAGE_COMPLETIONS_RESULT = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The aggregated number of text input tokens used, including cached tokens. For customers subscribe to scale tier, this includes scale tier tokens.
   int32 input_tokens = 88257457;

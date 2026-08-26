@@ -46,7 +46,7 @@ with openapiopenai.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapiopenai.UploadsApi(api_client)
     upload_id = 'upload_abc123' # str | The ID of the Upload. 
-    data = None # bytearray | The chunk of bytes for this Part. 
+    data = None # bytes | The chunk of bytes for this Part. 
 
     try:
         # Adds a [Part](/docs/api-reference/uploads/part-object) to an [Upload](/docs/api-reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload.   Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB.  It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api-reference/uploads/complete). 
@@ -65,7 +65,7 @@ with openapiopenai.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **upload_id** | **str**| The ID of the Upload.  | 
- **data** | **bytearray**| The chunk of bytes for this Part.  | 
+ **data** | **bytes**| The chunk of bytes for this Part.  | 
 
 ### Return type
 

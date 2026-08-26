@@ -32,7 +32,7 @@ class  CreateCompletionRequest_stop
 {
 public:
     CreateCompletionRequest_stop();
-    virtual ~CreateCompletionRequest_stop() = default;
+    virtual ~CreateCompletionRequest_stop();
 
 
     /// <summary>

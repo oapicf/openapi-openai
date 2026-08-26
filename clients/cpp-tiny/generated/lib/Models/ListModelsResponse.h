@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get 
 	 */
 	std::list<Model> getData();
 
 	/*! \brief Set 
 	 */
-	void setData(std::list <Model> data);
+	void setData(std::list<Model> data);
 
 
     private:

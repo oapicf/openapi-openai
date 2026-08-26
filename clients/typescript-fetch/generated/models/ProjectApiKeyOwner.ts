@@ -36,7 +36,7 @@ import {
 export interface ProjectApiKeyOwner {
     /**
      * `user` or `service_account`
-     * @type {string}
+     * @type {ProjectApiKeyOwnerTypeEnum}
      * @memberof ProjectApiKeyOwner
      */
     type?: ProjectApiKeyOwnerTypeEnum;

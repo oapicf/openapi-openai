@@ -29,7 +29,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T14:09:29.020322047Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-08-26T05:16:17.496778002Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateChatCompletionRequest   {
   
   private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
@@ -116,7 +116,7 @@ public class CreateChatCompletionRequest   {
   }
 
   private ServiceTierEnum serviceTier = ServiceTierEnum.AUTO;
-  private CreateChatCompletionRequestStop stop = null;
+  private CreateChatCompletionRequestStop stop;
   private Boolean stream = false;
   private ChatCompletionStreamOptions streamOptions;
   private BigDecimal temperature = new BigDecimal("1");
@@ -305,9 +305,10 @@ public class CreateChatCompletionRequest   {
   }
 
   /**
+   * Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
    **/
   
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. ")
   @JsonProperty("prediction")
   public PredictionContent getPrediction() {
     return prediction;
@@ -617,10 +618,7 @@ public class CreateChatCompletionRequest   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

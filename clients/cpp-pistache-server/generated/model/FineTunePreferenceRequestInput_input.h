@@ -34,7 +34,7 @@ class  FineTunePreferenceRequestInput_input
 {
 public:
     FineTunePreferenceRequestInput_input();
-    virtual ~FineTunePreferenceRequestInput_input() = default;
+    virtual ~FineTunePreferenceRequestInput_input();
 
 
     /// <summary>

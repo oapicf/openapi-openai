@@ -49,7 +49,7 @@ class MessageContentImageFileObjectImageFile
      * @var string|null
      * @SerializedName("file_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $fileId = null;
@@ -60,7 +60,7 @@ class MessageContentImageFileObjectImageFile
      * @var string|null
      * @SerializedName("detail")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['auto', 'low', 'high'])]
     #[Assert\Type("string")]
     protected ?string $detail = 'auto';
@@ -88,12 +88,12 @@ class MessageContentImageFileObjectImageFile
     }
 
     /**
-    * Sets fileId.
-    *
-    * @param string|null $fileId  The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content.
-    *
-    * @return $this
-    */
+     * Sets fileId.
+     *
+     * @param string|null $fileId  The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content.
+     *
+     * @return $this
+     */
     public function setFileId(?string $fileId): self
     {
         $this->fileId = $fileId;
@@ -115,12 +115,12 @@ class MessageContentImageFileObjectImageFile
     }
 
     /**
-    * Sets detail.
-    *
-    * @param string|null $detail  Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
-    *
-    * @return $this
-    */
+     * Sets detail.
+     *
+     * @param string|null $detail  Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
+     *
+     * @return $this
+     */
     public function setDetail(?string $detail = null): self
     {
         $this->detail = $detail;

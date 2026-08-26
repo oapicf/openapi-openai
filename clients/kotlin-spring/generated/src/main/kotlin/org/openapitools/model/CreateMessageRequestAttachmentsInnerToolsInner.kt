@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
 import org.openapitools.model.AssistantToolsCode
 import org.openapitools.model.AssistantToolsFileSearchTypeOnly
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -19,32 +22,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param type The type of tool being defined: `code_interpreter`
  */
-data class CreateMessageRequestAttachmentsInnerToolsInner(
-
-    @Schema(example = "null", required = true, description = "The type of tool being defined: `code_interpreter`")
-    @get:JsonProperty("type", required = true) val type: CreateMessageRequestAttachmentsInnerToolsInner.Type
-) {
-
-    /**
-    * The type of tool being defined: `code_interpreter`
-    * Values: code_interpreter,file_search
-    */
-    enum class Type(@get:JsonValue val value: kotlin.String) {
-
-        code_interpreter("code_interpreter"),
-        file_search("file_search");
-
-        companion object {
-            @JvmStatic
-            @JsonCreator
-            fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateMessageRequestAttachmentsInnerToolsInner'")
-            }
-        }
-    }
-
+sealed interface CreateMessageRequestAttachmentsInnerToolsInner {
 }
 

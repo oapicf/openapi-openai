@@ -12,18 +12,21 @@ static audit_log_api_key_updated_changes_requested_t *audit_log_api_key_updated_
     if (!audit_log_api_key_updated_changes_requested_local_var) {
         return NULL;
     }
-    audit_log_api_key_updated_changes_requested_local_var->scopes = scopes;
-
+    memset(audit_log_api_key_updated_changes_requested_local_var, 0, sizeof(audit_log_api_key_updated_changes_requested_t));
     audit_log_api_key_updated_changes_requested_local_var->_library_owned = 1;
+    audit_log_api_key_updated_changes_requested_local_var->scopes = scopes;
     return audit_log_api_key_updated_changes_requested_local_var;
 }
 
 __attribute__((deprecated)) audit_log_api_key_updated_changes_requested_t *audit_log_api_key_updated_changes_requested_create(
     list_t *scopes
     ) {
-    return audit_log_api_key_updated_changes_requested_create_internal (
+    audit_log_api_key_updated_changes_requested_t *result = audit_log_api_key_updated_changes_requested_create_internal (
         scopes
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void audit_log_api_key_updated_changes_requested_free(audit_log_api_key_updated_changes_requested_t *audit_log_api_key_updated_changes_requested) {
@@ -102,9 +105,14 @@ audit_log_api_key_updated_changes_requested_t *audit_log_api_key_updated_changes
     }
 
 
+
     audit_log_api_key_updated_changes_requested_local_var = audit_log_api_key_updated_changes_requested_create_internal (
         scopes ? scopesList : NULL
         );
+
+    if (!audit_log_api_key_updated_changes_requested_local_var) {
+        goto end;
+    }
 
     return audit_log_api_key_updated_changes_requested_local_var;
 end:

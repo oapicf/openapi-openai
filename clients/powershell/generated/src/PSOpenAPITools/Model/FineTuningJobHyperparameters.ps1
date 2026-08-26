@@ -46,9 +46,9 @@ function Initialize-FineTuningJobHyperparameters {
 
 
         $PSO = [PSCustomObject]@{
-            "batch_size" = ${BatchSize}
-            "learning_rate_multiplier" = ${LearningRateMultiplier}
-            "n_epochs" = ${NEpochs}
+            'batch_size' = ${BatchSize}
+            'learning_rate_multiplier' = ${LearningRateMultiplier}
+            'n_epochs' = ${NEpochs}
         }
 
 
@@ -86,35 +86,35 @@ function ConvertFrom-JsonToFineTuningJobHyperparameters {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in FineTuningJobHyperparameters
-        $AllProperties = ("batch_size", "learning_rate_multiplier", "n_epochs")
+        $AllProperties = ('batch_size', 'learning_rate_multiplier', 'n_epochs')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "batch_size"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'batch_size'))) { #optional property not found
             $BatchSize = $null
         } else {
-            $BatchSize = $JsonParameters.PSobject.Properties["batch_size"].value
+            $BatchSize = $JsonParameters.PSobject.Properties['batch_size'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "learning_rate_multiplier"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'learning_rate_multiplier'))) { #optional property not found
             $LearningRateMultiplier = $null
         } else {
-            $LearningRateMultiplier = $JsonParameters.PSobject.Properties["learning_rate_multiplier"].value
+            $LearningRateMultiplier = $JsonParameters.PSobject.Properties['learning_rate_multiplier'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "n_epochs"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'n_epochs'))) { #optional property not found
             $NEpochs = $null
         } else {
-            $NEpochs = $JsonParameters.PSobject.Properties["n_epochs"].value
+            $NEpochs = $JsonParameters.PSobject.Properties['n_epochs'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "batch_size" = ${BatchSize}
-            "learning_rate_multiplier" = ${LearningRateMultiplier}
-            "n_epochs" = ${NEpochs}
+            'batch_size' = ${BatchSize}
+            'learning_rate_multiplier' = ${LearningRateMultiplier}
+            'n_epochs' = ${NEpochs}
         }
 
         return $PSO

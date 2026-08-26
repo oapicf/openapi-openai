@@ -55,9 +55,9 @@ function Initialize-RunStepDeltaStepDetailsToolCallsCodeOutputImageObject {
 
 
         $PSO = [PSCustomObject]@{
-            "index" = ${Index}
-            "type" = ${Type}
-            "image" = ${Image}
+            'index' = ${Index}
+            'type' = ${Type}
+            'image' = ${Image}
         }
 
 
@@ -95,7 +95,7 @@ function ConvertFrom-JsonToRunStepDeltaStepDetailsToolCallsCodeOutputImageObject
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
-        $AllProperties = ("index", "type", "image")
+        $AllProperties = ('index', 'type', 'image')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -106,28 +106,28 @@ function ConvertFrom-JsonToRunStepDeltaStepDetailsToolCallsCodeOutputImageObject
             throw "Error! Empty JSON cannot be serialized due to the required property 'index' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "index"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'index'))) {
             throw "Error! JSON cannot be serialized due to the required property 'index' missing."
         } else {
-            $Index = $JsonParameters.PSobject.Properties["index"].value
+            $Index = $JsonParameters.PSobject.Properties['index'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "image"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'image'))) { #optional property not found
             $Image = $null
         } else {
-            $Image = $JsonParameters.PSobject.Properties["image"].value
+            $Image = $JsonParameters.PSobject.Properties['image'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "index" = ${Index}
-            "type" = ${Type}
-            "image" = ${Image}
+            'index' = ${Index}
+            'type' = ${Type}
+            'image' = ${Image}
         }
 
         return $PSO

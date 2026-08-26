@@ -86,7 +86,7 @@ AuditLog_invite_sent::getId()
 }
 
 void
-AuditLog_invite_sent::setId(std::string  id)
+AuditLog_invite_sent::setId(std::string id)
 {
 	this->id = id;
 }
@@ -98,7 +98,7 @@ AuditLog_invite_sent::getData()
 }
 
 void
-AuditLog_invite_sent::setData(AuditLog_invite_sent_data  data)
+AuditLog_invite_sent::setData(AuditLog_invite_sent_data data)
 {
 	this->data = data;
 }

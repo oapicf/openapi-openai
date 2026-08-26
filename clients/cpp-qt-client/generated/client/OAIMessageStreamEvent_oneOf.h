@@ -33,13 +33,13 @@ class OAIMessageObject;
 class OAIMessageStreamEvent_oneOf : public OAIObject {
 public:
     OAIMessageStreamEvent_oneOf();
-    OAIMessageStreamEvent_oneOf(QString json);
+    OAIMessageStreamEvent_oneOf(const QString &json);
     ~OAIMessageStreamEvent_oneOf() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getEvent() const;
     void setEvent(const QString &event);

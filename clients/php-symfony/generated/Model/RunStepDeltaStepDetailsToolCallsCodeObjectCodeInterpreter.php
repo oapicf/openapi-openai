@@ -51,7 +51,7 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
      * @var string|null
      * @SerializedName("input")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $input = null;
 
@@ -61,7 +61,7 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
      * @var RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner[]|null
      * @SerializedName("outputs")
      * @Type("array<OpenAPI\Server\Model\RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner"),
     ])]
@@ -90,12 +90,12 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
     }
 
     /**
-    * Sets input.
-    *
-    * @param string|null $input  The input to the Code Interpreter tool call.
-    *
-    * @return $this
-    */
+     * Sets input.
+     *
+     * @param string|null $input  The input to the Code Interpreter tool call.
+     *
+     * @return $this
+     */
     public function setInput(?string $input = null): self
     {
         $this->input = $input;
@@ -117,12 +117,12 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
     }
 
     /**
-    * Sets outputs.
-    *
-    * @param RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner[]|null $outputs  The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.
-    *
-    * @return $this
-    */
+     * Sets outputs.
+     *
+     * @param RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner[]|null $outputs  The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.
+     *
+     * @return $this
+     */
     public function setOutputs(?array $outputs = null): self
     {
         $this->outputs = $outputs;

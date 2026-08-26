@@ -734,7 +734,7 @@ CreateChatCompletionRequest::getMessages()
 }
 
 void
-CreateChatCompletionRequest::setMessages(std::list <ChatCompletionRequestMessage> messages)
+CreateChatCompletionRequest::setMessages(std::list<ChatCompletionRequestMessage> messages)
 {
 	this->messages = messages;
 }
@@ -746,7 +746,7 @@ CreateChatCompletionRequest::getModel()
 }
 
 void
-CreateChatCompletionRequest::setModel(CreateChatCompletionRequest_model  model)
+CreateChatCompletionRequest::setModel(CreateChatCompletionRequest_model model)
 {
 	this->model = model;
 }
@@ -758,7 +758,7 @@ CreateChatCompletionRequest::isStore()
 }
 
 void
-CreateChatCompletionRequest::setStore(bool  store)
+CreateChatCompletionRequest::setStore(bool store)
 {
 	this->store = store;
 }
@@ -770,19 +770,19 @@ CreateChatCompletionRequest::getReasoningEffort()
 }
 
 void
-CreateChatCompletionRequest::setReasoningEffort(std::string  reasoning_effort)
+CreateChatCompletionRequest::setReasoningEffort(std::string reasoning_effort)
 {
 	this->reasoning_effort = reasoning_effort;
 }
 
-Map<string, string>
+std::map<std::string, std::string>
 CreateChatCompletionRequest::getMetadata()
 {
 	return metadata;
 }
 
 void
-CreateChatCompletionRequest::setMetadata(Map <string, string> metadata)
+CreateChatCompletionRequest::setMetadata(std::map<std::string, std::string> metadata)
 {
 	this->metadata = metadata;
 }
@@ -794,19 +794,19 @@ CreateChatCompletionRequest::getFrequencyPenalty()
 }
 
 void
-CreateChatCompletionRequest::setFrequencyPenalty(long  frequency_penalty)
+CreateChatCompletionRequest::setFrequencyPenalty(long frequency_penalty)
 {
 	this->frequency_penalty = frequency_penalty;
 }
 
-Map<string, string>
+std::map<std::string, int>
 CreateChatCompletionRequest::getLogitBias()
 {
 	return logit_bias;
 }
 
 void
-CreateChatCompletionRequest::setLogitBias(Map <string, string> logit_bias)
+CreateChatCompletionRequest::setLogitBias(std::map<std::string, int> logit_bias)
 {
 	this->logit_bias = logit_bias;
 }
@@ -818,7 +818,7 @@ CreateChatCompletionRequest::isLogprobs()
 }
 
 void
-CreateChatCompletionRequest::setLogprobs(bool  logprobs)
+CreateChatCompletionRequest::setLogprobs(bool logprobs)
 {
 	this->logprobs = logprobs;
 }
@@ -830,7 +830,7 @@ CreateChatCompletionRequest::getTopLogprobs()
 }
 
 void
-CreateChatCompletionRequest::setTopLogprobs(int  top_logprobs)
+CreateChatCompletionRequest::setTopLogprobs(int top_logprobs)
 {
 	this->top_logprobs = top_logprobs;
 }
@@ -842,7 +842,7 @@ CreateChatCompletionRequest::getMaxTokens()
 }
 
 void
-CreateChatCompletionRequest::setMaxTokens(int  max_tokens)
+CreateChatCompletionRequest::setMaxTokens(int max_tokens)
 {
 	this->max_tokens = max_tokens;
 }
@@ -854,7 +854,7 @@ CreateChatCompletionRequest::getMaxCompletionTokens()
 }
 
 void
-CreateChatCompletionRequest::setMaxCompletionTokens(int  max_completion_tokens)
+CreateChatCompletionRequest::setMaxCompletionTokens(int max_completion_tokens)
 {
 	this->max_completion_tokens = max_completion_tokens;
 }
@@ -866,7 +866,7 @@ CreateChatCompletionRequest::getN()
 }
 
 void
-CreateChatCompletionRequest::setN(int  n)
+CreateChatCompletionRequest::setN(int n)
 {
 	this->n = n;
 }
@@ -878,7 +878,7 @@ CreateChatCompletionRequest::getModalities()
 }
 
 void
-CreateChatCompletionRequest::setModalities(std::list <std::string> modalities)
+CreateChatCompletionRequest::setModalities(std::list<std::string> modalities)
 {
 	this->modalities = modalities;
 }
@@ -890,7 +890,7 @@ CreateChatCompletionRequest::getPrediction()
 }
 
 void
-CreateChatCompletionRequest::setPrediction(PredictionContent  prediction)
+CreateChatCompletionRequest::setPrediction(PredictionContent prediction)
 {
 	this->prediction = prediction;
 }
@@ -902,7 +902,7 @@ CreateChatCompletionRequest::getAudio()
 }
 
 void
-CreateChatCompletionRequest::setAudio(CreateChatCompletionRequest_audio  audio)
+CreateChatCompletionRequest::setAudio(CreateChatCompletionRequest_audio audio)
 {
 	this->audio = audio;
 }
@@ -914,7 +914,7 @@ CreateChatCompletionRequest::getPresencePenalty()
 }
 
 void
-CreateChatCompletionRequest::setPresencePenalty(long  presence_penalty)
+CreateChatCompletionRequest::setPresencePenalty(long presence_penalty)
 {
 	this->presence_penalty = presence_penalty;
 }
@@ -926,7 +926,7 @@ CreateChatCompletionRequest::getResponseFormat()
 }
 
 void
-CreateChatCompletionRequest::setResponseFormat(CreateChatCompletionRequest_response_format  response_format)
+CreateChatCompletionRequest::setResponseFormat(CreateChatCompletionRequest_response_format response_format)
 {
 	this->response_format = response_format;
 }
@@ -938,7 +938,7 @@ CreateChatCompletionRequest::getSeed()
 }
 
 void
-CreateChatCompletionRequest::setSeed(int  seed)
+CreateChatCompletionRequest::setSeed(int seed)
 {
 	this->seed = seed;
 }
@@ -950,7 +950,7 @@ CreateChatCompletionRequest::getServiceTier()
 }
 
 void
-CreateChatCompletionRequest::setServiceTier(std::string  service_tier)
+CreateChatCompletionRequest::setServiceTier(std::string service_tier)
 {
 	this->service_tier = service_tier;
 }
@@ -962,7 +962,7 @@ CreateChatCompletionRequest::getStop()
 }
 
 void
-CreateChatCompletionRequest::setStop(CreateChatCompletionRequest_stop  stop)
+CreateChatCompletionRequest::setStop(CreateChatCompletionRequest_stop stop)
 {
 	this->stop = stop;
 }
@@ -974,7 +974,7 @@ CreateChatCompletionRequest::isStream()
 }
 
 void
-CreateChatCompletionRequest::setStream(bool  stream)
+CreateChatCompletionRequest::setStream(bool stream)
 {
 	this->stream = stream;
 }
@@ -986,7 +986,7 @@ CreateChatCompletionRequest::getStreamOptions()
 }
 
 void
-CreateChatCompletionRequest::setStreamOptions(ChatCompletionStreamOptions  stream_options)
+CreateChatCompletionRequest::setStreamOptions(ChatCompletionStreamOptions stream_options)
 {
 	this->stream_options = stream_options;
 }
@@ -998,7 +998,7 @@ CreateChatCompletionRequest::getTemperature()
 }
 
 void
-CreateChatCompletionRequest::setTemperature(long  temperature)
+CreateChatCompletionRequest::setTemperature(long temperature)
 {
 	this->temperature = temperature;
 }
@@ -1010,7 +1010,7 @@ CreateChatCompletionRequest::getTopP()
 }
 
 void
-CreateChatCompletionRequest::setTopP(long  top_p)
+CreateChatCompletionRequest::setTopP(long top_p)
 {
 	this->top_p = top_p;
 }
@@ -1022,7 +1022,7 @@ CreateChatCompletionRequest::getTools()
 }
 
 void
-CreateChatCompletionRequest::setTools(std::list <ChatCompletionTool> tools)
+CreateChatCompletionRequest::setTools(std::list<ChatCompletionTool> tools)
 {
 	this->tools = tools;
 }
@@ -1034,7 +1034,7 @@ CreateChatCompletionRequest::getToolChoice()
 }
 
 void
-CreateChatCompletionRequest::setToolChoice(ChatCompletionToolChoiceOption  tool_choice)
+CreateChatCompletionRequest::setToolChoice(ChatCompletionToolChoiceOption tool_choice)
 {
 	this->tool_choice = tool_choice;
 }
@@ -1046,7 +1046,7 @@ CreateChatCompletionRequest::isParallelToolCalls()
 }
 
 void
-CreateChatCompletionRequest::setParallelToolCalls(bool  parallel_tool_calls)
+CreateChatCompletionRequest::setParallelToolCalls(bool parallel_tool_calls)
 {
 	this->parallel_tool_calls = parallel_tool_calls;
 }
@@ -1058,7 +1058,7 @@ CreateChatCompletionRequest::getUser()
 }
 
 void
-CreateChatCompletionRequest::setUser(std::string  user)
+CreateChatCompletionRequest::setUser(std::string user)
 {
 	this->user = user;
 }
@@ -1070,7 +1070,7 @@ CreateChatCompletionRequest::getFunctionCall()
 }
 
 void
-CreateChatCompletionRequest::setFunctionCall(CreateChatCompletionRequest_function_call  function_call)
+CreateChatCompletionRequest::setFunctionCall(CreateChatCompletionRequest_function_call function_call)
 {
 	this->function_call = function_call;
 }
@@ -1082,7 +1082,7 @@ CreateChatCompletionRequest::getFunctions()
 }
 
 void
-CreateChatCompletionRequest::setFunctions(std::list <ChatCompletionFunctions> functions)
+CreateChatCompletionRequest::setFunctions(std::list<ChatCompletionFunctions> functions)
 {
 	this->functions = functions;
 }

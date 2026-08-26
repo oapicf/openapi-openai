@@ -49,7 +49,7 @@ class CreateChatCompletionRequest
      * @var ChatCompletionRequestMessage[]|null
      * @SerializedName("messages")
      * @Type("array<OpenAPI\Server\Model\ChatCompletionRequestMessage>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -62,7 +62,7 @@ class CreateChatCompletionRequest
      * @var CreateChatCompletionRequestModel|null
      * @SerializedName("model")
      * @Type("OpenAPI\Server\Model\CreateChatCompletionRequestModel")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\CreateChatCompletionRequestModel")]
@@ -74,7 +74,7 @@ class CreateChatCompletionRequest
      * @var bool|null
      * @SerializedName("store")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $store = false;
 
@@ -84,7 +84,7 @@ class CreateChatCompletionRequest
      * @var string|null
      * @SerializedName("reasoning_effort")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['low', 'medium', 'high'])]
     #[Assert\Type("string")]
     protected ?string $reasoningEffort = 'medium';
@@ -95,7 +95,7 @@ class CreateChatCompletionRequest
      * @var string[]|null
      * @SerializedName("metadata")
      * @Type("array<string, string>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("string"),
     ])]
@@ -107,7 +107,7 @@ class CreateChatCompletionRequest
      * @var float|null
      * @SerializedName("frequency_penalty")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(-2)]
     #[Assert\LessThanOrEqual(2)]
@@ -119,7 +119,7 @@ class CreateChatCompletionRequest
      * @var int[]|null
      * @SerializedName("logit_bias")
      * @Type("array<string, int>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("int"),
     ])]
@@ -131,7 +131,7 @@ class CreateChatCompletionRequest
      * @var bool|null
      * @SerializedName("logprobs")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $logprobs = false;
 
@@ -141,7 +141,7 @@ class CreateChatCompletionRequest
      * @var int|null
      * @SerializedName("top_logprobs")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(0)]
     #[Assert\LessThanOrEqual(20)]
@@ -153,7 +153,7 @@ class CreateChatCompletionRequest
      * @var int|null
      * @SerializedName("max_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $maxTokens = null;
 
@@ -163,7 +163,7 @@ class CreateChatCompletionRequest
      * @var int|null
      * @SerializedName("max_completion_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $maxCompletionTokens = null;
 
@@ -173,7 +173,7 @@ class CreateChatCompletionRequest
      * @var int|null
      * @SerializedName("n")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(1)]
     #[Assert\LessThanOrEqual(128)]
@@ -185,7 +185,7 @@ class CreateChatCompletionRequest
      * @var string[]|null
      * @SerializedName("modalities")
      * @Type("array<string>")
-    */
+     */
     #[Assert\All([
         new Assert\Choice(['text', 'audio']),
     ])]
@@ -195,10 +195,12 @@ class CreateChatCompletionRequest
     protected ?array $modalities = null;
 
     /**
+     * Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content.
+     *
      * @var PredictionContent|null
      * @SerializedName("prediction")
      * @Type("OpenAPI\Server\Model\PredictionContent")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\PredictionContent")]
     protected ?PredictionContent $prediction = null;
 
@@ -206,7 +208,7 @@ class CreateChatCompletionRequest
      * @var CreateChatCompletionRequestAudio|null
      * @SerializedName("audio")
      * @Type("OpenAPI\Server\Model\CreateChatCompletionRequestAudio")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateChatCompletionRequestAudio")]
     protected ?CreateChatCompletionRequestAudio $audio = null;
 
@@ -216,7 +218,7 @@ class CreateChatCompletionRequest
      * @var float|null
      * @SerializedName("presence_penalty")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(-2)]
     #[Assert\LessThanOrEqual(2)]
@@ -226,7 +228,7 @@ class CreateChatCompletionRequest
      * @var CreateChatCompletionRequestResponseFormat|null
      * @SerializedName("response_format")
      * @Type("OpenAPI\Server\Model\CreateChatCompletionRequestResponseFormat")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateChatCompletionRequestResponseFormat")]
     protected ?CreateChatCompletionRequestResponseFormat $responseFormat = null;
 
@@ -236,7 +238,7 @@ class CreateChatCompletionRequest
      * @var int|null
      * @SerializedName("seed")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(-9223372036854776000)]
     #[Assert\LessThanOrEqual(9223372036854776000)]
@@ -248,7 +250,7 @@ class CreateChatCompletionRequest
      * @var string|null
      * @SerializedName("service_tier")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['auto', 'default'])]
     #[Assert\Type("string")]
     protected ?string $serviceTier = 'auto';
@@ -257,7 +259,7 @@ class CreateChatCompletionRequest
      * @var CreateChatCompletionRequestStop|null
      * @SerializedName("stop")
      * @Type("OpenAPI\Server\Model\CreateChatCompletionRequestStop")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateChatCompletionRequestStop")]
     protected ?CreateChatCompletionRequestStop $stop = null;
 
@@ -267,7 +269,7 @@ class CreateChatCompletionRequest
      * @var bool|null
      * @SerializedName("stream")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $stream = false;
 
@@ -275,7 +277,7 @@ class CreateChatCompletionRequest
      * @var ChatCompletionStreamOptions|null
      * @SerializedName("stream_options")
      * @Type("OpenAPI\Server\Model\ChatCompletionStreamOptions")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionStreamOptions")]
     protected ?ChatCompletionStreamOptions $streamOptions = null;
 
@@ -285,7 +287,7 @@ class CreateChatCompletionRequest
      * @var float|null
      * @SerializedName("temperature")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(0)]
     #[Assert\LessThanOrEqual(2)]
@@ -297,7 +299,7 @@ class CreateChatCompletionRequest
      * @var float|null
      * @SerializedName("top_p")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(0)]
     #[Assert\LessThanOrEqual(1)]
@@ -309,7 +311,7 @@ class CreateChatCompletionRequest
      * @var ChatCompletionTool[]|null
      * @SerializedName("tools")
      * @Type("array<OpenAPI\Server\Model\ChatCompletionTool>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\ChatCompletionTool"),
     ])]
@@ -319,7 +321,7 @@ class CreateChatCompletionRequest
      * @var ChatCompletionToolChoiceOption|null
      * @SerializedName("tool_choice")
      * @Type("OpenAPI\Server\Model\ChatCompletionToolChoiceOption")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionToolChoiceOption")]
     protected ?ChatCompletionToolChoiceOption $toolChoice = null;
 
@@ -329,7 +331,7 @@ class CreateChatCompletionRequest
      * @var bool|null
      * @SerializedName("parallel_tool_calls")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $parallelToolCalls = true;
 
@@ -339,7 +341,7 @@ class CreateChatCompletionRequest
      * @var string|null
      * @SerializedName("user")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $user = null;
 
@@ -347,7 +349,7 @@ class CreateChatCompletionRequest
      * @var CreateChatCompletionRequestFunctionCall|null
      * @SerializedName("function_call")
      * @Type("OpenAPI\Server\Model\CreateChatCompletionRequestFunctionCall")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateChatCompletionRequestFunctionCall")]
     protected ?CreateChatCompletionRequestFunctionCall $functionCall = null;
 
@@ -357,7 +359,7 @@ class CreateChatCompletionRequest
      * @var ChatCompletionFunctions[]|null
      * @SerializedName("functions")
      * @Type("array<OpenAPI\Server\Model\ChatCompletionFunctions>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\ChatCompletionFunctions"),
     ])]
@@ -416,12 +418,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets messages.
-    *
-    * @param ChatCompletionRequestMessage[]|null $messages  A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio).
-    *
-    * @return $this
-    */
+     * Sets messages.
+     *
+     * @param ChatCompletionRequestMessage[]|null $messages  A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio).
+     *
+     * @return $this
+     */
     public function setMessages(?array $messages): self
     {
         $this->messages = $messages;
@@ -443,12 +445,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets model.
-    *
-    * @param CreateChatCompletionRequestModel|null $model
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param CreateChatCompletionRequestModel|null $model
+     *
+     * @return $this
+     */
     public function setModel(?CreateChatCompletionRequestModel $model): self
     {
         $this->model = $model;
@@ -470,12 +472,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets store.
-    *
-    * @param bool|null $store  Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products.
-    *
-    * @return $this
-    */
+     * Sets store.
+     *
+     * @param bool|null $store  Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products.
+     *
+     * @return $this
+     */
     public function setStore(?bool $store = null): self
     {
         $this->store = $store;
@@ -497,12 +499,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets reasoningEffort.
-    *
-    * @param string|null $reasoningEffort  **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
-    *
-    * @return $this
-    */
+     * Sets reasoningEffort.
+     *
+     * @param string|null $reasoningEffort  **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
+     *
+     * @return $this
+     */
     public function setReasoningEffort(?string $reasoningEffort = null): self
     {
         $this->reasoningEffort = $reasoningEffort;
@@ -524,12 +526,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets metadata.
-    *
-    * @param string[]|null $metadata  Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions).
-    *
-    * @return $this
-    */
+     * Sets metadata.
+     *
+     * @param string[]|null $metadata  Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions).
+     *
+     * @return $this
+     */
     public function setMetadata(?array $metadata = null): self
     {
         $this->metadata = $metadata;
@@ -551,12 +553,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets frequencyPenalty.
-    *
-    * @param float|null $frequencyPenalty  Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
-    *
-    * @return $this
-    */
+     * Sets frequencyPenalty.
+     *
+     * @param float|null $frequencyPenalty  Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
+     *
+     * @return $this
+     */
     public function setFrequencyPenalty(?float $frequencyPenalty = null): self
     {
         $this->frequencyPenalty = $frequencyPenalty;
@@ -578,12 +580,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets logitBias.
-    *
-    * @param int[]|null $logitBias  Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.
-    *
-    * @return $this
-    */
+     * Sets logitBias.
+     *
+     * @param int[]|null $logitBias  Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.
+     *
+     * @return $this
+     */
     public function setLogitBias(?array $logitBias = null): self
     {
         $this->logitBias = $logitBias;
@@ -605,12 +607,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets logprobs.
-    *
-    * @param bool|null $logprobs  Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.
-    *
-    * @return $this
-    */
+     * Sets logprobs.
+     *
+     * @param bool|null $logprobs  Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.
+     *
+     * @return $this
+     */
     public function setLogprobs(?bool $logprobs = null): self
     {
         $this->logprobs = $logprobs;
@@ -632,12 +634,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets topLogprobs.
-    *
-    * @param int|null $topLogprobs  An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.
-    *
-    * @return $this
-    */
+     * Sets topLogprobs.
+     *
+     * @param int|null $topLogprobs  An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.
+     *
+     * @return $this
+     */
     public function setTopLogprobs(?int $topLogprobs = null): self
     {
         $this->topLogprobs = $topLogprobs;
@@ -659,12 +661,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets maxTokens.
-    *
-    * @param int|null $maxTokens  The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning).
-    *
-    * @return $this
-    */
+     * Sets maxTokens.
+     *
+     * @param int|null $maxTokens  The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning).
+     *
+     * @return $this
+     */
     public function setMaxTokens(?int $maxTokens = null): self
     {
         $this->maxTokens = $maxTokens;
@@ -686,12 +688,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets maxCompletionTokens.
-    *
-    * @param int|null $maxCompletionTokens  An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning).
-    *
-    * @return $this
-    */
+     * Sets maxCompletionTokens.
+     *
+     * @param int|null $maxCompletionTokens  An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning).
+     *
+     * @return $this
+     */
     public function setMaxCompletionTokens(?int $maxCompletionTokens = null): self
     {
         $this->maxCompletionTokens = $maxCompletionTokens;
@@ -713,12 +715,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets n.
-    *
-    * @param int|null $n  How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.
-    *
-    * @return $this
-    */
+     * Sets n.
+     *
+     * @param int|null $n  How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.
+     *
+     * @return $this
+     */
     public function setN(?int $n = null): self
     {
         $this->n = $n;
@@ -740,12 +742,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets modalities.
-    *
-    * @param string[]|null $modalities  Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]`
-    *
-    * @return $this
-    */
+     * Sets modalities.
+     *
+     * @param string[]|null $modalities  Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]`
+     *
+     * @return $this
+     */
     public function setModalities(?array $modalities = null): self
     {
         $this->modalities = $modalities;
@@ -767,12 +769,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets prediction.
-    *
-    * @param PredictionContent|null $prediction
-    *
-    * @return $this
-    */
+     * Sets prediction.
+     *
+     * @param PredictionContent|null $prediction  Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content.
+     *
+     * @return $this
+     */
     public function setPrediction(?PredictionContent $prediction = null): self
     {
         $this->prediction = $prediction;
@@ -794,12 +796,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets audio.
-    *
-    * @param CreateChatCompletionRequestAudio|null $audio
-    *
-    * @return $this
-    */
+     * Sets audio.
+     *
+     * @param CreateChatCompletionRequestAudio|null $audio
+     *
+     * @return $this
+     */
     public function setAudio(?CreateChatCompletionRequestAudio $audio = null): self
     {
         $this->audio = $audio;
@@ -821,12 +823,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets presencePenalty.
-    *
-    * @param float|null $presencePenalty  Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
-    *
-    * @return $this
-    */
+     * Sets presencePenalty.
+     *
+     * @param float|null $presencePenalty  Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
+     *
+     * @return $this
+     */
     public function setPresencePenalty(?float $presencePenalty = null): self
     {
         $this->presencePenalty = $presencePenalty;
@@ -848,12 +850,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets responseFormat.
-    *
-    * @param CreateChatCompletionRequestResponseFormat|null $responseFormat
-    *
-    * @return $this
-    */
+     * Sets responseFormat.
+     *
+     * @param CreateChatCompletionRequestResponseFormat|null $responseFormat
+     *
+     * @return $this
+     */
     public function setResponseFormat(?CreateChatCompletionRequestResponseFormat $responseFormat = null): self
     {
         $this->responseFormat = $responseFormat;
@@ -875,12 +877,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets seed.
-    *
-    * @param int|null $seed  This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.
-    *
-    * @return $this
-    */
+     * Sets seed.
+     *
+     * @param int|null $seed  This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.
+     *
+     * @return $this
+     */
     public function setSeed(?int $seed = null): self
     {
         $this->seed = $seed;
@@ -902,12 +904,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets serviceTier.
-    *
-    * @param string|null $serviceTier  Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized.
-    *
-    * @return $this
-    */
+     * Sets serviceTier.
+     *
+     * @param string|null $serviceTier  Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized.
+     *
+     * @return $this
+     */
     public function setServiceTier(?string $serviceTier = null): self
     {
         $this->serviceTier = $serviceTier;
@@ -929,12 +931,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets stop.
-    *
-    * @param CreateChatCompletionRequestStop|null $stop
-    *
-    * @return $this
-    */
+     * Sets stop.
+     *
+     * @param CreateChatCompletionRequestStop|null $stop
+     *
+     * @return $this
+     */
     public function setStop(?CreateChatCompletionRequestStop $stop = null): self
     {
         $this->stop = $stop;
@@ -956,12 +958,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets stream.
-    *
-    * @param bool|null $stream  If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions).
-    *
-    * @return $this
-    */
+     * Sets stream.
+     *
+     * @param bool|null $stream  If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions).
+     *
+     * @return $this
+     */
     public function setStream(?bool $stream = null): self
     {
         $this->stream = $stream;
@@ -983,12 +985,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets streamOptions.
-    *
-    * @param ChatCompletionStreamOptions|null $streamOptions
-    *
-    * @return $this
-    */
+     * Sets streamOptions.
+     *
+     * @param ChatCompletionStreamOptions|null $streamOptions
+     *
+     * @return $this
+     */
     public function setStreamOptions(?ChatCompletionStreamOptions $streamOptions = null): self
     {
         $this->streamOptions = $streamOptions;
@@ -1010,12 +1012,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets temperature.
-    *
-    * @param float|null $temperature  What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both.
-    *
-    * @return $this
-    */
+     * Sets temperature.
+     *
+     * @param float|null $temperature  What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both.
+     *
+     * @return $this
+     */
     public function setTemperature(?float $temperature = null): self
     {
         $this->temperature = $temperature;
@@ -1037,12 +1039,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets topP.
-    *
-    * @param float|null $topP  An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or `temperature` but not both.
-    *
-    * @return $this
-    */
+     * Sets topP.
+     *
+     * @param float|null $topP  An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or `temperature` but not both.
+     *
+     * @return $this
+     */
     public function setTopP(?float $topP = null): self
     {
         $this->topP = $topP;
@@ -1064,12 +1066,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets tools.
-    *
-    * @param ChatCompletionTool[]|null $tools  A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported.
-    *
-    * @return $this
-    */
+     * Sets tools.
+     *
+     * @param ChatCompletionTool[]|null $tools  A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported.
+     *
+     * @return $this
+     */
     public function setTools(?array $tools = null): self
     {
         $this->tools = $tools;
@@ -1091,12 +1093,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets toolChoice.
-    *
-    * @param ChatCompletionToolChoiceOption|null $toolChoice
-    *
-    * @return $this
-    */
+     * Sets toolChoice.
+     *
+     * @param ChatCompletionToolChoiceOption|null $toolChoice
+     *
+     * @return $this
+     */
     public function setToolChoice(?ChatCompletionToolChoiceOption $toolChoice = null): self
     {
         $this->toolChoice = $toolChoice;
@@ -1118,12 +1120,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets parallelToolCalls.
-    *
-    * @param bool|null $parallelToolCalls  Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
-    *
-    * @return $this
-    */
+     * Sets parallelToolCalls.
+     *
+     * @param bool|null $parallelToolCalls  Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+     *
+     * @return $this
+     */
     public function setParallelToolCalls(?bool $parallelToolCalls = null): self
     {
         $this->parallelToolCalls = $parallelToolCalls;
@@ -1145,12 +1147,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets user.
-    *
-    * @param string|null $user  A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).
-    *
-    * @return $this
-    */
+     * Sets user.
+     *
+     * @param string|null $user  A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).
+     *
+     * @return $this
+     */
     public function setUser(?string $user = null): self
     {
         $this->user = $user;
@@ -1172,12 +1174,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets functionCall.
-    *
-    * @param CreateChatCompletionRequestFunctionCall|null $functionCall
-    *
-    * @return $this
-    */
+     * Sets functionCall.
+     *
+     * @param CreateChatCompletionRequestFunctionCall|null $functionCall
+     *
+     * @return $this
+     */
     public function setFunctionCall(?CreateChatCompletionRequestFunctionCall $functionCall = null): self
     {
         $this->functionCall = $functionCall;
@@ -1199,12 +1201,12 @@ class CreateChatCompletionRequest
     }
 
     /**
-    * Sets functions.
-    *
-    * @param ChatCompletionFunctions[]|null $functions  Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for.
-    *
-    * @return $this
-    */
+     * Sets functions.
+     *
+     * @param ChatCompletionFunctions[]|null $functions  Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for.
+     *
+     * @return $this
+     */
     public function setFunctions(?array $functions = null): self
     {
         $this->functions = $functions;

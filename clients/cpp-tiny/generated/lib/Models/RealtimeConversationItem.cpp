@@ -270,7 +270,7 @@ RealtimeConversationItem::getId()
 }
 
 void
-RealtimeConversationItem::setId(std::string  id)
+RealtimeConversationItem::setId(std::string id)
 {
 	this->id = id;
 }
@@ -282,7 +282,7 @@ RealtimeConversationItem::getType()
 }
 
 void
-RealtimeConversationItem::setType(std::string  type)
+RealtimeConversationItem::setType(std::string type)
 {
 	this->type = type;
 }
@@ -294,7 +294,7 @@ RealtimeConversationItem::getObject()
 }
 
 void
-RealtimeConversationItem::setObject(std::string  object)
+RealtimeConversationItem::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -306,7 +306,7 @@ RealtimeConversationItem::getStatus()
 }
 
 void
-RealtimeConversationItem::setStatus(std::string  status)
+RealtimeConversationItem::setStatus(std::string status)
 {
 	this->status = status;
 }
@@ -318,7 +318,7 @@ RealtimeConversationItem::getRole()
 }
 
 void
-RealtimeConversationItem::setRole(std::string  role)
+RealtimeConversationItem::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -330,7 +330,7 @@ RealtimeConversationItem::getContent()
 }
 
 void
-RealtimeConversationItem::setContent(std::list <RealtimeConversationItem_content_inner> content)
+RealtimeConversationItem::setContent(std::list<RealtimeConversationItem_content_inner> content)
 {
 	this->content = content;
 }
@@ -342,7 +342,7 @@ RealtimeConversationItem::getCallId()
 }
 
 void
-RealtimeConversationItem::setCallId(std::string  call_id)
+RealtimeConversationItem::setCallId(std::string call_id)
 {
 	this->call_id = call_id;
 }
@@ -354,7 +354,7 @@ RealtimeConversationItem::getName()
 }
 
 void
-RealtimeConversationItem::setName(std::string  name)
+RealtimeConversationItem::setName(std::string name)
 {
 	this->name = name;
 }
@@ -366,7 +366,7 @@ RealtimeConversationItem::getArguments()
 }
 
 void
-RealtimeConversationItem::setArguments(std::string  arguments)
+RealtimeConversationItem::setArguments(std::string arguments)
 {
 	this->arguments = arguments;
 }
@@ -378,7 +378,7 @@ RealtimeConversationItem::getOutput()
 }
 
 void
-RealtimeConversationItem::setOutput(std::string  output)
+RealtimeConversationItem::setOutput(std::string output)
 {
 	this->output = output;
 }

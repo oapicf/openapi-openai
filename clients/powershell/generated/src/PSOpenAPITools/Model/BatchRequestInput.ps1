@@ -47,9 +47,9 @@ function Initialize-BatchRequestInput {
 
 
         $PSO = [PSCustomObject]@{
-            "custom_id" = ${CustomId}
-            "method" = ${Method}
-            "url" = ${Url}
+            'custom_id' = ${CustomId}
+            'method' = ${Method}
+            'url' = ${Url}
         }
 
 
@@ -87,35 +87,35 @@ function ConvertFrom-JsonToBatchRequestInput {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in BatchRequestInput
-        $AllProperties = ("custom_id", "method", "url")
+        $AllProperties = ('custom_id', 'method', 'url')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "custom_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'custom_id'))) { #optional property not found
             $CustomId = $null
         } else {
-            $CustomId = $JsonParameters.PSobject.Properties["custom_id"].value
+            $CustomId = $JsonParameters.PSobject.Properties['custom_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "method"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'method'))) { #optional property not found
             $Method = $null
         } else {
-            $Method = $JsonParameters.PSobject.Properties["method"].value
+            $Method = $JsonParameters.PSobject.Properties['method'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'url'))) { #optional property not found
             $Url = $null
         } else {
-            $Url = $JsonParameters.PSobject.Properties["url"].value
+            $Url = $JsonParameters.PSobject.Properties['url'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "custom_id" = ${CustomId}
-            "method" = ${Method}
-            "url" = ${Url}
+            'custom_id' = ${CustomId}
+            'method' = ${Method}
+            'url' = ${Url}
         }
 
         return $PSO

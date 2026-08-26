@@ -49,7 +49,7 @@ class RunStepDetailsToolCallsFunctionObject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -60,7 +60,7 @@ class RunStepDetailsToolCallsFunctionObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['function'])]
     #[Assert\Type("string")]
@@ -70,7 +70,7 @@ class RunStepDetailsToolCallsFunctionObject
      * @var RunStepDetailsToolCallsFunctionObjectFunction|null
      * @SerializedName("function")
      * @Type("OpenAPI\Server\Model\RunStepDetailsToolCallsFunctionObjectFunction")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunStepDetailsToolCallsFunctionObjectFunction")]
@@ -100,12 +100,12 @@ class RunStepDetailsToolCallsFunctionObject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The ID of the tool call object.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The ID of the tool call object.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -127,12 +127,12 @@ class RunStepDetailsToolCallsFunctionObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of tool call. This is always going to be `function` for this type of tool call.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of tool call. This is always going to be `function` for this type of tool call.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -154,12 +154,12 @@ class RunStepDetailsToolCallsFunctionObject
     }
 
     /**
-    * Sets function.
-    *
-    * @param RunStepDetailsToolCallsFunctionObjectFunction|null $function
-    *
-    * @return $this
-    */
+     * Sets function.
+     *
+     * @param RunStepDetailsToolCallsFunctionObjectFunction|null $function
+     *
+     * @return $this
+     */
     public function setFunction(?RunStepDetailsToolCallsFunctionObjectFunction $function): self
     {
         $this->function = $function;

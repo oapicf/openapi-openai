@@ -49,7 +49,7 @@ class UpdateVectorStoreRequest
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $name = null;
 
@@ -57,7 +57,7 @@ class UpdateVectorStoreRequest
      * @var VectorStoreExpirationAfter|null
      * @SerializedName("expires_after")
      * @Type("OpenAPI\Server\Model\VectorStoreExpirationAfter")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\VectorStoreExpirationAfter")]
     protected ?VectorStoreExpirationAfter $expiresAfter = null;
 
@@ -67,7 +67,7 @@ class UpdateVectorStoreRequest
      * @var array|null
      * @SerializedName("metadata")
      * @Type("array")
-    */
+     */
     #[Assert\Type("array")]
     protected ?array $metadata = null;
 
@@ -95,12 +95,12 @@ class UpdateVectorStoreRequest
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the vector store.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the vector store.
+     *
+     * @return $this
+     */
     public function setName(?string $name = null): self
     {
         $this->name = $name;
@@ -122,12 +122,12 @@ class UpdateVectorStoreRequest
     }
 
     /**
-    * Sets expiresAfter.
-    *
-    * @param VectorStoreExpirationAfter|null $expiresAfter
-    *
-    * @return $this
-    */
+     * Sets expiresAfter.
+     *
+     * @param VectorStoreExpirationAfter|null $expiresAfter
+     *
+     * @return $this
+     */
     public function setExpiresAfter(?VectorStoreExpirationAfter $expiresAfter = null): self
     {
         $this->expiresAfter = $expiresAfter;
@@ -149,12 +149,12 @@ class UpdateVectorStoreRequest
     }
 
     /**
-    * Sets metadata.
-    *
-    * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
-    *
-    * @return $this
-    */
+     * Sets metadata.
+     *
+     * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
+     *
+     * @return $this
+     */
     public function setMetadata(?array $metadata = null): self
     {
         $this->metadata = $metadata;

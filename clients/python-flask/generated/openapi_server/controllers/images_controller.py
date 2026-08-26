@@ -1,4 +1,4 @@
-import connexion
+import flask
 from typing import Dict
 from typing import Tuple
 from typing import Union
@@ -20,8 +20,8 @@ def create_image(body):  # noqa: E501
     :rtype: Union[ImagesResponse, Tuple[ImagesResponse, int], Tuple[ImagesResponse, int, Dict[str, str]]
     """
     create_image_request = body
-    if connexion.request.is_json:
-        create_image_request = CreateImageRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        create_image_request = CreateImageRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -49,8 +49,8 @@ def create_image_edit(image, prompt, mask=None, model=None, n=None, size=None, r
 
     :rtype: Union[ImagesResponse, Tuple[ImagesResponse, int], Tuple[ImagesResponse, int, Dict[str, str]]
     """
-    if connexion.request.is_json:
-        model = CreateImageEditRequestModel.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        model = CreateImageEditRequestModel.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -74,6 +74,6 @@ def create_image_variation(image, model=None, n=None, response_format=None, size
 
     :rtype: Union[ImagesResponse, Tuple[ImagesResponse, int], Tuple[ImagesResponse, int, Dict[str, str]]
     """
-    if connexion.request.is_json:
-        model = CreateImageEditRequestModel.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        model = CreateImageEditRequestModel.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'

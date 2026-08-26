@@ -1,4 +1,4 @@
-# # CreateEmbeddingResponse
+# CreateEmbeddingResponse
 
 ## Properties
 

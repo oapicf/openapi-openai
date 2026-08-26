@@ -59,10 +59,6 @@ class MessageDeltaObjectDelta {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageDeltaObjectDelta[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageDeltaObjectDelta[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
@@ -120,29 +116,29 @@ class MessageDeltaObjectDelta {
 }
 
 /// The entity that produced the message. One of `user` or `assistant`.
-class MessageDeltaObjectDeltaRoleEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageDeltaObjectDeltaRoleEnum._(this.value);
+enum MessageDeltaObjectDeltaRoleEnum {
+  user._(r'user'),
+  assistant._(r'assistant'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageDeltaObjectDeltaRoleEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const user = MessageDeltaObjectDeltaRoleEnum._(r'user');
-  static const assistant = MessageDeltaObjectDeltaRoleEnum._(r'assistant');
-
-  /// List of all possible values in this [enum][MessageDeltaObjectDeltaRoleEnum].
-  static const values = <MessageDeltaObjectDeltaRoleEnum>[
-    user,
-    assistant,
-  ];
-
+  /// Returns the instance of [MessageDeltaObjectDeltaRoleEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageDeltaObjectDeltaRoleEnum? fromJson(dynamic value) => MessageDeltaObjectDeltaRoleEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageDeltaObjectDeltaRoleEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageDeltaObjectDeltaRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageDeltaObjectDeltaRoleEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -164,9 +160,10 @@ class MessageDeltaObjectDeltaRoleEnumTypeTransformer {
 
   const MessageDeltaObjectDeltaRoleEnumTypeTransformer._();
 
-  String encode(MessageDeltaObjectDeltaRoleEnum data) => data.value;
+  String encode(MessageDeltaObjectDeltaRoleEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageDeltaObjectDeltaRoleEnum.
+  /// Returns the instance of [MessageDeltaObjectDeltaRoleEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -175,6 +172,9 @@ class MessageDeltaObjectDeltaRoleEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageDeltaObjectDeltaRoleEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageDeltaObjectDeltaRoleEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'user': return MessageDeltaObjectDeltaRoleEnum.user;
@@ -188,7 +188,7 @@ class MessageDeltaObjectDeltaRoleEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageDeltaObjectDeltaRoleEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageDeltaObjectDeltaRoleEnumTypeTransformer? _instance;
 }
 

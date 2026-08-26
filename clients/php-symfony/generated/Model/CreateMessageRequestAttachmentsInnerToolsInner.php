@@ -49,7 +49,7 @@ class CreateMessageRequestAttachmentsInnerToolsInner
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['code_interpreter', 'file_search'])]
     #[Assert\Type("string")]
@@ -77,12 +77,12 @@ class CreateMessageRequestAttachmentsInnerToolsInner
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of tool being defined: `code_interpreter`
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of tool being defined: `code_interpreter`
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;

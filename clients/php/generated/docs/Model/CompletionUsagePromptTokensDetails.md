@@ -1,4 +1,4 @@
-# # CompletionUsagePromptTokensDetails
+# CompletionUsagePromptTokensDetails
 
 ## Properties
 

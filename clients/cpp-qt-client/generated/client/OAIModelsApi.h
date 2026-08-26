@@ -41,6 +41,7 @@ public:
     void initializeServerConfigs();
     int setDefaultServerValue(int serverIndex,const QString &operation, const QString &variable,const QString &val);
     void setServerIndex(const QString &operation, int serverIndex);
+    void setServerIndex(int serverIndex);
     void setApiKey(const QString &apiKeyName, const QString &apiKey);
     void setBearerToken(const QString &token);
     void setUsername(const QString &username);
@@ -74,6 +75,13 @@ public:
 
 
 private:
+    enum class OauthMethod : int {
+        INVALID_VALUE_OPENAPI_GENERATED = 0,
+        ImplicitFlow = 1,
+        AuthorizationFlow = 2,
+        ClientCredentialsFlow = 3,
+        ResourceOwnerPasswordFlow = 4
+    };
     QMap<QString,int> _serverIndices;
     QMap<QString,QList<OAIServerConfiguration>> _serverConfigs;
     QMap<QString, QString> _apiKeys;
@@ -93,7 +101,7 @@ private:
     OauthImplicit _implicitFlow;
     OauthCredentials _credentialFlow;
     OauthPassword _passwordFlow;
-    int _OauthMethod = 0;
+    OauthMethod _OauthMethod = OauthMethod::INVALID_VALUE_OPENAPI_GENERATED;
 
     void deleteModelCallback(OAIHttpRequestWorker *worker);
     void listModelsCallback(OAIHttpRequestWorker *worker);
@@ -110,24 +118,12 @@ Q_SIGNALS:
     void listModelsSignalFull(OAIHttpRequestWorker *worker, OAIListModelsResponse summary);
     void retrieveModelSignalFull(OAIHttpRequestWorker *worker, OAIModel summary);
 
-    Q_DECL_DEPRECATED_X("Use deleteModelSignalError() instead")
-    void deleteModelSignalE(OAIDeleteModelResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteModelSignalError(OAIDeleteModelResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listModelsSignalError() instead")
-    void listModelsSignalE(OAIListModelsResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listModelsSignalError(OAIListModelsResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use retrieveModelSignalError() instead")
-    void retrieveModelSignalE(OAIModel summary, QNetworkReply::NetworkError error_type, QString error_str);
     void retrieveModelSignalError(OAIModel summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
-    Q_DECL_DEPRECATED_X("Use deleteModelSignalErrorFull() instead")
-    void deleteModelSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteModelSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listModelsSignalErrorFull() instead")
-    void listModelsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listModelsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use retrieveModelSignalErrorFull() instead")
-    void retrieveModelSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void retrieveModelSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();

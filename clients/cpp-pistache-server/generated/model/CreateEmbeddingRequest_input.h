@@ -33,7 +33,7 @@ class  CreateEmbeddingRequest_input
 {
 public:
     CreateEmbeddingRequest_input();
-    virtual ~CreateEmbeddingRequest_input() = default;
+    virtual ~CreateEmbeddingRequest_input();
 
 
     /// <summary>

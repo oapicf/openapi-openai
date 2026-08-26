@@ -36,7 +36,7 @@ export interface RealtimeServerEventConversationCreated {
     eventId: string;
     /**
      * The event type, must be `conversation.created`.
-     * @type {string}
+     * @type {RealtimeServerEventConversationCreatedTypeEnum}
      * @memberof RealtimeServerEventConversationCreated
      */
     type: RealtimeServerEventConversationCreatedTypeEnum;
@@ -62,8 +62,10 @@ export type RealtimeServerEventConversationCreatedTypeEnum = typeof RealtimeServ
  * Check if a given object implements the RealtimeServerEventConversationCreated interface.
  */
 export function instanceOfRealtimeServerEventConversationCreated(value: object): value is RealtimeServerEventConversationCreated {
-    if (!('eventId' in value) || value['eventId'] === undefined) return false;
+    if ((!('eventId' in (value as Record<string, any>)) && !('event_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['eventId'] === undefined && (value as Record<string, any>)['event_id'] === undefined)) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'conversation.created') return false;
+    
     if (!('conversation' in value) || value['conversation'] === undefined) return false;
     return true;
 }

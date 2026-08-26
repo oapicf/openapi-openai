@@ -69,10 +69,14 @@ class RealtimeServerEventInputAudioBufferSpeechStopped {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventInputAudioBufferSpeechStopped[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventInputAudioBufferSpeechStopped[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event_id'), 'Required key "RealtimeServerEventInputAudioBufferSpeechStopped[event_id]" is missing from JSON.');
+        assert(json[r'event_id'] != null, 'Required key "RealtimeServerEventInputAudioBufferSpeechStopped[event_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RealtimeServerEventInputAudioBufferSpeechStopped[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeServerEventInputAudioBufferSpeechStopped[type]" has a null value in JSON.');
+        assert(json.containsKey(r'audio_end_ms'), 'Required key "RealtimeServerEventInputAudioBufferSpeechStopped[audio_end_ms]" is missing from JSON.');
+        assert(json[r'audio_end_ms'] != null, 'Required key "RealtimeServerEventInputAudioBufferSpeechStopped[audio_end_ms]" has a null value in JSON.');
+        assert(json.containsKey(r'item_id'), 'Required key "RealtimeServerEventInputAudioBufferSpeechStopped[item_id]" is missing from JSON.');
+        assert(json[r'item_id'] != null, 'Required key "RealtimeServerEventInputAudioBufferSpeechStopped[item_id]" has a null value in JSON.');
         return true;
       }());
 
@@ -136,27 +140,28 @@ class RealtimeServerEventInputAudioBufferSpeechStopped {
 }
 
 /// The event type, must be `input_audio_buffer.speech_stopped`.
-class RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum._(this.value);
+enum RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum {
+  inputAudioBufferPeriodSpeechStopped._(r'input_audio_buffer.speech_stopped'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const inputAudioBufferPeriodSpeechStopped = RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum._(r'input_audio_buffer.speech_stopped');
-
-  /// List of all possible values in this [enum][RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum].
-  static const values = <RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum>[
-    inputAudioBufferPeriodSpeechStopped,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum? fromJson(dynamic value) => RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -178,9 +183,10 @@ class RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnumTypeTransformer {
 
   const RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum data) => data.value;
+  String encode(RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum.
+  /// Returns the instance of [RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -189,6 +195,9 @@ class RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'input_audio_buffer.speech_stopped': return RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum.inputAudioBufferPeriodSpeechStopped;
@@ -201,7 +210,7 @@ class RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnumTypeTransformer? _instance;
 }
 

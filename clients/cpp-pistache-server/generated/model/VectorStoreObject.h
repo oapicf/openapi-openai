@@ -35,7 +35,7 @@ class  VectorStoreObject
 {
 public:
     VectorStoreObject();
-    virtual ~VectorStoreObject() = default;
+    virtual ~VectorStoreObject();
 
 
     /// <summary>

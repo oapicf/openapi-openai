@@ -52,7 +52,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * ChatCompletionTokenLogprob
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ChatCompletionTokenLogprob {
   public static final String SERIALIZED_NAME_TOKEN = "token";
   @SerializedName(SERIALIZED_NAME_TOKEN)
@@ -207,10 +207,7 @@ public class ChatCompletionTokenLogprob {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -259,19 +256,19 @@ public class ChatCompletionTokenLogprob {
       // ensure the required json array is present
       if (jsonObj.get("bytes") == null) {
         throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
-      } else if (!jsonObj.get("bytes").isJsonArray()) {
+      } else if (!jsonObj.get("bytes").isJsonArray() && !jsonObj.get("bytes").isJsonNull()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `bytes` to be an array in the JSON string but got `%s`", jsonObj.get("bytes").toString()));
       }
-      // ensure the json data is an array
-      if (!jsonObj.get("top_logprobs").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `top_logprobs` to be an array in the JSON string but got `%s`", jsonObj.get("top_logprobs").toString()));
+      if (jsonObj.get("top_logprobs") != null) {
+        if (!jsonObj.get("top_logprobs").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `top_logprobs` to be an array in the JSON string but got `%s`", jsonObj.get("top_logprobs").toString()));
+        }
+        JsonArray jsonArraytopLogprobs = jsonObj.getAsJsonArray("top_logprobs");
+        // validate the required field `top_logprobs` (array)
+        for (int i = 0; i < jsonArraytopLogprobs.size(); i++) {
+          ChatCompletionTokenLogprobTopLogprobsInner.validateJsonElement(jsonArraytopLogprobs.get(i));
+        }
       }
-
-      JsonArray jsonArraytopLogprobs = jsonObj.getAsJsonArray("top_logprobs");
-      // validate the required field `top_logprobs` (array)
-      for (int i = 0; i < jsonArraytopLogprobs.size(); i++) {
-        ChatCompletionTokenLogprobTopLogprobsInner.validateJsonElement(jsonArraytopLogprobs.get(i));
-      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

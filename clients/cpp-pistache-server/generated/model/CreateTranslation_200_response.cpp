@@ -28,6 +28,8 @@ CreateTranslation_200_response::CreateTranslation_200_response()
     
 }
 
+CreateTranslation_200_response::~CreateTranslation_200_response() = default;
+
 void CreateTranslation_200_response::validate() const
 {
     std::stringstream msg;

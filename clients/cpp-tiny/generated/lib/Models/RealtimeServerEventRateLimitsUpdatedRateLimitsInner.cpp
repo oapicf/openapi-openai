@@ -127,7 +127,7 @@ RealtimeServerEventRateLimitsUpdated_rate_limits_inner::getName()
 }
 
 void
-RealtimeServerEventRateLimitsUpdated_rate_limits_inner::setName(std::string  name)
+RealtimeServerEventRateLimitsUpdated_rate_limits_inner::setName(std::string name)
 {
 	this->name = name;
 }
@@ -139,7 +139,7 @@ RealtimeServerEventRateLimitsUpdated_rate_limits_inner::getLimit()
 }
 
 void
-RealtimeServerEventRateLimitsUpdated_rate_limits_inner::setLimit(int  limit)
+RealtimeServerEventRateLimitsUpdated_rate_limits_inner::setLimit(int limit)
 {
 	this->limit = limit;
 }
@@ -151,7 +151,7 @@ RealtimeServerEventRateLimitsUpdated_rate_limits_inner::getRemaining()
 }
 
 void
-RealtimeServerEventRateLimitsUpdated_rate_limits_inner::setRemaining(int  remaining)
+RealtimeServerEventRateLimitsUpdated_rate_limits_inner::setRemaining(int remaining)
 {
 	this->remaining = remaining;
 }
@@ -163,7 +163,7 @@ RealtimeServerEventRateLimitsUpdated_rate_limits_inner::getResetSeconds()
 }
 
 void
-RealtimeServerEventRateLimitsUpdated_rate_limits_inner::setResetSeconds(long  reset_seconds)
+RealtimeServerEventRateLimitsUpdated_rate_limits_inner::setResetSeconds(long reset_seconds)
 {
 	this->reset_seconds = reset_seconds;
 }

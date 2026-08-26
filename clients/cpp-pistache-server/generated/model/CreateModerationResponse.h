@@ -34,7 +34,7 @@ class  CreateModerationResponse
 {
 public:
     CreateModerationResponse();
-    virtual ~CreateModerationResponse() = default;
+    virtual ~CreateModerationResponse();
 
 
     /// <summary>

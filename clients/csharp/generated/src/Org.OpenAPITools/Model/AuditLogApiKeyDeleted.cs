@@ -56,7 +56,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The tracking ID of the API key.</value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogApiKeyDeleted" />
     /// </summary>
-    public class AuditLogApiKeyDeletedJsonConverter : JsonConverter<AuditLogApiKeyDeleted>
+    public partial class AuditLogApiKeyDeletedJsonConverter : JsonConverter<AuditLogApiKeyDeleted>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogApiKeyDeletedJsonConverter" /> class.
+        /// </summary>
+        public AuditLogApiKeyDeletedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogApiKeyDeleted" />
         /// </summary>

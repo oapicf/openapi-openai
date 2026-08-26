@@ -30,10 +30,10 @@ static chunking_strategy_request_param_t *chunking_strategy_request_param_create
     if (!chunking_strategy_request_param_local_var) {
         return NULL;
     }
+    memset(chunking_strategy_request_param_local_var, 0, sizeof(chunking_strategy_request_param_t));
+    chunking_strategy_request_param_local_var->_library_owned = 1;
     chunking_strategy_request_param_local_var->type = type;
     chunking_strategy_request_param_local_var->_static = _static;
-
-    chunking_strategy_request_param_local_var->_library_owned = 1;
     return chunking_strategy_request_param_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) chunking_strategy_request_param_t *chunking_strategy
     openai_api_chunking_strategy_request_param_TYPE_e type,
     static_chunking_strategy_t *_static
     ) {
-    return chunking_strategy_request_param_create_internal (
+    chunking_strategy_request_param_t *result = chunking_strategy_request_param_create_internal (
         type,
         _static
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chunking_strategy_request_param_free(chunking_strategy_request_param_t *chunking_strategy_request_param) {
@@ -134,10 +137,15 @@ chunking_strategy_request_param_t *chunking_strategy_request_param_parseFromJSON
     _static_local_nonprim = static_chunking_strategy_parseFromJSON(_static); //nonprimitive
 
 
+
     chunking_strategy_request_param_local_var = chunking_strategy_request_param_create_internal (
         typeVariable,
         _static_local_nonprim
         );
+
+    if (!chunking_strategy_request_param_local_var) {
+        goto end;
+    }
 
     return chunking_strategy_request_param_local_var;
 end:

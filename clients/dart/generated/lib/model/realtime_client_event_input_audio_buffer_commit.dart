@@ -65,10 +65,8 @@ class RealtimeClientEventInputAudioBufferCommit {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeClientEventInputAudioBufferCommit[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeClientEventInputAudioBufferCommit[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "RealtimeClientEventInputAudioBufferCommit[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeClientEventInputAudioBufferCommit[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -127,27 +125,28 @@ class RealtimeClientEventInputAudioBufferCommit {
 }
 
 /// The event type, must be `input_audio_buffer.commit`.
-class RealtimeClientEventInputAudioBufferCommitTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeClientEventInputAudioBufferCommitTypeEnum._(this.value);
+enum RealtimeClientEventInputAudioBufferCommitTypeEnum {
+  inputAudioBufferPeriodCommit._(r'input_audio_buffer.commit'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeClientEventInputAudioBufferCommitTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const inputAudioBufferPeriodCommit = RealtimeClientEventInputAudioBufferCommitTypeEnum._(r'input_audio_buffer.commit');
-
-  /// List of all possible values in this [enum][RealtimeClientEventInputAudioBufferCommitTypeEnum].
-  static const values = <RealtimeClientEventInputAudioBufferCommitTypeEnum>[
-    inputAudioBufferPeriodCommit,
-  ];
-
+  /// Returns the instance of [RealtimeClientEventInputAudioBufferCommitTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeClientEventInputAudioBufferCommitTypeEnum? fromJson(dynamic value) => RealtimeClientEventInputAudioBufferCommitTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeClientEventInputAudioBufferCommitTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeClientEventInputAudioBufferCommitTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeClientEventInputAudioBufferCommitTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -169,9 +168,10 @@ class RealtimeClientEventInputAudioBufferCommitTypeEnumTypeTransformer {
 
   const RealtimeClientEventInputAudioBufferCommitTypeEnumTypeTransformer._();
 
-  String encode(RealtimeClientEventInputAudioBufferCommitTypeEnum data) => data.value;
+  String encode(RealtimeClientEventInputAudioBufferCommitTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeClientEventInputAudioBufferCommitTypeEnum.
+  /// Returns the instance of [RealtimeClientEventInputAudioBufferCommitTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -180,6 +180,9 @@ class RealtimeClientEventInputAudioBufferCommitTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeClientEventInputAudioBufferCommitTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeClientEventInputAudioBufferCommitTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'input_audio_buffer.commit': return RealtimeClientEventInputAudioBufferCommitTypeEnum.inputAudioBufferPeriodCommit;
@@ -192,7 +195,7 @@ class RealtimeClientEventInputAudioBufferCommitTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeClientEventInputAudioBufferCommitTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeClientEventInputAudioBufferCommitTypeEnumTypeTransformer? _instance;
 }
 

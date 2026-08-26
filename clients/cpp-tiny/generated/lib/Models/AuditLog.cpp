@@ -591,7 +591,7 @@ AuditLog::getId()
 }
 
 void
-AuditLog::setId(std::string  id)
+AuditLog::setId(std::string id)
 {
 	this->id = id;
 }
@@ -603,7 +603,7 @@ AuditLog::getType()
 }
 
 void
-AuditLog::setType(AuditLogEventType  type)
+AuditLog::setType(AuditLogEventType type)
 {
 	this->type = type;
 }
@@ -615,7 +615,7 @@ AuditLog::getEffectiveAt()
 }
 
 void
-AuditLog::setEffectiveAt(int  effective_at)
+AuditLog::setEffectiveAt(int effective_at)
 {
 	this->effective_at = effective_at;
 }
@@ -627,7 +627,7 @@ AuditLog::getProject()
 }
 
 void
-AuditLog::setProject(AuditLog_project  project)
+AuditLog::setProject(AuditLog_project project)
 {
 	this->project = project;
 }
@@ -639,7 +639,7 @@ AuditLog::getActor()
 }
 
 void
-AuditLog::setActor(AuditLogActor  actor)
+AuditLog::setActor(AuditLogActor actor)
 {
 	this->actor = actor;
 }
@@ -651,7 +651,7 @@ AuditLog::getApiKeycreated()
 }
 
 void
-AuditLog::setApiKeycreated(AuditLog_api_key_created  api_keycreated)
+AuditLog::setApiKeycreated(AuditLog_api_key_created api_keycreated)
 {
 	this->api_keycreated = api_keycreated;
 }
@@ -663,7 +663,7 @@ AuditLog::getApiKeyupdated()
 }
 
 void
-AuditLog::setApiKeyupdated(AuditLog_api_key_updated  api_keyupdated)
+AuditLog::setApiKeyupdated(AuditLog_api_key_updated api_keyupdated)
 {
 	this->api_keyupdated = api_keyupdated;
 }
@@ -675,7 +675,7 @@ AuditLog::getApiKeydeleted()
 }
 
 void
-AuditLog::setApiKeydeleted(AuditLog_api_key_deleted  api_keydeleted)
+AuditLog::setApiKeydeleted(AuditLog_api_key_deleted api_keydeleted)
 {
 	this->api_keydeleted = api_keydeleted;
 }
@@ -687,7 +687,7 @@ AuditLog::getInvitesent()
 }
 
 void
-AuditLog::setInvitesent(AuditLog_invite_sent  invitesent)
+AuditLog::setInvitesent(AuditLog_invite_sent invitesent)
 {
 	this->invitesent = invitesent;
 }
@@ -699,7 +699,7 @@ AuditLog::getInviteaccepted()
 }
 
 void
-AuditLog::setInviteaccepted(AuditLog_invite_accepted  inviteaccepted)
+AuditLog::setInviteaccepted(AuditLog_invite_accepted inviteaccepted)
 {
 	this->inviteaccepted = inviteaccepted;
 }
@@ -711,7 +711,7 @@ AuditLog::getInvitedeleted()
 }
 
 void
-AuditLog::setInvitedeleted(AuditLog_invite_accepted  invitedeleted)
+AuditLog::setInvitedeleted(AuditLog_invite_accepted invitedeleted)
 {
 	this->invitedeleted = invitedeleted;
 }
@@ -723,7 +723,7 @@ AuditLog::getLoginfailed()
 }
 
 void
-AuditLog::setLoginfailed(AuditLog_login_failed  loginfailed)
+AuditLog::setLoginfailed(AuditLog_login_failed loginfailed)
 {
 	this->loginfailed = loginfailed;
 }
@@ -735,7 +735,7 @@ AuditLog::getLogoutfailed()
 }
 
 void
-AuditLog::setLogoutfailed(AuditLog_login_failed  logoutfailed)
+AuditLog::setLogoutfailed(AuditLog_login_failed logoutfailed)
 {
 	this->logoutfailed = logoutfailed;
 }
@@ -747,7 +747,7 @@ AuditLog::getOrganizationupdated()
 }
 
 void
-AuditLog::setOrganizationupdated(AuditLog_organization_updated  organizationupdated)
+AuditLog::setOrganizationupdated(AuditLog_organization_updated organizationupdated)
 {
 	this->organizationupdated = organizationupdated;
 }
@@ -759,7 +759,7 @@ AuditLog::getProjectcreated()
 }
 
 void
-AuditLog::setProjectcreated(AuditLog_project_created  projectcreated)
+AuditLog::setProjectcreated(AuditLog_project_created projectcreated)
 {
 	this->projectcreated = projectcreated;
 }
@@ -771,7 +771,7 @@ AuditLog::getProjectupdated()
 }
 
 void
-AuditLog::setProjectupdated(AuditLog_project_updated  projectupdated)
+AuditLog::setProjectupdated(AuditLog_project_updated projectupdated)
 {
 	this->projectupdated = projectupdated;
 }
@@ -783,7 +783,7 @@ AuditLog::getProjectarchived()
 }
 
 void
-AuditLog::setProjectarchived(AuditLog_project_archived  projectarchived)
+AuditLog::setProjectarchived(AuditLog_project_archived projectarchived)
 {
 	this->projectarchived = projectarchived;
 }
@@ -795,7 +795,7 @@ AuditLog::getRateLimitupdated()
 }
 
 void
-AuditLog::setRateLimitupdated(AuditLog_rate_limit_updated  rate_limitupdated)
+AuditLog::setRateLimitupdated(AuditLog_rate_limit_updated rate_limitupdated)
 {
 	this->rate_limitupdated = rate_limitupdated;
 }
@@ -807,7 +807,7 @@ AuditLog::getRateLimitdeleted()
 }
 
 void
-AuditLog::setRateLimitdeleted(AuditLog_rate_limit_deleted  rate_limitdeleted)
+AuditLog::setRateLimitdeleted(AuditLog_rate_limit_deleted rate_limitdeleted)
 {
 	this->rate_limitdeleted = rate_limitdeleted;
 }
@@ -819,7 +819,7 @@ AuditLog::getServiceAccountcreated()
 }
 
 void
-AuditLog::setServiceAccountcreated(AuditLog_service_account_created  service_accountcreated)
+AuditLog::setServiceAccountcreated(AuditLog_service_account_created service_accountcreated)
 {
 	this->service_accountcreated = service_accountcreated;
 }
@@ -831,7 +831,7 @@ AuditLog::getServiceAccountupdated()
 }
 
 void
-AuditLog::setServiceAccountupdated(AuditLog_service_account_updated  service_accountupdated)
+AuditLog::setServiceAccountupdated(AuditLog_service_account_updated service_accountupdated)
 {
 	this->service_accountupdated = service_accountupdated;
 }
@@ -843,7 +843,7 @@ AuditLog::getServiceAccountdeleted()
 }
 
 void
-AuditLog::setServiceAccountdeleted(AuditLog_service_account_deleted  service_accountdeleted)
+AuditLog::setServiceAccountdeleted(AuditLog_service_account_deleted service_accountdeleted)
 {
 	this->service_accountdeleted = service_accountdeleted;
 }
@@ -855,7 +855,7 @@ AuditLog::getUseradded()
 }
 
 void
-AuditLog::setUseradded(AuditLog_user_added  useradded)
+AuditLog::setUseradded(AuditLog_user_added useradded)
 {
 	this->useradded = useradded;
 }
@@ -867,7 +867,7 @@ AuditLog::getUserupdated()
 }
 
 void
-AuditLog::setUserupdated(AuditLog_user_updated  userupdated)
+AuditLog::setUserupdated(AuditLog_user_updated userupdated)
 {
 	this->userupdated = userupdated;
 }
@@ -879,7 +879,7 @@ AuditLog::getUserdeleted()
 }
 
 void
-AuditLog::setUserdeleted(AuditLog_user_deleted  userdeleted)
+AuditLog::setUserdeleted(AuditLog_user_deleted userdeleted)
 {
 	this->userdeleted = userdeleted;
 }

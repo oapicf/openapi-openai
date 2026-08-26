@@ -24,6 +24,8 @@ CreateMessageRequest_content::CreateMessageRequest_content()
     
 }
 
+CreateMessageRequest_content::~CreateMessageRequest_content() = default;
+
 void CreateMessageRequest_content::validate() const
 {
     std::stringstream msg;

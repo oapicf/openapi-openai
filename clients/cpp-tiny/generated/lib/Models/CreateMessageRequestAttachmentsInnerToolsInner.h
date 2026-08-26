@@ -53,7 +53,7 @@ public:
 
 	/*! \brief Set The type of tool being defined: `code_interpreter`
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 
 
     private:

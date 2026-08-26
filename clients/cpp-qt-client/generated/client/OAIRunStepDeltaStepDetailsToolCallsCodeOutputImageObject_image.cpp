@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image::OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image(QString json) {
+OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image::OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -38,7 +38,7 @@ void OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image::initializeM
     m_file_id_isValid = false;
 }
 
-void OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image::fromJson(QString jsonString) {
+void OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -32,7 +32,7 @@ class  CreateModerationRequest_input_oneOf_inner_oneOf_image_url
 {
 public:
     CreateModerationRequest_input_oneOf_inner_oneOf_image_url();
-    virtual ~CreateModerationRequest_input_oneOf_inner_oneOf_image_url() = default;
+    virtual ~CreateModerationRequest_input_oneOf_inner_oneOf_image_url();
 
 
     /// <summary>

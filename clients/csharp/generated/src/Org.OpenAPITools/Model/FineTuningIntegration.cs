@@ -140,8 +140,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTuningIntegration" />
     /// </summary>
-    public class FineTuningIntegrationJsonConverter : JsonConverter<FineTuningIntegration>
+    public partial class FineTuningIntegrationJsonConverter : JsonConverter<FineTuningIntegration>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTuningIntegrationJsonConverter" /> class.
+        /// </summary>
+        public FineTuningIntegrationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTuningIntegration" />
         /// </summary>

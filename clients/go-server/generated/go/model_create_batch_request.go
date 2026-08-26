@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type CreateBatchRequest struct {
@@ -28,20 +33,84 @@ type CreateBatchRequest struct {
 	// Optional custom metadata for the batch.
 	Metadata *map[string]string `json:"metadata,omitempty"`
 }
-
-// AssertCreateBatchRequestRequired checks if the required fields are not zero-ed
-func AssertCreateBatchRequestRequired(obj CreateBatchRequest) error {
-	elements := map[string]interface{}{
-		"input_file_id": obj.InputFileId,
-		"endpoint": obj.Endpoint,
-		"completion_window": obj.CompletionWindow,
+// UnmarshalJSON validates required property keys then unmarshals into CreateBatchRequest
+func (o *CreateBatchRequest) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"input_file_id",
+		"endpoint",
+		"completion_window",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"input_file_id": false,
+		"endpoint": false,
+		"completion_window": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"input_file_id": {},
+		"endpoint": {},
+		"completion_window": {},
+		"metadata": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CreateBatchRequest
+
+	if value, exists := allProperties["input_file_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.InputFileId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["endpoint"]; exists {
+		if err = json.Unmarshal(value, &decoded.Endpoint); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["completion_window"]; exists {
+		if err = json.Unmarshal(value, &decoded.CompletionWindow); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["metadata"]; exists {
+		if err = json.Unmarshal(value, &decoded.Metadata); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCreateBatchRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertCreateBatchRequestRequired(obj CreateBatchRequest) error {
 	return nil
 }
 

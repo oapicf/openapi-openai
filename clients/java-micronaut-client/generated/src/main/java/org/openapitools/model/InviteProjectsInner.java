@@ -30,7 +30,7 @@ import javax.annotation.Generated;
   InviteProjectsInner.JSON_PROPERTY_ROLE
 })
 @JsonTypeName("Invite_projects_inner")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-01-29T14:07:53.155657246Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class InviteProjectsInner {
     public static final String JSON_PROPERTY_ID = "id";
@@ -152,10 +152,7 @@ public class InviteProjectsInner {
      * (except the first line).
      */
     private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
+        return o == null ? "null" : o.toString().replace("\n", "\n    ");
     }
 
 }

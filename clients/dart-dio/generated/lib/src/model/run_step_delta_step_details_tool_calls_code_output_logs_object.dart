@@ -110,8 +110,9 @@ class _$RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectSerializer implement
         case r'logs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.logs = valueDes;
           break;
         default:

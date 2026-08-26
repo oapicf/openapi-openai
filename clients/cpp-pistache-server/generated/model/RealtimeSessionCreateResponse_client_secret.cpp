@@ -28,6 +28,8 @@ RealtimeSessionCreateResponse_client_secret::RealtimeSessionCreateResponse_clien
     
 }
 
+RealtimeSessionCreateResponse_client_secret::~RealtimeSessionCreateResponse_client_secret() = default;
+
 void RealtimeSessionCreateResponse_client_secret::validate() const
 {
     std::stringstream msg;

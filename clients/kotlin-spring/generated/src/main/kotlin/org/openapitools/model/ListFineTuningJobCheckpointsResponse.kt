@@ -27,19 +27,24 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ListFineTuningJobCheckpointsResponse(
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("data")
     @get:JsonProperty("data", required = true) val `data`: kotlin.collections.List<FineTuningJobCheckpoint>,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: ListFineTuningJobCheckpointsResponse.`Object`,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("has_more")
     @get:JsonProperty("has_more", required = true) val hasMore: kotlin.Boolean,
 
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @param:JsonProperty("first_id")
     @get:JsonProperty("first_id") val firstId: kotlin.String? = null,
 
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @param:JsonProperty("last_id")
     @get:JsonProperty("last_id") val lastId: kotlin.String? = null
 ) {
 
@@ -56,7 +61,7 @@ data class ListFineTuningJobCheckpointsResponse(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ListFineTuningJobCheckpointsResponse'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }

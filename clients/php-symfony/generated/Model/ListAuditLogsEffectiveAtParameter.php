@@ -49,7 +49,7 @@ class ListAuditLogsEffectiveAtParameter
      * @var int|null
      * @SerializedName("gt")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $gt = null;
 
@@ -59,7 +59,7 @@ class ListAuditLogsEffectiveAtParameter
      * @var int|null
      * @SerializedName("gte")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $gte = null;
 
@@ -69,7 +69,7 @@ class ListAuditLogsEffectiveAtParameter
      * @var int|null
      * @SerializedName("lt")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $lt = null;
 
@@ -79,7 +79,7 @@ class ListAuditLogsEffectiveAtParameter
      * @var int|null
      * @SerializedName("lte")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $lte = null;
 
@@ -108,12 +108,12 @@ class ListAuditLogsEffectiveAtParameter
     }
 
     /**
-    * Sets gt.
-    *
-    * @param int|null $gt  Return only events whose `effective_at` (Unix seconds) is greater than this value.
-    *
-    * @return $this
-    */
+     * Sets gt.
+     *
+     * @param int|null $gt  Return only events whose `effective_at` (Unix seconds) is greater than this value.
+     *
+     * @return $this
+     */
     public function setGt(?int $gt = null): self
     {
         $this->gt = $gt;
@@ -135,12 +135,12 @@ class ListAuditLogsEffectiveAtParameter
     }
 
     /**
-    * Sets gte.
-    *
-    * @param int|null $gte  Return only events whose `effective_at` (Unix seconds) is greater than or equal to this value.
-    *
-    * @return $this
-    */
+     * Sets gte.
+     *
+     * @param int|null $gte  Return only events whose `effective_at` (Unix seconds) is greater than or equal to this value.
+     *
+     * @return $this
+     */
     public function setGte(?int $gte = null): self
     {
         $this->gte = $gte;
@@ -162,12 +162,12 @@ class ListAuditLogsEffectiveAtParameter
     }
 
     /**
-    * Sets lt.
-    *
-    * @param int|null $lt  Return only events whose `effective_at` (Unix seconds) is less than this value.
-    *
-    * @return $this
-    */
+     * Sets lt.
+     *
+     * @param int|null $lt  Return only events whose `effective_at` (Unix seconds) is less than this value.
+     *
+     * @return $this
+     */
     public function setLt(?int $lt = null): self
     {
         $this->lt = $lt;
@@ -189,12 +189,12 @@ class ListAuditLogsEffectiveAtParameter
     }
 
     /**
-    * Sets lte.
-    *
-    * @param int|null $lte  Return only events whose `effective_at` (Unix seconds) is less than or equal to this value.
-    *
-    * @return $this
-    */
+     * Sets lte.
+     *
+     * @param int|null $lte  Return only events whose `effective_at` (Unix seconds) is less than or equal to this value.
+     *
+     * @return $this
+     */
     public function setLte(?int $lte = null): self
     {
         $this->lte = $lte;

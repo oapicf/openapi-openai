@@ -1,4 +1,4 @@
-import connexion
+import flask
 from typing import Dict
 from typing import Tuple
 from typing import Union
@@ -51,8 +51,8 @@ def modify_user(user_id, body):  # noqa: E501
     :rtype: Union[User, Tuple[User, int], Tuple[User, int, Dict[str, str]]
     """
     user_role_update_request = body
-    if connexion.request.is_json:
-        user_role_update_request = UserRoleUpdateRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        user_role_update_request = UserRoleUpdateRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 

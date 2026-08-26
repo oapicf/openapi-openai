@@ -24,31 +24,40 @@ openai_api_delete_thread_response_OBJECT_e delete_thread_response_object_FromStr
 
 static delete_thread_response_t *delete_thread_response_create_internal(
     char *id,
-    int deleted,
+    int *deleted,
     openai_api_delete_thread_response_OBJECT_e object
     ) {
     delete_thread_response_t *delete_thread_response_local_var = malloc(sizeof(delete_thread_response_t));
     if (!delete_thread_response_local_var) {
         return NULL;
     }
+    memset(delete_thread_response_local_var, 0, sizeof(delete_thread_response_t));
+    delete_thread_response_local_var->_library_owned = 1;
     delete_thread_response_local_var->id = id;
     delete_thread_response_local_var->deleted = deleted;
     delete_thread_response_local_var->object = object;
-
-    delete_thread_response_local_var->_library_owned = 1;
     return delete_thread_response_local_var;
 }
 
 __attribute__((deprecated)) delete_thread_response_t *delete_thread_response_create(
     char *id,
-    int deleted,
+    int *deleted,
     openai_api_delete_thread_response_OBJECT_e object
     ) {
-    return delete_thread_response_create_internal (
+    int *deleted_copy = NULL;
+    if (deleted) {
+        deleted_copy = malloc(sizeof(int));
+        if (deleted_copy) *deleted_copy = *deleted;
+    }
+    delete_thread_response_t *result = delete_thread_response_create_internal (
         id,
-        deleted,
+        deleted_copy,
         object
         );
+    if (!result) {
+        free(deleted_copy);
+    }
+    return result;
 }
 
 void delete_thread_response_free(delete_thread_response_t *delete_thread_response) {
@@ -63,6 +72,10 @@ void delete_thread_response_free(delete_thread_response_t *delete_thread_respons
     if (delete_thread_response->id) {
         free(delete_thread_response->id);
         delete_thread_response->id = NULL;
+    }
+    if (delete_thread_response->deleted) {
+        free(delete_thread_response->deleted);
+        delete_thread_response->deleted = NULL;
     }
     free(delete_thread_response);
 }
@@ -83,7 +96,7 @@ cJSON *delete_thread_response_convertToJSON(delete_thread_response_t *delete_thr
     if (!delete_thread_response->deleted) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "deleted", delete_thread_response->deleted) == NULL) {
+    if(cJSON_AddBoolToObject(item, "deleted", *delete_thread_response->deleted) == NULL) {
     goto fail; //Bool
     }
 
@@ -108,6 +121,11 @@ fail:
 delete_thread_response_t *delete_thread_response_parseFromJSON(cJSON *delete_thread_responseJSON){
 
     delete_thread_response_t *delete_thread_response_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    // define the local variable for delete_thread_response->deleted
+    int *deleted_local_var = NULL;
 
     // delete_thread_response->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(delete_thread_responseJSON, "id");
@@ -138,6 +156,12 @@ delete_thread_response_t *delete_thread_response_parseFromJSON(cJSON *delete_thr
     {
     goto end; //Bool
     }
+    deleted_local_var = malloc(sizeof(int));
+    if(!deleted_local_var)
+    {
+        goto end;
+    }
+    *deleted_local_var = deleted->valueint;
 
     // delete_thread_response->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(delete_thread_responseJSON, "object");
@@ -157,14 +181,28 @@ delete_thread_response_t *delete_thread_response_parseFromJSON(cJSON *delete_thr
     objectVariable = delete_thread_response_object_FromString(object->valuestring);
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     delete_thread_response_local_var = delete_thread_response_create_internal (
-        strdup(id->valuestring),
-        deleted->valueint,
+        id_local_str,
+        deleted_local_var,
         objectVariable
         );
 
+    if (!delete_thread_response_local_var) {
+        goto end;
+    }
+
     return delete_thread_response_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (deleted_local_var) {
+        free(deleted_local_var);
+        deleted_local_var = NULL;
+    }
     return NULL;
 
 }

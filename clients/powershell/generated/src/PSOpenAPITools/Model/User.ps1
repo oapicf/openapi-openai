@@ -87,12 +87,12 @@ function Initialize-User {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "id" = ${Id}
-            "name" = ${Name}
-            "email" = ${Email}
-            "role" = ${Role}
-            "added_at" = ${AddedAt}
+            'object' = ${Object}
+            'id' = ${Id}
+            'name' = ${Name}
+            'email' = ${Email}
+            'role' = ${Role}
+            'added_at' = ${AddedAt}
         }
 
 
@@ -130,7 +130,7 @@ function ConvertFrom-JsonToUser {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in User
-        $AllProperties = ("object", "id", "name", "email", "role", "added_at")
+        $AllProperties = ('object', 'id', 'name', 'email', 'role', 'added_at')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -141,49 +141,49 @@ function ConvertFrom-JsonToUser {
             throw "Error! Empty JSON cannot be serialized due to the required property 'object' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) {
             throw "Error! JSON cannot be serialized due to the required property 'name' missing."
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "email"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'email'))) {
             throw "Error! JSON cannot be serialized due to the required property 'email' missing."
         } else {
-            $Email = $JsonParameters.PSobject.Properties["email"].value
+            $Email = $JsonParameters.PSobject.Properties['email'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "role"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'role'))) {
             throw "Error! JSON cannot be serialized due to the required property 'role' missing."
         } else {
-            $Role = $JsonParameters.PSobject.Properties["role"].value
+            $Role = $JsonParameters.PSobject.Properties['role'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "added_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'added_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'added_at' missing."
         } else {
-            $AddedAt = $JsonParameters.PSobject.Properties["added_at"].value
+            $AddedAt = $JsonParameters.PSobject.Properties['added_at'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "id" = ${Id}
-            "name" = ${Name}
-            "email" = ${Email}
-            "role" = ${Role}
-            "added_at" = ${AddedAt}
+            'object' = ${Object}
+            'id' = ${Id}
+            'name' = ${Name}
+            'email' = ${Email}
+            'role' = ${Role}
+            'added_at' = ${AddedAt}
         }
 
         return $PSO

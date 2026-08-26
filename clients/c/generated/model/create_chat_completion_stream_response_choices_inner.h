@@ -32,7 +32,7 @@ typedef struct create_chat_completion_stream_response_choices_inner_t {
     struct chat_completion_stream_response_delta_t *delta; //model
     struct create_chat_completion_response_choices_inner_logprobs_t *logprobs; //model
     openai_api_create_chat_completion_stream_response_choices_inner_FINISHREASON_e finish_reason; //enum
-    int index; //numeric
+    int *index; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } create_chat_completion_stream_response_choices_inner_t;
@@ -41,7 +41,7 @@ __attribute__((deprecated)) create_chat_completion_stream_response_choices_inner
     chat_completion_stream_response_delta_t *delta,
     create_chat_completion_response_choices_inner_logprobs_t *logprobs,
     openai_api_create_chat_completion_stream_response_choices_inner_FINISHREASON_e finish_reason,
-    int index
+    int *index
 );
 
 void create_chat_completion_stream_response_choices_inner_free(create_chat_completion_stream_response_choices_inner_t *create_chat_completion_stream_response_choices_inner);

@@ -47,7 +47,7 @@ class Batch
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -58,7 +58,7 @@ class Batch
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['batch'])]
     #[Assert\Type("string")]
@@ -70,7 +70,7 @@ class Batch
      * @var string|null
      * @SerializedName("endpoint")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $endpoint = null;
@@ -79,7 +79,7 @@ class Batch
      * @var BatchErrors|null
      * @SerializedName("errors")
      * @Type("OpenAPI\Server\Model\BatchErrors")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\BatchErrors")]
     protected ?BatchErrors $errors = null;
 
@@ -89,7 +89,7 @@ class Batch
      * @var string|null
      * @SerializedName("input_file_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $inputFileId = null;
@@ -100,7 +100,7 @@ class Batch
      * @var string|null
      * @SerializedName("completion_window")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $completionWindow = null;
@@ -111,7 +111,7 @@ class Batch
      * @var string|null
      * @SerializedName("status")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['validating', 'failed', 'in_progress', 'finalizing', 'completed', 'expired', 'cancelling', 'cancelled'])]
     #[Assert\Type("string")]
@@ -123,7 +123,7 @@ class Batch
      * @var string|null
      * @SerializedName("output_file_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $outputFileId = null;
 
@@ -133,7 +133,7 @@ class Batch
      * @var string|null
      * @SerializedName("error_file_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $errorFileId = null;
 
@@ -143,7 +143,7 @@ class Batch
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -154,7 +154,7 @@ class Batch
      * @var int|null
      * @SerializedName("in_progress_at")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $inProgressAt = null;
 
@@ -164,7 +164,7 @@ class Batch
      * @var int|null
      * @SerializedName("expires_at")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $expiresAt = null;
 
@@ -174,7 +174,7 @@ class Batch
      * @var int|null
      * @SerializedName("finalizing_at")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $finalizingAt = null;
 
@@ -184,7 +184,7 @@ class Batch
      * @var int|null
      * @SerializedName("completed_at")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $completedAt = null;
 
@@ -194,7 +194,7 @@ class Batch
      * @var int|null
      * @SerializedName("failed_at")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $failedAt = null;
 
@@ -204,7 +204,7 @@ class Batch
      * @var int|null
      * @SerializedName("expired_at")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $expiredAt = null;
 
@@ -214,7 +214,7 @@ class Batch
      * @var int|null
      * @SerializedName("cancelling_at")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $cancellingAt = null;
 
@@ -224,7 +224,7 @@ class Batch
      * @var int|null
      * @SerializedName("cancelled_at")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $cancelledAt = null;
 
@@ -232,7 +232,7 @@ class Batch
      * @var BatchRequestCounts|null
      * @SerializedName("request_counts")
      * @Type("OpenAPI\Server\Model\BatchRequestCounts")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\BatchRequestCounts")]
     protected ?BatchRequestCounts $requestCounts = null;
 
@@ -242,7 +242,7 @@ class Batch
      * @var array|null
      * @SerializedName("metadata")
      * @Type("array")
-    */
+     */
     #[Assert\Type("array")]
     protected ?array $metadata = null;
 
@@ -287,12 +287,12 @@ class Batch
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -314,12 +314,12 @@ class Batch
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `batch`.
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `batch`.
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -341,12 +341,12 @@ class Batch
     }
 
     /**
-    * Sets endpoint.
-    *
-    * @param string|null $endpoint  The OpenAI API endpoint used by the batch.
-    *
-    * @return $this
-    */
+     * Sets endpoint.
+     *
+     * @param string|null $endpoint  The OpenAI API endpoint used by the batch.
+     *
+     * @return $this
+     */
     public function setEndpoint(?string $endpoint): self
     {
         $this->endpoint = $endpoint;
@@ -368,12 +368,12 @@ class Batch
     }
 
     /**
-    * Sets errors.
-    *
-    * @param BatchErrors|null $errors
-    *
-    * @return $this
-    */
+     * Sets errors.
+     *
+     * @param BatchErrors|null $errors
+     *
+     * @return $this
+     */
     public function setErrors(?BatchErrors $errors = null): self
     {
         $this->errors = $errors;
@@ -395,12 +395,12 @@ class Batch
     }
 
     /**
-    * Sets inputFileId.
-    *
-    * @param string|null $inputFileId  The ID of the input file for the batch.
-    *
-    * @return $this
-    */
+     * Sets inputFileId.
+     *
+     * @param string|null $inputFileId  The ID of the input file for the batch.
+     *
+     * @return $this
+     */
     public function setInputFileId(?string $inputFileId): self
     {
         $this->inputFileId = $inputFileId;
@@ -422,12 +422,12 @@ class Batch
     }
 
     /**
-    * Sets completionWindow.
-    *
-    * @param string|null $completionWindow  The time frame within which the batch should be processed.
-    *
-    * @return $this
-    */
+     * Sets completionWindow.
+     *
+     * @param string|null $completionWindow  The time frame within which the batch should be processed.
+     *
+     * @return $this
+     */
     public function setCompletionWindow(?string $completionWindow): self
     {
         $this->completionWindow = $completionWindow;
@@ -449,12 +449,12 @@ class Batch
     }
 
     /**
-    * Sets status.
-    *
-    * @param string|null $status  The current status of the batch.
-    *
-    * @return $this
-    */
+     * Sets status.
+     *
+     * @param string|null $status  The current status of the batch.
+     *
+     * @return $this
+     */
     public function setStatus(?string $status): self
     {
         $this->status = $status;
@@ -476,12 +476,12 @@ class Batch
     }
 
     /**
-    * Sets outputFileId.
-    *
-    * @param string|null $outputFileId  The ID of the file containing the outputs of successfully executed requests.
-    *
-    * @return $this
-    */
+     * Sets outputFileId.
+     *
+     * @param string|null $outputFileId  The ID of the file containing the outputs of successfully executed requests.
+     *
+     * @return $this
+     */
     public function setOutputFileId(?string $outputFileId = null): self
     {
         $this->outputFileId = $outputFileId;
@@ -503,12 +503,12 @@ class Batch
     }
 
     /**
-    * Sets errorFileId.
-    *
-    * @param string|null $errorFileId  The ID of the file containing the outputs of requests with errors.
-    *
-    * @return $this
-    */
+     * Sets errorFileId.
+     *
+     * @param string|null $errorFileId  The ID of the file containing the outputs of requests with errors.
+     *
+     * @return $this
+     */
     public function setErrorFileId(?string $errorFileId = null): self
     {
         $this->errorFileId = $errorFileId;
@@ -530,12 +530,12 @@ class Batch
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) for when the batch was created.
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) for when the batch was created.
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -557,12 +557,12 @@ class Batch
     }
 
     /**
-    * Sets inProgressAt.
-    *
-    * @param int|null $inProgressAt  The Unix timestamp (in seconds) for when the batch started processing.
-    *
-    * @return $this
-    */
+     * Sets inProgressAt.
+     *
+     * @param int|null $inProgressAt  The Unix timestamp (in seconds) for when the batch started processing.
+     *
+     * @return $this
+     */
     public function setInProgressAt(?int $inProgressAt = null): self
     {
         $this->inProgressAt = $inProgressAt;
@@ -584,12 +584,12 @@ class Batch
     }
 
     /**
-    * Sets expiresAt.
-    *
-    * @param int|null $expiresAt  The Unix timestamp (in seconds) for when the batch will expire.
-    *
-    * @return $this
-    */
+     * Sets expiresAt.
+     *
+     * @param int|null $expiresAt  The Unix timestamp (in seconds) for when the batch will expire.
+     *
+     * @return $this
+     */
     public function setExpiresAt(?int $expiresAt = null): self
     {
         $this->expiresAt = $expiresAt;
@@ -611,12 +611,12 @@ class Batch
     }
 
     /**
-    * Sets finalizingAt.
-    *
-    * @param int|null $finalizingAt  The Unix timestamp (in seconds) for when the batch started finalizing.
-    *
-    * @return $this
-    */
+     * Sets finalizingAt.
+     *
+     * @param int|null $finalizingAt  The Unix timestamp (in seconds) for when the batch started finalizing.
+     *
+     * @return $this
+     */
     public function setFinalizingAt(?int $finalizingAt = null): self
     {
         $this->finalizingAt = $finalizingAt;
@@ -638,12 +638,12 @@ class Batch
     }
 
     /**
-    * Sets completedAt.
-    *
-    * @param int|null $completedAt  The Unix timestamp (in seconds) for when the batch was completed.
-    *
-    * @return $this
-    */
+     * Sets completedAt.
+     *
+     * @param int|null $completedAt  The Unix timestamp (in seconds) for when the batch was completed.
+     *
+     * @return $this
+     */
     public function setCompletedAt(?int $completedAt = null): self
     {
         $this->completedAt = $completedAt;
@@ -665,12 +665,12 @@ class Batch
     }
 
     /**
-    * Sets failedAt.
-    *
-    * @param int|null $failedAt  The Unix timestamp (in seconds) for when the batch failed.
-    *
-    * @return $this
-    */
+     * Sets failedAt.
+     *
+     * @param int|null $failedAt  The Unix timestamp (in seconds) for when the batch failed.
+     *
+     * @return $this
+     */
     public function setFailedAt(?int $failedAt = null): self
     {
         $this->failedAt = $failedAt;
@@ -692,12 +692,12 @@ class Batch
     }
 
     /**
-    * Sets expiredAt.
-    *
-    * @param int|null $expiredAt  The Unix timestamp (in seconds) for when the batch expired.
-    *
-    * @return $this
-    */
+     * Sets expiredAt.
+     *
+     * @param int|null $expiredAt  The Unix timestamp (in seconds) for when the batch expired.
+     *
+     * @return $this
+     */
     public function setExpiredAt(?int $expiredAt = null): self
     {
         $this->expiredAt = $expiredAt;
@@ -719,12 +719,12 @@ class Batch
     }
 
     /**
-    * Sets cancellingAt.
-    *
-    * @param int|null $cancellingAt  The Unix timestamp (in seconds) for when the batch started cancelling.
-    *
-    * @return $this
-    */
+     * Sets cancellingAt.
+     *
+     * @param int|null $cancellingAt  The Unix timestamp (in seconds) for when the batch started cancelling.
+     *
+     * @return $this
+     */
     public function setCancellingAt(?int $cancellingAt = null): self
     {
         $this->cancellingAt = $cancellingAt;
@@ -746,12 +746,12 @@ class Batch
     }
 
     /**
-    * Sets cancelledAt.
-    *
-    * @param int|null $cancelledAt  The Unix timestamp (in seconds) for when the batch was cancelled.
-    *
-    * @return $this
-    */
+     * Sets cancelledAt.
+     *
+     * @param int|null $cancelledAt  The Unix timestamp (in seconds) for when the batch was cancelled.
+     *
+     * @return $this
+     */
     public function setCancelledAt(?int $cancelledAt = null): self
     {
         $this->cancelledAt = $cancelledAt;
@@ -773,12 +773,12 @@ class Batch
     }
 
     /**
-    * Sets requestCounts.
-    *
-    * @param BatchRequestCounts|null $requestCounts
-    *
-    * @return $this
-    */
+     * Sets requestCounts.
+     *
+     * @param BatchRequestCounts|null $requestCounts
+     *
+     * @return $this
+     */
     public function setRequestCounts(?BatchRequestCounts $requestCounts = null): self
     {
         $this->requestCounts = $requestCounts;
@@ -800,12 +800,12 @@ class Batch
     }
 
     /**
-    * Sets metadata.
-    *
-    * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
-    *
-    * @return $this
-    */
+     * Sets metadata.
+     *
+     * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
+     *
+     * @return $this
+     */
     public function setMetadata(?array $metadata = null): self
     {
         $this->metadata = $metadata;

@@ -24,6 +24,8 @@ RealtimeSession_model::RealtimeSession_model()
     
 }
 
+RealtimeSession_model::~RealtimeSession_model() = default;
+
 void RealtimeSession_model::validate() const
 {
     std::stringstream msg;

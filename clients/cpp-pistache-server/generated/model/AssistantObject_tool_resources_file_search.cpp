@@ -25,6 +25,8 @@ AssistantObject_tool_resources_file_search::AssistantObject_tool_resources_file_
     
 }
 
+AssistantObject_tool_resources_file_search::~AssistantObject_tool_resources_file_search() = default;
+
 void AssistantObject_tool_resources_file_search::validate() const
 {
     std::stringstream msg;

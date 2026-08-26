@@ -49,8 +49,8 @@ function Initialize-ImagesResponse {
 
 
         $PSO = [PSCustomObject]@{
-            "created" = ${Created}
-            "data" = ${VarData}
+            'created' = ${Created}
+            'data' = ${VarData}
         }
 
 
@@ -88,7 +88,7 @@ function ConvertFrom-JsonToImagesResponse {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ImagesResponse
-        $AllProperties = ("created", "data")
+        $AllProperties = ('created', 'data')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -99,21 +99,21 @@ function ConvertFrom-JsonToImagesResponse {
             throw "Error! Empty JSON cannot be serialized due to the required property 'created' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created' missing."
         } else {
-            $Created = $JsonParameters.PSobject.Properties["created"].value
+            $Created = $JsonParameters.PSobject.Properties['created'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "data"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'data'))) {
             throw "Error! JSON cannot be serialized due to the required property 'data' missing."
         } else {
-            $VarData = $JsonParameters.PSobject.Properties["data"].value
+            $VarData = $JsonParameters.PSobject.Properties['data'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "created" = ${Created}
-            "data" = ${VarData}
+            'created' = ${Created}
+            'data' = ${VarData}
         }
 
         return $PSO

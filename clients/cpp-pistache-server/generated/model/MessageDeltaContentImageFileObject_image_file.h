@@ -32,7 +32,7 @@ class  MessageDeltaContentImageFileObject_image_file
 {
 public:
     MessageDeltaContentImageFileObject_image_file();
-    virtual ~MessageDeltaContentImageFileObject_image_file() = default;
+    virtual ~MessageDeltaContentImageFileObject_image_file();
 
 
     /// <summary>

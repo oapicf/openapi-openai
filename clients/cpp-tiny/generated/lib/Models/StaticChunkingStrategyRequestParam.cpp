@@ -86,7 +86,7 @@ StaticChunkingStrategyRequestParam::getType()
 }
 
 void
-StaticChunkingStrategyRequestParam::setType(std::string  type)
+StaticChunkingStrategyRequestParam::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ StaticChunkingStrategyRequestParam::getRStatic()
 }
 
 void
-StaticChunkingStrategyRequestParam::setRStatic(StaticChunkingStrategy  r_static)
+StaticChunkingStrategyRequestParam::setRStatic(StaticChunkingStrategy r_static)
 {
 	this->r_static = r_static;
 }

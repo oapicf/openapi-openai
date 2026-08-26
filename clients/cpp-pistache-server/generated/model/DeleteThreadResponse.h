@@ -32,7 +32,7 @@ class  DeleteThreadResponse
 {
 public:
     DeleteThreadResponse();
-    virtual ~DeleteThreadResponse() = default;
+    virtual ~DeleteThreadResponse();
 
 
     /// <summary>

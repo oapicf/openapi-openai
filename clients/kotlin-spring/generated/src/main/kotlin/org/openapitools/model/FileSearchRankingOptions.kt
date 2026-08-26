@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -24,10 +27,14 @@ data class FileSearchRankingOptions(
 
     @get:DecimalMin(value="0")
     @get:DecimalMax(value="1")
-    @Schema(example = "null", required = true, description = "The score threshold for the file search. All values must be a floating point number between 0 and 1.")
+    @Schema(required = true, description = "The score threshold for the file search. All values must be a floating point number between 0 and 1.")
+    @param:JsonProperty("score_threshold")
     @get:JsonProperty("score_threshold", required = true) val scoreThreshold: java.math.BigDecimal,
 
-    @Schema(example = "null", description = "The ranker to use for the file search. If not specified will use the `auto` ranker.")
+    @Schema(description = "The ranker to use for the file search. If not specified will use the `auto` ranker.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("ranker")
     @get:JsonProperty("ranker") val ranker: FileSearchRankingOptions.Ranker? = null
 ) {
 
@@ -45,7 +52,7 @@ data class FileSearchRankingOptions(
             @JsonCreator
             fun forValue(value: kotlin.String): Ranker {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FileSearchRankingOptions'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Ranker'")
             }
         }
     }

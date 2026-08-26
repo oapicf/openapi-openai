@@ -14,28 +14,28 @@ import options
 
 import model_other_chunking_strategy_response_param
 import model_static_chunking_strategy
-import model_static_chunking_strategy_response_param
+import model_static_chunking_strategy_request_param
 
 # OneOf type
 type VectorStoreFileObjectChunkingStrategyKind* {.pure.} = enum
-  StaticChunkingStrategyResponseParamVariant
+  StaticChunkingStrategyRequestParamVariant
   OtherChunkingStrategyResponseParamVariant
 
 type VectorStoreFileObjectChunkingStrategy* = object
   ## The strategy used to chunk the file.
   case kind*: VectorStoreFileObjectChunkingStrategyKind
-  of VectorStoreFileObjectChunkingStrategyKind.StaticChunkingStrategyResponseParamVariant:
-    StaticChunkingStrategyResponseParamValue*: StaticChunkingStrategyResponseParam
+  of VectorStoreFileObjectChunkingStrategyKind.StaticChunkingStrategyRequestParamVariant:
+    StaticChunkingStrategyRequestParamValue*: StaticChunkingStrategyRequestParam
   of VectorStoreFileObjectChunkingStrategyKind.OtherChunkingStrategyResponseParamVariant:
     OtherChunkingStrategyResponseParamValue*: OtherChunkingStrategyResponseParam
 
 proc to*(node: JsonNode, T: typedesc[VectorStoreFileObjectChunkingStrategy]): VectorStoreFileObjectChunkingStrategy =
   ## Custom deserializer for oneOf type - tries each variant
   try:
-    return VectorStoreFileObjectChunkingStrategy(kind: VectorStoreFileObjectChunkingStrategyKind.StaticChunkingStrategyResponseParamVariant, StaticChunkingStrategyResponseParamValue: to(node, StaticChunkingStrategyResponseParam))
+    return VectorStoreFileObjectChunkingStrategy(kind: VectorStoreFileObjectChunkingStrategyKind.StaticChunkingStrategyRequestParamVariant, StaticChunkingStrategyRequestParamValue: to(node, StaticChunkingStrategyRequestParam))
   except Exception as e:
     when defined(debug):
-      echo "Failed to deserialize as StaticChunkingStrategyResponseParam: ", e.msg
+      echo "Failed to deserialize as StaticChunkingStrategyRequestParam: ", e.msg
   try:
     return VectorStoreFileObjectChunkingStrategy(kind: VectorStoreFileObjectChunkingStrategyKind.OtherChunkingStrategyResponseParamVariant, OtherChunkingStrategyResponseParamValue: to(node, OtherChunkingStrategyResponseParam))
   except Exception as e:

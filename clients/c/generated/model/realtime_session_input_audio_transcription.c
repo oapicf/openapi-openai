@@ -12,18 +12,21 @@ static realtime_session_input_audio_transcription_t *realtime_session_input_audi
     if (!realtime_session_input_audio_transcription_local_var) {
         return NULL;
     }
-    realtime_session_input_audio_transcription_local_var->model = model;
-
+    memset(realtime_session_input_audio_transcription_local_var, 0, sizeof(realtime_session_input_audio_transcription_t));
     realtime_session_input_audio_transcription_local_var->_library_owned = 1;
+    realtime_session_input_audio_transcription_local_var->model = model;
     return realtime_session_input_audio_transcription_local_var;
 }
 
 __attribute__((deprecated)) realtime_session_input_audio_transcription_t *realtime_session_input_audio_transcription_create(
     char *model
     ) {
-    return realtime_session_input_audio_transcription_create_internal (
+    realtime_session_input_audio_transcription_t *result = realtime_session_input_audio_transcription_create_internal (
         model
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_session_input_audio_transcription_free(realtime_session_input_audio_transcription_t *realtime_session_input_audio_transcription) {
@@ -64,6 +67,8 @@ realtime_session_input_audio_transcription_t *realtime_session_input_audio_trans
 
     realtime_session_input_audio_transcription_t *realtime_session_input_audio_transcription_local_var = NULL;
 
+    char *model_local_str = NULL;
+
     // realtime_session_input_audio_transcription->model
     cJSON *model = cJSON_GetObjectItemCaseSensitive(realtime_session_input_audio_transcriptionJSON, "model");
     if (cJSON_IsNull(model)) {
@@ -77,12 +82,22 @@ realtime_session_input_audio_transcription_t *realtime_session_input_audio_trans
     }
 
 
+    if (model && !cJSON_IsNull(model)) model_local_str = strdup(model->valuestring);
+
     realtime_session_input_audio_transcription_local_var = realtime_session_input_audio_transcription_create_internal (
-        model && !cJSON_IsNull(model) ? strdup(model->valuestring) : NULL
+        model_local_str
         );
+
+    if (!realtime_session_input_audio_transcription_local_var) {
+        goto end;
+    }
 
     return realtime_session_input_audio_transcription_local_var;
 end:
+    if (model_local_str) {
+        free(model_local_str);
+        model_local_str = NULL;
+    }
     return NULL;
 
 }

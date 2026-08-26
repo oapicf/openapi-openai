@@ -25,6 +25,8 @@ UserRoleUpdateRequest::UserRoleUpdateRequest()
     
 }
 
+UserRoleUpdateRequest::~UserRoleUpdateRequest() = default;
+
 void UserRoleUpdateRequest::validate() const
 {
     std::stringstream msg;

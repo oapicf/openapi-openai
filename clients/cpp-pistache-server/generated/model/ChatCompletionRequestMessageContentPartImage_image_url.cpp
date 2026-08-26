@@ -27,6 +27,8 @@ ChatCompletionRequestMessageContentPartImage_image_url::ChatCompletionRequestMes
     
 }
 
+ChatCompletionRequestMessageContentPartImage_image_url::~ChatCompletionRequestMessageContentPartImage_image_url() = default;
+
 void ChatCompletionRequestMessageContentPartImage_image_url::validate() const
 {
     std::stringstream msg;

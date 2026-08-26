@@ -51,7 +51,7 @@ class Image
      * @var string|null
      * @SerializedName("b64_json")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $b64Json = null;
 
@@ -61,7 +61,7 @@ class Image
      * @var string|null
      * @SerializedName("url")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $url = null;
 
@@ -71,7 +71,7 @@ class Image
      * @var string|null
      * @SerializedName("revised_prompt")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $revisedPrompt = null;
 
@@ -99,12 +99,12 @@ class Image
     }
 
     /**
-    * Sets b64Json.
-    *
-    * @param string|null $b64Json  The base64-encoded JSON of the generated image, if `response_format` is `b64_json`.
-    *
-    * @return $this
-    */
+     * Sets b64Json.
+     *
+     * @param string|null $b64Json  The base64-encoded JSON of the generated image, if `response_format` is `b64_json`.
+     *
+     * @return $this
+     */
     public function setB64Json(?string $b64Json = null): self
     {
         $this->b64Json = $b64Json;
@@ -126,12 +126,12 @@ class Image
     }
 
     /**
-    * Sets url.
-    *
-    * @param string|null $url  The URL of the generated image, if `response_format` is `url` (default).
-    *
-    * @return $this
-    */
+     * Sets url.
+     *
+     * @param string|null $url  The URL of the generated image, if `response_format` is `url` (default).
+     *
+     * @return $this
+     */
     public function setUrl(?string $url = null): self
     {
         $this->url = $url;
@@ -153,12 +153,12 @@ class Image
     }
 
     /**
-    * Sets revisedPrompt.
-    *
-    * @param string|null $revisedPrompt  The prompt that was used to generate the image, if there was any revision to the prompt.
-    *
-    * @return $this
-    */
+     * Sets revisedPrompt.
+     *
+     * @param string|null $revisedPrompt  The prompt that was used to generate the image, if there was any revision to the prompt.
+     *
+     * @return $this
+     */
     public function setRevisedPrompt(?string $revisedPrompt = null): self
     {
         $this->revisedPrompt = $revisedPrompt;

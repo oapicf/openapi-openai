@@ -64,7 +64,7 @@ RealtimeSession_input_audio_transcription::getModel()
 }
 
 void
-RealtimeSession_input_audio_transcription::setModel(std::string  model)
+RealtimeSession_input_audio_transcription::setModel(std::string model)
 {
 	this->model = model;
 }

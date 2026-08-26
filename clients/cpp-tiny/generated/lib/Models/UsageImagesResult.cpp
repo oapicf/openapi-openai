@@ -232,7 +232,7 @@ UsageImagesResult::getObject()
 }
 
 void
-UsageImagesResult::setObject(std::string  object)
+UsageImagesResult::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -244,7 +244,7 @@ UsageImagesResult::getImages()
 }
 
 void
-UsageImagesResult::setImages(int  images)
+UsageImagesResult::setImages(int images)
 {
 	this->images = images;
 }
@@ -256,7 +256,7 @@ UsageImagesResult::getNumModelRequests()
 }
 
 void
-UsageImagesResult::setNumModelRequests(int  num_model_requests)
+UsageImagesResult::setNumModelRequests(int num_model_requests)
 {
 	this->num_model_requests = num_model_requests;
 }
@@ -268,7 +268,7 @@ UsageImagesResult::getSource()
 }
 
 void
-UsageImagesResult::setSource(std::string  source)
+UsageImagesResult::setSource(std::string source)
 {
 	this->source = source;
 }
@@ -280,7 +280,7 @@ UsageImagesResult::getSize()
 }
 
 void
-UsageImagesResult::setSize(std::string  size)
+UsageImagesResult::setSize(std::string size)
 {
 	this->size = size;
 }
@@ -292,7 +292,7 @@ UsageImagesResult::getProjectId()
 }
 
 void
-UsageImagesResult::setProjectId(std::string  project_id)
+UsageImagesResult::setProjectId(std::string project_id)
 {
 	this->project_id = project_id;
 }
@@ -304,7 +304,7 @@ UsageImagesResult::getUserId()
 }
 
 void
-UsageImagesResult::setUserId(std::string  user_id)
+UsageImagesResult::setUserId(std::string user_id)
 {
 	this->user_id = user_id;
 }
@@ -316,7 +316,7 @@ UsageImagesResult::getApiKeyId()
 }
 
 void
-UsageImagesResult::setApiKeyId(std::string  api_key_id)
+UsageImagesResult::setApiKeyId(std::string api_key_id)
 {
 	this->api_key_id = api_key_id;
 }
@@ -328,7 +328,7 @@ UsageImagesResult::getModel()
 }
 
 void
-UsageImagesResult::setModel(std::string  model)
+UsageImagesResult::setModel(std::string model)
 {
 	this->model = model;
 }

@@ -30,8 +30,8 @@ openai_api_fine_tune_method_TYPE_e fine_tune_method_type_FromString(char* type);
 
 typedef struct fine_tune_method_t {
     openai_api_fine_tune_method_TYPE_e type; //enum
-    fine_tune_supervised_method_t *supervised; //object
-    fine_tune_dpo_method_t *dpo; //object
+    struct fine_tune_supervised_method_t *supervised; //model
+    struct fine_tune_dpo_method_t *dpo; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } fine_tune_method_t;

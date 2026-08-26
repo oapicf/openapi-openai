@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.OtherChunkingStrategyResponseParam;
 import org.openapitools.model.StaticChunkingStrategy;
-import org.openapitools.model.StaticChunkingStrategyResponseParam;
+import org.openapitools.model.StaticChunkingStrategyRequestParam;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
@@ -35,7 +35,7 @@ import javax.validation.Valid;
   VectorStoreFileObjectChunkingStrategy.JSON_PROPERTY_TYPE,
   VectorStoreFileObjectChunkingStrategy.JSON_PROPERTY_STATIC
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-01-29T14:09:10.882541726Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class VectorStoreFileObjectChunkingStrategy   {
   /**
    * Always &#x60;static&#x60;.
@@ -155,10 +155,7 @@ public class VectorStoreFileObjectChunkingStrategy   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

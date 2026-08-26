@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type ChatCompletionTokenLogprob struct {
@@ -28,13 +33,87 @@ type ChatCompletionTokenLogprob struct {
 	// List of the most likely tokens and their log probability, at this token position. In rare cases, there may be fewer than the number of requested `top_logprobs` returned.
 	TopLogprobs []ChatCompletionTokenLogprobTopLogprobsInner `json:"top_logprobs"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into ChatCompletionTokenLogprob
+func (o *ChatCompletionTokenLogprob) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"token",
+		"logprob",
+		"bytes",
+		"top_logprobs",
+	}
 
-// AssertChatCompletionTokenLogprobRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"token": false,
+		"logprob": false,
+		"bytes": true,
+		"top_logprobs": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"token": {},
+		"logprob": {},
+		"bytes": {},
+		"top_logprobs": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded ChatCompletionTokenLogprob
+
+	if value, exists := allProperties["token"]; exists {
+		if err = json.Unmarshal(value, &decoded.Token); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["logprob"]; exists {
+		if err = json.Unmarshal(value, &decoded.Logprob); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["bytes"]; exists {
+		if err = json.Unmarshal(value, &decoded.Bytes); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["top_logprobs"]; exists {
+		if err = json.Unmarshal(value, &decoded.TopLogprobs); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertChatCompletionTokenLogprobRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertChatCompletionTokenLogprobRequired(obj ChatCompletionTokenLogprob) error {
 	elements := map[string]interface{}{
-		"token": obj.Token,
-		"logprob": obj.Logprob,
-		"bytes": obj.Bytes,
 		"top_logprobs": obj.TopLogprobs,
 	}
 	for name, el := range elements {

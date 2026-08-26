@@ -1,4 +1,4 @@
-# # FineTuneChatCompletionRequestAssistantMessage
+# FineTuneChatCompletionRequestAssistantMessage
 
 ## Properties
 

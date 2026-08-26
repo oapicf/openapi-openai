@@ -35,7 +35,7 @@ export interface ChatCompletionMessageToolCall {
     id: string;
     /**
      * The type of the tool. Currently, only `function` is supported.
-     * @type {string}
+     * @type {ChatCompletionMessageToolCallTypeEnum}
      * @memberof ChatCompletionMessageToolCall
      */
     type: ChatCompletionMessageToolCallTypeEnum;
@@ -63,7 +63,9 @@ export type ChatCompletionMessageToolCallTypeEnum = typeof ChatCompletionMessage
 export function instanceOfChatCompletionMessageToolCall(value: object): value is ChatCompletionMessageToolCall {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('_function' in value) || value['_function'] === undefined) return false;
+    if (value['type'] !== 'function') return false;
+    
+    if ((!('_function' in (value as Record<string, any>)) && !('function' in (value as Record<string, any>))) || ((value as Record<string, any>)['_function'] === undefined && (value as Record<string, any>)['function'] === undefined)) return false;
     return true;
 }
 

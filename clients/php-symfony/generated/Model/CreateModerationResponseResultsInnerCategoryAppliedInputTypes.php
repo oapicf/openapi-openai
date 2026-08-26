@@ -51,7 +51,7 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      * @var string[]|null
      * @SerializedName("hate")
      * @Type("array<string>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Choice(['text']),
@@ -67,7 +67,7 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      * @var string[]|null
      * @SerializedName("hate/threatening")
      * @Type("array<string>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Choice(['text']),
@@ -83,7 +83,7 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      * @var string[]|null
      * @SerializedName("harassment")
      * @Type("array<string>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Choice(['text']),
@@ -99,7 +99,7 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      * @var string[]|null
      * @SerializedName("harassment/threatening")
      * @Type("array<string>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Choice(['text']),
@@ -115,7 +115,7 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      * @var string[]|null
      * @SerializedName("illicit")
      * @Type("array<string>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Choice(['text']),
@@ -131,7 +131,7 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      * @var string[]|null
      * @SerializedName("illicit/violent")
      * @Type("array<string>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Choice(['text']),
@@ -147,7 +147,7 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      * @var string[]|null
      * @SerializedName("self-harm")
      * @Type("array<string>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Choice(['text', 'image']),
@@ -163,7 +163,7 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      * @var string[]|null
      * @SerializedName("self-harm/intent")
      * @Type("array<string>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Choice(['text', 'image']),
@@ -179,7 +179,7 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      * @var string[]|null
      * @SerializedName("self-harm/instructions")
      * @Type("array<string>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Choice(['text', 'image']),
@@ -195,7 +195,7 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      * @var string[]|null
      * @SerializedName("sexual")
      * @Type("array<string>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Choice(['text', 'image']),
@@ -211,7 +211,7 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      * @var string[]|null
      * @SerializedName("sexual/minors")
      * @Type("array<string>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Choice(['text']),
@@ -227,7 +227,7 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      * @var string[]|null
      * @SerializedName("violence")
      * @Type("array<string>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Choice(['text', 'image']),
@@ -243,7 +243,7 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      * @var string[]|null
      * @SerializedName("violence/graphic")
      * @Type("array<string>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Choice(['text', 'image']),
@@ -287,12 +287,12 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
     }
 
     /**
-    * Sets hate.
-    *
-    * @param string[]|null $hate  The applied input type(s) for the category 'hate'.
-    *
-    * @return $this
-    */
+     * Sets hate.
+     *
+     * @param string[]|null $hate  The applied input type(s) for the category 'hate'.
+     *
+     * @return $this
+     */
     public function setHate(?array $hate): self
     {
         $this->hate = $hate;
@@ -314,12 +314,12 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
     }
 
     /**
-    * Sets hateThreatening.
-    *
-    * @param string[]|null $hateThreatening  The applied input type(s) for the category 'hate/threatening'.
-    *
-    * @return $this
-    */
+     * Sets hateThreatening.
+     *
+     * @param string[]|null $hateThreatening  The applied input type(s) for the category 'hate/threatening'.
+     *
+     * @return $this
+     */
     public function setHateThreatening(?array $hateThreatening): self
     {
         $this->hateThreatening = $hateThreatening;
@@ -341,12 +341,12 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
     }
 
     /**
-    * Sets harassment.
-    *
-    * @param string[]|null $harassment  The applied input type(s) for the category 'harassment'.
-    *
-    * @return $this
-    */
+     * Sets harassment.
+     *
+     * @param string[]|null $harassment  The applied input type(s) for the category 'harassment'.
+     *
+     * @return $this
+     */
     public function setHarassment(?array $harassment): self
     {
         $this->harassment = $harassment;
@@ -368,12 +368,12 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
     }
 
     /**
-    * Sets harassmentThreatening.
-    *
-    * @param string[]|null $harassmentThreatening  The applied input type(s) for the category 'harassment/threatening'.
-    *
-    * @return $this
-    */
+     * Sets harassmentThreatening.
+     *
+     * @param string[]|null $harassmentThreatening  The applied input type(s) for the category 'harassment/threatening'.
+     *
+     * @return $this
+     */
     public function setHarassmentThreatening(?array $harassmentThreatening): self
     {
         $this->harassmentThreatening = $harassmentThreatening;
@@ -395,12 +395,12 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
     }
 
     /**
-    * Sets illicit.
-    *
-    * @param string[]|null $illicit  The applied input type(s) for the category 'illicit'.
-    *
-    * @return $this
-    */
+     * Sets illicit.
+     *
+     * @param string[]|null $illicit  The applied input type(s) for the category 'illicit'.
+     *
+     * @return $this
+     */
     public function setIllicit(?array $illicit): self
     {
         $this->illicit = $illicit;
@@ -422,12 +422,12 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
     }
 
     /**
-    * Sets illicitViolent.
-    *
-    * @param string[]|null $illicitViolent  The applied input type(s) for the category 'illicit/violent'.
-    *
-    * @return $this
-    */
+     * Sets illicitViolent.
+     *
+     * @param string[]|null $illicitViolent  The applied input type(s) for the category 'illicit/violent'.
+     *
+     * @return $this
+     */
     public function setIllicitViolent(?array $illicitViolent): self
     {
         $this->illicitViolent = $illicitViolent;
@@ -449,12 +449,12 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
     }
 
     /**
-    * Sets selfHarm.
-    *
-    * @param string[]|null $selfHarm  The applied input type(s) for the category 'self-harm'.
-    *
-    * @return $this
-    */
+     * Sets selfHarm.
+     *
+     * @param string[]|null $selfHarm  The applied input type(s) for the category 'self-harm'.
+     *
+     * @return $this
+     */
     public function setSelfHarm(?array $selfHarm): self
     {
         $this->selfHarm = $selfHarm;
@@ -476,12 +476,12 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
     }
 
     /**
-    * Sets selfHarmIntent.
-    *
-    * @param string[]|null $selfHarmIntent  The applied input type(s) for the category 'self-harm/intent'.
-    *
-    * @return $this
-    */
+     * Sets selfHarmIntent.
+     *
+     * @param string[]|null $selfHarmIntent  The applied input type(s) for the category 'self-harm/intent'.
+     *
+     * @return $this
+     */
     public function setSelfHarmIntent(?array $selfHarmIntent): self
     {
         $this->selfHarmIntent = $selfHarmIntent;
@@ -503,12 +503,12 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
     }
 
     /**
-    * Sets selfHarmInstructions.
-    *
-    * @param string[]|null $selfHarmInstructions  The applied input type(s) for the category 'self-harm/instructions'.
-    *
-    * @return $this
-    */
+     * Sets selfHarmInstructions.
+     *
+     * @param string[]|null $selfHarmInstructions  The applied input type(s) for the category 'self-harm/instructions'.
+     *
+     * @return $this
+     */
     public function setSelfHarmInstructions(?array $selfHarmInstructions): self
     {
         $this->selfHarmInstructions = $selfHarmInstructions;
@@ -530,12 +530,12 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
     }
 
     /**
-    * Sets sexual.
-    *
-    * @param string[]|null $sexual  The applied input type(s) for the category 'sexual'.
-    *
-    * @return $this
-    */
+     * Sets sexual.
+     *
+     * @param string[]|null $sexual  The applied input type(s) for the category 'sexual'.
+     *
+     * @return $this
+     */
     public function setSexual(?array $sexual): self
     {
         $this->sexual = $sexual;
@@ -557,12 +557,12 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
     }
 
     /**
-    * Sets sexualMinors.
-    *
-    * @param string[]|null $sexualMinors  The applied input type(s) for the category 'sexual/minors'.
-    *
-    * @return $this
-    */
+     * Sets sexualMinors.
+     *
+     * @param string[]|null $sexualMinors  The applied input type(s) for the category 'sexual/minors'.
+     *
+     * @return $this
+     */
     public function setSexualMinors(?array $sexualMinors): self
     {
         $this->sexualMinors = $sexualMinors;
@@ -584,12 +584,12 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
     }
 
     /**
-    * Sets violence.
-    *
-    * @param string[]|null $violence  The applied input type(s) for the category 'violence'.
-    *
-    * @return $this
-    */
+     * Sets violence.
+     *
+     * @param string[]|null $violence  The applied input type(s) for the category 'violence'.
+     *
+     * @return $this
+     */
     public function setViolence(?array $violence): self
     {
         $this->violence = $violence;
@@ -611,12 +611,12 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes
     }
 
     /**
-    * Sets violenceGraphic.
-    *
-    * @param string[]|null $violenceGraphic  The applied input type(s) for the category 'violence/graphic'.
-    *
-    * @return $this
-    */
+     * Sets violenceGraphic.
+     *
+     * @param string[]|null $violenceGraphic  The applied input type(s) for the category 'violence/graphic'.
+     *
+     * @return $this
+     */
     public function setViolenceGraphic(?array $violenceGraphic): self
     {
         $this->violenceGraphic = $violenceGraphic;

@@ -123,7 +123,7 @@ ListPaginatedFineTuningJobsResponse::getData()
 }
 
 void
-ListPaginatedFineTuningJobsResponse::setData(std::list <FineTuningJob> data)
+ListPaginatedFineTuningJobsResponse::setData(std::list<FineTuningJob> data)
 {
 	this->data = data;
 }
@@ -135,7 +135,7 @@ ListPaginatedFineTuningJobsResponse::isHasMore()
 }
 
 void
-ListPaginatedFineTuningJobsResponse::setHasMore(bool  has_more)
+ListPaginatedFineTuningJobsResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }
@@ -147,7 +147,7 @@ ListPaginatedFineTuningJobsResponse::getObject()
 }
 
 void
-ListPaginatedFineTuningJobsResponse::setObject(std::string  object)
+ListPaginatedFineTuningJobsResponse::setObject(std::string object)
 {
 	this->object = object;
 }

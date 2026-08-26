@@ -85,7 +85,7 @@ ChatCompletionMessageToolCall_function::getName()
 }
 
 void
-ChatCompletionMessageToolCall_function::setName(std::string  name)
+ChatCompletionMessageToolCall_function::setName(std::string name)
 {
 	this->name = name;
 }
@@ -97,7 +97,7 @@ ChatCompletionMessageToolCall_function::getArguments()
 }
 
 void
-ChatCompletionMessageToolCall_function::setArguments(std::string  arguments)
+ChatCompletionMessageToolCall_function::setArguments(std::string arguments)
 {
 	this->arguments = arguments;
 }

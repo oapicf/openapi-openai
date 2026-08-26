@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The URL of the image, must be a supported image types: jpeg, jpg, png, gif, webp.
 	 */
-	void setUrl(std::string  url);
+	void setUrl(std::string url);
 	/*! \brief Get Specifies the detail level of the image. `low` uses fewer tokens, you can opt in to high resolution using `high`.
 	 */
 	std::string getDetail();
 
 	/*! \brief Set Specifies the detail level of the image. `low` uses fewer tokens, you can opt in to high resolution using `high`.
 	 */
-	void setDetail(std::string  detail);
+	void setDetail(std::string detail);
 
 
     private:

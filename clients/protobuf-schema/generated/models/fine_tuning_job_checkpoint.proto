@@ -40,7 +40,7 @@ message FineTuningJobCheckpoint {
     OBJECT_FINE_TUNING_JOB_CHECKPOINT = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
 }
 

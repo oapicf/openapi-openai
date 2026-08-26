@@ -129,7 +129,7 @@ function deleteFileRaw<T>(requestParameters: DeleteFileRequest, requestConfig: r
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/files/{file_id}`.replace(`{${"file_id"}}`, encodeURIComponent(String(requestParameters.fileId))),
+        url: `${runtime.Configuration.basePath}/files/{file_id}`.replace('{file_id}', encodeURIComponent(String(requestParameters.fileId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -176,7 +176,7 @@ function downloadFileRaw<T>(requestParameters: DownloadFileRequest, requestConfi
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/files/{file_id}/content`.replace(`{${"file_id"}}`, encodeURIComponent(String(requestParameters.fileId))),
+        url: `${runtime.Configuration.basePath}/files/{file_id}/content`.replace('{file_id}', encodeURIComponent(String(requestParameters.fileId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -287,7 +287,7 @@ function retrieveFileRaw<T>(requestParameters: RetrieveFileRequest, requestConfi
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/files/{file_id}`.replace(`{${"file_id"}}`, encodeURIComponent(String(requestParameters.fileId))),
+        url: `${runtime.Configuration.basePath}/files/{file_id}`.replace('{file_id}', encodeURIComponent(String(requestParameters.fileId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,

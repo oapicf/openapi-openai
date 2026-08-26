@@ -55,7 +55,7 @@ export interface ChatCompletionStreamResponseDelta {
     toolCalls?: Array<ChatCompletionMessageToolCallChunk>;
     /**
      * The role of the author of this message.
-     * @type {string}
+     * @type {ChatCompletionStreamResponseDeltaRoleEnum}
      * @memberof ChatCompletionStreamResponseDelta
      */
     role?: ChatCompletionStreamResponseDeltaRoleEnum;
@@ -97,11 +97,11 @@ export function ChatCompletionStreamResponseDeltaFromJSONTyped(json: any, ignore
     }
     return {
         
-        'content': json['content'] == null ? undefined : json['content'],
+        'content': json['content'] === undefined ? undefined : json['content'] === null ? null : json['content'],
         'functionCall': json['function_call'] == null ? undefined : ChatCompletionStreamResponseDeltaFunctionCallFromJSON(json['function_call']),
         'toolCalls': json['tool_calls'] == null ? undefined : ((json['tool_calls'] as Array<any>).map(ChatCompletionMessageToolCallChunkFromJSON)),
         'role': json['role'] == null ? undefined : json['role'],
-        'refusal': json['refusal'] == null ? undefined : json['refusal'],
+        'refusal': json['refusal'] === undefined ? undefined : json['refusal'] === null ? null : json['refusal'],
     };
 }
 

@@ -32,7 +32,7 @@ class  FileSearchRankingOptions
 {
 public:
     FileSearchRankingOptions();
-    virtual ~FileSearchRankingOptions() = default;
+    virtual ~FileSearchRankingOptions();
 
 
     /// <summary>

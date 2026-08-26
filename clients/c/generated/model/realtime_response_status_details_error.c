@@ -13,10 +13,10 @@ static realtime_response_status_details_error_t *realtime_response_status_detail
     if (!realtime_response_status_details_error_local_var) {
         return NULL;
     }
+    memset(realtime_response_status_details_error_local_var, 0, sizeof(realtime_response_status_details_error_t));
+    realtime_response_status_details_error_local_var->_library_owned = 1;
     realtime_response_status_details_error_local_var->type = type;
     realtime_response_status_details_error_local_var->code = code;
-
-    realtime_response_status_details_error_local_var->_library_owned = 1;
     return realtime_response_status_details_error_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) realtime_response_status_details_error_t *realtime_r
     char *type,
     char *code
     ) {
-    return realtime_response_status_details_error_create_internal (
+    realtime_response_status_details_error_t *result = realtime_response_status_details_error_create_internal (
         type,
         code
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_response_status_details_error_free(realtime_response_status_details_error_t *realtime_response_status_details_error) {
@@ -80,6 +83,10 @@ realtime_response_status_details_error_t *realtime_response_status_details_error
 
     realtime_response_status_details_error_t *realtime_response_status_details_error_local_var = NULL;
 
+    char *type_local_str = NULL;
+
+    char *code_local_str = NULL;
+
     // realtime_response_status_details_error->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(realtime_response_status_details_errorJSON, "type");
     if (cJSON_IsNull(type)) {
@@ -105,13 +112,28 @@ realtime_response_status_details_error_t *realtime_response_status_details_error
     }
 
 
+    if (type && !cJSON_IsNull(type)) type_local_str = strdup(type->valuestring);
+    if (code && !cJSON_IsNull(code)) code_local_str = strdup(code->valuestring);
+
     realtime_response_status_details_error_local_var = realtime_response_status_details_error_create_internal (
-        type && !cJSON_IsNull(type) ? strdup(type->valuestring) : NULL,
-        code && !cJSON_IsNull(code) ? strdup(code->valuestring) : NULL
+        type_local_str,
+        code_local_str
         );
+
+    if (!realtime_response_status_details_error_local_var) {
+        goto end;
+    }
 
     return realtime_response_status_details_error_local_var;
 end:
+    if (type_local_str) {
+        free(type_local_str);
+        type_local_str = NULL;
+    }
+    if (code_local_str) {
+        free(code_local_str);
+        code_local_str = NULL;
+    }
     return NULL;
 
 }

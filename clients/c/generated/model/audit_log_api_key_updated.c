@@ -13,10 +13,10 @@ static audit_log_api_key_updated_t *audit_log_api_key_updated_create_internal(
     if (!audit_log_api_key_updated_local_var) {
         return NULL;
     }
+    memset(audit_log_api_key_updated_local_var, 0, sizeof(audit_log_api_key_updated_t));
+    audit_log_api_key_updated_local_var->_library_owned = 1;
     audit_log_api_key_updated_local_var->id = id;
     audit_log_api_key_updated_local_var->changes_requested = changes_requested;
-
-    audit_log_api_key_updated_local_var->_library_owned = 1;
     return audit_log_api_key_updated_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) audit_log_api_key_updated_t *audit_log_api_key_updat
     char *id,
     audit_log_api_key_updated_changes_requested_t *changes_requested
     ) {
-    return audit_log_api_key_updated_create_internal (
+    audit_log_api_key_updated_t *result = audit_log_api_key_updated_create_internal (
         id,
         changes_requested
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void audit_log_api_key_updated_free(audit_log_api_key_updated_t *audit_log_api_key_updated) {
@@ -85,6 +88,8 @@ audit_log_api_key_updated_t *audit_log_api_key_updated_parseFromJSON(cJSON *audi
 
     audit_log_api_key_updated_t *audit_log_api_key_updated_local_var = NULL;
 
+    char *id_local_str = NULL;
+
     // define the local variable for audit_log_api_key_updated->changes_requested
     audit_log_api_key_updated_changes_requested_t *changes_requested_local_nonprim = NULL;
 
@@ -110,13 +115,23 @@ audit_log_api_key_updated_t *audit_log_api_key_updated_parseFromJSON(cJSON *audi
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     audit_log_api_key_updated_local_var = audit_log_api_key_updated_create_internal (
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
+        id_local_str,
         changes_requested ? changes_requested_local_nonprim : NULL
         );
 
+    if (!audit_log_api_key_updated_local_var) {
+        goto end;
+    }
+
     return audit_log_api_key_updated_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     if (changes_requested_local_nonprim) {
         audit_log_api_key_updated_changes_requested_free(changes_requested_local_nonprim);
         changes_requested_local_nonprim = NULL;

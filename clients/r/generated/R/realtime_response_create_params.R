@@ -162,7 +162,7 @@ RealtimeResponseCreateParams <- R6::R6Class(
       }
       if (!is.null(self$`tools`)) {
         RealtimeResponseCreateParamsObject[["tools"]] <-
-          lapply(self$`tools`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`tools`)
       }
       if (!is.null(self$`tool_choice`)) {
         RealtimeResponseCreateParamsObject[["tool_choice"]] <-
@@ -174,11 +174,11 @@ RealtimeResponseCreateParams <- R6::R6Class(
       }
       if (!is.null(self$`max_response_output_tokens`)) {
         RealtimeResponseCreateParamsObject[["max_response_output_tokens"]] <-
-          self$`max_response_output_tokens`$toSimpleType()
+          self$extractSimpleType(self$`max_response_output_tokens`)
       }
       if (!is.null(self$`conversation`)) {
         RealtimeResponseCreateParamsObject[["conversation"]] <-
-          self$`conversation`$toSimpleType()
+          self$extractSimpleType(self$`conversation`)
       }
       if (!is.null(self$`metadata`)) {
         RealtimeResponseCreateParamsObject[["metadata"]] <-
@@ -186,9 +186,32 @@ RealtimeResponseCreateParams <- R6::R6Class(
       }
       if (!is.null(self$`input`)) {
         RealtimeResponseCreateParamsObject[["input"]] <-
-          lapply(self$`input`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`input`)
       }
       return(RealtimeResponseCreateParamsObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

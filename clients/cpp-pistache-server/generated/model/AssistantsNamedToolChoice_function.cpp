@@ -25,6 +25,8 @@ AssistantsNamedToolChoice_function::AssistantsNamedToolChoice_function()
     
 }
 
+AssistantsNamedToolChoice_function::~AssistantsNamedToolChoice_function() = default;
+
 void AssistantsNamedToolChoice_function::validate() const
 {
     std::stringstream msg;

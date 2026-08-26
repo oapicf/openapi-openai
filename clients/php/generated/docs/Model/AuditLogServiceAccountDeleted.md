@@ -1,4 +1,4 @@
-# # AuditLogServiceAccountDeleted
+# AuditLogServiceAccountDeleted
 
 ## Properties
 

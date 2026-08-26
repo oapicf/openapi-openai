@@ -1,0 +1,25 @@
+import { MessageDeltaObjectDelta } from './message-delta-object-delta';
+
+
+/**
+ * Represents a message delta i.e. any changed fields on a message during streaming. 
+ */
+export interface MessageDeltaObject { 
+  /**
+   * The identifier of the message, which can be referenced in API endpoints.
+   */
+  id: string;
+  /**
+   * The object type, which is always `thread.message.delta`.
+   */
+  object: MessageDeltaObject.ObjectEnum;
+  delta: MessageDeltaObjectDelta;
+}
+export namespace MessageDeltaObject {
+  export const ObjectEnum = {
+    ThreadMessageDelta: 'thread.message.delta'
+  } as const;
+  export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
+}
+
+

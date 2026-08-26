@@ -25,6 +25,8 @@ AuditLog_api_key_updated_changes_requested::AuditLog_api_key_updated_changes_req
     
 }
 
+AuditLog_api_key_updated_changes_requested::~AuditLog_api_key_updated_changes_requested() = default;
+
 void AuditLog_api_key_updated_changes_requested::validate() const
 {
     std::stringstream msg;

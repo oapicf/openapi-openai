@@ -9,7 +9,7 @@
 
 
 #include <string>
-#include "Auto_Chunking_Strategy.h"
+#include "AutoChunkingStrategyRequestParam.h"
 #include "Static_Chunking_Strategy.h"
 #include "Static_Chunking_Strategy_static.h"
 #include "Object.h"

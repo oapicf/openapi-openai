@@ -106,7 +106,7 @@ export class FilesApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/files/{file_id}'
-            .replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
+            .replace('{file_id}', encodeURIComponent(String(fileId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -143,7 +143,7 @@ export class FilesApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/files/{file_id}/content'
-            .replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
+            .replace('{file_id}', encodeURIComponent(String(fileId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -237,7 +237,7 @@ export class FilesApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/files/{file_id}'
-            .replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
+            .replace('{file_id}', encodeURIComponent(String(fileId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

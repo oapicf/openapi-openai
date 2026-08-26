@@ -63,7 +63,7 @@ export interface ChatCompletionRequestAssistantMessage {
     refusal?: string | null;
     /**
      * The role of the messages author, in this case `assistant`.
-     * @type {string}
+     * @type {ChatCompletionRequestAssistantMessageRoleEnum}
      * @memberof ChatCompletionRequestAssistantMessage
      */
     role: ChatCompletionRequestAssistantMessageRoleEnum;
@@ -109,6 +109,8 @@ export type ChatCompletionRequestAssistantMessageRoleEnum = typeof ChatCompletio
  */
 export function instanceOfChatCompletionRequestAssistantMessage(value: object): value is ChatCompletionRequestAssistantMessage {
     if (!('role' in value) || value['role'] === undefined) return false;
+    if (value['role'] !== 'assistant') return false;
+    
     return true;
 }
 
@@ -122,13 +124,13 @@ export function ChatCompletionRequestAssistantMessageFromJSONTyped(json: any, ig
     }
     return {
         
-        'content': json['content'] == null ? undefined : ChatCompletionRequestAssistantMessageContentFromJSON(json['content']),
-        'refusal': json['refusal'] == null ? undefined : json['refusal'],
+        'content': json['content'] === undefined ? undefined : json['content'] === null ? null : ChatCompletionRequestAssistantMessageContentFromJSON(json['content']),
+        'refusal': json['refusal'] === undefined ? undefined : json['refusal'] === null ? null : json['refusal'],
         'role': json['role'],
         'name': json['name'] == null ? undefined : json['name'],
-        'audio': json['audio'] == null ? undefined : ChatCompletionRequestAssistantMessageAudioFromJSON(json['audio']),
+        'audio': json['audio'] === undefined ? undefined : json['audio'] === null ? null : ChatCompletionRequestAssistantMessageAudioFromJSON(json['audio']),
         'toolCalls': json['tool_calls'] == null ? undefined : ((json['tool_calls'] as Array<any>).map(ChatCompletionMessageToolCallFromJSON)),
-        'functionCall': json['function_call'] == null ? undefined : ChatCompletionRequestAssistantMessageFunctionCallFromJSON(json['function_call']),
+        'functionCall': json['function_call'] === undefined ? undefined : json['function_call'] === null ? null : ChatCompletionRequestAssistantMessageFunctionCallFromJSON(json['function_call']),
     };
 }
 

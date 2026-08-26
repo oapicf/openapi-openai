@@ -120,7 +120,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Optional client-generated ID used to identify this event.</value>
         [JsonPropertyName("event_id")]
-        public string? EventId { get { return this.EventIdOption; } set { this.EventIdOption = new(value); } }
+        public string? EventId { get { return this.EventIdOption.Value; } set { this.EventIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ResponseId
@@ -134,7 +134,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A specific response ID to cancel - if not provided, will cancel an  in-progress response in the default conversation. </value>
         [JsonPropertyName("response_id")]
-        public string? ResponseId { get { return this.ResponseIdOption; } set { this.ResponseIdOption = new(value); } }
+        public string? ResponseId { get { return this.ResponseIdOption.Value; } set { this.ResponseIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -165,8 +165,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeClientEventResponseCancel" />
     /// </summary>
-    public class RealtimeClientEventResponseCancelJsonConverter : JsonConverter<RealtimeClientEventResponseCancel>
+    public partial class RealtimeClientEventResponseCancelJsonConverter : JsonConverter<RealtimeClientEventResponseCancel>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeClientEventResponseCancelJsonConverter" /> class.
+        /// </summary>
+        public RealtimeClientEventResponseCancelJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeClientEventResponseCancel" />
         /// </summary>

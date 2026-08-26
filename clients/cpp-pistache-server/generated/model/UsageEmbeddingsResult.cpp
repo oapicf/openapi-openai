@@ -35,6 +35,8 @@ UsageEmbeddingsResult::UsageEmbeddingsResult()
     
 }
 
+UsageEmbeddingsResult::~UsageEmbeddingsResult() = default;
+
 void UsageEmbeddingsResult::validate() const
 {
     std::stringstream msg;

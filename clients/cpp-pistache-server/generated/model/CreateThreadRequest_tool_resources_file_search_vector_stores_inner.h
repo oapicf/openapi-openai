@@ -35,7 +35,7 @@ class  CreateThreadRequest_tool_resources_file_search_vector_stores_inner
 {
 public:
     CreateThreadRequest_tool_resources_file_search_vector_stores_inner();
-    virtual ~CreateThreadRequest_tool_resources_file_search_vector_stores_inner() = default;
+    virtual ~CreateThreadRequest_tool_resources_file_search_vector_stores_inner();
 
 
     /// <summary>

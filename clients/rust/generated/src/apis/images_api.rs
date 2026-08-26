@@ -13,6 +13,8 @@ use reqwest;
 use serde::{Deserialize, Serialize, de::Error as _};
 use crate::{apis::ResponseContent, models};
 use super::{Error, configuration, ContentType};
+use tokio::fs::File as TokioFile;
+use tokio_util::codec::{BytesCodec, FramedRead};
 
 
 /// struct for typed errors of method [`create_image`]
@@ -98,10 +100,18 @@ pub async fn create_image_edit(configuration: &configuration::Configuration, ima
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
     let mut multipart_form = reqwest::multipart::Form::new();
-    multipart_form = multipart_form.file("image", p_form_image.as_os_str()).await?;
+    let file = TokioFile::open(&p_form_image).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    let file_name = p_form_image.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
+    let file_part = reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
+    multipart_form = multipart_form.part("image", file_part);
     multipart_form = multipart_form.text("prompt", p_form_prompt.to_string());
     if let Some(ref param_value) = p_form_mask {
-       multipart_form = multipart_form.file("mask", param_value.as_os_str()).await?;
+                let file = TokioFile::open(param_value).await?;
+                let stream = FramedRead::new(file, BytesCodec::new());
+                let file_name = param_value.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
+                let file_part = reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
+                multipart_form = multipart_form.part("mask", file_part);
     }
     if let Some(param_value) = p_form_model {
         multipart_form = multipart_form.text("model", serde_json::to_string(&param_value)?);
@@ -164,7 +174,11 @@ pub async fn create_image_variation(configuration: &configuration::Configuration
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
     let mut multipart_form = reqwest::multipart::Form::new();
-    multipart_form = multipart_form.file("image", p_form_image.as_os_str()).await?;
+    let file = TokioFile::open(&p_form_image).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    let file_name = p_form_image.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
+    let file_part = reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
+    multipart_form = multipart_form.part("image", file_part);
     if let Some(param_value) = p_form_model {
         multipart_form = multipart_form.text("model", serde_json::to_string(&param_value)?);
     }

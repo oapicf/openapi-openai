@@ -22,7 +22,7 @@ message AutoChunkingStrategyRequestParam {
     TYPE_AUTO = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
 }
 

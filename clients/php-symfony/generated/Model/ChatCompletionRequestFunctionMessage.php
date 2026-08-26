@@ -49,7 +49,7 @@ class ChatCompletionRequestFunctionMessage
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['function'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class ChatCompletionRequestFunctionMessage
      * @var string|null
      * @SerializedName("content")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $content = null;
@@ -72,7 +72,7 @@ class ChatCompletionRequestFunctionMessage
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $name = null;
@@ -101,12 +101,12 @@ class ChatCompletionRequestFunctionMessage
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  The role of the messages author, in this case `function`.
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  The role of the messages author, in this case `function`.
+     *
+     * @return $this
+     */
     public function setRole(?string $role): self
     {
         $this->role = $role;
@@ -128,12 +128,12 @@ class ChatCompletionRequestFunctionMessage
     }
 
     /**
-    * Sets content.
-    *
-    * @param string|null $content  The contents of the function message.
-    *
-    * @return $this
-    */
+     * Sets content.
+     *
+     * @param string|null $content  The contents of the function message.
+     *
+     * @return $this
+     */
     public function setContent(?string $content): self
     {
         $this->content = $content;
@@ -155,12 +155,12 @@ class ChatCompletionRequestFunctionMessage
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the function to call.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the function to call.
+     *
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;

@@ -6,7 +6,7 @@
 
 
 static create_moderation_response_results_inner_t *create_moderation_response_results_inner_create_internal(
-    int flagged,
+    int *flagged,
     create_moderation_response_results_inner_categories_t *categories,
     create_moderation_response_results_inner_category_scores_t *category_scores,
     create_moderation_response_results_inner_category_applied_input_types_t *category_applied_input_types
@@ -15,27 +15,36 @@ static create_moderation_response_results_inner_t *create_moderation_response_re
     if (!create_moderation_response_results_inner_local_var) {
         return NULL;
     }
+    memset(create_moderation_response_results_inner_local_var, 0, sizeof(create_moderation_response_results_inner_t));
+    create_moderation_response_results_inner_local_var->_library_owned = 1;
     create_moderation_response_results_inner_local_var->flagged = flagged;
     create_moderation_response_results_inner_local_var->categories = categories;
     create_moderation_response_results_inner_local_var->category_scores = category_scores;
     create_moderation_response_results_inner_local_var->category_applied_input_types = category_applied_input_types;
-
-    create_moderation_response_results_inner_local_var->_library_owned = 1;
     return create_moderation_response_results_inner_local_var;
 }
 
 __attribute__((deprecated)) create_moderation_response_results_inner_t *create_moderation_response_results_inner_create(
-    int flagged,
+    int *flagged,
     create_moderation_response_results_inner_categories_t *categories,
     create_moderation_response_results_inner_category_scores_t *category_scores,
     create_moderation_response_results_inner_category_applied_input_types_t *category_applied_input_types
     ) {
-    return create_moderation_response_results_inner_create_internal (
-        flagged,
+    int *flagged_copy = NULL;
+    if (flagged) {
+        flagged_copy = malloc(sizeof(int));
+        if (flagged_copy) *flagged_copy = *flagged;
+    }
+    create_moderation_response_results_inner_t *result = create_moderation_response_results_inner_create_internal (
+        flagged_copy,
         categories,
         category_scores,
         category_applied_input_types
         );
+    if (!result) {
+        free(flagged_copy);
+    }
+    return result;
 }
 
 void create_moderation_response_results_inner_free(create_moderation_response_results_inner_t *create_moderation_response_results_inner) {
@@ -47,6 +56,10 @@ void create_moderation_response_results_inner_free(create_moderation_response_re
         return ;
     }
     listEntry_t *listEntry;
+    if (create_moderation_response_results_inner->flagged) {
+        free(create_moderation_response_results_inner->flagged);
+        create_moderation_response_results_inner->flagged = NULL;
+    }
     if (create_moderation_response_results_inner->categories) {
         create_moderation_response_results_inner_categories_free(create_moderation_response_results_inner->categories);
         create_moderation_response_results_inner->categories = NULL;
@@ -69,7 +82,7 @@ cJSON *create_moderation_response_results_inner_convertToJSON(create_moderation_
     if (!create_moderation_response_results_inner->flagged) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "flagged", create_moderation_response_results_inner->flagged) == NULL) {
+    if(cJSON_AddBoolToObject(item, "flagged", *create_moderation_response_results_inner->flagged) == NULL) {
     goto fail; //Bool
     }
 
@@ -127,6 +140,9 @@ create_moderation_response_results_inner_t *create_moderation_response_results_i
 
     create_moderation_response_results_inner_t *create_moderation_response_results_inner_local_var = NULL;
 
+    // define the local variable for create_moderation_response_results_inner->flagged
+    int *flagged_local_var = NULL;
+
     // define the local variable for create_moderation_response_results_inner->categories
     create_moderation_response_results_inner_categories_t *categories_local_nonprim = NULL;
 
@@ -150,6 +166,12 @@ create_moderation_response_results_inner_t *create_moderation_response_results_i
     {
     goto end; //Bool
     }
+    flagged_local_var = malloc(sizeof(int));
+    if(!flagged_local_var)
+    {
+        goto end;
+    }
+    *flagged_local_var = flagged->valueint;
 
     // create_moderation_response_results_inner->categories
     cJSON *categories = cJSON_GetObjectItemCaseSensitive(create_moderation_response_results_innerJSON, "categories");
@@ -188,15 +210,24 @@ create_moderation_response_results_inner_t *create_moderation_response_results_i
     category_applied_input_types_local_nonprim = create_moderation_response_results_inner_category_applied_input_types_parseFromJSON(category_applied_input_types); //nonprimitive
 
 
+
     create_moderation_response_results_inner_local_var = create_moderation_response_results_inner_create_internal (
-        flagged->valueint,
+        flagged_local_var,
         categories_local_nonprim,
         category_scores_local_nonprim,
         category_applied_input_types_local_nonprim
         );
 
+    if (!create_moderation_response_results_inner_local_var) {
+        goto end;
+    }
+
     return create_moderation_response_results_inner_local_var;
 end:
+    if (flagged_local_var) {
+        free(flagged_local_var);
+        flagged_local_var = NULL;
+    }
     if (categories_local_nonprim) {
         create_moderation_response_results_inner_categories_free(categories_local_nonprim);
         categories_local_nonprim = NULL;

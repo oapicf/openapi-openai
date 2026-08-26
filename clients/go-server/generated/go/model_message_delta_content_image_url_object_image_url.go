@@ -23,7 +23,8 @@ type MessageDeltaContentImageUrlObjectImageUrl struct {
 	Detail string `json:"detail,omitempty"`
 }
 
-// AssertMessageDeltaContentImageUrlObjectImageUrlRequired checks if the required fields are not zero-ed
+// AssertMessageDeltaContentImageUrlObjectImageUrlRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertMessageDeltaContentImageUrlObjectImageUrlRequired(obj MessageDeltaContentImageUrlObjectImageUrl) error {
 	return nil
 }

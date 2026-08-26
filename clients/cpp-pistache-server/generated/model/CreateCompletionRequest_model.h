@@ -31,7 +31,7 @@ class  CreateCompletionRequest_model
 {
 public:
     CreateCompletionRequest_model();
-    virtual ~CreateCompletionRequest_model() = default;
+    virtual ~CreateCompletionRequest_model();
 
 
     /// <summary>

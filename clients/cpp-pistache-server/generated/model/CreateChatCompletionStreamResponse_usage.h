@@ -31,7 +31,7 @@ class  CreateChatCompletionStreamResponse_usage
 {
 public:
     CreateChatCompletionStreamResponse_usage();
-    virtual ~CreateChatCompletionStreamResponse_usage() = default;
+    virtual ~CreateChatCompletionStreamResponse_usage();
 
 
     /// <summary>

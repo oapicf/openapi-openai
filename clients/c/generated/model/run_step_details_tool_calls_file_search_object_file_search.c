@@ -13,10 +13,10 @@ static run_step_details_tool_calls_file_search_object_file_search_t *run_step_de
     if (!run_step_details_tool_calls_file_search_object_file_search_local_var) {
         return NULL;
     }
+    memset(run_step_details_tool_calls_file_search_object_file_search_local_var, 0, sizeof(run_step_details_tool_calls_file_search_object_file_search_t));
+    run_step_details_tool_calls_file_search_object_file_search_local_var->_library_owned = 1;
     run_step_details_tool_calls_file_search_object_file_search_local_var->ranking_options = ranking_options;
     run_step_details_tool_calls_file_search_object_file_search_local_var->results = results;
-
-    run_step_details_tool_calls_file_search_object_file_search_local_var->_library_owned = 1;
     return run_step_details_tool_calls_file_search_object_file_search_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) run_step_details_tool_calls_file_search_object_file_
     run_step_details_tool_calls_file_search_ranking_options_object_t *ranking_options,
     list_t *results
     ) {
-    return run_step_details_tool_calls_file_search_object_file_search_create_internal (
+    run_step_details_tool_calls_file_search_object_file_search_t *result = run_step_details_tool_calls_file_search_object_file_search_create_internal (
         ranking_options,
         results
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_step_details_tool_calls_file_search_object_file_search_free(run_step_details_tool_calls_file_search_object_file_search_t *run_step_details_tool_calls_file_search_object_file_search) {
@@ -140,10 +143,15 @@ run_step_details_tool_calls_file_search_object_file_search_t *run_step_details_t
     }
 
 
+
     run_step_details_tool_calls_file_search_object_file_search_local_var = run_step_details_tool_calls_file_search_object_file_search_create_internal (
         ranking_options ? ranking_options_local_nonprim : NULL,
         results ? resultsList : NULL
         );
+
+    if (!run_step_details_tool_calls_file_search_object_file_search_local_var) {
+        goto end;
+    }
 
     return run_step_details_tool_calls_file_search_object_file_search_local_var;
 end:

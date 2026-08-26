@@ -1,4 +1,4 @@
-# # CreateModerationResponseResultsInnerCategoryAppliedInputTypes
+# CreateModerationResponseResultsInnerCategoryAppliedInputTypes
 
 ## Properties
 

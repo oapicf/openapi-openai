@@ -51,7 +51,7 @@ class RealtimeResponseStatusDetailsError
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $type = null;
 
@@ -61,7 +61,7 @@ class RealtimeResponseStatusDetailsError
      * @var string|null
      * @SerializedName("code")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $code = null;
 
@@ -88,12 +88,12 @@ class RealtimeResponseStatusDetailsError
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of error.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of error.
+     *
+     * @return $this
+     */
     public function setType(?string $type = null): self
     {
         $this->type = $type;
@@ -115,12 +115,12 @@ class RealtimeResponseStatusDetailsError
     }
 
     /**
-    * Sets code.
-    *
-    * @param string|null $code  Error code, if any.
-    *
-    * @return $this
-    */
+     * Sets code.
+     *
+     * @param string|null $code  Error code, if any.
+     *
+     * @return $this
+     */
     public function setCode(?string $code = null): self
     {
         $this->code = $code;

@@ -23,7 +23,7 @@ message RunObjectIncompleteDetails {
     REASON_MAX_PROMPT_TOKENS = 1;
   }
 
-  Reason reason = 398093757;
+  string reason = 398093757;
 
 }
 

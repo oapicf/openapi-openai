@@ -53,35 +53,35 @@ public:
 
 	/*! \brief Set The object type, which is always `list`
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get 
 	 */
 	std::list<Invite> getData();
 
 	/*! \brief Set 
 	 */
-	void setData(std::list <Invite> data);
+	void setData(std::list<Invite> data);
 	/*! \brief Get The first `invite_id` in the retrieved `list`
 	 */
 	std::string getFirstId();
 
 	/*! \brief Set The first `invite_id` in the retrieved `list`
 	 */
-	void setFirstId(std::string  first_id);
+	void setFirstId(std::string first_id);
 	/*! \brief Get The last `invite_id` in the retrieved `list`
 	 */
 	std::string getLastId();
 
 	/*! \brief Set The last `invite_id` in the retrieved `list`
 	 */
-	void setLastId(std::string  last_id);
+	void setLastId(std::string last_id);
 	/*! \brief Get The `has_more` property is used for pagination to indicate there are additional results.
 	 */
 	bool isHasMore();
 
 	/*! \brief Set The `has_more` property is used for pagination to indicate there are additional results.
 	 */
-	void setHasMore(bool  has_more);
+	void setHasMore(bool has_more);
 
 
     private:

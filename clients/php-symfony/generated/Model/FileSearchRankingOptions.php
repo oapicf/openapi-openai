@@ -51,7 +51,7 @@ class FileSearchRankingOptions
      * @var string|null
      * @SerializedName("ranker")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['auto', 'default_2024_08_21'])]
     #[Assert\Type("string")]
     protected ?string $ranker = null;
@@ -62,7 +62,7 @@ class FileSearchRankingOptions
      * @var float|null
      * @SerializedName("score_threshold")
      * @Type("float")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(0)]
@@ -92,12 +92,12 @@ class FileSearchRankingOptions
     }
 
     /**
-    * Sets ranker.
-    *
-    * @param string|null $ranker  The ranker to use for the file search. If not specified will use the `auto` ranker.
-    *
-    * @return $this
-    */
+     * Sets ranker.
+     *
+     * @param string|null $ranker  The ranker to use for the file search. If not specified will use the `auto` ranker.
+     *
+     * @return $this
+     */
     public function setRanker(?string $ranker = null): self
     {
         $this->ranker = $ranker;
@@ -119,12 +119,12 @@ class FileSearchRankingOptions
     }
 
     /**
-    * Sets scoreThreshold.
-    *
-    * @param float|null $scoreThreshold  The score threshold for the file search. All values must be a floating point number between 0 and 1.
-    *
-    * @return $this
-    */
+     * Sets scoreThreshold.
+     *
+     * @param float|null $scoreThreshold  The score threshold for the file search. All values must be a floating point number between 0 and 1.
+     *
+     * @return $this
+     */
     public function setScoreThreshold(?float $scoreThreshold): self
     {
         $this->scoreThreshold = $scoreThreshold;

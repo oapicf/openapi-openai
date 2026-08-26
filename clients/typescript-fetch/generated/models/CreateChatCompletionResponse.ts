@@ -60,7 +60,7 @@ export interface CreateChatCompletionResponse {
     model: string;
     /**
      * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
-     * @type {string}
+     * @type {CreateChatCompletionResponseServiceTierEnum}
      * @memberof CreateChatCompletionResponse
      */
     serviceTier?: CreateChatCompletionResponseServiceTierEnum | null;
@@ -75,7 +75,7 @@ export interface CreateChatCompletionResponse {
     systemFingerprint?: string;
     /**
      * The object type, which is always `chat.completion`.
-     * @type {string}
+     * @type {CreateChatCompletionResponseObjectEnum}
      * @memberof CreateChatCompletionResponse
      */
     object: CreateChatCompletionResponseObjectEnum;
@@ -115,6 +115,8 @@ export function instanceOfCreateChatCompletionResponse(value: object): value is 
     if (!('created' in value) || value['created'] === undefined) return false;
     if (!('model' in value) || value['model'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'chat.completion') return false;
+    
     return true;
 }
 
@@ -132,7 +134,7 @@ export function CreateChatCompletionResponseFromJSONTyped(json: any, ignoreDiscr
         'choices': ((json['choices'] as Array<any>).map(CreateChatCompletionResponseChoicesInnerFromJSON)),
         'created': json['created'],
         'model': json['model'],
-        'serviceTier': json['service_tier'] == null ? undefined : json['service_tier'],
+        'serviceTier': json['service_tier'] === undefined ? undefined : json['service_tier'] === null ? null : json['service_tier'],
         'systemFingerprint': json['system_fingerprint'] == null ? undefined : json['system_fingerprint'],
         'object': json['object'],
         'usage': json['usage'] == null ? undefined : CompletionUsageFromJSON(json['usage']),

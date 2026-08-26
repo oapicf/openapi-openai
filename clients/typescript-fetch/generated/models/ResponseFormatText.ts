@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface ResponseFormatText {
     /**
      * The type of response format being defined: `text`
-     * @type {string}
+     * @type {ResponseFormatTextTypeEnum}
      * @memberof ResponseFormatText
      */
     type: ResponseFormatTextTypeEnum;
@@ -42,6 +42,8 @@ export type ResponseFormatTextTypeEnum = typeof ResponseFormatTextTypeEnum[keyof
  */
 export function instanceOfResponseFormatText(value: object): value is ResponseFormatText {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'text') return false;
+    
     return true;
 }
 

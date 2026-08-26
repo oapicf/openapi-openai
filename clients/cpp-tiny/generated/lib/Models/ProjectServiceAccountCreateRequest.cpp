@@ -64,7 +64,7 @@ ProjectServiceAccountCreateRequest::getName()
 }
 
 void
-ProjectServiceAccountCreateRequest::setName(std::string  name)
+ProjectServiceAccountCreateRequest::setName(std::string name)
 {
 	this->name = name;
 }

@@ -245,7 +245,7 @@ Batch <- R6::R6Class(
       }
       if (!is.null(self$`errors`)) {
         BatchObject[["errors"]] <-
-          self$`errors`$toSimpleType()
+          self$extractSimpleType(self$`errors`)
       }
       if (!is.null(self$`input_file_id`)) {
         BatchObject[["input_file_id"]] <-
@@ -305,13 +305,36 @@ Batch <- R6::R6Class(
       }
       if (!is.null(self$`request_counts`)) {
         BatchObject[["request_counts"]] <-
-          self$`request_counts`$toSimpleType()
+          self$extractSimpleType(self$`request_counts`)
       }
       if (!is.null(self$`metadata`)) {
         BatchObject[["metadata"]] <-
           self$`metadata`
       }
       return(BatchObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

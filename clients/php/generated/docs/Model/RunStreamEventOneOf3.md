@@ -1,4 +1,4 @@
-# # RunStreamEventOneOf3
+# RunStreamEventOneOf3
 
 ## Properties
 

@@ -26,7 +26,7 @@ static project_api_key_t *project_api_key_create_internal(
     openai_api_project_api_key_OBJECT_e object,
     char *redacted_value,
     char *name,
-    int created_at,
+    int *created_at,
     char *id,
     project_api_key_owner_t *owner
     ) {
@@ -34,14 +34,14 @@ static project_api_key_t *project_api_key_create_internal(
     if (!project_api_key_local_var) {
         return NULL;
     }
+    memset(project_api_key_local_var, 0, sizeof(project_api_key_t));
+    project_api_key_local_var->_library_owned = 1;
     project_api_key_local_var->object = object;
     project_api_key_local_var->redacted_value = redacted_value;
     project_api_key_local_var->name = name;
     project_api_key_local_var->created_at = created_at;
     project_api_key_local_var->id = id;
     project_api_key_local_var->owner = owner;
-
-    project_api_key_local_var->_library_owned = 1;
     return project_api_key_local_var;
 }
 
@@ -49,18 +49,27 @@ __attribute__((deprecated)) project_api_key_t *project_api_key_create(
     openai_api_project_api_key_OBJECT_e object,
     char *redacted_value,
     char *name,
-    int created_at,
+    int *created_at,
     char *id,
     project_api_key_owner_t *owner
     ) {
-    return project_api_key_create_internal (
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    project_api_key_t *result = project_api_key_create_internal (
         object,
         redacted_value,
         name,
-        created_at,
+        created_at_copy,
         id,
         owner
         );
+    if (!result) {
+        free(created_at_copy);
+    }
+    return result;
 }
 
 void project_api_key_free(project_api_key_t *project_api_key) {
@@ -79,6 +88,10 @@ void project_api_key_free(project_api_key_t *project_api_key) {
     if (project_api_key->name) {
         free(project_api_key->name);
         project_api_key->name = NULL;
+    }
+    if (project_api_key->created_at) {
+        free(project_api_key->created_at);
+        project_api_key->created_at = NULL;
     }
     if (project_api_key->id) {
         free(project_api_key->id);
@@ -126,7 +139,7 @@ cJSON *project_api_key_convertToJSON(project_api_key_t *project_api_key) {
     if (!project_api_key->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", project_api_key->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *project_api_key->created_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -164,6 +177,15 @@ fail:
 project_api_key_t *project_api_key_parseFromJSON(cJSON *project_api_keyJSON){
 
     project_api_key_t *project_api_key_local_var = NULL;
+
+    char *redacted_value_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    // define the local variable for project_api_key->created_at
+    int *created_at_local_var = NULL;
+
+    char *id_local_str = NULL;
 
     // define the local variable for project_api_key->owner
     project_api_key_owner_t *owner_local_nonprim = NULL;
@@ -229,6 +251,12 @@ project_api_key_t *project_api_key_parseFromJSON(cJSON *project_api_keyJSON){
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
     // project_api_key->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(project_api_keyJSON, "id");
@@ -258,17 +286,41 @@ project_api_key_t *project_api_key_parseFromJSON(cJSON *project_api_keyJSON){
     owner_local_nonprim = project_api_key_owner_parseFromJSON(owner); //nonprimitive
 
 
+    if (redacted_value && !cJSON_IsNull(redacted_value)) redacted_value_local_str = strdup(redacted_value->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     project_api_key_local_var = project_api_key_create_internal (
         objectVariable,
-        strdup(redacted_value->valuestring),
-        strdup(name->valuestring),
-        created_at->valuedouble,
-        strdup(id->valuestring),
+        redacted_value_local_str,
+        name_local_str,
+        created_at_local_var,
+        id_local_str,
         owner_local_nonprim
         );
 
+    if (!project_api_key_local_var) {
+        goto end;
+    }
+
     return project_api_key_local_var;
 end:
+    if (redacted_value_local_str) {
+        free(redacted_value_local_str);
+        redacted_value_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     if (owner_local_nonprim) {
         project_api_key_owner_free(owner_local_nonprim);
         owner_local_nonprim = NULL;

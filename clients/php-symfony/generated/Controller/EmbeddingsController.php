@@ -97,7 +97,7 @@ class EmbeddingsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateEmbeddingRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateEmbeddingRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($createEmbeddingRequest, $asserts);
         if ($response instanceof Response) {

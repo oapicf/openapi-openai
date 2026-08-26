@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIStaticChunkingStrategyRequestParam::OAIStaticChunkingStrategyRequestParam(QString json) {
+OAIStaticChunkingStrategyRequestParam::OAIStaticChunkingStrategyRequestParam(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIStaticChunkingStrategyRequestParam::initializeModel() {
     m_r_static_isValid = false;
 }
 
-void OAIStaticChunkingStrategyRequestParam::fromJson(QString jsonString) {
+void OAIStaticChunkingStrategyRequestParam::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

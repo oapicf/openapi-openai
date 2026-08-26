@@ -33,7 +33,7 @@ class  CreateChatCompletionRequest_function_call
 {
 public:
     CreateChatCompletionRequest_function_call();
-    virtual ~CreateChatCompletionRequest_function_call() = default;
+    virtual ~CreateChatCompletionRequest_function_call();
 
 
     /// <summary>

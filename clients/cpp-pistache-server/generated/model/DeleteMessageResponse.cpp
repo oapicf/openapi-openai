@@ -27,6 +27,8 @@ DeleteMessageResponse::DeleteMessageResponse()
     
 }
 
+DeleteMessageResponse::~DeleteMessageResponse() = default;
+
 void DeleteMessageResponse::validate() const
 {
     std::stringstream msg;

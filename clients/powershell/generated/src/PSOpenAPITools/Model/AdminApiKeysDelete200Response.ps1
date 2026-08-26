@@ -46,9 +46,9 @@ function Initialize-AdminApiKeysDelete200Response {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "deleted" = ${Deleted}
+            'id' = ${Id}
+            'object' = ${Object}
+            'deleted' = ${Deleted}
         }
 
 
@@ -86,35 +86,35 @@ function ConvertFrom-JsonToAdminApiKeysDelete200Response {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AdminApiKeysDelete200Response
-        $AllProperties = ("id", "object", "deleted")
+        $AllProperties = ('id', 'object', 'deleted')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) { #optional property not found
             $Id = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) { #optional property not found
             $Object = $null
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "deleted"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'deleted'))) { #optional property not found
             $Deleted = $null
         } else {
-            $Deleted = $JsonParameters.PSobject.Properties["deleted"].value
+            $Deleted = $JsonParameters.PSobject.Properties['deleted'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "deleted" = ${Deleted}
+            'id' = ${Id}
+            'object' = ${Object}
+            'deleted' = ${Deleted}
         }
 
         return $PSO

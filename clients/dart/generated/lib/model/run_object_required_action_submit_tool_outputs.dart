@@ -48,10 +48,8 @@ class RunObjectRequiredActionSubmitToolOutputs {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunObjectRequiredActionSubmitToolOutputs[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunObjectRequiredActionSubmitToolOutputs[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'tool_calls'), 'Required key "RunObjectRequiredActionSubmitToolOutputs[tool_calls]" is missing from JSON.');
+        assert(json[r'tool_calls'] != null, 'Required key "RunObjectRequiredActionSubmitToolOutputs[tool_calls]" has a null value in JSON.');
         return true;
       }());
 

@@ -1,4 +1,4 @@
-# # FineTuneDPOMethodHyperparametersBatchSize
+# FineTuneDPOMethodHyperparametersBatchSize
 
 ## Properties
 

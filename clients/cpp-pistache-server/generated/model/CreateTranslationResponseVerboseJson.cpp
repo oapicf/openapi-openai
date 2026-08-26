@@ -28,6 +28,8 @@ CreateTranslationResponseVerboseJson::CreateTranslationResponseVerboseJson()
     
 }
 
+CreateTranslationResponseVerboseJson::~CreateTranslationResponseVerboseJson() = default;
+
 void CreateTranslationResponseVerboseJson::validate() const
 {
     std::stringstream msg;

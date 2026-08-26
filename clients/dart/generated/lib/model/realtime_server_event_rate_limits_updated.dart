@@ -62,10 +62,12 @@ class RealtimeServerEventRateLimitsUpdated {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventRateLimitsUpdated[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventRateLimitsUpdated[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event_id'), 'Required key "RealtimeServerEventRateLimitsUpdated[event_id]" is missing from JSON.');
+        assert(json[r'event_id'] != null, 'Required key "RealtimeServerEventRateLimitsUpdated[event_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RealtimeServerEventRateLimitsUpdated[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeServerEventRateLimitsUpdated[type]" has a null value in JSON.');
+        assert(json.containsKey(r'rate_limits'), 'Required key "RealtimeServerEventRateLimitsUpdated[rate_limits]" is missing from JSON.');
+        assert(json[r'rate_limits'] != null, 'Required key "RealtimeServerEventRateLimitsUpdated[rate_limits]" has a null value in JSON.');
         return true;
       }());
 
@@ -127,27 +129,28 @@ class RealtimeServerEventRateLimitsUpdated {
 }
 
 /// The event type, must be `rate_limits.updated`.
-class RealtimeServerEventRateLimitsUpdatedTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventRateLimitsUpdatedTypeEnum._(this.value);
+enum RealtimeServerEventRateLimitsUpdatedTypeEnum {
+  rateLimitsPeriodUpdated._(r'rate_limits.updated'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventRateLimitsUpdatedTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const rateLimitsPeriodUpdated = RealtimeServerEventRateLimitsUpdatedTypeEnum._(r'rate_limits.updated');
-
-  /// List of all possible values in this [enum][RealtimeServerEventRateLimitsUpdatedTypeEnum].
-  static const values = <RealtimeServerEventRateLimitsUpdatedTypeEnum>[
-    rateLimitsPeriodUpdated,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventRateLimitsUpdatedTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventRateLimitsUpdatedTypeEnum? fromJson(dynamic value) => RealtimeServerEventRateLimitsUpdatedTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventRateLimitsUpdatedTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventRateLimitsUpdatedTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventRateLimitsUpdatedTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -169,9 +172,10 @@ class RealtimeServerEventRateLimitsUpdatedTypeEnumTypeTransformer {
 
   const RealtimeServerEventRateLimitsUpdatedTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventRateLimitsUpdatedTypeEnum data) => data.value;
+  String encode(RealtimeServerEventRateLimitsUpdatedTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventRateLimitsUpdatedTypeEnum.
+  /// Returns the instance of [RealtimeServerEventRateLimitsUpdatedTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -180,6 +184,9 @@ class RealtimeServerEventRateLimitsUpdatedTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventRateLimitsUpdatedTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventRateLimitsUpdatedTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'rate_limits.updated': return RealtimeServerEventRateLimitsUpdatedTypeEnum.rateLimitsPeriodUpdated;
@@ -192,7 +199,7 @@ class RealtimeServerEventRateLimitsUpdatedTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeServerEventRateLimitsUpdatedTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventRateLimitsUpdatedTypeEnumTypeTransformer? _instance;
 }
 

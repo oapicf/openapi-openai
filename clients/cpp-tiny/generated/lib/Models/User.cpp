@@ -169,7 +169,7 @@ User::getObject()
 }
 
 void
-User::setObject(std::string  object)
+User::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -181,7 +181,7 @@ User::getId()
 }
 
 void
-User::setId(std::string  id)
+User::setId(std::string id)
 {
 	this->id = id;
 }
@@ -193,7 +193,7 @@ User::getName()
 }
 
 void
-User::setName(std::string  name)
+User::setName(std::string name)
 {
 	this->name = name;
 }
@@ -205,7 +205,7 @@ User::getEmail()
 }
 
 void
-User::setEmail(std::string  email)
+User::setEmail(std::string email)
 {
 	this->email = email;
 }
@@ -217,7 +217,7 @@ User::getRole()
 }
 
 void
-User::setRole(std::string  role)
+User::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -229,7 +229,7 @@ User::getAddedAt()
 }
 
 void
-User::setAddedAt(int  added_at)
+User::setAddedAt(int added_at)
 {
 	this->added_at = added_at;
 }

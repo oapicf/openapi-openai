@@ -41,8 +41,8 @@ function Initialize-RealtimeResponseStatusDetailsError {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "code" = ${Code}
+            'type' = ${Type}
+            'code' = ${Code}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToRealtimeResponseStatusDetailsError {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeResponseStatusDetailsError
-        $AllProperties = ("type", "code")
+        $AllProperties = ('type', 'code')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) { #optional property not found
             $Type = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "code"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'code'))) { #optional property not found
             $Code = $null
         } else {
-            $Code = $JsonParameters.PSobject.Properties["code"].value
+            $Code = $JsonParameters.PSobject.Properties['code'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "code" = ${Code}
+            'type' = ${Type}
+            'code' = ${Code}
         }
 
         return $PSO

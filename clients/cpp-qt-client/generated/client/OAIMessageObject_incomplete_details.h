@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIMessageObject_incomplete_details : public OAIObject {
 public:
     OAIMessageObject_incomplete_details();
-    OAIMessageObject_incomplete_details(QString json);
+    OAIMessageObject_incomplete_details(const QString &json);
     ~OAIMessageObject_incomplete_details() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getReason() const;
     void setReason(const QString &reason);

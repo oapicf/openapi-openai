@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 README.md
 config.nim
 openapiclient.nim
@@ -83,7 +82,6 @@ openapiclient/models/model_audit_log_user_added_data.nim
 openapiclient/models/model_audit_log_user_deleted.nim
 openapiclient/models/model_audit_log_user_updated.nim
 openapiclient/models/model_audit_log_user_updated_changes_requested.nim
-openapiclient/models/model_auto_chunking_strategy.nim
 openapiclient/models/model_auto_chunking_strategy_request_param.nim
 openapiclient/models/model_batch.nim
 openapiclient/models/model_batch_errors.nim
@@ -494,7 +492,6 @@ openapiclient/models/model_run_tool_call_object.nim
 openapiclient/models/model_run_tool_call_object_function.nim
 openapiclient/models/model_static_chunking_strategy.nim
 openapiclient/models/model_static_chunking_strategy_request_param.nim
-openapiclient/models/model_static_chunking_strategy_response_param.nim
 openapiclient/models/model_static_chunking_strategy_static.nim
 openapiclient/models/model_submit_tool_outputs_run_request.nim
 openapiclient/models/model_submit_tool_outputs_run_request_tool_outputs_inner.nim

@@ -28,7 +28,7 @@ message AuditLogActorApiKey {
     TYPE_SERVICE_ACCOUNT = 1;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   AuditLogActorUser user = 3599307;
 

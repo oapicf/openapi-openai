@@ -31,7 +31,7 @@ typedef struct list_batches_response_t {
     list_t *data; //nonprimitive container
     char *first_id; // string
     char *last_id; // string
-    int has_more; //boolean
+    int *has_more; //boolean
     openai_api_list_batches_response_OBJECT_e object; //enum
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -41,7 +41,7 @@ __attribute__((deprecated)) list_batches_response_t *list_batches_response_creat
     list_t *data,
     char *first_id,
     char *last_id,
-    int has_more,
+    int *has_more,
     openai_api_list_batches_response_OBJECT_e object
 );
 

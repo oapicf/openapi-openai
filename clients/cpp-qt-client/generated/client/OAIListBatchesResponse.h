@@ -34,13 +34,13 @@ class OAIBatch;
 class OAIListBatchesResponse : public OAIObject {
 public:
     OAIListBatchesResponse();
-    OAIListBatchesResponse(QString json);
+    OAIListBatchesResponse(const QString &json);
     ~OAIListBatchesResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QList<OAIBatch> getData() const;
     void setData(const QList<OAIBatch> &data);

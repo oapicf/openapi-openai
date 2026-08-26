@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type CreateEmbeddingResponse struct {
@@ -27,13 +32,88 @@ type CreateEmbeddingResponse struct {
 
 	Usage CreateEmbeddingResponseUsage `json:"usage"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into CreateEmbeddingResponse
+func (o *CreateEmbeddingResponse) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"data",
+		"model",
+		"object",
+		"usage",
+	}
 
-// AssertCreateEmbeddingResponseRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"data": false,
+		"model": false,
+		"object": false,
+		"usage": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"data": {},
+		"model": {},
+		"object": {},
+		"usage": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CreateEmbeddingResponse
+
+	if value, exists := allProperties["data"]; exists {
+		if err = json.Unmarshal(value, &decoded.Data); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["model"]; exists {
+		if err = json.Unmarshal(value, &decoded.Model); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["usage"]; exists {
+		if err = json.Unmarshal(value, &decoded.Usage); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCreateEmbeddingResponseRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateEmbeddingResponseRequired(obj CreateEmbeddingResponse) error {
 	elements := map[string]interface{}{
 		"data": obj.Data,
-		"model": obj.Model,
-		"object": obj.Object,
 		"usage": obj.Usage,
 	}
 	for name, el := range elements {

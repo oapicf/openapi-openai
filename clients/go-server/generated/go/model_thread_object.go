@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // ThreadObject - Represents a thread that contains [messages](/docs/api-reference/messages).
@@ -31,22 +36,94 @@ type ThreadObject struct {
 	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	Metadata *map[string]interface{} `json:"metadata"`
 }
-
-// AssertThreadObjectRequired checks if the required fields are not zero-ed
-func AssertThreadObjectRequired(obj ThreadObject) error {
-	elements := map[string]interface{}{
-		"id": obj.Id,
-		"object": obj.Object,
-		"created_at": obj.CreatedAt,
-		"tool_resources": obj.ToolResources,
-		"metadata": obj.Metadata,
+// UnmarshalJSON validates required property keys then unmarshals into ThreadObject
+func (o *ThreadObject) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"id",
+		"object",
+		"created_at",
+		"tool_resources",
+		"metadata",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"id": false,
+		"object": false,
+		"created_at": false,
+		"tool_resources": true,
+		"metadata": true,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"id": {},
+		"object": {},
+		"created_at": {},
+		"tool_resources": {},
+		"metadata": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded ThreadObject
+
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["created_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CreatedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["tool_resources"]; exists {
+		if err = json.Unmarshal(value, &decoded.ToolResources); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["metadata"]; exists {
+		if err = json.Unmarshal(value, &decoded.Metadata); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertThreadObjectRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertThreadObjectRequired(obj ThreadObject) error {
 	if obj.ToolResources != nil {
 		if err := AssertModifyThreadRequestToolResourcesRequired(*obj.ToolResources); err != nil {
 			return err

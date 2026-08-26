@@ -25,6 +25,8 @@ MessageObject_incomplete_details::MessageObject_incomplete_details()
     
 }
 
+MessageObject_incomplete_details::~MessageObject_incomplete_details() = default;
+
 void MessageObject_incomplete_details::validate() const
 {
     std::stringstream msg;

@@ -51,7 +51,7 @@ class MessageRequestContentTextObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['text'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class MessageRequestContentTextObject
      * @var string|null
      * @SerializedName("text")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $text = null;
@@ -91,12 +91,12 @@ class MessageRequestContentTextObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `text`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `text`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -118,12 +118,12 @@ class MessageRequestContentTextObject
     }
 
     /**
-    * Sets text.
-    *
-    * @param string|null $text  Text content to be sent to the model
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param string|null $text  Text content to be sent to the model
+     *
+     * @return $this
+     */
     public function setText(?string $text): self
     {
         $this->text = $text;

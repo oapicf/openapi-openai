@@ -22,7 +22,7 @@ message UsageTimeBucket {
     OBJECT_BUCKET = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   int32 start_time = 499403640;
 

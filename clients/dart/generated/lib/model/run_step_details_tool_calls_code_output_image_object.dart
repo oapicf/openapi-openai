@@ -54,10 +54,10 @@ class RunStepDetailsToolCallsCodeOutputImageObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepDetailsToolCallsCodeOutputImageObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepDetailsToolCallsCodeOutputImageObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "RunStepDetailsToolCallsCodeOutputImageObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RunStepDetailsToolCallsCodeOutputImageObject[type]" has a null value in JSON.');
+        assert(json.containsKey(r'image'), 'Required key "RunStepDetailsToolCallsCodeOutputImageObject[image]" is missing from JSON.');
+        assert(json[r'image'] != null, 'Required key "RunStepDetailsToolCallsCodeOutputImageObject[image]" has a null value in JSON.');
         return true;
       }());
 
@@ -117,27 +117,28 @@ class RunStepDetailsToolCallsCodeOutputImageObject {
 }
 
 /// Always `image`.
-class RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum._(this.value);
+enum RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum {
+  image._(r'image'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const image = RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum._(r'image');
-
-  /// List of all possible values in this [enum][RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum].
-  static const values = <RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum>[
-    image,
-  ];
-
+  /// Returns the instance of [RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum? fromJson(dynamic value) => RunStepDetailsToolCallsCodeOutputImageObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -159,9 +160,10 @@ class RunStepDetailsToolCallsCodeOutputImageObjectTypeEnumTypeTransformer {
 
   const RunStepDetailsToolCallsCodeOutputImageObjectTypeEnumTypeTransformer._();
 
-  String encode(RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum data) => data.value;
+  String encode(RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum.
+  /// Returns the instance of [RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -170,6 +172,9 @@ class RunStepDetailsToolCallsCodeOutputImageObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'image': return RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum.image;
@@ -182,7 +187,7 @@ class RunStepDetailsToolCallsCodeOutputImageObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStepDetailsToolCallsCodeOutputImageObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepDetailsToolCallsCodeOutputImageObjectTypeEnumTypeTransformer? _instance;
 }
 

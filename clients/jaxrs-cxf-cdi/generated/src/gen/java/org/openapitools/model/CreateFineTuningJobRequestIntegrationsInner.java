@@ -53,6 +53,7 @@ public enum TypeEnum {
   private CreateFineTuningJobRequestIntegrationsInnerWandb wandb;
 
   /**
+   * The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. 
    **/
   public CreateFineTuningJobRequestIntegrationsInner type(TypeEnum type) {
     this.type = type;
@@ -60,7 +61,7 @@ public enum TypeEnum {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. ")
   @JsonProperty("type")
   @NotNull
   public TypeEnum getType() {
@@ -125,10 +126,7 @@ public enum TypeEnum {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

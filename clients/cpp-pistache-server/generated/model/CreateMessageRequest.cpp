@@ -27,6 +27,8 @@ CreateMessageRequest::CreateMessageRequest()
     
 }
 
+CreateMessageRequest::~CreateMessageRequest() = default;
+
 void CreateMessageRequest::validate() const
 {
     std::stringstream msg;

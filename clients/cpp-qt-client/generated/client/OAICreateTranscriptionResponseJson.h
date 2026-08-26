@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAICreateTranscriptionResponseJson : public OAIObject {
 public:
     OAICreateTranscriptionResponseJson();
-    OAICreateTranscriptionResponseJson(QString json);
+    OAICreateTranscriptionResponseJson(const QString &json);
     ~OAICreateTranscriptionResponseJson() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getText() const;
     void setText(const QString &text);

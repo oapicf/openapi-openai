@@ -28,10 +28,10 @@ export function FineTuneDPOMethodHyperparametersLearningRateMultiplierFromJSONTy
     if (json == null) {
         return json;
     }
-    if (typeof json === 'number') {
+    if (typeof json === 'string' && (json === 'auto')) {
         return json;
     }
-    if (typeof json === 'string' && (json === 'auto')) {
+    if (typeof json === 'number') {
         return json;
     }
     return {} as any;
@@ -45,10 +45,10 @@ export function FineTuneDPOMethodHyperparametersLearningRateMultiplierToJSONType
     if (value == null) {
         return value;
     }
-    if (typeof value === 'number') {
+    if (typeof value === 'string' && (value === 'auto')) {
         return value;
     }
-    if (typeof value === 'string' && (value === 'auto')) {
+    if (typeof value === 'number') {
         return value;
     }
     return {};

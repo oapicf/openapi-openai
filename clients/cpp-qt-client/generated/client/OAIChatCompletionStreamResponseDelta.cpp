@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIChatCompletionStreamResponseDelta::OAIChatCompletionStreamResponseDelta(QString json) {
+OAIChatCompletionStreamResponseDelta::OAIChatCompletionStreamResponseDelta(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -50,7 +50,7 @@ void OAIChatCompletionStreamResponseDelta::initializeModel() {
     m_refusal_isValid = false;
 }
 
-void OAIChatCompletionStreamResponseDelta::fromJson(QString jsonString) {
+void OAIChatCompletionStreamResponseDelta::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

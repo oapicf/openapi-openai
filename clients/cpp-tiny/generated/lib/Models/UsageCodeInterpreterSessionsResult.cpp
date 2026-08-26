@@ -106,7 +106,7 @@ UsageCodeInterpreterSessionsResult::getObject()
 }
 
 void
-UsageCodeInterpreterSessionsResult::setObject(std::string  object)
+UsageCodeInterpreterSessionsResult::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -118,7 +118,7 @@ UsageCodeInterpreterSessionsResult::getSessions()
 }
 
 void
-UsageCodeInterpreterSessionsResult::setSessions(int  sessions)
+UsageCodeInterpreterSessionsResult::setSessions(int sessions)
 {
 	this->sessions = sessions;
 }
@@ -130,7 +130,7 @@ UsageCodeInterpreterSessionsResult::getProjectId()
 }
 
 void
-UsageCodeInterpreterSessionsResult::setProjectId(std::string  project_id)
+UsageCodeInterpreterSessionsResult::setProjectId(std::string project_id)
 {
 	this->project_id = project_id;
 }

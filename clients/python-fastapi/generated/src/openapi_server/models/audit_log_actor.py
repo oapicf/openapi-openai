@@ -23,6 +23,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from openapi_server.models.audit_log_actor_api_key import AuditLogActorApiKey
+from openapi_server.models.audit_log_actor_session import AuditLogActorSession
 try:
     from typing import Self
 except ImportError:
@@ -33,8 +35,8 @@ class AuditLogActor(BaseModel):
     The actor who performed the audit logged action.
     """ # noqa: E501
     type: Optional[StrictStr] = Field(default=None, description="The type of actor. Is either `session` or `api_key`.")
-    session: Optional[Dict[str, Any]] = None
-    api_key: Optional[Dict[str, Any]] = None
+    session: Optional[AuditLogActorSession] = None
+    api_key: Optional[AuditLogActorApiKey] = None
     __properties: ClassVar[List[str]] = ["type", "session", "api_key"]
 
     @field_validator('type')

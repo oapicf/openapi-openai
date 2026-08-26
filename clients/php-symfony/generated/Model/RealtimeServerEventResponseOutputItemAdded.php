@@ -51,7 +51,7 @@ class RealtimeServerEventResponseOutputItemAdded
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $eventId = null;
@@ -62,7 +62,7 @@ class RealtimeServerEventResponseOutputItemAdded
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['response.output_item.added'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class RealtimeServerEventResponseOutputItemAdded
      * @var string|null
      * @SerializedName("response_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $responseId = null;
@@ -85,7 +85,7 @@ class RealtimeServerEventResponseOutputItemAdded
      * @var int|null
      * @SerializedName("output_index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $outputIndex = null;
@@ -94,7 +94,7 @@ class RealtimeServerEventResponseOutputItemAdded
      * @var RealtimeConversationItem|null
      * @SerializedName("item")
      * @Type("OpenAPI\Server\Model\RealtimeConversationItem")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RealtimeConversationItem")]
@@ -126,12 +126,12 @@ class RealtimeServerEventResponseOutputItemAdded
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  The unique ID of the server event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  The unique ID of the server event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId): self
     {
         $this->eventId = $eventId;
@@ -153,12 +153,12 @@ class RealtimeServerEventResponseOutputItemAdded
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `response.output_item.added`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `response.output_item.added`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -180,12 +180,12 @@ class RealtimeServerEventResponseOutputItemAdded
     }
 
     /**
-    * Sets responseId.
-    *
-    * @param string|null $responseId  The ID of the Response to which the item belongs.
-    *
-    * @return $this
-    */
+     * Sets responseId.
+     *
+     * @param string|null $responseId  The ID of the Response to which the item belongs.
+     *
+     * @return $this
+     */
     public function setResponseId(?string $responseId): self
     {
         $this->responseId = $responseId;
@@ -207,12 +207,12 @@ class RealtimeServerEventResponseOutputItemAdded
     }
 
     /**
-    * Sets outputIndex.
-    *
-    * @param int|null $outputIndex  The index of the output item in the Response.
-    *
-    * @return $this
-    */
+     * Sets outputIndex.
+     *
+     * @param int|null $outputIndex  The index of the output item in the Response.
+     *
+     * @return $this
+     */
     public function setOutputIndex(?int $outputIndex): self
     {
         $this->outputIndex = $outputIndex;
@@ -234,12 +234,12 @@ class RealtimeServerEventResponseOutputItemAdded
     }
 
     /**
-    * Sets item.
-    *
-    * @param RealtimeConversationItem|null $item
-    *
-    * @return $this
-    */
+     * Sets item.
+     *
+     * @param RealtimeConversationItem|null $item
+     *
+     * @return $this
+     */
     public function setItem(?RealtimeConversationItem $item): self
     {
         $this->item = $item;

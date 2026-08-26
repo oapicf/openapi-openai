@@ -43,15 +43,17 @@ export function CreateModerationRequestInputFromJSONTyped(json: any, ignoreDiscr
                 return json.map(value => CreateModerationRequestInputOneOfInnerFromJSONTyped(value, true));
             }
         }
-        return json;
-    }
-    if (typeof json === 'string') {
-        return json;
     }
     if (Array.isArray(json)) {
         if (json.every(item => typeof item === 'string')) {
             return json;
         }
+    }
+    if (Array.isArray(json)) {
+        return json;
+    }
+    if (typeof json === 'string') {
+        return json;
     }
     return {} as any;
 }
@@ -70,15 +72,17 @@ export function CreateModerationRequestInputToJSONTyped(value?: CreateModeration
                 return value.map(value => CreateModerationRequestInputOneOfInnerToJSON(value as CreateModerationRequestInputOneOfInner));
             }
         }
-        return value;
-    }
-    if (typeof value === 'string') {
-        return value;
     }
     if (Array.isArray(value)) {
         if (value.every(item => typeof item === 'string')) {
             return value;
         }
+    }
+    if (Array.isArray(value)) {
+        return value;
+    }
+    if (typeof value === 'string') {
+        return value;
     }
     return {};
 }

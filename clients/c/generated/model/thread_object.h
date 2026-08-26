@@ -31,7 +31,7 @@ openai_api_thread_object_OBJECT_e thread_object_object_FromString(char* object);
 typedef struct thread_object_t {
     char *id; // string
     openai_api_thread_object_OBJECT_e object; //enum
-    int created_at; //numeric
+    int *created_at; //numeric
     struct modify_thread_request_tool_resources_t *tool_resources; //model
     object_t *metadata; //object
 
@@ -41,7 +41,7 @@ typedef struct thread_object_t {
 __attribute__((deprecated)) thread_object_t *thread_object_create(
     char *id,
     openai_api_thread_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     modify_thread_request_tool_resources_t *tool_resources,
     object_t *metadata
 );

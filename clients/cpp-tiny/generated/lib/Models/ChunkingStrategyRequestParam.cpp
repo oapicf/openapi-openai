@@ -86,7 +86,7 @@ ChunkingStrategyRequestParam::getType()
 }
 
 void
-ChunkingStrategyRequestParam::setType(std::string  type)
+ChunkingStrategyRequestParam::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ ChunkingStrategyRequestParam::getRStatic()
 }
 
 void
-ChunkingStrategyRequestParam::setRStatic(StaticChunkingStrategy  r_static)
+ChunkingStrategyRequestParam::setRStatic(StaticChunkingStrategy r_static)
 {
 	this->r_static = r_static;
 }

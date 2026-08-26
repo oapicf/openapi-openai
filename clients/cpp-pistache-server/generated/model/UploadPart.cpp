@@ -28,6 +28,8 @@ UploadPart::UploadPart()
     
 }
 
+UploadPart::~UploadPart() = default;
+
 void UploadPart::validate() const
 {
     std::stringstream msg;

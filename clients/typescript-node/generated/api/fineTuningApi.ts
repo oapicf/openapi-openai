@@ -103,7 +103,7 @@ export class FineTuningApi {
      */
     public async cancelFineTuningJob (fineTuningJobId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: FineTuningJob;  }> {
         const localVarPath = this.basePath + '/fine_tuning/jobs/{fine_tuning_job_id}/cancel'
-            .replace('{' + 'fine_tuning_job_id' + '}', encodeURIComponent(String(fineTuningJobId)));
+            .replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -249,7 +249,7 @@ export class FineTuningApi {
      */
     public async listFineTuningEvents (fineTuningJobId: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ListFineTuningJobEventsResponse;  }> {
         const localVarPath = this.basePath + '/fine_tuning/jobs/{fine_tuning_job_id}/events'
-            .replace('{' + 'fine_tuning_job_id' + '}', encodeURIComponent(String(fineTuningJobId)));
+            .replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -331,7 +331,7 @@ export class FineTuningApi {
      */
     public async listFineTuningJobCheckpoints (fineTuningJobId: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ListFineTuningJobCheckpointsResponse;  }> {
         const localVarPath = this.basePath + '/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints'
-            .replace('{' + 'fine_tuning_job_id' + '}', encodeURIComponent(String(fineTuningJobId)));
+            .replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -486,7 +486,7 @@ export class FineTuningApi {
      */
     public async retrieveFineTuningJob (fineTuningJobId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: FineTuningJob;  }> {
         const localVarPath = this.basePath + '/fine_tuning/jobs/{fine_tuning_job_id}'
-            .replace('{' + 'fine_tuning_job_id' + '}', encodeURIComponent(String(fineTuningJobId)));
+            .replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];

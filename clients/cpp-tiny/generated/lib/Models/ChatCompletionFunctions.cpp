@@ -98,7 +98,7 @@ ChatCompletionFunctions::getDescription()
 }
 
 void
-ChatCompletionFunctions::setDescription(std::string  description)
+ChatCompletionFunctions::setDescription(std::string description)
 {
 	this->description = description;
 }
@@ -110,19 +110,19 @@ ChatCompletionFunctions::getName()
 }
 
 void
-ChatCompletionFunctions::setName(std::string  name)
+ChatCompletionFunctions::setName(std::string name)
 {
 	this->name = name;
 }
 
-Map<string, string>
+std::map<std::string, AnyType>
 ChatCompletionFunctions::getParameters()
 {
 	return parameters;
 }
 
 void
-ChatCompletionFunctions::setParameters(Map <string, string> parameters)
+ChatCompletionFunctions::setParameters(std::map<std::string, AnyType> parameters)
 {
 	this->parameters = parameters;
 }

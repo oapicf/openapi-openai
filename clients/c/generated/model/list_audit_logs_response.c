@@ -27,19 +27,19 @@ static list_audit_logs_response_t *list_audit_logs_response_create_internal(
     list_t *data,
     char *first_id,
     char *last_id,
-    int has_more
+    int *has_more
     ) {
     list_audit_logs_response_t *list_audit_logs_response_local_var = malloc(sizeof(list_audit_logs_response_t));
     if (!list_audit_logs_response_local_var) {
         return NULL;
     }
+    memset(list_audit_logs_response_local_var, 0, sizeof(list_audit_logs_response_t));
+    list_audit_logs_response_local_var->_library_owned = 1;
     list_audit_logs_response_local_var->object = object;
     list_audit_logs_response_local_var->data = data;
     list_audit_logs_response_local_var->first_id = first_id;
     list_audit_logs_response_local_var->last_id = last_id;
     list_audit_logs_response_local_var->has_more = has_more;
-
-    list_audit_logs_response_local_var->_library_owned = 1;
     return list_audit_logs_response_local_var;
 }
 
@@ -48,15 +48,24 @@ __attribute__((deprecated)) list_audit_logs_response_t *list_audit_logs_response
     list_t *data,
     char *first_id,
     char *last_id,
-    int has_more
+    int *has_more
     ) {
-    return list_audit_logs_response_create_internal (
+    int *has_more_copy = NULL;
+    if (has_more) {
+        has_more_copy = malloc(sizeof(int));
+        if (has_more_copy) *has_more_copy = *has_more;
+    }
+    list_audit_logs_response_t *result = list_audit_logs_response_create_internal (
         object,
         data,
         first_id,
         last_id,
-        has_more
+        has_more_copy
         );
+    if (!result) {
+        free(has_more_copy);
+    }
+    return result;
 }
 
 void list_audit_logs_response_free(list_audit_logs_response_t *list_audit_logs_response) {
@@ -82,6 +91,10 @@ void list_audit_logs_response_free(list_audit_logs_response_t *list_audit_logs_r
     if (list_audit_logs_response->last_id) {
         free(list_audit_logs_response->last_id);
         list_audit_logs_response->last_id = NULL;
+    }
+    if (list_audit_logs_response->has_more) {
+        free(list_audit_logs_response->has_more);
+        list_audit_logs_response->has_more = NULL;
     }
     free(list_audit_logs_response);
 }
@@ -142,7 +155,7 @@ cJSON *list_audit_logs_response_convertToJSON(list_audit_logs_response_t *list_a
     if (!list_audit_logs_response->has_more) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "has_more", list_audit_logs_response->has_more) == NULL) {
+    if(cJSON_AddBoolToObject(item, "has_more", *list_audit_logs_response->has_more) == NULL) {
     goto fail; //Bool
     }
 
@@ -160,6 +173,13 @@ list_audit_logs_response_t *list_audit_logs_response_parseFromJSON(cJSON *list_a
 
     // define the local list for list_audit_logs_response->data
     list_t *dataList = NULL;
+
+    char *first_id_local_str = NULL;
+
+    char *last_id_local_str = NULL;
+
+    // define the local variable for list_audit_logs_response->has_more
+    int *has_more_local_var = NULL;
 
     // list_audit_logs_response->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(list_audit_logs_responseJSON, "object");
@@ -249,15 +269,28 @@ list_audit_logs_response_t *list_audit_logs_response_parseFromJSON(cJSON *list_a
     {
     goto end; //Bool
     }
+    has_more_local_var = malloc(sizeof(int));
+    if(!has_more_local_var)
+    {
+        goto end;
+    }
+    *has_more_local_var = has_more->valueint;
 
+
+    if (first_id && !cJSON_IsNull(first_id)) first_id_local_str = strdup(first_id->valuestring);
+    if (last_id && !cJSON_IsNull(last_id)) last_id_local_str = strdup(last_id->valuestring);
 
     list_audit_logs_response_local_var = list_audit_logs_response_create_internal (
         objectVariable,
         dataList,
-        strdup(first_id->valuestring),
-        strdup(last_id->valuestring),
-        has_more->valueint
+        first_id_local_str,
+        last_id_local_str,
+        has_more_local_var
         );
+
+    if (!list_audit_logs_response_local_var) {
+        goto end;
+    }
 
     return list_audit_logs_response_local_var;
 end:
@@ -269,6 +302,18 @@ end:
         }
         list_freeList(dataList);
         dataList = NULL;
+    }
+    if (first_id_local_str) {
+        free(first_id_local_str);
+        first_id_local_str = NULL;
+    }
+    if (last_id_local_str) {
+        free(last_id_local_str);
+        last_id_local_str = NULL;
+    }
+    if (has_more_local_var) {
+        free(has_more_local_var);
+        has_more_local_var = NULL;
     }
     return NULL;
 

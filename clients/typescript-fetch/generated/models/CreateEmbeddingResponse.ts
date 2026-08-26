@@ -48,7 +48,7 @@ export interface CreateEmbeddingResponse {
     model: string;
     /**
      * The object type, which is always "list".
-     * @type {string}
+     * @type {CreateEmbeddingResponseObjectEnum}
      * @memberof CreateEmbeddingResponse
      */
     object: CreateEmbeddingResponseObjectEnum;
@@ -77,6 +77,8 @@ export function instanceOfCreateEmbeddingResponse(value: object): value is Creat
     if (!('data' in value) || value['data'] === undefined) return false;
     if (!('model' in value) || value['model'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'list') return false;
+    
     if (!('usage' in value) || value['usage'] === undefined) return false;
     return true;
 }

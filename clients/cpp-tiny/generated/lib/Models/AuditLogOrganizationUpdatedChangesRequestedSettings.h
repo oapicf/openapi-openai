@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set Visibility of the threads page which shows messages created with the Assistants API and Playground. One of `ANY_ROLE`, `OWNERS`, or `NONE`.
 	 */
-	void setThreadsUiVisibility(std::string  threads_ui_visibility);
+	void setThreadsUiVisibility(std::string threads_ui_visibility);
 	/*! \brief Get Visibility of the usage dashboard which shows activity and costs for your organization. One of `ANY_ROLE` or `OWNERS`.
 	 */
 	std::string getUsageDashboardVisibility();
 
 	/*! \brief Set Visibility of the usage dashboard which shows activity and costs for your organization. One of `ANY_ROLE` or `OWNERS`.
 	 */
-	void setUsageDashboardVisibility(std::string  usage_dashboard_visibility);
+	void setUsageDashboardVisibility(std::string usage_dashboard_visibility);
 
 
     private:

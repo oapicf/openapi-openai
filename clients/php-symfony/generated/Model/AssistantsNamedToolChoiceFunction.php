@@ -49,7 +49,7 @@ class AssistantsNamedToolChoiceFunction
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $name = null;
@@ -76,12 +76,12 @@ class AssistantsNamedToolChoiceFunction
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the function to call.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the function to call.
+     *
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;

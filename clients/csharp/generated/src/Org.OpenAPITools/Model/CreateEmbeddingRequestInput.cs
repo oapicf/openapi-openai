@@ -126,8 +126,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateEmbeddingRequestInput" />
     /// </summary>
-    public class CreateEmbeddingRequestInputJsonConverter : JsonConverter<CreateEmbeddingRequestInput>
+    public partial class CreateEmbeddingRequestInputJsonConverter : JsonConverter<CreateEmbeddingRequestInput>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateEmbeddingRequestInputJsonConverter" /> class.
+        /// </summary>
+        public CreateEmbeddingRequestInputJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateEmbeddingRequestInput" />
         /// </summary>

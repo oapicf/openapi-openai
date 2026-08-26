@@ -1,0 +1,29 @@
+import { CreateEmbeddingRequestInput } from './create-embedding-request-input';
+import { CreateEmbeddingRequestModel } from './create-embedding-request-model';
+
+
+export interface CreateEmbeddingRequest { 
+  input: CreateEmbeddingRequestInput;
+  model: CreateEmbeddingRequestModel;
+  /**
+   * The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
+   */
+  encoding_format?: CreateEmbeddingRequest.EncodingFormatEnum;
+  /**
+   * The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
+   */
+  dimensions?: number;
+  /**
+   * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
+   */
+  user?: string;
+}
+export namespace CreateEmbeddingRequest {
+  export const EncodingFormatEnum = {
+    Float: 'float',
+    Base64: 'base64'
+  } as const;
+  export type EncodingFormatEnum = typeof EncodingFormatEnum[keyof typeof EncodingFormatEnum];
+}
+
+

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.EmbeddingsApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -32,7 +31,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.openAI.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:/v1}")
 class EmbeddingsApiController() {
 
     @Operation(
@@ -45,7 +44,8 @@ class EmbeddingsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_EMBEDDING /* "/embeddings" */],
+        // "/embeddings"
+        value = [PATH_CREATE_EMBEDDING],
         produces = ["application/json"],
         consumes = ["application/json"]
     )

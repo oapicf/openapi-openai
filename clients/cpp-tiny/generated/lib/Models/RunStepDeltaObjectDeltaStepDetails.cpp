@@ -124,7 +124,7 @@ RunStepDeltaObject_delta_step_details::getType()
 }
 
 void
-RunStepDeltaObject_delta_step_details::setType(std::string  type)
+RunStepDeltaObject_delta_step_details::setType(std::string type)
 {
 	this->type = type;
 }
@@ -136,7 +136,7 @@ RunStepDeltaObject_delta_step_details::getMessageCreation()
 }
 
 void
-RunStepDeltaObject_delta_step_details::setMessageCreation(RunStepDeltaStepDetailsMessageCreationObject_message_creation  message_creation)
+RunStepDeltaObject_delta_step_details::setMessageCreation(RunStepDeltaStepDetailsMessageCreationObject_message_creation message_creation)
 {
 	this->message_creation = message_creation;
 }
@@ -148,7 +148,7 @@ RunStepDeltaObject_delta_step_details::getToolCalls()
 }
 
 void
-RunStepDeltaObject_delta_step_details::setToolCalls(std::list <RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner> tool_calls)
+RunStepDeltaObject_delta_step_details::setToolCalls(std::list<RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner> tool_calls)
 {
 	this->tool_calls = tool_calls;
 }

@@ -32,7 +32,7 @@ class  UserRoleUpdateRequest
 {
 public:
     UserRoleUpdateRequest();
-    virtual ~UserRoleUpdateRequest() = default;
+    virtual ~UserRoleUpdateRequest();
 
 
     /// <summary>

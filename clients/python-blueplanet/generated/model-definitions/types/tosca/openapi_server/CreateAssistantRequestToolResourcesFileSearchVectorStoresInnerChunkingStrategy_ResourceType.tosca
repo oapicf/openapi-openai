@@ -7,7 +7,7 @@ authors     = ["F. Bar (foo@bar.baz)"]
 
 imports {
   Root = tosca.resourceTypes.Root
-  AutoChunkingStrategy = openapi_server.resourceTypes.AutoChunkingStrategy
+  AutoChunkingStrategyRequestParam = openapi_server.resourceTypes.AutoChunkingStrategyRequestParam
   StaticChunkingStrategy = openapi_server.resourceTypes.StaticChunkingStrategy
   StaticChunkingStrategyStatic = openapi_server.resourceTypes.StaticChunkingStrategyStatic
 }

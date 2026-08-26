@@ -38,7 +38,7 @@ class  MessageStreamEvent
 {
 public:
     MessageStreamEvent();
-    virtual ~MessageStreamEvent() = default;
+    virtual ~MessageStreamEvent();
 
 
     /// <summary>

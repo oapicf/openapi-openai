@@ -53,34 +53,34 @@ public:
 
 	/*! \brief Set A description of what the response format is for, used by the model to determine how to respond in the format.
 	 */
-	void setDescription(std::string  description);
+	void setDescription(std::string description);
 	/*! \brief Get The name of the response format. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
 	 */
 	std::string getName();
 
 	/*! \brief Set The name of the response format. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get The schema for the response format, described as a JSON Schema object.
 	 */
-	Map<std::string, std::string> getSchema();
+	std::map<std::string, AnyType> getSchema();
 
 	/*! \brief Set The schema for the response format, described as a JSON Schema object.
 	 */
-	void setSchema(Map <std::string, std::string> schema);
+	void setSchema(std::map<std::string, AnyType> schema);
 	/*! \brief Get Whether to enable strict schema adherence when generating the output. If set to true, the model will always follow the exact schema defined in the `schema` field. Only a subset of JSON Schema is supported when `strict` is `true`. To learn more, read the [Structured Outputs guide](/docs/guides/structured-outputs).
 	 */
 	bool isStrict();
 
 	/*! \brief Set Whether to enable strict schema adherence when generating the output. If set to true, the model will always follow the exact schema defined in the `schema` field. Only a subset of JSON Schema is supported when `strict` is `true`. To learn more, read the [Structured Outputs guide](/docs/guides/structured-outputs).
 	 */
-	void setStrict(bool  strict);
+	void setStrict(bool strict);
 
 
     private:
     std::string description{};
     std::string name{};
-    Map<std::string, std::string> schema;
+    std::map<std::string, AnyType> schema;
     bool strict{};
 };
 }

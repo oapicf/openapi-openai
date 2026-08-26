@@ -24,11 +24,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "The per-line training example of a fine-tuning input file for chat models using the supervised method.")
 @JsonTypeName("FineTuneChatRequestInput")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTuneChatRequestInput   {
   private @Valid List<FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
   private @Valid List<@Valid ChatCompletionTool> tools = new ArrayList<>();
   private Boolean parallelToolCalls = true;
+  @Deprecated
   private @Valid List<@Valid ChatCompletionFunctions> functions = new ArrayList<>();
 
   public FineTuneChatRequestInput() {
@@ -127,12 +128,18 @@ public class FineTuneChatRequestInput   {
 
   /**
    * A list of functions the model may generate JSON inputs for.
+   * @deprecated
    **/
+  @Deprecated
   public FineTuneChatRequestInput functions(List<@Valid ChatCompletionFunctions> functions) {
     this.functions = functions;
     return this;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   
   @ApiModelProperty(value = "A list of functions the model may generate JSON inputs for.")
   @JsonProperty("functions")
@@ -140,11 +147,19 @@ public class FineTuneChatRequestInput   {
     return functions;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   @JsonProperty("functions")
   public void setFunctions(List<@Valid ChatCompletionFunctions> functions) {
     this.functions = functions;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   public FineTuneChatRequestInput addFunctionsItem(ChatCompletionFunctions functionsItem) {
     if (this.functions == null) {
       this.functions = new ArrayList<>();
@@ -154,6 +169,10 @@ public class FineTuneChatRequestInput   {
     return this;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   public FineTuneChatRequestInput removeFunctionsItem(ChatCompletionFunctions functionsItem) {
     if (functionsItem != null && this.functions != null) {
       this.functions.remove(functionsItem);
@@ -200,12 +219,8 @@ public class FineTuneChatRequestInput   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
 }
-

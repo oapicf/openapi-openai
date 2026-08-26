@@ -19,7 +19,8 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class MessageContentTextAnnotationsFileCitationObjectFileCitation(
 
-    @Schema(example = "null", required = true, description = "The ID of the specific File the citation is from.")
+    @Schema(required = true, description = "The ID of the specific File the citation is from.")
+    @param:JsonProperty("file_id")
     @get:JsonProperty("file_id", required = true) val fileId: kotlin.String
 ) {
 

@@ -49,8 +49,8 @@ function Initialize-RunStepDetailsToolCallsCodeObjectCodeInterpreter {
 
 
         $PSO = [PSCustomObject]@{
-            "input" = ${VarInput}
-            "outputs" = ${Outputs}
+            'input' = ${VarInput}
+            'outputs' = ${Outputs}
         }
 
 
@@ -88,7 +88,7 @@ function ConvertFrom-JsonToRunStepDetailsToolCallsCodeObjectCodeInterpreter {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDetailsToolCallsCodeObjectCodeInterpreter
-        $AllProperties = ("input", "outputs")
+        $AllProperties = ('input', 'outputs')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -99,21 +99,21 @@ function ConvertFrom-JsonToRunStepDetailsToolCallsCodeObjectCodeInterpreter {
             throw "Error! Empty JSON cannot be serialized due to the required property 'input' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "input"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'input'))) {
             throw "Error! JSON cannot be serialized due to the required property 'input' missing."
         } else {
-            $VarInput = $JsonParameters.PSobject.Properties["input"].value
+            $VarInput = $JsonParameters.PSobject.Properties['input'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "outputs"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'outputs'))) {
             throw "Error! JSON cannot be serialized due to the required property 'outputs' missing."
         } else {
-            $Outputs = $JsonParameters.PSobject.Properties["outputs"].value
+            $Outputs = $JsonParameters.PSobject.Properties['outputs'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "input" = ${VarInput}
-            "outputs" = ${Outputs}
+            'input' = ${VarInput}
+            'outputs' = ${Outputs}
         }
 
         return $PSO

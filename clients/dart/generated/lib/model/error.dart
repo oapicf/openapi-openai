@@ -73,10 +73,12 @@ class Error {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Error[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Error[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'code'), 'Required key "Error[code]" is missing from JSON.');
+        assert(json.containsKey(r'message'), 'Required key "Error[message]" is missing from JSON.');
+        assert(json[r'message'] != null, 'Required key "Error[message]" has a null value in JSON.');
+        assert(json.containsKey(r'param'), 'Required key "Error[param]" is missing from JSON.');
+        assert(json.containsKey(r'type'), 'Required key "Error[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "Error[type]" has a null value in JSON.');
         return true;
       }());
 

@@ -34,7 +34,7 @@ class  ListPaginatedFineTuningJobsResponse
 {
 public:
     ListPaginatedFineTuningJobsResponse();
-    virtual ~ListPaginatedFineTuningJobsResponse() = default;
+    virtual ~ListPaginatedFineTuningJobsResponse();
 
 
     /// <summary>

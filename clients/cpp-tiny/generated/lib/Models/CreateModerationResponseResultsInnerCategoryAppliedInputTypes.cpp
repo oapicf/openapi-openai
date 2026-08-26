@@ -550,7 +550,7 @@ CreateModerationResponse_results_inner_category_applied_input_types::getHate()
 }
 
 void
-CreateModerationResponse_results_inner_category_applied_input_types::setHate(std::list <std::string> hate)
+CreateModerationResponse_results_inner_category_applied_input_types::setHate(std::list<std::string> hate)
 {
 	this->hate = hate;
 }
@@ -562,7 +562,7 @@ CreateModerationResponse_results_inner_category_applied_input_types::getHatethre
 }
 
 void
-CreateModerationResponse_results_inner_category_applied_input_types::setHatethreatening(std::list <std::string> hatethreatening)
+CreateModerationResponse_results_inner_category_applied_input_types::setHatethreatening(std::list<std::string> hatethreatening)
 {
 	this->hatethreatening = hatethreatening;
 }
@@ -574,7 +574,7 @@ CreateModerationResponse_results_inner_category_applied_input_types::getHarassme
 }
 
 void
-CreateModerationResponse_results_inner_category_applied_input_types::setHarassment(std::list <std::string> harassment)
+CreateModerationResponse_results_inner_category_applied_input_types::setHarassment(std::list<std::string> harassment)
 {
 	this->harassment = harassment;
 }
@@ -586,7 +586,7 @@ CreateModerationResponse_results_inner_category_applied_input_types::getHarassme
 }
 
 void
-CreateModerationResponse_results_inner_category_applied_input_types::setHarassmentthreatening(std::list <std::string> harassmentthreatening)
+CreateModerationResponse_results_inner_category_applied_input_types::setHarassmentthreatening(std::list<std::string> harassmentthreatening)
 {
 	this->harassmentthreatening = harassmentthreatening;
 }
@@ -598,7 +598,7 @@ CreateModerationResponse_results_inner_category_applied_input_types::getIllicit(
 }
 
 void
-CreateModerationResponse_results_inner_category_applied_input_types::setIllicit(std::list <std::string> illicit)
+CreateModerationResponse_results_inner_category_applied_input_types::setIllicit(std::list<std::string> illicit)
 {
 	this->illicit = illicit;
 }
@@ -610,7 +610,7 @@ CreateModerationResponse_results_inner_category_applied_input_types::getIllicitv
 }
 
 void
-CreateModerationResponse_results_inner_category_applied_input_types::setIllicitviolent(std::list <std::string> illicitviolent)
+CreateModerationResponse_results_inner_category_applied_input_types::setIllicitviolent(std::list<std::string> illicitviolent)
 {
 	this->illicitviolent = illicitviolent;
 }
@@ -622,7 +622,7 @@ CreateModerationResponse_results_inner_category_applied_input_types::getSelfharm
 }
 
 void
-CreateModerationResponse_results_inner_category_applied_input_types::setSelfharm(std::list <std::string> selfharm)
+CreateModerationResponse_results_inner_category_applied_input_types::setSelfharm(std::list<std::string> selfharm)
 {
 	this->selfharm = selfharm;
 }
@@ -634,7 +634,7 @@ CreateModerationResponse_results_inner_category_applied_input_types::getSelfharm
 }
 
 void
-CreateModerationResponse_results_inner_category_applied_input_types::setSelfharmintent(std::list <std::string> selfharmintent)
+CreateModerationResponse_results_inner_category_applied_input_types::setSelfharmintent(std::list<std::string> selfharmintent)
 {
 	this->selfharmintent = selfharmintent;
 }
@@ -646,7 +646,7 @@ CreateModerationResponse_results_inner_category_applied_input_types::getSelfharm
 }
 
 void
-CreateModerationResponse_results_inner_category_applied_input_types::setSelfharminstructions(std::list <std::string> selfharminstructions)
+CreateModerationResponse_results_inner_category_applied_input_types::setSelfharminstructions(std::list<std::string> selfharminstructions)
 {
 	this->selfharminstructions = selfharminstructions;
 }
@@ -658,7 +658,7 @@ CreateModerationResponse_results_inner_category_applied_input_types::getSexual()
 }
 
 void
-CreateModerationResponse_results_inner_category_applied_input_types::setSexual(std::list <std::string> sexual)
+CreateModerationResponse_results_inner_category_applied_input_types::setSexual(std::list<std::string> sexual)
 {
 	this->sexual = sexual;
 }
@@ -670,7 +670,7 @@ CreateModerationResponse_results_inner_category_applied_input_types::getSexualmi
 }
 
 void
-CreateModerationResponse_results_inner_category_applied_input_types::setSexualminors(std::list <std::string> sexualminors)
+CreateModerationResponse_results_inner_category_applied_input_types::setSexualminors(std::list<std::string> sexualminors)
 {
 	this->sexualminors = sexualminors;
 }
@@ -682,7 +682,7 @@ CreateModerationResponse_results_inner_category_applied_input_types::getViolence
 }
 
 void
-CreateModerationResponse_results_inner_category_applied_input_types::setViolence(std::list <std::string> violence)
+CreateModerationResponse_results_inner_category_applied_input_types::setViolence(std::list<std::string> violence)
 {
 	this->violence = violence;
 }
@@ -694,7 +694,7 @@ CreateModerationResponse_results_inner_category_applied_input_types::getViolence
 }
 
 void
-CreateModerationResponse_results_inner_category_applied_input_types::setViolencegraphic(std::list <std::string> violencegraphic)
+CreateModerationResponse_results_inner_category_applied_input_types::setViolencegraphic(std::list<std::string> violencegraphic)
 {
 	this->violencegraphic = violencegraphic;
 }

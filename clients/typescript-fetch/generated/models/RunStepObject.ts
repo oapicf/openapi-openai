@@ -50,7 +50,7 @@ export interface RunStepObject {
     id: string;
     /**
      * The object type, which is always `thread.run.step`.
-     * @type {string}
+     * @type {RunStepObjectObjectEnum}
      * @memberof RunStepObject
      */
     object: RunStepObjectObjectEnum;
@@ -80,13 +80,13 @@ export interface RunStepObject {
     runId: string;
     /**
      * The type of run step, which can be either `message_creation` or `tool_calls`.
-     * @type {string}
+     * @type {RunStepObjectTypeEnum}
      * @memberof RunStepObject
      */
     type: RunStepObjectTypeEnum;
     /**
      * The status of the run step, which can be either `in_progress`, `cancelled`, `failed`, `completed`, or `expired`.
-     * @type {string}
+     * @type {RunStepObjectStatusEnum}
      * @memberof RunStepObject
      */
     status: RunStepObjectStatusEnum;
@@ -178,18 +178,20 @@ export type RunStepObjectStatusEnum = typeof RunStepObjectStatusEnum[keyof typeo
 export function instanceOfRunStepObject(value: object): value is RunStepObject {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-    if (!('assistantId' in value) || value['assistantId'] === undefined) return false;
-    if (!('threadId' in value) || value['threadId'] === undefined) return false;
-    if (!('runId' in value) || value['runId'] === undefined) return false;
+    if (value['object'] !== 'thread.run.step') return false;
+    
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
+    if ((!('assistantId' in (value as Record<string, any>)) && !('assistant_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['assistantId'] === undefined && (value as Record<string, any>)['assistant_id'] === undefined)) return false;
+    if ((!('threadId' in (value as Record<string, any>)) && !('thread_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['threadId'] === undefined && (value as Record<string, any>)['thread_id'] === undefined)) return false;
+    if ((!('runId' in (value as Record<string, any>)) && !('run_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['runId'] === undefined && (value as Record<string, any>)['run_id'] === undefined)) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('stepDetails' in value) || value['stepDetails'] === undefined) return false;
-    if (!('lastError' in value) || value['lastError'] === undefined) return false;
-    if (!('expiredAt' in value) || value['expiredAt'] === undefined) return false;
-    if (!('cancelledAt' in value) || value['cancelledAt'] === undefined) return false;
-    if (!('failedAt' in value) || value['failedAt'] === undefined) return false;
-    if (!('completedAt' in value) || value['completedAt'] === undefined) return false;
+    if ((!('stepDetails' in (value as Record<string, any>)) && !('step_details' in (value as Record<string, any>))) || ((value as Record<string, any>)['stepDetails'] === undefined && (value as Record<string, any>)['step_details'] === undefined)) return false;
+    if ((!('lastError' in (value as Record<string, any>)) && !('last_error' in (value as Record<string, any>))) || ((value as Record<string, any>)['lastError'] === undefined && (value as Record<string, any>)['last_error'] === undefined)) return false;
+    if ((!('expiredAt' in (value as Record<string, any>)) && !('expired_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['expiredAt'] === undefined && (value as Record<string, any>)['expired_at'] === undefined)) return false;
+    if ((!('cancelledAt' in (value as Record<string, any>)) && !('cancelled_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['cancelledAt'] === undefined && (value as Record<string, any>)['cancelled_at'] === undefined)) return false;
+    if ((!('failedAt' in (value as Record<string, any>)) && !('failed_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['failedAt'] === undefined && (value as Record<string, any>)['failed_at'] === undefined)) return false;
+    if ((!('completedAt' in (value as Record<string, any>)) && !('completed_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['completedAt'] === undefined && (value as Record<string, any>)['completed_at'] === undefined)) return false;
     if (!('metadata' in value) || value['metadata'] === undefined) return false;
     if (!('usage' in value) || value['usage'] === undefined) return false;
     return true;

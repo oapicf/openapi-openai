@@ -32,7 +32,7 @@ class  RealtimeClientEventInputAudioBufferCommit
 {
 public:
     RealtimeClientEventInputAudioBufferCommit();
-    virtual ~RealtimeClientEventInputAudioBufferCommit() = default;
+    virtual ~RealtimeClientEventInputAudioBufferCommit();
 
 
     /// <summary>

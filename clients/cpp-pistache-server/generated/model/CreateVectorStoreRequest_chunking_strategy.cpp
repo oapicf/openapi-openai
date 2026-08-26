@@ -25,6 +25,8 @@ CreateVectorStoreRequest_chunking_strategy::CreateVectorStoreRequest_chunking_st
     
 }
 
+CreateVectorStoreRequest_chunking_strategy::~CreateVectorStoreRequest_chunking_strategy() = default;
+
 void CreateVectorStoreRequest_chunking_strategy::validate() const
 {
     std::stringstream msg;

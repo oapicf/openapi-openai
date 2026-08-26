@@ -167,24 +167,24 @@ function Initialize-FineTuningJob {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "created_at" = ${CreatedAt}
-            "error" = ${VarError}
-            "fine_tuned_model" = ${FineTunedModel}
-            "finished_at" = ${FinishedAt}
-            "hyperparameters" = ${Hyperparameters}
-            "model" = ${Model}
-            "object" = ${Object}
-            "organization_id" = ${OrganizationId}
-            "result_files" = ${ResultFiles}
-            "status" = ${Status}
-            "trained_tokens" = ${TrainedTokens}
-            "training_file" = ${TrainingFile}
-            "validation_file" = ${ValidationFile}
-            "integrations" = ${Integrations}
-            "seed" = ${Seed}
-            "estimated_finish" = ${EstimatedFinish}
-            "method" = ${Method}
+            'id' = ${Id}
+            'created_at' = ${CreatedAt}
+            'error' = ${VarError}
+            'fine_tuned_model' = ${FineTunedModel}
+            'finished_at' = ${FinishedAt}
+            'hyperparameters' = ${Hyperparameters}
+            'model' = ${Model}
+            'object' = ${Object}
+            'organization_id' = ${OrganizationId}
+            'result_files' = ${ResultFiles}
+            'status' = ${Status}
+            'trained_tokens' = ${TrainedTokens}
+            'training_file' = ${TrainingFile}
+            'validation_file' = ${ValidationFile}
+            'integrations' = ${Integrations}
+            'seed' = ${Seed}
+            'estimated_finish' = ${EstimatedFinish}
+            'method' = ${Method}
         }
 
 
@@ -222,7 +222,7 @@ function ConvertFrom-JsonToFineTuningJob {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in FineTuningJob
-        $AllProperties = ("id", "created_at", "error", "fine_tuned_model", "finished_at", "hyperparameters", "model", "object", "organization_id", "result_files", "status", "trained_tokens", "training_file", "validation_file", "integrations", "seed", "estimated_finish", "method")
+        $AllProperties = ('id', 'created_at', 'error', 'fine_tuned_model', 'finished_at', 'hyperparameters', 'model', 'object', 'organization_id', 'result_files', 'status', 'trained_tokens', 'training_file', 'validation_file', 'integrations', 'seed', 'estimated_finish', 'method')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -233,133 +233,133 @@ function ConvertFrom-JsonToFineTuningJob {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created_at' missing."
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "error"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'error'))) {
             throw "Error! JSON cannot be serialized due to the required property 'error' missing."
         } else {
-            $VarError = $JsonParameters.PSobject.Properties["error"].value
+            $VarError = $JsonParameters.PSobject.Properties['error'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fine_tuned_model"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'fine_tuned_model'))) {
             throw "Error! JSON cannot be serialized due to the required property 'fine_tuned_model' missing."
         } else {
-            $FineTunedModel = $JsonParameters.PSobject.Properties["fine_tuned_model"].value
+            $FineTunedModel = $JsonParameters.PSobject.Properties['fine_tuned_model'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "finished_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'finished_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'finished_at' missing."
         } else {
-            $FinishedAt = $JsonParameters.PSobject.Properties["finished_at"].value
+            $FinishedAt = $JsonParameters.PSobject.Properties['finished_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hyperparameters"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'hyperparameters'))) {
             throw "Error! JSON cannot be serialized due to the required property 'hyperparameters' missing."
         } else {
-            $Hyperparameters = $JsonParameters.PSobject.Properties["hyperparameters"].value
+            $Hyperparameters = $JsonParameters.PSobject.Properties['hyperparameters'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) {
             throw "Error! JSON cannot be serialized due to the required property 'model' missing."
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "organization_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'organization_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'organization_id' missing."
         } else {
-            $OrganizationId = $JsonParameters.PSobject.Properties["organization_id"].value
+            $OrganizationId = $JsonParameters.PSobject.Properties['organization_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "result_files"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'result_files'))) {
             throw "Error! JSON cannot be serialized due to the required property 'result_files' missing."
         } else {
-            $ResultFiles = $JsonParameters.PSobject.Properties["result_files"].value
+            $ResultFiles = $JsonParameters.PSobject.Properties['result_files'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'status'))) {
             throw "Error! JSON cannot be serialized due to the required property 'status' missing."
         } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
+            $Status = $JsonParameters.PSobject.Properties['status'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "trained_tokens"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'trained_tokens'))) {
             throw "Error! JSON cannot be serialized due to the required property 'trained_tokens' missing."
         } else {
-            $TrainedTokens = $JsonParameters.PSobject.Properties["trained_tokens"].value
+            $TrainedTokens = $JsonParameters.PSobject.Properties['trained_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "training_file"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'training_file'))) {
             throw "Error! JSON cannot be serialized due to the required property 'training_file' missing."
         } else {
-            $TrainingFile = $JsonParameters.PSobject.Properties["training_file"].value
+            $TrainingFile = $JsonParameters.PSobject.Properties['training_file'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "validation_file"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'validation_file'))) {
             throw "Error! JSON cannot be serialized due to the required property 'validation_file' missing."
         } else {
-            $ValidationFile = $JsonParameters.PSobject.Properties["validation_file"].value
+            $ValidationFile = $JsonParameters.PSobject.Properties['validation_file'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "seed"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'seed'))) {
             throw "Error! JSON cannot be serialized due to the required property 'seed' missing."
         } else {
-            $Seed = $JsonParameters.PSobject.Properties["seed"].value
+            $Seed = $JsonParameters.PSobject.Properties['seed'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "integrations"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'integrations'))) { #optional property not found
             $Integrations = $null
         } else {
-            $Integrations = $JsonParameters.PSobject.Properties["integrations"].value
+            $Integrations = $JsonParameters.PSobject.Properties['integrations'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "estimated_finish"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'estimated_finish'))) { #optional property not found
             $EstimatedFinish = $null
         } else {
-            $EstimatedFinish = $JsonParameters.PSobject.Properties["estimated_finish"].value
+            $EstimatedFinish = $JsonParameters.PSobject.Properties['estimated_finish'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "method"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'method'))) { #optional property not found
             $Method = $null
         } else {
-            $Method = $JsonParameters.PSobject.Properties["method"].value
+            $Method = $JsonParameters.PSobject.Properties['method'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "created_at" = ${CreatedAt}
-            "error" = ${VarError}
-            "fine_tuned_model" = ${FineTunedModel}
-            "finished_at" = ${FinishedAt}
-            "hyperparameters" = ${Hyperparameters}
-            "model" = ${Model}
-            "object" = ${Object}
-            "organization_id" = ${OrganizationId}
-            "result_files" = ${ResultFiles}
-            "status" = ${Status}
-            "trained_tokens" = ${TrainedTokens}
-            "training_file" = ${TrainingFile}
-            "validation_file" = ${ValidationFile}
-            "integrations" = ${Integrations}
-            "seed" = ${Seed}
-            "estimated_finish" = ${EstimatedFinish}
-            "method" = ${Method}
+            'id' = ${Id}
+            'created_at' = ${CreatedAt}
+            'error' = ${VarError}
+            'fine_tuned_model' = ${FineTunedModel}
+            'finished_at' = ${FinishedAt}
+            'hyperparameters' = ${Hyperparameters}
+            'model' = ${Model}
+            'object' = ${Object}
+            'organization_id' = ${OrganizationId}
+            'result_files' = ${ResultFiles}
+            'status' = ${Status}
+            'trained_tokens' = ${TrainedTokens}
+            'training_file' = ${TrainingFile}
+            'validation_file' = ${ValidationFile}
+            'integrations' = ${Integrations}
+            'seed' = ${Seed}
+            'estimated_finish' = ${EstimatedFinish}
+            'method' = ${Method}
         }
 
         return $PSO

@@ -51,7 +51,7 @@ class AuditLog
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -59,9 +59,9 @@ class AuditLog
     /**
      * @var AuditLogEventType|null
      * @SerializedName("type")
-    * @Accessor(getter="getSerializedType", setter="setDeserializedType")
-    * @Type("string")
-    */
+     * @Accessor(getter="getSerializedType", setter="setDeserializedType")
+     * @Type("string")
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     protected ?AuditLogEventType $type = null;
@@ -72,7 +72,7 @@ class AuditLog
      * @var int|null
      * @SerializedName("effective_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $effectiveAt = null;
@@ -81,7 +81,7 @@ class AuditLog
      * @var AuditLogProject|null
      * @SerializedName("project")
      * @Type("OpenAPI\Server\Model\AuditLogProject")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogProject")]
     protected ?AuditLogProject $project = null;
 
@@ -89,7 +89,7 @@ class AuditLog
      * @var AuditLogActor|null
      * @SerializedName("actor")
      * @Type("OpenAPI\Server\Model\AuditLogActor")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\AuditLogActor")]
@@ -99,7 +99,7 @@ class AuditLog
      * @var AuditLogApiKeyCreated|null
      * @SerializedName("api_key.created")
      * @Type("OpenAPI\Server\Model\AuditLogApiKeyCreated")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogApiKeyCreated")]
     protected ?AuditLogApiKeyCreated $apiKeyCreated = null;
 
@@ -107,7 +107,7 @@ class AuditLog
      * @var AuditLogApiKeyUpdated|null
      * @SerializedName("api_key.updated")
      * @Type("OpenAPI\Server\Model\AuditLogApiKeyUpdated")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogApiKeyUpdated")]
     protected ?AuditLogApiKeyUpdated $apiKeyUpdated = null;
 
@@ -115,7 +115,7 @@ class AuditLog
      * @var AuditLogApiKeyDeleted|null
      * @SerializedName("api_key.deleted")
      * @Type("OpenAPI\Server\Model\AuditLogApiKeyDeleted")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogApiKeyDeleted")]
     protected ?AuditLogApiKeyDeleted $apiKeyDeleted = null;
 
@@ -123,7 +123,7 @@ class AuditLog
      * @var AuditLogInviteSent|null
      * @SerializedName("invite.sent")
      * @Type("OpenAPI\Server\Model\AuditLogInviteSent")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogInviteSent")]
     protected ?AuditLogInviteSent $inviteSent = null;
 
@@ -131,7 +131,7 @@ class AuditLog
      * @var AuditLogInviteAccepted|null
      * @SerializedName("invite.accepted")
      * @Type("OpenAPI\Server\Model\AuditLogInviteAccepted")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogInviteAccepted")]
     protected ?AuditLogInviteAccepted $inviteAccepted = null;
 
@@ -139,7 +139,7 @@ class AuditLog
      * @var AuditLogInviteAccepted|null
      * @SerializedName("invite.deleted")
      * @Type("OpenAPI\Server\Model\AuditLogInviteAccepted")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogInviteAccepted")]
     protected ?AuditLogInviteAccepted $inviteDeleted = null;
 
@@ -147,7 +147,7 @@ class AuditLog
      * @var AuditLogLoginFailed|null
      * @SerializedName("login.failed")
      * @Type("OpenAPI\Server\Model\AuditLogLoginFailed")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogLoginFailed")]
     protected ?AuditLogLoginFailed $loginFailed = null;
 
@@ -155,7 +155,7 @@ class AuditLog
      * @var AuditLogLoginFailed|null
      * @SerializedName("logout.failed")
      * @Type("OpenAPI\Server\Model\AuditLogLoginFailed")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogLoginFailed")]
     protected ?AuditLogLoginFailed $logoutFailed = null;
 
@@ -163,7 +163,7 @@ class AuditLog
      * @var AuditLogOrganizationUpdated|null
      * @SerializedName("organization.updated")
      * @Type("OpenAPI\Server\Model\AuditLogOrganizationUpdated")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogOrganizationUpdated")]
     protected ?AuditLogOrganizationUpdated $organizationUpdated = null;
 
@@ -171,7 +171,7 @@ class AuditLog
      * @var AuditLogProjectCreated|null
      * @SerializedName("project.created")
      * @Type("OpenAPI\Server\Model\AuditLogProjectCreated")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogProjectCreated")]
     protected ?AuditLogProjectCreated $projectCreated = null;
 
@@ -179,7 +179,7 @@ class AuditLog
      * @var AuditLogProjectUpdated|null
      * @SerializedName("project.updated")
      * @Type("OpenAPI\Server\Model\AuditLogProjectUpdated")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogProjectUpdated")]
     protected ?AuditLogProjectUpdated $projectUpdated = null;
 
@@ -187,7 +187,7 @@ class AuditLog
      * @var AuditLogProjectArchived|null
      * @SerializedName("project.archived")
      * @Type("OpenAPI\Server\Model\AuditLogProjectArchived")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogProjectArchived")]
     protected ?AuditLogProjectArchived $projectArchived = null;
 
@@ -195,7 +195,7 @@ class AuditLog
      * @var AuditLogRateLimitUpdated|null
      * @SerializedName("rate_limit.updated")
      * @Type("OpenAPI\Server\Model\AuditLogRateLimitUpdated")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogRateLimitUpdated")]
     protected ?AuditLogRateLimitUpdated $rateLimitUpdated = null;
 
@@ -203,7 +203,7 @@ class AuditLog
      * @var AuditLogRateLimitDeleted|null
      * @SerializedName("rate_limit.deleted")
      * @Type("OpenAPI\Server\Model\AuditLogRateLimitDeleted")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogRateLimitDeleted")]
     protected ?AuditLogRateLimitDeleted $rateLimitDeleted = null;
 
@@ -211,7 +211,7 @@ class AuditLog
      * @var AuditLogServiceAccountCreated|null
      * @SerializedName("service_account.created")
      * @Type("OpenAPI\Server\Model\AuditLogServiceAccountCreated")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogServiceAccountCreated")]
     protected ?AuditLogServiceAccountCreated $serviceAccountCreated = null;
 
@@ -219,7 +219,7 @@ class AuditLog
      * @var AuditLogServiceAccountUpdated|null
      * @SerializedName("service_account.updated")
      * @Type("OpenAPI\Server\Model\AuditLogServiceAccountUpdated")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogServiceAccountUpdated")]
     protected ?AuditLogServiceAccountUpdated $serviceAccountUpdated = null;
 
@@ -227,7 +227,7 @@ class AuditLog
      * @var AuditLogServiceAccountDeleted|null
      * @SerializedName("service_account.deleted")
      * @Type("OpenAPI\Server\Model\AuditLogServiceAccountDeleted")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogServiceAccountDeleted")]
     protected ?AuditLogServiceAccountDeleted $serviceAccountDeleted = null;
 
@@ -235,7 +235,7 @@ class AuditLog
      * @var AuditLogUserAdded|null
      * @SerializedName("user.added")
      * @Type("OpenAPI\Server\Model\AuditLogUserAdded")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogUserAdded")]
     protected ?AuditLogUserAdded $userAdded = null;
 
@@ -243,7 +243,7 @@ class AuditLog
      * @var AuditLogUserUpdated|null
      * @SerializedName("user.updated")
      * @Type("OpenAPI\Server\Model\AuditLogUserUpdated")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogUserUpdated")]
     protected ?AuditLogUserUpdated $userUpdated = null;
 
@@ -251,7 +251,7 @@ class AuditLog
      * @var AuditLogUserDeleted|null
      * @SerializedName("user.deleted")
      * @Type("OpenAPI\Server\Model\AuditLogUserDeleted")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AuditLogUserDeleted")]
     protected ?AuditLogUserDeleted $userDeleted = null;
 
@@ -301,12 +301,12 @@ class AuditLog
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The ID of this log.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The ID of this log.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -328,12 +328,12 @@ class AuditLog
     }
 
     /**
-    * Sets type.
-    *
-    * @param AuditLogEventType|null $type
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param AuditLogEventType|null $type
+     *
+     * @return $this
+     */
     public function setType(?AuditLogEventType $type): self
     {
         $this->type = $type;
@@ -342,22 +342,22 @@ class AuditLog
     }
 
     /**
-    * Gets type for serialization.
-    *
-    * @return string|null
-    */
+     * Gets type for serialization.
+     *
+     * @return string|null
+     */
     public function getSerializedType(): string|null
     {
         return !is_null($this->type?->value) ? (string) $this->type->value : null;
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|AuditLogEventType|null $type
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|AuditLogEventType|null $type
+     *
+     * @return $this
+     */
     public function setDeserializedType(string|AuditLogEventType|null $type): self
     {
         if (is_string($type)) {
@@ -382,12 +382,12 @@ class AuditLog
     }
 
     /**
-    * Sets effectiveAt.
-    *
-    * @param int|null $effectiveAt  The Unix timestamp (in seconds) of the event.
-    *
-    * @return $this
-    */
+     * Sets effectiveAt.
+     *
+     * @param int|null $effectiveAt  The Unix timestamp (in seconds) of the event.
+     *
+     * @return $this
+     */
     public function setEffectiveAt(?int $effectiveAt): self
     {
         $this->effectiveAt = $effectiveAt;
@@ -409,12 +409,12 @@ class AuditLog
     }
 
     /**
-    * Sets project.
-    *
-    * @param AuditLogProject|null $project
-    *
-    * @return $this
-    */
+     * Sets project.
+     *
+     * @param AuditLogProject|null $project
+     *
+     * @return $this
+     */
     public function setProject(?AuditLogProject $project = null): self
     {
         $this->project = $project;
@@ -436,12 +436,12 @@ class AuditLog
     }
 
     /**
-    * Sets actor.
-    *
-    * @param AuditLogActor|null $actor
-    *
-    * @return $this
-    */
+     * Sets actor.
+     *
+     * @param AuditLogActor|null $actor
+     *
+     * @return $this
+     */
     public function setActor(?AuditLogActor $actor): self
     {
         $this->actor = $actor;
@@ -463,12 +463,12 @@ class AuditLog
     }
 
     /**
-    * Sets apiKeyCreated.
-    *
-    * @param AuditLogApiKeyCreated|null $apiKeyCreated
-    *
-    * @return $this
-    */
+     * Sets apiKeyCreated.
+     *
+     * @param AuditLogApiKeyCreated|null $apiKeyCreated
+     *
+     * @return $this
+     */
     public function setApiKeyCreated(?AuditLogApiKeyCreated $apiKeyCreated = null): self
     {
         $this->apiKeyCreated = $apiKeyCreated;
@@ -490,12 +490,12 @@ class AuditLog
     }
 
     /**
-    * Sets apiKeyUpdated.
-    *
-    * @param AuditLogApiKeyUpdated|null $apiKeyUpdated
-    *
-    * @return $this
-    */
+     * Sets apiKeyUpdated.
+     *
+     * @param AuditLogApiKeyUpdated|null $apiKeyUpdated
+     *
+     * @return $this
+     */
     public function setApiKeyUpdated(?AuditLogApiKeyUpdated $apiKeyUpdated = null): self
     {
         $this->apiKeyUpdated = $apiKeyUpdated;
@@ -517,12 +517,12 @@ class AuditLog
     }
 
     /**
-    * Sets apiKeyDeleted.
-    *
-    * @param AuditLogApiKeyDeleted|null $apiKeyDeleted
-    *
-    * @return $this
-    */
+     * Sets apiKeyDeleted.
+     *
+     * @param AuditLogApiKeyDeleted|null $apiKeyDeleted
+     *
+     * @return $this
+     */
     public function setApiKeyDeleted(?AuditLogApiKeyDeleted $apiKeyDeleted = null): self
     {
         $this->apiKeyDeleted = $apiKeyDeleted;
@@ -544,12 +544,12 @@ class AuditLog
     }
 
     /**
-    * Sets inviteSent.
-    *
-    * @param AuditLogInviteSent|null $inviteSent
-    *
-    * @return $this
-    */
+     * Sets inviteSent.
+     *
+     * @param AuditLogInviteSent|null $inviteSent
+     *
+     * @return $this
+     */
     public function setInviteSent(?AuditLogInviteSent $inviteSent = null): self
     {
         $this->inviteSent = $inviteSent;
@@ -571,12 +571,12 @@ class AuditLog
     }
 
     /**
-    * Sets inviteAccepted.
-    *
-    * @param AuditLogInviteAccepted|null $inviteAccepted
-    *
-    * @return $this
-    */
+     * Sets inviteAccepted.
+     *
+     * @param AuditLogInviteAccepted|null $inviteAccepted
+     *
+     * @return $this
+     */
     public function setInviteAccepted(?AuditLogInviteAccepted $inviteAccepted = null): self
     {
         $this->inviteAccepted = $inviteAccepted;
@@ -598,12 +598,12 @@ class AuditLog
     }
 
     /**
-    * Sets inviteDeleted.
-    *
-    * @param AuditLogInviteAccepted|null $inviteDeleted
-    *
-    * @return $this
-    */
+     * Sets inviteDeleted.
+     *
+     * @param AuditLogInviteAccepted|null $inviteDeleted
+     *
+     * @return $this
+     */
     public function setInviteDeleted(?AuditLogInviteAccepted $inviteDeleted = null): self
     {
         $this->inviteDeleted = $inviteDeleted;
@@ -625,12 +625,12 @@ class AuditLog
     }
 
     /**
-    * Sets loginFailed.
-    *
-    * @param AuditLogLoginFailed|null $loginFailed
-    *
-    * @return $this
-    */
+     * Sets loginFailed.
+     *
+     * @param AuditLogLoginFailed|null $loginFailed
+     *
+     * @return $this
+     */
     public function setLoginFailed(?AuditLogLoginFailed $loginFailed = null): self
     {
         $this->loginFailed = $loginFailed;
@@ -652,12 +652,12 @@ class AuditLog
     }
 
     /**
-    * Sets logoutFailed.
-    *
-    * @param AuditLogLoginFailed|null $logoutFailed
-    *
-    * @return $this
-    */
+     * Sets logoutFailed.
+     *
+     * @param AuditLogLoginFailed|null $logoutFailed
+     *
+     * @return $this
+     */
     public function setLogoutFailed(?AuditLogLoginFailed $logoutFailed = null): self
     {
         $this->logoutFailed = $logoutFailed;
@@ -679,12 +679,12 @@ class AuditLog
     }
 
     /**
-    * Sets organizationUpdated.
-    *
-    * @param AuditLogOrganizationUpdated|null $organizationUpdated
-    *
-    * @return $this
-    */
+     * Sets organizationUpdated.
+     *
+     * @param AuditLogOrganizationUpdated|null $organizationUpdated
+     *
+     * @return $this
+     */
     public function setOrganizationUpdated(?AuditLogOrganizationUpdated $organizationUpdated = null): self
     {
         $this->organizationUpdated = $organizationUpdated;
@@ -706,12 +706,12 @@ class AuditLog
     }
 
     /**
-    * Sets projectCreated.
-    *
-    * @param AuditLogProjectCreated|null $projectCreated
-    *
-    * @return $this
-    */
+     * Sets projectCreated.
+     *
+     * @param AuditLogProjectCreated|null $projectCreated
+     *
+     * @return $this
+     */
     public function setProjectCreated(?AuditLogProjectCreated $projectCreated = null): self
     {
         $this->projectCreated = $projectCreated;
@@ -733,12 +733,12 @@ class AuditLog
     }
 
     /**
-    * Sets projectUpdated.
-    *
-    * @param AuditLogProjectUpdated|null $projectUpdated
-    *
-    * @return $this
-    */
+     * Sets projectUpdated.
+     *
+     * @param AuditLogProjectUpdated|null $projectUpdated
+     *
+     * @return $this
+     */
     public function setProjectUpdated(?AuditLogProjectUpdated $projectUpdated = null): self
     {
         $this->projectUpdated = $projectUpdated;
@@ -760,12 +760,12 @@ class AuditLog
     }
 
     /**
-    * Sets projectArchived.
-    *
-    * @param AuditLogProjectArchived|null $projectArchived
-    *
-    * @return $this
-    */
+     * Sets projectArchived.
+     *
+     * @param AuditLogProjectArchived|null $projectArchived
+     *
+     * @return $this
+     */
     public function setProjectArchived(?AuditLogProjectArchived $projectArchived = null): self
     {
         $this->projectArchived = $projectArchived;
@@ -787,12 +787,12 @@ class AuditLog
     }
 
     /**
-    * Sets rateLimitUpdated.
-    *
-    * @param AuditLogRateLimitUpdated|null $rateLimitUpdated
-    *
-    * @return $this
-    */
+     * Sets rateLimitUpdated.
+     *
+     * @param AuditLogRateLimitUpdated|null $rateLimitUpdated
+     *
+     * @return $this
+     */
     public function setRateLimitUpdated(?AuditLogRateLimitUpdated $rateLimitUpdated = null): self
     {
         $this->rateLimitUpdated = $rateLimitUpdated;
@@ -814,12 +814,12 @@ class AuditLog
     }
 
     /**
-    * Sets rateLimitDeleted.
-    *
-    * @param AuditLogRateLimitDeleted|null $rateLimitDeleted
-    *
-    * @return $this
-    */
+     * Sets rateLimitDeleted.
+     *
+     * @param AuditLogRateLimitDeleted|null $rateLimitDeleted
+     *
+     * @return $this
+     */
     public function setRateLimitDeleted(?AuditLogRateLimitDeleted $rateLimitDeleted = null): self
     {
         $this->rateLimitDeleted = $rateLimitDeleted;
@@ -841,12 +841,12 @@ class AuditLog
     }
 
     /**
-    * Sets serviceAccountCreated.
-    *
-    * @param AuditLogServiceAccountCreated|null $serviceAccountCreated
-    *
-    * @return $this
-    */
+     * Sets serviceAccountCreated.
+     *
+     * @param AuditLogServiceAccountCreated|null $serviceAccountCreated
+     *
+     * @return $this
+     */
     public function setServiceAccountCreated(?AuditLogServiceAccountCreated $serviceAccountCreated = null): self
     {
         $this->serviceAccountCreated = $serviceAccountCreated;
@@ -868,12 +868,12 @@ class AuditLog
     }
 
     /**
-    * Sets serviceAccountUpdated.
-    *
-    * @param AuditLogServiceAccountUpdated|null $serviceAccountUpdated
-    *
-    * @return $this
-    */
+     * Sets serviceAccountUpdated.
+     *
+     * @param AuditLogServiceAccountUpdated|null $serviceAccountUpdated
+     *
+     * @return $this
+     */
     public function setServiceAccountUpdated(?AuditLogServiceAccountUpdated $serviceAccountUpdated = null): self
     {
         $this->serviceAccountUpdated = $serviceAccountUpdated;
@@ -895,12 +895,12 @@ class AuditLog
     }
 
     /**
-    * Sets serviceAccountDeleted.
-    *
-    * @param AuditLogServiceAccountDeleted|null $serviceAccountDeleted
-    *
-    * @return $this
-    */
+     * Sets serviceAccountDeleted.
+     *
+     * @param AuditLogServiceAccountDeleted|null $serviceAccountDeleted
+     *
+     * @return $this
+     */
     public function setServiceAccountDeleted(?AuditLogServiceAccountDeleted $serviceAccountDeleted = null): self
     {
         $this->serviceAccountDeleted = $serviceAccountDeleted;
@@ -922,12 +922,12 @@ class AuditLog
     }
 
     /**
-    * Sets userAdded.
-    *
-    * @param AuditLogUserAdded|null $userAdded
-    *
-    * @return $this
-    */
+     * Sets userAdded.
+     *
+     * @param AuditLogUserAdded|null $userAdded
+     *
+     * @return $this
+     */
     public function setUserAdded(?AuditLogUserAdded $userAdded = null): self
     {
         $this->userAdded = $userAdded;
@@ -949,12 +949,12 @@ class AuditLog
     }
 
     /**
-    * Sets userUpdated.
-    *
-    * @param AuditLogUserUpdated|null $userUpdated
-    *
-    * @return $this
-    */
+     * Sets userUpdated.
+     *
+     * @param AuditLogUserUpdated|null $userUpdated
+     *
+     * @return $this
+     */
     public function setUserUpdated(?AuditLogUserUpdated $userUpdated = null): self
     {
         $this->userUpdated = $userUpdated;
@@ -976,12 +976,12 @@ class AuditLog
     }
 
     /**
-    * Sets userDeleted.
-    *
-    * @param AuditLogUserDeleted|null $userDeleted
-    *
-    * @return $this
-    */
+     * Sets userDeleted.
+     *
+     * @param AuditLogUserDeleted|null $userDeleted
+     *
+     * @return $this
+     */
     public function setUserDeleted(?AuditLogUserDeleted $userDeleted = null): self
     {
         $this->userDeleted = $userDeleted;

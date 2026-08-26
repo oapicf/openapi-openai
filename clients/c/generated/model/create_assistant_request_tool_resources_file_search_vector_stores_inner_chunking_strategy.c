@@ -30,10 +30,10 @@ static create_assistant_request_tool_resources_file_search_vector_stores_inner_c
     if (!create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_local_var) {
         return NULL;
     }
+    memset(create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_local_var, 0, sizeof(create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_t));
+    create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_local_var->_library_owned = 1;
     create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_local_var->type = type;
     create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_local_var->_static = _static;
-
-    create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_local_var->_library_owned = 1;
     return create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) create_assistant_request_tool_resources_file_search_
     openai_api_create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_TYPE_e type,
     static_chunking_strategy_static_t *_static
     ) {
-    return create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_create_internal (
+    create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_t *result = create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_create_internal (
         type,
         _static
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_free(create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_t *create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy) {
@@ -134,10 +137,15 @@ create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking
     _static_local_nonprim = static_chunking_strategy_static_parseFromJSON(_static); //nonprimitive
 
 
+
     create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_local_var = create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_create_internal (
         typeVariable,
         _static_local_nonprim
         );
+
+    if (!create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_local_var) {
+        goto end;
+    }
 
     return create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy_local_var;
 end:

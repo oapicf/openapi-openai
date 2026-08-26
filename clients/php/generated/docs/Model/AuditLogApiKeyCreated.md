@@ -1,4 +1,4 @@
-# # AuditLogApiKeyCreated
+# AuditLogApiKeyCreated
 
 ## Properties
 

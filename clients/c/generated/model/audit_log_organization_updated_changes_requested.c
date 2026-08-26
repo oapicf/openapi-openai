@@ -15,12 +15,12 @@ static audit_log_organization_updated_changes_requested_t *audit_log_organizatio
     if (!audit_log_organization_updated_changes_requested_local_var) {
         return NULL;
     }
+    memset(audit_log_organization_updated_changes_requested_local_var, 0, sizeof(audit_log_organization_updated_changes_requested_t));
+    audit_log_organization_updated_changes_requested_local_var->_library_owned = 1;
     audit_log_organization_updated_changes_requested_local_var->title = title;
     audit_log_organization_updated_changes_requested_local_var->description = description;
     audit_log_organization_updated_changes_requested_local_var->name = name;
     audit_log_organization_updated_changes_requested_local_var->settings = settings;
-
-    audit_log_organization_updated_changes_requested_local_var->_library_owned = 1;
     return audit_log_organization_updated_changes_requested_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) audit_log_organization_updated_changes_requested_t *
     char *name,
     audit_log_organization_updated_changes_requested_settings_t *settings
     ) {
-    return audit_log_organization_updated_changes_requested_create_internal (
+    audit_log_organization_updated_changes_requested_t *result = audit_log_organization_updated_changes_requested_create_internal (
         title,
         description,
         name,
         settings
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void audit_log_organization_updated_changes_requested_free(audit_log_organization_updated_changes_requested_t *audit_log_organization_updated_changes_requested) {
@@ -117,6 +120,12 @@ audit_log_organization_updated_changes_requested_t *audit_log_organization_updat
 
     audit_log_organization_updated_changes_requested_t *audit_log_organization_updated_changes_requested_local_var = NULL;
 
+    char *title_local_str = NULL;
+
+    char *description_local_str = NULL;
+
+    char *name_local_str = NULL;
+
     // define the local variable for audit_log_organization_updated_changes_requested->settings
     audit_log_organization_updated_changes_requested_settings_t *settings_local_nonprim = NULL;
 
@@ -166,15 +175,35 @@ audit_log_organization_updated_changes_requested_t *audit_log_organization_updat
     }
 
 
+    if (title && !cJSON_IsNull(title)) title_local_str = strdup(title->valuestring);
+    if (description && !cJSON_IsNull(description)) description_local_str = strdup(description->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     audit_log_organization_updated_changes_requested_local_var = audit_log_organization_updated_changes_requested_create_internal (
-        title && !cJSON_IsNull(title) ? strdup(title->valuestring) : NULL,
-        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
+        title_local_str,
+        description_local_str,
+        name_local_str,
         settings ? settings_local_nonprim : NULL
         );
 
+    if (!audit_log_organization_updated_changes_requested_local_var) {
+        goto end;
+    }
+
     return audit_log_organization_updated_changes_requested_local_var;
 end:
+    if (title_local_str) {
+        free(title_local_str);
+        title_local_str = NULL;
+    }
+    if (description_local_str) {
+        free(description_local_str);
+        description_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
     if (settings_local_nonprim) {
         audit_log_organization_updated_changes_requested_settings_free(settings_local_nonprim);
         settings_local_nonprim = NULL;

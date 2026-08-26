@@ -25,19 +25,24 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ListRunsResponse(
 
     @Schema(example = "list", required = true, description = "")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: kotlin.String,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("data")
     @get:JsonProperty("data", required = true) val `data`: kotlin.collections.List<RunObject>,
 
     @Schema(example = "run_abc123", required = true, description = "")
+    @param:JsonProperty("first_id")
     @get:JsonProperty("first_id", required = true) val firstId: kotlin.String,
 
     @Schema(example = "run_abc456", required = true, description = "")
+    @param:JsonProperty("last_id")
     @get:JsonProperty("last_id", required = true) val lastId: kotlin.String,
 
     @Schema(example = "false", required = true, description = "")
+    @param:JsonProperty("has_more")
     @get:JsonProperty("has_more", required = true) val hasMore: kotlin.Boolean
 ) {
 

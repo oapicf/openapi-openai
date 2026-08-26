@@ -148,7 +148,7 @@ ProjectServiceAccount::getObject()
 }
 
 void
-ProjectServiceAccount::setObject(std::string  object)
+ProjectServiceAccount::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -160,7 +160,7 @@ ProjectServiceAccount::getId()
 }
 
 void
-ProjectServiceAccount::setId(std::string  id)
+ProjectServiceAccount::setId(std::string id)
 {
 	this->id = id;
 }
@@ -172,7 +172,7 @@ ProjectServiceAccount::getName()
 }
 
 void
-ProjectServiceAccount::setName(std::string  name)
+ProjectServiceAccount::setName(std::string name)
 {
 	this->name = name;
 }
@@ -184,7 +184,7 @@ ProjectServiceAccount::getRole()
 }
 
 void
-ProjectServiceAccount::setRole(std::string  role)
+ProjectServiceAccount::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -196,7 +196,7 @@ ProjectServiceAccount::getCreatedAt()
 }
 
 void
-ProjectServiceAccount::setCreatedAt(int  created_at)
+ProjectServiceAccount::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }

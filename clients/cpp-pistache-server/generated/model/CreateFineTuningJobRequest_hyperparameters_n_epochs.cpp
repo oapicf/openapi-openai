@@ -24,6 +24,8 @@ CreateFineTuningJobRequest_hyperparameters_n_epochs::CreateFineTuningJobRequest_
     
 }
 
+CreateFineTuningJobRequest_hyperparameters_n_epochs::~CreateFineTuningJobRequest_hyperparameters_n_epochs() = default;
+
 void CreateFineTuningJobRequest_hyperparameters_n_epochs::validate() const
 {
     std::stringstream msg;

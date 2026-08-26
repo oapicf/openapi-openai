@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface RunObjectLastError {
     /**
      * One of `server_error`, `rate_limit_exceeded`, or `invalid_prompt`.
-     * @type {string}
+     * @type {RunObjectLastErrorCodeEnum}
      * @memberof RunObjectLastError
      */
     code: RunObjectLastErrorCodeEnum;

@@ -28,7 +28,7 @@ openai_api_message_delta_content_image_file_object_TYPE_e message_delta_content_
 
 
 typedef struct message_delta_content_image_file_object_t {
-    int index; //numeric
+    int *index; //numeric
     openai_api_message_delta_content_image_file_object_TYPE_e type; //enum
     struct message_delta_content_image_file_object_image_file_t *image_file; //model
 
@@ -36,7 +36,7 @@ typedef struct message_delta_content_image_file_object_t {
 } message_delta_content_image_file_object_t;
 
 __attribute__((deprecated)) message_delta_content_image_file_object_t *message_delta_content_image_file_object_create(
-    int index,
+    int *index,
     openai_api_message_delta_content_image_file_object_TYPE_e type,
     message_delta_content_image_file_object_image_file_t *image_file
 );

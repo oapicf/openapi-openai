@@ -165,7 +165,7 @@ ProjectRateLimitListResponse::getObject()
 }
 
 void
-ProjectRateLimitListResponse::setObject(std::string  object)
+ProjectRateLimitListResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -177,7 +177,7 @@ ProjectRateLimitListResponse::getData()
 }
 
 void
-ProjectRateLimitListResponse::setData(std::list <ProjectRateLimit> data)
+ProjectRateLimitListResponse::setData(std::list<ProjectRateLimit> data)
 {
 	this->data = data;
 }
@@ -189,7 +189,7 @@ ProjectRateLimitListResponse::getFirstId()
 }
 
 void
-ProjectRateLimitListResponse::setFirstId(std::string  first_id)
+ProjectRateLimitListResponse::setFirstId(std::string first_id)
 {
 	this->first_id = first_id;
 }
@@ -201,7 +201,7 @@ ProjectRateLimitListResponse::getLastId()
 }
 
 void
-ProjectRateLimitListResponse::setLastId(std::string  last_id)
+ProjectRateLimitListResponse::setLastId(std::string last_id)
 {
 	this->last_id = last_id;
 }
@@ -213,7 +213,7 @@ ProjectRateLimitListResponse::isHasMore()
 }
 
 void
-ProjectRateLimitListResponse::setHasMore(bool  has_more)
+ProjectRateLimitListResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }

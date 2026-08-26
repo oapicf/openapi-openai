@@ -71,10 +71,10 @@ class MessageDeltaContentImageUrlObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageDeltaContentImageUrlObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageDeltaContentImageUrlObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'index'), 'Required key "MessageDeltaContentImageUrlObject[index]" is missing from JSON.');
+        assert(json[r'index'] != null, 'Required key "MessageDeltaContentImageUrlObject[index]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "MessageDeltaContentImageUrlObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "MessageDeltaContentImageUrlObject[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -135,27 +135,28 @@ class MessageDeltaContentImageUrlObject {
 }
 
 /// Always `image_url`.
-class MessageDeltaContentImageUrlObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageDeltaContentImageUrlObjectTypeEnum._(this.value);
+enum MessageDeltaContentImageUrlObjectTypeEnum {
+  imageUrl._(r'image_url'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageDeltaContentImageUrlObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const imageUrl = MessageDeltaContentImageUrlObjectTypeEnum._(r'image_url');
-
-  /// List of all possible values in this [enum][MessageDeltaContentImageUrlObjectTypeEnum].
-  static const values = <MessageDeltaContentImageUrlObjectTypeEnum>[
-    imageUrl,
-  ];
-
+  /// Returns the instance of [MessageDeltaContentImageUrlObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageDeltaContentImageUrlObjectTypeEnum? fromJson(dynamic value) => MessageDeltaContentImageUrlObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageDeltaContentImageUrlObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageDeltaContentImageUrlObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageDeltaContentImageUrlObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -177,9 +178,10 @@ class MessageDeltaContentImageUrlObjectTypeEnumTypeTransformer {
 
   const MessageDeltaContentImageUrlObjectTypeEnumTypeTransformer._();
 
-  String encode(MessageDeltaContentImageUrlObjectTypeEnum data) => data.value;
+  String encode(MessageDeltaContentImageUrlObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageDeltaContentImageUrlObjectTypeEnum.
+  /// Returns the instance of [MessageDeltaContentImageUrlObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -188,6 +190,9 @@ class MessageDeltaContentImageUrlObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageDeltaContentImageUrlObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageDeltaContentImageUrlObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'image_url': return MessageDeltaContentImageUrlObjectTypeEnum.imageUrl;
@@ -200,7 +205,7 @@ class MessageDeltaContentImageUrlObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageDeltaContentImageUrlObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageDeltaContentImageUrlObjectTypeEnumTypeTransformer? _instance;
 }
 

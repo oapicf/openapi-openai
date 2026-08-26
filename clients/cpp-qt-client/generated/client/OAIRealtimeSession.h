@@ -40,13 +40,13 @@ class OAIRealtimeResponseCreateParams_tools_inner;
 class OAIRealtimeSession : public OAIObject {
 public:
     OAIRealtimeSession();
-    OAIRealtimeSession(QString json);
+    OAIRealtimeSession(const QString &json);
     ~OAIRealtimeSession() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

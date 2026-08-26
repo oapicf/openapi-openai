@@ -51,7 +51,7 @@ class CreateEmbeddingResponseUsage
      * @var int|null
      * @SerializedName("prompt_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $promptTokens = null;
@@ -62,7 +62,7 @@ class CreateEmbeddingResponseUsage
      * @var int|null
      * @SerializedName("total_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $totalTokens = null;
@@ -90,12 +90,12 @@ class CreateEmbeddingResponseUsage
     }
 
     /**
-    * Sets promptTokens.
-    *
-    * @param int|null $promptTokens  The number of tokens used by the prompt.
-    *
-    * @return $this
-    */
+     * Sets promptTokens.
+     *
+     * @param int|null $promptTokens  The number of tokens used by the prompt.
+     *
+     * @return $this
+     */
     public function setPromptTokens(?int $promptTokens): self
     {
         $this->promptTokens = $promptTokens;
@@ -117,12 +117,12 @@ class CreateEmbeddingResponseUsage
     }
 
     /**
-    * Sets totalTokens.
-    *
-    * @param int|null $totalTokens  The total number of tokens used by the request.
-    *
-    * @return $this
-    */
+     * Sets totalTokens.
+     *
+     * @param int|null $totalTokens  The total number of tokens used by the request.
+     *
+     * @return $this
+     */
     public function setTotalTokens(?int $totalTokens): self
     {
         $this->totalTokens = $totalTokens;

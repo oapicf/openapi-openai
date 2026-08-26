@@ -45,8 +45,8 @@ function Initialize-SubmitToolOutputsRunRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "tool_outputs" = ${ToolOutputs}
-            "stream" = ${Stream}
+            'tool_outputs' = ${ToolOutputs}
+            'stream' = ${Stream}
         }
 
 
@@ -84,7 +84,7 @@ function ConvertFrom-JsonToSubmitToolOutputsRunRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in SubmitToolOutputsRunRequest
-        $AllProperties = ("tool_outputs", "stream")
+        $AllProperties = ('tool_outputs', 'stream')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -95,21 +95,21 @@ function ConvertFrom-JsonToSubmitToolOutputsRunRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'tool_outputs' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tool_outputs"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tool_outputs'))) {
             throw "Error! JSON cannot be serialized due to the required property 'tool_outputs' missing."
         } else {
-            $ToolOutputs = $JsonParameters.PSobject.Properties["tool_outputs"].value
+            $ToolOutputs = $JsonParameters.PSobject.Properties['tool_outputs'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "stream"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'stream'))) { #optional property not found
             $Stream = $null
         } else {
-            $Stream = $JsonParameters.PSobject.Properties["stream"].value
+            $Stream = $JsonParameters.PSobject.Properties['stream'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "tool_outputs" = ${ToolOutputs}
-            "stream" = ${Stream}
+            'tool_outputs' = ${ToolOutputs}
+            'stream' = ${Stream}
         }
 
         return $PSO

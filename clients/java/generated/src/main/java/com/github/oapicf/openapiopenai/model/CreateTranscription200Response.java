@@ -63,7 +63,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateTranscription200Response extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(CreateTranscription200Response.class.getName());
 
@@ -210,6 +210,7 @@ public class CreateTranscription200Response extends AbstractOpenApiSchema {
      * @return The actual instance of `CreateTranscriptionResponseJson`
      * @throws ClassCastException if the instance is not `CreateTranscriptionResponseJson`
      */
+    @SuppressWarnings("unchecked")
     public CreateTranscriptionResponseJson getCreateTranscriptionResponseJson() throws ClassCastException {
         return (CreateTranscriptionResponseJson)super.getActualInstance();
     }
@@ -221,6 +222,7 @@ public class CreateTranscription200Response extends AbstractOpenApiSchema {
      * @return The actual instance of `CreateTranscriptionResponseVerboseJson`
      * @throws ClassCastException if the instance is not `CreateTranscriptionResponseVerboseJson`
      */
+    @SuppressWarnings("unchecked")
     public CreateTranscriptionResponseVerboseJson getCreateTranscriptionResponseVerboseJson() throws ClassCastException {
         return (CreateTranscriptionResponseVerboseJson)super.getActualInstance();
     }

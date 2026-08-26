@@ -108,7 +108,7 @@ CreateThreadAndRunRequest_tools_inner::getType()
 }
 
 void
-CreateThreadAndRunRequest_tools_inner::setType(std::string  type)
+CreateThreadAndRunRequest_tools_inner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -120,7 +120,7 @@ CreateThreadAndRunRequest_tools_inner::getFileSearch()
 }
 
 void
-CreateThreadAndRunRequest_tools_inner::setFileSearch(AssistantToolsFileSearch_file_search  file_search)
+CreateThreadAndRunRequest_tools_inner::setFileSearch(AssistantToolsFileSearch_file_search file_search)
 {
 	this->file_search = file_search;
 }
@@ -132,7 +132,7 @@ CreateThreadAndRunRequest_tools_inner::getFunction()
 }
 
 void
-CreateThreadAndRunRequest_tools_inner::setFunction(FunctionObject  function)
+CreateThreadAndRunRequest_tools_inner::setFunction(FunctionObject function)
 {
 	this->function = function;
 }

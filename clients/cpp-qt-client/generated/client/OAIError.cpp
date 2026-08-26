@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIError::OAIError(QString json) {
+OAIError::OAIError(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -47,7 +47,7 @@ void OAIError::initializeModel() {
     m_type_isValid = false;
 }
 
-void OAIError::fromJson(QString jsonString) {
+void OAIError::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

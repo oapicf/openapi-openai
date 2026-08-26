@@ -109,13 +109,36 @@ ThreadObject <- R6::R6Class(
       }
       if (!is.null(self$`tool_resources`)) {
         ThreadObjectObject[["tool_resources"]] <-
-          self$`tool_resources`$toSimpleType()
+          self$extractSimpleType(self$`tool_resources`)
       }
       if (!is.null(self$`metadata`)) {
         ThreadObjectObject[["metadata"]] <-
           self$`metadata`
       }
       return(ThreadObjectObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

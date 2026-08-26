@@ -34,13 +34,13 @@ class OAIBatch_errors_data_inner;
 class OAIBatch_errors : public OAIObject {
 public:
     OAIBatch_errors();
-    OAIBatch_errors(QString json);
+    OAIBatch_errors(const QString &json);
     ~OAIBatch_errors() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getObject() const;
     void setObject(const QString &object);

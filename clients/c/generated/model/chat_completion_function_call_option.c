@@ -12,18 +12,21 @@ static chat_completion_function_call_option_t *chat_completion_function_call_opt
     if (!chat_completion_function_call_option_local_var) {
         return NULL;
     }
-    chat_completion_function_call_option_local_var->name = name;
-
+    memset(chat_completion_function_call_option_local_var, 0, sizeof(chat_completion_function_call_option_t));
     chat_completion_function_call_option_local_var->_library_owned = 1;
+    chat_completion_function_call_option_local_var->name = name;
     return chat_completion_function_call_option_local_var;
 }
 
 __attribute__((deprecated)) chat_completion_function_call_option_t *chat_completion_function_call_option_create(
     char *name
     ) {
-    return chat_completion_function_call_option_create_internal (
+    chat_completion_function_call_option_t *result = chat_completion_function_call_option_create_internal (
         name
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_function_call_option_free(chat_completion_function_call_option_t *chat_completion_function_call_option) {
@@ -65,6 +68,8 @@ chat_completion_function_call_option_t *chat_completion_function_call_option_par
 
     chat_completion_function_call_option_t *chat_completion_function_call_option_local_var = NULL;
 
+    char *name_local_str = NULL;
+
     // chat_completion_function_call_option->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(chat_completion_function_call_optionJSON, "name");
     if (cJSON_IsNull(name)) {
@@ -81,12 +86,22 @@ chat_completion_function_call_option_t *chat_completion_function_call_option_par
     }
 
 
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     chat_completion_function_call_option_local_var = chat_completion_function_call_option_create_internal (
-        strdup(name->valuestring)
+        name_local_str
         );
+
+    if (!chat_completion_function_call_option_local_var) {
+        goto end;
+    }
 
     return chat_completion_function_call_option_local_var;
 end:
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
     return NULL;
 
 }

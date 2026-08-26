@@ -35,7 +35,7 @@ class  RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner
 {
 public:
     RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner();
-    virtual ~RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner() = default;
+    virtual ~RunStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner();
 
 
     /// <summary>

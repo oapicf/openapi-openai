@@ -27,6 +27,8 @@ ProjectUserDeleteResponse::ProjectUserDeleteResponse()
     
 }
 
+ProjectUserDeleteResponse::~ProjectUserDeleteResponse() = default;
+
 void ProjectUserDeleteResponse::validate() const
 {
     std::stringstream msg;

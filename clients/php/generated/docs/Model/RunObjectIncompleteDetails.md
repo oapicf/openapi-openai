@@ -1,4 +1,4 @@
-# # RunObjectIncompleteDetails
+# RunObjectIncompleteDetails
 
 ## Properties
 

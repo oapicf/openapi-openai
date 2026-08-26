@@ -28,8 +28,9 @@ namespace Org.OpenAPITools.Models
     {
 
         /// <summary>
-        /// Gets or Sets Type
+        /// The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
         /// </summary>
+        /// <value>The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. </value>
         [TypeConverter(typeof(CustomEnumConverter<TypeEnum>))]
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum TypeEnum
@@ -43,8 +44,9 @@ namespace Org.OpenAPITools.Models
         }
 
         /// <summary>
-        /// Gets or Sets Type
+        /// The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. 
         /// </summary>
+        /// <value>The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. </value>
         [Required]
         [DataMember(Name="type", EmitDefaultValue=true)]
         public TypeEnum Type { get; set; }

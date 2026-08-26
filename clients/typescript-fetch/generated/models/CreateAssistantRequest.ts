@@ -138,14 +138,14 @@ export function CreateAssistantRequestFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'model': CreateAssistantRequestModelFromJSON(json['model']),
-        'name': json['name'] == null ? undefined : json['name'],
-        'description': json['description'] == null ? undefined : json['description'],
-        'instructions': json['instructions'] == null ? undefined : json['instructions'],
+        'name': json['name'] === undefined ? undefined : json['name'] === null ? null : json['name'],
+        'description': json['description'] === undefined ? undefined : json['description'] === null ? null : json['description'],
+        'instructions': json['instructions'] === undefined ? undefined : json['instructions'] === null ? null : json['instructions'],
         'tools': json['tools'] == null ? undefined : ((json['tools'] as Array<any>).map(AssistantObjectToolsInnerFromJSON)),
-        'toolResources': json['tool_resources'] == null ? undefined : CreateAssistantRequestToolResourcesFromJSON(json['tool_resources']),
-        'metadata': json['metadata'] == null ? undefined : json['metadata'],
-        'temperature': json['temperature'] == null ? undefined : json['temperature'],
-        'topP': json['top_p'] == null ? undefined : json['top_p'],
+        'toolResources': json['tool_resources'] === undefined ? undefined : json['tool_resources'] === null ? null : CreateAssistantRequestToolResourcesFromJSON(json['tool_resources']),
+        'metadata': json['metadata'] === undefined ? undefined : json['metadata'] === null ? null : json['metadata'],
+        'temperature': json['temperature'] === undefined ? undefined : json['temperature'] === null ? null : json['temperature'],
+        'topP': json['top_p'] === undefined ? undefined : json['top_p'] === null ? null : json['top_p'],
         'responseFormat': json['response_format'] == null ? undefined : AssistantsApiResponseFormatOptionFromJSON(json['response_format']),
     };
 }

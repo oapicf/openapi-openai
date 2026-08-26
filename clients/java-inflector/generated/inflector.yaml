@@ -64,7 +64,6 @@ AuditLogUserAddedData : org.openapitools.model.AuditLogUserAddedData
 AuditLogUserDeleted : org.openapitools.model.AuditLogUserDeleted
 AuditLogUserUpdated : org.openapitools.model.AuditLogUserUpdated
 AuditLogUserUpdatedChangesRequested : org.openapitools.model.AuditLogUserUpdatedChangesRequested
-AutoChunkingStrategy : org.openapitools.model.AutoChunkingStrategy
 AutoChunkingStrategyRequestParam : org.openapitools.model.AutoChunkingStrategyRequestParam
 Batch : org.openapitools.model.Batch
 BatchErrors : org.openapitools.model.BatchErrors
@@ -474,7 +473,6 @@ RunToolCallObject : org.openapitools.model.RunToolCallObject
 RunToolCallObjectFunction : org.openapitools.model.RunToolCallObjectFunction
 StaticChunkingStrategy : org.openapitools.model.StaticChunkingStrategy
 StaticChunkingStrategyRequestParam : org.openapitools.model.StaticChunkingStrategyRequestParam
-StaticChunkingStrategyResponseParam : org.openapitools.model.StaticChunkingStrategyResponseParam
 StaticChunkingStrategyStatic : org.openapitools.model.StaticChunkingStrategyStatic
 SubmitToolOutputsRunRequest : org.openapitools.model.SubmitToolOutputsRunRequest
 SubmitToolOutputsRunRequestToolOutputsInner : org.openapitools.model.SubmitToolOutputsRunRequestToolOutputsInner

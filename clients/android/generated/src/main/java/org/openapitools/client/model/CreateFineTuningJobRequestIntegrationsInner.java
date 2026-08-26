@@ -28,8 +28,9 @@ public class CreateFineTuningJobRequestIntegrationsInner {
   private CreateFineTuningJobRequestIntegrationsInnerWandb wandb = null;
 
   /**
+   * The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. ")
   public TypeEnum getType() {
     return type;
   }

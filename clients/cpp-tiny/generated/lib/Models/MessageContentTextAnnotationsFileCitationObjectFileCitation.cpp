@@ -64,7 +64,7 @@ MessageContentTextAnnotationsFileCitationObject_file_citation::getFileId()
 }
 
 void
-MessageContentTextAnnotationsFileCitationObject_file_citation::setFileId(std::string  file_id)
+MessageContentTextAnnotationsFileCitationObject_file_citation::setFileId(std::string file_id)
 {
 	this->file_id = file_id;
 }

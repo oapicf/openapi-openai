@@ -42,7 +42,7 @@ class  UsageTimeBucket_result_inner
 {
 public:
     UsageTimeBucket_result_inner();
-    virtual ~UsageTimeBucket_result_inner() = default;
+    virtual ~UsageTimeBucket_result_inner();
 
 
     /// <summary>

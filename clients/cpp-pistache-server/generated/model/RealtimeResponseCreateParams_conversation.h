@@ -31,7 +31,7 @@ class  RealtimeResponseCreateParams_conversation
 {
 public:
     RealtimeResponseCreateParams_conversation();
-    virtual ~RealtimeResponseCreateParams_conversation() = default;
+    virtual ~RealtimeResponseCreateParams_conversation();
 
 
     /// <summary>

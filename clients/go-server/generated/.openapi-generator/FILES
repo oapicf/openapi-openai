@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 Dockerfile
 README.md
 api/openapi.yaml
@@ -108,7 +107,6 @@ go/model_audit_log_user_added_data.go
 go/model_audit_log_user_deleted.go
 go/model_audit_log_user_updated.go
 go/model_audit_log_user_updated_changes_requested.go
-go/model_auto_chunking_strategy.go
 go/model_auto_chunking_strategy_request_param.go
 go/model_batch.go
 go/model_batch_errors.go
@@ -518,7 +516,6 @@ go/model_run_tool_call_object.go
 go/model_run_tool_call_object_function.go
 go/model_static_chunking_strategy.go
 go/model_static_chunking_strategy_request_param.go
-go/model_static_chunking_strategy_response_param.go
 go/model_static_chunking_strategy_static.go
 go/model_submit_tool_outputs_run_request.go
 go/model_submit_tool_outputs_run_request_tool_outputs_inner.go

@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner::OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner(QString json) {
+OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner::OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -47,7 +47,7 @@ void OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner::initializeModel(
     m_reset_seconds_isValid = false;
 }
 
-void OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner::fromJson(QString jsonString) {
+void OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -12,7 +12,7 @@ import org.openapitools.model.RealtimeServerEventConversationCreatedConversation
  * Returned when a conversation is created. Emitted right after session creation. 
  */
 @ApiModel(description = "Returned when a conversation is created. Emitted right after session creation. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeServerEventConversationCreated   {
   @JsonProperty("event_id")
   private String eventId;
@@ -143,10 +143,7 @@ public class RealtimeServerEventConversationCreated   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

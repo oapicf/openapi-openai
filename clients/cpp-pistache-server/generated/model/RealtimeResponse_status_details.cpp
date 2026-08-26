@@ -29,6 +29,8 @@ RealtimeResponse_status_details::RealtimeResponse_status_details()
     
 }
 
+RealtimeResponse_status_details::~RealtimeResponse_status_details() = default;
+
 void RealtimeResponse_status_details::validate() const
 {
     std::stringstream msg;

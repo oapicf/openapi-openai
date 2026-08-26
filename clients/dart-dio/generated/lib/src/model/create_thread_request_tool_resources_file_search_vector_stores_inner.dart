@@ -100,22 +100,25 @@ class _$CreateThreadRequestToolResourcesFileSearchVectorStoresInnerSerializer im
         case r'file_ids':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.fileIds.replace(valueDes);
           break;
         case r'chunking_strategy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy),
-          ) as CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy;
+            specifiedType: const FullType.nullable(CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy),
+          ) as CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy?;
+          if (valueDes == null) continue;
           result.chunkingStrategy.replace(valueDes);
           break;
         case r'metadata':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.metadata = valueDes;
           break;
         default:

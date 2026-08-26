@@ -49,7 +49,7 @@ class CreateThreadAndRunRequestToolResources
      * @var CreateAssistantRequestToolResourcesCodeInterpreter|null
      * @SerializedName("code_interpreter")
      * @Type("OpenAPI\Server\Model\CreateAssistantRequestToolResourcesCodeInterpreter")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateAssistantRequestToolResourcesCodeInterpreter")]
     protected ?CreateAssistantRequestToolResourcesCodeInterpreter $codeInterpreter = null;
 
@@ -57,7 +57,7 @@ class CreateThreadAndRunRequestToolResources
      * @var AssistantObjectToolResourcesFileSearch|null
      * @SerializedName("file_search")
      * @Type("OpenAPI\Server\Model\AssistantObjectToolResourcesFileSearch")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AssistantObjectToolResourcesFileSearch")]
     protected ?AssistantObjectToolResourcesFileSearch $fileSearch = null;
 
@@ -84,12 +84,12 @@ class CreateThreadAndRunRequestToolResources
     }
 
     /**
-    * Sets codeInterpreter.
-    *
-    * @param CreateAssistantRequestToolResourcesCodeInterpreter|null $codeInterpreter
-    *
-    * @return $this
-    */
+     * Sets codeInterpreter.
+     *
+     * @param CreateAssistantRequestToolResourcesCodeInterpreter|null $codeInterpreter
+     *
+     * @return $this
+     */
     public function setCodeInterpreter(?CreateAssistantRequestToolResourcesCodeInterpreter $codeInterpreter = null): self
     {
         $this->codeInterpreter = $codeInterpreter;
@@ -111,12 +111,12 @@ class CreateThreadAndRunRequestToolResources
     }
 
     /**
-    * Sets fileSearch.
-    *
-    * @param AssistantObjectToolResourcesFileSearch|null $fileSearch
-    *
-    * @return $this
-    */
+     * Sets fileSearch.
+     *
+     * @param AssistantObjectToolResourcesFileSearch|null $fileSearch
+     *
+     * @return $this
+     */
     public function setFileSearch(?AssistantObjectToolResourcesFileSearch $fileSearch = null): self
     {
         $this->fileSearch = $fileSearch;

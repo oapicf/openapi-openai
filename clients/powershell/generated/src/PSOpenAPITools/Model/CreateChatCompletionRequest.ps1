@@ -42,7 +42,7 @@ How many chat completion choices to generate for each input message. Note that y
 .PARAMETER Modalities
 Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[""text""]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[""text"", ""audio""]` 
 .PARAMETER Prediction
-No description available.
+Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
 .PARAMETER Audio
 No description available.
 .PARAMETER PresencePenalty
@@ -260,36 +260,36 @@ function Initialize-CreateChatCompletionRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "messages" = ${Messages}
-            "model" = ${Model}
-            "store" = ${Store}
-            "reasoning_effort" = ${ReasoningEffort}
-            "metadata" = ${Metadata}
-            "frequency_penalty" = ${FrequencyPenalty}
-            "logit_bias" = ${LogitBias}
-            "logprobs" = ${Logprobs}
-            "top_logprobs" = ${TopLogprobs}
-            "max_tokens" = ${MaxTokens}
-            "max_completion_tokens" = ${MaxCompletionTokens}
-            "n" = ${N}
-            "modalities" = ${Modalities}
-            "prediction" = ${Prediction}
-            "audio" = ${Audio}
-            "presence_penalty" = ${PresencePenalty}
-            "response_format" = ${ResponseFormat}
-            "seed" = ${Seed}
-            "service_tier" = ${ServiceTier}
-            "stop" = ${Stop}
-            "stream" = ${Stream}
-            "stream_options" = ${StreamOptions}
-            "temperature" = ${Temperature}
-            "top_p" = ${TopP}
-            "tools" = ${Tools}
-            "tool_choice" = ${ToolChoice}
-            "parallel_tool_calls" = ${ParallelToolCalls}
-            "user" = ${User}
-            "function_call" = ${FunctionCall}
-            "functions" = ${Functions}
+            'messages' = ${Messages}
+            'model' = ${Model}
+            'store' = ${Store}
+            'reasoning_effort' = ${ReasoningEffort}
+            'metadata' = ${Metadata}
+            'frequency_penalty' = ${FrequencyPenalty}
+            'logit_bias' = ${LogitBias}
+            'logprobs' = ${Logprobs}
+            'top_logprobs' = ${TopLogprobs}
+            'max_tokens' = ${MaxTokens}
+            'max_completion_tokens' = ${MaxCompletionTokens}
+            'n' = ${N}
+            'modalities' = ${Modalities}
+            'prediction' = ${Prediction}
+            'audio' = ${Audio}
+            'presence_penalty' = ${PresencePenalty}
+            'response_format' = ${ResponseFormat}
+            'seed' = ${Seed}
+            'service_tier' = ${ServiceTier}
+            'stop' = ${Stop}
+            'stream' = ${Stream}
+            'stream_options' = ${StreamOptions}
+            'temperature' = ${Temperature}
+            'top_p' = ${TopP}
+            'tools' = ${Tools}
+            'tool_choice' = ${ToolChoice}
+            'parallel_tool_calls' = ${ParallelToolCalls}
+            'user' = ${User}
+            'function_call' = ${FunctionCall}
+            'functions' = ${Functions}
         }
 
 
@@ -327,7 +327,7 @@ function ConvertFrom-JsonToCreateChatCompletionRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateChatCompletionRequest
-        $AllProperties = ("messages", "model", "store", "reasoning_effort", "metadata", "frequency_penalty", "logit_bias", "logprobs", "top_logprobs", "max_tokens", "max_completion_tokens", "n", "modalities", "prediction", "audio", "presence_penalty", "response_format", "seed", "service_tier", "stop", "stream", "stream_options", "temperature", "top_p", "tools", "tool_choice", "parallel_tool_calls", "user", "function_call", "functions")
+        $AllProperties = ('messages', 'model', 'store', 'reasoning_effort', 'metadata', 'frequency_penalty', 'logit_bias', 'logprobs', 'top_logprobs', 'max_tokens', 'max_completion_tokens', 'n', 'modalities', 'prediction', 'audio', 'presence_penalty', 'response_format', 'seed', 'service_tier', 'stop', 'stream', 'stream_options', 'temperature', 'top_p', 'tools', 'tool_choice', 'parallel_tool_calls', 'user', 'function_call', 'functions')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -338,217 +338,217 @@ function ConvertFrom-JsonToCreateChatCompletionRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'messages' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "messages"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'messages'))) {
             throw "Error! JSON cannot be serialized due to the required property 'messages' missing."
         } else {
-            $Messages = $JsonParameters.PSobject.Properties["messages"].value
+            $Messages = $JsonParameters.PSobject.Properties['messages'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) {
             throw "Error! JSON cannot be serialized due to the required property 'model' missing."
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "store"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'store'))) { #optional property not found
             $Store = $null
         } else {
-            $Store = $JsonParameters.PSobject.Properties["store"].value
+            $Store = $JsonParameters.PSobject.Properties['store'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "reasoning_effort"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'reasoning_effort'))) { #optional property not found
             $ReasoningEffort = $null
         } else {
-            $ReasoningEffort = $JsonParameters.PSobject.Properties["reasoning_effort"].value
+            $ReasoningEffort = $JsonParameters.PSobject.Properties['reasoning_effort'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) { #optional property not found
             $Metadata = $null
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "frequency_penalty"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'frequency_penalty'))) { #optional property not found
             $FrequencyPenalty = $null
         } else {
-            $FrequencyPenalty = $JsonParameters.PSobject.Properties["frequency_penalty"].value
+            $FrequencyPenalty = $JsonParameters.PSobject.Properties['frequency_penalty'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "logit_bias"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'logit_bias'))) { #optional property not found
             $LogitBias = $null
         } else {
-            $LogitBias = $JsonParameters.PSobject.Properties["logit_bias"].value
+            $LogitBias = $JsonParameters.PSobject.Properties['logit_bias'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "logprobs"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'logprobs'))) { #optional property not found
             $Logprobs = $null
         } else {
-            $Logprobs = $JsonParameters.PSobject.Properties["logprobs"].value
+            $Logprobs = $JsonParameters.PSobject.Properties['logprobs'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "top_logprobs"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'top_logprobs'))) { #optional property not found
             $TopLogprobs = $null
         } else {
-            $TopLogprobs = $JsonParameters.PSobject.Properties["top_logprobs"].value
+            $TopLogprobs = $JsonParameters.PSobject.Properties['top_logprobs'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'max_tokens'))) { #optional property not found
             $MaxTokens = $null
         } else {
-            $MaxTokens = $JsonParameters.PSobject.Properties["max_tokens"].value
+            $MaxTokens = $JsonParameters.PSobject.Properties['max_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_completion_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'max_completion_tokens'))) { #optional property not found
             $MaxCompletionTokens = $null
         } else {
-            $MaxCompletionTokens = $JsonParameters.PSobject.Properties["max_completion_tokens"].value
+            $MaxCompletionTokens = $JsonParameters.PSobject.Properties['max_completion_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "n"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'n'))) { #optional property not found
             $N = $null
         } else {
-            $N = $JsonParameters.PSobject.Properties["n"].value
+            $N = $JsonParameters.PSobject.Properties['n'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "modalities"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'modalities'))) { #optional property not found
             $Modalities = $null
         } else {
-            $Modalities = $JsonParameters.PSobject.Properties["modalities"].value
+            $Modalities = $JsonParameters.PSobject.Properties['modalities'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prediction"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'prediction'))) { #optional property not found
             $Prediction = $null
         } else {
-            $Prediction = $JsonParameters.PSobject.Properties["prediction"].value
+            $Prediction = $JsonParameters.PSobject.Properties['prediction'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "audio"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'audio'))) { #optional property not found
             $Audio = $null
         } else {
-            $Audio = $JsonParameters.PSobject.Properties["audio"].value
+            $Audio = $JsonParameters.PSobject.Properties['audio'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "presence_penalty"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'presence_penalty'))) { #optional property not found
             $PresencePenalty = $null
         } else {
-            $PresencePenalty = $JsonParameters.PSobject.Properties["presence_penalty"].value
+            $PresencePenalty = $JsonParameters.PSobject.Properties['presence_penalty'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "response_format"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'response_format'))) { #optional property not found
             $ResponseFormat = $null
         } else {
-            $ResponseFormat = $JsonParameters.PSobject.Properties["response_format"].value
+            $ResponseFormat = $JsonParameters.PSobject.Properties['response_format'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "seed"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'seed'))) { #optional property not found
             $Seed = $null
         } else {
-            $Seed = $JsonParameters.PSobject.Properties["seed"].value
+            $Seed = $JsonParameters.PSobject.Properties['seed'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "service_tier"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'service_tier'))) { #optional property not found
             $ServiceTier = $null
         } else {
-            $ServiceTier = $JsonParameters.PSobject.Properties["service_tier"].value
+            $ServiceTier = $JsonParameters.PSobject.Properties['service_tier'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "stop"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'stop'))) { #optional property not found
             $Stop = $null
         } else {
-            $Stop = $JsonParameters.PSobject.Properties["stop"].value
+            $Stop = $JsonParameters.PSobject.Properties['stop'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "stream"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'stream'))) { #optional property not found
             $Stream = $null
         } else {
-            $Stream = $JsonParameters.PSobject.Properties["stream"].value
+            $Stream = $JsonParameters.PSobject.Properties['stream'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "stream_options"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'stream_options'))) { #optional property not found
             $StreamOptions = $null
         } else {
-            $StreamOptions = $JsonParameters.PSobject.Properties["stream_options"].value
+            $StreamOptions = $JsonParameters.PSobject.Properties['stream_options'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "temperature"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'temperature'))) { #optional property not found
             $Temperature = $null
         } else {
-            $Temperature = $JsonParameters.PSobject.Properties["temperature"].value
+            $Temperature = $JsonParameters.PSobject.Properties['temperature'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "top_p"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'top_p'))) { #optional property not found
             $TopP = $null
         } else {
-            $TopP = $JsonParameters.PSobject.Properties["top_p"].value
+            $TopP = $JsonParameters.PSobject.Properties['top_p'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tools"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tools'))) { #optional property not found
             $Tools = $null
         } else {
-            $Tools = $JsonParameters.PSobject.Properties["tools"].value
+            $Tools = $JsonParameters.PSobject.Properties['tools'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tool_choice"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tool_choice'))) { #optional property not found
             $ToolChoice = $null
         } else {
-            $ToolChoice = $JsonParameters.PSobject.Properties["tool_choice"].value
+            $ToolChoice = $JsonParameters.PSobject.Properties['tool_choice'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "parallel_tool_calls"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'parallel_tool_calls'))) { #optional property not found
             $ParallelToolCalls = $null
         } else {
-            $ParallelToolCalls = $JsonParameters.PSobject.Properties["parallel_tool_calls"].value
+            $ParallelToolCalls = $JsonParameters.PSobject.Properties['parallel_tool_calls'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'user'))) { #optional property not found
             $User = $null
         } else {
-            $User = $JsonParameters.PSobject.Properties["user"].value
+            $User = $JsonParameters.PSobject.Properties['user'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "function_call"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'function_call'))) { #optional property not found
             $FunctionCall = $null
         } else {
-            $FunctionCall = $JsonParameters.PSobject.Properties["function_call"].value
+            $FunctionCall = $JsonParameters.PSobject.Properties['function_call'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "functions"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'functions'))) { #optional property not found
             $Functions = $null
         } else {
-            $Functions = $JsonParameters.PSobject.Properties["functions"].value
+            $Functions = $JsonParameters.PSobject.Properties['functions'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "messages" = ${Messages}
-            "model" = ${Model}
-            "store" = ${Store}
-            "reasoning_effort" = ${ReasoningEffort}
-            "metadata" = ${Metadata}
-            "frequency_penalty" = ${FrequencyPenalty}
-            "logit_bias" = ${LogitBias}
-            "logprobs" = ${Logprobs}
-            "top_logprobs" = ${TopLogprobs}
-            "max_tokens" = ${MaxTokens}
-            "max_completion_tokens" = ${MaxCompletionTokens}
-            "n" = ${N}
-            "modalities" = ${Modalities}
-            "prediction" = ${Prediction}
-            "audio" = ${Audio}
-            "presence_penalty" = ${PresencePenalty}
-            "response_format" = ${ResponseFormat}
-            "seed" = ${Seed}
-            "service_tier" = ${ServiceTier}
-            "stop" = ${Stop}
-            "stream" = ${Stream}
-            "stream_options" = ${StreamOptions}
-            "temperature" = ${Temperature}
-            "top_p" = ${TopP}
-            "tools" = ${Tools}
-            "tool_choice" = ${ToolChoice}
-            "parallel_tool_calls" = ${ParallelToolCalls}
-            "user" = ${User}
-            "function_call" = ${FunctionCall}
-            "functions" = ${Functions}
+            'messages' = ${Messages}
+            'model' = ${Model}
+            'store' = ${Store}
+            'reasoning_effort' = ${ReasoningEffort}
+            'metadata' = ${Metadata}
+            'frequency_penalty' = ${FrequencyPenalty}
+            'logit_bias' = ${LogitBias}
+            'logprobs' = ${Logprobs}
+            'top_logprobs' = ${TopLogprobs}
+            'max_tokens' = ${MaxTokens}
+            'max_completion_tokens' = ${MaxCompletionTokens}
+            'n' = ${N}
+            'modalities' = ${Modalities}
+            'prediction' = ${Prediction}
+            'audio' = ${Audio}
+            'presence_penalty' = ${PresencePenalty}
+            'response_format' = ${ResponseFormat}
+            'seed' = ${Seed}
+            'service_tier' = ${ServiceTier}
+            'stop' = ${Stop}
+            'stream' = ${Stream}
+            'stream_options' = ${StreamOptions}
+            'temperature' = ${Temperature}
+            'top_p' = ${TopP}
+            'tools' = ${Tools}
+            'tool_choice' = ${ToolChoice}
+            'parallel_tool_calls' = ${ParallelToolCalls}
+            'user' = ${User}
+            'function_call' = ${FunctionCall}
+            'functions' = ${Functions}
         }
 
         return $PSO

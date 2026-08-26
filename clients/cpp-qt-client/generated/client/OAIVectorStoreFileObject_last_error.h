@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIVectorStoreFileObject_last_error : public OAIObject {
 public:
     OAIVectorStoreFileObject_last_error();
-    OAIVectorStoreFileObject_last_error(QString json);
+    OAIVectorStoreFileObject_last_error(const QString &json);
     ~OAIVectorStoreFileObject_last_error() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getCode() const;
     void setCode(const QString &code);

@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIAuditLog_project_archived : public OAIObject {
 public:
     OAIAuditLog_project_archived();
-    OAIAuditLog_project_archived(QString json);
+    OAIAuditLog_project_archived(const QString &json);
     ~OAIAuditLog_project_archived() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

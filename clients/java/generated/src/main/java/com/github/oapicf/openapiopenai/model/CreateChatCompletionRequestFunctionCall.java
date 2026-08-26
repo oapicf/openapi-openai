@@ -58,7 +58,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateChatCompletionRequestFunctionCall extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(CreateChatCompletionRequestFunctionCall.class.getName());
 
@@ -207,6 +207,7 @@ public class CreateChatCompletionRequestFunctionCall extends AbstractOpenApiSche
      * @return The actual instance of `String`
      * @throws ClassCastException if the instance is not `String`
      */
+    @SuppressWarnings("unchecked")
     public String getString() throws ClassCastException {
         return (String)super.getActualInstance();
     }
@@ -218,6 +219,7 @@ public class CreateChatCompletionRequestFunctionCall extends AbstractOpenApiSche
      * @return The actual instance of `ChatCompletionFunctionCallOption`
      * @throws ClassCastException if the instance is not `ChatCompletionFunctionCallOption`
      */
+    @SuppressWarnings("unchecked")
     public ChatCompletionFunctionCallOption getChatCompletionFunctionCallOption() throws ClassCastException {
         return (ChatCompletionFunctionCallOption)super.getActualInstance();
     }

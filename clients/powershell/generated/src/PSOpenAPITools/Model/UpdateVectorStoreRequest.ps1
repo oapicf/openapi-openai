@@ -46,9 +46,9 @@ function Initialize-UpdateVectorStoreRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
-            "expires_after" = ${ExpiresAfter}
-            "metadata" = ${Metadata}
+            'name' = ${Name}
+            'expires_after' = ${ExpiresAfter}
+            'metadata' = ${Metadata}
         }
 
 
@@ -86,35 +86,35 @@ function ConvertFrom-JsonToUpdateVectorStoreRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in UpdateVectorStoreRequest
-        $AllProperties = ("name", "expires_after", "metadata")
+        $AllProperties = ('name', 'expires_after', 'metadata')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) { #optional property not found
             $Name = $null
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expires_after"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'expires_after'))) { #optional property not found
             $ExpiresAfter = $null
         } else {
-            $ExpiresAfter = $JsonParameters.PSobject.Properties["expires_after"].value
+            $ExpiresAfter = $JsonParameters.PSobject.Properties['expires_after'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) { #optional property not found
             $Metadata = $null
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
-            "expires_after" = ${ExpiresAfter}
-            "metadata" = ${Metadata}
+            'name' = ${Name}
+            'expires_after' = ${ExpiresAfter}
+            'metadata' = ${Metadata}
         }
 
         return $PSO

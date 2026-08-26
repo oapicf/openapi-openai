@@ -51,56 +51,56 @@ public:
 
 	/*! \brief Set The file identifier, which can be referenced in the API endpoints.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The size of the file, in bytes.
 	 */
 	int getBytes();
 
 	/*! \brief Set The size of the file, in bytes.
 	 */
-	void setBytes(int  bytes);
+	void setBytes(int bytes);
 	/*! \brief Get The Unix timestamp (in seconds) for when the file was created.
 	 */
 	int getCreatedAt();
 
 	/*! \brief Set The Unix timestamp (in seconds) for when the file was created.
 	 */
-	void setCreatedAt(int  created_at);
+	void setCreatedAt(int created_at);
 	/*! \brief Get The name of the file.
 	 */
 	std::string getFilename();
 
 	/*! \brief Set The name of the file.
 	 */
-	void setFilename(std::string  filename);
+	void setFilename(std::string filename);
 	/*! \brief Get The object type, which is always `file`.
 	 */
 	std::string getObject();
 
 	/*! \brief Set The object type, which is always `file`.
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
 	 */
 	std::string getPurpose();
 
 	/*! \brief Set The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
 	 */
-	void setPurpose(std::string  purpose);
+	void setPurpose(std::string purpose);
 	/*! \brief Get Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
 	 */
 	std::string getStatus();
 
 	/*! \brief Set Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
 	 */
-	void setStatus(std::string  status);
+	void setStatus(std::string status);
 	/*! \brief Get Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
 	 */
 	std::string getStatusDetails();
 
 	/*! \brief Set Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
 	 */
-	void setStatusDetails(std::string  status_details);
+	void setStatusDetails(std::string status_details);
 
 
     private:

@@ -37,7 +37,7 @@ class  Array_of_content_parts_inner
 {
 public:
     Array_of_content_parts_inner();
-    virtual ~Array_of_content_parts_inner() = default;
+    virtual ~Array_of_content_parts_inner();
 
 
     /// <summary>

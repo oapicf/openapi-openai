@@ -52,7 +52,7 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setError(Error  error);
+	void setError(Error error);
 
 
     private:

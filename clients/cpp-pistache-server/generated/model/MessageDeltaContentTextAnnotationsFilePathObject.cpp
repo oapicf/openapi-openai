@@ -33,6 +33,8 @@ MessageDeltaContentTextAnnotationsFilePathObject::MessageDeltaContentTextAnnotat
     
 }
 
+MessageDeltaContentTextAnnotationsFilePathObject::~MessageDeltaContentTextAnnotationsFilePathObject() = default;
+
 void MessageDeltaContentTextAnnotationsFilePathObject::validate() const
 {
     std::stringstream msg;

@@ -28,6 +28,8 @@ FineTuneMethod::FineTuneMethod()
     
 }
 
+FineTuneMethod::~FineTuneMethod() = default;
+
 void FineTuneMethod::validate() const
 {
     std::stringstream msg;

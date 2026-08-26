@@ -75,10 +75,16 @@ class MessageContentTextAnnotationsFilePathObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageContentTextAnnotationsFilePathObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageContentTextAnnotationsFilePathObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "MessageContentTextAnnotationsFilePathObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "MessageContentTextAnnotationsFilePathObject[type]" has a null value in JSON.');
+        assert(json.containsKey(r'text'), 'Required key "MessageContentTextAnnotationsFilePathObject[text]" is missing from JSON.');
+        assert(json[r'text'] != null, 'Required key "MessageContentTextAnnotationsFilePathObject[text]" has a null value in JSON.');
+        assert(json.containsKey(r'file_path'), 'Required key "MessageContentTextAnnotationsFilePathObject[file_path]" is missing from JSON.');
+        assert(json[r'file_path'] != null, 'Required key "MessageContentTextAnnotationsFilePathObject[file_path]" has a null value in JSON.');
+        assert(json.containsKey(r'start_index'), 'Required key "MessageContentTextAnnotationsFilePathObject[start_index]" is missing from JSON.');
+        assert(json[r'start_index'] != null, 'Required key "MessageContentTextAnnotationsFilePathObject[start_index]" has a null value in JSON.');
+        assert(json.containsKey(r'end_index'), 'Required key "MessageContentTextAnnotationsFilePathObject[end_index]" is missing from JSON.');
+        assert(json[r'end_index'] != null, 'Required key "MessageContentTextAnnotationsFilePathObject[end_index]" has a null value in JSON.');
         return true;
       }());
 
@@ -144,27 +150,28 @@ class MessageContentTextAnnotationsFilePathObject {
 }
 
 /// Always `file_path`.
-class MessageContentTextAnnotationsFilePathObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageContentTextAnnotationsFilePathObjectTypeEnum._(this.value);
+enum MessageContentTextAnnotationsFilePathObjectTypeEnum {
+  filePath._(r'file_path'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageContentTextAnnotationsFilePathObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const filePath = MessageContentTextAnnotationsFilePathObjectTypeEnum._(r'file_path');
-
-  /// List of all possible values in this [enum][MessageContentTextAnnotationsFilePathObjectTypeEnum].
-  static const values = <MessageContentTextAnnotationsFilePathObjectTypeEnum>[
-    filePath,
-  ];
-
+  /// Returns the instance of [MessageContentTextAnnotationsFilePathObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageContentTextAnnotationsFilePathObjectTypeEnum? fromJson(dynamic value) => MessageContentTextAnnotationsFilePathObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageContentTextAnnotationsFilePathObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageContentTextAnnotationsFilePathObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageContentTextAnnotationsFilePathObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -186,9 +193,10 @@ class MessageContentTextAnnotationsFilePathObjectTypeEnumTypeTransformer {
 
   const MessageContentTextAnnotationsFilePathObjectTypeEnumTypeTransformer._();
 
-  String encode(MessageContentTextAnnotationsFilePathObjectTypeEnum data) => data.value;
+  String encode(MessageContentTextAnnotationsFilePathObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageContentTextAnnotationsFilePathObjectTypeEnum.
+  /// Returns the instance of [MessageContentTextAnnotationsFilePathObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -197,6 +205,9 @@ class MessageContentTextAnnotationsFilePathObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageContentTextAnnotationsFilePathObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageContentTextAnnotationsFilePathObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'file_path': return MessageContentTextAnnotationsFilePathObjectTypeEnum.filePath;
@@ -209,7 +220,7 @@ class MessageContentTextAnnotationsFilePathObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageContentTextAnnotationsFilePathObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageContentTextAnnotationsFilePathObjectTypeEnumTypeTransformer? _instance;
 }
 

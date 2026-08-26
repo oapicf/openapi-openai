@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set The title of the project as seen on the dashboard.
 	 */
-	void setTitle(std::string  title);
+	void setTitle(std::string title);
 
 
     private:

@@ -125,7 +125,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The entity that produced the message. One of &#x60;user&#x60; or &#x60;assistant&#x60;.</value>
         [JsonPropertyName("role")]
-        public RoleEnum? Role { get { return this.RoleOption; } set { this.RoleOption = new(value); } }
+        public RoleEnum? Role { get { return this.RoleOption.Value; } set { this.RoleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Content
@@ -139,7 +139,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The content of the message in array of text and/or images.</value>
         [JsonPropertyName("content")]
-        public List<MessageDeltaObjectDeltaContentInner>? Content { get { return this.ContentOption; } set { this.ContentOption = new(value); } }
+        public List<MessageDeltaObjectDeltaContentInner>? Content { get { return this.ContentOption.Value; } set { this.ContentOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -169,8 +169,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageDeltaObjectDelta" />
     /// </summary>
-    public class MessageDeltaObjectDeltaJsonConverter : JsonConverter<MessageDeltaObjectDelta>
+    public partial class MessageDeltaObjectDeltaJsonConverter : JsonConverter<MessageDeltaObjectDelta>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageDeltaObjectDeltaJsonConverter" /> class.
+        /// </summary>
+        public MessageDeltaObjectDeltaJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageDeltaObjectDelta" />
         /// </summary>

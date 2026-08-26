@@ -1,6 +1,9 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -15,9 +18,6 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * Maximum number of output tokens for a single assistant response, inclusive of tool calls. Provide an integer between 1 and 4096 to limit output tokens, or `inf` for the maximum available tokens for a given model. Defaults to `inf`. 
  */
-class RealtimeResponseCreateParamsMaxResponseOutputTokens(
-
-) {
-
+sealed interface RealtimeResponseCreateParamsMaxResponseOutputTokens {
 }
 

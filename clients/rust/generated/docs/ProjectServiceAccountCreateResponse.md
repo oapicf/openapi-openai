@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **String** |  | 
+**object** | **Object** |  (enum: organization.project.service_account) | 
 **id** | **String** |  | 
 **name** | **String** |  | 
-**role** | **String** | Service accounts can only have one role of type `member` | 
+**role** | **Role** | Service accounts can only have one role of type `member` (enum: member) | 
 **created_at** | **i32** |  | 
 **api_key** | [**models::ProjectServiceAccountApiKey**](ProjectServiceAccountApiKey.md) |  | 
 

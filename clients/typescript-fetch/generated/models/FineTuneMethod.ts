@@ -36,7 +36,7 @@ import {
 export interface FineTuneMethod {
     /**
      * The type of method. Is either `supervised` or `dpo`.
-     * @type {string}
+     * @type {FineTuneMethodTypeEnum}
      * @memberof FineTuneMethod
      */
     type?: FineTuneMethodTypeEnum;
@@ -83,8 +83,8 @@ export function FineTuneMethodFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'type': json['type'] == null ? undefined : json['type'],
-        'supervised': json['supervised'] == null ? undefined : json['supervised'],
-        'dpo': json['dpo'] == null ? undefined : json['dpo'],
+        'supervised': json['supervised'] == null ? undefined : FineTuneSupervisedMethodFromJSON(json['supervised']),
+        'dpo': json['dpo'] == null ? undefined : FineTuneDPOMethodFromJSON(json['dpo']),
     };
 }
 
@@ -100,8 +100,8 @@ export function FineTuneMethodToJSONTyped(value?: FineTuneMethod | null, ignoreD
     return {
         
         'type': value['type'],
-        'supervised': value['supervised'],
-        'dpo': value['dpo'],
+        'supervised': FineTuneSupervisedMethodToJSON(value['supervised']),
+        'dpo': FineTuneDPOMethodToJSON(value['dpo']),
     };
 }
 

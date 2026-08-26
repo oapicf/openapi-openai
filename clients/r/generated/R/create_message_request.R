@@ -91,17 +91,40 @@ CreateMessageRequest <- R6::R6Class(
       }
       if (!is.null(self$`content`)) {
         CreateMessageRequestObject[["content"]] <-
-          self$`content`$toSimpleType()
+          self$extractSimpleType(self$`content`)
       }
       if (!is.null(self$`attachments`)) {
         CreateMessageRequestObject[["attachments"]] <-
-          lapply(self$`attachments`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`attachments`)
       }
       if (!is.null(self$`metadata`)) {
         CreateMessageRequestObject[["metadata"]] <-
           self$`metadata`
       }
       return(CreateMessageRequestObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

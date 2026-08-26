@@ -1,4 +1,4 @@
-# # ProjectRateLimitUpdateRequest
+# ProjectRateLimitUpdateRequest
 
 ## Properties
 

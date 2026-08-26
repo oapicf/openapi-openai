@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // RealtimeClientEventConversationItemCreate - Add a new Item to the Conversation's context, including messages, function  calls, and function call responses. This event can be used both to populate a  \"history\" of the conversation and to add new items mid-stream, but has the  current limitation that it cannot populate assistant audio messages.  If successful, the server will respond with a `conversation.item.created`  event, otherwise an `error` event will be sent. 
@@ -28,11 +33,83 @@ type RealtimeClientEventConversationItemCreate struct {
 
 	Item RealtimeConversationItem `json:"item"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into RealtimeClientEventConversationItemCreate
+func (o *RealtimeClientEventConversationItemCreate) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"type",
+		"item",
+	}
 
-// AssertRealtimeClientEventConversationItemCreateRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"type": false,
+		"item": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"event_id": {},
+		"type": {},
+		"previous_item_id": {},
+		"item": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RealtimeClientEventConversationItemCreate
+
+	if value, exists := allProperties["event_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.EventId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["previous_item_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.PreviousItemId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["item"]; exists {
+		if err = json.Unmarshal(value, &decoded.Item); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRealtimeClientEventConversationItemCreateRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeClientEventConversationItemCreateRequired(obj RealtimeClientEventConversationItemCreate) error {
 	elements := map[string]interface{}{
-		"type": obj.Type,
 		"item": obj.Item,
 	}
 	for name, el := range elements {

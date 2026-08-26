@@ -47,7 +47,7 @@ class ListPaginatedFineTuningJobsResponse
      * @var FineTuningJob[]|null
      * @SerializedName("data")
      * @Type("array<OpenAPI\Server\Model\FineTuningJob>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -59,7 +59,7 @@ class ListPaginatedFineTuningJobsResponse
      * @var bool|null
      * @SerializedName("has_more")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $hasMore = null;
@@ -68,7 +68,7 @@ class ListPaginatedFineTuningJobsResponse
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['list'])]
     #[Assert\Type("string")]
@@ -98,12 +98,12 @@ class ListPaginatedFineTuningJobsResponse
     }
 
     /**
-    * Sets data.
-    *
-    * @param FineTuningJob[]|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param FineTuningJob[]|null $data
+     *
+     * @return $this
+     */
     public function setData(?array $data): self
     {
         $this->data = $data;
@@ -125,12 +125,12 @@ class ListPaginatedFineTuningJobsResponse
     }
 
     /**
-    * Sets hasMore.
-    *
-    * @param bool|null $hasMore
-    *
-    * @return $this
-    */
+     * Sets hasMore.
+     *
+     * @param bool|null $hasMore
+     *
+     * @return $this
+     */
     public function setHasMore(?bool $hasMore): self
     {
         $this->hasMore = $hasMore;
@@ -152,12 +152,12 @@ class ListPaginatedFineTuningJobsResponse
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;

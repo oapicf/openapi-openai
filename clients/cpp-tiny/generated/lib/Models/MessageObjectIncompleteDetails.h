@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set The reason the message is incomplete.
 	 */
-	void setReason(std::string  reason);
+	void setReason(std::string reason);
 
 
     private:

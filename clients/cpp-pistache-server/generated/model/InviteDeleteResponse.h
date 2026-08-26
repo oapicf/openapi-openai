@@ -32,7 +32,7 @@ class  InviteDeleteResponse
 {
 public:
     InviteDeleteResponse();
-    virtual ~InviteDeleteResponse() = default;
+    virtual ~InviteDeleteResponse();
 
 
     /// <summary>

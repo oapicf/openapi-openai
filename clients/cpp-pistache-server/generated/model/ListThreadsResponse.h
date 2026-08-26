@@ -34,7 +34,7 @@ class  ListThreadsResponse
 {
 public:
     ListThreadsResponse();
-    virtual ~ListThreadsResponse() = default;
+    virtual ~ListThreadsResponse();
 
 
     /// <summary>

@@ -42,36 +42,38 @@ openai_api_run_object_STATUS_e run_object_status_FromString(char* status){
 static run_object_t *run_object_create_internal(
     char *id,
     openai_api_run_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     char *thread_id,
     char *assistant_id,
     openai_api_run_object_STATUS_e status,
     run_object_required_action_t *required_action,
     run_object_last_error_t *last_error,
-    int expires_at,
-    int started_at,
-    int cancelled_at,
-    int failed_at,
-    int completed_at,
+    int *expires_at,
+    int *started_at,
+    int *cancelled_at,
+    int *failed_at,
+    int *completed_at,
     run_object_incomplete_details_t *incomplete_details,
     char *model,
     char *instructions,
     list_t *tools,
     object_t *metadata,
     run_completion_usage_t *usage,
-    double temperature,
-    double top_p,
-    int max_prompt_tokens,
-    int max_completion_tokens,
+    double *temperature,
+    double *top_p,
+    int *max_prompt_tokens,
+    int *max_completion_tokens,
     truncation_object_t *truncation_strategy,
     assistants_api_tool_choice_option_t *tool_choice,
-    int parallel_tool_calls,
+    int *parallel_tool_calls,
     assistants_api_response_format_option_t *response_format
     ) {
     run_object_t *run_object_local_var = malloc(sizeof(run_object_t));
     if (!run_object_local_var) {
         return NULL;
     }
+    memset(run_object_local_var, 0, sizeof(run_object_t));
+    run_object_local_var->_library_owned = 1;
     run_object_local_var->id = id;
     run_object_local_var->object = object;
     run_object_local_var->created_at = created_at;
@@ -99,69 +101,136 @@ static run_object_t *run_object_create_internal(
     run_object_local_var->tool_choice = tool_choice;
     run_object_local_var->parallel_tool_calls = parallel_tool_calls;
     run_object_local_var->response_format = response_format;
-
-    run_object_local_var->_library_owned = 1;
     return run_object_local_var;
 }
 
 __attribute__((deprecated)) run_object_t *run_object_create(
     char *id,
     openai_api_run_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     char *thread_id,
     char *assistant_id,
     openai_api_run_object_STATUS_e status,
     run_object_required_action_t *required_action,
     run_object_last_error_t *last_error,
-    int expires_at,
-    int started_at,
-    int cancelled_at,
-    int failed_at,
-    int completed_at,
+    int *expires_at,
+    int *started_at,
+    int *cancelled_at,
+    int *failed_at,
+    int *completed_at,
     run_object_incomplete_details_t *incomplete_details,
     char *model,
     char *instructions,
     list_t *tools,
     object_t *metadata,
     run_completion_usage_t *usage,
-    double temperature,
-    double top_p,
-    int max_prompt_tokens,
-    int max_completion_tokens,
+    double *temperature,
+    double *top_p,
+    int *max_prompt_tokens,
+    int *max_completion_tokens,
     truncation_object_t *truncation_strategy,
     assistants_api_tool_choice_option_t *tool_choice,
-    int parallel_tool_calls,
+    int *parallel_tool_calls,
     assistants_api_response_format_option_t *response_format
     ) {
-    return run_object_create_internal (
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    int *expires_at_copy = NULL;
+    if (expires_at) {
+        expires_at_copy = malloc(sizeof(int));
+        if (expires_at_copy) *expires_at_copy = *expires_at;
+    }
+    int *started_at_copy = NULL;
+    if (started_at) {
+        started_at_copy = malloc(sizeof(int));
+        if (started_at_copy) *started_at_copy = *started_at;
+    }
+    int *cancelled_at_copy = NULL;
+    if (cancelled_at) {
+        cancelled_at_copy = malloc(sizeof(int));
+        if (cancelled_at_copy) *cancelled_at_copy = *cancelled_at;
+    }
+    int *failed_at_copy = NULL;
+    if (failed_at) {
+        failed_at_copy = malloc(sizeof(int));
+        if (failed_at_copy) *failed_at_copy = *failed_at;
+    }
+    int *completed_at_copy = NULL;
+    if (completed_at) {
+        completed_at_copy = malloc(sizeof(int));
+        if (completed_at_copy) *completed_at_copy = *completed_at;
+    }
+    double *temperature_copy = NULL;
+    if (temperature) {
+        temperature_copy = malloc(sizeof(double));
+        if (temperature_copy) *temperature_copy = *temperature;
+    }
+    double *top_p_copy = NULL;
+    if (top_p) {
+        top_p_copy = malloc(sizeof(double));
+        if (top_p_copy) *top_p_copy = *top_p;
+    }
+    int *max_prompt_tokens_copy = NULL;
+    if (max_prompt_tokens) {
+        max_prompt_tokens_copy = malloc(sizeof(int));
+        if (max_prompt_tokens_copy) *max_prompt_tokens_copy = *max_prompt_tokens;
+    }
+    int *max_completion_tokens_copy = NULL;
+    if (max_completion_tokens) {
+        max_completion_tokens_copy = malloc(sizeof(int));
+        if (max_completion_tokens_copy) *max_completion_tokens_copy = *max_completion_tokens;
+    }
+    int *parallel_tool_calls_copy = NULL;
+    if (parallel_tool_calls) {
+        parallel_tool_calls_copy = malloc(sizeof(int));
+        if (parallel_tool_calls_copy) *parallel_tool_calls_copy = *parallel_tool_calls;
+    }
+    run_object_t *result = run_object_create_internal (
         id,
         object,
-        created_at,
+        created_at_copy,
         thread_id,
         assistant_id,
         status,
         required_action,
         last_error,
-        expires_at,
-        started_at,
-        cancelled_at,
-        failed_at,
-        completed_at,
+        expires_at_copy,
+        started_at_copy,
+        cancelled_at_copy,
+        failed_at_copy,
+        completed_at_copy,
         incomplete_details,
         model,
         instructions,
         tools,
         metadata,
         usage,
-        temperature,
-        top_p,
-        max_prompt_tokens,
-        max_completion_tokens,
+        temperature_copy,
+        top_p_copy,
+        max_prompt_tokens_copy,
+        max_completion_tokens_copy,
         truncation_strategy,
         tool_choice,
-        parallel_tool_calls,
+        parallel_tool_calls_copy,
         response_format
         );
+    if (!result) {
+        free(created_at_copy);
+        free(expires_at_copy);
+        free(started_at_copy);
+        free(cancelled_at_copy);
+        free(failed_at_copy);
+        free(completed_at_copy);
+        free(temperature_copy);
+        free(top_p_copy);
+        free(max_prompt_tokens_copy);
+        free(max_completion_tokens_copy);
+        free(parallel_tool_calls_copy);
+    }
+    return result;
 }
 
 void run_object_free(run_object_t *run_object) {
@@ -176,6 +245,10 @@ void run_object_free(run_object_t *run_object) {
     if (run_object->id) {
         free(run_object->id);
         run_object->id = NULL;
+    }
+    if (run_object->created_at) {
+        free(run_object->created_at);
+        run_object->created_at = NULL;
     }
     if (run_object->thread_id) {
         free(run_object->thread_id);
@@ -192,6 +265,26 @@ void run_object_free(run_object_t *run_object) {
     if (run_object->last_error) {
         run_object_last_error_free(run_object->last_error);
         run_object->last_error = NULL;
+    }
+    if (run_object->expires_at) {
+        free(run_object->expires_at);
+        run_object->expires_at = NULL;
+    }
+    if (run_object->started_at) {
+        free(run_object->started_at);
+        run_object->started_at = NULL;
+    }
+    if (run_object->cancelled_at) {
+        free(run_object->cancelled_at);
+        run_object->cancelled_at = NULL;
+    }
+    if (run_object->failed_at) {
+        free(run_object->failed_at);
+        run_object->failed_at = NULL;
+    }
+    if (run_object->completed_at) {
+        free(run_object->completed_at);
+        run_object->completed_at = NULL;
     }
     if (run_object->incomplete_details) {
         run_object_incomplete_details_free(run_object->incomplete_details);
@@ -220,6 +313,22 @@ void run_object_free(run_object_t *run_object) {
         run_completion_usage_free(run_object->usage);
         run_object->usage = NULL;
     }
+    if (run_object->temperature) {
+        free(run_object->temperature);
+        run_object->temperature = NULL;
+    }
+    if (run_object->top_p) {
+        free(run_object->top_p);
+        run_object->top_p = NULL;
+    }
+    if (run_object->max_prompt_tokens) {
+        free(run_object->max_prompt_tokens);
+        run_object->max_prompt_tokens = NULL;
+    }
+    if (run_object->max_completion_tokens) {
+        free(run_object->max_completion_tokens);
+        run_object->max_completion_tokens = NULL;
+    }
     if (run_object->truncation_strategy) {
         truncation_object_free(run_object->truncation_strategy);
         run_object->truncation_strategy = NULL;
@@ -227,6 +336,10 @@ void run_object_free(run_object_t *run_object) {
     if (run_object->tool_choice) {
         assistants_api_tool_choice_option_free(run_object->tool_choice);
         run_object->tool_choice = NULL;
+    }
+    if (run_object->parallel_tool_calls) {
+        free(run_object->parallel_tool_calls);
+        run_object->parallel_tool_calls = NULL;
     }
     if (run_object->response_format) {
         assistants_api_response_format_option_free(run_object->response_format);
@@ -261,7 +374,7 @@ cJSON *run_object_convertToJSON(run_object_t *run_object) {
     if (!run_object->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", run_object->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *run_object->created_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -326,7 +439,7 @@ cJSON *run_object_convertToJSON(run_object_t *run_object) {
     if (!run_object->expires_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "expires_at", run_object->expires_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "expires_at", *run_object->expires_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -335,7 +448,7 @@ cJSON *run_object_convertToJSON(run_object_t *run_object) {
     if (!run_object->started_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "started_at", run_object->started_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "started_at", *run_object->started_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -344,7 +457,7 @@ cJSON *run_object_convertToJSON(run_object_t *run_object) {
     if (!run_object->cancelled_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "cancelled_at", run_object->cancelled_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "cancelled_at", *run_object->cancelled_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -353,7 +466,7 @@ cJSON *run_object_convertToJSON(run_object_t *run_object) {
     if (!run_object->failed_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "failed_at", run_object->failed_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "failed_at", *run_object->failed_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -362,7 +475,7 @@ cJSON *run_object_convertToJSON(run_object_t *run_object) {
     if (!run_object->completed_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "completed_at", run_object->completed_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "completed_at", *run_object->completed_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -450,7 +563,7 @@ cJSON *run_object_convertToJSON(run_object_t *run_object) {
 
     // run_object->temperature
     if(run_object->temperature) {
-    if(cJSON_AddNumberToObject(item, "temperature", run_object->temperature) == NULL) {
+    if(cJSON_AddNumberToObject(item, "temperature", *run_object->temperature) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -458,7 +571,7 @@ cJSON *run_object_convertToJSON(run_object_t *run_object) {
 
     // run_object->top_p
     if(run_object->top_p) {
-    if(cJSON_AddNumberToObject(item, "top_p", run_object->top_p) == NULL) {
+    if(cJSON_AddNumberToObject(item, "top_p", *run_object->top_p) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -468,7 +581,7 @@ cJSON *run_object_convertToJSON(run_object_t *run_object) {
     if (!run_object->max_prompt_tokens) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "max_prompt_tokens", run_object->max_prompt_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "max_prompt_tokens", *run_object->max_prompt_tokens) == NULL) {
     goto fail; //Numeric
     }
 
@@ -477,7 +590,7 @@ cJSON *run_object_convertToJSON(run_object_t *run_object) {
     if (!run_object->max_completion_tokens) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "max_completion_tokens", run_object->max_completion_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "max_completion_tokens", *run_object->max_completion_tokens) == NULL) {
     goto fail; //Numeric
     }
 
@@ -514,7 +627,7 @@ cJSON *run_object_convertToJSON(run_object_t *run_object) {
     if (!run_object->parallel_tool_calls) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "parallel_tool_calls", run_object->parallel_tool_calls) == NULL) {
+    if(cJSON_AddBoolToObject(item, "parallel_tool_calls", *run_object->parallel_tool_calls) == NULL) {
     goto fail; //Bool
     }
 
@@ -544,14 +657,42 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
 
     run_object_t *run_object_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    // define the local variable for run_object->created_at
+    int *created_at_local_var = NULL;
+
+    char *thread_id_local_str = NULL;
+
+    char *assistant_id_local_str = NULL;
+
     // define the local variable for run_object->required_action
     run_object_required_action_t *required_action_local_nonprim = NULL;
 
     // define the local variable for run_object->last_error
     run_object_last_error_t *last_error_local_nonprim = NULL;
 
+    // define the local variable for run_object->expires_at
+    int *expires_at_local_var = NULL;
+
+    // define the local variable for run_object->started_at
+    int *started_at_local_var = NULL;
+
+    // define the local variable for run_object->cancelled_at
+    int *cancelled_at_local_var = NULL;
+
+    // define the local variable for run_object->failed_at
+    int *failed_at_local_var = NULL;
+
+    // define the local variable for run_object->completed_at
+    int *completed_at_local_var = NULL;
+
     // define the local variable for run_object->incomplete_details
     run_object_incomplete_details_t *incomplete_details_local_nonprim = NULL;
+
+    char *model_local_str = NULL;
+
+    char *instructions_local_str = NULL;
 
     // define the local list for run_object->tools
     list_t *toolsList = NULL;
@@ -559,11 +700,26 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
     // define the local variable for run_object->usage
     run_completion_usage_t *usage_local_nonprim = NULL;
 
+    // define the local variable for run_object->temperature
+    double *temperature_local_var = NULL;
+
+    // define the local variable for run_object->top_p
+    double *top_p_local_var = NULL;
+
+    // define the local variable for run_object->max_prompt_tokens
+    int *max_prompt_tokens_local_var = NULL;
+
+    // define the local variable for run_object->max_completion_tokens
+    int *max_completion_tokens_local_var = NULL;
+
     // define the local variable for run_object->truncation_strategy
     truncation_object_t *truncation_strategy_local_nonprim = NULL;
 
     // define the local variable for run_object->tool_choice
     assistants_api_tool_choice_option_t *tool_choice_local_nonprim = NULL;
+
+    // define the local variable for run_object->parallel_tool_calls
+    int *parallel_tool_calls_local_var = NULL;
 
     // define the local variable for run_object->response_format
     assistants_api_response_format_option_t *response_format_local_nonprim = NULL;
@@ -614,6 +770,12 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
     // run_object->thread_id
     cJSON *thread_id = cJSON_GetObjectItemCaseSensitive(run_objectJSON, "thread_id");
@@ -700,6 +862,12 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
     {
     goto end; //Numeric
     }
+    expires_at_local_var = malloc(sizeof(int));
+    if(!expires_at_local_var)
+    {
+        goto end;
+    }
+    *expires_at_local_var = expires_at->valuedouble;
 
     // run_object->started_at
     cJSON *started_at = cJSON_GetObjectItemCaseSensitive(run_objectJSON, "started_at");
@@ -715,6 +883,12 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
     {
     goto end; //Numeric
     }
+    started_at_local_var = malloc(sizeof(int));
+    if(!started_at_local_var)
+    {
+        goto end;
+    }
+    *started_at_local_var = started_at->valuedouble;
 
     // run_object->cancelled_at
     cJSON *cancelled_at = cJSON_GetObjectItemCaseSensitive(run_objectJSON, "cancelled_at");
@@ -730,6 +904,12 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
     {
     goto end; //Numeric
     }
+    cancelled_at_local_var = malloc(sizeof(int));
+    if(!cancelled_at_local_var)
+    {
+        goto end;
+    }
+    *cancelled_at_local_var = cancelled_at->valuedouble;
 
     // run_object->failed_at
     cJSON *failed_at = cJSON_GetObjectItemCaseSensitive(run_objectJSON, "failed_at");
@@ -745,6 +925,12 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
     {
     goto end; //Numeric
     }
+    failed_at_local_var = malloc(sizeof(int));
+    if(!failed_at_local_var)
+    {
+        goto end;
+    }
+    *failed_at_local_var = failed_at->valuedouble;
 
     // run_object->completed_at
     cJSON *completed_at = cJSON_GetObjectItemCaseSensitive(run_objectJSON, "completed_at");
@@ -760,6 +946,12 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
     {
     goto end; //Numeric
     }
+    completed_at_local_var = malloc(sizeof(int));
+    if(!completed_at_local_var)
+    {
+        goto end;
+    }
+    *completed_at_local_var = completed_at->valuedouble;
 
     // run_object->incomplete_details
     cJSON *incomplete_details = cJSON_GetObjectItemCaseSensitive(run_objectJSON, "incomplete_details");
@@ -865,6 +1057,12 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
     {
     goto end; //Numeric
     }
+    temperature_local_var = malloc(sizeof(double));
+    if(!temperature_local_var)
+    {
+        goto end;
+    }
+    *temperature_local_var = temperature->valuedouble;
     }
 
     // run_object->top_p
@@ -877,6 +1075,12 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
     {
     goto end; //Numeric
     }
+    top_p_local_var = malloc(sizeof(double));
+    if(!top_p_local_var)
+    {
+        goto end;
+    }
+    *top_p_local_var = top_p->valuedouble;
     }
 
     // run_object->max_prompt_tokens
@@ -893,6 +1097,12 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
     {
     goto end; //Numeric
     }
+    max_prompt_tokens_local_var = malloc(sizeof(int));
+    if(!max_prompt_tokens_local_var)
+    {
+        goto end;
+    }
+    *max_prompt_tokens_local_var = max_prompt_tokens->valuedouble;
 
     // run_object->max_completion_tokens
     cJSON *max_completion_tokens = cJSON_GetObjectItemCaseSensitive(run_objectJSON, "max_completion_tokens");
@@ -908,6 +1118,12 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
     {
     goto end; //Numeric
     }
+    max_completion_tokens_local_var = malloc(sizeof(int));
+    if(!max_completion_tokens_local_var)
+    {
+        goto end;
+    }
+    *max_completion_tokens_local_var = max_completion_tokens->valuedouble;
 
     // run_object->truncation_strategy
     cJSON *truncation_strategy = cJSON_GetObjectItemCaseSensitive(run_objectJSON, "truncation_strategy");
@@ -947,6 +1163,12 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
     {
     goto end; //Bool
     }
+    parallel_tool_calls_local_var = malloc(sizeof(int));
+    if(!parallel_tool_calls_local_var)
+    {
+        goto end;
+    }
+    *parallel_tool_calls_local_var = parallel_tool_calls->valueint;
 
     // run_object->response_format
     cJSON *response_format = cJSON_GetObjectItemCaseSensitive(run_objectJSON, "response_format");
@@ -961,38 +1183,64 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
     response_format_local_nonprim = assistants_api_response_format_option_parseFromJSON(response_format); //nonprimitive
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (thread_id && !cJSON_IsNull(thread_id)) thread_id_local_str = strdup(thread_id->valuestring);
+    if (assistant_id && !cJSON_IsNull(assistant_id)) assistant_id_local_str = strdup(assistant_id->valuestring);
+    if (model && !cJSON_IsNull(model)) model_local_str = strdup(model->valuestring);
+    if (instructions && !cJSON_IsNull(instructions)) instructions_local_str = strdup(instructions->valuestring);
+
     run_object_local_var = run_object_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         objectVariable,
-        created_at->valuedouble,
-        strdup(thread_id->valuestring),
-        strdup(assistant_id->valuestring),
+        created_at_local_var,
+        thread_id_local_str,
+        assistant_id_local_str,
         statusVariable,
         required_action_local_nonprim,
         last_error_local_nonprim,
-        expires_at->valuedouble,
-        started_at->valuedouble,
-        cancelled_at->valuedouble,
-        failed_at->valuedouble,
-        completed_at->valuedouble,
+        expires_at_local_var,
+        started_at_local_var,
+        cancelled_at_local_var,
+        failed_at_local_var,
+        completed_at_local_var,
         incomplete_details_local_nonprim,
-        strdup(model->valuestring),
-        strdup(instructions->valuestring),
+        model_local_str,
+        instructions_local_str,
         toolsList,
         metadata_local_object,
         usage_local_nonprim,
-        temperature ? temperature->valuedouble : 0,
-        top_p ? top_p->valuedouble : 0,
-        max_prompt_tokens->valuedouble,
-        max_completion_tokens->valuedouble,
+        temperature_local_var,
+        top_p_local_var,
+        max_prompt_tokens_local_var,
+        max_completion_tokens_local_var,
         truncation_strategy_local_nonprim,
         tool_choice_local_nonprim,
-        parallel_tool_calls->valueint,
+        parallel_tool_calls_local_var,
         response_format_local_nonprim
         );
 
+    if (!run_object_local_var) {
+        goto end;
+    }
+
     return run_object_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
+    if (thread_id_local_str) {
+        free(thread_id_local_str);
+        thread_id_local_str = NULL;
+    }
+    if (assistant_id_local_str) {
+        free(assistant_id_local_str);
+        assistant_id_local_str = NULL;
+    }
     if (required_action_local_nonprim) {
         run_object_required_action_free(required_action_local_nonprim);
         required_action_local_nonprim = NULL;
@@ -1001,9 +1249,37 @@ end:
         run_object_last_error_free(last_error_local_nonprim);
         last_error_local_nonprim = NULL;
     }
+    if (expires_at_local_var) {
+        free(expires_at_local_var);
+        expires_at_local_var = NULL;
+    }
+    if (started_at_local_var) {
+        free(started_at_local_var);
+        started_at_local_var = NULL;
+    }
+    if (cancelled_at_local_var) {
+        free(cancelled_at_local_var);
+        cancelled_at_local_var = NULL;
+    }
+    if (failed_at_local_var) {
+        free(failed_at_local_var);
+        failed_at_local_var = NULL;
+    }
+    if (completed_at_local_var) {
+        free(completed_at_local_var);
+        completed_at_local_var = NULL;
+    }
     if (incomplete_details_local_nonprim) {
         run_object_incomplete_details_free(incomplete_details_local_nonprim);
         incomplete_details_local_nonprim = NULL;
+    }
+    if (model_local_str) {
+        free(model_local_str);
+        model_local_str = NULL;
+    }
+    if (instructions_local_str) {
+        free(instructions_local_str);
+        instructions_local_str = NULL;
     }
     if (toolsList) {
         listEntry_t *listEntry = NULL;
@@ -1018,6 +1294,22 @@ end:
         run_completion_usage_free(usage_local_nonprim);
         usage_local_nonprim = NULL;
     }
+    if (temperature_local_var) {
+        free(temperature_local_var);
+        temperature_local_var = NULL;
+    }
+    if (top_p_local_var) {
+        free(top_p_local_var);
+        top_p_local_var = NULL;
+    }
+    if (max_prompt_tokens_local_var) {
+        free(max_prompt_tokens_local_var);
+        max_prompt_tokens_local_var = NULL;
+    }
+    if (max_completion_tokens_local_var) {
+        free(max_completion_tokens_local_var);
+        max_completion_tokens_local_var = NULL;
+    }
     if (truncation_strategy_local_nonprim) {
         truncation_object_free(truncation_strategy_local_nonprim);
         truncation_strategy_local_nonprim = NULL;
@@ -1025,6 +1317,10 @@ end:
     if (tool_choice_local_nonprim) {
         assistants_api_tool_choice_option_free(tool_choice_local_nonprim);
         tool_choice_local_nonprim = NULL;
+    }
+    if (parallel_tool_calls_local_var) {
+        free(parallel_tool_calls_local_var);
+        parallel_tool_calls_local_var = NULL;
     }
     if (response_format_local_nonprim) {
         assistants_api_response_format_option_free(response_format_local_nonprim);

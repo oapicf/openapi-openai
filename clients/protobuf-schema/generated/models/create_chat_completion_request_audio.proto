@@ -29,7 +29,7 @@ message CreateChatCompletionRequestAudio {
     VOICE_VERSE = 7;
   }
 
-  Voice voice = 112386354;
+  string voice = 112386354;
 
   // Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`. 
   enum Format {
@@ -40,7 +40,7 @@ message CreateChatCompletionRequestAudio {
     FORMAT_PCM16 = 4;
   }
 
-  Format format = 195037195;
+  string format = 195037195;
 
 }
 

@@ -36,7 +36,7 @@ class  CreateChatCompletionRequest_response_format
 {
 public:
     CreateChatCompletionRequest_response_format();
-    virtual ~CreateChatCompletionRequest_response_format() = default;
+    virtual ~CreateChatCompletionRequest_response_format();
 
 
     /// <summary>

@@ -44,10 +44,12 @@ use JMS\Serializer\Annotation\SerializedName;
 class CreateFineTuningJobRequestIntegrationsInner 
 {
         /**
+     * The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported.
+     *
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['wandb'])]
     #[Assert\Type("string")]
@@ -57,7 +59,7 @@ class CreateFineTuningJobRequestIntegrationsInner
      * @var CreateFineTuningJobRequestIntegrationsInnerWandb|null
      * @SerializedName("wandb")
      * @Type("OpenAPI\Server\Model\CreateFineTuningJobRequestIntegrationsInnerWandb")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\CreateFineTuningJobRequestIntegrationsInnerWandb")]
@@ -86,12 +88,12 @@ class CreateFineTuningJobRequestIntegrationsInner
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -113,12 +115,12 @@ class CreateFineTuningJobRequestIntegrationsInner
     }
 
     /**
-    * Sets wandb.
-    *
-    * @param CreateFineTuningJobRequestIntegrationsInnerWandb|null $wandb
-    *
-    * @return $this
-    */
+     * Sets wandb.
+     *
+     * @param CreateFineTuningJobRequestIntegrationsInnerWandb|null $wandb
+     *
+     * @return $this
+     */
     public function setWandb(?CreateFineTuningJobRequestIntegrationsInnerWandb $wandb): self
     {
         $this->wandb = $wandb;

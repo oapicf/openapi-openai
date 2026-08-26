@@ -64,7 +64,7 @@ MessageDeltaContentTextAnnotationsFilePathObject_file_path::getFileId()
 }
 
 void
-MessageDeltaContentTextAnnotationsFilePathObject_file_path::setFileId(std::string  file_id)
+MessageDeltaContentTextAnnotationsFilePathObject_file_path::setFileId(std::string file_id)
 {
 	this->file_id = file_id;
 }

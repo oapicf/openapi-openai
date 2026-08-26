@@ -85,7 +85,7 @@ MessageDeltaContentImageUrlObject_image_url::getUrl()
 }
 
 void
-MessageDeltaContentImageUrlObject_image_url::setUrl(std::string  url)
+MessageDeltaContentImageUrlObject_image_url::setUrl(std::string url)
 {
 	this->url = url;
 }
@@ -97,7 +97,7 @@ MessageDeltaContentImageUrlObject_image_url::getDetail()
 }
 
 void
-MessageDeltaContentImageUrlObject_image_url::setDetail(std::string  detail)
+MessageDeltaContentImageUrlObject_image_url::setDetail(std::string detail)
 {
 	this->detail = detail;
 }

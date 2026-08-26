@@ -51,7 +51,7 @@ class AuditLogLoginFailed
      * @var string|null
      * @SerializedName("error_code")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $errorCode = null;
 
@@ -61,7 +61,7 @@ class AuditLogLoginFailed
      * @var string|null
      * @SerializedName("error_message")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $errorMessage = null;
 
@@ -88,12 +88,12 @@ class AuditLogLoginFailed
     }
 
     /**
-    * Sets errorCode.
-    *
-    * @param string|null $errorCode  The error code of the failure.
-    *
-    * @return $this
-    */
+     * Sets errorCode.
+     *
+     * @param string|null $errorCode  The error code of the failure.
+     *
+     * @return $this
+     */
     public function setErrorCode(?string $errorCode = null): self
     {
         $this->errorCode = $errorCode;
@@ -115,12 +115,12 @@ class AuditLogLoginFailed
     }
 
     /**
-    * Sets errorMessage.
-    *
-    * @param string|null $errorMessage  The error message of the failure.
-    *
-    * @return $this
-    */
+     * Sets errorMessage.
+     *
+     * @param string|null $errorMessage  The error message of the failure.
+     *
+     * @return $this
+     */
     public function setErrorMessage(?string $errorMessage = null): self
     {
         $this->errorMessage = $errorMessage;

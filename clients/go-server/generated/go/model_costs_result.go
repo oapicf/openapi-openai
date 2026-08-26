@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // CostsResult - The aggregated costs details of the specific time bucket.
@@ -27,18 +32,80 @@ type CostsResult struct {
 	// When `group_by=project_id`, this field provides the project ID of the grouped costs result.
 	ProjectId *string `json:"project_id,omitempty"`
 }
-
-// AssertCostsResultRequired checks if the required fields are not zero-ed
-func AssertCostsResultRequired(obj CostsResult) error {
-	elements := map[string]interface{}{
-		"object": obj.Object,
+// UnmarshalJSON validates required property keys then unmarshals into CostsResult
+func (o *CostsResult) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"object",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"object": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"object": {},
+		"amount": {},
+		"line_item": {},
+		"project_id": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CostsResult
+
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["amount"]; exists {
+		if err = json.Unmarshal(value, &decoded.Amount); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["line_item"]; exists {
+		if err = json.Unmarshal(value, &decoded.LineItem); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["project_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.ProjectId); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCostsResultRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertCostsResultRequired(obj CostsResult) error {
 	if err := AssertCostsResultAmountRequired(obj.Amount); err != nil {
 		return err
 	}

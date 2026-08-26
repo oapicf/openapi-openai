@@ -32,7 +32,7 @@ class  RunStepDeltaStepDetailsToolCallsFunctionObject_function
 {
 public:
     RunStepDeltaStepDetailsToolCallsFunctionObject_function();
-    virtual ~RunStepDeltaStepDetailsToolCallsFunctionObject_function() = default;
+    virtual ~RunStepDeltaStepDetailsToolCallsFunctionObject_function();
 
 
     /// <summary>

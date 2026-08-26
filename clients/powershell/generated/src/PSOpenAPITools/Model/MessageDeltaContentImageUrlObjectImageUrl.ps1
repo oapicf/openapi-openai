@@ -42,8 +42,8 @@ function Initialize-MessageDeltaContentImageUrlObjectImageUrl {
 
 
         $PSO = [PSCustomObject]@{
-            "url" = ${Url}
-            "detail" = ${Detail}
+            'url' = ${Url}
+            'detail' = ${Detail}
         }
 
 
@@ -81,28 +81,28 @@ function ConvertFrom-JsonToMessageDeltaContentImageUrlObjectImageUrl {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in MessageDeltaContentImageUrlObjectImageUrl
-        $AllProperties = ("url", "detail")
+        $AllProperties = ('url', 'detail')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'url'))) { #optional property not found
             $Url = $null
         } else {
-            $Url = $JsonParameters.PSobject.Properties["url"].value
+            $Url = $JsonParameters.PSobject.Properties['url'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "detail"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'detail'))) { #optional property not found
             $Detail = $null
         } else {
-            $Detail = $JsonParameters.PSobject.Properties["detail"].value
+            $Detail = $JsonParameters.PSobject.Properties['detail'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "url" = ${Url}
-            "detail" = ${Detail}
+            'url' = ${Url}
+            'detail' = ${Detail}
         }
 
         return $PSO

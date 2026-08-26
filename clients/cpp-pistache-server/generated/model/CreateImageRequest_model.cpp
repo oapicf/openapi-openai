@@ -24,6 +24,8 @@ CreateImageRequest_model::CreateImageRequest_model()
     
 }
 
+CreateImageRequest_model::~CreateImageRequest_model() = default;
+
 void CreateImageRequest_model::validate() const
 {
     std::stringstream msg;

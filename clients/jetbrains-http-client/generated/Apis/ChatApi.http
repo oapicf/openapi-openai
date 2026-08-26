@@ -1,0 +1,42 @@
+## ChatApi
+
+### Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning). 
+## Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning). 
+POST https://api.openai.com/v1/chat/completions
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+ "messages": "<string>",
+ "model": "<string>",
+ "store": "<string>",
+ "reasoning_effort": "<string>",
+ "metadata": "<string>",
+ "frequency_penalty": "<number>",
+ "logit_bias": "<string>",
+ "logprobs": "<string>",
+ "top_logprobs": "<number>",
+ "max_tokens": "<number>",
+ "max_completion_tokens": "<number>",
+ "n": "<number>",
+ "modalities": "<string>",
+ "prediction": "<string>",
+ "audio": "<string>",
+ "presence_penalty": "<number>",
+ "response_format": "<string>",
+ "seed": "<number>",
+ "service_tier": "<string>",
+ "stop": "<string>",
+ "stream": "<string>",
+ "stream_options": "<string>",
+ "temperature": "<number>",
+ "top_p": "<number>",
+ "tools": "<string>",
+ "tool_choice": "<string>",
+ "parallel_tool_calls": "<string>",
+ "user": "<string>",
+ "function_call": "<string>",
+ "functions": "<string>"
+}
+

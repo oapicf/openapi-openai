@@ -41,7 +41,7 @@ function Initialize-UserRoleUpdateRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "role" = ${Role}
+            'role' = ${Role}
         }
 
 
@@ -79,7 +79,7 @@ function ConvertFrom-JsonToUserRoleUpdateRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in UserRoleUpdateRequest
-        $AllProperties = ("role")
+        $AllProperties = ('role')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -90,14 +90,14 @@ function ConvertFrom-JsonToUserRoleUpdateRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'role' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "role"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'role'))) {
             throw "Error! JSON cannot be serialized due to the required property 'role' missing."
         } else {
-            $Role = $JsonParameters.PSobject.Properties["role"].value
+            $Role = $JsonParameters.PSobject.Properties['role'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "role" = ${Role}
+            'role' = ${Role}
         }
 
         return $PSO

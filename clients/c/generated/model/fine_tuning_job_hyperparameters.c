@@ -14,11 +14,11 @@ static fine_tuning_job_hyperparameters_t *fine_tuning_job_hyperparameters_create
     if (!fine_tuning_job_hyperparameters_local_var) {
         return NULL;
     }
+    memset(fine_tuning_job_hyperparameters_local_var, 0, sizeof(fine_tuning_job_hyperparameters_t));
+    fine_tuning_job_hyperparameters_local_var->_library_owned = 1;
     fine_tuning_job_hyperparameters_local_var->batch_size = batch_size;
     fine_tuning_job_hyperparameters_local_var->learning_rate_multiplier = learning_rate_multiplier;
     fine_tuning_job_hyperparameters_local_var->n_epochs = n_epochs;
-
-    fine_tuning_job_hyperparameters_local_var->_library_owned = 1;
     return fine_tuning_job_hyperparameters_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) fine_tuning_job_hyperparameters_t *fine_tuning_job_h
     create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier_t *learning_rate_multiplier,
     create_fine_tuning_job_request_hyperparameters_n_epochs_t *n_epochs
     ) {
-    return fine_tuning_job_hyperparameters_create_internal (
+    fine_tuning_job_hyperparameters_t *result = fine_tuning_job_hyperparameters_create_internal (
         batch_size,
         learning_rate_multiplier,
         n_epochs
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void fine_tuning_job_hyperparameters_free(fine_tuning_job_hyperparameters_t *fine_tuning_job_hyperparameters) {
@@ -148,11 +151,16 @@ fine_tuning_job_hyperparameters_t *fine_tuning_job_hyperparameters_parseFromJSON
     }
 
 
+
     fine_tuning_job_hyperparameters_local_var = fine_tuning_job_hyperparameters_create_internal (
         batch_size ? batch_size_local_nonprim : NULL,
         learning_rate_multiplier ? learning_rate_multiplier_local_nonprim : NULL,
         n_epochs ? n_epochs_local_nonprim : NULL
         );
+
+    if (!fine_tuning_job_hyperparameters_local_var) {
+        goto end;
+    }
 
     return fine_tuning_job_hyperparameters_local_var;
 end:

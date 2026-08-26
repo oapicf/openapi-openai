@@ -126,7 +126,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ImageUrl
         /// </summary>
         [JsonPropertyName("image_url")]
-        public MessageDeltaContentImageUrlObjectImageUrl? ImageUrl { get { return this.ImageUrlOption; } set { this.ImageUrlOption = new(value); } }
+        public MessageDeltaContentImageUrlObjectImageUrl? ImageUrl { get { return this.ImageUrlOption.Value; } set { this.ImageUrlOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -157,8 +157,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageDeltaContentImageUrlObject" />
     /// </summary>
-    public class MessageDeltaContentImageUrlObjectJsonConverter : JsonConverter<MessageDeltaContentImageUrlObject>
+    public partial class MessageDeltaContentImageUrlObjectJsonConverter : JsonConverter<MessageDeltaContentImageUrlObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageDeltaContentImageUrlObjectJsonConverter" /> class.
+        /// </summary>
+        public MessageDeltaContentImageUrlObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageDeltaContentImageUrlObject" />
         /// </summary>

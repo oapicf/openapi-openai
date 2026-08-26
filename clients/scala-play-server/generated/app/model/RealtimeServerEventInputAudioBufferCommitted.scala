@@ -9,7 +9,7 @@ import play.api.libs.json._
   * @param previousItemId The ID of the preceding item after which the new item will be inserted. 
   * @param itemId The ID of the user message item that will be created.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 case class RealtimeServerEventInputAudioBufferCommitted(
   eventId: String,
   `type`: RealtimeServerEventInputAudioBufferCommitted.Type.Value,

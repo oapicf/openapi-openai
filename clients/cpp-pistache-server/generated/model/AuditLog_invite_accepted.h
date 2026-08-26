@@ -32,7 +32,7 @@ class  AuditLog_invite_accepted
 {
 public:
     AuditLog_invite_accepted();
-    virtual ~AuditLog_invite_accepted() = default;
+    virtual ~AuditLog_invite_accepted();
 
 
     /// <summary>

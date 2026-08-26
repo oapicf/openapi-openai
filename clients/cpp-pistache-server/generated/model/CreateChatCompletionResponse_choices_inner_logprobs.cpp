@@ -24,6 +24,8 @@ CreateChatCompletionResponse_choices_inner_logprobs::CreateChatCompletionRespons
     
 }
 
+CreateChatCompletionResponse_choices_inner_logprobs::~CreateChatCompletionResponse_choices_inner_logprobs() = default;
+
 void CreateChatCompletionResponse_choices_inner_logprobs::validate() const
 {
     std::stringstream msg;

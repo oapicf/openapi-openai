@@ -32,7 +32,7 @@ class  OtherChunkingStrategyResponseParam
 {
 public:
     OtherChunkingStrategyResponseParam();
-    virtual ~OtherChunkingStrategyResponseParam() = default;
+    virtual ~OtherChunkingStrategyResponseParam();
 
 
     /// <summary>

@@ -6,28 +6,37 @@
 
 
 static costs_result_amount_t *costs_result_amount_create_internal(
-    double value,
+    double *value,
     char *currency
     ) {
     costs_result_amount_t *costs_result_amount_local_var = malloc(sizeof(costs_result_amount_t));
     if (!costs_result_amount_local_var) {
         return NULL;
     }
+    memset(costs_result_amount_local_var, 0, sizeof(costs_result_amount_t));
+    costs_result_amount_local_var->_library_owned = 1;
     costs_result_amount_local_var->value = value;
     costs_result_amount_local_var->currency = currency;
-
-    costs_result_amount_local_var->_library_owned = 1;
     return costs_result_amount_local_var;
 }
 
 __attribute__((deprecated)) costs_result_amount_t *costs_result_amount_create(
-    double value,
+    double *value,
     char *currency
     ) {
-    return costs_result_amount_create_internal (
-        value,
+    double *value_copy = NULL;
+    if (value) {
+        value_copy = malloc(sizeof(double));
+        if (value_copy) *value_copy = *value;
+    }
+    costs_result_amount_t *result = costs_result_amount_create_internal (
+        value_copy,
         currency
         );
+    if (!result) {
+        free(value_copy);
+    }
+    return result;
 }
 
 void costs_result_amount_free(costs_result_amount_t *costs_result_amount) {
@@ -39,6 +48,10 @@ void costs_result_amount_free(costs_result_amount_t *costs_result_amount) {
         return ;
     }
     listEntry_t *listEntry;
+    if (costs_result_amount->value) {
+        free(costs_result_amount->value);
+        costs_result_amount->value = NULL;
+    }
     if (costs_result_amount->currency) {
         free(costs_result_amount->currency);
         costs_result_amount->currency = NULL;
@@ -51,7 +64,7 @@ cJSON *costs_result_amount_convertToJSON(costs_result_amount_t *costs_result_amo
 
     // costs_result_amount->value
     if(costs_result_amount->value) {
-    if(cJSON_AddNumberToObject(item, "value", costs_result_amount->value) == NULL) {
+    if(cJSON_AddNumberToObject(item, "value", *costs_result_amount->value) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -76,6 +89,11 @@ costs_result_amount_t *costs_result_amount_parseFromJSON(cJSON *costs_result_amo
 
     costs_result_amount_t *costs_result_amount_local_var = NULL;
 
+    // define the local variable for costs_result_amount->value
+    double *value_local_var = NULL;
+
+    char *currency_local_str = NULL;
+
     // costs_result_amount->value
     cJSON *value = cJSON_GetObjectItemCaseSensitive(costs_result_amountJSON, "value");
     if (cJSON_IsNull(value)) {
@@ -86,6 +104,12 @@ costs_result_amount_t *costs_result_amount_parseFromJSON(cJSON *costs_result_amo
     {
     goto end; //Numeric
     }
+    value_local_var = malloc(sizeof(double));
+    if(!value_local_var)
+    {
+        goto end;
+    }
+    *value_local_var = value->valuedouble;
     }
 
     // costs_result_amount->currency
@@ -101,13 +125,27 @@ costs_result_amount_t *costs_result_amount_parseFromJSON(cJSON *costs_result_amo
     }
 
 
+    if (currency && !cJSON_IsNull(currency)) currency_local_str = strdup(currency->valuestring);
+
     costs_result_amount_local_var = costs_result_amount_create_internal (
-        value ? value->valuedouble : 0,
-        currency && !cJSON_IsNull(currency) ? strdup(currency->valuestring) : NULL
+        value_local_var,
+        currency_local_str
         );
+
+    if (!costs_result_amount_local_var) {
+        goto end;
+    }
 
     return costs_result_amount_local_var;
 end:
+    if (value_local_var) {
+        free(value_local_var);
+        value_local_var = NULL;
+    }
+    if (currency_local_str) {
+        free(currency_local_str);
+        currency_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -34,6 +34,8 @@ MessageObject::MessageObject()
     
 }
 
+MessageObject::~MessageObject() = default;
+
 void MessageObject::validate() const
 {
     std::stringstream msg;

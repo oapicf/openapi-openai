@@ -27,6 +27,8 @@ UsageResponse::UsageResponse()
     
 }
 
+UsageResponse::~UsageResponse() = default;
+
 void UsageResponse::validate() const
 {
     std::stringstream msg;

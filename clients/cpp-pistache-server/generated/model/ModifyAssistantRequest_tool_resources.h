@@ -33,7 +33,7 @@ class  ModifyAssistantRequest_tool_resources
 {
 public:
     ModifyAssistantRequest_tool_resources();
-    virtual ~ModifyAssistantRequest_tool_resources() = default;
+    virtual ~ModifyAssistantRequest_tool_resources();
 
 
     /// <summary>

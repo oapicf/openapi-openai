@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.RealtimeResponseCreateParamsMaxResponseOutputTokens
 import org.openapitools.model.RealtimeResponseCreateParamsToolsInner
 import org.openapitools.model.RealtimeSessionCreateRequestTurnDetection
@@ -36,44 +39,78 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeSessionCreateRequest(
 
-    @Schema(example = "null", required = true, description = "The Realtime model used for this session. ")
+    @Schema(required = true, description = "The Realtime model used for this session. ")
+    @param:JsonProperty("model")
     @get:JsonProperty("model", required = true) val model: RealtimeSessionCreateRequest.Model,
 
-    @Schema(example = "null", description = "The set of modalities the model can respond with. To disable audio, set this to [\"text\"]. ")
+    @Schema(description = "The set of modalities the model can respond with. To disable audio, set this to [\"text\"]. ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("modalities")
     @get:JsonProperty("modalities") val modalities: kotlin.collections.List<RealtimeSessionCreateRequest.Modalities>? = null,
 
-    @Schema(example = "null", description = "The default system instructions (i.e. system message) prepended to model  calls. This field allows the client to guide the model on desired  responses. The model can be instructed on response content and format,  (e.g. \"be extremely succinct\", \"act friendly\", \"here are examples of good  responses\") and on audio behavior (e.g. \"talk quickly\", \"inject emotion  into your voice\", \"laugh frequently\"). The instructions are not guaranteed  to be followed by the model, but they provide guidance to the model on the  desired behavior.  Note that the server sets default instructions which will be used if this  field is not set and are visible in the `session.created` event at the  start of the session. ")
+    @Schema(description = "The default system instructions (i.e. system message) prepended to model  calls. This field allows the client to guide the model on desired  responses. The model can be instructed on response content and format,  (e.g. \"be extremely succinct\", \"act friendly\", \"here are examples of good  responses\") and on audio behavior (e.g. \"talk quickly\", \"inject emotion  into your voice\", \"laugh frequently\"). The instructions are not guaranteed  to be followed by the model, but they provide guidance to the model on the  desired behavior.  Note that the server sets default instructions which will be used if this  field is not set and are visible in the `session.created` event at the  start of the session. ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("instructions")
     @get:JsonProperty("instructions") val instructions: kotlin.String? = null,
 
-    @Schema(example = "null", description = "The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. ")
+    @Schema(description = "The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("voice")
     @get:JsonProperty("voice") val voice: RealtimeSessionCreateRequest.Voice? = null,
 
-    @Schema(example = "null", description = "The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. ")
+    @Schema(description = "The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("input_audio_format")
     @get:JsonProperty("input_audio_format") val inputAudioFormat: RealtimeSessionCreateRequest.InputAudioFormat? = null,
 
-    @Schema(example = "null", description = "The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. ")
+    @Schema(description = "The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("output_audio_format")
     @get:JsonProperty("output_audio_format") val outputAudioFormat: RealtimeSessionCreateRequest.OutputAudioFormat? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("input_audio_transcription")
     @get:JsonProperty("input_audio_transcription") val inputAudioTranscription: RealtimeSessionInputAudioTranscription? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("turn_detection")
     @get:JsonProperty("turn_detection") val turnDetection: RealtimeSessionCreateRequestTurnDetection? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "Tools (functions) available to the model.")
+    @Schema(description = "Tools (functions) available to the model.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("tools")
     @get:JsonProperty("tools") val tools: kotlin.collections.List<RealtimeResponseCreateParamsToolsInner>? = null,
 
-    @Schema(example = "null", description = "How the model chooses tools. Options are `auto`, `none`, `required`, or  specify a function. ")
+    @Schema(description = "How the model chooses tools. Options are `auto`, `none`, `required`, or  specify a function. ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("tool_choice")
     @get:JsonProperty("tool_choice") val toolChoice: kotlin.String? = null,
 
-    @Schema(example = "null", description = "Sampling temperature for the model, limited to [0.6, 1.2]. Defaults to 0.8. ")
+    @Schema(description = "Sampling temperature for the model, limited to [0.6, 1.2]. Defaults to 0.8. ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("temperature")
     @get:JsonProperty("temperature") val temperature: java.math.BigDecimal? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("max_response_output_tokens")
     @get:JsonProperty("max_response_output_tokens") val maxResponseOutputTokens: RealtimeResponseCreateParamsMaxResponseOutputTokens? = null
 ) {
 
@@ -94,7 +131,7 @@ data class RealtimeSessionCreateRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): Model {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeSessionCreateRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Model'")
             }
         }
     }
@@ -113,7 +150,7 @@ data class RealtimeSessionCreateRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): Modalities {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeSessionCreateRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Modalities'")
             }
         }
     }
@@ -138,7 +175,7 @@ data class RealtimeSessionCreateRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): Voice {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeSessionCreateRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Voice'")
             }
         }
     }
@@ -158,7 +195,7 @@ data class RealtimeSessionCreateRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): InputAudioFormat {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeSessionCreateRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'InputAudioFormat'")
             }
         }
     }
@@ -178,7 +215,7 @@ data class RealtimeSessionCreateRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): OutputAudioFormat {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeSessionCreateRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'OutputAudioFormat'")
             }
         }
     }

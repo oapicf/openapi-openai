@@ -29,7 +29,7 @@ import {
 export interface ProjectApiKey {
     /**
      * The object type, which is always `organization.project.api_key`
-     * @type {string}
+     * @type {ProjectApiKeyObjectEnum}
      * @memberof ProjectApiKey
      */
     object: ProjectApiKeyObjectEnum;
@@ -80,9 +80,11 @@ export type ProjectApiKeyObjectEnum = typeof ProjectApiKeyObjectEnum[keyof typeo
  */
 export function instanceOfProjectApiKey(value: object): value is ProjectApiKey {
     if (!('object' in value) || value['object'] === undefined) return false;
-    if (!('redactedValue' in value) || value['redactedValue'] === undefined) return false;
+    if (value['object'] !== 'organization.project.api_key') return false;
+    
+    if ((!('redactedValue' in (value as Record<string, any>)) && !('redacted_value' in (value as Record<string, any>))) || ((value as Record<string, any>)['redactedValue'] === undefined && (value as Record<string, any>)['redacted_value'] === undefined)) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('owner' in value) || value['owner'] === undefined) return false;
     return true;

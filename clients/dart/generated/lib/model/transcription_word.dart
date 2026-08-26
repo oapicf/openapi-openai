@@ -62,10 +62,12 @@ class TranscriptionWord {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TranscriptionWord[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TranscriptionWord[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'word'), 'Required key "TranscriptionWord[word]" is missing from JSON.');
+        assert(json[r'word'] != null, 'Required key "TranscriptionWord[word]" has a null value in JSON.');
+        assert(json.containsKey(r'start'), 'Required key "TranscriptionWord[start]" is missing from JSON.');
+        assert(json[r'start'] != null, 'Required key "TranscriptionWord[start]" has a null value in JSON.');
+        assert(json.containsKey(r'end'), 'Required key "TranscriptionWord[end]" is missing from JSON.');
+        assert(json[r'end'] != null, 'Required key "TranscriptionWord[end]" has a null value in JSON.');
         return true;
       }());
 

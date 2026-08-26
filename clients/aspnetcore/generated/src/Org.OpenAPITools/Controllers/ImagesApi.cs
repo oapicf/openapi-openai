@@ -46,7 +46,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"data\" : [ {\n    \"revised_prompt\" : \"revised_prompt\",\n    \"b64_json\" : \"b64_json\",\n    \"url\" : \"url\"\n  }, {\n    \"revised_prompt\" : \"revised_prompt\",\n    \"b64_json\" : \"b64_json\",\n    \"url\" : \"url\"\n  } ],\n  \"created\" : 0\n}";
+            exampleJson = "{\n  \"created\" : 0,\n  \"data\" : [ {\n    \"b64_json\" : \"b64_json\",\n    \"url\" : \"url\",\n    \"revised_prompt\" : \"revised_prompt\"\n  }, {\n    \"b64_json\" : \"b64_json\",\n    \"url\" : \"url\",\n    \"revised_prompt\" : \"revised_prompt\"\n  } ]\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ImagesResponse>(exampleJson)
@@ -80,7 +80,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"data\" : [ {\n    \"revised_prompt\" : \"revised_prompt\",\n    \"b64_json\" : \"b64_json\",\n    \"url\" : \"url\"\n  }, {\n    \"revised_prompt\" : \"revised_prompt\",\n    \"b64_json\" : \"b64_json\",\n    \"url\" : \"url\"\n  } ],\n  \"created\" : 0\n}";
+            exampleJson = "{\n  \"created\" : 0,\n  \"data\" : [ {\n    \"b64_json\" : \"b64_json\",\n    \"url\" : \"url\",\n    \"revised_prompt\" : \"revised_prompt\"\n  }, {\n    \"b64_json\" : \"b64_json\",\n    \"url\" : \"url\",\n    \"revised_prompt\" : \"revised_prompt\"\n  } ]\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ImagesResponse>(exampleJson)
@@ -112,7 +112,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"data\" : [ {\n    \"revised_prompt\" : \"revised_prompt\",\n    \"b64_json\" : \"b64_json\",\n    \"url\" : \"url\"\n  }, {\n    \"revised_prompt\" : \"revised_prompt\",\n    \"b64_json\" : \"b64_json\",\n    \"url\" : \"url\"\n  } ],\n  \"created\" : 0\n}";
+            exampleJson = "{\n  \"created\" : 0,\n  \"data\" : [ {\n    \"b64_json\" : \"b64_json\",\n    \"url\" : \"url\",\n    \"revised_prompt\" : \"revised_prompt\"\n  }, {\n    \"b64_json\" : \"b64_json\",\n    \"url\" : \"url\",\n    \"revised_prompt\" : \"revised_prompt\"\n  } ]\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ImagesResponse>(exampleJson)

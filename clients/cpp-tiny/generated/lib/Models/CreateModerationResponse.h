@@ -53,21 +53,21 @@ public:
 
 	/*! \brief Set The unique identifier for the moderation request.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The model used to generate the moderation results.
 	 */
 	std::string getModel();
 
 	/*! \brief Set The model used to generate the moderation results.
 	 */
-	void setModel(std::string  model);
+	void setModel(std::string model);
 	/*! \brief Get A list of moderation objects.
 	 */
 	std::list<CreateModerationResponse_results_inner> getResults();
 
 	/*! \brief Set A list of moderation objects.
 	 */
-	void setResults(std::list <CreateModerationResponse_results_inner> results);
+	void setResults(std::list<CreateModerationResponse_results_inner> results);
 
 
     private:

@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface UsageAudioSpeechesResult {
     /**
      * 
-     * @type {string}
+     * @type {UsageAudioSpeechesResultObjectEnum}
      * @memberof UsageAudioSpeechesResult
      */
     object: UsageAudioSpeechesResultObjectEnum;
@@ -78,8 +78,10 @@ export type UsageAudioSpeechesResultObjectEnum = typeof UsageAudioSpeechesResult
  */
 export function instanceOfUsageAudioSpeechesResult(value: object): value is UsageAudioSpeechesResult {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'organization.usage.audio_speeches.result') return false;
+    
     if (!('characters' in value) || value['characters'] === undefined) return false;
-    if (!('numModelRequests' in value) || value['numModelRequests'] === undefined) return false;
+    if ((!('numModelRequests' in (value as Record<string, any>)) && !('num_model_requests' in (value as Record<string, any>))) || ((value as Record<string, any>)['numModelRequests'] === undefined && (value as Record<string, any>)['num_model_requests'] === undefined)) return false;
     return true;
 }
 
@@ -96,10 +98,10 @@ export function UsageAudioSpeechesResultFromJSONTyped(json: any, ignoreDiscrimin
         'object': json['object'],
         'characters': json['characters'],
         'numModelRequests': json['num_model_requests'],
-        'projectId': json['project_id'] == null ? undefined : json['project_id'],
-        'userId': json['user_id'] == null ? undefined : json['user_id'],
-        'apiKeyId': json['api_key_id'] == null ? undefined : json['api_key_id'],
-        'model': json['model'] == null ? undefined : json['model'],
+        'projectId': json['project_id'] === undefined ? undefined : json['project_id'] === null ? null : json['project_id'],
+        'userId': json['user_id'] === undefined ? undefined : json['user_id'] === null ? null : json['user_id'],
+        'apiKeyId': json['api_key_id'] === undefined ? undefined : json['api_key_id'] === null ? null : json['api_key_id'],
+        'model': json['model'] === undefined ? undefined : json['model'] === null ? null : json['model'],
     };
 }
 

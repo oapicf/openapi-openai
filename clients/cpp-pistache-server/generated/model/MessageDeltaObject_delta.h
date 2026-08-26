@@ -34,7 +34,7 @@ class  MessageDeltaObject_delta
 {
 public:
     MessageDeltaObject_delta();
-    virtual ~MessageDeltaObject_delta() = default;
+    virtual ~MessageDeltaObject_delta();
 
 
     /// <summary>

@@ -49,7 +49,7 @@ class CostsResult
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['organization.costs.result'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class CostsResult
      * @var CostsResultAmount|null
      * @SerializedName("amount")
      * @Type("OpenAPI\Server\Model\CostsResultAmount")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CostsResultAmount")]
     protected ?CostsResultAmount $amount = null;
 
@@ -69,7 +69,7 @@ class CostsResult
      * @var string|null
      * @SerializedName("line_item")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $lineItem = null;
 
@@ -79,7 +79,7 @@ class CostsResult
      * @var string|null
      * @SerializedName("project_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $projectId = null;
 
@@ -108,12 +108,12 @@ class CostsResult
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -135,12 +135,12 @@ class CostsResult
     }
 
     /**
-    * Sets amount.
-    *
-    * @param CostsResultAmount|null $amount
-    *
-    * @return $this
-    */
+     * Sets amount.
+     *
+     * @param CostsResultAmount|null $amount
+     *
+     * @return $this
+     */
     public function setAmount(?CostsResultAmount $amount = null): self
     {
         $this->amount = $amount;
@@ -162,12 +162,12 @@ class CostsResult
     }
 
     /**
-    * Sets lineItem.
-    *
-    * @param string|null $lineItem  When `group_by=line_item`, this field provides the line item of the grouped costs result.
-    *
-    * @return $this
-    */
+     * Sets lineItem.
+     *
+     * @param string|null $lineItem  When `group_by=line_item`, this field provides the line item of the grouped costs result.
+     *
+     * @return $this
+     */
     public function setLineItem(?string $lineItem = null): self
     {
         $this->lineItem = $lineItem;
@@ -189,12 +189,12 @@ class CostsResult
     }
 
     /**
-    * Sets projectId.
-    *
-    * @param string|null $projectId  When `group_by=project_id`, this field provides the project ID of the grouped costs result.
-    *
-    * @return $this
-    */
+     * Sets projectId.
+     *
+     * @param string|null $projectId  When `group_by=project_id`, this field provides the project ID of the grouped costs result.
+     *
+     * @return $this
+     */
     public function setProjectId(?string $projectId = null): self
     {
         $this->projectId = $projectId;

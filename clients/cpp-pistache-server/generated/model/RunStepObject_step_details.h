@@ -37,7 +37,7 @@ class  RunStepObject_step_details
 {
 public:
     RunStepObject_step_details();
-    virtual ~RunStepObject_step_details() = default;
+    virtual ~RunStepObject_step_details();
 
 
     /// <summary>

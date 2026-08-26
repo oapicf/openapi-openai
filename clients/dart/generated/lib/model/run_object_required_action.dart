@@ -54,10 +54,10 @@ class RunObjectRequiredAction {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunObjectRequiredAction[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunObjectRequiredAction[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "RunObjectRequiredAction[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RunObjectRequiredAction[type]" has a null value in JSON.');
+        assert(json.containsKey(r'submit_tool_outputs'), 'Required key "RunObjectRequiredAction[submit_tool_outputs]" is missing from JSON.');
+        assert(json[r'submit_tool_outputs'] != null, 'Required key "RunObjectRequiredAction[submit_tool_outputs]" has a null value in JSON.');
         return true;
       }());
 
@@ -117,27 +117,28 @@ class RunObjectRequiredAction {
 }
 
 /// For now, this is always `submit_tool_outputs`.
-class RunObjectRequiredActionTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunObjectRequiredActionTypeEnum._(this.value);
+enum RunObjectRequiredActionTypeEnum {
+  submitToolOutputs._(r'submit_tool_outputs'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunObjectRequiredActionTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const submitToolOutputs = RunObjectRequiredActionTypeEnum._(r'submit_tool_outputs');
-
-  /// List of all possible values in this [enum][RunObjectRequiredActionTypeEnum].
-  static const values = <RunObjectRequiredActionTypeEnum>[
-    submitToolOutputs,
-  ];
-
+  /// Returns the instance of [RunObjectRequiredActionTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunObjectRequiredActionTypeEnum? fromJson(dynamic value) => RunObjectRequiredActionTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunObjectRequiredActionTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunObjectRequiredActionTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunObjectRequiredActionTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -159,9 +160,10 @@ class RunObjectRequiredActionTypeEnumTypeTransformer {
 
   const RunObjectRequiredActionTypeEnumTypeTransformer._();
 
-  String encode(RunObjectRequiredActionTypeEnum data) => data.value;
+  String encode(RunObjectRequiredActionTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunObjectRequiredActionTypeEnum.
+  /// Returns the instance of [RunObjectRequiredActionTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -170,6 +172,9 @@ class RunObjectRequiredActionTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunObjectRequiredActionTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunObjectRequiredActionTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'submit_tool_outputs': return RunObjectRequiredActionTypeEnum.submitToolOutputs;
@@ -182,7 +187,7 @@ class RunObjectRequiredActionTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunObjectRequiredActionTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunObjectRequiredActionTypeEnumTypeTransformer? _instance;
 }
 

@@ -30,94 +30,65 @@ import org.openapitools.server.models.ListAuditLogsEffectiveAtParameter
 import org.openapitools.server.models.ListAuditLogsResponse
 
 fun Route.AuditLogsApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listAuditLogs> {
+    get<Paths.listAuditLogs> { listAuditLogs ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "first_id" : "audit_log-defb456h8dks",
+              "object" : "list",
               "data" : [ {
-                "rate_limit.updated" : {
-                  "changes_requested" : {
-                    "batch_1_day_max_input_tokens" : 7,
-                    "max_tokens_per_1_minute" : 1,
-                    "max_images_per_1_minute" : 5,
-                    "max_audio_megabytes_per_1_minute" : 5,
-                    "max_requests_per_1_minute" : 6,
-                    "max_requests_per_1_day" : 2
-                  },
-                  "id" : "id"
-                },
-                "user.updated" : {
-                  "changes_requested" : {
-                    "role" : "role"
-                  },
-                  "id" : "id"
-                },
-                "project" : {
-                  "name" : "name",
-                  "id" : "id"
-                },
-                "service_account.deleted" : {
-                  "id" : "id"
-                },
-                "type" : "api_key.created",
-                "logout.failed" : {
-                  "error_message" : "error_message",
-                  "error_code" : "error_code"
-                },
-                "login.failed" : {
-                  "error_message" : "error_message",
-                  "error_code" : "error_code"
-                },
-                "service_account.updated" : {
-                  "changes_requested" : {
-                    "role" : "role"
-                  },
-                  "id" : "id"
-                },
-                "rate_limit.deleted" : {
-                  "id" : "id"
-                },
                 "id" : "id",
-                "project.created" : {
-                  "data" : {
-                    "name" : "name",
-                    "title" : "title"
-                  },
-                  "id" : "id"
+                "type" : "api_key.created",
+                "effective_at" : 0,
+                "project" : {
+                  "id" : "id",
+                  "name" : "name"
                 },
-                "organization.updated" : {
-                  "changes_requested" : {
-                    "settings" : {
-                      "threads_ui_visibility" : "threads_ui_visibility",
-                      "usage_dashboard_visibility" : "usage_dashboard_visibility"
+                "actor" : {
+                  "type" : "session",
+                  "session" : {
+                    "user" : {
+                      "id" : "id",
+                      "email" : "email"
                     },
-                    "name" : "name",
-                    "description" : "description",
-                    "title" : "title"
+                    "ip_address" : "ip_address"
                   },
-                  "id" : "id"
+                  "api_key" : {
+                    "id" : "id",
+                    "type" : "user",
+                    "user" : {
+                      "id" : "id",
+                      "email" : "email"
+                    },
+                    "service_account" : {
+                      "id" : "id"
+                    }
+                  }
                 },
-                "project.updated" : {
-                  "changes_requested" : {
-                    "title" : "title"
-                  },
-                  "id" : "id"
-                },
-                "project.archived" : {
-                  "id" : "id"
-                },
-                "user.added" : {
+                "api_key.created" : {
+                  "id" : "id",
                   "data" : {
-                    "role" : "role"
-                  },
+                    "scopes" : [ "scopes", "scopes" ]
+                  }
+                },
+                "api_key.updated" : {
+                  "id" : "id",
+                  "changes_requested" : {
+                    "scopes" : [ "scopes", "scopes" ]
+                  }
+                },
+                "api_key.deleted" : {
                   "id" : "id"
+                },
+                "invite.sent" : {
+                  "id" : "id",
+                  "data" : {
+                    "email" : "email",
+                    "role" : "role"
+                  }
                 },
                 "invite.accepted" : {
                   "id" : "id"
@@ -125,136 +96,136 @@ fun Route.AuditLogsApi() {
                 "invite.deleted" : {
                   "id" : "id"
                 },
-                "actor" : {
-                  "api_key" : {
-                    "service_account" : {
-                      "id" : "id"
-                    },
-                    "id" : "id",
-                    "type" : "user",
-                    "user" : {
-                      "id" : "id",
-                      "email" : "email"
-                    }
-                  },
-                  "session" : {
-                    "ip_address" : "ip_address",
-                    "user" : {
-                      "id" : "id",
-                      "email" : "email"
-                    }
-                  },
-                  "type" : "session"
+                "login.failed" : {
+                  "error_code" : "error_code",
+                  "error_message" : "error_message"
                 },
-                "effective_at" : 0,
-                "invite.sent" : {
+                "logout.failed" : {
+                  "error_code" : "error_code",
+                  "error_message" : "error_message"
+                },
+                "organization.updated" : {
+                  "id" : "id",
+                  "changes_requested" : {
+                    "title" : "title",
+                    "description" : "description",
+                    "name" : "name",
+                    "settings" : {
+                      "threads_ui_visibility" : "threads_ui_visibility",
+                      "usage_dashboard_visibility" : "usage_dashboard_visibility"
+                    }
+                  }
+                },
+                "project.created" : {
+                  "id" : "id",
                   "data" : {
-                    "role" : "role",
-                    "email" : "email"
-                  },
+                    "name" : "name",
+                    "title" : "title"
+                  }
+                },
+                "project.updated" : {
+                  "id" : "id",
+                  "changes_requested" : {
+                    "title" : "title"
+                  }
+                },
+                "project.archived" : {
+                  "id" : "id"
+                },
+                "rate_limit.updated" : {
+                  "id" : "id",
+                  "changes_requested" : {
+                    "max_requests_per_1_minute" : 6,
+                    "max_tokens_per_1_minute" : 1,
+                    "max_images_per_1_minute" : 5,
+                    "max_audio_megabytes_per_1_minute" : 5,
+                    "max_requests_per_1_day" : 2,
+                    "batch_1_day_max_input_tokens" : 7
+                  }
+                },
+                "rate_limit.deleted" : {
                   "id" : "id"
                 },
                 "service_account.created" : {
+                  "id" : "id",
                   "data" : {
                     "role" : "role"
-                  },
+                  }
+                },
+                "service_account.updated" : {
+                  "id" : "id",
+                  "changes_requested" : {
+                    "role" : "role"
+                  }
+                },
+                "service_account.deleted" : {
                   "id" : "id"
                 },
-                "api_key.created" : {
+                "user.added" : {
+                  "id" : "id",
                   "data" : {
-                    "scopes" : [ "scopes", "scopes" ]
-                  },
-                  "id" : "id"
+                    "role" : "role"
+                  }
+                },
+                "user.updated" : {
+                  "id" : "id",
+                  "changes_requested" : {
+                    "role" : "role"
+                  }
                 },
                 "user.deleted" : {
-                  "id" : "id"
-                },
-                "api_key.deleted" : {
-                  "id" : "id"
-                },
-                "api_key.updated" : {
-                  "changes_requested" : {
-                    "scopes" : [ "scopes", "scopes" ]
-                  },
                   "id" : "id"
                 }
               }, {
-                "rate_limit.updated" : {
-                  "changes_requested" : {
-                    "batch_1_day_max_input_tokens" : 7,
-                    "max_tokens_per_1_minute" : 1,
-                    "max_images_per_1_minute" : 5,
-                    "max_audio_megabytes_per_1_minute" : 5,
-                    "max_requests_per_1_minute" : 6,
-                    "max_requests_per_1_day" : 2
-                  },
-                  "id" : "id"
-                },
-                "user.updated" : {
-                  "changes_requested" : {
-                    "role" : "role"
-                  },
-                  "id" : "id"
-                },
-                "project" : {
-                  "name" : "name",
-                  "id" : "id"
-                },
-                "service_account.deleted" : {
-                  "id" : "id"
-                },
-                "type" : "api_key.created",
-                "logout.failed" : {
-                  "error_message" : "error_message",
-                  "error_code" : "error_code"
-                },
-                "login.failed" : {
-                  "error_message" : "error_message",
-                  "error_code" : "error_code"
-                },
-                "service_account.updated" : {
-                  "changes_requested" : {
-                    "role" : "role"
-                  },
-                  "id" : "id"
-                },
-                "rate_limit.deleted" : {
-                  "id" : "id"
-                },
                 "id" : "id",
-                "project.created" : {
-                  "data" : {
-                    "name" : "name",
-                    "title" : "title"
-                  },
-                  "id" : "id"
+                "type" : "api_key.created",
+                "effective_at" : 0,
+                "project" : {
+                  "id" : "id",
+                  "name" : "name"
                 },
-                "organization.updated" : {
-                  "changes_requested" : {
-                    "settings" : {
-                      "threads_ui_visibility" : "threads_ui_visibility",
-                      "usage_dashboard_visibility" : "usage_dashboard_visibility"
+                "actor" : {
+                  "type" : "session",
+                  "session" : {
+                    "user" : {
+                      "id" : "id",
+                      "email" : "email"
                     },
-                    "name" : "name",
-                    "description" : "description",
-                    "title" : "title"
+                    "ip_address" : "ip_address"
                   },
-                  "id" : "id"
+                  "api_key" : {
+                    "id" : "id",
+                    "type" : "user",
+                    "user" : {
+                      "id" : "id",
+                      "email" : "email"
+                    },
+                    "service_account" : {
+                      "id" : "id"
+                    }
+                  }
                 },
-                "project.updated" : {
-                  "changes_requested" : {
-                    "title" : "title"
-                  },
-                  "id" : "id"
-                },
-                "project.archived" : {
-                  "id" : "id"
-                },
-                "user.added" : {
+                "api_key.created" : {
+                  "id" : "id",
                   "data" : {
-                    "role" : "role"
-                  },
+                    "scopes" : [ "scopes", "scopes" ]
+                  }
+                },
+                "api_key.updated" : {
+                  "id" : "id",
+                  "changes_requested" : {
+                    "scopes" : [ "scopes", "scopes" ]
+                  }
+                },
+                "api_key.deleted" : {
                   "id" : "id"
+                },
+                "invite.sent" : {
+                  "id" : "id",
+                  "data" : {
+                    "email" : "email",
+                    "role" : "role"
+                  }
                 },
                 "invite.accepted" : {
                   "id" : "id"
@@ -262,63 +233,90 @@ fun Route.AuditLogsApi() {
                 "invite.deleted" : {
                   "id" : "id"
                 },
-                "actor" : {
-                  "api_key" : {
-                    "service_account" : {
-                      "id" : "id"
-                    },
-                    "id" : "id",
-                    "type" : "user",
-                    "user" : {
-                      "id" : "id",
-                      "email" : "email"
-                    }
-                  },
-                  "session" : {
-                    "ip_address" : "ip_address",
-                    "user" : {
-                      "id" : "id",
-                      "email" : "email"
-                    }
-                  },
-                  "type" : "session"
+                "login.failed" : {
+                  "error_code" : "error_code",
+                  "error_message" : "error_message"
                 },
-                "effective_at" : 0,
-                "invite.sent" : {
+                "logout.failed" : {
+                  "error_code" : "error_code",
+                  "error_message" : "error_message"
+                },
+                "organization.updated" : {
+                  "id" : "id",
+                  "changes_requested" : {
+                    "title" : "title",
+                    "description" : "description",
+                    "name" : "name",
+                    "settings" : {
+                      "threads_ui_visibility" : "threads_ui_visibility",
+                      "usage_dashboard_visibility" : "usage_dashboard_visibility"
+                    }
+                  }
+                },
+                "project.created" : {
+                  "id" : "id",
                   "data" : {
-                    "role" : "role",
-                    "email" : "email"
-                  },
+                    "name" : "name",
+                    "title" : "title"
+                  }
+                },
+                "project.updated" : {
+                  "id" : "id",
+                  "changes_requested" : {
+                    "title" : "title"
+                  }
+                },
+                "project.archived" : {
+                  "id" : "id"
+                },
+                "rate_limit.updated" : {
+                  "id" : "id",
+                  "changes_requested" : {
+                    "max_requests_per_1_minute" : 6,
+                    "max_tokens_per_1_minute" : 1,
+                    "max_images_per_1_minute" : 5,
+                    "max_audio_megabytes_per_1_minute" : 5,
+                    "max_requests_per_1_day" : 2,
+                    "batch_1_day_max_input_tokens" : 7
+                  }
+                },
+                "rate_limit.deleted" : {
                   "id" : "id"
                 },
                 "service_account.created" : {
+                  "id" : "id",
                   "data" : {
                     "role" : "role"
-                  },
+                  }
+                },
+                "service_account.updated" : {
+                  "id" : "id",
+                  "changes_requested" : {
+                    "role" : "role"
+                  }
+                },
+                "service_account.deleted" : {
                   "id" : "id"
                 },
-                "api_key.created" : {
+                "user.added" : {
+                  "id" : "id",
                   "data" : {
-                    "scopes" : [ "scopes", "scopes" ]
-                  },
-                  "id" : "id"
+                    "role" : "role"
+                  }
+                },
+                "user.updated" : {
+                  "id" : "id",
+                  "changes_requested" : {
+                    "role" : "role"
+                  }
                 },
                 "user.deleted" : {
                   "id" : "id"
-                },
-                "api_key.deleted" : {
-                  "id" : "id"
-                },
-                "api_key.updated" : {
-                  "changes_requested" : {
-                    "scopes" : [ "scopes", "scopes" ]
-                  },
-                  "id" : "id"
                 }
               } ],
+              "first_id" : "audit_log-defb456h8dks",
               "last_id" : "audit_log-hnbkd8s93s",
-              "has_more" : true,
-              "object" : "list"
+              "has_more" : true
             }"""
             
             when (exampleContentType) {
@@ -329,5 +327,4 @@ fun Route.AuditLogsApi() {
         
     }
     }
-
 }

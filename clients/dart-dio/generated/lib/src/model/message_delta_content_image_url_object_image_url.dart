@@ -89,15 +89,17 @@ class _$MessageDeltaContentImageUrlObjectImageUrlSerializer implements Primitive
         case r'url':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.url = valueDes;
           break;
         case r'detail':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MessageDeltaContentImageUrlObjectImageUrlDetailEnum),
-          ) as MessageDeltaContentImageUrlObjectImageUrlDetailEnum;
+            specifiedType: const FullType.nullable(MessageDeltaContentImageUrlObjectImageUrlDetailEnum),
+          ) as MessageDeltaContentImageUrlObjectImageUrlDetailEnum?;
+          if (valueDes == null) continue;
           result.detail = valueDes;
           break;
         default:

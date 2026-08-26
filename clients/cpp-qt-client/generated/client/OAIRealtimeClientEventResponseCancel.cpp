@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRealtimeClientEventResponseCancel::OAIRealtimeClientEventResponseCancel(QString json) {
+OAIRealtimeClientEventResponseCancel::OAIRealtimeClientEventResponseCancel(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIRealtimeClientEventResponseCancel::initializeModel() {
     m_response_id_isValid = false;
 }
 
-void OAIRealtimeClientEventResponseCancel::fromJson(QString jsonString) {
+void OAIRealtimeClientEventResponseCancel::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -34,13 +34,13 @@ class OAIUsageTimeBucket;
 class OAIUsageResponse : public OAIObject {
 public:
     OAIUsageResponse();
-    OAIUsageResponse(QString json);
+    OAIUsageResponse(const QString &json);
     ~OAIUsageResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getObject() const;
     void setObject(const QString &object);

@@ -14,11 +14,11 @@ static chat_completion_functions_t *chat_completion_functions_create_internal(
     if (!chat_completion_functions_local_var) {
         return NULL;
     }
+    memset(chat_completion_functions_local_var, 0, sizeof(chat_completion_functions_t));
+    chat_completion_functions_local_var->_library_owned = 1;
     chat_completion_functions_local_var->description = description;
     chat_completion_functions_local_var->name = name;
     chat_completion_functions_local_var->parameters = parameters;
-
-    chat_completion_functions_local_var->_library_owned = 1;
     return chat_completion_functions_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) chat_completion_functions_t *chat_completion_functio
     char *name,
     list_t* parameters
     ) {
-    return chat_completion_functions_create_internal (
+    chat_completion_functions_t *result = chat_completion_functions_create_internal (
         description,
         name,
         parameters
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_functions_free(chat_completion_functions_t *chat_completion_functions) {
@@ -111,6 +114,10 @@ chat_completion_functions_t *chat_completion_functions_parseFromJSON(cJSON *chat
 
     chat_completion_functions_t *chat_completion_functions_local_var = NULL;
 
+    char *description_local_str = NULL;
+
+    char *name_local_str = NULL;
+
     // define the local map for chat_completion_functions->parameters
     list_t *parametersList = NULL;
 
@@ -165,14 +172,29 @@ chat_completion_functions_t *chat_completion_functions_parseFromJSON(cJSON *chat
     }
 
 
+    if (description && !cJSON_IsNull(description)) description_local_str = strdup(description->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     chat_completion_functions_local_var = chat_completion_functions_create_internal (
-        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
-        strdup(name->valuestring),
+        description_local_str,
+        name_local_str,
         parameters ? parametersList : NULL
         );
 
+    if (!chat_completion_functions_local_var) {
+        goto end;
+    }
+
     return chat_completion_functions_local_var;
 end:
+    if (description_local_str) {
+        free(description_local_str);
+        description_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
     if (parametersList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, parametersList) {

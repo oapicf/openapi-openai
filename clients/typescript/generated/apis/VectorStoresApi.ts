@@ -47,8 +47,8 @@ export class VectorStoresApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)))
-            .replace('{' + 'batch_id' + '}', encodeURIComponent(String(batchId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+            .replace('{batch_id}', encodeURIComponent(String(batchId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -139,7 +139,7 @@ export class VectorStoresApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/vector_stores/{vector_store_id}/files'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -194,7 +194,7 @@ export class VectorStoresApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/vector_stores/{vector_store_id}/file_batches'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -242,7 +242,7 @@ export class VectorStoresApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/vector_stores/{vector_store_id}'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -286,8 +286,8 @@ export class VectorStoresApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/vector_stores/{vector_store_id}/files/{file_id}'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)))
-            .replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+            .replace('{file_id}', encodeURIComponent(String(fileId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -324,7 +324,7 @@ export class VectorStoresApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/vector_stores/{vector_store_id}'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -368,8 +368,8 @@ export class VectorStoresApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/vector_stores/{vector_store_id}/files/{file_id}'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)))
-            .replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+            .replace('{file_id}', encodeURIComponent(String(fileId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -413,8 +413,8 @@ export class VectorStoresApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/vector_stores/{vector_store_id}/file_batches/{batch_id}'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)))
-            .replace('{' + 'batch_id' + '}', encodeURIComponent(String(batchId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+            .replace('{batch_id}', encodeURIComponent(String(batchId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -468,8 +468,8 @@ export class VectorStoresApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/vector_stores/{vector_store_id}/file_batches/{batch_id}/files'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)))
-            .replace('{' + 'batch_id' + '}', encodeURIComponent(String(batchId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)))
+            .replace('{batch_id}', encodeURIComponent(String(batchId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -541,7 +541,7 @@ export class VectorStoresApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/vector_stores/{vector_store_id}/files'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -667,7 +667,7 @@ export class VectorStoresApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/vector_stores/{vector_store_id}'
-            .replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+            .replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);

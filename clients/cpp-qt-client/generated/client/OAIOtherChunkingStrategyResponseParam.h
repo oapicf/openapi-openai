@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIOtherChunkingStrategyResponseParam : public OAIObject {
 public:
     OAIOtherChunkingStrategyResponseParam();
-    OAIOtherChunkingStrategyResponseParam(QString json);
+    OAIOtherChunkingStrategyResponseParam(const QString &json);
     ~OAIOtherChunkingStrategyResponseParam() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

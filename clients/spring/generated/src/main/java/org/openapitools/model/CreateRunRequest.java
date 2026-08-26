@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.math.BigDecimal;
@@ -19,53 +20,66 @@ import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * CreateRunRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateRunRequest {
 
   private String assistantId;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<CreateRunRequestModel> model = JsonNullable.<CreateRunRequestModel>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> instructions = JsonNullable.<String>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> additionalInstructions = JsonNullable.<String>undefined();
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<List<@Valid CreateMessageRequest>> additionalMessages = JsonNullable.<List<@Valid CreateMessageRequest>>undefined();
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<List<AssistantObjectToolsInner>> tools = JsonNullable.<List<AssistantObjectToolsInner>>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> stream = JsonNullable.<Boolean>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 256) Integer> maxPromptTokens = JsonNullable.<Integer>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 256) Integer> maxCompletionTokens = JsonNullable.<Integer>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable TruncationObject truncationStrategy;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AssistantsApiToolChoiceOption toolChoice;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Boolean parallelToolCalls = true;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AssistantsApiResponseFormatOption responseFormat;
 
   public CreateRunRequest() {
@@ -95,6 +109,7 @@ public class CreateRunRequest {
     return assistantId;
   }
 
+  @JsonProperty("assistant_id")
   public void setAssistantId(String assistantId) {
     this.assistantId = assistantId;
   }
@@ -357,6 +372,7 @@ public class CreateRunRequest {
     return truncationStrategy;
   }
 
+  @JsonProperty("truncation_strategy")
   public void setTruncationStrategy(@Nullable TruncationObject truncationStrategy) {
     this.truncationStrategy = truncationStrategy;
   }
@@ -377,6 +393,7 @@ public class CreateRunRequest {
     return toolChoice;
   }
 
+  @JsonProperty("tool_choice")
   public void setToolChoice(@Nullable AssistantsApiToolChoiceOption toolChoice) {
     this.toolChoice = toolChoice;
   }
@@ -397,6 +414,7 @@ public class CreateRunRequest {
     return parallelToolCalls;
   }
 
+  @JsonProperty("parallel_tool_calls")
   public void setParallelToolCalls(Boolean parallelToolCalls) {
     this.parallelToolCalls = parallelToolCalls;
   }
@@ -417,6 +435,7 @@ public class CreateRunRequest {
     return responseFormat;
   }
 
+  @JsonProperty("response_format")
   public void setResponseFormat(@Nullable AssistantsApiResponseFormatOption responseFormat) {
     this.responseFormat = responseFormat;
   }
@@ -492,11 +511,8 @@ public class CreateRunRequest {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

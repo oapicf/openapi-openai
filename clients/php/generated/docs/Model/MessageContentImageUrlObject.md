@@ -1,4 +1,4 @@
-# # MessageContentImageUrlObject
+# MessageContentImageUrlObject
 
 ## Properties
 

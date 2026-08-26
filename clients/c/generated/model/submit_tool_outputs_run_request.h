@@ -21,14 +21,14 @@ typedef struct submit_tool_outputs_run_request_t submit_tool_outputs_run_request
 
 typedef struct submit_tool_outputs_run_request_t {
     list_t *tool_outputs; //nonprimitive container
-    int stream; //boolean
+    int *stream; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } submit_tool_outputs_run_request_t;
 
 __attribute__((deprecated)) submit_tool_outputs_run_request_t *submit_tool_outputs_run_request_create(
     list_t *tool_outputs,
-    int stream
+    int *stream
 );
 
 void submit_tool_outputs_run_request_free(submit_tool_outputs_run_request_t *submit_tool_outputs_run_request);

@@ -69,11 +69,11 @@ function Initialize-ThreadObject {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "created_at" = ${CreatedAt}
-            "tool_resources" = ${ToolResources}
-            "metadata" = ${Metadata}
+            'id' = ${Id}
+            'object' = ${Object}
+            'created_at' = ${CreatedAt}
+            'tool_resources' = ${ToolResources}
+            'metadata' = ${Metadata}
         }
 
 
@@ -111,7 +111,7 @@ function ConvertFrom-JsonToThreadObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ThreadObject
-        $AllProperties = ("id", "object", "created_at", "tool_resources", "metadata")
+        $AllProperties = ('id', 'object', 'created_at', 'tool_resources', 'metadata')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -122,42 +122,42 @@ function ConvertFrom-JsonToThreadObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created_at' missing."
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tool_resources"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tool_resources'))) {
             throw "Error! JSON cannot be serialized due to the required property 'tool_resources' missing."
         } else {
-            $ToolResources = $JsonParameters.PSobject.Properties["tool_resources"].value
+            $ToolResources = $JsonParameters.PSobject.Properties['tool_resources'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) {
             throw "Error! JSON cannot be serialized due to the required property 'metadata' missing."
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "created_at" = ${CreatedAt}
-            "tool_resources" = ${ToolResources}
-            "metadata" = ${Metadata}
+            'id' = ${Id}
+            'object' = ${Object}
+            'created_at' = ${CreatedAt}
+            'tool_resources' = ${ToolResources}
+            'metadata' = ${Metadata}
         }
 
         return $PSO

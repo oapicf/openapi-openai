@@ -32,12 +32,12 @@ static chat_completion_request_user_message_content_part_t *chat_completion_requ
     if (!chat_completion_request_user_message_content_part_local_var) {
         return NULL;
     }
+    memset(chat_completion_request_user_message_content_part_local_var, 0, sizeof(chat_completion_request_user_message_content_part_t));
+    chat_completion_request_user_message_content_part_local_var->_library_owned = 1;
     chat_completion_request_user_message_content_part_local_var->type = type;
     chat_completion_request_user_message_content_part_local_var->text = text;
     chat_completion_request_user_message_content_part_local_var->image_url = image_url;
     chat_completion_request_user_message_content_part_local_var->input_audio = input_audio;
-
-    chat_completion_request_user_message_content_part_local_var->_library_owned = 1;
     return chat_completion_request_user_message_content_part_local_var;
 }
 
@@ -47,12 +47,15 @@ __attribute__((deprecated)) chat_completion_request_user_message_content_part_t 
     chat_completion_request_message_content_part_image_image_url_t *image_url,
     chat_completion_request_message_content_part_audio_input_audio_t *input_audio
     ) {
-    return chat_completion_request_user_message_content_part_create_internal (
+    chat_completion_request_user_message_content_part_t *result = chat_completion_request_user_message_content_part_create_internal (
         type,
         text,
         image_url,
         input_audio
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_request_user_message_content_part_free(chat_completion_request_user_message_content_part_t *chat_completion_request_user_message_content_part) {
@@ -140,6 +143,8 @@ chat_completion_request_user_message_content_part_t *chat_completion_request_use
 
     chat_completion_request_user_message_content_part_t *chat_completion_request_user_message_content_part_local_var = NULL;
 
+    char *text_local_str = NULL;
+
     // define the local variable for chat_completion_request_user_message_content_part->image_url
     chat_completion_request_message_content_part_image_image_url_t *image_url_local_nonprim = NULL;
 
@@ -203,15 +208,25 @@ chat_completion_request_user_message_content_part_t *chat_completion_request_use
     input_audio_local_nonprim = chat_completion_request_message_content_part_audio_input_audio_parseFromJSON(input_audio); //nonprimitive
 
 
+    if (text && !cJSON_IsNull(text)) text_local_str = strdup(text->valuestring);
+
     chat_completion_request_user_message_content_part_local_var = chat_completion_request_user_message_content_part_create_internal (
         typeVariable,
-        strdup(text->valuestring),
+        text_local_str,
         image_url_local_nonprim,
         input_audio_local_nonprim
         );
 
+    if (!chat_completion_request_user_message_content_part_local_var) {
+        goto end;
+    }
+
     return chat_completion_request_user_message_content_part_local_var;
 end:
+    if (text_local_str) {
+        free(text_local_str);
+        text_local_str = NULL;
+    }
     if (image_url_local_nonprim) {
         chat_completion_request_message_content_part_image_image_url_free(image_url_local_nonprim);
         image_url_local_nonprim = NULL;

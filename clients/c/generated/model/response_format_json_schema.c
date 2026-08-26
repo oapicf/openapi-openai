@@ -30,10 +30,10 @@ static response_format_json_schema_t *response_format_json_schema_create_interna
     if (!response_format_json_schema_local_var) {
         return NULL;
     }
+    memset(response_format_json_schema_local_var, 0, sizeof(response_format_json_schema_t));
+    response_format_json_schema_local_var->_library_owned = 1;
     response_format_json_schema_local_var->type = type;
     response_format_json_schema_local_var->json_schema = json_schema;
-
-    response_format_json_schema_local_var->_library_owned = 1;
     return response_format_json_schema_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) response_format_json_schema_t *response_format_json_
     openai_api_response_format_json_schema_TYPE_e type,
     response_format_json_schema_json_schema_t *json_schema
     ) {
-    return response_format_json_schema_create_internal (
+    response_format_json_schema_t *result = response_format_json_schema_create_internal (
         type,
         json_schema
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void response_format_json_schema_free(response_format_json_schema_t *response_format_json_schema) {
@@ -134,10 +137,15 @@ response_format_json_schema_t *response_format_json_schema_parseFromJSON(cJSON *
     json_schema_local_nonprim = response_format_json_schema_json_schema_parseFromJSON(json_schema); //nonprimitive
 
 
+
     response_format_json_schema_local_var = response_format_json_schema_create_internal (
         typeVariable,
         json_schema_local_nonprim
         );
+
+    if (!response_format_json_schema_local_var) {
+        goto end;
+    }
 
     return response_format_json_schema_local_var;
 end:

@@ -34,7 +34,7 @@ class  ProjectApiKey_owner
 {
 public:
     ProjectApiKey_owner();
-    virtual ~ProjectApiKey_owner() = default;
+    virtual ~ProjectApiKey_owner();
 
 
     /// <summary>

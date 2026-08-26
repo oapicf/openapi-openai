@@ -106,7 +106,7 @@ DeleteThreadResponse::getId()
 }
 
 void
-DeleteThreadResponse::setId(std::string  id)
+DeleteThreadResponse::setId(std::string id)
 {
 	this->id = id;
 }
@@ -118,7 +118,7 @@ DeleteThreadResponse::isDeleted()
 }
 
 void
-DeleteThreadResponse::setDeleted(bool  deleted)
+DeleteThreadResponse::setDeleted(bool deleted)
 {
 	this->deleted = deleted;
 }
@@ -130,7 +130,7 @@ DeleteThreadResponse::getObject()
 }
 
 void
-DeleteThreadResponse::setObject(std::string  object)
+DeleteThreadResponse::setObject(std::string object)
 {
 	this->object = object;
 }

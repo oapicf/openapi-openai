@@ -1,4 +1,4 @@
-# # ProjectServiceAccount
+# ProjectServiceAccount
 
 ## Properties
 

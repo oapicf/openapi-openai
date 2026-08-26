@@ -10,19 +10,19 @@ static project_user_list_response_t *project_user_list_response_create_internal(
     list_t *data,
     char *first_id,
     char *last_id,
-    int has_more
+    int *has_more
     ) {
     project_user_list_response_t *project_user_list_response_local_var = malloc(sizeof(project_user_list_response_t));
     if (!project_user_list_response_local_var) {
         return NULL;
     }
+    memset(project_user_list_response_local_var, 0, sizeof(project_user_list_response_t));
+    project_user_list_response_local_var->_library_owned = 1;
     project_user_list_response_local_var->object = object;
     project_user_list_response_local_var->data = data;
     project_user_list_response_local_var->first_id = first_id;
     project_user_list_response_local_var->last_id = last_id;
     project_user_list_response_local_var->has_more = has_more;
-
-    project_user_list_response_local_var->_library_owned = 1;
     return project_user_list_response_local_var;
 }
 
@@ -31,15 +31,24 @@ __attribute__((deprecated)) project_user_list_response_t *project_user_list_resp
     list_t *data,
     char *first_id,
     char *last_id,
-    int has_more
+    int *has_more
     ) {
-    return project_user_list_response_create_internal (
+    int *has_more_copy = NULL;
+    if (has_more) {
+        has_more_copy = malloc(sizeof(int));
+        if (has_more_copy) *has_more_copy = *has_more;
+    }
+    project_user_list_response_t *result = project_user_list_response_create_internal (
         object,
         data,
         first_id,
         last_id,
-        has_more
+        has_more_copy
         );
+    if (!result) {
+        free(has_more_copy);
+    }
+    return result;
 }
 
 void project_user_list_response_free(project_user_list_response_t *project_user_list_response) {
@@ -69,6 +78,10 @@ void project_user_list_response_free(project_user_list_response_t *project_user_
     if (project_user_list_response->last_id) {
         free(project_user_list_response->last_id);
         project_user_list_response->last_id = NULL;
+    }
+    if (project_user_list_response->has_more) {
+        free(project_user_list_response->has_more);
+        project_user_list_response->has_more = NULL;
     }
     free(project_user_list_response);
 }
@@ -128,7 +141,7 @@ cJSON *project_user_list_response_convertToJSON(project_user_list_response_t *pr
     if (!project_user_list_response->has_more) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "has_more", project_user_list_response->has_more) == NULL) {
+    if(cJSON_AddBoolToObject(item, "has_more", *project_user_list_response->has_more) == NULL) {
     goto fail; //Bool
     }
 
@@ -144,8 +157,17 @@ project_user_list_response_t *project_user_list_response_parseFromJSON(cJSON *pr
 
     project_user_list_response_t *project_user_list_response_local_var = NULL;
 
+    char *object_local_str = NULL;
+
     // define the local list for project_user_list_response->data
     list_t *dataList = NULL;
+
+    char *first_id_local_str = NULL;
+
+    char *last_id_local_str = NULL;
+
+    // define the local variable for project_user_list_response->has_more
+    int *has_more_local_var = NULL;
 
     // project_user_list_response->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(project_user_list_responseJSON, "object");
@@ -233,18 +255,36 @@ project_user_list_response_t *project_user_list_response_parseFromJSON(cJSON *pr
     {
     goto end; //Bool
     }
+    has_more_local_var = malloc(sizeof(int));
+    if(!has_more_local_var)
+    {
+        goto end;
+    }
+    *has_more_local_var = has_more->valueint;
 
+
+    if (object && !cJSON_IsNull(object)) object_local_str = strdup(object->valuestring);
+    if (first_id && !cJSON_IsNull(first_id)) first_id_local_str = strdup(first_id->valuestring);
+    if (last_id && !cJSON_IsNull(last_id)) last_id_local_str = strdup(last_id->valuestring);
 
     project_user_list_response_local_var = project_user_list_response_create_internal (
-        strdup(object->valuestring),
+        object_local_str,
         dataList,
-        strdup(first_id->valuestring),
-        strdup(last_id->valuestring),
-        has_more->valueint
+        first_id_local_str,
+        last_id_local_str,
+        has_more_local_var
         );
+
+    if (!project_user_list_response_local_var) {
+        goto end;
+    }
 
     return project_user_list_response_local_var;
 end:
+    if (object_local_str) {
+        free(object_local_str);
+        object_local_str = NULL;
+    }
     if (dataList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, dataList) {
@@ -253,6 +293,18 @@ end:
         }
         list_freeList(dataList);
         dataList = NULL;
+    }
+    if (first_id_local_str) {
+        free(first_id_local_str);
+        first_id_local_str = NULL;
+    }
+    if (last_id_local_str) {
+        free(last_id_local_str);
+        last_id_local_str = NULL;
+    }
+    if (has_more_local_var) {
+        free(has_more_local_var);
+        has_more_local_var = NULL;
     }
     return NULL;
 

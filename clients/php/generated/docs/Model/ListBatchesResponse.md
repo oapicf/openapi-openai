@@ -1,4 +1,4 @@
-# # ListBatchesResponse
+# ListBatchesResponse
 
 ## Properties
 

@@ -24,6 +24,8 @@ AudioResponseFormat::AudioResponseFormat()
     
 }
 
+AudioResponseFormat::~AudioResponseFormat() = default;
+
 void AudioResponseFormat::validate() const
 {
     std::stringstream msg;

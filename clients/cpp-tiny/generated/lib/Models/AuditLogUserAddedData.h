@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set The role of the user. Is either `owner` or `member`.
 	 */
-	void setRole(std::string  role);
+	void setRole(std::string role);
 
 
     private:

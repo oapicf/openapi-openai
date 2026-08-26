@@ -32,7 +32,7 @@ class  BatchRequestInput
 {
 public:
     BatchRequestInput();
-    virtual ~BatchRequestInput() = default;
+    virtual ~BatchRequestInput();
 
 
     /// <summary>

@@ -144,29 +144,33 @@ class _$MessageDeltaContentTextAnnotationsFileCitationObjectSerializer implement
         case r'text':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.text = valueDes;
           break;
         case r'file_citation':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation),
-          ) as MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation;
+            specifiedType: const FullType.nullable(MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation),
+          ) as MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation?;
+          if (valueDes == null) continue;
           result.fileCitation.replace(valueDes);
           break;
         case r'start_index':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.startIndex = valueDes;
           break;
         case r'end_index':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.endIndex = valueDes;
           break;
         default:

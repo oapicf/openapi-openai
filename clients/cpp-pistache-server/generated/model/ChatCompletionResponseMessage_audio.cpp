@@ -28,6 +28,8 @@ ChatCompletionResponseMessage_audio::ChatCompletionResponseMessage_audio()
     
 }
 
+ChatCompletionResponseMessage_audio::~ChatCompletionResponseMessage_audio() = default;
+
 void ChatCompletionResponseMessage_audio::validate() const
 {
     std::stringstream msg;

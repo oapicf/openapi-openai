@@ -55,7 +55,7 @@ export class FineTuningApi {
     { response: JQueryXHR; body: models.FineTuningJob;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/fine_tuning/jobs/{fine_tuning_job_id}/cancel'.replace('{' + 'fine_tuning_job_id' + '}', encodeURIComponent(String(fineTuningJobId)));
+        let localVarPath = this.basePath + '/fine_tuning/jobs/{fine_tuning_job_id}/cancel'.replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -187,7 +187,7 @@ export class FineTuningApi {
     { response: JQueryXHR; body: models.ListFineTuningJobEventsResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/fine_tuning/jobs/{fine_tuning_job_id}/events'.replace('{' + 'fine_tuning_job_id' + '}', encodeURIComponent(String(fineTuningJobId)));
+        let localVarPath = this.basePath + '/fine_tuning/jobs/{fine_tuning_job_id}/events'.replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -258,7 +258,7 @@ export class FineTuningApi {
     { response: JQueryXHR; body: models.ListFineTuningJobCheckpointsResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints'.replace('{' + 'fine_tuning_job_id' + '}', encodeURIComponent(String(fineTuningJobId)));
+        let localVarPath = this.basePath + '/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints'.replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -392,7 +392,7 @@ export class FineTuningApi {
     { response: JQueryXHR; body: models.FineTuningJob;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/fine_tuning/jobs/{fine_tuning_job_id}'.replace('{' + 'fine_tuning_job_id' + '}', encodeURIComponent(String(fineTuningJobId)));
+        let localVarPath = this.basePath + '/fine_tuning/jobs/{fine_tuning_job_id}'.replace('{fine_tuning_job_id}', encodeURIComponent(String(fineTuningJobId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};

@@ -1,4 +1,4 @@
-# # ChatCompletionRequestMessageContentPartRefusal
+# ChatCompletionRequestMessageContentPartRefusal
 
 ## Properties
 

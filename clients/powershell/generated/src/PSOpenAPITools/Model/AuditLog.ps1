@@ -173,31 +173,31 @@ function Initialize-AuditLog {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "type" = ${Type}
-            "effective_at" = ${EffectiveAt}
-            "project" = ${Project}
-            "actor" = ${Actor}
-            "api_key.created" = ${ApiKeyCreated}
-            "api_key.updated" = ${ApiKeyUpdated}
-            "api_key.deleted" = ${ApiKeyDeleted}
-            "invite.sent" = ${InviteSent}
-            "invite.accepted" = ${InviteAccepted}
-            "invite.deleted" = ${InviteDeleted}
-            "login.failed" = ${LoginFailed}
-            "logout.failed" = ${LogoutFailed}
-            "organization.updated" = ${OrganizationUpdated}
-            "project.created" = ${ProjectCreated}
-            "project.updated" = ${ProjectUpdated}
-            "project.archived" = ${ProjectArchived}
-            "rate_limit.updated" = ${RateLimitUpdated}
-            "rate_limit.deleted" = ${RateLimitDeleted}
-            "service_account.created" = ${ServiceAccountCreated}
-            "service_account.updated" = ${ServiceAccountUpdated}
-            "service_account.deleted" = ${ServiceAccountDeleted}
-            "user.added" = ${UserAdded}
-            "user.updated" = ${UserUpdated}
-            "user.deleted" = ${UserDeleted}
+            'id' = ${Id}
+            'type' = ${Type}
+            'effective_at' = ${EffectiveAt}
+            'project' = ${Project}
+            'actor' = ${Actor}
+            'api_key.created' = ${ApiKeyCreated}
+            'api_key.updated' = ${ApiKeyUpdated}
+            'api_key.deleted' = ${ApiKeyDeleted}
+            'invite.sent' = ${InviteSent}
+            'invite.accepted' = ${InviteAccepted}
+            'invite.deleted' = ${InviteDeleted}
+            'login.failed' = ${LoginFailed}
+            'logout.failed' = ${LogoutFailed}
+            'organization.updated' = ${OrganizationUpdated}
+            'project.created' = ${ProjectCreated}
+            'project.updated' = ${ProjectUpdated}
+            'project.archived' = ${ProjectArchived}
+            'rate_limit.updated' = ${RateLimitUpdated}
+            'rate_limit.deleted' = ${RateLimitDeleted}
+            'service_account.created' = ${ServiceAccountCreated}
+            'service_account.updated' = ${ServiceAccountUpdated}
+            'service_account.deleted' = ${ServiceAccountDeleted}
+            'user.added' = ${UserAdded}
+            'user.updated' = ${UserUpdated}
+            'user.deleted' = ${UserDeleted}
         }
 
 
@@ -235,7 +235,7 @@ function ConvertFrom-JsonToAuditLog {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AuditLog
-        $AllProperties = ("id", "type", "effective_at", "project", "actor", "api_key.created", "api_key.updated", "api_key.deleted", "invite.sent", "invite.accepted", "invite.deleted", "login.failed", "logout.failed", "organization.updated", "project.created", "project.updated", "project.archived", "rate_limit.updated", "rate_limit.deleted", "service_account.created", "service_account.updated", "service_account.deleted", "user.added", "user.updated", "user.deleted")
+        $AllProperties = ('id', 'type', 'effective_at', 'project', 'actor', 'api_key.created', 'api_key.updated', 'api_key.deleted', 'invite.sent', 'invite.accepted', 'invite.deleted', 'login.failed', 'logout.failed', 'organization.updated', 'project.created', 'project.updated', 'project.archived', 'rate_limit.updated', 'rate_limit.deleted', 'service_account.created', 'service_account.updated', 'service_account.deleted', 'user.added', 'user.updated', 'user.deleted')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -246,182 +246,182 @@ function ConvertFrom-JsonToAuditLog {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "effective_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'effective_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'effective_at' missing."
         } else {
-            $EffectiveAt = $JsonParameters.PSobject.Properties["effective_at"].value
+            $EffectiveAt = $JsonParameters.PSobject.Properties['effective_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "actor"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'actor'))) {
             throw "Error! JSON cannot be serialized due to the required property 'actor' missing."
         } else {
-            $Actor = $JsonParameters.PSobject.Properties["actor"].value
+            $Actor = $JsonParameters.PSobject.Properties['actor'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "project"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'project'))) { #optional property not found
             $Project = $null
         } else {
-            $Project = $JsonParameters.PSobject.Properties["project"].value
+            $Project = $JsonParameters.PSobject.Properties['project'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "api_key.created"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'api_key.created'))) { #optional property not found
             $ApiKeyCreated = $null
         } else {
-            $ApiKeyCreated = $JsonParameters.PSobject.Properties["api_key.created"].value
+            $ApiKeyCreated = $JsonParameters.PSobject.Properties['api_key.created'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "api_key.updated"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'api_key.updated'))) { #optional property not found
             $ApiKeyUpdated = $null
         } else {
-            $ApiKeyUpdated = $JsonParameters.PSobject.Properties["api_key.updated"].value
+            $ApiKeyUpdated = $JsonParameters.PSobject.Properties['api_key.updated'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "api_key.deleted"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'api_key.deleted'))) { #optional property not found
             $ApiKeyDeleted = $null
         } else {
-            $ApiKeyDeleted = $JsonParameters.PSobject.Properties["api_key.deleted"].value
+            $ApiKeyDeleted = $JsonParameters.PSobject.Properties['api_key.deleted'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "invite.sent"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'invite.sent'))) { #optional property not found
             $InviteSent = $null
         } else {
-            $InviteSent = $JsonParameters.PSobject.Properties["invite.sent"].value
+            $InviteSent = $JsonParameters.PSobject.Properties['invite.sent'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "invite.accepted"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'invite.accepted'))) { #optional property not found
             $InviteAccepted = $null
         } else {
-            $InviteAccepted = $JsonParameters.PSobject.Properties["invite.accepted"].value
+            $InviteAccepted = $JsonParameters.PSobject.Properties['invite.accepted'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "invite.deleted"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'invite.deleted'))) { #optional property not found
             $InviteDeleted = $null
         } else {
-            $InviteDeleted = $JsonParameters.PSobject.Properties["invite.deleted"].value
+            $InviteDeleted = $JsonParameters.PSobject.Properties['invite.deleted'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "login.failed"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'login.failed'))) { #optional property not found
             $LoginFailed = $null
         } else {
-            $LoginFailed = $JsonParameters.PSobject.Properties["login.failed"].value
+            $LoginFailed = $JsonParameters.PSobject.Properties['login.failed'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "logout.failed"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'logout.failed'))) { #optional property not found
             $LogoutFailed = $null
         } else {
-            $LogoutFailed = $JsonParameters.PSobject.Properties["logout.failed"].value
+            $LogoutFailed = $JsonParameters.PSobject.Properties['logout.failed'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "organization.updated"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'organization.updated'))) { #optional property not found
             $OrganizationUpdated = $null
         } else {
-            $OrganizationUpdated = $JsonParameters.PSobject.Properties["organization.updated"].value
+            $OrganizationUpdated = $JsonParameters.PSobject.Properties['organization.updated'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "project.created"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'project.created'))) { #optional property not found
             $ProjectCreated = $null
         } else {
-            $ProjectCreated = $JsonParameters.PSobject.Properties["project.created"].value
+            $ProjectCreated = $JsonParameters.PSobject.Properties['project.created'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "project.updated"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'project.updated'))) { #optional property not found
             $ProjectUpdated = $null
         } else {
-            $ProjectUpdated = $JsonParameters.PSobject.Properties["project.updated"].value
+            $ProjectUpdated = $JsonParameters.PSobject.Properties['project.updated'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "project.archived"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'project.archived'))) { #optional property not found
             $ProjectArchived = $null
         } else {
-            $ProjectArchived = $JsonParameters.PSobject.Properties["project.archived"].value
+            $ProjectArchived = $JsonParameters.PSobject.Properties['project.archived'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rate_limit.updated"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'rate_limit.updated'))) { #optional property not found
             $RateLimitUpdated = $null
         } else {
-            $RateLimitUpdated = $JsonParameters.PSobject.Properties["rate_limit.updated"].value
+            $RateLimitUpdated = $JsonParameters.PSobject.Properties['rate_limit.updated'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rate_limit.deleted"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'rate_limit.deleted'))) { #optional property not found
             $RateLimitDeleted = $null
         } else {
-            $RateLimitDeleted = $JsonParameters.PSobject.Properties["rate_limit.deleted"].value
+            $RateLimitDeleted = $JsonParameters.PSobject.Properties['rate_limit.deleted'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "service_account.created"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'service_account.created'))) { #optional property not found
             $ServiceAccountCreated = $null
         } else {
-            $ServiceAccountCreated = $JsonParameters.PSobject.Properties["service_account.created"].value
+            $ServiceAccountCreated = $JsonParameters.PSobject.Properties['service_account.created'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "service_account.updated"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'service_account.updated'))) { #optional property not found
             $ServiceAccountUpdated = $null
         } else {
-            $ServiceAccountUpdated = $JsonParameters.PSobject.Properties["service_account.updated"].value
+            $ServiceAccountUpdated = $JsonParameters.PSobject.Properties['service_account.updated'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "service_account.deleted"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'service_account.deleted'))) { #optional property not found
             $ServiceAccountDeleted = $null
         } else {
-            $ServiceAccountDeleted = $JsonParameters.PSobject.Properties["service_account.deleted"].value
+            $ServiceAccountDeleted = $JsonParameters.PSobject.Properties['service_account.deleted'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user.added"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'user.added'))) { #optional property not found
             $UserAdded = $null
         } else {
-            $UserAdded = $JsonParameters.PSobject.Properties["user.added"].value
+            $UserAdded = $JsonParameters.PSobject.Properties['user.added'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user.updated"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'user.updated'))) { #optional property not found
             $UserUpdated = $null
         } else {
-            $UserUpdated = $JsonParameters.PSobject.Properties["user.updated"].value
+            $UserUpdated = $JsonParameters.PSobject.Properties['user.updated'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user.deleted"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'user.deleted'))) { #optional property not found
             $UserDeleted = $null
         } else {
-            $UserDeleted = $JsonParameters.PSobject.Properties["user.deleted"].value
+            $UserDeleted = $JsonParameters.PSobject.Properties['user.deleted'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "type" = ${Type}
-            "effective_at" = ${EffectiveAt}
-            "project" = ${Project}
-            "actor" = ${Actor}
-            "api_key.created" = ${ApiKeyCreated}
-            "api_key.updated" = ${ApiKeyUpdated}
-            "api_key.deleted" = ${ApiKeyDeleted}
-            "invite.sent" = ${InviteSent}
-            "invite.accepted" = ${InviteAccepted}
-            "invite.deleted" = ${InviteDeleted}
-            "login.failed" = ${LoginFailed}
-            "logout.failed" = ${LogoutFailed}
-            "organization.updated" = ${OrganizationUpdated}
-            "project.created" = ${ProjectCreated}
-            "project.updated" = ${ProjectUpdated}
-            "project.archived" = ${ProjectArchived}
-            "rate_limit.updated" = ${RateLimitUpdated}
-            "rate_limit.deleted" = ${RateLimitDeleted}
-            "service_account.created" = ${ServiceAccountCreated}
-            "service_account.updated" = ${ServiceAccountUpdated}
-            "service_account.deleted" = ${ServiceAccountDeleted}
-            "user.added" = ${UserAdded}
-            "user.updated" = ${UserUpdated}
-            "user.deleted" = ${UserDeleted}
+            'id' = ${Id}
+            'type' = ${Type}
+            'effective_at' = ${EffectiveAt}
+            'project' = ${Project}
+            'actor' = ${Actor}
+            'api_key.created' = ${ApiKeyCreated}
+            'api_key.updated' = ${ApiKeyUpdated}
+            'api_key.deleted' = ${ApiKeyDeleted}
+            'invite.sent' = ${InviteSent}
+            'invite.accepted' = ${InviteAccepted}
+            'invite.deleted' = ${InviteDeleted}
+            'login.failed' = ${LoginFailed}
+            'logout.failed' = ${LogoutFailed}
+            'organization.updated' = ${OrganizationUpdated}
+            'project.created' = ${ProjectCreated}
+            'project.updated' = ${ProjectUpdated}
+            'project.archived' = ${ProjectArchived}
+            'rate_limit.updated' = ${RateLimitUpdated}
+            'rate_limit.deleted' = ${RateLimitDeleted}
+            'service_account.created' = ${ServiceAccountCreated}
+            'service_account.updated' = ${ServiceAccountUpdated}
+            'service_account.deleted' = ${ServiceAccountDeleted}
+            'user.added' = ${UserAdded}
+            'user.updated' = ${UserUpdated}
+            'user.deleted' = ${UserDeleted}
         }
 
         return $PSO

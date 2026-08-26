@@ -47,7 +47,7 @@ class CreateCompletionRequest
      * @var CreateCompletionRequestModel|null
      * @SerializedName("model")
      * @Type("OpenAPI\Server\Model\CreateCompletionRequestModel")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\CreateCompletionRequestModel")]
@@ -57,7 +57,7 @@ class CreateCompletionRequest
      * @var CreateCompletionRequestPrompt|null
      * @SerializedName("prompt")
      * @Type("OpenAPI\Server\Model\CreateCompletionRequestPrompt")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\CreateCompletionRequestPrompt")]
@@ -69,7 +69,7 @@ class CreateCompletionRequest
      * @var int|null
      * @SerializedName("best_of")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(0)]
     #[Assert\LessThanOrEqual(20)]
@@ -81,7 +81,7 @@ class CreateCompletionRequest
      * @var bool|null
      * @SerializedName("echo")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $echo = false;
 
@@ -91,7 +91,7 @@ class CreateCompletionRequest
      * @var float|null
      * @SerializedName("frequency_penalty")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(-2)]
     #[Assert\LessThanOrEqual(2)]
@@ -103,7 +103,7 @@ class CreateCompletionRequest
      * @var int[]|null
      * @SerializedName("logit_bias")
      * @Type("array<string, int>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("int"),
     ])]
@@ -115,7 +115,7 @@ class CreateCompletionRequest
      * @var int|null
      * @SerializedName("logprobs")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(0)]
     #[Assert\LessThanOrEqual(5)]
@@ -127,7 +127,7 @@ class CreateCompletionRequest
      * @var int|null
      * @SerializedName("max_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(0)]
     protected ?int $maxTokens = 16;
@@ -138,7 +138,7 @@ class CreateCompletionRequest
      * @var int|null
      * @SerializedName("n")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(1)]
     #[Assert\LessThanOrEqual(128)]
@@ -150,7 +150,7 @@ class CreateCompletionRequest
      * @var float|null
      * @SerializedName("presence_penalty")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(-2)]
     #[Assert\LessThanOrEqual(2)]
@@ -162,7 +162,7 @@ class CreateCompletionRequest
      * @var int|null
      * @SerializedName("seed")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(-9223372036854776000)]
     #[Assert\LessThanOrEqual(9223372036854776000)]
@@ -172,7 +172,7 @@ class CreateCompletionRequest
      * @var CreateCompletionRequestStop|null
      * @SerializedName("stop")
      * @Type("OpenAPI\Server\Model\CreateCompletionRequestStop")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateCompletionRequestStop")]
     protected ?CreateCompletionRequestStop $stop = null;
 
@@ -182,7 +182,7 @@ class CreateCompletionRequest
      * @var bool|null
      * @SerializedName("stream")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $stream = false;
 
@@ -190,7 +190,7 @@ class CreateCompletionRequest
      * @var ChatCompletionStreamOptions|null
      * @SerializedName("stream_options")
      * @Type("OpenAPI\Server\Model\ChatCompletionStreamOptions")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionStreamOptions")]
     protected ?ChatCompletionStreamOptions $streamOptions = null;
 
@@ -200,7 +200,7 @@ class CreateCompletionRequest
      * @var string|null
      * @SerializedName("suffix")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $suffix = null;
 
@@ -210,7 +210,7 @@ class CreateCompletionRequest
      * @var float|null
      * @SerializedName("temperature")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(0)]
     #[Assert\LessThanOrEqual(2)]
@@ -222,7 +222,7 @@ class CreateCompletionRequest
      * @var float|null
      * @SerializedName("top_p")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(0)]
     #[Assert\LessThanOrEqual(1)]
@@ -234,7 +234,7 @@ class CreateCompletionRequest
      * @var string|null
      * @SerializedName("user")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $user = null;
 
@@ -277,12 +277,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets model.
-    *
-    * @param CreateCompletionRequestModel|null $model
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param CreateCompletionRequestModel|null $model
+     *
+     * @return $this
+     */
     public function setModel(?CreateCompletionRequestModel $model): self
     {
         $this->model = $model;
@@ -304,12 +304,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets prompt.
-    *
-    * @param CreateCompletionRequestPrompt|null $prompt
-    *
-    * @return $this
-    */
+     * Sets prompt.
+     *
+     * @param CreateCompletionRequestPrompt|null $prompt
+     *
+     * @return $this
+     */
     public function setPrompt(?CreateCompletionRequestPrompt $prompt): self
     {
         $this->prompt = $prompt;
@@ -331,12 +331,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets bestOf.
-    *
-    * @param int|null $bestOf  Generates `best_of` completions server-side and returns the \"best\" (the one with the highest log probability per token). Results cannot be streamed.  When used with `n`, `best_of` controls the number of candidate completions and `n` specifies how many to return – `best_of` must be greater than `n`.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`.
-    *
-    * @return $this
-    */
+     * Sets bestOf.
+     *
+     * @param int|null $bestOf  Generates `best_of` completions server-side and returns the \"best\" (the one with the highest log probability per token). Results cannot be streamed.  When used with `n`, `best_of` controls the number of candidate completions and `n` specifies how many to return – `best_of` must be greater than `n`.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`.
+     *
+     * @return $this
+     */
     public function setBestOf(?int $bestOf = null): self
     {
         $this->bestOf = $bestOf;
@@ -358,12 +358,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets echo.
-    *
-    * @param bool|null $echo  Echo back the prompt in addition to the completion
-    *
-    * @return $this
-    */
+     * Sets echo.
+     *
+     * @param bool|null $echo  Echo back the prompt in addition to the completion
+     *
+     * @return $this
+     */
     public function setEcho(?bool $echo = null): self
     {
         $this->echo = $echo;
@@ -385,12 +385,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets frequencyPenalty.
-    *
-    * @param float|null $frequencyPenalty  Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation)
-    *
-    * @return $this
-    */
+     * Sets frequencyPenalty.
+     *
+     * @param float|null $frequencyPenalty  Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation)
+     *
+     * @return $this
+     */
     public function setFrequencyPenalty(?float $frequencyPenalty = null): self
     {
         $this->frequencyPenalty = $frequencyPenalty;
@@ -412,12 +412,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets logitBias.
-    *
-    * @param int[]|null $logitBias  Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the GPT tokenizer) to an associated bias value from -100 to 100. You can use this [tokenizer tool](/tokenizer?view=bpe) to convert text to token IDs. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.  As an example, you can pass `{\"50256\": -100}` to prevent the <|endoftext|> token from being generated.
-    *
-    * @return $this
-    */
+     * Sets logitBias.
+     *
+     * @param int[]|null $logitBias  Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the GPT tokenizer) to an associated bias value from -100 to 100. You can use this [tokenizer tool](/tokenizer?view=bpe) to convert text to token IDs. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.  As an example, you can pass `{\"50256\": -100}` to prevent the <|endoftext|> token from being generated.
+     *
+     * @return $this
+     */
     public function setLogitBias(?array $logitBias = null): self
     {
         $this->logitBias = $logitBias;
@@ -439,12 +439,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets logprobs.
-    *
-    * @param int|null $logprobs  Include the log probabilities on the `logprobs` most likely output tokens, as well the chosen tokens. For example, if `logprobs` is 5, the API will return a list of the 5 most likely tokens. The API will always return the `logprob` of the sampled token, so there may be up to `logprobs+1` elements in the response.  The maximum value for `logprobs` is 5.
-    *
-    * @return $this
-    */
+     * Sets logprobs.
+     *
+     * @param int|null $logprobs  Include the log probabilities on the `logprobs` most likely output tokens, as well the chosen tokens. For example, if `logprobs` is 5, the API will return a list of the 5 most likely tokens. The API will always return the `logprob` of the sampled token, so there may be up to `logprobs+1` elements in the response.  The maximum value for `logprobs` is 5.
+     *
+     * @return $this
+     */
     public function setLogprobs(?int $logprobs = null): self
     {
         $this->logprobs = $logprobs;
@@ -466,12 +466,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets maxTokens.
-    *
-    * @param int|null $maxTokens  The maximum number of [tokens](/tokenizer) that can be generated in the completion.  The token count of your prompt plus `max_tokens` cannot exceed the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens.
-    *
-    * @return $this
-    */
+     * Sets maxTokens.
+     *
+     * @param int|null $maxTokens  The maximum number of [tokens](/tokenizer) that can be generated in the completion.  The token count of your prompt plus `max_tokens` cannot exceed the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens.
+     *
+     * @return $this
+     */
     public function setMaxTokens(?int $maxTokens = null): self
     {
         $this->maxTokens = $maxTokens;
@@ -493,12 +493,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets n.
-    *
-    * @param int|null $n  How many completions to generate for each prompt.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`.
-    *
-    * @return $this
-    */
+     * Sets n.
+     *
+     * @param int|null $n  How many completions to generate for each prompt.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`.
+     *
+     * @return $this
+     */
     public function setN(?int $n = null): self
     {
         $this->n = $n;
@@ -520,12 +520,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets presencePenalty.
-    *
-    * @param float|null $presencePenalty  Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation)
-    *
-    * @return $this
-    */
+     * Sets presencePenalty.
+     *
+     * @param float|null $presencePenalty  Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation)
+     *
+     * @return $this
+     */
     public function setPresencePenalty(?float $presencePenalty = null): self
     {
         $this->presencePenalty = $presencePenalty;
@@ -547,12 +547,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets seed.
-    *
-    * @param int|null $seed  If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.  Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.
-    *
-    * @return $this
-    */
+     * Sets seed.
+     *
+     * @param int|null $seed  If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.  Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.
+     *
+     * @return $this
+     */
     public function setSeed(?int $seed = null): self
     {
         $this->seed = $seed;
@@ -574,12 +574,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets stop.
-    *
-    * @param CreateCompletionRequestStop|null $stop
-    *
-    * @return $this
-    */
+     * Sets stop.
+     *
+     * @param CreateCompletionRequestStop|null $stop
+     *
+     * @return $this
+     */
     public function setStop(?CreateCompletionRequestStop $stop = null): self
     {
         $this->stop = $stop;
@@ -601,12 +601,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets stream.
-    *
-    * @param bool|null $stream  Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions).
-    *
-    * @return $this
-    */
+     * Sets stream.
+     *
+     * @param bool|null $stream  Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions).
+     *
+     * @return $this
+     */
     public function setStream(?bool $stream = null): self
     {
         $this->stream = $stream;
@@ -628,12 +628,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets streamOptions.
-    *
-    * @param ChatCompletionStreamOptions|null $streamOptions
-    *
-    * @return $this
-    */
+     * Sets streamOptions.
+     *
+     * @param ChatCompletionStreamOptions|null $streamOptions
+     *
+     * @return $this
+     */
     public function setStreamOptions(?ChatCompletionStreamOptions $streamOptions = null): self
     {
         $this->streamOptions = $streamOptions;
@@ -655,12 +655,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets suffix.
-    *
-    * @param string|null $suffix  The suffix that comes after a completion of inserted text.  This parameter is only supported for `gpt-3.5-turbo-instruct`.
-    *
-    * @return $this
-    */
+     * Sets suffix.
+     *
+     * @param string|null $suffix  The suffix that comes after a completion of inserted text.  This parameter is only supported for `gpt-3.5-turbo-instruct`.
+     *
+     * @return $this
+     */
     public function setSuffix(?string $suffix = null): self
     {
         $this->suffix = $suffix;
@@ -682,12 +682,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets temperature.
-    *
-    * @param float|null $temperature  What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both.
-    *
-    * @return $this
-    */
+     * Sets temperature.
+     *
+     * @param float|null $temperature  What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both.
+     *
+     * @return $this
+     */
     public function setTemperature(?float $temperature = null): self
     {
         $this->temperature = $temperature;
@@ -709,12 +709,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets topP.
-    *
-    * @param float|null $topP  An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or `temperature` but not both.
-    *
-    * @return $this
-    */
+     * Sets topP.
+     *
+     * @param float|null $topP  An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or `temperature` but not both.
+     *
+     * @return $this
+     */
     public function setTopP(?float $topP = null): self
     {
         $this->topP = $topP;
@@ -736,12 +736,12 @@ class CreateCompletionRequest
     }
 
     /**
-    * Sets user.
-    *
-    * @param string|null $user  A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).
-    *
-    * @return $this
-    */
+     * Sets user.
+     *
+     * @param string|null $user  A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).
+     *
+     * @return $this
+     */
     public function setUser(?string $user = null): self
     {
         $this->user = $user;

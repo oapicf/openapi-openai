@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRealtimeClientEventInputAudioBufferClear::OAIRealtimeClientEventInputAudioBufferClear(QString json) {
+OAIRealtimeClientEventInputAudioBufferClear::OAIRealtimeClientEventInputAudioBufferClear(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIRealtimeClientEventInputAudioBufferClear::initializeModel() {
     m_type_isValid = false;
 }
 
-void OAIRealtimeClientEventInputAudioBufferClear::fromJson(QString jsonString) {
+void OAIRealtimeClientEventInputAudioBufferClear::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

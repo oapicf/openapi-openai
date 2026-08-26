@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set The type of the content part.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	ChatCompletionRequestMessageContentPartImage_image_url getImageUrl();
 
 	/*! \brief Set 
 	 */
-	void setImageUrl(ChatCompletionRequestMessageContentPartImage_image_url  image_url);
+	void setImageUrl(ChatCompletionRequestMessageContentPartImage_image_url image_url);
 
 
     private:

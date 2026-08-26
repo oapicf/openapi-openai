@@ -1,0 +1,11 @@
+namespace Org.OpenAPITools.Models;
+
+
+/// <summary>
+/// Number of examples in each batch. A larger batch size means that model parameters are updated less frequently, but with lower variance. 
+/// </summary>
+public class FineTuneDPOMethodHyperparametersBatchSize 
+{
+}
+
+

@@ -49,7 +49,7 @@ class CreateTranscription200Response
      * @var string|null
      * @SerializedName("text")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $text = null;
@@ -60,7 +60,7 @@ class CreateTranscription200Response
      * @var string|null
      * @SerializedName("language")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $language = null;
@@ -71,7 +71,7 @@ class CreateTranscription200Response
      * @var string|null
      * @SerializedName("duration")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $duration = null;
@@ -82,7 +82,7 @@ class CreateTranscription200Response
      * @var TranscriptionWord[]|null
      * @SerializedName("words")
      * @Type("array<OpenAPI\Server\Model\TranscriptionWord>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\TranscriptionWord"),
     ])]
@@ -94,7 +94,7 @@ class CreateTranscription200Response
      * @var TranscriptionSegment[]|null
      * @SerializedName("segments")
      * @Type("array<OpenAPI\Server\Model\TranscriptionSegment>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\TranscriptionSegment"),
     ])]
@@ -126,12 +126,12 @@ class CreateTranscription200Response
     }
 
     /**
-    * Sets text.
-    *
-    * @param string|null $text  The transcribed text.
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param string|null $text  The transcribed text.
+     *
+     * @return $this
+     */
     public function setText(?string $text): self
     {
         $this->text = $text;
@@ -153,12 +153,12 @@ class CreateTranscription200Response
     }
 
     /**
-    * Sets language.
-    *
-    * @param string|null $language  The language of the input audio.
-    *
-    * @return $this
-    */
+     * Sets language.
+     *
+     * @param string|null $language  The language of the input audio.
+     *
+     * @return $this
+     */
     public function setLanguage(?string $language): self
     {
         $this->language = $language;
@@ -180,12 +180,12 @@ class CreateTranscription200Response
     }
 
     /**
-    * Sets duration.
-    *
-    * @param string|null $duration  The duration of the input audio.
-    *
-    * @return $this
-    */
+     * Sets duration.
+     *
+     * @param string|null $duration  The duration of the input audio.
+     *
+     * @return $this
+     */
     public function setDuration(?string $duration): self
     {
         $this->duration = $duration;
@@ -207,12 +207,12 @@ class CreateTranscription200Response
     }
 
     /**
-    * Sets words.
-    *
-    * @param TranscriptionWord[]|null $words  Extracted words and their corresponding timestamps.
-    *
-    * @return $this
-    */
+     * Sets words.
+     *
+     * @param TranscriptionWord[]|null $words  Extracted words and their corresponding timestamps.
+     *
+     * @return $this
+     */
     public function setWords(?array $words = null): self
     {
         $this->words = $words;
@@ -234,12 +234,12 @@ class CreateTranscription200Response
     }
 
     /**
-    * Sets segments.
-    *
-    * @param TranscriptionSegment[]|null $segments  Segments of the transcribed text and their corresponding details.
-    *
-    * @return $this
-    */
+     * Sets segments.
+     *
+     * @param TranscriptionSegment[]|null $segments  Segments of the transcribed text and their corresponding details.
+     *
+     * @return $this
+     */
     public function setSegments(?array $segments = null): self
     {
         $this->segments = $segments;

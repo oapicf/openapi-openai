@@ -94,8 +94,9 @@ class _$MessageContentImageUrlObjectImageUrlSerializer implements PrimitiveSeria
         case r'detail':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MessageContentImageUrlObjectImageUrlDetailEnum),
-          ) as MessageContentImageUrlObjectImageUrlDetailEnum;
+            specifiedType: const FullType.nullable(MessageContentImageUrlObjectImageUrlDetailEnum),
+          ) as MessageContentImageUrlObjectImageUrlDetailEnum?;
+          if (valueDes == null) continue;
           result.detail = valueDes;
           break;
         default:

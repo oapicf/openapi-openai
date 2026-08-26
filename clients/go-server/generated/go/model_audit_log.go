@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // AuditLog - A log of a user action or configuration change within this organization.
@@ -69,13 +74,213 @@ type AuditLog struct {
 
 	UserDeleted AuditLogUserDeleted `json:"user.deleted,omitempty"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into AuditLog
+func (o *AuditLog) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"id",
+		"type",
+		"effective_at",
+		"actor",
+	}
 
-// AssertAuditLogRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"id": false,
+		"type": false,
+		"effective_at": false,
+		"actor": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"id": {},
+		"type": {},
+		"effective_at": {},
+		"project": {},
+		"actor": {},
+		"api_key.created": {},
+		"api_key.updated": {},
+		"api_key.deleted": {},
+		"invite.sent": {},
+		"invite.accepted": {},
+		"invite.deleted": {},
+		"login.failed": {},
+		"logout.failed": {},
+		"organization.updated": {},
+		"project.created": {},
+		"project.updated": {},
+		"project.archived": {},
+		"rate_limit.updated": {},
+		"rate_limit.deleted": {},
+		"service_account.created": {},
+		"service_account.updated": {},
+		"service_account.deleted": {},
+		"user.added": {},
+		"user.updated": {},
+		"user.deleted": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded AuditLog
+
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["effective_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.EffectiveAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["project"]; exists {
+		if err = json.Unmarshal(value, &decoded.Project); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["actor"]; exists {
+		if err = json.Unmarshal(value, &decoded.Actor); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["api_key.created"]; exists {
+		if err = json.Unmarshal(value, &decoded.ApiKeyCreated); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["api_key.updated"]; exists {
+		if err = json.Unmarshal(value, &decoded.ApiKeyUpdated); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["api_key.deleted"]; exists {
+		if err = json.Unmarshal(value, &decoded.ApiKeyDeleted); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["invite.sent"]; exists {
+		if err = json.Unmarshal(value, &decoded.InviteSent); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["invite.accepted"]; exists {
+		if err = json.Unmarshal(value, &decoded.InviteAccepted); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["invite.deleted"]; exists {
+		if err = json.Unmarshal(value, &decoded.InviteDeleted); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["login.failed"]; exists {
+		if err = json.Unmarshal(value, &decoded.LoginFailed); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["logout.failed"]; exists {
+		if err = json.Unmarshal(value, &decoded.LogoutFailed); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["organization.updated"]; exists {
+		if err = json.Unmarshal(value, &decoded.OrganizationUpdated); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["project.created"]; exists {
+		if err = json.Unmarshal(value, &decoded.ProjectCreated); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["project.updated"]; exists {
+		if err = json.Unmarshal(value, &decoded.ProjectUpdated); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["project.archived"]; exists {
+		if err = json.Unmarshal(value, &decoded.ProjectArchived); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["rate_limit.updated"]; exists {
+		if err = json.Unmarshal(value, &decoded.RateLimitUpdated); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["rate_limit.deleted"]; exists {
+		if err = json.Unmarshal(value, &decoded.RateLimitDeleted); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["service_account.created"]; exists {
+		if err = json.Unmarshal(value, &decoded.ServiceAccountCreated); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["service_account.updated"]; exists {
+		if err = json.Unmarshal(value, &decoded.ServiceAccountUpdated); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["service_account.deleted"]; exists {
+		if err = json.Unmarshal(value, &decoded.ServiceAccountDeleted); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["user.added"]; exists {
+		if err = json.Unmarshal(value, &decoded.UserAdded); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["user.updated"]; exists {
+		if err = json.Unmarshal(value, &decoded.UserUpdated); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["user.deleted"]; exists {
+		if err = json.Unmarshal(value, &decoded.UserDeleted); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertAuditLogRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertAuditLogRequired(obj AuditLog) error {
 	elements := map[string]interface{}{
-		"id": obj.Id,
-		"type": obj.Type,
-		"effective_at": obj.EffectiveAt,
 		"actor": obj.Actor,
 	}
 	for name, el := range elements {

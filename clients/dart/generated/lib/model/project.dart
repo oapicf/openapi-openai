@@ -87,10 +87,16 @@ class Project {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Project[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Project[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "Project[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "Project[id]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "Project[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "Project[object]" has a null value in JSON.');
+        assert(json.containsKey(r'name'), 'Required key "Project[name]" is missing from JSON.');
+        assert(json[r'name'] != null, 'Required key "Project[name]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "Project[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "Project[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'status'), 'Required key "Project[status]" is missing from JSON.');
+        assert(json[r'status'] != null, 'Required key "Project[status]" has a null value in JSON.');
         return true;
       }());
 
@@ -157,27 +163,28 @@ class Project {
 }
 
 /// The object type, which is always `organization.project`
-class ProjectObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ProjectObjectEnum._(this.value);
+enum ProjectObjectEnum {
+  organizationPeriodProject._(r'organization.project'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ProjectObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const organizationPeriodProject = ProjectObjectEnum._(r'organization.project');
-
-  /// List of all possible values in this [enum][ProjectObjectEnum].
-  static const values = <ProjectObjectEnum>[
-    organizationPeriodProject,
-  ];
-
+  /// Returns the instance of [ProjectObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ProjectObjectEnum? fromJson(dynamic value) => ProjectObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ProjectObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ProjectObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ProjectObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -199,9 +206,10 @@ class ProjectObjectEnumTypeTransformer {
 
   const ProjectObjectEnumTypeTransformer._();
 
-  String encode(ProjectObjectEnum data) => data.value;
+  String encode(ProjectObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ProjectObjectEnum.
+  /// Returns the instance of [ProjectObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -210,6 +218,9 @@ class ProjectObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ProjectObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ProjectObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'organization.project': return ProjectObjectEnum.organizationPeriodProject;
@@ -222,35 +233,35 @@ class ProjectObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ProjectObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ProjectObjectEnumTypeTransformer? _instance;
 }
 
 
 /// `active` or `archived`
-class ProjectStatusEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ProjectStatusEnum._(this.value);
+enum ProjectStatusEnum {
+  active._(r'active'),
+  archived._(r'archived'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ProjectStatusEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const active = ProjectStatusEnum._(r'active');
-  static const archived = ProjectStatusEnum._(r'archived');
-
-  /// List of all possible values in this [enum][ProjectStatusEnum].
-  static const values = <ProjectStatusEnum>[
-    active,
-    archived,
-  ];
-
+  /// Returns the instance of [ProjectStatusEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ProjectStatusEnum? fromJson(dynamic value) => ProjectStatusEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ProjectStatusEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ProjectStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ProjectStatusEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -272,9 +283,10 @@ class ProjectStatusEnumTypeTransformer {
 
   const ProjectStatusEnumTypeTransformer._();
 
-  String encode(ProjectStatusEnum data) => data.value;
+  String encode(ProjectStatusEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ProjectStatusEnum.
+  /// Returns the instance of [ProjectStatusEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -283,6 +295,9 @@ class ProjectStatusEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ProjectStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ProjectStatusEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'active': return ProjectStatusEnum.active;
@@ -296,7 +311,7 @@ class ProjectStatusEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ProjectStatusEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ProjectStatusEnumTypeTransformer? _instance;
 }
 

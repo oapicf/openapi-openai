@@ -69,7 +69,7 @@ export interface CreateChatCompletionFunctionResponse {
     systemFingerprint?: string;
     /**
      * The object type, which is always `chat.completion`.
-     * @type {string}
+     * @type {CreateChatCompletionFunctionResponseObjectEnum}
      * @memberof CreateChatCompletionFunctionResponse
      */
     object: CreateChatCompletionFunctionResponseObjectEnum;
@@ -100,6 +100,8 @@ export function instanceOfCreateChatCompletionFunctionResponse(value: object): v
     if (!('created' in value) || value['created'] === undefined) return false;
     if (!('model' in value) || value['model'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'chat.completion') return false;
+    
     return true;
 }
 

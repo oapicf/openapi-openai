@@ -59,10 +59,12 @@ class DeleteMessageResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "DeleteMessageResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "DeleteMessageResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "DeleteMessageResponse[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "DeleteMessageResponse[id]" has a null value in JSON.');
+        assert(json.containsKey(r'deleted'), 'Required key "DeleteMessageResponse[deleted]" is missing from JSON.');
+        assert(json[r'deleted'] != null, 'Required key "DeleteMessageResponse[deleted]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "DeleteMessageResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "DeleteMessageResponse[object]" has a null value in JSON.');
         return true;
       }());
 
@@ -124,27 +126,28 @@ class DeleteMessageResponse {
 }
 
 
-class DeleteMessageResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const DeleteMessageResponseObjectEnum._(this.value);
+enum DeleteMessageResponseObjectEnum {
+  threadPeriodMessagePeriodDeleted._(r'thread.message.deleted'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const DeleteMessageResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodMessagePeriodDeleted = DeleteMessageResponseObjectEnum._(r'thread.message.deleted');
-
-  /// List of all possible values in this [enum][DeleteMessageResponseObjectEnum].
-  static const values = <DeleteMessageResponseObjectEnum>[
-    threadPeriodMessagePeriodDeleted,
-  ];
-
+  /// Returns the instance of [DeleteMessageResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static DeleteMessageResponseObjectEnum? fromJson(dynamic value) => DeleteMessageResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [DeleteMessageResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<DeleteMessageResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <DeleteMessageResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -166,9 +169,10 @@ class DeleteMessageResponseObjectEnumTypeTransformer {
 
   const DeleteMessageResponseObjectEnumTypeTransformer._();
 
-  String encode(DeleteMessageResponseObjectEnum data) => data.value;
+  String encode(DeleteMessageResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a DeleteMessageResponseObjectEnum.
+  /// Returns the instance of [DeleteMessageResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -177,6 +181,9 @@ class DeleteMessageResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   DeleteMessageResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is DeleteMessageResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.message.deleted': return DeleteMessageResponseObjectEnum.threadPeriodMessagePeriodDeleted;
@@ -189,7 +196,7 @@ class DeleteMessageResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [DeleteMessageResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static DeleteMessageResponseObjectEnumTypeTransformer? _instance;
 }
 

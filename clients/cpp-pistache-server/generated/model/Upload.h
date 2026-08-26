@@ -33,7 +33,7 @@ class  Upload
 {
 public:
     Upload();
-    virtual ~Upload() = default;
+    virtual ~Upload();
 
 
     /// <summary>

@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -11,13 +12,13 @@ import org.openapitools.model.FineTuneDPOMethodHyperparametersNEpochs;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * The hyperparameters used for the fine-tuning job.
@@ -25,16 +26,19 @@ import javax.annotation.Generated;
 
 @Schema(name = "FineTuneSupervisedMethod_hyperparameters", description = "The hyperparameters used for the fine-tuning job.")
 @JsonTypeName("FineTuneSupervisedMethod_hyperparameters")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTuneSupervisedMethodHyperparameters {
 
-  private FineTuneDPOMethodHyperparametersBatchSize batchSize = auto;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private @Nullable FineTuneDPOMethodHyperparametersBatchSize batchSize;
 
-  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private @Nullable FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier;
 
-  private FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private @Nullable FineTuneDPOMethodHyperparametersNEpochs nEpochs;
 
-  public FineTuneSupervisedMethodHyperparameters batchSize(FineTuneDPOMethodHyperparametersBatchSize batchSize) {
+  public FineTuneSupervisedMethodHyperparameters batchSize(@Nullable FineTuneDPOMethodHyperparametersBatchSize batchSize) {
     this.batchSize = batchSize;
     return this;
   }
@@ -46,15 +50,16 @@ public class FineTuneSupervisedMethodHyperparameters {
   @Valid 
   @Schema(name = "batch_size", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("batch_size")
-  public FineTuneDPOMethodHyperparametersBatchSize getBatchSize() {
+  public @Nullable FineTuneDPOMethodHyperparametersBatchSize getBatchSize() {
     return batchSize;
   }
 
-  public void setBatchSize(FineTuneDPOMethodHyperparametersBatchSize batchSize) {
+  @JsonProperty("batch_size")
+  public void setBatchSize(@Nullable FineTuneDPOMethodHyperparametersBatchSize batchSize) {
     this.batchSize = batchSize;
   }
 
-  public FineTuneSupervisedMethodHyperparameters learningRateMultiplier(FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier) {
+  public FineTuneSupervisedMethodHyperparameters learningRateMultiplier(@Nullable FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier) {
     this.learningRateMultiplier = learningRateMultiplier;
     return this;
   }
@@ -66,15 +71,16 @@ public class FineTuneSupervisedMethodHyperparameters {
   @Valid 
   @Schema(name = "learning_rate_multiplier", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("learning_rate_multiplier")
-  public FineTuneDPOMethodHyperparametersLearningRateMultiplier getLearningRateMultiplier() {
+  public @Nullable FineTuneDPOMethodHyperparametersLearningRateMultiplier getLearningRateMultiplier() {
     return learningRateMultiplier;
   }
 
-  public void setLearningRateMultiplier(FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier) {
+  @JsonProperty("learning_rate_multiplier")
+  public void setLearningRateMultiplier(@Nullable FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier) {
     this.learningRateMultiplier = learningRateMultiplier;
   }
 
-  public FineTuneSupervisedMethodHyperparameters nEpochs(FineTuneDPOMethodHyperparametersNEpochs nEpochs) {
+  public FineTuneSupervisedMethodHyperparameters nEpochs(@Nullable FineTuneDPOMethodHyperparametersNEpochs nEpochs) {
     this.nEpochs = nEpochs;
     return this;
   }
@@ -86,11 +92,12 @@ public class FineTuneSupervisedMethodHyperparameters {
   @Valid 
   @Schema(name = "n_epochs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("n_epochs")
-  public FineTuneDPOMethodHyperparametersNEpochs getnEpochs() {
+  public @Nullable FineTuneDPOMethodHyperparametersNEpochs getnEpochs() {
     return nEpochs;
   }
 
-  public void setnEpochs(FineTuneDPOMethodHyperparametersNEpochs nEpochs) {
+  @JsonProperty("n_epochs")
+  public void setnEpochs(@Nullable FineTuneDPOMethodHyperparametersNEpochs nEpochs) {
     this.nEpochs = nEpochs;
   }
 
@@ -128,11 +135,8 @@ public class FineTuneSupervisedMethodHyperparameters {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

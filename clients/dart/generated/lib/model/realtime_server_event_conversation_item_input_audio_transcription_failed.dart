@@ -75,10 +75,16 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventConversationItemInputAudioTranscriptionFailed[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventConversationItemInputAudioTranscriptionFailed[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event_id'), 'Required key "RealtimeServerEventConversationItemInputAudioTranscriptionFailed[event_id]" is missing from JSON.');
+        assert(json[r'event_id'] != null, 'Required key "RealtimeServerEventConversationItemInputAudioTranscriptionFailed[event_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RealtimeServerEventConversationItemInputAudioTranscriptionFailed[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeServerEventConversationItemInputAudioTranscriptionFailed[type]" has a null value in JSON.');
+        assert(json.containsKey(r'item_id'), 'Required key "RealtimeServerEventConversationItemInputAudioTranscriptionFailed[item_id]" is missing from JSON.');
+        assert(json[r'item_id'] != null, 'Required key "RealtimeServerEventConversationItemInputAudioTranscriptionFailed[item_id]" has a null value in JSON.');
+        assert(json.containsKey(r'content_index'), 'Required key "RealtimeServerEventConversationItemInputAudioTranscriptionFailed[content_index]" is missing from JSON.');
+        assert(json[r'content_index'] != null, 'Required key "RealtimeServerEventConversationItemInputAudioTranscriptionFailed[content_index]" has a null value in JSON.');
+        assert(json.containsKey(r'error'), 'Required key "RealtimeServerEventConversationItemInputAudioTranscriptionFailed[error]" is missing from JSON.');
+        assert(json[r'error'] != null, 'Required key "RealtimeServerEventConversationItemInputAudioTranscriptionFailed[error]" has a null value in JSON.');
         return true;
       }());
 
@@ -144,27 +150,28 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
 }
 
 /// The event type, must be `conversation.item.input_audio_transcription.failed`. 
-class RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum._(this.value);
+enum RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum {
+  conversationPeriodItemPeriodInputAudioTranscriptionPeriodFailed._(r'conversation.item.input_audio_transcription.failed'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const conversationPeriodItemPeriodInputAudioTranscriptionPeriodFailed = RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum._(r'conversation.item.input_audio_transcription.failed');
-
-  /// List of all possible values in this [enum][RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum].
-  static const values = <RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum>[
-    conversationPeriodItemPeriodInputAudioTranscriptionPeriodFailed,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum? fromJson(dynamic value) => RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -186,9 +193,10 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnumTy
 
   const RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum data) => data.value;
+  String encode(RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum.
+  /// Returns the instance of [RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -197,6 +205,9 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnumTy
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'conversation.item.input_audio_transcription.failed': return RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum.conversationPeriodItemPeriodInputAudioTranscriptionPeriodFailed;
@@ -209,7 +220,7 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnumTy
     return null;
   }
 
-  /// Singleton [RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnumTypeTransformer? _instance;
 }
 

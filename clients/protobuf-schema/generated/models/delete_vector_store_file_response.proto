@@ -25,7 +25,7 @@ message DeleteVectorStoreFileResponse {
     OBJECT_VECTOR_STORE_FILE_DELETED = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
 }
 

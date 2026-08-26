@@ -54,10 +54,10 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy[type]" has a null value in JSON.');
+        assert(json.containsKey(r'static'), 'Required key "CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy[static]" is missing from JSON.');
+        assert(json[r'static'] != null, 'Required key "CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy[static]" has a null value in JSON.');
         return true;
       }());
 
@@ -117,29 +117,29 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
 }
 
 /// Always `auto`.
-class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum._(this.value);
+enum CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum {
+  auto._(r'auto'),
+  static_._(r'static'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const auto = CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum._(r'auto');
-  static const static_ = CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum._(r'static');
-
-  /// List of all possible values in this [enum][CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum].
-  static const values = <CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum>[
-    auto,
-    static_,
-  ];
-
+  /// Returns the instance of [CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum? fromJson(dynamic value) => CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -161,9 +161,10 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
 
   const CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnumTypeTransformer._();
 
-  String encode(CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum data) => data.value;
+  String encode(CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum.
+  /// Returns the instance of [CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -172,6 +173,9 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'auto': return CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum.auto;
@@ -185,7 +189,7 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
     return null;
   }
 
-  /// Singleton [CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnumTypeTransformer? _instance;
 }
 

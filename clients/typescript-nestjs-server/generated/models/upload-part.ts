@@ -1,0 +1,31 @@
+
+
+/**
+ * The upload Part represents a chunk of bytes we can add to an Upload object. 
+ */
+export interface UploadPart { 
+  /**
+   * The upload Part unique identifier, which can be referenced in API endpoints.
+   */
+  id: string;
+  /**
+   * The Unix timestamp (in seconds) for when the Part was created.
+   */
+  created_at: number;
+  /**
+   * The ID of the Upload object that this Part was added to.
+   */
+  upload_id: string;
+  /**
+   * The object type, which is always `upload.part`.
+   */
+  object: UploadPart.ObjectEnum;
+}
+export namespace UploadPart {
+  export const ObjectEnum = {
+    UploadPart: 'upload.part'
+  } as const;
+  export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
+}
+
+

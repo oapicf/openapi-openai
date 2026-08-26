@@ -56,7 +56,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The service account id.</value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogActorServiceAccount" />
     /// </summary>
-    public class AuditLogActorServiceAccountJsonConverter : JsonConverter<AuditLogActorServiceAccount>
+    public partial class AuditLogActorServiceAccountJsonConverter : JsonConverter<AuditLogActorServiceAccount>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogActorServiceAccountJsonConverter" /> class.
+        /// </summary>
+        public AuditLogActorServiceAccountJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogActorServiceAccount" />
         /// </summary>

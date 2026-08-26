@@ -1,4 +1,4 @@
-# # RealtimeServerEventInputAudioBufferSpeechStopped
+# RealtimeServerEventInputAudioBufferSpeechStopped
 
 ## Properties
 

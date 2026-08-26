@@ -25,6 +25,8 @@ ResponseFormatJsonObject::ResponseFormatJsonObject()
     
 }
 
+ResponseFormatJsonObject::~ResponseFormatJsonObject() = default;
+
 void ResponseFormatJsonObject::validate() const
 {
     std::stringstream msg;

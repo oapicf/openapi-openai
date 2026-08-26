@@ -28,26 +28,33 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class FineTuningJobCheckpoint(
 
-    @Schema(example = "null", required = true, description = "The checkpoint identifier, which can be referenced in the API endpoints.")
+    @Schema(required = true, description = "The checkpoint identifier, which can be referenced in the API endpoints.")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The Unix timestamp (in seconds) for when the checkpoint was created.")
+    @Schema(required = true, description = "The Unix timestamp (in seconds) for when the checkpoint was created.")
+    @param:JsonProperty("created_at")
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The name of the fine-tuned checkpoint model that is created.")
+    @Schema(required = true, description = "The name of the fine-tuned checkpoint model that is created.")
+    @param:JsonProperty("fine_tuned_model_checkpoint")
     @get:JsonProperty("fine_tuned_model_checkpoint", required = true) val fineTunedModelCheckpoint: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The step number that the checkpoint was created at.")
+    @Schema(required = true, description = "The step number that the checkpoint was created at.")
+    @param:JsonProperty("step_number")
     @get:JsonProperty("step_number", required = true) val stepNumber: kotlin.Int,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("metrics")
     @get:JsonProperty("metrics", required = true) val metrics: FineTuningJobCheckpointMetrics,
 
-    @Schema(example = "null", required = true, description = "The name of the fine-tuning job that this checkpoint was created from.")
+    @Schema(required = true, description = "The name of the fine-tuning job that this checkpoint was created from.")
+    @param:JsonProperty("fine_tuning_job_id")
     @get:JsonProperty("fine_tuning_job_id", required = true) val fineTuningJobId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The object type, which is always \"fine_tuning.job.checkpoint\".")
+    @Schema(required = true, description = "The object type, which is always \"fine_tuning.job.checkpoint\".")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: FineTuningJobCheckpoint.`Object`
 ) {
 
@@ -64,7 +71,7 @@ data class FineTuningJobCheckpoint(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FineTuningJobCheckpoint'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }

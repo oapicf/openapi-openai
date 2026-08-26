@@ -51,7 +51,7 @@ class Model
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class Model
      * @var int|null
      * @SerializedName("created")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $created = null;
@@ -73,7 +73,7 @@ class Model
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['model'])]
     #[Assert\Type("string")]
@@ -85,7 +85,7 @@ class Model
      * @var string|null
      * @SerializedName("owned_by")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $ownedBy = null;
@@ -115,12 +115,12 @@ class Model
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The model identifier, which can be referenced in the API endpoints.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The model identifier, which can be referenced in the API endpoints.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -142,12 +142,12 @@ class Model
     }
 
     /**
-    * Sets created.
-    *
-    * @param int|null $created  The Unix timestamp (in seconds) when the model was created.
-    *
-    * @return $this
-    */
+     * Sets created.
+     *
+     * @param int|null $created  The Unix timestamp (in seconds) when the model was created.
+     *
+     * @return $this
+     */
     public function setCreated(?int $created): self
     {
         $this->created = $created;
@@ -169,12 +169,12 @@ class Model
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always \"model\".
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always \"model\".
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -196,12 +196,12 @@ class Model
     }
 
     /**
-    * Sets ownedBy.
-    *
-    * @param string|null $ownedBy  The organization that owns the model.
-    *
-    * @return $this
-    */
+     * Sets ownedBy.
+     *
+     * @param string|null $ownedBy  The organization that owns the model.
+     *
+     * @return $this
+     */
     public function setOwnedBy(?string $ownedBy): self
     {
         $this->ownedBy = $ownedBy;

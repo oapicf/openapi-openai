@@ -13,10 +13,10 @@ static batch_errors_t *batch_errors_create_internal(
     if (!batch_errors_local_var) {
         return NULL;
     }
+    memset(batch_errors_local_var, 0, sizeof(batch_errors_t));
+    batch_errors_local_var->_library_owned = 1;
     batch_errors_local_var->object = object;
     batch_errors_local_var->data = data;
-
-    batch_errors_local_var->_library_owned = 1;
     return batch_errors_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) batch_errors_t *batch_errors_create(
     char *object,
     list_t *data
     ) {
-    return batch_errors_create_internal (
+    batch_errors_t *result = batch_errors_create_internal (
         object,
         data
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void batch_errors_free(batch_errors_t *batch_errors) {
@@ -95,6 +98,8 @@ batch_errors_t *batch_errors_parseFromJSON(cJSON *batch_errorsJSON){
 
     batch_errors_t *batch_errors_local_var = NULL;
 
+    char *object_local_str = NULL;
+
     // define the local list for batch_errors->data
     list_t *dataList = NULL;
 
@@ -135,13 +140,23 @@ batch_errors_t *batch_errors_parseFromJSON(cJSON *batch_errorsJSON){
     }
 
 
+    if (object && !cJSON_IsNull(object)) object_local_str = strdup(object->valuestring);
+
     batch_errors_local_var = batch_errors_create_internal (
-        object && !cJSON_IsNull(object) ? strdup(object->valuestring) : NULL,
+        object_local_str,
         data ? dataList : NULL
         );
 
+    if (!batch_errors_local_var) {
+        goto end;
+    }
+
     return batch_errors_local_var;
 end:
+    if (object_local_str) {
+        free(object_local_str);
+        object_local_str = NULL;
+    }
     if (dataList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, dataList) {

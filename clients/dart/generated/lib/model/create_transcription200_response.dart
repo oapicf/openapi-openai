@@ -76,10 +76,12 @@ class CreateTranscription200Response {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateTranscription200Response[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateTranscription200Response[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'text'), 'Required key "CreateTranscription200Response[text]" is missing from JSON.');
+        assert(json[r'text'] != null, 'Required key "CreateTranscription200Response[text]" has a null value in JSON.');
+        assert(json.containsKey(r'language'), 'Required key "CreateTranscription200Response[language]" is missing from JSON.');
+        assert(json[r'language'] != null, 'Required key "CreateTranscription200Response[language]" has a null value in JSON.');
+        assert(json.containsKey(r'duration'), 'Required key "CreateTranscription200Response[duration]" is missing from JSON.');
+        assert(json[r'duration'] != null, 'Required key "CreateTranscription200Response[duration]" has a null value in JSON.');
         return true;
       }());
 

@@ -34,7 +34,7 @@ class  ProjectServiceAccountListResponse
 {
 public:
     ProjectServiceAccountListResponse();
-    virtual ~ProjectServiceAccountListResponse() = default;
+    virtual ~ProjectServiceAccountListResponse();
 
 
     /// <summary>

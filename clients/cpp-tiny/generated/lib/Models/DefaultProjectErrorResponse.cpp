@@ -85,7 +85,7 @@ DefaultProjectErrorResponse::getCode()
 }
 
 void
-DefaultProjectErrorResponse::setCode(int  code)
+DefaultProjectErrorResponse::setCode(int code)
 {
 	this->code = code;
 }
@@ -97,7 +97,7 @@ DefaultProjectErrorResponse::getMessage()
 }
 
 void
-DefaultProjectErrorResponse::setMessage(std::string  message)
+DefaultProjectErrorResponse::setMessage(std::string message)
 {
 	this->message = message;
 }

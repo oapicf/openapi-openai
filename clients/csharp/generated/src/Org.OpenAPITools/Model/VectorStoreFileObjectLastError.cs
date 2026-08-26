@@ -169,8 +169,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="VectorStoreFileObjectLastError" />
     /// </summary>
-    public class VectorStoreFileObjectLastErrorJsonConverter : JsonConverter<VectorStoreFileObjectLastError>
+    public partial class VectorStoreFileObjectLastErrorJsonConverter : JsonConverter<VectorStoreFileObjectLastError>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VectorStoreFileObjectLastErrorJsonConverter" /> class.
+        /// </summary>
+        public VectorStoreFileObjectLastErrorJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="VectorStoreFileObjectLastError" />
         /// </summary>

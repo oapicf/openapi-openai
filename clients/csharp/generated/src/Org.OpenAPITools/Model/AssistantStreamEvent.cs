@@ -149,8 +149,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AssistantStreamEvent" />
     /// </summary>
-    public class AssistantStreamEventJsonConverter : JsonConverter<AssistantStreamEvent>
+    public partial class AssistantStreamEventJsonConverter : JsonConverter<AssistantStreamEvent>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssistantStreamEventJsonConverter" /> class.
+        /// </summary>
+        public AssistantStreamEventJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AssistantStreamEvent" />
         /// </summary>

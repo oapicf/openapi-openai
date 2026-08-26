@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set The index of the refusal part in the message.
 	 */
-	void setIndex(int  index);
+	void setIndex(int index);
 	/*! \brief Get Always `refusal`.
 	 */
 	std::string getType();
 
 	/*! \brief Set Always `refusal`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	std::string getRefusal();
 
 	/*! \brief Set 
 	 */
-	void setRefusal(std::string  refusal);
+	void setRefusal(std::string refusal);
 
 
     private:

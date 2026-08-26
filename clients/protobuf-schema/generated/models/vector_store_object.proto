@@ -28,7 +28,7 @@ message VectorStoreObject {
     OBJECT_VECTOR_STORE = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The Unix timestamp (in seconds) for when the vector store was created.
   int32 created_at = 295938284;
@@ -48,7 +48,7 @@ message VectorStoreObject {
     STATUS_COMPLETED = 2;
   }
 
-  Status status = 355610639;
+  string status = 355610639;
 
   VectorStoreExpirationAfter expires_after = 411359508;
 

@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { AutoChunkingStrategy } from './autoChunkingStrategy';
+import { AutoChunkingStrategyRequestParam } from './autoChunkingStrategyRequestParam';
 import { StaticChunkingStrategy } from './staticChunkingStrategy';
 import { StaticChunkingStrategyStatic } from './staticChunkingStrategyStatic';
 

@@ -57,7 +57,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets RankingOptions
         /// </summary>
         [JsonPropertyName("ranking_options")]
-        public RunStepDetailsToolCallsFileSearchRankingOptionsObject? RankingOptions { get { return this.RankingOptionsOption; } set { this.RankingOptionsOption = new(value); } }
+        public RunStepDetailsToolCallsFileSearchRankingOptionsObject? RankingOptions { get { return this.RankingOptionsOption.Value; } set { this.RankingOptionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Results
@@ -71,7 +71,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The results of the file search.</value>
         [JsonPropertyName("results")]
-        public List<RunStepDetailsToolCallsFileSearchResultObject>? Results { get { return this.ResultsOption; } set { this.ResultsOption = new(value); } }
+        public List<RunStepDetailsToolCallsFileSearchResultObject>? Results { get { return this.ResultsOption.Value; } set { this.ResultsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDetailsToolCallsFileSearchObjectFileSearch" />
     /// </summary>
-    public class RunStepDetailsToolCallsFileSearchObjectFileSearchJsonConverter : JsonConverter<RunStepDetailsToolCallsFileSearchObjectFileSearch>
+    public partial class RunStepDetailsToolCallsFileSearchObjectFileSearchJsonConverter : JsonConverter<RunStepDetailsToolCallsFileSearchObjectFileSearch>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDetailsToolCallsFileSearchObjectFileSearchJsonConverter" /> class.
+        /// </summary>
+        public RunStepDetailsToolCallsFileSearchObjectFileSearchJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDetailsToolCallsFileSearchObjectFileSearch" />
         /// </summary>

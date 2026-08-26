@@ -12,18 +12,21 @@ static run_step_delta_step_details_tool_calls_code_output_image_object_image_t *
     if (!run_step_delta_step_details_tool_calls_code_output_image_object_image_local_var) {
         return NULL;
     }
-    run_step_delta_step_details_tool_calls_code_output_image_object_image_local_var->file_id = file_id;
-
+    memset(run_step_delta_step_details_tool_calls_code_output_image_object_image_local_var, 0, sizeof(run_step_delta_step_details_tool_calls_code_output_image_object_image_t));
     run_step_delta_step_details_tool_calls_code_output_image_object_image_local_var->_library_owned = 1;
+    run_step_delta_step_details_tool_calls_code_output_image_object_image_local_var->file_id = file_id;
     return run_step_delta_step_details_tool_calls_code_output_image_object_image_local_var;
 }
 
 __attribute__((deprecated)) run_step_delta_step_details_tool_calls_code_output_image_object_image_t *run_step_delta_step_details_tool_calls_code_output_image_object_image_create(
     char *file_id
     ) {
-    return run_step_delta_step_details_tool_calls_code_output_image_object_image_create_internal (
+    run_step_delta_step_details_tool_calls_code_output_image_object_image_t *result = run_step_delta_step_details_tool_calls_code_output_image_object_image_create_internal (
         file_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_step_delta_step_details_tool_calls_code_output_image_object_image_free(run_step_delta_step_details_tool_calls_code_output_image_object_image_t *run_step_delta_step_details_tool_calls_code_output_image_object_image) {
@@ -64,6 +67,8 @@ run_step_delta_step_details_tool_calls_code_output_image_object_image_t *run_ste
 
     run_step_delta_step_details_tool_calls_code_output_image_object_image_t *run_step_delta_step_details_tool_calls_code_output_image_object_image_local_var = NULL;
 
+    char *file_id_local_str = NULL;
+
     // run_step_delta_step_details_tool_calls_code_output_image_object_image->file_id
     cJSON *file_id = cJSON_GetObjectItemCaseSensitive(run_step_delta_step_details_tool_calls_code_output_image_object_imageJSON, "file_id");
     if (cJSON_IsNull(file_id)) {
@@ -77,12 +82,22 @@ run_step_delta_step_details_tool_calls_code_output_image_object_image_t *run_ste
     }
 
 
+    if (file_id && !cJSON_IsNull(file_id)) file_id_local_str = strdup(file_id->valuestring);
+
     run_step_delta_step_details_tool_calls_code_output_image_object_image_local_var = run_step_delta_step_details_tool_calls_code_output_image_object_image_create_internal (
-        file_id && !cJSON_IsNull(file_id) ? strdup(file_id->valuestring) : NULL
+        file_id_local_str
         );
+
+    if (!run_step_delta_step_details_tool_calls_code_output_image_object_image_local_var) {
+        goto end;
+    }
 
     return run_step_delta_step_details_tool_calls_code_output_image_object_image_local_var;
 end:
+    if (file_id_local_str) {
+        free(file_id_local_str);
+        file_id_local_str = NULL;
+    }
     return NULL;
 
 }

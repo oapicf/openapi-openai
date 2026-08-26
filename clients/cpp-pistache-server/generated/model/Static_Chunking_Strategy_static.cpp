@@ -26,6 +26,8 @@ Static_Chunking_Strategy_static::Static_Chunking_Strategy_static()
     
 }
 
+Static_Chunking_Strategy_static::~Static_Chunking_Strategy_static() = default;
+
 void Static_Chunking_Strategy_static::validate() const
 {
     std::stringstream msg;

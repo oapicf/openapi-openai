@@ -29,7 +29,7 @@ import {
 export interface MessageDeltaObjectDelta {
     /**
      * The entity that produced the message. One of `user` or `assistant`.
-     * @type {string}
+     * @type {MessageDeltaObjectDeltaRoleEnum}
      * @memberof MessageDeltaObjectDelta
      */
     role?: MessageDeltaObjectDeltaRoleEnum;

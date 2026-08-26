@@ -46,7 +46,7 @@ export interface SubmitToolOutputsRunRequest {
  * Check if a given object implements the SubmitToolOutputsRunRequest interface.
  */
 export function instanceOfSubmitToolOutputsRunRequest(value: object): value is SubmitToolOutputsRunRequest {
-    if (!('toolOutputs' in value) || value['toolOutputs'] === undefined) return false;
+    if ((!('toolOutputs' in (value as Record<string, any>)) && !('tool_outputs' in (value as Record<string, any>))) || ((value as Record<string, any>)['toolOutputs'] === undefined && (value as Record<string, any>)['tool_outputs'] === undefined)) return false;
     return true;
 }
 
@@ -61,7 +61,7 @@ export function SubmitToolOutputsRunRequestFromJSONTyped(json: any, ignoreDiscri
     return {
         
         'toolOutputs': ((json['tool_outputs'] as Array<any>).map(SubmitToolOutputsRunRequestToolOutputsInnerFromJSON)),
-        'stream': json['stream'] == null ? undefined : json['stream'],
+        'stream': json['stream'] === undefined ? undefined : json['stream'] === null ? null : json['stream'],
     };
 }
 

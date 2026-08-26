@@ -35,7 +35,7 @@ export interface ListFineTuningJobEventsResponse {
     data: Array<FineTuningJobEvent>;
     /**
      * 
-     * @type {string}
+     * @type {ListFineTuningJobEventsResponseObjectEnum}
      * @memberof ListFineTuningJobEventsResponse
      */
     object: ListFineTuningJobEventsResponseObjectEnum;
@@ -57,6 +57,8 @@ export type ListFineTuningJobEventsResponseObjectEnum = typeof ListFineTuningJob
 export function instanceOfListFineTuningJobEventsResponse(value: object): value is ListFineTuningJobEventsResponse {
     if (!('data' in value) || value['data'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'list') return false;
+    
     return true;
 }
 

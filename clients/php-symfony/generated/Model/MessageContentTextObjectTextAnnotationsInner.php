@@ -49,7 +49,7 @@ class MessageContentTextObjectTextAnnotationsInner
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['file_citation', 'file_path'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class MessageContentTextObjectTextAnnotationsInner
      * @var string|null
      * @SerializedName("text")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $text = null;
@@ -70,7 +70,7 @@ class MessageContentTextObjectTextAnnotationsInner
      * @var MessageContentTextAnnotationsFileCitationObjectFileCitation|null
      * @SerializedName("file_citation")
      * @Type("OpenAPI\Server\Model\MessageContentTextAnnotationsFileCitationObjectFileCitation")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\MessageContentTextAnnotationsFileCitationObjectFileCitation")]
@@ -80,7 +80,7 @@ class MessageContentTextObjectTextAnnotationsInner
      * @var int|null
      * @SerializedName("start_index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(0)]
@@ -90,7 +90,7 @@ class MessageContentTextObjectTextAnnotationsInner
      * @var int|null
      * @SerializedName("end_index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(0)]
@@ -100,7 +100,7 @@ class MessageContentTextObjectTextAnnotationsInner
      * @var MessageContentTextAnnotationsFilePathObjectFilePath|null
      * @SerializedName("file_path")
      * @Type("OpenAPI\Server\Model\MessageContentTextAnnotationsFilePathObjectFilePath")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\MessageContentTextAnnotationsFilePathObjectFilePath")]
@@ -133,12 +133,12 @@ class MessageContentTextObjectTextAnnotationsInner
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `file_citation`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `file_citation`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -160,12 +160,12 @@ class MessageContentTextObjectTextAnnotationsInner
     }
 
     /**
-    * Sets text.
-    *
-    * @param string|null $text  The text in the message content that needs to be replaced.
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param string|null $text  The text in the message content that needs to be replaced.
+     *
+     * @return $this
+     */
     public function setText(?string $text): self
     {
         $this->text = $text;
@@ -187,12 +187,12 @@ class MessageContentTextObjectTextAnnotationsInner
     }
 
     /**
-    * Sets fileCitation.
-    *
-    * @param MessageContentTextAnnotationsFileCitationObjectFileCitation|null $fileCitation
-    *
-    * @return $this
-    */
+     * Sets fileCitation.
+     *
+     * @param MessageContentTextAnnotationsFileCitationObjectFileCitation|null $fileCitation
+     *
+     * @return $this
+     */
     public function setFileCitation(?MessageContentTextAnnotationsFileCitationObjectFileCitation $fileCitation): self
     {
         $this->fileCitation = $fileCitation;
@@ -214,12 +214,12 @@ class MessageContentTextObjectTextAnnotationsInner
     }
 
     /**
-    * Sets startIndex.
-    *
-    * @param int|null $startIndex
-    *
-    * @return $this
-    */
+     * Sets startIndex.
+     *
+     * @param int|null $startIndex
+     *
+     * @return $this
+     */
     public function setStartIndex(?int $startIndex): self
     {
         $this->startIndex = $startIndex;
@@ -241,12 +241,12 @@ class MessageContentTextObjectTextAnnotationsInner
     }
 
     /**
-    * Sets endIndex.
-    *
-    * @param int|null $endIndex
-    *
-    * @return $this
-    */
+     * Sets endIndex.
+     *
+     * @param int|null $endIndex
+     *
+     * @return $this
+     */
     public function setEndIndex(?int $endIndex): self
     {
         $this->endIndex = $endIndex;
@@ -268,12 +268,12 @@ class MessageContentTextObjectTextAnnotationsInner
     }
 
     /**
-    * Sets filePath.
-    *
-    * @param MessageContentTextAnnotationsFilePathObjectFilePath|null $filePath
-    *
-    * @return $this
-    */
+     * Sets filePath.
+     *
+     * @param MessageContentTextAnnotationsFilePathObjectFilePath|null $filePath
+     *
+     * @return $this
+     */
     public function setFilePath(?MessageContentTextAnnotationsFilePathObjectFilePath $filePath): self
     {
         $this->filePath = $filePath;

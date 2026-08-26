@@ -32,13 +32,13 @@ class OAIFileSearchRankingOptions;
 class OAIAssistantToolsFileSearch_file_search : public OAIObject {
 public:
     OAIAssistantToolsFileSearch_file_search();
-    OAIAssistantToolsFileSearch_file_search(QString json);
+    OAIAssistantToolsFileSearch_file_search(const QString &json);
     ~OAIAssistantToolsFileSearch_file_search() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getMaxNumResults() const;
     void setMaxNumResults(const qint32 &max_num_results);

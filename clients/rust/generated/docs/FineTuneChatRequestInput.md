@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**messages** | Option<[**Vec<models::FineTuneChatRequestInputMessagesInner>**](FineTuneChatRequestInput_messages_inner.md)> |  | [optional]
+**messages** | Option<[**Vec<models::FineTuneChatRequestInputMessagesInner>**](FineTuneChatRequestInputMessagesInner.md)> |  | [optional]
 **tools** | Option<[**Vec<models::ChatCompletionTool>**](ChatCompletionTool.md)> | A list of tools the model may generate JSON inputs for. | [optional]
 **parallel_tool_calls** | Option<**bool**> | Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. | [optional][default to true]
 **functions** | Option<[**Vec<models::ChatCompletionFunctions>**](ChatCompletionFunctions.md)> | A list of functions the model may generate JSON inputs for. | [optional]

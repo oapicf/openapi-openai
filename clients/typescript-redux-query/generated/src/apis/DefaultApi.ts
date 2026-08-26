@@ -118,7 +118,7 @@ function adminApiKeysDeleteRaw<T>(requestParameters: AdminApiKeysDeleteRequest, 
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/admin_api_keys/{key_id}`.replace(`{${"key_id"}}`, encodeURIComponent(String(requestParameters.keyId))),
+        url: `${runtime.Configuration.basePath}/organization/admin_api_keys/{key_id}`.replace('{key_id}', encodeURIComponent(String(requestParameters.keyId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -167,7 +167,7 @@ function adminApiKeysGetRaw<T>(requestParameters: AdminApiKeysGetRequest, reques
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/organization/admin_api_keys/{key_id}`.replace(`{${"key_id"}}`, encodeURIComponent(String(requestParameters.keyId))),
+        url: `${runtime.Configuration.basePath}/organization/admin_api_keys/{key_id}`.replace('{key_id}', encodeURIComponent(String(requestParameters.keyId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,

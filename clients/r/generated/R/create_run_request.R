@@ -183,7 +183,7 @@ CreateRunRequest <- R6::R6Class(
       }
       if (!is.null(self$`model`)) {
         CreateRunRequestObject[["model"]] <-
-          self$`model`$toSimpleType()
+          self$extractSimpleType(self$`model`)
       }
       if (!is.null(self$`instructions`)) {
         CreateRunRequestObject[["instructions"]] <-
@@ -195,11 +195,11 @@ CreateRunRequest <- R6::R6Class(
       }
       if (!is.null(self$`additional_messages`)) {
         CreateRunRequestObject[["additional_messages"]] <-
-          lapply(self$`additional_messages`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`additional_messages`)
       }
       if (!is.null(self$`tools`)) {
         CreateRunRequestObject[["tools"]] <-
-          lapply(self$`tools`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`tools`)
       }
       if (!is.null(self$`metadata`)) {
         CreateRunRequestObject[["metadata"]] <-
@@ -227,11 +227,11 @@ CreateRunRequest <- R6::R6Class(
       }
       if (!is.null(self$`truncation_strategy`)) {
         CreateRunRequestObject[["truncation_strategy"]] <-
-          self$`truncation_strategy`$toSimpleType()
+          self$extractSimpleType(self$`truncation_strategy`)
       }
       if (!is.null(self$`tool_choice`)) {
         CreateRunRequestObject[["tool_choice"]] <-
-          self$`tool_choice`$toSimpleType()
+          self$extractSimpleType(self$`tool_choice`)
       }
       if (!is.null(self$`parallel_tool_calls`)) {
         CreateRunRequestObject[["parallel_tool_calls"]] <-
@@ -239,9 +239,32 @@ CreateRunRequest <- R6::R6Class(
       }
       if (!is.null(self$`response_format`)) {
         CreateRunRequestObject[["response_format"]] <-
-          self$`response_format`$toSimpleType()
+          self$extractSimpleType(self$`response_format`)
       }
       return(CreateRunRequestObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

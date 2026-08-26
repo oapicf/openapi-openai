@@ -26,6 +26,8 @@ CreateAssistantRequest_tool_resources::CreateAssistantRequest_tool_resources()
     
 }
 
+CreateAssistantRequest_tool_resources::~CreateAssistantRequest_tool_resources() = default;
+
 void CreateAssistantRequest_tool_resources::validate() const
 {
     std::stringstream msg;

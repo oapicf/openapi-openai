@@ -150,7 +150,7 @@ CompletionUsage::getCompletionTokens()
 }
 
 void
-CompletionUsage::setCompletionTokens(int  completion_tokens)
+CompletionUsage::setCompletionTokens(int completion_tokens)
 {
 	this->completion_tokens = completion_tokens;
 }
@@ -162,7 +162,7 @@ CompletionUsage::getPromptTokens()
 }
 
 void
-CompletionUsage::setPromptTokens(int  prompt_tokens)
+CompletionUsage::setPromptTokens(int prompt_tokens)
 {
 	this->prompt_tokens = prompt_tokens;
 }
@@ -174,7 +174,7 @@ CompletionUsage::getTotalTokens()
 }
 
 void
-CompletionUsage::setTotalTokens(int  total_tokens)
+CompletionUsage::setTotalTokens(int total_tokens)
 {
 	this->total_tokens = total_tokens;
 }
@@ -186,7 +186,7 @@ CompletionUsage::getCompletionTokensDetails()
 }
 
 void
-CompletionUsage::setCompletionTokensDetails(CompletionUsage_completion_tokens_details  completion_tokens_details)
+CompletionUsage::setCompletionTokensDetails(CompletionUsage_completion_tokens_details completion_tokens_details)
 {
 	this->completion_tokens_details = completion_tokens_details;
 }
@@ -198,7 +198,7 @@ CompletionUsage::getPromptTokensDetails()
 }
 
 void
-CompletionUsage::setPromptTokensDetails(CompletionUsage_prompt_tokens_details  prompt_tokens_details)
+CompletionUsage::setPromptTokensDetails(CompletionUsage_prompt_tokens_details prompt_tokens_details)
 {
 	this->prompt_tokens_details = prompt_tokens_details;
 }

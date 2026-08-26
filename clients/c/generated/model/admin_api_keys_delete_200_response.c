@@ -8,30 +8,39 @@
 static admin_api_keys_delete_200_response_t *admin_api_keys_delete_200_response_create_internal(
     char *id,
     char *object,
-    int deleted
+    int *deleted
     ) {
     admin_api_keys_delete_200_response_t *admin_api_keys_delete_200_response_local_var = malloc(sizeof(admin_api_keys_delete_200_response_t));
     if (!admin_api_keys_delete_200_response_local_var) {
         return NULL;
     }
+    memset(admin_api_keys_delete_200_response_local_var, 0, sizeof(admin_api_keys_delete_200_response_t));
+    admin_api_keys_delete_200_response_local_var->_library_owned = 1;
     admin_api_keys_delete_200_response_local_var->id = id;
     admin_api_keys_delete_200_response_local_var->object = object;
     admin_api_keys_delete_200_response_local_var->deleted = deleted;
-
-    admin_api_keys_delete_200_response_local_var->_library_owned = 1;
     return admin_api_keys_delete_200_response_local_var;
 }
 
 __attribute__((deprecated)) admin_api_keys_delete_200_response_t *admin_api_keys_delete_200_response_create(
     char *id,
     char *object,
-    int deleted
+    int *deleted
     ) {
-    return admin_api_keys_delete_200_response_create_internal (
+    int *deleted_copy = NULL;
+    if (deleted) {
+        deleted_copy = malloc(sizeof(int));
+        if (deleted_copy) *deleted_copy = *deleted;
+    }
+    admin_api_keys_delete_200_response_t *result = admin_api_keys_delete_200_response_create_internal (
         id,
         object,
-        deleted
+        deleted_copy
         );
+    if (!result) {
+        free(deleted_copy);
+    }
+    return result;
 }
 
 void admin_api_keys_delete_200_response_free(admin_api_keys_delete_200_response_t *admin_api_keys_delete_200_response) {
@@ -50,6 +59,10 @@ void admin_api_keys_delete_200_response_free(admin_api_keys_delete_200_response_
     if (admin_api_keys_delete_200_response->object) {
         free(admin_api_keys_delete_200_response->object);
         admin_api_keys_delete_200_response->object = NULL;
+    }
+    if (admin_api_keys_delete_200_response->deleted) {
+        free(admin_api_keys_delete_200_response->deleted);
+        admin_api_keys_delete_200_response->deleted = NULL;
     }
     free(admin_api_keys_delete_200_response);
 }
@@ -75,7 +88,7 @@ cJSON *admin_api_keys_delete_200_response_convertToJSON(admin_api_keys_delete_20
 
     // admin_api_keys_delete_200_response->deleted
     if(admin_api_keys_delete_200_response->deleted) {
-    if(cJSON_AddBoolToObject(item, "deleted", admin_api_keys_delete_200_response->deleted) == NULL) {
+    if(cJSON_AddBoolToObject(item, "deleted", *admin_api_keys_delete_200_response->deleted) == NULL) {
     goto fail; //Bool
     }
     }
@@ -91,6 +104,13 @@ fail:
 admin_api_keys_delete_200_response_t *admin_api_keys_delete_200_response_parseFromJSON(cJSON *admin_api_keys_delete_200_responseJSON){
 
     admin_api_keys_delete_200_response_t *admin_api_keys_delete_200_response_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    char *object_local_str = NULL;
+
+    // define the local variable for admin_api_keys_delete_200_response->deleted
+    int *deleted_local_var = NULL;
 
     // admin_api_keys_delete_200_response->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(admin_api_keys_delete_200_responseJSON, "id");
@@ -126,17 +146,42 @@ admin_api_keys_delete_200_response_t *admin_api_keys_delete_200_response_parseFr
     {
     goto end; //Bool
     }
+    deleted_local_var = malloc(sizeof(int));
+    if(!deleted_local_var)
+    {
+        goto end;
+    }
+    *deleted_local_var = deleted->valueint;
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (object && !cJSON_IsNull(object)) object_local_str = strdup(object->valuestring);
+
     admin_api_keys_delete_200_response_local_var = admin_api_keys_delete_200_response_create_internal (
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        object && !cJSON_IsNull(object) ? strdup(object->valuestring) : NULL,
-        deleted ? deleted->valueint : 0
+        id_local_str,
+        object_local_str,
+        deleted_local_var
         );
+
+    if (!admin_api_keys_delete_200_response_local_var) {
+        goto end;
+    }
 
     return admin_api_keys_delete_200_response_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (object_local_str) {
+        free(object_local_str);
+        object_local_str = NULL;
+    }
+    if (deleted_local_var) {
+        free(deleted_local_var);
+        deleted_local_var = NULL;
+    }
     return NULL;
 
 }

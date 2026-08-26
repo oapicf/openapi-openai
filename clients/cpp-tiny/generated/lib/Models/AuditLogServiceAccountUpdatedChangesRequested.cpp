@@ -64,7 +64,7 @@ AuditLog_service_account_updated_changes_requested::getRole()
 }
 
 void
-AuditLog_service_account_updated_changes_requested::setRole(std::string  role)
+AuditLog_service_account_updated_changes_requested::setRole(std::string role)
 {
 	this->role = role;
 }

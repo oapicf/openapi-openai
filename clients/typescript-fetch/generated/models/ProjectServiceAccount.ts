@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface ProjectServiceAccount {
     /**
      * The object type, which is always `organization.project.service_account`
-     * @type {string}
+     * @type {ProjectServiceAccountObjectEnum}
      * @memberof ProjectServiceAccount
      */
     object: ProjectServiceAccountObjectEnum;
@@ -39,7 +39,7 @@ export interface ProjectServiceAccount {
     name: string;
     /**
      * `owner` or `member`
-     * @type {string}
+     * @type {ProjectServiceAccountRoleEnum}
      * @memberof ProjectServiceAccount
      */
     role: ProjectServiceAccountRoleEnum;
@@ -75,10 +75,12 @@ export type ProjectServiceAccountRoleEnum = typeof ProjectServiceAccountRoleEnum
  */
 export function instanceOfProjectServiceAccount(value: object): value is ProjectServiceAccount {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'organization.project.service_account') return false;
+    
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('role' in value) || value['role'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
     return true;
 }
 

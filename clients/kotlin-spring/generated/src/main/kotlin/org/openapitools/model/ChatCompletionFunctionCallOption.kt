@@ -19,9 +19,10 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ChatCompletionFunctionCallOption(
 
-    @Schema(example = "null", required = true, description = "The name of the function to call.")
+    @Schema(required = true, description = "The name of the function to call.")
+    @param:JsonProperty("name")
     @get:JsonProperty("name", required = true) val name: kotlin.String
-) {
+) : CreateChatCompletionRequestFunctionCall {
 
 }
 

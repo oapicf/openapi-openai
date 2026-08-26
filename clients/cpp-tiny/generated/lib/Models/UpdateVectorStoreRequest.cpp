@@ -108,7 +108,7 @@ UpdateVectorStoreRequest::getName()
 }
 
 void
-UpdateVectorStoreRequest::setName(std::string  name)
+UpdateVectorStoreRequest::setName(std::string name)
 {
 	this->name = name;
 }
@@ -120,7 +120,7 @@ UpdateVectorStoreRequest::getExpiresAfter()
 }
 
 void
-UpdateVectorStoreRequest::setExpiresAfter(VectorStoreExpirationAfter  expires_after)
+UpdateVectorStoreRequest::setExpiresAfter(VectorStoreExpirationAfter expires_after)
 {
 	this->expires_after = expires_after;
 }
@@ -132,7 +132,7 @@ UpdateVectorStoreRequest::getMetadata()
 }
 
 void
-UpdateVectorStoreRequest::setMetadata(Object  metadata)
+UpdateVectorStoreRequest::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }

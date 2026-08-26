@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.CompletionUsageCompletionTokensDetails;
@@ -9,20 +10,20 @@ import org.openapitools.model.CompletionUsagePromptTokensDetails;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Usage statistics for the completion request.
  */
 
 @Schema(name = "CompletionUsage", description = "Usage statistics for the completion request.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CompletionUsage {
 
   private Integer completionTokens;
@@ -31,8 +32,10 @@ public class CompletionUsage {
 
   private Integer totalTokens;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable CompletionUsageCompletionTokensDetails completionTokensDetails;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable CompletionUsagePromptTokensDetails promptTokensDetails;
 
   public CompletionUsage() {
@@ -64,6 +67,7 @@ public class CompletionUsage {
     return completionTokens;
   }
 
+  @JsonProperty("completion_tokens")
   public void setCompletionTokens(Integer completionTokens) {
     this.completionTokens = completionTokens;
   }
@@ -84,6 +88,7 @@ public class CompletionUsage {
     return promptTokens;
   }
 
+  @JsonProperty("prompt_tokens")
   public void setPromptTokens(Integer promptTokens) {
     this.promptTokens = promptTokens;
   }
@@ -104,6 +109,7 @@ public class CompletionUsage {
     return totalTokens;
   }
 
+  @JsonProperty("total_tokens")
   public void setTotalTokens(Integer totalTokens) {
     this.totalTokens = totalTokens;
   }
@@ -124,6 +130,7 @@ public class CompletionUsage {
     return completionTokensDetails;
   }
 
+  @JsonProperty("completion_tokens_details")
   public void setCompletionTokensDetails(@Nullable CompletionUsageCompletionTokensDetails completionTokensDetails) {
     this.completionTokensDetails = completionTokensDetails;
   }
@@ -144,6 +151,7 @@ public class CompletionUsage {
     return promptTokensDetails;
   }
 
+  @JsonProperty("prompt_tokens_details")
   public void setPromptTokensDetails(@Nullable CompletionUsagePromptTokensDetails promptTokensDetails) {
     this.promptTokensDetails = promptTokensDetails;
   }
@@ -186,11 +194,8 @@ public class CompletionUsage {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

@@ -52,21 +52,21 @@ public:
 
 	/*! \brief Set The unique ID of the server event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `conversation.created`.
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `conversation.created`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	RealtimeServerEventConversationCreated_conversation getConversation();
 
 	/*! \brief Set 
 	 */
-	void setConversation(RealtimeServerEventConversationCreated_conversation  conversation);
+	void setConversation(RealtimeServerEventConversationCreated_conversation conversation);
 
 
     private:

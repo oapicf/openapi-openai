@@ -52,28 +52,28 @@ public:
 
 	/*! \brief Set The organization title.
 	 */
-	void setTitle(std::string  title);
+	void setTitle(std::string title);
 	/*! \brief Get The organization description.
 	 */
 	std::string getDescription();
 
 	/*! \brief Set The organization description.
 	 */
-	void setDescription(std::string  description);
+	void setDescription(std::string description);
 	/*! \brief Get The organization name.
 	 */
 	std::string getName();
 
 	/*! \brief Set The organization name.
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get 
 	 */
 	AuditLog_organization_updated_changes_requested_settings getSettings();
 
 	/*! \brief Set 
 	 */
-	void setSettings(AuditLog_organization_updated_changes_requested_settings  settings);
+	void setSettings(AuditLog_organization_updated_changes_requested_settings settings);
 
 
     private:

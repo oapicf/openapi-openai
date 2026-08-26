@@ -25,19 +25,24 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted(
 
-    @Schema(example = "null", required = true, description = "The unique ID of the server event.")
+    @Schema(required = true, description = "The unique ID of the server event.")
+    @param:JsonProperty("event_id")
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The event type, must be `conversation.item.input_audio_transcription.completed`. ")
+    @Schema(required = true, description = "The event type, must be `conversation.item.input_audio_transcription.completed`. ")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.Type,
 
-    @Schema(example = "null", required = true, description = "The ID of the user message item containing the audio.")
+    @Schema(required = true, description = "The ID of the user message item containing the audio.")
+    @param:JsonProperty("item_id")
     @get:JsonProperty("item_id", required = true) val itemId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The index of the content part containing the audio.")
+    @Schema(required = true, description = "The index of the content part containing the audio.")
+    @param:JsonProperty("content_index")
     @get:JsonProperty("content_index", required = true) val contentIndex: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The transcribed text.")
+    @Schema(required = true, description = "The transcribed text.")
+    @param:JsonProperty("transcript")
     @get:JsonProperty("transcript", required = true) val transcript: kotlin.String
 ) {
 
@@ -54,7 +59,7 @@ data class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeServerEventConversationItemInputAudioTranscriptionCompleted'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

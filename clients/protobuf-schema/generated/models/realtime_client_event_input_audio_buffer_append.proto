@@ -25,7 +25,7 @@ message RealtimeClientEventInputAudioBufferAppend {
     TYPE_INPUT_AUDIO_BUFFER_APPEND = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // Base64-encoded audio bytes. This must be in the format specified by the  `input_audio_format` field in the session configuration. 
   string audio = 93166550;

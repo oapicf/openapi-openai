@@ -7,27 +7,36 @@
 
 static submit_tool_outputs_run_request_t *submit_tool_outputs_run_request_create_internal(
     list_t *tool_outputs,
-    int stream
+    int *stream
     ) {
     submit_tool_outputs_run_request_t *submit_tool_outputs_run_request_local_var = malloc(sizeof(submit_tool_outputs_run_request_t));
     if (!submit_tool_outputs_run_request_local_var) {
         return NULL;
     }
+    memset(submit_tool_outputs_run_request_local_var, 0, sizeof(submit_tool_outputs_run_request_t));
+    submit_tool_outputs_run_request_local_var->_library_owned = 1;
     submit_tool_outputs_run_request_local_var->tool_outputs = tool_outputs;
     submit_tool_outputs_run_request_local_var->stream = stream;
-
-    submit_tool_outputs_run_request_local_var->_library_owned = 1;
     return submit_tool_outputs_run_request_local_var;
 }
 
 __attribute__((deprecated)) submit_tool_outputs_run_request_t *submit_tool_outputs_run_request_create(
     list_t *tool_outputs,
-    int stream
+    int *stream
     ) {
-    return submit_tool_outputs_run_request_create_internal (
+    int *stream_copy = NULL;
+    if (stream) {
+        stream_copy = malloc(sizeof(int));
+        if (stream_copy) *stream_copy = *stream;
+    }
+    submit_tool_outputs_run_request_t *result = submit_tool_outputs_run_request_create_internal (
         tool_outputs,
-        stream
+        stream_copy
         );
+    if (!result) {
+        free(stream_copy);
+    }
+    return result;
 }
 
 void submit_tool_outputs_run_request_free(submit_tool_outputs_run_request_t *submit_tool_outputs_run_request) {
@@ -45,6 +54,10 @@ void submit_tool_outputs_run_request_free(submit_tool_outputs_run_request_t *sub
         }
         list_freeList(submit_tool_outputs_run_request->tool_outputs);
         submit_tool_outputs_run_request->tool_outputs = NULL;
+    }
+    if (submit_tool_outputs_run_request->stream) {
+        free(submit_tool_outputs_run_request->stream);
+        submit_tool_outputs_run_request->stream = NULL;
     }
     free(submit_tool_outputs_run_request);
 }
@@ -75,7 +88,7 @@ cJSON *submit_tool_outputs_run_request_convertToJSON(submit_tool_outputs_run_req
 
     // submit_tool_outputs_run_request->stream
     if(submit_tool_outputs_run_request->stream) {
-    if(cJSON_AddBoolToObject(item, "stream", submit_tool_outputs_run_request->stream) == NULL) {
+    if(cJSON_AddBoolToObject(item, "stream", *submit_tool_outputs_run_request->stream) == NULL) {
     goto fail; //Bool
     }
     }
@@ -94,6 +107,9 @@ submit_tool_outputs_run_request_t *submit_tool_outputs_run_request_parseFromJSON
 
     // define the local list for submit_tool_outputs_run_request->tool_outputs
     list_t *tool_outputsList = NULL;
+
+    // define the local variable for submit_tool_outputs_run_request->stream
+    int *stream_local_var = NULL;
 
     // submit_tool_outputs_run_request->tool_outputs
     cJSON *tool_outputs = cJSON_GetObjectItemCaseSensitive(submit_tool_outputs_run_requestJSON, "tool_outputs");
@@ -132,13 +148,24 @@ submit_tool_outputs_run_request_t *submit_tool_outputs_run_request_parseFromJSON
     {
     goto end; //Bool
     }
+    stream_local_var = malloc(sizeof(int));
+    if(!stream_local_var)
+    {
+        goto end;
     }
+    *stream_local_var = stream->valueint;
+    }
+
 
 
     submit_tool_outputs_run_request_local_var = submit_tool_outputs_run_request_create_internal (
         tool_outputsList,
-        stream ? stream->valueint : 0
+        stream_local_var
         );
+
+    if (!submit_tool_outputs_run_request_local_var) {
+        goto end;
+    }
 
     return submit_tool_outputs_run_request_local_var;
 end:
@@ -150,6 +177,10 @@ end:
         }
         list_freeList(tool_outputsList);
         tool_outputsList = NULL;
+    }
+    if (stream_local_var) {
+        free(stream_local_var);
+        stream_local_var = NULL;
     }
     return NULL;
 

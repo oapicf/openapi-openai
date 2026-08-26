@@ -127,7 +127,7 @@ RealtimeServerEventResponseContentPartDone_part::getType()
 }
 
 void
-RealtimeServerEventResponseContentPartDone_part::setType(std::string  type)
+RealtimeServerEventResponseContentPartDone_part::setType(std::string type)
 {
 	this->type = type;
 }
@@ -139,7 +139,7 @@ RealtimeServerEventResponseContentPartDone_part::getText()
 }
 
 void
-RealtimeServerEventResponseContentPartDone_part::setText(std::string  text)
+RealtimeServerEventResponseContentPartDone_part::setText(std::string text)
 {
 	this->text = text;
 }
@@ -151,7 +151,7 @@ RealtimeServerEventResponseContentPartDone_part::getAudio()
 }
 
 void
-RealtimeServerEventResponseContentPartDone_part::setAudio(std::string  audio)
+RealtimeServerEventResponseContentPartDone_part::setAudio(std::string audio)
 {
 	this->audio = audio;
 }
@@ -163,7 +163,7 @@ RealtimeServerEventResponseContentPartDone_part::getTranscript()
 }
 
 void
-RealtimeServerEventResponseContentPartDone_part::setTranscript(std::string  transcript)
+RealtimeServerEventResponseContentPartDone_part::setTranscript(std::string transcript)
 {
 	this->transcript = transcript;
 }

@@ -29,7 +29,7 @@ import {
 export interface MessageContentTextAnnotationsFilePathObject {
     /**
      * Always `file_path`.
-     * @type {string}
+     * @type {MessageContentTextAnnotationsFilePathObjectTypeEnum}
      * @memberof MessageContentTextAnnotationsFilePathObject
      */
     type: MessageContentTextAnnotationsFilePathObjectTypeEnum;
@@ -74,10 +74,12 @@ export type MessageContentTextAnnotationsFilePathObjectTypeEnum = typeof Message
  */
 export function instanceOfMessageContentTextAnnotationsFilePathObject(value: object): value is MessageContentTextAnnotationsFilePathObject {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'file_path') return false;
+    
     if (!('text' in value) || value['text'] === undefined) return false;
-    if (!('filePath' in value) || value['filePath'] === undefined) return false;
-    if (!('startIndex' in value) || value['startIndex'] === undefined) return false;
-    if (!('endIndex' in value) || value['endIndex'] === undefined) return false;
+    if ((!('filePath' in (value as Record<string, any>)) && !('file_path' in (value as Record<string, any>))) || ((value as Record<string, any>)['filePath'] === undefined && (value as Record<string, any>)['file_path'] === undefined)) return false;
+    if ((!('startIndex' in (value as Record<string, any>)) && !('start_index' in (value as Record<string, any>))) || ((value as Record<string, any>)['startIndex'] === undefined && (value as Record<string, any>)['start_index'] === undefined)) return false;
+    if ((!('endIndex' in (value as Record<string, any>)) && !('end_index' in (value as Record<string, any>))) || ((value as Record<string, any>)['endIndex'] === undefined && (value as Record<string, any>)['end_index'] === undefined)) return false;
     return true;
 }
 

@@ -31,7 +31,7 @@ class  CreateImageEditRequest_model
 {
 public:
     CreateImageEditRequest_model();
-    virtual ~CreateImageEditRequest_model() = default;
+    virtual ~CreateImageEditRequest_model();
 
 
     /// <summary>

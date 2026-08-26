@@ -33,13 +33,13 @@ class OAISubmitToolOutputsRunRequest_tool_outputs_inner;
 class OAISubmitToolOutputsRunRequest : public OAIObject {
 public:
     OAISubmitToolOutputsRunRequest();
-    OAISubmitToolOutputsRunRequest(QString json);
+    OAISubmitToolOutputsRunRequest(const QString &json);
     ~OAISubmitToolOutputsRunRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QList<OAISubmitToolOutputsRunRequest_tool_outputs_inner> getToolOutputs() const;
     void setToolOutputs(const QList<OAISubmitToolOutputsRunRequest_tool_outputs_inner> &tool_outputs);

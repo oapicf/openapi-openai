@@ -30,10 +30,10 @@ static prediction_content_t *prediction_content_create_internal(
     if (!prediction_content_local_var) {
         return NULL;
     }
+    memset(prediction_content_local_var, 0, sizeof(prediction_content_t));
+    prediction_content_local_var->_library_owned = 1;
     prediction_content_local_var->type = type;
     prediction_content_local_var->content = content;
-
-    prediction_content_local_var->_library_owned = 1;
     return prediction_content_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) prediction_content_t *prediction_content_create(
     openai_api_prediction_content_TYPE_e type,
     prediction_content_content_t *content
     ) {
-    return prediction_content_create_internal (
+    prediction_content_t *result = prediction_content_create_internal (
         type,
         content
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void prediction_content_free(prediction_content_t *prediction_content) {
@@ -134,10 +137,15 @@ prediction_content_t *prediction_content_parseFromJSON(cJSON *prediction_content
     content_local_nonprim = prediction_content_content_parseFromJSON(content); //nonprimitive
 
 
+
     prediction_content_local_var = prediction_content_create_internal (
         typeVariable,
         content_local_nonprim
         );
+
+    if (!prediction_content_local_var) {
+        goto end;
+    }
 
     return prediction_content_local_var;
 end:

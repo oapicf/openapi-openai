@@ -49,7 +49,7 @@ class CreateThreadRequestToolResourcesFileSearch
      * @var string[]|null
      * @SerializedName("vector_store_ids")
      * @Type("array<string>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("string"),
     ])]
@@ -62,7 +62,7 @@ class CreateThreadRequestToolResourcesFileSearch
      * @var CreateThreadRequestToolResourcesFileSearchVectorStoresInner[]|null
      * @SerializedName("vector_stores")
      * @Type("array<OpenAPI\Server\Model\CreateThreadRequestToolResourcesFileSearchVectorStoresInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\CreateThreadRequestToolResourcesFileSearchVectorStoresInner"),
     ])]
@@ -92,12 +92,12 @@ class CreateThreadRequestToolResourcesFileSearch
     }
 
     /**
-    * Sets vectorStoreIds.
-    *
-    * @param string[]|null $vectorStoreIds  The [vector store](/docs/api-reference/vector-stores/object) attached to this thread. There can be a maximum of 1 vector store attached to the thread.
-    *
-    * @return $this
-    */
+     * Sets vectorStoreIds.
+     *
+     * @param string[]|null $vectorStoreIds  The [vector store](/docs/api-reference/vector-stores/object) attached to this thread. There can be a maximum of 1 vector store attached to the thread.
+     *
+     * @return $this
+     */
     public function setVectorStoreIds(?array $vectorStoreIds = null): self
     {
         $this->vectorStoreIds = $vectorStoreIds;
@@ -119,12 +119,12 @@ class CreateThreadRequestToolResourcesFileSearch
     }
 
     /**
-    * Sets vectorStores.
-    *
-    * @param CreateThreadRequestToolResourcesFileSearchVectorStoresInner[]|null $vectorStores  A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this thread. There can be a maximum of 1 vector store attached to the thread.
-    *
-    * @return $this
-    */
+     * Sets vectorStores.
+     *
+     * @param CreateThreadRequestToolResourcesFileSearchVectorStoresInner[]|null $vectorStores  A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this thread. There can be a maximum of 1 vector store attached to the thread.
+     *
+     * @return $this
+     */
     public function setVectorStores(?array $vectorStores = null): self
     {
         $this->vectorStores = $vectorStores;

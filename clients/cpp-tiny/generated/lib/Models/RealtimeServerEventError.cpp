@@ -107,7 +107,7 @@ RealtimeServerEventError::getEventId()
 }
 
 void
-RealtimeServerEventError::setEventId(std::string  event_id)
+RealtimeServerEventError::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -119,7 +119,7 @@ RealtimeServerEventError::getType()
 }
 
 void
-RealtimeServerEventError::setType(std::string  type)
+RealtimeServerEventError::setType(std::string type)
 {
 	this->type = type;
 }
@@ -131,7 +131,7 @@ RealtimeServerEventError::getError()
 }
 
 void
-RealtimeServerEventError::setError(RealtimeServerEventError_error  error)
+RealtimeServerEventError::setError(RealtimeServerEventError_error error)
 {
 	this->error = error;
 }

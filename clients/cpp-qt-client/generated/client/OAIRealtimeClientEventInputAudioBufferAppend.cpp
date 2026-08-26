@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRealtimeClientEventInputAudioBufferAppend::OAIRealtimeClientEventInputAudioBufferAppend(QString json) {
+OAIRealtimeClientEventInputAudioBufferAppend::OAIRealtimeClientEventInputAudioBufferAppend(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIRealtimeClientEventInputAudioBufferAppend::initializeModel() {
     m_audio_isValid = false;
 }
 
-void OAIRealtimeClientEventInputAudioBufferAppend::fromJson(QString jsonString) {
+void OAIRealtimeClientEventInputAudioBufferAppend::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

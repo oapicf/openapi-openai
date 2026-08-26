@@ -1,0 +1,90 @@
+package org.openapitools.model;
+
+import java.util.Objects;
+import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.annotation.Generated;
+import java.time.*;
+import java.math.*;
+@Generated(value = "org.openapitools.codegen.languages.JavaDubboServerCodegen", comments = "Generator version: 7.24.0")
+
+/**
+ * The function definition.
+ */
+public class RunToolCallObjectFunction implements Serializable {
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * The name of the function.
+   */
+  @JsonProperty("name")
+  private String name;
+
+  /**
+   * The arguments that the model expects you to pass to the function.
+   */
+  @JsonProperty("arguments")
+  private String arguments;
+
+  /**
+   * The name of the function.
+   * @return name
+   */
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  /**
+   * The arguments that the model expects you to pass to the function.
+   * @return arguments
+   */
+  public String getArguments() {
+    return arguments;
+  }
+
+  public void setArguments(String arguments) {
+    this.arguments = arguments;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    RunToolCallObjectFunction runToolCallObjectFunction = (RunToolCallObjectFunction) o;
+    return Objects.equals(this.name, runToolCallObjectFunction.name) &&
+        Objects.equals(this.arguments, runToolCallObjectFunction.arguments);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, arguments);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class RunToolCallObjectFunction {\n");
+    
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    arguments: ").append(toIndentedString(arguments)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
+  }
+}

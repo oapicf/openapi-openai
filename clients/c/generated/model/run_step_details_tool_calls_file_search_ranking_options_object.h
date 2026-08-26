@@ -28,14 +28,14 @@ openai_api_run_step_details_tool_calls_file_search_ranking_options_object_RANKER
 
 typedef struct run_step_details_tool_calls_file_search_ranking_options_object_t {
     openai_api_run_step_details_tool_calls_file_search_ranking_options_object_RANKER_e ranker; //enum
-    double score_threshold; //numeric
+    double *score_threshold; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } run_step_details_tool_calls_file_search_ranking_options_object_t;
 
 __attribute__((deprecated)) run_step_details_tool_calls_file_search_ranking_options_object_t *run_step_details_tool_calls_file_search_ranking_options_object_create(
     openai_api_run_step_details_tool_calls_file_search_ranking_options_object_RANKER_e ranker,
-    double score_threshold
+    double *score_threshold
 );
 
 void run_step_details_tool_calls_file_search_ranking_options_object_free(run_step_details_tool_calls_file_search_ranking_options_object_t *run_step_details_tool_calls_file_search_ranking_options_object);

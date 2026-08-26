@@ -7,7 +7,7 @@ from typing import List, Dict, Type
 from openapi_server.models.base_model import Model
 from openapi_server.models.other_chunking_strategy_response_param import OtherChunkingStrategyResponseParam
 from openapi_server.models.static_chunking_strategy import StaticChunkingStrategy
-from openapi_server.models.static_chunking_strategy_response_param import StaticChunkingStrategyResponseParam
+from openapi_server.models.static_chunking_strategy_request_param import StaticChunkingStrategyRequestParam
 from openapi_server import util
 
 

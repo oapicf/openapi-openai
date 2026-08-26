@@ -110,8 +110,9 @@ class _$MessageDeltaContentImageFileObjectSerializer implements PrimitiveSeriali
         case r'image_file':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MessageDeltaContentImageFileObjectImageFile),
-          ) as MessageDeltaContentImageFileObjectImageFile;
+            specifiedType: const FullType.nullable(MessageDeltaContentImageFileObjectImageFile),
+          ) as MessageDeltaContentImageFileObjectImageFile?;
+          if (valueDes == null) continue;
           result.imageFile.replace(valueDes);
           break;
         default:

@@ -22,7 +22,7 @@ message MessageRequestContentTextObject {
     TYPE_TEXT = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // Text content to be sent to the model
   string text = 3556653;

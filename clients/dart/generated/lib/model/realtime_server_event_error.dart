@@ -61,10 +61,12 @@ class RealtimeServerEventError {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventError[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventError[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event_id'), 'Required key "RealtimeServerEventError[event_id]" is missing from JSON.');
+        assert(json[r'event_id'] != null, 'Required key "RealtimeServerEventError[event_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RealtimeServerEventError[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeServerEventError[type]" has a null value in JSON.');
+        assert(json.containsKey(r'error'), 'Required key "RealtimeServerEventError[error]" is missing from JSON.');
+        assert(json[r'error'] != null, 'Required key "RealtimeServerEventError[error]" has a null value in JSON.');
         return true;
       }());
 
@@ -126,27 +128,28 @@ class RealtimeServerEventError {
 }
 
 /// The event type, must be `error`.
-class RealtimeServerEventErrorTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventErrorTypeEnum._(this.value);
+enum RealtimeServerEventErrorTypeEnum {
+  error._(r'error'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventErrorTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const error = RealtimeServerEventErrorTypeEnum._(r'error');
-
-  /// List of all possible values in this [enum][RealtimeServerEventErrorTypeEnum].
-  static const values = <RealtimeServerEventErrorTypeEnum>[
-    error,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventErrorTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventErrorTypeEnum? fromJson(dynamic value) => RealtimeServerEventErrorTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventErrorTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventErrorTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventErrorTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -168,9 +171,10 @@ class RealtimeServerEventErrorTypeEnumTypeTransformer {
 
   const RealtimeServerEventErrorTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventErrorTypeEnum data) => data.value;
+  String encode(RealtimeServerEventErrorTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventErrorTypeEnum.
+  /// Returns the instance of [RealtimeServerEventErrorTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -179,6 +183,9 @@ class RealtimeServerEventErrorTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventErrorTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventErrorTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'error': return RealtimeServerEventErrorTypeEnum.error;
@@ -191,7 +198,7 @@ class RealtimeServerEventErrorTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeServerEventErrorTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventErrorTypeEnumTypeTransformer? _instance;
 }
 

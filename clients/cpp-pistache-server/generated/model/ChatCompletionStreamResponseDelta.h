@@ -35,7 +35,7 @@ class  ChatCompletionStreamResponseDelta
 {
 public:
     ChatCompletionStreamResponseDelta();
-    virtual ~ChatCompletionStreamResponseDelta() = default;
+    virtual ~ChatCompletionStreamResponseDelta();
 
 
     /// <summary>

@@ -25,7 +25,7 @@ public class CreateCompletionRequest   {
   
   private CreateCompletionRequestModel model;
 
-  private CreateCompletionRequestPrompt prompt = <|endoftext|>;
+  private CreateCompletionRequestPrompt prompt;
 
   private Integer bestOf = 1;
 
@@ -45,7 +45,7 @@ public class CreateCompletionRequest   {
 
   private Integer seed;
 
-  private CreateCompletionRequestStop stop = null;
+  private CreateCompletionRequestStop stop;
 
   private Boolean stream = false;
 
@@ -491,10 +491,7 @@ public class CreateCompletionRequest   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

@@ -41,7 +41,7 @@ class  FineTuneChatRequestInput_messages_inner
 {
 public:
     FineTuneChatRequestInput_messages_inner();
-    virtual ~FineTuneChatRequestInput_messages_inner() = default;
+    virtual ~FineTuneChatRequestInput_messages_inner();
 
 
     /// <summary>

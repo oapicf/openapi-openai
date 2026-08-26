@@ -30,10 +30,10 @@ static message_delta_content_image_file_object_image_file_t *message_delta_conte
     if (!message_delta_content_image_file_object_image_file_local_var) {
         return NULL;
     }
+    memset(message_delta_content_image_file_object_image_file_local_var, 0, sizeof(message_delta_content_image_file_object_image_file_t));
+    message_delta_content_image_file_object_image_file_local_var->_library_owned = 1;
     message_delta_content_image_file_object_image_file_local_var->file_id = file_id;
     message_delta_content_image_file_object_image_file_local_var->detail = detail;
-
-    message_delta_content_image_file_object_image_file_local_var->_library_owned = 1;
     return message_delta_content_image_file_object_image_file_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) message_delta_content_image_file_object_image_file_t
     char *file_id,
     openai_api_message_delta_content_image_file_object_image_file_DETAIL_e detail
     ) {
-    return message_delta_content_image_file_object_image_file_create_internal (
+    message_delta_content_image_file_object_image_file_t *result = message_delta_content_image_file_object_image_file_create_internal (
         file_id,
         detail
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_delta_content_image_file_object_image_file_free(message_delta_content_image_file_object_image_file_t *message_delta_content_image_file_object_image_file) {
@@ -94,6 +97,8 @@ message_delta_content_image_file_object_image_file_t *message_delta_content_imag
 
     message_delta_content_image_file_object_image_file_t *message_delta_content_image_file_object_image_file_local_var = NULL;
 
+    char *file_id_local_str = NULL;
+
     // message_delta_content_image_file_object_image_file->file_id
     cJSON *file_id = cJSON_GetObjectItemCaseSensitive(message_delta_content_image_file_object_image_fileJSON, "file_id");
     if (cJSON_IsNull(file_id)) {
@@ -121,13 +126,23 @@ message_delta_content_image_file_object_image_file_t *message_delta_content_imag
     }
 
 
+    if (file_id && !cJSON_IsNull(file_id)) file_id_local_str = strdup(file_id->valuestring);
+
     message_delta_content_image_file_object_image_file_local_var = message_delta_content_image_file_object_image_file_create_internal (
-        file_id && !cJSON_IsNull(file_id) ? strdup(file_id->valuestring) : NULL,
+        file_id_local_str,
         detail ? detailVariable : openai_api_message_delta_content_image_file_object_image_file_DETAIL_NULL
         );
 
+    if (!message_delta_content_image_file_object_image_file_local_var) {
+        goto end;
+    }
+
     return message_delta_content_image_file_object_image_file_local_var;
 end:
+    if (file_id_local_str) {
+        free(file_id_local_str);
+        file_id_local_str = NULL;
+    }
     return NULL;
 
 }

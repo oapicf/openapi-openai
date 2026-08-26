@@ -36,7 +36,7 @@ function Initialize-AuditLogApiKeyCreatedData {
 
 
         $PSO = [PSCustomObject]@{
-            "scopes" = ${Scopes}
+            'scopes' = ${Scopes}
         }
 
 
@@ -74,21 +74,21 @@ function ConvertFrom-JsonToAuditLogApiKeyCreatedData {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AuditLogApiKeyCreatedData
-        $AllProperties = ("scopes")
+        $AllProperties = ('scopes')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scopes"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'scopes'))) { #optional property not found
             $Scopes = $null
         } else {
-            $Scopes = $JsonParameters.PSobject.Properties["scopes"].value
+            $Scopes = $JsonParameters.PSobject.Properties['scopes'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "scopes" = ${Scopes}
+            'scopes' = ${Scopes}
         }
 
         return $PSO

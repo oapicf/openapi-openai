@@ -1,4 +1,4 @@
-import connexion
+import flask
 from typing import Dict
 from typing import Tuple
 from typing import Union
@@ -22,8 +22,8 @@ def create_speech(body):  # noqa: E501
     :rtype: Union[file, Tuple[file, int], Tuple[file, int, Dict[str, str]]
     """
     create_speech_request = body
-    if connexion.request.is_json:
-        create_speech_request = CreateSpeechRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        create_speech_request = CreateSpeechRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -49,10 +49,10 @@ def create_transcription(file, model, language=None, prompt=None, response_forma
 
     :rtype: Union[CreateTranscription200Response, Tuple[CreateTranscription200Response, int], Tuple[CreateTranscription200Response, int, Dict[str, str]]
     """
-    if connexion.request.is_json:
-        model = CreateTranscriptionRequestModel.from_dict(connexion.request.get_json())  # noqa: E501
-    if connexion.request.is_json:
-        response_format = AudioResponseFormat.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        model = CreateTranscriptionRequestModel.from_dict(flask.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        response_format = AudioResponseFormat.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -74,8 +74,8 @@ def create_translation(file, model, prompt=None, response_format=None, temperatu
 
     :rtype: Union[CreateTranslation200Response, Tuple[CreateTranslation200Response, int], Tuple[CreateTranslation200Response, int, Dict[str, str]]
     """
-    if connexion.request.is_json:
-        model = CreateTranscriptionRequestModel.from_dict(connexion.request.get_json())  # noqa: E501
-    if connexion.request.is_json:
-        response_format = AudioResponseFormat.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        model = CreateTranscriptionRequestModel.from_dict(flask.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        response_format = AudioResponseFormat.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'

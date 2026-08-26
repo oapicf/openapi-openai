@@ -51,7 +51,7 @@ class MessageDeltaContentImageFileObject
      * @var int|null
      * @SerializedName("index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $index = null;
@@ -62,7 +62,7 @@ class MessageDeltaContentImageFileObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['image_file'])]
     #[Assert\Type("string")]
@@ -72,7 +72,7 @@ class MessageDeltaContentImageFileObject
      * @var MessageDeltaContentImageFileObjectImageFile|null
      * @SerializedName("image_file")
      * @Type("OpenAPI\Server\Model\MessageDeltaContentImageFileObjectImageFile")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\MessageDeltaContentImageFileObjectImageFile")]
     protected ?MessageDeltaContentImageFileObjectImageFile $imageFile = null;
 
@@ -100,12 +100,12 @@ class MessageDeltaContentImageFileObject
     }
 
     /**
-    * Sets index.
-    *
-    * @param int|null $index  The index of the content part in the message.
-    *
-    * @return $this
-    */
+     * Sets index.
+     *
+     * @param int|null $index  The index of the content part in the message.
+     *
+     * @return $this
+     */
     public function setIndex(?int $index): self
     {
         $this->index = $index;
@@ -127,12 +127,12 @@ class MessageDeltaContentImageFileObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `image_file`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `image_file`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -154,12 +154,12 @@ class MessageDeltaContentImageFileObject
     }
 
     /**
-    * Sets imageFile.
-    *
-    * @param MessageDeltaContentImageFileObjectImageFile|null $imageFile
-    *
-    * @return $this
-    */
+     * Sets imageFile.
+     *
+     * @param MessageDeltaContentImageFileObjectImageFile|null $imageFile
+     *
+     * @return $this
+     */
     public function setImageFile(?MessageDeltaContentImageFileObjectImageFile $imageFile = null): self
     {
         $this->imageFile = $imageFile;

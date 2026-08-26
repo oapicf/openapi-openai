@@ -51,7 +51,7 @@ class CreateModerationResponseResultsInnerCategories
      * @var bool|null
      * @SerializedName("hate")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $hate = null;
@@ -62,7 +62,7 @@ class CreateModerationResponseResultsInnerCategories
      * @var bool|null
      * @SerializedName("hate/threatening")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $hateThreatening = null;
@@ -73,7 +73,7 @@ class CreateModerationResponseResultsInnerCategories
      * @var bool|null
      * @SerializedName("harassment")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $harassment = null;
@@ -84,7 +84,7 @@ class CreateModerationResponseResultsInnerCategories
      * @var bool|null
      * @SerializedName("harassment/threatening")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $harassmentThreatening = null;
@@ -95,7 +95,7 @@ class CreateModerationResponseResultsInnerCategories
      * @var bool|null
      * @SerializedName("illicit")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $illicit = null;
@@ -106,7 +106,7 @@ class CreateModerationResponseResultsInnerCategories
      * @var bool|null
      * @SerializedName("illicit/violent")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $illicitViolent = null;
@@ -117,7 +117,7 @@ class CreateModerationResponseResultsInnerCategories
      * @var bool|null
      * @SerializedName("self-harm")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $selfHarm = null;
@@ -128,7 +128,7 @@ class CreateModerationResponseResultsInnerCategories
      * @var bool|null
      * @SerializedName("self-harm/intent")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $selfHarmIntent = null;
@@ -139,7 +139,7 @@ class CreateModerationResponseResultsInnerCategories
      * @var bool|null
      * @SerializedName("self-harm/instructions")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $selfHarmInstructions = null;
@@ -150,7 +150,7 @@ class CreateModerationResponseResultsInnerCategories
      * @var bool|null
      * @SerializedName("sexual")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $sexual = null;
@@ -161,7 +161,7 @@ class CreateModerationResponseResultsInnerCategories
      * @var bool|null
      * @SerializedName("sexual/minors")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $sexualMinors = null;
@@ -172,7 +172,7 @@ class CreateModerationResponseResultsInnerCategories
      * @var bool|null
      * @SerializedName("violence")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $violence = null;
@@ -183,7 +183,7 @@ class CreateModerationResponseResultsInnerCategories
      * @var bool|null
      * @SerializedName("violence/graphic")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $violenceGraphic = null;
@@ -222,12 +222,12 @@ class CreateModerationResponseResultsInnerCategories
     }
 
     /**
-    * Sets hate.
-    *
-    * @param bool|null $hate  Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
-    *
-    * @return $this
-    */
+     * Sets hate.
+     *
+     * @param bool|null $hate  Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
+     *
+     * @return $this
+     */
     public function setHate(?bool $hate): self
     {
         $this->hate = $hate;
@@ -249,12 +249,12 @@ class CreateModerationResponseResultsInnerCategories
     }
 
     /**
-    * Sets hateThreatening.
-    *
-    * @param bool|null $hateThreatening  Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
-    *
-    * @return $this
-    */
+     * Sets hateThreatening.
+     *
+     * @param bool|null $hateThreatening  Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
+     *
+     * @return $this
+     */
     public function setHateThreatening(?bool $hateThreatening): self
     {
         $this->hateThreatening = $hateThreatening;
@@ -276,12 +276,12 @@ class CreateModerationResponseResultsInnerCategories
     }
 
     /**
-    * Sets harassment.
-    *
-    * @param bool|null $harassment  Content that expresses, incites, or promotes harassing language towards any target.
-    *
-    * @return $this
-    */
+     * Sets harassment.
+     *
+     * @param bool|null $harassment  Content that expresses, incites, or promotes harassing language towards any target.
+     *
+     * @return $this
+     */
     public function setHarassment(?bool $harassment): self
     {
         $this->harassment = $harassment;
@@ -303,12 +303,12 @@ class CreateModerationResponseResultsInnerCategories
     }
 
     /**
-    * Sets harassmentThreatening.
-    *
-    * @param bool|null $harassmentThreatening  Harassment content that also includes violence or serious harm towards any target.
-    *
-    * @return $this
-    */
+     * Sets harassmentThreatening.
+     *
+     * @param bool|null $harassmentThreatening  Harassment content that also includes violence or serious harm towards any target.
+     *
+     * @return $this
+     */
     public function setHarassmentThreatening(?bool $harassmentThreatening): self
     {
         $this->harassmentThreatening = $harassmentThreatening;
@@ -330,12 +330,12 @@ class CreateModerationResponseResultsInnerCategories
     }
 
     /**
-    * Sets illicit.
-    *
-    * @param bool|null $illicit  Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.
-    *
-    * @return $this
-    */
+     * Sets illicit.
+     *
+     * @param bool|null $illicit  Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.
+     *
+     * @return $this
+     */
     public function setIllicit(?bool $illicit): self
     {
         $this->illicit = $illicit;
@@ -357,12 +357,12 @@ class CreateModerationResponseResultsInnerCategories
     }
 
     /**
-    * Sets illicitViolent.
-    *
-    * @param bool|null $illicitViolent  Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
-    *
-    * @return $this
-    */
+     * Sets illicitViolent.
+     *
+     * @param bool|null $illicitViolent  Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
+     *
+     * @return $this
+     */
     public function setIllicitViolent(?bool $illicitViolent): self
     {
         $this->illicitViolent = $illicitViolent;
@@ -384,12 +384,12 @@ class CreateModerationResponseResultsInnerCategories
     }
 
     /**
-    * Sets selfHarm.
-    *
-    * @param bool|null $selfHarm  Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
-    *
-    * @return $this
-    */
+     * Sets selfHarm.
+     *
+     * @param bool|null $selfHarm  Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
+     *
+     * @return $this
+     */
     public function setSelfHarm(?bool $selfHarm): self
     {
         $this->selfHarm = $selfHarm;
@@ -411,12 +411,12 @@ class CreateModerationResponseResultsInnerCategories
     }
 
     /**
-    * Sets selfHarmIntent.
-    *
-    * @param bool|null $selfHarmIntent  Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
-    *
-    * @return $this
-    */
+     * Sets selfHarmIntent.
+     *
+     * @param bool|null $selfHarmIntent  Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
+     *
+     * @return $this
+     */
     public function setSelfHarmIntent(?bool $selfHarmIntent): self
     {
         $this->selfHarmIntent = $selfHarmIntent;
@@ -438,12 +438,12 @@ class CreateModerationResponseResultsInnerCategories
     }
 
     /**
-    * Sets selfHarmInstructions.
-    *
-    * @param bool|null $selfHarmInstructions  Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
-    *
-    * @return $this
-    */
+     * Sets selfHarmInstructions.
+     *
+     * @param bool|null $selfHarmInstructions  Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
+     *
+     * @return $this
+     */
     public function setSelfHarmInstructions(?bool $selfHarmInstructions): self
     {
         $this->selfHarmInstructions = $selfHarmInstructions;
@@ -465,12 +465,12 @@ class CreateModerationResponseResultsInnerCategories
     }
 
     /**
-    * Sets sexual.
-    *
-    * @param bool|null $sexual  Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
-    *
-    * @return $this
-    */
+     * Sets sexual.
+     *
+     * @param bool|null $sexual  Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
+     *
+     * @return $this
+     */
     public function setSexual(?bool $sexual): self
     {
         $this->sexual = $sexual;
@@ -492,12 +492,12 @@ class CreateModerationResponseResultsInnerCategories
     }
 
     /**
-    * Sets sexualMinors.
-    *
-    * @param bool|null $sexualMinors  Sexual content that includes an individual who is under 18 years old.
-    *
-    * @return $this
-    */
+     * Sets sexualMinors.
+     *
+     * @param bool|null $sexualMinors  Sexual content that includes an individual who is under 18 years old.
+     *
+     * @return $this
+     */
     public function setSexualMinors(?bool $sexualMinors): self
     {
         $this->sexualMinors = $sexualMinors;
@@ -519,12 +519,12 @@ class CreateModerationResponseResultsInnerCategories
     }
 
     /**
-    * Sets violence.
-    *
-    * @param bool|null $violence  Content that depicts death, violence, or physical injury.
-    *
-    * @return $this
-    */
+     * Sets violence.
+     *
+     * @param bool|null $violence  Content that depicts death, violence, or physical injury.
+     *
+     * @return $this
+     */
     public function setViolence(?bool $violence): self
     {
         $this->violence = $violence;
@@ -546,12 +546,12 @@ class CreateModerationResponseResultsInnerCategories
     }
 
     /**
-    * Sets violenceGraphic.
-    *
-    * @param bool|null $violenceGraphic  Content that depicts death, violence, or physical injury in graphic detail.
-    *
-    * @return $this
-    */
+     * Sets violenceGraphic.
+     *
+     * @param bool|null $violenceGraphic  Content that depicts death, violence, or physical injury in graphic detail.
+     *
+     * @return $this
+     */
     public function setViolenceGraphic(?bool $violenceGraphic): self
     {
         $this->violenceGraphic = $violenceGraphic;

@@ -32,7 +32,7 @@ export class BatchApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/batches/{batch_id}/cancel'
-            .replace('{' + 'batch_id' + '}', encodeURIComponent(String(batchId)));
+            .replace('{batch_id}', encodeURIComponent(String(batchId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -159,7 +159,7 @@ export class BatchApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/batches/{batch_id}'
-            .replace('{' + 'batch_id' + '}', encodeURIComponent(String(batchId)));
+            .replace('{batch_id}', encodeURIComponent(String(batchId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

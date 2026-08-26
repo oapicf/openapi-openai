@@ -36,7 +36,7 @@ function Initialize-RunStepDeltaObjectDelta {
 
 
         $PSO = [PSCustomObject]@{
-            "step_details" = ${StepDetails}
+            'step_details' = ${StepDetails}
         }
 
 
@@ -74,21 +74,21 @@ function ConvertFrom-JsonToRunStepDeltaObjectDelta {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDeltaObjectDelta
-        $AllProperties = ("step_details")
+        $AllProperties = ('step_details')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "step_details"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'step_details'))) { #optional property not found
             $StepDetails = $null
         } else {
-            $StepDetails = $JsonParameters.PSobject.Properties["step_details"].value
+            $StepDetails = $JsonParameters.PSobject.Properties['step_details'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "step_details" = ${StepDetails}
+            'step_details' = ${StepDetails}
         }
 
         return $PSO

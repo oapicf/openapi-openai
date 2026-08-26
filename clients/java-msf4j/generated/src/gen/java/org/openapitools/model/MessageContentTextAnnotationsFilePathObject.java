@@ -12,7 +12,7 @@ import org.openapitools.model.MessageContentTextAnnotationsFilePathObjectFilePat
  * A URL for the file that&#39;s generated when the assistant used the &#x60;code_interpreter&#x60; tool to generate a file.
  */
 @ApiModel(description = "A URL for the file that's generated when the assistant used the `code_interpreter` tool to generate a file.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class MessageContentTextAnnotationsFilePathObject   {
   /**
    * Always `file_path`.
@@ -191,10 +191,7 @@ public class MessageContentTextAnnotationsFilePathObject   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

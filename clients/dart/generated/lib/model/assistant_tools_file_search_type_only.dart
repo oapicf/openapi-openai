@@ -48,10 +48,8 @@ class AssistantToolsFileSearchTypeOnly {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AssistantToolsFileSearchTypeOnly[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AssistantToolsFileSearchTypeOnly[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "AssistantToolsFileSearchTypeOnly[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "AssistantToolsFileSearchTypeOnly[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -109,27 +107,28 @@ class AssistantToolsFileSearchTypeOnly {
 }
 
 /// The type of tool being defined: `file_search`
-class AssistantToolsFileSearchTypeOnlyTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const AssistantToolsFileSearchTypeOnlyTypeEnum._(this.value);
+enum AssistantToolsFileSearchTypeOnlyTypeEnum {
+  fileSearch._(r'file_search'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const AssistantToolsFileSearchTypeOnlyTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const fileSearch = AssistantToolsFileSearchTypeOnlyTypeEnum._(r'file_search');
-
-  /// List of all possible values in this [enum][AssistantToolsFileSearchTypeOnlyTypeEnum].
-  static const values = <AssistantToolsFileSearchTypeOnlyTypeEnum>[
-    fileSearch,
-  ];
-
+  /// Returns the instance of [AssistantToolsFileSearchTypeOnlyTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static AssistantToolsFileSearchTypeOnlyTypeEnum? fromJson(dynamic value) => AssistantToolsFileSearchTypeOnlyTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [AssistantToolsFileSearchTypeOnlyTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<AssistantToolsFileSearchTypeOnlyTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <AssistantToolsFileSearchTypeOnlyTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -151,9 +150,10 @@ class AssistantToolsFileSearchTypeOnlyTypeEnumTypeTransformer {
 
   const AssistantToolsFileSearchTypeOnlyTypeEnumTypeTransformer._();
 
-  String encode(AssistantToolsFileSearchTypeOnlyTypeEnum data) => data.value;
+  String encode(AssistantToolsFileSearchTypeOnlyTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a AssistantToolsFileSearchTypeOnlyTypeEnum.
+  /// Returns the instance of [AssistantToolsFileSearchTypeOnlyTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -162,6 +162,9 @@ class AssistantToolsFileSearchTypeOnlyTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   AssistantToolsFileSearchTypeOnlyTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is AssistantToolsFileSearchTypeOnlyTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'file_search': return AssistantToolsFileSearchTypeOnlyTypeEnum.fileSearch;
@@ -174,7 +177,7 @@ class AssistantToolsFileSearchTypeOnlyTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [AssistantToolsFileSearchTypeOnlyTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static AssistantToolsFileSearchTypeOnlyTypeEnumTypeTransformer? _instance;
 }
 

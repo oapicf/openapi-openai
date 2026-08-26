@@ -52,28 +52,28 @@ public:
 
 	/*! \brief Set The index of the tool call in the tool calls array.
 	 */
-	void setIndex(int  index);
+	void setIndex(int index);
 	/*! \brief Get The ID of the tool call object.
 	 */
 	std::string getId();
 
 	/*! \brief Set The ID of the tool call object.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The type of tool call. This is always going to be `file_search` for this type of tool call.
 	 */
 	std::string getType();
 
 	/*! \brief Set The type of tool call. This is always going to be `file_search` for this type of tool call.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get For now, this is always going to be an empty object.
 	 */
 	Object getFileSearch();
 
 	/*! \brief Set For now, this is always going to be an empty object.
 	 */
-	void setFileSearch(Object  file_search);
+	void setFileSearch(Object file_search);
 
 
     private:

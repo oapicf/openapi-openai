@@ -43,6 +43,7 @@ public:
     void initializeServerConfigs();
     int setDefaultServerValue(int serverIndex,const QString &operation, const QString &variable,const QString &val);
     void setServerIndex(const QString &operation, int serverIndex);
+    void setServerIndex(int serverIndex);
     void setApiKey(const QString &apiKeyName, const QString &apiKey);
     void setBearerToken(const QString &token);
     void setUsername(const QString &username);
@@ -85,6 +86,13 @@ public:
 
 
 private:
+    enum class OauthMethod : int {
+        INVALID_VALUE_OPENAPI_GENERATED = 0,
+        ImplicitFlow = 1,
+        AuthorizationFlow = 2,
+        ClientCredentialsFlow = 3,
+        ResourceOwnerPasswordFlow = 4
+    };
     QMap<QString,int> _serverIndices;
     QMap<QString,QList<OAIServerConfiguration>> _serverConfigs;
     QMap<QString, QString> _apiKeys;
@@ -104,7 +112,7 @@ private:
     OauthImplicit _implicitFlow;
     OauthCredentials _credentialFlow;
     OauthPassword _passwordFlow;
-    int _OauthMethod = 0;
+    OauthMethod _OauthMethod = OauthMethod::INVALID_VALUE_OPENAPI_GENERATED;
 
     void addUploadPartCallback(OAIHttpRequestWorker *worker);
     void cancelUploadCallback(OAIHttpRequestWorker *worker);
@@ -124,30 +132,14 @@ Q_SIGNALS:
     void completeUploadSignalFull(OAIHttpRequestWorker *worker, OAIUpload summary);
     void createUploadSignalFull(OAIHttpRequestWorker *worker, OAIUpload summary);
 
-    Q_DECL_DEPRECATED_X("Use addUploadPartSignalError() instead")
-    void addUploadPartSignalE(OAIUploadPart summary, QNetworkReply::NetworkError error_type, QString error_str);
     void addUploadPartSignalError(OAIUploadPart summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use cancelUploadSignalError() instead")
-    void cancelUploadSignalE(OAIUpload summary, QNetworkReply::NetworkError error_type, QString error_str);
     void cancelUploadSignalError(OAIUpload summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use completeUploadSignalError() instead")
-    void completeUploadSignalE(OAIUpload summary, QNetworkReply::NetworkError error_type, QString error_str);
     void completeUploadSignalError(OAIUpload summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createUploadSignalError() instead")
-    void createUploadSignalE(OAIUpload summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createUploadSignalError(OAIUpload summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
-    Q_DECL_DEPRECATED_X("Use addUploadPartSignalErrorFull() instead")
-    void addUploadPartSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void addUploadPartSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use cancelUploadSignalErrorFull() instead")
-    void cancelUploadSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void cancelUploadSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use completeUploadSignalErrorFull() instead")
-    void completeUploadSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void completeUploadSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createUploadSignalErrorFull() instead")
-    void createUploadSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createUploadSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();

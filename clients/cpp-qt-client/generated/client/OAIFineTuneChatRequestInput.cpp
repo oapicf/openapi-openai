@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIFineTuneChatRequestInput::OAIFineTuneChatRequestInput(QString json) {
+OAIFineTuneChatRequestInput::OAIFineTuneChatRequestInput(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -47,7 +47,7 @@ void OAIFineTuneChatRequestInput::initializeModel() {
     m_functions_isValid = false;
 }
 
-void OAIFineTuneChatRequestInput::fromJson(QString jsonString) {
+void OAIFineTuneChatRequestInput::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

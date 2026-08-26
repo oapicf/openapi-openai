@@ -49,7 +49,7 @@ class UsageAudioTranscriptionsResult
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['organization.usage.audio_transcriptions.result'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class UsageAudioTranscriptionsResult
      * @var int|null
      * @SerializedName("seconds")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $seconds = null;
@@ -72,7 +72,7 @@ class UsageAudioTranscriptionsResult
      * @var int|null
      * @SerializedName("num_model_requests")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $numModelRequests = null;
@@ -83,7 +83,7 @@ class UsageAudioTranscriptionsResult
      * @var string|null
      * @SerializedName("project_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $projectId = null;
 
@@ -93,7 +93,7 @@ class UsageAudioTranscriptionsResult
      * @var string|null
      * @SerializedName("user_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $userId = null;
 
@@ -103,7 +103,7 @@ class UsageAudioTranscriptionsResult
      * @var string|null
      * @SerializedName("api_key_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $apiKeyId = null;
 
@@ -113,7 +113,7 @@ class UsageAudioTranscriptionsResult
      * @var string|null
      * @SerializedName("model")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $model = null;
 
@@ -145,12 +145,12 @@ class UsageAudioTranscriptionsResult
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -172,12 +172,12 @@ class UsageAudioTranscriptionsResult
     }
 
     /**
-    * Sets seconds.
-    *
-    * @param int|null $seconds  The number of seconds processed.
-    *
-    * @return $this
-    */
+     * Sets seconds.
+     *
+     * @param int|null $seconds  The number of seconds processed.
+     *
+     * @return $this
+     */
     public function setSeconds(?int $seconds): self
     {
         $this->seconds = $seconds;
@@ -199,12 +199,12 @@ class UsageAudioTranscriptionsResult
     }
 
     /**
-    * Sets numModelRequests.
-    *
-    * @param int|null $numModelRequests  The count of requests made to the model.
-    *
-    * @return $this
-    */
+     * Sets numModelRequests.
+     *
+     * @param int|null $numModelRequests  The count of requests made to the model.
+     *
+     * @return $this
+     */
     public function setNumModelRequests(?int $numModelRequests): self
     {
         $this->numModelRequests = $numModelRequests;
@@ -226,12 +226,12 @@ class UsageAudioTranscriptionsResult
     }
 
     /**
-    * Sets projectId.
-    *
-    * @param string|null $projectId  When `group_by=project_id`, this field provides the project ID of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets projectId.
+     *
+     * @param string|null $projectId  When `group_by=project_id`, this field provides the project ID of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setProjectId(?string $projectId = null): self
     {
         $this->projectId = $projectId;
@@ -253,12 +253,12 @@ class UsageAudioTranscriptionsResult
     }
 
     /**
-    * Sets userId.
-    *
-    * @param string|null $userId  When `group_by=user_id`, this field provides the user ID of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets userId.
+     *
+     * @param string|null $userId  When `group_by=user_id`, this field provides the user ID of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setUserId(?string $userId = null): self
     {
         $this->userId = $userId;
@@ -280,12 +280,12 @@ class UsageAudioTranscriptionsResult
     }
 
     /**
-    * Sets apiKeyId.
-    *
-    * @param string|null $apiKeyId  When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets apiKeyId.
+     *
+     * @param string|null $apiKeyId  When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setApiKeyId(?string $apiKeyId = null): self
     {
         $this->apiKeyId = $apiKeyId;
@@ -307,12 +307,12 @@ class UsageAudioTranscriptionsResult
     }
 
     /**
-    * Sets model.
-    *
-    * @param string|null $model  When `group_by=model`, this field provides the model name of the grouped usage result.
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param string|null $model  When `group_by=model`, this field provides the model name of the grouped usage result.
+     *
+     * @return $this
+     */
     public function setModel(?string $model = null): self
     {
         $this->model = $model;

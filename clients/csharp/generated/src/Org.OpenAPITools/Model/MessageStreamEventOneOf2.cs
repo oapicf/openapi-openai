@@ -138,8 +138,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageStreamEventOneOf2" />
     /// </summary>
-    public class MessageStreamEventOneOf2JsonConverter : JsonConverter<MessageStreamEventOneOf2>
+    public partial class MessageStreamEventOneOf2JsonConverter : JsonConverter<MessageStreamEventOneOf2>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageStreamEventOneOf2JsonConverter" /> class.
+        /// </summary>
+        public MessageStreamEventOneOf2JsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageStreamEventOneOf2" />
         /// </summary>

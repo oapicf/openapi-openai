@@ -127,7 +127,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The type of method. Is either &#x60;supervised&#x60; or &#x60;dpo&#x60;.</value>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Supervised
@@ -140,7 +140,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Supervised
         /// </summary>
         [JsonPropertyName("supervised")]
-        public FineTuneSupervisedMethod? Supervised { get { return this.SupervisedOption; } set { this.SupervisedOption = new(value); } }
+        public FineTuneSupervisedMethod? Supervised { get { return this.SupervisedOption.Value; } set { this.SupervisedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Dpo
@@ -153,7 +153,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Dpo
         /// </summary>
         [JsonPropertyName("dpo")]
-        public FineTuneDPOMethod? Dpo { get { return this.DpoOption; } set { this.DpoOption = new(value); } }
+        public FineTuneDPOMethod? Dpo { get { return this.DpoOption.Value; } set { this.DpoOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -184,8 +184,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTuneMethod" />
     /// </summary>
-    public class FineTuneMethodJsonConverter : JsonConverter<FineTuneMethod>
+    public partial class FineTuneMethodJsonConverter : JsonConverter<FineTuneMethod>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTuneMethodJsonConverter" /> class.
+        /// </summary>
+        public FineTuneMethodJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTuneMethod" />
         /// </summary>

@@ -21,13 +21,13 @@ message DoneEvent {
     EVENT_DONE = 0;
   }
 
-  Event event = 96891546;
+  string event = 96891546;
 
   enum Data {
     DATA__DONE_ = 0;
   }
 
-  Data data = 3076010;
+  string data = 3076010;
 
 }
 

@@ -33,7 +33,7 @@ class  RealtimeServerEventError
 {
 public:
     RealtimeServerEventError();
-    virtual ~RealtimeServerEventError() = default;
+    virtual ~RealtimeServerEventError();
 
 
     /// <summary>

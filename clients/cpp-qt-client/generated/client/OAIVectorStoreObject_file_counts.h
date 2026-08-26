@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIVectorStoreObject_file_counts : public OAIObject {
 public:
     OAIVectorStoreObject_file_counts();
-    OAIVectorStoreObject_file_counts(QString json);
+    OAIVectorStoreObject_file_counts(const QString &json);
     ~OAIVectorStoreObject_file_counts() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getInProgress() const;
     void setInProgress(const qint32 &in_progress);

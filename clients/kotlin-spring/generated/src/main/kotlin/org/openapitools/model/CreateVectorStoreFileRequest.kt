@@ -1,7 +1,10 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.ChunkingStrategyRequestParam
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -21,11 +24,15 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class CreateVectorStoreFileRequest(
 
-    @Schema(example = "null", required = true, description = "A [File](/docs/api-reference/files) ID that the vector store should use. Useful for tools like `file_search` that can access files.")
+    @Schema(required = true, description = "A [File](/docs/api-reference/files) ID that the vector store should use. Useful for tools like `file_search` that can access files.")
+    @param:JsonProperty("file_id")
     @get:JsonProperty("file_id", required = true) val fileId: kotlin.String,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("chunking_strategy")
     @get:JsonProperty("chunking_strategy") val chunkingStrategy: ChunkingStrategyRequestParam? = null
 ) {
 

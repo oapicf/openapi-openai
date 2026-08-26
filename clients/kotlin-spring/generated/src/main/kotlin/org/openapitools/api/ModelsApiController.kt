@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.ModelsApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -33,7 +32,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.openAI.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:/v1}")
 class ModelsApiController() {
 
     @Operation(
@@ -46,7 +45,8 @@ class ModelsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = [PATH_DELETE_MODEL /* "/models/{model}" */],
+        // "/models/{model}"
+        value = [PATH_DELETE_MODEL],
         produces = ["application/json"]
     )
     fun deleteModel(
@@ -65,7 +65,8 @@ class ModelsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_MODELS /* "/models" */],
+        // "/models"
+        value = [PATH_LIST_MODELS],
         produces = ["application/json"]
     )
     fun listModels(): ResponseEntity<ListModelsResponse> {
@@ -82,7 +83,8 @@ class ModelsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_RETRIEVE_MODEL /* "/models/{model}" */],
+        // "/models/{model}"
+        value = [PATH_RETRIEVE_MODEL],
         produces = ["application/json"]
     )
     fun retrieveModel(

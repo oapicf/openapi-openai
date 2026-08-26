@@ -32,7 +32,7 @@ class  RealtimeClientEventResponseCancel
 {
 public:
     RealtimeClientEventResponseCancel();
-    virtual ~RealtimeClientEventResponseCancel() = default;
+    virtual ~RealtimeClientEventResponseCancel();
 
 
     /// <summary>

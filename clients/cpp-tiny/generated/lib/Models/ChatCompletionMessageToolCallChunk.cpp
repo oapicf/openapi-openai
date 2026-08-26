@@ -128,7 +128,7 @@ ChatCompletionMessageToolCallChunk::getIndex()
 }
 
 void
-ChatCompletionMessageToolCallChunk::setIndex(int  index)
+ChatCompletionMessageToolCallChunk::setIndex(int index)
 {
 	this->index = index;
 }
@@ -140,7 +140,7 @@ ChatCompletionMessageToolCallChunk::getId()
 }
 
 void
-ChatCompletionMessageToolCallChunk::setId(std::string  id)
+ChatCompletionMessageToolCallChunk::setId(std::string id)
 {
 	this->id = id;
 }
@@ -152,7 +152,7 @@ ChatCompletionMessageToolCallChunk::getType()
 }
 
 void
-ChatCompletionMessageToolCallChunk::setType(std::string  type)
+ChatCompletionMessageToolCallChunk::setType(std::string type)
 {
 	this->type = type;
 }
@@ -164,7 +164,7 @@ ChatCompletionMessageToolCallChunk::getFunction()
 }
 
 void
-ChatCompletionMessageToolCallChunk::setFunction(ChatCompletionMessageToolCallChunk_function  function)
+ChatCompletionMessageToolCallChunk::setFunction(ChatCompletionMessageToolCallChunk_function function)
 {
 	this->function = function;
 }

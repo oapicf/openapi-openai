@@ -68,11 +68,11 @@ function Initialize-CompletionUsage {
 
 
         $PSO = [PSCustomObject]@{
-            "completion_tokens" = ${CompletionTokens}
-            "prompt_tokens" = ${PromptTokens}
-            "total_tokens" = ${TotalTokens}
-            "completion_tokens_details" = ${CompletionTokensDetails}
-            "prompt_tokens_details" = ${PromptTokensDetails}
+            'completion_tokens' = ${CompletionTokens}
+            'prompt_tokens' = ${PromptTokens}
+            'total_tokens' = ${TotalTokens}
+            'completion_tokens_details' = ${CompletionTokensDetails}
+            'prompt_tokens_details' = ${PromptTokensDetails}
         }
 
 
@@ -110,7 +110,7 @@ function ConvertFrom-JsonToCompletionUsage {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CompletionUsage
-        $AllProperties = ("completion_tokens", "prompt_tokens", "total_tokens", "completion_tokens_details", "prompt_tokens_details")
+        $AllProperties = ('completion_tokens', 'prompt_tokens', 'total_tokens', 'completion_tokens_details', 'prompt_tokens_details')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -121,42 +121,42 @@ function ConvertFrom-JsonToCompletionUsage {
             throw "Error! Empty JSON cannot be serialized due to the required property 'completion_tokens' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "completion_tokens"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'completion_tokens'))) {
             throw "Error! JSON cannot be serialized due to the required property 'completion_tokens' missing."
         } else {
-            $CompletionTokens = $JsonParameters.PSobject.Properties["completion_tokens"].value
+            $CompletionTokens = $JsonParameters.PSobject.Properties['completion_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prompt_tokens"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'prompt_tokens'))) {
             throw "Error! JSON cannot be serialized due to the required property 'prompt_tokens' missing."
         } else {
-            $PromptTokens = $JsonParameters.PSobject.Properties["prompt_tokens"].value
+            $PromptTokens = $JsonParameters.PSobject.Properties['prompt_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "total_tokens"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'total_tokens'))) {
             throw "Error! JSON cannot be serialized due to the required property 'total_tokens' missing."
         } else {
-            $TotalTokens = $JsonParameters.PSobject.Properties["total_tokens"].value
+            $TotalTokens = $JsonParameters.PSobject.Properties['total_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "completion_tokens_details"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'completion_tokens_details'))) { #optional property not found
             $CompletionTokensDetails = $null
         } else {
-            $CompletionTokensDetails = $JsonParameters.PSobject.Properties["completion_tokens_details"].value
+            $CompletionTokensDetails = $JsonParameters.PSobject.Properties['completion_tokens_details'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prompt_tokens_details"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'prompt_tokens_details'))) { #optional property not found
             $PromptTokensDetails = $null
         } else {
-            $PromptTokensDetails = $JsonParameters.PSobject.Properties["prompt_tokens_details"].value
+            $PromptTokensDetails = $JsonParameters.PSobject.Properties['prompt_tokens_details'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "completion_tokens" = ${CompletionTokens}
-            "prompt_tokens" = ${PromptTokens}
-            "total_tokens" = ${TotalTokens}
-            "completion_tokens_details" = ${CompletionTokensDetails}
-            "prompt_tokens_details" = ${PromptTokensDetails}
+            'completion_tokens' = ${CompletionTokens}
+            'prompt_tokens' = ${PromptTokens}
+            'total_tokens' = ${TotalTokens}
+            'completion_tokens_details' = ${CompletionTokensDetails}
+            'prompt_tokens_details' = ${PromptTokensDetails}
         }
 
         return $PSO

@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface User {
     /**
      * The object type, which is always `organization.user`
-     * @type {string}
+     * @type {UserObjectEnum}
      * @memberof User
      */
     object: UserObjectEnum;
@@ -45,7 +45,7 @@ export interface User {
     email: string;
     /**
      * `owner` or `reader`
-     * @type {string}
+     * @type {UserRoleEnum}
      * @memberof User
      */
     role: UserRoleEnum;
@@ -81,11 +81,13 @@ export type UserRoleEnum = typeof UserRoleEnum[keyof typeof UserRoleEnum];
  */
 export function instanceOfUser(value: object): value is User {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'organization.user') return false;
+    
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('email' in value) || value['email'] === undefined) return false;
     if (!('role' in value) || value['role'] === undefined) return false;
-    if (!('addedAt' in value) || value['addedAt'] === undefined) return false;
+    if ((!('addedAt' in (value as Record<string, any>)) && !('added_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['addedAt'] === undefined && (value as Record<string, any>)['added_at'] === undefined)) return false;
     return true;
 }
 

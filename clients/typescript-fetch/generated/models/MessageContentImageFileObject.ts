@@ -29,7 +29,7 @@ import {
 export interface MessageContentImageFileObject {
     /**
      * Always `image_file`.
-     * @type {string}
+     * @type {MessageContentImageFileObjectTypeEnum}
      * @memberof MessageContentImageFileObject
      */
     type: MessageContentImageFileObjectTypeEnum;
@@ -56,7 +56,9 @@ export type MessageContentImageFileObjectTypeEnum = typeof MessageContentImageFi
  */
 export function instanceOfMessageContentImageFileObject(value: object): value is MessageContentImageFileObject {
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('imageFile' in value) || value['imageFile'] === undefined) return false;
+    if (value['type'] !== 'image_file') return false;
+    
+    if ((!('imageFile' in (value as Record<string, any>)) && !('image_file' in (value as Record<string, any>))) || ((value as Record<string, any>)['imageFile'] === undefined && (value as Record<string, any>)['image_file'] === undefined)) return false;
     return true;
 }
 

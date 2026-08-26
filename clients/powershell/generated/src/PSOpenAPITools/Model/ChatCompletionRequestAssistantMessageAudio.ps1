@@ -40,7 +40,7 @@ function Initialize-ChatCompletionRequestAssistantMessageAudio {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
+            'id' = ${Id}
         }
 
 
@@ -78,7 +78,7 @@ function ConvertFrom-JsonToChatCompletionRequestAssistantMessageAudio {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ChatCompletionRequestAssistantMessageAudio
-        $AllProperties = ("id")
+        $AllProperties = ('id')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -89,14 +89,14 @@ function ConvertFrom-JsonToChatCompletionRequestAssistantMessageAudio {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
+            'id' = ${Id}
         }
 
         return $PSO

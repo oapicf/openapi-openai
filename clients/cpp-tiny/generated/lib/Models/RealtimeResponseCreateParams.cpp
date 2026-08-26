@@ -329,7 +329,7 @@ RealtimeResponseCreateParams::getModalities()
 }
 
 void
-RealtimeResponseCreateParams::setModalities(std::list <std::string> modalities)
+RealtimeResponseCreateParams::setModalities(std::list<std::string> modalities)
 {
 	this->modalities = modalities;
 }
@@ -341,7 +341,7 @@ RealtimeResponseCreateParams::getInstructions()
 }
 
 void
-RealtimeResponseCreateParams::setInstructions(std::string  instructions)
+RealtimeResponseCreateParams::setInstructions(std::string instructions)
 {
 	this->instructions = instructions;
 }
@@ -353,7 +353,7 @@ RealtimeResponseCreateParams::getVoice()
 }
 
 void
-RealtimeResponseCreateParams::setVoice(std::string  voice)
+RealtimeResponseCreateParams::setVoice(std::string voice)
 {
 	this->voice = voice;
 }
@@ -365,7 +365,7 @@ RealtimeResponseCreateParams::getOutputAudioFormat()
 }
 
 void
-RealtimeResponseCreateParams::setOutputAudioFormat(std::string  output_audio_format)
+RealtimeResponseCreateParams::setOutputAudioFormat(std::string output_audio_format)
 {
 	this->output_audio_format = output_audio_format;
 }
@@ -377,7 +377,7 @@ RealtimeResponseCreateParams::getTools()
 }
 
 void
-RealtimeResponseCreateParams::setTools(std::list <RealtimeResponseCreateParams_tools_inner> tools)
+RealtimeResponseCreateParams::setTools(std::list<RealtimeResponseCreateParams_tools_inner> tools)
 {
 	this->tools = tools;
 }
@@ -389,7 +389,7 @@ RealtimeResponseCreateParams::getToolChoice()
 }
 
 void
-RealtimeResponseCreateParams::setToolChoice(std::string  tool_choice)
+RealtimeResponseCreateParams::setToolChoice(std::string tool_choice)
 {
 	this->tool_choice = tool_choice;
 }
@@ -401,7 +401,7 @@ RealtimeResponseCreateParams::getTemperature()
 }
 
 void
-RealtimeResponseCreateParams::setTemperature(long  temperature)
+RealtimeResponseCreateParams::setTemperature(long temperature)
 {
 	this->temperature = temperature;
 }
@@ -413,7 +413,7 @@ RealtimeResponseCreateParams::getMaxResponseOutputTokens()
 }
 
 void
-RealtimeResponseCreateParams::setMaxResponseOutputTokens(RealtimeResponseCreateParams_max_response_output_tokens  max_response_output_tokens)
+RealtimeResponseCreateParams::setMaxResponseOutputTokens(RealtimeResponseCreateParams_max_response_output_tokens max_response_output_tokens)
 {
 	this->max_response_output_tokens = max_response_output_tokens;
 }
@@ -425,7 +425,7 @@ RealtimeResponseCreateParams::getConversation()
 }
 
 void
-RealtimeResponseCreateParams::setConversation(RealtimeResponseCreateParams_conversation  conversation)
+RealtimeResponseCreateParams::setConversation(RealtimeResponseCreateParams_conversation conversation)
 {
 	this->conversation = conversation;
 }
@@ -437,7 +437,7 @@ RealtimeResponseCreateParams::getMetadata()
 }
 
 void
-RealtimeResponseCreateParams::setMetadata(Object  metadata)
+RealtimeResponseCreateParams::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }
@@ -449,7 +449,7 @@ RealtimeResponseCreateParams::getInput()
 }
 
 void
-RealtimeResponseCreateParams::setInput(std::list <RealtimeConversationItem> input)
+RealtimeResponseCreateParams::setInput(std::list<RealtimeConversationItem> input)
 {
 	this->input = input;
 }

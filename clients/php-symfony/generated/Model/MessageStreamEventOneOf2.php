@@ -49,7 +49,7 @@ class MessageStreamEventOneOf2
      * @var string|null
      * @SerializedName("event")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['thread.message.delta'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class MessageStreamEventOneOf2
      * @var MessageDeltaObject|null
      * @SerializedName("data")
      * @Type("OpenAPI\Server\Model\MessageDeltaObject")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\MessageDeltaObject")]
@@ -88,12 +88,12 @@ class MessageStreamEventOneOf2
     }
 
     /**
-    * Sets event.
-    *
-    * @param string|null $event
-    *
-    * @return $this
-    */
+     * Sets event.
+     *
+     * @param string|null $event
+     *
+     * @return $this
+     */
     public function setEvent(?string $event): self
     {
         $this->event = $event;
@@ -115,12 +115,12 @@ class MessageStreamEventOneOf2
     }
 
     /**
-    * Sets data.
-    *
-    * @param MessageDeltaObject|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param MessageDeltaObject|null $data
+     *
+     * @return $this
+     */
     public function setData(?MessageDeltaObject $data): self
     {
         $this->data = $data;

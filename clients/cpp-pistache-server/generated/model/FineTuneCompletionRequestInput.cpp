@@ -28,6 +28,8 @@ FineTuneCompletionRequestInput::FineTuneCompletionRequestInput()
     
 }
 
+FineTuneCompletionRequestInput::~FineTuneCompletionRequestInput() = default;
+
 void FineTuneCompletionRequestInput::validate() const
 {
     std::stringstream msg;

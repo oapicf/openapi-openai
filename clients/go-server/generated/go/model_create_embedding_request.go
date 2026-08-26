@@ -14,6 +14,8 @@ package openapi
 
 import (
 	"errors"
+	"encoding/json"
+	"fmt"
 )
 
 
@@ -33,8 +35,87 @@ type CreateEmbeddingRequest struct {
 	// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 	User string `json:"user,omitempty"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into CreateEmbeddingRequest
+func (o *CreateEmbeddingRequest) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"input",
+		"model",
+	}
 
-// AssertCreateEmbeddingRequestRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"input": false,
+		"model": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"input": {},
+		"model": {},
+		"encoding_format": {},
+		"dimensions": {},
+		"user": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CreateEmbeddingRequest
+
+	if value, exists := allProperties["input"]; exists {
+		if err = json.Unmarshal(value, &decoded.Input); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["model"]; exists {
+		if err = json.Unmarshal(value, &decoded.Model); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["encoding_format"]; exists {
+		if err = json.Unmarshal(value, &decoded.EncodingFormat); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["dimensions"]; exists {
+		if err = json.Unmarshal(value, &decoded.Dimensions); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["user"]; exists {
+		if err = json.Unmarshal(value, &decoded.User); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCreateEmbeddingRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateEmbeddingRequestRequired(obj CreateEmbeddingRequest) error {
 	elements := map[string]interface{}{
 		"input": obj.Input,

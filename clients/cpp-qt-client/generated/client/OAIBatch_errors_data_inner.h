@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIBatch_errors_data_inner : public OAIObject {
 public:
     OAIBatch_errors_data_inner();
-    OAIBatch_errors_data_inner(QString json);
+    OAIBatch_errors_data_inner(const QString &json);
     ~OAIBatch_errors_data_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getCode() const;
     void setCode(const QString &code);

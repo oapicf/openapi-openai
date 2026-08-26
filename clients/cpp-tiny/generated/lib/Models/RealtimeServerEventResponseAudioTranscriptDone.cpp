@@ -190,7 +190,7 @@ RealtimeServerEventResponseAudioTranscriptDone::getEventId()
 }
 
 void
-RealtimeServerEventResponseAudioTranscriptDone::setEventId(std::string  event_id)
+RealtimeServerEventResponseAudioTranscriptDone::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -202,7 +202,7 @@ RealtimeServerEventResponseAudioTranscriptDone::getType()
 }
 
 void
-RealtimeServerEventResponseAudioTranscriptDone::setType(std::string  type)
+RealtimeServerEventResponseAudioTranscriptDone::setType(std::string type)
 {
 	this->type = type;
 }
@@ -214,7 +214,7 @@ RealtimeServerEventResponseAudioTranscriptDone::getResponseId()
 }
 
 void
-RealtimeServerEventResponseAudioTranscriptDone::setResponseId(std::string  response_id)
+RealtimeServerEventResponseAudioTranscriptDone::setResponseId(std::string response_id)
 {
 	this->response_id = response_id;
 }
@@ -226,7 +226,7 @@ RealtimeServerEventResponseAudioTranscriptDone::getItemId()
 }
 
 void
-RealtimeServerEventResponseAudioTranscriptDone::setItemId(std::string  item_id)
+RealtimeServerEventResponseAudioTranscriptDone::setItemId(std::string item_id)
 {
 	this->item_id = item_id;
 }
@@ -238,7 +238,7 @@ RealtimeServerEventResponseAudioTranscriptDone::getOutputIndex()
 }
 
 void
-RealtimeServerEventResponseAudioTranscriptDone::setOutputIndex(int  output_index)
+RealtimeServerEventResponseAudioTranscriptDone::setOutputIndex(int output_index)
 {
 	this->output_index = output_index;
 }
@@ -250,7 +250,7 @@ RealtimeServerEventResponseAudioTranscriptDone::getContentIndex()
 }
 
 void
-RealtimeServerEventResponseAudioTranscriptDone::setContentIndex(int  content_index)
+RealtimeServerEventResponseAudioTranscriptDone::setContentIndex(int content_index)
 {
 	this->content_index = content_index;
 }
@@ -262,7 +262,7 @@ RealtimeServerEventResponseAudioTranscriptDone::getTranscript()
 }
 
 void
-RealtimeServerEventResponseAudioTranscriptDone::setTranscript(std::string  transcript)
+RealtimeServerEventResponseAudioTranscriptDone::setTranscript(std::string transcript)
 {
 	this->transcript = transcript;
 }

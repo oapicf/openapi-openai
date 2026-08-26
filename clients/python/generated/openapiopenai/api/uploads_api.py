@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     OpenAI API
 
@@ -11,6 +9,7 @@
 
     Do not edit the class manually.
 """  # noqa: E501
+
 
 import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
@@ -67,7 +66,7 @@ class UploadsApi:
         :param upload_id: The ID of the Upload.  (required)
         :type upload_id: str
         :param data: The chunk of bytes for this Part.  (required)
-        :type data: bytearray
+        :type data: bytes
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -137,7 +136,7 @@ class UploadsApi:
         :param upload_id: The ID of the Upload.  (required)
         :type upload_id: str
         :param data: The chunk of bytes for this Part.  (required)
-        :type data: bytearray
+        :type data: bytes
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -207,7 +206,7 @@ class UploadsApi:
         :param upload_id: The ID of the Upload.  (required)
         :type upload_id: str
         :param data: The chunk of bytes for this Part.  (required)
-        :type data: bytearray
+        :type data: bytes
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface ProjectApiKeyDeleteResponse {
     /**
      * 
-     * @type {string}
+     * @type {ProjectApiKeyDeleteResponseObjectEnum}
      * @memberof ProjectApiKeyDeleteResponse
      */
     object: ProjectApiKeyDeleteResponseObjectEnum;
@@ -54,6 +54,8 @@ export type ProjectApiKeyDeleteResponseObjectEnum = typeof ProjectApiKeyDeleteRe
  */
 export function instanceOfProjectApiKeyDeleteResponse(value: object): value is ProjectApiKeyDeleteResponse {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'organization.project.api_key.deleted') return false;
+    
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('deleted' in value) || value['deleted'] === undefined) return false;
     return true;

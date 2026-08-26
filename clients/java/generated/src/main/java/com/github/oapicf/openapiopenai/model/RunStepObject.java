@@ -51,7 +51,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * Represents a step in execution of a run. 
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RunStepObject {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -662,10 +662,7 @@ public class RunStepObject {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -737,10 +734,14 @@ public class RunStepObject {
       StatusEnum.validateJsonElement(jsonObj.get("status"));
       // validate the required field `step_details`
       RunStepObjectStepDetails.validateJsonElement(jsonObj.get("step_details"));
+      if (jsonObj.get("last_error") != null && !jsonObj.get("last_error").isJsonNull()) {
       // validate the required field `last_error`
       RunStepObjectLastError.validateJsonElement(jsonObj.get("last_error"));
+      }
+      if (jsonObj.get("usage") != null && !jsonObj.get("usage").isJsonNull()) {
       // validate the required field `usage`
       RunStepCompletionUsage.validateJsonElement(jsonObj.get("usage"));
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

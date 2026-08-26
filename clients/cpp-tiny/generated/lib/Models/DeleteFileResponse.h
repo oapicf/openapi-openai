@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	std::string getObject();
 
 	/*! \brief Set 
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get 
 	 */
 	bool isDeleted();
 
 	/*! \brief Set 
 	 */
-	void setDeleted(bool  deleted);
+	void setDeleted(bool deleted);
 
 
     private:

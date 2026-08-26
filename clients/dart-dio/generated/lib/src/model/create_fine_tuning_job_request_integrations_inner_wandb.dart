@@ -132,8 +132,9 @@ class _$CreateFineTuningJobRequestIntegrationsInnerWandbSerializer implements Pr
         case r'tags':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.tags.replace(valueDes);
           break;
         default:

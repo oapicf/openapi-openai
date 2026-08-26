@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set The type of error.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get Error code, if any.
 	 */
 	std::string getCode();
 
 	/*! \brief Set Error code, if any.
 	 */
-	void setCode(std::string  code);
+	void setCode(std::string code);
 	/*! \brief Get A human-readable error message.
 	 */
 	std::string getMessage();
 
 	/*! \brief Set A human-readable error message.
 	 */
-	void setMessage(std::string  message);
+	void setMessage(std::string message);
 	/*! \brief Get Parameter related to the error, if any.
 	 */
 	std::string getParam();
 
 	/*! \brief Set Parameter related to the error, if any.
 	 */
-	void setParam(std::string  param);
+	void setParam(std::string param);
 
 
     private:

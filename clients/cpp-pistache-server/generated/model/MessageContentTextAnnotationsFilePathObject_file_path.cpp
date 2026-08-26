@@ -25,6 +25,8 @@ MessageContentTextAnnotationsFilePathObject_file_path::MessageContentTextAnnotat
     
 }
 
+MessageContentTextAnnotationsFilePathObject_file_path::~MessageContentTextAnnotationsFilePathObject_file_path() = default;
+
 void MessageContentTextAnnotationsFilePathObject_file_path::validate() const
 {
     std::stringstream msg;

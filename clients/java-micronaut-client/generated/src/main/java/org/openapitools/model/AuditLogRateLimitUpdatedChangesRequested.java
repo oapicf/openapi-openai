@@ -34,7 +34,7 @@ import javax.annotation.Generated;
   AuditLogRateLimitUpdatedChangesRequested.JSON_PROPERTY_BATCH1_DAY_MAX_INPUT_TOKENS
 })
 @JsonTypeName("AuditLog_rate_limit_updated_changes_requested")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-01-29T14:07:53.155657246Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class AuditLogRateLimitUpdatedChangesRequested {
     public static final String JSON_PROPERTY_MAX_REQUESTS_PER1_MINUTE = "max_requests_per_1_minute";
@@ -231,10 +231,7 @@ public class AuditLogRateLimitUpdatedChangesRequested {
      * (except the first line).
      */
     private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
+        return o == null ? "null" : o.toString().replace("\n", "\n    ");
     }
 
 }

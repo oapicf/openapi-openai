@@ -8,14 +8,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.model.AutoChunkingStrategy;
+import org.openapitools.model.AutoChunkingStrategyRequestParam;
 import org.openapitools.model.StaticChunkingStrategy;
 import org.openapitools.model.StaticChunkingStrategyStatic;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T14:09:21.247747647Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description="The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-26T05:16:14.314804265Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy   {
   
 
@@ -105,10 +105,7 @@ public class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunk
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

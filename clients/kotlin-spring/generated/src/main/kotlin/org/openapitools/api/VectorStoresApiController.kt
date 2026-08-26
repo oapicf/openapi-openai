@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.VectorStoresApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -41,7 +40,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.openAI.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:/v1}")
 class VectorStoresApiController() {
 
     @Operation(
@@ -54,7 +53,8 @@ class VectorStoresApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CANCEL_VECTOR_STORE_FILE_BATCH /* "/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel" */],
+        // "/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel"
+        value = [PATH_CANCEL_VECTOR_STORE_FILE_BATCH],
         produces = ["application/json"]
     )
     fun cancelVectorStoreFileBatch(
@@ -74,7 +74,8 @@ class VectorStoresApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_VECTOR_STORE /* "/vector_stores" */],
+        // "/vector_stores"
+        value = [PATH_CREATE_VECTOR_STORE],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -94,7 +95,8 @@ class VectorStoresApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_VECTOR_STORE_FILE /* "/vector_stores/{vector_store_id}/files" */],
+        // "/vector_stores/{vector_store_id}/files"
+        value = [PATH_CREATE_VECTOR_STORE_FILE],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -115,7 +117,8 @@ class VectorStoresApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_VECTOR_STORE_FILE_BATCH /* "/vector_stores/{vector_store_id}/file_batches" */],
+        // "/vector_stores/{vector_store_id}/file_batches"
+        value = [PATH_CREATE_VECTOR_STORE_FILE_BATCH],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -136,7 +139,8 @@ class VectorStoresApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = [PATH_DELETE_VECTOR_STORE /* "/vector_stores/{vector_store_id}" */],
+        // "/vector_stores/{vector_store_id}"
+        value = [PATH_DELETE_VECTOR_STORE],
         produces = ["application/json"]
     )
     fun deleteVectorStore(
@@ -155,7 +159,8 @@ class VectorStoresApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = [PATH_DELETE_VECTOR_STORE_FILE /* "/vector_stores/{vector_store_id}/files/{file_id}" */],
+        // "/vector_stores/{vector_store_id}/files/{file_id}"
+        value = [PATH_DELETE_VECTOR_STORE_FILE],
         produces = ["application/json"]
     )
     fun deleteVectorStoreFile(
@@ -175,7 +180,8 @@ class VectorStoresApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_VECTOR_STORE /* "/vector_stores/{vector_store_id}" */],
+        // "/vector_stores/{vector_store_id}"
+        value = [PATH_GET_VECTOR_STORE],
         produces = ["application/json"]
     )
     fun getVectorStore(
@@ -194,7 +200,8 @@ class VectorStoresApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_VECTOR_STORE_FILE /* "/vector_stores/{vector_store_id}/files/{file_id}" */],
+        // "/vector_stores/{vector_store_id}/files/{file_id}"
+        value = [PATH_GET_VECTOR_STORE_FILE],
         produces = ["application/json"]
     )
     fun getVectorStoreFile(
@@ -214,7 +221,8 @@ class VectorStoresApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_VECTOR_STORE_FILE_BATCH /* "/vector_stores/{vector_store_id}/file_batches/{batch_id}" */],
+        // "/vector_stores/{vector_store_id}/file_batches/{batch_id}"
+        value = [PATH_GET_VECTOR_STORE_FILE_BATCH],
         produces = ["application/json"]
     )
     fun getVectorStoreFileBatch(
@@ -234,7 +242,8 @@ class VectorStoresApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_FILES_IN_VECTOR_STORE_BATCH /* "/vector_stores/{vector_store_id}/file_batches/{batch_id}/files" */],
+        // "/vector_stores/{vector_store_id}/file_batches/{batch_id}/files"
+        value = [PATH_LIST_FILES_IN_VECTOR_STORE_BATCH],
         produces = ["application/json"]
     )
     fun listFilesInVectorStoreBatch(
@@ -259,7 +268,8 @@ class VectorStoresApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_VECTOR_STORE_FILES /* "/vector_stores/{vector_store_id}/files" */],
+        // "/vector_stores/{vector_store_id}/files"
+        value = [PATH_LIST_VECTOR_STORE_FILES],
         produces = ["application/json"]
     )
     fun listVectorStoreFiles(
@@ -283,7 +293,8 @@ class VectorStoresApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_VECTOR_STORES /* "/vector_stores" */],
+        // "/vector_stores"
+        value = [PATH_LIST_VECTOR_STORES],
         produces = ["application/json"]
     )
     fun listVectorStores(
@@ -305,7 +316,8 @@ class VectorStoresApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_MODIFY_VECTOR_STORE /* "/vector_stores/{vector_store_id}" */],
+        // "/vector_stores/{vector_store_id}"
+        value = [PATH_MODIFY_VECTOR_STORE],
         produces = ["application/json"],
         consumes = ["application/json"]
     )

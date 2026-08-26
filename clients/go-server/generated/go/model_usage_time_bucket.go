@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type UsageTimeBucket struct {
@@ -24,13 +29,87 @@ type UsageTimeBucket struct {
 
 	Result []UsageTimeBucketResultInner `json:"result"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into UsageTimeBucket
+func (o *UsageTimeBucket) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"object",
+		"start_time",
+		"end_time",
+		"result",
+	}
 
-// AssertUsageTimeBucketRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"object": false,
+		"start_time": false,
+		"end_time": false,
+		"result": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"object": {},
+		"start_time": {},
+		"end_time": {},
+		"result": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded UsageTimeBucket
+
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["start_time"]; exists {
+		if err = json.Unmarshal(value, &decoded.StartTime); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["end_time"]; exists {
+		if err = json.Unmarshal(value, &decoded.EndTime); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["result"]; exists {
+		if err = json.Unmarshal(value, &decoded.Result); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertUsageTimeBucketRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertUsageTimeBucketRequired(obj UsageTimeBucket) error {
 	elements := map[string]interface{}{
-		"object": obj.Object,
-		"start_time": obj.StartTime,
-		"end_time": obj.EndTime,
 		"result": obj.Result,
 	}
 	for name, el := range elements {

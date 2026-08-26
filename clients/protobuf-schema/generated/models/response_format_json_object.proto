@@ -22,7 +22,7 @@ message ResponseFormatJsonObject {
     TYPE_JSON_OBJECT = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
 }
 

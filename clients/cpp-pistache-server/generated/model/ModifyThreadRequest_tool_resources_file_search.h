@@ -33,7 +33,7 @@ class  ModifyThreadRequest_tool_resources_file_search
 {
 public:
     ModifyThreadRequest_tool_resources_file_search();
-    virtual ~ModifyThreadRequest_tool_resources_file_search() = default;
+    virtual ~ModifyThreadRequest_tool_resources_file_search();
 
 
     /// <summary>

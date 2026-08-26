@@ -69,7 +69,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A description of what the response format is for, used by the model to determine how to respond in the format.</value>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Schema
@@ -83,7 +83,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The schema for the response format, described as a JSON Schema object.</value>
         [JsonPropertyName("schema")]
-        public Dictionary<string, Object>? Schema { get { return this.SchemaOption; } set { this.SchemaOption = new(value); } }
+        public Dictionary<string, Object>? Schema { get { return this.SchemaOption.Value; } set { this.SchemaOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Strict
@@ -97,7 +97,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Whether to enable strict schema adherence when generating the output. If set to true, the model will always follow the exact schema defined in the &#x60;schema&#x60; field. Only a subset of JSON Schema is supported when &#x60;strict&#x60; is &#x60;true&#x60;. To learn more, read the [Structured Outputs guide](/docs/guides/structured-outputs).</value>
         [JsonPropertyName("strict")]
-        public bool? Strict { get { return this.StrictOption; } set { this.StrictOption = new(value); } }
+        public bool? Strict { get { return this.StrictOption.Value; } set { this.StrictOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -129,8 +129,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ResponseFormatJsonSchemaJsonSchema" />
     /// </summary>
-    public class ResponseFormatJsonSchemaJsonSchemaJsonConverter : JsonConverter<ResponseFormatJsonSchemaJsonSchema>
+    public partial class ResponseFormatJsonSchemaJsonSchemaJsonConverter : JsonConverter<ResponseFormatJsonSchemaJsonSchema>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResponseFormatJsonSchemaJsonSchemaJsonConverter" /> class.
+        /// </summary>
+        public ResponseFormatJsonSchemaJsonSchemaJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ResponseFormatJsonSchemaJsonSchema" />
         /// </summary>

@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.ThreadsApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -47,7 +46,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.openAI.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:/v1}")
 class ThreadsApiController() {
 
     @Operation(
@@ -60,7 +59,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CANCEL_RUN /* "/threads/{thread_id}/runs/{run_id}/cancel" */],
+        // "/threads/{thread_id}/runs/{run_id}/cancel"
+        value = [PATH_CANCEL_RUN],
         produces = ["application/json"]
     )
     fun cancelRun(
@@ -80,7 +80,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_MESSAGE /* "/threads/{thread_id}/messages" */],
+        // "/threads/{thread_id}/messages"
+        value = [PATH_CREATE_MESSAGE],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -101,7 +102,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_RUN /* "/threads/{thread_id}/runs" */],
+        // "/threads/{thread_id}/runs"
+        value = [PATH_CREATE_RUN],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -123,7 +125,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_THREAD /* "/threads" */],
+        // "/threads"
+        value = [PATH_CREATE_THREAD],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -143,7 +146,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_THREAD_AND_RUN /* "/threads/runs" */],
+        // "/threads/runs"
+        value = [PATH_CREATE_THREAD_AND_RUN],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -163,7 +167,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = [PATH_DELETE_MESSAGE /* "/threads/{thread_id}/messages/{message_id}" */],
+        // "/threads/{thread_id}/messages/{message_id}"
+        value = [PATH_DELETE_MESSAGE],
         produces = ["application/json"]
     )
     fun deleteMessage(
@@ -183,7 +188,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = [PATH_DELETE_THREAD /* "/threads/{thread_id}" */],
+        // "/threads/{thread_id}"
+        value = [PATH_DELETE_THREAD],
         produces = ["application/json"]
     )
     fun deleteThread(
@@ -202,7 +208,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_MESSAGE /* "/threads/{thread_id}/messages/{message_id}" */],
+        // "/threads/{thread_id}/messages/{message_id}"
+        value = [PATH_GET_MESSAGE],
         produces = ["application/json"]
     )
     fun getMessage(
@@ -222,7 +229,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_RUN /* "/threads/{thread_id}/runs/{run_id}" */],
+        // "/threads/{thread_id}/runs/{run_id}"
+        value = [PATH_GET_RUN],
         produces = ["application/json"]
     )
     fun getRun(
@@ -242,7 +250,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_RUN_STEP /* "/threads/{thread_id}/runs/{run_id}/steps/{step_id}" */],
+        // "/threads/{thread_id}/runs/{run_id}/steps/{step_id}"
+        value = [PATH_GET_RUN_STEP],
         produces = ["application/json"]
     )
     fun getRunStep(
@@ -264,7 +273,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_THREAD /* "/threads/{thread_id}" */],
+        // "/threads/{thread_id}"
+        value = [PATH_GET_THREAD],
         produces = ["application/json"]
     )
     fun getThread(
@@ -283,7 +293,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_MESSAGES /* "/threads/{thread_id}/messages" */],
+        // "/threads/{thread_id}/messages"
+        value = [PATH_LIST_MESSAGES],
         produces = ["application/json"]
     )
     fun listMessages(
@@ -307,7 +318,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_RUN_STEPS /* "/threads/{thread_id}/runs/{run_id}/steps" */],
+        // "/threads/{thread_id}/runs/{run_id}/steps"
+        value = [PATH_LIST_RUN_STEPS],
         produces = ["application/json"]
     )
     fun listRunSteps(
@@ -332,7 +344,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_RUNS /* "/threads/{thread_id}/runs" */],
+        // "/threads/{thread_id}/runs"
+        value = [PATH_LIST_RUNS],
         produces = ["application/json"]
     )
     fun listRuns(
@@ -355,7 +368,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_MODIFY_MESSAGE /* "/threads/{thread_id}/messages/{message_id}" */],
+        // "/threads/{thread_id}/messages/{message_id}"
+        value = [PATH_MODIFY_MESSAGE],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -377,7 +391,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_MODIFY_RUN /* "/threads/{thread_id}/runs/{run_id}" */],
+        // "/threads/{thread_id}/runs/{run_id}"
+        value = [PATH_MODIFY_RUN],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -399,7 +414,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_MODIFY_THREAD /* "/threads/{thread_id}" */],
+        // "/threads/{thread_id}"
+        value = [PATH_MODIFY_THREAD],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -420,7 +436,8 @@ class ThreadsApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_SUBMIT_TOOL_OUPUTS_TO_RUN /* "/threads/{thread_id}/runs/{run_id}/submit_tool_outputs" */],
+        // "/threads/{thread_id}/runs/{run_id}/submit_tool_outputs"
+        value = [PATH_SUBMIT_TOOL_OUPUTS_TO_RUN],
         produces = ["application/json"],
         consumes = ["application/json"]
     )

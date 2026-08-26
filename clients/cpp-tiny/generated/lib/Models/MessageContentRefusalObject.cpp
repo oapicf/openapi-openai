@@ -85,7 +85,7 @@ MessageContentRefusalObject::getType()
 }
 
 void
-MessageContentRefusalObject::setType(std::string  type)
+MessageContentRefusalObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -97,7 +97,7 @@ MessageContentRefusalObject::getRefusal()
 }
 
 void
-MessageContentRefusalObject::setRefusal(std::string  refusal)
+MessageContentRefusalObject::setRefusal(std::string refusal)
 {
 	this->refusal = refusal;
 }

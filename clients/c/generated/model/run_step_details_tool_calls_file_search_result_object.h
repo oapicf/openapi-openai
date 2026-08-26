@@ -22,7 +22,7 @@ typedef struct run_step_details_tool_calls_file_search_result_object_t run_step_
 typedef struct run_step_details_tool_calls_file_search_result_object_t {
     char *file_id; // string
     char *file_name; // string
-    double score; //numeric
+    double *score; //numeric
     list_t *content; //nonprimitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -31,7 +31,7 @@ typedef struct run_step_details_tool_calls_file_search_result_object_t {
 __attribute__((deprecated)) run_step_details_tool_calls_file_search_result_object_t *run_step_details_tool_calls_file_search_result_object_create(
     char *file_id,
     char *file_name,
-    double score,
+    double *score,
     list_t *content
 );
 

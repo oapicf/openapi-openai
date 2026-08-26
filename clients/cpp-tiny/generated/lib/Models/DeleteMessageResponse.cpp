@@ -106,7 +106,7 @@ DeleteMessageResponse::getId()
 }
 
 void
-DeleteMessageResponse::setId(std::string  id)
+DeleteMessageResponse::setId(std::string id)
 {
 	this->id = id;
 }
@@ -118,7 +118,7 @@ DeleteMessageResponse::isDeleted()
 }
 
 void
-DeleteMessageResponse::setDeleted(bool  deleted)
+DeleteMessageResponse::setDeleted(bool deleted)
 {
 	this->deleted = deleted;
 }
@@ -130,7 +130,7 @@ DeleteMessageResponse::getObject()
 }
 
 void
-DeleteMessageResponse::setObject(std::string  object)
+DeleteMessageResponse::setObject(std::string object)
 {
 	this->object = object;
 }

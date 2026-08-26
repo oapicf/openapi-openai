@@ -32,13 +32,13 @@ namespace OpenAPI {
 class OAIEmbedding : public OAIObject {
 public:
     OAIEmbedding();
-    OAIEmbedding(QString json);
+    OAIEmbedding(const QString &json);
     ~OAIEmbedding() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getIndex() const;
     void setIndex(const qint32 &index);

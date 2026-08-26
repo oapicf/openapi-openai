@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -9,13 +10,13 @@ import org.openapitools.model.AuditLogOrganizationUpdatedChangesRequestedSetting
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * The payload used to update the organization settings.
@@ -23,15 +24,19 @@ import javax.annotation.Generated;
 
 @Schema(name = "AuditLog_organization_updated_changes_requested", description = "The payload used to update the organization settings.")
 @JsonTypeName("AuditLog_organization_updated_changes_requested")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class AuditLogOrganizationUpdatedChangesRequested {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String title;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String description;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String name;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogOrganizationUpdatedChangesRequestedSettings settings;
 
   public AuditLogOrganizationUpdatedChangesRequested title(@Nullable String title) {
@@ -50,6 +55,7 @@ public class AuditLogOrganizationUpdatedChangesRequested {
     return title;
   }
 
+  @JsonProperty("title")
   public void setTitle(@Nullable String title) {
     this.title = title;
   }
@@ -70,6 +76,7 @@ public class AuditLogOrganizationUpdatedChangesRequested {
     return description;
   }
 
+  @JsonProperty("description")
   public void setDescription(@Nullable String description) {
     this.description = description;
   }
@@ -90,6 +97,7 @@ public class AuditLogOrganizationUpdatedChangesRequested {
     return name;
   }
 
+  @JsonProperty("name")
   public void setName(@Nullable String name) {
     this.name = name;
   }
@@ -110,6 +118,7 @@ public class AuditLogOrganizationUpdatedChangesRequested {
     return settings;
   }
 
+  @JsonProperty("settings")
   public void setSettings(@Nullable AuditLogOrganizationUpdatedChangesRequestedSettings settings) {
     this.settings = settings;
   }
@@ -150,11 +159,8 @@ public class AuditLogOrganizationUpdatedChangesRequested {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

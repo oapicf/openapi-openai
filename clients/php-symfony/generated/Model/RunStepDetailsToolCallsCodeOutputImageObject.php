@@ -49,7 +49,7 @@ class RunStepDetailsToolCallsCodeOutputImageObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['image'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class RunStepDetailsToolCallsCodeOutputImageObject
      * @var RunStepDetailsToolCallsCodeOutputImageObjectImage|null
      * @SerializedName("image")
      * @Type("OpenAPI\Server\Model\RunStepDetailsToolCallsCodeOutputImageObjectImage")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunStepDetailsToolCallsCodeOutputImageObjectImage")]
@@ -88,12 +88,12 @@ class RunStepDetailsToolCallsCodeOutputImageObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `image`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `image`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -115,12 +115,12 @@ class RunStepDetailsToolCallsCodeOutputImageObject
     }
 
     /**
-    * Sets image.
-    *
-    * @param RunStepDetailsToolCallsCodeOutputImageObjectImage|null $image
-    *
-    * @return $this
-    */
+     * Sets image.
+     *
+     * @param RunStepDetailsToolCallsCodeOutputImageObjectImage|null $image
+     *
+     * @return $this
+     */
     public function setImage(?RunStepDetailsToolCallsCodeOutputImageObjectImage $image): self
     {
         $this->image = $image;

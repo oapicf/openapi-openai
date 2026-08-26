@@ -1,4 +1,4 @@
-# # CreateCompletionRequestStop
+# CreateCompletionRequestStop
 
 ## Properties
 

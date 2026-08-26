@@ -107,7 +107,7 @@ RealtimeClientEventSessionUpdate::getEventId()
 }
 
 void
-RealtimeClientEventSessionUpdate::setEventId(std::string  event_id)
+RealtimeClientEventSessionUpdate::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -119,7 +119,7 @@ RealtimeClientEventSessionUpdate::getType()
 }
 
 void
-RealtimeClientEventSessionUpdate::setType(std::string  type)
+RealtimeClientEventSessionUpdate::setType(std::string type)
 {
 	this->type = type;
 }
@@ -131,7 +131,7 @@ RealtimeClientEventSessionUpdate::getSession()
 }
 
 void
-RealtimeClientEventSessionUpdate::setSession(RealtimeSessionCreateRequest  session)
+RealtimeClientEventSessionUpdate::setSession(RealtimeSessionCreateRequest session)
 {
 	this->session = session;
 }

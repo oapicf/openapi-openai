@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICompletionUsage_completion_tokens_details::OAICompletionUsage_completion_tokens_details(QString json) {
+OAICompletionUsage_completion_tokens_details::OAICompletionUsage_completion_tokens_details(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -47,7 +47,7 @@ void OAICompletionUsage_completion_tokens_details::initializeModel() {
     m_rejected_prediction_tokens_isValid = false;
 }
 
-void OAICompletionUsage_completion_tokens_details::fromJson(QString jsonString) {
+void OAICompletionUsage_completion_tokens_details::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

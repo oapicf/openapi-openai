@@ -170,7 +170,7 @@ MessageDeltaContentTextAnnotationsFileCitationObject::getIndex()
 }
 
 void
-MessageDeltaContentTextAnnotationsFileCitationObject::setIndex(int  index)
+MessageDeltaContentTextAnnotationsFileCitationObject::setIndex(int index)
 {
 	this->index = index;
 }
@@ -182,7 +182,7 @@ MessageDeltaContentTextAnnotationsFileCitationObject::getType()
 }
 
 void
-MessageDeltaContentTextAnnotationsFileCitationObject::setType(std::string  type)
+MessageDeltaContentTextAnnotationsFileCitationObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -194,7 +194,7 @@ MessageDeltaContentTextAnnotationsFileCitationObject::getText()
 }
 
 void
-MessageDeltaContentTextAnnotationsFileCitationObject::setText(std::string  text)
+MessageDeltaContentTextAnnotationsFileCitationObject::setText(std::string text)
 {
 	this->text = text;
 }
@@ -206,7 +206,7 @@ MessageDeltaContentTextAnnotationsFileCitationObject::getFileCitation()
 }
 
 void
-MessageDeltaContentTextAnnotationsFileCitationObject::setFileCitation(MessageDeltaContentTextAnnotationsFileCitationObject_file_citation  file_citation)
+MessageDeltaContentTextAnnotationsFileCitationObject::setFileCitation(MessageDeltaContentTextAnnotationsFileCitationObject_file_citation file_citation)
 {
 	this->file_citation = file_citation;
 }
@@ -218,7 +218,7 @@ MessageDeltaContentTextAnnotationsFileCitationObject::getStartIndex()
 }
 
 void
-MessageDeltaContentTextAnnotationsFileCitationObject::setStartIndex(int  start_index)
+MessageDeltaContentTextAnnotationsFileCitationObject::setStartIndex(int start_index)
 {
 	this->start_index = start_index;
 }
@@ -230,7 +230,7 @@ MessageDeltaContentTextAnnotationsFileCitationObject::getEndIndex()
 }
 
 void
-MessageDeltaContentTextAnnotationsFileCitationObject::setEndIndex(int  end_index)
+MessageDeltaContentTextAnnotationsFileCitationObject::setEndIndex(int end_index)
 {
 	this->end_index = end_index;
 }

@@ -33,7 +33,7 @@ class  RealtimeServerEventConversationItemInputAudioTranscriptionFailed
 {
 public:
     RealtimeServerEventConversationItemInputAudioTranscriptionFailed();
-    virtual ~RealtimeServerEventConversationItemInputAudioTranscriptionFailed() = default;
+    virtual ~RealtimeServerEventConversationItemInputAudioTranscriptionFailed();
 
 
     /// <summary>

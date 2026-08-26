@@ -37,50 +37,64 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class MessageObject(
 
-    @Schema(example = "null", required = true, description = "The identifier, which can be referenced in API endpoints.")
+    @Schema(required = true, description = "The identifier, which can be referenced in API endpoints.")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The object type, which is always `thread.message`.")
+    @Schema(required = true, description = "The object type, which is always `thread.message`.")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: MessageObject.`Object`,
 
-    @Schema(example = "null", required = true, description = "The Unix timestamp (in seconds) for when the message was created.")
+    @Schema(required = true, description = "The Unix timestamp (in seconds) for when the message was created.")
+    @param:JsonProperty("created_at")
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The [thread](/docs/api-reference/threads) ID that this message belongs to.")
+    @Schema(required = true, description = "The [thread](/docs/api-reference/threads) ID that this message belongs to.")
+    @param:JsonProperty("thread_id")
     @get:JsonProperty("thread_id", required = true) val threadId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.")
+    @Schema(required = true, description = "The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.")
+    @param:JsonProperty("status")
     @get:JsonProperty("status", required = true) val status: MessageObject.Status,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("incomplete_details")
     @get:JsonProperty("incomplete_details", required = true) val incompleteDetails: MessageObjectIncompleteDetails?,
 
-    @Schema(example = "null", required = true, description = "The Unix timestamp (in seconds) for when the message was completed.")
+    @Schema(required = true, description = "The Unix timestamp (in seconds) for when the message was completed.")
+    @param:JsonProperty("completed_at")
     @get:JsonProperty("completed_at", required = true) val completedAt: kotlin.Int?,
 
-    @Schema(example = "null", required = true, description = "The Unix timestamp (in seconds) for when the message was marked as incomplete.")
+    @Schema(required = true, description = "The Unix timestamp (in seconds) for when the message was marked as incomplete.")
+    @param:JsonProperty("incomplete_at")
     @get:JsonProperty("incomplete_at", required = true) val incompleteAt: kotlin.Int?,
 
-    @Schema(example = "null", required = true, description = "The entity that produced the message. One of `user` or `assistant`.")
+    @Schema(required = true, description = "The entity that produced the message. One of `user` or `assistant`.")
+    @param:JsonProperty("role")
     @get:JsonProperty("role", required = true) val role: MessageObject.Role,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "The content of the message in array of text and/or images.")
+    @Schema(required = true, description = "The content of the message in array of text and/or images.")
+    @param:JsonProperty("content")
     @get:JsonProperty("content", required = true) val content: kotlin.collections.List<MessageObjectContentInner>,
 
-    @Schema(example = "null", required = true, description = "If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message.")
+    @Schema(required = true, description = "If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message.")
+    @param:JsonProperty("assistant_id")
     @get:JsonProperty("assistant_id", required = true) val assistantId: kotlin.String?,
 
-    @Schema(example = "null", required = true, description = "The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints.")
+    @Schema(required = true, description = "The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints.")
+    @param:JsonProperty("run_id")
     @get:JsonProperty("run_id", required = true) val runId: kotlin.String?,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "A list of files attached to the message, and the tools they were added to.")
+    @Schema(required = true, description = "A list of files attached to the message, and the tools they were added to.")
+    @param:JsonProperty("attachments")
     @get:JsonProperty("attachments", required = true) val attachments: kotlin.collections.List<CreateMessageRequestAttachmentsInner>?,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
+    @Schema(required = true, description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
+    @param:JsonProperty("metadata")
     @get:JsonProperty("metadata", required = true) val metadata: kotlin.Any?
 ) {
 
@@ -97,7 +111,7 @@ data class MessageObject(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'MessageObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }
@@ -117,7 +131,7 @@ data class MessageObject(
             @JsonCreator
             fun forValue(value: kotlin.String): Status {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'MessageObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Status'")
             }
         }
     }
@@ -136,7 +150,7 @@ data class MessageObject(
             @JsonCreator
             fun forValue(value: kotlin.String): Role {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'MessageObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Role'")
             }
         }
     }

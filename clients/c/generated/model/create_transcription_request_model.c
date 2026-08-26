@@ -11,15 +11,18 @@ static create_transcription_request_model_t *create_transcription_request_model_
     if (!create_transcription_request_model_local_var) {
         return NULL;
     }
-
+    memset(create_transcription_request_model_local_var, 0, sizeof(create_transcription_request_model_t));
     create_transcription_request_model_local_var->_library_owned = 1;
     return create_transcription_request_model_local_var;
 }
 
 __attribute__((deprecated)) create_transcription_request_model_t *create_transcription_request_model_create(
     ) {
-    return create_transcription_request_model_create_internal (
+    create_transcription_request_model_t *result = create_transcription_request_model_create_internal (
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_transcription_request_model_free(create_transcription_request_model_t *create_transcription_request_model) {
@@ -49,8 +52,13 @@ create_transcription_request_model_t *create_transcription_request_model_parseFr
     create_transcription_request_model_t *create_transcription_request_model_local_var = NULL;
 
 
+
     create_transcription_request_model_local_var = create_transcription_request_model_create_internal (
         );
+
+    if (!create_transcription_request_model_local_var) {
+        goto end;
+    }
 
     return create_transcription_request_model_local_var;
 end:

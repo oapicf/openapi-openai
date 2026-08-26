@@ -49,7 +49,7 @@ class CreateThreadAndRunRequestToolsInner
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['code_interpreter', 'file_search', 'function'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class CreateThreadAndRunRequestToolsInner
      * @var AssistantToolsFileSearchFileSearch|null
      * @SerializedName("file_search")
      * @Type("OpenAPI\Server\Model\AssistantToolsFileSearchFileSearch")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AssistantToolsFileSearchFileSearch")]
     protected ?AssistantToolsFileSearchFileSearch $fileSearch = null;
 
@@ -67,7 +67,7 @@ class CreateThreadAndRunRequestToolsInner
      * @var FunctionObject|null
      * @SerializedName("function")
      * @Type("OpenAPI\Server\Model\FunctionObject")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\FunctionObject")]
@@ -97,12 +97,12 @@ class CreateThreadAndRunRequestToolsInner
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of tool being defined: `code_interpreter`
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of tool being defined: `code_interpreter`
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -124,12 +124,12 @@ class CreateThreadAndRunRequestToolsInner
     }
 
     /**
-    * Sets fileSearch.
-    *
-    * @param AssistantToolsFileSearchFileSearch|null $fileSearch
-    *
-    * @return $this
-    */
+     * Sets fileSearch.
+     *
+     * @param AssistantToolsFileSearchFileSearch|null $fileSearch
+     *
+     * @return $this
+     */
     public function setFileSearch(?AssistantToolsFileSearchFileSearch $fileSearch = null): self
     {
         $this->fileSearch = $fileSearch;
@@ -151,12 +151,12 @@ class CreateThreadAndRunRequestToolsInner
     }
 
     /**
-    * Sets function.
-    *
-    * @param FunctionObject|null $function
-    *
-    * @return $this
-    */
+     * Sets function.
+     *
+     * @param FunctionObject|null $function
+     *
+     * @return $this
+     */
     public function setFunction(?FunctionObject $function): self
     {
         $this->function = $function;

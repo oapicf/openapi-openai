@@ -165,7 +165,7 @@ ListAssistantsResponse::getObject()
 }
 
 void
-ListAssistantsResponse::setObject(std::string  object)
+ListAssistantsResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -177,7 +177,7 @@ ListAssistantsResponse::getData()
 }
 
 void
-ListAssistantsResponse::setData(std::list <AssistantObject> data)
+ListAssistantsResponse::setData(std::list<AssistantObject> data)
 {
 	this->data = data;
 }
@@ -189,7 +189,7 @@ ListAssistantsResponse::getFirstId()
 }
 
 void
-ListAssistantsResponse::setFirstId(std::string  first_id)
+ListAssistantsResponse::setFirstId(std::string first_id)
 {
 	this->first_id = first_id;
 }
@@ -201,7 +201,7 @@ ListAssistantsResponse::getLastId()
 }
 
 void
-ListAssistantsResponse::setLastId(std::string  last_id)
+ListAssistantsResponse::setLastId(std::string last_id)
 {
 	this->last_id = last_id;
 }
@@ -213,7 +213,7 @@ ListAssistantsResponse::isHasMore()
 }
 
 void
-ListAssistantsResponse::setHasMore(bool  has_more)
+ListAssistantsResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }

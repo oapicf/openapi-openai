@@ -86,12 +86,12 @@ function Initialize-ProjectApiKey {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "redacted_value" = ${RedactedValue}
-            "name" = ${Name}
-            "created_at" = ${CreatedAt}
-            "id" = ${Id}
-            "owner" = ${Owner}
+            'object' = ${Object}
+            'redacted_value' = ${RedactedValue}
+            'name' = ${Name}
+            'created_at' = ${CreatedAt}
+            'id' = ${Id}
+            'owner' = ${Owner}
         }
 
 
@@ -129,7 +129,7 @@ function ConvertFrom-JsonToProjectApiKey {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ProjectApiKey
-        $AllProperties = ("object", "redacted_value", "name", "created_at", "id", "owner")
+        $AllProperties = ('object', 'redacted_value', 'name', 'created_at', 'id', 'owner')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -140,49 +140,49 @@ function ConvertFrom-JsonToProjectApiKey {
             throw "Error! Empty JSON cannot be serialized due to the required property 'object' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "redacted_value"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'redacted_value'))) {
             throw "Error! JSON cannot be serialized due to the required property 'redacted_value' missing."
         } else {
-            $RedactedValue = $JsonParameters.PSobject.Properties["redacted_value"].value
+            $RedactedValue = $JsonParameters.PSobject.Properties['redacted_value'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) {
             throw "Error! JSON cannot be serialized due to the required property 'name' missing."
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created_at' missing."
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "owner"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'owner'))) {
             throw "Error! JSON cannot be serialized due to the required property 'owner' missing."
         } else {
-            $Owner = $JsonParameters.PSobject.Properties["owner"].value
+            $Owner = $JsonParameters.PSobject.Properties['owner'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "redacted_value" = ${RedactedValue}
-            "name" = ${Name}
-            "created_at" = ${CreatedAt}
-            "id" = ${Id}
-            "owner" = ${Owner}
+            'object' = ${Object}
+            'redacted_value' = ${RedactedValue}
+            'name' = ${Name}
+            'created_at' = ${CreatedAt}
+            'id' = ${Id}
+            'owner' = ${Owner}
         }
 
         return $PSO

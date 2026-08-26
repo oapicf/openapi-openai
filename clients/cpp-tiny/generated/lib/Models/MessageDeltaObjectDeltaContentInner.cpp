@@ -172,7 +172,7 @@ MessageDeltaObject_delta_content_inner::getIndex()
 }
 
 void
-MessageDeltaObject_delta_content_inner::setIndex(int  index)
+MessageDeltaObject_delta_content_inner::setIndex(int index)
 {
 	this->index = index;
 }
@@ -184,7 +184,7 @@ MessageDeltaObject_delta_content_inner::getType()
 }
 
 void
-MessageDeltaObject_delta_content_inner::setType(std::string  type)
+MessageDeltaObject_delta_content_inner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -196,7 +196,7 @@ MessageDeltaObject_delta_content_inner::getImageFile()
 }
 
 void
-MessageDeltaObject_delta_content_inner::setImageFile(MessageDeltaContentImageFileObject_image_file  image_file)
+MessageDeltaObject_delta_content_inner::setImageFile(MessageDeltaContentImageFileObject_image_file image_file)
 {
 	this->image_file = image_file;
 }
@@ -208,7 +208,7 @@ MessageDeltaObject_delta_content_inner::getText()
 }
 
 void
-MessageDeltaObject_delta_content_inner::setText(MessageDeltaContentTextObject_text  text)
+MessageDeltaObject_delta_content_inner::setText(MessageDeltaContentTextObject_text text)
 {
 	this->text = text;
 }
@@ -220,7 +220,7 @@ MessageDeltaObject_delta_content_inner::getRefusal()
 }
 
 void
-MessageDeltaObject_delta_content_inner::setRefusal(std::string  refusal)
+MessageDeltaObject_delta_content_inner::setRefusal(std::string refusal)
 {
 	this->refusal = refusal;
 }
@@ -232,7 +232,7 @@ MessageDeltaObject_delta_content_inner::getImageUrl()
 }
 
 void
-MessageDeltaObject_delta_content_inner::setImageUrl(MessageDeltaContentImageUrlObject_image_url  image_url)
+MessageDeltaObject_delta_content_inner::setImageUrl(MessageDeltaContentImageUrlObject_image_url image_url)
 {
 	this->image_url = image_url;
 }

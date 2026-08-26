@@ -21,7 +21,7 @@ message UsageEmbeddingsResult {
     OBJECT_ORGANIZATION_USAGE_EMBEDDINGS_RESULT = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The aggregated number of input tokens used.
   int32 input_tokens = 88257457;

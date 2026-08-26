@@ -30,7 +30,7 @@ import {
 export interface ChatCompletionRequestMessageContentPartImage {
     /**
      * The type of the content part.
-     * @type {string}
+     * @type {ChatCompletionRequestMessageContentPartImageTypeEnum}
      * @memberof ChatCompletionRequestMessageContentPartImage
      */
     type: ChatCompletionRequestMessageContentPartImageTypeEnum;
@@ -57,7 +57,9 @@ export type ChatCompletionRequestMessageContentPartImageTypeEnum = typeof ChatCo
  */
 export function instanceOfChatCompletionRequestMessageContentPartImage(value: object): value is ChatCompletionRequestMessageContentPartImage {
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('imageUrl' in value) || value['imageUrl'] === undefined) return false;
+    if (value['type'] !== 'image_url') return false;
+    
+    if ((!('imageUrl' in (value as Record<string, any>)) && !('image_url' in (value as Record<string, any>))) || ((value as Record<string, any>)['imageUrl'] === undefined && (value as Record<string, any>)['image_url'] === undefined)) return false;
     return true;
 }
 

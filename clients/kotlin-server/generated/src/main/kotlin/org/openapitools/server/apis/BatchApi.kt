@@ -30,53 +30,51 @@ import org.openapitools.server.models.CreateBatchRequest
 import org.openapitools.server.models.ListBatchesResponse
 
 fun Route.BatchApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    post<Paths.cancelBatch> {
+    post<Paths.cancelBatch> { cancelBatch ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "id" : "id",
+              "object" : "batch",
+              "endpoint" : "endpoint",
+              "errors" : {
+                "object" : "object",
+                "data" : [ {
+                  "code" : "code",
+                  "message" : "message",
+                  "param" : "param",
+                  "line" : 0
+                }, {
+                  "code" : "code",
+                  "message" : "message",
+                  "param" : "param",
+                  "line" : 0
+                } ]
+              },
+              "input_file_id" : "input_file_id",
+              "completion_window" : "completion_window",
+              "status" : "validating",
+              "output_file_id" : "output_file_id",
+              "error_file_id" : "error_file_id",
+              "created_at" : 6,
+              "in_progress_at" : 1,
+              "expires_at" : 5,
+              "finalizing_at" : 5,
+              "completed_at" : 2,
+              "failed_at" : 7,
+              "expired_at" : 9,
+              "cancelling_at" : 3,
               "cancelled_at" : 2,
-              "metadata" : "{}",
               "request_counts" : {
                 "total" : 4,
                 "completed" : 7,
                 "failed" : 1
               },
-              "input_file_id" : "input_file_id",
-              "output_file_id" : "output_file_id",
-              "error_file_id" : "error_file_id",
-              "created_at" : 6,
-              "in_progress_at" : 1,
-              "expired_at" : 9,
-              "finalizing_at" : 5,
-              "completed_at" : 2,
-              "endpoint" : "endpoint",
-              "expires_at" : 5,
-              "cancelling_at" : 3,
-              "completion_window" : "completion_window",
-              "id" : "id",
-              "failed_at" : 7,
-              "errors" : {
-                "data" : [ {
-                  "code" : "code",
-                  "param" : "param",
-                  "line" : 0,
-                  "message" : "message"
-                }, {
-                  "code" : "code",
-                  "param" : "param",
-                  "line" : 0,
-                  "message" : "message"
-                } ],
-                "object" : "object"
-              },
-              "object" : "batch",
-              "status" : "validating"
+              "metadata" : "{}"
             }"""
             
             when (exampleContentType) {
@@ -87,52 +85,51 @@ fun Route.BatchApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createBatch> {
+    post<Paths.createBatch> { createBatch ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "id" : "id",
+              "object" : "batch",
+              "endpoint" : "endpoint",
+              "errors" : {
+                "object" : "object",
+                "data" : [ {
+                  "code" : "code",
+                  "message" : "message",
+                  "param" : "param",
+                  "line" : 0
+                }, {
+                  "code" : "code",
+                  "message" : "message",
+                  "param" : "param",
+                  "line" : 0
+                } ]
+              },
+              "input_file_id" : "input_file_id",
+              "completion_window" : "completion_window",
+              "status" : "validating",
+              "output_file_id" : "output_file_id",
+              "error_file_id" : "error_file_id",
+              "created_at" : 6,
+              "in_progress_at" : 1,
+              "expires_at" : 5,
+              "finalizing_at" : 5,
+              "completed_at" : 2,
+              "failed_at" : 7,
+              "expired_at" : 9,
+              "cancelling_at" : 3,
               "cancelled_at" : 2,
-              "metadata" : "{}",
               "request_counts" : {
                 "total" : 4,
                 "completed" : 7,
                 "failed" : 1
               },
-              "input_file_id" : "input_file_id",
-              "output_file_id" : "output_file_id",
-              "error_file_id" : "error_file_id",
-              "created_at" : 6,
-              "in_progress_at" : 1,
-              "expired_at" : 9,
-              "finalizing_at" : 5,
-              "completed_at" : 2,
-              "endpoint" : "endpoint",
-              "expires_at" : 5,
-              "cancelling_at" : 3,
-              "completion_window" : "completion_window",
-              "id" : "id",
-              "failed_at" : 7,
-              "errors" : {
-                "data" : [ {
-                  "code" : "code",
-                  "param" : "param",
-                  "line" : 0,
-                  "message" : "message"
-                }, {
-                  "code" : "code",
-                  "param" : "param",
-                  "line" : 0,
-                  "message" : "message"
-                } ],
-                "object" : "object"
-              },
-              "object" : "batch",
-              "status" : "validating"
+              "metadata" : "{}"
             }"""
             
             when (exampleContentType) {
@@ -143,93 +140,92 @@ fun Route.BatchApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listBatches> {
+    get<Paths.listBatches> { listBatches ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "first_id" : "batch_abc123",
               "data" : [ {
+                "id" : "id",
+                "object" : "batch",
+                "endpoint" : "endpoint",
+                "errors" : {
+                  "object" : "object",
+                  "data" : [ {
+                    "code" : "code",
+                    "message" : "message",
+                    "param" : "param",
+                    "line" : 0
+                  }, {
+                    "code" : "code",
+                    "message" : "message",
+                    "param" : "param",
+                    "line" : 0
+                  } ]
+                },
+                "input_file_id" : "input_file_id",
+                "completion_window" : "completion_window",
+                "status" : "validating",
+                "output_file_id" : "output_file_id",
+                "error_file_id" : "error_file_id",
+                "created_at" : 6,
+                "in_progress_at" : 1,
+                "expires_at" : 5,
+                "finalizing_at" : 5,
+                "completed_at" : 2,
+                "failed_at" : 7,
+                "expired_at" : 9,
+                "cancelling_at" : 3,
                 "cancelled_at" : 2,
-                "metadata" : "{}",
                 "request_counts" : {
                   "total" : 4,
                   "completed" : 7,
                   "failed" : 1
                 },
-                "input_file_id" : "input_file_id",
-                "output_file_id" : "output_file_id",
-                "error_file_id" : "error_file_id",
-                "created_at" : 6,
-                "in_progress_at" : 1,
-                "expired_at" : 9,
-                "finalizing_at" : 5,
-                "completed_at" : 2,
-                "endpoint" : "endpoint",
-                "expires_at" : 5,
-                "cancelling_at" : 3,
-                "completion_window" : "completion_window",
-                "id" : "id",
-                "failed_at" : 7,
-                "errors" : {
-                  "data" : [ {
-                    "code" : "code",
-                    "param" : "param",
-                    "line" : 0,
-                    "message" : "message"
-                  }, {
-                    "code" : "code",
-                    "param" : "param",
-                    "line" : 0,
-                    "message" : "message"
-                  } ],
-                  "object" : "object"
-                },
-                "object" : "batch",
-                "status" : "validating"
+                "metadata" : "{}"
               }, {
+                "id" : "id",
+                "object" : "batch",
+                "endpoint" : "endpoint",
+                "errors" : {
+                  "object" : "object",
+                  "data" : [ {
+                    "code" : "code",
+                    "message" : "message",
+                    "param" : "param",
+                    "line" : 0
+                  }, {
+                    "code" : "code",
+                    "message" : "message",
+                    "param" : "param",
+                    "line" : 0
+                  } ]
+                },
+                "input_file_id" : "input_file_id",
+                "completion_window" : "completion_window",
+                "status" : "validating",
+                "output_file_id" : "output_file_id",
+                "error_file_id" : "error_file_id",
+                "created_at" : 6,
+                "in_progress_at" : 1,
+                "expires_at" : 5,
+                "finalizing_at" : 5,
+                "completed_at" : 2,
+                "failed_at" : 7,
+                "expired_at" : 9,
+                "cancelling_at" : 3,
                 "cancelled_at" : 2,
-                "metadata" : "{}",
                 "request_counts" : {
                   "total" : 4,
                   "completed" : 7,
                   "failed" : 1
                 },
-                "input_file_id" : "input_file_id",
-                "output_file_id" : "output_file_id",
-                "error_file_id" : "error_file_id",
-                "created_at" : 6,
-                "in_progress_at" : 1,
-                "expired_at" : 9,
-                "finalizing_at" : 5,
-                "completed_at" : 2,
-                "endpoint" : "endpoint",
-                "expires_at" : 5,
-                "cancelling_at" : 3,
-                "completion_window" : "completion_window",
-                "id" : "id",
-                "failed_at" : 7,
-                "errors" : {
-                  "data" : [ {
-                    "code" : "code",
-                    "param" : "param",
-                    "line" : 0,
-                    "message" : "message"
-                  }, {
-                    "code" : "code",
-                    "param" : "param",
-                    "line" : 0,
-                    "message" : "message"
-                  } ],
-                  "object" : "object"
-                },
-                "object" : "batch",
-                "status" : "validating"
+                "metadata" : "{}"
               } ],
+              "first_id" : "batch_abc123",
               "last_id" : "batch_abc456",
               "has_more" : true,
               "object" : "list"
@@ -243,52 +239,51 @@ fun Route.BatchApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.retrieveBatch> {
+    get<Paths.retrieveBatch> { retrieveBatch ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "id" : "id",
+              "object" : "batch",
+              "endpoint" : "endpoint",
+              "errors" : {
+                "object" : "object",
+                "data" : [ {
+                  "code" : "code",
+                  "message" : "message",
+                  "param" : "param",
+                  "line" : 0
+                }, {
+                  "code" : "code",
+                  "message" : "message",
+                  "param" : "param",
+                  "line" : 0
+                } ]
+              },
+              "input_file_id" : "input_file_id",
+              "completion_window" : "completion_window",
+              "status" : "validating",
+              "output_file_id" : "output_file_id",
+              "error_file_id" : "error_file_id",
+              "created_at" : 6,
+              "in_progress_at" : 1,
+              "expires_at" : 5,
+              "finalizing_at" : 5,
+              "completed_at" : 2,
+              "failed_at" : 7,
+              "expired_at" : 9,
+              "cancelling_at" : 3,
               "cancelled_at" : 2,
-              "metadata" : "{}",
               "request_counts" : {
                 "total" : 4,
                 "completed" : 7,
                 "failed" : 1
               },
-              "input_file_id" : "input_file_id",
-              "output_file_id" : "output_file_id",
-              "error_file_id" : "error_file_id",
-              "created_at" : 6,
-              "in_progress_at" : 1,
-              "expired_at" : 9,
-              "finalizing_at" : 5,
-              "completed_at" : 2,
-              "endpoint" : "endpoint",
-              "expires_at" : 5,
-              "cancelling_at" : 3,
-              "completion_window" : "completion_window",
-              "id" : "id",
-              "failed_at" : 7,
-              "errors" : {
-                "data" : [ {
-                  "code" : "code",
-                  "param" : "param",
-                  "line" : 0,
-                  "message" : "message"
-                }, {
-                  "code" : "code",
-                  "param" : "param",
-                  "line" : 0,
-                  "message" : "message"
-                } ],
-                "object" : "object"
-              },
-              "object" : "batch",
-              "status" : "validating"
+              "metadata" : "{}"
             }"""
             
             when (exampleContentType) {
@@ -299,5 +294,4 @@ fun Route.BatchApi() {
         
     }
     }
-
 }

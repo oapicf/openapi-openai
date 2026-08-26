@@ -234,7 +234,7 @@ function cancelRunRaw<T>(requestParameters: CancelRunRequest, requestConfig: run
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/threads/{thread_id}/runs/{run_id}/cancel`.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters.threadId))).replace(`{${"run_id"}}`, encodeURIComponent(String(requestParameters.runId))),
+        url: `${runtime.Configuration.basePath}/threads/{thread_id}/runs/{run_id}/cancel`.replace('{thread_id}', encodeURIComponent(String(requestParameters.threadId))).replace('{run_id}', encodeURIComponent(String(requestParameters.runId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -336,7 +336,7 @@ function createMessageRaw<T>(requestParameters: CreateMessageRequest, requestCon
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/threads/{thread_id}/messages`.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters.threadId))),
+        url: `${runtime.Configuration.basePath}/threads/{thread_id}/messages`.replace('{thread_id}', encodeURIComponent(String(requestParameters.threadId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -395,7 +395,7 @@ function createRunRaw<T>(requestParameters: CreateRunRequest, requestConfig: run
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/threads/{thread_id}/runs`.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters.threadId))),
+        url: `${runtime.Configuration.basePath}/threads/{thread_id}/runs`.replace('{thread_id}', encodeURIComponent(String(requestParameters.threadId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -536,7 +536,7 @@ function deleteAssistantRaw<T>(requestParameters: DeleteAssistantRequest, reques
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/assistants/{assistant_id}`.replace(`{${"assistant_id"}}`, encodeURIComponent(String(requestParameters.assistantId))),
+        url: `${runtime.Configuration.basePath}/assistants/{assistant_id}`.replace('{assistant_id}', encodeURIComponent(String(requestParameters.assistantId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -587,7 +587,7 @@ function deleteMessageRaw<T>(requestParameters: DeleteMessageRequest, requestCon
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/threads/{thread_id}/messages/{message_id}`.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters.threadId))).replace(`{${"message_id"}}`, encodeURIComponent(String(requestParameters.messageId))),
+        url: `${runtime.Configuration.basePath}/threads/{thread_id}/messages/{message_id}`.replace('{thread_id}', encodeURIComponent(String(requestParameters.threadId))).replace('{message_id}', encodeURIComponent(String(requestParameters.messageId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -634,7 +634,7 @@ function deleteThreadRaw<T>(requestParameters: DeleteThreadRequest, requestConfi
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/threads/{thread_id}`.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters.threadId))),
+        url: `${runtime.Configuration.basePath}/threads/{thread_id}`.replace('{thread_id}', encodeURIComponent(String(requestParameters.threadId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -681,7 +681,7 @@ function getAssistantRaw<T>(requestParameters: GetAssistantRequest, requestConfi
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/assistants/{assistant_id}`.replace(`{${"assistant_id"}}`, encodeURIComponent(String(requestParameters.assistantId))),
+        url: `${runtime.Configuration.basePath}/assistants/{assistant_id}`.replace('{assistant_id}', encodeURIComponent(String(requestParameters.assistantId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -732,7 +732,7 @@ function getMessageRaw<T>(requestParameters: GetMessageRequest, requestConfig: r
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/threads/{thread_id}/messages/{message_id}`.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters.threadId))).replace(`{${"message_id"}}`, encodeURIComponent(String(requestParameters.messageId))),
+        url: `${runtime.Configuration.basePath}/threads/{thread_id}/messages/{message_id}`.replace('{thread_id}', encodeURIComponent(String(requestParameters.threadId))).replace('{message_id}', encodeURIComponent(String(requestParameters.messageId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -783,7 +783,7 @@ function getRunRaw<T>(requestParameters: GetRunRequest, requestConfig: runtime.T
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/threads/{thread_id}/runs/{run_id}`.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters.threadId))).replace(`{${"run_id"}}`, encodeURIComponent(String(requestParameters.runId))),
+        url: `${runtime.Configuration.basePath}/threads/{thread_id}/runs/{run_id}`.replace('{thread_id}', encodeURIComponent(String(requestParameters.threadId))).replace('{run_id}', encodeURIComponent(String(requestParameters.runId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -844,7 +844,7 @@ function getRunStepRaw<T>(requestParameters: GetRunStepRequest, requestConfig: r
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/threads/{thread_id}/runs/{run_id}/steps/{step_id}`.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters.threadId))).replace(`{${"run_id"}}`, encodeURIComponent(String(requestParameters.runId))).replace(`{${"step_id"}}`, encodeURIComponent(String(requestParameters.stepId))),
+        url: `${runtime.Configuration.basePath}/threads/{thread_id}/runs/{run_id}/steps/{step_id}`.replace('{thread_id}', encodeURIComponent(String(requestParameters.threadId))).replace('{run_id}', encodeURIComponent(String(requestParameters.runId))).replace('{step_id}', encodeURIComponent(String(requestParameters.stepId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -891,7 +891,7 @@ function getThreadRaw<T>(requestParameters: GetThreadRequest, requestConfig: run
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/threads/{thread_id}`.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters.threadId))),
+        url: `${runtime.Configuration.basePath}/threads/{thread_id}`.replace('{thread_id}', encodeURIComponent(String(requestParameters.threadId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -1028,7 +1028,7 @@ function listMessagesRaw<T>(requestParameters: ListMessagesRequest, requestConfi
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/threads/{thread_id}/messages`.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters.threadId))),
+        url: `${runtime.Configuration.basePath}/threads/{thread_id}/messages`.replace('{thread_id}', encodeURIComponent(String(requestParameters.threadId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -1105,7 +1105,7 @@ function listRunStepsRaw<T>(requestParameters: ListRunStepsRequest, requestConfi
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/threads/{thread_id}/runs/{run_id}/steps`.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters.threadId))).replace(`{${"run_id"}}`, encodeURIComponent(String(requestParameters.runId))),
+        url: `${runtime.Configuration.basePath}/threads/{thread_id}/runs/{run_id}/steps`.replace('{thread_id}', encodeURIComponent(String(requestParameters.threadId))).replace('{run_id}', encodeURIComponent(String(requestParameters.runId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -1173,7 +1173,7 @@ function listRunsRaw<T>(requestParameters: ListRunsRequest, requestConfig: runti
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/threads/{thread_id}/runs`.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters.threadId))),
+        url: `${runtime.Configuration.basePath}/threads/{thread_id}/runs`.replace('{thread_id}', encodeURIComponent(String(requestParameters.threadId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -1226,7 +1226,7 @@ function modifyAssistantRaw<T>(requestParameters: ModifyAssistantRequest, reques
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/assistants/{assistant_id}`.replace(`{${"assistant_id"}}`, encodeURIComponent(String(requestParameters.assistantId))),
+        url: `${runtime.Configuration.basePath}/assistants/{assistant_id}`.replace('{assistant_id}', encodeURIComponent(String(requestParameters.assistantId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -1283,7 +1283,7 @@ function modifyMessageRaw<T>(requestParameters: ModifyMessageRequest, requestCon
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/threads/{thread_id}/messages/{message_id}`.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters.threadId))).replace(`{${"message_id"}}`, encodeURIComponent(String(requestParameters.messageId))),
+        url: `${runtime.Configuration.basePath}/threads/{thread_id}/messages/{message_id}`.replace('{thread_id}', encodeURIComponent(String(requestParameters.threadId))).replace('{message_id}', encodeURIComponent(String(requestParameters.messageId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -1340,7 +1340,7 @@ function modifyRunRaw<T>(requestParameters: ModifyRunRequest, requestConfig: run
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/threads/{thread_id}/runs/{run_id}`.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters.threadId))).replace(`{${"run_id"}}`, encodeURIComponent(String(requestParameters.runId))),
+        url: `${runtime.Configuration.basePath}/threads/{thread_id}/runs/{run_id}`.replace('{thread_id}', encodeURIComponent(String(requestParameters.threadId))).replace('{run_id}', encodeURIComponent(String(requestParameters.runId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -1393,7 +1393,7 @@ function modifyThreadRaw<T>(requestParameters: ModifyThreadRequest, requestConfi
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/threads/{thread_id}`.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters.threadId))),
+        url: `${runtime.Configuration.basePath}/threads/{thread_id}`.replace('{thread_id}', encodeURIComponent(String(requestParameters.threadId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -1450,7 +1450,7 @@ function submitToolOuputsToRunRaw<T>(requestParameters: SubmitToolOuputsToRunReq
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/threads/{thread_id}/runs/{run_id}/submit_tool_outputs`.replace(`{${"thread_id"}}`, encodeURIComponent(String(requestParameters.threadId))).replace(`{${"run_id"}}`, encodeURIComponent(String(requestParameters.runId))),
+        url: `${runtime.Configuration.basePath}/threads/{thread_id}/runs/{run_id}/submit_tool_outputs`.replace('{thread_id}', encodeURIComponent(String(requestParameters.threadId))).replace('{run_id}', encodeURIComponent(String(requestParameters.runId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,

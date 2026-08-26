@@ -20,4 +20,4 @@ import * as models from './models';
  * The strategy used to chunk the file.
  * @export
  */
-export type VectorStoreFileObjectChunkingStrategy = models.OtherChunkingStrategyResponseParam | models.StaticChunkingStrategyResponseParam;
+export type VectorStoreFileObjectChunkingStrategy = models.OtherChunkingStrategyResponseParam | models.StaticChunkingStrategyRequestParam;

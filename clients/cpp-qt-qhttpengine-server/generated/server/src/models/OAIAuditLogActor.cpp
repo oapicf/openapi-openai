@@ -75,10 +75,10 @@ QJsonObject OAIAuditLogActor::asJsonObject() const {
     if (m_type_isSet) {
         obj.insert(QString("type"), ::OpenAPI::toJsonValue(type));
     }
-    if (m_session_isSet) {
+    if (session.isSet()) {
         obj.insert(QString("session"), ::OpenAPI::toJsonValue(session));
     }
-    if (m_api_key_isSet) {
+    if (api_key.isSet()) {
         obj.insert(QString("api_key"), ::OpenAPI::toJsonValue(api_key));
     }
     return obj;
@@ -140,12 +140,12 @@ bool OAIAuditLogActor::isSet() const {
             break;
         }
 
-        if (m_session_isSet) {
+        if (session.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_api_key_isSet) {
+        if (api_key.isSet()) {
             isObjectUpdated = true;
             break;
         }

@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIAdmin_api_keys_create_request::OAIAdmin_api_keys_create_request(QString json) {
+OAIAdmin_api_keys_create_request::OAIAdmin_api_keys_create_request(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -38,7 +38,7 @@ void OAIAdmin_api_keys_create_request::initializeModel() {
     m_name_isValid = false;
 }
 
-void OAIAdmin_api_keys_create_request::fromJson(QString jsonString) {
+void OAIAdmin_api_keys_create_request::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

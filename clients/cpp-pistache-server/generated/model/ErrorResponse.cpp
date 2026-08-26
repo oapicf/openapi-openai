@@ -24,6 +24,8 @@ ErrorResponse::ErrorResponse()
     
 }
 
+ErrorResponse::~ErrorResponse() = default;
+
 void ErrorResponse::validate() const
 {
     std::stringstream msg;

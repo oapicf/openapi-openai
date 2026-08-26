@@ -29,7 +29,7 @@ openai_api_create_completion_response_choices_inner_FINISHREASON_e create_comple
 
 typedef struct create_completion_response_choices_inner_t {
     openai_api_create_completion_response_choices_inner_FINISHREASON_e finish_reason; //enum
-    int index; //numeric
+    int *index; //numeric
     struct create_completion_response_choices_inner_logprobs_t *logprobs; //model
     char *text; // string
 
@@ -38,7 +38,7 @@ typedef struct create_completion_response_choices_inner_t {
 
 __attribute__((deprecated)) create_completion_response_choices_inner_t *create_completion_response_choices_inner_create(
     openai_api_create_completion_response_choices_inner_FINISHREASON_e finish_reason,
-    int index,
+    int *index,
     create_completion_response_choices_inner_logprobs_t *logprobs,
     char *text
 );

@@ -107,7 +107,7 @@ RunStepDeltaStepDetailsToolCallsCodeOutputImageObject::getIndex()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeOutputImageObject::setIndex(int  index)
+RunStepDeltaStepDetailsToolCallsCodeOutputImageObject::setIndex(int index)
 {
 	this->index = index;
 }
@@ -119,7 +119,7 @@ RunStepDeltaStepDetailsToolCallsCodeOutputImageObject::getType()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeOutputImageObject::setType(std::string  type)
+RunStepDeltaStepDetailsToolCallsCodeOutputImageObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -131,7 +131,7 @@ RunStepDeltaStepDetailsToolCallsCodeOutputImageObject::getImage()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeOutputImageObject::setImage(RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image  image)
+RunStepDeltaStepDetailsToolCallsCodeOutputImageObject::setImage(RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image image)
 {
 	this->image = image;
 }

@@ -59,7 +59,7 @@ openai_api_run_step_object_STATUS_e run_step_object_status_FromString(char* stat
 static run_step_object_t *run_step_object_create_internal(
     char *id,
     openai_api_run_step_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     char *assistant_id,
     char *thread_id,
     char *run_id,
@@ -67,10 +67,10 @@ static run_step_object_t *run_step_object_create_internal(
     openai_api_run_step_object_STATUS_e status,
     run_step_object_step_details_t *step_details,
     run_step_object_last_error_t *last_error,
-    int expired_at,
-    int cancelled_at,
-    int failed_at,
-    int completed_at,
+    int *expired_at,
+    int *cancelled_at,
+    int *failed_at,
+    int *completed_at,
     object_t *metadata,
     run_step_completion_usage_t *usage
     ) {
@@ -78,6 +78,8 @@ static run_step_object_t *run_step_object_create_internal(
     if (!run_step_object_local_var) {
         return NULL;
     }
+    memset(run_step_object_local_var, 0, sizeof(run_step_object_t));
+    run_step_object_local_var->_library_owned = 1;
     run_step_object_local_var->id = id;
     run_step_object_local_var->object = object;
     run_step_object_local_var->created_at = created_at;
@@ -94,15 +96,13 @@ static run_step_object_t *run_step_object_create_internal(
     run_step_object_local_var->completed_at = completed_at;
     run_step_object_local_var->metadata = metadata;
     run_step_object_local_var->usage = usage;
-
-    run_step_object_local_var->_library_owned = 1;
     return run_step_object_local_var;
 }
 
 __attribute__((deprecated)) run_step_object_t *run_step_object_create(
     char *id,
     openai_api_run_step_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     char *assistant_id,
     char *thread_id,
     char *run_id,
@@ -110,17 +110,42 @@ __attribute__((deprecated)) run_step_object_t *run_step_object_create(
     openai_api_run_step_object_STATUS_e status,
     run_step_object_step_details_t *step_details,
     run_step_object_last_error_t *last_error,
-    int expired_at,
-    int cancelled_at,
-    int failed_at,
-    int completed_at,
+    int *expired_at,
+    int *cancelled_at,
+    int *failed_at,
+    int *completed_at,
     object_t *metadata,
     run_step_completion_usage_t *usage
     ) {
-    return run_step_object_create_internal (
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    int *expired_at_copy = NULL;
+    if (expired_at) {
+        expired_at_copy = malloc(sizeof(int));
+        if (expired_at_copy) *expired_at_copy = *expired_at;
+    }
+    int *cancelled_at_copy = NULL;
+    if (cancelled_at) {
+        cancelled_at_copy = malloc(sizeof(int));
+        if (cancelled_at_copy) *cancelled_at_copy = *cancelled_at;
+    }
+    int *failed_at_copy = NULL;
+    if (failed_at) {
+        failed_at_copy = malloc(sizeof(int));
+        if (failed_at_copy) *failed_at_copy = *failed_at;
+    }
+    int *completed_at_copy = NULL;
+    if (completed_at) {
+        completed_at_copy = malloc(sizeof(int));
+        if (completed_at_copy) *completed_at_copy = *completed_at;
+    }
+    run_step_object_t *result = run_step_object_create_internal (
         id,
         object,
-        created_at,
+        created_at_copy,
         assistant_id,
         thread_id,
         run_id,
@@ -128,13 +153,21 @@ __attribute__((deprecated)) run_step_object_t *run_step_object_create(
         status,
         step_details,
         last_error,
-        expired_at,
-        cancelled_at,
-        failed_at,
-        completed_at,
+        expired_at_copy,
+        cancelled_at_copy,
+        failed_at_copy,
+        completed_at_copy,
         metadata,
         usage
         );
+    if (!result) {
+        free(created_at_copy);
+        free(expired_at_copy);
+        free(cancelled_at_copy);
+        free(failed_at_copy);
+        free(completed_at_copy);
+    }
+    return result;
 }
 
 void run_step_object_free(run_step_object_t *run_step_object) {
@@ -149,6 +182,10 @@ void run_step_object_free(run_step_object_t *run_step_object) {
     if (run_step_object->id) {
         free(run_step_object->id);
         run_step_object->id = NULL;
+    }
+    if (run_step_object->created_at) {
+        free(run_step_object->created_at);
+        run_step_object->created_at = NULL;
     }
     if (run_step_object->assistant_id) {
         free(run_step_object->assistant_id);
@@ -169,6 +206,22 @@ void run_step_object_free(run_step_object_t *run_step_object) {
     if (run_step_object->last_error) {
         run_step_object_last_error_free(run_step_object->last_error);
         run_step_object->last_error = NULL;
+    }
+    if (run_step_object->expired_at) {
+        free(run_step_object->expired_at);
+        run_step_object->expired_at = NULL;
+    }
+    if (run_step_object->cancelled_at) {
+        free(run_step_object->cancelled_at);
+        run_step_object->cancelled_at = NULL;
+    }
+    if (run_step_object->failed_at) {
+        free(run_step_object->failed_at);
+        run_step_object->failed_at = NULL;
+    }
+    if (run_step_object->completed_at) {
+        free(run_step_object->completed_at);
+        run_step_object->completed_at = NULL;
     }
     if (run_step_object->metadata) {
         object_free(run_step_object->metadata);
@@ -207,7 +260,7 @@ cJSON *run_step_object_convertToJSON(run_step_object_t *run_step_object) {
     if (!run_step_object->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", run_step_object->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *run_step_object->created_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -291,7 +344,7 @@ cJSON *run_step_object_convertToJSON(run_step_object_t *run_step_object) {
     if (!run_step_object->expired_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "expired_at", run_step_object->expired_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "expired_at", *run_step_object->expired_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -300,7 +353,7 @@ cJSON *run_step_object_convertToJSON(run_step_object_t *run_step_object) {
     if (!run_step_object->cancelled_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "cancelled_at", run_step_object->cancelled_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "cancelled_at", *run_step_object->cancelled_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -309,7 +362,7 @@ cJSON *run_step_object_convertToJSON(run_step_object_t *run_step_object) {
     if (!run_step_object->failed_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "failed_at", run_step_object->failed_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "failed_at", *run_step_object->failed_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -318,7 +371,7 @@ cJSON *run_step_object_convertToJSON(run_step_object_t *run_step_object) {
     if (!run_step_object->completed_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "completed_at", run_step_object->completed_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "completed_at", *run_step_object->completed_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -362,11 +415,34 @@ run_step_object_t *run_step_object_parseFromJSON(cJSON *run_step_objectJSON){
 
     run_step_object_t *run_step_object_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    // define the local variable for run_step_object->created_at
+    int *created_at_local_var = NULL;
+
+    char *assistant_id_local_str = NULL;
+
+    char *thread_id_local_str = NULL;
+
+    char *run_id_local_str = NULL;
+
     // define the local variable for run_step_object->step_details
     run_step_object_step_details_t *step_details_local_nonprim = NULL;
 
     // define the local variable for run_step_object->last_error
     run_step_object_last_error_t *last_error_local_nonprim = NULL;
+
+    // define the local variable for run_step_object->expired_at
+    int *expired_at_local_var = NULL;
+
+    // define the local variable for run_step_object->cancelled_at
+    int *cancelled_at_local_var = NULL;
+
+    // define the local variable for run_step_object->failed_at
+    int *failed_at_local_var = NULL;
+
+    // define the local variable for run_step_object->completed_at
+    int *completed_at_local_var = NULL;
 
     // define the local variable for run_step_object->usage
     run_step_completion_usage_t *usage_local_nonprim = NULL;
@@ -417,6 +493,12 @@ run_step_object_t *run_step_object_parseFromJSON(cJSON *run_step_objectJSON){
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
     // run_step_object->assistant_id
     cJSON *assistant_id = cJSON_GetObjectItemCaseSensitive(run_step_objectJSON, "assistant_id");
@@ -535,6 +617,12 @@ run_step_object_t *run_step_object_parseFromJSON(cJSON *run_step_objectJSON){
     {
     goto end; //Numeric
     }
+    expired_at_local_var = malloc(sizeof(int));
+    if(!expired_at_local_var)
+    {
+        goto end;
+    }
+    *expired_at_local_var = expired_at->valuedouble;
 
     // run_step_object->cancelled_at
     cJSON *cancelled_at = cJSON_GetObjectItemCaseSensitive(run_step_objectJSON, "cancelled_at");
@@ -550,6 +638,12 @@ run_step_object_t *run_step_object_parseFromJSON(cJSON *run_step_objectJSON){
     {
     goto end; //Numeric
     }
+    cancelled_at_local_var = malloc(sizeof(int));
+    if(!cancelled_at_local_var)
+    {
+        goto end;
+    }
+    *cancelled_at_local_var = cancelled_at->valuedouble;
 
     // run_step_object->failed_at
     cJSON *failed_at = cJSON_GetObjectItemCaseSensitive(run_step_objectJSON, "failed_at");
@@ -565,6 +659,12 @@ run_step_object_t *run_step_object_parseFromJSON(cJSON *run_step_objectJSON){
     {
     goto end; //Numeric
     }
+    failed_at_local_var = malloc(sizeof(int));
+    if(!failed_at_local_var)
+    {
+        goto end;
+    }
+    *failed_at_local_var = failed_at->valuedouble;
 
     // run_step_object->completed_at
     cJSON *completed_at = cJSON_GetObjectItemCaseSensitive(run_step_objectJSON, "completed_at");
@@ -580,6 +680,12 @@ run_step_object_t *run_step_object_parseFromJSON(cJSON *run_step_objectJSON){
     {
     goto end; //Numeric
     }
+    completed_at_local_var = malloc(sizeof(int));
+    if(!completed_at_local_var)
+    {
+        goto end;
+    }
+    *completed_at_local_var = completed_at->valuedouble;
 
     // run_step_object->metadata
     cJSON *metadata = cJSON_GetObjectItemCaseSensitive(run_step_objectJSON, "metadata");
@@ -607,27 +713,56 @@ run_step_object_t *run_step_object_parseFromJSON(cJSON *run_step_objectJSON){
     usage_local_nonprim = run_step_completion_usage_parseFromJSON(usage); //nonprimitive
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (assistant_id && !cJSON_IsNull(assistant_id)) assistant_id_local_str = strdup(assistant_id->valuestring);
+    if (thread_id && !cJSON_IsNull(thread_id)) thread_id_local_str = strdup(thread_id->valuestring);
+    if (run_id && !cJSON_IsNull(run_id)) run_id_local_str = strdup(run_id->valuestring);
+
     run_step_object_local_var = run_step_object_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         objectVariable,
-        created_at->valuedouble,
-        strdup(assistant_id->valuestring),
-        strdup(thread_id->valuestring),
-        strdup(run_id->valuestring),
+        created_at_local_var,
+        assistant_id_local_str,
+        thread_id_local_str,
+        run_id_local_str,
         typeVariable,
         statusVariable,
         step_details_local_nonprim,
         last_error_local_nonprim,
-        expired_at->valuedouble,
-        cancelled_at->valuedouble,
-        failed_at->valuedouble,
-        completed_at->valuedouble,
+        expired_at_local_var,
+        cancelled_at_local_var,
+        failed_at_local_var,
+        completed_at_local_var,
         metadata_local_object,
         usage_local_nonprim
         );
 
+    if (!run_step_object_local_var) {
+        goto end;
+    }
+
     return run_step_object_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
+    if (assistant_id_local_str) {
+        free(assistant_id_local_str);
+        assistant_id_local_str = NULL;
+    }
+    if (thread_id_local_str) {
+        free(thread_id_local_str);
+        thread_id_local_str = NULL;
+    }
+    if (run_id_local_str) {
+        free(run_id_local_str);
+        run_id_local_str = NULL;
+    }
     if (step_details_local_nonprim) {
         run_step_object_step_details_free(step_details_local_nonprim);
         step_details_local_nonprim = NULL;
@@ -635,6 +770,22 @@ end:
     if (last_error_local_nonprim) {
         run_step_object_last_error_free(last_error_local_nonprim);
         last_error_local_nonprim = NULL;
+    }
+    if (expired_at_local_var) {
+        free(expired_at_local_var);
+        expired_at_local_var = NULL;
+    }
+    if (cancelled_at_local_var) {
+        free(cancelled_at_local_var);
+        cancelled_at_local_var = NULL;
+    }
+    if (failed_at_local_var) {
+        free(failed_at_local_var);
+        failed_at_local_var = NULL;
+    }
+    if (completed_at_local_var) {
+        free(completed_at_local_var);
+        completed_at_local_var = NULL;
     }
     if (usage_local_nonprim) {
         run_step_completion_usage_free(usage_local_nonprim);

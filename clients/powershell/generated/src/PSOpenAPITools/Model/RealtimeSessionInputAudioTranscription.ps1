@@ -36,7 +36,7 @@ function Initialize-RealtimeSessionInputAudioTranscription {
 
 
         $PSO = [PSCustomObject]@{
-            "model" = ${Model}
+            'model' = ${Model}
         }
 
 
@@ -74,21 +74,21 @@ function ConvertFrom-JsonToRealtimeSessionInputAudioTranscription {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeSessionInputAudioTranscription
-        $AllProperties = ("model")
+        $AllProperties = ('model')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) { #optional property not found
             $Model = $null
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "model" = ${Model}
+            'model' = ${Model}
         }
 
         return $PSO

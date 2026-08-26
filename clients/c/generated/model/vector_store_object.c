@@ -42,20 +42,22 @@ openai_api_vector_store_object_STATUS_e vector_store_object_status_FromString(ch
 static vector_store_object_t *vector_store_object_create_internal(
     char *id,
     openai_api_vector_store_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     char *name,
-    int usage_bytes,
+    int *usage_bytes,
     vector_store_object_file_counts_t *file_counts,
     openai_api_vector_store_object_STATUS_e status,
     vector_store_expiration_after_t *expires_after,
-    int expires_at,
-    int last_active_at,
+    int *expires_at,
+    int *last_active_at,
     object_t *metadata
     ) {
     vector_store_object_t *vector_store_object_local_var = malloc(sizeof(vector_store_object_t));
     if (!vector_store_object_local_var) {
         return NULL;
     }
+    memset(vector_store_object_local_var, 0, sizeof(vector_store_object_t));
+    vector_store_object_local_var->_library_owned = 1;
     vector_store_object_local_var->id = id;
     vector_store_object_local_var->object = object;
     vector_store_object_local_var->created_at = created_at;
@@ -67,37 +69,62 @@ static vector_store_object_t *vector_store_object_create_internal(
     vector_store_object_local_var->expires_at = expires_at;
     vector_store_object_local_var->last_active_at = last_active_at;
     vector_store_object_local_var->metadata = metadata;
-
-    vector_store_object_local_var->_library_owned = 1;
     return vector_store_object_local_var;
 }
 
 __attribute__((deprecated)) vector_store_object_t *vector_store_object_create(
     char *id,
     openai_api_vector_store_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     char *name,
-    int usage_bytes,
+    int *usage_bytes,
     vector_store_object_file_counts_t *file_counts,
     openai_api_vector_store_object_STATUS_e status,
     vector_store_expiration_after_t *expires_after,
-    int expires_at,
-    int last_active_at,
+    int *expires_at,
+    int *last_active_at,
     object_t *metadata
     ) {
-    return vector_store_object_create_internal (
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    int *usage_bytes_copy = NULL;
+    if (usage_bytes) {
+        usage_bytes_copy = malloc(sizeof(int));
+        if (usage_bytes_copy) *usage_bytes_copy = *usage_bytes;
+    }
+    int *expires_at_copy = NULL;
+    if (expires_at) {
+        expires_at_copy = malloc(sizeof(int));
+        if (expires_at_copy) *expires_at_copy = *expires_at;
+    }
+    int *last_active_at_copy = NULL;
+    if (last_active_at) {
+        last_active_at_copy = malloc(sizeof(int));
+        if (last_active_at_copy) *last_active_at_copy = *last_active_at;
+    }
+    vector_store_object_t *result = vector_store_object_create_internal (
         id,
         object,
-        created_at,
+        created_at_copy,
         name,
-        usage_bytes,
+        usage_bytes_copy,
         file_counts,
         status,
         expires_after,
-        expires_at,
-        last_active_at,
+        expires_at_copy,
+        last_active_at_copy,
         metadata
         );
+    if (!result) {
+        free(created_at_copy);
+        free(usage_bytes_copy);
+        free(expires_at_copy);
+        free(last_active_at_copy);
+    }
+    return result;
 }
 
 void vector_store_object_free(vector_store_object_t *vector_store_object) {
@@ -113,9 +140,17 @@ void vector_store_object_free(vector_store_object_t *vector_store_object) {
         free(vector_store_object->id);
         vector_store_object->id = NULL;
     }
+    if (vector_store_object->created_at) {
+        free(vector_store_object->created_at);
+        vector_store_object->created_at = NULL;
+    }
     if (vector_store_object->name) {
         free(vector_store_object->name);
         vector_store_object->name = NULL;
+    }
+    if (vector_store_object->usage_bytes) {
+        free(vector_store_object->usage_bytes);
+        vector_store_object->usage_bytes = NULL;
     }
     if (vector_store_object->file_counts) {
         vector_store_object_file_counts_free(vector_store_object->file_counts);
@@ -124,6 +159,14 @@ void vector_store_object_free(vector_store_object_t *vector_store_object) {
     if (vector_store_object->expires_after) {
         vector_store_expiration_after_free(vector_store_object->expires_after);
         vector_store_object->expires_after = NULL;
+    }
+    if (vector_store_object->expires_at) {
+        free(vector_store_object->expires_at);
+        vector_store_object->expires_at = NULL;
+    }
+    if (vector_store_object->last_active_at) {
+        free(vector_store_object->last_active_at);
+        vector_store_object->last_active_at = NULL;
     }
     if (vector_store_object->metadata) {
         object_free(vector_store_object->metadata);
@@ -158,7 +201,7 @@ cJSON *vector_store_object_convertToJSON(vector_store_object_t *vector_store_obj
     if (!vector_store_object->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", vector_store_object->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *vector_store_object->created_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -176,7 +219,7 @@ cJSON *vector_store_object_convertToJSON(vector_store_object_t *vector_store_obj
     if (!vector_store_object->usage_bytes) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "usage_bytes", vector_store_object->usage_bytes) == NULL) {
+    if(cJSON_AddNumberToObject(item, "usage_bytes", *vector_store_object->usage_bytes) == NULL) {
     goto fail; //Numeric
     }
 
@@ -220,7 +263,7 @@ cJSON *vector_store_object_convertToJSON(vector_store_object_t *vector_store_obj
 
     // vector_store_object->expires_at
     if(vector_store_object->expires_at) {
-    if(cJSON_AddNumberToObject(item, "expires_at", vector_store_object->expires_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "expires_at", *vector_store_object->expires_at) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -230,7 +273,7 @@ cJSON *vector_store_object_convertToJSON(vector_store_object_t *vector_store_obj
     if (!vector_store_object->last_active_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "last_active_at", vector_store_object->last_active_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "last_active_at", *vector_store_object->last_active_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -260,11 +303,27 @@ vector_store_object_t *vector_store_object_parseFromJSON(cJSON *vector_store_obj
 
     vector_store_object_t *vector_store_object_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    // define the local variable for vector_store_object->created_at
+    int *created_at_local_var = NULL;
+
+    char *name_local_str = NULL;
+
+    // define the local variable for vector_store_object->usage_bytes
+    int *usage_bytes_local_var = NULL;
+
     // define the local variable for vector_store_object->file_counts
     vector_store_object_file_counts_t *file_counts_local_nonprim = NULL;
 
     // define the local variable for vector_store_object->expires_after
     vector_store_expiration_after_t *expires_after_local_nonprim = NULL;
+
+    // define the local variable for vector_store_object->expires_at
+    int *expires_at_local_var = NULL;
+
+    // define the local variable for vector_store_object->last_active_at
+    int *last_active_at_local_var = NULL;
 
     // vector_store_object->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(vector_store_objectJSON, "id");
@@ -312,6 +371,12 @@ vector_store_object_t *vector_store_object_parseFromJSON(cJSON *vector_store_obj
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
     // vector_store_object->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(vector_store_objectJSON, "name");
@@ -342,6 +407,12 @@ vector_store_object_t *vector_store_object_parseFromJSON(cJSON *vector_store_obj
     {
     goto end; //Numeric
     }
+    usage_bytes_local_var = malloc(sizeof(int));
+    if(!usage_bytes_local_var)
+    {
+        goto end;
+    }
+    *usage_bytes_local_var = usage_bytes->valuedouble;
 
     // vector_store_object->file_counts
     cJSON *file_counts = cJSON_GetObjectItemCaseSensitive(vector_store_objectJSON, "file_counts");
@@ -391,6 +462,12 @@ vector_store_object_t *vector_store_object_parseFromJSON(cJSON *vector_store_obj
     {
     goto end; //Numeric
     }
+    expires_at_local_var = malloc(sizeof(int));
+    if(!expires_at_local_var)
+    {
+        goto end;
+    }
+    *expires_at_local_var = expires_at->valuedouble;
     }
 
     // vector_store_object->last_active_at
@@ -407,6 +484,12 @@ vector_store_object_t *vector_store_object_parseFromJSON(cJSON *vector_store_obj
     {
     goto end; //Numeric
     }
+    last_active_at_local_var = malloc(sizeof(int));
+    if(!last_active_at_local_var)
+    {
+        goto end;
+    }
+    *last_active_at_local_var = last_active_at->valuedouble;
 
     // vector_store_object->metadata
     cJSON *metadata = cJSON_GetObjectItemCaseSensitive(vector_store_objectJSON, "metadata");
@@ -422,22 +505,45 @@ vector_store_object_t *vector_store_object_parseFromJSON(cJSON *vector_store_obj
     metadata_local_object = object_parseFromJSON(metadata); //object
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     vector_store_object_local_var = vector_store_object_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         objectVariable,
-        created_at->valuedouble,
-        strdup(name->valuestring),
-        usage_bytes->valuedouble,
+        created_at_local_var,
+        name_local_str,
+        usage_bytes_local_var,
         file_counts_local_nonprim,
         statusVariable,
         expires_after ? expires_after_local_nonprim : NULL,
-        expires_at ? expires_at->valuedouble : 0,
-        last_active_at->valuedouble,
+        expires_at_local_var,
+        last_active_at_local_var,
         metadata_local_object
         );
 
+    if (!vector_store_object_local_var) {
+        goto end;
+    }
+
     return vector_store_object_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (usage_bytes_local_var) {
+        free(usage_bytes_local_var);
+        usage_bytes_local_var = NULL;
+    }
     if (file_counts_local_nonprim) {
         vector_store_object_file_counts_free(file_counts_local_nonprim);
         file_counts_local_nonprim = NULL;
@@ -445,6 +551,14 @@ end:
     if (expires_after_local_nonprim) {
         vector_store_expiration_after_free(expires_after_local_nonprim);
         expires_after_local_nonprim = NULL;
+    }
+    if (expires_at_local_var) {
+        free(expires_at_local_var);
+        expires_at_local_var = NULL;
+    }
+    if (last_active_at_local_var) {
+        free(last_active_at_local_var);
+        last_active_at_local_var = NULL;
     }
     return NULL;
 

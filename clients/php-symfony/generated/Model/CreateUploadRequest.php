@@ -49,7 +49,7 @@ class CreateUploadRequest
      * @var string|null
      * @SerializedName("filename")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $filename = null;
@@ -60,7 +60,7 @@ class CreateUploadRequest
      * @var string|null
      * @SerializedName("purpose")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['assistants', 'batch', 'fine-tune', 'vision'])]
     #[Assert\Type("string")]
@@ -72,7 +72,7 @@ class CreateUploadRequest
      * @var int|null
      * @SerializedName("bytes")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $bytes = null;
@@ -83,7 +83,7 @@ class CreateUploadRequest
      * @var string|null
      * @SerializedName("mime_type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $mimeType = null;
@@ -113,12 +113,12 @@ class CreateUploadRequest
     }
 
     /**
-    * Sets filename.
-    *
-    * @param string|null $filename  The name of the file to upload.
-    *
-    * @return $this
-    */
+     * Sets filename.
+     *
+     * @param string|null $filename  The name of the file to upload.
+     *
+     * @return $this
+     */
     public function setFilename(?string $filename): self
     {
         $this->filename = $filename;
@@ -140,12 +140,12 @@ class CreateUploadRequest
     }
 
     /**
-    * Sets purpose.
-    *
-    * @param string|null $purpose  The intended purpose of the uploaded file.  See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose).
-    *
-    * @return $this
-    */
+     * Sets purpose.
+     *
+     * @param string|null $purpose  The intended purpose of the uploaded file.  See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose).
+     *
+     * @return $this
+     */
     public function setPurpose(?string $purpose): self
     {
         $this->purpose = $purpose;
@@ -167,12 +167,12 @@ class CreateUploadRequest
     }
 
     /**
-    * Sets bytes.
-    *
-    * @param int|null $bytes  The number of bytes in the file you are uploading.
-    *
-    * @return $this
-    */
+     * Sets bytes.
+     *
+     * @param int|null $bytes  The number of bytes in the file you are uploading.
+     *
+     * @return $this
+     */
     public function setBytes(?int $bytes): self
     {
         $this->bytes = $bytes;
@@ -194,12 +194,12 @@ class CreateUploadRequest
     }
 
     /**
-    * Sets mimeType.
-    *
-    * @param string|null $mimeType  The MIME type of the file.  This must fall within the supported MIME types for your file purpose. See the supported MIME types for assistants and vision.
-    *
-    * @return $this
-    */
+     * Sets mimeType.
+     *
+     * @param string|null $mimeType  The MIME type of the file.  This must fall within the supported MIME types for your file purpose. See the supported MIME types for assistants and vision.
+     *
+     * @return $this
+     */
     public function setMimeType(?string $mimeType): self
     {
         $this->mimeType = $mimeType;

@@ -33,7 +33,7 @@ class  ModifyAssistantRequest_tool_resources_file_search
 {
 public:
     ModifyAssistantRequest_tool_resources_file_search();
-    virtual ~ModifyAssistantRequest_tool_resources_file_search() = default;
+    virtual ~ModifyAssistantRequest_tool_resources_file_search();
 
 
     /// <summary>

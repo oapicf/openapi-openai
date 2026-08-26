@@ -139,7 +139,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).</value>
         [JsonPropertyName("detail")]
-        public DetailEnum? Detail { get { return this.DetailOption; } set { this.DetailOption = new(value); } }
+        public DetailEnum? Detail { get { return this.DetailOption.Value; } set { this.DetailOption = new(value); } }
 
         /// <summary>
         /// Either a URL of the image or the base64 encoded image data.
@@ -176,8 +176,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ChatCompletionRequestMessageContentPartImageImageUrl" />
     /// </summary>
-    public class ChatCompletionRequestMessageContentPartImageImageUrlJsonConverter : JsonConverter<ChatCompletionRequestMessageContentPartImageImageUrl>
+    public partial class ChatCompletionRequestMessageContentPartImageImageUrlJsonConverter : JsonConverter<ChatCompletionRequestMessageContentPartImageImageUrl>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChatCompletionRequestMessageContentPartImageImageUrlJsonConverter" /> class.
+        /// </summary>
+        public ChatCompletionRequestMessageContentPartImageImageUrlJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ChatCompletionRequestMessageContentPartImageImageUrl" />
         /// </summary>

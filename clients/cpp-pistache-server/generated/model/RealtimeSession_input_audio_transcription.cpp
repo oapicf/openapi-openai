@@ -26,6 +26,8 @@ RealtimeSession_input_audio_transcription::RealtimeSession_input_audio_transcrip
     
 }
 
+RealtimeSession_input_audio_transcription::~RealtimeSession_input_audio_transcription() = default;
+
 void RealtimeSession_input_audio_transcription::validate() const
 {
     std::stringstream msg;

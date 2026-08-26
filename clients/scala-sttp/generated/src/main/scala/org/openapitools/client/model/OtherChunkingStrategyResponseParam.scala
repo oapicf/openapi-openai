@@ -19,7 +19,7 @@ package org.openapitools.client.model
 case class OtherChunkingStrategyResponseParam(
   /* Always `other`. */
   `type`: OtherChunkingStrategyResponseParamEnums.`Type`
-)
+) extends VectorStoreFileObjectChunkingStrategy
 
 object OtherChunkingStrategyResponseParamEnums {
 

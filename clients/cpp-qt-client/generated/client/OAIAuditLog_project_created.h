@@ -33,13 +33,13 @@ class OAIAuditLog_project_created_data;
 class OAIAuditLog_project_created : public OAIObject {
 public:
     OAIAuditLog_project_created();
-    OAIAuditLog_project_created(QString json);
+    OAIAuditLog_project_created(const QString &json);
     ~OAIAuditLog_project_created() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

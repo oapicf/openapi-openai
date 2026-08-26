@@ -10,6 +10,7 @@ use Articus\DataTransfer\Annotation as DTA;
 class ModifyAssistantRequest
 {
     /**
+     * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them.
      * @DTA\Data(field="model", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      * @var string|null

@@ -132,10 +132,32 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'hate'), 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[hate]" is missing from JSON.');
+        assert(json[r'hate'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[hate]" has a null value in JSON.');
+        assert(json.containsKey(r'hate/threatening'), 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[hate/threatening]" is missing from JSON.');
+        assert(json[r'hate/threatening'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[hate/threatening]" has a null value in JSON.');
+        assert(json.containsKey(r'harassment'), 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[harassment]" is missing from JSON.');
+        assert(json[r'harassment'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[harassment]" has a null value in JSON.');
+        assert(json.containsKey(r'harassment/threatening'), 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[harassment/threatening]" is missing from JSON.');
+        assert(json[r'harassment/threatening'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[harassment/threatening]" has a null value in JSON.');
+        assert(json.containsKey(r'illicit'), 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[illicit]" is missing from JSON.');
+        assert(json[r'illicit'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[illicit]" has a null value in JSON.');
+        assert(json.containsKey(r'illicit/violent'), 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[illicit/violent]" is missing from JSON.');
+        assert(json[r'illicit/violent'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[illicit/violent]" has a null value in JSON.');
+        assert(json.containsKey(r'self-harm'), 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[self-harm]" is missing from JSON.');
+        assert(json[r'self-harm'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[self-harm]" has a null value in JSON.');
+        assert(json.containsKey(r'self-harm/intent'), 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[self-harm/intent]" is missing from JSON.');
+        assert(json[r'self-harm/intent'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[self-harm/intent]" has a null value in JSON.');
+        assert(json.containsKey(r'self-harm/instructions'), 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[self-harm/instructions]" is missing from JSON.');
+        assert(json[r'self-harm/instructions'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[self-harm/instructions]" has a null value in JSON.');
+        assert(json.containsKey(r'sexual'), 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[sexual]" is missing from JSON.');
+        assert(json[r'sexual'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[sexual]" has a null value in JSON.');
+        assert(json.containsKey(r'sexual/minors'), 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[sexual/minors]" is missing from JSON.');
+        assert(json[r'sexual/minors'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[sexual/minors]" has a null value in JSON.');
+        assert(json.containsKey(r'violence'), 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[violence]" is missing from JSON.');
+        assert(json[r'violence'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[violence]" has a null value in JSON.');
+        assert(json.containsKey(r'violence/graphic'), 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[violence/graphic]" is missing from JSON.');
+        assert(json[r'violence/graphic'] != null, 'Required key "CreateModerationResponseResultsInnerCategoryAppliedInputTypes[violence/graphic]" has a null value in JSON.');
         return true;
       }());
 
@@ -217,27 +239,28 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
 }
 
 
-class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum._(this.value);
+enum CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum {
+  text._(r'text'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum._(r'text');
-
-  /// List of all possible values in this [enum][CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum].
-  static const values = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum>[
-    text,
-  ];
-
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum? fromJson(dynamic value) => CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -259,9 +282,10 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnumTypeT
 
   const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnumTypeTransformer._();
 
-  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum data) => data.value;
+  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum.
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -270,6 +294,9 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnumTypeT
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum.text;
@@ -282,33 +309,34 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnumTypeT
     return null;
   }
 
-  /// Singleton [CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnumTypeTransformer? _instance;
 }
 
 
 
-class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum._(this.value);
+enum CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum {
+  text._(r'text'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum._(r'text');
-
-  /// List of all possible values in this [enum][CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum].
-  static const values = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum>[
-    text,
-  ];
-
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum? fromJson(dynamic value) => CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -330,9 +358,10 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThre
 
   const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnumTypeTransformer._();
 
-  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum data) => data.value;
+  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum.
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -341,6 +370,9 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThre
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnum.text;
@@ -353,33 +385,34 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThre
     return null;
   }
 
-  /// Singleton [CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateSlashThreateningEnumTypeTransformer? _instance;
 }
 
 
 
-class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum._(this.value);
+enum CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum {
+  text._(r'text'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum._(r'text');
-
-  /// List of all possible values in this [enum][CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum].
-  static const values = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum>[
-    text,
-  ];
-
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum? fromJson(dynamic value) => CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -401,9 +434,10 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnu
 
   const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnumTypeTransformer._();
 
-  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum data) => data.value;
+  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum.
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -412,6 +446,9 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnu
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum.text;
@@ -424,33 +461,34 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnu
     return null;
   }
 
-  /// Singleton [CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnumTypeTransformer? _instance;
 }
 
 
 
-class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum._(this.value);
+enum CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum {
+  text._(r'text'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum._(r'text');
-
-  /// List of all possible values in this [enum][CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum].
-  static const values = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum>[
-    text,
-  ];
-
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum? fromJson(dynamic value) => CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -472,9 +510,10 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSla
 
   const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnumTypeTransformer._();
 
-  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum data) => data.value;
+  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum.
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -483,6 +522,9 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSla
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnum.text;
@@ -495,33 +537,34 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSla
     return null;
   }
 
-  /// Singleton [CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentSlashThreateningEnumTypeTransformer? _instance;
 }
 
 
 
-class CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum._(this.value);
+enum CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum {
+  text._(r'text'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum._(r'text');
-
-  /// List of all possible values in this [enum][CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum].
-  static const values = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum>[
-    text,
-  ];
-
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum? fromJson(dynamic value) => CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -543,9 +586,10 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnumTy
 
   const CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnumTypeTransformer._();
 
-  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum data) => data.value;
+  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum.
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -554,6 +598,9 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnumTy
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum.text;
@@ -566,33 +613,34 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnumTy
     return null;
   }
 
-  /// Singleton [CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnumTypeTransformer? _instance;
 }
 
 
 
-class CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum._(this.value);
+enum CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum {
+  text._(r'text'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum._(r'text');
-
-  /// List of all possible values in this [enum][CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum].
-  static const values = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum>[
-    text,
-  ];
-
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum? fromJson(dynamic value) => CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -614,9 +662,10 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashV
 
   const CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnumTypeTransformer._();
 
-  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum data) => data.value;
+  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum.
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -625,6 +674,9 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashV
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnum.text;
@@ -637,35 +689,35 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashV
     return null;
   }
 
-  /// Singleton [CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitSlashViolentEnumTypeTransformer? _instance;
 }
 
 
 
-class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum._(this.value);
+enum CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum {
+  text._(r'text'),
+  image._(r'image'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum._(r'text');
-  static const image = CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum._(r'image');
-
-  /// List of all possible values in this [enum][CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum].
-  static const values = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum>[
-    text,
-    image,
-  ];
-
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum? fromJson(dynamic value) => CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -687,9 +739,10 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnumT
 
   const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnumTypeTransformer._();
 
-  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum data) => data.value;
+  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum.
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -698,6 +751,9 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnumT
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum.text;
@@ -711,35 +767,35 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnumT
     return null;
   }
 
-  /// Singleton [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnumTypeTransformer? _instance;
 }
 
 
 
-class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum._(this.value);
+enum CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum {
+  text._(r'text'),
+  image._(r'image'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum._(r'text');
-  static const image = CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum._(r'image');
-
-  /// List of all possible values in this [enum][CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum].
-  static const values = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum>[
-    text,
-    image,
-  ];
-
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum? fromJson(dynamic value) => CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -761,9 +817,10 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlash
 
   const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnumTypeTransformer._();
 
-  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum data) => data.value;
+  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum.
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -772,6 +829,9 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlash
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnum.text;
@@ -785,35 +845,35 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlash
     return null;
   }
 
-  /// Singleton [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashIntentEnumTypeTransformer? _instance;
 }
 
 
 
-class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum._(this.value);
+enum CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum {
+  text._(r'text'),
+  image._(r'image'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum._(r'text');
-  static const image = CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum._(r'image');
-
-  /// List of all possible values in this [enum][CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum].
-  static const values = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum>[
-    text,
-    image,
-  ];
-
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum? fromJson(dynamic value) => CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -835,9 +895,10 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlash
 
   const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnumTypeTransformer._();
 
-  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum data) => data.value;
+  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum.
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -846,6 +907,9 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlash
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnum.text;
@@ -859,35 +923,35 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlash
     return null;
   }
 
-  /// Singleton [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmSlashInstructionsEnumTypeTransformer? _instance;
 }
 
 
 
-class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum._(this.value);
+enum CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum {
+  text._(r'text'),
+  image._(r'image'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum._(r'text');
-  static const image = CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum._(r'image');
-
-  /// List of all possible values in this [enum][CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum].
-  static const values = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum>[
-    text,
-    image,
-  ];
-
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum? fromJson(dynamic value) => CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -909,9 +973,10 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnumTyp
 
   const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnumTypeTransformer._();
 
-  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum data) => data.value;
+  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum.
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -920,6 +985,9 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnumTyp
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum.text;
@@ -933,33 +1001,34 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnumTyp
     return null;
   }
 
-  /// Singleton [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnumTypeTransformer? _instance;
 }
 
 
 
-class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum._(this.value);
+enum CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum {
+  text._(r'text'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum._(r'text');
-
-  /// List of all possible values in this [enum][CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum].
-  static const values = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum>[
-    text,
-  ];
-
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum? fromJson(dynamic value) => CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -981,9 +1050,10 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMi
 
   const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnumTypeTransformer._();
 
-  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum data) => data.value;
+  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum.
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -992,6 +1062,9 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMi
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnum.text;
@@ -1004,35 +1077,35 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMi
     return null;
   }
 
-  /// Singleton [CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualSlashMinorsEnumTypeTransformer? _instance;
 }
 
 
 
-class CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum._(this.value);
+enum CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum {
+  text._(r'text'),
+  image._(r'image'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum._(r'text');
-  static const image = CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum._(r'image');
-
-  /// List of all possible values in this [enum][CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum].
-  static const values = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum>[
-    text,
-    image,
-  ];
-
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum? fromJson(dynamic value) => CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -1054,9 +1127,10 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnumT
 
   const CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnumTypeTransformer._();
 
-  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum data) => data.value;
+  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum.
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -1065,6 +1139,9 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnumT
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum.text;
@@ -1078,35 +1155,35 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnumT
     return null;
   }
 
-  /// Singleton [CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnumTypeTransformer? _instance;
 }
 
 
 
-class CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum._(this.value);
+enum CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum {
+  text._(r'text'),
+  image._(r'image'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum._(r'text');
-  static const image = CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum._(r'image');
-
-  /// List of all possible values in this [enum][CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum].
-  static const values = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum>[
-    text,
-    image,
-  ];
-
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum? fromJson(dynamic value) => CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -1128,9 +1205,10 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlash
 
   const CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnumTypeTransformer._();
 
-  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum data) => data.value;
+  String encode(CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum.
+  /// Returns the instance of [CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -1139,6 +1217,9 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlash
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnum.text;
@@ -1152,7 +1233,7 @@ class CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlash
     return null;
   }
 
-  /// Singleton [CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceSlashGraphicEnumTypeTransformer? _instance;
 }
 

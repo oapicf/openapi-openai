@@ -30,10 +30,10 @@ static chat_completion_request_message_content_part_text_t *chat_completion_requ
     if (!chat_completion_request_message_content_part_text_local_var) {
         return NULL;
     }
+    memset(chat_completion_request_message_content_part_text_local_var, 0, sizeof(chat_completion_request_message_content_part_text_t));
+    chat_completion_request_message_content_part_text_local_var->_library_owned = 1;
     chat_completion_request_message_content_part_text_local_var->type = type;
     chat_completion_request_message_content_part_text_local_var->text = text;
-
-    chat_completion_request_message_content_part_text_local_var->_library_owned = 1;
     return chat_completion_request_message_content_part_text_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) chat_completion_request_message_content_part_text_t 
     openai_api_chat_completion_request_message_content_part_text_TYPE_e type,
     char *text
     ) {
-    return chat_completion_request_message_content_part_text_create_internal (
+    chat_completion_request_message_content_part_text_t *result = chat_completion_request_message_content_part_text_create_internal (
         type,
         text
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_request_message_content_part_text_free(chat_completion_request_message_content_part_text_t *chat_completion_request_message_content_part_text) {
@@ -96,6 +99,8 @@ chat_completion_request_message_content_part_text_t *chat_completion_request_mes
 
     chat_completion_request_message_content_part_text_t *chat_completion_request_message_content_part_text_local_var = NULL;
 
+    char *text_local_str = NULL;
+
     // chat_completion_request_message_content_part_text->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(chat_completion_request_message_content_part_textJSON, "type");
     if (cJSON_IsNull(type)) {
@@ -129,13 +134,23 @@ chat_completion_request_message_content_part_text_t *chat_completion_request_mes
     }
 
 
+    if (text && !cJSON_IsNull(text)) text_local_str = strdup(text->valuestring);
+
     chat_completion_request_message_content_part_text_local_var = chat_completion_request_message_content_part_text_create_internal (
         typeVariable,
-        strdup(text->valuestring)
+        text_local_str
         );
+
+    if (!chat_completion_request_message_content_part_text_local_var) {
+        goto end;
+    }
 
     return chat_completion_request_message_content_part_text_local_var;
 end:
+    if (text_local_str) {
+        free(text_local_str);
+        text_local_str = NULL;
+    }
     return NULL;
 
 }

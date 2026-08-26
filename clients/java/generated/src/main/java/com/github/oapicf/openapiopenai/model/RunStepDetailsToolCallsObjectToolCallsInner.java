@@ -63,7 +63,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RunStepDetailsToolCallsObjectToolCallsInner extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(RunStepDetailsToolCallsObjectToolCallsInner.class.getName());
 
@@ -235,6 +235,7 @@ public class RunStepDetailsToolCallsObjectToolCallsInner extends AbstractOpenApi
      * @return The actual instance of `RunStepDetailsToolCallsCodeObject`
      * @throws ClassCastException if the instance is not `RunStepDetailsToolCallsCodeObject`
      */
+    @SuppressWarnings("unchecked")
     public RunStepDetailsToolCallsCodeObject getRunStepDetailsToolCallsCodeObject() throws ClassCastException {
         return (RunStepDetailsToolCallsCodeObject)super.getActualInstance();
     }
@@ -246,6 +247,7 @@ public class RunStepDetailsToolCallsObjectToolCallsInner extends AbstractOpenApi
      * @return The actual instance of `RunStepDetailsToolCallsFileSearchObject`
      * @throws ClassCastException if the instance is not `RunStepDetailsToolCallsFileSearchObject`
      */
+    @SuppressWarnings("unchecked")
     public RunStepDetailsToolCallsFileSearchObject getRunStepDetailsToolCallsFileSearchObject() throws ClassCastException {
         return (RunStepDetailsToolCallsFileSearchObject)super.getActualInstance();
     }
@@ -257,6 +259,7 @@ public class RunStepDetailsToolCallsObjectToolCallsInner extends AbstractOpenApi
      * @return The actual instance of `RunStepDetailsToolCallsFunctionObject`
      * @throws ClassCastException if the instance is not `RunStepDetailsToolCallsFunctionObject`
      */
+    @SuppressWarnings("unchecked")
     public RunStepDetailsToolCallsFunctionObject getRunStepDetailsToolCallsFunctionObject() throws ClassCastException {
         return (RunStepDetailsToolCallsFunctionObject)super.getActualInstance();
     }

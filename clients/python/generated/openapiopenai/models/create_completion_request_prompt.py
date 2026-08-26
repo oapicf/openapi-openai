@@ -30,13 +30,13 @@ class CreateCompletionRequestPrompt(BaseModel):
     The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.  Note that <|endoftext|> is the document separator that the model sees during training, so if a prompt is not specified the model will generate as if from the beginning of a new document. 
     """
     # data type: str
-    oneof_schema_1_validator: Optional[StrictStr] = ''
+    oneof_schema_1_validator: Optional[StrictStr] = Field(default='', json_schema_extra={"examples": ["This is a test."]})
     # data type: List[str]
     oneof_schema_2_validator: Optional[List[StrictStr]] = None
     # data type: List[int]
-    oneof_schema_3_validator: Optional[Annotated[List[StrictInt], Field(min_length=1)]] = None
+    oneof_schema_3_validator: Optional[Annotated[List[StrictInt], Field(min_length=1)]] = Field(default=None, json_schema_extra={"examples": ["[1212, 318, 257, 1332, 13]"]})
     # data type: List[List[int]]
-    oneof_schema_4_validator: Optional[Annotated[List[Annotated[List[StrictInt], Field(min_length=1)]], Field(min_length=1)]] = None
+    oneof_schema_4_validator: Optional[Annotated[List[Annotated[List[StrictInt], Field(min_length=1)]], Field(min_length=1)]] = Field(default=None, json_schema_extra={"examples": ["[[1212, 318, 257, 1332, 13]]"]})
     actual_instance: Optional[Union[List[List[int]], List[int], List[str], str]] = None
     one_of_schemas: Set[str] = { "List[List[int]]", "List[int]", "List[str]", "str" }
 

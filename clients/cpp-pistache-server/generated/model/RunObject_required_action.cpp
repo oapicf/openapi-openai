@@ -25,6 +25,8 @@ RunObject_required_action::RunObject_required_action()
     
 }
 
+RunObject_required_action::~RunObject_required_action() = default;
+
 void RunObject_required_action::validate() const
 {
     std::stringstream msg;

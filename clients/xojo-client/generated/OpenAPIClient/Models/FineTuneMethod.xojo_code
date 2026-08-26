@@ -10,12 +10,12 @@ Protected Class FineTuneMethod
 
 
 	#tag Property, Flags = &h0
-		supervised As FineTuneSupervisedMethod
+		supervised As OpenAPIClient.Models.FineTuneSupervisedMethod
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		dpo As FineTuneDPOMethod
+		dpo As OpenAPIClient.Models.FineTuneDPOMethod
 	#tag EndProperty
 
 

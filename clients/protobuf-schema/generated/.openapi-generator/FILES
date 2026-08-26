@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 README.md
 models/admin_api_key.proto
 models/admin_api_key_owner.proto
@@ -61,7 +60,6 @@ models/audit_log_user_added_data.proto
 models/audit_log_user_deleted.proto
 models/audit_log_user_updated.proto
 models/audit_log_user_updated_changes_requested.proto
-models/auto_chunking_strategy.proto
 models/auto_chunking_strategy_request_param.proto
 models/batch.proto
 models/batch_errors.proto
@@ -479,7 +477,6 @@ models/run_tool_call_object.proto
 models/run_tool_call_object_function.proto
 models/static_chunking_strategy.proto
 models/static_chunking_strategy_request_param.proto
-models/static_chunking_strategy_response_param.proto
 models/static_chunking_strategy_static.proto
 models/string_array.proto
 models/submit_tool_outputs_run_request.proto

@@ -49,7 +49,7 @@ class CreateChatCompletionFunctionResponseChoicesInner
      * @var string|null
      * @SerializedName("finish_reason")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['stop', 'length', 'function_call', 'content_filter'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class CreateChatCompletionFunctionResponseChoicesInner
      * @var int|null
      * @SerializedName("index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $index = null;
@@ -70,7 +70,7 @@ class CreateChatCompletionFunctionResponseChoicesInner
      * @var ChatCompletionResponseMessage|null
      * @SerializedName("message")
      * @Type("OpenAPI\Server\Model\ChatCompletionResponseMessage")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionResponseMessage")]
@@ -100,12 +100,12 @@ class CreateChatCompletionFunctionResponseChoicesInner
     }
 
     /**
-    * Sets finishReason.
-    *
-    * @param string|null $finishReason  The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, or `function_call` if the model called a function.
-    *
-    * @return $this
-    */
+     * Sets finishReason.
+     *
+     * @param string|null $finishReason  The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, or `function_call` if the model called a function.
+     *
+     * @return $this
+     */
     public function setFinishReason(?string $finishReason): self
     {
         $this->finishReason = $finishReason;
@@ -127,12 +127,12 @@ class CreateChatCompletionFunctionResponseChoicesInner
     }
 
     /**
-    * Sets index.
-    *
-    * @param int|null $index  The index of the choice in the list of choices.
-    *
-    * @return $this
-    */
+     * Sets index.
+     *
+     * @param int|null $index  The index of the choice in the list of choices.
+     *
+     * @return $this
+     */
     public function setIndex(?int $index): self
     {
         $this->index = $index;
@@ -154,12 +154,12 @@ class CreateChatCompletionFunctionResponseChoicesInner
     }
 
     /**
-    * Sets message.
-    *
-    * @param ChatCompletionResponseMessage|null $message
-    *
-    * @return $this
-    */
+     * Sets message.
+     *
+     * @param ChatCompletionResponseMessage|null $message
+     *
+     * @return $this
+     */
     public function setMessage(?ChatCompletionResponseMessage $message): self
     {
         $this->message = $message;

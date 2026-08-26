@@ -12,18 +12,21 @@ static audit_log_service_account_updated_changes_requested_t *audit_log_service_
     if (!audit_log_service_account_updated_changes_requested_local_var) {
         return NULL;
     }
-    audit_log_service_account_updated_changes_requested_local_var->role = role;
-
+    memset(audit_log_service_account_updated_changes_requested_local_var, 0, sizeof(audit_log_service_account_updated_changes_requested_t));
     audit_log_service_account_updated_changes_requested_local_var->_library_owned = 1;
+    audit_log_service_account_updated_changes_requested_local_var->role = role;
     return audit_log_service_account_updated_changes_requested_local_var;
 }
 
 __attribute__((deprecated)) audit_log_service_account_updated_changes_requested_t *audit_log_service_account_updated_changes_requested_create(
     char *role
     ) {
-    return audit_log_service_account_updated_changes_requested_create_internal (
+    audit_log_service_account_updated_changes_requested_t *result = audit_log_service_account_updated_changes_requested_create_internal (
         role
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void audit_log_service_account_updated_changes_requested_free(audit_log_service_account_updated_changes_requested_t *audit_log_service_account_updated_changes_requested) {
@@ -64,6 +67,8 @@ audit_log_service_account_updated_changes_requested_t *audit_log_service_account
 
     audit_log_service_account_updated_changes_requested_t *audit_log_service_account_updated_changes_requested_local_var = NULL;
 
+    char *role_local_str = NULL;
+
     // audit_log_service_account_updated_changes_requested->role
     cJSON *role = cJSON_GetObjectItemCaseSensitive(audit_log_service_account_updated_changes_requestedJSON, "role");
     if (cJSON_IsNull(role)) {
@@ -77,12 +82,22 @@ audit_log_service_account_updated_changes_requested_t *audit_log_service_account
     }
 
 
+    if (role && !cJSON_IsNull(role)) role_local_str = strdup(role->valuestring);
+
     audit_log_service_account_updated_changes_requested_local_var = audit_log_service_account_updated_changes_requested_create_internal (
-        role && !cJSON_IsNull(role) ? strdup(role->valuestring) : NULL
+        role_local_str
         );
+
+    if (!audit_log_service_account_updated_changes_requested_local_var) {
+        goto end;
+    }
 
     return audit_log_service_account_updated_changes_requested_local_var;
 end:
+    if (role_local_str) {
+        free(role_local_str);
+        role_local_str = NULL;
+    }
     return NULL;
 
 }

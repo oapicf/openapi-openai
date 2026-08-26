@@ -23,7 +23,7 @@ class EmbeddingsApi {
   /// Parameters:
   ///
   /// * [CreateEmbeddingRequest] createEmbeddingRequest (required):
-  Future<Response> createEmbeddingWithHttpInfo(CreateEmbeddingRequest createEmbeddingRequest,) async {
+  Future<Response> createEmbeddingWithHttpInfo(CreateEmbeddingRequest createEmbeddingRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/embeddings';
 
@@ -45,6 +45,7 @@ class EmbeddingsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -53,8 +54,8 @@ class EmbeddingsApi {
   /// Parameters:
   ///
   /// * [CreateEmbeddingRequest] createEmbeddingRequest (required):
-  Future<CreateEmbeddingResponse?> createEmbedding(CreateEmbeddingRequest createEmbeddingRequest,) async {
-    final response = await createEmbeddingWithHttpInfo(createEmbeddingRequest,);
+  Future<CreateEmbeddingResponse?> createEmbedding(CreateEmbeddingRequest createEmbeddingRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createEmbeddingWithHttpInfo(createEmbeddingRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

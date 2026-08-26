@@ -25,6 +25,8 @@ RunStreamEvent_oneOf_1::RunStreamEvent_oneOf_1()
     
 }
 
+RunStreamEvent_oneOf_1::~RunStreamEvent_oneOf_1() = default;
+
 void RunStreamEvent_oneOf_1::validate() const
 {
     std::stringstream msg;

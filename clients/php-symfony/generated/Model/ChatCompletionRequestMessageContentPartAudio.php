@@ -51,7 +51,7 @@ class ChatCompletionRequestMessageContentPartAudio
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['input_audio'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class ChatCompletionRequestMessageContentPartAudio
      * @var ChatCompletionRequestMessageContentPartAudioInputAudio|null
      * @SerializedName("input_audio")
      * @Type("OpenAPI\Server\Model\ChatCompletionRequestMessageContentPartAudioInputAudio")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionRequestMessageContentPartAudioInputAudio")]
@@ -90,12 +90,12 @@ class ChatCompletionRequestMessageContentPartAudio
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of the content part. Always `input_audio`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of the content part. Always `input_audio`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -117,12 +117,12 @@ class ChatCompletionRequestMessageContentPartAudio
     }
 
     /**
-    * Sets inputAudio.
-    *
-    * @param ChatCompletionRequestMessageContentPartAudioInputAudio|null $inputAudio
-    *
-    * @return $this
-    */
+     * Sets inputAudio.
+     *
+     * @param ChatCompletionRequestMessageContentPartAudioInputAudio|null $inputAudio
+     *
+     * @return $this
+     */
     public function setInputAudio(?ChatCompletionRequestMessageContentPartAudioInputAudio $inputAudio): self
     {
         $this->inputAudio = $inputAudio;

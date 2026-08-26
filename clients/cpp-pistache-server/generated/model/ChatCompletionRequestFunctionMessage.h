@@ -32,7 +32,7 @@ class  ChatCompletionRequestFunctionMessage
 {
 public:
     ChatCompletionRequestFunctionMessage();
-    virtual ~ChatCompletionRequestFunctionMessage() = default;
+    virtual ~ChatCompletionRequestFunctionMessage();
 
 
     /// <summary>

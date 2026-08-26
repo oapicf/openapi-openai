@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIMessageContentTextObject_text_annotations_inner::OAIMessageContentTextObject_text_annotations_inner(QString json) {
+OAIMessageContentTextObject_text_annotations_inner::OAIMessageContentTextObject_text_annotations_inner(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -53,7 +53,7 @@ void OAIMessageContentTextObject_text_annotations_inner::initializeModel() {
     m_file_path_isValid = false;
 }
 
-void OAIMessageContentTextObject_text_annotations_inner::fromJson(QString jsonString) {
+void OAIMessageContentTextObject_text_annotations_inner::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -33,7 +33,7 @@ class  CreateFineTuningJobRequest_integrations_inner
 {
 public:
     CreateFineTuningJobRequest_integrations_inner();
-    virtual ~CreateFineTuningJobRequest_integrations_inner() = default;
+    virtual ~CreateFineTuningJobRequest_integrations_inner();
 
 
     /// <summary>
@@ -60,7 +60,7 @@ public:
     /// CreateFineTuningJobRequest_integrations_inner members
 
     /// <summary>
-    /// 
+    /// The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. 
     /// </summary>
     std::string getType() const;
     void setType(std::string const& value);

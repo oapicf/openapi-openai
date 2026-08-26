@@ -33,13 +33,13 @@ class OAIResponseFormatJsonSchema_json_schema;
 class OAIResponseFormatJsonSchema : public OAIObject {
 public:
     OAIResponseFormatJsonSchema();
-    OAIResponseFormatJsonSchema(QString json);
+    OAIResponseFormatJsonSchema(const QString &json);
     ~OAIResponseFormatJsonSchema() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

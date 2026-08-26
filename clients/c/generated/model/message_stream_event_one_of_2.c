@@ -30,10 +30,10 @@ static message_stream_event_one_of_2_t *message_stream_event_one_of_2_create_int
     if (!message_stream_event_one_of_2_local_var) {
         return NULL;
     }
+    memset(message_stream_event_one_of_2_local_var, 0, sizeof(message_stream_event_one_of_2_t));
+    message_stream_event_one_of_2_local_var->_library_owned = 1;
     message_stream_event_one_of_2_local_var->event = event;
     message_stream_event_one_of_2_local_var->data = data;
-
-    message_stream_event_one_of_2_local_var->_library_owned = 1;
     return message_stream_event_one_of_2_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) message_stream_event_one_of_2_t *message_stream_even
     openai_api_message_stream_event_one_of_2_EVENT_e event,
     message_delta_object_t *data
     ) {
-    return message_stream_event_one_of_2_create_internal (
+    message_stream_event_one_of_2_t *result = message_stream_event_one_of_2_create_internal (
         event,
         data
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_stream_event_one_of_2_free(message_stream_event_one_of_2_t *message_stream_event_one_of_2) {
@@ -134,10 +137,15 @@ message_stream_event_one_of_2_t *message_stream_event_one_of_2_parseFromJSON(cJS
     data_local_nonprim = message_delta_object_parseFromJSON(data); //nonprimitive
 
 
+
     message_stream_event_one_of_2_local_var = message_stream_event_one_of_2_create_internal (
         eventVariable,
         data_local_nonprim
         );
+
+    if (!message_stream_event_one_of_2_local_var) {
+        goto end;
+    }
 
     return message_stream_event_one_of_2_local_var;
 end:

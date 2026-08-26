@@ -86,8 +86,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ImagesResponse" />
     /// </summary>
-    public class ImagesResponseJsonConverter : JsonConverter<ImagesResponse>
+    public partial class ImagesResponseJsonConverter : JsonConverter<ImagesResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImagesResponseJsonConverter" /> class.
+        /// </summary>
+        public ImagesResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ImagesResponse" />
         /// </summary>

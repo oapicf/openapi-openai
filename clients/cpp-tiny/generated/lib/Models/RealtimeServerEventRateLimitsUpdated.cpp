@@ -123,7 +123,7 @@ RealtimeServerEventRateLimitsUpdated::getEventId()
 }
 
 void
-RealtimeServerEventRateLimitsUpdated::setEventId(std::string  event_id)
+RealtimeServerEventRateLimitsUpdated::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -135,7 +135,7 @@ RealtimeServerEventRateLimitsUpdated::getType()
 }
 
 void
-RealtimeServerEventRateLimitsUpdated::setType(std::string  type)
+RealtimeServerEventRateLimitsUpdated::setType(std::string type)
 {
 	this->type = type;
 }
@@ -147,7 +147,7 @@ RealtimeServerEventRateLimitsUpdated::getRateLimits()
 }
 
 void
-RealtimeServerEventRateLimitsUpdated::setRateLimits(std::list <RealtimeServerEventRateLimitsUpdated_rate_limits_inner> rate_limits)
+RealtimeServerEventRateLimitsUpdated::setRateLimits(std::list<RealtimeServerEventRateLimitsUpdated_rate_limits_inner> rate_limits)
 {
 	this->rate_limits = rate_limits;
 }

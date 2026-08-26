@@ -51,7 +51,7 @@ class AssistantStreamEvent
      * @var bool|null
      * @SerializedName("enabled")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $enabled = null;
 
@@ -59,7 +59,7 @@ class AssistantStreamEvent
      * @var string|null
      * @SerializedName("event")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['done'])]
     #[Assert\Type("string")]
@@ -69,7 +69,7 @@ class AssistantStreamEvent
      * @var string|null
      * @SerializedName("data")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['[DONE]'])]
     #[Assert\Type("string")]
@@ -99,12 +99,12 @@ class AssistantStreamEvent
     }
 
     /**
-    * Sets enabled.
-    *
-    * @param bool|null $enabled  Whether to enable input audio transcription.
-    *
-    * @return $this
-    */
+     * Sets enabled.
+     *
+     * @param bool|null $enabled  Whether to enable input audio transcription.
+     *
+     * @return $this
+     */
     public function setEnabled(?bool $enabled = null): self
     {
         $this->enabled = $enabled;
@@ -126,12 +126,12 @@ class AssistantStreamEvent
     }
 
     /**
-    * Sets event.
-    *
-    * @param string|null $event
-    *
-    * @return $this
-    */
+     * Sets event.
+     *
+     * @param string|null $event
+     *
+     * @return $this
+     */
     public function setEvent(?string $event): self
     {
         $this->event = $event;
@@ -153,12 +153,12 @@ class AssistantStreamEvent
     }
 
     /**
-    * Sets data.
-    *
-    * @param string|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param string|null $data
+     *
+     * @return $this
+     */
     public function setData(?string $data): self
     {
         $this->data = $data;

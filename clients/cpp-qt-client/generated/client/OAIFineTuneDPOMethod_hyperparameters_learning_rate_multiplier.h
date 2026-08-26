@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIFineTuneDPOMethod_hyperparameters_learning_rate_multiplier : public OAIObject {
 public:
     OAIFineTuneDPOMethod_hyperparameters_learning_rate_multiplier();
-    OAIFineTuneDPOMethod_hyperparameters_learning_rate_multiplier(QString json);
+    OAIFineTuneDPOMethod_hyperparameters_learning_rate_multiplier(const QString &json);
     ~OAIFineTuneDPOMethod_hyperparameters_learning_rate_multiplier() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

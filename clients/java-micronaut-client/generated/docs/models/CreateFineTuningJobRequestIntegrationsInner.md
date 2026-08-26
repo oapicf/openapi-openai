@@ -8,7 +8,7 @@ The class is defined in **[CreateFineTuningJobRequestIntegrationsInner.java](../
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**TypeEnum**](#TypeEnum) |  | 
+**type** | [**TypeEnum**](#TypeEnum) | The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported.  | 
 **wandb** | [`CreateFineTuningJobRequestIntegrationsInnerWandb`](CreateFineTuningJobRequestIntegrationsInnerWandb.md) |  | 
 
 ## TypeEnum

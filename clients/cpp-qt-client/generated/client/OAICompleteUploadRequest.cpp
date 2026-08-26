@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICompleteUploadRequest::OAICompleteUploadRequest(QString json) {
+OAICompleteUploadRequest::OAICompleteUploadRequest(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAICompleteUploadRequest::initializeModel() {
     m_md5_isValid = false;
 }
 
-void OAICompleteUploadRequest::fromJson(QString jsonString) {
+void OAICompleteUploadRequest::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

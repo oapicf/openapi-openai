@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The input prompt for this training example.</value>
         [JsonPropertyName("prompt")]
-        public string? Prompt { get { return this.PromptOption; } set { this.PromptOption = new(value); } }
+        public string? Prompt { get { return this.PromptOption.Value; } set { this.PromptOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Completion
@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The desired completion for this training example.</value>
         [JsonPropertyName("completion")]
-        public string? Completion { get { return this.CompletionOption; } set { this.CompletionOption = new(value); } }
+        public string? Completion { get { return this.CompletionOption.Value; } set { this.CompletionOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTuneCompletionRequestInput" />
     /// </summary>
-    public class FineTuneCompletionRequestInputJsonConverter : JsonConverter<FineTuneCompletionRequestInput>
+    public partial class FineTuneCompletionRequestInputJsonConverter : JsonConverter<FineTuneCompletionRequestInput>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTuneCompletionRequestInputJsonConverter" /> class.
+        /// </summary>
+        public FineTuneCompletionRequestInputJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTuneCompletionRequestInput" />
         /// </summary>

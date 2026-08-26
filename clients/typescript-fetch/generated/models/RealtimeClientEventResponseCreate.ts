@@ -50,7 +50,7 @@ export interface RealtimeClientEventResponseCreate {
     eventId?: string;
     /**
      * The event type, must be `response.create`.
-     * @type {string}
+     * @type {RealtimeClientEventResponseCreateTypeEnum}
      * @memberof RealtimeClientEventResponseCreate
      */
     type: RealtimeClientEventResponseCreateTypeEnum;
@@ -77,6 +77,8 @@ export type RealtimeClientEventResponseCreateTypeEnum = typeof RealtimeClientEve
  */
 export function instanceOfRealtimeClientEventResponseCreate(value: object): value is RealtimeClientEventResponseCreate {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'response.create') return false;
+    
     return true;
 }
 

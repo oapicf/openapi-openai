@@ -30,7 +30,8 @@ type RealtimeServerEventConversationItemInputAudioTranscriptionFailedError struc
 	Param string `json:"param,omitempty"`
 }
 
-// AssertRealtimeServerEventConversationItemInputAudioTranscriptionFailedErrorRequired checks if the required fields are not zero-ed
+// AssertRealtimeServerEventConversationItemInputAudioTranscriptionFailedErrorRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeServerEventConversationItemInputAudioTranscriptionFailedErrorRequired(obj RealtimeServerEventConversationItemInputAudioTranscriptionFailedError) error {
 	return nil
 }

@@ -28,7 +28,7 @@ openai_api_model_OBJECT_e model_object_FromString(char* object);
 
 typedef struct model_t {
     char *id; // string
-    int created; //numeric
+    int *created; //numeric
     openai_api_model_OBJECT_e object; //enum
     char *owned_by; // string
 
@@ -37,7 +37,7 @@ typedef struct model_t {
 
 __attribute__((deprecated)) model_t *model_create(
     char *id,
-    int created,
+    int *created,
     openai_api_model_OBJECT_e object,
     char *owned_by
 );

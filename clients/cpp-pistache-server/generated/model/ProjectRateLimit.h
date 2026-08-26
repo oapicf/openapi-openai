@@ -32,7 +32,7 @@ class  ProjectRateLimit
 {
 public:
     ProjectRateLimit();
-    virtual ~ProjectRateLimit() = default;
+    virtual ~ProjectRateLimit();
 
 
     /// <summary>

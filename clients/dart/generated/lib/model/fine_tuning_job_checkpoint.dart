@@ -89,10 +89,20 @@ class FineTuningJobCheckpoint {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "FineTuningJobCheckpoint[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "FineTuningJobCheckpoint[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "FineTuningJobCheckpoint[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "FineTuningJobCheckpoint[id]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "FineTuningJobCheckpoint[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "FineTuningJobCheckpoint[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'fine_tuned_model_checkpoint'), 'Required key "FineTuningJobCheckpoint[fine_tuned_model_checkpoint]" is missing from JSON.');
+        assert(json[r'fine_tuned_model_checkpoint'] != null, 'Required key "FineTuningJobCheckpoint[fine_tuned_model_checkpoint]" has a null value in JSON.');
+        assert(json.containsKey(r'step_number'), 'Required key "FineTuningJobCheckpoint[step_number]" is missing from JSON.');
+        assert(json[r'step_number'] != null, 'Required key "FineTuningJobCheckpoint[step_number]" has a null value in JSON.');
+        assert(json.containsKey(r'metrics'), 'Required key "FineTuningJobCheckpoint[metrics]" is missing from JSON.');
+        assert(json[r'metrics'] != null, 'Required key "FineTuningJobCheckpoint[metrics]" has a null value in JSON.');
+        assert(json.containsKey(r'fine_tuning_job_id'), 'Required key "FineTuningJobCheckpoint[fine_tuning_job_id]" is missing from JSON.');
+        assert(json[r'fine_tuning_job_id'] != null, 'Required key "FineTuningJobCheckpoint[fine_tuning_job_id]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "FineTuningJobCheckpoint[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "FineTuningJobCheckpoint[object]" has a null value in JSON.');
         return true;
       }());
 
@@ -162,27 +172,28 @@ class FineTuningJobCheckpoint {
 }
 
 /// The object type, which is always \"fine_tuning.job.checkpoint\".
-class FineTuningJobCheckpointObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const FineTuningJobCheckpointObjectEnum._(this.value);
+enum FineTuningJobCheckpointObjectEnum {
+  fineTuningPeriodJobPeriodCheckpoint._(r'fine_tuning.job.checkpoint'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const FineTuningJobCheckpointObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const fineTuningPeriodJobPeriodCheckpoint = FineTuningJobCheckpointObjectEnum._(r'fine_tuning.job.checkpoint');
-
-  /// List of all possible values in this [enum][FineTuningJobCheckpointObjectEnum].
-  static const values = <FineTuningJobCheckpointObjectEnum>[
-    fineTuningPeriodJobPeriodCheckpoint,
-  ];
-
+  /// Returns the instance of [FineTuningJobCheckpointObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static FineTuningJobCheckpointObjectEnum? fromJson(dynamic value) => FineTuningJobCheckpointObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [FineTuningJobCheckpointObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<FineTuningJobCheckpointObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <FineTuningJobCheckpointObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -204,9 +215,10 @@ class FineTuningJobCheckpointObjectEnumTypeTransformer {
 
   const FineTuningJobCheckpointObjectEnumTypeTransformer._();
 
-  String encode(FineTuningJobCheckpointObjectEnum data) => data.value;
+  String encode(FineTuningJobCheckpointObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a FineTuningJobCheckpointObjectEnum.
+  /// Returns the instance of [FineTuningJobCheckpointObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -215,6 +227,9 @@ class FineTuningJobCheckpointObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   FineTuningJobCheckpointObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is FineTuningJobCheckpointObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'fine_tuning.job.checkpoint': return FineTuningJobCheckpointObjectEnum.fineTuningPeriodJobPeriodCheckpoint;
@@ -227,7 +242,7 @@ class FineTuningJobCheckpointObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [FineTuningJobCheckpointObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static FineTuningJobCheckpointObjectEnumTypeTransformer? _instance;
 }
 

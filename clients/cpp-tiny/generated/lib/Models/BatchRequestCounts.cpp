@@ -106,7 +106,7 @@ Batch_request_counts::getTotal()
 }
 
 void
-Batch_request_counts::setTotal(int  total)
+Batch_request_counts::setTotal(int total)
 {
 	this->total = total;
 }
@@ -118,7 +118,7 @@ Batch_request_counts::getCompleted()
 }
 
 void
-Batch_request_counts::setCompleted(int  completed)
+Batch_request_counts::setCompleted(int completed)
 {
 	this->completed = completed;
 }
@@ -130,7 +130,7 @@ Batch_request_counts::getFailed()
 }
 
 void
-Batch_request_counts::setFailed(int  failed)
+Batch_request_counts::setFailed(int failed)
 {
 	this->failed = failed;
 }

@@ -85,11 +85,11 @@ function Initialize-MessageContentTextAnnotationsFileCitationObject {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "text" = ${Text}
-            "file_citation" = ${FileCitation}
-            "start_index" = ${StartIndex}
-            "end_index" = ${EndIndex}
+            'type' = ${Type}
+            'text' = ${Text}
+            'file_citation' = ${FileCitation}
+            'start_index' = ${StartIndex}
+            'end_index' = ${EndIndex}
         }
 
 
@@ -127,7 +127,7 @@ function ConvertFrom-JsonToMessageContentTextAnnotationsFileCitationObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in MessageContentTextAnnotationsFileCitationObject
-        $AllProperties = ("type", "text", "file_citation", "start_index", "end_index")
+        $AllProperties = ('type', 'text', 'file_citation', 'start_index', 'end_index')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -138,42 +138,42 @@ function ConvertFrom-JsonToMessageContentTextAnnotationsFileCitationObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "text"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'text'))) {
             throw "Error! JSON cannot be serialized due to the required property 'text' missing."
         } else {
-            $Text = $JsonParameters.PSobject.Properties["text"].value
+            $Text = $JsonParameters.PSobject.Properties['text'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_citation"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_citation'))) {
             throw "Error! JSON cannot be serialized due to the required property 'file_citation' missing."
         } else {
-            $FileCitation = $JsonParameters.PSobject.Properties["file_citation"].value
+            $FileCitation = $JsonParameters.PSobject.Properties['file_citation'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "start_index"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'start_index'))) {
             throw "Error! JSON cannot be serialized due to the required property 'start_index' missing."
         } else {
-            $StartIndex = $JsonParameters.PSobject.Properties["start_index"].value
+            $StartIndex = $JsonParameters.PSobject.Properties['start_index'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "end_index"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'end_index'))) {
             throw "Error! JSON cannot be serialized due to the required property 'end_index' missing."
         } else {
-            $EndIndex = $JsonParameters.PSobject.Properties["end_index"].value
+            $EndIndex = $JsonParameters.PSobject.Properties['end_index'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "text" = ${Text}
-            "file_citation" = ${FileCitation}
-            "start_index" = ${StartIndex}
-            "end_index" = ${EndIndex}
+            'type' = ${Type}
+            'text' = ${Text}
+            'file_citation' = ${FileCitation}
+            'start_index' = ${StartIndex}
+            'end_index' = ${EndIndex}
         }
 
         return $PSO

@@ -1,0 +1,16 @@
+
+
+export interface AssistantToolsFileSearchTypeOnly { 
+  /**
+   * The type of tool being defined: `file_search`
+   */
+  type: AssistantToolsFileSearchTypeOnly.TypeEnum;
+}
+export namespace AssistantToolsFileSearchTypeOnly {
+  export const TypeEnum = {
+    FileSearch: 'file_search'
+  } as const;
+  export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
+}
+
+

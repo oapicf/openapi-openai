@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`.
 	 */
-	void setAnchor(std::string  anchor);
+	void setAnchor(std::string anchor);
 	/*! \brief Get The number of days after the anchor time that the vector store will expire.
 	 */
 	int getDays();
 
 	/*! \brief Set The number of days after the anchor time that the vector store will expire.
 	 */
-	void setDays(int  days);
+	void setDays(int days);
 
 
     private:

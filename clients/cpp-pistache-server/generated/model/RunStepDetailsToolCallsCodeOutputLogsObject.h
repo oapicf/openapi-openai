@@ -32,7 +32,7 @@ class  RunStepDetailsToolCallsCodeOutputLogsObject
 {
 public:
     RunStepDetailsToolCallsCodeOutputLogsObject();
-    virtual ~RunStepDetailsToolCallsCodeOutputLogsObject() = default;
+    virtual ~RunStepDetailsToolCallsCodeOutputLogsObject();
 
 
     /// <summary>

@@ -61,10 +61,12 @@ class RunStepObjectStepDetails {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepObjectStepDetails[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepObjectStepDetails[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "RunStepObjectStepDetails[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RunStepObjectStepDetails[type]" has a null value in JSON.');
+        assert(json.containsKey(r'message_creation'), 'Required key "RunStepObjectStepDetails[message_creation]" is missing from JSON.');
+        assert(json[r'message_creation'] != null, 'Required key "RunStepObjectStepDetails[message_creation]" has a null value in JSON.');
+        assert(json.containsKey(r'tool_calls'), 'Required key "RunStepObjectStepDetails[tool_calls]" is missing from JSON.');
+        assert(json[r'tool_calls'] != null, 'Required key "RunStepObjectStepDetails[tool_calls]" has a null value in JSON.');
         return true;
       }());
 
@@ -126,29 +128,29 @@ class RunStepObjectStepDetails {
 }
 
 /// Always `message_creation`.
-class RunStepObjectStepDetailsTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepObjectStepDetailsTypeEnum._(this.value);
+enum RunStepObjectStepDetailsTypeEnum {
+  messageCreation._(r'message_creation'),
+  toolCalls._(r'tool_calls'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepObjectStepDetailsTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const messageCreation = RunStepObjectStepDetailsTypeEnum._(r'message_creation');
-  static const toolCalls = RunStepObjectStepDetailsTypeEnum._(r'tool_calls');
-
-  /// List of all possible values in this [enum][RunStepObjectStepDetailsTypeEnum].
-  static const values = <RunStepObjectStepDetailsTypeEnum>[
-    messageCreation,
-    toolCalls,
-  ];
-
+  /// Returns the instance of [RunStepObjectStepDetailsTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepObjectStepDetailsTypeEnum? fromJson(dynamic value) => RunStepObjectStepDetailsTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepObjectStepDetailsTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepObjectStepDetailsTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepObjectStepDetailsTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -170,9 +172,10 @@ class RunStepObjectStepDetailsTypeEnumTypeTransformer {
 
   const RunStepObjectStepDetailsTypeEnumTypeTransformer._();
 
-  String encode(RunStepObjectStepDetailsTypeEnum data) => data.value;
+  String encode(RunStepObjectStepDetailsTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepObjectStepDetailsTypeEnum.
+  /// Returns the instance of [RunStepObjectStepDetailsTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -181,6 +184,9 @@ class RunStepObjectStepDetailsTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepObjectStepDetailsTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepObjectStepDetailsTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'message_creation': return RunStepObjectStepDetailsTypeEnum.messageCreation;
@@ -194,7 +200,7 @@ class RunStepObjectStepDetailsTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStepObjectStepDetailsTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepObjectStepDetailsTypeEnumTypeTransformer? _instance;
 }
 

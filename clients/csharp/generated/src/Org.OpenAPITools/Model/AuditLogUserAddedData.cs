@@ -56,7 +56,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The role of the user. Is either &#x60;owner&#x60; or &#x60;member&#x60;.</value>
         [JsonPropertyName("role")]
-        public string? Role { get { return this.RoleOption; } set { this.RoleOption = new(value); } }
+        public string? Role { get { return this.RoleOption.Value; } set { this.RoleOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AuditLogUserAddedData" />
     /// </summary>
-    public class AuditLogUserAddedDataJsonConverter : JsonConverter<AuditLogUserAddedData>
+    public partial class AuditLogUserAddedDataJsonConverter : JsonConverter<AuditLogUserAddedData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuditLogUserAddedDataJsonConverter" /> class.
+        /// </summary>
+        public AuditLogUserAddedDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuditLogUserAddedData" />
         /// </summary>

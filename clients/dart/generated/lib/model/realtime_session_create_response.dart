@@ -215,10 +215,6 @@ class RealtimeSessionCreateResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeSessionCreateResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeSessionCreateResponse[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
@@ -286,29 +282,29 @@ class RealtimeSessionCreateResponse {
 }
 
 
-class RealtimeSessionCreateResponseModalitiesEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeSessionCreateResponseModalitiesEnum._(this.value);
+enum RealtimeSessionCreateResponseModalitiesEnum {
+  text._(r'text'),
+  audio._(r'audio'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeSessionCreateResponseModalitiesEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = RealtimeSessionCreateResponseModalitiesEnum._(r'text');
-  static const audio = RealtimeSessionCreateResponseModalitiesEnum._(r'audio');
-
-  /// List of all possible values in this [enum][RealtimeSessionCreateResponseModalitiesEnum].
-  static const values = <RealtimeSessionCreateResponseModalitiesEnum>[
-    text,
-    audio,
-  ];
-
+  /// Returns the instance of [RealtimeSessionCreateResponseModalitiesEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeSessionCreateResponseModalitiesEnum? fromJson(dynamic value) => RealtimeSessionCreateResponseModalitiesEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeSessionCreateResponseModalitiesEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeSessionCreateResponseModalitiesEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeSessionCreateResponseModalitiesEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -330,9 +326,10 @@ class RealtimeSessionCreateResponseModalitiesEnumTypeTransformer {
 
   const RealtimeSessionCreateResponseModalitiesEnumTypeTransformer._();
 
-  String encode(RealtimeSessionCreateResponseModalitiesEnum data) => data.value;
+  String encode(RealtimeSessionCreateResponseModalitiesEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeSessionCreateResponseModalitiesEnum.
+  /// Returns the instance of [RealtimeSessionCreateResponseModalitiesEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -341,6 +338,9 @@ class RealtimeSessionCreateResponseModalitiesEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeSessionCreateResponseModalitiesEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeSessionCreateResponseModalitiesEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return RealtimeSessionCreateResponseModalitiesEnum.text;
@@ -354,47 +354,41 @@ class RealtimeSessionCreateResponseModalitiesEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeSessionCreateResponseModalitiesEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeSessionCreateResponseModalitiesEnumTypeTransformer? _instance;
 }
 
 
 /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
-class RealtimeSessionCreateResponseVoiceEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeSessionCreateResponseVoiceEnum._(this.value);
+enum RealtimeSessionCreateResponseVoiceEnum {
+  alloy._(r'alloy'),
+  ash._(r'ash'),
+  ballad._(r'ballad'),
+  coral._(r'coral'),
+  echo._(r'echo'),
+  sage._(r'sage'),
+  shimmer._(r'shimmer'),
+  verse._(r'verse'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeSessionCreateResponseVoiceEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const alloy = RealtimeSessionCreateResponseVoiceEnum._(r'alloy');
-  static const ash = RealtimeSessionCreateResponseVoiceEnum._(r'ash');
-  static const ballad = RealtimeSessionCreateResponseVoiceEnum._(r'ballad');
-  static const coral = RealtimeSessionCreateResponseVoiceEnum._(r'coral');
-  static const echo = RealtimeSessionCreateResponseVoiceEnum._(r'echo');
-  static const sage = RealtimeSessionCreateResponseVoiceEnum._(r'sage');
-  static const shimmer = RealtimeSessionCreateResponseVoiceEnum._(r'shimmer');
-  static const verse = RealtimeSessionCreateResponseVoiceEnum._(r'verse');
-
-  /// List of all possible values in this [enum][RealtimeSessionCreateResponseVoiceEnum].
-  static const values = <RealtimeSessionCreateResponseVoiceEnum>[
-    alloy,
-    ash,
-    ballad,
-    coral,
-    echo,
-    sage,
-    shimmer,
-    verse,
-  ];
-
+  /// Returns the instance of [RealtimeSessionCreateResponseVoiceEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeSessionCreateResponseVoiceEnum? fromJson(dynamic value) => RealtimeSessionCreateResponseVoiceEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeSessionCreateResponseVoiceEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeSessionCreateResponseVoiceEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeSessionCreateResponseVoiceEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -416,9 +410,10 @@ class RealtimeSessionCreateResponseVoiceEnumTypeTransformer {
 
   const RealtimeSessionCreateResponseVoiceEnumTypeTransformer._();
 
-  String encode(RealtimeSessionCreateResponseVoiceEnum data) => data.value;
+  String encode(RealtimeSessionCreateResponseVoiceEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeSessionCreateResponseVoiceEnum.
+  /// Returns the instance of [RealtimeSessionCreateResponseVoiceEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -427,6 +422,9 @@ class RealtimeSessionCreateResponseVoiceEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeSessionCreateResponseVoiceEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeSessionCreateResponseVoiceEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'alloy': return RealtimeSessionCreateResponseVoiceEnum.alloy;
@@ -446,7 +444,7 @@ class RealtimeSessionCreateResponseVoiceEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeSessionCreateResponseVoiceEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeSessionCreateResponseVoiceEnumTypeTransformer? _instance;
 }
 

@@ -49,7 +49,7 @@ class AssistantToolsFileSearch
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['file_search'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class AssistantToolsFileSearch
      * @var AssistantToolsFileSearchFileSearch|null
      * @SerializedName("file_search")
      * @Type("OpenAPI\Server\Model\AssistantToolsFileSearchFileSearch")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AssistantToolsFileSearchFileSearch")]
     protected ?AssistantToolsFileSearchFileSearch $fileSearch = null;
 
@@ -86,12 +86,12 @@ class AssistantToolsFileSearch
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of tool being defined: `file_search`
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of tool being defined: `file_search`
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -113,12 +113,12 @@ class AssistantToolsFileSearch
     }
 
     /**
-    * Sets fileSearch.
-    *
-    * @param AssistantToolsFileSearchFileSearch|null $fileSearch
-    *
-    * @return $this
-    */
+     * Sets fileSearch.
+     *
+     * @param AssistantToolsFileSearchFileSearch|null $fileSearch
+     *
+     * @return $this
+     */
     public function setFileSearch(?AssistantToolsFileSearchFileSearch $fileSearch = null): self
     {
         $this->fileSearch = $fileSearch;

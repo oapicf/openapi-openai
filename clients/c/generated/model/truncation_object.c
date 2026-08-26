@@ -24,27 +24,36 @@ openai_api_truncation_object_TYPE_e truncation_object_type_FromString(char* type
 
 static truncation_object_t *truncation_object_create_internal(
     openai_api_truncation_object_TYPE_e type,
-    int last_messages
+    int *last_messages
     ) {
     truncation_object_t *truncation_object_local_var = malloc(sizeof(truncation_object_t));
     if (!truncation_object_local_var) {
         return NULL;
     }
+    memset(truncation_object_local_var, 0, sizeof(truncation_object_t));
+    truncation_object_local_var->_library_owned = 1;
     truncation_object_local_var->type = type;
     truncation_object_local_var->last_messages = last_messages;
-
-    truncation_object_local_var->_library_owned = 1;
     return truncation_object_local_var;
 }
 
 __attribute__((deprecated)) truncation_object_t *truncation_object_create(
     openai_api_truncation_object_TYPE_e type,
-    int last_messages
+    int *last_messages
     ) {
-    return truncation_object_create_internal (
+    int *last_messages_copy = NULL;
+    if (last_messages) {
+        last_messages_copy = malloc(sizeof(int));
+        if (last_messages_copy) *last_messages_copy = *last_messages;
+    }
+    truncation_object_t *result = truncation_object_create_internal (
         type,
-        last_messages
+        last_messages_copy
         );
+    if (!result) {
+        free(last_messages_copy);
+    }
+    return result;
 }
 
 void truncation_object_free(truncation_object_t *truncation_object) {
@@ -56,6 +65,10 @@ void truncation_object_free(truncation_object_t *truncation_object) {
         return ;
     }
     listEntry_t *listEntry;
+    if (truncation_object->last_messages) {
+        free(truncation_object->last_messages);
+        truncation_object->last_messages = NULL;
+    }
     free(truncation_object);
 }
 
@@ -74,7 +87,7 @@ cJSON *truncation_object_convertToJSON(truncation_object_t *truncation_object) {
 
     // truncation_object->last_messages
     if(truncation_object->last_messages) {
-    if(cJSON_AddNumberToObject(item, "last_messages", truncation_object->last_messages) == NULL) {
+    if(cJSON_AddNumberToObject(item, "last_messages", *truncation_object->last_messages) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -90,6 +103,9 @@ fail:
 truncation_object_t *truncation_object_parseFromJSON(cJSON *truncation_objectJSON){
 
     truncation_object_t *truncation_object_local_var = NULL;
+
+    // define the local variable for truncation_object->last_messages
+    int *last_messages_local_var = NULL;
 
     // truncation_object->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(truncation_objectJSON, "type");
@@ -118,16 +134,31 @@ truncation_object_t *truncation_object_parseFromJSON(cJSON *truncation_objectJSO
     {
     goto end; //Numeric
     }
+    last_messages_local_var = malloc(sizeof(int));
+    if(!last_messages_local_var)
+    {
+        goto end;
     }
+    *last_messages_local_var = last_messages->valuedouble;
+    }
+
 
 
     truncation_object_local_var = truncation_object_create_internal (
         typeVariable,
-        last_messages ? last_messages->valuedouble : 0
+        last_messages_local_var
         );
+
+    if (!truncation_object_local_var) {
+        goto end;
+    }
 
     return truncation_object_local_var;
 end:
+    if (last_messages_local_var) {
+        free(last_messages_local_var);
+        last_messages_local_var = NULL;
+    }
     return NULL;
 
 }

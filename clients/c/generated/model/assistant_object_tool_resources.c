@@ -13,10 +13,10 @@ static assistant_object_tool_resources_t *assistant_object_tool_resources_create
     if (!assistant_object_tool_resources_local_var) {
         return NULL;
     }
+    memset(assistant_object_tool_resources_local_var, 0, sizeof(assistant_object_tool_resources_t));
+    assistant_object_tool_resources_local_var->_library_owned = 1;
     assistant_object_tool_resources_local_var->code_interpreter = code_interpreter;
     assistant_object_tool_resources_local_var->file_search = file_search;
-
-    assistant_object_tool_resources_local_var->_library_owned = 1;
     return assistant_object_tool_resources_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) assistant_object_tool_resources_t *assistant_object_
     assistant_object_tool_resources_code_interpreter_t *code_interpreter,
     assistant_object_tool_resources_file_search_t *file_search
     ) {
-    return assistant_object_tool_resources_create_internal (
+    assistant_object_tool_resources_t *result = assistant_object_tool_resources_create_internal (
         code_interpreter,
         file_search
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void assistant_object_tool_resources_free(assistant_object_tool_resources_t *assistant_object_tool_resources) {
@@ -115,10 +118,15 @@ assistant_object_tool_resources_t *assistant_object_tool_resources_parseFromJSON
     }
 
 
+
     assistant_object_tool_resources_local_var = assistant_object_tool_resources_create_internal (
         code_interpreter ? code_interpreter_local_nonprim : NULL,
         file_search ? file_search_local_nonprim : NULL
         );
+
+    if (!assistant_object_tool_resources_local_var) {
+        goto end;
+    }
 
     return assistant_object_tool_resources_local_var;
 end:

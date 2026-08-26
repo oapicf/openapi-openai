@@ -26,6 +26,8 @@ ChatCompletionTokenLogprob::ChatCompletionTokenLogprob()
     
 }
 
+ChatCompletionTokenLogprob::~ChatCompletionTokenLogprob() = default;
+
 void ChatCompletionTokenLogprob::validate() const
 {
     std::stringstream msg;

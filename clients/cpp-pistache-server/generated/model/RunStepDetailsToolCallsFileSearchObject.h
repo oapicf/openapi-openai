@@ -33,7 +33,7 @@ class  RunStepDetailsToolCallsFileSearchObject
 {
 public:
     RunStepDetailsToolCallsFileSearchObject();
-    virtual ~RunStepDetailsToolCallsFileSearchObject() = default;
+    virtual ~RunStepDetailsToolCallsFileSearchObject();
 
 
     /// <summary>

@@ -87,7 +87,7 @@ ModifyAssistantRequest_tool_resources::getCodeInterpreter()
 }
 
 void
-ModifyAssistantRequest_tool_resources::setCodeInterpreter(ModifyAssistantRequest_tool_resources_code_interpreter  code_interpreter)
+ModifyAssistantRequest_tool_resources::setCodeInterpreter(ModifyAssistantRequest_tool_resources_code_interpreter code_interpreter)
 {
 	this->code_interpreter = code_interpreter;
 }
@@ -99,7 +99,7 @@ ModifyAssistantRequest_tool_resources::getFileSearch()
 }
 
 void
-ModifyAssistantRequest_tool_resources::setFileSearch(ModifyAssistantRequest_tool_resources_file_search  file_search)
+ModifyAssistantRequest_tool_resources::setFileSearch(ModifyAssistantRequest_tool_resources_file_search file_search)
 {
 	this->file_search = file_search;
 }

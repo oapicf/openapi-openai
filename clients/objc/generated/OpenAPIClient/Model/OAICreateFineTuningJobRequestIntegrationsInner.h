@@ -25,7 +25,8 @@
 
 @interface OAICreateFineTuningJobRequestIntegrationsInner : OAIObject
 
-
+/* The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported.  
+ */
 @property(nonatomic) NSString* type;
 
 @property(nonatomic) OAICreateFineTuningJobRequestIntegrationsInnerWandb* wandb;

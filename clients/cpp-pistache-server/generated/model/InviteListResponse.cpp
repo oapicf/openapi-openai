@@ -31,6 +31,8 @@ InviteListResponse::InviteListResponse()
     
 }
 
+InviteListResponse::~InviteListResponse() = default;
+
 void InviteListResponse::validate() const
 {
     std::stringstream msg;

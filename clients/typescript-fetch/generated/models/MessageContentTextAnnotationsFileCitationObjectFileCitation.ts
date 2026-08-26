@@ -31,7 +31,7 @@ export interface MessageContentTextAnnotationsFileCitationObjectFileCitation {
  * Check if a given object implements the MessageContentTextAnnotationsFileCitationObjectFileCitation interface.
  */
 export function instanceOfMessageContentTextAnnotationsFileCitationObjectFileCitation(value: object): value is MessageContentTextAnnotationsFileCitationObjectFileCitation {
-    if (!('fileId' in value) || value['fileId'] === undefined) return false;
+    if ((!('fileId' in (value as Record<string, any>)) && !('file_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['fileId'] === undefined && (value as Record<string, any>)['file_id'] === undefined)) return false;
     return true;
 }
 

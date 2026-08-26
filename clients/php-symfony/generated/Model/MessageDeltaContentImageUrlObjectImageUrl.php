@@ -49,7 +49,7 @@ class MessageDeltaContentImageUrlObjectImageUrl
      * @var string|null
      * @SerializedName("url")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $url = null;
 
@@ -59,7 +59,7 @@ class MessageDeltaContentImageUrlObjectImageUrl
      * @var string|null
      * @SerializedName("detail")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['auto', 'low', 'high'])]
     #[Assert\Type("string")]
     protected ?string $detail = 'auto';
@@ -87,12 +87,12 @@ class MessageDeltaContentImageUrlObjectImageUrl
     }
 
     /**
-    * Sets url.
-    *
-    * @param string|null $url  The URL of the image, must be a supported image types: jpeg, jpg, png, gif, webp.
-    *
-    * @return $this
-    */
+     * Sets url.
+     *
+     * @param string|null $url  The URL of the image, must be a supported image types: jpeg, jpg, png, gif, webp.
+     *
+     * @return $this
+     */
     public function setUrl(?string $url = null): self
     {
         $this->url = $url;
@@ -114,12 +114,12 @@ class MessageDeltaContentImageUrlObjectImageUrl
     }
 
     /**
-    * Sets detail.
-    *
-    * @param string|null $detail  Specifies the detail level of the image. `low` uses fewer tokens, you can opt in to high resolution using `high`.
-    *
-    * @return $this
-    */
+     * Sets detail.
+     *
+     * @param string|null $detail  Specifies the detail level of the image. `low` uses fewer tokens, you can opt in to high resolution using `high`.
+     *
+     * @return $this
+     */
     public function setDetail(?string $detail = null): self
     {
         $this->detail = $detail;

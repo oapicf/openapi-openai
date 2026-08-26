@@ -64,7 +64,7 @@ ChatCompletionRequestAssistantMessage_audio::getId()
 }
 
 void
-ChatCompletionRequestAssistantMessage_audio::setId(std::string  id)
+ChatCompletionRequestAssistantMessage_audio::setId(std::string id)
 {
 	this->id = id;
 }

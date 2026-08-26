@@ -107,7 +107,7 @@ ChatCompletionMessageToolCall::getId()
 }
 
 void
-ChatCompletionMessageToolCall::setId(std::string  id)
+ChatCompletionMessageToolCall::setId(std::string id)
 {
 	this->id = id;
 }
@@ -119,7 +119,7 @@ ChatCompletionMessageToolCall::getType()
 }
 
 void
-ChatCompletionMessageToolCall::setType(std::string  type)
+ChatCompletionMessageToolCall::setType(std::string type)
 {
 	this->type = type;
 }
@@ -131,7 +131,7 @@ ChatCompletionMessageToolCall::getFunction()
 }
 
 void
-ChatCompletionMessageToolCall::setFunction(ChatCompletionMessageToolCall_function  function)
+ChatCompletionMessageToolCall::setFunction(ChatCompletionMessageToolCall_function function)
 {
 	this->function = function;
 }

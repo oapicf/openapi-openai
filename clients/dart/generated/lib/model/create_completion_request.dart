@@ -263,10 +263,9 @@ class CreateCompletionRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateCompletionRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateCompletionRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'model'), 'Required key "CreateCompletionRequest[model]" is missing from JSON.');
+        assert(json[r'model'] != null, 'Required key "CreateCompletionRequest[model]" has a null value in JSON.');
+        assert(json.containsKey(r'prompt'), 'Required key "CreateCompletionRequest[prompt]" is missing from JSON.');
         return true;
       }());
 

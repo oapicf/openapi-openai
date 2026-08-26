@@ -23,7 +23,7 @@ openai_api_message_delta_content_text_object_TYPE_e message_delta_content_text_o
 }
 
 static message_delta_content_text_object_t *message_delta_content_text_object_create_internal(
-    int index,
+    int *index,
     openai_api_message_delta_content_text_object_TYPE_e type,
     message_delta_content_text_object_text_t *text
     ) {
@@ -31,24 +31,33 @@ static message_delta_content_text_object_t *message_delta_content_text_object_cr
     if (!message_delta_content_text_object_local_var) {
         return NULL;
     }
+    memset(message_delta_content_text_object_local_var, 0, sizeof(message_delta_content_text_object_t));
+    message_delta_content_text_object_local_var->_library_owned = 1;
     message_delta_content_text_object_local_var->index = index;
     message_delta_content_text_object_local_var->type = type;
     message_delta_content_text_object_local_var->text = text;
-
-    message_delta_content_text_object_local_var->_library_owned = 1;
     return message_delta_content_text_object_local_var;
 }
 
 __attribute__((deprecated)) message_delta_content_text_object_t *message_delta_content_text_object_create(
-    int index,
+    int *index,
     openai_api_message_delta_content_text_object_TYPE_e type,
     message_delta_content_text_object_text_t *text
     ) {
-    return message_delta_content_text_object_create_internal (
-        index,
+    int *index_copy = NULL;
+    if (index) {
+        index_copy = malloc(sizeof(int));
+        if (index_copy) *index_copy = *index;
+    }
+    message_delta_content_text_object_t *result = message_delta_content_text_object_create_internal (
+        index_copy,
         type,
         text
         );
+    if (!result) {
+        free(index_copy);
+    }
+    return result;
 }
 
 void message_delta_content_text_object_free(message_delta_content_text_object_t *message_delta_content_text_object) {
@@ -60,6 +69,10 @@ void message_delta_content_text_object_free(message_delta_content_text_object_t 
         return ;
     }
     listEntry_t *listEntry;
+    if (message_delta_content_text_object->index) {
+        free(message_delta_content_text_object->index);
+        message_delta_content_text_object->index = NULL;
+    }
     if (message_delta_content_text_object->text) {
         message_delta_content_text_object_text_free(message_delta_content_text_object->text);
         message_delta_content_text_object->text = NULL;
@@ -74,7 +87,7 @@ cJSON *message_delta_content_text_object_convertToJSON(message_delta_content_tex
     if (!message_delta_content_text_object->index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "index", message_delta_content_text_object->index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "index", *message_delta_content_text_object->index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -113,6 +126,9 @@ message_delta_content_text_object_t *message_delta_content_text_object_parseFrom
 
     message_delta_content_text_object_t *message_delta_content_text_object_local_var = NULL;
 
+    // define the local variable for message_delta_content_text_object->index
+    int *index_local_var = NULL;
+
     // define the local variable for message_delta_content_text_object->text
     message_delta_content_text_object_text_t *text_local_nonprim = NULL;
 
@@ -130,6 +146,12 @@ message_delta_content_text_object_t *message_delta_content_text_object_parseFrom
     {
     goto end; //Numeric
     }
+    index_local_var = malloc(sizeof(int));
+    if(!index_local_var)
+    {
+        goto end;
+    }
+    *index_local_var = index->valuedouble;
 
     // message_delta_content_text_object->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(message_delta_content_text_objectJSON, "type");
@@ -158,14 +180,23 @@ message_delta_content_text_object_t *message_delta_content_text_object_parseFrom
     }
 
 
+
     message_delta_content_text_object_local_var = message_delta_content_text_object_create_internal (
-        index->valuedouble,
+        index_local_var,
         typeVariable,
         text ? text_local_nonprim : NULL
         );
 
+    if (!message_delta_content_text_object_local_var) {
+        goto end;
+    }
+
     return message_delta_content_text_object_local_var;
 end:
+    if (index_local_var) {
+        free(index_local_var);
+        index_local_var = NULL;
+    }
     if (text_local_nonprim) {
         message_delta_content_text_object_text_free(text_local_nonprim);
         text_local_nonprim = NULL;

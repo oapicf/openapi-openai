@@ -32,7 +32,7 @@ class  RealtimeSessionCreateResponse_client_secret
 {
 public:
     RealtimeSessionCreateResponse_client_secret();
-    virtual ~RealtimeSessionCreateResponse_client_secret() = default;
+    virtual ~RealtimeSessionCreateResponse_client_secret();
 
 
     /// <summary>

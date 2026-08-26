@@ -26,17 +26,19 @@ static project_rate_limit_t *project_rate_limit_create_internal(
     openai_api_project_rate_limit_OBJECT_e object,
     char *id,
     char *model,
-    int max_requests_per_1_minute,
-    int max_tokens_per_1_minute,
-    int max_images_per_1_minute,
-    int max_audio_megabytes_per_1_minute,
-    int max_requests_per_1_day,
-    int batch_1_day_max_input_tokens
+    int *max_requests_per_1_minute,
+    int *max_tokens_per_1_minute,
+    int *max_images_per_1_minute,
+    int *max_audio_megabytes_per_1_minute,
+    int *max_requests_per_1_day,
+    int *batch_1_day_max_input_tokens
     ) {
     project_rate_limit_t *project_rate_limit_local_var = malloc(sizeof(project_rate_limit_t));
     if (!project_rate_limit_local_var) {
         return NULL;
     }
+    memset(project_rate_limit_local_var, 0, sizeof(project_rate_limit_t));
+    project_rate_limit_local_var->_library_owned = 1;
     project_rate_limit_local_var->object = object;
     project_rate_limit_local_var->id = id;
     project_rate_limit_local_var->model = model;
@@ -46,8 +48,6 @@ static project_rate_limit_t *project_rate_limit_create_internal(
     project_rate_limit_local_var->max_audio_megabytes_per_1_minute = max_audio_megabytes_per_1_minute;
     project_rate_limit_local_var->max_requests_per_1_day = max_requests_per_1_day;
     project_rate_limit_local_var->batch_1_day_max_input_tokens = batch_1_day_max_input_tokens;
-
-    project_rate_limit_local_var->_library_owned = 1;
     return project_rate_limit_local_var;
 }
 
@@ -55,24 +55,63 @@ __attribute__((deprecated)) project_rate_limit_t *project_rate_limit_create(
     openai_api_project_rate_limit_OBJECT_e object,
     char *id,
     char *model,
-    int max_requests_per_1_minute,
-    int max_tokens_per_1_minute,
-    int max_images_per_1_minute,
-    int max_audio_megabytes_per_1_minute,
-    int max_requests_per_1_day,
-    int batch_1_day_max_input_tokens
+    int *max_requests_per_1_minute,
+    int *max_tokens_per_1_minute,
+    int *max_images_per_1_minute,
+    int *max_audio_megabytes_per_1_minute,
+    int *max_requests_per_1_day,
+    int *batch_1_day_max_input_tokens
     ) {
-    return project_rate_limit_create_internal (
+    int *max_requests_per_1_minute_copy = NULL;
+    if (max_requests_per_1_minute) {
+        max_requests_per_1_minute_copy = malloc(sizeof(int));
+        if (max_requests_per_1_minute_copy) *max_requests_per_1_minute_copy = *max_requests_per_1_minute;
+    }
+    int *max_tokens_per_1_minute_copy = NULL;
+    if (max_tokens_per_1_minute) {
+        max_tokens_per_1_minute_copy = malloc(sizeof(int));
+        if (max_tokens_per_1_minute_copy) *max_tokens_per_1_minute_copy = *max_tokens_per_1_minute;
+    }
+    int *max_images_per_1_minute_copy = NULL;
+    if (max_images_per_1_minute) {
+        max_images_per_1_minute_copy = malloc(sizeof(int));
+        if (max_images_per_1_minute_copy) *max_images_per_1_minute_copy = *max_images_per_1_minute;
+    }
+    int *max_audio_megabytes_per_1_minute_copy = NULL;
+    if (max_audio_megabytes_per_1_minute) {
+        max_audio_megabytes_per_1_minute_copy = malloc(sizeof(int));
+        if (max_audio_megabytes_per_1_minute_copy) *max_audio_megabytes_per_1_minute_copy = *max_audio_megabytes_per_1_minute;
+    }
+    int *max_requests_per_1_day_copy = NULL;
+    if (max_requests_per_1_day) {
+        max_requests_per_1_day_copy = malloc(sizeof(int));
+        if (max_requests_per_1_day_copy) *max_requests_per_1_day_copy = *max_requests_per_1_day;
+    }
+    int *batch_1_day_max_input_tokens_copy = NULL;
+    if (batch_1_day_max_input_tokens) {
+        batch_1_day_max_input_tokens_copy = malloc(sizeof(int));
+        if (batch_1_day_max_input_tokens_copy) *batch_1_day_max_input_tokens_copy = *batch_1_day_max_input_tokens;
+    }
+    project_rate_limit_t *result = project_rate_limit_create_internal (
         object,
         id,
         model,
-        max_requests_per_1_minute,
-        max_tokens_per_1_minute,
-        max_images_per_1_minute,
-        max_audio_megabytes_per_1_minute,
-        max_requests_per_1_day,
-        batch_1_day_max_input_tokens
+        max_requests_per_1_minute_copy,
+        max_tokens_per_1_minute_copy,
+        max_images_per_1_minute_copy,
+        max_audio_megabytes_per_1_minute_copy,
+        max_requests_per_1_day_copy,
+        batch_1_day_max_input_tokens_copy
         );
+    if (!result) {
+        free(max_requests_per_1_minute_copy);
+        free(max_tokens_per_1_minute_copy);
+        free(max_images_per_1_minute_copy);
+        free(max_audio_megabytes_per_1_minute_copy);
+        free(max_requests_per_1_day_copy);
+        free(batch_1_day_max_input_tokens_copy);
+    }
+    return result;
 }
 
 void project_rate_limit_free(project_rate_limit_t *project_rate_limit) {
@@ -91,6 +130,30 @@ void project_rate_limit_free(project_rate_limit_t *project_rate_limit) {
     if (project_rate_limit->model) {
         free(project_rate_limit->model);
         project_rate_limit->model = NULL;
+    }
+    if (project_rate_limit->max_requests_per_1_minute) {
+        free(project_rate_limit->max_requests_per_1_minute);
+        project_rate_limit->max_requests_per_1_minute = NULL;
+    }
+    if (project_rate_limit->max_tokens_per_1_minute) {
+        free(project_rate_limit->max_tokens_per_1_minute);
+        project_rate_limit->max_tokens_per_1_minute = NULL;
+    }
+    if (project_rate_limit->max_images_per_1_minute) {
+        free(project_rate_limit->max_images_per_1_minute);
+        project_rate_limit->max_images_per_1_minute = NULL;
+    }
+    if (project_rate_limit->max_audio_megabytes_per_1_minute) {
+        free(project_rate_limit->max_audio_megabytes_per_1_minute);
+        project_rate_limit->max_audio_megabytes_per_1_minute = NULL;
+    }
+    if (project_rate_limit->max_requests_per_1_day) {
+        free(project_rate_limit->max_requests_per_1_day);
+        project_rate_limit->max_requests_per_1_day = NULL;
+    }
+    if (project_rate_limit->batch_1_day_max_input_tokens) {
+        free(project_rate_limit->batch_1_day_max_input_tokens);
+        project_rate_limit->batch_1_day_max_input_tokens = NULL;
     }
     free(project_rate_limit);
 }
@@ -130,7 +193,7 @@ cJSON *project_rate_limit_convertToJSON(project_rate_limit_t *project_rate_limit
     if (!project_rate_limit->max_requests_per_1_minute) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "max_requests_per_1_minute", project_rate_limit->max_requests_per_1_minute) == NULL) {
+    if(cJSON_AddNumberToObject(item, "max_requests_per_1_minute", *project_rate_limit->max_requests_per_1_minute) == NULL) {
     goto fail; //Numeric
     }
 
@@ -139,14 +202,14 @@ cJSON *project_rate_limit_convertToJSON(project_rate_limit_t *project_rate_limit
     if (!project_rate_limit->max_tokens_per_1_minute) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "max_tokens_per_1_minute", project_rate_limit->max_tokens_per_1_minute) == NULL) {
+    if(cJSON_AddNumberToObject(item, "max_tokens_per_1_minute", *project_rate_limit->max_tokens_per_1_minute) == NULL) {
     goto fail; //Numeric
     }
 
 
     // project_rate_limit->max_images_per_1_minute
     if(project_rate_limit->max_images_per_1_minute) {
-    if(cJSON_AddNumberToObject(item, "max_images_per_1_minute", project_rate_limit->max_images_per_1_minute) == NULL) {
+    if(cJSON_AddNumberToObject(item, "max_images_per_1_minute", *project_rate_limit->max_images_per_1_minute) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -154,7 +217,7 @@ cJSON *project_rate_limit_convertToJSON(project_rate_limit_t *project_rate_limit
 
     // project_rate_limit->max_audio_megabytes_per_1_minute
     if(project_rate_limit->max_audio_megabytes_per_1_minute) {
-    if(cJSON_AddNumberToObject(item, "max_audio_megabytes_per_1_minute", project_rate_limit->max_audio_megabytes_per_1_minute) == NULL) {
+    if(cJSON_AddNumberToObject(item, "max_audio_megabytes_per_1_minute", *project_rate_limit->max_audio_megabytes_per_1_minute) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -162,7 +225,7 @@ cJSON *project_rate_limit_convertToJSON(project_rate_limit_t *project_rate_limit
 
     // project_rate_limit->max_requests_per_1_day
     if(project_rate_limit->max_requests_per_1_day) {
-    if(cJSON_AddNumberToObject(item, "max_requests_per_1_day", project_rate_limit->max_requests_per_1_day) == NULL) {
+    if(cJSON_AddNumberToObject(item, "max_requests_per_1_day", *project_rate_limit->max_requests_per_1_day) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -170,7 +233,7 @@ cJSON *project_rate_limit_convertToJSON(project_rate_limit_t *project_rate_limit
 
     // project_rate_limit->batch_1_day_max_input_tokens
     if(project_rate_limit->batch_1_day_max_input_tokens) {
-    if(cJSON_AddNumberToObject(item, "batch_1_day_max_input_tokens", project_rate_limit->batch_1_day_max_input_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "batch_1_day_max_input_tokens", *project_rate_limit->batch_1_day_max_input_tokens) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -186,6 +249,28 @@ fail:
 project_rate_limit_t *project_rate_limit_parseFromJSON(cJSON *project_rate_limitJSON){
 
     project_rate_limit_t *project_rate_limit_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    char *model_local_str = NULL;
+
+    // define the local variable for project_rate_limit->max_requests_per_1_minute
+    int *max_requests_per_1_minute_local_var = NULL;
+
+    // define the local variable for project_rate_limit->max_tokens_per_1_minute
+    int *max_tokens_per_1_minute_local_var = NULL;
+
+    // define the local variable for project_rate_limit->max_images_per_1_minute
+    int *max_images_per_1_minute_local_var = NULL;
+
+    // define the local variable for project_rate_limit->max_audio_megabytes_per_1_minute
+    int *max_audio_megabytes_per_1_minute_local_var = NULL;
+
+    // define the local variable for project_rate_limit->max_requests_per_1_day
+    int *max_requests_per_1_day_local_var = NULL;
+
+    // define the local variable for project_rate_limit->batch_1_day_max_input_tokens
+    int *batch_1_day_max_input_tokens_local_var = NULL;
 
     // project_rate_limit->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(project_rate_limitJSON, "object");
@@ -248,6 +333,12 @@ project_rate_limit_t *project_rate_limit_parseFromJSON(cJSON *project_rate_limit
     {
     goto end; //Numeric
     }
+    max_requests_per_1_minute_local_var = malloc(sizeof(int));
+    if(!max_requests_per_1_minute_local_var)
+    {
+        goto end;
+    }
+    *max_requests_per_1_minute_local_var = max_requests_per_1_minute->valuedouble;
 
     // project_rate_limit->max_tokens_per_1_minute
     cJSON *max_tokens_per_1_minute = cJSON_GetObjectItemCaseSensitive(project_rate_limitJSON, "max_tokens_per_1_minute");
@@ -263,6 +354,12 @@ project_rate_limit_t *project_rate_limit_parseFromJSON(cJSON *project_rate_limit
     {
     goto end; //Numeric
     }
+    max_tokens_per_1_minute_local_var = malloc(sizeof(int));
+    if(!max_tokens_per_1_minute_local_var)
+    {
+        goto end;
+    }
+    *max_tokens_per_1_minute_local_var = max_tokens_per_1_minute->valuedouble;
 
     // project_rate_limit->max_images_per_1_minute
     cJSON *max_images_per_1_minute = cJSON_GetObjectItemCaseSensitive(project_rate_limitJSON, "max_images_per_1_minute");
@@ -274,6 +371,12 @@ project_rate_limit_t *project_rate_limit_parseFromJSON(cJSON *project_rate_limit
     {
     goto end; //Numeric
     }
+    max_images_per_1_minute_local_var = malloc(sizeof(int));
+    if(!max_images_per_1_minute_local_var)
+    {
+        goto end;
+    }
+    *max_images_per_1_minute_local_var = max_images_per_1_minute->valuedouble;
     }
 
     // project_rate_limit->max_audio_megabytes_per_1_minute
@@ -286,6 +389,12 @@ project_rate_limit_t *project_rate_limit_parseFromJSON(cJSON *project_rate_limit
     {
     goto end; //Numeric
     }
+    max_audio_megabytes_per_1_minute_local_var = malloc(sizeof(int));
+    if(!max_audio_megabytes_per_1_minute_local_var)
+    {
+        goto end;
+    }
+    *max_audio_megabytes_per_1_minute_local_var = max_audio_megabytes_per_1_minute->valuedouble;
     }
 
     // project_rate_limit->max_requests_per_1_day
@@ -298,6 +407,12 @@ project_rate_limit_t *project_rate_limit_parseFromJSON(cJSON *project_rate_limit
     {
     goto end; //Numeric
     }
+    max_requests_per_1_day_local_var = malloc(sizeof(int));
+    if(!max_requests_per_1_day_local_var)
+    {
+        goto end;
+    }
+    *max_requests_per_1_day_local_var = max_requests_per_1_day->valuedouble;
     }
 
     // project_rate_limit->batch_1_day_max_input_tokens
@@ -310,23 +425,68 @@ project_rate_limit_t *project_rate_limit_parseFromJSON(cJSON *project_rate_limit
     {
     goto end; //Numeric
     }
+    batch_1_day_max_input_tokens_local_var = malloc(sizeof(int));
+    if(!batch_1_day_max_input_tokens_local_var)
+    {
+        goto end;
+    }
+    *batch_1_day_max_input_tokens_local_var = batch_1_day_max_input_tokens->valuedouble;
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (model && !cJSON_IsNull(model)) model_local_str = strdup(model->valuestring);
+
     project_rate_limit_local_var = project_rate_limit_create_internal (
         objectVariable,
-        strdup(id->valuestring),
-        strdup(model->valuestring),
-        max_requests_per_1_minute->valuedouble,
-        max_tokens_per_1_minute->valuedouble,
-        max_images_per_1_minute ? max_images_per_1_minute->valuedouble : 0,
-        max_audio_megabytes_per_1_minute ? max_audio_megabytes_per_1_minute->valuedouble : 0,
-        max_requests_per_1_day ? max_requests_per_1_day->valuedouble : 0,
-        batch_1_day_max_input_tokens ? batch_1_day_max_input_tokens->valuedouble : 0
+        id_local_str,
+        model_local_str,
+        max_requests_per_1_minute_local_var,
+        max_tokens_per_1_minute_local_var,
+        max_images_per_1_minute_local_var,
+        max_audio_megabytes_per_1_minute_local_var,
+        max_requests_per_1_day_local_var,
+        batch_1_day_max_input_tokens_local_var
         );
+
+    if (!project_rate_limit_local_var) {
+        goto end;
+    }
 
     return project_rate_limit_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (model_local_str) {
+        free(model_local_str);
+        model_local_str = NULL;
+    }
+    if (max_requests_per_1_minute_local_var) {
+        free(max_requests_per_1_minute_local_var);
+        max_requests_per_1_minute_local_var = NULL;
+    }
+    if (max_tokens_per_1_minute_local_var) {
+        free(max_tokens_per_1_minute_local_var);
+        max_tokens_per_1_minute_local_var = NULL;
+    }
+    if (max_images_per_1_minute_local_var) {
+        free(max_images_per_1_minute_local_var);
+        max_images_per_1_minute_local_var = NULL;
+    }
+    if (max_audio_megabytes_per_1_minute_local_var) {
+        free(max_audio_megabytes_per_1_minute_local_var);
+        max_audio_megabytes_per_1_minute_local_var = NULL;
+    }
+    if (max_requests_per_1_day_local_var) {
+        free(max_requests_per_1_day_local_var);
+        max_requests_per_1_day_local_var = NULL;
+    }
+    if (batch_1_day_max_input_tokens_local_var) {
+        free(batch_1_day_max_input_tokens_local_var);
+        batch_1_day_max_input_tokens_local_var = NULL;
+    }
     return NULL;
 
 }

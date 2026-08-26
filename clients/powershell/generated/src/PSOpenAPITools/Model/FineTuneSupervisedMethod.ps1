@@ -36,7 +36,7 @@ function Initialize-FineTuneSupervisedMethod {
 
 
         $PSO = [PSCustomObject]@{
-            "hyperparameters" = ${Hyperparameters}
+            'hyperparameters' = ${Hyperparameters}
         }
 
 
@@ -74,21 +74,21 @@ function ConvertFrom-JsonToFineTuneSupervisedMethod {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in FineTuneSupervisedMethod
-        $AllProperties = ("hyperparameters")
+        $AllProperties = ('hyperparameters')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hyperparameters"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'hyperparameters'))) { #optional property not found
             $Hyperparameters = $null
         } else {
-            $Hyperparameters = $JsonParameters.PSobject.Properties["hyperparameters"].value
+            $Hyperparameters = $JsonParameters.PSobject.Properties['hyperparameters'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "hyperparameters" = ${Hyperparameters}
+            'hyperparameters' = ${Hyperparameters}
         }
 
         return $PSO

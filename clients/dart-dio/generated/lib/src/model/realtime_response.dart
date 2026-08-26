@@ -151,36 +151,41 @@ class _$RealtimeResponseSerializer implements PrimitiveSerializer<RealtimeRespon
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'object':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeResponseObjectEnum),
-          ) as RealtimeResponseObjectEnum;
+            specifiedType: const FullType.nullable(RealtimeResponseObjectEnum),
+          ) as RealtimeResponseObjectEnum?;
+          if (valueDes == null) continue;
           result.object = valueDes;
           break;
         case r'status':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeResponseStatusEnum),
-          ) as RealtimeResponseStatusEnum;
+            specifiedType: const FullType.nullable(RealtimeResponseStatusEnum),
+          ) as RealtimeResponseStatusEnum?;
+          if (valueDes == null) continue;
           result.status = valueDes;
           break;
         case r'status_details':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeResponseStatusDetails),
-          ) as RealtimeResponseStatusDetails;
+            specifiedType: const FullType.nullable(RealtimeResponseStatusDetails),
+          ) as RealtimeResponseStatusDetails?;
+          if (valueDes == null) continue;
           result.statusDetails.replace(valueDes);
           break;
         case r'output':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(RealtimeConversationItem)]),
-          ) as BuiltList<RealtimeConversationItem>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(RealtimeConversationItem)]),
+          ) as BuiltList<RealtimeConversationItem>?;
+          if (valueDes == null) continue;
           result.output.replace(valueDes);
           break;
         case r'metadata':
@@ -194,8 +199,9 @@ class _$RealtimeResponseSerializer implements PrimitiveSerializer<RealtimeRespon
         case r'usage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeResponseUsage),
-          ) as RealtimeResponseUsage;
+            specifiedType: const FullType.nullable(RealtimeResponseUsage),
+          ) as RealtimeResponseUsage?;
+          if (valueDes == null) continue;
           result.usage.replace(valueDes);
           break;
         default:

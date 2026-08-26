@@ -51,7 +51,7 @@ class ThreadObject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class ThreadObject
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['thread'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class ThreadObject
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -83,7 +83,7 @@ class ThreadObject
      * @var ModifyThreadRequestToolResources|null
      * @SerializedName("tool_resources")
      * @Type("OpenAPI\Server\Model\ModifyThreadRequestToolResources")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\ModifyThreadRequestToolResources")]
@@ -95,7 +95,7 @@ class ThreadObject
      * @var array|null
      * @SerializedName("metadata")
      * @Type("array")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("array")]
     protected ?array $metadata = null;
@@ -126,12 +126,12 @@ class ThreadObject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The identifier, which can be referenced in API endpoints.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The identifier, which can be referenced in API endpoints.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -153,12 +153,12 @@ class ThreadObject
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `thread`.
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `thread`.
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -180,12 +180,12 @@ class ThreadObject
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) for when the thread was created.
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) for when the thread was created.
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -207,12 +207,12 @@ class ThreadObject
     }
 
     /**
-    * Sets toolResources.
-    *
-    * @param ModifyThreadRequestToolResources|null $toolResources
-    *
-    * @return $this
-    */
+     * Sets toolResources.
+     *
+     * @param ModifyThreadRequestToolResources|null $toolResources
+     *
+     * @return $this
+     */
     public function setToolResources(?ModifyThreadRequestToolResources $toolResources): self
     {
         $this->toolResources = $toolResources;
@@ -234,12 +234,12 @@ class ThreadObject
     }
 
     /**
-    * Sets metadata.
-    *
-    * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
-    *
-    * @return $this
-    */
+     * Sets metadata.
+     *
+     * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
+     *
+     * @return $this
+     */
     public function setMetadata(?array $metadata): self
     {
         $this->metadata = $metadata;

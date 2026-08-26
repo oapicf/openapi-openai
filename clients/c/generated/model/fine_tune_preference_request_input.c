@@ -14,11 +14,11 @@ static fine_tune_preference_request_input_t *fine_tune_preference_request_input_
     if (!fine_tune_preference_request_input_local_var) {
         return NULL;
     }
+    memset(fine_tune_preference_request_input_local_var, 0, sizeof(fine_tune_preference_request_input_t));
+    fine_tune_preference_request_input_local_var->_library_owned = 1;
     fine_tune_preference_request_input_local_var->input = input;
     fine_tune_preference_request_input_local_var->preferred_completion = preferred_completion;
     fine_tune_preference_request_input_local_var->non_preferred_completion = non_preferred_completion;
-
-    fine_tune_preference_request_input_local_var->_library_owned = 1;
     return fine_tune_preference_request_input_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) fine_tune_preference_request_input_t *fine_tune_pref
     list_t *preferred_completion,
     list_t *non_preferred_completion
     ) {
-    return fine_tune_preference_request_input_create_internal (
+    fine_tune_preference_request_input_t *result = fine_tune_preference_request_input_create_internal (
         input,
         preferred_completion,
         non_preferred_completion
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void fine_tune_preference_request_input_free(fine_tune_preference_request_input_t *fine_tune_preference_request_input) {
@@ -198,11 +201,16 @@ fine_tune_preference_request_input_t *fine_tune_preference_request_input_parseFr
     }
 
 
+
     fine_tune_preference_request_input_local_var = fine_tune_preference_request_input_create_internal (
         input ? input_local_nonprim : NULL,
         preferred_completion ? preferred_completionList : NULL,
         non_preferred_completion ? non_preferred_completionList : NULL
         );
+
+    if (!fine_tune_preference_request_input_local_var) {
+        goto end;
+    }
 
     return fine_tune_preference_request_input_local_var;
 end:

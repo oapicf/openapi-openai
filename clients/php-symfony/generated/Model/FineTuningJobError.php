@@ -51,7 +51,7 @@ class FineTuningJobError
      * @var string|null
      * @SerializedName("code")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $code = null;
@@ -62,7 +62,7 @@ class FineTuningJobError
      * @var string|null
      * @SerializedName("message")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $message = null;
@@ -73,7 +73,7 @@ class FineTuningJobError
      * @var string|null
      * @SerializedName("param")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $param = null;
@@ -102,12 +102,12 @@ class FineTuningJobError
     }
 
     /**
-    * Sets code.
-    *
-    * @param string|null $code  A machine-readable error code.
-    *
-    * @return $this
-    */
+     * Sets code.
+     *
+     * @param string|null $code  A machine-readable error code.
+     *
+     * @return $this
+     */
     public function setCode(?string $code): self
     {
         $this->code = $code;
@@ -129,12 +129,12 @@ class FineTuningJobError
     }
 
     /**
-    * Sets message.
-    *
-    * @param string|null $message  A human-readable error message.
-    *
-    * @return $this
-    */
+     * Sets message.
+     *
+     * @param string|null $message  A human-readable error message.
+     *
+     * @return $this
+     */
     public function setMessage(?string $message): self
     {
         $this->message = $message;
@@ -156,12 +156,12 @@ class FineTuningJobError
     }
 
     /**
-    * Sets param.
-    *
-    * @param string|null $param  The parameter that was invalid, usually `training_file` or `validation_file`. This field will be null if the failure was not parameter-specific.
-    *
-    * @return $this
-    */
+     * Sets param.
+     *
+     * @param string|null $param  The parameter that was invalid, usually `training_file` or `validation_file`. This field will be null if the failure was not parameter-specific.
+     *
+     * @return $this
+     */
     public function setParam(?string $param): self
     {
         $this->param = $param;

@@ -25,7 +25,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [AdminApiKeysCreateRequest] adminApiKeysCreateRequest (required):
-  Future<Response> adminApiKeysCreateWithHttpInfo(AdminApiKeysCreateRequest adminApiKeysCreateRequest,) async {
+  Future<Response> adminApiKeysCreateWithHttpInfo(AdminApiKeysCreateRequest adminApiKeysCreateRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/admin_api_keys';
 
@@ -47,6 +47,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -57,8 +58,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [AdminApiKeysCreateRequest] adminApiKeysCreateRequest (required):
-  Future<AdminApiKey?> adminApiKeysCreate(AdminApiKeysCreateRequest adminApiKeysCreateRequest,) async {
-    final response = await adminApiKeysCreateWithHttpInfo(adminApiKeysCreateRequest,);
+  Future<AdminApiKey?> adminApiKeysCreate(AdminApiKeysCreateRequest adminApiKeysCreateRequest, { Future<void>? abortTrigger, }) async {
+    final response = await adminApiKeysCreateWithHttpInfo(adminApiKeysCreateRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -81,7 +82,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] keyId (required):
-  Future<Response> adminApiKeysDeleteWithHttpInfo(String keyId,) async {
+  Future<Response> adminApiKeysDeleteWithHttpInfo(String keyId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/admin_api_keys/{key_id}'
       .replaceAll('{key_id}', keyId);
@@ -104,6 +105,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -114,8 +116,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] keyId (required):
-  Future<AdminApiKeysDelete200Response?> adminApiKeysDelete(String keyId,) async {
-    final response = await adminApiKeysDeleteWithHttpInfo(keyId,);
+  Future<AdminApiKeysDelete200Response?> adminApiKeysDelete(String keyId, { Future<void>? abortTrigger, }) async {
+    final response = await adminApiKeysDeleteWithHttpInfo(keyId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -138,7 +140,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] keyId (required):
-  Future<Response> adminApiKeysGetWithHttpInfo(String keyId,) async {
+  Future<Response> adminApiKeysGetWithHttpInfo(String keyId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/admin_api_keys/{key_id}'
       .replaceAll('{key_id}', keyId);
@@ -161,6 +163,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -171,8 +174,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] keyId (required):
-  Future<AdminApiKey?> adminApiKeysGet(String keyId,) async {
-    final response = await adminApiKeysGetWithHttpInfo(keyId,);
+  Future<AdminApiKey?> adminApiKeysGet(String keyId, { Future<void>? abortTrigger, }) async {
+    final response = await adminApiKeysGetWithHttpInfo(keyId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -199,7 +202,7 @@ class DefaultApi {
   /// * [String] order:
   ///
   /// * [int] limit:
-  Future<Response> adminApiKeysListWithHttpInfo({ String? after, String? order, int? limit, }) async {
+  Future<Response> adminApiKeysListWithHttpInfo({ String? after, String? order, int? limit, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/admin_api_keys';
 
@@ -231,6 +234,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -245,8 +249,8 @@ class DefaultApi {
   /// * [String] order:
   ///
   /// * [int] limit:
-  Future<ApiKeyList?> adminApiKeysList({ String? after, String? order, int? limit, }) async {
-    final response = await adminApiKeysListWithHttpInfo( after: after, order: order, limit: limit, );
+  Future<ApiKeyList?> adminApiKeysList({ String? after, String? order, int? limit, Future<void>? abortTrigger, }) async {
+    final response = await adminApiKeysListWithHttpInfo(after: after, order: order, limit: limit, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

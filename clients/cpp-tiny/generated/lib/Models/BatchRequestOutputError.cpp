@@ -85,7 +85,7 @@ BatchRequestOutput_error::getCode()
 }
 
 void
-BatchRequestOutput_error::setCode(std::string  code)
+BatchRequestOutput_error::setCode(std::string code)
 {
 	this->code = code;
 }
@@ -97,7 +97,7 @@ BatchRequestOutput_error::getMessage()
 }
 
 void
-BatchRequestOutput_error::setMessage(std::string  message)
+BatchRequestOutput_error::setMessage(std::string message)
 {
 	this->message = message;
 }

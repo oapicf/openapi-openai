@@ -25,13 +25,16 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ListPaginatedFineTuningJobsResponse(
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("data")
     @get:JsonProperty("data", required = true) val `data`: kotlin.collections.List<FineTuningJob>,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("has_more")
     @get:JsonProperty("has_more", required = true) val hasMore: kotlin.Boolean,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: ListPaginatedFineTuningJobsResponse.`Object`
 ) {
 
@@ -48,7 +51,7 @@ data class ListPaginatedFineTuningJobsResponse(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ListPaginatedFineTuningJobsResponse'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }

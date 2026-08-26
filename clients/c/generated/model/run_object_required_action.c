@@ -30,10 +30,10 @@ static run_object_required_action_t *run_object_required_action_create_internal(
     if (!run_object_required_action_local_var) {
         return NULL;
     }
+    memset(run_object_required_action_local_var, 0, sizeof(run_object_required_action_t));
+    run_object_required_action_local_var->_library_owned = 1;
     run_object_required_action_local_var->type = type;
     run_object_required_action_local_var->submit_tool_outputs = submit_tool_outputs;
-
-    run_object_required_action_local_var->_library_owned = 1;
     return run_object_required_action_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) run_object_required_action_t *run_object_required_ac
     openai_api_run_object_required_action_TYPE_e type,
     run_object_required_action_submit_tool_outputs_t *submit_tool_outputs
     ) {
-    return run_object_required_action_create_internal (
+    run_object_required_action_t *result = run_object_required_action_create_internal (
         type,
         submit_tool_outputs
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_object_required_action_free(run_object_required_action_t *run_object_required_action) {
@@ -134,10 +137,15 @@ run_object_required_action_t *run_object_required_action_parseFromJSON(cJSON *ru
     submit_tool_outputs_local_nonprim = run_object_required_action_submit_tool_outputs_parseFromJSON(submit_tool_outputs); //nonprimitive
 
 
+
     run_object_required_action_local_var = run_object_required_action_create_internal (
         typeVariable,
         submit_tool_outputs_local_nonprim
         );
+
+    if (!run_object_required_action_local_var) {
+        goto end;
+    }
 
     return run_object_required_action_local_var;
 end:

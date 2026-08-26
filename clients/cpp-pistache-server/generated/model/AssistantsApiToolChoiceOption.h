@@ -34,7 +34,7 @@ class  AssistantsApiToolChoiceOption
 {
 public:
     AssistantsApiToolChoiceOption();
-    virtual ~AssistantsApiToolChoiceOption() = default;
+    virtual ~AssistantsApiToolChoiceOption();
 
 
     /// <summary>

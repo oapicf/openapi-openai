@@ -143,22 +143,22 @@ function Initialize-CreateRunRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "assistant_id" = ${AssistantId}
-            "model" = ${Model}
-            "instructions" = ${Instructions}
-            "additional_instructions" = ${AdditionalInstructions}
-            "additional_messages" = ${AdditionalMessages}
-            "tools" = ${Tools}
-            "metadata" = ${Metadata}
-            "temperature" = ${Temperature}
-            "top_p" = ${TopP}
-            "stream" = ${Stream}
-            "max_prompt_tokens" = ${MaxPromptTokens}
-            "max_completion_tokens" = ${MaxCompletionTokens}
-            "truncation_strategy" = ${TruncationStrategy}
-            "tool_choice" = ${ToolChoice}
-            "parallel_tool_calls" = ${ParallelToolCalls}
-            "response_format" = ${ResponseFormat}
+            'assistant_id' = ${AssistantId}
+            'model' = ${Model}
+            'instructions' = ${Instructions}
+            'additional_instructions' = ${AdditionalInstructions}
+            'additional_messages' = ${AdditionalMessages}
+            'tools' = ${Tools}
+            'metadata' = ${Metadata}
+            'temperature' = ${Temperature}
+            'top_p' = ${TopP}
+            'stream' = ${Stream}
+            'max_prompt_tokens' = ${MaxPromptTokens}
+            'max_completion_tokens' = ${MaxCompletionTokens}
+            'truncation_strategy' = ${TruncationStrategy}
+            'tool_choice' = ${ToolChoice}
+            'parallel_tool_calls' = ${ParallelToolCalls}
+            'response_format' = ${ResponseFormat}
         }
 
 
@@ -196,7 +196,7 @@ function ConvertFrom-JsonToCreateRunRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateRunRequest
-        $AllProperties = ("assistant_id", "model", "instructions", "additional_instructions", "additional_messages", "tools", "metadata", "temperature", "top_p", "stream", "max_prompt_tokens", "max_completion_tokens", "truncation_strategy", "tool_choice", "parallel_tool_calls", "response_format")
+        $AllProperties = ('assistant_id', 'model', 'instructions', 'additional_instructions', 'additional_messages', 'tools', 'metadata', 'temperature', 'top_p', 'stream', 'max_prompt_tokens', 'max_completion_tokens', 'truncation_strategy', 'tool_choice', 'parallel_tool_calls', 'response_format')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -207,119 +207,119 @@ function ConvertFrom-JsonToCreateRunRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'assistant_id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "assistant_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'assistant_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'assistant_id' missing."
         } else {
-            $AssistantId = $JsonParameters.PSobject.Properties["assistant_id"].value
+            $AssistantId = $JsonParameters.PSobject.Properties['assistant_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) { #optional property not found
             $Model = $null
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "instructions"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'instructions'))) { #optional property not found
             $Instructions = $null
         } else {
-            $Instructions = $JsonParameters.PSobject.Properties["instructions"].value
+            $Instructions = $JsonParameters.PSobject.Properties['instructions'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "additional_instructions"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'additional_instructions'))) { #optional property not found
             $AdditionalInstructions = $null
         } else {
-            $AdditionalInstructions = $JsonParameters.PSobject.Properties["additional_instructions"].value
+            $AdditionalInstructions = $JsonParameters.PSobject.Properties['additional_instructions'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "additional_messages"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'additional_messages'))) { #optional property not found
             $AdditionalMessages = $null
         } else {
-            $AdditionalMessages = $JsonParameters.PSobject.Properties["additional_messages"].value
+            $AdditionalMessages = $JsonParameters.PSobject.Properties['additional_messages'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tools"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tools'))) { #optional property not found
             $Tools = $null
         } else {
-            $Tools = $JsonParameters.PSobject.Properties["tools"].value
+            $Tools = $JsonParameters.PSobject.Properties['tools'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) { #optional property not found
             $Metadata = $null
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "temperature"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'temperature'))) { #optional property not found
             $Temperature = $null
         } else {
-            $Temperature = $JsonParameters.PSobject.Properties["temperature"].value
+            $Temperature = $JsonParameters.PSobject.Properties['temperature'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "top_p"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'top_p'))) { #optional property not found
             $TopP = $null
         } else {
-            $TopP = $JsonParameters.PSobject.Properties["top_p"].value
+            $TopP = $JsonParameters.PSobject.Properties['top_p'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "stream"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'stream'))) { #optional property not found
             $Stream = $null
         } else {
-            $Stream = $JsonParameters.PSobject.Properties["stream"].value
+            $Stream = $JsonParameters.PSobject.Properties['stream'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_prompt_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'max_prompt_tokens'))) { #optional property not found
             $MaxPromptTokens = $null
         } else {
-            $MaxPromptTokens = $JsonParameters.PSobject.Properties["max_prompt_tokens"].value
+            $MaxPromptTokens = $JsonParameters.PSobject.Properties['max_prompt_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_completion_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'max_completion_tokens'))) { #optional property not found
             $MaxCompletionTokens = $null
         } else {
-            $MaxCompletionTokens = $JsonParameters.PSobject.Properties["max_completion_tokens"].value
+            $MaxCompletionTokens = $JsonParameters.PSobject.Properties['max_completion_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "truncation_strategy"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'truncation_strategy'))) { #optional property not found
             $TruncationStrategy = $null
         } else {
-            $TruncationStrategy = $JsonParameters.PSobject.Properties["truncation_strategy"].value
+            $TruncationStrategy = $JsonParameters.PSobject.Properties['truncation_strategy'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tool_choice"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tool_choice'))) { #optional property not found
             $ToolChoice = $null
         } else {
-            $ToolChoice = $JsonParameters.PSobject.Properties["tool_choice"].value
+            $ToolChoice = $JsonParameters.PSobject.Properties['tool_choice'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "parallel_tool_calls"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'parallel_tool_calls'))) { #optional property not found
             $ParallelToolCalls = $null
         } else {
-            $ParallelToolCalls = $JsonParameters.PSobject.Properties["parallel_tool_calls"].value
+            $ParallelToolCalls = $JsonParameters.PSobject.Properties['parallel_tool_calls'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "response_format"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'response_format'))) { #optional property not found
             $ResponseFormat = $null
         } else {
-            $ResponseFormat = $JsonParameters.PSobject.Properties["response_format"].value
+            $ResponseFormat = $JsonParameters.PSobject.Properties['response_format'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "assistant_id" = ${AssistantId}
-            "model" = ${Model}
-            "instructions" = ${Instructions}
-            "additional_instructions" = ${AdditionalInstructions}
-            "additional_messages" = ${AdditionalMessages}
-            "tools" = ${Tools}
-            "metadata" = ${Metadata}
-            "temperature" = ${Temperature}
-            "top_p" = ${TopP}
-            "stream" = ${Stream}
-            "max_prompt_tokens" = ${MaxPromptTokens}
-            "max_completion_tokens" = ${MaxCompletionTokens}
-            "truncation_strategy" = ${TruncationStrategy}
-            "tool_choice" = ${ToolChoice}
-            "parallel_tool_calls" = ${ParallelToolCalls}
-            "response_format" = ${ResponseFormat}
+            'assistant_id' = ${AssistantId}
+            'model' = ${Model}
+            'instructions' = ${Instructions}
+            'additional_instructions' = ${AdditionalInstructions}
+            'additional_messages' = ${AdditionalMessages}
+            'tools' = ${Tools}
+            'metadata' = ${Metadata}
+            'temperature' = ${Temperature}
+            'top_p' = ${TopP}
+            'stream' = ${Stream}
+            'max_prompt_tokens' = ${MaxPromptTokens}
+            'max_completion_tokens' = ${MaxCompletionTokens}
+            'truncation_strategy' = ${TruncationStrategy}
+            'tool_choice' = ${ToolChoice}
+            'parallel_tool_calls' = ${ParallelToolCalls}
+            'response_format' = ${ResponseFormat}
         }
 
         return $PSO

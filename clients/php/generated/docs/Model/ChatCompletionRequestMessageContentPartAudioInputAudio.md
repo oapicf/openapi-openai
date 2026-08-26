@@ -1,4 +1,4 @@
-# # ChatCompletionRequestMessageContentPartAudioInputAudio
+# ChatCompletionRequestMessageContentPartAudioInputAudio
 
 ## Properties
 

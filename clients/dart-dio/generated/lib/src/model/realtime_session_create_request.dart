@@ -211,8 +211,9 @@ class _$RealtimeSessionCreateRequestSerializer implements PrimitiveSerializer<Re
         case r'modalities':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(RealtimeSessionCreateRequestModalitiesEnum)]),
-          ) as BuiltList<RealtimeSessionCreateRequestModalitiesEnum>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(RealtimeSessionCreateRequestModalitiesEnum)]),
+          ) as BuiltList<RealtimeSessionCreateRequestModalitiesEnum>?;
+          if (valueDes == null) continue;
           result.modalities.replace(valueDes);
           break;
         case r'model':
@@ -225,71 +226,81 @@ class _$RealtimeSessionCreateRequestSerializer implements PrimitiveSerializer<Re
         case r'instructions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.instructions = valueDes;
           break;
         case r'voice':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeSessionCreateRequestVoiceEnum),
-          ) as RealtimeSessionCreateRequestVoiceEnum;
+            specifiedType: const FullType.nullable(RealtimeSessionCreateRequestVoiceEnum),
+          ) as RealtimeSessionCreateRequestVoiceEnum?;
+          if (valueDes == null) continue;
           result.voice = valueDes;
           break;
         case r'input_audio_format':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeSessionCreateRequestInputAudioFormatEnum),
-          ) as RealtimeSessionCreateRequestInputAudioFormatEnum;
+            specifiedType: const FullType.nullable(RealtimeSessionCreateRequestInputAudioFormatEnum),
+          ) as RealtimeSessionCreateRequestInputAudioFormatEnum?;
+          if (valueDes == null) continue;
           result.inputAudioFormat = valueDes;
           break;
         case r'output_audio_format':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeSessionCreateRequestOutputAudioFormatEnum),
-          ) as RealtimeSessionCreateRequestOutputAudioFormatEnum;
+            specifiedType: const FullType.nullable(RealtimeSessionCreateRequestOutputAudioFormatEnum),
+          ) as RealtimeSessionCreateRequestOutputAudioFormatEnum?;
+          if (valueDes == null) continue;
           result.outputAudioFormat = valueDes;
           break;
         case r'input_audio_transcription':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeSessionInputAudioTranscription),
-          ) as RealtimeSessionInputAudioTranscription;
+            specifiedType: const FullType.nullable(RealtimeSessionInputAudioTranscription),
+          ) as RealtimeSessionInputAudioTranscription?;
+          if (valueDes == null) continue;
           result.inputAudioTranscription.replace(valueDes);
           break;
         case r'turn_detection':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeSessionCreateRequestTurnDetection),
-          ) as RealtimeSessionCreateRequestTurnDetection;
+            specifiedType: const FullType.nullable(RealtimeSessionCreateRequestTurnDetection),
+          ) as RealtimeSessionCreateRequestTurnDetection?;
+          if (valueDes == null) continue;
           result.turnDetection.replace(valueDes);
           break;
         case r'tools':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(RealtimeResponseCreateParamsToolsInner)]),
-          ) as BuiltList<RealtimeResponseCreateParamsToolsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(RealtimeResponseCreateParamsToolsInner)]),
+          ) as BuiltList<RealtimeResponseCreateParamsToolsInner>?;
+          if (valueDes == null) continue;
           result.tools.replace(valueDes);
           break;
         case r'tool_choice':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.toolChoice = valueDes;
           break;
         case r'temperature':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.temperature = valueDes;
           break;
         case r'max_response_output_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeResponseCreateParamsMaxResponseOutputTokens),
-          ) as RealtimeResponseCreateParamsMaxResponseOutputTokens;
+            specifiedType: const FullType.nullable(RealtimeResponseCreateParamsMaxResponseOutputTokens),
+          ) as RealtimeResponseCreateParamsMaxResponseOutputTokens?;
+          if (valueDes == null) continue;
           result.maxResponseOutputTokens.replace(valueDes);
           break;
         default:

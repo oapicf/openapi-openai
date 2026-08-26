@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setInput(CreateModerationRequest_input  input);
+	void setInput(CreateModerationRequest_input input);
 	/*! \brief Get 
 	 */
 	CreateModerationRequest_model getModel();
 
 	/*! \brief Set 
 	 */
-	void setModel(CreateModerationRequest_model  model);
+	void setModel(CreateModerationRequest_model model);
 
 
     private:

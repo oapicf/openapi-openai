@@ -1,0 +1,31 @@
+## AudioApi
+
+### Generates audio from the input text.
+## Generates audio from the input text.
+POST https://api.openai.com/v1/audio/speech
+Content-Type: application/json
+Accept: application/octet-stream
+Authorization: Bearer {{bearerToken}}
+
+{
+ "model": "<string>",
+ "input": "<string>",
+ "voice": "<string>",
+ "response_format": "<string>",
+ "speed": "<number>"
+}
+
+
+### Transcribes audio into the input language.
+## Transcribes audio into the input language.
+POST https://api.openai.com/v1/audio/transcriptions
+Content-Type: multipart/form-data
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Translates audio into English.
+## Translates audio into English.
+POST https://api.openai.com/v1/audio/translations
+Content-Type: multipart/form-data
+Accept: application/json
+Authorization: Bearer {{bearerToken}}

@@ -24,7 +24,7 @@ class DefaultApi : public Service {
 public:
     DefaultApi() = default;
 
-    virtual ~DefaultApi() = default;
+    virtual ~DefaultApi();
 
     /**
     * Create an organization admin API key.

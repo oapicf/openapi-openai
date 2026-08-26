@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**r#type** | **String** | For now, this is always `submit_tool_outputs`. | 
-**submit_tool_outputs** | [**models::RunObjectRequiredActionSubmitToolOutputs**](RunObject_required_action_submit_tool_outputs.md) |  | 
+**r#type** | **Type** | For now, this is always `submit_tool_outputs`. (enum: submit_tool_outputs) | 
+**submit_tool_outputs** | [**models::RunObjectRequiredActionSubmitToolOutputs**](RunObjectRequiredActionSubmitToolOutputs.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

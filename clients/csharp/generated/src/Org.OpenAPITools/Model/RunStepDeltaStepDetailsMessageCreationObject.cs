@@ -117,7 +117,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets MessageCreation
         /// </summary>
         [JsonPropertyName("message_creation")]
-        public RunStepDeltaStepDetailsMessageCreationObjectMessageCreation? MessageCreation { get { return this.MessageCreationOption; } set { this.MessageCreationOption = new(value); } }
+        public RunStepDeltaStepDetailsMessageCreationObjectMessageCreation? MessageCreation { get { return this.MessageCreationOption.Value; } set { this.MessageCreationOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -147,8 +147,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDeltaStepDetailsMessageCreationObject" />
     /// </summary>
-    public class RunStepDeltaStepDetailsMessageCreationObjectJsonConverter : JsonConverter<RunStepDeltaStepDetailsMessageCreationObject>
+    public partial class RunStepDeltaStepDetailsMessageCreationObjectJsonConverter : JsonConverter<RunStepDeltaStepDetailsMessageCreationObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDeltaStepDetailsMessageCreationObjectJsonConverter" /> class.
+        /// </summary>
+        public RunStepDeltaStepDetailsMessageCreationObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDeltaStepDetailsMessageCreationObject" />
         /// </summary>

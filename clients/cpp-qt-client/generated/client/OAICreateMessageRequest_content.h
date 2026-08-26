@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAICreateMessageRequest_content : public OAIObject {
 public:
     OAICreateMessageRequest_content();
-    OAICreateMessageRequest_content(QString json);
+    OAICreateMessageRequest_content(const QString &json);
     ~OAICreateMessageRequest_content() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

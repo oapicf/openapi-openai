@@ -1,10 +1,16 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.CreateTranslationResponseJson
 import org.openapitools.model.CreateTranslationResponseVerboseJson
 import org.openapitools.model.TranscriptionSegment
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -18,26 +24,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param text The translated text.
- * @param language The language of the output translation (always `english`).
- * @param duration The duration of the input audio.
- * @param segments Segments of the translated text and their corresponding details.
  */
-data class CreateTranslation200Response(
-
-    @Schema(example = "null", required = true, description = "The translated text.")
-    @get:JsonProperty("text", required = true) val text: kotlin.String,
-
-    @Schema(example = "null", required = true, description = "The language of the output translation (always `english`).")
-    @get:JsonProperty("language", required = true) val language: kotlin.String,
-
-    @Schema(example = "null", required = true, description = "The duration of the input audio.")
-    @get:JsonProperty("duration", required = true) val duration: kotlin.String,
-
-    @field:Valid
-    @Schema(example = "null", description = "Segments of the translated text and their corresponding details.")
-    @get:JsonProperty("segments") val segments: kotlin.collections.List<TranscriptionSegment>? = null
-) {
-
+sealed interface CreateTranslation200Response {
 }
 

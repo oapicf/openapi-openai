@@ -1,4 +1,4 @@
-# # UsageTimeBucket
+# UsageTimeBucket
 
 ## Properties
 

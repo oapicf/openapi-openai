@@ -40,7 +40,7 @@ openai_api_assistant_stream_event_DATA_e assistant_stream_event_data_FromString(
 }
 
 static assistant_stream_event_t *assistant_stream_event_create_internal(
-    int enabled,
+    int *enabled,
     openai_api_assistant_stream_event_EVENT_e event,
     openai_api_assistant_stream_event_DATA_e data
     ) {
@@ -48,24 +48,33 @@ static assistant_stream_event_t *assistant_stream_event_create_internal(
     if (!assistant_stream_event_local_var) {
         return NULL;
     }
+    memset(assistant_stream_event_local_var, 0, sizeof(assistant_stream_event_t));
+    assistant_stream_event_local_var->_library_owned = 1;
     assistant_stream_event_local_var->enabled = enabled;
     assistant_stream_event_local_var->event = event;
     assistant_stream_event_local_var->data = data;
-
-    assistant_stream_event_local_var->_library_owned = 1;
     return assistant_stream_event_local_var;
 }
 
 __attribute__((deprecated)) assistant_stream_event_t *assistant_stream_event_create(
-    int enabled,
+    int *enabled,
     openai_api_assistant_stream_event_EVENT_e event,
     openai_api_assistant_stream_event_DATA_e data
     ) {
-    return assistant_stream_event_create_internal (
-        enabled,
+    int *enabled_copy = NULL;
+    if (enabled) {
+        enabled_copy = malloc(sizeof(int));
+        if (enabled_copy) *enabled_copy = *enabled;
+    }
+    assistant_stream_event_t *result = assistant_stream_event_create_internal (
+        enabled_copy,
         event,
         data
         );
+    if (!result) {
+        free(enabled_copy);
+    }
+    return result;
 }
 
 void assistant_stream_event_free(assistant_stream_event_t *assistant_stream_event) {
@@ -77,6 +86,10 @@ void assistant_stream_event_free(assistant_stream_event_t *assistant_stream_even
         return ;
     }
     listEntry_t *listEntry;
+    if (assistant_stream_event->enabled) {
+        free(assistant_stream_event->enabled);
+        assistant_stream_event->enabled = NULL;
+    }
     free(assistant_stream_event);
 }
 
@@ -85,7 +98,7 @@ cJSON *assistant_stream_event_convertToJSON(assistant_stream_event_t *assistant_
 
     // assistant_stream_event->enabled
     if(assistant_stream_event->enabled) {
-    if(cJSON_AddBoolToObject(item, "enabled", assistant_stream_event->enabled) == NULL) {
+    if(cJSON_AddBoolToObject(item, "enabled", *assistant_stream_event->enabled) == NULL) {
     goto fail; //Bool
     }
     }
@@ -122,6 +135,9 @@ assistant_stream_event_t *assistant_stream_event_parseFromJSON(cJSON *assistant_
 
     assistant_stream_event_t *assistant_stream_event_local_var = NULL;
 
+    // define the local variable for assistant_stream_event->enabled
+    int *enabled_local_var = NULL;
+
     // assistant_stream_event->enabled
     cJSON *enabled = cJSON_GetObjectItemCaseSensitive(assistant_stream_eventJSON, "enabled");
     if (cJSON_IsNull(enabled)) {
@@ -132,6 +148,12 @@ assistant_stream_event_t *assistant_stream_event_parseFromJSON(cJSON *assistant_
     {
     goto end; //Bool
     }
+    enabled_local_var = malloc(sizeof(int));
+    if(!enabled_local_var)
+    {
+        goto end;
+    }
+    *enabled_local_var = enabled->valueint;
     }
 
     // assistant_stream_event->event
@@ -169,14 +191,23 @@ assistant_stream_event_t *assistant_stream_event_parseFromJSON(cJSON *assistant_
     dataVariable = assistant_stream_event_data_FromString(data->valuestring);
 
 
+
     assistant_stream_event_local_var = assistant_stream_event_create_internal (
-        enabled ? enabled->valueint : 0,
+        enabled_local_var,
         eventVariable,
         dataVariable
         );
 
+    if (!assistant_stream_event_local_var) {
+        goto end;
+    }
+
     return assistant_stream_event_local_var;
 end:
+    if (enabled_local_var) {
+        free(enabled_local_var);
+        enabled_local_var = NULL;
+    }
     return NULL;
 
 }

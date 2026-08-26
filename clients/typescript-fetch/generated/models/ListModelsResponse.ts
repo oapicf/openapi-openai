@@ -29,7 +29,7 @@ import {
 export interface ListModelsResponse {
     /**
      * 
-     * @type {string}
+     * @type {ListModelsResponseObjectEnum}
      * @memberof ListModelsResponse
      */
     object: ListModelsResponseObjectEnum;
@@ -56,6 +56,8 @@ export type ListModelsResponseObjectEnum = typeof ListModelsResponseObjectEnum[k
  */
 export function instanceOfListModelsResponse(value: object): value is ListModelsResponse {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'list') return false;
+    
     if (!('data' in value) || value['data'] === undefined) return false;
     return true;
 }

@@ -18,7 +18,7 @@ package org.openapitools.client.model
 case class DoneEvent(
   event: DoneEventEnums.Event,
   data: DoneEventEnums.Data
-)
+) extends AssistantStreamEvent
 
 object DoneEventEnums {
 

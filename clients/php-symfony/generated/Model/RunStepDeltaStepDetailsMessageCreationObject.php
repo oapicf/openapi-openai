@@ -51,7 +51,7 @@ class RunStepDeltaStepDetailsMessageCreationObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['message_creation'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class RunStepDeltaStepDetailsMessageCreationObject
      * @var RunStepDeltaStepDetailsMessageCreationObjectMessageCreation|null
      * @SerializedName("message_creation")
      * @Type("OpenAPI\Server\Model\RunStepDeltaStepDetailsMessageCreationObjectMessageCreation")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RunStepDeltaStepDetailsMessageCreationObjectMessageCreation")]
     protected ?RunStepDeltaStepDetailsMessageCreationObjectMessageCreation $messageCreation = null;
 
@@ -88,12 +88,12 @@ class RunStepDeltaStepDetailsMessageCreationObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `message_creation`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `message_creation`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -115,12 +115,12 @@ class RunStepDeltaStepDetailsMessageCreationObject
     }
 
     /**
-    * Sets messageCreation.
-    *
-    * @param RunStepDeltaStepDetailsMessageCreationObjectMessageCreation|null $messageCreation
-    *
-    * @return $this
-    */
+     * Sets messageCreation.
+     *
+     * @param RunStepDeltaStepDetailsMessageCreationObjectMessageCreation|null $messageCreation
+     *
+     * @return $this
+     */
     public function setMessageCreation(?RunStepDeltaStepDetailsMessageCreationObjectMessageCreation $messageCreation = null): self
     {
         $this->messageCreation = $messageCreation;

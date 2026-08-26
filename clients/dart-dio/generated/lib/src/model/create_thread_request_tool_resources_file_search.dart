@@ -88,15 +88,17 @@ class _$CreateThreadRequestToolResourcesFileSearchSerializer implements Primitiv
         case r'vector_store_ids':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.vectorStoreIds.replace(valueDes);
           break;
         case r'vector_stores':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(CreateThreadRequestToolResourcesFileSearchVectorStoresInner)]),
-          ) as BuiltList<CreateThreadRequestToolResourcesFileSearchVectorStoresInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(CreateThreadRequestToolResourcesFileSearchVectorStoresInner)]),
+          ) as BuiltList<CreateThreadRequestToolResourcesFileSearchVectorStoresInner>?;
+          if (valueDes == null) continue;
           result.vectorStores.replace(valueDes);
           break;
         default:

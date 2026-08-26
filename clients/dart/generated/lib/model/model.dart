@@ -69,10 +69,14 @@ class Model {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Model[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Model[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "Model[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "Model[id]" has a null value in JSON.');
+        assert(json.containsKey(r'created'), 'Required key "Model[created]" is missing from JSON.');
+        assert(json[r'created'] != null, 'Required key "Model[created]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "Model[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "Model[object]" has a null value in JSON.');
+        assert(json.containsKey(r'owned_by'), 'Required key "Model[owned_by]" is missing from JSON.');
+        assert(json[r'owned_by'] != null, 'Required key "Model[owned_by]" has a null value in JSON.');
         return true;
       }());
 
@@ -136,27 +140,28 @@ class Model {
 }
 
 /// The object type, which is always \"model\".
-class ModelObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ModelObjectEnum._(this.value);
+enum ModelObjectEnum {
+  model._(r'model'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ModelObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const model = ModelObjectEnum._(r'model');
-
-  /// List of all possible values in this [enum][ModelObjectEnum].
-  static const values = <ModelObjectEnum>[
-    model,
-  ];
-
+  /// Returns the instance of [ModelObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ModelObjectEnum? fromJson(dynamic value) => ModelObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ModelObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ModelObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ModelObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -178,9 +183,10 @@ class ModelObjectEnumTypeTransformer {
 
   const ModelObjectEnumTypeTransformer._();
 
-  String encode(ModelObjectEnum data) => data.value;
+  String encode(ModelObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ModelObjectEnum.
+  /// Returns the instance of [ModelObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -189,6 +195,9 @@ class ModelObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ModelObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ModelObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'model': return ModelObjectEnum.model;
@@ -201,7 +210,7 @@ class ModelObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ModelObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ModelObjectEnumTypeTransformer? _instance;
 }
 

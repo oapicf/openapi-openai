@@ -24,14 +24,17 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RunStepDeltaObject(
 
-    @Schema(example = "null", required = true, description = "The identifier of the run step, which can be referenced in API endpoints.")
+    @Schema(required = true, description = "The identifier of the run step, which can be referenced in API endpoints.")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The object type, which is always `thread.run.step.delta`.")
+    @Schema(required = true, description = "The object type, which is always `thread.run.step.delta`.")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: RunStepDeltaObject.`Object`,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("delta")
     @get:JsonProperty("delta", required = true) val delta: RunStepDeltaObjectDelta
 ) {
 
@@ -48,7 +51,7 @@ data class RunStepDeltaObject(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RunStepDeltaObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }

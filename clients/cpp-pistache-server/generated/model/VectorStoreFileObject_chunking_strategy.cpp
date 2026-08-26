@@ -25,6 +25,8 @@ VectorStoreFileObject_chunking_strategy::VectorStoreFileObject_chunking_strategy
     
 }
 
+VectorStoreFileObject_chunking_strategy::~VectorStoreFileObject_chunking_strategy() = default;
+
 void VectorStoreFileObject_chunking_strategy::validate() const
 {
     std::stringstream msg;

@@ -1,4 +1,4 @@
-# # ChatCompletionRequestDeveloperMessageContent
+# ChatCompletionRequestDeveloperMessageContent
 
 ## Properties
 

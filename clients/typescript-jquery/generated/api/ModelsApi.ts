@@ -55,7 +55,7 @@ export class ModelsApi {
     { response: JQueryXHR; body: models.DeleteModelResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/models/{model}'.replace('{' + 'model' + '}', encodeURIComponent(String(model)));
+        let localVarPath = this.basePath + '/models/{model}'.replace('{model}', encodeURIComponent(String(model)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -175,7 +175,7 @@ export class ModelsApi {
     { response: JQueryXHR; body: models.Model;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/models/{model}'.replace('{' + 'model' + '}', encodeURIComponent(String(model)));
+        let localVarPath = this.basePath + '/models/{model}'.replace('{model}', encodeURIComponent(String(model)));
 
         let queryParameters: any = {};
         let headerParams: any = {};

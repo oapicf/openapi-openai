@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **String** |  | 
+**object** | **Object** |  (enum: organization.usage.completions.result) | 
 **input_tokens** | **i32** | The aggregated number of text input tokens used, including cached tokens. For customers subscribe to scale tier, this includes scale tier tokens. | 
 **input_cached_tokens** | Option<**i32**> | The aggregated number of text input tokens that has been cached from previous requests. For customers subscribe to scale tier, this includes scale tier tokens. | [optional]
 **output_tokens** | **i32** | The aggregated number of text output tokens used. For customers subscribe to scale tier, this includes scale tier tokens. | 

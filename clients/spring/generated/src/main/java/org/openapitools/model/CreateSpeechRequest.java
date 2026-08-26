@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -10,19 +11,19 @@ import org.openapitools.model.CreateSpeechRequestModel;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * CreateSpeechRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateSpeechRequest {
 
   private CreateSpeechRequestModel model;
@@ -117,8 +118,10 @@ public class CreateSpeechRequest {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private ResponseFormatEnum responseFormat = ResponseFormatEnum.MP3;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private BigDecimal speed = new BigDecimal("1");
 
   public CreateSpeechRequest() {
@@ -150,6 +153,7 @@ public class CreateSpeechRequest {
     return model;
   }
 
+  @JsonProperty("model")
   public void setModel(CreateSpeechRequestModel model) {
     this.model = model;
   }
@@ -170,6 +174,7 @@ public class CreateSpeechRequest {
     return input;
   }
 
+  @JsonProperty("input")
   public void setInput(String input) {
     this.input = input;
   }
@@ -190,6 +195,7 @@ public class CreateSpeechRequest {
     return voice;
   }
 
+  @JsonProperty("voice")
   public void setVoice(VoiceEnum voice) {
     this.voice = voice;
   }
@@ -210,6 +216,7 @@ public class CreateSpeechRequest {
     return responseFormat;
   }
 
+  @JsonProperty("response_format")
   public void setResponseFormat(ResponseFormatEnum responseFormat) {
     this.responseFormat = responseFormat;
   }
@@ -232,6 +239,7 @@ public class CreateSpeechRequest {
     return speed;
   }
 
+  @JsonProperty("speed")
   public void setSpeed(BigDecimal speed) {
     this.speed = speed;
   }
@@ -274,11 +282,8 @@ public class CreateSpeechRequest {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

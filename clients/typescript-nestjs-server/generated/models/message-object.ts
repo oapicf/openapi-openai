@@ -1,0 +1,82 @@
+import { MessageObjectContentInner } from './message-object-content-inner';
+import { MessageObjectIncompleteDetails } from './message-object-incomplete-details';
+import { CreateMessageRequestAttachmentsInner } from './create-message-request-attachments-inner';
+
+
+/**
+ * Represents a message within a [thread](/docs/api-reference/threads).
+ */
+export interface MessageObject { 
+  /**
+   * The identifier, which can be referenced in API endpoints.
+   */
+  id: string;
+  /**
+   * The object type, which is always `thread.message`.
+   */
+  object: MessageObject.ObjectEnum;
+  /**
+   * The Unix timestamp (in seconds) for when the message was created.
+   */
+  created_at: number;
+  /**
+   * The [thread](/docs/api-reference/threads) ID that this message belongs to.
+   */
+  thread_id: string;
+  /**
+   * The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.
+   */
+  status: MessageObject.StatusEnum;
+  incomplete_details: MessageObjectIncompleteDetails | null;
+  /**
+   * The Unix timestamp (in seconds) for when the message was completed.
+   */
+  completed_at: number | null;
+  /**
+   * The Unix timestamp (in seconds) for when the message was marked as incomplete.
+   */
+  incomplete_at: number | null;
+  /**
+   * The entity that produced the message. One of `user` or `assistant`.
+   */
+  role: MessageObject.RoleEnum;
+  /**
+   * The content of the message in array of text and/or images.
+   */
+  content: Array<MessageObjectContentInner>;
+  /**
+   * If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message.
+   */
+  assistant_id: string | null;
+  /**
+   * The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints.
+   */
+  run_id: string | null;
+  /**
+   * A list of files attached to the message, and the tools they were added to.
+   */
+  attachments: Array<CreateMessageRequestAttachmentsInner> | null;
+  /**
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
+   */
+  metadata: object | null;
+}
+export namespace MessageObject {
+  export const ObjectEnum = {
+    ThreadMessage: 'thread.message'
+  } as const;
+  export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
+  export const StatusEnum = {
+    InProgress: 'in_progress',
+    Incomplete: 'incomplete',
+    Completed: 'completed'
+  } as const;
+  export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
+  export const RoleEnum = {
+    User: 'user',
+    Assistant: 'assistant'
+  } as const;
+  export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
+}
+
+

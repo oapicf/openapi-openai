@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateAssistantRequest_model::OAICreateAssistantRequest_model(QString json) {
+OAICreateAssistantRequest_model::OAICreateAssistantRequest_model(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -36,7 +36,7 @@ void OAICreateAssistantRequest_model::initializeModel() {
 
 }
 
-void OAICreateAssistantRequest_model::fromJson(QString jsonString) {
+void OAICreateAssistantRequest_model::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

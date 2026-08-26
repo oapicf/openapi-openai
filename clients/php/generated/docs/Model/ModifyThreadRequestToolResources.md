@@ -1,4 +1,4 @@
-# # ModifyThreadRequestToolResources
+# ModifyThreadRequestToolResources
 
 ## Properties
 

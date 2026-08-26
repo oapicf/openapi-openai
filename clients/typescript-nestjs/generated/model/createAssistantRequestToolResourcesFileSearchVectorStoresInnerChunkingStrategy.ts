@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import { StaticChunkingStrategy } from './staticChunkingStrategy';
-import { AutoChunkingStrategy } from './autoChunkingStrategy';
+import { AutoChunkingStrategyRequestParam } from './autoChunkingStrategyRequestParam';
 import { StaticChunkingStrategyStatic } from './staticChunkingStrategyStatic';
 
 
@@ -22,5 +22,5 @@ import { StaticChunkingStrategyStatic } from './staticChunkingStrategyStatic';
  * The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.
  * @export
  */
-export type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = AutoChunkingStrategy | StaticChunkingStrategy;
+export type CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = AutoChunkingStrategyRequestParam | StaticChunkingStrategy;
 

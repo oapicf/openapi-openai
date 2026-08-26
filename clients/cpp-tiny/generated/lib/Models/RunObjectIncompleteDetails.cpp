@@ -64,7 +64,7 @@ RunObject_incomplete_details::getReason()
 }
 
 void
-RunObject_incomplete_details::setReason(std::string  reason)
+RunObject_incomplete_details::setReason(std::string reason)
 {
 	this->reason = reason;
 }

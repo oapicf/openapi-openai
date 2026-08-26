@@ -25,6 +25,8 @@ ResponseFormatText::ResponseFormatText()
     
 }
 
+ResponseFormatText::~ResponseFormatText() = default;
+
 void ResponseFormatText::validate() const
 {
     std::stringstream msg;

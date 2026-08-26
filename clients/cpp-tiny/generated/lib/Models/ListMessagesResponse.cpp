@@ -165,7 +165,7 @@ ListMessagesResponse::getObject()
 }
 
 void
-ListMessagesResponse::setObject(std::string  object)
+ListMessagesResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -177,7 +177,7 @@ ListMessagesResponse::getData()
 }
 
 void
-ListMessagesResponse::setData(std::list <MessageObject> data)
+ListMessagesResponse::setData(std::list<MessageObject> data)
 {
 	this->data = data;
 }
@@ -189,7 +189,7 @@ ListMessagesResponse::getFirstId()
 }
 
 void
-ListMessagesResponse::setFirstId(std::string  first_id)
+ListMessagesResponse::setFirstId(std::string first_id)
 {
 	this->first_id = first_id;
 }
@@ -201,7 +201,7 @@ ListMessagesResponse::getLastId()
 }
 
 void
-ListMessagesResponse::setLastId(std::string  last_id)
+ListMessagesResponse::setLastId(std::string last_id)
 {
 	this->last_id = last_id;
 }
@@ -213,7 +213,7 @@ ListMessagesResponse::isHasMore()
 }
 
 void
-ListMessagesResponse::setHasMore(bool  has_more)
+ListMessagesResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }

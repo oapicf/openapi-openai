@@ -48,10 +48,8 @@ class ProjectUpdateRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectUpdateRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectUpdateRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'name'), 'Required key "ProjectUpdateRequest[name]" is missing from JSON.');
+        assert(json[r'name'] != null, 'Required key "ProjectUpdateRequest[name]" has a null value in JSON.');
         return true;
       }());
 

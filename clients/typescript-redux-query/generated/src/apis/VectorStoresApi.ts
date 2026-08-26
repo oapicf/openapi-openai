@@ -146,7 +146,7 @@ function cancelVectorStoreFileBatchRaw<T>(requestParameters: CancelVectorStoreFi
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel`.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters.vectorStoreId))).replace(`{${"batch_id"}}`, encodeURIComponent(String(requestParameters.batchId))),
+        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel`.replace('{vector_store_id}', encodeURIComponent(String(requestParameters.vectorStoreId))).replace('{batch_id}', encodeURIComponent(String(requestParameters.batchId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -248,7 +248,7 @@ function createVectorStoreFileRaw<T>(requestParameters: CreateVectorStoreFileReq
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}/files`.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters.vectorStoreId))),
+        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}/files`.replace('{vector_store_id}', encodeURIComponent(String(requestParameters.vectorStoreId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -301,7 +301,7 @@ function createVectorStoreFileBatchRaw<T>(requestParameters: CreateVectorStoreFi
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}/file_batches`.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters.vectorStoreId))),
+        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}/file_batches`.replace('{vector_store_id}', encodeURIComponent(String(requestParameters.vectorStoreId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -348,7 +348,7 @@ function deleteVectorStoreRaw<T>(requestParameters: DeleteVectorStoreRequest, re
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}`.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters.vectorStoreId))),
+        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}`.replace('{vector_store_id}', encodeURIComponent(String(requestParameters.vectorStoreId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -399,7 +399,7 @@ function deleteVectorStoreFileRaw<T>(requestParameters: DeleteVectorStoreFileReq
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}/files/{file_id}`.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters.vectorStoreId))).replace(`{${"file_id"}}`, encodeURIComponent(String(requestParameters.fileId))),
+        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}/files/{file_id}`.replace('{vector_store_id}', encodeURIComponent(String(requestParameters.vectorStoreId))).replace('{file_id}', encodeURIComponent(String(requestParameters.fileId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -446,7 +446,7 @@ function getVectorStoreRaw<T>(requestParameters: GetVectorStoreRequest, requestC
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}`.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters.vectorStoreId))),
+        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}`.replace('{vector_store_id}', encodeURIComponent(String(requestParameters.vectorStoreId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -497,7 +497,7 @@ function getVectorStoreFileRaw<T>(requestParameters: GetVectorStoreFileRequest, 
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}/files/{file_id}`.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters.vectorStoreId))).replace(`{${"file_id"}}`, encodeURIComponent(String(requestParameters.fileId))),
+        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}/files/{file_id}`.replace('{vector_store_id}', encodeURIComponent(String(requestParameters.vectorStoreId))).replace('{file_id}', encodeURIComponent(String(requestParameters.fileId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -548,7 +548,7 @@ function getVectorStoreFileBatchRaw<T>(requestParameters: GetVectorStoreFileBatc
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}/file_batches/{batch_id}`.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters.vectorStoreId))).replace(`{${"batch_id"}}`, encodeURIComponent(String(requestParameters.batchId))),
+        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}/file_batches/{batch_id}`.replace('{vector_store_id}', encodeURIComponent(String(requestParameters.vectorStoreId))).replace('{batch_id}', encodeURIComponent(String(requestParameters.batchId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -625,7 +625,7 @@ function listFilesInVectorStoreBatchRaw<T>(requestParameters: ListFilesInVectorS
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}/file_batches/{batch_id}/files`.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters.vectorStoreId))).replace(`{${"batch_id"}}`, encodeURIComponent(String(requestParameters.batchId))),
+        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}/file_batches/{batch_id}/files`.replace('{vector_store_id}', encodeURIComponent(String(requestParameters.vectorStoreId))).replace('{batch_id}', encodeURIComponent(String(requestParameters.batchId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -698,7 +698,7 @@ function listVectorStoreFilesRaw<T>(requestParameters: ListVectorStoreFilesReque
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}/files`.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters.vectorStoreId))),
+        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}/files`.replace('{vector_store_id}', encodeURIComponent(String(requestParameters.vectorStoreId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -815,7 +815,7 @@ function modifyVectorStoreRaw<T>(requestParameters: ModifyVectorStoreRequest, re
 
     meta.authType = ['bearer'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}`.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters.vectorStoreId))),
+        url: `${runtime.Configuration.basePath}/vector_stores/{vector_store_id}`.replace('{vector_store_id}', encodeURIComponent(String(requestParameters.vectorStoreId))),
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,

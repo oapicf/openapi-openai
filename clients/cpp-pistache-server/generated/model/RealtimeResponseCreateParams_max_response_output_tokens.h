@@ -31,7 +31,7 @@ class  RealtimeResponseCreateParams_max_response_output_tokens
 {
 public:
     RealtimeResponseCreateParams_max_response_output_tokens();
-    virtual ~RealtimeResponseCreateParams_max_response_output_tokens() = default;
+    virtual ~RealtimeResponseCreateParams_max_response_output_tokens();
 
 
     /// <summary>

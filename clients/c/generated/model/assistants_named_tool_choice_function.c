@@ -12,18 +12,21 @@ static assistants_named_tool_choice_function_t *assistants_named_tool_choice_fun
     if (!assistants_named_tool_choice_function_local_var) {
         return NULL;
     }
-    assistants_named_tool_choice_function_local_var->name = name;
-
+    memset(assistants_named_tool_choice_function_local_var, 0, sizeof(assistants_named_tool_choice_function_t));
     assistants_named_tool_choice_function_local_var->_library_owned = 1;
+    assistants_named_tool_choice_function_local_var->name = name;
     return assistants_named_tool_choice_function_local_var;
 }
 
 __attribute__((deprecated)) assistants_named_tool_choice_function_t *assistants_named_tool_choice_function_create(
     char *name
     ) {
-    return assistants_named_tool_choice_function_create_internal (
+    assistants_named_tool_choice_function_t *result = assistants_named_tool_choice_function_create_internal (
         name
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void assistants_named_tool_choice_function_free(assistants_named_tool_choice_function_t *assistants_named_tool_choice_function) {
@@ -65,6 +68,8 @@ assistants_named_tool_choice_function_t *assistants_named_tool_choice_function_p
 
     assistants_named_tool_choice_function_t *assistants_named_tool_choice_function_local_var = NULL;
 
+    char *name_local_str = NULL;
+
     // assistants_named_tool_choice_function->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(assistants_named_tool_choice_functionJSON, "name");
     if (cJSON_IsNull(name)) {
@@ -81,12 +86,22 @@ assistants_named_tool_choice_function_t *assistants_named_tool_choice_function_p
     }
 
 
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     assistants_named_tool_choice_function_local_var = assistants_named_tool_choice_function_create_internal (
-        strdup(name->valuestring)
+        name_local_str
         );
+
+    if (!assistants_named_tool_choice_function_local_var) {
+        goto end;
+    }
 
     return assistants_named_tool_choice_function_local_var;
 end:
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
     return NULL;
 
 }

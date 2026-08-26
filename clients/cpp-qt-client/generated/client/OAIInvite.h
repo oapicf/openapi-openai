@@ -34,13 +34,13 @@ class OAIInvite_projects_inner;
 class OAIInvite : public OAIObject {
 public:
     OAIInvite();
-    OAIInvite(QString json);
+    OAIInvite(const QString &json);
     ~OAIInvite() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getObject() const;
     void setObject(const QString &object);

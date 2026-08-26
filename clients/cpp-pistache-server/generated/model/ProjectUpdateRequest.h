@@ -32,7 +32,7 @@ class  ProjectUpdateRequest
 {
 public:
     ProjectUpdateRequest();
-    virtual ~ProjectUpdateRequest() = default;
+    virtual ~ProjectUpdateRequest();
 
 
     /// <summary>

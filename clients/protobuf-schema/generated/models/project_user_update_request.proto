@@ -23,7 +23,7 @@ message ProjectUserUpdateRequest {
     ROLE_MEMBER = 1;
   }
 
-  Role role = 3506294;
+  string role = 3506294;
 
 }
 

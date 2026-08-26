@@ -23,7 +23,8 @@ type CreateAssistantRequestToolResourcesFileSearch struct {
 	VectorStores []CreateAssistantRequestToolResourcesFileSearchVectorStoresInner `json:"vector_stores,omitempty"`
 }
 
-// AssertCreateAssistantRequestToolResourcesFileSearchRequired checks if the required fields are not zero-ed
+// AssertCreateAssistantRequestToolResourcesFileSearchRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateAssistantRequestToolResourcesFileSearchRequired(obj CreateAssistantRequestToolResourcesFileSearch) error {
 	for _, el := range obj.VectorStores {
 		if err := AssertCreateAssistantRequestToolResourcesFileSearchVectorStoresInnerRequired(el); err != nil {

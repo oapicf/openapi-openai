@@ -133,10 +133,10 @@ class CreateFineTuningJobRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateFineTuningJobRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateFineTuningJobRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'model'), 'Required key "CreateFineTuningJobRequest[model]" is missing from JSON.');
+        assert(json[r'model'] != null, 'Required key "CreateFineTuningJobRequest[model]" has a null value in JSON.');
+        assert(json.containsKey(r'training_file'), 'Required key "CreateFineTuningJobRequest[training_file]" is missing from JSON.');
+        assert(json[r'training_file'] != null, 'Required key "CreateFineTuningJobRequest[training_file]" has a null value in JSON.');
         return true;
       }());
 

@@ -48,11 +48,11 @@ static realtime_response_status_details_t *realtime_response_status_details_crea
     if (!realtime_response_status_details_local_var) {
         return NULL;
     }
+    memset(realtime_response_status_details_local_var, 0, sizeof(realtime_response_status_details_t));
+    realtime_response_status_details_local_var->_library_owned = 1;
     realtime_response_status_details_local_var->type = type;
     realtime_response_status_details_local_var->reason = reason;
     realtime_response_status_details_local_var->error = error;
-
-    realtime_response_status_details_local_var->_library_owned = 1;
     return realtime_response_status_details_local_var;
 }
 
@@ -61,11 +61,14 @@ __attribute__((deprecated)) realtime_response_status_details_t *realtime_respons
     openai_api_realtime_response_status_details_REASON_e reason,
     realtime_response_status_details_error_t *error
     ) {
-    return realtime_response_status_details_create_internal (
+    realtime_response_status_details_t *result = realtime_response_status_details_create_internal (
         type,
         reason,
         error
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_response_status_details_free(realtime_response_status_details_t *realtime_response_status_details) {
@@ -170,11 +173,16 @@ realtime_response_status_details_t *realtime_response_status_details_parseFromJS
     }
 
 
+
     realtime_response_status_details_local_var = realtime_response_status_details_create_internal (
         type ? typeVariable : openai_api_realtime_response_status_details_TYPE_NULL,
         reason ? reasonVariable : openai_api_realtime_response_status_details_REASON_NULL,
         error ? error_local_nonprim : NULL
         );
+
+    if (!realtime_response_status_details_local_var) {
+        goto end;
+    }
 
     return realtime_response_status_details_local_var;
 end:

@@ -30,10 +30,10 @@ static chat_completion_tool_t *chat_completion_tool_create_internal(
     if (!chat_completion_tool_local_var) {
         return NULL;
     }
+    memset(chat_completion_tool_local_var, 0, sizeof(chat_completion_tool_t));
+    chat_completion_tool_local_var->_library_owned = 1;
     chat_completion_tool_local_var->type = type;
     chat_completion_tool_local_var->function = function;
-
-    chat_completion_tool_local_var->_library_owned = 1;
     return chat_completion_tool_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) chat_completion_tool_t *chat_completion_tool_create(
     openai_api_chat_completion_tool_TYPE_e type,
     function_object_t *function
     ) {
-    return chat_completion_tool_create_internal (
+    chat_completion_tool_t *result = chat_completion_tool_create_internal (
         type,
         function
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_tool_free(chat_completion_tool_t *chat_completion_tool) {
@@ -134,10 +137,15 @@ chat_completion_tool_t *chat_completion_tool_parseFromJSON(cJSON *chat_completio
     function_local_nonprim = function_object_parseFromJSON(function); //nonprimitive
 
 
+
     chat_completion_tool_local_var = chat_completion_tool_create_internal (
         typeVariable,
         function_local_nonprim
         );
+
+    if (!chat_completion_tool_local_var) {
+        goto end;
+    }
 
     return chat_completion_tool_local_var;
 end:

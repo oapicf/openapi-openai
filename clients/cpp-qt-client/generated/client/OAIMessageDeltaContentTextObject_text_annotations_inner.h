@@ -37,13 +37,13 @@ class OAIMessageDeltaContentTextAnnotationsFilePathObject_file_path;
 class OAIMessageDeltaContentTextObject_text_annotations_inner : public OAIObject {
 public:
     OAIMessageDeltaContentTextObject_text_annotations_inner();
-    OAIMessageDeltaContentTextObject_text_annotations_inner(QString json);
+    OAIMessageDeltaContentTextObject_text_annotations_inner(const QString &json);
     ~OAIMessageDeltaContentTextObject_text_annotations_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getIndex() const;
     void setIndex(const qint32 &index);

@@ -1,4 +1,4 @@
-# # PredictionContent
+# PredictionContent
 
 ## Properties
 

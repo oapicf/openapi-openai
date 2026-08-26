@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -17,20 +18,20 @@ import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Represents an &#x60;assistant&#x60; that can call the model and use tools.
  */
 
 @Schema(name = "AssistantObject", description = "Represents an `assistant` that can call the model and use tools.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class AssistantObject {
 
   private String id;
@@ -80,17 +81,20 @@ public class AssistantObject {
 
   private JsonNullable<@Size(max = 256000) String> instructions = JsonNullable.<String>undefined();
 
-  @Valid
   private List<AssistantObjectToolsInner> tools = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<AssistantObjectToolResources> toolResources = JsonNullable.<AssistantObjectToolResources>undefined();
 
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AssistantsApiResponseFormatOption responseFormat;
 
   public AssistantObject() {
@@ -128,6 +132,7 @@ public class AssistantObject {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
@@ -148,6 +153,7 @@ public class AssistantObject {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
@@ -168,6 +174,7 @@ public class AssistantObject {
     return createdAt;
   }
 
+  @JsonProperty("created_at")
   public void setCreatedAt(Integer createdAt) {
     this.createdAt = createdAt;
   }
@@ -188,6 +195,7 @@ public class AssistantObject {
     return name;
   }
 
+  @JsonProperty("name")
   public void setName(JsonNullable<String> name) {
     this.name = name;
   }
@@ -208,6 +216,7 @@ public class AssistantObject {
     return description;
   }
 
+  @JsonProperty("description")
   public void setDescription(JsonNullable<String> description) {
     this.description = description;
   }
@@ -228,6 +237,7 @@ public class AssistantObject {
     return model;
   }
 
+  @JsonProperty("model")
   public void setModel(String model) {
     this.model = model;
   }
@@ -248,6 +258,7 @@ public class AssistantObject {
     return instructions;
   }
 
+  @JsonProperty("instructions")
   public void setInstructions(JsonNullable<String> instructions) {
     this.instructions = instructions;
   }
@@ -276,6 +287,7 @@ public class AssistantObject {
     return tools;
   }
 
+  @JsonProperty("tools")
   public void setTools(List<AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
@@ -316,6 +328,7 @@ public class AssistantObject {
     return metadata;
   }
 
+  @JsonProperty("metadata")
   public void setMetadata(JsonNullable<Object> metadata) {
     this.metadata = metadata;
   }
@@ -380,6 +393,7 @@ public class AssistantObject {
     return responseFormat;
   }
 
+  @JsonProperty("response_format")
   public void setResponseFormat(@Nullable AssistantsApiResponseFormatOption responseFormat) {
     this.responseFormat = responseFormat;
   }
@@ -449,11 +463,8 @@ public class AssistantObject {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

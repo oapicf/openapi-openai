@@ -51,7 +51,7 @@ class AuditLogServiceAccountDeleted
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $id = null;
 
@@ -77,12 +77,12 @@ class AuditLogServiceAccountDeleted
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The service account ID.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The service account ID.
+     *
+     * @return $this
+     */
     public function setId(?string $id = null): self
     {
         $this->id = $id;

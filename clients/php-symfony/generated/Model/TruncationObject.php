@@ -51,7 +51,7 @@ class TruncationObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['auto', 'last_messages'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class TruncationObject
      * @var int|null
      * @SerializedName("last_messages")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(1)]
     protected ?int $lastMessages = null;
@@ -91,12 +91,12 @@ class TruncationObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -118,12 +118,12 @@ class TruncationObject
     }
 
     /**
-    * Sets lastMessages.
-    *
-    * @param int|null $lastMessages  The number of most recent messages from the thread when constructing the context for the run.
-    *
-    * @return $this
-    */
+     * Sets lastMessages.
+     *
+     * @param int|null $lastMessages  The number of most recent messages from the thread when constructing the context for the run.
+     *
+     * @return $this
+     */
     public function setLastMessages(?int $lastMessages = null): self
     {
         $this->lastMessages = $lastMessages;

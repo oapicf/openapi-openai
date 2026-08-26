@@ -13,10 +13,10 @@ static batch_request_output_error_t *batch_request_output_error_create_internal(
     if (!batch_request_output_error_local_var) {
         return NULL;
     }
+    memset(batch_request_output_error_local_var, 0, sizeof(batch_request_output_error_t));
+    batch_request_output_error_local_var->_library_owned = 1;
     batch_request_output_error_local_var->code = code;
     batch_request_output_error_local_var->message = message;
-
-    batch_request_output_error_local_var->_library_owned = 1;
     return batch_request_output_error_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) batch_request_output_error_t *batch_request_output_e
     char *code,
     char *message
     ) {
-    return batch_request_output_error_create_internal (
+    batch_request_output_error_t *result = batch_request_output_error_create_internal (
         code,
         message
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void batch_request_output_error_free(batch_request_output_error_t *batch_request_output_error) {
@@ -80,6 +83,10 @@ batch_request_output_error_t *batch_request_output_error_parseFromJSON(cJSON *ba
 
     batch_request_output_error_t *batch_request_output_error_local_var = NULL;
 
+    char *code_local_str = NULL;
+
+    char *message_local_str = NULL;
+
     // batch_request_output_error->code
     cJSON *code = cJSON_GetObjectItemCaseSensitive(batch_request_output_errorJSON, "code");
     if (cJSON_IsNull(code)) {
@@ -105,13 +112,28 @@ batch_request_output_error_t *batch_request_output_error_parseFromJSON(cJSON *ba
     }
 
 
+    if (code && !cJSON_IsNull(code)) code_local_str = strdup(code->valuestring);
+    if (message && !cJSON_IsNull(message)) message_local_str = strdup(message->valuestring);
+
     batch_request_output_error_local_var = batch_request_output_error_create_internal (
-        code && !cJSON_IsNull(code) ? strdup(code->valuestring) : NULL,
-        message && !cJSON_IsNull(message) ? strdup(message->valuestring) : NULL
+        code_local_str,
+        message_local_str
         );
+
+    if (!batch_request_output_error_local_var) {
+        goto end;
+    }
 
     return batch_request_output_error_local_var;
 end:
+    if (code_local_str) {
+        free(code_local_str);
+        code_local_str = NULL;
+    }
+    if (message_local_str) {
+        free(message_local_str);
+        message_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -47,7 +47,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"owner\" : {\n    \"role\" : \"member\",\n    \"name\" : \"My Service Account\",\n    \"created_at\" : 1711471533,\n    \"id\" : \"sa_456\",\n    \"type\" : \"service_account\"\n  },\n  \"name\" : \"Administration Key\",\n  \"created_at\" : 1711471533,\n  \"id\" : \"key_abc\",\n  \"redacted_value\" : \"sk-admin...def\",\n  \"value\" : \"sk-admin-1234abcd\",\n  \"object\" : \"organization.admin_api_key\"\n}";
+            exampleJson = "{\n  \"object\" : \"organization.admin_api_key\",\n  \"id\" : \"key_abc\",\n  \"name\" : \"Administration Key\",\n  \"redacted_value\" : \"sk-admin...def\",\n  \"value\" : \"sk-admin-1234abcd\",\n  \"created_at\" : 1711471533,\n  \"owner\" : {\n    \"type\" : \"service_account\",\n    \"id\" : \"sa_456\",\n    \"name\" : \"My Service Account\",\n    \"created_at\" : 1711471533,\n    \"role\" : \"member\"\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<AdminApiKey>(exampleJson)
@@ -74,7 +74,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"deleted\" : true,\n  \"id\" : \"key_abc\",\n  \"object\" : \"organization.admin_api_key.deleted\"\n}";
+            exampleJson = "{\n  \"id\" : \"key_abc\",\n  \"object\" : \"organization.admin_api_key.deleted\",\n  \"deleted\" : true\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<AdminApiKeysDelete200Response>(exampleJson)
@@ -101,7 +101,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"owner\" : {\n    \"role\" : \"member\",\n    \"name\" : \"My Service Account\",\n    \"created_at\" : 1711471533,\n    \"id\" : \"sa_456\",\n    \"type\" : \"service_account\"\n  },\n  \"name\" : \"Administration Key\",\n  \"created_at\" : 1711471533,\n  \"id\" : \"key_abc\",\n  \"redacted_value\" : \"sk-admin...def\",\n  \"value\" : \"sk-admin-1234abcd\",\n  \"object\" : \"organization.admin_api_key\"\n}";
+            exampleJson = "{\n  \"object\" : \"organization.admin_api_key\",\n  \"id\" : \"key_abc\",\n  \"name\" : \"Administration Key\",\n  \"redacted_value\" : \"sk-admin...def\",\n  \"value\" : \"sk-admin-1234abcd\",\n  \"created_at\" : 1711471533,\n  \"owner\" : {\n    \"type\" : \"service_account\",\n    \"id\" : \"sa_456\",\n    \"name\" : \"My Service Account\",\n    \"created_at\" : 1711471533,\n    \"role\" : \"member\"\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<AdminApiKey>(exampleJson)
@@ -130,7 +130,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"first_id\" : \"key_abc\",\n  \"data\" : [ {\n    \"owner\" : {\n      \"role\" : \"member\",\n      \"name\" : \"My Service Account\",\n      \"created_at\" : 1711471533,\n      \"id\" : \"sa_456\",\n      \"type\" : \"service_account\"\n    },\n    \"name\" : \"Administration Key\",\n    \"created_at\" : 1711471533,\n    \"id\" : \"key_abc\",\n    \"redacted_value\" : \"sk-admin...def\",\n    \"value\" : \"sk-admin-1234abcd\",\n    \"object\" : \"organization.admin_api_key\"\n  }, {\n    \"owner\" : {\n      \"role\" : \"member\",\n      \"name\" : \"My Service Account\",\n      \"created_at\" : 1711471533,\n      \"id\" : \"sa_456\",\n      \"type\" : \"service_account\"\n    },\n    \"name\" : \"Administration Key\",\n    \"created_at\" : 1711471533,\n    \"id\" : \"key_abc\",\n    \"redacted_value\" : \"sk-admin...def\",\n    \"value\" : \"sk-admin-1234abcd\",\n    \"object\" : \"organization.admin_api_key\"\n  } ],\n  \"last_id\" : \"key_xyz\",\n  \"has_more\" : false,\n  \"object\" : \"list\"\n}";
+            exampleJson = "{\n  \"object\" : \"list\",\n  \"data\" : [ {\n    \"object\" : \"organization.admin_api_key\",\n    \"id\" : \"key_abc\",\n    \"name\" : \"Administration Key\",\n    \"redacted_value\" : \"sk-admin...def\",\n    \"value\" : \"sk-admin-1234abcd\",\n    \"created_at\" : 1711471533,\n    \"owner\" : {\n      \"type\" : \"service_account\",\n      \"id\" : \"sa_456\",\n      \"name\" : \"My Service Account\",\n      \"created_at\" : 1711471533,\n      \"role\" : \"member\"\n    }\n  }, {\n    \"object\" : \"organization.admin_api_key\",\n    \"id\" : \"key_abc\",\n    \"name\" : \"Administration Key\",\n    \"redacted_value\" : \"sk-admin...def\",\n    \"value\" : \"sk-admin-1234abcd\",\n    \"created_at\" : 1711471533,\n    \"owner\" : {\n      \"type\" : \"service_account\",\n      \"id\" : \"sa_456\",\n      \"name\" : \"My Service Account\",\n      \"created_at\" : 1711471533,\n      \"role\" : \"member\"\n    }\n  } ],\n  \"has_more\" : false,\n  \"first_id\" : \"key_abc\",\n  \"last_id\" : \"key_xyz\"\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ApiKeyList>(exampleJson)

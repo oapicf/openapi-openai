@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface UsageCodeInterpreterSessionsResult {
     /**
      * 
-     * @type {string}
+     * @type {UsageCodeInterpreterSessionsResultObjectEnum}
      * @memberof UsageCodeInterpreterSessionsResult
      */
     object: UsageCodeInterpreterSessionsResultObjectEnum;
@@ -54,6 +54,8 @@ export type UsageCodeInterpreterSessionsResultObjectEnum = typeof UsageCodeInter
  */
 export function instanceOfUsageCodeInterpreterSessionsResult(value: object): value is UsageCodeInterpreterSessionsResult {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'organization.usage.code_interpreter_sessions.result') return false;
+    
     if (!('sessions' in value) || value['sessions'] === undefined) return false;
     return true;
 }
@@ -70,7 +72,7 @@ export function UsageCodeInterpreterSessionsResultFromJSONTyped(json: any, ignor
         
         'object': json['object'],
         'sessions': json['sessions'],
-        'projectId': json['project_id'] == null ? undefined : json['project_id'],
+        'projectId': json['project_id'] === undefined ? undefined : json['project_id'] === null ? null : json['project_id'],
     };
 }
 

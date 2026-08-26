@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 	"strings"
 	"os"
@@ -113,6 +114,7 @@ func (c *ImagesAPIController) CreateImageEdit(w http.ResponseWriter, r *http.Req
 		}
 
 		imageParam = param
+		defer param.Close()
 	}
 	
 	
@@ -128,6 +130,7 @@ func (c *ImagesAPIController) CreateImageEdit(w http.ResponseWriter, r *http.Req
 		}
 
 		maskParam = param
+		defer param.Close()
 	}
 	
 	
@@ -162,6 +165,11 @@ func (c *ImagesAPIController) CreateImage(w http.ResponseWriter, r *http.Request
 	d := json.NewDecoder(r.Body)
 	d.DisallowUnknownFields()
 	if err := d.Decode(&createImageRequestParam); err != nil {
+		var requiredErr *RequiredError
+		if errors.As(err, &requiredErr) {
+			c.errorHandler(w, r, err, nil)
+			return
+		}
 		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
 		return
 	}
@@ -198,6 +206,7 @@ func (c *ImagesAPIController) CreateImageVariation(w http.ResponseWriter, r *htt
 		}
 
 		imageParam = param
+		defer param.Close()
 	}
 	
 	

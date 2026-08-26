@@ -26,6 +26,8 @@ ModifyThreadRequest_tool_resources::ModifyThreadRequest_tool_resources()
     
 }
 
+ModifyThreadRequest_tool_resources::~ModifyThreadRequest_tool_resources() = default;
+
 void ModifyThreadRequest_tool_resources::validate() const
 {
     std::stringstream msg;

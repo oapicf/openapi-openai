@@ -357,10 +357,7 @@ NUMBER_0(Integer.valueOf(0)), NUMBER_1(Integer.valueOf(1));
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

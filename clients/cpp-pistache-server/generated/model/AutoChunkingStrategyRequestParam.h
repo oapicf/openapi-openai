@@ -32,7 +32,7 @@ class  AutoChunkingStrategyRequestParam
 {
 public:
     AutoChunkingStrategyRequestParam();
-    virtual ~AutoChunkingStrategyRequestParam() = default;
+    virtual ~AutoChunkingStrategyRequestParam();
 
 
     /// <summary>

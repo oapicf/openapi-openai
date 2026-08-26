@@ -25,7 +25,7 @@ message DeleteThreadResponse {
     OBJECT_THREAD_DELETED = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
 }
 

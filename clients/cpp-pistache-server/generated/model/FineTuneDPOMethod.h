@@ -32,7 +32,7 @@ class  FineTuneDPOMethod
 {
 public:
     FineTuneDPOMethod();
-    virtual ~FineTuneDPOMethod() = default;
+    virtual ~FineTuneDPOMethod();
 
 
     /// <summary>

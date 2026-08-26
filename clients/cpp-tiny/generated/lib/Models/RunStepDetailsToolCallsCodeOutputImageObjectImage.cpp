@@ -64,7 +64,7 @@ RunStepDetailsToolCallsCodeOutputImageObject_image::getFileId()
 }
 
 void
-RunStepDetailsToolCallsCodeOutputImageObject_image::setFileId(std::string  file_id)
+RunStepDetailsToolCallsCodeOutputImageObject_image::setFileId(std::string file_id)
 {
 	this->file_id = file_id;
 }

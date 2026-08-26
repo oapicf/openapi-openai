@@ -49,7 +49,7 @@ class CreateCompletionResponseChoicesInner
      * @var string|null
      * @SerializedName("finish_reason")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['stop', 'length', 'content_filter'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class CreateCompletionResponseChoicesInner
      * @var int|null
      * @SerializedName("index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $index = null;
@@ -68,7 +68,7 @@ class CreateCompletionResponseChoicesInner
      * @var CreateCompletionResponseChoicesInnerLogprobs|null
      * @SerializedName("logprobs")
      * @Type("OpenAPI\Server\Model\CreateCompletionResponseChoicesInnerLogprobs")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\CreateCompletionResponseChoicesInnerLogprobs")]
@@ -78,7 +78,7 @@ class CreateCompletionResponseChoicesInner
      * @var string|null
      * @SerializedName("text")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $text = null;
@@ -108,12 +108,12 @@ class CreateCompletionResponseChoicesInner
     }
 
     /**
-    * Sets finishReason.
-    *
-    * @param string|null $finishReason  The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters.
-    *
-    * @return $this
-    */
+     * Sets finishReason.
+     *
+     * @param string|null $finishReason  The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters.
+     *
+     * @return $this
+     */
     public function setFinishReason(?string $finishReason): self
     {
         $this->finishReason = $finishReason;
@@ -135,12 +135,12 @@ class CreateCompletionResponseChoicesInner
     }
 
     /**
-    * Sets index.
-    *
-    * @param int|null $index
-    *
-    * @return $this
-    */
+     * Sets index.
+     *
+     * @param int|null $index
+     *
+     * @return $this
+     */
     public function setIndex(?int $index): self
     {
         $this->index = $index;
@@ -162,12 +162,12 @@ class CreateCompletionResponseChoicesInner
     }
 
     /**
-    * Sets logprobs.
-    *
-    * @param CreateCompletionResponseChoicesInnerLogprobs|null $logprobs
-    *
-    * @return $this
-    */
+     * Sets logprobs.
+     *
+     * @param CreateCompletionResponseChoicesInnerLogprobs|null $logprobs
+     *
+     * @return $this
+     */
     public function setLogprobs(?CreateCompletionResponseChoicesInnerLogprobs $logprobs): self
     {
         $this->logprobs = $logprobs;
@@ -189,12 +189,12 @@ class CreateCompletionResponseChoicesInner
     }
 
     /**
-    * Sets text.
-    *
-    * @param string|null $text
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param string|null $text
+     *
+     * @return $this
+     */
     public function setText(?string $text): self
     {
         $this->text = $text;

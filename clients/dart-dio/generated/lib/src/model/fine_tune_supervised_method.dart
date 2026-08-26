@@ -74,8 +74,9 @@ class _$FineTuneSupervisedMethodSerializer implements PrimitiveSerializer<FineTu
         case r'hyperparameters':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FineTuneSupervisedMethodHyperparameters),
-          ) as FineTuneSupervisedMethodHyperparameters;
+            specifiedType: const FullType.nullable(FineTuneSupervisedMethodHyperparameters),
+          ) as FineTuneSupervisedMethodHyperparameters?;
+          if (valueDes == null) continue;
           result.hyperparameters.replace(valueDes);
           break;
         default:

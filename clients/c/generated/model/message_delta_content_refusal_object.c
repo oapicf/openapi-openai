@@ -23,7 +23,7 @@ openai_api_message_delta_content_refusal_object_TYPE_e message_delta_content_ref
 }
 
 static message_delta_content_refusal_object_t *message_delta_content_refusal_object_create_internal(
-    int index,
+    int *index,
     openai_api_message_delta_content_refusal_object_TYPE_e type,
     char *refusal
     ) {
@@ -31,24 +31,33 @@ static message_delta_content_refusal_object_t *message_delta_content_refusal_obj
     if (!message_delta_content_refusal_object_local_var) {
         return NULL;
     }
+    memset(message_delta_content_refusal_object_local_var, 0, sizeof(message_delta_content_refusal_object_t));
+    message_delta_content_refusal_object_local_var->_library_owned = 1;
     message_delta_content_refusal_object_local_var->index = index;
     message_delta_content_refusal_object_local_var->type = type;
     message_delta_content_refusal_object_local_var->refusal = refusal;
-
-    message_delta_content_refusal_object_local_var->_library_owned = 1;
     return message_delta_content_refusal_object_local_var;
 }
 
 __attribute__((deprecated)) message_delta_content_refusal_object_t *message_delta_content_refusal_object_create(
-    int index,
+    int *index,
     openai_api_message_delta_content_refusal_object_TYPE_e type,
     char *refusal
     ) {
-    return message_delta_content_refusal_object_create_internal (
-        index,
+    int *index_copy = NULL;
+    if (index) {
+        index_copy = malloc(sizeof(int));
+        if (index_copy) *index_copy = *index;
+    }
+    message_delta_content_refusal_object_t *result = message_delta_content_refusal_object_create_internal (
+        index_copy,
         type,
         refusal
         );
+    if (!result) {
+        free(index_copy);
+    }
+    return result;
 }
 
 void message_delta_content_refusal_object_free(message_delta_content_refusal_object_t *message_delta_content_refusal_object) {
@@ -60,6 +69,10 @@ void message_delta_content_refusal_object_free(message_delta_content_refusal_obj
         return ;
     }
     listEntry_t *listEntry;
+    if (message_delta_content_refusal_object->index) {
+        free(message_delta_content_refusal_object->index);
+        message_delta_content_refusal_object->index = NULL;
+    }
     if (message_delta_content_refusal_object->refusal) {
         free(message_delta_content_refusal_object->refusal);
         message_delta_content_refusal_object->refusal = NULL;
@@ -74,7 +87,7 @@ cJSON *message_delta_content_refusal_object_convertToJSON(message_delta_content_
     if (!message_delta_content_refusal_object->index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "index", message_delta_content_refusal_object->index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "index", *message_delta_content_refusal_object->index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -108,6 +121,11 @@ message_delta_content_refusal_object_t *message_delta_content_refusal_object_par
 
     message_delta_content_refusal_object_t *message_delta_content_refusal_object_local_var = NULL;
 
+    // define the local variable for message_delta_content_refusal_object->index
+    int *index_local_var = NULL;
+
+    char *refusal_local_str = NULL;
+
     // message_delta_content_refusal_object->index
     cJSON *index = cJSON_GetObjectItemCaseSensitive(message_delta_content_refusal_objectJSON, "index");
     if (cJSON_IsNull(index)) {
@@ -122,6 +140,12 @@ message_delta_content_refusal_object_t *message_delta_content_refusal_object_par
     {
     goto end; //Numeric
     }
+    index_local_var = malloc(sizeof(int));
+    if(!index_local_var)
+    {
+        goto end;
+    }
+    *index_local_var = index->valuedouble;
 
     // message_delta_content_refusal_object->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(message_delta_content_refusal_objectJSON, "type");
@@ -153,14 +177,28 @@ message_delta_content_refusal_object_t *message_delta_content_refusal_object_par
     }
 
 
+    if (refusal && !cJSON_IsNull(refusal)) refusal_local_str = strdup(refusal->valuestring);
+
     message_delta_content_refusal_object_local_var = message_delta_content_refusal_object_create_internal (
-        index->valuedouble,
+        index_local_var,
         typeVariable,
-        refusal && !cJSON_IsNull(refusal) ? strdup(refusal->valuestring) : NULL
+        refusal_local_str
         );
+
+    if (!message_delta_content_refusal_object_local_var) {
+        goto end;
+    }
 
     return message_delta_content_refusal_object_local_var;
 end:
+    if (index_local_var) {
+        free(index_local_var);
+        index_local_var = NULL;
+    }
+    if (refusal_local_str) {
+        free(refusal_local_str);
+        refusal_local_str = NULL;
+    }
     return NULL;
 
 }

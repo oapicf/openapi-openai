@@ -86,7 +86,7 @@ ResponseFormatJsonSchema::getType()
 }
 
 void
-ResponseFormatJsonSchema::setType(std::string  type)
+ResponseFormatJsonSchema::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ ResponseFormatJsonSchema::getJsonSchema()
 }
 
 void
-ResponseFormatJsonSchema::setJsonSchema(ResponseFormatJsonSchema_json_schema  json_schema)
+ResponseFormatJsonSchema::setJsonSchema(ResponseFormatJsonSchema_json_schema json_schema)
 {
 	this->json_schema = json_schema;
 }

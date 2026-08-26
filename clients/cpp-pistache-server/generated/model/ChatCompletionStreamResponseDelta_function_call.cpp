@@ -28,6 +28,8 @@ ChatCompletionStreamResponseDelta_function_call::ChatCompletionStreamResponseDel
     
 }
 
+ChatCompletionStreamResponseDelta_function_call::~ChatCompletionStreamResponseDelta_function_call() = default;
+
 void ChatCompletionStreamResponseDelta_function_call::validate() const
 {
     std::stringstream msg;

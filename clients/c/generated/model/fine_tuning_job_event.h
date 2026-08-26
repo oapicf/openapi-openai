@@ -46,7 +46,7 @@ openai_api_fine_tuning_job_event_TYPE_e fine_tuning_job_event_type_FromString(ch
 typedef struct fine_tuning_job_event_t {
     openai_api_fine_tuning_job_event_OBJECT_e object; //enum
     char *id; // string
-    int created_at; //numeric
+    int *created_at; //numeric
     openai_api_fine_tuning_job_event_LEVEL_e level; //enum
     char *message; // string
     openai_api_fine_tuning_job_event_TYPE_e type; //enum
@@ -58,7 +58,7 @@ typedef struct fine_tuning_job_event_t {
 __attribute__((deprecated)) fine_tuning_job_event_t *fine_tuning_job_event_create(
     openai_api_fine_tuning_job_event_OBJECT_e object,
     char *id,
-    int created_at,
+    int *created_at,
     openai_api_fine_tuning_job_event_LEVEL_e level,
     char *message,
     openai_api_fine_tuning_job_event_TYPE_e type,

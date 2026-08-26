@@ -72,13 +72,13 @@ class OAIAuditLog_user_deleted;
 class OAIAuditLog : public OAIObject {
 public:
     OAIAuditLog();
-    OAIAuditLog(QString json);
+    OAIAuditLog(const QString &json);
     ~OAIAuditLog() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

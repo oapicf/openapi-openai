@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAICreateImageEditRequest_model : public OAIObject {
 public:
     OAICreateImageEditRequest_model();
-    OAICreateImageEditRequest_model(QString json);
+    OAICreateImageEditRequest_model(const QString &json);
     ~OAICreateImageEditRequest_model() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

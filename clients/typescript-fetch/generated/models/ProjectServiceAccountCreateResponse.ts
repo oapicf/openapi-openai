@@ -29,7 +29,7 @@ import {
 export interface ProjectServiceAccountCreateResponse {
     /**
      * 
-     * @type {string}
+     * @type {ProjectServiceAccountCreateResponseObjectEnum}
      * @memberof ProjectServiceAccountCreateResponse
      */
     object: ProjectServiceAccountCreateResponseObjectEnum;
@@ -47,7 +47,7 @@ export interface ProjectServiceAccountCreateResponse {
     name: string;
     /**
      * Service accounts can only have one role of type `member`
-     * @type {string}
+     * @type {ProjectServiceAccountCreateResponseRoleEnum}
      * @memberof ProjectServiceAccountCreateResponse
      */
     role: ProjectServiceAccountCreateResponseRoleEnum;
@@ -88,11 +88,15 @@ export type ProjectServiceAccountCreateResponseRoleEnum = typeof ProjectServiceA
  */
 export function instanceOfProjectServiceAccountCreateResponse(value: object): value is ProjectServiceAccountCreateResponse {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'organization.project.service_account') return false;
+    
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('role' in value) || value['role'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-    if (!('apiKey' in value) || value['apiKey'] === undefined) return false;
+    if (value['role'] !== 'member') return false;
+    
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
+    if ((!('apiKey' in (value as Record<string, any>)) && !('api_key' in (value as Record<string, any>))) || ((value as Record<string, any>)['apiKey'] === undefined && (value as Record<string, any>)['api_key'] === undefined)) return false;
     return true;
 }
 

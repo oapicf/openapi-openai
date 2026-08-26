@@ -32,7 +32,7 @@ class  AuditLog_user_updated_changes_requested
 {
 public:
     AuditLog_user_updated_changes_requested();
-    virtual ~AuditLog_user_updated_changes_requested() = default;
+    virtual ~AuditLog_user_updated_changes_requested();
 
 
     /// <summary>

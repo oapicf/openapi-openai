@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // RunStepDetailsToolCallsCodeObjectCodeInterpreter - The Code Interpreter tool call definition.
@@ -23,11 +28,71 @@ type RunStepDetailsToolCallsCodeObjectCodeInterpreter struct {
 	// The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.
 	Outputs []RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner `json:"outputs"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into RunStepDetailsToolCallsCodeObjectCodeInterpreter
+func (o *RunStepDetailsToolCallsCodeObjectCodeInterpreter) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"input",
+		"outputs",
+	}
 
-// AssertRunStepDetailsToolCallsCodeObjectCodeInterpreterRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"input": false,
+		"outputs": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"input": {},
+		"outputs": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RunStepDetailsToolCallsCodeObjectCodeInterpreter
+
+	if value, exists := allProperties["input"]; exists {
+		if err = json.Unmarshal(value, &decoded.Input); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["outputs"]; exists {
+		if err = json.Unmarshal(value, &decoded.Outputs); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRunStepDetailsToolCallsCodeObjectCodeInterpreterRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRunStepDetailsToolCallsCodeObjectCodeInterpreterRequired(obj RunStepDetailsToolCallsCodeObjectCodeInterpreter) error {
 	elements := map[string]interface{}{
-		"input": obj.Input,
 		"outputs": obj.Outputs,
 	}
 	for name, el := range elements {

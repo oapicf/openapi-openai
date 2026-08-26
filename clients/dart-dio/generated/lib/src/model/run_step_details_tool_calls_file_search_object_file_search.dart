@@ -88,15 +88,17 @@ class _$RunStepDetailsToolCallsFileSearchObjectFileSearchSerializer implements P
         case r'ranking_options':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RunStepDetailsToolCallsFileSearchRankingOptionsObject),
-          ) as RunStepDetailsToolCallsFileSearchRankingOptionsObject;
+            specifiedType: const FullType.nullable(RunStepDetailsToolCallsFileSearchRankingOptionsObject),
+          ) as RunStepDetailsToolCallsFileSearchRankingOptionsObject?;
+          if (valueDes == null) continue;
           result.rankingOptions.replace(valueDes);
           break;
         case r'results':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(RunStepDetailsToolCallsFileSearchResultObject)]),
-          ) as BuiltList<RunStepDetailsToolCallsFileSearchResultObject>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(RunStepDetailsToolCallsFileSearchResultObject)]),
+          ) as BuiltList<RunStepDetailsToolCallsFileSearchResultObject>?;
+          if (valueDes == null) continue;
           result.results.replace(valueDes);
           break;
         default:

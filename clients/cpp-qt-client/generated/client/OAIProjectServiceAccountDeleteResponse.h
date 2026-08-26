@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIProjectServiceAccountDeleteResponse : public OAIObject {
 public:
     OAIProjectServiceAccountDeleteResponse();
-    OAIProjectServiceAccountDeleteResponse(QString json);
+    OAIProjectServiceAccountDeleteResponse(const QString &json);
     ~OAIProjectServiceAccountDeleteResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getObject() const;
     void setObject(const QString &object);

@@ -103,11 +103,11 @@ ChatCompletionStreamResponseDelta <- R6::R6Class(
       }
       if (!is.null(self$`function_call`)) {
         ChatCompletionStreamResponseDeltaObject[["function_call"]] <-
-          self$`function_call`$toSimpleType()
+          self$extractSimpleType(self$`function_call`)
       }
       if (!is.null(self$`tool_calls`)) {
         ChatCompletionStreamResponseDeltaObject[["tool_calls"]] <-
-          lapply(self$`tool_calls`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`tool_calls`)
       }
       if (!is.null(self$`role`)) {
         ChatCompletionStreamResponseDeltaObject[["role"]] <-
@@ -118,6 +118,29 @@ ChatCompletionStreamResponseDelta <- R6::R6Class(
           self$`refusal`
       }
       return(ChatCompletionStreamResponseDeltaObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

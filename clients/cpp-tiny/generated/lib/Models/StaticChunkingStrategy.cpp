@@ -86,7 +86,7 @@ Static_Chunking_Strategy::getType()
 }
 
 void
-Static_Chunking_Strategy::setType(std::string  type)
+Static_Chunking_Strategy::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ Static_Chunking_Strategy::getRStatic()
 }
 
 void
-Static_Chunking_Strategy::setRStatic(Static_Chunking_Strategy_static  r_static)
+Static_Chunking_Strategy::setRStatic(Static_Chunking_Strategy_static r_static)
 {
 	this->r_static = r_static;
 }

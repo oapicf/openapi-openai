@@ -49,7 +49,7 @@ class ChatCompletionRequestMessageContentPartImageImageUrl
      * @var string|null
      * @SerializedName("url")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $url = null;
@@ -60,7 +60,7 @@ class ChatCompletionRequestMessageContentPartImageImageUrl
      * @var string|null
      * @SerializedName("detail")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['auto', 'low', 'high'])]
     #[Assert\Type("string")]
     protected ?string $detail = 'auto';
@@ -88,12 +88,12 @@ class ChatCompletionRequestMessageContentPartImageImageUrl
     }
 
     /**
-    * Sets url.
-    *
-    * @param string|null $url  Either a URL of the image or the base64 encoded image data.
-    *
-    * @return $this
-    */
+     * Sets url.
+     *
+     * @param string|null $url  Either a URL of the image or the base64 encoded image data.
+     *
+     * @return $this
+     */
     public function setUrl(?string $url): self
     {
         $this->url = $url;
@@ -115,12 +115,12 @@ class ChatCompletionRequestMessageContentPartImageImageUrl
     }
 
     /**
-    * Sets detail.
-    *
-    * @param string|null $detail  Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
-    *
-    * @return $this
-    */
+     * Sets detail.
+     *
+     * @param string|null $detail  Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
+     *
+     * @return $this
+     */
     public function setDetail(?string $detail = null): self
     {
         $this->detail = $detail;

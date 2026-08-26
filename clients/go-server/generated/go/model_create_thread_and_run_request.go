@@ -14,6 +14,8 @@ package openapi
 
 import (
 	"errors"
+	"encoding/json"
+	"fmt"
 )
 
 
@@ -62,18 +64,152 @@ type CreateThreadAndRunRequest struct {
 
 	ResponseFormat AssistantsApiResponseFormatOption `json:"response_format,omitempty"`
 }
-
-// AssertCreateThreadAndRunRequestRequired checks if the required fields are not zero-ed
-func AssertCreateThreadAndRunRequestRequired(obj CreateThreadAndRunRequest) error {
-	elements := map[string]interface{}{
-		"assistant_id": obj.AssistantId,
+// UnmarshalJSON validates required property keys then unmarshals into CreateThreadAndRunRequest
+func (o *CreateThreadAndRunRequest) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"assistant_id",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"assistant_id": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"assistant_id": {},
+		"thread": {},
+		"model": {},
+		"instructions": {},
+		"tools": {},
+		"tool_resources": {},
+		"metadata": {},
+		"temperature": {},
+		"top_p": {},
+		"stream": {},
+		"max_prompt_tokens": {},
+		"max_completion_tokens": {},
+		"truncation_strategy": {},
+		"tool_choice": {},
+		"parallel_tool_calls": {},
+		"response_format": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CreateThreadAndRunRequest
+
+	if value, exists := allProperties["assistant_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.AssistantId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["thread"]; exists {
+		if err = json.Unmarshal(value, &decoded.Thread); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["model"]; exists {
+		if err = json.Unmarshal(value, &decoded.Model); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["instructions"]; exists {
+		if err = json.Unmarshal(value, &decoded.Instructions); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["tools"]; exists {
+		if err = json.Unmarshal(value, &decoded.Tools); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["tool_resources"]; exists {
+		if err = json.Unmarshal(value, &decoded.ToolResources); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["metadata"]; exists {
+		if err = json.Unmarshal(value, &decoded.Metadata); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["temperature"]; exists {
+		if err = json.Unmarshal(value, &decoded.Temperature); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["top_p"]; exists {
+		if err = json.Unmarshal(value, &decoded.TopP); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["stream"]; exists {
+		if err = json.Unmarshal(value, &decoded.Stream); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["max_prompt_tokens"]; exists {
+		if err = json.Unmarshal(value, &decoded.MaxPromptTokens); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["max_completion_tokens"]; exists {
+		if err = json.Unmarshal(value, &decoded.MaxCompletionTokens); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["truncation_strategy"]; exists {
+		if err = json.Unmarshal(value, &decoded.TruncationStrategy); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["tool_choice"]; exists {
+		if err = json.Unmarshal(value, &decoded.ToolChoice); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["parallel_tool_calls"]; exists {
+		if err = json.Unmarshal(value, &decoded.ParallelToolCalls); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["response_format"]; exists {
+		if err = json.Unmarshal(value, &decoded.ResponseFormat); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCreateThreadAndRunRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertCreateThreadAndRunRequestRequired(obj CreateThreadAndRunRequest) error {
 	if err := AssertCreateThreadRequestRequired(obj.Thread); err != nil {
 		return err
 	}

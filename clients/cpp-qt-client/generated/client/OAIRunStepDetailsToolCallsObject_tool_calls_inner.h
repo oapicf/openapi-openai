@@ -40,13 +40,13 @@ class OAIRunStepDetailsToolCallsFunctionObject_function;
 class OAIRunStepDetailsToolCallsObject_tool_calls_inner : public OAIObject {
 public:
     OAIRunStepDetailsToolCallsObject_tool_calls_inner();
-    OAIRunStepDetailsToolCallsObject_tool_calls_inner(QString json);
+    OAIRunStepDetailsToolCallsObject_tool_calls_inner(const QString &json);
     ~OAIRunStepDetailsToolCallsObject_tool_calls_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

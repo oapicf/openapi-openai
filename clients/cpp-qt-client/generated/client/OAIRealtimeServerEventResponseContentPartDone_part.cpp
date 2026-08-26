@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRealtimeServerEventResponseContentPartDone_part::OAIRealtimeServerEventResponseContentPartDone_part(QString json) {
+OAIRealtimeServerEventResponseContentPartDone_part::OAIRealtimeServerEventResponseContentPartDone_part(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -47,7 +47,7 @@ void OAIRealtimeServerEventResponseContentPartDone_part::initializeModel() {
     m_transcript_isValid = false;
 }
 
-void OAIRealtimeServerEventResponseContentPartDone_part::fromJson(QString jsonString) {
+void OAIRealtimeServerEventResponseContentPartDone_part::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

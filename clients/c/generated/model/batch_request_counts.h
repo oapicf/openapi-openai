@@ -19,17 +19,17 @@ typedef struct batch_request_counts_t batch_request_counts_t;
 
 
 typedef struct batch_request_counts_t {
-    int total; //numeric
-    int completed; //numeric
-    int failed; //numeric
+    int *total; //numeric
+    int *completed; //numeric
+    int *failed; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } batch_request_counts_t;
 
 __attribute__((deprecated)) batch_request_counts_t *batch_request_counts_create(
-    int total,
-    int completed,
-    int failed
+    int *total,
+    int *completed,
+    int *failed
 );
 
 void batch_request_counts_free(batch_request_counts_t *batch_request_counts);

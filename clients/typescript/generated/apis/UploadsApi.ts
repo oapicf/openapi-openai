@@ -40,7 +40,7 @@ export class UploadsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/uploads/{upload_id}/parts'
-            .replace('{' + 'upload_id' + '}', encodeURIComponent(String(uploadId)));
+            .replace('{upload_id}', encodeURIComponent(String(uploadId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -104,7 +104,7 @@ export class UploadsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/uploads/{upload_id}/cancel'
-            .replace('{' + 'upload_id' + '}', encodeURIComponent(String(uploadId)));
+            .replace('{upload_id}', encodeURIComponent(String(uploadId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -148,7 +148,7 @@ export class UploadsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/uploads/{upload_id}/complete'
-            .replace('{' + 'upload_id' + '}', encodeURIComponent(String(uploadId)));
+            .replace('{upload_id}', encodeURIComponent(String(uploadId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);

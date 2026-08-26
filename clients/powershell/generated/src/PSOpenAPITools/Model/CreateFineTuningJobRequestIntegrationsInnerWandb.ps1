@@ -55,10 +55,10 @@ function Initialize-CreateFineTuningJobRequestIntegrationsInnerWandb {
 
 
         $PSO = [PSCustomObject]@{
-            "project" = ${Project}
-            "name" = ${Name}
-            "entity" = ${Entity}
-            "tags" = ${Tags}
+            'project' = ${Project}
+            'name' = ${Name}
+            'entity' = ${Entity}
+            'tags' = ${Tags}
         }
 
 
@@ -96,7 +96,7 @@ function ConvertFrom-JsonToCreateFineTuningJobRequestIntegrationsInnerWandb {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateFineTuningJobRequestIntegrationsInnerWandb
-        $AllProperties = ("project", "name", "entity", "tags")
+        $AllProperties = ('project', 'name', 'entity', 'tags')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -107,35 +107,35 @@ function ConvertFrom-JsonToCreateFineTuningJobRequestIntegrationsInnerWandb {
             throw "Error! Empty JSON cannot be serialized due to the required property 'project' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "project"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'project'))) {
             throw "Error! JSON cannot be serialized due to the required property 'project' missing."
         } else {
-            $Project = $JsonParameters.PSobject.Properties["project"].value
+            $Project = $JsonParameters.PSobject.Properties['project'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) { #optional property not found
             $Name = $null
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "entity"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'entity'))) { #optional property not found
             $Entity = $null
         } else {
-            $Entity = $JsonParameters.PSobject.Properties["entity"].value
+            $Entity = $JsonParameters.PSobject.Properties['entity'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tags"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tags'))) { #optional property not found
             $Tags = $null
         } else {
-            $Tags = $JsonParameters.PSobject.Properties["tags"].value
+            $Tags = $JsonParameters.PSobject.Properties['tags'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "project" = ${Project}
-            "name" = ${Name}
-            "entity" = ${Entity}
-            "tags" = ${Tags}
+            'project' = ${Project}
+            'name' = ${Name}
+            'entity' = ${Entity}
+            'tags' = ${Tags}
         }
 
         return $PSO

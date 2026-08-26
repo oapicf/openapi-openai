@@ -52,42 +52,42 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get 
 	 */
 	std::string getId();
 
 	/*! \brief Set 
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	std::string getName();
 
 	/*! \brief Set 
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get Service accounts can only have one role of type `member`
 	 */
 	std::string getRole();
 
 	/*! \brief Set Service accounts can only have one role of type `member`
 	 */
-	void setRole(std::string  role);
+	void setRole(std::string role);
 	/*! \brief Get 
 	 */
 	int getCreatedAt();
 
 	/*! \brief Set 
 	 */
-	void setCreatedAt(int  created_at);
+	void setCreatedAt(int created_at);
 	/*! \brief Get 
 	 */
 	ProjectServiceAccountApiKey getApiKey();
 
 	/*! \brief Set 
 	 */
-	void setApiKey(ProjectServiceAccountApiKey  api_key);
+	void setApiKey(ProjectServiceAccountApiKey api_key);
 
 
     private:

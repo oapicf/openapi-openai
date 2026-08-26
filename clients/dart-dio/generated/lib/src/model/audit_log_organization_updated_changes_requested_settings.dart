@@ -86,15 +86,17 @@ class _$AuditLogOrganizationUpdatedChangesRequestedSettingsSerializer implements
         case r'threads_ui_visibility':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.threadsUiVisibility = valueDes;
           break;
         case r'usage_dashboard_visibility':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.usageDashboardVisibility = valueDes;
           break;
         default:

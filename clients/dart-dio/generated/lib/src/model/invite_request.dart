@@ -111,8 +111,9 @@ class _$InviteRequestSerializer implements PrimitiveSerializer<InviteRequest> {
         case r'projects':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(InviteRequestProjectsInner)]),
-          ) as BuiltList<InviteRequestProjectsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(InviteRequestProjectsInner)]),
+          ) as BuiltList<InviteRequestProjectsInner>?;
+          if (valueDes == null) continue;
           result.projects.replace(valueDes);
           break;
         default:

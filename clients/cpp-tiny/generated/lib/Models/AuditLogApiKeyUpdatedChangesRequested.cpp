@@ -82,7 +82,7 @@ AuditLog_api_key_updated_changes_requested::getScopes()
 }
 
 void
-AuditLog_api_key_updated_changes_requested::setScopes(std::list <std::string> scopes)
+AuditLog_api_key_updated_changes_requested::setScopes(std::list<std::string> scopes)
 {
 	this->scopes = scopes;
 }

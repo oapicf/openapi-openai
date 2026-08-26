@@ -49,7 +49,7 @@ class RunStepDetailsMessageCreationObjectMessageCreation
      * @var string|null
      * @SerializedName("message_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $messageId = null;
@@ -76,12 +76,12 @@ class RunStepDetailsMessageCreationObjectMessageCreation
     }
 
     /**
-    * Sets messageId.
-    *
-    * @param string|null $messageId  The ID of the message that was created by this run step.
-    *
-    * @return $this
-    */
+     * Sets messageId.
+     *
+     * @param string|null $messageId  The ID of the message that was created by this run step.
+     *
+     * @return $this
+     */
     public function setMessageId(?string $messageId): self
     {
         $this->messageId = $messageId;

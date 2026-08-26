@@ -51,7 +51,7 @@ class MessageDeltaObjectDelta
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['user', 'assistant'])]
     #[Assert\Type("string")]
     protected ?string $role = null;
@@ -62,7 +62,7 @@ class MessageDeltaObjectDelta
      * @var MessageDeltaObjectDeltaContentInner[]|null
      * @SerializedName("content")
      * @Type("array<OpenAPI\Server\Model\MessageDeltaObjectDeltaContentInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\MessageDeltaObjectDeltaContentInner"),
     ])]
@@ -91,12 +91,12 @@ class MessageDeltaObjectDelta
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  The entity that produced the message. One of `user` or `assistant`.
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  The entity that produced the message. One of `user` or `assistant`.
+     *
+     * @return $this
+     */
     public function setRole(?string $role = null): self
     {
         $this->role = $role;
@@ -118,12 +118,12 @@ class MessageDeltaObjectDelta
     }
 
     /**
-    * Sets content.
-    *
-    * @param MessageDeltaObjectDeltaContentInner[]|null $content  The content of the message in array of text and/or images.
-    *
-    * @return $this
-    */
+     * Sets content.
+     *
+     * @param MessageDeltaObjectDeltaContentInner[]|null $content  The content of the message in array of text and/or images.
+     *
+     * @return $this
+     */
     public function setContent(?array $content = null): self
     {
         $this->content = $content;

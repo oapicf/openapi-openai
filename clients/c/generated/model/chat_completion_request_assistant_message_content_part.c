@@ -31,11 +31,11 @@ static chat_completion_request_assistant_message_content_part_t *chat_completion
     if (!chat_completion_request_assistant_message_content_part_local_var) {
         return NULL;
     }
+    memset(chat_completion_request_assistant_message_content_part_local_var, 0, sizeof(chat_completion_request_assistant_message_content_part_t));
+    chat_completion_request_assistant_message_content_part_local_var->_library_owned = 1;
     chat_completion_request_assistant_message_content_part_local_var->type = type;
     chat_completion_request_assistant_message_content_part_local_var->text = text;
     chat_completion_request_assistant_message_content_part_local_var->refusal = refusal;
-
-    chat_completion_request_assistant_message_content_part_local_var->_library_owned = 1;
     return chat_completion_request_assistant_message_content_part_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) chat_completion_request_assistant_message_content_pa
     char *text,
     char *refusal
     ) {
-    return chat_completion_request_assistant_message_content_part_create_internal (
+    chat_completion_request_assistant_message_content_part_t *result = chat_completion_request_assistant_message_content_part_create_internal (
         type,
         text,
         refusal
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void chat_completion_request_assistant_message_content_part_free(chat_completion_request_assistant_message_content_part_t *chat_completion_request_assistant_message_content_part) {
@@ -113,6 +116,10 @@ chat_completion_request_assistant_message_content_part_t *chat_completion_reques
 
     chat_completion_request_assistant_message_content_part_t *chat_completion_request_assistant_message_content_part_local_var = NULL;
 
+    char *text_local_str = NULL;
+
+    char *refusal_local_str = NULL;
+
     // chat_completion_request_assistant_message_content_part->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(chat_completion_request_assistant_message_content_partJSON, "type");
     if (cJSON_IsNull(type)) {
@@ -161,14 +168,29 @@ chat_completion_request_assistant_message_content_part_t *chat_completion_reques
     }
 
 
+    if (text && !cJSON_IsNull(text)) text_local_str = strdup(text->valuestring);
+    if (refusal && !cJSON_IsNull(refusal)) refusal_local_str = strdup(refusal->valuestring);
+
     chat_completion_request_assistant_message_content_part_local_var = chat_completion_request_assistant_message_content_part_create_internal (
         typeVariable,
-        strdup(text->valuestring),
-        strdup(refusal->valuestring)
+        text_local_str,
+        refusal_local_str
         );
+
+    if (!chat_completion_request_assistant_message_content_part_local_var) {
+        goto end;
+    }
 
     return chat_completion_request_assistant_message_content_part_local_var;
 end:
+    if (text_local_str) {
+        free(text_local_str);
+        text_local_str = NULL;
+    }
+    if (refusal_local_str) {
+        free(refusal_local_str);
+        refusal_local_str = NULL;
+    }
     return NULL;
 
 }

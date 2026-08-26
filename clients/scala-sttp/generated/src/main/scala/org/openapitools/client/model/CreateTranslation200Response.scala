@@ -12,14 +12,23 @@
 package org.openapitools.client.model
 
 
-case class CreateTranslation200Response(
-  /* The translated text. */
-  text: String,
+sealed trait CreateTranslation200Response
+object CreateTranslation200Response {
+}
+
+case class CreateTranslationResponseJson(
+  text: String
+) extends CreateTranslation200Response
+
+case class CreateTranslationResponseVerboseJson(
   /* The language of the output translation (always `english`). */
   language: String,
   /* The duration of the input audio. */
   duration: String,
+  /* The translated text. */
+  text: String,
   /* Segments of the translated text and their corresponding details. */
   segments: Option[Seq[TranscriptionSegment]] = None
-)
+) extends CreateTranslation200Response
+
 

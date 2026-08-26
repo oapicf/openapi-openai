@@ -38,7 +38,7 @@ class  AssistantStreamEvent
 {
 public:
     AssistantStreamEvent();
-    virtual ~AssistantStreamEvent() = default;
+    virtual ~AssistantStreamEvent();
 
 
     /// <summary>

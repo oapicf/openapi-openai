@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateThreadRequest::OAICreateThreadRequest(QString json) {
+OAICreateThreadRequest::OAICreateThreadRequest(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAICreateThreadRequest::initializeModel() {
     m_metadata_isValid = false;
 }
 
-void OAICreateThreadRequest::fromJson(QString jsonString) {
+void OAICreateThreadRequest::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

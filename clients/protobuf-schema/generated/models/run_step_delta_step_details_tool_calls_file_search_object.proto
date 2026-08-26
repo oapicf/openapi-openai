@@ -29,7 +29,7 @@ message RunStepDeltaStepDetailsToolCallsFileSearchObject {
     TYPE_FILE_SEARCH = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // For now, this is always going to be an empty object.
   TODO_OBJECT_MAPPING file_search = 425626062;

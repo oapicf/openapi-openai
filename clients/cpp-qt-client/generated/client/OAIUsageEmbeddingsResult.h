@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIUsageEmbeddingsResult : public OAIObject {
 public:
     OAIUsageEmbeddingsResult();
-    OAIUsageEmbeddingsResult(QString json);
+    OAIUsageEmbeddingsResult(const QString &json);
     ~OAIUsageEmbeddingsResult() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getObject() const;
     void setObject(const QString &object);

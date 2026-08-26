@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIDefaultProjectErrorResponse::OAIDefaultProjectErrorResponse(QString json) {
+OAIDefaultProjectErrorResponse::OAIDefaultProjectErrorResponse(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIDefaultProjectErrorResponse::initializeModel() {
     m_message_isValid = false;
 }
 
-void OAIDefaultProjectErrorResponse::fromJson(QString jsonString) {
+void OAIDefaultProjectErrorResponse::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

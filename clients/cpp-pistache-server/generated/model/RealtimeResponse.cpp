@@ -34,6 +34,8 @@ RealtimeResponse::RealtimeResponse()
     
 }
 
+RealtimeResponse::~RealtimeResponse() = default;
+
 void RealtimeResponse::validate() const
 {
     std::stringstream msg;

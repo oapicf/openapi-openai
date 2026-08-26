@@ -31,7 +31,8 @@ type RealtimeResponseUsage struct {
 	OutputTokenDetails RealtimeResponseUsageOutputTokenDetails `json:"output_token_details,omitempty"`
 }
 
-// AssertRealtimeResponseUsageRequired checks if the required fields are not zero-ed
+// AssertRealtimeResponseUsageRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeResponseUsageRequired(obj RealtimeResponseUsage) error {
 	if err := AssertRealtimeResponseUsageInputTokenDetailsRequired(obj.InputTokenDetails); err != nil {
 		return err

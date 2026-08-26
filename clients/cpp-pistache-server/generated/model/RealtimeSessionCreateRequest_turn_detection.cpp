@@ -34,6 +34,8 @@ RealtimeSessionCreateRequest_turn_detection::RealtimeSessionCreateRequest_turn_d
     
 }
 
+RealtimeSessionCreateRequest_turn_detection::~RealtimeSessionCreateRequest_turn_detection() = default;
+
 void RealtimeSessionCreateRequest_turn_detection::validate() const
 {
     std::stringstream msg;

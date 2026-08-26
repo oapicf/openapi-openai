@@ -26,6 +26,8 @@ AssistantObject_tool_resources::AssistantObject_tool_resources()
     
 }
 
+AssistantObject_tool_resources::~AssistantObject_tool_resources() = default;
+
 void AssistantObject_tool_resources::validate() const
 {
     std::stringstream msg;

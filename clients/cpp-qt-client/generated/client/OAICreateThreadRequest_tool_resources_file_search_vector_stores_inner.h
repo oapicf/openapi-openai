@@ -35,13 +35,13 @@ class OAICreateAssistantRequest_tool_resources_file_search_vector_stores_inner_c
 class OAICreateThreadRequest_tool_resources_file_search_vector_stores_inner : public OAIObject {
 public:
     OAICreateThreadRequest_tool_resources_file_search_vector_stores_inner();
-    OAICreateThreadRequest_tool_resources_file_search_vector_stores_inner(QString json);
+    OAICreateThreadRequest_tool_resources_file_search_vector_stores_inner(const QString &json);
     ~OAICreateThreadRequest_tool_resources_file_search_vector_stores_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QList<QString> getFileIds() const;
     void setFileIds(const QList<QString> &file_ids);

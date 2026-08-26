@@ -22,7 +22,7 @@ typedef struct batch_errors_data_inner_t {
     char *code; // string
     char *message; // string
     char *param; // string
-    int line; //numeric
+    int *line; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } batch_errors_data_inner_t;
@@ -31,7 +31,7 @@ __attribute__((deprecated)) batch_errors_data_inner_t *batch_errors_data_inner_c
     char *code,
     char *message,
     char *param,
-    int line
+    int *line
 );
 
 void batch_errors_data_inner_free(batch_errors_data_inner_t *batch_errors_data_inner);

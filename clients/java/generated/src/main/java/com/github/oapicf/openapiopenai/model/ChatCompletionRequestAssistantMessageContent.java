@@ -52,7 +52,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ChatCompletionRequestAssistantMessageContent extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(ChatCompletionRequestAssistantMessageContent.class.getName());
 
@@ -176,7 +176,7 @@ public class ChatCompletionRequestAssistantMessageContent extends AbstractOpenAp
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * List<ChatCompletionRequestAssistantMessageContentPart>, String
+     * List&lt;ChatCompletionRequestAssistantMessageContentPart&gt;, String
      *
      * It could be an instance of the 'oneOf' schemas.
      */
@@ -205,9 +205,9 @@ public class ChatCompletionRequestAssistantMessageContent extends AbstractOpenAp
 
     /**
      * Get the actual instance, which can be the following:
-     * List<ChatCompletionRequestAssistantMessageContentPart>, String
+     * List&lt;ChatCompletionRequestAssistantMessageContentPart&gt;, String
      *
-     * @return The actual instance (List<ChatCompletionRequestAssistantMessageContentPart>, String)
+     * @return The actual instance (List&lt;ChatCompletionRequestAssistantMessageContentPart&gt;, String)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -222,17 +222,19 @@ public class ChatCompletionRequestAssistantMessageContent extends AbstractOpenAp
      * @return The actual instance of `String`
      * @throws ClassCastException if the instance is not `String`
      */
+    @SuppressWarnings("unchecked")
     public String getString() throws ClassCastException {
         return (String)super.getActualInstance();
     }
 
     /**
-     * Get the actual instance of `List<ChatCompletionRequestAssistantMessageContentPart>`. If the actual instance is not `List<ChatCompletionRequestAssistantMessageContentPart>`,
+     * Get the actual instance of `List&lt;ChatCompletionRequestAssistantMessageContentPart&gt;`. If the actual instance is not `List&lt;ChatCompletionRequestAssistantMessageContentPart&gt;`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `List<ChatCompletionRequestAssistantMessageContentPart>`
-     * @throws ClassCastException if the instance is not `List<ChatCompletionRequestAssistantMessageContentPart>`
+     * @return The actual instance of `List&lt;ChatCompletionRequestAssistantMessageContentPart&gt;`
+     * @throws ClassCastException if the instance is not `List&lt;ChatCompletionRequestAssistantMessageContentPart&gt;`
      */
+    @SuppressWarnings("unchecked")
     public List<ChatCompletionRequestAssistantMessageContentPart> getListChatCompletionRequestAssistantMessageContentPart() throws ClassCastException {
         return (List<ChatCompletionRequestAssistantMessageContentPart>)super.getActualInstance();
     }

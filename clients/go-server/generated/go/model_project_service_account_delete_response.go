@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type ProjectServiceAccountDeleteResponse struct {
@@ -22,20 +27,78 @@ type ProjectServiceAccountDeleteResponse struct {
 
 	Deleted bool `json:"deleted"`
 }
-
-// AssertProjectServiceAccountDeleteResponseRequired checks if the required fields are not zero-ed
-func AssertProjectServiceAccountDeleteResponseRequired(obj ProjectServiceAccountDeleteResponse) error {
-	elements := map[string]interface{}{
-		"object": obj.Object,
-		"id": obj.Id,
-		"deleted": obj.Deleted,
+// UnmarshalJSON validates required property keys then unmarshals into ProjectServiceAccountDeleteResponse
+func (o *ProjectServiceAccountDeleteResponse) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"object",
+		"id",
+		"deleted",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"object": false,
+		"id": false,
+		"deleted": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"object": {},
+		"id": {},
+		"deleted": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded ProjectServiceAccountDeleteResponse
+
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["deleted"]; exists {
+		if err = json.Unmarshal(value, &decoded.Deleted); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertProjectServiceAccountDeleteResponseRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertProjectServiceAccountDeleteResponseRequired(obj ProjectServiceAccountDeleteResponse) error {
 	return nil
 }
 

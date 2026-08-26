@@ -148,7 +148,7 @@ RealtimeServerEventConversationItemTruncated::getEventId()
 }
 
 void
-RealtimeServerEventConversationItemTruncated::setEventId(std::string  event_id)
+RealtimeServerEventConversationItemTruncated::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -160,7 +160,7 @@ RealtimeServerEventConversationItemTruncated::getType()
 }
 
 void
-RealtimeServerEventConversationItemTruncated::setType(std::string  type)
+RealtimeServerEventConversationItemTruncated::setType(std::string type)
 {
 	this->type = type;
 }
@@ -172,7 +172,7 @@ RealtimeServerEventConversationItemTruncated::getItemId()
 }
 
 void
-RealtimeServerEventConversationItemTruncated::setItemId(std::string  item_id)
+RealtimeServerEventConversationItemTruncated::setItemId(std::string item_id)
 {
 	this->item_id = item_id;
 }
@@ -184,7 +184,7 @@ RealtimeServerEventConversationItemTruncated::getContentIndex()
 }
 
 void
-RealtimeServerEventConversationItemTruncated::setContentIndex(int  content_index)
+RealtimeServerEventConversationItemTruncated::setContentIndex(int content_index)
 {
 	this->content_index = content_index;
 }
@@ -196,7 +196,7 @@ RealtimeServerEventConversationItemTruncated::getAudioEndMs()
 }
 
 void
-RealtimeServerEventConversationItemTruncated::setAudioEndMs(int  audio_end_ms)
+RealtimeServerEventConversationItemTruncated::setAudioEndMs(int audio_end_ms)
 {
 	this->audio_end_ms = audio_end_ms;
 }

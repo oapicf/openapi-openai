@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIRealtimeSession_model : public OAIObject {
 public:
     OAIRealtimeSession_model();
-    OAIRealtimeSession_model(QString json);
+    OAIRealtimeSession_model(const QString &json);
     ~OAIRealtimeSession_model() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

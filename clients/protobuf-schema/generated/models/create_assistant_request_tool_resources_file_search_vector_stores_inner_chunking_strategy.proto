@@ -14,7 +14,7 @@ syntax = "proto3";
 
 package openapitools;
 
-import public "models/auto_chunking_strategy.proto";
+import public "models/auto_chunking_strategy_request_param.proto";
 import public "models/static_chunking_strategy.proto";
 import public "models/static_chunking_strategy_static.proto";
 import public "models/todo_object_mapping.proto";
@@ -22,7 +22,7 @@ import public "models/todo_object_mapping.proto";
 message CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy {
 
     oneof create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy {
-        AutoChunkingStrategy auto_chunking_strategy = 249183119;
+        AutoChunkingStrategyRequestParam auto_chunking_strategy_request_param = 237020760;
         StaticChunkingStrategy static_chunking_strategy = 494738063;
     }
 }

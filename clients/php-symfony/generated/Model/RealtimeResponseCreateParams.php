@@ -51,7 +51,7 @@ class RealtimeResponseCreateParams
      * @var string[]|null
      * @SerializedName("modalities")
      * @Type("array<string>")
-    */
+     */
     #[Assert\All([
         new Assert\Choice(['text', 'audio']),
     ])]
@@ -66,7 +66,7 @@ class RealtimeResponseCreateParams
      * @var string|null
      * @SerializedName("instructions")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $instructions = null;
 
@@ -76,7 +76,7 @@ class RealtimeResponseCreateParams
      * @var string|null
      * @SerializedName("voice")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['alloy', 'ash', 'ballad', 'coral', 'echo', 'sage', 'shimmer', 'verse'])]
     #[Assert\Type("string")]
     protected ?string $voice = null;
@@ -87,7 +87,7 @@ class RealtimeResponseCreateParams
      * @var string|null
      * @SerializedName("output_audio_format")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['pcm16', 'g711_ulaw', 'g711_alaw'])]
     #[Assert\Type("string")]
     protected ?string $outputAudioFormat = null;
@@ -98,7 +98,7 @@ class RealtimeResponseCreateParams
      * @var RealtimeResponseCreateParamsToolsInner[]|null
      * @SerializedName("tools")
      * @Type("array<OpenAPI\Server\Model\RealtimeResponseCreateParamsToolsInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\RealtimeResponseCreateParamsToolsInner"),
     ])]
@@ -110,7 +110,7 @@ class RealtimeResponseCreateParams
      * @var string|null
      * @SerializedName("tool_choice")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $toolChoice = null;
 
@@ -120,7 +120,7 @@ class RealtimeResponseCreateParams
      * @var float|null
      * @SerializedName("temperature")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     protected ?float $temperature = null;
 
@@ -128,7 +128,7 @@ class RealtimeResponseCreateParams
      * @var RealtimeResponseCreateParamsMaxResponseOutputTokens|null
      * @SerializedName("max_response_output_tokens")
      * @Type("OpenAPI\Server\Model\RealtimeResponseCreateParamsMaxResponseOutputTokens")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RealtimeResponseCreateParamsMaxResponseOutputTokens")]
     protected ?RealtimeResponseCreateParamsMaxResponseOutputTokens $maxResponseOutputTokens = null;
 
@@ -136,7 +136,7 @@ class RealtimeResponseCreateParams
      * @var RealtimeResponseCreateParamsConversation|null
      * @SerializedName("conversation")
      * @Type("OpenAPI\Server\Model\RealtimeResponseCreateParamsConversation")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\RealtimeResponseCreateParamsConversation")]
     protected ?RealtimeResponseCreateParamsConversation $conversation = null;
 
@@ -146,7 +146,7 @@ class RealtimeResponseCreateParams
      * @var array|null
      * @SerializedName("metadata")
      * @Type("array")
-    */
+     */
     #[Assert\Type("array")]
     protected ?array $metadata = null;
 
@@ -156,7 +156,7 @@ class RealtimeResponseCreateParams
      * @var RealtimeConversationItem[]|null
      * @SerializedName("input")
      * @Type("array<OpenAPI\Server\Model\RealtimeConversationItem>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\RealtimeConversationItem"),
     ])]
@@ -194,12 +194,12 @@ class RealtimeResponseCreateParams
     }
 
     /**
-    * Sets modalities.
-    *
-    * @param string[]|null $modalities  The set of modalities the model can respond with. To disable audio, set this to [\"text\"].
-    *
-    * @return $this
-    */
+     * Sets modalities.
+     *
+     * @param string[]|null $modalities  The set of modalities the model can respond with. To disable audio, set this to [\"text\"].
+     *
+     * @return $this
+     */
     public function setModalities(?array $modalities = null): self
     {
         $this->modalities = $modalities;
@@ -221,12 +221,12 @@ class RealtimeResponseCreateParams
     }
 
     /**
-    * Sets instructions.
-    *
-    * @param string|null $instructions  The default system instructions (i.e. system message) prepended to model  calls. This field allows the client to guide the model on desired  responses. The model can be instructed on response content and format,  (e.g. \"be extremely succinct\", \"act friendly\", \"here are examples of good  responses\") and on audio behavior (e.g. \"talk quickly\", \"inject emotion  into your voice\", \"laugh frequently\"). The instructions are not guaranteed  to be followed by the model, but they provide guidance to the model on the  desired behavior.  Note that the server sets default instructions which will be used if this  field is not set and are visible in the `session.created` event at the  start of the session.
-    *
-    * @return $this
-    */
+     * Sets instructions.
+     *
+     * @param string|null $instructions  The default system instructions (i.e. system message) prepended to model  calls. This field allows the client to guide the model on desired  responses. The model can be instructed on response content and format,  (e.g. \"be extremely succinct\", \"act friendly\", \"here are examples of good  responses\") and on audio behavior (e.g. \"talk quickly\", \"inject emotion  into your voice\", \"laugh frequently\"). The instructions are not guaranteed  to be followed by the model, but they provide guidance to the model on the  desired behavior.  Note that the server sets default instructions which will be used if this  field is not set and are visible in the `session.created` event at the  start of the session.
+     *
+     * @return $this
+     */
     public function setInstructions(?string $instructions = null): self
     {
         $this->instructions = $instructions;
@@ -248,12 +248,12 @@ class RealtimeResponseCreateParams
     }
 
     /**
-    * Sets voice.
-    *
-    * @param string|null $voice  The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`.
-    *
-    * @return $this
-    */
+     * Sets voice.
+     *
+     * @param string|null $voice  The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`.
+     *
+     * @return $this
+     */
     public function setVoice(?string $voice = null): self
     {
         $this->voice = $voice;
@@ -275,12 +275,12 @@ class RealtimeResponseCreateParams
     }
 
     /**
-    * Sets outputAudioFormat.
-    *
-    * @param string|null $outputAudioFormat  The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
-    *
-    * @return $this
-    */
+     * Sets outputAudioFormat.
+     *
+     * @param string|null $outputAudioFormat  The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
+     *
+     * @return $this
+     */
     public function setOutputAudioFormat(?string $outputAudioFormat = null): self
     {
         $this->outputAudioFormat = $outputAudioFormat;
@@ -302,12 +302,12 @@ class RealtimeResponseCreateParams
     }
 
     /**
-    * Sets tools.
-    *
-    * @param RealtimeResponseCreateParamsToolsInner[]|null $tools  Tools (functions) available to the model.
-    *
-    * @return $this
-    */
+     * Sets tools.
+     *
+     * @param RealtimeResponseCreateParamsToolsInner[]|null $tools  Tools (functions) available to the model.
+     *
+     * @return $this
+     */
     public function setTools(?array $tools = null): self
     {
         $this->tools = $tools;
@@ -329,12 +329,12 @@ class RealtimeResponseCreateParams
     }
 
     /**
-    * Sets toolChoice.
-    *
-    * @param string|null $toolChoice  How the model chooses tools. Options are `auto`, `none`, `required`, or  specify a function, like `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}`.
-    *
-    * @return $this
-    */
+     * Sets toolChoice.
+     *
+     * @param string|null $toolChoice  How the model chooses tools. Options are `auto`, `none`, `required`, or  specify a function, like `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}`.
+     *
+     * @return $this
+     */
     public function setToolChoice(?string $toolChoice = null): self
     {
         $this->toolChoice = $toolChoice;
@@ -356,12 +356,12 @@ class RealtimeResponseCreateParams
     }
 
     /**
-    * Sets temperature.
-    *
-    * @param float|null $temperature  Sampling temperature for the model, limited to [0.6, 1.2]. Defaults to 0.8.
-    *
-    * @return $this
-    */
+     * Sets temperature.
+     *
+     * @param float|null $temperature  Sampling temperature for the model, limited to [0.6, 1.2]. Defaults to 0.8.
+     *
+     * @return $this
+     */
     public function setTemperature(?float $temperature = null): self
     {
         $this->temperature = $temperature;
@@ -383,12 +383,12 @@ class RealtimeResponseCreateParams
     }
 
     /**
-    * Sets maxResponseOutputTokens.
-    *
-    * @param RealtimeResponseCreateParamsMaxResponseOutputTokens|null $maxResponseOutputTokens
-    *
-    * @return $this
-    */
+     * Sets maxResponseOutputTokens.
+     *
+     * @param RealtimeResponseCreateParamsMaxResponseOutputTokens|null $maxResponseOutputTokens
+     *
+     * @return $this
+     */
     public function setMaxResponseOutputTokens(?RealtimeResponseCreateParamsMaxResponseOutputTokens $maxResponseOutputTokens = null): self
     {
         $this->maxResponseOutputTokens = $maxResponseOutputTokens;
@@ -410,12 +410,12 @@ class RealtimeResponseCreateParams
     }
 
     /**
-    * Sets conversation.
-    *
-    * @param RealtimeResponseCreateParamsConversation|null $conversation
-    *
-    * @return $this
-    */
+     * Sets conversation.
+     *
+     * @param RealtimeResponseCreateParamsConversation|null $conversation
+     *
+     * @return $this
+     */
     public function setConversation(?RealtimeResponseCreateParamsConversation $conversation = null): self
     {
         $this->conversation = $conversation;
@@ -437,12 +437,12 @@ class RealtimeResponseCreateParams
     }
 
     /**
-    * Sets metadata.
-    *
-    * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
-    *
-    * @return $this
-    */
+     * Sets metadata.
+     *
+     * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
+     *
+     * @return $this
+     */
     public function setMetadata(?array $metadata = null): self
     {
         $this->metadata = $metadata;
@@ -464,12 +464,12 @@ class RealtimeResponseCreateParams
     }
 
     /**
-    * Sets input.
-    *
-    * @param RealtimeConversationItem[]|null $input  Input items to include in the prompt for the model. Creates a new context for this response, without including the default conversation. Can include references to items from the default conversation.
-    *
-    * @return $this
-    */
+     * Sets input.
+     *
+     * @param RealtimeConversationItem[]|null $input  Input items to include in the prompt for the model. Creates a new context for this response, without including the default conversation. Can include references to items from the default conversation.
+     *
+     * @return $this
+     */
     public function setInput(?array $input = null): self
     {
         $this->input = $input;

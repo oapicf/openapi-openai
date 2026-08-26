@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 pom.xml
 src/gen/java/org/openapitools/api/AssistantsApi.java
 src/gen/java/org/openapitools/api/AudioApi.java
@@ -80,7 +79,6 @@ src/gen/java/org/openapitools/model/AuditLogUserAddedData.java
 src/gen/java/org/openapitools/model/AuditLogUserDeleted.java
 src/gen/java/org/openapitools/model/AuditLogUserUpdated.java
 src/gen/java/org/openapitools/model/AuditLogUserUpdatedChangesRequested.java
-src/gen/java/org/openapitools/model/AutoChunkingStrategy.java
 src/gen/java/org/openapitools/model/AutoChunkingStrategyRequestParam.java
 src/gen/java/org/openapitools/model/Batch.java
 src/gen/java/org/openapitools/model/BatchErrors.java
@@ -490,7 +488,6 @@ src/gen/java/org/openapitools/model/RunToolCallObject.java
 src/gen/java/org/openapitools/model/RunToolCallObjectFunction.java
 src/gen/java/org/openapitools/model/StaticChunkingStrategy.java
 src/gen/java/org/openapitools/model/StaticChunkingStrategyRequestParam.java
-src/gen/java/org/openapitools/model/StaticChunkingStrategyResponseParam.java
 src/gen/java/org/openapitools/model/StaticChunkingStrategyStatic.java
 src/gen/java/org/openapitools/model/SubmitToolOutputsRunRequest.java
 src/gen/java/org/openapitools/model/SubmitToolOutputsRunRequestToolOutputsInner.java
@@ -525,23 +522,3 @@ src/gen/java/org/openapitools/model/VectorStoreFileObjectChunkingStrategy.java
 src/gen/java/org/openapitools/model/VectorStoreFileObjectLastError.java
 src/gen/java/org/openapitools/model/VectorStoreObject.java
 src/gen/java/org/openapitools/model/VectorStoreObjectFileCounts.java
-src/test/java/org/openapitools/api/AssistantsApiTest.java
-src/test/java/org/openapitools/api/AudioApiTest.java
-src/test/java/org/openapitools/api/AuditLogsApiTest.java
-src/test/java/org/openapitools/api/BatchApiTest.java
-src/test/java/org/openapitools/api/ChatApiTest.java
-src/test/java/org/openapitools/api/CompletionsApiTest.java
-src/test/java/org/openapitools/api/DefaultApiTest.java
-src/test/java/org/openapitools/api/EmbeddingsApiTest.java
-src/test/java/org/openapitools/api/FilesApiTest.java
-src/test/java/org/openapitools/api/FineTuningApiTest.java
-src/test/java/org/openapitools/api/ImagesApiTest.java
-src/test/java/org/openapitools/api/InvitesApiTest.java
-src/test/java/org/openapitools/api/ModelsApiTest.java
-src/test/java/org/openapitools/api/ModerationsApiTest.java
-src/test/java/org/openapitools/api/ProjectsApiTest.java
-src/test/java/org/openapitools/api/RealtimeApiTest.java
-src/test/java/org/openapitools/api/UploadsApiTest.java
-src/test/java/org/openapitools/api/UsageApiTest.java
-src/test/java/org/openapitools/api/UsersApiTest.java
-src/test/java/org/openapitools/api/VectorStoresApiTest.java

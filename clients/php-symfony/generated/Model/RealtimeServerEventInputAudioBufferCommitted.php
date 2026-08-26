@@ -51,7 +51,7 @@ class RealtimeServerEventInputAudioBufferCommitted
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $eventId = null;
@@ -62,7 +62,7 @@ class RealtimeServerEventInputAudioBufferCommitted
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['input_audio_buffer.committed'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class RealtimeServerEventInputAudioBufferCommitted
      * @var string|null
      * @SerializedName("previous_item_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $previousItemId = null;
@@ -85,7 +85,7 @@ class RealtimeServerEventInputAudioBufferCommitted
      * @var string|null
      * @SerializedName("item_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $itemId = null;
@@ -115,12 +115,12 @@ class RealtimeServerEventInputAudioBufferCommitted
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  The unique ID of the server event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  The unique ID of the server event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId): self
     {
         $this->eventId = $eventId;
@@ -142,12 +142,12 @@ class RealtimeServerEventInputAudioBufferCommitted
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `input_audio_buffer.committed`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `input_audio_buffer.committed`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -169,12 +169,12 @@ class RealtimeServerEventInputAudioBufferCommitted
     }
 
     /**
-    * Sets previousItemId.
-    *
-    * @param string|null $previousItemId  The ID of the preceding item after which the new item will be inserted.
-    *
-    * @return $this
-    */
+     * Sets previousItemId.
+     *
+     * @param string|null $previousItemId  The ID of the preceding item after which the new item will be inserted.
+     *
+     * @return $this
+     */
     public function setPreviousItemId(?string $previousItemId): self
     {
         $this->previousItemId = $previousItemId;
@@ -196,12 +196,12 @@ class RealtimeServerEventInputAudioBufferCommitted
     }
 
     /**
-    * Sets itemId.
-    *
-    * @param string|null $itemId  The ID of the user message item that will be created.
-    *
-    * @return $this
-    */
+     * Sets itemId.
+     *
+     * @param string|null $itemId  The ID of the user message item that will be created.
+     *
+     * @return $this
+     */
     public function setItemId(?string $itemId): self
     {
         $this->itemId = $itemId;

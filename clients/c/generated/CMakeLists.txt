@@ -108,7 +108,6 @@ set(SRCS
     model/audit_log_user_deleted.c
     model/audit_log_user_updated.c
     model/audit_log_user_updated_changes_requested.c
-    model/auto_chunking_strategy.c
     model/auto_chunking_strategy_request_param.c
     model/batch.c
     model/batch_errors.c
@@ -518,7 +517,6 @@ set(SRCS
     model/run_tool_call_object_function.c
     model/static_chunking_strategy.c
     model/static_chunking_strategy_request_param.c
-    model/static_chunking_strategy_response_param.c
     model/static_chunking_strategy_static.c
     model/submit_tool_outputs_run_request.c
     model/submit_tool_outputs_run_request_tool_outputs_inner.c
@@ -644,7 +642,6 @@ set(HDRS
     model/audit_log_user_deleted.h
     model/audit_log_user_updated.h
     model/audit_log_user_updated_changes_requested.h
-    model/auto_chunking_strategy.h
     model/auto_chunking_strategy_request_param.h
     model/batch.h
     model/batch_errors.h
@@ -1054,7 +1051,6 @@ set(HDRS
     model/run_tool_call_object_function.h
     model/static_chunking_strategy.h
     model/static_chunking_strategy_request_param.h
-    model/static_chunking_strategy_response_param.h
     model/static_chunking_strategy_static.h
     model/submit_tool_outputs_run_request.h
     model/submit_tool_outputs_run_request_tool_outputs_inner.h

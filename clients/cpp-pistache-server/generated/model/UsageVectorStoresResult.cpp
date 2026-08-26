@@ -28,6 +28,8 @@ UsageVectorStoresResult::UsageVectorStoresResult()
     
 }
 
+UsageVectorStoresResult::~UsageVectorStoresResult() = default;
+
 void UsageVectorStoresResult::validate() const
 {
     std::stringstream msg;

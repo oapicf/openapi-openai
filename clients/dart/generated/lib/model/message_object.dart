@@ -166,10 +166,27 @@ class MessageObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "MessageObject[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "MessageObject[id]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "MessageObject[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "MessageObject[object]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "MessageObject[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "MessageObject[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'thread_id'), 'Required key "MessageObject[thread_id]" is missing from JSON.');
+        assert(json[r'thread_id'] != null, 'Required key "MessageObject[thread_id]" has a null value in JSON.');
+        assert(json.containsKey(r'status'), 'Required key "MessageObject[status]" is missing from JSON.');
+        assert(json[r'status'] != null, 'Required key "MessageObject[status]" has a null value in JSON.');
+        assert(json.containsKey(r'incomplete_details'), 'Required key "MessageObject[incomplete_details]" is missing from JSON.');
+        assert(json.containsKey(r'completed_at'), 'Required key "MessageObject[completed_at]" is missing from JSON.');
+        assert(json.containsKey(r'incomplete_at'), 'Required key "MessageObject[incomplete_at]" is missing from JSON.');
+        assert(json.containsKey(r'role'), 'Required key "MessageObject[role]" is missing from JSON.');
+        assert(json[r'role'] != null, 'Required key "MessageObject[role]" has a null value in JSON.');
+        assert(json.containsKey(r'content'), 'Required key "MessageObject[content]" is missing from JSON.');
+        assert(json[r'content'] != null, 'Required key "MessageObject[content]" has a null value in JSON.');
+        assert(json.containsKey(r'assistant_id'), 'Required key "MessageObject[assistant_id]" is missing from JSON.');
+        assert(json.containsKey(r'run_id'), 'Required key "MessageObject[run_id]" is missing from JSON.');
+        assert(json.containsKey(r'attachments'), 'Required key "MessageObject[attachments]" is missing from JSON.');
+        assert(json.containsKey(r'metadata'), 'Required key "MessageObject[metadata]" is missing from JSON.');
         return true;
       }());
 
@@ -253,27 +270,28 @@ class MessageObject {
 }
 
 /// The object type, which is always `thread.message`.
-class MessageObjectObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageObjectObjectEnum._(this.value);
+enum MessageObjectObjectEnum {
+  threadPeriodMessage._(r'thread.message'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageObjectObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodMessage = MessageObjectObjectEnum._(r'thread.message');
-
-  /// List of all possible values in this [enum][MessageObjectObjectEnum].
-  static const values = <MessageObjectObjectEnum>[
-    threadPeriodMessage,
-  ];
-
+  /// Returns the instance of [MessageObjectObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageObjectObjectEnum? fromJson(dynamic value) => MessageObjectObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageObjectObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageObjectObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageObjectObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -295,9 +313,10 @@ class MessageObjectObjectEnumTypeTransformer {
 
   const MessageObjectObjectEnumTypeTransformer._();
 
-  String encode(MessageObjectObjectEnum data) => data.value;
+  String encode(MessageObjectObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageObjectObjectEnum.
+  /// Returns the instance of [MessageObjectObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -306,6 +325,9 @@ class MessageObjectObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageObjectObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageObjectObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.message': return MessageObjectObjectEnum.threadPeriodMessage;
@@ -318,37 +340,36 @@ class MessageObjectObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageObjectObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageObjectObjectEnumTypeTransformer? _instance;
 }
 
 
 /// The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.
-class MessageObjectStatusEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageObjectStatusEnum._(this.value);
+enum MessageObjectStatusEnum {
+  inProgress._(r'in_progress'),
+  incomplete._(r'incomplete'),
+  completed._(r'completed'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageObjectStatusEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const inProgress = MessageObjectStatusEnum._(r'in_progress');
-  static const incomplete = MessageObjectStatusEnum._(r'incomplete');
-  static const completed = MessageObjectStatusEnum._(r'completed');
-
-  /// List of all possible values in this [enum][MessageObjectStatusEnum].
-  static const values = <MessageObjectStatusEnum>[
-    inProgress,
-    incomplete,
-    completed,
-  ];
-
+  /// Returns the instance of [MessageObjectStatusEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageObjectStatusEnum? fromJson(dynamic value) => MessageObjectStatusEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageObjectStatusEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageObjectStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageObjectStatusEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -370,9 +391,10 @@ class MessageObjectStatusEnumTypeTransformer {
 
   const MessageObjectStatusEnumTypeTransformer._();
 
-  String encode(MessageObjectStatusEnum data) => data.value;
+  String encode(MessageObjectStatusEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageObjectStatusEnum.
+  /// Returns the instance of [MessageObjectStatusEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -381,6 +403,9 @@ class MessageObjectStatusEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageObjectStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageObjectStatusEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'in_progress': return MessageObjectStatusEnum.inProgress;
@@ -395,35 +420,35 @@ class MessageObjectStatusEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageObjectStatusEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageObjectStatusEnumTypeTransformer? _instance;
 }
 
 
 /// The entity that produced the message. One of `user` or `assistant`.
-class MessageObjectRoleEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageObjectRoleEnum._(this.value);
+enum MessageObjectRoleEnum {
+  user._(r'user'),
+  assistant._(r'assistant'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageObjectRoleEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const user = MessageObjectRoleEnum._(r'user');
-  static const assistant = MessageObjectRoleEnum._(r'assistant');
-
-  /// List of all possible values in this [enum][MessageObjectRoleEnum].
-  static const values = <MessageObjectRoleEnum>[
-    user,
-    assistant,
-  ];
-
+  /// Returns the instance of [MessageObjectRoleEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageObjectRoleEnum? fromJson(dynamic value) => MessageObjectRoleEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageObjectRoleEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageObjectRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageObjectRoleEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -445,9 +470,10 @@ class MessageObjectRoleEnumTypeTransformer {
 
   const MessageObjectRoleEnumTypeTransformer._();
 
-  String encode(MessageObjectRoleEnum data) => data.value;
+  String encode(MessageObjectRoleEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageObjectRoleEnum.
+  /// Returns the instance of [MessageObjectRoleEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -456,6 +482,9 @@ class MessageObjectRoleEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageObjectRoleEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageObjectRoleEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'user': return MessageObjectRoleEnum.user;
@@ -469,7 +498,7 @@ class MessageObjectRoleEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageObjectRoleEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageObjectRoleEnumTypeTransformer? _instance;
 }
 

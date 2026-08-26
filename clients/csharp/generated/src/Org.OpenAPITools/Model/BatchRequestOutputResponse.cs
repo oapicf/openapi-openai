@@ -60,7 +60,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The HTTP status code of the response</value>
         [JsonPropertyName("status_code")]
-        public int? StatusCode { get { return this.StatusCodeOption; } set { this.StatusCodeOption = new(value); } }
+        public int? StatusCode { get { return this.StatusCodeOption.Value; } set { this.StatusCodeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequestId
@@ -74,7 +74,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>An unique identifier for the OpenAI API request. Please include this request ID when contacting support.</value>
         [JsonPropertyName("request_id")]
-        public string? RequestId { get { return this.RequestIdOption; } set { this.RequestIdOption = new(value); } }
+        public string? RequestId { get { return this.RequestIdOption.Value; } set { this.RequestIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Body
@@ -88,7 +88,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The JSON body of the response</value>
         [JsonPropertyName("body")]
-        public Object? Body { get { return this.BodyOption; } set { this.BodyOption = new(value); } }
+        public Object? Body { get { return this.BodyOption.Value; } set { this.BodyOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -119,8 +119,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="BatchRequestOutputResponse" />
     /// </summary>
-    public class BatchRequestOutputResponseJsonConverter : JsonConverter<BatchRequestOutputResponse>
+    public partial class BatchRequestOutputResponseJsonConverter : JsonConverter<BatchRequestOutputResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BatchRequestOutputResponseJsonConverter" /> class.
+        /// </summary>
+        public BatchRequestOutputResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="BatchRequestOutputResponse" />
         /// </summary>

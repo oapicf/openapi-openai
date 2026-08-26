@@ -1,4 +1,4 @@
-# # CreateMessageRequest
+# CreateMessageRequest
 
 ## Properties
 

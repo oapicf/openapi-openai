@@ -120,7 +120,7 @@ CreateThreadRequest_tool_resources_file_search::getVectorStoreIds()
 }
 
 void
-CreateThreadRequest_tool_resources_file_search::setVectorStoreIds(std::list <std::string> vector_store_ids)
+CreateThreadRequest_tool_resources_file_search::setVectorStoreIds(std::list<std::string> vector_store_ids)
 {
 	this->vector_store_ids = vector_store_ids;
 }
@@ -132,7 +132,7 @@ CreateThreadRequest_tool_resources_file_search::getVectorStores()
 }
 
 void
-CreateThreadRequest_tool_resources_file_search::setVectorStores(std::list <CreateThreadRequest_tool_resources_file_search_vector_stores_inner> vector_stores)
+CreateThreadRequest_tool_resources_file_search::setVectorStores(std::list<CreateThreadRequest_tool_resources_file_search_vector_stores_inner> vector_stores)
 {
 	this->vector_stores = vector_stores;
 }

@@ -33,13 +33,13 @@ class OAIRunStepDetailsMessageCreationObject_message_creation;
 class OAIRunStepDetailsMessageCreationObject : public OAIObject {
 public:
     OAIRunStepDetailsMessageCreationObject();
-    OAIRunStepDetailsMessageCreationObject(QString json);
+    OAIRunStepDetailsMessageCreationObject(const QString &json);
     ~OAIRunStepDetailsMessageCreationObject() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

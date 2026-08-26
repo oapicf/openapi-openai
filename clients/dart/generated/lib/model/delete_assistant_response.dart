@@ -59,10 +59,12 @@ class DeleteAssistantResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "DeleteAssistantResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "DeleteAssistantResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "DeleteAssistantResponse[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "DeleteAssistantResponse[id]" has a null value in JSON.');
+        assert(json.containsKey(r'deleted'), 'Required key "DeleteAssistantResponse[deleted]" is missing from JSON.');
+        assert(json[r'deleted'] != null, 'Required key "DeleteAssistantResponse[deleted]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "DeleteAssistantResponse[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "DeleteAssistantResponse[object]" has a null value in JSON.');
         return true;
       }());
 
@@ -124,27 +126,28 @@ class DeleteAssistantResponse {
 }
 
 
-class DeleteAssistantResponseObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const DeleteAssistantResponseObjectEnum._(this.value);
+enum DeleteAssistantResponseObjectEnum {
+  assistantPeriodDeleted._(r'assistant.deleted'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const DeleteAssistantResponseObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const assistantPeriodDeleted = DeleteAssistantResponseObjectEnum._(r'assistant.deleted');
-
-  /// List of all possible values in this [enum][DeleteAssistantResponseObjectEnum].
-  static const values = <DeleteAssistantResponseObjectEnum>[
-    assistantPeriodDeleted,
-  ];
-
+  /// Returns the instance of [DeleteAssistantResponseObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static DeleteAssistantResponseObjectEnum? fromJson(dynamic value) => DeleteAssistantResponseObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [DeleteAssistantResponseObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<DeleteAssistantResponseObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <DeleteAssistantResponseObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -166,9 +169,10 @@ class DeleteAssistantResponseObjectEnumTypeTransformer {
 
   const DeleteAssistantResponseObjectEnumTypeTransformer._();
 
-  String encode(DeleteAssistantResponseObjectEnum data) => data.value;
+  String encode(DeleteAssistantResponseObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a DeleteAssistantResponseObjectEnum.
+  /// Returns the instance of [DeleteAssistantResponseObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -177,6 +181,9 @@ class DeleteAssistantResponseObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   DeleteAssistantResponseObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is DeleteAssistantResponseObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'assistant.deleted': return DeleteAssistantResponseObjectEnum.assistantPeriodDeleted;
@@ -189,7 +196,7 @@ class DeleteAssistantResponseObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [DeleteAssistantResponseObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static DeleteAssistantResponseObjectEnumTypeTransformer? _instance;
 }
 

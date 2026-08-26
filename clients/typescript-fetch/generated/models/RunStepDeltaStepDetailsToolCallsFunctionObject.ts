@@ -41,7 +41,7 @@ export interface RunStepDeltaStepDetailsToolCallsFunctionObject {
     id?: string;
     /**
      * The type of tool call. This is always going to be `function` for this type of tool call.
-     * @type {string}
+     * @type {RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum}
      * @memberof RunStepDeltaStepDetailsToolCallsFunctionObject
      */
     type: RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum;
@@ -69,6 +69,8 @@ export type RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum = typeof RunS
 export function instanceOfRunStepDeltaStepDetailsToolCallsFunctionObject(value: object): value is RunStepDeltaStepDetailsToolCallsFunctionObject {
     if (!('index' in value) || value['index'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'function') return false;
+    
     return true;
 }
 

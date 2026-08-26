@@ -32,12 +32,12 @@ static realtime_server_event_conversation_item_created_t *realtime_server_event_
     if (!realtime_server_event_conversation_item_created_local_var) {
         return NULL;
     }
+    memset(realtime_server_event_conversation_item_created_local_var, 0, sizeof(realtime_server_event_conversation_item_created_t));
+    realtime_server_event_conversation_item_created_local_var->_library_owned = 1;
     realtime_server_event_conversation_item_created_local_var->event_id = event_id;
     realtime_server_event_conversation_item_created_local_var->type = type;
     realtime_server_event_conversation_item_created_local_var->previous_item_id = previous_item_id;
     realtime_server_event_conversation_item_created_local_var->item = item;
-
-    realtime_server_event_conversation_item_created_local_var->_library_owned = 1;
     return realtime_server_event_conversation_item_created_local_var;
 }
 
@@ -47,12 +47,15 @@ __attribute__((deprecated)) realtime_server_event_conversation_item_created_t *r
     char *previous_item_id,
     realtime_conversation_item_t *item
     ) {
-    return realtime_server_event_conversation_item_created_create_internal (
+    realtime_server_event_conversation_item_created_t *result = realtime_server_event_conversation_item_created_create_internal (
         event_id,
         type,
         previous_item_id,
         item
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_server_event_conversation_item_created_free(realtime_server_event_conversation_item_created_t *realtime_server_event_conversation_item_created) {
@@ -135,6 +138,10 @@ realtime_server_event_conversation_item_created_t *realtime_server_event_convers
 
     realtime_server_event_conversation_item_created_t *realtime_server_event_conversation_item_created_local_var = NULL;
 
+    char *event_id_local_str = NULL;
+
+    char *previous_item_id_local_str = NULL;
+
     // define the local variable for realtime_server_event_conversation_item_created->item
     realtime_conversation_item_t *item_local_nonprim = NULL;
 
@@ -198,15 +205,30 @@ realtime_server_event_conversation_item_created_t *realtime_server_event_convers
     item_local_nonprim = realtime_conversation_item_parseFromJSON(item); //nonprimitive
 
 
+    if (event_id && !cJSON_IsNull(event_id)) event_id_local_str = strdup(event_id->valuestring);
+    if (previous_item_id && !cJSON_IsNull(previous_item_id)) previous_item_id_local_str = strdup(previous_item_id->valuestring);
+
     realtime_server_event_conversation_item_created_local_var = realtime_server_event_conversation_item_created_create_internal (
-        strdup(event_id->valuestring),
+        event_id_local_str,
         typeVariable,
-        strdup(previous_item_id->valuestring),
+        previous_item_id_local_str,
         item_local_nonprim
         );
 
+    if (!realtime_server_event_conversation_item_created_local_var) {
+        goto end;
+    }
+
     return realtime_server_event_conversation_item_created_local_var;
 end:
+    if (event_id_local_str) {
+        free(event_id_local_str);
+        event_id_local_str = NULL;
+    }
+    if (previous_item_id_local_str) {
+        free(previous_item_id_local_str);
+        previous_item_id_local_str = NULL;
+    }
     if (item_local_nonprim) {
         realtime_conversation_item_free(item_local_nonprim);
         item_local_nonprim = NULL;

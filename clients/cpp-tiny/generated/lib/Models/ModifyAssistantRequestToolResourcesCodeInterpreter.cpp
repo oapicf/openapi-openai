@@ -82,7 +82,7 @@ ModifyAssistantRequest_tool_resources_code_interpreter::getFileIds()
 }
 
 void
-ModifyAssistantRequest_tool_resources_code_interpreter::setFileIds(std::list <std::string> file_ids)
+ModifyAssistantRequest_tool_resources_code_interpreter::setFileIds(std::list<std::string> file_ids)
 {
 	this->file_ids = file_ids;
 }

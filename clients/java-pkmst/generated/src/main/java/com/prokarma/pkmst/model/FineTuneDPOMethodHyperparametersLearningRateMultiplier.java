@@ -14,7 +14,7 @@ import java.math.BigDecimal;
  */
 @ApiModel(description = "Scaling factor for the learning rate. A smaller learning rate may be useful to avoid overfitting. ")
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-26T05:15:41.467232090Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTuneDPOMethodHyperparametersLearningRateMultiplier   {
 
   @Override
@@ -47,10 +47,7 @@ public class FineTuneDPOMethodHyperparametersLearningRateMultiplier   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

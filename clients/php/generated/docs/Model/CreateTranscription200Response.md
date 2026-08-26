@@ -1,4 +1,4 @@
-# # CreateTranscription200Response
+# CreateTranscription200Response
 
 ## Properties
 

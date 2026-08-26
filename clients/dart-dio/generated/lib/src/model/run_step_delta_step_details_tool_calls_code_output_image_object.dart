@@ -110,8 +110,9 @@ class _$RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectSerializer implemen
         case r'image':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage),
-          ) as RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage;
+            specifiedType: const FullType.nullable(RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage),
+          ) as RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage?;
+          if (valueDes == null) continue;
           result.image.replace(valueDes);
           break;
         default:

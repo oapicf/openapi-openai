@@ -102,8 +102,8 @@ class InvitesApiSimulation extends Simulation {
         .feed(list-invitesQUERYFeeder)
         .exec(http("listInvites")
         .httpRequest("GET","/organization/invites")
-        .queryParam("limit","${limit}")
         .queryParam("after","${after}")
+        .queryParam("limit","${limit}")
 )
 
     // Run scnlistInvites with warm up and reach a constant rate for entire duration

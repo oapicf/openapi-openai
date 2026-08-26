@@ -26,20 +26,25 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RealtimeServerEventConversationItemInputAudioTranscriptionFailed(
 
-    @Schema(example = "null", required = true, description = "The unique ID of the server event.")
+    @Schema(required = true, description = "The unique ID of the server event.")
+    @param:JsonProperty("event_id")
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The event type, must be `conversation.item.input_audio_transcription.failed`. ")
+    @Schema(required = true, description = "The event type, must be `conversation.item.input_audio_transcription.failed`. ")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventConversationItemInputAudioTranscriptionFailed.Type,
 
-    @Schema(example = "null", required = true, description = "The ID of the user message item.")
+    @Schema(required = true, description = "The ID of the user message item.")
+    @param:JsonProperty("item_id")
     @get:JsonProperty("item_id", required = true) val itemId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The index of the content part containing the audio.")
+    @Schema(required = true, description = "The index of the content part containing the audio.")
+    @param:JsonProperty("content_index")
     @get:JsonProperty("content_index", required = true) val contentIndex: kotlin.Int,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("error")
     @get:JsonProperty("error", required = true) val error: RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
 ) {
 
@@ -56,7 +61,7 @@ data class RealtimeServerEventConversationItemInputAudioTranscriptionFailed(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RealtimeServerEventConversationItemInputAudioTranscriptionFailed'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

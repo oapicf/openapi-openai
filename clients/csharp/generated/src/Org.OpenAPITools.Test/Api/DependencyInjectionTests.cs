@@ -26,7 +26,7 @@ namespace Org.OpenAPITools.Test.Api
     public class DependencyInjectionTest
     {
         private readonly IHost _hostUsingConfigureWithoutAClient =
-            Host.CreateDefaultBuilder([]).ConfigureApi((context, services, options) =>
+            Host.CreateDefaultBuilder([]).ConfigureApi((context, options) =>
             {
                 BearerToken bearerToken1 = new("<token>", timeout: TimeSpan.FromSeconds(1));
                 options.AddTokens(bearerToken1);
@@ -34,7 +34,7 @@ namespace Org.OpenAPITools.Test.Api
             .Build();
 
         private readonly IHost _hostUsingConfigureWithAClient =
-            Host.CreateDefaultBuilder([]).ConfigureApi((context, services, options) =>
+            Host.CreateDefaultBuilder([]).ConfigureApi((context, options) =>
             {
                 BearerToken bearerToken1 = new("<token>", timeout: TimeSpan.FromSeconds(1));
                 options.AddTokens(bearerToken1);

@@ -214,10 +214,6 @@ class RealtimeSession {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeSession[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeSession[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
@@ -286,29 +282,29 @@ class RealtimeSession {
 }
 
 
-class RealtimeSessionModalitiesEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeSessionModalitiesEnum._(this.value);
+enum RealtimeSessionModalitiesEnum {
+  text._(r'text'),
+  audio._(r'audio'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeSessionModalitiesEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = RealtimeSessionModalitiesEnum._(r'text');
-  static const audio = RealtimeSessionModalitiesEnum._(r'audio');
-
-  /// List of all possible values in this [enum][RealtimeSessionModalitiesEnum].
-  static const values = <RealtimeSessionModalitiesEnum>[
-    text,
-    audio,
-  ];
-
+  /// Returns the instance of [RealtimeSessionModalitiesEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeSessionModalitiesEnum? fromJson(dynamic value) => RealtimeSessionModalitiesEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeSessionModalitiesEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeSessionModalitiesEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeSessionModalitiesEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -330,9 +326,10 @@ class RealtimeSessionModalitiesEnumTypeTransformer {
 
   const RealtimeSessionModalitiesEnumTypeTransformer._();
 
-  String encode(RealtimeSessionModalitiesEnum data) => data.value;
+  String encode(RealtimeSessionModalitiesEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeSessionModalitiesEnum.
+  /// Returns the instance of [RealtimeSessionModalitiesEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -341,6 +338,9 @@ class RealtimeSessionModalitiesEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeSessionModalitiesEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeSessionModalitiesEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return RealtimeSessionModalitiesEnum.text;
@@ -354,47 +354,41 @@ class RealtimeSessionModalitiesEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeSessionModalitiesEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeSessionModalitiesEnumTypeTransformer? _instance;
 }
 
 
 /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
-class RealtimeSessionVoiceEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeSessionVoiceEnum._(this.value);
+enum RealtimeSessionVoiceEnum {
+  alloy._(r'alloy'),
+  ash._(r'ash'),
+  ballad._(r'ballad'),
+  coral._(r'coral'),
+  echo._(r'echo'),
+  sage._(r'sage'),
+  shimmer._(r'shimmer'),
+  verse._(r'verse'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeSessionVoiceEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const alloy = RealtimeSessionVoiceEnum._(r'alloy');
-  static const ash = RealtimeSessionVoiceEnum._(r'ash');
-  static const ballad = RealtimeSessionVoiceEnum._(r'ballad');
-  static const coral = RealtimeSessionVoiceEnum._(r'coral');
-  static const echo = RealtimeSessionVoiceEnum._(r'echo');
-  static const sage = RealtimeSessionVoiceEnum._(r'sage');
-  static const shimmer = RealtimeSessionVoiceEnum._(r'shimmer');
-  static const verse = RealtimeSessionVoiceEnum._(r'verse');
-
-  /// List of all possible values in this [enum][RealtimeSessionVoiceEnum].
-  static const values = <RealtimeSessionVoiceEnum>[
-    alloy,
-    ash,
-    ballad,
-    coral,
-    echo,
-    sage,
-    shimmer,
-    verse,
-  ];
-
+  /// Returns the instance of [RealtimeSessionVoiceEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeSessionVoiceEnum? fromJson(dynamic value) => RealtimeSessionVoiceEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeSessionVoiceEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeSessionVoiceEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeSessionVoiceEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -416,9 +410,10 @@ class RealtimeSessionVoiceEnumTypeTransformer {
 
   const RealtimeSessionVoiceEnumTypeTransformer._();
 
-  String encode(RealtimeSessionVoiceEnum data) => data.value;
+  String encode(RealtimeSessionVoiceEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeSessionVoiceEnum.
+  /// Returns the instance of [RealtimeSessionVoiceEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -427,6 +422,9 @@ class RealtimeSessionVoiceEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeSessionVoiceEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeSessionVoiceEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'alloy': return RealtimeSessionVoiceEnum.alloy;
@@ -446,37 +444,36 @@ class RealtimeSessionVoiceEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeSessionVoiceEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeSessionVoiceEnumTypeTransformer? _instance;
 }
 
 
 /// The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
-class RealtimeSessionInputAudioFormatEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeSessionInputAudioFormatEnum._(this.value);
+enum RealtimeSessionInputAudioFormatEnum {
+  pcm16._(r'pcm16'),
+  g711Ulaw._(r'g711_ulaw'),
+  g711Alaw._(r'g711_alaw'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeSessionInputAudioFormatEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const pcm16 = RealtimeSessionInputAudioFormatEnum._(r'pcm16');
-  static const g711Ulaw = RealtimeSessionInputAudioFormatEnum._(r'g711_ulaw');
-  static const g711Alaw = RealtimeSessionInputAudioFormatEnum._(r'g711_alaw');
-
-  /// List of all possible values in this [enum][RealtimeSessionInputAudioFormatEnum].
-  static const values = <RealtimeSessionInputAudioFormatEnum>[
-    pcm16,
-    g711Ulaw,
-    g711Alaw,
-  ];
-
+  /// Returns the instance of [RealtimeSessionInputAudioFormatEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeSessionInputAudioFormatEnum? fromJson(dynamic value) => RealtimeSessionInputAudioFormatEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeSessionInputAudioFormatEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeSessionInputAudioFormatEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeSessionInputAudioFormatEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -498,9 +495,10 @@ class RealtimeSessionInputAudioFormatEnumTypeTransformer {
 
   const RealtimeSessionInputAudioFormatEnumTypeTransformer._();
 
-  String encode(RealtimeSessionInputAudioFormatEnum data) => data.value;
+  String encode(RealtimeSessionInputAudioFormatEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeSessionInputAudioFormatEnum.
+  /// Returns the instance of [RealtimeSessionInputAudioFormatEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -509,6 +507,9 @@ class RealtimeSessionInputAudioFormatEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeSessionInputAudioFormatEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeSessionInputAudioFormatEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'pcm16': return RealtimeSessionInputAudioFormatEnum.pcm16;
@@ -523,37 +524,36 @@ class RealtimeSessionInputAudioFormatEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeSessionInputAudioFormatEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeSessionInputAudioFormatEnumTypeTransformer? _instance;
 }
 
 
 /// The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
-class RealtimeSessionOutputAudioFormatEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeSessionOutputAudioFormatEnum._(this.value);
+enum RealtimeSessionOutputAudioFormatEnum {
+  pcm16._(r'pcm16'),
+  g711Ulaw._(r'g711_ulaw'),
+  g711Alaw._(r'g711_alaw'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeSessionOutputAudioFormatEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const pcm16 = RealtimeSessionOutputAudioFormatEnum._(r'pcm16');
-  static const g711Ulaw = RealtimeSessionOutputAudioFormatEnum._(r'g711_ulaw');
-  static const g711Alaw = RealtimeSessionOutputAudioFormatEnum._(r'g711_alaw');
-
-  /// List of all possible values in this [enum][RealtimeSessionOutputAudioFormatEnum].
-  static const values = <RealtimeSessionOutputAudioFormatEnum>[
-    pcm16,
-    g711Ulaw,
-    g711Alaw,
-  ];
-
+  /// Returns the instance of [RealtimeSessionOutputAudioFormatEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeSessionOutputAudioFormatEnum? fromJson(dynamic value) => RealtimeSessionOutputAudioFormatEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeSessionOutputAudioFormatEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeSessionOutputAudioFormatEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeSessionOutputAudioFormatEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -575,9 +575,10 @@ class RealtimeSessionOutputAudioFormatEnumTypeTransformer {
 
   const RealtimeSessionOutputAudioFormatEnumTypeTransformer._();
 
-  String encode(RealtimeSessionOutputAudioFormatEnum data) => data.value;
+  String encode(RealtimeSessionOutputAudioFormatEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeSessionOutputAudioFormatEnum.
+  /// Returns the instance of [RealtimeSessionOutputAudioFormatEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -586,6 +587,9 @@ class RealtimeSessionOutputAudioFormatEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeSessionOutputAudioFormatEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeSessionOutputAudioFormatEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'pcm16': return RealtimeSessionOutputAudioFormatEnum.pcm16;
@@ -600,7 +604,7 @@ class RealtimeSessionOutputAudioFormatEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeSessionOutputAudioFormatEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeSessionOutputAudioFormatEnumTypeTransformer? _instance;
 }
 

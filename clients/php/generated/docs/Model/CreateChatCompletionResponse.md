@@ -1,4 +1,4 @@
-# # CreateChatCompletionResponse
+# CreateChatCompletionResponse
 
 ## Properties
 

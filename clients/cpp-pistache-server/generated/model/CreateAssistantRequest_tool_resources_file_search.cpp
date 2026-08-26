@@ -26,6 +26,8 @@ CreateAssistantRequest_tool_resources_file_search::CreateAssistantRequest_tool_r
     
 }
 
+CreateAssistantRequest_tool_resources_file_search::~CreateAssistantRequest_tool_resources_file_search() = default;
+
 void CreateAssistantRequest_tool_resources_file_search::validate() const
 {
     std::stringstream msg;

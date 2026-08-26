@@ -49,7 +49,7 @@ class CompleteUploadRequest
      * @var string[]|null
      * @SerializedName("part_ids")
      * @Type("array<string>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\All([
         new Assert\Type("string"),
@@ -62,7 +62,7 @@ class CompleteUploadRequest
      * @var string|null
      * @SerializedName("md5")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $md5 = null;
 
@@ -89,12 +89,12 @@ class CompleteUploadRequest
     }
 
     /**
-    * Sets partIds.
-    *
-    * @param string[]|null $partIds  The ordered list of Part IDs.
-    *
-    * @return $this
-    */
+     * Sets partIds.
+     *
+     * @param string[]|null $partIds  The ordered list of Part IDs.
+     *
+     * @return $this
+     */
     public function setPartIds(?array $partIds): self
     {
         $this->partIds = $partIds;
@@ -116,12 +116,12 @@ class CompleteUploadRequest
     }
 
     /**
-    * Sets md5.
-    *
-    * @param string|null $md5  The optional md5 checksum for the file contents to verify if the bytes uploaded matches what you expect.
-    *
-    * @return $this
-    */
+     * Sets md5.
+     *
+     * @param string|null $md5  The optional md5 checksum for the file contents to verify if the bytes uploaded matches what you expect.
+     *
+     * @return $this
+     */
     public function setMd5(?string $md5 = null): self
     {
         $this->md5 = $md5;

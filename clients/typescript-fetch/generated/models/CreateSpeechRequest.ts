@@ -41,13 +41,13 @@ export interface CreateSpeechRequest {
     input: string;
     /**
      * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
-     * @type {string}
+     * @type {CreateSpeechRequestVoiceEnum}
      * @memberof CreateSpeechRequest
      */
     voice: CreateSpeechRequestVoiceEnum;
     /**
      * The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
-     * @type {string}
+     * @type {CreateSpeechRequestResponseFormatEnum}
      * @memberof CreateSpeechRequest
      */
     responseFormat?: CreateSpeechRequestResponseFormatEnum;

@@ -43,7 +43,7 @@ class  RunStreamEvent
 {
 public:
     RunStreamEvent();
-    virtual ~RunStreamEvent() = default;
+    virtual ~RunStreamEvent();
 
 
     /// <summary>

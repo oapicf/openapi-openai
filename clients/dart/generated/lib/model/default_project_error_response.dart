@@ -53,10 +53,10 @@ class DefaultProjectErrorResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "DefaultProjectErrorResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "DefaultProjectErrorResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'code'), 'Required key "DefaultProjectErrorResponse[code]" is missing from JSON.');
+        assert(json[r'code'] != null, 'Required key "DefaultProjectErrorResponse[code]" has a null value in JSON.');
+        assert(json.containsKey(r'message'), 'Required key "DefaultProjectErrorResponse[message]" is missing from JSON.');
+        assert(json[r'message'] != null, 'Required key "DefaultProjectErrorResponse[message]" has a null value in JSON.');
         return true;
       }());
 

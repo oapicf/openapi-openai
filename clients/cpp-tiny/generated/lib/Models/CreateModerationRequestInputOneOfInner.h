@@ -54,21 +54,21 @@ public:
 
 	/*! \brief Set Always `image_url`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	CreateModerationRequest_input_oneOf_inner_oneOf_image_url getImageUrl();
 
 	/*! \brief Set 
 	 */
-	void setImageUrl(CreateModerationRequest_input_oneOf_inner_oneOf_image_url  image_url);
+	void setImageUrl(CreateModerationRequest_input_oneOf_inner_oneOf_image_url image_url);
 	/*! \brief Get A string of text to classify.
 	 */
 	std::string getText();
 
 	/*! \brief Set A string of text to classify.
 	 */
-	void setText(std::string  text);
+	void setText(std::string text);
 
 
     private:

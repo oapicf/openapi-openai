@@ -107,7 +107,7 @@ BatchRequestOutput_response::getStatusCode()
 }
 
 void
-BatchRequestOutput_response::setStatusCode(int  status_code)
+BatchRequestOutput_response::setStatusCode(int status_code)
 {
 	this->status_code = status_code;
 }
@@ -119,7 +119,7 @@ BatchRequestOutput_response::getRequestId()
 }
 
 void
-BatchRequestOutput_response::setRequestId(std::string  request_id)
+BatchRequestOutput_response::setRequestId(std::string request_id)
 {
 	this->request_id = request_id;
 }
@@ -131,7 +131,7 @@ BatchRequestOutput_response::getBody()
 }
 
 void
-BatchRequestOutput_response::setBody(Object  body)
+BatchRequestOutput_response::setBody(Object body)
 {
 	this->body = body;
 }

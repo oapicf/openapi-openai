@@ -54,14 +54,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setRankingOptions(RunStepDetailsToolCallsFileSearchRankingOptionsObject  ranking_options);
+	void setRankingOptions(RunStepDetailsToolCallsFileSearchRankingOptionsObject ranking_options);
 	/*! \brief Get The results of the file search.
 	 */
 	std::list<RunStepDetailsToolCallsFileSearchResultObject> getResults();
 
 	/*! \brief Set The results of the file search.
 	 */
-	void setResults(std::list <RunStepDetailsToolCallsFileSearchResultObject> results);
+	void setResults(std::list<RunStepDetailsToolCallsFileSearchResultObject> results);
 
 
     private:

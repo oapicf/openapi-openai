@@ -49,7 +49,7 @@ class MessageDeltaContentTextObjectTextAnnotationsInner
      * @var int|null
      * @SerializedName("index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $index = null;
@@ -60,7 +60,7 @@ class MessageDeltaContentTextObjectTextAnnotationsInner
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['file_citation', 'file_path'])]
     #[Assert\Type("string")]
@@ -72,7 +72,7 @@ class MessageDeltaContentTextObjectTextAnnotationsInner
      * @var string|null
      * @SerializedName("text")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $text = null;
 
@@ -80,7 +80,7 @@ class MessageDeltaContentTextObjectTextAnnotationsInner
      * @var MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation|null
      * @SerializedName("file_citation")
      * @Type("OpenAPI\Server\Model\MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation")]
     protected ?MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation $fileCitation = null;
 
@@ -88,7 +88,7 @@ class MessageDeltaContentTextObjectTextAnnotationsInner
      * @var int|null
      * @SerializedName("start_index")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(0)]
     protected ?int $startIndex = null;
@@ -97,7 +97,7 @@ class MessageDeltaContentTextObjectTextAnnotationsInner
      * @var int|null
      * @SerializedName("end_index")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(0)]
     protected ?int $endIndex = null;
@@ -106,7 +106,7 @@ class MessageDeltaContentTextObjectTextAnnotationsInner
      * @var MessageDeltaContentTextAnnotationsFilePathObjectFilePath|null
      * @SerializedName("file_path")
      * @Type("OpenAPI\Server\Model\MessageDeltaContentTextAnnotationsFilePathObjectFilePath")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\MessageDeltaContentTextAnnotationsFilePathObjectFilePath")]
     protected ?MessageDeltaContentTextAnnotationsFilePathObjectFilePath $filePath = null;
 
@@ -138,12 +138,12 @@ class MessageDeltaContentTextObjectTextAnnotationsInner
     }
 
     /**
-    * Sets index.
-    *
-    * @param int|null $index  The index of the annotation in the text content part.
-    *
-    * @return $this
-    */
+     * Sets index.
+     *
+     * @param int|null $index  The index of the annotation in the text content part.
+     *
+     * @return $this
+     */
     public function setIndex(?int $index): self
     {
         $this->index = $index;
@@ -165,12 +165,12 @@ class MessageDeltaContentTextObjectTextAnnotationsInner
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `file_citation`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `file_citation`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -192,12 +192,12 @@ class MessageDeltaContentTextObjectTextAnnotationsInner
     }
 
     /**
-    * Sets text.
-    *
-    * @param string|null $text  The text in the message content that needs to be replaced.
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param string|null $text  The text in the message content that needs to be replaced.
+     *
+     * @return $this
+     */
     public function setText(?string $text = null): self
     {
         $this->text = $text;
@@ -219,12 +219,12 @@ class MessageDeltaContentTextObjectTextAnnotationsInner
     }
 
     /**
-    * Sets fileCitation.
-    *
-    * @param MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation|null $fileCitation
-    *
-    * @return $this
-    */
+     * Sets fileCitation.
+     *
+     * @param MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation|null $fileCitation
+     *
+     * @return $this
+     */
     public function setFileCitation(?MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation $fileCitation = null): self
     {
         $this->fileCitation = $fileCitation;
@@ -246,12 +246,12 @@ class MessageDeltaContentTextObjectTextAnnotationsInner
     }
 
     /**
-    * Sets startIndex.
-    *
-    * @param int|null $startIndex
-    *
-    * @return $this
-    */
+     * Sets startIndex.
+     *
+     * @param int|null $startIndex
+     *
+     * @return $this
+     */
     public function setStartIndex(?int $startIndex = null): self
     {
         $this->startIndex = $startIndex;
@@ -273,12 +273,12 @@ class MessageDeltaContentTextObjectTextAnnotationsInner
     }
 
     /**
-    * Sets endIndex.
-    *
-    * @param int|null $endIndex
-    *
-    * @return $this
-    */
+     * Sets endIndex.
+     *
+     * @param int|null $endIndex
+     *
+     * @return $this
+     */
     public function setEndIndex(?int $endIndex = null): self
     {
         $this->endIndex = $endIndex;
@@ -300,12 +300,12 @@ class MessageDeltaContentTextObjectTextAnnotationsInner
     }
 
     /**
-    * Sets filePath.
-    *
-    * @param MessageDeltaContentTextAnnotationsFilePathObjectFilePath|null $filePath
-    *
-    * @return $this
-    */
+     * Sets filePath.
+     *
+     * @param MessageDeltaContentTextAnnotationsFilePathObjectFilePath|null $filePath
+     *
+     * @return $this
+     */
     public function setFilePath(?MessageDeltaContentTextAnnotationsFilePathObjectFilePath $filePath = null): self
     {
         $this->filePath = $filePath;

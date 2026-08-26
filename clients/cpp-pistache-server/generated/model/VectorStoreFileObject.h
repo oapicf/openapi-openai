@@ -34,7 +34,7 @@ class  VectorStoreFileObject
 {
 public:
     VectorStoreFileObject();
-    virtual ~VectorStoreFileObject() = default;
+    virtual ~VectorStoreFileObject();
 
 
     /// <summary>

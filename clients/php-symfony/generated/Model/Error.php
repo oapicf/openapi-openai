@@ -47,7 +47,7 @@ class Error
      * @var string|null
      * @SerializedName("code")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $code = null;
@@ -56,7 +56,7 @@ class Error
      * @var string|null
      * @SerializedName("message")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $message = null;
@@ -65,7 +65,7 @@ class Error
      * @var string|null
      * @SerializedName("param")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $param = null;
@@ -74,7 +74,7 @@ class Error
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $type = null;
@@ -104,12 +104,12 @@ class Error
     }
 
     /**
-    * Sets code.
-    *
-    * @param string|null $code
-    *
-    * @return $this
-    */
+     * Sets code.
+     *
+     * @param string|null $code
+     *
+     * @return $this
+     */
     public function setCode(?string $code): self
     {
         $this->code = $code;
@@ -131,12 +131,12 @@ class Error
     }
 
     /**
-    * Sets message.
-    *
-    * @param string|null $message
-    *
-    * @return $this
-    */
+     * Sets message.
+     *
+     * @param string|null $message
+     *
+     * @return $this
+     */
     public function setMessage(?string $message): self
     {
         $this->message = $message;
@@ -158,12 +158,12 @@ class Error
     }
 
     /**
-    * Sets param.
-    *
-    * @param string|null $param
-    *
-    * @return $this
-    */
+     * Sets param.
+     *
+     * @param string|null $param
+     *
+     * @return $this
+     */
     public function setParam(?string $param): self
     {
         $this->param = $param;
@@ -185,12 +185,12 @@ class Error
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;

@@ -85,7 +85,7 @@ InviteRequest_projects_inner::getId()
 }
 
 void
-InviteRequest_projects_inner::setId(std::string  id)
+InviteRequest_projects_inner::setId(std::string id)
 {
 	this->id = id;
 }
@@ -97,7 +97,7 @@ InviteRequest_projects_inner::getRole()
 }
 
 void
-InviteRequest_projects_inner::setRole(std::string  role)
+InviteRequest_projects_inner::setRole(std::string role)
 {
 	this->role = role;
 }

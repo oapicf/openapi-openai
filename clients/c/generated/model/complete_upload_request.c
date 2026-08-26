@@ -13,10 +13,10 @@ static complete_upload_request_t *complete_upload_request_create_internal(
     if (!complete_upload_request_local_var) {
         return NULL;
     }
+    memset(complete_upload_request_local_var, 0, sizeof(complete_upload_request_t));
+    complete_upload_request_local_var->_library_owned = 1;
     complete_upload_request_local_var->part_ids = part_ids;
     complete_upload_request_local_var->md5 = md5;
-
-    complete_upload_request_local_var->_library_owned = 1;
     return complete_upload_request_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) complete_upload_request_t *complete_upload_request_c
     list_t *part_ids,
     char *md5
     ) {
-    return complete_upload_request_create_internal (
+    complete_upload_request_t *result = complete_upload_request_create_internal (
         part_ids,
         md5
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void complete_upload_request_free(complete_upload_request_t *complete_upload_request) {
@@ -96,6 +99,8 @@ complete_upload_request_t *complete_upload_request_parseFromJSON(cJSON *complete
     // define the local list for complete_upload_request->part_ids
     list_t *part_idsList = NULL;
 
+    char *md5_local_str = NULL;
+
     // complete_upload_request->part_ids
     cJSON *part_ids = cJSON_GetObjectItemCaseSensitive(complete_upload_requestJSON, "part_ids");
     if (cJSON_IsNull(part_ids)) {
@@ -134,10 +139,16 @@ complete_upload_request_t *complete_upload_request_parseFromJSON(cJSON *complete
     }
 
 
+    if (md5 && !cJSON_IsNull(md5)) md5_local_str = strdup(md5->valuestring);
+
     complete_upload_request_local_var = complete_upload_request_create_internal (
         part_idsList,
-        md5 && !cJSON_IsNull(md5) ? strdup(md5->valuestring) : NULL
+        md5_local_str
         );
+
+    if (!complete_upload_request_local_var) {
+        goto end;
+    }
 
     return complete_upload_request_local_var;
 end:
@@ -149,6 +160,10 @@ end:
         }
         list_freeList(part_idsList);
         part_idsList = NULL;
+    }
+    if (md5_local_str) {
+        free(md5_local_str);
+        md5_local_str = NULL;
     }
     return NULL;
 

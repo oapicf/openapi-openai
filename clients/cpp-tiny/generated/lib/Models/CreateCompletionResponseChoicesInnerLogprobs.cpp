@@ -9,7 +9,7 @@ CreateCompletionResponse_choices_inner_logprobs::CreateCompletionResponse_choice
 	text_offset = std::list<int>();
 	token_logprobs = std::list<long>();
 	tokens = std::list<std::string>();
-	top_logprobs = std::list<Map>();
+	top_logprobs = std::list<std::map>();
 }
 
 CreateCompletionResponse_choices_inner_logprobs::CreateCompletionResponse_choices_inner_logprobs(std::string jsonString)
@@ -100,12 +100,12 @@ CreateCompletionResponse_choices_inner_logprobs::fromJson(std::string jsonObj)
         bourne::json value = object[top_logprobsKey];
 
 
-        std::list<Map> top_logprobs_list;
-        Map element;
+        std::list<std::map&lt;std::string, long&gt;> top_logprobs_list;
+        std::map&lt;std::string, long&gt; element;
         for(auto& var : value.array_range())
         {
 
-            jsonToValue(&element, var, "Map");
+            jsonToValue(&element, var, "std::map&lt;std::string, long&gt;");
 
 
             top_logprobs_list.push_back(element);
@@ -174,7 +174,7 @@ CreateCompletionResponse_choices_inner_logprobs::toJson()
 
 
 
-    std::list<Map> top_logprobs_list = getTopLogprobs();
+    std::list<std::map&lt;std::string, long&gt;> top_logprobs_list = getTopLogprobs();
     bourne::json top_logprobs_arr = bourne::json::array();
 
     for(auto& var : top_logprobs_list)
@@ -199,7 +199,7 @@ CreateCompletionResponse_choices_inner_logprobs::getTextOffset()
 }
 
 void
-CreateCompletionResponse_choices_inner_logprobs::setTextOffset(std::list <int> text_offset)
+CreateCompletionResponse_choices_inner_logprobs::setTextOffset(std::list<int> text_offset)
 {
 	this->text_offset = text_offset;
 }
@@ -211,7 +211,7 @@ CreateCompletionResponse_choices_inner_logprobs::getTokenLogprobs()
 }
 
 void
-CreateCompletionResponse_choices_inner_logprobs::setTokenLogprobs(std::list <long> token_logprobs)
+CreateCompletionResponse_choices_inner_logprobs::setTokenLogprobs(std::list<long> token_logprobs)
 {
 	this->token_logprobs = token_logprobs;
 }
@@ -223,19 +223,19 @@ CreateCompletionResponse_choices_inner_logprobs::getTokens()
 }
 
 void
-CreateCompletionResponse_choices_inner_logprobs::setTokens(std::list <std::string> tokens)
+CreateCompletionResponse_choices_inner_logprobs::setTokens(std::list<std::string> tokens)
 {
 	this->tokens = tokens;
 }
 
-std::list<Map>
+std::list<std::map&lt;std::string, long&gt;>
 CreateCompletionResponse_choices_inner_logprobs::getTopLogprobs()
 {
 	return top_logprobs;
 }
 
 void
-CreateCompletionResponse_choices_inner_logprobs::setTopLogprobs(std::list <Map> top_logprobs)
+CreateCompletionResponse_choices_inner_logprobs::setTopLogprobs(std::list<std::map&lt;std::string, long&gt;> top_logprobs)
 {
 	this->top_logprobs = top_logprobs;
 }

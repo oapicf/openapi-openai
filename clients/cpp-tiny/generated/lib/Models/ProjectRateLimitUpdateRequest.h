@@ -51,42 +51,42 @@ public:
 
 	/*! \brief Set The maximum requests per minute.
 	 */
-	void setMaxRequestsPer1Minute(int  max_requests_per_1_minute);
+	void setMaxRequestsPer1Minute(int max_requests_per_1_minute);
 	/*! \brief Get The maximum tokens per minute.
 	 */
 	int getMaxTokensPer1Minute();
 
 	/*! \brief Set The maximum tokens per minute.
 	 */
-	void setMaxTokensPer1Minute(int  max_tokens_per_1_minute);
+	void setMaxTokensPer1Minute(int max_tokens_per_1_minute);
 	/*! \brief Get The maximum images per minute. Only relevant for certain models.
 	 */
 	int getMaxImagesPer1Minute();
 
 	/*! \brief Set The maximum images per minute. Only relevant for certain models.
 	 */
-	void setMaxImagesPer1Minute(int  max_images_per_1_minute);
+	void setMaxImagesPer1Minute(int max_images_per_1_minute);
 	/*! \brief Get The maximum audio megabytes per minute. Only relevant for certain models.
 	 */
 	int getMaxAudioMegabytesPer1Minute();
 
 	/*! \brief Set The maximum audio megabytes per minute. Only relevant for certain models.
 	 */
-	void setMaxAudioMegabytesPer1Minute(int  max_audio_megabytes_per_1_minute);
+	void setMaxAudioMegabytesPer1Minute(int max_audio_megabytes_per_1_minute);
 	/*! \brief Get The maximum requests per day. Only relevant for certain models.
 	 */
 	int getMaxRequestsPer1Day();
 
 	/*! \brief Set The maximum requests per day. Only relevant for certain models.
 	 */
-	void setMaxRequestsPer1Day(int  max_requests_per_1_day);
+	void setMaxRequestsPer1Day(int max_requests_per_1_day);
 	/*! \brief Get The maximum batch input tokens per day. Only relevant for certain models.
 	 */
 	int getBatch1DayMaxInputTokens();
 
 	/*! \brief Set The maximum batch input tokens per day. Only relevant for certain models.
 	 */
-	void setBatch1DayMaxInputTokens(int  batch_1_day_max_input_tokens);
+	void setBatch1DayMaxInputTokens(int batch_1_day_max_input_tokens);
 
 
     private:

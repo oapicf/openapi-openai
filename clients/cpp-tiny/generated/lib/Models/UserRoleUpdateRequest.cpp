@@ -64,7 +64,7 @@ UserRoleUpdateRequest::getRole()
 }
 
 void
-UserRoleUpdateRequest::setRole(std::string  role)
+UserRoleUpdateRequest::setRole(std::string role)
 {
 	this->role = role;
 }

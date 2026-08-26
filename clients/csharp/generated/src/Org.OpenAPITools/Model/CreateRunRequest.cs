@@ -92,7 +92,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Model
         /// </summary>
         [JsonPropertyName("model")]
-        public CreateRunRequestModel? Model { get { return this.ModelOption; } set { this.ModelOption = new(value); } }
+        public CreateRunRequestModel? Model { get { return this.ModelOption.Value; } set { this.ModelOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Instructions
@@ -106,7 +106,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Overrides the [instructions](/docs/api-reference/assistants/createAssistant) of the assistant. This is useful for modifying the behavior on a per-run basis.</value>
         [JsonPropertyName("instructions")]
-        public string? Instructions { get { return this.InstructionsOption; } set { this.InstructionsOption = new(value); } }
+        public string? Instructions { get { return this.InstructionsOption.Value; } set { this.InstructionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AdditionalInstructions
@@ -120,7 +120,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions.</value>
         [JsonPropertyName("additional_instructions")]
-        public string? AdditionalInstructions { get { return this.AdditionalInstructionsOption; } set { this.AdditionalInstructionsOption = new(value); } }
+        public string? AdditionalInstructions { get { return this.AdditionalInstructionsOption.Value; } set { this.AdditionalInstructionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AdditionalMessages
@@ -134,7 +134,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Adds additional messages to the thread before creating the run.</value>
         [JsonPropertyName("additional_messages")]
-        public List<CreateMessageRequest>? AdditionalMessages { get { return this.AdditionalMessagesOption; } set { this.AdditionalMessagesOption = new(value); } }
+        public List<CreateMessageRequest>? AdditionalMessages { get { return this.AdditionalMessagesOption.Value; } set { this.AdditionalMessagesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Tools
@@ -148,7 +148,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.</value>
         [JsonPropertyName("tools")]
-        public List<AssistantObjectToolsInner>? Tools { get { return this.ToolsOption; } set { this.ToolsOption = new(value); } }
+        public List<AssistantObjectToolsInner>? Tools { get { return this.ToolsOption.Value; } set { this.ToolsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Metadata
@@ -162,7 +162,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. </value>
         [JsonPropertyName("metadata")]
-        public Object? Metadata { get { return this.MetadataOption; } set { this.MetadataOption = new(value); } }
+        public Object? Metadata { get { return this.MetadataOption.Value; } set { this.MetadataOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Temperature
@@ -177,7 +177,7 @@ namespace Org.OpenAPITools.Model
         /// <value>What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. </value>
         /* <example>1</example> */
         [JsonPropertyName("temperature")]
-        public decimal? Temperature { get { return this.TemperatureOption; } set { this.TemperatureOption = new(value); } }
+        public decimal? Temperature { get { return this.TemperatureOption.Value; } set { this.TemperatureOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TopP
@@ -192,7 +192,7 @@ namespace Org.OpenAPITools.Model
         /// <value>An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. </value>
         /* <example>1</example> */
         [JsonPropertyName("top_p")]
-        public decimal? TopP { get { return this.TopPOption; } set { this.TopPOption = new(value); } }
+        public decimal? TopP { get { return this.TopPOption.Value; } set { this.TopPOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Stream
@@ -206,7 +206,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>If &#x60;true&#x60;, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a &#x60;data: [DONE]&#x60; message. </value>
         [JsonPropertyName("stream")]
-        public bool? Stream { get { return this.StreamOption; } set { this.StreamOption = new(value); } }
+        public bool? Stream { get { return this.StreamOption.Value; } set { this.StreamOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxPromptTokens
@@ -220,7 +220,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status &#x60;incomplete&#x60;. See &#x60;incomplete_details&#x60; for more info. </value>
         [JsonPropertyName("max_prompt_tokens")]
-        public int? MaxPromptTokens { get { return this.MaxPromptTokensOption; } set { this.MaxPromptTokensOption = new(value); } }
+        public int? MaxPromptTokens { get { return this.MaxPromptTokensOption.Value; } set { this.MaxPromptTokensOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxCompletionTokens
@@ -234,7 +234,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status &#x60;incomplete&#x60;. See &#x60;incomplete_details&#x60; for more info. </value>
         [JsonPropertyName("max_completion_tokens")]
-        public int? MaxCompletionTokens { get { return this.MaxCompletionTokensOption; } set { this.MaxCompletionTokensOption = new(value); } }
+        public int? MaxCompletionTokens { get { return this.MaxCompletionTokensOption.Value; } set { this.MaxCompletionTokensOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TruncationStrategy
@@ -247,7 +247,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets TruncationStrategy
         /// </summary>
         [JsonPropertyName("truncation_strategy")]
-        public TruncationObject? TruncationStrategy { get { return this.TruncationStrategyOption; } set { this.TruncationStrategyOption = new(value); } }
+        public TruncationObject? TruncationStrategy { get { return this.TruncationStrategyOption.Value; } set { this.TruncationStrategyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ToolChoice
@@ -260,7 +260,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ToolChoice
         /// </summary>
         [JsonPropertyName("tool_choice")]
-        public AssistantsApiToolChoiceOption? ToolChoice { get { return this.ToolChoiceOption; } set { this.ToolChoiceOption = new(value); } }
+        public AssistantsApiToolChoiceOption? ToolChoice { get { return this.ToolChoiceOption.Value; } set { this.ToolChoiceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ParallelToolCalls
@@ -274,7 +274,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.</value>
         [JsonPropertyName("parallel_tool_calls")]
-        public bool? ParallelToolCalls { get { return this.ParallelToolCallsOption; } set { this.ParallelToolCallsOption = new(value); } }
+        public bool? ParallelToolCalls { get { return this.ParallelToolCallsOption.Value; } set { this.ParallelToolCallsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ResponseFormat
@@ -287,7 +287,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ResponseFormat
         /// </summary>
         [JsonPropertyName("response_format")]
-        public AssistantsApiResponseFormatOption? ResponseFormat { get { return this.ResponseFormatOption; } set { this.ResponseFormatOption = new(value); } }
+        public AssistantsApiResponseFormatOption? ResponseFormat { get { return this.ResponseFormatOption.Value; } set { this.ResponseFormatOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -367,8 +367,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateRunRequest" />
     /// </summary>
-    public class CreateRunRequestJsonConverter : JsonConverter<CreateRunRequest>
+    public partial class CreateRunRequestJsonConverter : JsonConverter<CreateRunRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateRunRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateRunRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateRunRequest" />
         /// </summary>

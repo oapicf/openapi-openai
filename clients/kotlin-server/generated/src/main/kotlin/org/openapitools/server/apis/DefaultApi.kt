@@ -31,83 +31,27 @@ import org.openapitools.server.models.AdminApiKeysDelete200Response
 import org.openapitools.server.models.ApiKeyList
 
 fun Route.DefaultApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    post<Paths.adminApiKeysCreate> {
+    post<Paths.adminApiKeysCreate> { adminApiKeysCreate ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "owner" : {
-                "role" : "member",
-                "name" : "My Service Account",
-                "created_at" : 1711471533,
-                "id" : "sa_456",
-                "type" : "service_account"
-              },
-              "name" : "Administration Key",
-              "created_at" : 1711471533,
+              "object" : "organization.admin_api_key",
               "id" : "key_abc",
+              "name" : "Administration Key",
               "redacted_value" : "sk-admin...def",
               "value" : "sk-admin-1234abcd",
-              "object" : "organization.admin_api_key"
-            }"""
-            
-            when (exampleContentType) {
-                "application/json" -> call.respondText(exampleContentType, ContentType.Application.Json)
-                "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
-                else -> call.respondText(exampleContentString)
-            }
-        
-    }
-    }
-
-    authenticate("ApiKeyAuth") {
-    delete<Paths.adminApiKeysDelete> {
-        
-        val principal = null!!
-        
-        
-        val exampleContentType = "application/json"
-            val exampleContentString = """{
-              "deleted" : true,
-              "id" : "key_abc",
-              "object" : "organization.admin_api_key.deleted"
-            }"""
-            
-            when (exampleContentType) {
-                "application/json" -> call.respondText(exampleContentType, ContentType.Application.Json)
-                "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
-                else -> call.respondText(exampleContentString)
-            }
-        
-    }
-    }
-
-    authenticate("ApiKeyAuth") {
-    get<Paths.adminApiKeysGet> {
-        
-        val principal = null!!
-        
-        
-        val exampleContentType = "application/json"
-            val exampleContentString = """{
+              "created_at" : 1711471533,
               "owner" : {
-                "role" : "member",
+                "type" : "service_account",
+                "id" : "sa_456",
                 "name" : "My Service Account",
                 "created_at" : 1711471533,
-                "id" : "sa_456",
-                "type" : "service_account"
-              },
-              "name" : "Administration Key",
-              "created_at" : 1711471533,
-              "id" : "key_abc",
-              "redacted_value" : "sk-admin...def",
-              "value" : "sk-admin-1234abcd",
-              "object" : "organization.admin_api_key"
+                "role" : "member"
+              }
             }"""
             
             when (exampleContentType) {
@@ -118,48 +62,99 @@ fun Route.DefaultApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.adminApiKeysList> {
+    delete<Paths.adminApiKeysDelete> { adminApiKeysDelete ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "first_id" : "key_abc",
+              "id" : "key_abc",
+              "object" : "organization.admin_api_key.deleted",
+              "deleted" : true
+            }"""
+            
+            when (exampleContentType) {
+                "application/json" -> call.respondText(exampleContentType, ContentType.Application.Json)
+                "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
+                else -> call.respondText(exampleContentString)
+            }
+        
+    }
+    }
+    authenticate("ApiKeyAuth") {
+    get<Paths.adminApiKeysGet> { adminApiKeysGet ->
+        
+        val principal = null!!
+        
+        
+        val exampleContentType = "application/json"
+            val exampleContentString = """{
+              "object" : "organization.admin_api_key",
+              "id" : "key_abc",
+              "name" : "Administration Key",
+              "redacted_value" : "sk-admin...def",
+              "value" : "sk-admin-1234abcd",
+              "created_at" : 1711471533,
+              "owner" : {
+                "type" : "service_account",
+                "id" : "sa_456",
+                "name" : "My Service Account",
+                "created_at" : 1711471533,
+                "role" : "member"
+              }
+            }"""
+            
+            when (exampleContentType) {
+                "application/json" -> call.respondText(exampleContentType, ContentType.Application.Json)
+                "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
+                else -> call.respondText(exampleContentString)
+            }
+        
+    }
+    }
+    authenticate("ApiKeyAuth") {
+    get<Paths.adminApiKeysList> { adminApiKeysList ->
+        
+        val principal = null!!
+        
+        
+        val exampleContentType = "application/json"
+            val exampleContentString = """{
+              "object" : "list",
               "data" : [ {
-                "owner" : {
-                  "role" : "member",
-                  "name" : "My Service Account",
-                  "created_at" : 1711471533,
-                  "id" : "sa_456",
-                  "type" : "service_account"
-                },
-                "name" : "Administration Key",
-                "created_at" : 1711471533,
+                "object" : "organization.admin_api_key",
                 "id" : "key_abc",
+                "name" : "Administration Key",
                 "redacted_value" : "sk-admin...def",
                 "value" : "sk-admin-1234abcd",
-                "object" : "organization.admin_api_key"
+                "created_at" : 1711471533,
+                "owner" : {
+                  "type" : "service_account",
+                  "id" : "sa_456",
+                  "name" : "My Service Account",
+                  "created_at" : 1711471533,
+                  "role" : "member"
+                }
               }, {
-                "owner" : {
-                  "role" : "member",
-                  "name" : "My Service Account",
-                  "created_at" : 1711471533,
-                  "id" : "sa_456",
-                  "type" : "service_account"
-                },
-                "name" : "Administration Key",
-                "created_at" : 1711471533,
+                "object" : "organization.admin_api_key",
                 "id" : "key_abc",
+                "name" : "Administration Key",
                 "redacted_value" : "sk-admin...def",
                 "value" : "sk-admin-1234abcd",
-                "object" : "organization.admin_api_key"
+                "created_at" : 1711471533,
+                "owner" : {
+                  "type" : "service_account",
+                  "id" : "sa_456",
+                  "name" : "My Service Account",
+                  "created_at" : 1711471533,
+                  "role" : "member"
+                }
               } ],
-              "last_id" : "key_xyz",
               "has_more" : false,
-              "object" : "list"
+              "first_id" : "key_abc",
+              "last_id" : "key_xyz"
             }"""
             
             when (exampleContentType) {
@@ -170,5 +165,4 @@ fun Route.DefaultApi() {
         
     }
     }
-
 }

@@ -33,7 +33,7 @@ class  CreateAssistantRequest_tool_resources
 {
 public:
     CreateAssistantRequest_tool_resources();
-    virtual ~CreateAssistantRequest_tool_resources() = default;
+    virtual ~CreateAssistantRequest_tool_resources();
 
 
     /// <summary>

@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRealtimeResponseCreateParams_conversation::OAIRealtimeResponseCreateParams_conversation(QString json) {
+OAIRealtimeResponseCreateParams_conversation::OAIRealtimeResponseCreateParams_conversation(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -36,7 +36,7 @@ void OAIRealtimeResponseCreateParams_conversation::initializeModel() {
 
 }
 
-void OAIRealtimeResponseCreateParams_conversation::fromJson(QString jsonString) {
+void OAIRealtimeResponseCreateParams_conversation::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

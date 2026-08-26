@@ -33,7 +33,7 @@ export interface DeleteMessageResponse {
     deleted: boolean;
     /**
      * 
-     * @type {string}
+     * @type {DeleteMessageResponseObjectEnum}
      * @memberof DeleteMessageResponse
      */
     object: DeleteMessageResponseObjectEnum;
@@ -56,6 +56,8 @@ export function instanceOfDeleteMessageResponse(value: object): value is DeleteM
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('deleted' in value) || value['deleted'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'thread.message.deleted') return false;
+    
     return true;
 }
 

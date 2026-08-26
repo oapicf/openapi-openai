@@ -13,6 +13,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateFineTuningJobRequestIntegrationsInner {
+    /// The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
     #[serde(rename = "type")]
     pub r#type: Type,
     #[serde(rename = "wandb")]
@@ -27,7 +28,7 @@ impl CreateFineTuningJobRequestIntegrationsInner {
         }
     }
 }
-/// 
+/// The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Type {
     #[serde(rename = "wandb")]

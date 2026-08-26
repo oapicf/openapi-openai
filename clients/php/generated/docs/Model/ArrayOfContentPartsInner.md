@@ -1,4 +1,4 @@
-# # ArrayOfContentPartsInner
+# ArrayOfContentPartsInner
 
 ## Properties
 

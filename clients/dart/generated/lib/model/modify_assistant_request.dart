@@ -25,6 +25,7 @@ class ModifyAssistantRequest {
     this.responseFormat,
   });
 
+  /// ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -162,10 +163,6 @@ class ModifyAssistantRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ModifyAssistantRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ModifyAssistantRequest[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 

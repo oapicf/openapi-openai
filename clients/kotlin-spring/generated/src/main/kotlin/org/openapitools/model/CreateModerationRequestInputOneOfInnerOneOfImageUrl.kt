@@ -21,6 +21,7 @@ data class CreateModerationRequestInputOneOfInnerOneOfImageUrl(
 
     @field:Valid
     @Schema(example = "https://example.com/image.jpg", required = true, description = "Either a URL of the image or the base64 encoded image data.")
+    @param:JsonProperty("url")
     @get:JsonProperty("url", required = true) val url: java.net.URI
 ) {
 

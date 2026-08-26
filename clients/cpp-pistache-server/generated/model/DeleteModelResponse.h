@@ -32,7 +32,7 @@ class  DeleteModelResponse
 {
 public:
     DeleteModelResponse();
-    virtual ~DeleteModelResponse() = default;
+    virtual ~DeleteModelResponse();
 
 
     /// <summary>

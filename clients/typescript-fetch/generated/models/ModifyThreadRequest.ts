@@ -59,8 +59,8 @@ export function ModifyThreadRequestFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'toolResources': json['tool_resources'] == null ? undefined : ModifyThreadRequestToolResourcesFromJSON(json['tool_resources']),
-        'metadata': json['metadata'] == null ? undefined : json['metadata'],
+        'toolResources': json['tool_resources'] === undefined ? undefined : json['tool_resources'] === null ? null : ModifyThreadRequestToolResourcesFromJSON(json['tool_resources']),
+        'metadata': json['metadata'] === undefined ? undefined : json['metadata'] === null ? null : json['metadata'],
     };
 }
 

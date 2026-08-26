@@ -65,7 +65,7 @@ FineTuneSupervisedMethod::getHyperparameters()
 }
 
 void
-FineTuneSupervisedMethod::setHyperparameters(FineTuneSupervisedMethod_hyperparameters  hyperparameters)
+FineTuneSupervisedMethod::setHyperparameters(FineTuneSupervisedMethod_hyperparameters hyperparameters)
 {
 	this->hyperparameters = hyperparameters;
 }

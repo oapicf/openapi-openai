@@ -231,7 +231,7 @@ CreateFineTuningJobRequest::getModel()
 }
 
 void
-CreateFineTuningJobRequest::setModel(CreateFineTuningJobRequest_model  model)
+CreateFineTuningJobRequest::setModel(CreateFineTuningJobRequest_model model)
 {
 	this->model = model;
 }
@@ -243,7 +243,7 @@ CreateFineTuningJobRequest::getTrainingFile()
 }
 
 void
-CreateFineTuningJobRequest::setTrainingFile(std::string  training_file)
+CreateFineTuningJobRequest::setTrainingFile(std::string training_file)
 {
 	this->training_file = training_file;
 }
@@ -255,7 +255,7 @@ CreateFineTuningJobRequest::getHyperparameters()
 }
 
 void
-CreateFineTuningJobRequest::setHyperparameters(CreateFineTuningJobRequest_hyperparameters  hyperparameters)
+CreateFineTuningJobRequest::setHyperparameters(CreateFineTuningJobRequest_hyperparameters hyperparameters)
 {
 	this->hyperparameters = hyperparameters;
 }
@@ -267,7 +267,7 @@ CreateFineTuningJobRequest::getSuffix()
 }
 
 void
-CreateFineTuningJobRequest::setSuffix(std::string  suffix)
+CreateFineTuningJobRequest::setSuffix(std::string suffix)
 {
 	this->suffix = suffix;
 }
@@ -279,7 +279,7 @@ CreateFineTuningJobRequest::getValidationFile()
 }
 
 void
-CreateFineTuningJobRequest::setValidationFile(std::string  validation_file)
+CreateFineTuningJobRequest::setValidationFile(std::string validation_file)
 {
 	this->validation_file = validation_file;
 }
@@ -291,7 +291,7 @@ CreateFineTuningJobRequest::getIntegrations()
 }
 
 void
-CreateFineTuningJobRequest::setIntegrations(std::list <CreateFineTuningJobRequest_integrations_inner> integrations)
+CreateFineTuningJobRequest::setIntegrations(std::list<CreateFineTuningJobRequest_integrations_inner> integrations)
 {
 	this->integrations = integrations;
 }
@@ -303,7 +303,7 @@ CreateFineTuningJobRequest::getSeed()
 }
 
 void
-CreateFineTuningJobRequest::setSeed(int  seed)
+CreateFineTuningJobRequest::setSeed(int seed)
 {
 	this->seed = seed;
 }
@@ -315,7 +315,7 @@ CreateFineTuningJobRequest::getMethod()
 }
 
 void
-CreateFineTuningJobRequest::setMethod(FineTuneMethod  method)
+CreateFineTuningJobRequest::setMethod(FineTuneMethod method)
 {
 	this->method = method;
 }

@@ -35,13 +35,13 @@ class OAIFineTunePreferenceRequestInput_preferred_completion_inner;
 class OAIFineTunePreferenceRequestInput : public OAIObject {
 public:
     OAIFineTunePreferenceRequestInput();
-    OAIFineTunePreferenceRequestInput(QString json);
+    OAIFineTunePreferenceRequestInput(const QString &json);
     ~OAIFineTunePreferenceRequestInput() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     OAIFineTunePreferenceRequestInput_input getInput() const;
     void setInput(const OAIFineTunePreferenceRequestInput_input &input);

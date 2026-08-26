@@ -30,24 +30,22 @@ import org.openapitools.server.models.ListFilesResponse
 import org.openapitools.server.models.OpenAIFile
 
 fun Route.FilesApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    post<Paths.createFile> {
+    post<Paths.createFile> { createFile ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "filename" : "filename",
-              "purpose" : "assistants",
+              "id" : "id",
               "bytes" : 0,
               "created_at" : 6,
-              "id" : "id",
-              "status_details" : "status_details",
+              "filename" : "filename",
               "object" : "file",
-              "status" : "uploaded"
+              "purpose" : "assistants",
+              "status" : "uploaded",
+              "status_details" : "status_details"
             }"""
             
             when (exampleContentType) {
@@ -58,18 +56,17 @@ fun Route.FilesApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    delete<Paths.deleteFile> {
+    delete<Paths.deleteFile> { deleteFile ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "deleted" : true,
               "id" : "id",
-              "object" : "file"
+              "object" : "file",
+              "deleted" : true
             }"""
             
             when (exampleContentType) {
@@ -80,9 +77,8 @@ fun Route.FilesApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.downloadFile> {
+    get<Paths.downloadFile> { downloadFile ->
         
         val principal = null!!
         
@@ -91,38 +87,37 @@ fun Route.FilesApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listFiles> {
+    get<Paths.listFiles> { listFiles ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "first_id" : "file-abc123",
+              "object" : "list",
               "data" : [ {
-                "filename" : "filename",
-                "purpose" : "assistants",
+                "id" : "id",
                 "bytes" : 0,
                 "created_at" : 6,
-                "id" : "id",
-                "status_details" : "status_details",
+                "filename" : "filename",
                 "object" : "file",
-                "status" : "uploaded"
+                "purpose" : "assistants",
+                "status" : "uploaded",
+                "status_details" : "status_details"
               }, {
-                "filename" : "filename",
-                "purpose" : "assistants",
+                "id" : "id",
                 "bytes" : 0,
                 "created_at" : 6,
-                "id" : "id",
-                "status_details" : "status_details",
+                "filename" : "filename",
                 "object" : "file",
-                "status" : "uploaded"
+                "purpose" : "assistants",
+                "status" : "uploaded",
+                "status_details" : "status_details"
               } ],
+              "first_id" : "file-abc123",
               "last_id" : "file-abc456",
-              "has_more" : false,
-              "object" : "list"
+              "has_more" : false
             }"""
             
             when (exampleContentType) {
@@ -133,23 +128,22 @@ fun Route.FilesApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.retrieveFile> {
+    get<Paths.retrieveFile> { retrieveFile ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "filename" : "filename",
-              "purpose" : "assistants",
+              "id" : "id",
               "bytes" : 0,
               "created_at" : 6,
-              "id" : "id",
-              "status_details" : "status_details",
+              "filename" : "filename",
               "object" : "file",
-              "status" : "uploaded"
+              "purpose" : "assistants",
+              "status" : "uploaded",
+              "status_details" : "status_details"
             }"""
             
             when (exampleContentType) {
@@ -160,5 +154,4 @@ fun Route.FilesApi() {
         
     }
     }
-
 }

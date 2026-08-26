@@ -2,32 +2,36 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * BatchRequestOutputResponse
  */
 
 @JsonTypeName("BatchRequestOutput_response")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class BatchRequestOutputResponse {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer statusCode;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String requestId;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Object body;
 
   public BatchRequestOutputResponse statusCode(@Nullable Integer statusCode) {
@@ -46,6 +50,7 @@ public class BatchRequestOutputResponse {
     return statusCode;
   }
 
+  @JsonProperty("status_code")
   public void setStatusCode(@Nullable Integer statusCode) {
     this.statusCode = statusCode;
   }
@@ -66,6 +71,7 @@ public class BatchRequestOutputResponse {
     return requestId;
   }
 
+  @JsonProperty("request_id")
   public void setRequestId(@Nullable String requestId) {
     this.requestId = requestId;
   }
@@ -86,6 +92,7 @@ public class BatchRequestOutputResponse {
     return body;
   }
 
+  @JsonProperty("body")
   public void setBody(@Nullable Object body) {
     this.body = body;
   }
@@ -125,10 +132,7 @@ public class BatchRequestOutputResponse {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

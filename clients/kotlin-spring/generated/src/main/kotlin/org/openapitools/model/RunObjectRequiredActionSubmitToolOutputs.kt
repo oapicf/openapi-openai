@@ -21,7 +21,8 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RunObjectRequiredActionSubmitToolOutputs(
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "A list of the relevant tool calls.")
+    @Schema(required = true, description = "A list of the relevant tool calls.")
+    @param:JsonProperty("tool_calls")
     @get:JsonProperty("tool_calls", required = true) val toolCalls: kotlin.collections.List<RunToolCallObject>
 ) {
 

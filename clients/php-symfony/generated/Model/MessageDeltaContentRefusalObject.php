@@ -51,7 +51,7 @@ class MessageDeltaContentRefusalObject
      * @var int|null
      * @SerializedName("index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $index = null;
@@ -62,7 +62,7 @@ class MessageDeltaContentRefusalObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['refusal'])]
     #[Assert\Type("string")]
@@ -72,7 +72,7 @@ class MessageDeltaContentRefusalObject
      * @var string|null
      * @SerializedName("refusal")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $refusal = null;
 
@@ -100,12 +100,12 @@ class MessageDeltaContentRefusalObject
     }
 
     /**
-    * Sets index.
-    *
-    * @param int|null $index  The index of the refusal part in the message.
-    *
-    * @return $this
-    */
+     * Sets index.
+     *
+     * @param int|null $index  The index of the refusal part in the message.
+     *
+     * @return $this
+     */
     public function setIndex(?int $index): self
     {
         $this->index = $index;
@@ -127,12 +127,12 @@ class MessageDeltaContentRefusalObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `refusal`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `refusal`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -154,12 +154,12 @@ class MessageDeltaContentRefusalObject
     }
 
     /**
-    * Sets refusal.
-    *
-    * @param string|null $refusal
-    *
-    * @return $this
-    */
+     * Sets refusal.
+     *
+     * @param string|null $refusal
+     *
+     * @return $this
+     */
     public function setRefusal(?string $refusal = null): self
     {
         $this->refusal = $refusal;

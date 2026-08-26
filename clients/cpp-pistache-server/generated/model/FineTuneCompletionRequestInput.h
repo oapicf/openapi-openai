@@ -32,7 +32,7 @@ class  FineTuneCompletionRequestInput
 {
 public:
     FineTuneCompletionRequestInput();
-    virtual ~FineTuneCompletionRequestInput() = default;
+    virtual ~FineTuneCompletionRequestInput();
 
 
     /// <summary>

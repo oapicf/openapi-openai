@@ -66,13 +66,13 @@ function Initialize-FineTuningJobCheckpointMetrics {
 
 
         $PSO = [PSCustomObject]@{
-            "step" = ${Step}
-            "train_loss" = ${TrainLoss}
-            "train_mean_token_accuracy" = ${TrainMeanTokenAccuracy}
-            "valid_loss" = ${ValidLoss}
-            "valid_mean_token_accuracy" = ${ValidMeanTokenAccuracy}
-            "full_valid_loss" = ${FullValidLoss}
-            "full_valid_mean_token_accuracy" = ${FullValidMeanTokenAccuracy}
+            'step' = ${Step}
+            'train_loss' = ${TrainLoss}
+            'train_mean_token_accuracy' = ${TrainMeanTokenAccuracy}
+            'valid_loss' = ${ValidLoss}
+            'valid_mean_token_accuracy' = ${ValidMeanTokenAccuracy}
+            'full_valid_loss' = ${FullValidLoss}
+            'full_valid_mean_token_accuracy' = ${FullValidMeanTokenAccuracy}
         }
 
 
@@ -110,63 +110,63 @@ function ConvertFrom-JsonToFineTuningJobCheckpointMetrics {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in FineTuningJobCheckpointMetrics
-        $AllProperties = ("step", "train_loss", "train_mean_token_accuracy", "valid_loss", "valid_mean_token_accuracy", "full_valid_loss", "full_valid_mean_token_accuracy")
+        $AllProperties = ('step', 'train_loss', 'train_mean_token_accuracy', 'valid_loss', 'valid_mean_token_accuracy', 'full_valid_loss', 'full_valid_mean_token_accuracy')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "step"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'step'))) { #optional property not found
             $Step = $null
         } else {
-            $Step = $JsonParameters.PSobject.Properties["step"].value
+            $Step = $JsonParameters.PSobject.Properties['step'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "train_loss"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'train_loss'))) { #optional property not found
             $TrainLoss = $null
         } else {
-            $TrainLoss = $JsonParameters.PSobject.Properties["train_loss"].value
+            $TrainLoss = $JsonParameters.PSobject.Properties['train_loss'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "train_mean_token_accuracy"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'train_mean_token_accuracy'))) { #optional property not found
             $TrainMeanTokenAccuracy = $null
         } else {
-            $TrainMeanTokenAccuracy = $JsonParameters.PSobject.Properties["train_mean_token_accuracy"].value
+            $TrainMeanTokenAccuracy = $JsonParameters.PSobject.Properties['train_mean_token_accuracy'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "valid_loss"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'valid_loss'))) { #optional property not found
             $ValidLoss = $null
         } else {
-            $ValidLoss = $JsonParameters.PSobject.Properties["valid_loss"].value
+            $ValidLoss = $JsonParameters.PSobject.Properties['valid_loss'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "valid_mean_token_accuracy"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'valid_mean_token_accuracy'))) { #optional property not found
             $ValidMeanTokenAccuracy = $null
         } else {
-            $ValidMeanTokenAccuracy = $JsonParameters.PSobject.Properties["valid_mean_token_accuracy"].value
+            $ValidMeanTokenAccuracy = $JsonParameters.PSobject.Properties['valid_mean_token_accuracy'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "full_valid_loss"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'full_valid_loss'))) { #optional property not found
             $FullValidLoss = $null
         } else {
-            $FullValidLoss = $JsonParameters.PSobject.Properties["full_valid_loss"].value
+            $FullValidLoss = $JsonParameters.PSobject.Properties['full_valid_loss'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "full_valid_mean_token_accuracy"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'full_valid_mean_token_accuracy'))) { #optional property not found
             $FullValidMeanTokenAccuracy = $null
         } else {
-            $FullValidMeanTokenAccuracy = $JsonParameters.PSobject.Properties["full_valid_mean_token_accuracy"].value
+            $FullValidMeanTokenAccuracy = $JsonParameters.PSobject.Properties['full_valid_mean_token_accuracy'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "step" = ${Step}
-            "train_loss" = ${TrainLoss}
-            "train_mean_token_accuracy" = ${TrainMeanTokenAccuracy}
-            "valid_loss" = ${ValidLoss}
-            "valid_mean_token_accuracy" = ${ValidMeanTokenAccuracy}
-            "full_valid_loss" = ${FullValidLoss}
-            "full_valid_mean_token_accuracy" = ${FullValidMeanTokenAccuracy}
+            'step' = ${Step}
+            'train_loss' = ${TrainLoss}
+            'train_mean_token_accuracy' = ${TrainMeanTokenAccuracy}
+            'valid_loss' = ${ValidLoss}
+            'valid_mean_token_accuracy' = ${ValidMeanTokenAccuracy}
+            'full_valid_loss' = ${FullValidLoss}
+            'full_valid_mean_token_accuracy' = ${FullValidMeanTokenAccuracy}
         }
 
         return $PSO

@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set The ID of the message that was created by this run step.
 	 */
-	void setMessageId(std::string  message_id);
+	void setMessageId(std::string message_id);
 
 
     private:

@@ -107,7 +107,7 @@ RunStepDetailsToolCallsCodeObject::getId()
 }
 
 void
-RunStepDetailsToolCallsCodeObject::setId(std::string  id)
+RunStepDetailsToolCallsCodeObject::setId(std::string id)
 {
 	this->id = id;
 }
@@ -119,7 +119,7 @@ RunStepDetailsToolCallsCodeObject::getType()
 }
 
 void
-RunStepDetailsToolCallsCodeObject::setType(std::string  type)
+RunStepDetailsToolCallsCodeObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -131,7 +131,7 @@ RunStepDetailsToolCallsCodeObject::getCodeInterpreter()
 }
 
 void
-RunStepDetailsToolCallsCodeObject::setCodeInterpreter(RunStepDetailsToolCallsCodeObject_code_interpreter  code_interpreter)
+RunStepDetailsToolCallsCodeObject::setCodeInterpreter(RunStepDetailsToolCallsCodeObject_code_interpreter code_interpreter)
 {
 	this->code_interpreter = code_interpreter;
 }

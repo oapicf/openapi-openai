@@ -66,13 +66,13 @@ function Initialize-AdminApiKey {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "id" = ${Id}
-            "name" = ${Name}
-            "redacted_value" = ${RedactedValue}
-            "value" = ${Value}
-            "created_at" = ${CreatedAt}
-            "owner" = ${Owner}
+            'object' = ${Object}
+            'id' = ${Id}
+            'name' = ${Name}
+            'redacted_value' = ${RedactedValue}
+            'value' = ${Value}
+            'created_at' = ${CreatedAt}
+            'owner' = ${Owner}
         }
 
 
@@ -110,63 +110,63 @@ function ConvertFrom-JsonToAdminApiKey {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AdminApiKey
-        $AllProperties = ("object", "id", "name", "redacted_value", "value", "created_at", "owner")
+        $AllProperties = ('object', 'id', 'name', 'redacted_value', 'value', 'created_at', 'owner')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) { #optional property not found
             $Object = $null
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) { #optional property not found
             $Id = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) { #optional property not found
             $Name = $null
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "redacted_value"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'redacted_value'))) { #optional property not found
             $RedactedValue = $null
         } else {
-            $RedactedValue = $JsonParameters.PSobject.Properties["redacted_value"].value
+            $RedactedValue = $JsonParameters.PSobject.Properties['redacted_value'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "value"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'value'))) { #optional property not found
             $Value = $null
         } else {
-            $Value = $JsonParameters.PSobject.Properties["value"].value
+            $Value = $JsonParameters.PSobject.Properties['value'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) { #optional property not found
             $CreatedAt = $null
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "owner"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'owner'))) { #optional property not found
             $Owner = $null
         } else {
-            $Owner = $JsonParameters.PSobject.Properties["owner"].value
+            $Owner = $JsonParameters.PSobject.Properties['owner'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "id" = ${Id}
-            "name" = ${Name}
-            "redacted_value" = ${RedactedValue}
-            "value" = ${Value}
-            "created_at" = ${CreatedAt}
-            "owner" = ${Owner}
+            'object' = ${Object}
+            'id' = ${Id}
+            'name' = ${Name}
+            'redacted_value' = ${RedactedValue}
+            'value' = ${Value}
+            'created_at' = ${CreatedAt}
+            'owner' = ${Owner}
         }
 
         return $PSO

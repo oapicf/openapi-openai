@@ -35,13 +35,13 @@ class OAICreateChatCompletionResponse_choices_inner_logprobs;
 class OAICreateChatCompletionResponse_choices_inner : public OAIObject {
 public:
     OAICreateChatCompletionResponse_choices_inner();
-    OAICreateChatCompletionResponse_choices_inner(QString json);
+    OAICreateChatCompletionResponse_choices_inner(const QString &json);
     ~OAICreateChatCompletionResponse_choices_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getFinishReason() const;
     void setFinishReason(const QString &finish_reason);

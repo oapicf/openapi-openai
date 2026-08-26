@@ -27,6 +27,8 @@ CreateThreadRequest_tool_resources_file_search_vector_stores_inner::CreateThread
     
 }
 
+CreateThreadRequest_tool_resources_file_search_vector_stores_inner::~CreateThreadRequest_tool_resources_file_search_vector_stores_inner() = default;
+
 void CreateThreadRequest_tool_resources_file_search_vector_stores_inner::validate() const
 {
     std::stringstream msg;

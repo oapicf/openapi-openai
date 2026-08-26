@@ -46,7 +46,10 @@ WANDB(String.valueOf("wandb"));
     }
 }
 
-  @ApiModelProperty(required = true, value = "")
+ /**
+  * The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
+  */
+  @ApiModelProperty(required = true, value = "The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. ")
 
   private TypeEnum type;
 
@@ -56,7 +59,7 @@ WANDB(String.valueOf("wandb"));
 
   private CreateFineTuningJobRequestIntegrationsInnerWandb wandb;
  /**
-   * Get type
+   * The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. 
    * @return type
   **/
   @JsonProperty("type")
@@ -130,10 +133,7 @@ WANDB(String.valueOf("wandb"));
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

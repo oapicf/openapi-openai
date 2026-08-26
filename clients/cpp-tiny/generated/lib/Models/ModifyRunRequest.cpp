@@ -65,7 +65,7 @@ ModifyRunRequest::getMetadata()
 }
 
 void
-ModifyRunRequest::setMetadata(Object  metadata)
+ModifyRunRequest::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }

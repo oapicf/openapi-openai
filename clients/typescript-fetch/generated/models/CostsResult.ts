@@ -29,7 +29,7 @@ import {
 export interface CostsResult {
     /**
      * 
-     * @type {string}
+     * @type {CostsResultObjectEnum}
      * @memberof CostsResult
      */
     object: CostsResultObjectEnum;
@@ -68,6 +68,8 @@ export type CostsResultObjectEnum = typeof CostsResultObjectEnum[keyof typeof Co
  */
 export function instanceOfCostsResult(value: object): value is CostsResult {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'organization.costs.result') return false;
+    
     return true;
 }
 
@@ -83,8 +85,8 @@ export function CostsResultFromJSONTyped(json: any, ignoreDiscriminator: boolean
         
         'object': json['object'],
         'amount': json['amount'] == null ? undefined : CostsResultAmountFromJSON(json['amount']),
-        'lineItem': json['line_item'] == null ? undefined : json['line_item'],
-        'projectId': json['project_id'] == null ? undefined : json['project_id'],
+        'lineItem': json['line_item'] === undefined ? undefined : json['line_item'] === null ? null : json['line_item'],
+        'projectId': json['project_id'] === undefined ? undefined : json['project_id'] === null ? null : json['project_id'],
     };
 }
 

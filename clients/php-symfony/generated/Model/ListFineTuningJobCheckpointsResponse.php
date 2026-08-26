@@ -47,7 +47,7 @@ class ListFineTuningJobCheckpointsResponse
      * @var FineTuningJobCheckpoint[]|null
      * @SerializedName("data")
      * @Type("array<OpenAPI\Server\Model\FineTuningJobCheckpoint>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -59,7 +59,7 @@ class ListFineTuningJobCheckpointsResponse
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['list'])]
     #[Assert\Type("string")]
@@ -69,7 +69,7 @@ class ListFineTuningJobCheckpointsResponse
      * @var string|null
      * @SerializedName("first_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $firstId = null;
 
@@ -77,7 +77,7 @@ class ListFineTuningJobCheckpointsResponse
      * @var string|null
      * @SerializedName("last_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $lastId = null;
 
@@ -85,7 +85,7 @@ class ListFineTuningJobCheckpointsResponse
      * @var bool|null
      * @SerializedName("has_more")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $hasMore = null;
@@ -116,12 +116,12 @@ class ListFineTuningJobCheckpointsResponse
     }
 
     /**
-    * Sets data.
-    *
-    * @param FineTuningJobCheckpoint[]|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param FineTuningJobCheckpoint[]|null $data
+     *
+     * @return $this
+     */
     public function setData(?array $data): self
     {
         $this->data = $data;
@@ -143,12 +143,12 @@ class ListFineTuningJobCheckpointsResponse
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -170,12 +170,12 @@ class ListFineTuningJobCheckpointsResponse
     }
 
     /**
-    * Sets firstId.
-    *
-    * @param string|null $firstId
-    *
-    * @return $this
-    */
+     * Sets firstId.
+     *
+     * @param string|null $firstId
+     *
+     * @return $this
+     */
     public function setFirstId(?string $firstId = null): self
     {
         $this->firstId = $firstId;
@@ -197,12 +197,12 @@ class ListFineTuningJobCheckpointsResponse
     }
 
     /**
-    * Sets lastId.
-    *
-    * @param string|null $lastId
-    *
-    * @return $this
-    */
+     * Sets lastId.
+     *
+     * @param string|null $lastId
+     *
+     * @return $this
+     */
     public function setLastId(?string $lastId = null): self
     {
         $this->lastId = $lastId;
@@ -224,12 +224,12 @@ class ListFineTuningJobCheckpointsResponse
     }
 
     /**
-    * Sets hasMore.
-    *
-    * @param bool|null $hasMore
-    *
-    * @return $this
-    */
+     * Sets hasMore.
+     *
+     * @param bool|null $hasMore
+     *
+     * @return $this
+     */
     public function setHasMore(?bool $hasMore): self
     {
         $this->hasMore = $hasMore;

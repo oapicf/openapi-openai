@@ -29,7 +29,7 @@ import {
 export interface MessageStreamEventOneOf2 {
     /**
      * 
-     * @type {string}
+     * @type {MessageStreamEventOneOf2EventEnum}
      * @memberof MessageStreamEventOneOf2
      */
     event: MessageStreamEventOneOf2EventEnum;
@@ -56,6 +56,8 @@ export type MessageStreamEventOneOf2EventEnum = typeof MessageStreamEventOneOf2E
  */
 export function instanceOfMessageStreamEventOneOf2(value: object): value is MessageStreamEventOneOf2 {
     if (!('event' in value) || value['event'] === undefined) return false;
+    if (value['event'] !== 'thread.message.delta') return false;
+    
     if (!('data' in value) || value['data'] === undefined) return false;
     return true;
 }

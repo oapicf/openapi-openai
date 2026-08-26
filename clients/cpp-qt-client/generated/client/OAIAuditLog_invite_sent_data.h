@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIAuditLog_invite_sent_data : public OAIObject {
 public:
     OAIAuditLog_invite_sent_data();
-    OAIAuditLog_invite_sent_data(QString json);
+    OAIAuditLog_invite_sent_data(const QString &json);
     ~OAIAuditLog_invite_sent_data() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getEmail() const;
     void setEmail(const QString &email);

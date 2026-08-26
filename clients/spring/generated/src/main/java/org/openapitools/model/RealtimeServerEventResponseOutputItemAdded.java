@@ -9,20 +9,20 @@ import org.openapitools.model.RealtimeConversationItem;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Returned when a new Item is created during Response generation.
  */
 
 @Schema(name = "RealtimeServerEventResponseOutputItemAdded", description = "Returned when a new Item is created during Response generation.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeServerEventResponseOutputItemAdded {
 
   private String eventId;
@@ -99,6 +99,7 @@ public class RealtimeServerEventResponseOutputItemAdded {
     return eventId;
   }
 
+  @JsonProperty("event_id")
   public void setEventId(String eventId) {
     this.eventId = eventId;
   }
@@ -119,6 +120,7 @@ public class RealtimeServerEventResponseOutputItemAdded {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -139,6 +141,7 @@ public class RealtimeServerEventResponseOutputItemAdded {
     return responseId;
   }
 
+  @JsonProperty("response_id")
   public void setResponseId(String responseId) {
     this.responseId = responseId;
   }
@@ -159,6 +162,7 @@ public class RealtimeServerEventResponseOutputItemAdded {
     return outputIndex;
   }
 
+  @JsonProperty("output_index")
   public void setOutputIndex(Integer outputIndex) {
     this.outputIndex = outputIndex;
   }
@@ -179,6 +183,7 @@ public class RealtimeServerEventResponseOutputItemAdded {
     return item;
   }
 
+  @JsonProperty("item")
   public void setItem(RealtimeConversationItem item) {
     this.item = item;
   }
@@ -221,11 +226,8 @@ public class RealtimeServerEventResponseOutputItemAdded {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

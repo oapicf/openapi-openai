@@ -64,7 +64,7 @@ ProjectUpdateRequest::getName()
 }
 
 void
-ProjectUpdateRequest::setName(std::string  name)
+ProjectUpdateRequest::setName(std::string name)
 {
 	this->name = name;
 }

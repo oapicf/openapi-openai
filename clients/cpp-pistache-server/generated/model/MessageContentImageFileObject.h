@@ -33,7 +33,7 @@ class  MessageContentImageFileObject
 {
 public:
     MessageContentImageFileObject();
-    virtual ~MessageContentImageFileObject() = default;
+    virtual ~MessageContentImageFileObject();
 
 
     /// <summary>

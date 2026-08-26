@@ -89,8 +89,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateTranscription200Response" />
     /// </summary>
-    public class CreateTranscription200ResponseJsonConverter : JsonConverter<CreateTranscription200Response>
+    public partial class CreateTranscription200ResponseJsonConverter : JsonConverter<CreateTranscription200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateTranscription200ResponseJsonConverter" /> class.
+        /// </summary>
+        public CreateTranscription200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateTranscription200Response" />
         /// </summary>

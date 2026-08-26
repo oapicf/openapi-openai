@@ -32,7 +32,7 @@ class  ResponseFormatJsonObject
 {
 public:
     ResponseFormatJsonObject();
-    virtual ~ResponseFormatJsonObject() = default;
+    virtual ~ResponseFormatJsonObject();
 
 
     /// <summary>

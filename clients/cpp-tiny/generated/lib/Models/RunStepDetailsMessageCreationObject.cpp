@@ -86,7 +86,7 @@ RunStepDetailsMessageCreationObject::getType()
 }
 
 void
-RunStepDetailsMessageCreationObject::setType(std::string  type)
+RunStepDetailsMessageCreationObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ RunStepDetailsMessageCreationObject::getMessageCreation()
 }
 
 void
-RunStepDetailsMessageCreationObject::setMessageCreation(RunStepDetailsMessageCreationObject_message_creation  message_creation)
+RunStepDetailsMessageCreationObject::setMessageCreation(RunStepDetailsMessageCreationObject_message_creation message_creation)
 {
 	this->message_creation = message_creation;
 }

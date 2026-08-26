@@ -32,13 +32,13 @@ namespace OpenAPI {
 class OAIRealtimeResponseCreateParams_tools_inner : public OAIObject {
 public:
     OAIRealtimeResponseCreateParams_tools_inner();
-    OAIRealtimeResponseCreateParams_tools_inner(QString json);
+    OAIRealtimeResponseCreateParams_tools_inner(const QString &json);
     ~OAIRealtimeResponseCreateParams_tools_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

@@ -26,6 +26,8 @@ AssistantToolsFileSearch::AssistantToolsFileSearch()
     
 }
 
+AssistantToolsFileSearch::~AssistantToolsFileSearch() = default;
+
 void AssistantToolsFileSearch::validate() const
 {
     std::stringstream msg;

@@ -142,91 +142,28 @@ fn main() {
     let matches = Command::new("client")
         .arg(Arg::new("operation")
             .help("Sets the operation to run")
-            .value_parser([
-                "CreateAssistant",
+            .value_parser(Vec::<&str>::from([
                 "CreateThread",
-                "CreateThreadAndRun",
                 "ListAssistants",
-                "CreateMessage",
-                "CreateRun",
-                "DeleteAssistant",
-                "DeleteThread",
-                "GetAssistant",
-                "GetThread",
-                "ListMessages",
-                "ListRuns",
-                "ModifyAssistant",
-                "ModifyThread",
-                "CancelRun",
-                "DeleteMessage",
-                "GetMessage",
-                "GetRun",
-                "ListRunSteps",
-                "ModifyMessage",
-                "ModifyRun",
-                "SubmitToolOuputsToRun",
-                "GetRunStep",
-                "CreateSpeech",
-                "CreateTranscription",
-                "CreateTranslation",
                 "ListAuditLogs",
-                "CreateBatch",
                 "ListBatches",
-                "CancelBatch",
-                "RetrieveBatch",
-                "CreateChatCompletion",
-                "CreateCompletion",
-                "AdminApiKeysCreate",
                 "AdminApiKeysList",
-                "AdminApiKeysDelete",
-                "AdminApiKeysGet",
-                "CreateEmbedding",
                 "CreateFile",
                 "ListFiles",
-                "DeleteFile",
-                "DownloadFile",
-                "RetrieveFile",
-                "CreateFineTuningJob",
                 "ListPaginatedFineTuningJobs",
                 "CancelFineTuningJob",
                 "ListFineTuningEvents",
                 "ListFineTuningJobCheckpoints",
                 "RetrieveFineTuningJob",
-                "CreateImage",
                 "CreateImageEdit",
                 "CreateImageVariation",
-                "InviteUser",
                 "ListInvites",
-                "DeleteInvite",
-                "RetrieveInvite",
                 "ListModels",
                 "DeleteModel",
                 "RetrieveModel",
-                "CreateModeration",
-                "CreateProject",
                 "ListProjects",
-                "ArchiveProject",
-                "CreateProjectServiceAccount",
-                "CreateProjectUser",
-                "ListProjectApiKeys",
-                "ListProjectRateLimits",
-                "ListProjectServiceAccounts",
-                "ListProjectUsers",
-                "ModifyProject",
-                "RetrieveProject",
-                "DeleteProjectApiKey",
-                "DeleteProjectServiceAccount",
-                "DeleteProjectUser",
-                "ModifyProjectUser",
-                "RetrieveProjectApiKey",
-                "RetrieveProjectServiceAccount",
-                "RetrieveProjectUser",
-                "UpdateProjectRateLimits",
-                "CreateRealtimeSession",
-                "CreateUpload",
                 "AddUploadPart",
                 "CancelUpload",
-                "CompleteUpload",
                 "UsageAudioSpeeches",
                 "UsageAudioTranscriptions",
                 "UsageCodeInterpreterSessions",
@@ -237,23 +174,10 @@ fn main() {
                 "UsageModerations",
                 "UsageVectorStores",
                 "ListUsers",
-                "DeleteUser",
-                "ModifyUser",
-                "RetrieveUser",
-                "CreateVectorStore",
                 "ListVectorStores",
-                "CreateVectorStoreFile",
-                "CreateVectorStoreFileBatch",
-                "DeleteVectorStore",
-                "GetVectorStore",
-                "ListVectorStoreFiles",
-                "ModifyVectorStore",
-                "CancelVectorStoreFileBatch",
-                "DeleteVectorStoreFile",
                 "GetVectorStoreFile",
                 "GetVectorStoreFileBatch",
-                "ListFilesInVectorStoreBatch",
-            ])
+            ]))
             .required(true)
             .index(1))
         .arg(Arg::new("https")
@@ -303,17 +227,33 @@ fn main() {
     let context: ClientContext =
         swagger::make_context!(ContextBuilder, EmptyContext, auth_data, XSpanIdString::default());
 
-    let mut client : Box<dyn ApiNoContext<ClientContext>> = if is_https {
-        // Using Simple HTTPS
-        let client = Box::new(Client::try_new_https(&base_url)
-            .expect("Failed to create HTTPS client"));
-        Box::new(client.with_context(context))
-    } else {
-        // Using HTTP
-        let client = Box::new(Client::try_new_http(
-            &base_url)
-            .expect("Failed to create HTTP client"));
-        Box::new(client.with_context(context))
+    let mut client : Box<dyn ApiNoContext<ClientContext>> = {
+        #[cfg(feature = "client-tls")]
+        {
+            if is_https {
+                // Using HTTPS with native-tls
+                let client = Box::new(Client::try_new_https(&base_url)
+                    .expect("Failed to create HTTPS client"));
+                Box::new(client.with_context(context))
+            } else {
+                // Using HTTP
+                let client = Box::new(Client::try_new_http(&base_url)
+                    .expect("Failed to create HTTP client"));
+                Box::new(client.with_context(context))
+            }
+        }
+
+        #[cfg(not(feature = "client-tls"))]
+        {
+            if is_https {
+                panic!("HTTPS requested but TLS support not enabled. \
+                        Enable the 'client-tls' feature to use HTTPS.");
+            }
+            // Using HTTP only
+            let client = Box::new(Client::try_new_http(&base_url)
+                .expect("Failed to create HTTP client"));
+            Box::new(client.with_context(context))
+        }
     };
 
     let mut rt = tokio::runtime::Runtime::new().unwrap();
@@ -343,17 +283,17 @@ fn main() {
         */
         Some("ListAssistants") => {
             let result = rt.block_on(client.list_assistants(
-                  Some(56),
+                  Some(0),
                   Some(models::ListAssistantsOrderParameter::Asc),
-                  Some("after_example".to_string()),
-                  Some("before_example".to_string())
+                  None,
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         /* Disabled because there's no example.
         Some("CreateMessage") => {
             let result = rt.block_on(client.create_message(
-                  "thread_id_example".to_string(),
+                  ???,
                   ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
@@ -362,62 +302,74 @@ fn main() {
         /* Disabled because there's no example.
         Some("CreateRun") => {
             let result = rt.block_on(client.create_run(
-                  "thread_id_example".to_string(),
+                  ???,
                   ???,
                   Some(&Vec::new())
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         */
+        /* Disabled because there's no example.
         Some("DeleteAssistant") => {
             let result = rt.block_on(client.delete_assistant(
-                  "assistant_id_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("DeleteThread") => {
             let result = rt.block_on(client.delete_thread(
-                  "thread_id_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetAssistant") => {
             let result = rt.block_on(client.get_assistant(
-                  "assistant_id_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetThread") => {
             let result = rt.block_on(client.get_thread(
-                  "thread_id_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("ListMessages") => {
             let result = rt.block_on(client.list_messages(
-                  "thread_id_example".to_string(),
-                  Some(56),
+                  ???,
+                  Some(0),
                   Some(models::ListAssistantsOrderParameter::Asc),
-                  Some("after_example".to_string()),
-                  Some("before_example".to_string()),
-                  Some("run_id_example".to_string())
+                  None,
+                  None,
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("ListRuns") => {
             let result = rt.block_on(client.list_runs(
-                  "thread_id_example".to_string(),
-                  Some(56),
+                  ???,
+                  Some(0),
                   Some(models::ListAssistantsOrderParameter::Asc),
-                  Some("after_example".to_string()),
-                  Some("before_example".to_string())
+                  None,
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
         /* Disabled because there's no example.
         Some("ModifyAssistant") => {
             let result = rt.block_on(client.modify_assistant(
-                  "assistant_id_example".to_string(),
+                  ???,
                   ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
@@ -426,57 +378,67 @@ fn main() {
         /* Disabled because there's no example.
         Some("ModifyThread") => {
             let result = rt.block_on(client.modify_thread(
-                  "thread_id_example".to_string(),
+                  ???,
                   ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         */
+        /* Disabled because there's no example.
         Some("CancelRun") => {
             let result = rt.block_on(client.cancel_run(
-                  "thread_id_example".to_string(),
-                  "run_id_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("DeleteMessage") => {
             let result = rt.block_on(client.delete_message(
-                  "thread_id_example".to_string(),
-                  "message_id_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetMessage") => {
             let result = rt.block_on(client.get_message(
-                  "thread_id_example".to_string(),
-                  "message_id_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetRun") => {
             let result = rt.block_on(client.get_run(
-                  "thread_id_example".to_string(),
-                  "run_id_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("ListRunSteps") => {
             let result = rt.block_on(client.list_run_steps(
-                  "thread_id_example".to_string(),
-                  "run_id_example".to_string(),
-                  Some(56),
+                  ???,
+                  ???,
+                  Some(0),
                   Some(models::ListAssistantsOrderParameter::Asc),
-                  Some("after_example".to_string()),
-                  Some("before_example".to_string()),
+                  None,
+                  None,
                   Some(&Vec::new())
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
         /* Disabled because there's no example.
         Some("ModifyMessage") => {
             let result = rt.block_on(client.modify_message(
-                  "thread_id_example".to_string(),
-                  "message_id_example".to_string(),
+                  ???,
+                  ???,
                   ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
@@ -485,8 +447,8 @@ fn main() {
         /* Disabled because there's no example.
         Some("ModifyRun") => {
             let result = rt.block_on(client.modify_run(
-                  "thread_id_example".to_string(),
-                  "run_id_example".to_string(),
+                  ???,
+                  ???,
                   ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
@@ -495,22 +457,24 @@ fn main() {
         /* Disabled because there's no example.
         Some("SubmitToolOuputsToRun") => {
             let result = rt.block_on(client.submit_tool_ouputs_to_run(
-                  "thread_id_example".to_string(),
-                  "run_id_example".to_string(),
+                  ???,
+                  ???,
                   ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         */
+        /* Disabled because there's no example.
         Some("GetRunStep") => {
             let result = rt.block_on(client.get_run_step(
-                  "thread_id_example".to_string(),
-                  "run_id_example".to_string(),
-                  "step_id_example".to_string(),
+                  ???,
+                  ???,
+                  ???,
                   Some(&Vec::new())
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
         /* Disabled because there's no example.
         Some("CreateSpeech") => {
             let result = rt.block_on(client.create_speech(
@@ -553,9 +517,9 @@ fn main() {
                   Some(&Vec::new()),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
-                  Some(56),
-                  Some("after_example".to_string()),
-                  Some("before_example".to_string())
+                  Some(0),
+                  None,
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
@@ -569,23 +533,27 @@ fn main() {
         */
         Some("ListBatches") => {
             let result = rt.block_on(client.list_batches(
-                  Some("after_example".to_string()),
-                  Some(56)
+                  None,
+                  Some(0)
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        /* Disabled because there's no example.
         Some("CancelBatch") => {
             let result = rt.block_on(client.cancel_batch(
-                  "batch_id_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("RetrieveBatch") => {
             let result = rt.block_on(client.retrieve_batch(
-                  "batch_id_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
         /* Disabled because there's no example.
         Some("CreateChatCompletion") => {
             let result = rt.block_on(client.create_chat_completion(
@@ -612,24 +580,28 @@ fn main() {
         */
         Some("AdminApiKeysList") => {
             let result = rt.block_on(client.admin_api_keys_list(
-                  Some("after_example".to_string()),
+                  None,
                   Some(models::AdminApiKeysListOrderParameter::Asc),
-                  Some(56)
+                  Some(0)
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        /* Disabled because there's no example.
         Some("AdminApiKeysDelete") => {
             let result = rt.block_on(client.admin_api_keys_delete(
-                  "key_id_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("AdminApiKeysGet") => {
             let result = rt.block_on(client.admin_api_keys_get(
-                  "key_id_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
         /* Disabled because there's no example.
         Some("CreateEmbedding") => {
             let result = rt.block_on(client.create_embedding(
@@ -647,31 +619,37 @@ fn main() {
         },
         Some("ListFiles") => {
             let result = rt.block_on(client.list_files(
-                  Some("purpose_example".to_string()),
-                  Some(56),
+                  None,
+                  Some(0),
                   Some(models::ListAssistantsOrderParameter::Asc),
-                  Some("after_example".to_string())
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        /* Disabled because there's no example.
         Some("DeleteFile") => {
             let result = rt.block_on(client.delete_file(
-                  "file_id_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("DownloadFile") => {
             let result = rt.block_on(client.download_file(
-                  "file_id_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("RetrieveFile") => {
             let result = rt.block_on(client.retrieve_file(
-                  "file_id_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
         /* Disabled because there's no example.
         Some("CreateFineTuningJob") => {
             let result = rt.block_on(client.create_fine_tuning_job(
@@ -682,8 +660,8 @@ fn main() {
         */
         Some("ListPaginatedFineTuningJobs") => {
             let result = rt.block_on(client.list_paginated_fine_tuning_jobs(
-                  Some("after_example".to_string()),
-                  Some(56)
+                  None,
+                  Some(0)
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
@@ -696,16 +674,16 @@ fn main() {
         Some("ListFineTuningEvents") => {
             let result = rt.block_on(client.list_fine_tuning_events(
                   "ft-AF1WoRqd3aJAHsqc9NY7iL8F".to_string(),
-                  Some("after_example".to_string()),
-                  Some(56)
+                  None,
+                  Some(0)
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         Some("ListFineTuningJobCheckpoints") => {
             let result = rt.block_on(client.list_fine_tuning_job_checkpoints(
                   "ft-AF1WoRqd3aJAHsqc9NY7iL8F".to_string(),
-                  Some("after_example".to_string()),
-                  Some(56)
+                  None,
+                  Some(0)
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
@@ -757,23 +735,27 @@ fn main() {
         */
         Some("ListInvites") => {
             let result = rt.block_on(client.list_invites(
-                  Some(56),
-                  Some("after_example".to_string())
+                  Some(0),
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        /* Disabled because there's no example.
         Some("DeleteInvite") => {
             let result = rt.block_on(client.delete_invite(
-                  "invite_id_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("RetrieveInvite") => {
             let result = rt.block_on(client.retrieve_invite(
-                  "invite_id_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
         Some("ListModels") => {
             let result = rt.block_on(client.list_models(
             ));
@@ -809,22 +791,24 @@ fn main() {
         */
         Some("ListProjects") => {
             let result = rt.block_on(client.list_projects(
-                  Some(56),
-                  Some("after_example".to_string()),
+                  Some(0),
+                  None,
                   Some(true)
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        /* Disabled because there's no example.
         Some("ArchiveProject") => {
             let result = rt.block_on(client.archive_project(
-                  "project_id_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
         /* Disabled because there's no example.
         Some("CreateProjectServiceAccount") => {
             let result = rt.block_on(client.create_project_service_account(
-                  "project_id_example".to_string(),
+                  ???,
                   ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
@@ -833,117 +817,139 @@ fn main() {
         /* Disabled because there's no example.
         Some("CreateProjectUser") => {
             let result = rt.block_on(client.create_project_user(
-                  "project_id_example".to_string(),
+                  ???,
                   ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         */
+        /* Disabled because there's no example.
         Some("ListProjectApiKeys") => {
             let result = rt.block_on(client.list_project_api_keys(
-                  "project_id_example".to_string(),
-                  Some(56),
-                  Some("after_example".to_string())
+                  ???,
+                  Some(0),
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("ListProjectRateLimits") => {
             let result = rt.block_on(client.list_project_rate_limits(
-                  "project_id_example".to_string(),
-                  Some(56),
-                  Some("after_example".to_string()),
-                  Some("before_example".to_string())
+                  ???,
+                  Some(0),
+                  None,
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("ListProjectServiceAccounts") => {
             let result = rt.block_on(client.list_project_service_accounts(
-                  "project_id_example".to_string(),
-                  Some(56),
-                  Some("after_example".to_string())
+                  ???,
+                  Some(0),
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("ListProjectUsers") => {
             let result = rt.block_on(client.list_project_users(
-                  "project_id_example".to_string(),
-                  Some(56),
-                  Some("after_example".to_string())
+                  ???,
+                  Some(0),
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
         /* Disabled because there's no example.
         Some("ModifyProject") => {
             let result = rt.block_on(client.modify_project(
-                  "project_id_example".to_string(),
+                  ???,
                   ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         */
+        /* Disabled because there's no example.
         Some("RetrieveProject") => {
             let result = rt.block_on(client.retrieve_project(
-                  "project_id_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("DeleteProjectApiKey") => {
             let result = rt.block_on(client.delete_project_api_key(
-                  "project_id_example".to_string(),
-                  "key_id_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("DeleteProjectServiceAccount") => {
             let result = rt.block_on(client.delete_project_service_account(
-                  "project_id_example".to_string(),
-                  "service_account_id_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("DeleteProjectUser") => {
             let result = rt.block_on(client.delete_project_user(
-                  "project_id_example".to_string(),
-                  "user_id_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
         /* Disabled because there's no example.
         Some("ModifyProjectUser") => {
             let result = rt.block_on(client.modify_project_user(
-                  "project_id_example".to_string(),
-                  "user_id_example".to_string(),
+                  ???,
+                  ???,
                   ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         */
+        /* Disabled because there's no example.
         Some("RetrieveProjectApiKey") => {
             let result = rt.block_on(client.retrieve_project_api_key(
-                  "project_id_example".to_string(),
-                  "key_id_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("RetrieveProjectServiceAccount") => {
             let result = rt.block_on(client.retrieve_project_service_account(
-                  "project_id_example".to_string(),
-                  "service_account_id_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("RetrieveProjectUser") => {
             let result = rt.block_on(client.retrieve_project_user(
-                  "project_id_example".to_string(),
-                  "user_id_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
         /* Disabled because there's no example.
         Some("UpdateProjectRateLimits") => {
             let result = rt.block_on(client.update_project_rate_limits(
-                  "project_id_example".to_string(),
-                  "rate_limit_id_example".to_string(),
+                  ???,
+                  ???,
                   ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
@@ -989,50 +995,50 @@ fn main() {
         */
         Some("UsageAudioSpeeches") => {
             let result = rt.block_on(client.usage_audio_speeches(
-                  56,
-                  Some(56),
+                  0,
+                  Some(0),
                   Some(models::UsageAudioSpeechesBucketWidthParameter::Variant1m),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
-                  Some(56),
-                  Some("page_example".to_string())
+                  Some(0),
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         Some("UsageAudioTranscriptions") => {
             let result = rt.block_on(client.usage_audio_transcriptions(
-                  56,
-                  Some(56),
+                  0,
+                  Some(0),
                   Some(models::UsageAudioSpeechesBucketWidthParameter::Variant1m),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
-                  Some(56),
-                  Some("page_example".to_string())
+                  Some(0),
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         Some("UsageCodeInterpreterSessions") => {
             let result = rt.block_on(client.usage_code_interpreter_sessions(
-                  56,
-                  Some(56),
+                  0,
+                  Some(0),
                   Some(models::UsageAudioSpeechesBucketWidthParameter::Variant1m),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
-                  Some(56),
-                  Some("page_example".to_string())
+                  Some(0),
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         Some("UsageCompletions") => {
             let result = rt.block_on(client.usage_completions(
-                  56,
-                  Some(56),
+                  0,
+                  Some(0),
                   Some(models::UsageAudioSpeechesBucketWidthParameter::Variant1m),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
@@ -1040,42 +1046,42 @@ fn main() {
                   Some(&Vec::new()),
                   Some(true),
                   Some(&Vec::new()),
-                  Some(56),
-                  Some("page_example".to_string())
+                  Some(0),
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         Some("UsageCosts") => {
             let result = rt.block_on(client.usage_costs(
-                  56,
-                  Some(56),
+                  0,
+                  Some(0),
                   Some(models::UsageCostsBucketWidthParameter::Variant1d),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
-                  Some(56),
-                  Some("page_example".to_string())
+                  Some(0),
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         Some("UsageEmbeddings") => {
             let result = rt.block_on(client.usage_embeddings(
-                  56,
-                  Some(56),
+                  0,
+                  Some(0),
                   Some(models::UsageAudioSpeechesBucketWidthParameter::Variant1m),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
-                  Some(56),
-                  Some("page_example".to_string())
+                  Some(0),
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         Some("UsageImages") => {
             let result = rt.block_on(client.usage_images(
-                  56,
-                  Some(56),
+                  0,
+                  Some(0),
                   Some(models::UsageAudioSpeechesBucketWidthParameter::Variant1m),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
@@ -1084,66 +1090,70 @@ fn main() {
                   Some(&Vec::new()),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
-                  Some(56),
-                  Some("page_example".to_string())
+                  Some(0),
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         Some("UsageModerations") => {
             let result = rt.block_on(client.usage_moderations(
-                  56,
-                  Some(56),
+                  0,
+                  Some(0),
                   Some(models::UsageAudioSpeechesBucketWidthParameter::Variant1m),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
-                  Some(56),
-                  Some("page_example".to_string())
+                  Some(0),
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         Some("UsageVectorStores") => {
             let result = rt.block_on(client.usage_vector_stores(
-                  56,
-                  Some(56),
+                  0,
+                  Some(0),
                   Some(models::UsageAudioSpeechesBucketWidthParameter::Variant1m),
                   Some(&Vec::new()),
                   Some(&Vec::new()),
-                  Some(56),
-                  Some("page_example".to_string())
+                  Some(0),
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         Some("ListUsers") => {
             let result = rt.block_on(client.list_users(
-                  Some(56),
-                  Some("after_example".to_string())
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("DeleteUser") => {
-            let result = rt.block_on(client.delete_user(
-                  "user_id_example".to_string()
+                  Some(0),
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         /* Disabled because there's no example.
-        Some("ModifyUser") => {
-            let result = rt.block_on(client.modify_user(
-                  "user_id_example".to_string(),
+        Some("DeleteUser") => {
+            let result = rt.block_on(client.delete_user(
                   ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         */
-        Some("RetrieveUser") => {
-            let result = rt.block_on(client.retrieve_user(
-                  "user_id_example".to_string()
+        /* Disabled because there's no example.
+        Some("ModifyUser") => {
+            let result = rt.block_on(client.modify_user(
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
+        Some("RetrieveUser") => {
+            let result = rt.block_on(client.retrieve_user(
+                  ???
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        */
         /* Disabled because there's no example.
         Some("CreateVectorStore") => {
             let result = rt.block_on(client.create_vector_store(
@@ -1154,10 +1164,10 @@ fn main() {
         */
         Some("ListVectorStores") => {
             let result = rt.block_on(client.list_vector_stores(
-                  Some(56),
+                  Some(0),
                   Some(models::ListAssistantsOrderParameter::Asc),
-                  Some("after_example".to_string()),
-                  Some("before_example".to_string())
+                  None,
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
@@ -1179,52 +1189,62 @@ fn main() {
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         */
+        /* Disabled because there's no example.
         Some("DeleteVectorStore") => {
             let result = rt.block_on(client.delete_vector_store(
-                  "vector_store_id_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetVectorStore") => {
-            let result = rt.block_on(client.get_vector_store(
-                  "vector_store_id_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("ListVectorStoreFiles") => {
-            let result = rt.block_on(client.list_vector_store_files(
-                  "vector_store_id_example".to_string(),
-                  Some(56),
-                  Some(models::ListAssistantsOrderParameter::Asc),
-                  Some("after_example".to_string()),
-                  Some("before_example".to_string()),
-                  Some(models::ListFilesInVectorStoreBatchFilterParameter::InProgress)
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        /* Disabled because there's no example.
-        Some("ModifyVectorStore") => {
-            let result = rt.block_on(client.modify_vector_store(
-                  "vector_store_id_example".to_string(),
                   ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
         */
+        /* Disabled because there's no example.
+        Some("GetVectorStore") => {
+            let result = rt.block_on(client.get_vector_store(
+                  ???
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        */
+        /* Disabled because there's no example.
+        Some("ListVectorStoreFiles") => {
+            let result = rt.block_on(client.list_vector_store_files(
+                  ???,
+                  Some(0),
+                  Some(models::ListAssistantsOrderParameter::Asc),
+                  None,
+                  None,
+                  Some(models::ListFilesInVectorStoreBatchFilterParameter::InProgress)
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        */
+        /* Disabled because there's no example.
+        Some("ModifyVectorStore") => {
+            let result = rt.block_on(client.modify_vector_store(
+                  ???,
+                  ???
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        */
+        /* Disabled because there's no example.
         Some("CancelVectorStoreFileBatch") => {
             let result = rt.block_on(client.cancel_vector_store_file_batch(
-                  "vector_store_id_example".to_string(),
-                  "batch_id_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("DeleteVectorStoreFile") => {
             let result = rt.block_on(client.delete_vector_store_file(
-                  "vector_store_id_example".to_string(),
-                  "file_id_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
         Some("GetVectorStoreFile") => {
             let result = rt.block_on(client.get_vector_store_file(
                   "vs_abc123".to_string(),
@@ -1239,18 +1259,20 @@ fn main() {
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        /* Disabled because there's no example.
         Some("ListFilesInVectorStoreBatch") => {
             let result = rt.block_on(client.list_files_in_vector_store_batch(
-                  "vector_store_id_example".to_string(),
-                  "batch_id_example".to_string(),
-                  Some(56),
+                  ???,
+                  ???,
+                  Some(0),
                   Some(models::ListAssistantsOrderParameter::Asc),
-                  Some("after_example".to_string()),
-                  Some("before_example".to_string()),
+                  None,
+                  None,
                   Some(models::ListFilesInVectorStoreBatchFilterParameter::InProgress)
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
         _ => {
             panic!("Invalid operation provided")
         }

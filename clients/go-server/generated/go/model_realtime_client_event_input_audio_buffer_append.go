@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // RealtimeClientEventInputAudioBufferAppend - Send this event to append audio bytes to the input audio buffer. The audio  buffer is temporary storage you can write to and later commit. In Server VAD  mode, the audio buffer is used to detect speech and the server will decide  when to commit. When Server VAD is disabled, you must commit the audio buffer manually.  The client may choose how much audio to place in each event up to a maximum  of 15 MiB, for example streaming smaller chunks from the client may allow the  VAD to be more responsive. Unlike made other client events, the server will  not send a confirmation response to this event. 
@@ -26,19 +31,76 @@ type RealtimeClientEventInputAudioBufferAppend struct {
 	// Base64-encoded audio bytes. This must be in the format specified by the  `input_audio_format` field in the session configuration. 
 	Audio string `json:"audio"`
 }
-
-// AssertRealtimeClientEventInputAudioBufferAppendRequired checks if the required fields are not zero-ed
-func AssertRealtimeClientEventInputAudioBufferAppendRequired(obj RealtimeClientEventInputAudioBufferAppend) error {
-	elements := map[string]interface{}{
-		"type": obj.Type,
-		"audio": obj.Audio,
+// UnmarshalJSON validates required property keys then unmarshals into RealtimeClientEventInputAudioBufferAppend
+func (o *RealtimeClientEventInputAudioBufferAppend) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"type",
+		"audio",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"type": false,
+		"audio": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"event_id": {},
+		"type": {},
+		"audio": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RealtimeClientEventInputAudioBufferAppend
+
+	if value, exists := allProperties["event_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.EventId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["audio"]; exists {
+		if err = json.Unmarshal(value, &decoded.Audio); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRealtimeClientEventInputAudioBufferAppendRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertRealtimeClientEventInputAudioBufferAppendRequired(obj RealtimeClientEventInputAudioBufferAppend) error {
 	return nil
 }
 

@@ -43,22 +43,22 @@ static project_t *project_create_internal(
     char *id,
     openai_api_project_OBJECT_e object,
     char *name,
-    int created_at,
-    int archived_at,
+    int *created_at,
+    int *archived_at,
     openai_api_project_STATUS_e status
     ) {
     project_t *project_local_var = malloc(sizeof(project_t));
     if (!project_local_var) {
         return NULL;
     }
+    memset(project_local_var, 0, sizeof(project_t));
+    project_local_var->_library_owned = 1;
     project_local_var->id = id;
     project_local_var->object = object;
     project_local_var->name = name;
     project_local_var->created_at = created_at;
     project_local_var->archived_at = archived_at;
     project_local_var->status = status;
-
-    project_local_var->_library_owned = 1;
     return project_local_var;
 }
 
@@ -66,18 +66,33 @@ __attribute__((deprecated)) project_t *project_create(
     char *id,
     openai_api_project_OBJECT_e object,
     char *name,
-    int created_at,
-    int archived_at,
+    int *created_at,
+    int *archived_at,
     openai_api_project_STATUS_e status
     ) {
-    return project_create_internal (
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    int *archived_at_copy = NULL;
+    if (archived_at) {
+        archived_at_copy = malloc(sizeof(int));
+        if (archived_at_copy) *archived_at_copy = *archived_at;
+    }
+    project_t *result = project_create_internal (
         id,
         object,
         name,
-        created_at,
-        archived_at,
+        created_at_copy,
+        archived_at_copy,
         status
         );
+    if (!result) {
+        free(created_at_copy);
+        free(archived_at_copy);
+    }
+    return result;
 }
 
 void project_free(project_t *project) {
@@ -96,6 +111,14 @@ void project_free(project_t *project) {
     if (project->name) {
         free(project->name);
         project->name = NULL;
+    }
+    if (project->created_at) {
+        free(project->created_at);
+        project->created_at = NULL;
+    }
+    if (project->archived_at) {
+        free(project->archived_at);
+        project->archived_at = NULL;
     }
     free(project);
 }
@@ -135,14 +158,14 @@ cJSON *project_convertToJSON(project_t *project) {
     if (!project->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", project->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *project->created_at) == NULL) {
     goto fail; //Numeric
     }
 
 
     // project->archived_at
     if(project->archived_at) {
-    if(cJSON_AddNumberToObject(item, "archived_at", project->archived_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "archived_at", *project->archived_at) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -168,6 +191,16 @@ fail:
 project_t *project_parseFromJSON(cJSON *projectJSON){
 
     project_t *project_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    // define the local variable for project->created_at
+    int *created_at_local_var = NULL;
+
+    // define the local variable for project->archived_at
+    int *archived_at_local_var = NULL;
 
     // project->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(projectJSON, "id");
@@ -230,6 +263,12 @@ project_t *project_parseFromJSON(cJSON *projectJSON){
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
     // project->archived_at
     cJSON *archived_at = cJSON_GetObjectItemCaseSensitive(projectJSON, "archived_at");
@@ -241,6 +280,12 @@ project_t *project_parseFromJSON(cJSON *projectJSON){
     {
     goto end; //Numeric
     }
+    archived_at_local_var = malloc(sizeof(int));
+    if(!archived_at_local_var)
+    {
+        goto end;
+    }
+    *archived_at_local_var = archived_at->valuedouble;
     }
 
     // project->status
@@ -261,17 +306,40 @@ project_t *project_parseFromJSON(cJSON *projectJSON){
     statusVariable = project_status_FromString(status->valuestring);
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     project_local_var = project_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         objectVariable,
-        strdup(name->valuestring),
-        created_at->valuedouble,
-        archived_at ? archived_at->valuedouble : 0,
+        name_local_str,
+        created_at_local_var,
+        archived_at_local_var,
         statusVariable
         );
 
+    if (!project_local_var) {
+        goto end;
+    }
+
     return project_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
+    if (archived_at_local_var) {
+        free(archived_at_local_var);
+        archived_at_local_var = NULL;
+    }
     return NULL;
 
 }

@@ -1,4 +1,4 @@
-# # CreateFineTuningJobRequestModel
+# CreateFineTuningJobRequestModel
 
 ## Properties
 

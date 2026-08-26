@@ -49,7 +49,7 @@ class RealtimeServerEventRateLimitsUpdatedRateLimitsInner
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['requests', 'tokens'])]
     #[Assert\Type("string")]
     protected ?string $name = null;
@@ -60,7 +60,7 @@ class RealtimeServerEventRateLimitsUpdatedRateLimitsInner
      * @var int|null
      * @SerializedName("limit")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $limit = null;
 
@@ -70,7 +70,7 @@ class RealtimeServerEventRateLimitsUpdatedRateLimitsInner
      * @var int|null
      * @SerializedName("remaining")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $remaining = null;
 
@@ -80,7 +80,7 @@ class RealtimeServerEventRateLimitsUpdatedRateLimitsInner
      * @var float|null
      * @SerializedName("reset_seconds")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     protected ?float $resetSeconds = null;
 
@@ -109,12 +109,12 @@ class RealtimeServerEventRateLimitsUpdatedRateLimitsInner
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the rate limit (`requests`, `tokens`).
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the rate limit (`requests`, `tokens`).
+     *
+     * @return $this
+     */
     public function setName(?string $name = null): self
     {
         $this->name = $name;
@@ -136,12 +136,12 @@ class RealtimeServerEventRateLimitsUpdatedRateLimitsInner
     }
 
     /**
-    * Sets limit.
-    *
-    * @param int|null $limit  The maximum allowed value for the rate limit.
-    *
-    * @return $this
-    */
+     * Sets limit.
+     *
+     * @param int|null $limit  The maximum allowed value for the rate limit.
+     *
+     * @return $this
+     */
     public function setLimit(?int $limit = null): self
     {
         $this->limit = $limit;
@@ -163,12 +163,12 @@ class RealtimeServerEventRateLimitsUpdatedRateLimitsInner
     }
 
     /**
-    * Sets remaining.
-    *
-    * @param int|null $remaining  The remaining value before the limit is reached.
-    *
-    * @return $this
-    */
+     * Sets remaining.
+     *
+     * @param int|null $remaining  The remaining value before the limit is reached.
+     *
+     * @return $this
+     */
     public function setRemaining(?int $remaining = null): self
     {
         $this->remaining = $remaining;
@@ -190,12 +190,12 @@ class RealtimeServerEventRateLimitsUpdatedRateLimitsInner
     }
 
     /**
-    * Sets resetSeconds.
-    *
-    * @param float|null $resetSeconds  Seconds until the rate limit resets.
-    *
-    * @return $this
-    */
+     * Sets resetSeconds.
+     *
+     * @param float|null $resetSeconds  Seconds until the rate limit resets.
+     *
+     * @return $this
+     */
     public function setResetSeconds(?float $resetSeconds = null): self
     {
         $this->resetSeconds = $resetSeconds;

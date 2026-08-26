@@ -51,7 +51,7 @@ class RealtimeSessionCreateResponseClientSecret
      * @var string|null
      * @SerializedName("value")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $value = null;
 
@@ -61,7 +61,7 @@ class RealtimeSessionCreateResponseClientSecret
      * @var int|null
      * @SerializedName("expires_at")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $expiresAt = null;
 
@@ -88,12 +88,12 @@ class RealtimeSessionCreateResponseClientSecret
     }
 
     /**
-    * Sets value.
-    *
-    * @param string|null $value  Ephemeral key usable in client environments to authenticate connections to the Realtime API. Use this in client-side environments rather than a standard API token, which should only be used server-side.
-    *
-    * @return $this
-    */
+     * Sets value.
+     *
+     * @param string|null $value  Ephemeral key usable in client environments to authenticate connections to the Realtime API. Use this in client-side environments rather than a standard API token, which should only be used server-side.
+     *
+     * @return $this
+     */
     public function setValue(?string $value = null): self
     {
         $this->value = $value;
@@ -115,12 +115,12 @@ class RealtimeSessionCreateResponseClientSecret
     }
 
     /**
-    * Sets expiresAt.
-    *
-    * @param int|null $expiresAt  Timestamp for when the token expires. Currently, all tokens expire after one minute.
-    *
-    * @return $this
-    */
+     * Sets expiresAt.
+     *
+     * @param int|null $expiresAt  Timestamp for when the token expires. Currently, all tokens expire after one minute.
+     *
+     * @return $this
+     */
     public function setExpiresAt(?int $expiresAt = null): self
     {
         $this->expiresAt = $expiresAt;

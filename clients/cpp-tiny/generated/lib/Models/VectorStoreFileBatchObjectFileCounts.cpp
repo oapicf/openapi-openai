@@ -148,7 +148,7 @@ VectorStoreFileBatchObject_file_counts::getInProgress()
 }
 
 void
-VectorStoreFileBatchObject_file_counts::setInProgress(int  in_progress)
+VectorStoreFileBatchObject_file_counts::setInProgress(int in_progress)
 {
 	this->in_progress = in_progress;
 }
@@ -160,7 +160,7 @@ VectorStoreFileBatchObject_file_counts::getCompleted()
 }
 
 void
-VectorStoreFileBatchObject_file_counts::setCompleted(int  completed)
+VectorStoreFileBatchObject_file_counts::setCompleted(int completed)
 {
 	this->completed = completed;
 }
@@ -172,7 +172,7 @@ VectorStoreFileBatchObject_file_counts::getFailed()
 }
 
 void
-VectorStoreFileBatchObject_file_counts::setFailed(int  failed)
+VectorStoreFileBatchObject_file_counts::setFailed(int failed)
 {
 	this->failed = failed;
 }
@@ -184,7 +184,7 @@ VectorStoreFileBatchObject_file_counts::getCancelled()
 }
 
 void
-VectorStoreFileBatchObject_file_counts::setCancelled(int  cancelled)
+VectorStoreFileBatchObject_file_counts::setCancelled(int cancelled)
 {
 	this->cancelled = cancelled;
 }
@@ -196,7 +196,7 @@ VectorStoreFileBatchObject_file_counts::getTotal()
 }
 
 void
-VectorStoreFileBatchObject_file_counts::setTotal(int  total)
+VectorStoreFileBatchObject_file_counts::setTotal(int total)
 {
 	this->total = total;
 }

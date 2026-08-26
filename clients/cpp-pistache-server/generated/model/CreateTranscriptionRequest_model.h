@@ -31,7 +31,7 @@ class  CreateTranscriptionRequest_model
 {
 public:
     CreateTranscriptionRequest_model();
-    virtual ~CreateTranscriptionRequest_model() = default;
+    virtual ~CreateTranscriptionRequest_model();
 
 
     /// <summary>

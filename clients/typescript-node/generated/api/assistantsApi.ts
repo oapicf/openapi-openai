@@ -121,8 +121,8 @@ export class AssistantsApi {
      */
     public async cancelRun (threadId: string, runId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: RunObject;  }> {
         const localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}/cancel'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{run_id}', encodeURIComponent(String(runId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -272,7 +272,7 @@ export class AssistantsApi {
      */
     public async createMessage (threadId: string, createMessageRequest: CreateMessageRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: MessageObject;  }> {
         const localVarPath = this.basePath + '/threads/{thread_id}/messages'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -352,7 +352,7 @@ export class AssistantsApi {
      */
     public async createRun (threadId: string, createRunRequest: CreateRunRequest, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: RunObject;  }> {
         const localVarPath = this.basePath + '/threads/{thread_id}/runs'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -573,7 +573,7 @@ export class AssistantsApi {
      */
     public async deleteAssistant (assistantId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DeleteAssistantResponse;  }> {
         const localVarPath = this.basePath + '/assistants/{assistant_id}'
-            .replace('{' + 'assistant_id' + '}', encodeURIComponent(String(assistantId)));
+            .replace('{assistant_id}', encodeURIComponent(String(assistantId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -646,8 +646,8 @@ export class AssistantsApi {
      */
     public async deleteMessage (threadId: string, messageId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DeleteMessageResponse;  }> {
         const localVarPath = this.basePath + '/threads/{thread_id}/messages/{message_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'message_id' + '}', encodeURIComponent(String(messageId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{message_id}', encodeURIComponent(String(messageId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -724,7 +724,7 @@ export class AssistantsApi {
      */
     public async deleteThread (threadId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DeleteThreadResponse;  }> {
         const localVarPath = this.basePath + '/threads/{thread_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -796,7 +796,7 @@ export class AssistantsApi {
      */
     public async getAssistant (assistantId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AssistantObject;  }> {
         const localVarPath = this.basePath + '/assistants/{assistant_id}'
-            .replace('{' + 'assistant_id' + '}', encodeURIComponent(String(assistantId)));
+            .replace('{assistant_id}', encodeURIComponent(String(assistantId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -869,8 +869,8 @@ export class AssistantsApi {
      */
     public async getMessage (threadId: string, messageId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: MessageObject;  }> {
         const localVarPath = this.basePath + '/threads/{thread_id}/messages/{message_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'message_id' + '}', encodeURIComponent(String(messageId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{message_id}', encodeURIComponent(String(messageId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -948,8 +948,8 @@ export class AssistantsApi {
      */
     public async getRun (threadId: string, runId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: RunObject;  }> {
         const localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{run_id}', encodeURIComponent(String(runId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1029,9 +1029,9 @@ export class AssistantsApi {
      */
     public async getRunStep (threadId: string, runId: string, stepId: string, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: RunStepObject;  }> {
         const localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}/steps/{step_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)))
-            .replace('{' + 'step_id' + '}', encodeURIComponent(String(stepId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{run_id}', encodeURIComponent(String(runId)))
+            .replace('{step_id}', encodeURIComponent(String(stepId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1117,7 +1117,7 @@ export class AssistantsApi {
      */
     public async getThread (threadId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ThreadObject;  }> {
         const localVarPath = this.basePath + '/threads/{thread_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1279,7 +1279,7 @@ export class AssistantsApi {
      */
     public async listMessages (threadId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, runId?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ListMessagesResponse;  }> {
         const localVarPath = this.basePath + '/threads/{thread_id}/messages'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1377,8 +1377,8 @@ export class AssistantsApi {
      */
     public async listRunSteps (threadId: string, runId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ListRunStepsResponse;  }> {
         const localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}/steps'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{run_id}', encodeURIComponent(String(runId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1479,7 +1479,7 @@ export class AssistantsApi {
      */
     public async listRuns (threadId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ListRunsResponse;  }> {
         const localVarPath = this.basePath + '/threads/{thread_id}/runs'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1568,7 +1568,7 @@ export class AssistantsApi {
      */
     public async modifyAssistant (assistantId: string, modifyAssistantRequest: ModifyAssistantRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AssistantObject;  }> {
         const localVarPath = this.basePath + '/assistants/{assistant_id}'
-            .replace('{' + 'assistant_id' + '}', encodeURIComponent(String(assistantId)));
+            .replace('{assistant_id}', encodeURIComponent(String(assistantId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1648,8 +1648,8 @@ export class AssistantsApi {
      */
     public async modifyMessage (threadId: string, messageId: string, modifyMessageRequest: ModifyMessageRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: MessageObject;  }> {
         const localVarPath = this.basePath + '/threads/{thread_id}/messages/{message_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'message_id' + '}', encodeURIComponent(String(messageId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{message_id}', encodeURIComponent(String(messageId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1734,8 +1734,8 @@ export class AssistantsApi {
      */
     public async modifyRun (threadId: string, runId: string, modifyRunRequest: ModifyRunRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: RunObject;  }> {
         const localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{run_id}', encodeURIComponent(String(runId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1819,7 +1819,7 @@ export class AssistantsApi {
      */
     public async modifyThread (threadId: string, modifyThreadRequest: ModifyThreadRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ThreadObject;  }> {
         const localVarPath = this.basePath + '/threads/{thread_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -1899,8 +1899,8 @@ export class AssistantsApi {
      */
     public async submitToolOuputsToRun (threadId: string, runId: string, submitToolOutputsRunRequest: SubmitToolOutputsRunRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: RunObject;  }> {
         const localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}/submit_tool_outputs'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)));
+            .replace('{thread_id}', encodeURIComponent(String(threadId)))
+            .replace('{run_id}', encodeURIComponent(String(runId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];

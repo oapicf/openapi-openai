@@ -62,10 +62,8 @@ class FileSearchRankingOptions {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "FileSearchRankingOptions[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "FileSearchRankingOptions[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'score_threshold'), 'Required key "FileSearchRankingOptions[score_threshold]" is missing from JSON.');
+        assert(json[r'score_threshold'] != null, 'Required key "FileSearchRankingOptions[score_threshold]" has a null value in JSON.');
         return true;
       }());
 
@@ -124,29 +122,29 @@ class FileSearchRankingOptions {
 }
 
 /// The ranker to use for the file search. If not specified will use the `auto` ranker.
-class FileSearchRankingOptionsRankerEnum {
-  /// Instantiate a new enum with the provided [value].
-  const FileSearchRankingOptionsRankerEnum._(this.value);
+enum FileSearchRankingOptionsRankerEnum {
+  auto._(r'auto'),
+  default20240821._(r'default_2024_08_21'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const FileSearchRankingOptionsRankerEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const auto = FileSearchRankingOptionsRankerEnum._(r'auto');
-  static const default20240821 = FileSearchRankingOptionsRankerEnum._(r'default_2024_08_21');
-
-  /// List of all possible values in this [enum][FileSearchRankingOptionsRankerEnum].
-  static const values = <FileSearchRankingOptionsRankerEnum>[
-    auto,
-    default20240821,
-  ];
-
+  /// Returns the instance of [FileSearchRankingOptionsRankerEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static FileSearchRankingOptionsRankerEnum? fromJson(dynamic value) => FileSearchRankingOptionsRankerEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [FileSearchRankingOptionsRankerEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<FileSearchRankingOptionsRankerEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <FileSearchRankingOptionsRankerEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -168,9 +166,10 @@ class FileSearchRankingOptionsRankerEnumTypeTransformer {
 
   const FileSearchRankingOptionsRankerEnumTypeTransformer._();
 
-  String encode(FileSearchRankingOptionsRankerEnum data) => data.value;
+  String encode(FileSearchRankingOptionsRankerEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a FileSearchRankingOptionsRankerEnum.
+  /// Returns the instance of [FileSearchRankingOptionsRankerEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -179,6 +178,9 @@ class FileSearchRankingOptionsRankerEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   FileSearchRankingOptionsRankerEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is FileSearchRankingOptionsRankerEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'auto': return FileSearchRankingOptionsRankerEnum.auto;
@@ -192,7 +194,7 @@ class FileSearchRankingOptionsRankerEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [FileSearchRankingOptionsRankerEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static FileSearchRankingOptionsRankerEnumTypeTransformer? _instance;
 }
 

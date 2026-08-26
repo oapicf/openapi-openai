@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -10,22 +11,23 @@ import org.openapitools.model.AuditLogActorUser;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * The API Key used to perform the audit logged action.
  */
 
 @Schema(name = "AuditLogActorApiKey", description = "The API Key used to perform the audit logged action.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class AuditLogActorApiKey {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String id;
 
   /**
@@ -63,10 +65,13 @@ public class AuditLogActorApiKey {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable TypeEnum type;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogActorUser user;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogActorServiceAccount serviceAccount;
 
   public AuditLogActorApiKey id(@Nullable String id) {
@@ -85,6 +90,7 @@ public class AuditLogActorApiKey {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(@Nullable String id) {
     this.id = id;
   }
@@ -105,6 +111,7 @@ public class AuditLogActorApiKey {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(@Nullable TypeEnum type) {
     this.type = type;
   }
@@ -125,6 +132,7 @@ public class AuditLogActorApiKey {
     return user;
   }
 
+  @JsonProperty("user")
   public void setUser(@Nullable AuditLogActorUser user) {
     this.user = user;
   }
@@ -145,6 +153,7 @@ public class AuditLogActorApiKey {
     return serviceAccount;
   }
 
+  @JsonProperty("service_account")
   public void setServiceAccount(@Nullable AuditLogActorServiceAccount serviceAccount) {
     this.serviceAccount = serviceAccount;
   }
@@ -185,11 +194,8 @@ public class AuditLogActorApiKey {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

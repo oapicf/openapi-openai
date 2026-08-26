@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.ChatCompletionFunctions
 import org.openapitools.model.ChatCompletionRequestMessage
 import org.openapitools.model.ChatCompletionStreamOptions
@@ -41,7 +44,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param maxCompletionTokens An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). 
  * @param n How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.
  * @param modalities Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` 
- * @param prediction 
+ * @param prediction Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
  * @param audio 
  * @param presencePenalty Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. 
  * @param responseFormat 
@@ -63,122 +66,170 @@ data class CreateChatCompletionRequest(
 
     @field:Valid
     @get:Size(min=1)
-    @Schema(example = "null", required = true, description = "A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). ")
+    @Schema(required = true, description = "A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). ")
+    @param:JsonProperty("messages")
     @get:JsonProperty("messages", required = true) val messages: kotlin.collections.List<ChatCompletionRequestMessage>,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("model")
     @get:JsonProperty("model", required = true) val model: CreateChatCompletionRequestModel,
 
-    @Schema(example = "null", description = "Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. ")
+    @Schema(description = "Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. ")
+    @param:JsonProperty("store")
     @get:JsonProperty("store") val store: kotlin.Boolean? = false,
 
-    @Schema(example = "null", description = "**o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. ")
+    @Schema(description = "**o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("reasoning_effort")
     @get:JsonProperty("reasoning_effort") val reasoningEffort: CreateChatCompletionRequest.ReasoningEffort? = ReasoningEffort.medium,
 
-    @Schema(example = "null", description = "Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). ")
+    @Schema(description = "Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). ")
+    @param:JsonProperty("metadata")
     @get:JsonProperty("metadata") val metadata: kotlin.collections.Map<kotlin.String, kotlin.String>? = null,
 
     @get:DecimalMin(value="-2")
     @get:DecimalMax(value="2")
-    @Schema(example = "null", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. ")
+    @Schema(description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. ")
+    @param:JsonProperty("frequency_penalty")
     @get:JsonProperty("frequency_penalty") val frequencyPenalty: java.math.BigDecimal? = java.math.BigDecimal("0"),
 
-    @Schema(example = "null", description = "Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. ")
+    @Schema(description = "Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. ")
+    @param:JsonProperty("logit_bias")
     @get:JsonProperty("logit_bias") val logitBias: kotlin.collections.Map<kotlin.String, kotlin.Int>? = null,
 
-    @Schema(example = "null", description = "Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. ")
+    @Schema(description = "Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. ")
+    @param:JsonProperty("logprobs")
     @get:JsonProperty("logprobs") val logprobs: kotlin.Boolean? = false,
 
     @get:Min(value=0)
     @get:Max(value=20)
-    @Schema(example = "null", description = "An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. ")
+    @Schema(description = "An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. ")
+    @param:JsonProperty("top_logprobs")
     @get:JsonProperty("top_logprobs") val topLogprobs: kotlin.Int? = null,
 
-    @Schema(example = "null", description = "The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning). ")
+    @Schema(description = "The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning). ")
     @Deprecated(message = "")
+    @param:JsonProperty("max_tokens")
     @get:JsonProperty("max_tokens") val maxTokens: kotlin.Int? = null,
 
-    @Schema(example = "null", description = "An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). ")
+    @Schema(description = "An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). ")
+    @param:JsonProperty("max_completion_tokens")
     @get:JsonProperty("max_completion_tokens") val maxCompletionTokens: kotlin.Int? = null,
 
     @get:Min(value=1)
     @get:Max(value=128)
     @Schema(example = "1", description = "How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.")
+    @param:JsonProperty("n")
     @get:JsonProperty("n") val n: kotlin.Int? = 1,
 
-    @Schema(example = "null", description = "Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` ")
+    @Schema(description = "Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` ")
+    @param:JsonProperty("modalities")
     @get:JsonProperty("modalities") val modalities: kotlin.collections.List<CreateChatCompletionRequest.Modalities>? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. ")
+    @param:JsonProperty("prediction")
     @get:JsonProperty("prediction") val prediction: PredictionContent? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @param:JsonProperty("audio")
     @get:JsonProperty("audio") val audio: CreateChatCompletionRequestAudio? = null,
 
     @get:DecimalMin(value="-2")
     @get:DecimalMax(value="2")
-    @Schema(example = "null", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. ")
+    @Schema(description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. ")
+    @param:JsonProperty("presence_penalty")
     @get:JsonProperty("presence_penalty") val presencePenalty: java.math.BigDecimal? = java.math.BigDecimal("0"),
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("response_format")
     @get:JsonProperty("response_format") val responseFormat: CreateChatCompletionRequestResponseFormat? = null,
 
     @get:Min(value=-9223372036854776000)
     @get:Max(value=9223372036854776000)
-    @Schema(example = "null", description = "This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. ")
+    @Schema(description = "This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. ")
+    @param:JsonProperty("seed")
     @get:JsonProperty("seed") val seed: kotlin.Int? = null,
 
-    @Schema(example = "null", description = "Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. ")
+    @Schema(description = "Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. ")
+    @param:JsonProperty("service_tier")
     @get:JsonProperty("service_tier") val serviceTier: CreateChatCompletionRequest.ServiceTier? = ServiceTier.auto,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("stop")
     @get:JsonProperty("stop") val stop: CreateChatCompletionRequestStop? = null,
 
-    @Schema(example = "null", description = "If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). ")
+    @Schema(description = "If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). ")
+    @param:JsonProperty("stream")
     @get:JsonProperty("stream") val stream: kotlin.Boolean? = false,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @param:JsonProperty("stream_options")
     @get:JsonProperty("stream_options") val streamOptions: ChatCompletionStreamOptions? = null,
 
     @get:DecimalMin(value="0")
     @get:DecimalMax(value="2")
     @Schema(example = "1", description = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both. ")
+    @param:JsonProperty("temperature")
     @get:JsonProperty("temperature") val temperature: java.math.BigDecimal? = java.math.BigDecimal("1"),
 
     @get:DecimalMin(value="0")
     @get:DecimalMax(value="1")
     @Schema(example = "1", description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or `temperature` but not both. ")
+    @param:JsonProperty("top_p")
     @get:JsonProperty("top_p") val topP: java.math.BigDecimal? = java.math.BigDecimal("1"),
 
     @field:Valid
-    @Schema(example = "null", description = "A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. ")
+    @Schema(description = "A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("tools")
     @get:JsonProperty("tools") val tools: kotlin.collections.List<ChatCompletionTool>? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("tool_choice")
     @get:JsonProperty("tool_choice") val toolChoice: ChatCompletionToolChoiceOption? = null,
 
-    @Schema(example = "null", description = "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.")
+    @Schema(description = "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("parallel_tool_calls")
     @get:JsonProperty("parallel_tool_calls") val parallelToolCalls: kotlin.Boolean? = true,
 
     @Schema(example = "user-1234", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("user")
     @get:JsonProperty("user") val user: kotlin.String? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
     @Deprecated(message = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("function_call")
     @get:JsonProperty("function_call") val functionCall: CreateChatCompletionRequestFunctionCall? = null,
 
     @field:Valid
     @get:Size(min=1,max=128) 
-    @Schema(example = "null", description = "Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for. ")
+    @Schema(description = "Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for. ")
     @Deprecated(message = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("functions")
     @get:JsonProperty("functions") val functions: kotlin.collections.List<ChatCompletionFunctions>? = null
 ) {
 
@@ -197,7 +248,7 @@ data class CreateChatCompletionRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): ReasoningEffort {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateChatCompletionRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ReasoningEffort'")
             }
         }
     }
@@ -216,7 +267,7 @@ data class CreateChatCompletionRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): Modalities {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateChatCompletionRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Modalities'")
             }
         }
     }
@@ -235,7 +286,7 @@ data class CreateChatCompletionRequest(
             @JsonCreator
             fun forValue(value: kotlin.String): ServiceTier {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateChatCompletionRequest'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ServiceTier'")
             }
         }
     }

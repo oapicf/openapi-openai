@@ -165,7 +165,7 @@ ListAuditLogsResponse::getObject()
 }
 
 void
-ListAuditLogsResponse::setObject(std::string  object)
+ListAuditLogsResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -177,7 +177,7 @@ ListAuditLogsResponse::getData()
 }
 
 void
-ListAuditLogsResponse::setData(std::list <AuditLog> data)
+ListAuditLogsResponse::setData(std::list<AuditLog> data)
 {
 	this->data = data;
 }
@@ -189,7 +189,7 @@ ListAuditLogsResponse::getFirstId()
 }
 
 void
-ListAuditLogsResponse::setFirstId(std::string  first_id)
+ListAuditLogsResponse::setFirstId(std::string first_id)
 {
 	this->first_id = first_id;
 }
@@ -201,7 +201,7 @@ ListAuditLogsResponse::getLastId()
 }
 
 void
-ListAuditLogsResponse::setLastId(std::string  last_id)
+ListAuditLogsResponse::setLastId(std::string last_id)
 {
 	this->last_id = last_id;
 }
@@ -213,7 +213,7 @@ ListAuditLogsResponse::isHasMore()
 }
 
 void
-ListAuditLogsResponse::setHasMore(bool  has_more)
+ListAuditLogsResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }

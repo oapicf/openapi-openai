@@ -27,7 +27,8 @@ type AssistantToolsFileSearchFileSearch struct {
 	RankingOptions FileSearchRankingOptions `json:"ranking_options,omitempty"`
 }
 
-// AssertAssistantToolsFileSearchFileSearchRequired checks if the required fields are not zero-ed
+// AssertAssistantToolsFileSearchFileSearchRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertAssistantToolsFileSearchFileSearchRequired(obj AssistantToolsFileSearchFileSearch) error {
 	if err := AssertFileSearchRankingOptionsRequired(obj.RankingOptions); err != nil {
 		return err

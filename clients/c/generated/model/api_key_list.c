@@ -8,7 +8,7 @@
 static api_key_list_t *api_key_list_create_internal(
     char *object,
     list_t *data,
-    int has_more,
+    int *has_more,
     char *first_id,
     char *last_id
     ) {
@@ -16,30 +16,39 @@ static api_key_list_t *api_key_list_create_internal(
     if (!api_key_list_local_var) {
         return NULL;
     }
+    memset(api_key_list_local_var, 0, sizeof(api_key_list_t));
+    api_key_list_local_var->_library_owned = 1;
     api_key_list_local_var->object = object;
     api_key_list_local_var->data = data;
     api_key_list_local_var->has_more = has_more;
     api_key_list_local_var->first_id = first_id;
     api_key_list_local_var->last_id = last_id;
-
-    api_key_list_local_var->_library_owned = 1;
     return api_key_list_local_var;
 }
 
 __attribute__((deprecated)) api_key_list_t *api_key_list_create(
     char *object,
     list_t *data,
-    int has_more,
+    int *has_more,
     char *first_id,
     char *last_id
     ) {
-    return api_key_list_create_internal (
+    int *has_more_copy = NULL;
+    if (has_more) {
+        has_more_copy = malloc(sizeof(int));
+        if (has_more_copy) *has_more_copy = *has_more;
+    }
+    api_key_list_t *result = api_key_list_create_internal (
         object,
         data,
-        has_more,
+        has_more_copy,
         first_id,
         last_id
         );
+    if (!result) {
+        free(has_more_copy);
+    }
+    return result;
 }
 
 void api_key_list_free(api_key_list_t *api_key_list) {
@@ -61,6 +70,10 @@ void api_key_list_free(api_key_list_t *api_key_list) {
         }
         list_freeList(api_key_list->data);
         api_key_list->data = NULL;
+    }
+    if (api_key_list->has_more) {
+        free(api_key_list->has_more);
+        api_key_list->has_more = NULL;
     }
     if (api_key_list->first_id) {
         free(api_key_list->first_id);
@@ -106,7 +119,7 @@ cJSON *api_key_list_convertToJSON(api_key_list_t *api_key_list) {
 
     // api_key_list->has_more
     if(api_key_list->has_more) {
-    if(cJSON_AddBoolToObject(item, "has_more", api_key_list->has_more) == NULL) {
+    if(cJSON_AddBoolToObject(item, "has_more", *api_key_list->has_more) == NULL) {
     goto fail; //Bool
     }
     }
@@ -139,8 +152,17 @@ api_key_list_t *api_key_list_parseFromJSON(cJSON *api_key_listJSON){
 
     api_key_list_t *api_key_list_local_var = NULL;
 
+    char *object_local_str = NULL;
+
     // define the local list for api_key_list->data
     list_t *dataList = NULL;
+
+    // define the local variable for api_key_list->has_more
+    int *has_more_local_var = NULL;
+
+    char *first_id_local_str = NULL;
+
+    char *last_id_local_str = NULL;
 
     // api_key_list->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(api_key_listJSON, "object");
@@ -188,6 +210,12 @@ api_key_list_t *api_key_list_parseFromJSON(cJSON *api_key_listJSON){
     {
     goto end; //Bool
     }
+    has_more_local_var = malloc(sizeof(int));
+    if(!has_more_local_var)
+    {
+        goto end;
+    }
+    *has_more_local_var = has_more->valueint;
     }
 
     // api_key_list->first_id
@@ -215,16 +243,28 @@ api_key_list_t *api_key_list_parseFromJSON(cJSON *api_key_listJSON){
     }
 
 
+    if (object && !cJSON_IsNull(object)) object_local_str = strdup(object->valuestring);
+    if (first_id && !cJSON_IsNull(first_id)) first_id_local_str = strdup(first_id->valuestring);
+    if (last_id && !cJSON_IsNull(last_id)) last_id_local_str = strdup(last_id->valuestring);
+
     api_key_list_local_var = api_key_list_create_internal (
-        object && !cJSON_IsNull(object) ? strdup(object->valuestring) : NULL,
+        object_local_str,
         data ? dataList : NULL,
-        has_more ? has_more->valueint : 0,
-        first_id && !cJSON_IsNull(first_id) ? strdup(first_id->valuestring) : NULL,
-        last_id && !cJSON_IsNull(last_id) ? strdup(last_id->valuestring) : NULL
+        has_more_local_var,
+        first_id_local_str,
+        last_id_local_str
         );
+
+    if (!api_key_list_local_var) {
+        goto end;
+    }
 
     return api_key_list_local_var;
 end:
+    if (object_local_str) {
+        free(object_local_str);
+        object_local_str = NULL;
+    }
     if (dataList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, dataList) {
@@ -233,6 +273,18 @@ end:
         }
         list_freeList(dataList);
         dataList = NULL;
+    }
+    if (has_more_local_var) {
+        free(has_more_local_var);
+        has_more_local_var = NULL;
+    }
+    if (first_id_local_str) {
+        free(first_id_local_str);
+        first_id_local_str = NULL;
+    }
+    if (last_id_local_str) {
+        free(last_id_local_str);
+        last_id_local_str = NULL;
     }
     return NULL;
 

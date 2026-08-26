@@ -32,7 +32,7 @@ class  RealtimeClientEventInputAudioBufferClear
 {
 public:
     RealtimeClientEventInputAudioBufferClear();
-    virtual ~RealtimeClientEventInputAudioBufferClear() = default;
+    virtual ~RealtimeClientEventInputAudioBufferClear();
 
 
     /// <summary>

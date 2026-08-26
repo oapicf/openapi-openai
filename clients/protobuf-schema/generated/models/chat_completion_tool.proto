@@ -23,7 +23,7 @@ message ChatCompletionTool {
     TYPE_FUNCTION = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   FunctionObject function = 307196890;
 

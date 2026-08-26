@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIAuditLog_service_account_deleted::OAIAuditLog_service_account_deleted(QString json) {
+OAIAuditLog_service_account_deleted::OAIAuditLog_service_account_deleted(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -38,7 +38,7 @@ void OAIAuditLog_service_account_deleted::initializeModel() {
     m_id_isValid = false;
 }
 
-void OAIAuditLog_service_account_deleted::fromJson(QString jsonString) {
+void OAIAuditLog_service_account_deleted::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

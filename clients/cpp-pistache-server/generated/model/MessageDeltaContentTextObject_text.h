@@ -34,7 +34,7 @@ class  MessageDeltaContentTextObject_text
 {
 public:
     MessageDeltaContentTextObject_text();
-    virtual ~MessageDeltaContentTextObject_text() = default;
+    virtual ~MessageDeltaContentTextObject_text();
 
 
     /// <summary>

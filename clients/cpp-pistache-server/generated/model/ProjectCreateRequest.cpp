@@ -25,6 +25,8 @@ ProjectCreateRequest::ProjectCreateRequest()
     
 }
 
+ProjectCreateRequest::~ProjectCreateRequest() = default;
+
 void ProjectCreateRequest::validate() const
 {
     std::stringstream msg;

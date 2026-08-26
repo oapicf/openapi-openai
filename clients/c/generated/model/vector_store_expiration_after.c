@@ -24,27 +24,36 @@ openai_api_vector_store_expiration_after_ANCHOR_e vector_store_expiration_after_
 
 static vector_store_expiration_after_t *vector_store_expiration_after_create_internal(
     openai_api_vector_store_expiration_after_ANCHOR_e anchor,
-    int days
+    int *days
     ) {
     vector_store_expiration_after_t *vector_store_expiration_after_local_var = malloc(sizeof(vector_store_expiration_after_t));
     if (!vector_store_expiration_after_local_var) {
         return NULL;
     }
+    memset(vector_store_expiration_after_local_var, 0, sizeof(vector_store_expiration_after_t));
+    vector_store_expiration_after_local_var->_library_owned = 1;
     vector_store_expiration_after_local_var->anchor = anchor;
     vector_store_expiration_after_local_var->days = days;
-
-    vector_store_expiration_after_local_var->_library_owned = 1;
     return vector_store_expiration_after_local_var;
 }
 
 __attribute__((deprecated)) vector_store_expiration_after_t *vector_store_expiration_after_create(
     openai_api_vector_store_expiration_after_ANCHOR_e anchor,
-    int days
+    int *days
     ) {
-    return vector_store_expiration_after_create_internal (
+    int *days_copy = NULL;
+    if (days) {
+        days_copy = malloc(sizeof(int));
+        if (days_copy) *days_copy = *days;
+    }
+    vector_store_expiration_after_t *result = vector_store_expiration_after_create_internal (
         anchor,
-        days
+        days_copy
         );
+    if (!result) {
+        free(days_copy);
+    }
+    return result;
 }
 
 void vector_store_expiration_after_free(vector_store_expiration_after_t *vector_store_expiration_after) {
@@ -56,6 +65,10 @@ void vector_store_expiration_after_free(vector_store_expiration_after_t *vector_
         return ;
     }
     listEntry_t *listEntry;
+    if (vector_store_expiration_after->days) {
+        free(vector_store_expiration_after->days);
+        vector_store_expiration_after->days = NULL;
+    }
     free(vector_store_expiration_after);
 }
 
@@ -76,7 +89,7 @@ cJSON *vector_store_expiration_after_convertToJSON(vector_store_expiration_after
     if (!vector_store_expiration_after->days) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "days", vector_store_expiration_after->days) == NULL) {
+    if(cJSON_AddNumberToObject(item, "days", *vector_store_expiration_after->days) == NULL) {
     goto fail; //Numeric
     }
 
@@ -91,6 +104,9 @@ fail:
 vector_store_expiration_after_t *vector_store_expiration_after_parseFromJSON(cJSON *vector_store_expiration_afterJSON){
 
     vector_store_expiration_after_t *vector_store_expiration_after_local_var = NULL;
+
+    // define the local variable for vector_store_expiration_after->days
+    int *days_local_var = NULL;
 
     // vector_store_expiration_after->anchor
     cJSON *anchor = cJSON_GetObjectItemCaseSensitive(vector_store_expiration_afterJSON, "anchor");
@@ -123,15 +139,30 @@ vector_store_expiration_after_t *vector_store_expiration_after_parseFromJSON(cJS
     {
     goto end; //Numeric
     }
+    days_local_var = malloc(sizeof(int));
+    if(!days_local_var)
+    {
+        goto end;
+    }
+    *days_local_var = days->valuedouble;
+
 
 
     vector_store_expiration_after_local_var = vector_store_expiration_after_create_internal (
         anchorVariable,
-        days->valuedouble
+        days_local_var
         );
+
+    if (!vector_store_expiration_after_local_var) {
+        goto end;
+    }
 
     return vector_store_expiration_after_local_var;
 end:
+    if (days_local_var) {
+        free(days_local_var);
+        days_local_var = NULL;
+    }
     return NULL;
 
 }

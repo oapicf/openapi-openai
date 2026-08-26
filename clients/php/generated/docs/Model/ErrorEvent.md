@@ -1,4 +1,4 @@
-# # ErrorEvent
+# ErrorEvent
 
 ## Properties
 

@@ -111,8 +111,9 @@ class _$FunctionObjectSerializer implements PrimitiveSerializer<FunctionObject> 
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'name':
@@ -125,8 +126,9 @@ class _$FunctionObjectSerializer implements PrimitiveSerializer<FunctionObject> 
         case r'parameters':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
-          ) as BuiltMap<String, JsonObject?>;
+            specifiedType: const FullType.nullable(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+          ) as BuiltMap<String, JsonObject?>?;
+          if (valueDes == null) continue;
           result.parameters.replace(valueDes);
           break;
         case r'strict':

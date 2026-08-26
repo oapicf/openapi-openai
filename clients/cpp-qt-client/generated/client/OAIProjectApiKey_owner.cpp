@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIProjectApiKey_owner::OAIProjectApiKey_owner(QString json) {
+OAIProjectApiKey_owner::OAIProjectApiKey_owner(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIProjectApiKey_owner::initializeModel() {
     m_service_account_isValid = false;
 }
 
-void OAIProjectApiKey_owner::fromJson(QString jsonString) {
+void OAIProjectApiKey_owner::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

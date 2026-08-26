@@ -20,7 +20,7 @@
 #' @field max_completion_tokens An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). integer [optional]
 #' @field n How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs. integer [optional]
 #' @field modalities Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` list(character) [optional]
-#' @field prediction  \link{PredictionContent} [optional]
+#' @field prediction Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. \link{PredictionContent} [optional]
 #' @field audio  \link{CreateChatCompletionRequestAudio} [optional]
 #' @field presence_penalty Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. numeric [optional]
 #' @field response_format  \link{CreateChatCompletionRequestResponseFormat} [optional]
@@ -90,7 +90,7 @@ CreateChatCompletionRequest <- R6::R6Class(
     #' @param max_completion_tokens An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning).
     #' @param n How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.. Default to 1.
     #' @param modalities Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]`
-    #' @param prediction prediction
+    #' @param prediction Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content.
     #' @param audio audio
     #' @param presence_penalty Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.. Default to 0.
     #' @param response_format response_format
@@ -296,11 +296,11 @@ CreateChatCompletionRequest <- R6::R6Class(
       CreateChatCompletionRequestObject <- list()
       if (!is.null(self$`messages`)) {
         CreateChatCompletionRequestObject[["messages"]] <-
-          lapply(self$`messages`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`messages`)
       }
       if (!is.null(self$`model`)) {
         CreateChatCompletionRequestObject[["model"]] <-
-          self$`model`$toSimpleType()
+          self$extractSimpleType(self$`model`)
       }
       if (!is.null(self$`store`)) {
         CreateChatCompletionRequestObject[["store"]] <-
@@ -348,11 +348,11 @@ CreateChatCompletionRequest <- R6::R6Class(
       }
       if (!is.null(self$`prediction`)) {
         CreateChatCompletionRequestObject[["prediction"]] <-
-          self$`prediction`$toSimpleType()
+          self$extractSimpleType(self$`prediction`)
       }
       if (!is.null(self$`audio`)) {
         CreateChatCompletionRequestObject[["audio"]] <-
-          self$`audio`$toSimpleType()
+          self$extractSimpleType(self$`audio`)
       }
       if (!is.null(self$`presence_penalty`)) {
         CreateChatCompletionRequestObject[["presence_penalty"]] <-
@@ -360,7 +360,7 @@ CreateChatCompletionRequest <- R6::R6Class(
       }
       if (!is.null(self$`response_format`)) {
         CreateChatCompletionRequestObject[["response_format"]] <-
-          self$`response_format`$toSimpleType()
+          self$extractSimpleType(self$`response_format`)
       }
       if (!is.null(self$`seed`)) {
         CreateChatCompletionRequestObject[["seed"]] <-
@@ -372,7 +372,7 @@ CreateChatCompletionRequest <- R6::R6Class(
       }
       if (!is.null(self$`stop`)) {
         CreateChatCompletionRequestObject[["stop"]] <-
-          self$`stop`$toSimpleType()
+          self$extractSimpleType(self$`stop`)
       }
       if (!is.null(self$`stream`)) {
         CreateChatCompletionRequestObject[["stream"]] <-
@@ -380,7 +380,7 @@ CreateChatCompletionRequest <- R6::R6Class(
       }
       if (!is.null(self$`stream_options`)) {
         CreateChatCompletionRequestObject[["stream_options"]] <-
-          self$`stream_options`$toSimpleType()
+          self$extractSimpleType(self$`stream_options`)
       }
       if (!is.null(self$`temperature`)) {
         CreateChatCompletionRequestObject[["temperature"]] <-
@@ -392,11 +392,11 @@ CreateChatCompletionRequest <- R6::R6Class(
       }
       if (!is.null(self$`tools`)) {
         CreateChatCompletionRequestObject[["tools"]] <-
-          lapply(self$`tools`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`tools`)
       }
       if (!is.null(self$`tool_choice`)) {
         CreateChatCompletionRequestObject[["tool_choice"]] <-
-          self$`tool_choice`$toSimpleType()
+          self$extractSimpleType(self$`tool_choice`)
       }
       if (!is.null(self$`parallel_tool_calls`)) {
         CreateChatCompletionRequestObject[["parallel_tool_calls"]] <-
@@ -408,13 +408,36 @@ CreateChatCompletionRequest <- R6::R6Class(
       }
       if (!is.null(self$`function_call`)) {
         CreateChatCompletionRequestObject[["function_call"]] <-
-          self$`function_call`$toSimpleType()
+          self$extractSimpleType(self$`function_call`)
       }
       if (!is.null(self$`functions`)) {
         CreateChatCompletionRequestObject[["functions"]] <-
-          lapply(self$`functions`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`functions`)
       }
       return(CreateChatCompletionRequestObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

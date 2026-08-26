@@ -178,10 +178,6 @@ class RealtimeResponseCreateParams {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeResponseCreateParams[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeResponseCreateParams[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
@@ -248,29 +244,29 @@ class RealtimeResponseCreateParams {
 }
 
 
-class RealtimeResponseCreateParamsModalitiesEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeResponseCreateParamsModalitiesEnum._(this.value);
+enum RealtimeResponseCreateParamsModalitiesEnum {
+  text._(r'text'),
+  audio._(r'audio'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeResponseCreateParamsModalitiesEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = RealtimeResponseCreateParamsModalitiesEnum._(r'text');
-  static const audio = RealtimeResponseCreateParamsModalitiesEnum._(r'audio');
-
-  /// List of all possible values in this [enum][RealtimeResponseCreateParamsModalitiesEnum].
-  static const values = <RealtimeResponseCreateParamsModalitiesEnum>[
-    text,
-    audio,
-  ];
-
+  /// Returns the instance of [RealtimeResponseCreateParamsModalitiesEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeResponseCreateParamsModalitiesEnum? fromJson(dynamic value) => RealtimeResponseCreateParamsModalitiesEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeResponseCreateParamsModalitiesEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeResponseCreateParamsModalitiesEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeResponseCreateParamsModalitiesEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -292,9 +288,10 @@ class RealtimeResponseCreateParamsModalitiesEnumTypeTransformer {
 
   const RealtimeResponseCreateParamsModalitiesEnumTypeTransformer._();
 
-  String encode(RealtimeResponseCreateParamsModalitiesEnum data) => data.value;
+  String encode(RealtimeResponseCreateParamsModalitiesEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeResponseCreateParamsModalitiesEnum.
+  /// Returns the instance of [RealtimeResponseCreateParamsModalitiesEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -303,6 +300,9 @@ class RealtimeResponseCreateParamsModalitiesEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeResponseCreateParamsModalitiesEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeResponseCreateParamsModalitiesEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return RealtimeResponseCreateParamsModalitiesEnum.text;
@@ -316,47 +316,41 @@ class RealtimeResponseCreateParamsModalitiesEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeResponseCreateParamsModalitiesEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeResponseCreateParamsModalitiesEnumTypeTransformer? _instance;
 }
 
 
 /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
-class RealtimeResponseCreateParamsVoiceEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeResponseCreateParamsVoiceEnum._(this.value);
+enum RealtimeResponseCreateParamsVoiceEnum {
+  alloy._(r'alloy'),
+  ash._(r'ash'),
+  ballad._(r'ballad'),
+  coral._(r'coral'),
+  echo._(r'echo'),
+  sage._(r'sage'),
+  shimmer._(r'shimmer'),
+  verse._(r'verse'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeResponseCreateParamsVoiceEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const alloy = RealtimeResponseCreateParamsVoiceEnum._(r'alloy');
-  static const ash = RealtimeResponseCreateParamsVoiceEnum._(r'ash');
-  static const ballad = RealtimeResponseCreateParamsVoiceEnum._(r'ballad');
-  static const coral = RealtimeResponseCreateParamsVoiceEnum._(r'coral');
-  static const echo = RealtimeResponseCreateParamsVoiceEnum._(r'echo');
-  static const sage = RealtimeResponseCreateParamsVoiceEnum._(r'sage');
-  static const shimmer = RealtimeResponseCreateParamsVoiceEnum._(r'shimmer');
-  static const verse = RealtimeResponseCreateParamsVoiceEnum._(r'verse');
-
-  /// List of all possible values in this [enum][RealtimeResponseCreateParamsVoiceEnum].
-  static const values = <RealtimeResponseCreateParamsVoiceEnum>[
-    alloy,
-    ash,
-    ballad,
-    coral,
-    echo,
-    sage,
-    shimmer,
-    verse,
-  ];
-
+  /// Returns the instance of [RealtimeResponseCreateParamsVoiceEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeResponseCreateParamsVoiceEnum? fromJson(dynamic value) => RealtimeResponseCreateParamsVoiceEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeResponseCreateParamsVoiceEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeResponseCreateParamsVoiceEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeResponseCreateParamsVoiceEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -378,9 +372,10 @@ class RealtimeResponseCreateParamsVoiceEnumTypeTransformer {
 
   const RealtimeResponseCreateParamsVoiceEnumTypeTransformer._();
 
-  String encode(RealtimeResponseCreateParamsVoiceEnum data) => data.value;
+  String encode(RealtimeResponseCreateParamsVoiceEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeResponseCreateParamsVoiceEnum.
+  /// Returns the instance of [RealtimeResponseCreateParamsVoiceEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -389,6 +384,9 @@ class RealtimeResponseCreateParamsVoiceEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeResponseCreateParamsVoiceEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeResponseCreateParamsVoiceEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'alloy': return RealtimeResponseCreateParamsVoiceEnum.alloy;
@@ -408,37 +406,36 @@ class RealtimeResponseCreateParamsVoiceEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeResponseCreateParamsVoiceEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeResponseCreateParamsVoiceEnumTypeTransformer? _instance;
 }
 
 
 /// The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
-class RealtimeResponseCreateParamsOutputAudioFormatEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeResponseCreateParamsOutputAudioFormatEnum._(this.value);
+enum RealtimeResponseCreateParamsOutputAudioFormatEnum {
+  pcm16._(r'pcm16'),
+  g711Ulaw._(r'g711_ulaw'),
+  g711Alaw._(r'g711_alaw'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeResponseCreateParamsOutputAudioFormatEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const pcm16 = RealtimeResponseCreateParamsOutputAudioFormatEnum._(r'pcm16');
-  static const g711Ulaw = RealtimeResponseCreateParamsOutputAudioFormatEnum._(r'g711_ulaw');
-  static const g711Alaw = RealtimeResponseCreateParamsOutputAudioFormatEnum._(r'g711_alaw');
-
-  /// List of all possible values in this [enum][RealtimeResponseCreateParamsOutputAudioFormatEnum].
-  static const values = <RealtimeResponseCreateParamsOutputAudioFormatEnum>[
-    pcm16,
-    g711Ulaw,
-    g711Alaw,
-  ];
-
+  /// Returns the instance of [RealtimeResponseCreateParamsOutputAudioFormatEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeResponseCreateParamsOutputAudioFormatEnum? fromJson(dynamic value) => RealtimeResponseCreateParamsOutputAudioFormatEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeResponseCreateParamsOutputAudioFormatEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeResponseCreateParamsOutputAudioFormatEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeResponseCreateParamsOutputAudioFormatEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -460,9 +457,10 @@ class RealtimeResponseCreateParamsOutputAudioFormatEnumTypeTransformer {
 
   const RealtimeResponseCreateParamsOutputAudioFormatEnumTypeTransformer._();
 
-  String encode(RealtimeResponseCreateParamsOutputAudioFormatEnum data) => data.value;
+  String encode(RealtimeResponseCreateParamsOutputAudioFormatEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeResponseCreateParamsOutputAudioFormatEnum.
+  /// Returns the instance of [RealtimeResponseCreateParamsOutputAudioFormatEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -471,6 +469,9 @@ class RealtimeResponseCreateParamsOutputAudioFormatEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeResponseCreateParamsOutputAudioFormatEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeResponseCreateParamsOutputAudioFormatEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'pcm16': return RealtimeResponseCreateParamsOutputAudioFormatEnum.pcm16;
@@ -485,7 +486,7 @@ class RealtimeResponseCreateParamsOutputAudioFormatEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeResponseCreateParamsOutputAudioFormatEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeResponseCreateParamsOutputAudioFormatEnumTypeTransformer? _instance;
 }
 

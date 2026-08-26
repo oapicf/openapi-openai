@@ -21,7 +21,7 @@ message UsageCodeInterpreterSessionsResult {
     OBJECT_ORGANIZATION_USAGE_CODE_INTERPRETER_SESSIONS_RESULT = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The number of code interpreter sessions.
   int32 sessions = 331337887;

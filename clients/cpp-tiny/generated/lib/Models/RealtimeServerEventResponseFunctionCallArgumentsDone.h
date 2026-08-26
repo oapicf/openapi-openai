@@ -51,49 +51,49 @@ public:
 
 	/*! \brief Set The unique ID of the server event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `response.function_call_arguments.done`. 
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `response.function_call_arguments.done`. 
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The ID of the response.
 	 */
 	std::string getResponseId();
 
 	/*! \brief Set The ID of the response.
 	 */
-	void setResponseId(std::string  response_id);
+	void setResponseId(std::string response_id);
 	/*! \brief Get The ID of the function call item.
 	 */
 	std::string getItemId();
 
 	/*! \brief Set The ID of the function call item.
 	 */
-	void setItemId(std::string  item_id);
+	void setItemId(std::string item_id);
 	/*! \brief Get The index of the output item in the response.
 	 */
 	int getOutputIndex();
 
 	/*! \brief Set The index of the output item in the response.
 	 */
-	void setOutputIndex(int  output_index);
+	void setOutputIndex(int output_index);
 	/*! \brief Get The ID of the function call.
 	 */
 	std::string getCallId();
 
 	/*! \brief Set The ID of the function call.
 	 */
-	void setCallId(std::string  call_id);
+	void setCallId(std::string call_id);
 	/*! \brief Get The final arguments as a JSON string.
 	 */
 	std::string getArguments();
 
 	/*! \brief Set The final arguments as a JSON string.
 	 */
-	void setArguments(std::string  arguments);
+	void setArguments(std::string arguments);
 
 
     private:

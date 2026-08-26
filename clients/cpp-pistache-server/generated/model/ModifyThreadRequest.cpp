@@ -26,6 +26,8 @@ ModifyThreadRequest::ModifyThreadRequest()
     
 }
 
+ModifyThreadRequest::~ModifyThreadRequest() = default;
+
 void ModifyThreadRequest::validate() const
 {
     std::stringstream msg;

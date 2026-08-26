@@ -20,16 +20,19 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from openapiopenai.models.audit_log_actor_api_key import AuditLogActorApiKey
+from openapiopenai.models.audit_log_actor_session import AuditLogActorSession
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class AuditLogActor(BaseModel):
     """
     The actor who performed the audit logged action.
     """ # noqa: E501
     type: Optional[StrictStr] = Field(default=None, description="The type of actor. Is either `session` or `api_key`.")
-    session: Optional[Dict[str, Any]] = None
-    api_key: Optional[Dict[str, Any]] = None
+    session: Optional[AuditLogActorSession] = None
+    api_key: Optional[AuditLogActorApiKey] = None
     __properties: ClassVar[List[str]] = ["type", "session", "api_key"]
 
     @field_validator('type')
@@ -43,7 +46,8 @@ class AuditLogActor(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -55,8 +59,7 @@ class AuditLogActor(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

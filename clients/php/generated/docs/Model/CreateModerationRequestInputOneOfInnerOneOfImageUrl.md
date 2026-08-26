@@ -1,4 +1,4 @@
-# # CreateModerationRequestInputOneOfInnerOneOfImageUrl
+# CreateModerationRequestInputOneOfInnerOneOfImageUrl
 
 ## Properties
 

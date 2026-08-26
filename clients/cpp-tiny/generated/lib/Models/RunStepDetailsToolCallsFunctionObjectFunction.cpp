@@ -106,7 +106,7 @@ RunStepDetailsToolCallsFunctionObject_function::getName()
 }
 
 void
-RunStepDetailsToolCallsFunctionObject_function::setName(std::string  name)
+RunStepDetailsToolCallsFunctionObject_function::setName(std::string name)
 {
 	this->name = name;
 }
@@ -118,7 +118,7 @@ RunStepDetailsToolCallsFunctionObject_function::getArguments()
 }
 
 void
-RunStepDetailsToolCallsFunctionObject_function::setArguments(std::string  arguments)
+RunStepDetailsToolCallsFunctionObject_function::setArguments(std::string arguments)
 {
 	this->arguments = arguments;
 }
@@ -130,7 +130,7 @@ RunStepDetailsToolCallsFunctionObject_function::getOutput()
 }
 
 void
-RunStepDetailsToolCallsFunctionObject_function::setOutput(std::string  output)
+RunStepDetailsToolCallsFunctionObject_function::setOutput(std::string output)
 {
 	this->output = output;
 }

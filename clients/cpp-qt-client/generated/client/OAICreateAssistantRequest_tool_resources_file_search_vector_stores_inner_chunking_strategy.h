@@ -21,7 +21,7 @@
 
 #include <QJsonObject>
 
-#include "OAIAuto_Chunking_Strategy.h"
+#include "OAIAutoChunkingStrategyRequestParam.h"
 #include "OAIStatic_Chunking_Strategy.h"
 #include "OAIStatic_Chunking_Strategy_static.h"
 #include <QString>
@@ -35,13 +35,13 @@ class OAIStatic_Chunking_Strategy_static;
 class OAICreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy : public OAIObject {
 public:
     OAICreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy();
-    OAICreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy(QString json);
+    OAICreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy(const QString &json);
     ~OAICreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

@@ -32,7 +32,7 @@ class  MessageContentTextAnnotationsFilePathObject_file_path
 {
 public:
     MessageContentTextAnnotationsFilePathObject_file_path();
-    virtual ~MessageContentTextAnnotationsFilePathObject_file_path() = default;
+    virtual ~MessageContentTextAnnotationsFilePathObject_file_path();
 
 
     /// <summary>

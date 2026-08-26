@@ -41,8 +41,8 @@ function Initialize-AuditLogLoginFailed {
 
 
         $PSO = [PSCustomObject]@{
-            "error_code" = ${ErrorCode}
-            "error_message" = ${ErrorMessage}
+            'error_code' = ${ErrorCode}
+            'error_message' = ${ErrorMessage}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToAuditLogLoginFailed {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AuditLogLoginFailed
-        $AllProperties = ("error_code", "error_message")
+        $AllProperties = ('error_code', 'error_message')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "error_code"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'error_code'))) { #optional property not found
             $ErrorCode = $null
         } else {
-            $ErrorCode = $JsonParameters.PSobject.Properties["error_code"].value
+            $ErrorCode = $JsonParameters.PSobject.Properties['error_code'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "error_message"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'error_message'))) { #optional property not found
             $ErrorMessage = $null
         } else {
-            $ErrorMessage = $JsonParameters.PSobject.Properties["error_message"].value
+            $ErrorMessage = $JsonParameters.PSobject.Properties['error_message'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "error_code" = ${ErrorCode}
-            "error_message" = ${ErrorMessage}
+            'error_code' = ${ErrorCode}
+            'error_message' = ${ErrorMessage}
         }
 
         return $PSO

@@ -25,7 +25,7 @@ message RealtimeServerEventInputAudioBufferCommitted {
     TYPE_INPUT_AUDIO_BUFFER_COMMITTED = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // The ID of the preceding item after which the new item will be inserted. 
   string previous_item_id = 495766402;

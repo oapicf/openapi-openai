@@ -129,7 +129,7 @@ AuditLogActorApiKey::getId()
 }
 
 void
-AuditLogActorApiKey::setId(std::string  id)
+AuditLogActorApiKey::setId(std::string id)
 {
 	this->id = id;
 }
@@ -141,7 +141,7 @@ AuditLogActorApiKey::getType()
 }
 
 void
-AuditLogActorApiKey::setType(std::string  type)
+AuditLogActorApiKey::setType(std::string type)
 {
 	this->type = type;
 }
@@ -153,7 +153,7 @@ AuditLogActorApiKey::getUser()
 }
 
 void
-AuditLogActorApiKey::setUser(AuditLogActorUser  user)
+AuditLogActorApiKey::setUser(AuditLogActorUser user)
 {
 	this->user = user;
 }
@@ -165,7 +165,7 @@ AuditLogActorApiKey::getServiceAccount()
 }
 
 void
-AuditLogActorApiKey::setServiceAccount(AuditLogActorServiceAccount  service_account)
+AuditLogActorApiKey::setServiceAccount(AuditLogActorServiceAccount service_account)
 {
 	this->service_account = service_account;
 }

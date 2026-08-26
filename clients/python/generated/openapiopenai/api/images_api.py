@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     OpenAI API
 
@@ -11,6 +9,7 @@
 
     Do not edit the class manually.
 """  # noqa: E501
+
 
 import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
@@ -341,11 +340,11 @@ class ImagesApi:
 
 
         :param image: The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask. (required)
-        :type image: bytearray
+        :type image: bytes
         :param prompt: A text description of the desired image(s). The maximum length is 1000 characters. (required)
         :type prompt: str
         :param mask: An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as `image`.
-        :type mask: bytearray
+        :type mask: bytes
         :param model:
         :type model: CreateImageEditRequestModel
         :param n: The number of images to generate. Must be between 1 and 10.
@@ -435,11 +434,11 @@ class ImagesApi:
 
 
         :param image: The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask. (required)
-        :type image: bytearray
+        :type image: bytes
         :param prompt: A text description of the desired image(s). The maximum length is 1000 characters. (required)
         :type prompt: str
         :param mask: An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as `image`.
-        :type mask: bytearray
+        :type mask: bytes
         :param model:
         :type model: CreateImageEditRequestModel
         :param n: The number of images to generate. Must be between 1 and 10.
@@ -529,11 +528,11 @@ class ImagesApi:
 
 
         :param image: The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask. (required)
-        :type image: bytearray
+        :type image: bytes
         :param prompt: A text description of the desired image(s). The maximum length is 1000 characters. (required)
         :type prompt: str
         :param mask: An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as `image`.
-        :type mask: bytearray
+        :type mask: bytes
         :param model:
         :type model: CreateImageEditRequestModel
         :param n: The number of images to generate. Must be between 1 and 10.
@@ -715,7 +714,7 @@ class ImagesApi:
 
 
         :param image: The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square. (required)
-        :type image: bytearray
+        :type image: bytes
         :param model:
         :type model: CreateImageEditRequestModel
         :param n: The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
@@ -801,7 +800,7 @@ class ImagesApi:
 
 
         :param image: The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square. (required)
-        :type image: bytearray
+        :type image: bytes
         :param model:
         :type model: CreateImageEditRequestModel
         :param n: The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
@@ -887,7 +886,7 @@ class ImagesApi:
 
 
         :param image: The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square. (required)
-        :type image: bytearray
+        :type image: bytes
         :param model:
         :type model: CreateImageEditRequestModel
         :param n: The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.

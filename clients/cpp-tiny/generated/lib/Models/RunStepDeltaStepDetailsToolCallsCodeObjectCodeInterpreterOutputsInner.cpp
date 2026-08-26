@@ -128,7 +128,7 @@ RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::getIn
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::setIndex(int  index)
+RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::setIndex(int index)
 {
 	this->index = index;
 }
@@ -140,7 +140,7 @@ RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::getTy
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::setType(std::string  type)
+RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -152,7 +152,7 @@ RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::getLo
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::setLogs(std::string  logs)
+RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::setLogs(std::string logs)
 {
 	this->logs = logs;
 }
@@ -164,7 +164,7 @@ RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::getIm
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::setImage(RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image  image)
+RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter_outputs_inner::setImage(RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image image)
 {
 	this->image = image;
 }

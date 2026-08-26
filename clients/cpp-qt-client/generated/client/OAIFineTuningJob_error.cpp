@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIFineTuningJob_error::OAIFineTuningJob_error(QString json) {
+OAIFineTuningJob_error::OAIFineTuningJob_error(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIFineTuningJob_error::initializeModel() {
     m_param_isValid = false;
 }
 
-void OAIFineTuningJob_error::fromJson(QString jsonString) {
+void OAIFineTuningJob_error::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

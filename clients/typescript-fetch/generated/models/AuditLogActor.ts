@@ -36,7 +36,7 @@ import {
 export interface AuditLogActor {
     /**
      * The type of actor. Is either `session` or `api_key`.
-     * @type {string}
+     * @type {AuditLogActorTypeEnum}
      * @memberof AuditLogActor
      */
     type?: AuditLogActorTypeEnum;
@@ -83,8 +83,8 @@ export function AuditLogActorFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'type': json['type'] == null ? undefined : json['type'],
-        'session': json['session'] == null ? undefined : json['session'],
-        'apiKey': json['api_key'] == null ? undefined : json['api_key'],
+        'session': json['session'] == null ? undefined : AuditLogActorSessionFromJSON(json['session']),
+        'apiKey': json['api_key'] == null ? undefined : AuditLogActorApiKeyFromJSON(json['api_key']),
     };
 }
 
@@ -100,8 +100,8 @@ export function AuditLogActorToJSONTyped(value?: AuditLogActor | null, ignoreDis
     return {
         
         'type': value['type'],
-        'session': value['session'],
-        'api_key': value['apiKey'],
+        'session': AuditLogActorSessionToJSON(value['session']),
+        'api_key': AuditLogActorApiKeyToJSON(value['apiKey']),
     };
 }
 

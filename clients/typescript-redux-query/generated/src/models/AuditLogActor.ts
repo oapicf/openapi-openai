@@ -50,8 +50,8 @@ export interface AuditLogActor  {
 export function AuditLogActorFromJSON(json: any): AuditLogActor {
     return {
         'type': !exists(json, 'type') ? undefined : json['type'],
-        'session': !exists(json, 'session') ? undefined : json['session'],
-        'apiKey': !exists(json, 'api_key') ? undefined : json['api_key'],
+        'session': !exists(json, 'session') ? undefined : AuditLogActorSessionFromJSON(json['session']),
+        'apiKey': !exists(json, 'api_key') ? undefined : AuditLogActorApiKeyFromJSON(json['api_key']),
     };
 }
 
@@ -61,8 +61,8 @@ export function AuditLogActorToJSON(value?: AuditLogActor): any {
     }
     return {
         'type': value.type,
-        'session': value.session,
-        'api_key': value.apiKey,
+        'session': AuditLogActorSessionToJSON(value.session),
+        'api_key': AuditLogActorApiKeyToJSON(value.apiKey),
     };
 }
 

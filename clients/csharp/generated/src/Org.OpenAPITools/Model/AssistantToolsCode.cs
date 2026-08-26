@@ -131,8 +131,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AssistantToolsCode" />
     /// </summary>
-    public class AssistantToolsCodeJsonConverter : JsonConverter<AssistantToolsCode>
+    public partial class AssistantToolsCodeJsonConverter : JsonConverter<AssistantToolsCode>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssistantToolsCodeJsonConverter" /> class.
+        /// </summary>
+        public AssistantToolsCodeJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AssistantToolsCode" />
         /// </summary>

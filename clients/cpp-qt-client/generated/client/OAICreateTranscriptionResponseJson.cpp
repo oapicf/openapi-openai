@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateTranscriptionResponseJson::OAICreateTranscriptionResponseJson(QString json) {
+OAICreateTranscriptionResponseJson::OAICreateTranscriptionResponseJson(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -38,7 +38,7 @@ void OAICreateTranscriptionResponseJson::initializeModel() {
     m_text_isValid = false;
 }
 
-void OAICreateTranscriptionResponseJson::fromJson(QString jsonString) {
+void OAICreateTranscriptionResponseJson::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

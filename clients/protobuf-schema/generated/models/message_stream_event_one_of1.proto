@@ -22,7 +22,7 @@ message MessageStreamEventOneOf1 {
     EVENT_THREAD_MESSAGE_IN_PROGRESS = 0;
   }
 
-  Event event = 96891546;
+  string event = 96891546;
 
   MessageObject data = 3076010;
 

@@ -51,35 +51,35 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	std::string getId();
 
 	/*! \brief Set 
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	std::string getName();
 
 	/*! \brief Set 
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get 
 	 */
 	long getCreatedAt();
 
 	/*! \brief Set 
 	 */
-	void setCreatedAt(long  created_at);
+	void setCreatedAt(long created_at);
 	/*! \brief Get 
 	 */
 	std::string getRole();
 
 	/*! \brief Set 
 	 */
-	void setRole(std::string  role);
+	void setRole(std::string role);
 
 
     private:

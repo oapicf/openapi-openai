@@ -25,17 +25,21 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class UsageTimeBucket(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: UsageTimeBucket.`Object`,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("start_time")
     @get:JsonProperty("start_time", required = true) val startTime: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("end_time")
     @get:JsonProperty("end_time", required = true) val endTime: kotlin.Int,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("result")
     @get:JsonProperty("result", required = true) val result: kotlin.collections.List<UsageTimeBucketResultInner>
 ) {
 
@@ -52,7 +56,7 @@ data class UsageTimeBucket(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'UsageTimeBucket'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }

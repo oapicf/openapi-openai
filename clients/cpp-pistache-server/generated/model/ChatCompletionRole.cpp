@@ -24,6 +24,8 @@ ChatCompletionRole::ChatCompletionRole()
     
 }
 
+ChatCompletionRole::~ChatCompletionRole() = default;
+
 void ChatCompletionRole::validate() const
 {
     std::stringstream msg;

@@ -149,7 +149,7 @@ RealtimeServerEventResponseOutputItemDone::getEventId()
 }
 
 void
-RealtimeServerEventResponseOutputItemDone::setEventId(std::string  event_id)
+RealtimeServerEventResponseOutputItemDone::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -161,7 +161,7 @@ RealtimeServerEventResponseOutputItemDone::getType()
 }
 
 void
-RealtimeServerEventResponseOutputItemDone::setType(std::string  type)
+RealtimeServerEventResponseOutputItemDone::setType(std::string type)
 {
 	this->type = type;
 }
@@ -173,7 +173,7 @@ RealtimeServerEventResponseOutputItemDone::getResponseId()
 }
 
 void
-RealtimeServerEventResponseOutputItemDone::setResponseId(std::string  response_id)
+RealtimeServerEventResponseOutputItemDone::setResponseId(std::string response_id)
 {
 	this->response_id = response_id;
 }
@@ -185,7 +185,7 @@ RealtimeServerEventResponseOutputItemDone::getOutputIndex()
 }
 
 void
-RealtimeServerEventResponseOutputItemDone::setOutputIndex(int  output_index)
+RealtimeServerEventResponseOutputItemDone::setOutputIndex(int output_index)
 {
 	this->output_index = output_index;
 }
@@ -197,7 +197,7 @@ RealtimeServerEventResponseOutputItemDone::getItem()
 }
 
 void
-RealtimeServerEventResponseOutputItemDone::setItem(RealtimeConversationItem  item)
+RealtimeServerEventResponseOutputItemDone::setItem(RealtimeConversationItem item)
 {
 	this->item = item;
 }

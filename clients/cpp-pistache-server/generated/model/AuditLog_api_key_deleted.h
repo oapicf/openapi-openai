@@ -32,7 +32,7 @@ class  AuditLog_api_key_deleted
 {
 public:
     AuditLog_api_key_deleted();
-    virtual ~AuditLog_api_key_deleted() = default;
+    virtual ~AuditLog_api_key_deleted();
 
 
     /// <summary>

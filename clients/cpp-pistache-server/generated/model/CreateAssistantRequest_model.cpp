@@ -24,6 +24,8 @@ CreateAssistantRequest_model::CreateAssistantRequest_model()
     
 }
 
+CreateAssistantRequest_model::~CreateAssistantRequest_model() = default;
+
 void CreateAssistantRequest_model::validate() const
 {
     std::stringstream msg;

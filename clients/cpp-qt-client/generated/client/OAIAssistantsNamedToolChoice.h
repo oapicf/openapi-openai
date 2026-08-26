@@ -33,13 +33,13 @@ class OAIAssistantsNamedToolChoice_function;
 class OAIAssistantsNamedToolChoice : public OAIObject {
 public:
     OAIAssistantsNamedToolChoice();
-    OAIAssistantsNamedToolChoice(QString json);
+    OAIAssistantsNamedToolChoice(const QString &json);
     ~OAIAssistantsNamedToolChoice() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

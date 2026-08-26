@@ -52,21 +52,21 @@ public:
 
 	/*! \brief Set The HTTP status code of the response
 	 */
-	void setStatusCode(int  status_code);
+	void setStatusCode(int status_code);
 	/*! \brief Get An unique identifier for the OpenAI API request. Please include this request ID when contacting support.
 	 */
 	std::string getRequestId();
 
 	/*! \brief Set An unique identifier for the OpenAI API request. Please include this request ID when contacting support.
 	 */
-	void setRequestId(std::string  request_id);
+	void setRequestId(std::string request_id);
 	/*! \brief Get The JSON body of the response
 	 */
 	Object getBody();
 
 	/*! \brief Set The JSON body of the response
 	 */
-	void setBody(Object  body);
+	void setBody(Object body);
 
 
     private:

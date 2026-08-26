@@ -28,6 +28,8 @@ Model::Model()
     
 }
 
+Model::~Model() = default;
+
 void Model::validate() const
 {
     std::stringstream msg;

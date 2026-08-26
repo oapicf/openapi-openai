@@ -49,7 +49,7 @@ class ChatCompletionRequestUserMessage
      * @var ChatCompletionRequestUserMessageContent|null
      * @SerializedName("content")
      * @Type("OpenAPI\Server\Model\ChatCompletionRequestUserMessageContent")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\ChatCompletionRequestUserMessageContent")]
@@ -61,7 +61,7 @@ class ChatCompletionRequestUserMessage
      * @var string|null
      * @SerializedName("role")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['user'])]
     #[Assert\Type("string")]
@@ -73,7 +73,7 @@ class ChatCompletionRequestUserMessage
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $name = null;
 
@@ -101,12 +101,12 @@ class ChatCompletionRequestUserMessage
     }
 
     /**
-    * Sets content.
-    *
-    * @param ChatCompletionRequestUserMessageContent|null $content
-    *
-    * @return $this
-    */
+     * Sets content.
+     *
+     * @param ChatCompletionRequestUserMessageContent|null $content
+     *
+     * @return $this
+     */
     public function setContent(?ChatCompletionRequestUserMessageContent $content): self
     {
         $this->content = $content;
@@ -128,12 +128,12 @@ class ChatCompletionRequestUserMessage
     }
 
     /**
-    * Sets role.
-    *
-    * @param string|null $role  The role of the messages author, in this case `user`.
-    *
-    * @return $this
-    */
+     * Sets role.
+     *
+     * @param string|null $role  The role of the messages author, in this case `user`.
+     *
+     * @return $this
+     */
     public function setRole(?string $role): self
     {
         $this->role = $role;
@@ -155,12 +155,12 @@ class ChatCompletionRequestUserMessage
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  An optional name for the participant. Provides the model information to differentiate between participants of the same role.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  An optional name for the participant. Provides the model information to differentiate between participants of the same role.
+     *
+     * @return $this
+     */
     public function setName(?string $name = null): self
     {
         $this->name = $name;

@@ -83,7 +83,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The content of the result that was found. The content is only included if requested via the include query parameter.</value>
         [JsonPropertyName("content")]
-        public List<RunStepDetailsToolCallsFileSearchResultObjectContentInner>? Content { get { return this.ContentOption; } set { this.ContentOption = new(value); } }
+        public List<RunStepDetailsToolCallsFileSearchResultObjectContentInner>? Content { get { return this.ContentOption.Value; } set { this.ContentOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -127,8 +127,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDetailsToolCallsFileSearchResultObject" />
     /// </summary>
-    public class RunStepDetailsToolCallsFileSearchResultObjectJsonConverter : JsonConverter<RunStepDetailsToolCallsFileSearchResultObject>
+    public partial class RunStepDetailsToolCallsFileSearchResultObjectJsonConverter : JsonConverter<RunStepDetailsToolCallsFileSearchResultObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDetailsToolCallsFileSearchResultObjectJsonConverter" /> class.
+        /// </summary>
+        public RunStepDetailsToolCallsFileSearchResultObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDetailsToolCallsFileSearchResultObject" />
         /// </summary>

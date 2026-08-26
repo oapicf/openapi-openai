@@ -102,7 +102,7 @@ MessageContentTextObject_text::getValue()
 }
 
 void
-MessageContentTextObject_text::setValue(std::string  value)
+MessageContentTextObject_text::setValue(std::string value)
 {
 	this->value = value;
 }
@@ -114,7 +114,7 @@ MessageContentTextObject_text::getAnnotations()
 }
 
 void
-MessageContentTextObject_text::setAnnotations(std::list <MessageContentTextObject_text_annotations_inner> annotations)
+MessageContentTextObject_text::setAnnotations(std::list<MessageContentTextObject_text_annotations_inner> annotations)
 {
 	this->annotations = annotations;
 }

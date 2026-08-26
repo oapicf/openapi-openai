@@ -51,10 +51,10 @@ function Initialize-BatchErrorsDataInner {
 
 
         $PSO = [PSCustomObject]@{
-            "code" = ${Code}
-            "message" = ${Message}
-            "param" = ${VarParam}
-            "line" = ${Line}
+            'code' = ${Code}
+            'message' = ${Message}
+            'param' = ${VarParam}
+            'line' = ${Line}
         }
 
 
@@ -92,42 +92,42 @@ function ConvertFrom-JsonToBatchErrorsDataInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in BatchErrorsDataInner
-        $AllProperties = ("code", "message", "param", "line")
+        $AllProperties = ('code', 'message', 'param', 'line')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "code"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'code'))) { #optional property not found
             $Code = $null
         } else {
-            $Code = $JsonParameters.PSobject.Properties["code"].value
+            $Code = $JsonParameters.PSobject.Properties['code'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "message"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'message'))) { #optional property not found
             $Message = $null
         } else {
-            $Message = $JsonParameters.PSobject.Properties["message"].value
+            $Message = $JsonParameters.PSobject.Properties['message'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "param"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'param'))) { #optional property not found
             $VarParam = $null
         } else {
-            $VarParam = $JsonParameters.PSobject.Properties["param"].value
+            $VarParam = $JsonParameters.PSobject.Properties['param'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "line"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'line'))) { #optional property not found
             $Line = $null
         } else {
-            $Line = $JsonParameters.PSobject.Properties["line"].value
+            $Line = $JsonParameters.PSobject.Properties['line'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "code" = ${Code}
-            "message" = ${Message}
-            "param" = ${VarParam}
-            "line" = ${Line}
+            'code' = ${Code}
+            'message' = ${Message}
+            'param' = ${VarParam}
+            'line' = ${Line}
         }
 
         return $PSO

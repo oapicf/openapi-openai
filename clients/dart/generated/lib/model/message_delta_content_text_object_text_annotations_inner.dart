@@ -138,10 +138,10 @@ class MessageDeltaContentTextObjectTextAnnotationsInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageDeltaContentTextObjectTextAnnotationsInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageDeltaContentTextObjectTextAnnotationsInner[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'index'), 'Required key "MessageDeltaContentTextObjectTextAnnotationsInner[index]" is missing from JSON.');
+        assert(json[r'index'] != null, 'Required key "MessageDeltaContentTextObjectTextAnnotationsInner[index]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "MessageDeltaContentTextObjectTextAnnotationsInner[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "MessageDeltaContentTextObjectTextAnnotationsInner[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -206,29 +206,29 @@ class MessageDeltaContentTextObjectTextAnnotationsInner {
 }
 
 /// Always `file_citation`.
-class MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum._(this.value);
+enum MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum {
+  fileCitation._(r'file_citation'),
+  filePath._(r'file_path'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const fileCitation = MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum._(r'file_citation');
-  static const filePath = MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum._(r'file_path');
-
-  /// List of all possible values in this [enum][MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum].
-  static const values = <MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum>[
-    fileCitation,
-    filePath,
-  ];
-
+  /// Returns the instance of [MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum? fromJson(dynamic value) => MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -250,9 +250,10 @@ class MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnumTypeTransformer {
 
   const MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnumTypeTransformer._();
 
-  String encode(MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum data) => data.value;
+  String encode(MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum.
+  /// Returns the instance of [MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -261,6 +262,9 @@ class MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'file_citation': return MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum.fileCitation;
@@ -274,7 +278,7 @@ class MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnumTypeTransformer? _instance;
 }
 

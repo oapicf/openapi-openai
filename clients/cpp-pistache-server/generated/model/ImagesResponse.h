@@ -33,7 +33,7 @@ class  ImagesResponse
 {
 public:
     ImagesResponse();
-    virtual ~ImagesResponse() = default;
+    virtual ~ImagesResponse();
 
 
     /// <summary>

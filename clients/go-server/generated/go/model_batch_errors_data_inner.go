@@ -29,7 +29,8 @@ type BatchErrorsDataInner struct {
 	Line *int32 `json:"line,omitempty"`
 }
 
-// AssertBatchErrorsDataInnerRequired checks if the required fields are not zero-ed
+// AssertBatchErrorsDataInnerRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertBatchErrorsDataInnerRequired(obj BatchErrorsDataInner) error {
 	return nil
 }

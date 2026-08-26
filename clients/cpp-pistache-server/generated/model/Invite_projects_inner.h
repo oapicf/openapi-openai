@@ -32,7 +32,7 @@ class  Invite_projects_inner
 {
 public:
     Invite_projects_inner();
-    virtual ~Invite_projects_inner() = default;
+    virtual ~Invite_projects_inner();
 
 
     /// <summary>

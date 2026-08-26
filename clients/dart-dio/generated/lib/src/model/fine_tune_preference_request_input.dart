@@ -100,22 +100,25 @@ class _$FineTunePreferenceRequestInputSerializer implements PrimitiveSerializer<
         case r'input':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FineTunePreferenceRequestInputInput),
-          ) as FineTunePreferenceRequestInputInput;
+            specifiedType: const FullType.nullable(FineTunePreferenceRequestInputInput),
+          ) as FineTunePreferenceRequestInputInput?;
+          if (valueDes == null) continue;
           result.input.replace(valueDes);
           break;
         case r'preferred_completion':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(FineTunePreferenceRequestInputPreferredCompletionInner)]),
-          ) as BuiltList<FineTunePreferenceRequestInputPreferredCompletionInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(FineTunePreferenceRequestInputPreferredCompletionInner)]),
+          ) as BuiltList<FineTunePreferenceRequestInputPreferredCompletionInner>?;
+          if (valueDes == null) continue;
           result.preferredCompletion.replace(valueDes);
           break;
         case r'non_preferred_completion':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(FineTunePreferenceRequestInputPreferredCompletionInner)]),
-          ) as BuiltList<FineTunePreferenceRequestInputPreferredCompletionInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(FineTunePreferenceRequestInputPreferredCompletionInner)]),
+          ) as BuiltList<FineTunePreferenceRequestInputPreferredCompletionInner>?;
+          if (valueDes == null) continue;
           result.nonPreferredCompletion.replace(valueDes);
           break;
         default:

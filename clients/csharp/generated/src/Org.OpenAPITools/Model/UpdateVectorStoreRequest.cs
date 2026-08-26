@@ -60,7 +60,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The name of the vector store.</value>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresAfter
@@ -73,7 +73,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ExpiresAfter
         /// </summary>
         [JsonPropertyName("expires_after")]
-        public VectorStoreExpirationAfter? ExpiresAfter { get { return this.ExpiresAfterOption; } set { this.ExpiresAfterOption = new(value); } }
+        public VectorStoreExpirationAfter? ExpiresAfter { get { return this.ExpiresAfterOption.Value; } set { this.ExpiresAfterOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Metadata
@@ -87,7 +87,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. </value>
         [JsonPropertyName("metadata")]
-        public Object? Metadata { get { return this.MetadataOption; } set { this.MetadataOption = new(value); } }
+        public Object? Metadata { get { return this.MetadataOption.Value; } set { this.MetadataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,8 +118,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateVectorStoreRequest" />
     /// </summary>
-    public class UpdateVectorStoreRequestJsonConverter : JsonConverter<UpdateVectorStoreRequest>
+    public partial class UpdateVectorStoreRequestJsonConverter : JsonConverter<UpdateVectorStoreRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateVectorStoreRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateVectorStoreRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateVectorStoreRequest" />
         /// </summary>

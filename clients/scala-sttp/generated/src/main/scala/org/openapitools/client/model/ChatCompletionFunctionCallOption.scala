@@ -18,5 +18,5 @@ package org.openapitools.client.model
 case class ChatCompletionFunctionCallOption(
   /* The name of the function to call. */
   name: String
-)
+) extends CreateChatCompletionRequestFunctionCall
 

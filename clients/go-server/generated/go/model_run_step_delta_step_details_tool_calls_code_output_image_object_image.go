@@ -20,7 +20,8 @@ type RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage struct {
 	FileId string `json:"file_id,omitempty"`
 }
 
-// AssertRunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImageRequired checks if the required fields are not zero-ed
+// AssertRunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImageRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImageRequired(obj RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage) error {
 	return nil
 }

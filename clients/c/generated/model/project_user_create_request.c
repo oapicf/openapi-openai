@@ -30,10 +30,10 @@ static project_user_create_request_t *project_user_create_request_create_interna
     if (!project_user_create_request_local_var) {
         return NULL;
     }
+    memset(project_user_create_request_local_var, 0, sizeof(project_user_create_request_t));
+    project_user_create_request_local_var->_library_owned = 1;
     project_user_create_request_local_var->user_id = user_id;
     project_user_create_request_local_var->role = role;
-
-    project_user_create_request_local_var->_library_owned = 1;
     return project_user_create_request_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) project_user_create_request_t *project_user_create_r
     char *user_id,
     openai_api_project_user_create_request_ROLE_e role
     ) {
-    return project_user_create_request_create_internal (
+    project_user_create_request_t *result = project_user_create_request_create_internal (
         user_id,
         role
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void project_user_create_request_free(project_user_create_request_t *project_user_create_request) {
@@ -96,6 +99,8 @@ project_user_create_request_t *project_user_create_request_parseFromJSON(cJSON *
 
     project_user_create_request_t *project_user_create_request_local_var = NULL;
 
+    char *user_id_local_str = NULL;
+
     // project_user_create_request->user_id
     cJSON *user_id = cJSON_GetObjectItemCaseSensitive(project_user_create_requestJSON, "user_id");
     if (cJSON_IsNull(user_id)) {
@@ -129,13 +134,23 @@ project_user_create_request_t *project_user_create_request_parseFromJSON(cJSON *
     roleVariable = project_user_create_request_role_FromString(role->valuestring);
 
 
+    if (user_id && !cJSON_IsNull(user_id)) user_id_local_str = strdup(user_id->valuestring);
+
     project_user_create_request_local_var = project_user_create_request_create_internal (
-        strdup(user_id->valuestring),
+        user_id_local_str,
         roleVariable
         );
 
+    if (!project_user_create_request_local_var) {
+        goto end;
+    }
+
     return project_user_create_request_local_var;
 end:
+    if (user_id_local_str) {
+        free(user_id_local_str);
+        user_id_local_str = NULL;
+    }
     return NULL;
 
 }

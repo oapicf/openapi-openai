@@ -67,7 +67,7 @@ export function CreateThreadRequestToolResourcesFromJSONTyped(json: any, ignoreD
     return {
         
         'codeInterpreter': json['code_interpreter'] == null ? undefined : CreateAssistantRequestToolResourcesCodeInterpreterFromJSON(json['code_interpreter']),
-        'fileSearch': json['file_search'] == null ? undefined : CreateThreadRequestToolResourcesFileSearchFromJSON(json['file_search']),
+        'fileSearch': json['file_search'] === undefined ? undefined : json['file_search'] === null ? null : CreateThreadRequestToolResourcesFileSearchFromJSON(json['file_search']),
     };
 }
 

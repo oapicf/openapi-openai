@@ -23,13 +23,15 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RunStepDetailsToolCallsCodeOutputImageObject(
 
-    @Schema(example = "null", required = true, description = "Always `image`.")
+    @Schema(required = true, description = "Always `image`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RunStepDetailsToolCallsCodeOutputImageObject.Type,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("image")
     @get:JsonProperty("image", required = true) val image: RunStepDetailsToolCallsCodeOutputImageObjectImage
-) {
+) : RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner {
 
     /**
     * Always `image`.
@@ -44,7 +46,7 @@ data class RunStepDetailsToolCallsCodeOutputImageObject(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RunStepDetailsToolCallsCodeOutputImageObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

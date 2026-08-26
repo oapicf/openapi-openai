@@ -1,4 +1,4 @@
-# # DeleteFileResponse
+# DeleteFileResponse
 
 ## Properties
 

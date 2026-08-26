@@ -178,7 +178,7 @@ FineTuneChatRequestInput::getMessages()
 }
 
 void
-FineTuneChatRequestInput::setMessages(std::list <FineTuneChatRequestInput_messages_inner> messages)
+FineTuneChatRequestInput::setMessages(std::list<FineTuneChatRequestInput_messages_inner> messages)
 {
 	this->messages = messages;
 }
@@ -190,7 +190,7 @@ FineTuneChatRequestInput::getTools()
 }
 
 void
-FineTuneChatRequestInput::setTools(std::list <ChatCompletionTool> tools)
+FineTuneChatRequestInput::setTools(std::list<ChatCompletionTool> tools)
 {
 	this->tools = tools;
 }
@@ -202,7 +202,7 @@ FineTuneChatRequestInput::isParallelToolCalls()
 }
 
 void
-FineTuneChatRequestInput::setParallelToolCalls(bool  parallel_tool_calls)
+FineTuneChatRequestInput::setParallelToolCalls(bool parallel_tool_calls)
 {
 	this->parallel_tool_calls = parallel_tool_calls;
 }
@@ -214,7 +214,7 @@ FineTuneChatRequestInput::getFunctions()
 }
 
 void
-FineTuneChatRequestInput::setFunctions(std::list <ChatCompletionFunctions> functions)
+FineTuneChatRequestInput::setFunctions(std::list<ChatCompletionFunctions> functions)
 {
 	this->functions = functions;
 }

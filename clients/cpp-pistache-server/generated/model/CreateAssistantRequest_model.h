@@ -31,7 +31,7 @@ class  CreateAssistantRequest_model
 {
 public:
     CreateAssistantRequest_model();
-    virtual ~CreateAssistantRequest_model() = default;
+    virtual ~CreateAssistantRequest_model();
 
 
     /// <summary>

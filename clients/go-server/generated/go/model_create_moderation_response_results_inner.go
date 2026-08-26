@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type CreateModerationResponseResultsInner struct {
@@ -25,11 +30,87 @@ type CreateModerationResponseResultsInner struct {
 
 	CategoryAppliedInputTypes CreateModerationResponseResultsInnerCategoryAppliedInputTypes `json:"category_applied_input_types"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into CreateModerationResponseResultsInner
+func (o *CreateModerationResponseResultsInner) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"flagged",
+		"categories",
+		"category_scores",
+		"category_applied_input_types",
+	}
 
-// AssertCreateModerationResponseResultsInnerRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"flagged": false,
+		"categories": false,
+		"category_scores": false,
+		"category_applied_input_types": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"flagged": {},
+		"categories": {},
+		"category_scores": {},
+		"category_applied_input_types": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CreateModerationResponseResultsInner
+
+	if value, exists := allProperties["flagged"]; exists {
+		if err = json.Unmarshal(value, &decoded.Flagged); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["categories"]; exists {
+		if err = json.Unmarshal(value, &decoded.Categories); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["category_scores"]; exists {
+		if err = json.Unmarshal(value, &decoded.CategoryScores); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["category_applied_input_types"]; exists {
+		if err = json.Unmarshal(value, &decoded.CategoryAppliedInputTypes); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCreateModerationResponseResultsInnerRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateModerationResponseResultsInnerRequired(obj CreateModerationResponseResultsInner) error {
 	elements := map[string]interface{}{
-		"flagged": obj.Flagged,
 		"categories": obj.Categories,
 		"category_scores": obj.CategoryScores,
 		"category_applied_input_types": obj.CategoryAppliedInputTypes,

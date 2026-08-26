@@ -55,10 +55,10 @@ class ProjectUserCreateRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectUserCreateRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectUserCreateRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'user_id'), 'Required key "ProjectUserCreateRequest[user_id]" is missing from JSON.');
+        assert(json[r'user_id'] != null, 'Required key "ProjectUserCreateRequest[user_id]" has a null value in JSON.');
+        assert(json.containsKey(r'role'), 'Required key "ProjectUserCreateRequest[role]" is missing from JSON.');
+        assert(json[r'role'] != null, 'Required key "ProjectUserCreateRequest[role]" has a null value in JSON.');
         return true;
       }());
 
@@ -118,29 +118,29 @@ class ProjectUserCreateRequest {
 }
 
 /// `owner` or `member`
-class ProjectUserCreateRequestRoleEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ProjectUserCreateRequestRoleEnum._(this.value);
+enum ProjectUserCreateRequestRoleEnum {
+  owner._(r'owner'),
+  member._(r'member'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ProjectUserCreateRequestRoleEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const owner = ProjectUserCreateRequestRoleEnum._(r'owner');
-  static const member = ProjectUserCreateRequestRoleEnum._(r'member');
-
-  /// List of all possible values in this [enum][ProjectUserCreateRequestRoleEnum].
-  static const values = <ProjectUserCreateRequestRoleEnum>[
-    owner,
-    member,
-  ];
-
+  /// Returns the instance of [ProjectUserCreateRequestRoleEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ProjectUserCreateRequestRoleEnum? fromJson(dynamic value) => ProjectUserCreateRequestRoleEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ProjectUserCreateRequestRoleEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ProjectUserCreateRequestRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ProjectUserCreateRequestRoleEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -162,9 +162,10 @@ class ProjectUserCreateRequestRoleEnumTypeTransformer {
 
   const ProjectUserCreateRequestRoleEnumTypeTransformer._();
 
-  String encode(ProjectUserCreateRequestRoleEnum data) => data.value;
+  String encode(ProjectUserCreateRequestRoleEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ProjectUserCreateRequestRoleEnum.
+  /// Returns the instance of [ProjectUserCreateRequestRoleEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -173,6 +174,9 @@ class ProjectUserCreateRequestRoleEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ProjectUserCreateRequestRoleEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ProjectUserCreateRequestRoleEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'owner': return ProjectUserCreateRequestRoleEnum.owner;
@@ -186,7 +190,7 @@ class ProjectUserCreateRequestRoleEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ProjectUserCreateRequestRoleEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ProjectUserCreateRequestRoleEnumTypeTransformer? _instance;
 }
 

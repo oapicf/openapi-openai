@@ -133,7 +133,7 @@ CreateChatCompletionResponse <- R6::R6Class(
       }
       if (!is.null(self$`choices`)) {
         CreateChatCompletionResponseObject[["choices"]] <-
-          lapply(self$`choices`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`choices`)
       }
       if (!is.null(self$`created`)) {
         CreateChatCompletionResponseObject[["created"]] <-
@@ -157,9 +157,32 @@ CreateChatCompletionResponse <- R6::R6Class(
       }
       if (!is.null(self$`usage`)) {
         CreateChatCompletionResponseObject[["usage"]] <-
-          self$`usage`$toSimpleType()
+          self$extractSimpleType(self$`usage`)
       }
       return(CreateChatCompletionResponseObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

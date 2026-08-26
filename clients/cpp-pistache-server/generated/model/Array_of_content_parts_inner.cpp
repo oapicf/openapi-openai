@@ -26,6 +26,8 @@ Array_of_content_parts_inner::Array_of_content_parts_inner()
     
 }
 
+Array_of_content_parts_inner::~Array_of_content_parts_inner() = default;
+
 void Array_of_content_parts_inner::validate() const
 {
     std::stringstream msg;

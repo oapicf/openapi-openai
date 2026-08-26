@@ -13,10 +13,10 @@ static audit_log_actor_user_t *audit_log_actor_user_create_internal(
     if (!audit_log_actor_user_local_var) {
         return NULL;
     }
+    memset(audit_log_actor_user_local_var, 0, sizeof(audit_log_actor_user_t));
+    audit_log_actor_user_local_var->_library_owned = 1;
     audit_log_actor_user_local_var->id = id;
     audit_log_actor_user_local_var->email = email;
-
-    audit_log_actor_user_local_var->_library_owned = 1;
     return audit_log_actor_user_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) audit_log_actor_user_t *audit_log_actor_user_create(
     char *id,
     char *email
     ) {
-    return audit_log_actor_user_create_internal (
+    audit_log_actor_user_t *result = audit_log_actor_user_create_internal (
         id,
         email
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void audit_log_actor_user_free(audit_log_actor_user_t *audit_log_actor_user) {
@@ -80,6 +83,10 @@ audit_log_actor_user_t *audit_log_actor_user_parseFromJSON(cJSON *audit_log_acto
 
     audit_log_actor_user_t *audit_log_actor_user_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    char *email_local_str = NULL;
+
     // audit_log_actor_user->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(audit_log_actor_userJSON, "id");
     if (cJSON_IsNull(id)) {
@@ -105,13 +112,28 @@ audit_log_actor_user_t *audit_log_actor_user_parseFromJSON(cJSON *audit_log_acto
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (email && !cJSON_IsNull(email)) email_local_str = strdup(email->valuestring);
+
     audit_log_actor_user_local_var = audit_log_actor_user_create_internal (
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        email && !cJSON_IsNull(email) ? strdup(email->valuestring) : NULL
+        id_local_str,
+        email_local_str
         );
+
+    if (!audit_log_actor_user_local_var) {
+        goto end;
+    }
 
     return audit_log_actor_user_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (email_local_str) {
+        free(email_local_str);
+        email_local_str = NULL;
+    }
     return NULL;
 
 }

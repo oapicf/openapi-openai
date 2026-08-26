@@ -49,8 +49,8 @@ function Initialize-CreateThreadRequestToolResourcesFileSearch {
 
 
         $PSO = [PSCustomObject]@{
-            "vector_store_ids" = ${VectorStoreIds}
-            "vector_stores" = ${VectorStores}
+            'vector_store_ids' = ${VectorStoreIds}
+            'vector_stores' = ${VectorStores}
         }
 
 
@@ -88,28 +88,28 @@ function ConvertFrom-JsonToCreateThreadRequestToolResourcesFileSearch {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateThreadRequestToolResourcesFileSearch
-        $AllProperties = ("vector_store_ids", "vector_stores")
+        $AllProperties = ('vector_store_ids', 'vector_stores')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vector_store_ids"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'vector_store_ids'))) { #optional property not found
             $VectorStoreIds = $null
         } else {
-            $VectorStoreIds = $JsonParameters.PSobject.Properties["vector_store_ids"].value
+            $VectorStoreIds = $JsonParameters.PSobject.Properties['vector_store_ids'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vector_stores"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'vector_stores'))) { #optional property not found
             $VectorStores = $null
         } else {
-            $VectorStores = $JsonParameters.PSobject.Properties["vector_stores"].value
+            $VectorStores = $JsonParameters.PSobject.Properties['vector_stores'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "vector_store_ids" = ${VectorStoreIds}
-            "vector_stores" = ${VectorStores}
+            'vector_store_ids' = ${VectorStoreIds}
+            'vector_stores' = ${VectorStores}
         }
 
         return $PSO

@@ -144,7 +144,7 @@ RunStepDetailsToolCallsFileSearchResultObject::getFileId()
 }
 
 void
-RunStepDetailsToolCallsFileSearchResultObject::setFileId(std::string  file_id)
+RunStepDetailsToolCallsFileSearchResultObject::setFileId(std::string file_id)
 {
 	this->file_id = file_id;
 }
@@ -156,7 +156,7 @@ RunStepDetailsToolCallsFileSearchResultObject::getFileName()
 }
 
 void
-RunStepDetailsToolCallsFileSearchResultObject::setFileName(std::string  file_name)
+RunStepDetailsToolCallsFileSearchResultObject::setFileName(std::string file_name)
 {
 	this->file_name = file_name;
 }
@@ -168,7 +168,7 @@ RunStepDetailsToolCallsFileSearchResultObject::getScore()
 }
 
 void
-RunStepDetailsToolCallsFileSearchResultObject::setScore(long  score)
+RunStepDetailsToolCallsFileSearchResultObject::setScore(long score)
 {
 	this->score = score;
 }
@@ -180,7 +180,7 @@ RunStepDetailsToolCallsFileSearchResultObject::getContent()
 }
 
 void
-RunStepDetailsToolCallsFileSearchResultObject::setContent(std::list <RunStepDetailsToolCallsFileSearchResultObject_content_inner> content)
+RunStepDetailsToolCallsFileSearchResultObject::setContent(std::list<RunStepDetailsToolCallsFileSearchResultObject_content_inner> content)
 {
 	this->content = content;
 }

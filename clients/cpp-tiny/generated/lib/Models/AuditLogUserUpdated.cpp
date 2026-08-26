@@ -86,7 +86,7 @@ AuditLog_user_updated::getId()
 }
 
 void
-AuditLog_user_updated::setId(std::string  id)
+AuditLog_user_updated::setId(std::string id)
 {
 	this->id = id;
 }
@@ -98,7 +98,7 @@ AuditLog_user_updated::getChangesRequested()
 }
 
 void
-AuditLog_user_updated::setChangesRequested(AuditLog_user_updated_changes_requested  changes_requested)
+AuditLog_user_updated::setChangesRequested(AuditLog_user_updated_changes_requested changes_requested)
 {
 	this->changes_requested = changes_requested;
 }

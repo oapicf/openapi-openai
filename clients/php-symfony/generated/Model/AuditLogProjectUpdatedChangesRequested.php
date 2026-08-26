@@ -51,7 +51,7 @@ class AuditLogProjectUpdatedChangesRequested
      * @var string|null
      * @SerializedName("title")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $title = null;
 
@@ -77,12 +77,12 @@ class AuditLogProjectUpdatedChangesRequested
     }
 
     /**
-    * Sets title.
-    *
-    * @param string|null $title  The title of the project as seen on the dashboard.
-    *
-    * @return $this
-    */
+     * Sets title.
+     *
+     * @param string|null $title  The title of the project as seen on the dashboard.
+     *
+     * @return $this
+     */
     public function setTitle(?string $title = null): self
     {
         $this->title = $title;

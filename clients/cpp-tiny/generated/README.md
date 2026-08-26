@@ -282,7 +282,6 @@ All URIs are relative to https://api.openai.comhttps://api.openai.com/v1
 |*AuditLog_user_updated* | The details for events with this `type`.|
 |*AuditLog_user_updated_changes_requested* | The payload used to update the user.|
 |*AutoChunkingStrategyRequestParam* | The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`.|
-|*Auto_Chunking_Strategy* | The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`.|
 |*Batch* | |
 |*BatchRequestInput* | The per-line object of the batch input file|
 |*BatchRequestOutput* | The per-line object of the batch output and error files|
@@ -691,7 +690,6 @@ All URIs are relative to https://api.openai.comhttps://api.openai.com/v1
 |*RunToolCallObject_function* | The function definition.|
 |*StaticChunkingStrategy* | |
 |*StaticChunkingStrategyRequestParam* | |
-|*StaticChunkingStrategyResponseParam* | |
 |*Static_Chunking_Strategy* | |
 |*Static_Chunking_Strategy_static* | |
 |*SubmitToolOutputsRunRequest* | |

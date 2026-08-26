@@ -1,4 +1,4 @@
-# # AssistantObjectToolResourcesCodeInterpreter
+# AssistantObjectToolResourcesCodeInterpreter
 
 ## Properties
 

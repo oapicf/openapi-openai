@@ -23,13 +23,15 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class CreateModerationRequestInputOneOfInnerOneOf(
 
-    @Schema(example = "null", required = true, description = "Always `image_url`.")
+    @Schema(required = true, description = "Always `image_url`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: CreateModerationRequestInputOneOfInnerOneOf.Type,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("image_url")
     @get:JsonProperty("image_url", required = true) val imageUrl: CreateModerationRequestInputOneOfInnerOneOfImageUrl
-) {
+) : CreateModerationRequestInputOneOfInner {
 
     /**
     * Always `image_url`.
@@ -44,7 +46,7 @@ data class CreateModerationRequestInputOneOfInnerOneOf(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateModerationRequestInputOneOfInnerOneOf'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

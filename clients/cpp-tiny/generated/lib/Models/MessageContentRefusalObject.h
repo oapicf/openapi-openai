@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set Always `refusal`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	std::string getRefusal();
 
 	/*! \brief Set 
 	 */
-	void setRefusal(std::string  refusal);
+	void setRefusal(std::string refusal);
 
 
     private:

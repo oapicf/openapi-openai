@@ -28,6 +28,8 @@ AuditLog_login_failed::AuditLog_login_failed()
     
 }
 
+AuditLog_login_failed::~AuditLog_login_failed() = default;
+
 void AuditLog_login_failed::validate() const
 {
     std::stringstream msg;

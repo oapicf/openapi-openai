@@ -28,14 +28,14 @@ openai_api_vector_store_expiration_after_ANCHOR_e vector_store_expiration_after_
 
 typedef struct vector_store_expiration_after_t {
     openai_api_vector_store_expiration_after_ANCHOR_e anchor; //enum
-    int days; //numeric
+    int *days; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } vector_store_expiration_after_t;
 
 __attribute__((deprecated)) vector_store_expiration_after_t *vector_store_expiration_after_create(
     openai_api_vector_store_expiration_after_ANCHOR_e anchor,
-    int days
+    int *days
 );
 
 void vector_store_expiration_after_free(vector_store_expiration_after_t *vector_store_expiration_after);

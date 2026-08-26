@@ -46,8 +46,8 @@ function Initialize-RunStepDeltaStepDetailsToolCallsObject {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "tool_calls" = ${ToolCalls}
+            'type' = ${Type}
+            'tool_calls' = ${ToolCalls}
         }
 
 
@@ -85,7 +85,7 @@ function ConvertFrom-JsonToRunStepDeltaStepDetailsToolCallsObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RunStepDeltaStepDetailsToolCallsObject
-        $AllProperties = ("type", "tool_calls")
+        $AllProperties = ('type', 'tool_calls')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -96,21 +96,21 @@ function ConvertFrom-JsonToRunStepDeltaStepDetailsToolCallsObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tool_calls"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tool_calls'))) { #optional property not found
             $ToolCalls = $null
         } else {
-            $ToolCalls = $JsonParameters.PSobject.Properties["tool_calls"].value
+            $ToolCalls = $JsonParameters.PSobject.Properties['tool_calls'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "tool_calls" = ${ToolCalls}
+            'type' = ${Type}
+            'tool_calls' = ${ToolCalls}
         }
 
         return $PSO

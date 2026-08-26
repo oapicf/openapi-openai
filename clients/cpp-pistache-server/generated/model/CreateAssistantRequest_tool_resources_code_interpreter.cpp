@@ -25,6 +25,8 @@ CreateAssistantRequest_tool_resources_code_interpreter::CreateAssistantRequest_t
     
 }
 
+CreateAssistantRequest_tool_resources_code_interpreter::~CreateAssistantRequest_tool_resources_code_interpreter() = default;
+
 void CreateAssistantRequest_tool_resources_code_interpreter::validate() const
 {
     std::stringstream msg;

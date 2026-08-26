@@ -32,11 +32,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
   CreateFineTuningJobRequestIntegrationsInner.JSON_PROPERTY_WANDB
 })
 @JsonTypeName("CreateFineTuningJobRequest_integrations_inner")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-01-29T14:08:04.353155660Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class CreateFineTuningJobRequestIntegrationsInner {
     /**
-     * Gets or Sets type
+     * The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. 
      */
     public enum TypeEnum {
         WANDB("wandb");
@@ -84,11 +84,11 @@ public class CreateFineTuningJobRequestIntegrationsInner {
     }
 
     /**
-     * Get type
+     * The type of integration to enable. Currently, only \&quot;wandb\&quot; (Weights and Biases) is supported. 
      * @return type
      */
     @NotNull
-    @Schema(name = "type", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(name = "type", description = "The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. ", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(JSON_PROPERTY_TYPE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public TypeEnum getType() {
@@ -158,10 +158,7 @@ public class CreateFineTuningJobRequestIntegrationsInner {
      * (except the first line).
      */
     private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
+        return o == null ? "null" : o.toString().replace("\n", "\n    ");
     }
 
 }

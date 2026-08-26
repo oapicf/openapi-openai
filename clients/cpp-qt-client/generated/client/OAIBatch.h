@@ -36,13 +36,13 @@ class OAIBatch_request_counts;
 class OAIBatch : public OAIObject {
 public:
     OAIBatch();
-    OAIBatch(QString json);
+    OAIBatch(const QString &json);
     ~OAIBatch() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

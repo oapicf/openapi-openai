@@ -49,7 +49,7 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
 )
 async def admin_api_keys_list(
     after: Optional[StrictStr] = Query(None, description="", alias="after"),
-    order: Optional[StrictStr] = Query(asc, description="", alias="order"),
+    order: Optional[StrictStr] = Query('asc', description="", alias="order"),
     limit: Optional[StrictInt] = Query(20, description="", alias="limit"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth

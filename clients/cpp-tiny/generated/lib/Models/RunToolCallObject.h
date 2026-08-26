@@ -52,21 +52,21 @@ public:
 
 	/*! \brief Set The ID of the tool call. This ID must be referenced when you submit the tool outputs in using the [Submit tool outputs to run](/docs/api-reference/runs/submitToolOutputs) endpoint.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The type of tool call the output is required for. For now, this is always `function`.
 	 */
 	std::string getType();
 
 	/*! \brief Set The type of tool call the output is required for. For now, this is always `function`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	RunToolCallObject_function getFunction();
 
 	/*! \brief Set 
 	 */
-	void setFunction(RunToolCallObject_function  function);
+	void setFunction(RunToolCallObject_function function);
 
 
     private:

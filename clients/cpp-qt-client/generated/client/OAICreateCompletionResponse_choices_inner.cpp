@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateCompletionResponse_choices_inner::OAICreateCompletionResponse_choices_inner(QString json) {
+OAICreateCompletionResponse_choices_inner::OAICreateCompletionResponse_choices_inner(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -47,7 +47,7 @@ void OAICreateCompletionResponse_choices_inner::initializeModel() {
     m_text_isValid = false;
 }
 
-void OAICreateCompletionResponse_choices_inner::fromJson(QString jsonString) {
+void OAICreateCompletionResponse_choices_inner::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -59,9 +59,9 @@ function Initialize-RealtimeServerEventError {
 
 
         $PSO = [PSCustomObject]@{
-            "event_id" = ${EventId}
-            "type" = ${Type}
-            "error" = ${VarError}
+            'event_id' = ${EventId}
+            'type' = ${Type}
+            'error' = ${VarError}
         }
 
 
@@ -99,7 +99,7 @@ function ConvertFrom-JsonToRealtimeServerEventError {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeServerEventError
-        $AllProperties = ("event_id", "type", "error")
+        $AllProperties = ('event_id', 'type', 'error')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -110,28 +110,28 @@ function ConvertFrom-JsonToRealtimeServerEventError {
             throw "Error! Empty JSON cannot be serialized due to the required property 'event_id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "event_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'event_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'event_id' missing."
         } else {
-            $EventId = $JsonParameters.PSobject.Properties["event_id"].value
+            $EventId = $JsonParameters.PSobject.Properties['event_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "error"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'error'))) {
             throw "Error! JSON cannot be serialized due to the required property 'error' missing."
         } else {
-            $VarError = $JsonParameters.PSobject.Properties["error"].value
+            $VarError = $JsonParameters.PSobject.Properties['error'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "event_id" = ${EventId}
-            "type" = ${Type}
-            "error" = ${VarError}
+            'event_id' = ${EventId}
+            'type' = ${Type}
+            'error' = ${VarError}
         }
 
         return $PSO

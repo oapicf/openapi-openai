@@ -107,7 +107,7 @@ MessageDeltaContentTextObject::getIndex()
 }
 
 void
-MessageDeltaContentTextObject::setIndex(int  index)
+MessageDeltaContentTextObject::setIndex(int index)
 {
 	this->index = index;
 }
@@ -119,7 +119,7 @@ MessageDeltaContentTextObject::getType()
 }
 
 void
-MessageDeltaContentTextObject::setType(std::string  type)
+MessageDeltaContentTextObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -131,7 +131,7 @@ MessageDeltaContentTextObject::getText()
 }
 
 void
-MessageDeltaContentTextObject::setText(MessageDeltaContentTextObject_text  text)
+MessageDeltaContentTextObject::setText(MessageDeltaContentTextObject_text text)
 {
 	this->text = text;
 }

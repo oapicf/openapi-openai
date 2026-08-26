@@ -25,6 +25,8 @@ ChatCompletionToolChoiceOption::ChatCompletionToolChoiceOption()
     
 }
 
+ChatCompletionToolChoiceOption::~ChatCompletionToolChoiceOption() = default;
+
 void ChatCompletionToolChoiceOption::validate() const
 {
     std::stringstream msg;

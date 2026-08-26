@@ -21,11 +21,13 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class MessageContentTextObjectText(
 
-    @Schema(example = "null", required = true, description = "The data that makes up the text.")
+    @Schema(required = true, description = "The data that makes up the text.")
+    @param:JsonProperty("value")
     @get:JsonProperty("value", required = true) val `value`: kotlin.String,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("annotations")
     @get:JsonProperty("annotations", required = true) val annotations: kotlin.collections.List<MessageContentTextObjectTextAnnotationsInner>
 ) {
 

@@ -61,7 +61,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Beta
         /// </summary>
         [JsonPropertyName("beta")]
-        public FineTuneDPOMethodHyperparametersBeta? Beta { get { return this.BetaOption; } set { this.BetaOption = new(value); } }
+        public FineTuneDPOMethodHyperparametersBeta? Beta { get { return this.BetaOption.Value; } set { this.BetaOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of BatchSize
@@ -74,7 +74,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets BatchSize
         /// </summary>
         [JsonPropertyName("batch_size")]
-        public FineTuneDPOMethodHyperparametersBatchSize? BatchSize { get { return this.BatchSizeOption; } set { this.BatchSizeOption = new(value); } }
+        public FineTuneDPOMethodHyperparametersBatchSize? BatchSize { get { return this.BatchSizeOption.Value; } set { this.BatchSizeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LearningRateMultiplier
@@ -87,7 +87,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets LearningRateMultiplier
         /// </summary>
         [JsonPropertyName("learning_rate_multiplier")]
-        public FineTuneDPOMethodHyperparametersLearningRateMultiplier? LearningRateMultiplier { get { return this.LearningRateMultiplierOption; } set { this.LearningRateMultiplierOption = new(value); } }
+        public FineTuneDPOMethodHyperparametersLearningRateMultiplier? LearningRateMultiplier { get { return this.LearningRateMultiplierOption.Value; } set { this.LearningRateMultiplierOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of NEpochs
@@ -100,7 +100,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets NEpochs
         /// </summary>
         [JsonPropertyName("n_epochs")]
-        public FineTuneDPOMethodHyperparametersNEpochs? NEpochs { get { return this.NEpochsOption; } set { this.NEpochsOption = new(value); } }
+        public FineTuneDPOMethodHyperparametersNEpochs? NEpochs { get { return this.NEpochsOption.Value; } set { this.NEpochsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTuneDPOMethodHyperparameters" />
     /// </summary>
-    public class FineTuneDPOMethodHyperparametersJsonConverter : JsonConverter<FineTuneDPOMethodHyperparameters>
+    public partial class FineTuneDPOMethodHyperparametersJsonConverter : JsonConverter<FineTuneDPOMethodHyperparameters>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTuneDPOMethodHyperparametersJsonConverter" /> class.
+        /// </summary>
+        public FineTuneDPOMethodHyperparametersJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTuneDPOMethodHyperparameters" />
         /// </summary>

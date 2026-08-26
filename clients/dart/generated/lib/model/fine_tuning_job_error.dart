@@ -66,10 +66,11 @@ class FineTuningJobError {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "FineTuningJobError[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "FineTuningJobError[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'code'), 'Required key "FineTuningJobError[code]" is missing from JSON.');
+        assert(json[r'code'] != null, 'Required key "FineTuningJobError[code]" has a null value in JSON.');
+        assert(json.containsKey(r'message'), 'Required key "FineTuningJobError[message]" is missing from JSON.');
+        assert(json[r'message'] != null, 'Required key "FineTuningJobError[message]" has a null value in JSON.');
+        assert(json.containsKey(r'param'), 'Required key "FineTuningJobError[param]" is missing from JSON.');
         return true;
       }());
 

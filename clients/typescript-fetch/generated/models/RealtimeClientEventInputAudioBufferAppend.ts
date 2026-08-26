@@ -37,7 +37,7 @@ export interface RealtimeClientEventInputAudioBufferAppend {
     eventId?: string;
     /**
      * The event type, must be `input_audio_buffer.append`.
-     * @type {string}
+     * @type {RealtimeClientEventInputAudioBufferAppendTypeEnum}
      * @memberof RealtimeClientEventInputAudioBufferAppend
      */
     type: RealtimeClientEventInputAudioBufferAppendTypeEnum;
@@ -66,6 +66,8 @@ export type RealtimeClientEventInputAudioBufferAppendTypeEnum = typeof RealtimeC
  */
 export function instanceOfRealtimeClientEventInputAudioBufferAppend(value: object): value is RealtimeClientEventInputAudioBufferAppend {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'input_audio_buffer.append') return false;
+    
     if (!('audio' in value) || value['audio'] === undefined) return false;
     return true;
 }

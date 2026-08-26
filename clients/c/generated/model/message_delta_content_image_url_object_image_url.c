@@ -30,10 +30,10 @@ static message_delta_content_image_url_object_image_url_t *message_delta_content
     if (!message_delta_content_image_url_object_image_url_local_var) {
         return NULL;
     }
+    memset(message_delta_content_image_url_object_image_url_local_var, 0, sizeof(message_delta_content_image_url_object_image_url_t));
+    message_delta_content_image_url_object_image_url_local_var->_library_owned = 1;
     message_delta_content_image_url_object_image_url_local_var->url = url;
     message_delta_content_image_url_object_image_url_local_var->detail = detail;
-
-    message_delta_content_image_url_object_image_url_local_var->_library_owned = 1;
     return message_delta_content_image_url_object_image_url_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) message_delta_content_image_url_object_image_url_t *
     char *url,
     openai_api_message_delta_content_image_url_object_image_url_DETAIL_e detail
     ) {
-    return message_delta_content_image_url_object_image_url_create_internal (
+    message_delta_content_image_url_object_image_url_t *result = message_delta_content_image_url_object_image_url_create_internal (
         url,
         detail
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_delta_content_image_url_object_image_url_free(message_delta_content_image_url_object_image_url_t *message_delta_content_image_url_object_image_url) {
@@ -94,6 +97,8 @@ message_delta_content_image_url_object_image_url_t *message_delta_content_image_
 
     message_delta_content_image_url_object_image_url_t *message_delta_content_image_url_object_image_url_local_var = NULL;
 
+    char *url_local_str = NULL;
+
     // message_delta_content_image_url_object_image_url->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(message_delta_content_image_url_object_image_urlJSON, "url");
     if (cJSON_IsNull(url)) {
@@ -121,13 +126,23 @@ message_delta_content_image_url_object_image_url_t *message_delta_content_image_
     }
 
 
+    if (url && !cJSON_IsNull(url)) url_local_str = strdup(url->valuestring);
+
     message_delta_content_image_url_object_image_url_local_var = message_delta_content_image_url_object_image_url_create_internal (
-        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL,
+        url_local_str,
         detail ? detailVariable : openai_api_message_delta_content_image_url_object_image_url_DETAIL_NULL
         );
 
+    if (!message_delta_content_image_url_object_image_url_local_var) {
+        goto end;
+    }
+
     return message_delta_content_image_url_object_image_url_local_var;
 end:
+    if (url_local_str) {
+        free(url_local_str);
+        url_local_str = NULL;
+    }
     return NULL;
 
 }

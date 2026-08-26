@@ -31,7 +31,7 @@ class  CreateModerationResponse_results_inner_category_scores
 {
 public:
     CreateModerationResponse_results_inner_category_scores();
-    virtual ~CreateModerationResponse_results_inner_category_scores() = default;
+    virtual ~CreateModerationResponse_results_inner_category_scores();
 
 
     /// <summary>

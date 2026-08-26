@@ -30,6 +30,8 @@ CreateFineTuningJobRequest_integrations_inner_wandb::CreateFineTuningJobRequest_
     
 }
 
+CreateFineTuningJobRequest_integrations_inner_wandb::~CreateFineTuningJobRequest_integrations_inner_wandb() = default;
+
 void CreateFineTuningJobRequest_integrations_inner_wandb::validate() const
 {
     std::stringstream msg;

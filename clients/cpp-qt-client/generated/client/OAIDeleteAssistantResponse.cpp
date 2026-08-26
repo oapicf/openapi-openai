@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIDeleteAssistantResponse::OAIDeleteAssistantResponse(QString json) {
+OAIDeleteAssistantResponse::OAIDeleteAssistantResponse(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIDeleteAssistantResponse::initializeModel() {
     m_object_isValid = false;
 }
 
-void OAIDeleteAssistantResponse::fromJson(QString jsonString) {
+void OAIDeleteAssistantResponse::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

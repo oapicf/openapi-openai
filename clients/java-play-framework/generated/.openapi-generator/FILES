@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 LICENSE
 README
 app/Module.java
@@ -62,7 +61,6 @@ app/apimodels/AuditLogUserAddedData.java
 app/apimodels/AuditLogUserDeleted.java
 app/apimodels/AuditLogUserUpdated.java
 app/apimodels/AuditLogUserUpdatedChangesRequested.java
-app/apimodels/AutoChunkingStrategy.java
 app/apimodels/AutoChunkingStrategyRequestParam.java
 app/apimodels/Batch.java
 app/apimodels/BatchErrors.java
@@ -472,7 +470,6 @@ app/apimodels/RunToolCallObject.java
 app/apimodels/RunToolCallObjectFunction.java
 app/apimodels/StaticChunkingStrategy.java
 app/apimodels/StaticChunkingStrategyRequestParam.java
-app/apimodels/StaticChunkingStrategyResponseParam.java
 app/apimodels/StaticChunkingStrategyStatic.java
 app/apimodels/SubmitToolOutputsRunRequest.java
 app/apimodels/SubmitToolOutputsRunRequestToolOutputsInner.java

@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set For now, this is always `submit_tool_outputs`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	RunObject_required_action_submit_tool_outputs getSubmitToolOutputs();
 
 	/*! \brief Set 
 	 */
-	void setSubmitToolOutputs(RunObject_required_action_submit_tool_outputs  submit_tool_outputs);
+	void setSubmitToolOutputs(RunObject_required_action_submit_tool_outputs submit_tool_outputs);
 
 
     private:

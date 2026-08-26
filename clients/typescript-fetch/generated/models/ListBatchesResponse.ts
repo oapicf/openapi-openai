@@ -53,7 +53,7 @@ export interface ListBatchesResponse {
     hasMore: boolean;
     /**
      * 
-     * @type {string}
+     * @type {ListBatchesResponseObjectEnum}
      * @memberof ListBatchesResponse
      */
     object: ListBatchesResponseObjectEnum;
@@ -74,8 +74,10 @@ export type ListBatchesResponseObjectEnum = typeof ListBatchesResponseObjectEnum
  */
 export function instanceOfListBatchesResponse(value: object): value is ListBatchesResponse {
     if (!('data' in value) || value['data'] === undefined) return false;
-    if (!('hasMore' in value) || value['hasMore'] === undefined) return false;
+    if ((!('hasMore' in (value as Record<string, any>)) && !('has_more' in (value as Record<string, any>))) || ((value as Record<string, any>)['hasMore'] === undefined && (value as Record<string, any>)['has_more'] === undefined)) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'list') return false;
+    
     return true;
 }
 

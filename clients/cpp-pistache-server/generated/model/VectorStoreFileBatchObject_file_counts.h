@@ -31,7 +31,7 @@ class  VectorStoreFileBatchObject_file_counts
 {
 public:
     VectorStoreFileBatchObject_file_counts();
-    virtual ~VectorStoreFileBatchObject_file_counts() = default;
+    virtual ~VectorStoreFileBatchObject_file_counts();
 
 
     /// <summary>

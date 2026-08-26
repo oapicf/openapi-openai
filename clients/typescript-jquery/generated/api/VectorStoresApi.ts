@@ -56,7 +56,7 @@ export class VectorStoresApi {
     { response: JQueryXHR; body: models.VectorStoreFileBatchObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel'.replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId))).replace('{' + 'batch_id' + '}', encodeURIComponent(String(batchId)));
+        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel'.replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId))).replace('{batch_id}', encodeURIComponent(String(batchId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -192,7 +192,7 @@ export class VectorStoresApi {
     { response: JQueryXHR; body: models.VectorStoreFileObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}/files'.replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}/files'.replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -265,7 +265,7 @@ export class VectorStoresApi {
     { response: JQueryXHR; body: models.VectorStoreFileBatchObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}/file_batches'.replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}/file_batches'.replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -337,7 +337,7 @@ export class VectorStoresApi {
     { response: JQueryXHR; body: models.DeleteVectorStoreResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}'.replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}'.replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -401,7 +401,7 @@ export class VectorStoresApi {
     { response: JQueryXHR; body: models.DeleteVectorStoreFileResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}/files/{file_id}'.replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId))).replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
+        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}/files/{file_id}'.replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId))).replace('{file_id}', encodeURIComponent(String(fileId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -469,7 +469,7 @@ export class VectorStoresApi {
     { response: JQueryXHR; body: models.VectorStoreObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}'.replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}'.replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -533,7 +533,7 @@ export class VectorStoresApi {
     { response: JQueryXHR; body: models.VectorStoreFileObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}/files/{file_id}'.replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId))).replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
+        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}/files/{file_id}'.replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId))).replace('{file_id}', encodeURIComponent(String(fileId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -602,7 +602,7 @@ export class VectorStoresApi {
     { response: JQueryXHR; body: models.VectorStoreFileBatchObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}/file_batches/{batch_id}'.replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId))).replace('{' + 'batch_id' + '}', encodeURIComponent(String(batchId)));
+        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}/file_batches/{batch_id}'.replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId))).replace('{batch_id}', encodeURIComponent(String(batchId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -676,7 +676,7 @@ export class VectorStoresApi {
     { response: JQueryXHR; body: models.ListVectorStoreFilesResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}/file_batches/{batch_id}/files'.replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId))).replace('{' + 'batch_id' + '}', encodeURIComponent(String(batchId)));
+        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}/file_batches/{batch_id}/files'.replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId))).replace('{batch_id}', encodeURIComponent(String(batchId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -764,7 +764,7 @@ export class VectorStoresApi {
     { response: JQueryXHR; body: models.ListVectorStoreFilesResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}/files'.replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}/files'.replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -916,7 +916,7 @@ export class VectorStoresApi {
     { response: JQueryXHR; body: models.VectorStoreObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}'.replace('{' + 'vector_store_id' + '}', encodeURIComponent(String(vectorStoreId)));
+        let localVarPath = this.basePath + '/vector_stores/{vector_store_id}'.replace('{vector_store_id}', encodeURIComponent(String(vectorStoreId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};

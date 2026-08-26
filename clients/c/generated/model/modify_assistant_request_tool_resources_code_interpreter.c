@@ -12,18 +12,21 @@ static modify_assistant_request_tool_resources_code_interpreter_t *modify_assist
     if (!modify_assistant_request_tool_resources_code_interpreter_local_var) {
         return NULL;
     }
-    modify_assistant_request_tool_resources_code_interpreter_local_var->file_ids = file_ids;
-
+    memset(modify_assistant_request_tool_resources_code_interpreter_local_var, 0, sizeof(modify_assistant_request_tool_resources_code_interpreter_t));
     modify_assistant_request_tool_resources_code_interpreter_local_var->_library_owned = 1;
+    modify_assistant_request_tool_resources_code_interpreter_local_var->file_ids = file_ids;
     return modify_assistant_request_tool_resources_code_interpreter_local_var;
 }
 
 __attribute__((deprecated)) modify_assistant_request_tool_resources_code_interpreter_t *modify_assistant_request_tool_resources_code_interpreter_create(
     list_t *file_ids
     ) {
-    return modify_assistant_request_tool_resources_code_interpreter_create_internal (
+    modify_assistant_request_tool_resources_code_interpreter_t *result = modify_assistant_request_tool_resources_code_interpreter_create_internal (
         file_ids
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void modify_assistant_request_tool_resources_code_interpreter_free(modify_assistant_request_tool_resources_code_interpreter_t *modify_assistant_request_tool_resources_code_interpreter) {
@@ -102,9 +105,14 @@ modify_assistant_request_tool_resources_code_interpreter_t *modify_assistant_req
     }
 
 
+
     modify_assistant_request_tool_resources_code_interpreter_local_var = modify_assistant_request_tool_resources_code_interpreter_create_internal (
         file_ids ? file_idsList : NULL
         );
+
+    if (!modify_assistant_request_tool_resources_code_interpreter_local_var) {
+        goto end;
+    }
 
     return modify_assistant_request_tool_resources_code_interpreter_local_var;
 end:

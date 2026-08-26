@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 README.md
 build.gradle.kts
 gradle/wrapper/gradle-wrapper.jar
@@ -89,7 +88,6 @@ src/main/kotlin/org/openapitools/model/AuditLogUserAddedData.kt
 src/main/kotlin/org/openapitools/model/AuditLogUserDeleted.kt
 src/main/kotlin/org/openapitools/model/AuditLogUserUpdated.kt
 src/main/kotlin/org/openapitools/model/AuditLogUserUpdatedChangesRequested.kt
-src/main/kotlin/org/openapitools/model/AutoChunkingStrategy.kt
 src/main/kotlin/org/openapitools/model/AutoChunkingStrategyRequestParam.kt
 src/main/kotlin/org/openapitools/model/Batch.kt
 src/main/kotlin/org/openapitools/model/BatchErrors.kt
@@ -499,7 +497,6 @@ src/main/kotlin/org/openapitools/model/RunToolCallObject.kt
 src/main/kotlin/org/openapitools/model/RunToolCallObjectFunction.kt
 src/main/kotlin/org/openapitools/model/StaticChunkingStrategy.kt
 src/main/kotlin/org/openapitools/model/StaticChunkingStrategyRequestParam.kt
-src/main/kotlin/org/openapitools/model/StaticChunkingStrategyResponseParam.kt
 src/main/kotlin/org/openapitools/model/StaticChunkingStrategyStatic.kt
 src/main/kotlin/org/openapitools/model/SubmitToolOutputsRunRequest.kt
 src/main/kotlin/org/openapitools/model/SubmitToolOutputsRunRequestToolOutputsInner.kt
@@ -536,19 +533,3 @@ src/main/kotlin/org/openapitools/model/VectorStoreObject.kt
 src/main/kotlin/org/openapitools/model/VectorStoreObjectFileCounts.kt
 src/main/resources/application.yaml
 src/main/resources/openapi.yaml
-src/test/kotlin/org/openapitools/api/AssistantsApiTest.kt
-src/test/kotlin/org/openapitools/api/AudioApiTest.kt
-src/test/kotlin/org/openapitools/api/BatchesApiTest.kt
-src/test/kotlin/org/openapitools/api/ChatApiTest.kt
-src/test/kotlin/org/openapitools/api/CompletionsApiTest.kt
-src/test/kotlin/org/openapitools/api/EmbeddingsApiTest.kt
-src/test/kotlin/org/openapitools/api/FilesApiTest.kt
-src/test/kotlin/org/openapitools/api/FineTuningApiTest.kt
-src/test/kotlin/org/openapitools/api/ImagesApiTest.kt
-src/test/kotlin/org/openapitools/api/ModelsApiTest.kt
-src/test/kotlin/org/openapitools/api/ModerationsApiTest.kt
-src/test/kotlin/org/openapitools/api/OrganizationApiTest.kt
-src/test/kotlin/org/openapitools/api/RealtimeApiTest.kt
-src/test/kotlin/org/openapitools/api/ThreadsApiTest.kt
-src/test/kotlin/org/openapitools/api/UploadsApiTest.kt
-src/test/kotlin/org/openapitools/api/VectorStoresApiTest.kt

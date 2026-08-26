@@ -147,8 +147,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="DeleteAssistantResponse" />
     /// </summary>
-    public class DeleteAssistantResponseJsonConverter : JsonConverter<DeleteAssistantResponse>
+    public partial class DeleteAssistantResponseJsonConverter : JsonConverter<DeleteAssistantResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeleteAssistantResponseJsonConverter" /> class.
+        /// </summary>
+        public DeleteAssistantResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DeleteAssistantResponse" />
         /// </summary>

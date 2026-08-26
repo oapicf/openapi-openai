@@ -16,7 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ModifyAssistantRequest  {
   
-  @ApiModelProperty(value = "")
+ /**
+  * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
+  */
+  @ApiModelProperty(value = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. ")
 
   private String model;
 
@@ -77,7 +80,7 @@ public class ModifyAssistantRequest  {
 
   private AssistantsApiResponseFormatOption responseFormat;
  /**
-   * Get model
+   * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
    * @return model
   **/
   @JsonProperty("model")
@@ -315,10 +318,7 @@ public class ModifyAssistantRequest  {
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

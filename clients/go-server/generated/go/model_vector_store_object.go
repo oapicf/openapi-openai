@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // VectorStoreObject - A vector store is a collection of processed files can be used by the `file_search` tool.
@@ -48,19 +53,140 @@ type VectorStoreObject struct {
 	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	Metadata *map[string]interface{} `json:"metadata"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into VectorStoreObject
+func (o *VectorStoreObject) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"id",
+		"object",
+		"created_at",
+		"name",
+		"usage_bytes",
+		"file_counts",
+		"status",
+		"last_active_at",
+		"metadata",
+	}
 
-// AssertVectorStoreObjectRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"id": false,
+		"object": false,
+		"created_at": false,
+		"name": false,
+		"usage_bytes": false,
+		"file_counts": false,
+		"status": false,
+		"last_active_at": true,
+		"metadata": true,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"id": {},
+		"object": {},
+		"created_at": {},
+		"name": {},
+		"usage_bytes": {},
+		"file_counts": {},
+		"status": {},
+		"expires_after": {},
+		"expires_at": {},
+		"last_active_at": {},
+		"metadata": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded VectorStoreObject
+
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["created_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CreatedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["name"]; exists {
+		if err = json.Unmarshal(value, &decoded.Name); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["usage_bytes"]; exists {
+		if err = json.Unmarshal(value, &decoded.UsageBytes); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["file_counts"]; exists {
+		if err = json.Unmarshal(value, &decoded.FileCounts); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["status"]; exists {
+		if err = json.Unmarshal(value, &decoded.Status); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["expires_after"]; exists {
+		if err = json.Unmarshal(value, &decoded.ExpiresAfter); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["expires_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.ExpiresAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["last_active_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.LastActiveAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["metadata"]; exists {
+		if err = json.Unmarshal(value, &decoded.Metadata); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertVectorStoreObjectRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertVectorStoreObjectRequired(obj VectorStoreObject) error {
 	elements := map[string]interface{}{
-		"id": obj.Id,
-		"object": obj.Object,
-		"created_at": obj.CreatedAt,
-		"name": obj.Name,
-		"usage_bytes": obj.UsageBytes,
 		"file_counts": obj.FileCounts,
-		"status": obj.Status,
-		"last_active_at": obj.LastActiveAt,
-		"metadata": obj.Metadata,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {

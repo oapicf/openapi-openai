@@ -29,7 +29,7 @@ message AssistantObject {
     OBJECT_ASSISTANT = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The Unix timestamp (in seconds) for when the assistant was created.
   int32 created_at = 295938284;

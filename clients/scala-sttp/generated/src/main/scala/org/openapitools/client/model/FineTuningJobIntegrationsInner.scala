@@ -12,11 +12,16 @@
 package org.openapitools.client.model
 
 
-case class FineTuningJobIntegrationsInner(
+sealed trait FineTuningJobIntegrationsInner
+object FineTuningJobIntegrationsInner {
+}
+
+case class FineTuningIntegration(
   /* The type of the integration being enabled for the fine-tuning job */
-  `type`: FineTuningJobIntegrationsInnerEnums.`Type`,
+  `type`: FineTuningIntegrationEnums.`Type`,
   wandb: CreateFineTuningJobRequestIntegrationsInnerWandb
-)
+) extends FineTuningJobIntegrationsInner
+
 
 object FineTuningJobIntegrationsInnerEnums {
 

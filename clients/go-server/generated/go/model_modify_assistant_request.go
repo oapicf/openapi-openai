@@ -20,6 +20,7 @@ import (
 
 type ModifyAssistantRequest struct {
 
+	// ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
 	Model string `json:"model,omitempty"`
 
 	// The name of the assistant. The maximum length is 256 characters. 
@@ -48,7 +49,8 @@ type ModifyAssistantRequest struct {
 	ResponseFormat AssistantsApiResponseFormatOption `json:"response_format,omitempty"`
 }
 
-// AssertModifyAssistantRequestRequired checks if the required fields are not zero-ed
+// AssertModifyAssistantRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertModifyAssistantRequestRequired(obj ModifyAssistantRequest) error {
 	for _, el := range obj.Tools {
 		if err := AssertAssistantObjectToolsInnerRequired(el); err != nil {

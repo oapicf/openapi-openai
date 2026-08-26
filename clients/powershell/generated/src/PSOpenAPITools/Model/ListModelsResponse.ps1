@@ -50,8 +50,8 @@ function Initialize-ListModelsResponse {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "data" = ${VarData}
+            'object' = ${Object}
+            'data' = ${VarData}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-JsonToListModelsResponse {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ListModelsResponse
-        $AllProperties = ("object", "data")
+        $AllProperties = ('object', 'data')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,21 +100,21 @@ function ConvertFrom-JsonToListModelsResponse {
             throw "Error! Empty JSON cannot be serialized due to the required property 'object' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "data"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'data'))) {
             throw "Error! JSON cannot be serialized due to the required property 'data' missing."
         } else {
-            $VarData = $JsonParameters.PSobject.Properties["data"].value
+            $VarData = $JsonParameters.PSobject.Properties['data'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "data" = ${VarData}
+            'object' = ${Object}
+            'data' = ${VarData}
         }
 
         return $PSO

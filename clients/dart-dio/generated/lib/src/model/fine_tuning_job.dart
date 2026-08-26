@@ -378,8 +378,9 @@ class _$FineTuningJobSerializer implements PrimitiveSerializer<FineTuningJob> {
         case r'method':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FineTuneMethod),
-          ) as FineTuneMethod;
+            specifiedType: const FullType.nullable(FineTuneMethod),
+          ) as FineTuneMethod?;
+          if (valueDes == null) continue;
           result.method.replace(valueDes);
           break;
         default:

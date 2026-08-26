@@ -22,11 +22,13 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class TruncationObject(
 
-    @Schema(example = "null", required = true, description = "The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.")
+    @Schema(required = true, description = "The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: TruncationObject.Type,
 
     @get:Min(value=1)
-    @Schema(example = "null", description = "The number of most recent messages from the thread when constructing the context for the run.")
+    @Schema(description = "The number of most recent messages from the thread when constructing the context for the run.")
+    @param:JsonProperty("last_messages")
     @get:JsonProperty("last_messages") val lastMessages: kotlin.Int? = null
 ) {
 
@@ -44,7 +46,7 @@ data class TruncationObject(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'TruncationObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

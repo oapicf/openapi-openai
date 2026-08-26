@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     OpenAI API
 
@@ -11,6 +9,7 @@
 
     Do not edit the class manually.
 """  # noqa: E501
+
 
 import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
@@ -64,7 +63,7 @@ class FilesApi:
 
 
         :param file: The File object (not file name) to be uploaded.  (required)
-        :type file: bytearray
+        :type file: bytes
         :param purpose: The intended purpose of the uploaded file.  Use \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\"vision\\\" for Assistants image file inputs, \\\"batch\\\" for [Batch API](/docs/guides/batch), and \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning).  (required)
         :type purpose: str
         :param _request_timeout: timeout setting for this request. If one
@@ -134,7 +133,7 @@ class FilesApi:
 
 
         :param file: The File object (not file name) to be uploaded.  (required)
-        :type file: bytearray
+        :type file: bytes
         :param purpose: The intended purpose of the uploaded file.  Use \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\"vision\\\" for Assistants image file inputs, \\\"batch\\\" for [Batch API](/docs/guides/batch), and \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning).  (required)
         :type purpose: str
         :param _request_timeout: timeout setting for this request. If one
@@ -204,7 +203,7 @@ class FilesApi:
 
 
         :param file: The File object (not file name) to be uploaded.  (required)
-        :type file: bytearray
+        :type file: bytes
         :param purpose: The intended purpose of the uploaded file.  Use \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\"vision\\\" for Assistants image file inputs, \\\"batch\\\" for [Batch API](/docs/guides/batch), and \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning).  (required)
         :type purpose: str
         :param _request_timeout: timeout setting for this request. If one

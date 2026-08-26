@@ -71,10 +71,10 @@ class RealtimeClientEventSessionUpdate {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeClientEventSessionUpdate[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeClientEventSessionUpdate[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "RealtimeClientEventSessionUpdate[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeClientEventSessionUpdate[type]" has a null value in JSON.');
+        assert(json.containsKey(r'session'), 'Required key "RealtimeClientEventSessionUpdate[session]" is missing from JSON.');
+        assert(json[r'session'] != null, 'Required key "RealtimeClientEventSessionUpdate[session]" has a null value in JSON.');
         return true;
       }());
 
@@ -135,27 +135,28 @@ class RealtimeClientEventSessionUpdate {
 }
 
 /// The event type, must be `session.update`.
-class RealtimeClientEventSessionUpdateTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeClientEventSessionUpdateTypeEnum._(this.value);
+enum RealtimeClientEventSessionUpdateTypeEnum {
+  sessionPeriodUpdate._(r'session.update'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeClientEventSessionUpdateTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const sessionPeriodUpdate = RealtimeClientEventSessionUpdateTypeEnum._(r'session.update');
-
-  /// List of all possible values in this [enum][RealtimeClientEventSessionUpdateTypeEnum].
-  static const values = <RealtimeClientEventSessionUpdateTypeEnum>[
-    sessionPeriodUpdate,
-  ];
-
+  /// Returns the instance of [RealtimeClientEventSessionUpdateTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeClientEventSessionUpdateTypeEnum? fromJson(dynamic value) => RealtimeClientEventSessionUpdateTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeClientEventSessionUpdateTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeClientEventSessionUpdateTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeClientEventSessionUpdateTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -177,9 +178,10 @@ class RealtimeClientEventSessionUpdateTypeEnumTypeTransformer {
 
   const RealtimeClientEventSessionUpdateTypeEnumTypeTransformer._();
 
-  String encode(RealtimeClientEventSessionUpdateTypeEnum data) => data.value;
+  String encode(RealtimeClientEventSessionUpdateTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeClientEventSessionUpdateTypeEnum.
+  /// Returns the instance of [RealtimeClientEventSessionUpdateTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -188,6 +190,9 @@ class RealtimeClientEventSessionUpdateTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeClientEventSessionUpdateTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeClientEventSessionUpdateTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'session.update': return RealtimeClientEventSessionUpdateTypeEnum.sessionPeriodUpdate;
@@ -200,7 +205,7 @@ class RealtimeClientEventSessionUpdateTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeClientEventSessionUpdateTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeClientEventSessionUpdateTypeEnumTypeTransformer? _instance;
 }
 

@@ -89,7 +89,7 @@ class ModelsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($model, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -231,7 +231,7 @@ class ModelsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($model, $asserts);
         if ($response instanceof Response) {
             return $response;

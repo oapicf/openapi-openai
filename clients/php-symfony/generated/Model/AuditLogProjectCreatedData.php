@@ -51,7 +51,7 @@ class AuditLogProjectCreatedData
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $name = null;
 
@@ -61,7 +61,7 @@ class AuditLogProjectCreatedData
      * @var string|null
      * @SerializedName("title")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $title = null;
 
@@ -88,12 +88,12 @@ class AuditLogProjectCreatedData
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The project name.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The project name.
+     *
+     * @return $this
+     */
     public function setName(?string $name = null): self
     {
         $this->name = $name;
@@ -115,12 +115,12 @@ class AuditLogProjectCreatedData
     }
 
     /**
-    * Sets title.
-    *
-    * @param string|null $title  The title of the project as seen on the dashboard.
-    *
-    * @return $this
-    */
+     * Sets title.
+     *
+     * @param string|null $title  The title of the project as seen on the dashboard.
+     *
+     * @return $this
+     */
     public function setTitle(?string $title = null): self
     {
         $this->title = $title;

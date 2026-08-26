@@ -51,10 +51,10 @@ function Initialize-BatchRequestOutput {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "custom_id" = ${CustomId}
-            "response" = ${Response}
-            "error" = ${VarError}
+            'id' = ${Id}
+            'custom_id' = ${CustomId}
+            'response' = ${Response}
+            'error' = ${VarError}
         }
 
 
@@ -92,42 +92,42 @@ function ConvertFrom-JsonToBatchRequestOutput {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in BatchRequestOutput
-        $AllProperties = ("id", "custom_id", "response", "error")
+        $AllProperties = ('id', 'custom_id', 'response', 'error')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) { #optional property not found
             $Id = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "custom_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'custom_id'))) { #optional property not found
             $CustomId = $null
         } else {
-            $CustomId = $JsonParameters.PSobject.Properties["custom_id"].value
+            $CustomId = $JsonParameters.PSobject.Properties['custom_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "response"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'response'))) { #optional property not found
             $Response = $null
         } else {
-            $Response = $JsonParameters.PSobject.Properties["response"].value
+            $Response = $JsonParameters.PSobject.Properties['response'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "error"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'error'))) { #optional property not found
             $VarError = $null
         } else {
-            $VarError = $JsonParameters.PSobject.Properties["error"].value
+            $VarError = $JsonParameters.PSobject.Properties['error'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "custom_id" = ${CustomId}
-            "response" = ${Response}
-            "error" = ${VarError}
+            'id' = ${Id}
+            'custom_id' = ${CustomId}
+            'response' = ${Response}
+            'error' = ${VarError}
         }
 
         return $PSO

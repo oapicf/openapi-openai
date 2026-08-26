@@ -37,7 +37,7 @@ class  CreateCompletionRequest
 {
 public:
     CreateCompletionRequest();
-    virtual ~CreateCompletionRequest() = default;
+    virtual ~CreateCompletionRequest();
 
 
     /// <summary>

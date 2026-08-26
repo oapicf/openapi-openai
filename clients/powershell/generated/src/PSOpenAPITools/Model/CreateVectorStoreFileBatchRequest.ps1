@@ -53,8 +53,8 @@ function Initialize-CreateVectorStoreFileBatchRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "file_ids" = ${FileIds}
-            "chunking_strategy" = ${ChunkingStrategy}
+            'file_ids' = ${FileIds}
+            'chunking_strategy' = ${ChunkingStrategy}
         }
 
 
@@ -92,7 +92,7 @@ function ConvertFrom-JsonToCreateVectorStoreFileBatchRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateVectorStoreFileBatchRequest
-        $AllProperties = ("file_ids", "chunking_strategy")
+        $AllProperties = ('file_ids', 'chunking_strategy')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -103,21 +103,21 @@ function ConvertFrom-JsonToCreateVectorStoreFileBatchRequest {
             throw "Error! Empty JSON cannot be serialized due to the required property 'file_ids' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_ids"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_ids'))) {
             throw "Error! JSON cannot be serialized due to the required property 'file_ids' missing."
         } else {
-            $FileIds = $JsonParameters.PSobject.Properties["file_ids"].value
+            $FileIds = $JsonParameters.PSobject.Properties['file_ids'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "chunking_strategy"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'chunking_strategy'))) { #optional property not found
             $ChunkingStrategy = $null
         } else {
-            $ChunkingStrategy = $JsonParameters.PSobject.Properties["chunking_strategy"].value
+            $ChunkingStrategy = $JsonParameters.PSobject.Properties['chunking_strategy'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "file_ids" = ${FileIds}
-            "chunking_strategy" = ${ChunkingStrategy}
+            'file_ids' = ${FileIds}
+            'chunking_strategy' = ${ChunkingStrategy}
         }
 
         return $PSO

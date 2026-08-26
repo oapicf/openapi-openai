@@ -1,4 +1,4 @@
-# # RealtimeServerEventResponseContentPartDonePart
+# RealtimeServerEventResponseContentPartDonePart
 
 ## Properties
 

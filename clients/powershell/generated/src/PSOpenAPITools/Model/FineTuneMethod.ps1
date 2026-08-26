@@ -47,9 +47,9 @@ function Initialize-FineTuneMethod {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "supervised" = ${Supervised}
-            "dpo" = ${Dpo}
+            'type' = ${Type}
+            'supervised' = ${Supervised}
+            'dpo' = ${Dpo}
         }
 
 
@@ -87,35 +87,35 @@ function ConvertFrom-JsonToFineTuneMethod {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in FineTuneMethod
-        $AllProperties = ("type", "supervised", "dpo")
+        $AllProperties = ('type', 'supervised', 'dpo')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) { #optional property not found
             $Type = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "supervised"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'supervised'))) { #optional property not found
             $Supervised = $null
         } else {
-            $Supervised = $JsonParameters.PSobject.Properties["supervised"].value
+            $Supervised = $JsonParameters.PSobject.Properties['supervised'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dpo"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'dpo'))) { #optional property not found
             $Dpo = $null
         } else {
-            $Dpo = $JsonParameters.PSobject.Properties["dpo"].value
+            $Dpo = $JsonParameters.PSobject.Properties['dpo'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "supervised" = ${Supervised}
-            "dpo" = ${Dpo}
+            'type' = ${Type}
+            'supervised' = ${Supervised}
+            'dpo' = ${Dpo}
         }
 
         return $PSO

@@ -86,15 +86,17 @@ class _$AuditLogApiKeyCreatedSerializer implements PrimitiveSerializer<AuditLogA
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogApiKeyCreatedData),
-          ) as AuditLogApiKeyCreatedData;
+            specifiedType: const FullType.nullable(AuditLogApiKeyCreatedData),
+          ) as AuditLogApiKeyCreatedData?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

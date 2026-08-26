@@ -30,10 +30,10 @@ static message_delta_object_delta_t *message_delta_object_delta_create_internal(
     if (!message_delta_object_delta_local_var) {
         return NULL;
     }
+    memset(message_delta_object_delta_local_var, 0, sizeof(message_delta_object_delta_t));
+    message_delta_object_delta_local_var->_library_owned = 1;
     message_delta_object_delta_local_var->role = role;
     message_delta_object_delta_local_var->content = content;
-
-    message_delta_object_delta_local_var->_library_owned = 1;
     return message_delta_object_delta_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) message_delta_object_delta_t *message_delta_object_d
     openai_api_message_delta_object_delta_ROLE_e role,
     list_t *content
     ) {
-    return message_delta_object_delta_create_internal (
+    message_delta_object_delta_t *result = message_delta_object_delta_create_internal (
         role,
         content
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_delta_object_delta_free(message_delta_object_delta_t *message_delta_object_delta) {
@@ -151,10 +154,15 @@ message_delta_object_delta_t *message_delta_object_delta_parseFromJSON(cJSON *me
     }
 
 
+
     message_delta_object_delta_local_var = message_delta_object_delta_create_internal (
         role ? roleVariable : openai_api_message_delta_object_delta_ROLE_NULL,
         content ? contentList : NULL
         );
+
+    if (!message_delta_object_delta_local_var) {
+        goto end;
+    }
 
     return message_delta_object_delta_local_var;
 end:

@@ -107,7 +107,7 @@ MessageDeltaContentImageUrlObject::getIndex()
 }
 
 void
-MessageDeltaContentImageUrlObject::setIndex(int  index)
+MessageDeltaContentImageUrlObject::setIndex(int index)
 {
 	this->index = index;
 }
@@ -119,7 +119,7 @@ MessageDeltaContentImageUrlObject::getType()
 }
 
 void
-MessageDeltaContentImageUrlObject::setType(std::string  type)
+MessageDeltaContentImageUrlObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -131,7 +131,7 @@ MessageDeltaContentImageUrlObject::getImageUrl()
 }
 
 void
-MessageDeltaContentImageUrlObject::setImageUrl(MessageDeltaContentImageUrlObject_image_url  image_url)
+MessageDeltaContentImageUrlObject::setImageUrl(MessageDeltaContentImageUrlObject_image_url image_url)
 {
 	this->image_url = image_url;
 }

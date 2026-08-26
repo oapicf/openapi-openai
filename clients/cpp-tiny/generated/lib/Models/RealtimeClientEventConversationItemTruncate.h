@@ -51,35 +51,35 @@ public:
 
 	/*! \brief Set Optional client-generated ID used to identify this event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `conversation.item.truncate`.
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `conversation.item.truncate`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The ID of the assistant message item to truncate. Only assistant message  items can be truncated. 
 	 */
 	std::string getItemId();
 
 	/*! \brief Set The ID of the assistant message item to truncate. Only assistant message  items can be truncated. 
 	 */
-	void setItemId(std::string  item_id);
+	void setItemId(std::string item_id);
 	/*! \brief Get The index of the content part to truncate. Set this to 0.
 	 */
 	int getContentIndex();
 
 	/*! \brief Set The index of the content part to truncate. Set this to 0.
 	 */
-	void setContentIndex(int  content_index);
+	void setContentIndex(int content_index);
 	/*! \brief Get Inclusive duration up to which audio is truncated, in milliseconds. If  the audio_end_ms is greater than the actual audio duration, the server  will respond with an error. 
 	 */
 	int getAudioEndMs();
 
 	/*! \brief Set Inclusive duration up to which audio is truncated, in milliseconds. If  the audio_end_ms is greater than the actual audio duration, the server  will respond with an error. 
 	 */
-	void setAudioEndMs(int  audio_end_ms);
+	void setAudioEndMs(int audio_end_ms);
 
 
     private:

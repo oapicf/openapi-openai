@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set The name of the rate limit (`requests`, `tokens`). 
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get The maximum allowed value for the rate limit.
 	 */
 	int getLimit();
 
 	/*! \brief Set The maximum allowed value for the rate limit.
 	 */
-	void setLimit(int  limit);
+	void setLimit(int limit);
 	/*! \brief Get The remaining value before the limit is reached.
 	 */
 	int getRemaining();
 
 	/*! \brief Set The remaining value before the limit is reached.
 	 */
-	void setRemaining(int  remaining);
+	void setRemaining(int remaining);
 	/*! \brief Get Seconds until the rate limit resets.
 	 */
 	long getResetSeconds();
 
 	/*! \brief Set Seconds until the rate limit resets.
 	 */
-	void setResetSeconds(long  reset_seconds);
+	void setResetSeconds(long reset_seconds);
 
 
     private:

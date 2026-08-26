@@ -32,12 +32,12 @@ static realtime_server_event_input_audio_buffer_committed_t *realtime_server_eve
     if (!realtime_server_event_input_audio_buffer_committed_local_var) {
         return NULL;
     }
+    memset(realtime_server_event_input_audio_buffer_committed_local_var, 0, sizeof(realtime_server_event_input_audio_buffer_committed_t));
+    realtime_server_event_input_audio_buffer_committed_local_var->_library_owned = 1;
     realtime_server_event_input_audio_buffer_committed_local_var->event_id = event_id;
     realtime_server_event_input_audio_buffer_committed_local_var->type = type;
     realtime_server_event_input_audio_buffer_committed_local_var->previous_item_id = previous_item_id;
     realtime_server_event_input_audio_buffer_committed_local_var->item_id = item_id;
-
-    realtime_server_event_input_audio_buffer_committed_local_var->_library_owned = 1;
     return realtime_server_event_input_audio_buffer_committed_local_var;
 }
 
@@ -47,12 +47,15 @@ __attribute__((deprecated)) realtime_server_event_input_audio_buffer_committed_t
     char *previous_item_id,
     char *item_id
     ) {
-    return realtime_server_event_input_audio_buffer_committed_create_internal (
+    realtime_server_event_input_audio_buffer_committed_t *result = realtime_server_event_input_audio_buffer_committed_create_internal (
         event_id,
         type,
         previous_item_id,
         item_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_server_event_input_audio_buffer_committed_free(realtime_server_event_input_audio_buffer_committed_t *realtime_server_event_input_audio_buffer_committed) {
@@ -130,6 +133,12 @@ realtime_server_event_input_audio_buffer_committed_t *realtime_server_event_inpu
 
     realtime_server_event_input_audio_buffer_committed_t *realtime_server_event_input_audio_buffer_committed_local_var = NULL;
 
+    char *event_id_local_str = NULL;
+
+    char *previous_item_id_local_str = NULL;
+
+    char *item_id_local_str = NULL;
+
     // realtime_server_event_input_audio_buffer_committed->event_id
     cJSON *event_id = cJSON_GetObjectItemCaseSensitive(realtime_server_event_input_audio_buffer_committedJSON, "event_id");
     if (cJSON_IsNull(event_id)) {
@@ -193,15 +202,35 @@ realtime_server_event_input_audio_buffer_committed_t *realtime_server_event_inpu
     }
 
 
+    if (event_id && !cJSON_IsNull(event_id)) event_id_local_str = strdup(event_id->valuestring);
+    if (previous_item_id && !cJSON_IsNull(previous_item_id)) previous_item_id_local_str = strdup(previous_item_id->valuestring);
+    if (item_id && !cJSON_IsNull(item_id)) item_id_local_str = strdup(item_id->valuestring);
+
     realtime_server_event_input_audio_buffer_committed_local_var = realtime_server_event_input_audio_buffer_committed_create_internal (
-        strdup(event_id->valuestring),
+        event_id_local_str,
         typeVariable,
-        strdup(previous_item_id->valuestring),
-        strdup(item_id->valuestring)
+        previous_item_id_local_str,
+        item_id_local_str
         );
+
+    if (!realtime_server_event_input_audio_buffer_committed_local_var) {
+        goto end;
+    }
 
     return realtime_server_event_input_audio_buffer_committed_local_var;
 end:
+    if (event_id_local_str) {
+        free(event_id_local_str);
+        event_id_local_str = NULL;
+    }
+    if (previous_item_id_local_str) {
+        free(previous_item_id_local_str);
+        previous_item_id_local_str = NULL;
+    }
+    if (item_id_local_str) {
+        free(item_id_local_str);
+        item_id_local_str = NULL;
+    }
     return NULL;
 
 }

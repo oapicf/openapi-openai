@@ -51,7 +51,7 @@ class AutoChunkingStrategyRequestParam
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['auto'])]
     #[Assert\Type("string")]
@@ -79,12 +79,12 @@ class AutoChunkingStrategyRequestParam
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `auto`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `auto`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;

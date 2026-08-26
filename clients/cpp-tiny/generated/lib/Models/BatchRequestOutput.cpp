@@ -129,7 +129,7 @@ BatchRequestOutput::getId()
 }
 
 void
-BatchRequestOutput::setId(std::string  id)
+BatchRequestOutput::setId(std::string id)
 {
 	this->id = id;
 }
@@ -141,7 +141,7 @@ BatchRequestOutput::getCustomId()
 }
 
 void
-BatchRequestOutput::setCustomId(std::string  custom_id)
+BatchRequestOutput::setCustomId(std::string custom_id)
 {
 	this->custom_id = custom_id;
 }
@@ -153,7 +153,7 @@ BatchRequestOutput::getResponse()
 }
 
 void
-BatchRequestOutput::setResponse(BatchRequestOutput_response  response)
+BatchRequestOutput::setResponse(BatchRequestOutput_response response)
 {
 	this->response = response;
 }
@@ -165,7 +165,7 @@ BatchRequestOutput::getError()
 }
 
 void
-BatchRequestOutput::setError(BatchRequestOutput_error  error)
+BatchRequestOutput::setError(BatchRequestOutput_error error)
 {
 	this->error = error;
 }

@@ -38,7 +38,7 @@ export interface RealtimeServerEventSessionCreated {
     eventId: string;
     /**
      * The event type, must be `session.created`.
-     * @type {string}
+     * @type {RealtimeServerEventSessionCreatedTypeEnum}
      * @memberof RealtimeServerEventSessionCreated
      */
     type: RealtimeServerEventSessionCreatedTypeEnum;
@@ -64,8 +64,10 @@ export type RealtimeServerEventSessionCreatedTypeEnum = typeof RealtimeServerEve
  * Check if a given object implements the RealtimeServerEventSessionCreated interface.
  */
 export function instanceOfRealtimeServerEventSessionCreated(value: object): value is RealtimeServerEventSessionCreated {
-    if (!('eventId' in value) || value['eventId'] === undefined) return false;
+    if ((!('eventId' in (value as Record<string, any>)) && !('event_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['eventId'] === undefined && (value as Record<string, any>)['event_id'] === undefined)) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'session.created') return false;
+    
     if (!('session' in value) || value['session'] === undefined) return false;
     return true;
 }

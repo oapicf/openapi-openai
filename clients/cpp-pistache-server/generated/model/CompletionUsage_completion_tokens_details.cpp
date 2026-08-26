@@ -32,6 +32,8 @@ CompletionUsage_completion_tokens_details::CompletionUsage_completion_tokens_det
     
 }
 
+CompletionUsage_completion_tokens_details::~CompletionUsage_completion_tokens_details() = default;
+
 void CompletionUsage_completion_tokens_details::validate() const
 {
     std::stringstream msg;

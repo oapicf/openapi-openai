@@ -138,7 +138,7 @@ namespace Org.OpenAPITools.Model
         /// <value>The quality of the image that will be generated. &#x60;hd&#x60; creates images with finer details and greater consistency across the image. This param is only supported for &#x60;dall-e-3&#x60;.</value>
         /* <example>standard</example> */
         [JsonPropertyName("quality")]
-        public QualityEnum? Quality { get { return this.QualityOption; } set { this.QualityOption = new(value); } }
+        public QualityEnum? Quality { get { return this.QualityOption.Value; } set { this.QualityOption = new(value); } }
 
         /// <summary>
         /// The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.
@@ -223,7 +223,7 @@ namespace Org.OpenAPITools.Model
         /// <value>The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.</value>
         /* <example>url</example> */
         [JsonPropertyName("response_format")]
-        public ResponseFormatEnum? ResponseFormat { get { return this.ResponseFormatOption; } set { this.ResponseFormatOption = new(value); } }
+        public ResponseFormatEnum? ResponseFormat { get { return this.ResponseFormatOption.Value; } set { this.ResponseFormatOption = new(value); } }
 
         /// <summary>
         /// The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60; for &#x60;dall-e-2&#x60;. Must be one of &#x60;1024x1024&#x60;, &#x60;1792x1024&#x60;, or &#x60;1024x1792&#x60; for &#x60;dall-e-3&#x60; models.
@@ -350,7 +350,7 @@ namespace Org.OpenAPITools.Model
         /// <value>The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60; for &#x60;dall-e-2&#x60;. Must be one of &#x60;1024x1024&#x60;, &#x60;1792x1024&#x60;, or &#x60;1024x1792&#x60; for &#x60;dall-e-3&#x60; models.</value>
         /* <example>1024x1024</example> */
         [JsonPropertyName("size")]
-        public SizeEnum? Size { get { return this.SizeOption; } set { this.SizeOption = new(value); } }
+        public SizeEnum? Size { get { return this.SizeOption.Value; } set { this.SizeOption = new(value); } }
 
         /// <summary>
         /// The style of the generated images. Must be one of &#x60;vivid&#x60; or &#x60;natural&#x60;. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for &#x60;dall-e-3&#x60;.
@@ -435,7 +435,7 @@ namespace Org.OpenAPITools.Model
         /// <value>The style of the generated images. Must be one of &#x60;vivid&#x60; or &#x60;natural&#x60;. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for &#x60;dall-e-3&#x60;.</value>
         /* <example>vivid</example> */
         [JsonPropertyName("style")]
-        public StyleEnum? Style { get { return this.StyleOption; } set { this.StyleOption = new(value); } }
+        public StyleEnum? Style { get { return this.StyleOption.Value; } set { this.StyleOption = new(value); } }
 
         /// <summary>
         /// A text description of the desired image(s). The maximum length is 1000 characters for &#x60;dall-e-2&#x60; and 4000 characters for &#x60;dall-e-3&#x60;.
@@ -456,7 +456,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Model
         /// </summary>
         [JsonPropertyName("model")]
-        public CreateImageRequestModel? Model { get { return this.ModelOption; } set { this.ModelOption = new(value); } }
+        public CreateImageRequestModel? Model { get { return this.ModelOption.Value; } set { this.ModelOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of N
@@ -471,7 +471,7 @@ namespace Org.OpenAPITools.Model
         /// <value>The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported.</value>
         /* <example>1</example> */
         [JsonPropertyName("n")]
-        public int? N { get { return this.NOption; } set { this.NOption = new(value); } }
+        public int? N { get { return this.NOption.Value; } set { this.NOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of User
@@ -486,7 +486,7 @@ namespace Org.OpenAPITools.Model
         /// <value>A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). </value>
         /* <example>user-1234</example> */
         [JsonPropertyName("user")]
-        public string? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public string? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -534,8 +534,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateImageRequest" />
     /// </summary>
-    public class CreateImageRequestJsonConverter : JsonConverter<CreateImageRequest>
+    public partial class CreateImageRequestJsonConverter : JsonConverter<CreateImageRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateImageRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateImageRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateImageRequest" />
         /// </summary>
@@ -593,18 +603,15 @@ namespace Org.OpenAPITools.Model
                             break;
                         case "response_format":
                             string? responseFormatRawValue = utf8JsonReader.GetString();
-                            if (responseFormatRawValue != null)
-                                responseFormat = new Option<CreateImageRequest.ResponseFormatEnum?>(CreateImageRequest.ResponseFormatEnumFromStringOrDefault(responseFormatRawValue));
+                            responseFormat = new Option<CreateImageRequest.ResponseFormatEnum?>(responseFormatRawValue == null ? null : CreateImageRequest.ResponseFormatEnumFromStringOrDefault(responseFormatRawValue));
                             break;
                         case "size":
                             string? sizeRawValue = utf8JsonReader.GetString();
-                            if (sizeRawValue != null)
-                                size = new Option<CreateImageRequest.SizeEnum?>(CreateImageRequest.SizeEnumFromStringOrDefault(sizeRawValue));
+                            size = new Option<CreateImageRequest.SizeEnum?>(sizeRawValue == null ? null : CreateImageRequest.SizeEnumFromStringOrDefault(sizeRawValue));
                             break;
                         case "style":
                             string? styleRawValue = utf8JsonReader.GetString();
-                            if (styleRawValue != null)
-                                style = new Option<CreateImageRequest.StyleEnum?>(CreateImageRequest.StyleEnumFromStringOrDefault(styleRawValue));
+                            style = new Option<CreateImageRequest.StyleEnum?>(styleRawValue == null ? null : CreateImageRequest.StyleEnumFromStringOrDefault(styleRawValue));
                             break;
                         case "user":
                             user = new Option<string?>(utf8JsonReader.GetString()!);

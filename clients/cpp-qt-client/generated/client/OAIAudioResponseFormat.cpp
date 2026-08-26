@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIAudioResponseFormat::OAIAudioResponseFormat(QString json) {
+OAIAudioResponseFormat::OAIAudioResponseFormat(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -39,7 +39,7 @@ void OAIAudioResponseFormat::initializeModel() {
     m_value = eOAIAudioResponseFormat::INVALID_VALUE_OPENAPI_GENERATED;
 }
 
-void OAIAudioResponseFormat::fromJson(QString jsonString) {
+void OAIAudioResponseFormat::fromJson(const QString &jsonString) {
     
     if ( jsonString.compare("json", Qt::CaseInsensitive) == 0) {
         m_value = eOAIAudioResponseFormat::JSON;

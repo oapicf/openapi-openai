@@ -40,6 +40,8 @@ FineTuningJob::FineTuningJob()
     
 }
 
+FineTuningJob::~FineTuningJob() = default;
+
 void FineTuningJob::validate() const
 {
     std::stringstream msg;

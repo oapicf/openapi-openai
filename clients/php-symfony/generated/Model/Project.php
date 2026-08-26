@@ -51,7 +51,7 @@ class Project
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class Project
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['organization.project'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class Project
      * @var string|null
      * @SerializedName("name")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $name = null;
@@ -85,7 +85,7 @@ class Project
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -96,7 +96,7 @@ class Project
      * @var int|null
      * @SerializedName("archived_at")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     protected ?int $archivedAt = null;
 
@@ -106,7 +106,7 @@ class Project
      * @var string|null
      * @SerializedName("status")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['active', 'archived'])]
     #[Assert\Type("string")]
@@ -139,12 +139,12 @@ class Project
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The identifier, which can be referenced in API endpoints
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The identifier, which can be referenced in API endpoints
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -166,12 +166,12 @@ class Project
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `organization.project`
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `organization.project`
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -193,12 +193,12 @@ class Project
     }
 
     /**
-    * Sets name.
-    *
-    * @param string|null $name  The name of the project. This appears in reporting.
-    *
-    * @return $this
-    */
+     * Sets name.
+     *
+     * @param string|null $name  The name of the project. This appears in reporting.
+     *
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -220,12 +220,12 @@ class Project
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) of when the project was created.
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) of when the project was created.
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -247,12 +247,12 @@ class Project
     }
 
     /**
-    * Sets archivedAt.
-    *
-    * @param int|null $archivedAt  The Unix timestamp (in seconds) of when the project was archived or `null`.
-    *
-    * @return $this
-    */
+     * Sets archivedAt.
+     *
+     * @param int|null $archivedAt  The Unix timestamp (in seconds) of when the project was archived or `null`.
+     *
+     * @return $this
+     */
     public function setArchivedAt(?int $archivedAt = null): self
     {
         $this->archivedAt = $archivedAt;
@@ -274,12 +274,12 @@ class Project
     }
 
     /**
-    * Sets status.
-    *
-    * @param string|null $status  `active` or `archived`
-    *
-    * @return $this
-    */
+     * Sets status.
+     *
+     * @param string|null $status  `active` or `archived`
+     *
+     * @return $this
+     */
     public function setStatus(?string $status): self
     {
         $this->status = $status;

@@ -34,7 +34,7 @@ class  RunStepDeltaStepDetailsToolCallsObject
 {
 public:
     RunStepDeltaStepDetailsToolCallsObject();
-    virtual ~RunStepDeltaStepDetailsToolCallsObject() = default;
+    virtual ~RunStepDeltaStepDetailsToolCallsObject();
 
 
     /// <summary>

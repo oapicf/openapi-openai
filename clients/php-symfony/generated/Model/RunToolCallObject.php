@@ -51,7 +51,7 @@ class RunToolCallObject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class RunToolCallObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['function'])]
     #[Assert\Type("string")]
@@ -72,7 +72,7 @@ class RunToolCallObject
      * @var RunToolCallObjectFunction|null
      * @SerializedName("function")
      * @Type("OpenAPI\Server\Model\RunToolCallObjectFunction")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunToolCallObjectFunction")]
@@ -102,12 +102,12 @@ class RunToolCallObject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The ID of the tool call. This ID must be referenced when you submit the tool outputs in using the [Submit tool outputs to run](/docs/api-reference/runs/submitToolOutputs) endpoint.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The ID of the tool call. This ID must be referenced when you submit the tool outputs in using the [Submit tool outputs to run](/docs/api-reference/runs/submitToolOutputs) endpoint.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -129,12 +129,12 @@ class RunToolCallObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of tool call the output is required for. For now, this is always `function`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of tool call the output is required for. For now, this is always `function`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -156,12 +156,12 @@ class RunToolCallObject
     }
 
     /**
-    * Sets function.
-    *
-    * @param RunToolCallObjectFunction|null $function
-    *
-    * @return $this
-    */
+     * Sets function.
+     *
+     * @param RunToolCallObjectFunction|null $function
+     *
+     * @return $this
+     */
     public function setFunction(?RunToolCallObjectFunction $function): self
     {
         $this->function = $function;

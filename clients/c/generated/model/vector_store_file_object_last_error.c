@@ -30,10 +30,10 @@ static vector_store_file_object_last_error_t *vector_store_file_object_last_erro
     if (!vector_store_file_object_last_error_local_var) {
         return NULL;
     }
+    memset(vector_store_file_object_last_error_local_var, 0, sizeof(vector_store_file_object_last_error_t));
+    vector_store_file_object_last_error_local_var->_library_owned = 1;
     vector_store_file_object_last_error_local_var->code = code;
     vector_store_file_object_last_error_local_var->message = message;
-
-    vector_store_file_object_last_error_local_var->_library_owned = 1;
     return vector_store_file_object_last_error_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) vector_store_file_object_last_error_t *vector_store_
     openai_api_vector_store_file_object_last_error_CODE_e code,
     char *message
     ) {
-    return vector_store_file_object_last_error_create_internal (
+    vector_store_file_object_last_error_t *result = vector_store_file_object_last_error_create_internal (
         code,
         message
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void vector_store_file_object_last_error_free(vector_store_file_object_last_error_t *vector_store_file_object_last_error) {
@@ -96,6 +99,8 @@ vector_store_file_object_last_error_t *vector_store_file_object_last_error_parse
 
     vector_store_file_object_last_error_t *vector_store_file_object_last_error_local_var = NULL;
 
+    char *message_local_str = NULL;
+
     // vector_store_file_object_last_error->code
     cJSON *code = cJSON_GetObjectItemCaseSensitive(vector_store_file_object_last_errorJSON, "code");
     if (cJSON_IsNull(code)) {
@@ -129,13 +134,23 @@ vector_store_file_object_last_error_t *vector_store_file_object_last_error_parse
     }
 
 
+    if (message && !cJSON_IsNull(message)) message_local_str = strdup(message->valuestring);
+
     vector_store_file_object_last_error_local_var = vector_store_file_object_last_error_create_internal (
         codeVariable,
-        strdup(message->valuestring)
+        message_local_str
         );
+
+    if (!vector_store_file_object_last_error_local_var) {
+        goto end;
+    }
 
     return vector_store_file_object_last_error_local_var;
 end:
+    if (message_local_str) {
+        free(message_local_str);
+        message_local_str = NULL;
+    }
     return NULL;
 
 }

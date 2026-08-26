@@ -190,8 +190,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="DoneEvent" />
     /// </summary>
-    public class DoneEventJsonConverter : JsonConverter<DoneEvent>
+    public partial class DoneEventJsonConverter : JsonConverter<DoneEvent>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DoneEventJsonConverter" /> class.
+        /// </summary>
+        public DoneEventJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DoneEvent" />
         /// </summary>

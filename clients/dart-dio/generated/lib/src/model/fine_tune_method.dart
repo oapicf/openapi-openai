@@ -100,23 +100,26 @@ class _$FineTuneMethodSerializer implements PrimitiveSerializer<FineTuneMethod> 
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FineTuneMethodTypeEnum),
-          ) as FineTuneMethodTypeEnum;
+            specifiedType: const FullType.nullable(FineTuneMethodTypeEnum),
+          ) as FineTuneMethodTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'supervised':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FineTuneSupervisedMethod),
-          ) as FineTuneSupervisedMethod;
-          result.supervised = valueDes;
+            specifiedType: const FullType.nullable(FineTuneSupervisedMethod),
+          ) as FineTuneSupervisedMethod?;
+          if (valueDes == null) continue;
+          result.supervised.replace(valueDes);
           break;
         case r'dpo':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FineTuneDPOMethod),
-          ) as FineTuneDPOMethod;
-          result.dpo = valueDes;
+            specifiedType: const FullType.nullable(FineTuneDPOMethod),
+          ) as FineTuneDPOMethod?;
+          if (valueDes == null) continue;
+          result.dpo.replace(valueDes);
           break;
         default:
           unhandled.add(key);

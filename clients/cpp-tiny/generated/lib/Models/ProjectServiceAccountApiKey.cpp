@@ -148,7 +148,7 @@ ProjectServiceAccountApiKey::getObject()
 }
 
 void
-ProjectServiceAccountApiKey::setObject(std::string  object)
+ProjectServiceAccountApiKey::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -160,7 +160,7 @@ ProjectServiceAccountApiKey::getValue()
 }
 
 void
-ProjectServiceAccountApiKey::setValue(std::string  value)
+ProjectServiceAccountApiKey::setValue(std::string value)
 {
 	this->value = value;
 }
@@ -172,7 +172,7 @@ ProjectServiceAccountApiKey::getName()
 }
 
 void
-ProjectServiceAccountApiKey::setName(std::string  name)
+ProjectServiceAccountApiKey::setName(std::string name)
 {
 	this->name = name;
 }
@@ -184,7 +184,7 @@ ProjectServiceAccountApiKey::getCreatedAt()
 }
 
 void
-ProjectServiceAccountApiKey::setCreatedAt(int  created_at)
+ProjectServiceAccountApiKey::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -196,7 +196,7 @@ ProjectServiceAccountApiKey::getId()
 }
 
 void
-ProjectServiceAccountApiKey::setId(std::string  id)
+ProjectServiceAccountApiKey::setId(std::string id)
 {
 	this->id = id;
 }

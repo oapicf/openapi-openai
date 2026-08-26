@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.VectorStoreFileObjectChunkingStrategy
 import org.openapitools.model.VectorStoreFileObjectLastError
 import javax.validation.constraints.DecimalMax
@@ -30,30 +33,40 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class VectorStoreFileObject(
 
-    @Schema(example = "null", required = true, description = "The identifier, which can be referenced in API endpoints.")
+    @Schema(required = true, description = "The identifier, which can be referenced in API endpoints.")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The object type, which is always `vector_store.file`.")
+    @Schema(required = true, description = "The object type, which is always `vector_store.file`.")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: VectorStoreFileObject.`Object`,
 
-    @Schema(example = "null", required = true, description = "The total vector store usage in bytes. Note that this may be different from the original file size.")
+    @Schema(required = true, description = "The total vector store usage in bytes. Note that this may be different from the original file size.")
+    @param:JsonProperty("usage_bytes")
     @get:JsonProperty("usage_bytes", required = true) val usageBytes: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The Unix timestamp (in seconds) for when the vector store file was created.")
+    @Schema(required = true, description = "The Unix timestamp (in seconds) for when the vector store file was created.")
+    @param:JsonProperty("created_at")
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
-    @Schema(example = "null", required = true, description = "The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.")
+    @Schema(required = true, description = "The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.")
+    @param:JsonProperty("vector_store_id")
     @get:JsonProperty("vector_store_id", required = true) val vectorStoreId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The status of the vector store file, which can be either `in_progress`, `completed`, `cancelled`, or `failed`. The status `completed` indicates that the vector store file is ready for use.")
+    @Schema(required = true, description = "The status of the vector store file, which can be either `in_progress`, `completed`, `cancelled`, or `failed`. The status `completed` indicates that the vector store file is ready for use.")
+    @param:JsonProperty("status")
     @get:JsonProperty("status", required = true) val status: VectorStoreFileObject.Status,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("last_error")
     @get:JsonProperty("last_error", required = true) val lastError: VectorStoreFileObjectLastError?,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("chunking_strategy")
     @get:JsonProperty("chunking_strategy") val chunkingStrategy: VectorStoreFileObjectChunkingStrategy? = null
 ) {
 
@@ -70,7 +83,7 @@ data class VectorStoreFileObject(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'VectorStoreFileObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }
@@ -91,7 +104,7 @@ data class VectorStoreFileObject(
             @JsonCreator
             fun forValue(value: kotlin.String): Status {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'VectorStoreFileObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Status'")
             }
         }
     }

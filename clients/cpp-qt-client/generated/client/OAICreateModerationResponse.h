@@ -34,13 +34,13 @@ class OAICreateModerationResponse_results_inner;
 class OAICreateModerationResponse : public OAIObject {
 public:
     OAICreateModerationResponse();
-    OAICreateModerationResponse(QString json);
+    OAICreateModerationResponse(const QString &json);
     ~OAICreateModerationResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

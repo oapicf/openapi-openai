@@ -25,6 +25,8 @@ RunStepDetailsToolCallsObject::RunStepDetailsToolCallsObject()
     
 }
 
+RunStepDetailsToolCallsObject::~RunStepDetailsToolCallsObject() = default;
+
 void RunStepDetailsToolCallsObject::validate() const
 {
     std::stringstream msg;

@@ -73,8 +73,8 @@ export function CreateFineTuningJobRequestIntegrationsInnerWandbFromJSONTyped(js
     return {
         
         'project': json['project'],
-        'name': json['name'] == null ? undefined : json['name'],
-        'entity': json['entity'] == null ? undefined : json['entity'],
+        'name': json['name'] === undefined ? undefined : json['name'] === null ? null : json['name'],
+        'entity': json['entity'] === undefined ? undefined : json['entity'] === null ? null : json['entity'],
         'tags': json['tags'] == null ? undefined : json['tags'],
     };
 }

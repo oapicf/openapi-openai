@@ -171,7 +171,7 @@ MessageContentTextObject_text_annotations_inner::getType()
 }
 
 void
-MessageContentTextObject_text_annotations_inner::setType(std::string  type)
+MessageContentTextObject_text_annotations_inner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -183,7 +183,7 @@ MessageContentTextObject_text_annotations_inner::getText()
 }
 
 void
-MessageContentTextObject_text_annotations_inner::setText(std::string  text)
+MessageContentTextObject_text_annotations_inner::setText(std::string text)
 {
 	this->text = text;
 }
@@ -195,7 +195,7 @@ MessageContentTextObject_text_annotations_inner::getFileCitation()
 }
 
 void
-MessageContentTextObject_text_annotations_inner::setFileCitation(MessageContentTextAnnotationsFileCitationObject_file_citation  file_citation)
+MessageContentTextObject_text_annotations_inner::setFileCitation(MessageContentTextAnnotationsFileCitationObject_file_citation file_citation)
 {
 	this->file_citation = file_citation;
 }
@@ -207,7 +207,7 @@ MessageContentTextObject_text_annotations_inner::getStartIndex()
 }
 
 void
-MessageContentTextObject_text_annotations_inner::setStartIndex(int  start_index)
+MessageContentTextObject_text_annotations_inner::setStartIndex(int start_index)
 {
 	this->start_index = start_index;
 }
@@ -219,7 +219,7 @@ MessageContentTextObject_text_annotations_inner::getEndIndex()
 }
 
 void
-MessageContentTextObject_text_annotations_inner::setEndIndex(int  end_index)
+MessageContentTextObject_text_annotations_inner::setEndIndex(int end_index)
 {
 	this->end_index = end_index;
 }
@@ -231,7 +231,7 @@ MessageContentTextObject_text_annotations_inner::getFilePath()
 }
 
 void
-MessageContentTextObject_text_annotations_inner::setFilePath(MessageContentTextAnnotationsFilePathObject_file_path  file_path)
+MessageContentTextObject_text_annotations_inner::setFilePath(MessageContentTextAnnotationsFilePathObject_file_path file_path)
 {
 	this->file_path = file_path;
 }

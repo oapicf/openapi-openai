@@ -27,6 +27,8 @@ UsageTimeBucket::UsageTimeBucket()
     
 }
 
+UsageTimeBucket::~UsageTimeBucket() = default;
+
 void UsageTimeBucket::validate() const
 {
     std::stringstream msg;

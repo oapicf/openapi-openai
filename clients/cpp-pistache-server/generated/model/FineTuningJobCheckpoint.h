@@ -33,7 +33,7 @@ class  FineTuningJobCheckpoint
 {
 public:
     FineTuningJobCheckpoint();
-    virtual ~FineTuningJobCheckpoint() = default;
+    virtual ~FineTuningJobCheckpoint();
 
 
     /// <summary>

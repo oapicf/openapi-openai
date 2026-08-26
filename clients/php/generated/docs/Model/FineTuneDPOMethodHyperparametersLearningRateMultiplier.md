@@ -1,4 +1,4 @@
-# # FineTuneDPOMethodHyperparametersLearningRateMultiplier
+# FineTuneDPOMethodHyperparametersLearningRateMultiplier
 
 ## Properties
 

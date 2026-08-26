@@ -221,11 +221,11 @@ class VectorStoresApiSimulation extends Simulation {
         .feed(listFilesInVectorStoreBatchPATHFeeder)
         .exec(http("listFilesInVectorStoreBatch")
         .httpRequest("GET","/vector_stores/${vector_store_id}/file_batches/${batch_id}/files")
-        .queryParam("limit","${limit}")
-        .queryParam("order","${order}")
         .queryParam("after","${after}")
-        .queryParam("filter","${filter}")
+        .queryParam("limit","${limit}")
         .queryParam("before","${before}")
+        .queryParam("order","${order}")
+        .queryParam("filter","${filter}")
 )
 
     // Run scnlistFilesInVectorStoreBatch with warm up and reach a constant rate for entire duration
@@ -241,11 +241,11 @@ class VectorStoresApiSimulation extends Simulation {
         .feed(listVectorStoreFilesPATHFeeder)
         .exec(http("listVectorStoreFiles")
         .httpRequest("GET","/vector_stores/${vector_store_id}/files")
-        .queryParam("limit","${limit}")
-        .queryParam("order","${order}")
         .queryParam("after","${after}")
-        .queryParam("filter","${filter}")
+        .queryParam("limit","${limit}")
         .queryParam("before","${before}")
+        .queryParam("order","${order}")
+        .queryParam("filter","${filter}")
 )
 
     // Run scnlistVectorStoreFiles with warm up and reach a constant rate for entire duration
@@ -260,10 +260,10 @@ class VectorStoresApiSimulation extends Simulation {
         .feed(listVectorStoresQUERYFeeder)
         .exec(http("listVectorStores")
         .httpRequest("GET","/vector_stores")
-        .queryParam("limit","${limit}")
-        .queryParam("order","${order}")
         .queryParam("after","${after}")
+        .queryParam("limit","${limit}")
         .queryParam("before","${before}")
+        .queryParam("order","${order}")
 )
 
     // Run scnlistVectorStores with warm up and reach a constant rate for entire duration

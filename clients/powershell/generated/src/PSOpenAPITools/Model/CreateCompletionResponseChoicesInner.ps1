@@ -64,10 +64,10 @@ function Initialize-CreateCompletionResponseChoicesInner {
 
 
         $PSO = [PSCustomObject]@{
-            "finish_reason" = ${FinishReason}
-            "index" = ${Index}
-            "logprobs" = ${Logprobs}
-            "text" = ${Text}
+            'finish_reason' = ${FinishReason}
+            'index' = ${Index}
+            'logprobs' = ${Logprobs}
+            'text' = ${Text}
         }
 
 
@@ -105,7 +105,7 @@ function ConvertFrom-JsonToCreateCompletionResponseChoicesInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateCompletionResponseChoicesInner
-        $AllProperties = ("finish_reason", "index", "logprobs", "text")
+        $AllProperties = ('finish_reason', 'index', 'logprobs', 'text')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -116,35 +116,35 @@ function ConvertFrom-JsonToCreateCompletionResponseChoicesInner {
             throw "Error! Empty JSON cannot be serialized due to the required property 'finish_reason' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "finish_reason"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'finish_reason'))) {
             throw "Error! JSON cannot be serialized due to the required property 'finish_reason' missing."
         } else {
-            $FinishReason = $JsonParameters.PSobject.Properties["finish_reason"].value
+            $FinishReason = $JsonParameters.PSobject.Properties['finish_reason'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "index"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'index'))) {
             throw "Error! JSON cannot be serialized due to the required property 'index' missing."
         } else {
-            $Index = $JsonParameters.PSobject.Properties["index"].value
+            $Index = $JsonParameters.PSobject.Properties['index'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "logprobs"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'logprobs'))) {
             throw "Error! JSON cannot be serialized due to the required property 'logprobs' missing."
         } else {
-            $Logprobs = $JsonParameters.PSobject.Properties["logprobs"].value
+            $Logprobs = $JsonParameters.PSobject.Properties['logprobs'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "text"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'text'))) {
             throw "Error! JSON cannot be serialized due to the required property 'text' missing."
         } else {
-            $Text = $JsonParameters.PSobject.Properties["text"].value
+            $Text = $JsonParameters.PSobject.Properties['text'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "finish_reason" = ${FinishReason}
-            "index" = ${Index}
-            "logprobs" = ${Logprobs}
-            "text" = ${Text}
+            'finish_reason' = ${FinishReason}
+            'index' = ${Index}
+            'logprobs' = ${Logprobs}
+            'text' = ${Text}
         }
 
         return $PSO

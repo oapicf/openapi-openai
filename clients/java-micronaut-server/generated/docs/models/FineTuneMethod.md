@@ -11,8 +11,8 @@ The class is defined in **[FineTuneMethod.java](../../src/main/java/org/openapit
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | [**TypeEnum**](#TypeEnum) | The type of method. Is either &#x60;supervised&#x60; or &#x60;dpo&#x60;. |  [optional property]
-**supervised** | `FineTuneSupervisedMethod` |  |  [optional property]
-**dpo** | `FineTuneDPOMethod` |  |  [optional property]
+**supervised** | [`FineTuneSupervisedMethod`](FineTuneSupervisedMethod.md) |  |  [optional property]
+**dpo** | [`FineTuneDPOMethod`](FineTuneDPOMethod.md) |  |  [optional property]
 
 ## TypeEnum
 

@@ -1,4 +1,4 @@
-# # DeleteAssistantResponse
+# DeleteAssistantResponse
 
 ## Properties
 

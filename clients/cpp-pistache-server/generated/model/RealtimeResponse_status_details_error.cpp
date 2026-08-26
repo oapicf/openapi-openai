@@ -28,6 +28,8 @@ RealtimeResponse_status_details_error::RealtimeResponse_status_details_error()
     
 }
 
+RealtimeResponse_status_details_error::~RealtimeResponse_status_details_error() = default;
+
 void RealtimeResponse_status_details_error::validate() const
 {
     std::stringstream msg;

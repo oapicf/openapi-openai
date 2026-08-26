@@ -52,7 +52,7 @@ public:
 
 	/*! \brief Set The name of the function to call.
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 
 
     private:

@@ -1,0 +1,32 @@
+## FilesApi
+
+### Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+## Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+POST https://api.openai.com/v1/files
+Content-Type: multipart/form-data
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Delete a file.
+## Delete a file.
+DELETE https://api.openai.com/v1/files/{{file_id}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Returns the contents of the specified file.
+## Returns the contents of the specified file.
+GET https://api.openai.com/v1/files/{{file_id}}/content
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Returns a list of files.
+## Returns a list of files.
+GET https://api.openai.com/v1/files?purpose={{purpose}}&limit={{limit}}&order={{order}}&after={{after}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Returns information about a specific file.
+## Returns information about a specific file.
+GET https://api.openai.com/v1/files/{{file_id}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}

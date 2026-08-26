@@ -1,4 +1,4 @@
-import connexion
+import flask
 from typing import Dict
 from typing import Tuple
 from typing import Union
@@ -21,8 +21,8 @@ def admin_api_keys_create(body):  # noqa: E501
     :rtype: Union[AdminApiKey, Tuple[AdminApiKey, int], Tuple[AdminApiKey, int, Dict[str, str]]
     """
     admin_api_keys_create_request = body
-    if connexion.request.is_json:
-        admin_api_keys_create_request = AdminApiKeysCreateRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        admin_api_keys_create_request = AdminApiKeysCreateRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 

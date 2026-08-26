@@ -86,15 +86,17 @@ class _$AuditLogInviteSentSerializer implements PrimitiveSerializer<AuditLogInvi
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogInviteSentData),
-          ) as AuditLogInviteSentData;
+            specifiedType: const FullType.nullable(AuditLogInviteSentData),
+          ) as AuditLogInviteSentData?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

@@ -29,18 +29,21 @@ static create_message_request_attachments_inner_tools_inner_t *create_message_re
     if (!create_message_request_attachments_inner_tools_inner_local_var) {
         return NULL;
     }
-    create_message_request_attachments_inner_tools_inner_local_var->type = type;
-
+    memset(create_message_request_attachments_inner_tools_inner_local_var, 0, sizeof(create_message_request_attachments_inner_tools_inner_t));
     create_message_request_attachments_inner_tools_inner_local_var->_library_owned = 1;
+    create_message_request_attachments_inner_tools_inner_local_var->type = type;
     return create_message_request_attachments_inner_tools_inner_local_var;
 }
 
 __attribute__((deprecated)) create_message_request_attachments_inner_tools_inner_t *create_message_request_attachments_inner_tools_inner_create(
     openai_api_create_message_request_attachments_inner_tools_inner_TYPE_e type
     ) {
-    return create_message_request_attachments_inner_tools_inner_create_internal (
+    create_message_request_attachments_inner_tools_inner_t *result = create_message_request_attachments_inner_tools_inner_create_internal (
         type
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_message_request_attachments_inner_tools_inner_free(create_message_request_attachments_inner_tools_inner_t *create_message_request_attachments_inner_tools_inner) {
@@ -97,9 +100,14 @@ create_message_request_attachments_inner_tools_inner_t *create_message_request_a
     typeVariable = create_message_request_attachments_inner_tools_inner_type_FromString(type->valuestring);
 
 
+
     create_message_request_attachments_inner_tools_inner_local_var = create_message_request_attachments_inner_tools_inner_create_internal (
         typeVariable
         );
+
+    if (!create_message_request_attachments_inner_tools_inner_local_var) {
+        goto end;
+    }
 
     return create_message_request_attachments_inner_tools_inner_local_var;
 end:

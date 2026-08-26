@@ -86,7 +86,7 @@ CreateFineTuningJobRequest_integrations_inner::getType()
 }
 
 void
-CreateFineTuningJobRequest_integrations_inner::setType(std::string  type)
+CreateFineTuningJobRequest_integrations_inner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ CreateFineTuningJobRequest_integrations_inner::getWandb()
 }
 
 void
-CreateFineTuningJobRequest_integrations_inner::setWandb(CreateFineTuningJobRequest_integrations_inner_wandb  wandb)
+CreateFineTuningJobRequest_integrations_inner::setWandb(CreateFineTuningJobRequest_integrations_inner_wandb wandb)
 {
 	this->wandb = wandb;
 }

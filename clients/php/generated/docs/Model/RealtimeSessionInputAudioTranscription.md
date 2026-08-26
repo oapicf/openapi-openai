@@ -1,4 +1,4 @@
-# # RealtimeSessionInputAudioTranscription
+# RealtimeSessionInputAudioTranscription
 
 ## Properties
 

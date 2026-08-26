@@ -117,7 +117,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets FileSearch
         /// </summary>
         [JsonPropertyName("file_search")]
-        public AssistantToolsFileSearchFileSearch? FileSearch { get { return this.FileSearchOption; } set { this.FileSearchOption = new(value); } }
+        public AssistantToolsFileSearchFileSearch? FileSearch { get { return this.FileSearchOption.Value; } set { this.FileSearchOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -147,8 +147,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AssistantToolsFileSearch" />
     /// </summary>
-    public class AssistantToolsFileSearchJsonConverter : JsonConverter<AssistantToolsFileSearch>
+    public partial class AssistantToolsFileSearchJsonConverter : JsonConverter<AssistantToolsFileSearch>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssistantToolsFileSearchJsonConverter" /> class.
+        /// </summary>
+        public AssistantToolsFileSearchJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AssistantToolsFileSearch" />
         /// </summary>

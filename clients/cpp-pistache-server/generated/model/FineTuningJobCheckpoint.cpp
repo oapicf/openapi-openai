@@ -30,6 +30,8 @@ FineTuningJobCheckpoint::FineTuningJobCheckpoint()
     
 }
 
+FineTuningJobCheckpoint::~FineTuningJobCheckpoint() = default;
+
 void FineTuningJobCheckpoint::validate() const
 {
     std::stringstream msg;

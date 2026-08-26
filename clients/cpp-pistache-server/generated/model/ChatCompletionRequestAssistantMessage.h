@@ -37,7 +37,7 @@ class  ChatCompletionRequestAssistantMessage
 {
 public:
     ChatCompletionRequestAssistantMessage();
-    virtual ~ChatCompletionRequestAssistantMessage() = default;
+    virtual ~ChatCompletionRequestAssistantMessage();
 
 
     /// <summary>

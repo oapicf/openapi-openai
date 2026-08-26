@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface AutoChunkingStrategyRequestParam {
     /**
      * Always `auto`.
-     * @type {string}
+     * @type {AutoChunkingStrategyRequestParamTypeEnum}
      * @memberof AutoChunkingStrategyRequestParam
      */
     type: AutoChunkingStrategyRequestParamTypeEnum;
@@ -42,6 +42,8 @@ export type AutoChunkingStrategyRequestParamTypeEnum = typeof AutoChunkingStrate
  */
 export function instanceOfAutoChunkingStrategyRequestParam(value: object): value is AutoChunkingStrategyRequestParam {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'auto') return false;
+    
     return true;
 }
 

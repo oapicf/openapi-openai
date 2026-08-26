@@ -120,8 +120,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AssistantsApiResponseFormatOption" />
     /// </summary>
-    public class AssistantsApiResponseFormatOptionJsonConverter : JsonConverter<AssistantsApiResponseFormatOption>
+    public partial class AssistantsApiResponseFormatOptionJsonConverter : JsonConverter<AssistantsApiResponseFormatOption>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssistantsApiResponseFormatOptionJsonConverter" /> class.
+        /// </summary>
+        public AssistantsApiResponseFormatOptionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AssistantsApiResponseFormatOption" />
         /// </summary>

@@ -52,21 +52,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setContent(ChatCompletionRequestSystemMessage_content  content);
+	void setContent(ChatCompletionRequestSystemMessage_content content);
 	/*! \brief Get The role of the messages author, in this case `system`.
 	 */
 	std::string getRole();
 
 	/*! \brief Set The role of the messages author, in this case `system`.
 	 */
-	void setRole(std::string  role);
+	void setRole(std::string role);
 	/*! \brief Get An optional name for the participant. Provides the model information to differentiate between participants of the same role.
 	 */
 	std::string getName();
 
 	/*! \brief Set An optional name for the participant. Provides the model information to differentiate between participants of the same role.
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 
 
     private:

@@ -42,13 +42,13 @@ class OAICostsResult_amount;
 class OAIUsageTimeBucket_result_inner : public OAIObject {
 public:
     OAIUsageTimeBucket_result_inner();
-    OAIUsageTimeBucket_result_inner(QString json);
+    OAIUsageTimeBucket_result_inner(const QString &json);
     ~OAIUsageTimeBucket_result_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getObject() const;
     void setObject(const QString &object);

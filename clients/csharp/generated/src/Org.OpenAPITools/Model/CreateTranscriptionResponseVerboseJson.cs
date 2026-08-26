@@ -85,7 +85,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Extracted words and their corresponding timestamps.</value>
         [JsonPropertyName("words")]
-        public List<TranscriptionWord>? Words { get { return this.WordsOption; } set { this.WordsOption = new(value); } }
+        public List<TranscriptionWord>? Words { get { return this.WordsOption.Value; } set { this.WordsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Segments
@@ -99,7 +99,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Segments of the transcribed text and their corresponding details.</value>
         [JsonPropertyName("segments")]
-        public List<TranscriptionSegment>? Segments { get { return this.SegmentsOption; } set { this.SegmentsOption = new(value); } }
+        public List<TranscriptionSegment>? Segments { get { return this.SegmentsOption.Value; } set { this.SegmentsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateTranscriptionResponseVerboseJson" />
     /// </summary>
-    public class CreateTranscriptionResponseVerboseJsonJsonConverter : JsonConverter<CreateTranscriptionResponseVerboseJson>
+    public partial class CreateTranscriptionResponseVerboseJsonJsonConverter : JsonConverter<CreateTranscriptionResponseVerboseJson>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateTranscriptionResponseVerboseJsonJsonConverter" /> class.
+        /// </summary>
+        public CreateTranscriptionResponseVerboseJsonJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateTranscriptionResponseVerboseJson" />
         /// </summary>

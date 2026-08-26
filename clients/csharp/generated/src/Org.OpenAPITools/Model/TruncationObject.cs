@@ -132,7 +132,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The number of most recent messages from the thread when constructing the context for the run.</value>
         [JsonPropertyName("last_messages")]
-        public int? LastMessages { get { return this.LastMessagesOption; } set { this.LastMessagesOption = new(value); } }
+        public int? LastMessages { get { return this.LastMessagesOption.Value; } set { this.LastMessagesOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -168,8 +168,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="TruncationObject" />
     /// </summary>
-    public class TruncationObjectJsonConverter : JsonConverter<TruncationObject>
+    public partial class TruncationObjectJsonConverter : JsonConverter<TruncationObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TruncationObjectJsonConverter" /> class.
+        /// </summary>
+        public TruncationObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="TruncationObject" />
         /// </summary>

@@ -1,4 +1,4 @@
-# # CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
+# CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
 
 ## Properties
 

@@ -100,22 +100,25 @@ class _$ProjectApiKeyOwnerSerializer implements PrimitiveSerializer<ProjectApiKe
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ProjectApiKeyOwnerTypeEnum),
-          ) as ProjectApiKeyOwnerTypeEnum;
+            specifiedType: const FullType.nullable(ProjectApiKeyOwnerTypeEnum),
+          ) as ProjectApiKeyOwnerTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'user':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ProjectUser),
-          ) as ProjectUser;
+            specifiedType: const FullType.nullable(ProjectUser),
+          ) as ProjectUser?;
+          if (valueDes == null) continue;
           result.user.replace(valueDes);
           break;
         case r'service_account':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ProjectServiceAccount),
-          ) as ProjectServiceAccount;
+            specifiedType: const FullType.nullable(ProjectServiceAccount),
+          ) as ProjectServiceAccount?;
+          if (valueDes == null) continue;
           result.serviceAccount.replace(valueDes);
           break;
         default:

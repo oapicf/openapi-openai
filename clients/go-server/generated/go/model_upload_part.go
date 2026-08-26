@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // UploadPart - The upload Part represents a chunk of bytes we can add to an Upload object. 
@@ -29,21 +34,86 @@ type UploadPart struct {
 	// The object type, which is always `upload.part`.
 	Object string `json:"object"`
 }
-
-// AssertUploadPartRequired checks if the required fields are not zero-ed
-func AssertUploadPartRequired(obj UploadPart) error {
-	elements := map[string]interface{}{
-		"id": obj.Id,
-		"created_at": obj.CreatedAt,
-		"upload_id": obj.UploadId,
-		"object": obj.Object,
+// UnmarshalJSON validates required property keys then unmarshals into UploadPart
+func (o *UploadPart) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"id",
+		"created_at",
+		"upload_id",
+		"object",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"id": false,
+		"created_at": false,
+		"upload_id": false,
+		"object": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"id": {},
+		"created_at": {},
+		"upload_id": {},
+		"object": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded UploadPart
+
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["created_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CreatedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["upload_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.UploadId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertUploadPartRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertUploadPartRequired(obj UploadPart) error {
 	return nil
 }
 

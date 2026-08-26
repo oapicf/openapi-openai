@@ -11,15 +11,18 @@ static create_completion_request_prompt_t *create_completion_request_prompt_crea
     if (!create_completion_request_prompt_local_var) {
         return NULL;
     }
-
+    memset(create_completion_request_prompt_local_var, 0, sizeof(create_completion_request_prompt_t));
     create_completion_request_prompt_local_var->_library_owned = 1;
     return create_completion_request_prompt_local_var;
 }
 
 __attribute__((deprecated)) create_completion_request_prompt_t *create_completion_request_prompt_create(
     ) {
-    return create_completion_request_prompt_create_internal (
+    create_completion_request_prompt_t *result = create_completion_request_prompt_create_internal (
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_completion_request_prompt_free(create_completion_request_prompt_t *create_completion_request_prompt) {
@@ -49,8 +52,13 @@ create_completion_request_prompt_t *create_completion_request_prompt_parseFromJS
     create_completion_request_prompt_t *create_completion_request_prompt_local_var = NULL;
 
 
+
     create_completion_request_prompt_local_var = create_completion_request_prompt_create_internal (
         );
+
+    if (!create_completion_request_prompt_local_var) {
+        goto end;
+    }
 
     return create_completion_request_prompt_local_var;
 end:

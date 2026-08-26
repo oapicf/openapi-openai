@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.FilesApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -33,7 +32,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.openAI.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:/v1}")
 class FilesApiController() {
 
     @Operation(
@@ -46,7 +45,8 @@ class FilesApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_FILE /* "/files" */],
+        // "/files"
+        value = [PATH_CREATE_FILE],
         produces = ["application/json"],
         consumes = ["multipart/form-data"]
     )
@@ -67,7 +67,8 @@ class FilesApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = [PATH_DELETE_FILE /* "/files/{file_id}" */],
+        // "/files/{file_id}"
+        value = [PATH_DELETE_FILE],
         produces = ["application/json"]
     )
     fun deleteFile(
@@ -86,7 +87,8 @@ class FilesApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_DOWNLOAD_FILE /* "/files/{file_id}/content" */],
+        // "/files/{file_id}/content"
+        value = [PATH_DOWNLOAD_FILE],
         produces = ["application/json"]
     )
     fun downloadFile(
@@ -105,7 +107,8 @@ class FilesApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_FILES /* "/files" */],
+        // "/files"
+        value = [PATH_LIST_FILES],
         produces = ["application/json"]
     )
     fun listFiles(
@@ -127,7 +130,8 @@ class FilesApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_RETRIEVE_FILE /* "/files/{file_id}" */],
+        // "/files/{file_id}"
+        value = [PATH_RETRIEVE_FILE],
         produces = ["application/json"]
     )
     fun retrieveFile(

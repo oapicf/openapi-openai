@@ -13,10 +13,10 @@ static audit_log_login_failed_t *audit_log_login_failed_create_internal(
     if (!audit_log_login_failed_local_var) {
         return NULL;
     }
+    memset(audit_log_login_failed_local_var, 0, sizeof(audit_log_login_failed_t));
+    audit_log_login_failed_local_var->_library_owned = 1;
     audit_log_login_failed_local_var->error_code = error_code;
     audit_log_login_failed_local_var->error_message = error_message;
-
-    audit_log_login_failed_local_var->_library_owned = 1;
     return audit_log_login_failed_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) audit_log_login_failed_t *audit_log_login_failed_cre
     char *error_code,
     char *error_message
     ) {
-    return audit_log_login_failed_create_internal (
+    audit_log_login_failed_t *result = audit_log_login_failed_create_internal (
         error_code,
         error_message
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void audit_log_login_failed_free(audit_log_login_failed_t *audit_log_login_failed) {
@@ -80,6 +83,10 @@ audit_log_login_failed_t *audit_log_login_failed_parseFromJSON(cJSON *audit_log_
 
     audit_log_login_failed_t *audit_log_login_failed_local_var = NULL;
 
+    char *error_code_local_str = NULL;
+
+    char *error_message_local_str = NULL;
+
     // audit_log_login_failed->error_code
     cJSON *error_code = cJSON_GetObjectItemCaseSensitive(audit_log_login_failedJSON, "error_code");
     if (cJSON_IsNull(error_code)) {
@@ -105,13 +112,28 @@ audit_log_login_failed_t *audit_log_login_failed_parseFromJSON(cJSON *audit_log_
     }
 
 
+    if (error_code && !cJSON_IsNull(error_code)) error_code_local_str = strdup(error_code->valuestring);
+    if (error_message && !cJSON_IsNull(error_message)) error_message_local_str = strdup(error_message->valuestring);
+
     audit_log_login_failed_local_var = audit_log_login_failed_create_internal (
-        error_code && !cJSON_IsNull(error_code) ? strdup(error_code->valuestring) : NULL,
-        error_message && !cJSON_IsNull(error_message) ? strdup(error_message->valuestring) : NULL
+        error_code_local_str,
+        error_message_local_str
         );
+
+    if (!audit_log_login_failed_local_var) {
+        goto end;
+    }
 
     return audit_log_login_failed_local_var;
 end:
+    if (error_code_local_str) {
+        free(error_code_local_str);
+        error_code_local_str = NULL;
+    }
+    if (error_message_local_str) {
+        free(error_message_local_str);
+        error_message_local_str = NULL;
+    }
     return NULL;
 
 }

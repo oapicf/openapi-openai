@@ -1,7 +1,10 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.TranscriptionSegment
 import org.openapitools.model.TranscriptionWord
 import javax.validation.constraints.DecimalMax
@@ -25,23 +28,32 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class CreateTranscriptionResponseVerboseJson(
 
-    @Schema(example = "null", required = true, description = "The language of the input audio.")
+    @Schema(required = true, description = "The language of the input audio.")
+    @param:JsonProperty("language")
     @get:JsonProperty("language", required = true) val language: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The duration of the input audio.")
+    @Schema(required = true, description = "The duration of the input audio.")
+    @param:JsonProperty("duration")
     @get:JsonProperty("duration", required = true) val duration: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The transcribed text.")
+    @Schema(required = true, description = "The transcribed text.")
+    @param:JsonProperty("text")
     @get:JsonProperty("text", required = true) val text: kotlin.String,
 
     @field:Valid
-    @Schema(example = "null", description = "Extracted words and their corresponding timestamps.")
+    @Schema(description = "Extracted words and their corresponding timestamps.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("words")
     @get:JsonProperty("words") val words: kotlin.collections.List<TranscriptionWord>? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "Segments of the transcribed text and their corresponding details.")
+    @Schema(description = "Segments of the transcribed text and their corresponding details.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("segments")
     @get:JsonProperty("segments") val segments: kotlin.collections.List<TranscriptionSegment>? = null
-) {
+) : CreateTranscription200Response {
 
 }
 

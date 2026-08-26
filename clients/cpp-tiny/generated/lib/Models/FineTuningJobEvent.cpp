@@ -191,7 +191,7 @@ FineTuningJobEvent::getObject()
 }
 
 void
-FineTuningJobEvent::setObject(std::string  object)
+FineTuningJobEvent::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -203,7 +203,7 @@ FineTuningJobEvent::getId()
 }
 
 void
-FineTuningJobEvent::setId(std::string  id)
+FineTuningJobEvent::setId(std::string id)
 {
 	this->id = id;
 }
@@ -215,7 +215,7 @@ FineTuningJobEvent::getCreatedAt()
 }
 
 void
-FineTuningJobEvent::setCreatedAt(int  created_at)
+FineTuningJobEvent::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -227,7 +227,7 @@ FineTuningJobEvent::getLevel()
 }
 
 void
-FineTuningJobEvent::setLevel(std::string  level)
+FineTuningJobEvent::setLevel(std::string level)
 {
 	this->level = level;
 }
@@ -239,7 +239,7 @@ FineTuningJobEvent::getMessage()
 }
 
 void
-FineTuningJobEvent::setMessage(std::string  message)
+FineTuningJobEvent::setMessage(std::string message)
 {
 	this->message = message;
 }
@@ -251,7 +251,7 @@ FineTuningJobEvent::getType()
 }
 
 void
-FineTuningJobEvent::setType(std::string  type)
+FineTuningJobEvent::setType(std::string type)
 {
 	this->type = type;
 }
@@ -263,7 +263,7 @@ FineTuningJobEvent::getData()
 }
 
 void
-FineTuningJobEvent::setData(Object  data)
+FineTuningJobEvent::setData(Object data)
 {
 	this->data = data;
 }

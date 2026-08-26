@@ -1,4 +1,4 @@
-# # CreateAssistantRequestToolResourcesFileSearchVectorStoresInner
+# CreateAssistantRequestToolResourcesFileSearchVectorStoresInner
 
 ## Properties
 

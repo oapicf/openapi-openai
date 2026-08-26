@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier::OAICreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier(QString json) {
+OAICreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier::OAICreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -36,7 +36,7 @@ void OAICreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier::ini
 
 }
 
-void OAICreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier::fromJson(QString jsonString) {
+void OAICreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

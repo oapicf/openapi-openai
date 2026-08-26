@@ -33,7 +33,7 @@ export class InvitesApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/invites/{invite_id}'
-            .replace('{' + 'invite_id' + '}', encodeURIComponent(String(inviteId)));
+            .replace('{invite_id}', encodeURIComponent(String(inviteId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -160,7 +160,7 @@ export class InvitesApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/invites/{invite_id}'
-            .replace('{' + 'invite_id' + '}', encodeURIComponent(String(inviteId)));
+            .replace('{invite_id}', encodeURIComponent(String(inviteId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

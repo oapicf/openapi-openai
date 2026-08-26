@@ -35,7 +35,7 @@ export interface ListFineTuningJobCheckpointsResponse {
     data: Array<FineTuningJobCheckpoint>;
     /**
      * 
-     * @type {string}
+     * @type {ListFineTuningJobCheckpointsResponseObjectEnum}
      * @memberof ListFineTuningJobCheckpointsResponse
      */
     object: ListFineTuningJobCheckpointsResponseObjectEnum;
@@ -75,7 +75,9 @@ export type ListFineTuningJobCheckpointsResponseObjectEnum = typeof ListFineTuni
 export function instanceOfListFineTuningJobCheckpointsResponse(value: object): value is ListFineTuningJobCheckpointsResponse {
     if (!('data' in value) || value['data'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
-    if (!('hasMore' in value) || value['hasMore'] === undefined) return false;
+    if (value['object'] !== 'list') return false;
+    
+    if ((!('hasMore' in (value as Record<string, any>)) && !('has_more' in (value as Record<string, any>))) || ((value as Record<string, any>)['hasMore'] === undefined && (value as Record<string, any>)['has_more'] === undefined)) return false;
     return true;
 }
 
@@ -91,8 +93,8 @@ export function ListFineTuningJobCheckpointsResponseFromJSONTyped(json: any, ign
         
         'data': ((json['data'] as Array<any>).map(FineTuningJobCheckpointFromJSON)),
         'object': json['object'],
-        'firstId': json['first_id'] == null ? undefined : json['first_id'],
-        'lastId': json['last_id'] == null ? undefined : json['last_id'],
+        'firstId': json['first_id'] === undefined ? undefined : json['first_id'] === null ? null : json['first_id'],
+        'lastId': json['last_id'] === undefined ? undefined : json['last_id'] === null ? null : json['last_id'],
         'hasMore': json['has_more'],
     };
 }

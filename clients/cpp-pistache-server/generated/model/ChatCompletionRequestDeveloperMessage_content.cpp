@@ -24,6 +24,8 @@ ChatCompletionRequestDeveloperMessage_content::ChatCompletionRequestDeveloperMes
     
 }
 
+ChatCompletionRequestDeveloperMessage_content::~ChatCompletionRequestDeveloperMessage_content() = default;
+
 void ChatCompletionRequestDeveloperMessage_content::validate() const
 {
     std::stringstream msg;

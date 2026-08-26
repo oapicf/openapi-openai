@@ -128,7 +128,7 @@ RunStepDeltaStepDetailsToolCallsCodeObject::getIndex()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeObject::setIndex(int  index)
+RunStepDeltaStepDetailsToolCallsCodeObject::setIndex(int index)
 {
 	this->index = index;
 }
@@ -140,7 +140,7 @@ RunStepDeltaStepDetailsToolCallsCodeObject::getId()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeObject::setId(std::string  id)
+RunStepDeltaStepDetailsToolCallsCodeObject::setId(std::string id)
 {
 	this->id = id;
 }
@@ -152,7 +152,7 @@ RunStepDeltaStepDetailsToolCallsCodeObject::getType()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeObject::setType(std::string  type)
+RunStepDeltaStepDetailsToolCallsCodeObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -164,7 +164,7 @@ RunStepDeltaStepDetailsToolCallsCodeObject::getCodeInterpreter()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeObject::setCodeInterpreter(RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter  code_interpreter)
+RunStepDeltaStepDetailsToolCallsCodeObject::setCodeInterpreter(RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter code_interpreter)
 {
 	this->code_interpreter = code_interpreter;
 }

@@ -149,8 +149,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="InviteDeleteResponse" />
     /// </summary>
-    public class InviteDeleteResponseJsonConverter : JsonConverter<InviteDeleteResponse>
+    public partial class InviteDeleteResponseJsonConverter : JsonConverter<InviteDeleteResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InviteDeleteResponseJsonConverter" /> class.
+        /// </summary>
+        public InviteDeleteResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="InviteDeleteResponse" />
         /// </summary>

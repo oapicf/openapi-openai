@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -17,20 +18,20 @@ import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * The &#x60;fine_tuning.job&#x60; object represents a fine-tuning job that has been created through the API. 
  */
 
 @Schema(name = "FineTuningJob", description = "The `fine_tuning.job` object represents a fine-tuning job that has been created through the API. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTuningJob {
 
   private String id;
@@ -84,7 +85,6 @@ public class FineTuningJob {
 
   private String organizationId;
 
-  @Valid
   private List<String> resultFiles = new ArrayList<>();
 
   /**
@@ -138,13 +138,15 @@ public class FineTuningJob {
 
   private JsonNullable<String> validationFile = JsonNullable.<String>undefined();
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<List<FineTuningJobIntegrationsInner>> integrations = JsonNullable.<List<FineTuningJobIntegrationsInner>>undefined();
 
   private Integer seed;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Integer> estimatedFinish = JsonNullable.<Integer>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable FineTuneMethod method;
 
   public FineTuningJob() {
@@ -188,6 +190,7 @@ public class FineTuningJob {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
@@ -208,6 +211,7 @@ public class FineTuningJob {
     return createdAt;
   }
 
+  @JsonProperty("created_at")
   public void setCreatedAt(Integer createdAt) {
     this.createdAt = createdAt;
   }
@@ -228,6 +232,7 @@ public class FineTuningJob {
     return error;
   }
 
+  @JsonProperty("error")
   public void setError(JsonNullable<FineTuningJobError> error) {
     this.error = error;
   }
@@ -248,6 +253,7 @@ public class FineTuningJob {
     return fineTunedModel;
   }
 
+  @JsonProperty("fine_tuned_model")
   public void setFineTunedModel(JsonNullable<String> fineTunedModel) {
     this.fineTunedModel = fineTunedModel;
   }
@@ -268,6 +274,7 @@ public class FineTuningJob {
     return finishedAt;
   }
 
+  @JsonProperty("finished_at")
   public void setFinishedAt(JsonNullable<Integer> finishedAt) {
     this.finishedAt = finishedAt;
   }
@@ -288,6 +295,7 @@ public class FineTuningJob {
     return hyperparameters;
   }
 
+  @JsonProperty("hyperparameters")
   public void setHyperparameters(FineTuningJobHyperparameters hyperparameters) {
     this.hyperparameters = hyperparameters;
   }
@@ -308,6 +316,7 @@ public class FineTuningJob {
     return model;
   }
 
+  @JsonProperty("model")
   public void setModel(String model) {
     this.model = model;
   }
@@ -328,6 +337,7 @@ public class FineTuningJob {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
@@ -348,6 +358,7 @@ public class FineTuningJob {
     return organizationId;
   }
 
+  @JsonProperty("organization_id")
   public void setOrganizationId(String organizationId) {
     this.organizationId = organizationId;
   }
@@ -376,6 +387,7 @@ public class FineTuningJob {
     return resultFiles;
   }
 
+  @JsonProperty("result_files")
   public void setResultFiles(List<String> resultFiles) {
     this.resultFiles = resultFiles;
   }
@@ -396,6 +408,7 @@ public class FineTuningJob {
     return status;
   }
 
+  @JsonProperty("status")
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -416,6 +429,7 @@ public class FineTuningJob {
     return trainedTokens;
   }
 
+  @JsonProperty("trained_tokens")
   public void setTrainedTokens(JsonNullable<Integer> trainedTokens) {
     this.trainedTokens = trainedTokens;
   }
@@ -436,6 +450,7 @@ public class FineTuningJob {
     return trainingFile;
   }
 
+  @JsonProperty("training_file")
   public void setTrainingFile(String trainingFile) {
     this.trainingFile = trainingFile;
   }
@@ -456,6 +471,7 @@ public class FineTuningJob {
     return validationFile;
   }
 
+  @JsonProperty("validation_file")
   public void setValidationFile(JsonNullable<String> validationFile) {
     this.validationFile = validationFile;
   }
@@ -504,6 +520,7 @@ public class FineTuningJob {
     return seed;
   }
 
+  @JsonProperty("seed")
   public void setSeed(Integer seed) {
     this.seed = seed;
   }
@@ -544,6 +561,7 @@ public class FineTuningJob {
     return method;
   }
 
+  @JsonProperty("method")
   public void setMethod(@Nullable FineTuneMethod method) {
     this.method = method;
   }
@@ -623,11 +641,8 @@ public class FineTuningJob {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

@@ -19,7 +19,7 @@ pub enum CreateCompletionRequestPrompt {
     String(String),
     ArrayVecString(Vec<String>),
     ArrayVeci32(Vec<i32>),
-    ArrayVecVec<i32>(Vec<Vec<i32>>),
+    ArrayVecVec(Vec<Vec<i32>>),
 }
 
 impl Default for CreateCompletionRequestPrompt {

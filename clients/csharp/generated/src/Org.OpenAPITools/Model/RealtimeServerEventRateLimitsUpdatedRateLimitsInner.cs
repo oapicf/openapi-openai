@@ -129,7 +129,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The name of the rate limit (&#x60;requests&#x60;, &#x60;tokens&#x60;). </value>
         [JsonPropertyName("name")]
-        public NameEnum? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public NameEnum? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Limit
@@ -143,7 +143,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The maximum allowed value for the rate limit.</value>
         [JsonPropertyName("limit")]
-        public int? Limit { get { return this.LimitOption; } set { this.LimitOption = new(value); } }
+        public int? Limit { get { return this.LimitOption.Value; } set { this.LimitOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Remaining
@@ -157,7 +157,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The remaining value before the limit is reached.</value>
         [JsonPropertyName("remaining")]
-        public int? Remaining { get { return this.RemainingOption; } set { this.RemainingOption = new(value); } }
+        public int? Remaining { get { return this.RemainingOption.Value; } set { this.RemainingOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ResetSeconds
@@ -171,7 +171,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Seconds until the rate limit resets.</value>
         [JsonPropertyName("reset_seconds")]
-        public decimal? ResetSeconds { get { return this.ResetSecondsOption; } set { this.ResetSecondsOption = new(value); } }
+        public decimal? ResetSeconds { get { return this.ResetSecondsOption.Value; } set { this.ResetSecondsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -203,8 +203,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeServerEventRateLimitsUpdatedRateLimitsInner" />
     /// </summary>
-    public class RealtimeServerEventRateLimitsUpdatedRateLimitsInnerJsonConverter : JsonConverter<RealtimeServerEventRateLimitsUpdatedRateLimitsInner>
+    public partial class RealtimeServerEventRateLimitsUpdatedRateLimitsInnerJsonConverter : JsonConverter<RealtimeServerEventRateLimitsUpdatedRateLimitsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeServerEventRateLimitsUpdatedRateLimitsInnerJsonConverter" /> class.
+        /// </summary>
+        public RealtimeServerEventRateLimitsUpdatedRateLimitsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeServerEventRateLimitsUpdatedRateLimitsInner" />
         /// </summary>

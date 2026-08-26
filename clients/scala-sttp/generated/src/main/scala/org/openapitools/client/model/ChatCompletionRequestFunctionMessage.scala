@@ -19,7 +19,7 @@ case class ChatCompletionRequestFunctionMessage(
   content: String,
   /* The name of the function to call. */
   name: String
-)
+) extends FineTuneChatRequestInputMessagesInner
 
 object ChatCompletionRequestFunctionMessageEnums {
 

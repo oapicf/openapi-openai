@@ -68,11 +68,11 @@ function Initialize-CreateTranscriptionResponseVerboseJson {
 
 
         $PSO = [PSCustomObject]@{
-            "language" = ${Language}
-            "duration" = ${Duration}
-            "text" = ${Text}
-            "words" = ${Words}
-            "segments" = ${Segments}
+            'language' = ${Language}
+            'duration' = ${Duration}
+            'text' = ${Text}
+            'words' = ${Words}
+            'segments' = ${Segments}
         }
 
 
@@ -110,7 +110,7 @@ function ConvertFrom-JsonToCreateTranscriptionResponseVerboseJson {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateTranscriptionResponseVerboseJson
-        $AllProperties = ("language", "duration", "text", "words", "segments")
+        $AllProperties = ('language', 'duration', 'text', 'words', 'segments')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -121,42 +121,42 @@ function ConvertFrom-JsonToCreateTranscriptionResponseVerboseJson {
             throw "Error! Empty JSON cannot be serialized due to the required property 'language' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "language"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'language'))) {
             throw "Error! JSON cannot be serialized due to the required property 'language' missing."
         } else {
-            $Language = $JsonParameters.PSobject.Properties["language"].value
+            $Language = $JsonParameters.PSobject.Properties['language'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "duration"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'duration'))) {
             throw "Error! JSON cannot be serialized due to the required property 'duration' missing."
         } else {
-            $Duration = $JsonParameters.PSobject.Properties["duration"].value
+            $Duration = $JsonParameters.PSobject.Properties['duration'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "text"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'text'))) {
             throw "Error! JSON cannot be serialized due to the required property 'text' missing."
         } else {
-            $Text = $JsonParameters.PSobject.Properties["text"].value
+            $Text = $JsonParameters.PSobject.Properties['text'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "words"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'words'))) { #optional property not found
             $Words = $null
         } else {
-            $Words = $JsonParameters.PSobject.Properties["words"].value
+            $Words = $JsonParameters.PSobject.Properties['words'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "segments"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'segments'))) { #optional property not found
             $Segments = $null
         } else {
-            $Segments = $JsonParameters.PSobject.Properties["segments"].value
+            $Segments = $JsonParameters.PSobject.Properties['segments'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "language" = ${Language}
-            "duration" = ${Duration}
-            "text" = ${Text}
-            "words" = ${Words}
-            "segments" = ${Segments}
+            'language' = ${Language}
+            'duration' = ${Duration}
+            'text' = ${Text}
+            'words' = ${Words}
+            'segments' = ${Segments}
         }
 
         return $PSO

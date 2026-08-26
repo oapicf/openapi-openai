@@ -1,4 +1,4 @@
-# # RealtimeClientEventConversationItemCreate
+# RealtimeClientEventConversationItemCreate
 
 ## Properties
 

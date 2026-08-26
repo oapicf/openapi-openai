@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAICreateAssistantRequest_model : public OAIObject {
 public:
     OAICreateAssistantRequest_model();
-    OAICreateAssistantRequest_model(QString json);
+    OAICreateAssistantRequest_model(const QString &json);
     ~OAICreateAssistantRequest_model() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

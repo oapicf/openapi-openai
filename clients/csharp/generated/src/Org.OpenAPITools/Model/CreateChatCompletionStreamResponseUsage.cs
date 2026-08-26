@@ -98,8 +98,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateChatCompletionStreamResponseUsage" />
     /// </summary>
-    public class CreateChatCompletionStreamResponseUsageJsonConverter : JsonConverter<CreateChatCompletionStreamResponseUsage>
+    public partial class CreateChatCompletionStreamResponseUsageJsonConverter : JsonConverter<CreateChatCompletionStreamResponseUsage>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateChatCompletionStreamResponseUsageJsonConverter" /> class.
+        /// </summary>
+        public CreateChatCompletionStreamResponseUsageJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateChatCompletionStreamResponseUsage" />
         /// </summary>

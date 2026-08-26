@@ -31,7 +31,7 @@ class  ChatCompletionStreamOptions
 {
 public:
     ChatCompletionStreamOptions();
-    virtual ~ChatCompletionStreamOptions() = default;
+    virtual ~ChatCompletionStreamOptions();
 
 
     /// <summary>

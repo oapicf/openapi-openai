@@ -32,7 +32,7 @@ class  RealtimeServerEventResponseTextDelta
 {
 public:
     RealtimeServerEventResponseTextDelta();
-    virtual ~RealtimeServerEventResponseTextDelta() = default;
+    virtual ~RealtimeServerEventResponseTextDelta();
 
 
     /// <summary>

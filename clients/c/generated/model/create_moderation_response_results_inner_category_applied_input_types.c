@@ -245,6 +245,8 @@ static create_moderation_response_results_inner_category_applied_input_types_t *
     if (!create_moderation_response_results_inner_category_applied_input_types_local_var) {
         return NULL;
     }
+    memset(create_moderation_response_results_inner_category_applied_input_types_local_var, 0, sizeof(create_moderation_response_results_inner_category_applied_input_types_t));
+    create_moderation_response_results_inner_category_applied_input_types_local_var->_library_owned = 1;
     create_moderation_response_results_inner_category_applied_input_types_local_var->hate = hate;
     create_moderation_response_results_inner_category_applied_input_types_local_var->hate_threatening = hate_threatening;
     create_moderation_response_results_inner_category_applied_input_types_local_var->harassment = harassment;
@@ -258,8 +260,6 @@ static create_moderation_response_results_inner_category_applied_input_types_t *
     create_moderation_response_results_inner_category_applied_input_types_local_var->sexual_minors = sexual_minors;
     create_moderation_response_results_inner_category_applied_input_types_local_var->violence = violence;
     create_moderation_response_results_inner_category_applied_input_types_local_var->violence_graphic = violence_graphic;
-
-    create_moderation_response_results_inner_category_applied_input_types_local_var->_library_owned = 1;
     return create_moderation_response_results_inner_category_applied_input_types_local_var;
 }
 
@@ -278,7 +278,7 @@ __attribute__((deprecated)) create_moderation_response_results_inner_category_ap
     list_t *violence,
     list_t *violence_graphic
     ) {
-    return create_moderation_response_results_inner_category_applied_input_types_create_internal (
+    create_moderation_response_results_inner_category_applied_input_types_t *result = create_moderation_response_results_inner_category_applied_input_types_create_internal (
         hate,
         hate_threatening,
         harassment,
@@ -293,6 +293,9 @@ __attribute__((deprecated)) create_moderation_response_results_inner_category_ap
         violence,
         violence_graphic
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_moderation_response_results_inner_category_applied_input_types_free(create_moderation_response_results_inner_category_applied_input_types_t *create_moderation_response_results_inner_category_applied_input_types) {
@@ -1011,6 +1014,7 @@ create_moderation_response_results_inner_category_applied_input_types_t *create_
     }
 
 
+
     create_moderation_response_results_inner_category_applied_input_types_local_var = create_moderation_response_results_inner_category_applied_input_types_create_internal (
         hateList,
         hate_threateningList,
@@ -1026,6 +1030,10 @@ create_moderation_response_results_inner_category_applied_input_types_t *create_
         violenceList,
         violence_graphicList
         );
+
+    if (!create_moderation_response_results_inner_category_applied_input_types_local_var) {
+        goto end;
+    }
 
     return create_moderation_response_results_inner_category_applied_input_types_local_var;
 end:

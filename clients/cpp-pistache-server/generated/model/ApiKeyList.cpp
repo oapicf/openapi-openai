@@ -33,6 +33,8 @@ ApiKeyList::ApiKeyList()
     
 }
 
+ApiKeyList::~ApiKeyList() = default;
+
 void ApiKeyList::validate() const
 {
     std::stringstream msg;

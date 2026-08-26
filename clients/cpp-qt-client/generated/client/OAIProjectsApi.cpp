@@ -77,9 +77,9 @@ void OAIProjectsApi::initializeServerConfigs() {
 }
 
 /**
-* returns 0 on success and -1, -2 or -3 on failure.
-* -1 when the variable does not exist and -2 if the value is not defined in the enum and -3 if the operation or server index is not found
-*/
+ * returns 0 on success and -1, -2 or -3 on failure.
+ * -1 when the variable does not exist and -2 if the value is not defined in the enum and -3 if the operation or server index is not found
+ */
 int OAIProjectsApi::setDefaultServerValue(int serverIndex, const QString &operation, const QString &variable, const QString &value) {
     auto it = _serverConfigs.find(operation);
     if (it != _serverConfigs.end() && serverIndex < it.value().size()) {
@@ -87,9 +87,21 @@ int OAIProjectsApi::setDefaultServerValue(int serverIndex, const QString &operat
     }
     return -3;
 }
+
+/**
+ * Sets the server index.
+ * @param operation The id to the target operation.
+ * @param serverIndex The server index.
+ */
 void OAIProjectsApi::setServerIndex(const QString &operation, int serverIndex) {
     if (_serverIndices.contains(operation) && serverIndex < _serverConfigs.find(operation).value().size()) {
         _serverIndices[operation] = serverIndex;
+    }
+}
+
+void OAIProjectsApi::setServerIndex(int serverIndex) {
+    for (auto keyIt = _serverIndices.keyBegin(); keyIt != _serverIndices.keyEnd(); keyIt++) {
+        setServerIndex(*keyIt, serverIndex);
     }
 }
 
@@ -123,13 +135,13 @@ void OAIProjectsApi::setNetworkAccessManager(QNetworkAccessManager* manager) {
 }
 
 /**
-    * Appends a new ServerConfiguration to the config map for a specific operation.
-    * @param operation The id to the target operation.
-    * @param url A string that contains the URL of the server
-    * @param description A String that describes the server
-    * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
-    * returns the index of the new server config on success and -1 if the operation is not found
-    */
+ * Appends a new ServerConfiguration to the config map for a specific operation.
+ * @param operation The id to the target operation.
+ * @param url A string that contains the URL of the server
+ * @param description A String that describes the server
+ * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
+ * returns the index of the new server config on success and -1 if the operation is not found
+ */
 int OAIProjectsApi::addServerConfiguration(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     if (_serverConfigs.contains(operation)) {
         _serverConfigs[operation].append(OAIServerConfiguration(
@@ -143,11 +155,11 @@ int OAIProjectsApi::addServerConfiguration(const QString &operation, const QUrl 
 }
 
 /**
-    * Appends a new ServerConfiguration to the config map for a all operations and sets the index to that server.
-    * @param url A string that contains the URL of the server
-    * @param description A String that describes the server
-    * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
-    */
+ * Appends a new ServerConfiguration to the config map for a all operations and sets the index to that server.
+ * @param url A string that contains the URL of the server
+ * @param description A String that describes the server
+ * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
+ */
 void OAIProjectsApi::setNewServerForAllOperations(const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     for (auto keyIt = _serverIndices.keyBegin(); keyIt != _serverIndices.keyEnd(); keyIt++) {
         setServerIndex(*keyIt, addServerConfiguration(*keyIt, url, description, variables));
@@ -155,11 +167,11 @@ void OAIProjectsApi::setNewServerForAllOperations(const QUrl &url, const QString
 }
 
 /**
-    * Appends a new ServerConfiguration to the config map for an operations and sets the index to that server.
-    * @param URL A string that contains the URL of the server
-    * @param description A String that describes the server
-    * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
-    */
+ * Appends a new ServerConfiguration to the config map for an operations and sets the index to that server.
+ * @param URL A string that contains the URL of the server
+ * @param description A String that describes the server
+ * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
+ */
 void OAIProjectsApi::setNewServer(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     setServerIndex(operation, addServerConfiguration(operation, url, description, variables));
 }
@@ -299,32 +311,6 @@ void OAIProjectsApi::archiveProjectCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT archiveProjectSignal(output);
         Q_EMIT archiveProjectSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT archiveProjectSignalE(output, error_type, error_str);
-        Q_EMIT archiveProjectSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT archiveProjectSignalError(output, error_type, error_str);
         Q_EMIT archiveProjectSignalErrorFull(worker, error_type, error_str);
     }
@@ -377,32 +363,6 @@ void OAIProjectsApi::createProjectCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT createProjectSignal(output);
         Q_EMIT createProjectSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT createProjectSignalE(output, error_type, error_str);
-        Q_EMIT createProjectSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT createProjectSignalError(output, error_type, error_str);
         Q_EMIT createProjectSignalErrorFull(worker, error_type, error_str);
     }
@@ -469,32 +429,6 @@ void OAIProjectsApi::createProjectServiceAccountCallback(OAIHttpRequestWorker *w
         Q_EMIT createProjectServiceAccountSignal(output);
         Q_EMIT createProjectServiceAccountSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT createProjectServiceAccountSignalE(output, error_type, error_str);
-        Q_EMIT createProjectServiceAccountSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT createProjectServiceAccountSignalError(output, error_type, error_str);
         Q_EMIT createProjectServiceAccountSignalErrorFull(worker, error_type, error_str);
     }
@@ -561,32 +495,6 @@ void OAIProjectsApi::createProjectUserCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT createProjectUserSignal(output);
         Q_EMIT createProjectUserSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT createProjectUserSignalE(output, error_type, error_str);
-        Q_EMIT createProjectUserSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT createProjectUserSignalError(output, error_type, error_str);
         Q_EMIT createProjectUserSignalErrorFull(worker, error_type, error_str);
     }
@@ -662,32 +570,6 @@ void OAIProjectsApi::deleteProjectApiKeyCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT deleteProjectApiKeySignal(output);
         Q_EMIT deleteProjectApiKeySignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT deleteProjectApiKeySignalE(output, error_type, error_str);
-        Q_EMIT deleteProjectApiKeySignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT deleteProjectApiKeySignalError(output, error_type, error_str);
         Q_EMIT deleteProjectApiKeySignalErrorFull(worker, error_type, error_str);
     }
@@ -763,32 +645,6 @@ void OAIProjectsApi::deleteProjectServiceAccountCallback(OAIHttpRequestWorker *w
         Q_EMIT deleteProjectServiceAccountSignal(output);
         Q_EMIT deleteProjectServiceAccountSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT deleteProjectServiceAccountSignalE(output, error_type, error_str);
-        Q_EMIT deleteProjectServiceAccountSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT deleteProjectServiceAccountSignalError(output, error_type, error_str);
         Q_EMIT deleteProjectServiceAccountSignalErrorFull(worker, error_type, error_str);
     }
@@ -864,32 +720,6 @@ void OAIProjectsApi::deleteProjectUserCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT deleteProjectUserSignal(output);
         Q_EMIT deleteProjectUserSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT deleteProjectUserSignalE(output, error_type, error_str);
-        Q_EMIT deleteProjectUserSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT deleteProjectUserSignalError(output, error_type, error_str);
         Q_EMIT deleteProjectUserSignalErrorFull(worker, error_type, error_str);
     }
@@ -982,32 +812,6 @@ void OAIProjectsApi::listProjectApiKeysCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT listProjectApiKeysSignal(output);
         Q_EMIT listProjectApiKeysSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT listProjectApiKeysSignalE(output, error_type, error_str);
-        Q_EMIT listProjectApiKeysSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT listProjectApiKeysSignalError(output, error_type, error_str);
         Q_EMIT listProjectApiKeysSignalErrorFull(worker, error_type, error_str);
     }
@@ -1115,32 +919,6 @@ void OAIProjectsApi::listProjectRateLimitsCallback(OAIHttpRequestWorker *worker)
         Q_EMIT listProjectRateLimitsSignal(output);
         Q_EMIT listProjectRateLimitsSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT listProjectRateLimitsSignalE(output, error_type, error_str);
-        Q_EMIT listProjectRateLimitsSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT listProjectRateLimitsSignalError(output, error_type, error_str);
         Q_EMIT listProjectRateLimitsSignalErrorFull(worker, error_type, error_str);
     }
@@ -1233,32 +1011,6 @@ void OAIProjectsApi::listProjectServiceAccountsCallback(OAIHttpRequestWorker *wo
         Q_EMIT listProjectServiceAccountsSignal(output);
         Q_EMIT listProjectServiceAccountsSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT listProjectServiceAccountsSignalE(output, error_type, error_str);
-        Q_EMIT listProjectServiceAccountsSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT listProjectServiceAccountsSignalError(output, error_type, error_str);
         Q_EMIT listProjectServiceAccountsSignalErrorFull(worker, error_type, error_str);
     }
@@ -1351,32 +1103,6 @@ void OAIProjectsApi::listProjectUsersCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT listProjectUsersSignal(output);
         Q_EMIT listProjectUsersSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT listProjectUsersSignalE(output, error_type, error_str);
-        Q_EMIT listProjectUsersSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT listProjectUsersSignalError(output, error_type, error_str);
         Q_EMIT listProjectUsersSignalErrorFull(worker, error_type, error_str);
     }
@@ -1470,32 +1196,6 @@ void OAIProjectsApi::listProjectsCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT listProjectsSignal(output);
         Q_EMIT listProjectsSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT listProjectsSignalE(output, error_type, error_str);
-        Q_EMIT listProjectsSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT listProjectsSignalError(output, error_type, error_str);
         Q_EMIT listProjectsSignalErrorFull(worker, error_type, error_str);
     }
@@ -1562,32 +1262,6 @@ void OAIProjectsApi::modifyProjectCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT modifyProjectSignal(output);
         Q_EMIT modifyProjectSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT modifyProjectSignalE(output, error_type, error_str);
-        Q_EMIT modifyProjectSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT modifyProjectSignalError(output, error_type, error_str);
         Q_EMIT modifyProjectSignalErrorFull(worker, error_type, error_str);
     }
@@ -1668,32 +1342,6 @@ void OAIProjectsApi::modifyProjectUserCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT modifyProjectUserSignal(output);
         Q_EMIT modifyProjectUserSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT modifyProjectUserSignalE(output, error_type, error_str);
-        Q_EMIT modifyProjectUserSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT modifyProjectUserSignalError(output, error_type, error_str);
         Q_EMIT modifyProjectUserSignalErrorFull(worker, error_type, error_str);
     }
@@ -1755,32 +1403,6 @@ void OAIProjectsApi::retrieveProjectCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT retrieveProjectSignal(output);
         Q_EMIT retrieveProjectSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT retrieveProjectSignalE(output, error_type, error_str);
-        Q_EMIT retrieveProjectSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT retrieveProjectSignalError(output, error_type, error_str);
         Q_EMIT retrieveProjectSignalErrorFull(worker, error_type, error_str);
     }
@@ -1856,32 +1478,6 @@ void OAIProjectsApi::retrieveProjectApiKeyCallback(OAIHttpRequestWorker *worker)
         Q_EMIT retrieveProjectApiKeySignal(output);
         Q_EMIT retrieveProjectApiKeySignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT retrieveProjectApiKeySignalE(output, error_type, error_str);
-        Q_EMIT retrieveProjectApiKeySignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT retrieveProjectApiKeySignalError(output, error_type, error_str);
         Q_EMIT retrieveProjectApiKeySignalErrorFull(worker, error_type, error_str);
     }
@@ -1957,32 +1553,6 @@ void OAIProjectsApi::retrieveProjectServiceAccountCallback(OAIHttpRequestWorker 
         Q_EMIT retrieveProjectServiceAccountSignal(output);
         Q_EMIT retrieveProjectServiceAccountSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT retrieveProjectServiceAccountSignalE(output, error_type, error_str);
-        Q_EMIT retrieveProjectServiceAccountSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT retrieveProjectServiceAccountSignalError(output, error_type, error_str);
         Q_EMIT retrieveProjectServiceAccountSignalErrorFull(worker, error_type, error_str);
     }
@@ -2058,32 +1628,6 @@ void OAIProjectsApi::retrieveProjectUserCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT retrieveProjectUserSignal(output);
         Q_EMIT retrieveProjectUserSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT retrieveProjectUserSignalE(output, error_type, error_str);
-        Q_EMIT retrieveProjectUserSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT retrieveProjectUserSignalError(output, error_type, error_str);
         Q_EMIT retrieveProjectUserSignalErrorFull(worker, error_type, error_str);
     }
@@ -2164,42 +1708,16 @@ void OAIProjectsApi::updateProjectRateLimitsCallback(OAIHttpRequestWorker *worke
         Q_EMIT updateProjectRateLimitsSignal(output);
         Q_EMIT updateProjectRateLimitsSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT updateProjectRateLimitsSignalE(output, error_type, error_str);
-        Q_EMIT updateProjectRateLimitsSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT updateProjectRateLimitsSignalError(output, error_type, error_str);
         Q_EMIT updateProjectRateLimitsSignalErrorFull(worker, error_type, error_str);
     }
 }
 
-void OAIProjectsApi::tokenAvailable(){
+void OAIProjectsApi::tokenAvailable() {
 
     oauthToken token;
     switch (_OauthMethod) {
-    case 1: //implicit flow
+    case OauthMethod::ImplicitFlow:
         token = _implicitFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -2209,7 +1727,7 @@ void OAIProjectsApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 2: //authorization flow
+    case OauthMethod::AuthorizationFlow:
         token = _authFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -2219,7 +1737,7 @@ void OAIProjectsApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 3: //client credentials flow
+    case OauthMethod::ClientCredentialsFlow:
         token = _credentialFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -2229,7 +1747,7 @@ void OAIProjectsApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 4: //resource owner password flow
+    case OauthMethod::ResourceOwnerPasswordFlow:
         token = _passwordFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());

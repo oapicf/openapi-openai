@@ -18,9 +18,9 @@ pub struct AuditLogActor {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     pub r#type: Option<Type>,
     #[serde(rename = "session", skip_serializing_if = "Option::is_none")]
-    pub session: Option<models::AuditLogActorSession>,
+    pub session: Option<Box<models::AuditLogActorSession>>,
     #[serde(rename = "api_key", skip_serializing_if = "Option::is_none")]
-    pub api_key: Option<models::AuditLogActorApiKey>,
+    pub api_key: Option<Box<models::AuditLogActorApiKey>>,
 }
 
 impl AuditLogActor {

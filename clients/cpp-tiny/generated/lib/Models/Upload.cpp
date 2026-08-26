@@ -233,7 +233,7 @@ Upload::getId()
 }
 
 void
-Upload::setId(std::string  id)
+Upload::setId(std::string id)
 {
 	this->id = id;
 }
@@ -245,7 +245,7 @@ Upload::getCreatedAt()
 }
 
 void
-Upload::setCreatedAt(int  created_at)
+Upload::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -257,7 +257,7 @@ Upload::getFilename()
 }
 
 void
-Upload::setFilename(std::string  filename)
+Upload::setFilename(std::string filename)
 {
 	this->filename = filename;
 }
@@ -269,7 +269,7 @@ Upload::getBytes()
 }
 
 void
-Upload::setBytes(int  bytes)
+Upload::setBytes(int bytes)
 {
 	this->bytes = bytes;
 }
@@ -281,7 +281,7 @@ Upload::getPurpose()
 }
 
 void
-Upload::setPurpose(std::string  purpose)
+Upload::setPurpose(std::string purpose)
 {
 	this->purpose = purpose;
 }
@@ -293,7 +293,7 @@ Upload::getStatus()
 }
 
 void
-Upload::setStatus(std::string  status)
+Upload::setStatus(std::string status)
 {
 	this->status = status;
 }
@@ -305,7 +305,7 @@ Upload::getExpiresAt()
 }
 
 void
-Upload::setExpiresAt(int  expires_at)
+Upload::setExpiresAt(int expires_at)
 {
 	this->expires_at = expires_at;
 }
@@ -317,7 +317,7 @@ Upload::getObject()
 }
 
 void
-Upload::setObject(std::string  object)
+Upload::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -329,7 +329,7 @@ Upload::getFile()
 }
 
 void
-Upload::setFile(OpenAIFile  file)
+Upload::setFile(OpenAIFile file)
 {
 	this->file = file;
 }

@@ -22,7 +22,7 @@ message VectorStoreExpirationAfter {
     ANCHOR_LAST_ACTIVE_AT = 0;
   }
 
-  Anchor anchor = 339557709;
+  string anchor = 339557709;
 
   // The number of days after the anchor time that the vector store will expire.
   int32 days = 3076183;

@@ -26,6 +26,8 @@ RealtimeServerEventInputAudioBufferCleared::RealtimeServerEventInputAudioBufferC
     
 }
 
+RealtimeServerEventInputAudioBufferCleared::~RealtimeServerEventInputAudioBufferCleared() = default;
+
 void RealtimeServerEventInputAudioBufferCleared::validate() const
 {
     std::stringstream msg;

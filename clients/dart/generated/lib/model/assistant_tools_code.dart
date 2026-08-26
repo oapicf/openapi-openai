@@ -48,10 +48,8 @@ class AssistantToolsCode {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AssistantToolsCode[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AssistantToolsCode[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "AssistantToolsCode[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "AssistantToolsCode[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -109,27 +107,28 @@ class AssistantToolsCode {
 }
 
 /// The type of tool being defined: `code_interpreter`
-class AssistantToolsCodeTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const AssistantToolsCodeTypeEnum._(this.value);
+enum AssistantToolsCodeTypeEnum {
+  codeInterpreter._(r'code_interpreter'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const AssistantToolsCodeTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const codeInterpreter = AssistantToolsCodeTypeEnum._(r'code_interpreter');
-
-  /// List of all possible values in this [enum][AssistantToolsCodeTypeEnum].
-  static const values = <AssistantToolsCodeTypeEnum>[
-    codeInterpreter,
-  ];
-
+  /// Returns the instance of [AssistantToolsCodeTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static AssistantToolsCodeTypeEnum? fromJson(dynamic value) => AssistantToolsCodeTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [AssistantToolsCodeTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<AssistantToolsCodeTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <AssistantToolsCodeTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -151,9 +150,10 @@ class AssistantToolsCodeTypeEnumTypeTransformer {
 
   const AssistantToolsCodeTypeEnumTypeTransformer._();
 
-  String encode(AssistantToolsCodeTypeEnum data) => data.value;
+  String encode(AssistantToolsCodeTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a AssistantToolsCodeTypeEnum.
+  /// Returns the instance of [AssistantToolsCodeTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -162,6 +162,9 @@ class AssistantToolsCodeTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   AssistantToolsCodeTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is AssistantToolsCodeTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'code_interpreter': return AssistantToolsCodeTypeEnum.codeInterpreter;
@@ -174,7 +177,7 @@ class AssistantToolsCodeTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [AssistantToolsCodeTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static AssistantToolsCodeTypeEnumTypeTransformer? _instance;
 }
 

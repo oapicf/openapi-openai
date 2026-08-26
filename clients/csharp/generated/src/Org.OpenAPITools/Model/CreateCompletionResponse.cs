@@ -156,7 +156,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. </value>
         [JsonPropertyName("system_fingerprint")]
-        public string? SystemFingerprint { get { return this.SystemFingerprintOption; } set { this.SystemFingerprintOption = new(value); } }
+        public string? SystemFingerprint { get { return this.SystemFingerprintOption.Value; } set { this.SystemFingerprintOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Usage
@@ -169,7 +169,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Usage
         /// </summary>
         [JsonPropertyName("usage")]
-        public CompletionUsage? Usage { get { return this.UsageOption; } set { this.UsageOption = new(value); } }
+        public CompletionUsage? Usage { get { return this.UsageOption.Value; } set { this.UsageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -204,8 +204,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateCompletionResponse" />
     /// </summary>
-    public class CreateCompletionResponseJsonConverter : JsonConverter<CreateCompletionResponse>
+    public partial class CreateCompletionResponseJsonConverter : JsonConverter<CreateCompletionResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateCompletionResponseJsonConverter" /> class.
+        /// </summary>
+        public CreateCompletionResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateCompletionResponse" />
         /// </summary>

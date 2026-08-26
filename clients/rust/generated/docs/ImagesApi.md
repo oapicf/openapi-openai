@@ -51,7 +51,7 @@ Name | Type | Description  | Required | Notes
 **image** | **std::path::PathBuf** | The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask. | [required] |
 **prompt** | **String** | A text description of the desired image(s). The maximum length is 1000 characters. | [required] |
 **mask** | Option<**std::path::PathBuf**> | An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as `image`. |  |
-**model** | Option<[**models::CreateImageEditRequestModel**](CreateImageEditRequest_model.md)> |  |  |
+**model** | Option<[**models::CreateImageEditRequestModel**](CreateImageEditRequestModel.md)> |  |  |
 **n** | Option<**i32**> | The number of images to generate. Must be between 1 and 10. |  |[default to 1]
 **size** | Option<**String**> | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. |  |[default to 1024x1024]
 **response_format** | Option<**String**> | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. |  |[default to url]
@@ -84,7 +84,7 @@ Creates a variation of a given image.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **image** | **std::path::PathBuf** | The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square. | [required] |
-**model** | Option<[**models::CreateImageEditRequestModel**](CreateImageEditRequest_model.md)> |  |  |
+**model** | Option<[**models::CreateImageEditRequestModel**](CreateImageEditRequestModel.md)> |  |  |
 **n** | Option<**i32**> | The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. |  |[default to 1]
 **response_format** | Option<**String**> | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. |  |[default to url]
 **size** | Option<**String**> | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. |  |[default to 1024x1024]

@@ -85,7 +85,7 @@ ProjectUserCreateRequest::getUserId()
 }
 
 void
-ProjectUserCreateRequest::setUserId(std::string  user_id)
+ProjectUserCreateRequest::setUserId(std::string user_id)
 {
 	this->user_id = user_id;
 }
@@ -97,7 +97,7 @@ ProjectUserCreateRequest::getRole()
 }
 
 void
-ProjectUserCreateRequest::setRole(std::string  role)
+ProjectUserCreateRequest::setRole(std::string role)
 {
 	this->role = role;
 }

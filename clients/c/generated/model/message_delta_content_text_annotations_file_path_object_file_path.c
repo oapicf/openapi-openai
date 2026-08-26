@@ -12,18 +12,21 @@ static message_delta_content_text_annotations_file_path_object_file_path_t *mess
     if (!message_delta_content_text_annotations_file_path_object_file_path_local_var) {
         return NULL;
     }
-    message_delta_content_text_annotations_file_path_object_file_path_local_var->file_id = file_id;
-
+    memset(message_delta_content_text_annotations_file_path_object_file_path_local_var, 0, sizeof(message_delta_content_text_annotations_file_path_object_file_path_t));
     message_delta_content_text_annotations_file_path_object_file_path_local_var->_library_owned = 1;
+    message_delta_content_text_annotations_file_path_object_file_path_local_var->file_id = file_id;
     return message_delta_content_text_annotations_file_path_object_file_path_local_var;
 }
 
 __attribute__((deprecated)) message_delta_content_text_annotations_file_path_object_file_path_t *message_delta_content_text_annotations_file_path_object_file_path_create(
     char *file_id
     ) {
-    return message_delta_content_text_annotations_file_path_object_file_path_create_internal (
+    message_delta_content_text_annotations_file_path_object_file_path_t *result = message_delta_content_text_annotations_file_path_object_file_path_create_internal (
         file_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_delta_content_text_annotations_file_path_object_file_path_free(message_delta_content_text_annotations_file_path_object_file_path_t *message_delta_content_text_annotations_file_path_object_file_path) {
@@ -64,6 +67,8 @@ message_delta_content_text_annotations_file_path_object_file_path_t *message_del
 
     message_delta_content_text_annotations_file_path_object_file_path_t *message_delta_content_text_annotations_file_path_object_file_path_local_var = NULL;
 
+    char *file_id_local_str = NULL;
+
     // message_delta_content_text_annotations_file_path_object_file_path->file_id
     cJSON *file_id = cJSON_GetObjectItemCaseSensitive(message_delta_content_text_annotations_file_path_object_file_pathJSON, "file_id");
     if (cJSON_IsNull(file_id)) {
@@ -77,12 +82,22 @@ message_delta_content_text_annotations_file_path_object_file_path_t *message_del
     }
 
 
+    if (file_id && !cJSON_IsNull(file_id)) file_id_local_str = strdup(file_id->valuestring);
+
     message_delta_content_text_annotations_file_path_object_file_path_local_var = message_delta_content_text_annotations_file_path_object_file_path_create_internal (
-        file_id && !cJSON_IsNull(file_id) ? strdup(file_id->valuestring) : NULL
+        file_id_local_str
         );
+
+    if (!message_delta_content_text_annotations_file_path_object_file_path_local_var) {
+        goto end;
+    }
 
     return message_delta_content_text_annotations_file_path_object_file_path_local_var;
 end:
+    if (file_id_local_str) {
+        free(file_id_local_str);
+        file_id_local_str = NULL;
+    }
     return NULL;
 
 }

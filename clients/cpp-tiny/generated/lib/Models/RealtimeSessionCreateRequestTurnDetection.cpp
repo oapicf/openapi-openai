@@ -148,7 +148,7 @@ RealtimeSessionCreateRequest_turn_detection::getType()
 }
 
 void
-RealtimeSessionCreateRequest_turn_detection::setType(std::string  type)
+RealtimeSessionCreateRequest_turn_detection::setType(std::string type)
 {
 	this->type = type;
 }
@@ -160,7 +160,7 @@ RealtimeSessionCreateRequest_turn_detection::getThreshold()
 }
 
 void
-RealtimeSessionCreateRequest_turn_detection::setThreshold(long  threshold)
+RealtimeSessionCreateRequest_turn_detection::setThreshold(long threshold)
 {
 	this->threshold = threshold;
 }
@@ -172,7 +172,7 @@ RealtimeSessionCreateRequest_turn_detection::getPrefixPaddingMs()
 }
 
 void
-RealtimeSessionCreateRequest_turn_detection::setPrefixPaddingMs(int  prefix_padding_ms)
+RealtimeSessionCreateRequest_turn_detection::setPrefixPaddingMs(int prefix_padding_ms)
 {
 	this->prefix_padding_ms = prefix_padding_ms;
 }
@@ -184,7 +184,7 @@ RealtimeSessionCreateRequest_turn_detection::getSilenceDurationMs()
 }
 
 void
-RealtimeSessionCreateRequest_turn_detection::setSilenceDurationMs(int  silence_duration_ms)
+RealtimeSessionCreateRequest_turn_detection::setSilenceDurationMs(int silence_duration_ms)
 {
 	this->silence_duration_ms = silence_duration_ms;
 }
@@ -196,7 +196,7 @@ RealtimeSessionCreateRequest_turn_detection::isCreateResponse()
 }
 
 void
-RealtimeSessionCreateRequest_turn_detection::setCreateResponse(bool  create_response)
+RealtimeSessionCreateRequest_turn_detection::setCreateResponse(bool create_response)
 {
 	this->create_response = create_response;
 }

@@ -1,4 +1,4 @@
-# # ChatCompletionRequestAssistantMessageAudio
+# ChatCompletionRequestAssistantMessageAudio
 
 ## Properties
 

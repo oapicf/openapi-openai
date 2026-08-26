@@ -131,8 +131,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AutoChunkingStrategyRequestParam" />
     /// </summary>
-    public class AutoChunkingStrategyRequestParamJsonConverter : JsonConverter<AutoChunkingStrategyRequestParam>
+    public partial class AutoChunkingStrategyRequestParamJsonConverter : JsonConverter<AutoChunkingStrategyRequestParam>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AutoChunkingStrategyRequestParamJsonConverter" /> class.
+        /// </summary>
+        public AutoChunkingStrategyRequestParamJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AutoChunkingStrategyRequestParam" />
         /// </summary>

@@ -25,7 +25,7 @@ message AuditLogActor {
     TYPE_API_KEY = 1;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   AuditLogActorSession session = 374375065;
 

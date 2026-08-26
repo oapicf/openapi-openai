@@ -33,13 +33,13 @@ class OAIRealtimeServerEventError_error;
 class OAIRealtimeServerEventError : public OAIObject {
 public:
     OAIRealtimeServerEventError();
-    OAIRealtimeServerEventError(QString json);
+    OAIRealtimeServerEventError(const QString &json);
     ~OAIRealtimeServerEventError() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getEventId() const;
     void setEventId(const QString &event_id);

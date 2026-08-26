@@ -26,6 +26,8 @@ CreateVectorStoreFileRequest::CreateVectorStoreFileRequest()
     
 }
 
+CreateVectorStoreFileRequest::~CreateVectorStoreFileRequest() = default;
+
 void CreateVectorStoreFileRequest::validate() const
 {
     std::stringstream msg;

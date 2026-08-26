@@ -87,15 +87,17 @@ class _$MessageDeltaContentTextObjectTextSerializer implements PrimitiveSerializ
         case r'value':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.value = valueDes;
           break;
         case r'annotations':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(MessageDeltaContentTextObjectTextAnnotationsInner)]),
-          ) as BuiltList<MessageDeltaContentTextObjectTextAnnotationsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(MessageDeltaContentTextObjectTextAnnotationsInner)]),
+          ) as BuiltList<MessageDeltaContentTextObjectTextAnnotationsInner>?;
+          if (valueDes == null) continue;
           result.annotations.replace(valueDes);
           break;
         default:

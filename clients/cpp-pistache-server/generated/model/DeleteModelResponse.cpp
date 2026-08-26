@@ -27,6 +27,8 @@ DeleteModelResponse::DeleteModelResponse()
     
 }
 
+DeleteModelResponse::~DeleteModelResponse() = default;
+
 void DeleteModelResponse::validate() const
 {
     std::stringstream msg;

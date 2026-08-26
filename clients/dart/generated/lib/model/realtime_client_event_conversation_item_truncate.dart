@@ -86,10 +86,14 @@ class RealtimeClientEventConversationItemTruncate {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeClientEventConversationItemTruncate[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeClientEventConversationItemTruncate[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "RealtimeClientEventConversationItemTruncate[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeClientEventConversationItemTruncate[type]" has a null value in JSON.');
+        assert(json.containsKey(r'item_id'), 'Required key "RealtimeClientEventConversationItemTruncate[item_id]" is missing from JSON.');
+        assert(json[r'item_id'] != null, 'Required key "RealtimeClientEventConversationItemTruncate[item_id]" has a null value in JSON.');
+        assert(json.containsKey(r'content_index'), 'Required key "RealtimeClientEventConversationItemTruncate[content_index]" is missing from JSON.');
+        assert(json[r'content_index'] != null, 'Required key "RealtimeClientEventConversationItemTruncate[content_index]" has a null value in JSON.');
+        assert(json.containsKey(r'audio_end_ms'), 'Required key "RealtimeClientEventConversationItemTruncate[audio_end_ms]" is missing from JSON.');
+        assert(json[r'audio_end_ms'] != null, 'Required key "RealtimeClientEventConversationItemTruncate[audio_end_ms]" has a null value in JSON.');
         return true;
       }());
 
@@ -154,27 +158,28 @@ class RealtimeClientEventConversationItemTruncate {
 }
 
 /// The event type, must be `conversation.item.truncate`.
-class RealtimeClientEventConversationItemTruncateTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeClientEventConversationItemTruncateTypeEnum._(this.value);
+enum RealtimeClientEventConversationItemTruncateTypeEnum {
+  conversationPeriodItemPeriodTruncate._(r'conversation.item.truncate'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeClientEventConversationItemTruncateTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const conversationPeriodItemPeriodTruncate = RealtimeClientEventConversationItemTruncateTypeEnum._(r'conversation.item.truncate');
-
-  /// List of all possible values in this [enum][RealtimeClientEventConversationItemTruncateTypeEnum].
-  static const values = <RealtimeClientEventConversationItemTruncateTypeEnum>[
-    conversationPeriodItemPeriodTruncate,
-  ];
-
+  /// Returns the instance of [RealtimeClientEventConversationItemTruncateTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeClientEventConversationItemTruncateTypeEnum? fromJson(dynamic value) => RealtimeClientEventConversationItemTruncateTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeClientEventConversationItemTruncateTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeClientEventConversationItemTruncateTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeClientEventConversationItemTruncateTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -196,9 +201,10 @@ class RealtimeClientEventConversationItemTruncateTypeEnumTypeTransformer {
 
   const RealtimeClientEventConversationItemTruncateTypeEnumTypeTransformer._();
 
-  String encode(RealtimeClientEventConversationItemTruncateTypeEnum data) => data.value;
+  String encode(RealtimeClientEventConversationItemTruncateTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeClientEventConversationItemTruncateTypeEnum.
+  /// Returns the instance of [RealtimeClientEventConversationItemTruncateTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -207,6 +213,9 @@ class RealtimeClientEventConversationItemTruncateTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeClientEventConversationItemTruncateTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeClientEventConversationItemTruncateTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'conversation.item.truncate': return RealtimeClientEventConversationItemTruncateTypeEnum.conversationPeriodItemPeriodTruncate;
@@ -219,7 +228,7 @@ class RealtimeClientEventConversationItemTruncateTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeClientEventConversationItemTruncateTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeClientEventConversationItemTruncateTypeEnumTypeTransformer? _instance;
 }
 

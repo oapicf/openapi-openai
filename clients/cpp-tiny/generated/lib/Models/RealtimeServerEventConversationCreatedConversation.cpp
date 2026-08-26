@@ -85,7 +85,7 @@ RealtimeServerEventConversationCreated_conversation::getId()
 }
 
 void
-RealtimeServerEventConversationCreated_conversation::setId(std::string  id)
+RealtimeServerEventConversationCreated_conversation::setId(std::string id)
 {
 	this->id = id;
 }
@@ -97,7 +97,7 @@ RealtimeServerEventConversationCreated_conversation::getObject()
 }
 
 void
-RealtimeServerEventConversationCreated_conversation::setObject(std::string  object)
+RealtimeServerEventConversationCreated_conversation::setObject(std::string object)
 {
 	this->object = object;
 }

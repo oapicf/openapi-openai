@@ -29,7 +29,7 @@ message CreateEmbeddingRequest {
     ENCODING_FORMAT_BASE64 = 1;
   }
 
-  Encoding_format encoding_format = 97891429;
+  string encoding_format = 97891429;
 
   // The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
   int32 dimensions = 414334925;

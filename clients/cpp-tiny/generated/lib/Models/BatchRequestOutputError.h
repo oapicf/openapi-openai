@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set A machine-readable error code.
 	 */
-	void setCode(std::string  code);
+	void setCode(std::string code);
 	/*! \brief Get A human-readable error message.
 	 */
 	std::string getMessage();
 
 	/*! \brief Set A human-readable error message.
 	 */
-	void setMessage(std::string  message);
+	void setMessage(std::string message);
 
 
     private:

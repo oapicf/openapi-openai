@@ -265,7 +265,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets ChunkingStrategy
         /// </summary>
         [JsonPropertyName("chunking_strategy")]
-        public VectorStoreFileObjectChunkingStrategy? ChunkingStrategy { get { return this.ChunkingStrategyOption; } set { this.ChunkingStrategyOption = new(value); } }
+        public VectorStoreFileObjectChunkingStrategy? ChunkingStrategy { get { return this.ChunkingStrategyOption.Value; } set { this.ChunkingStrategyOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -301,8 +301,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="VectorStoreFileObject" />
     /// </summary>
-    public class VectorStoreFileObjectJsonConverter : JsonConverter<VectorStoreFileObject>
+    public partial class VectorStoreFileObjectJsonConverter : JsonConverter<VectorStoreFileObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VectorStoreFileObjectJsonConverter" /> class.
+        /// </summary>
+        public VectorStoreFileObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="VectorStoreFileObject" />
         /// </summary>

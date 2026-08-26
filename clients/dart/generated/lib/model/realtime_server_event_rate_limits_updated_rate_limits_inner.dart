@@ -103,10 +103,6 @@ class RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventRateLimitsUpdatedRateLimitsInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventRateLimitsUpdatedRateLimitsInner[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
@@ -166,29 +162,29 @@ class RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
 }
 
 /// The name of the rate limit (`requests`, `tokens`). 
-class RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum._(this.value);
+enum RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum {
+  requests._(r'requests'),
+  tokens._(r'tokens'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const requests = RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum._(r'requests');
-  static const tokens = RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum._(r'tokens');
-
-  /// List of all possible values in this [enum][RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum].
-  static const values = <RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum>[
-    requests,
-    tokens,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum? fromJson(dynamic value) => RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -210,9 +206,10 @@ class RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnumTypeTransformer
 
   const RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum data) => data.value;
+  String encode(RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum.
+  /// Returns the instance of [RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -221,6 +218,9 @@ class RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnumTypeTransformer
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'requests': return RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum.requests;
@@ -234,7 +234,7 @@ class RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnumTypeTransformer
     return null;
   }
 
-  /// Singleton [RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnumTypeTransformer? _instance;
 }
 

@@ -11,15 +11,18 @@ static create_chat_completion_request_stop_t *create_chat_completion_request_sto
     if (!create_chat_completion_request_stop_local_var) {
         return NULL;
     }
-
+    memset(create_chat_completion_request_stop_local_var, 0, sizeof(create_chat_completion_request_stop_t));
     create_chat_completion_request_stop_local_var->_library_owned = 1;
     return create_chat_completion_request_stop_local_var;
 }
 
 __attribute__((deprecated)) create_chat_completion_request_stop_t *create_chat_completion_request_stop_create(
     ) {
-    return create_chat_completion_request_stop_create_internal (
+    create_chat_completion_request_stop_t *result = create_chat_completion_request_stop_create_internal (
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_chat_completion_request_stop_free(create_chat_completion_request_stop_t *create_chat_completion_request_stop) {
@@ -49,8 +52,13 @@ create_chat_completion_request_stop_t *create_chat_completion_request_stop_parse
     create_chat_completion_request_stop_t *create_chat_completion_request_stop_local_var = NULL;
 
 
+
     create_chat_completion_request_stop_local_var = create_chat_completion_request_stop_create_internal (
         );
+
+    if (!create_chat_completion_request_stop_local_var) {
+        goto end;
+    }
 
     return create_chat_completion_request_stop_local_var;
 end:

@@ -28,82 +28,80 @@ import org.openapitools.server.infrastructure.ApiPrincipal
 import org.openapitools.server.models.UsageResponse
 
 fun Route.UsageApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    get<Paths.usageAudioSpeeches> {
+    get<Paths.usageAudioSpeeches> { usageAudioSpeeches ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "next_page" : "next_page",
+              "object" : "page",
               "data" : [ {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               }, {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               } ],
               "has_more" : true,
-              "object" : "page"
+              "next_page" : "next_page"
             }"""
             
             when (exampleContentType) {
@@ -114,81 +112,80 @@ fun Route.UsageApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.usageAudioTranscriptions> {
+    get<Paths.usageAudioTranscriptions> { usageAudioTranscriptions ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "next_page" : "next_page",
+              "object" : "page",
               "data" : [ {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               }, {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               } ],
               "has_more" : true,
-              "object" : "page"
+              "next_page" : "next_page"
             }"""
             
             when (exampleContentType) {
@@ -199,81 +196,80 @@ fun Route.UsageApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.usageCodeInterpreterSessions> {
+    get<Paths.usageCodeInterpreterSessions> { usageCodeInterpreterSessions ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "next_page" : "next_page",
+              "object" : "page",
               "data" : [ {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               }, {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               } ],
               "has_more" : true,
-              "object" : "page"
+              "next_page" : "next_page"
             }"""
             
             when (exampleContentType) {
@@ -284,81 +280,80 @@ fun Route.UsageApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.usageCompletions> {
+    get<Paths.usageCompletions> { usageCompletions ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "next_page" : "next_page",
+              "object" : "page",
               "data" : [ {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               }, {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               } ],
               "has_more" : true,
-              "object" : "page"
+              "next_page" : "next_page"
             }"""
             
             when (exampleContentType) {
@@ -369,81 +364,80 @@ fun Route.UsageApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.usageCosts> {
+    get<Paths.usageCosts> { usageCosts ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "next_page" : "next_page",
+              "object" : "page",
               "data" : [ {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               }, {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               } ],
               "has_more" : true,
-              "object" : "page"
+              "next_page" : "next_page"
             }"""
             
             when (exampleContentType) {
@@ -454,81 +448,80 @@ fun Route.UsageApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.usageEmbeddings> {
+    get<Paths.usageEmbeddings> { usageEmbeddings ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "next_page" : "next_page",
+              "object" : "page",
               "data" : [ {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               }, {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               } ],
               "has_more" : true,
-              "object" : "page"
+              "next_page" : "next_page"
             }"""
             
             when (exampleContentType) {
@@ -539,81 +532,80 @@ fun Route.UsageApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.usageImages> {
+    get<Paths.usageImages> { usageImages ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "next_page" : "next_page",
+              "object" : "page",
               "data" : [ {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               }, {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               } ],
               "has_more" : true,
-              "object" : "page"
+              "next_page" : "next_page"
             }"""
             
             when (exampleContentType) {
@@ -624,81 +616,80 @@ fun Route.UsageApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.usageModerations> {
+    get<Paths.usageModerations> { usageModerations ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "next_page" : "next_page",
+              "object" : "page",
               "data" : [ {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               }, {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               } ],
               "has_more" : true,
-              "object" : "page"
+              "next_page" : "next_page"
             }"""
             
             when (exampleContentType) {
@@ -709,81 +700,80 @@ fun Route.UsageApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.usageVectorStores> {
+    get<Paths.usageVectorStores> { usageVectorStores ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "next_page" : "next_page",
+              "object" : "page",
               "data" : [ {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               }, {
-                "result" : [ {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                }, {
-                  "num_model_requests" : 9,
-                  "project_id" : "project_id",
-                  "user_id" : "user_id",
-                  "output_audio_tokens" : 7,
-                  "batch" : true,
-                  "output_tokens" : 5,
-                  "model" : "model",
-                  "input_cached_tokens" : 5,
-                  "input_audio_tokens" : 2,
-                  "input_tokens" : 1,
-                  "api_key_id" : "api_key_id",
-                  "object" : "organization.usage.completions.result"
-                } ],
+                "object" : "bucket",
                 "start_time" : 0,
                 "end_time" : 6,
-                "object" : "bucket"
+                "result" : [ {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                }, {
+                  "object" : "organization.usage.completions.result",
+                  "input_tokens" : 1,
+                  "input_cached_tokens" : 5,
+                  "output_tokens" : 5,
+                  "input_audio_tokens" : 2,
+                  "output_audio_tokens" : 7,
+                  "num_model_requests" : 9,
+                  "project_id" : "project_id",
+                  "user_id" : "user_id",
+                  "api_key_id" : "api_key_id",
+                  "model" : "model",
+                  "batch" : true
+                } ]
               } ],
               "has_more" : true,
-              "object" : "page"
+              "next_page" : "next_page"
             }"""
             
             when (exampleContentType) {
@@ -794,5 +784,4 @@ fun Route.UsageApi() {
         
     }
     }
-
 }

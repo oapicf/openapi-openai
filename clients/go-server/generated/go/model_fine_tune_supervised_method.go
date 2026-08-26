@@ -20,7 +20,8 @@ type FineTuneSupervisedMethod struct {
 	Hyperparameters FineTuneSupervisedMethodHyperparameters `json:"hyperparameters,omitempty"`
 }
 
-// AssertFineTuneSupervisedMethodRequired checks if the required fields are not zero-ed
+// AssertFineTuneSupervisedMethodRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertFineTuneSupervisedMethodRequired(obj FineTuneSupervisedMethod) error {
 	if err := AssertFineTuneSupervisedMethodHyperparametersRequired(obj.Hyperparameters); err != nil {
 		return err

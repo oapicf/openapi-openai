@@ -127,7 +127,7 @@ RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error::getType(
 }
 
 void
-RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error::setType(std::string  type)
+RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error::setType(std::string type)
 {
 	this->type = type;
 }
@@ -139,7 +139,7 @@ RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error::getCode(
 }
 
 void
-RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error::setCode(std::string  code)
+RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error::setCode(std::string code)
 {
 	this->code = code;
 }
@@ -151,7 +151,7 @@ RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error::getMessa
 }
 
 void
-RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error::setMessage(std::string  message)
+RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error::setMessage(std::string message)
 {
 	this->message = message;
 }
@@ -163,7 +163,7 @@ RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error::getParam
 }
 
 void
-RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error::setParam(std::string  param)
+RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error::setParam(std::string param)
 {
 	this->param = param;
 }

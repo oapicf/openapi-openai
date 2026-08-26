@@ -24,7 +24,8 @@ type RealtimeResponseUsageOutputTokenDetails struct {
 	AudioTokens int32 `json:"audio_tokens,omitempty"`
 }
 
-// AssertRealtimeResponseUsageOutputTokenDetailsRequired checks if the required fields are not zero-ed
+// AssertRealtimeResponseUsageOutputTokenDetailsRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeResponseUsageOutputTokenDetailsRequired(obj RealtimeResponseUsageOutputTokenDetails) error {
 	return nil
 }

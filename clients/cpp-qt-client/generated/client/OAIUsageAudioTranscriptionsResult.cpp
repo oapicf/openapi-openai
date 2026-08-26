@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIUsageAudioTranscriptionsResult::OAIUsageAudioTranscriptionsResult(QString json) {
+OAIUsageAudioTranscriptionsResult::OAIUsageAudioTranscriptionsResult(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -56,7 +56,7 @@ void OAIUsageAudioTranscriptionsResult::initializeModel() {
     m_model_isValid = false;
 }
 
-void OAIUsageAudioTranscriptionsResult::fromJson(QString jsonString) {
+void OAIUsageAudioTranscriptionsResult::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

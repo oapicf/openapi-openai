@@ -31,7 +31,7 @@ class  RealtimeSession_model
 {
 public:
     RealtimeSession_model();
-    virtual ~RealtimeSession_model() = default;
+    virtual ~RealtimeSession_model();
 
 
     /// <summary>

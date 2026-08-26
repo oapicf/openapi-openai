@@ -1,4 +1,4 @@
-# # RealtimeClientEventResponseCreate
+# RealtimeClientEventResponseCreate
 
 ## Properties
 

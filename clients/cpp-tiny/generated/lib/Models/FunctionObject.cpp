@@ -119,7 +119,7 @@ FunctionObject::getDescription()
 }
 
 void
-FunctionObject::setDescription(std::string  description)
+FunctionObject::setDescription(std::string description)
 {
 	this->description = description;
 }
@@ -131,19 +131,19 @@ FunctionObject::getName()
 }
 
 void
-FunctionObject::setName(std::string  name)
+FunctionObject::setName(std::string name)
 {
 	this->name = name;
 }
 
-Map<string, string>
+std::map<std::string, AnyType>
 FunctionObject::getParameters()
 {
 	return parameters;
 }
 
 void
-FunctionObject::setParameters(Map <string, string> parameters)
+FunctionObject::setParameters(std::map<std::string, AnyType> parameters)
 {
 	this->parameters = parameters;
 }
@@ -155,7 +155,7 @@ FunctionObject::isStrict()
 }
 
 void
-FunctionObject::setStrict(bool  strict)
+FunctionObject::setStrict(bool strict)
 {
 	this->strict = strict;
 }

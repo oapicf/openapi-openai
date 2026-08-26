@@ -1,7 +1,10 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.AssistantObjectToolsInner
 import org.openapitools.model.AssistantsApiResponseFormatOption
 import org.openapitools.model.ModifyAssistantRequestToolResources
@@ -18,7 +21,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param model 
+ * @param model ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
  * @param name The name of the assistant. The maximum length is 256 characters. 
  * @param description The description of the assistant. The maximum length is 512 characters. 
  * @param instructions The system instructions that the assistant uses. The maximum length is 256,000 characters. 
@@ -31,46 +34,62 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ModifyAssistantRequest(
 
-    @Schema(example = "null", description = "")
+    @Schema(description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("model")
     @get:JsonProperty("model") val model: kotlin.String? = null,
 
     @get:Size(max=256)
-    @Schema(example = "null", description = "The name of the assistant. The maximum length is 256 characters. ")
+    @Schema(description = "The name of the assistant. The maximum length is 256 characters. ")
+    @param:JsonProperty("name")
     @get:JsonProperty("name") val name: kotlin.String? = null,
 
     @get:Size(max=512)
-    @Schema(example = "null", description = "The description of the assistant. The maximum length is 512 characters. ")
+    @Schema(description = "The description of the assistant. The maximum length is 512 characters. ")
+    @param:JsonProperty("description")
     @get:JsonProperty("description") val description: kotlin.String? = null,
 
     @get:Size(max=256000)
-    @Schema(example = "null", description = "The system instructions that the assistant uses. The maximum length is 256,000 characters. ")
+    @Schema(description = "The system instructions that the assistant uses. The maximum length is 256,000 characters. ")
+    @param:JsonProperty("instructions")
     @get:JsonProperty("instructions") val instructions: kotlin.String? = null,
 
     @field:Valid
     @get:Size(max=128)
-    @Schema(example = "null", description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
+    @Schema(description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("tools")
     @get:JsonProperty("tools") val tools: kotlin.collections.List<AssistantObjectToolsInner>? = arrayListOf(),
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @param:JsonProperty("tool_resources")
     @get:JsonProperty("tool_resources") val toolResources: ModifyAssistantRequestToolResources? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
+    @Schema(description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
+    @param:JsonProperty("metadata")
     @get:JsonProperty("metadata") val metadata: kotlin.Any? = null,
 
     @get:DecimalMin(value="0")
     @get:DecimalMax(value="2")
     @Schema(example = "1", description = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. ")
+    @param:JsonProperty("temperature")
     @get:JsonProperty("temperature") val temperature: java.math.BigDecimal? = java.math.BigDecimal("1"),
 
     @get:DecimalMin(value="0")
     @get:DecimalMax(value="1")
     @Schema(example = "1", description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ")
+    @param:JsonProperty("top_p")
     @get:JsonProperty("top_p") val topP: java.math.BigDecimal? = java.math.BigDecimal("1"),
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("response_format")
     @get:JsonProperty("response_format") val responseFormat: AssistantsApiResponseFormatOption? = null
 ) {
 

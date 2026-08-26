@@ -33,7 +33,7 @@ class  ResponseFormatJsonSchema
 {
 public:
     ResponseFormatJsonSchema();
-    virtual ~ResponseFormatJsonSchema() = default;
+    virtual ~ResponseFormatJsonSchema();
 
 
     /// <summary>

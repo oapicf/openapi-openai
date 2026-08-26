@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // RunObjectRequiredAction - Details on the action required to continue the run. Will be `null` if no action is required.
@@ -22,11 +27,71 @@ type RunObjectRequiredAction struct {
 
 	SubmitToolOutputs RunObjectRequiredActionSubmitToolOutputs `json:"submit_tool_outputs"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into RunObjectRequiredAction
+func (o *RunObjectRequiredAction) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"type",
+		"submit_tool_outputs",
+	}
 
-// AssertRunObjectRequiredActionRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"type": false,
+		"submit_tool_outputs": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"type": {},
+		"submit_tool_outputs": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RunObjectRequiredAction
+
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["submit_tool_outputs"]; exists {
+		if err = json.Unmarshal(value, &decoded.SubmitToolOutputs); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRunObjectRequiredActionRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRunObjectRequiredActionRequired(obj RunObjectRequiredAction) error {
 	elements := map[string]interface{}{
-		"type": obj.Type,
 		"submit_tool_outputs": obj.SubmitToolOutputs,
 	}
 	for name, el := range elements {

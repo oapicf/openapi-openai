@@ -273,7 +273,7 @@ ModifyAssistantRequest::getModel()
 }
 
 void
-ModifyAssistantRequest::setModel(std::string  model)
+ModifyAssistantRequest::setModel(std::string model)
 {
 	this->model = model;
 }
@@ -285,7 +285,7 @@ ModifyAssistantRequest::getName()
 }
 
 void
-ModifyAssistantRequest::setName(std::string  name)
+ModifyAssistantRequest::setName(std::string name)
 {
 	this->name = name;
 }
@@ -297,7 +297,7 @@ ModifyAssistantRequest::getDescription()
 }
 
 void
-ModifyAssistantRequest::setDescription(std::string  description)
+ModifyAssistantRequest::setDescription(std::string description)
 {
 	this->description = description;
 }
@@ -309,7 +309,7 @@ ModifyAssistantRequest::getInstructions()
 }
 
 void
-ModifyAssistantRequest::setInstructions(std::string  instructions)
+ModifyAssistantRequest::setInstructions(std::string instructions)
 {
 	this->instructions = instructions;
 }
@@ -321,7 +321,7 @@ ModifyAssistantRequest::getTools()
 }
 
 void
-ModifyAssistantRequest::setTools(std::list <AssistantObject_tools_inner> tools)
+ModifyAssistantRequest::setTools(std::list<AssistantObject_tools_inner> tools)
 {
 	this->tools = tools;
 }
@@ -333,7 +333,7 @@ ModifyAssistantRequest::getToolResources()
 }
 
 void
-ModifyAssistantRequest::setToolResources(ModifyAssistantRequest_tool_resources  tool_resources)
+ModifyAssistantRequest::setToolResources(ModifyAssistantRequest_tool_resources tool_resources)
 {
 	this->tool_resources = tool_resources;
 }
@@ -345,7 +345,7 @@ ModifyAssistantRequest::getMetadata()
 }
 
 void
-ModifyAssistantRequest::setMetadata(Object  metadata)
+ModifyAssistantRequest::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }
@@ -357,7 +357,7 @@ ModifyAssistantRequest::getTemperature()
 }
 
 void
-ModifyAssistantRequest::setTemperature(long  temperature)
+ModifyAssistantRequest::setTemperature(long temperature)
 {
 	this->temperature = temperature;
 }
@@ -369,7 +369,7 @@ ModifyAssistantRequest::getTopP()
 }
 
 void
-ModifyAssistantRequest::setTopP(long  top_p)
+ModifyAssistantRequest::setTopP(long top_p)
 {
 	this->top_p = top_p;
 }
@@ -381,7 +381,7 @@ ModifyAssistantRequest::getResponseFormat()
 }
 
 void
-ModifyAssistantRequest::setResponseFormat(AssistantsApiResponseFormatOption  response_format)
+ModifyAssistantRequest::setResponseFormat(AssistantsApiResponseFormatOption response_format)
 {
 	this->response_format = response_format;
 }

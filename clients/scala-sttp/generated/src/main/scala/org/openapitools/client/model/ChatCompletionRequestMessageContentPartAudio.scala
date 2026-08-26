@@ -20,7 +20,7 @@ case class ChatCompletionRequestMessageContentPartAudio(
   /* The type of the content part. Always `input_audio`. */
   `type`: ChatCompletionRequestMessageContentPartAudioEnums.`Type`,
   inputAudio: ChatCompletionRequestMessageContentPartAudioInputAudio
-)
+) extends ChatCompletionRequestUserMessageContentPart
 
 object ChatCompletionRequestMessageContentPartAudioEnums {
 

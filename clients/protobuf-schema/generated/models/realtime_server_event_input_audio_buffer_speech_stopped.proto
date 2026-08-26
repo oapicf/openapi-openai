@@ -25,7 +25,7 @@ message RealtimeServerEventInputAudioBufferSpeechStopped {
     TYPE_INPUT_AUDIO_BUFFER_SPEECH_STOPPED = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // Milliseconds since the session started when speech stopped. This will  correspond to the end of audio sent to the model, and thus includes the  `min_silence_duration_ms` configured in the Session. 
   int32 audio_end_ms = 230687728;

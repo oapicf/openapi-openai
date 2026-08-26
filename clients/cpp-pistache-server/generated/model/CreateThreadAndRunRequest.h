@@ -41,7 +41,7 @@ class  CreateThreadAndRunRequest
 {
 public:
     CreateThreadAndRunRequest();
-    virtual ~CreateThreadAndRunRequest() = default;
+    virtual ~CreateThreadAndRunRequest();
 
 
     /// <summary>

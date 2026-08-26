@@ -86,7 +86,7 @@ MessageStreamEvent_oneOf::getEvent()
 }
 
 void
-MessageStreamEvent_oneOf::setEvent(std::string  event)
+MessageStreamEvent_oneOf::setEvent(std::string event)
 {
 	this->event = event;
 }
@@ -98,7 +98,7 @@ MessageStreamEvent_oneOf::getData()
 }
 
 void
-MessageStreamEvent_oneOf::setData(MessageObject  data)
+MessageStreamEvent_oneOf::setData(MessageObject data)
 {
 	this->data = data;
 }

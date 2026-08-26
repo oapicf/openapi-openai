@@ -49,7 +49,7 @@ export interface RealtimeResponse {
     id?: string;
     /**
      * The object type, must be `realtime.response`.
-     * @type {string}
+     * @type {RealtimeResponseObjectEnum}
      * @memberof RealtimeResponse
      */
     object?: RealtimeResponseObjectEnum;
@@ -57,7 +57,7 @@ export interface RealtimeResponse {
      * The final status of the response (`completed`, `cancelled`, `failed`, or 
      * `incomplete`).
      * 
-     * @type {string}
+     * @type {RealtimeResponseStatusEnum}
      * @memberof RealtimeResponse
      */
     status?: RealtimeResponseStatusEnum;
@@ -131,7 +131,7 @@ export function RealtimeResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
         'status': json['status'] == null ? undefined : json['status'],
         'statusDetails': json['status_details'] == null ? undefined : RealtimeResponseStatusDetailsFromJSON(json['status_details']),
         'output': json['output'] == null ? undefined : ((json['output'] as Array<any>).map(RealtimeConversationItemFromJSON)),
-        'metadata': json['metadata'] == null ? undefined : json['metadata'],
+        'metadata': json['metadata'] === undefined ? undefined : json['metadata'] === null ? null : json['metadata'],
         'usage': json['usage'] == null ? undefined : RealtimeResponseUsageFromJSON(json['usage']),
     };
 }

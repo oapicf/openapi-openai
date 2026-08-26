@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from openapi_server.models.create_fine_tuning_job_request_integrations_inner_wandb import CreateFineTuningJobRequestIntegrationsInnerWandb
 try:
@@ -33,7 +33,7 @@ class CreateFineTuningJobRequestIntegrationsInner(BaseModel):
     """
     CreateFineTuningJobRequestIntegrationsInner
     """ # noqa: E501
-    type: StrictStr
+    type: StrictStr = Field(description="The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. ")
     wandb: CreateFineTuningJobRequestIntegrationsInnerWandb
     __properties: ClassVar[List[str]] = ["type", "wandb"]
 

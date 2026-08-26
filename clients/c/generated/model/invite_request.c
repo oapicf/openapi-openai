@@ -31,11 +31,11 @@ static invite_request_t *invite_request_create_internal(
     if (!invite_request_local_var) {
         return NULL;
     }
+    memset(invite_request_local_var, 0, sizeof(invite_request_t));
+    invite_request_local_var->_library_owned = 1;
     invite_request_local_var->email = email;
     invite_request_local_var->role = role;
     invite_request_local_var->projects = projects;
-
-    invite_request_local_var->_library_owned = 1;
     return invite_request_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) invite_request_t *invite_request_create(
     openai_api_invite_request_ROLE_e role,
     list_t *projects
     ) {
-    return invite_request_create_internal (
+    invite_request_t *result = invite_request_create_internal (
         email,
         role,
         projects
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void invite_request_free(invite_request_t *invite_request) {
@@ -127,6 +130,8 @@ invite_request_t *invite_request_parseFromJSON(cJSON *invite_requestJSON){
 
     invite_request_t *invite_request_local_var = NULL;
 
+    char *email_local_str = NULL;
+
     // define the local list for invite_request->projects
     list_t *projectsList = NULL;
 
@@ -187,14 +192,24 @@ invite_request_t *invite_request_parseFromJSON(cJSON *invite_requestJSON){
     }
 
 
+    if (email && !cJSON_IsNull(email)) email_local_str = strdup(email->valuestring);
+
     invite_request_local_var = invite_request_create_internal (
-        strdup(email->valuestring),
+        email_local_str,
         roleVariable,
         projects ? projectsList : NULL
         );
 
+    if (!invite_request_local_var) {
+        goto end;
+    }
+
     return invite_request_local_var;
 end:
+    if (email_local_str) {
+        free(email_local_str);
+        email_local_str = NULL;
+    }
     if (projectsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, projectsList) {

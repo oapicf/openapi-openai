@@ -12,18 +12,21 @@ static create_chat_completion_request_function_call_t *create_chat_completion_re
     if (!create_chat_completion_request_function_call_local_var) {
         return NULL;
     }
-    create_chat_completion_request_function_call_local_var->name = name;
-
+    memset(create_chat_completion_request_function_call_local_var, 0, sizeof(create_chat_completion_request_function_call_t));
     create_chat_completion_request_function_call_local_var->_library_owned = 1;
+    create_chat_completion_request_function_call_local_var->name = name;
     return create_chat_completion_request_function_call_local_var;
 }
 
 __attribute__((deprecated)) create_chat_completion_request_function_call_t *create_chat_completion_request_function_call_create(
     char *name
     ) {
-    return create_chat_completion_request_function_call_create_internal (
+    create_chat_completion_request_function_call_t *result = create_chat_completion_request_function_call_create_internal (
         name
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_chat_completion_request_function_call_free(create_chat_completion_request_function_call_t *create_chat_completion_request_function_call) {
@@ -65,6 +68,8 @@ create_chat_completion_request_function_call_t *create_chat_completion_request_f
 
     create_chat_completion_request_function_call_t *create_chat_completion_request_function_call_local_var = NULL;
 
+    char *name_local_str = NULL;
+
     // create_chat_completion_request_function_call->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(create_chat_completion_request_function_callJSON, "name");
     if (cJSON_IsNull(name)) {
@@ -81,12 +86,22 @@ create_chat_completion_request_function_call_t *create_chat_completion_request_f
     }
 
 
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     create_chat_completion_request_function_call_local_var = create_chat_completion_request_function_call_create_internal (
-        strdup(name->valuestring)
+        name_local_str
         );
+
+    if (!create_chat_completion_request_function_call_local_var) {
+        goto end;
+    }
 
     return create_chat_completion_request_function_call_local_var;
 end:
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
     return NULL;
 
 }

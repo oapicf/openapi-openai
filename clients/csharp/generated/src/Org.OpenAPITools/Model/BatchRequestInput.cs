@@ -113,7 +113,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The HTTP method to be used for the request. Currently only &#x60;POST&#x60; is supported.</value>
         [JsonPropertyName("method")]
-        public MethodEnum? Method { get { return this.MethodOption; } set { this.MethodOption = new(value); } }
+        public MethodEnum? Method { get { return this.MethodOption.Value; } set { this.MethodOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CustomId
@@ -127,7 +127,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A developer-provided per-request id that will be used to match outputs to inputs. Must be unique for each request in a batch.</value>
         [JsonPropertyName("custom_id")]
-        public string? CustomId { get { return this.CustomIdOption; } set { this.CustomIdOption = new(value); } }
+        public string? CustomId { get { return this.CustomIdOption.Value; } set { this.CustomIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Url
@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The OpenAI API relative URL to be used for the request. Currently &#x60;/v1/chat/completions&#x60;, &#x60;/v1/embeddings&#x60;, and &#x60;/v1/completions&#x60; are supported.</value>
         [JsonPropertyName("url")]
-        public string? Url { get { return this.UrlOption; } set { this.UrlOption = new(value); } }
+        public string? Url { get { return this.UrlOption.Value; } set { this.UrlOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -172,8 +172,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="BatchRequestInput" />
     /// </summary>
-    public class BatchRequestInputJsonConverter : JsonConverter<BatchRequestInput>
+    public partial class BatchRequestInputJsonConverter : JsonConverter<BatchRequestInput>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BatchRequestInputJsonConverter" /> class.
+        /// </summary>
+        public BatchRequestInputJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="BatchRequestInput" />
         /// </summary>

@@ -65,7 +65,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The optional md5 checksum for the file contents to verify if the bytes uploaded matches what you expect. </value>
         [JsonPropertyName("md5")]
-        public string? Md5 { get { return this.Md5Option; } set { this.Md5Option = new(value); } }
+        public string? Md5 { get { return this.Md5Option.Value; } set { this.Md5Option = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -95,8 +95,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CompleteUploadRequest" />
     /// </summary>
-    public class CompleteUploadRequestJsonConverter : JsonConverter<CompleteUploadRequest>
+    public partial class CompleteUploadRequestJsonConverter : JsonConverter<CompleteUploadRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CompleteUploadRequestJsonConverter" /> class.
+        /// </summary>
+        public CompleteUploadRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CompleteUploadRequest" />
         /// </summary>

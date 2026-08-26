@@ -1,4 +1,4 @@
-# # CreateTranslation200Response
+# CreateTranslation200Response
 
 ## Properties
 

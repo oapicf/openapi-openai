@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIAdminApiKey_owner : public OAIObject {
 public:
     OAIAdminApiKey_owner();
-    OAIAdminApiKey_owner(QString json);
+    OAIAdminApiKey_owner(const QString &json);
     ~OAIAdminApiKey_owner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

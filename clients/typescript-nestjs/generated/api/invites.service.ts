@@ -88,7 +88,7 @@ export class InvitesService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.delete<InviteDeleteResponse>(`${this.basePath}/organization/invites/${encodeURIComponent(String(invite_id))}`,
+                return this.httpClient.delete<InviteDeleteResponse>(`${this.basePath}/organization/invites/${encodeURIComponent(String(inviteId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...deleteInviteOpts?.config,
@@ -256,7 +256,7 @@ export class InvitesService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<Invite>(`${this.basePath}/organization/invites/${encodeURIComponent(String(invite_id))}`,
+                return this.httpClient.get<Invite>(`${this.basePath}/organization/invites/${encodeURIComponent(String(inviteId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...retrieveInviteOpts?.config,

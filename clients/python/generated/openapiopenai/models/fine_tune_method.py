@@ -20,16 +20,19 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from openapiopenai.models.fine_tune_dpo_method import FineTuneDPOMethod
+from openapiopenai.models.fine_tune_supervised_method import FineTuneSupervisedMethod
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class FineTuneMethod(BaseModel):
     """
     The method used for fine-tuning.
     """ # noqa: E501
     type: Optional[StrictStr] = Field(default=None, description="The type of method. Is either `supervised` or `dpo`.")
-    supervised: Optional[Dict[str, Any]] = None
-    dpo: Optional[Dict[str, Any]] = None
+    supervised: Optional[FineTuneSupervisedMethod] = None
+    dpo: Optional[FineTuneDPOMethod] = None
     __properties: ClassVar[List[str]] = ["type", "supervised", "dpo"]
 
     @field_validator('type')
@@ -43,7 +46,8 @@ class FineTuneMethod(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -55,8 +59,7 @@ class FineTuneMethod(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

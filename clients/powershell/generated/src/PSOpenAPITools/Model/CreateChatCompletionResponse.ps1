@@ -93,14 +93,14 @@ function Initialize-CreateChatCompletionResponse {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "choices" = ${Choices}
-            "created" = ${Created}
-            "model" = ${Model}
-            "service_tier" = ${ServiceTier}
-            "system_fingerprint" = ${SystemFingerprint}
-            "object" = ${Object}
-            "usage" = ${Usage}
+            'id' = ${Id}
+            'choices' = ${Choices}
+            'created' = ${Created}
+            'model' = ${Model}
+            'service_tier' = ${ServiceTier}
+            'system_fingerprint' = ${SystemFingerprint}
+            'object' = ${Object}
+            'usage' = ${Usage}
         }
 
 
@@ -138,7 +138,7 @@ function ConvertFrom-JsonToCreateChatCompletionResponse {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateChatCompletionResponse
-        $AllProperties = ("id", "choices", "created", "model", "service_tier", "system_fingerprint", "object", "usage")
+        $AllProperties = ('id', 'choices', 'created', 'model', 'service_tier', 'system_fingerprint', 'object', 'usage')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -149,63 +149,63 @@ function ConvertFrom-JsonToCreateChatCompletionResponse {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "choices"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'choices'))) {
             throw "Error! JSON cannot be serialized due to the required property 'choices' missing."
         } else {
-            $Choices = $JsonParameters.PSobject.Properties["choices"].value
+            $Choices = $JsonParameters.PSobject.Properties['choices'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created' missing."
         } else {
-            $Created = $JsonParameters.PSobject.Properties["created"].value
+            $Created = $JsonParameters.PSobject.Properties['created'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) {
             throw "Error! JSON cannot be serialized due to the required property 'model' missing."
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "service_tier"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'service_tier'))) { #optional property not found
             $ServiceTier = $null
         } else {
-            $ServiceTier = $JsonParameters.PSobject.Properties["service_tier"].value
+            $ServiceTier = $JsonParameters.PSobject.Properties['service_tier'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "system_fingerprint"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'system_fingerprint'))) { #optional property not found
             $SystemFingerprint = $null
         } else {
-            $SystemFingerprint = $JsonParameters.PSobject.Properties["system_fingerprint"].value
+            $SystemFingerprint = $JsonParameters.PSobject.Properties['system_fingerprint'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "usage"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'usage'))) { #optional property not found
             $Usage = $null
         } else {
-            $Usage = $JsonParameters.PSobject.Properties["usage"].value
+            $Usage = $JsonParameters.PSobject.Properties['usage'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "choices" = ${Choices}
-            "created" = ${Created}
-            "model" = ${Model}
-            "service_tier" = ${ServiceTier}
-            "system_fingerprint" = ${SystemFingerprint}
-            "object" = ${Object}
-            "usage" = ${Usage}
+            'id' = ${Id}
+            'choices' = ${Choices}
+            'created' = ${Created}
+            'model' = ${Model}
+            'service_tier' = ${ServiceTier}
+            'system_fingerprint' = ${SystemFingerprint}
+            'object' = ${Object}
+            'usage' = ${Usage}
         }
 
         return $PSO

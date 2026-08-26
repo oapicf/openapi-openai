@@ -34,7 +34,7 @@ class  CreateEmbeddingRequest
 {
 public:
     CreateEmbeddingRequest();
-    virtual ~CreateEmbeddingRequest() = default;
+    virtual ~CreateEmbeddingRequest();
 
 
     /// <summary>

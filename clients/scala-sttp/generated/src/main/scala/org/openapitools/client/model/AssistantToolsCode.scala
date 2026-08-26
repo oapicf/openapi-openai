@@ -15,7 +15,7 @@ package org.openapitools.client.model
 case class AssistantToolsCode(
   /* The type of tool being defined: `code_interpreter` */
   `type`: AssistantToolsCodeEnums.`Type`
-)
+) extends CreateThreadAndRunRequestToolsInner
 
 object AssistantToolsCodeEnums {
 

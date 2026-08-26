@@ -30,13 +30,13 @@ namespace OpenAPI {
 class OAIRealtimeResponse_usage_input_token_details : public OAIObject {
 public:
     OAIRealtimeResponse_usage_input_token_details();
-    OAIRealtimeResponse_usage_input_token_details(QString json);
+    OAIRealtimeResponse_usage_input_token_details(const QString &json);
     ~OAIRealtimeResponse_usage_input_token_details() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getCachedTokens() const;
     void setCachedTokens(const qint32 &cached_tokens);

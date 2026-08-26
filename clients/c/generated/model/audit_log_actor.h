@@ -30,8 +30,8 @@ openai_api_audit_log_actor_TYPE_e audit_log_actor_type_FromString(char* type);
 
 typedef struct audit_log_actor_t {
     openai_api_audit_log_actor_TYPE_e type; //enum
-    audit_log_actor_session_t *session; //object
-    audit_log_actor_api_key_t *api_key; //object
+    struct audit_log_actor_session_t *session; //model
+    struct audit_log_actor_api_key_t *api_key; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } audit_log_actor_t;

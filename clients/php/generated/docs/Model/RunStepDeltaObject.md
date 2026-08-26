@@ -1,4 +1,4 @@
-# # RunStepDeltaObject
+# RunStepDeltaObject
 
 ## Properties
 

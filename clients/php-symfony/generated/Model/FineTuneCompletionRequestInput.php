@@ -51,7 +51,7 @@ class FineTuneCompletionRequestInput
      * @var string|null
      * @SerializedName("prompt")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $prompt = null;
 
@@ -61,7 +61,7 @@ class FineTuneCompletionRequestInput
      * @var string|null
      * @SerializedName("completion")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $completion = null;
 
@@ -88,12 +88,12 @@ class FineTuneCompletionRequestInput
     }
 
     /**
-    * Sets prompt.
-    *
-    * @param string|null $prompt  The input prompt for this training example.
-    *
-    * @return $this
-    */
+     * Sets prompt.
+     *
+     * @param string|null $prompt  The input prompt for this training example.
+     *
+     * @return $this
+     */
     public function setPrompt(?string $prompt = null): self
     {
         $this->prompt = $prompt;
@@ -115,12 +115,12 @@ class FineTuneCompletionRequestInput
     }
 
     /**
-    * Sets completion.
-    *
-    * @param string|null $completion  The desired completion for this training example.
-    *
-    * @return $this
-    */
+     * Sets completion.
+     *
+     * @param string|null $completion  The desired completion for this training example.
+     *
+     * @return $this
+     */
     public function setCompletion(?string $completion = null): self
     {
         $this->completion = $completion;

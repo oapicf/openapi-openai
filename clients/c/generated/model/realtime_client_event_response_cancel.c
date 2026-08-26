@@ -31,11 +31,11 @@ static realtime_client_event_response_cancel_t *realtime_client_event_response_c
     if (!realtime_client_event_response_cancel_local_var) {
         return NULL;
     }
+    memset(realtime_client_event_response_cancel_local_var, 0, sizeof(realtime_client_event_response_cancel_t));
+    realtime_client_event_response_cancel_local_var->_library_owned = 1;
     realtime_client_event_response_cancel_local_var->event_id = event_id;
     realtime_client_event_response_cancel_local_var->type = type;
     realtime_client_event_response_cancel_local_var->response_id = response_id;
-
-    realtime_client_event_response_cancel_local_var->_library_owned = 1;
     return realtime_client_event_response_cancel_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) realtime_client_event_response_cancel_t *realtime_cl
     openai_api_realtime_client_event_response_cancel_TYPE_e type,
     char *response_id
     ) {
-    return realtime_client_event_response_cancel_create_internal (
+    realtime_client_event_response_cancel_t *result = realtime_client_event_response_cancel_create_internal (
         event_id,
         type,
         response_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_client_event_response_cancel_free(realtime_client_event_response_cancel_t *realtime_client_event_response_cancel) {
@@ -111,6 +114,10 @@ realtime_client_event_response_cancel_t *realtime_client_event_response_cancel_p
 
     realtime_client_event_response_cancel_t *realtime_client_event_response_cancel_local_var = NULL;
 
+    char *event_id_local_str = NULL;
+
+    char *response_id_local_str = NULL;
+
     // realtime_client_event_response_cancel->event_id
     cJSON *event_id = cJSON_GetObjectItemCaseSensitive(realtime_client_event_response_cancelJSON, "event_id");
     if (cJSON_IsNull(event_id)) {
@@ -153,14 +160,29 @@ realtime_client_event_response_cancel_t *realtime_client_event_response_cancel_p
     }
 
 
+    if (event_id && !cJSON_IsNull(event_id)) event_id_local_str = strdup(event_id->valuestring);
+    if (response_id && !cJSON_IsNull(response_id)) response_id_local_str = strdup(response_id->valuestring);
+
     realtime_client_event_response_cancel_local_var = realtime_client_event_response_cancel_create_internal (
-        event_id && !cJSON_IsNull(event_id) ? strdup(event_id->valuestring) : NULL,
+        event_id_local_str,
         typeVariable,
-        response_id && !cJSON_IsNull(response_id) ? strdup(response_id->valuestring) : NULL
+        response_id_local_str
         );
+
+    if (!realtime_client_event_response_cancel_local_var) {
+        goto end;
+    }
 
     return realtime_client_event_response_cancel_local_var;
 end:
+    if (event_id_local_str) {
+        free(event_id_local_str);
+        event_id_local_str = NULL;
+    }
+    if (response_id_local_str) {
+        free(response_id_local_str);
+        response_id_local_str = NULL;
+    }
     return NULL;
 
 }

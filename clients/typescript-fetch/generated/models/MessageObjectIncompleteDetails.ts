@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface MessageObjectIncompleteDetails {
     /**
      * The reason the message is incomplete.
-     * @type {string}
+     * @type {MessageObjectIncompleteDetailsReasonEnum}
      * @memberof MessageObjectIncompleteDetails
      */
     reason: MessageObjectIncompleteDetailsReasonEnum;

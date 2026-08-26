@@ -112,29 +112,33 @@ class _$RealtimeServerEventResponseContentPartAddedPartSerializer implements Pri
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeServerEventResponseContentPartAddedPartTypeEnum),
-          ) as RealtimeServerEventResponseContentPartAddedPartTypeEnum;
+            specifiedType: const FullType.nullable(RealtimeServerEventResponseContentPartAddedPartTypeEnum),
+          ) as RealtimeServerEventResponseContentPartAddedPartTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'text':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.text = valueDes;
           break;
         case r'audio':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.audio = valueDes;
           break;
         case r'transcript':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.transcript = valueDes;
           break;
         default:

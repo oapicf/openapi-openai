@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // RealtimeSessionCreateRequest - Realtime session object configuration.
@@ -50,18 +55,128 @@ type RealtimeSessionCreateRequest struct {
 
 	MaxResponseOutputTokens RealtimeResponseCreateParamsMaxResponseOutputTokens `json:"max_response_output_tokens,omitempty"`
 }
-
-// AssertRealtimeSessionCreateRequestRequired checks if the required fields are not zero-ed
-func AssertRealtimeSessionCreateRequestRequired(obj RealtimeSessionCreateRequest) error {
-	elements := map[string]interface{}{
-		"model": obj.Model,
+// UnmarshalJSON validates required property keys then unmarshals into RealtimeSessionCreateRequest
+func (o *RealtimeSessionCreateRequest) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"model",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"model": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"modalities": {},
+		"model": {},
+		"instructions": {},
+		"voice": {},
+		"input_audio_format": {},
+		"output_audio_format": {},
+		"input_audio_transcription": {},
+		"turn_detection": {},
+		"tools": {},
+		"tool_choice": {},
+		"temperature": {},
+		"max_response_output_tokens": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded RealtimeSessionCreateRequest
+
+	if value, exists := allProperties["modalities"]; exists {
+		if err = json.Unmarshal(value, &decoded.Modalities); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["model"]; exists {
+		if err = json.Unmarshal(value, &decoded.Model); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["instructions"]; exists {
+		if err = json.Unmarshal(value, &decoded.Instructions); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["voice"]; exists {
+		if err = json.Unmarshal(value, &decoded.Voice); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["input_audio_format"]; exists {
+		if err = json.Unmarshal(value, &decoded.InputAudioFormat); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["output_audio_format"]; exists {
+		if err = json.Unmarshal(value, &decoded.OutputAudioFormat); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["input_audio_transcription"]; exists {
+		if err = json.Unmarshal(value, &decoded.InputAudioTranscription); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["turn_detection"]; exists {
+		if err = json.Unmarshal(value, &decoded.TurnDetection); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["tools"]; exists {
+		if err = json.Unmarshal(value, &decoded.Tools); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["tool_choice"]; exists {
+		if err = json.Unmarshal(value, &decoded.ToolChoice); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["temperature"]; exists {
+		if err = json.Unmarshal(value, &decoded.Temperature); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["max_response_output_tokens"]; exists {
+		if err = json.Unmarshal(value, &decoded.MaxResponseOutputTokens); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertRealtimeSessionCreateRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertRealtimeSessionCreateRequestRequired(obj RealtimeSessionCreateRequest) error {
 	if err := AssertRealtimeSessionInputAudioTranscriptionRequired(obj.InputAudioTranscription); err != nil {
 		return err
 	}

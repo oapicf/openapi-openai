@@ -22,12 +22,14 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RunStepDetailsToolCallsCodeOutputLogsObject(
 
-    @Schema(example = "null", required = true, description = "Always `logs`.")
+    @Schema(required = true, description = "Always `logs`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RunStepDetailsToolCallsCodeOutputLogsObject.Type,
 
-    @Schema(example = "null", required = true, description = "The text output from the Code Interpreter tool call.")
+    @Schema(required = true, description = "The text output from the Code Interpreter tool call.")
+    @param:JsonProperty("logs")
     @get:JsonProperty("logs", required = true) val logs: kotlin.String
-) {
+) : RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner {
 
     /**
     * Always `logs`.
@@ -42,7 +44,7 @@ data class RunStepDetailsToolCallsCodeOutputLogsObject(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RunStepDetailsToolCallsCodeOutputLogsObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

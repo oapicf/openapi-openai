@@ -51,7 +51,7 @@ class CreateChatCompletionStreamResponseUsage
      * @var int|null
      * @SerializedName("completion_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $completionTokens = null;
@@ -62,7 +62,7 @@ class CreateChatCompletionStreamResponseUsage
      * @var int|null
      * @SerializedName("prompt_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $promptTokens = null;
@@ -73,7 +73,7 @@ class CreateChatCompletionStreamResponseUsage
      * @var int|null
      * @SerializedName("total_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $totalTokens = null;
@@ -102,12 +102,12 @@ class CreateChatCompletionStreamResponseUsage
     }
 
     /**
-    * Sets completionTokens.
-    *
-    * @param int|null $completionTokens  Number of tokens in the generated completion.
-    *
-    * @return $this
-    */
+     * Sets completionTokens.
+     *
+     * @param int|null $completionTokens  Number of tokens in the generated completion.
+     *
+     * @return $this
+     */
     public function setCompletionTokens(?int $completionTokens): self
     {
         $this->completionTokens = $completionTokens;
@@ -129,12 +129,12 @@ class CreateChatCompletionStreamResponseUsage
     }
 
     /**
-    * Sets promptTokens.
-    *
-    * @param int|null $promptTokens  Number of tokens in the prompt.
-    *
-    * @return $this
-    */
+     * Sets promptTokens.
+     *
+     * @param int|null $promptTokens  Number of tokens in the prompt.
+     *
+     * @return $this
+     */
     public function setPromptTokens(?int $promptTokens): self
     {
         $this->promptTokens = $promptTokens;
@@ -156,12 +156,12 @@ class CreateChatCompletionStreamResponseUsage
     }
 
     /**
-    * Sets totalTokens.
-    *
-    * @param int|null $totalTokens  Total number of tokens used in the request (prompt + completion).
-    *
-    * @return $this
-    */
+     * Sets totalTokens.
+     *
+     * @param int|null $totalTokens  Total number of tokens used in the request (prompt + completion).
+     *
+     * @return $this
+     */
     public function setTotalTokens(?int $totalTokens): self
     {
         $this->totalTokens = $totalTokens;

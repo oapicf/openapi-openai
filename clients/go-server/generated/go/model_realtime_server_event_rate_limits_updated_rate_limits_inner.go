@@ -29,7 +29,8 @@ type RealtimeServerEventRateLimitsUpdatedRateLimitsInner struct {
 	ResetSeconds float32 `json:"reset_seconds,omitempty"`
 }
 
-// AssertRealtimeServerEventRateLimitsUpdatedRateLimitsInnerRequired checks if the required fields are not zero-ed
+// AssertRealtimeServerEventRateLimitsUpdatedRateLimitsInnerRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeServerEventRateLimitsUpdatedRateLimitsInnerRequired(obj RealtimeServerEventRateLimitsUpdatedRateLimitsInner) error {
 	return nil
 }

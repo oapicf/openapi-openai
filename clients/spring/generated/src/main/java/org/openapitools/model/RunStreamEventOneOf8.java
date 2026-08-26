@@ -10,13 +10,13 @@ import org.openapitools.model.RunObject;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
@@ -24,7 +24,7 @@ import javax.annotation.Generated;
 
 @Schema(name = "RunStreamEvent_oneOf_8", description = "Occurs when a [run](/docs/api-reference/runs/object) is cancelled.")
 @JsonTypeName("RunStreamEvent_oneOf_8")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RunStreamEventOneOf8 implements RunStreamEvent {
 
   /**
@@ -92,6 +92,7 @@ public class RunStreamEventOneOf8 implements RunStreamEvent {
     return event;
   }
 
+  @JsonProperty("event")
   public void setEvent(EventEnum event) {
     this.event = event;
   }
@@ -112,6 +113,7 @@ public class RunStreamEventOneOf8 implements RunStreamEvent {
     return data;
   }
 
+  @JsonProperty("data")
   public void setData(RunObject data) {
     this.data = data;
   }
@@ -148,11 +150,8 @@ public class RunStreamEventOneOf8 implements RunStreamEvent {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

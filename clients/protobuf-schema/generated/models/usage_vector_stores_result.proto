@@ -21,7 +21,7 @@ message UsageVectorStoresResult {
     OBJECT_ORGANIZATION_USAGE_VECTOR_STORES_RESULT = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The vector stores usage in bytes.
   int32 usage_bytes = 161096783;

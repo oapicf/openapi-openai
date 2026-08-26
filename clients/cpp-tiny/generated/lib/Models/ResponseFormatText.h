@@ -51,7 +51,7 @@ public:
 
 	/*! \brief Set The type of response format being defined: `text`
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 
 
     private:

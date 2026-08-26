@@ -3,7 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
+**Type** | **String** | The type of integration to enable. Currently, only &quot;&quot;wandb&quot;&quot; (Weights and Biases) is supported.  | 
 **Wandb** | [**CreateFineTuningJobRequestIntegrationsInnerWandb**](CreateFineTuningJobRequestIntegrationsInnerWandb.md) |  | 
 
 ## Examples

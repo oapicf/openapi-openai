@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // MessageObject - Represents a message within a [thread](/docs/api-reference/threads).
@@ -58,24 +63,168 @@ type MessageObject struct {
 	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	Metadata *map[string]interface{} `json:"metadata"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into MessageObject
+func (o *MessageObject) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"id",
+		"object",
+		"created_at",
+		"thread_id",
+		"status",
+		"incomplete_details",
+		"completed_at",
+		"incomplete_at",
+		"role",
+		"content",
+		"assistant_id",
+		"run_id",
+		"attachments",
+		"metadata",
+	}
 
-// AssertMessageObjectRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"id": false,
+		"object": false,
+		"created_at": false,
+		"thread_id": false,
+		"status": false,
+		"incomplete_details": true,
+		"completed_at": true,
+		"incomplete_at": true,
+		"role": false,
+		"content": false,
+		"assistant_id": true,
+		"run_id": true,
+		"attachments": true,
+		"metadata": true,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"id": {},
+		"object": {},
+		"created_at": {},
+		"thread_id": {},
+		"status": {},
+		"incomplete_details": {},
+		"completed_at": {},
+		"incomplete_at": {},
+		"role": {},
+		"content": {},
+		"assistant_id": {},
+		"run_id": {},
+		"attachments": {},
+		"metadata": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded MessageObject
+
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["created_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CreatedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["thread_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.ThreadId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["status"]; exists {
+		if err = json.Unmarshal(value, &decoded.Status); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["incomplete_details"]; exists {
+		if err = json.Unmarshal(value, &decoded.IncompleteDetails); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["completed_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CompletedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["incomplete_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.IncompleteAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["role"]; exists {
+		if err = json.Unmarshal(value, &decoded.Role); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["content"]; exists {
+		if err = json.Unmarshal(value, &decoded.Content); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["assistant_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.AssistantId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["run_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.RunId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["attachments"]; exists {
+		if err = json.Unmarshal(value, &decoded.Attachments); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["metadata"]; exists {
+		if err = json.Unmarshal(value, &decoded.Metadata); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertMessageObjectRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertMessageObjectRequired(obj MessageObject) error {
 	elements := map[string]interface{}{
-		"id": obj.Id,
-		"object": obj.Object,
-		"created_at": obj.CreatedAt,
-		"thread_id": obj.ThreadId,
-		"status": obj.Status,
-		"incomplete_details": obj.IncompleteDetails,
-		"completed_at": obj.CompletedAt,
-		"incomplete_at": obj.IncompleteAt,
-		"role": obj.Role,
 		"content": obj.Content,
-		"assistant_id": obj.AssistantId,
-		"run_id": obj.RunId,
-		"attachments": obj.Attachments,
-		"metadata": obj.Metadata,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {

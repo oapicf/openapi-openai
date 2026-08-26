@@ -26,20 +26,25 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ListAuditLogsResponse(
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("object")
     @get:JsonProperty("object", required = true) val `object`: ListAuditLogsResponse.`Object`,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("data")
     @get:JsonProperty("data", required = true) val `data`: kotlin.collections.List<AuditLog>,
 
     @Schema(example = "audit_log-defb456h8dks", required = true, description = "")
+    @param:JsonProperty("first_id")
     @get:JsonProperty("first_id", required = true) val firstId: kotlin.String,
 
     @Schema(example = "audit_log-hnbkd8s93s", required = true, description = "")
+    @param:JsonProperty("last_id")
     @get:JsonProperty("last_id", required = true) val lastId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("has_more")
     @get:JsonProperty("has_more", required = true) val hasMore: kotlin.Boolean
 ) {
 
@@ -56,7 +61,7 @@ data class ListAuditLogsResponse(
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ListAuditLogsResponse'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
     }

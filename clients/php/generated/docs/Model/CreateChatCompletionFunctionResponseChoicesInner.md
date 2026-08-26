@@ -1,4 +1,4 @@
-# # CreateChatCompletionFunctionResponseChoicesInner
+# CreateChatCompletionFunctionResponseChoicesInner
 
 ## Properties
 

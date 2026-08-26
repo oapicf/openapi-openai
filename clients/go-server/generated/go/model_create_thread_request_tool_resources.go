@@ -22,7 +22,8 @@ type CreateThreadRequestToolResources struct {
 	FileSearch *CreateThreadRequestToolResourcesFileSearch `json:"file_search,omitempty"`
 }
 
-// AssertCreateThreadRequestToolResourcesRequired checks if the required fields are not zero-ed
+// AssertCreateThreadRequestToolResourcesRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateThreadRequestToolResourcesRequired(obj CreateThreadRequestToolResources) error {
 	if err := AssertCreateAssistantRequestToolResourcesCodeInterpreterRequired(obj.CodeInterpreter); err != nil {
 		return err

@@ -22,10 +22,12 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class CreateChatCompletionRequestAudio(
 
-    @Schema(example = "null", required = true, description = "The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive). ")
+    @Schema(required = true, description = "The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive). ")
+    @param:JsonProperty("voice")
     @get:JsonProperty("voice", required = true) val voice: CreateChatCompletionRequestAudio.Voice,
 
-    @Schema(example = "null", required = true, description = "Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`. ")
+    @Schema(required = true, description = "Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`. ")
+    @param:JsonProperty("format")
     @get:JsonProperty("format", required = true) val format: CreateChatCompletionRequestAudio.Format
 ) {
 
@@ -49,7 +51,7 @@ data class CreateChatCompletionRequestAudio(
             @JsonCreator
             fun forValue(value: kotlin.String): Voice {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateChatCompletionRequestAudio'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Voice'")
             }
         }
     }
@@ -71,7 +73,7 @@ data class CreateChatCompletionRequestAudio(
             @JsonCreator
             fun forValue(value: kotlin.String): Format {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateChatCompletionRequestAudio'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Format'")
             }
         }
     }

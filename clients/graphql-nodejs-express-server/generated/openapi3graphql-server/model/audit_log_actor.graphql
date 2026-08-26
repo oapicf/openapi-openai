@@ -19,7 +19,7 @@ type AuditLogActor {
 input AuditLogActorInput {
     # The type of actor. Is either `session` or `api_key`.
     type: TypeEnum
-    session: AuditLogActorSession
-    api_key: AuditLogActorApiKey
+    session: AuditLogActorSessionInput
+    api_key: AuditLogActorApiKeyInput
 }
 

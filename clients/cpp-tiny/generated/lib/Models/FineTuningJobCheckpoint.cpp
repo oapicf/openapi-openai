@@ -191,7 +191,7 @@ FineTuningJobCheckpoint::getId()
 }
 
 void
-FineTuningJobCheckpoint::setId(std::string  id)
+FineTuningJobCheckpoint::setId(std::string id)
 {
 	this->id = id;
 }
@@ -203,7 +203,7 @@ FineTuningJobCheckpoint::getCreatedAt()
 }
 
 void
-FineTuningJobCheckpoint::setCreatedAt(int  created_at)
+FineTuningJobCheckpoint::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -215,7 +215,7 @@ FineTuningJobCheckpoint::getFineTunedModelCheckpoint()
 }
 
 void
-FineTuningJobCheckpoint::setFineTunedModelCheckpoint(std::string  fine_tuned_model_checkpoint)
+FineTuningJobCheckpoint::setFineTunedModelCheckpoint(std::string fine_tuned_model_checkpoint)
 {
 	this->fine_tuned_model_checkpoint = fine_tuned_model_checkpoint;
 }
@@ -227,7 +227,7 @@ FineTuningJobCheckpoint::getStepNumber()
 }
 
 void
-FineTuningJobCheckpoint::setStepNumber(int  step_number)
+FineTuningJobCheckpoint::setStepNumber(int step_number)
 {
 	this->step_number = step_number;
 }
@@ -239,7 +239,7 @@ FineTuningJobCheckpoint::getMetrics()
 }
 
 void
-FineTuningJobCheckpoint::setMetrics(FineTuningJobCheckpoint_metrics  metrics)
+FineTuningJobCheckpoint::setMetrics(FineTuningJobCheckpoint_metrics metrics)
 {
 	this->metrics = metrics;
 }
@@ -251,7 +251,7 @@ FineTuningJobCheckpoint::getFineTuningJobId()
 }
 
 void
-FineTuningJobCheckpoint::setFineTuningJobId(std::string  fine_tuning_job_id)
+FineTuningJobCheckpoint::setFineTuningJobId(std::string fine_tuning_job_id)
 {
 	this->fine_tuning_job_id = fine_tuning_job_id;
 }
@@ -263,7 +263,7 @@ FineTuningJobCheckpoint::getObject()
 }
 
 void
-FineTuningJobCheckpoint::setObject(std::string  object)
+FineTuningJobCheckpoint::setObject(std::string object)
 {
 	this->object = object;
 }

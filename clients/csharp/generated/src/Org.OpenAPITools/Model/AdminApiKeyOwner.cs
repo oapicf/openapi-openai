@@ -64,7 +64,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>service_account</example> */
         [JsonPropertyName("type")]
-        public string? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public string? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -78,7 +78,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>sa_456</example> */
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -92,7 +92,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>My Service Account</example> */
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -106,7 +106,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>1711471533</example> */
         [JsonPropertyName("created_at")]
-        public long? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public long? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Role
@@ -120,7 +120,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>member</example> */
         [JsonPropertyName("role")]
-        public string? Role { get { return this.RoleOption; } set { this.RoleOption = new(value); } }
+        public string? Role { get { return this.RoleOption.Value; } set { this.RoleOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -153,8 +153,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AdminApiKeyOwner" />
     /// </summary>
-    public class AdminApiKeyOwnerJsonConverter : JsonConverter<AdminApiKeyOwner>
+    public partial class AdminApiKeyOwnerJsonConverter : JsonConverter<AdminApiKeyOwner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminApiKeyOwnerJsonConverter" /> class.
+        /// </summary>
+        public AdminApiKeyOwnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AdminApiKeyOwner" />
         /// </summary>

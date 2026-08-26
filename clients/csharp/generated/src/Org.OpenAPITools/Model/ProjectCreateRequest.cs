@@ -78,8 +78,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectCreateRequest" />
     /// </summary>
-    public class ProjectCreateRequestJsonConverter : JsonConverter<ProjectCreateRequest>
+    public partial class ProjectCreateRequestJsonConverter : JsonConverter<ProjectCreateRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectCreateRequestJsonConverter" /> class.
+        /// </summary>
+        public ProjectCreateRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProjectCreateRequest" />
         /// </summary>

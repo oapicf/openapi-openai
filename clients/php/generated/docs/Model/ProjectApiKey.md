@@ -1,4 +1,4 @@
-# # ProjectApiKey
+# ProjectApiKey
 
 ## Properties
 

@@ -40,8 +40,8 @@ export interface StaticChunkingStrategyStatic {
  * Check if a given object implements the StaticChunkingStrategyStatic interface.
  */
 export function instanceOfStaticChunkingStrategyStatic(value: object): value is StaticChunkingStrategyStatic {
-    if (!('maxChunkSizeTokens' in value) || value['maxChunkSizeTokens'] === undefined) return false;
-    if (!('chunkOverlapTokens' in value) || value['chunkOverlapTokens'] === undefined) return false;
+    if ((!('maxChunkSizeTokens' in (value as Record<string, any>)) && !('max_chunk_size_tokens' in (value as Record<string, any>))) || ((value as Record<string, any>)['maxChunkSizeTokens'] === undefined && (value as Record<string, any>)['max_chunk_size_tokens'] === undefined)) return false;
+    if ((!('chunkOverlapTokens' in (value as Record<string, any>)) && !('chunk_overlap_tokens' in (value as Record<string, any>))) || ((value as Record<string, any>)['chunkOverlapTokens'] === undefined && (value as Record<string, any>)['chunk_overlap_tokens'] === undefined)) return false;
     return true;
 }
 

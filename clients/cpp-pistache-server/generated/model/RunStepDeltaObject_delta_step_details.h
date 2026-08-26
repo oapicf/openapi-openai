@@ -37,7 +37,7 @@ class  RunStepDeltaObject_delta_step_details
 {
 public:
     RunStepDeltaObject_delta_step_details();
-    virtual ~RunStepDeltaObject_delta_step_details() = default;
+    virtual ~RunStepDeltaObject_delta_step_details();
 
 
     /// <summary>

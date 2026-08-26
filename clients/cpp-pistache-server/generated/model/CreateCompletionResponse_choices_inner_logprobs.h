@@ -34,7 +34,7 @@ class  CreateCompletionResponse_choices_inner_logprobs
 {
 public:
     CreateCompletionResponse_choices_inner_logprobs();
-    virtual ~CreateCompletionResponse_choices_inner_logprobs() = default;
+    virtual ~CreateCompletionResponse_choices_inner_logprobs();
 
 
     /// <summary>

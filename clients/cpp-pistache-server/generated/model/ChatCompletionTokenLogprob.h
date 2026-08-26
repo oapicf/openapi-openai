@@ -34,7 +34,7 @@ class  ChatCompletionTokenLogprob
 {
 public:
     ChatCompletionTokenLogprob();
-    virtual ~ChatCompletionTokenLogprob() = default;
+    virtual ~ChatCompletionTokenLogprob();
 
 
     /// <summary>

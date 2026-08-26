@@ -24,6 +24,8 @@ CreateEmbeddingRequest_input::CreateEmbeddingRequest_input()
     
 }
 
+CreateEmbeddingRequest_input::~CreateEmbeddingRequest_input() = default;
+
 void CreateEmbeddingRequest_input::validate() const
 {
     std::stringstream msg;

@@ -25,7 +25,7 @@ openai_api_thread_object_OBJECT_e thread_object_object_FromString(char* object){
 static thread_object_t *thread_object_create_internal(
     char *id,
     openai_api_thread_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     modify_thread_request_tool_resources_t *tool_resources,
     object_t *metadata
     ) {
@@ -33,30 +33,39 @@ static thread_object_t *thread_object_create_internal(
     if (!thread_object_local_var) {
         return NULL;
     }
+    memset(thread_object_local_var, 0, sizeof(thread_object_t));
+    thread_object_local_var->_library_owned = 1;
     thread_object_local_var->id = id;
     thread_object_local_var->object = object;
     thread_object_local_var->created_at = created_at;
     thread_object_local_var->tool_resources = tool_resources;
     thread_object_local_var->metadata = metadata;
-
-    thread_object_local_var->_library_owned = 1;
     return thread_object_local_var;
 }
 
 __attribute__((deprecated)) thread_object_t *thread_object_create(
     char *id,
     openai_api_thread_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     modify_thread_request_tool_resources_t *tool_resources,
     object_t *metadata
     ) {
-    return thread_object_create_internal (
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    thread_object_t *result = thread_object_create_internal (
         id,
         object,
-        created_at,
+        created_at_copy,
         tool_resources,
         metadata
         );
+    if (!result) {
+        free(created_at_copy);
+    }
+    return result;
 }
 
 void thread_object_free(thread_object_t *thread_object) {
@@ -71,6 +80,10 @@ void thread_object_free(thread_object_t *thread_object) {
     if (thread_object->id) {
         free(thread_object->id);
         thread_object->id = NULL;
+    }
+    if (thread_object->created_at) {
+        free(thread_object->created_at);
+        thread_object->created_at = NULL;
     }
     if (thread_object->tool_resources) {
         modify_thread_request_tool_resources_free(thread_object->tool_resources);
@@ -109,7 +122,7 @@ cJSON *thread_object_convertToJSON(thread_object_t *thread_object) {
     if (!thread_object->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", thread_object->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *thread_object->created_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -152,6 +165,11 @@ fail:
 thread_object_t *thread_object_parseFromJSON(cJSON *thread_objectJSON){
 
     thread_object_t *thread_object_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    // define the local variable for thread_object->created_at
+    int *created_at_local_var = NULL;
 
     // define the local variable for thread_object->tool_resources
     modify_thread_request_tool_resources_t *tool_resources_local_nonprim = NULL;
@@ -202,6 +220,12 @@ thread_object_t *thread_object_parseFromJSON(cJSON *thread_objectJSON){
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
     // thread_object->tool_resources
     cJSON *tool_resources = cJSON_GetObjectItemCaseSensitive(thread_objectJSON, "tool_resources");
@@ -229,16 +253,30 @@ thread_object_t *thread_object_parseFromJSON(cJSON *thread_objectJSON){
     metadata_local_object = object_parseFromJSON(metadata); //object
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     thread_object_local_var = thread_object_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         objectVariable,
-        created_at->valuedouble,
+        created_at_local_var,
         tool_resources_local_nonprim,
         metadata_local_object
         );
 
+    if (!thread_object_local_var) {
+        goto end;
+    }
+
     return thread_object_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
     if (tool_resources_local_nonprim) {
         modify_thread_request_tool_resources_free(tool_resources_local_nonprim);
         tool_resources_local_nonprim = NULL;

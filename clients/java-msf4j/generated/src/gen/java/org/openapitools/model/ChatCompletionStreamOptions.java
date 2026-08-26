@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Options for streaming response. Only set this when you set &#x60;stream: true&#x60;. 
  */
 @ApiModel(description = "Options for streaming response. Only set this when you set `stream: true`. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ChatCompletionStreamOptions   {
   @JsonProperty("include_usage")
   private Boolean includeUsage;
@@ -66,10 +66,7 @@ public class ChatCompletionStreamOptions   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

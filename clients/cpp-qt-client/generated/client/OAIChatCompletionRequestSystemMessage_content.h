@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIChatCompletionRequestSystemMessage_content : public OAIObject {
 public:
     OAIChatCompletionRequestSystemMessage_content();
-    OAIChatCompletionRequestSystemMessage_content(QString json);
+    OAIChatCompletionRequestSystemMessage_content(const QString &json);
     ~OAIChatCompletionRequestSystemMessage_content() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

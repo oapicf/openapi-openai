@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIAuditLogEventType::OAIAuditLogEventType(QString json) {
+OAIAuditLogEventType::OAIAuditLogEventType(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -39,7 +39,7 @@ void OAIAuditLogEventType::initializeModel() {
     m_value = eOAIAuditLogEventType::INVALID_VALUE_OPENAPI_GENERATED;
 }
 
-void OAIAuditLogEventType::fromJson(QString jsonString) {
+void OAIAuditLogEventType::fromJson(const QString &jsonString) {
     
     if ( jsonString.compare("api_key.created", Qt::CaseInsensitive) == 0) {
         m_value = eOAIAuditLogEventType::API_KEY_CREATED;

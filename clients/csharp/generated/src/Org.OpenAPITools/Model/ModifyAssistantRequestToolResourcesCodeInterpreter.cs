@@ -56,7 +56,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Overrides the list of [file](/docs/api-reference/files) IDs made available to the &#x60;code_interpreter&#x60; tool. There can be a maximum of 20 files associated with the tool. </value>
         [JsonPropertyName("file_ids")]
-        public List<string>? FileIds { get { return this.FileIdsOption; } set { this.FileIdsOption = new(value); } }
+        public List<string>? FileIds { get { return this.FileIdsOption.Value; } set { this.FileIdsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ModifyAssistantRequestToolResourcesCodeInterpreter" />
     /// </summary>
-    public class ModifyAssistantRequestToolResourcesCodeInterpreterJsonConverter : JsonConverter<ModifyAssistantRequestToolResourcesCodeInterpreter>
+    public partial class ModifyAssistantRequestToolResourcesCodeInterpreterJsonConverter : JsonConverter<ModifyAssistantRequestToolResourcesCodeInterpreter>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ModifyAssistantRequestToolResourcesCodeInterpreterJsonConverter" /> class.
+        /// </summary>
+        public ModifyAssistantRequestToolResourcesCodeInterpreterJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ModifyAssistantRequestToolResourcesCodeInterpreter" />
         /// </summary>

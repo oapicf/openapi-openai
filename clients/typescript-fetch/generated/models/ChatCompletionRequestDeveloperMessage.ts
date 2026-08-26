@@ -38,7 +38,7 @@ export interface ChatCompletionRequestDeveloperMessage {
     content: ChatCompletionRequestDeveloperMessageContent;
     /**
      * The role of the messages author, in this case `developer`.
-     * @type {string}
+     * @type {ChatCompletionRequestDeveloperMessageRoleEnum}
      * @memberof ChatCompletionRequestDeveloperMessage
      */
     role: ChatCompletionRequestDeveloperMessageRoleEnum;
@@ -66,6 +66,8 @@ export type ChatCompletionRequestDeveloperMessageRoleEnum = typeof ChatCompletio
 export function instanceOfChatCompletionRequestDeveloperMessage(value: object): value is ChatCompletionRequestDeveloperMessage {
     if (!('content' in value) || value['content'] === undefined) return false;
     if (!('role' in value) || value['role'] === undefined) return false;
+    if (value['role'] !== 'developer') return false;
+    
     return true;
 }
 

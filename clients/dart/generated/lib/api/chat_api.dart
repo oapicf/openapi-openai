@@ -23,7 +23,7 @@ class ChatApi {
   /// Parameters:
   ///
   /// * [CreateChatCompletionRequest] createChatCompletionRequest (required):
-  Future<Response> createChatCompletionWithHttpInfo(CreateChatCompletionRequest createChatCompletionRequest,) async {
+  Future<Response> createChatCompletionWithHttpInfo(CreateChatCompletionRequest createChatCompletionRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/chat/completions';
 
@@ -45,6 +45,7 @@ class ChatApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -53,8 +54,8 @@ class ChatApi {
   /// Parameters:
   ///
   /// * [CreateChatCompletionRequest] createChatCompletionRequest (required):
-  Future<CreateChatCompletionResponse?> createChatCompletion(CreateChatCompletionRequest createChatCompletionRequest,) async {
-    final response = await createChatCompletionWithHttpInfo(createChatCompletionRequest,);
+  Future<CreateChatCompletionResponse?> createChatCompletion(CreateChatCompletionRequest createChatCompletionRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createChatCompletionWithHttpInfo(createChatCompletionRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

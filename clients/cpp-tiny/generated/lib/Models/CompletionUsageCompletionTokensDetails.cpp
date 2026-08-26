@@ -127,7 +127,7 @@ CompletionUsage_completion_tokens_details::getAcceptedPredictionTokens()
 }
 
 void
-CompletionUsage_completion_tokens_details::setAcceptedPredictionTokens(int  accepted_prediction_tokens)
+CompletionUsage_completion_tokens_details::setAcceptedPredictionTokens(int accepted_prediction_tokens)
 {
 	this->accepted_prediction_tokens = accepted_prediction_tokens;
 }
@@ -139,7 +139,7 @@ CompletionUsage_completion_tokens_details::getAudioTokens()
 }
 
 void
-CompletionUsage_completion_tokens_details::setAudioTokens(int  audio_tokens)
+CompletionUsage_completion_tokens_details::setAudioTokens(int audio_tokens)
 {
 	this->audio_tokens = audio_tokens;
 }
@@ -151,7 +151,7 @@ CompletionUsage_completion_tokens_details::getReasoningTokens()
 }
 
 void
-CompletionUsage_completion_tokens_details::setReasoningTokens(int  reasoning_tokens)
+CompletionUsage_completion_tokens_details::setReasoningTokens(int reasoning_tokens)
 {
 	this->reasoning_tokens = reasoning_tokens;
 }
@@ -163,7 +163,7 @@ CompletionUsage_completion_tokens_details::getRejectedPredictionTokens()
 }
 
 void
-CompletionUsage_completion_tokens_details::setRejectedPredictionTokens(int  rejected_prediction_tokens)
+CompletionUsage_completion_tokens_details::setRejectedPredictionTokens(int rejected_prediction_tokens)
 {
 	this->rejected_prediction_tokens = rejected_prediction_tokens;
 }

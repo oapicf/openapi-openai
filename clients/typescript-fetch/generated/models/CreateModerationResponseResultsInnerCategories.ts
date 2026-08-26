@@ -104,18 +104,18 @@ export interface CreateModerationResponseResultsInnerCategories {
  */
 export function instanceOfCreateModerationResponseResultsInnerCategories(value: object): value is CreateModerationResponseResultsInnerCategories {
     if (!('hate' in value) || value['hate'] === undefined) return false;
-    if (!('hateThreatening' in value) || value['hateThreatening'] === undefined) return false;
+    if ((!('hateThreatening' in (value as Record<string, any>)) && !('hate/threatening' in (value as Record<string, any>))) || ((value as Record<string, any>)['hateThreatening'] === undefined && (value as Record<string, any>)['hate/threatening'] === undefined)) return false;
     if (!('harassment' in value) || value['harassment'] === undefined) return false;
-    if (!('harassmentThreatening' in value) || value['harassmentThreatening'] === undefined) return false;
+    if ((!('harassmentThreatening' in (value as Record<string, any>)) && !('harassment/threatening' in (value as Record<string, any>))) || ((value as Record<string, any>)['harassmentThreatening'] === undefined && (value as Record<string, any>)['harassment/threatening'] === undefined)) return false;
     if (!('illicit' in value) || value['illicit'] === undefined) return false;
-    if (!('illicitViolent' in value) || value['illicitViolent'] === undefined) return false;
-    if (!('selfHarm' in value) || value['selfHarm'] === undefined) return false;
-    if (!('selfHarmIntent' in value) || value['selfHarmIntent'] === undefined) return false;
-    if (!('selfHarmInstructions' in value) || value['selfHarmInstructions'] === undefined) return false;
+    if ((!('illicitViolent' in (value as Record<string, any>)) && !('illicit/violent' in (value as Record<string, any>))) || ((value as Record<string, any>)['illicitViolent'] === undefined && (value as Record<string, any>)['illicit/violent'] === undefined)) return false;
+    if ((!('selfHarm' in (value as Record<string, any>)) && !('self-harm' in (value as Record<string, any>))) || ((value as Record<string, any>)['selfHarm'] === undefined && (value as Record<string, any>)['self-harm'] === undefined)) return false;
+    if ((!('selfHarmIntent' in (value as Record<string, any>)) && !('self-harm/intent' in (value as Record<string, any>))) || ((value as Record<string, any>)['selfHarmIntent'] === undefined && (value as Record<string, any>)['self-harm/intent'] === undefined)) return false;
+    if ((!('selfHarmInstructions' in (value as Record<string, any>)) && !('self-harm/instructions' in (value as Record<string, any>))) || ((value as Record<string, any>)['selfHarmInstructions'] === undefined && (value as Record<string, any>)['self-harm/instructions'] === undefined)) return false;
     if (!('sexual' in value) || value['sexual'] === undefined) return false;
-    if (!('sexualMinors' in value) || value['sexualMinors'] === undefined) return false;
+    if ((!('sexualMinors' in (value as Record<string, any>)) && !('sexual/minors' in (value as Record<string, any>))) || ((value as Record<string, any>)['sexualMinors'] === undefined && (value as Record<string, any>)['sexual/minors'] === undefined)) return false;
     if (!('violence' in value) || value['violence'] === undefined) return false;
-    if (!('violenceGraphic' in value) || value['violenceGraphic'] === undefined) return false;
+    if ((!('violenceGraphic' in (value as Record<string, any>)) && !('violence/graphic' in (value as Record<string, any>))) || ((value as Record<string, any>)['violenceGraphic'] === undefined && (value as Record<string, any>)['violence/graphic'] === undefined)) return false;
     return true;
 }
 

@@ -49,7 +49,7 @@ openai_api_run_step_object_STATUS_e run_step_object_status_FromString(char* stat
 typedef struct run_step_object_t {
     char *id; // string
     openai_api_run_step_object_OBJECT_e object; //enum
-    int created_at; //numeric
+    int *created_at; //numeric
     char *assistant_id; // string
     char *thread_id; // string
     char *run_id; // string
@@ -57,10 +57,10 @@ typedef struct run_step_object_t {
     openai_api_run_step_object_STATUS_e status; //enum
     struct run_step_object_step_details_t *step_details; //model
     struct run_step_object_last_error_t *last_error; //model
-    int expired_at; //numeric
-    int cancelled_at; //numeric
-    int failed_at; //numeric
-    int completed_at; //numeric
+    int *expired_at; //numeric
+    int *cancelled_at; //numeric
+    int *failed_at; //numeric
+    int *completed_at; //numeric
     object_t *metadata; //object
     struct run_step_completion_usage_t *usage; //model
 
@@ -70,7 +70,7 @@ typedef struct run_step_object_t {
 __attribute__((deprecated)) run_step_object_t *run_step_object_create(
     char *id,
     openai_api_run_step_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     char *assistant_id,
     char *thread_id,
     char *run_id,
@@ -78,10 +78,10 @@ __attribute__((deprecated)) run_step_object_t *run_step_object_create(
     openai_api_run_step_object_STATUS_e status,
     run_step_object_step_details_t *step_details,
     run_step_object_last_error_t *last_error,
-    int expired_at,
-    int cancelled_at,
-    int failed_at,
-    int completed_at,
+    int *expired_at,
+    int *cancelled_at,
+    int *failed_at,
+    int *completed_at,
     object_t *metadata,
     run_step_completion_usage_t *usage
 );

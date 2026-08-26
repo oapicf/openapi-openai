@@ -96,17 +96,17 @@ class CreateEmbeddingRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateEmbeddingRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateEmbeddingRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'input'), 'Required key "CreateEmbeddingRequest[input]" is missing from JSON.');
+        assert(json[r'input'] != null, 'Required key "CreateEmbeddingRequest[input]" has a null value in JSON.');
+        assert(json.containsKey(r'model'), 'Required key "CreateEmbeddingRequest[model]" is missing from JSON.');
+        assert(json[r'model'] != null, 'Required key "CreateEmbeddingRequest[model]" has a null value in JSON.');
         return true;
       }());
 
       return CreateEmbeddingRequest(
         input: CreateEmbeddingRequestInput.fromJson(json[r'input'])!,
         model: CreateEmbeddingRequestModel.fromJson(json[r'model'])!,
-        encodingFormat: CreateEmbeddingRequestEncodingFormatEnum.fromJson(json[r'encoding_format']) ?? 'float',
+        encodingFormat: CreateEmbeddingRequestEncodingFormatEnum.fromJson(json[r'encoding_format']) ?? const CreateEmbeddingRequestEncodingFormatEnum._('float'),
         dimensions: mapValueOfType<int>(json, r'dimensions'),
         user: mapValueOfType<String>(json, r'user'),
       );
@@ -162,29 +162,29 @@ class CreateEmbeddingRequest {
 }
 
 /// The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
-class CreateEmbeddingRequestEncodingFormatEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateEmbeddingRequestEncodingFormatEnum._(this.value);
+enum CreateEmbeddingRequestEncodingFormatEnum {
+  float._(r'float'),
+  base64._(r'base64'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateEmbeddingRequestEncodingFormatEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const float = CreateEmbeddingRequestEncodingFormatEnum._(r'float');
-  static const base64 = CreateEmbeddingRequestEncodingFormatEnum._(r'base64');
-
-  /// List of all possible values in this [enum][CreateEmbeddingRequestEncodingFormatEnum].
-  static const values = <CreateEmbeddingRequestEncodingFormatEnum>[
-    float,
-    base64,
-  ];
-
+  /// Returns the instance of [CreateEmbeddingRequestEncodingFormatEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateEmbeddingRequestEncodingFormatEnum? fromJson(dynamic value) => CreateEmbeddingRequestEncodingFormatEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateEmbeddingRequestEncodingFormatEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateEmbeddingRequestEncodingFormatEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateEmbeddingRequestEncodingFormatEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -206,9 +206,10 @@ class CreateEmbeddingRequestEncodingFormatEnumTypeTransformer {
 
   const CreateEmbeddingRequestEncodingFormatEnumTypeTransformer._();
 
-  String encode(CreateEmbeddingRequestEncodingFormatEnum data) => data.value;
+  String encode(CreateEmbeddingRequestEncodingFormatEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateEmbeddingRequestEncodingFormatEnum.
+  /// Returns the instance of [CreateEmbeddingRequestEncodingFormatEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -217,6 +218,9 @@ class CreateEmbeddingRequestEncodingFormatEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateEmbeddingRequestEncodingFormatEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateEmbeddingRequestEncodingFormatEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'float': return CreateEmbeddingRequestEncodingFormatEnum.float;
@@ -230,7 +234,7 @@ class CreateEmbeddingRequestEncodingFormatEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateEmbeddingRequestEncodingFormatEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateEmbeddingRequestEncodingFormatEnumTypeTransformer? _instance;
 }
 

@@ -160,7 +160,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The maximum images per minute. Only present for relevant models.</value>
         [JsonPropertyName("max_images_per_1_minute")]
-        public int? MaxImagesPer1Minute { get { return this.MaxImagesPer1MinuteOption; } set { this.MaxImagesPer1MinuteOption = new(value); } }
+        public int? MaxImagesPer1Minute { get { return this.MaxImagesPer1MinuteOption.Value; } set { this.MaxImagesPer1MinuteOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxAudioMegabytesPer1Minute
@@ -174,7 +174,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The maximum audio megabytes per minute. Only present for relevant models.</value>
         [JsonPropertyName("max_audio_megabytes_per_1_minute")]
-        public int? MaxAudioMegabytesPer1Minute { get { return this.MaxAudioMegabytesPer1MinuteOption; } set { this.MaxAudioMegabytesPer1MinuteOption = new(value); } }
+        public int? MaxAudioMegabytesPer1Minute { get { return this.MaxAudioMegabytesPer1MinuteOption.Value; } set { this.MaxAudioMegabytesPer1MinuteOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxRequestsPer1Day
@@ -188,7 +188,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The maximum requests per day. Only present for relevant models.</value>
         [JsonPropertyName("max_requests_per_1_day")]
-        public int? MaxRequestsPer1Day { get { return this.MaxRequestsPer1DayOption; } set { this.MaxRequestsPer1DayOption = new(value); } }
+        public int? MaxRequestsPer1Day { get { return this.MaxRequestsPer1DayOption.Value; } set { this.MaxRequestsPer1DayOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Batch1DayMaxInputTokens
@@ -202,7 +202,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The maximum batch input tokens per day. Only present for relevant models.</value>
         [JsonPropertyName("batch_1_day_max_input_tokens")]
-        public int? Batch1DayMaxInputTokens { get { return this.Batch1DayMaxInputTokensOption; } set { this.Batch1DayMaxInputTokensOption = new(value); } }
+        public int? Batch1DayMaxInputTokens { get { return this.Batch1DayMaxInputTokensOption.Value; } set { this.Batch1DayMaxInputTokensOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -239,8 +239,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectRateLimit" />
     /// </summary>
-    public class ProjectRateLimitJsonConverter : JsonConverter<ProjectRateLimit>
+    public partial class ProjectRateLimitJsonConverter : JsonConverter<ProjectRateLimit>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectRateLimitJsonConverter" /> class.
+        /// </summary>
+        public ProjectRateLimitJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProjectRateLimit" />
         /// </summary>

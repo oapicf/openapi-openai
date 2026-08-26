@@ -90,7 +90,7 @@ class InvitesController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($inviteId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -177,7 +177,7 @@ class InvitesController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\InviteRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\InviteRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($inviteRequest, $asserts);
         if ($response instanceof Response) {
@@ -258,13 +258,13 @@ class InvitesController extends Controller
 
         // Validate the input values
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($after, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -342,7 +342,7 @@ class InvitesController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($inviteId, $asserts);
         if ($response instanceof Response) {
             return $response;

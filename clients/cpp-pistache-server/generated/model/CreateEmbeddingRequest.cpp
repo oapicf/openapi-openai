@@ -30,6 +30,8 @@ CreateEmbeddingRequest::CreateEmbeddingRequest()
     
 }
 
+CreateEmbeddingRequest::~CreateEmbeddingRequest() = default;
+
 void CreateEmbeddingRequest::validate() const
 {
     std::stringstream msg;

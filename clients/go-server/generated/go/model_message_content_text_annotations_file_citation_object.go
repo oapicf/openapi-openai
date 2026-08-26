@@ -14,6 +14,8 @@ package openapi
 
 import (
 	"errors"
+	"encoding/json"
+	"fmt"
 )
 
 
@@ -33,15 +35,96 @@ type MessageContentTextAnnotationsFileCitationObject struct {
 
 	EndIndex int32 `json:"end_index"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into MessageContentTextAnnotationsFileCitationObject
+func (o *MessageContentTextAnnotationsFileCitationObject) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"type",
+		"text",
+		"file_citation",
+		"start_index",
+		"end_index",
+	}
 
-// AssertMessageContentTextAnnotationsFileCitationObjectRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"type": false,
+		"text": false,
+		"file_citation": false,
+		"start_index": false,
+		"end_index": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"type": {},
+		"text": {},
+		"file_citation": {},
+		"start_index": {},
+		"end_index": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded MessageContentTextAnnotationsFileCitationObject
+
+	if value, exists := allProperties["type"]; exists {
+		if err = json.Unmarshal(value, &decoded.Type); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["text"]; exists {
+		if err = json.Unmarshal(value, &decoded.Text); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["file_citation"]; exists {
+		if err = json.Unmarshal(value, &decoded.FileCitation); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["start_index"]; exists {
+		if err = json.Unmarshal(value, &decoded.StartIndex); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["end_index"]; exists {
+		if err = json.Unmarshal(value, &decoded.EndIndex); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertMessageContentTextAnnotationsFileCitationObjectRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertMessageContentTextAnnotationsFileCitationObjectRequired(obj MessageContentTextAnnotationsFileCitationObject) error {
 	elements := map[string]interface{}{
-		"type": obj.Type,
-		"text": obj.Text,
 		"file_citation": obj.FileCitation,
-		"start_index": obj.StartIndex,
-		"end_index": obj.EndIndex,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {

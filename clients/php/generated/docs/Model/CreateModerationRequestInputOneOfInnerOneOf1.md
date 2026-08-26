@@ -1,4 +1,4 @@
-# # CreateModerationRequestInputOneOfInnerOneOf1
+# CreateModerationRequestInputOneOfInnerOneOf1
 
 ## Properties
 

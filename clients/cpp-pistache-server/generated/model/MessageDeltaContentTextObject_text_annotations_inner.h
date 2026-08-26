@@ -36,7 +36,7 @@ class  MessageDeltaContentTextObject_text_annotations_inner
 {
 public:
     MessageDeltaContentTextObject_text_annotations_inner();
-    virtual ~MessageDeltaContentTextObject_text_annotations_inner() = default;
+    virtual ~MessageDeltaContentTextObject_text_annotations_inner();
 
 
     /// <summary>

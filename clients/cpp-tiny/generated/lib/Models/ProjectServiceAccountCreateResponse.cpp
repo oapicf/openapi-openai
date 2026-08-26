@@ -170,7 +170,7 @@ ProjectServiceAccountCreateResponse::getObject()
 }
 
 void
-ProjectServiceAccountCreateResponse::setObject(std::string  object)
+ProjectServiceAccountCreateResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -182,7 +182,7 @@ ProjectServiceAccountCreateResponse::getId()
 }
 
 void
-ProjectServiceAccountCreateResponse::setId(std::string  id)
+ProjectServiceAccountCreateResponse::setId(std::string id)
 {
 	this->id = id;
 }
@@ -194,7 +194,7 @@ ProjectServiceAccountCreateResponse::getName()
 }
 
 void
-ProjectServiceAccountCreateResponse::setName(std::string  name)
+ProjectServiceAccountCreateResponse::setName(std::string name)
 {
 	this->name = name;
 }
@@ -206,7 +206,7 @@ ProjectServiceAccountCreateResponse::getRole()
 }
 
 void
-ProjectServiceAccountCreateResponse::setRole(std::string  role)
+ProjectServiceAccountCreateResponse::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -218,7 +218,7 @@ ProjectServiceAccountCreateResponse::getCreatedAt()
 }
 
 void
-ProjectServiceAccountCreateResponse::setCreatedAt(int  created_at)
+ProjectServiceAccountCreateResponse::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -230,7 +230,7 @@ ProjectServiceAccountCreateResponse::getApiKey()
 }
 
 void
-ProjectServiceAccountCreateResponse::setApiKey(ProjectServiceAccountApiKey  api_key)
+ProjectServiceAccountCreateResponse::setApiKey(ProjectServiceAccountApiKey api_key)
 {
 	this->api_key = api_key;
 }

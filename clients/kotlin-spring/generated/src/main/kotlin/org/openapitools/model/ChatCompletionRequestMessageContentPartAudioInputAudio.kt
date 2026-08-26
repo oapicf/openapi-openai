@@ -22,10 +22,12 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ChatCompletionRequestMessageContentPartAudioInputAudio(
 
-    @Schema(example = "null", required = true, description = "Base64 encoded audio data.")
+    @Schema(required = true, description = "Base64 encoded audio data.")
+    @param:JsonProperty("data")
     @get:JsonProperty("data", required = true) val `data`: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The format of the encoded audio data. Currently supports \"wav\" and \"mp3\". ")
+    @Schema(required = true, description = "The format of the encoded audio data. Currently supports \"wav\" and \"mp3\". ")
+    @param:JsonProperty("format")
     @get:JsonProperty("format", required = true) val format: ChatCompletionRequestMessageContentPartAudioInputAudio.Format
 ) {
 
@@ -43,7 +45,7 @@ data class ChatCompletionRequestMessageContentPartAudioInputAudio(
             @JsonCreator
             fun forValue(value: kotlin.String): Format {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ChatCompletionRequestMessageContentPartAudioInputAudio'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Format'")
             }
         }
     }

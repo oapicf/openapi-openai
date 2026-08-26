@@ -51,42 +51,42 @@ public:
 
 	/*! \brief Set The identifier, which can be referenced in API endpoints
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The object type, which is always `organization.project`
 	 */
 	std::string getObject();
 
 	/*! \brief Set The object type, which is always `organization.project`
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get The name of the project. This appears in reporting.
 	 */
 	std::string getName();
 
 	/*! \brief Set The name of the project. This appears in reporting.
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get The Unix timestamp (in seconds) of when the project was created.
 	 */
 	int getCreatedAt();
 
 	/*! \brief Set The Unix timestamp (in seconds) of when the project was created.
 	 */
-	void setCreatedAt(int  created_at);
+	void setCreatedAt(int created_at);
 	/*! \brief Get The Unix timestamp (in seconds) of when the project was archived or `null`.
 	 */
 	int getArchivedAt();
 
 	/*! \brief Set The Unix timestamp (in seconds) of when the project was archived or `null`.
 	 */
-	void setArchivedAt(int  archived_at);
+	void setArchivedAt(int archived_at);
 	/*! \brief Get `active` or `archived`
 	 */
 	std::string getStatus();
 
 	/*! \brief Set `active` or `archived`
 	 */
-	void setStatus(std::string  status);
+	void setStatus(std::string status);
 
 
     private:

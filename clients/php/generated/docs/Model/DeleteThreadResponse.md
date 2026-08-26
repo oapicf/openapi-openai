@@ -1,4 +1,4 @@
-# # DeleteThreadResponse
+# DeleteThreadResponse
 
 ## Properties
 

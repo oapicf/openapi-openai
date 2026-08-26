@@ -32,7 +32,7 @@ class  UserDeleteResponse
 {
 public:
     UserDeleteResponse();
-    virtual ~UserDeleteResponse() = default;
+    virtual ~UserDeleteResponse();
 
 
     /// <summary>

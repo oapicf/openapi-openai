@@ -35,6 +35,8 @@ UsageModerationsResult::UsageModerationsResult()
     
 }
 
+UsageModerationsResult::~UsageModerationsResult() = default;
+
 void UsageModerationsResult::validate() const
 {
     std::stringstream msg;

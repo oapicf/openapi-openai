@@ -89,8 +89,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeResponseCreateParamsMaxResponseOutputTokens" />
     /// </summary>
-    public class RealtimeResponseCreateParamsMaxResponseOutputTokensJsonConverter : JsonConverter<RealtimeResponseCreateParamsMaxResponseOutputTokens>
+    public partial class RealtimeResponseCreateParamsMaxResponseOutputTokensJsonConverter : JsonConverter<RealtimeResponseCreateParamsMaxResponseOutputTokens>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeResponseCreateParamsMaxResponseOutputTokensJsonConverter" /> class.
+        /// </summary>
+        public RealtimeResponseCreateParamsMaxResponseOutputTokensJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeResponseCreateParamsMaxResponseOutputTokens" />
         /// </summary>

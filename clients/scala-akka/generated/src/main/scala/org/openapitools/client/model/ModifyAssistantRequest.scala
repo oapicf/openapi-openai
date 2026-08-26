@@ -15,6 +15,7 @@ import java.math.BigDecimal
 import org.openapitools.client.core.ApiModel
 
 case class ModifyAssistantRequest (
+  /* ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them.  */
   model: Option[String] = None,
   /* The name of the assistant. The maximum length is 256 characters.  */
   name: Option[String] = None,

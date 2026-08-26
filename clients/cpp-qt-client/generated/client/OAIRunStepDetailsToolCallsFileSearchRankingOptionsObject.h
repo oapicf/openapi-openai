@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIRunStepDetailsToolCallsFileSearchRankingOptionsObject : public OAIObject {
 public:
     OAIRunStepDetailsToolCallsFileSearchRankingOptionsObject();
-    OAIRunStepDetailsToolCallsFileSearchRankingOptionsObject(QString json);
+    OAIRunStepDetailsToolCallsFileSearchRankingOptionsObject(const QString &json);
     ~OAIRunStepDetailsToolCallsFileSearchRankingOptionsObject() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getRanker() const;
     void setRanker(const QString &ranker);

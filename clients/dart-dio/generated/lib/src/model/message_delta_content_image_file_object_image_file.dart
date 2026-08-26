@@ -89,15 +89,17 @@ class _$MessageDeltaContentImageFileObjectImageFileSerializer implements Primiti
         case r'file_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.fileId = valueDes;
           break;
         case r'detail':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MessageDeltaContentImageFileObjectImageFileDetailEnum),
-          ) as MessageDeltaContentImageFileObjectImageFileDetailEnum;
+            specifiedType: const FullType.nullable(MessageDeltaContentImageFileObjectImageFileDetailEnum),
+          ) as MessageDeltaContentImageFileObjectImageFileDetailEnum?;
+          if (valueDes == null) continue;
           result.detail = valueDes;
           break;
         default:

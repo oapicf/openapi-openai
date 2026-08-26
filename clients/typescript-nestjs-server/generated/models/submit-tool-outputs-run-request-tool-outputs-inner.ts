@@ -1,0 +1,13 @@
+
+
+export interface SubmitToolOutputsRunRequestToolOutputsInner { 
+  /**
+   * The ID of the tool call in the `required_action` object within the run object the output is being submitted for.
+   */
+  tool_call_id?: string;
+  /**
+   * The output of the tool call to be submitted to continue the run.
+   */
+  output?: string;
+}
+

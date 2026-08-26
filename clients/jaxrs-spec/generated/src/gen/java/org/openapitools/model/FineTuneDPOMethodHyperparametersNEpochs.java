@@ -18,7 +18,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. ")
 @JsonTypeName("FineTuneDPOMethod_hyperparameters_n_epochs")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTuneDPOMethodHyperparametersNEpochs   {
 
   public FineTuneDPOMethodHyperparametersNEpochs() {
@@ -55,12 +55,8 @@ public class FineTuneDPOMethodHyperparametersNEpochs   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
 }
-

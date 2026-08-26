@@ -25,6 +25,8 @@ ErrorEvent::ErrorEvent()
     
 }
 
+ErrorEvent::~ErrorEvent() = default;
+
 void ErrorEvent::validate() const
 {
     std::stringstream msg;

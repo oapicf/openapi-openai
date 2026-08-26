@@ -129,7 +129,7 @@ Array_of_content_parts_inner::getType()
 }
 
 void
-Array_of_content_parts_inner::setType(std::string  type)
+Array_of_content_parts_inner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -141,7 +141,7 @@ Array_of_content_parts_inner::getImageFile()
 }
 
 void
-Array_of_content_parts_inner::setImageFile(MessageContentImageFileObject_image_file  image_file)
+Array_of_content_parts_inner::setImageFile(MessageContentImageFileObject_image_file image_file)
 {
 	this->image_file = image_file;
 }
@@ -153,7 +153,7 @@ Array_of_content_parts_inner::getImageUrl()
 }
 
 void
-Array_of_content_parts_inner::setImageUrl(MessageContentImageUrlObject_image_url  image_url)
+Array_of_content_parts_inner::setImageUrl(MessageContentImageUrlObject_image_url image_url)
 {
 	this->image_url = image_url;
 }
@@ -165,7 +165,7 @@ Array_of_content_parts_inner::getText()
 }
 
 void
-Array_of_content_parts_inner::setText(std::string  text)
+Array_of_content_parts_inner::setText(std::string text)
 {
 	this->text = text;
 }

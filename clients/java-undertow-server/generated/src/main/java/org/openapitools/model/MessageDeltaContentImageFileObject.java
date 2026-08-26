@@ -25,7 +25,7 @@ import org.openapitools.model.MessageDeltaContentImageFileObjectImageFile;
  */
 
 @ApiModel(description = "References an image [File](/docs/api-reference/files) in the content of a message.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-26T05:15:47.876757065Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class MessageDeltaContentImageFileObject   {
   
   private Integer index;
@@ -140,10 +140,7 @@ public class MessageDeltaContentImageFileObject   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

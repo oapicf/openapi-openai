@@ -28,7 +28,7 @@ openai_api_run_step_delta_step_details_tool_calls_function_object_TYPE_e run_ste
 
 
 typedef struct run_step_delta_step_details_tool_calls_function_object_t {
-    int index; //numeric
+    int *index; //numeric
     char *id; // string
     openai_api_run_step_delta_step_details_tool_calls_function_object_TYPE_e type; //enum
     struct run_step_delta_step_details_tool_calls_function_object_function_t *function; //model
@@ -37,7 +37,7 @@ typedef struct run_step_delta_step_details_tool_calls_function_object_t {
 } run_step_delta_step_details_tool_calls_function_object_t;
 
 __attribute__((deprecated)) run_step_delta_step_details_tool_calls_function_object_t *run_step_delta_step_details_tool_calls_function_object_create(
-    int index,
+    int *index,
     char *id,
     openai_api_run_step_delta_step_details_tool_calls_function_object_TYPE_e type,
     run_step_delta_step_details_tool_calls_function_object_function_t *function

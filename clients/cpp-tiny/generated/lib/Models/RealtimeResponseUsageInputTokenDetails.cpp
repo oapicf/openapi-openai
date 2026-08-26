@@ -106,7 +106,7 @@ RealtimeResponse_usage_input_token_details::getCachedTokens()
 }
 
 void
-RealtimeResponse_usage_input_token_details::setCachedTokens(int  cached_tokens)
+RealtimeResponse_usage_input_token_details::setCachedTokens(int cached_tokens)
 {
 	this->cached_tokens = cached_tokens;
 }
@@ -118,7 +118,7 @@ RealtimeResponse_usage_input_token_details::getTextTokens()
 }
 
 void
-RealtimeResponse_usage_input_token_details::setTextTokens(int  text_tokens)
+RealtimeResponse_usage_input_token_details::setTextTokens(int text_tokens)
 {
 	this->text_tokens = text_tokens;
 }
@@ -130,7 +130,7 @@ RealtimeResponse_usage_input_token_details::getAudioTokens()
 }
 
 void
-RealtimeResponse_usage_input_token_details::setAudioTokens(int  audio_tokens)
+RealtimeResponse_usage_input_token_details::setAudioTokens(int audio_tokens)
 {
 	this->audio_tokens = audio_tokens;
 }

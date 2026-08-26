@@ -52,28 +52,28 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get 
 	 */
 	CostsResult_amount getAmount();
 
 	/*! \brief Set 
 	 */
-	void setAmount(CostsResult_amount  amount);
+	void setAmount(CostsResult_amount amount);
 	/*! \brief Get When `group_by=line_item`, this field provides the line item of the grouped costs result.
 	 */
 	std::string getLineItem();
 
 	/*! \brief Set When `group_by=line_item`, this field provides the line item of the grouped costs result.
 	 */
-	void setLineItem(std::string  line_item);
+	void setLineItem(std::string line_item);
 	/*! \brief Get When `group_by=project_id`, this field provides the project ID of the grouped costs result.
 	 */
 	std::string getProjectId();
 
 	/*! \brief Set When `group_by=project_id`, this field provides the project ID of the grouped costs result.
 	 */
-	void setProjectId(std::string  project_id);
+	void setProjectId(std::string project_id);
 
 
     private:

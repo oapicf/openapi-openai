@@ -33,13 +33,13 @@ class OAIImage;
 class OAIImagesResponse : public OAIObject {
 public:
     OAIImagesResponse();
-    OAIImagesResponse(QString json);
+    OAIImagesResponse(const QString &json);
     ~OAIImagesResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getCreated() const;
     void setCreated(const qint32 &created);

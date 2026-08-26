@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | **String** |  | [optional] [default to None]
+**model** | **String** | ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them.  | [optional] [default to None]
 **name** | **swagger::Nullable<String>** | The name of the assistant. The maximum length is 256 characters.  | [optional] [default to None]
 **description** | **swagger::Nullable<String>** | The description of the assistant. The maximum length is 512 characters.  | [optional] [default to None]
 **instructions** | **swagger::Nullable<String>** | The system instructions that the assistant uses. The maximum length is 256,000 characters.  | [optional] [default to None]

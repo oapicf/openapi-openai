@@ -74,8 +74,9 @@ class _$FineTuneDPOMethodSerializer implements PrimitiveSerializer<FineTuneDPOMe
         case r'hyperparameters':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FineTuneDPOMethodHyperparameters),
-          ) as FineTuneDPOMethodHyperparameters;
+            specifiedType: const FullType.nullable(FineTuneDPOMethodHyperparameters),
+          ) as FineTuneDPOMethodHyperparameters?;
+          if (valueDes == null) continue;
           result.hyperparameters.replace(valueDes);
           break;
         default:

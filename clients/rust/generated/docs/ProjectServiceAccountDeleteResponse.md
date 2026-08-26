@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **String** |  | 
+**object** | **Object** |  (enum: organization.project.service_account.deleted) | 
 **id** | **String** |  | 
 **deleted** | **bool** |  | 
 

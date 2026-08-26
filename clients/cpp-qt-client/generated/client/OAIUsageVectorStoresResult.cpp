@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIUsageVectorStoresResult::OAIUsageVectorStoresResult(QString json) {
+OAIUsageVectorStoresResult::OAIUsageVectorStoresResult(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIUsageVectorStoresResult::initializeModel() {
     m_project_id_isValid = false;
 }
 
-void OAIUsageVectorStoresResult::fromJson(QString jsonString) {
+void OAIUsageVectorStoresResult::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

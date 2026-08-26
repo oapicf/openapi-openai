@@ -25,6 +25,7 @@ from openapiopenai.models.create_embedding_request_input import CreateEmbeddingR
 from openapiopenai.models.create_embedding_request_model import CreateEmbeddingRequestModel
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class CreateEmbeddingRequest(BaseModel):
     """
@@ -32,9 +33,9 @@ class CreateEmbeddingRequest(BaseModel):
     """ # noqa: E501
     input: CreateEmbeddingRequestInput
     model: CreateEmbeddingRequestModel
-    encoding_format: Optional[StrictStr] = Field(default='float', description="The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).")
+    encoding_format: Optional[StrictStr] = Field(default='float', description="The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).", json_schema_extra={"examples": ["float"]})
     dimensions: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(default=None, description="The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. ")
-    user: Optional[StrictStr] = Field(default=None, description="A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ")
+    user: Optional[StrictStr] = Field(default=None, description="A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ", json_schema_extra={"examples": ["user-1234"]})
     __properties: ClassVar[List[str]] = ["input", "model", "encoding_format", "dimensions", "user"]
 
     @field_validator('encoding_format')
@@ -48,7 +49,8 @@ class CreateEmbeddingRequest(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -60,8 +62,7 @@ class CreateEmbeddingRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

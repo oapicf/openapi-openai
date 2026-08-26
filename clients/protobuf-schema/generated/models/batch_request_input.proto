@@ -25,7 +25,7 @@ message BatchRequestInput {
     METHOD_POST = 0;
   }
 
-  Method method = 3813153;
+  string method = 3813153;
 
   // The OpenAI API relative URL to be used for the request. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported.
   string url = 116079;

@@ -32,13 +32,13 @@ namespace OpenAPI {
 class OAIModifyThreadRequest_tool_resources_file_search : public OAIObject {
 public:
     OAIModifyThreadRequest_tool_resources_file_search();
-    OAIModifyThreadRequest_tool_resources_file_search(QString json);
+    OAIModifyThreadRequest_tool_resources_file_search(const QString &json);
     ~OAIModifyThreadRequest_tool_resources_file_search() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QList<QString> getVectorStoreIds() const;
     void setVectorStoreIds(const QList<QString> &vector_store_ids);

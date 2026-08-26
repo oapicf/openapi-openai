@@ -73,8 +73,8 @@ export function CreateThreadRequestFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'messages': json['messages'] == null ? undefined : ((json['messages'] as Array<any>).map(CreateMessageRequestFromJSON)),
-        'toolResources': json['tool_resources'] == null ? undefined : CreateThreadRequestToolResourcesFromJSON(json['tool_resources']),
-        'metadata': json['metadata'] == null ? undefined : json['metadata'],
+        'toolResources': json['tool_resources'] === undefined ? undefined : json['tool_resources'] === null ? null : CreateThreadRequestToolResourcesFromJSON(json['tool_resources']),
+        'metadata': json['metadata'] === undefined ? undefined : json['metadata'] === null ? null : json['metadata'],
     };
 }
 

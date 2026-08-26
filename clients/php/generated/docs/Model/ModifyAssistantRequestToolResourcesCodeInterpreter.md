@@ -1,4 +1,4 @@
-# # ModifyAssistantRequestToolResourcesCodeInterpreter
+# ModifyAssistantRequestToolResourcesCodeInterpreter
 
 ## Properties
 

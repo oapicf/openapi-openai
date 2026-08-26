@@ -47,7 +47,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"filename\" : \"filename\",\n  \"purpose\" : \"assistants\",\n  \"bytes\" : 0,\n  \"created_at\" : 6,\n  \"id\" : \"id\",\n  \"status_details\" : \"status_details\",\n  \"object\" : \"file\",\n  \"status\" : \"uploaded\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"bytes\" : 0,\n  \"created_at\" : 6,\n  \"filename\" : \"filename\",\n  \"object\" : \"file\",\n  \"purpose\" : \"assistants\",\n  \"status\" : \"uploaded\",\n  \"status_details\" : \"status_details\"\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<OpenAIFile>(exampleJson)
@@ -73,7 +73,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"deleted\" : true,\n  \"id\" : \"id\",\n  \"object\" : \"file\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"object\" : \"file\",\n  \"deleted\" : true\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<DeleteFileResponse>(exampleJson)
@@ -127,7 +127,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"first_id\" : \"file-abc123\",\n  \"data\" : [ {\n    \"filename\" : \"filename\",\n    \"purpose\" : \"assistants\",\n    \"bytes\" : 0,\n    \"created_at\" : 6,\n    \"id\" : \"id\",\n    \"status_details\" : \"status_details\",\n    \"object\" : \"file\",\n    \"status\" : \"uploaded\"\n  }, {\n    \"filename\" : \"filename\",\n    \"purpose\" : \"assistants\",\n    \"bytes\" : 0,\n    \"created_at\" : 6,\n    \"id\" : \"id\",\n    \"status_details\" : \"status_details\",\n    \"object\" : \"file\",\n    \"status\" : \"uploaded\"\n  } ],\n  \"last_id\" : \"file-abc456\",\n  \"has_more\" : false,\n  \"object\" : \"list\"\n}";
+            exampleJson = "{\n  \"object\" : \"list\",\n  \"data\" : [ {\n    \"id\" : \"id\",\n    \"bytes\" : 0,\n    \"created_at\" : 6,\n    \"filename\" : \"filename\",\n    \"object\" : \"file\",\n    \"purpose\" : \"assistants\",\n    \"status\" : \"uploaded\",\n    \"status_details\" : \"status_details\"\n  }, {\n    \"id\" : \"id\",\n    \"bytes\" : 0,\n    \"created_at\" : 6,\n    \"filename\" : \"filename\",\n    \"object\" : \"file\",\n    \"purpose\" : \"assistants\",\n    \"status\" : \"uploaded\",\n    \"status_details\" : \"status_details\"\n  } ],\n  \"first_id\" : \"file-abc123\",\n  \"last_id\" : \"file-abc456\",\n  \"has_more\" : false\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<ListFilesResponse>(exampleJson)
@@ -153,7 +153,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"filename\" : \"filename\",\n  \"purpose\" : \"assistants\",\n  \"bytes\" : 0,\n  \"created_at\" : 6,\n  \"id\" : \"id\",\n  \"status_details\" : \"status_details\",\n  \"object\" : \"file\",\n  \"status\" : \"uploaded\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"bytes\" : 0,\n  \"created_at\" : 6,\n  \"filename\" : \"filename\",\n  \"object\" : \"file\",\n  \"purpose\" : \"assistants\",\n  \"status\" : \"uploaded\",\n  \"status_details\" : \"status_details\"\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<OpenAIFile>(exampleJson)

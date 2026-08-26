@@ -146,7 +146,7 @@ CreateMessageRequest::getRole()
 }
 
 void
-CreateMessageRequest::setRole(std::string  role)
+CreateMessageRequest::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -158,7 +158,7 @@ CreateMessageRequest::getContent()
 }
 
 void
-CreateMessageRequest::setContent(CreateMessageRequest_content  content)
+CreateMessageRequest::setContent(CreateMessageRequest_content content)
 {
 	this->content = content;
 }
@@ -170,7 +170,7 @@ CreateMessageRequest::getAttachments()
 }
 
 void
-CreateMessageRequest::setAttachments(std::list <CreateMessageRequest_attachments_inner> attachments)
+CreateMessageRequest::setAttachments(std::list<CreateMessageRequest_attachments_inner> attachments)
 {
 	this->attachments = attachments;
 }
@@ -182,7 +182,7 @@ CreateMessageRequest::getMetadata()
 }
 
 void
-CreateMessageRequest::setMetadata(Object  metadata)
+CreateMessageRequest::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }

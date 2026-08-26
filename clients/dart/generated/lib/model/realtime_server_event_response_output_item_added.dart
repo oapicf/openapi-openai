@@ -75,10 +75,16 @@ class RealtimeServerEventResponseOutputItemAdded {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventResponseOutputItemAdded[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventResponseOutputItemAdded[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event_id'), 'Required key "RealtimeServerEventResponseOutputItemAdded[event_id]" is missing from JSON.');
+        assert(json[r'event_id'] != null, 'Required key "RealtimeServerEventResponseOutputItemAdded[event_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RealtimeServerEventResponseOutputItemAdded[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeServerEventResponseOutputItemAdded[type]" has a null value in JSON.');
+        assert(json.containsKey(r'response_id'), 'Required key "RealtimeServerEventResponseOutputItemAdded[response_id]" is missing from JSON.');
+        assert(json[r'response_id'] != null, 'Required key "RealtimeServerEventResponseOutputItemAdded[response_id]" has a null value in JSON.');
+        assert(json.containsKey(r'output_index'), 'Required key "RealtimeServerEventResponseOutputItemAdded[output_index]" is missing from JSON.');
+        assert(json[r'output_index'] != null, 'Required key "RealtimeServerEventResponseOutputItemAdded[output_index]" has a null value in JSON.');
+        assert(json.containsKey(r'item'), 'Required key "RealtimeServerEventResponseOutputItemAdded[item]" is missing from JSON.');
+        assert(json[r'item'] != null, 'Required key "RealtimeServerEventResponseOutputItemAdded[item]" has a null value in JSON.');
         return true;
       }());
 
@@ -144,27 +150,28 @@ class RealtimeServerEventResponseOutputItemAdded {
 }
 
 /// The event type, must be `response.output_item.added`.
-class RealtimeServerEventResponseOutputItemAddedTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventResponseOutputItemAddedTypeEnum._(this.value);
+enum RealtimeServerEventResponseOutputItemAddedTypeEnum {
+  responsePeriodOutputItemPeriodAdded._(r'response.output_item.added'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventResponseOutputItemAddedTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const responsePeriodOutputItemPeriodAdded = RealtimeServerEventResponseOutputItemAddedTypeEnum._(r'response.output_item.added');
-
-  /// List of all possible values in this [enum][RealtimeServerEventResponseOutputItemAddedTypeEnum].
-  static const values = <RealtimeServerEventResponseOutputItemAddedTypeEnum>[
-    responsePeriodOutputItemPeriodAdded,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventResponseOutputItemAddedTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventResponseOutputItemAddedTypeEnum? fromJson(dynamic value) => RealtimeServerEventResponseOutputItemAddedTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventResponseOutputItemAddedTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventResponseOutputItemAddedTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventResponseOutputItemAddedTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -186,9 +193,10 @@ class RealtimeServerEventResponseOutputItemAddedTypeEnumTypeTransformer {
 
   const RealtimeServerEventResponseOutputItemAddedTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventResponseOutputItemAddedTypeEnum data) => data.value;
+  String encode(RealtimeServerEventResponseOutputItemAddedTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventResponseOutputItemAddedTypeEnum.
+  /// Returns the instance of [RealtimeServerEventResponseOutputItemAddedTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -197,6 +205,9 @@ class RealtimeServerEventResponseOutputItemAddedTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventResponseOutputItemAddedTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventResponseOutputItemAddedTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'response.output_item.added': return RealtimeServerEventResponseOutputItemAddedTypeEnum.responsePeriodOutputItemPeriodAdded;
@@ -209,7 +220,7 @@ class RealtimeServerEventResponseOutputItemAddedTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeServerEventResponseOutputItemAddedTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventResponseOutputItemAddedTypeEnumTypeTransformer? _instance;
 }
 

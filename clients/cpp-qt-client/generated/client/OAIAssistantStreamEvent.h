@@ -37,13 +37,13 @@ namespace OpenAPI {
 class OAIAssistantStreamEvent : public OAIObject {
 public:
     OAIAssistantStreamEvent();
-    OAIAssistantStreamEvent(QString json);
+    OAIAssistantStreamEvent(const QString &json);
     ~OAIAssistantStreamEvent() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     bool isEnabled() const;
     void setEnabled(const bool &enabled);

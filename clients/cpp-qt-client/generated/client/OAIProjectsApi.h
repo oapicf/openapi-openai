@@ -59,6 +59,7 @@ public:
     void initializeServerConfigs();
     int setDefaultServerValue(int serverIndex,const QString &operation, const QString &variable,const QString &val);
     void setServerIndex(const QString &operation, int serverIndex);
+    void setServerIndex(int serverIndex);
     void setApiKey(const QString &apiKeyName, const QString &apiKey);
     void setBearerToken(const QString &token);
     void setUsername(const QString &username);
@@ -198,6 +199,13 @@ public:
 
 
 private:
+    enum class OauthMethod : int {
+        INVALID_VALUE_OPENAPI_GENERATED = 0,
+        ImplicitFlow = 1,
+        AuthorizationFlow = 2,
+        ClientCredentialsFlow = 3,
+        ResourceOwnerPasswordFlow = 4
+    };
     QMap<QString,int> _serverIndices;
     QMap<QString,QList<OAIServerConfiguration>> _serverConfigs;
     QMap<QString, QString> _apiKeys;
@@ -217,7 +225,7 @@ private:
     OauthImplicit _implicitFlow;
     OauthCredentials _credentialFlow;
     OauthPassword _passwordFlow;
-    int _OauthMethod = 0;
+    OauthMethod _OauthMethod = OauthMethod::INVALID_VALUE_OPENAPI_GENERATED;
 
     void archiveProjectCallback(OAIHttpRequestWorker *worker);
     void createProjectCallback(OAIHttpRequestWorker *worker);
@@ -282,120 +290,44 @@ Q_SIGNALS:
     void retrieveProjectUserSignalFull(OAIHttpRequestWorker *worker, OAIProjectUser summary);
     void updateProjectRateLimitsSignalFull(OAIHttpRequestWorker *worker, OAIProjectRateLimit summary);
 
-    Q_DECL_DEPRECATED_X("Use archiveProjectSignalError() instead")
-    void archiveProjectSignalE(OAIProject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void archiveProjectSignalError(OAIProject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createProjectSignalError() instead")
-    void createProjectSignalE(OAIProject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createProjectSignalError(OAIProject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createProjectServiceAccountSignalError() instead")
-    void createProjectServiceAccountSignalE(OAIProjectServiceAccountCreateResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createProjectServiceAccountSignalError(OAIProjectServiceAccountCreateResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createProjectUserSignalError() instead")
-    void createProjectUserSignalE(OAIProjectUser summary, QNetworkReply::NetworkError error_type, QString error_str);
     void createProjectUserSignalError(OAIProjectUser summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteProjectApiKeySignalError() instead")
-    void deleteProjectApiKeySignalE(OAIProjectApiKeyDeleteResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteProjectApiKeySignalError(OAIProjectApiKeyDeleteResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteProjectServiceAccountSignalError() instead")
-    void deleteProjectServiceAccountSignalE(OAIProjectServiceAccountDeleteResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteProjectServiceAccountSignalError(OAIProjectServiceAccountDeleteResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteProjectUserSignalError() instead")
-    void deleteProjectUserSignalE(OAIProjectUserDeleteResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteProjectUserSignalError(OAIProjectUserDeleteResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listProjectApiKeysSignalError() instead")
-    void listProjectApiKeysSignalE(OAIProjectApiKeyListResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listProjectApiKeysSignalError(OAIProjectApiKeyListResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listProjectRateLimitsSignalError() instead")
-    void listProjectRateLimitsSignalE(OAIProjectRateLimitListResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listProjectRateLimitsSignalError(OAIProjectRateLimitListResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listProjectServiceAccountsSignalError() instead")
-    void listProjectServiceAccountsSignalE(OAIProjectServiceAccountListResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listProjectServiceAccountsSignalError(OAIProjectServiceAccountListResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listProjectUsersSignalError() instead")
-    void listProjectUsersSignalE(OAIProjectUserListResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listProjectUsersSignalError(OAIProjectUserListResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listProjectsSignalError() instead")
-    void listProjectsSignalE(OAIProjectListResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listProjectsSignalError(OAIProjectListResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use modifyProjectSignalError() instead")
-    void modifyProjectSignalE(OAIProject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void modifyProjectSignalError(OAIProject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use modifyProjectUserSignalError() instead")
-    void modifyProjectUserSignalE(OAIProjectUser summary, QNetworkReply::NetworkError error_type, QString error_str);
     void modifyProjectUserSignalError(OAIProjectUser summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use retrieveProjectSignalError() instead")
-    void retrieveProjectSignalE(OAIProject summary, QNetworkReply::NetworkError error_type, QString error_str);
     void retrieveProjectSignalError(OAIProject summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use retrieveProjectApiKeySignalError() instead")
-    void retrieveProjectApiKeySignalE(OAIProjectApiKey summary, QNetworkReply::NetworkError error_type, QString error_str);
     void retrieveProjectApiKeySignalError(OAIProjectApiKey summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use retrieveProjectServiceAccountSignalError() instead")
-    void retrieveProjectServiceAccountSignalE(OAIProjectServiceAccount summary, QNetworkReply::NetworkError error_type, QString error_str);
     void retrieveProjectServiceAccountSignalError(OAIProjectServiceAccount summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use retrieveProjectUserSignalError() instead")
-    void retrieveProjectUserSignalE(OAIProjectUser summary, QNetworkReply::NetworkError error_type, QString error_str);
     void retrieveProjectUserSignalError(OAIProjectUser summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use updateProjectRateLimitsSignalError() instead")
-    void updateProjectRateLimitsSignalE(OAIProjectRateLimit summary, QNetworkReply::NetworkError error_type, QString error_str);
     void updateProjectRateLimitsSignalError(OAIProjectRateLimit summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
-    Q_DECL_DEPRECATED_X("Use archiveProjectSignalErrorFull() instead")
-    void archiveProjectSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void archiveProjectSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createProjectSignalErrorFull() instead")
-    void createProjectSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createProjectSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createProjectServiceAccountSignalErrorFull() instead")
-    void createProjectServiceAccountSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createProjectServiceAccountSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use createProjectUserSignalErrorFull() instead")
-    void createProjectUserSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void createProjectUserSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteProjectApiKeySignalErrorFull() instead")
-    void deleteProjectApiKeySignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteProjectApiKeySignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteProjectServiceAccountSignalErrorFull() instead")
-    void deleteProjectServiceAccountSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteProjectServiceAccountSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use deleteProjectUserSignalErrorFull() instead")
-    void deleteProjectUserSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteProjectUserSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listProjectApiKeysSignalErrorFull() instead")
-    void listProjectApiKeysSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listProjectApiKeysSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listProjectRateLimitsSignalErrorFull() instead")
-    void listProjectRateLimitsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listProjectRateLimitsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listProjectServiceAccountsSignalErrorFull() instead")
-    void listProjectServiceAccountsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listProjectServiceAccountsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listProjectUsersSignalErrorFull() instead")
-    void listProjectUsersSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listProjectUsersSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use listProjectsSignalErrorFull() instead")
-    void listProjectsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listProjectsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use modifyProjectSignalErrorFull() instead")
-    void modifyProjectSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void modifyProjectSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use modifyProjectUserSignalErrorFull() instead")
-    void modifyProjectUserSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void modifyProjectUserSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use retrieveProjectSignalErrorFull() instead")
-    void retrieveProjectSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void retrieveProjectSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use retrieveProjectApiKeySignalErrorFull() instead")
-    void retrieveProjectApiKeySignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void retrieveProjectApiKeySignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use retrieveProjectServiceAccountSignalErrorFull() instead")
-    void retrieveProjectServiceAccountSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void retrieveProjectServiceAccountSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use retrieveProjectUserSignalErrorFull() instead")
-    void retrieveProjectUserSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void retrieveProjectUserSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use updateProjectRateLimitsSignalErrorFull() instead")
-    void updateProjectRateLimitsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void updateProjectRateLimitsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();

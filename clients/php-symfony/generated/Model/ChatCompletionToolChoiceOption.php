@@ -51,7 +51,7 @@ class ChatCompletionToolChoiceOption
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['function'])]
     #[Assert\Type("string")]
@@ -61,7 +61,7 @@ class ChatCompletionToolChoiceOption
      * @var AssistantsNamedToolChoiceFunction|null
      * @SerializedName("function")
      * @Type("OpenAPI\Server\Model\AssistantsNamedToolChoiceFunction")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\AssistantsNamedToolChoiceFunction")]
@@ -90,12 +90,12 @@ class ChatCompletionToolChoiceOption
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of the tool. Currently, only `function` is supported.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of the tool. Currently, only `function` is supported.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -117,12 +117,12 @@ class ChatCompletionToolChoiceOption
     }
 
     /**
-    * Sets function.
-    *
-    * @param AssistantsNamedToolChoiceFunction|null $function
-    *
-    * @return $this
-    */
+     * Sets function.
+     *
+     * @param AssistantsNamedToolChoiceFunction|null $function
+     *
+     * @return $this
+     */
     public function setFunction(?AssistantsNamedToolChoiceFunction $function): self
     {
         $this->function = $function;

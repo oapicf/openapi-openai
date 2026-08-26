@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set Always `static`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	StaticChunkingStrategy getRStatic();
 
 	/*! \brief Set 
 	 */
-	void setRStatic(StaticChunkingStrategy  r_static);
+	void setRStatic(StaticChunkingStrategy r_static);
 
 
     private:

@@ -2,19 +2,20 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * The payload used to update the rate limits.
@@ -22,19 +23,25 @@ import javax.annotation.Generated;
 
 @Schema(name = "AuditLog_rate_limit_updated_changes_requested", description = "The payload used to update the rate limits.")
 @JsonTypeName("AuditLog_rate_limit_updated_changes_requested")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class AuditLogRateLimitUpdatedChangesRequested {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer maxRequestsPer1Minute;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer maxTokensPer1Minute;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer maxImagesPer1Minute;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer maxAudioMegabytesPer1Minute;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer maxRequestsPer1Day;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer batch1DayMaxInputTokens;
 
   public AuditLogRateLimitUpdatedChangesRequested maxRequestsPer1Minute(@Nullable Integer maxRequestsPer1Minute) {
@@ -53,6 +60,7 @@ public class AuditLogRateLimitUpdatedChangesRequested {
     return maxRequestsPer1Minute;
   }
 
+  @JsonProperty("max_requests_per_1_minute")
   public void setMaxRequestsPer1Minute(@Nullable Integer maxRequestsPer1Minute) {
     this.maxRequestsPer1Minute = maxRequestsPer1Minute;
   }
@@ -73,6 +81,7 @@ public class AuditLogRateLimitUpdatedChangesRequested {
     return maxTokensPer1Minute;
   }
 
+  @JsonProperty("max_tokens_per_1_minute")
   public void setMaxTokensPer1Minute(@Nullable Integer maxTokensPer1Minute) {
     this.maxTokensPer1Minute = maxTokensPer1Minute;
   }
@@ -93,6 +102,7 @@ public class AuditLogRateLimitUpdatedChangesRequested {
     return maxImagesPer1Minute;
   }
 
+  @JsonProperty("max_images_per_1_minute")
   public void setMaxImagesPer1Minute(@Nullable Integer maxImagesPer1Minute) {
     this.maxImagesPer1Minute = maxImagesPer1Minute;
   }
@@ -113,6 +123,7 @@ public class AuditLogRateLimitUpdatedChangesRequested {
     return maxAudioMegabytesPer1Minute;
   }
 
+  @JsonProperty("max_audio_megabytes_per_1_minute")
   public void setMaxAudioMegabytesPer1Minute(@Nullable Integer maxAudioMegabytesPer1Minute) {
     this.maxAudioMegabytesPer1Minute = maxAudioMegabytesPer1Minute;
   }
@@ -133,6 +144,7 @@ public class AuditLogRateLimitUpdatedChangesRequested {
     return maxRequestsPer1Day;
   }
 
+  @JsonProperty("max_requests_per_1_day")
   public void setMaxRequestsPer1Day(@Nullable Integer maxRequestsPer1Day) {
     this.maxRequestsPer1Day = maxRequestsPer1Day;
   }
@@ -153,6 +165,7 @@ public class AuditLogRateLimitUpdatedChangesRequested {
     return batch1DayMaxInputTokens;
   }
 
+  @JsonProperty("batch_1_day_max_input_tokens")
   public void setBatch1DayMaxInputTokens(@Nullable Integer batch1DayMaxInputTokens) {
     this.batch1DayMaxInputTokens = batch1DayMaxInputTokens;
   }
@@ -197,11 +210,8 @@ public class AuditLogRateLimitUpdatedChangesRequested {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

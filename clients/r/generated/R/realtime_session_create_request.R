@@ -187,15 +187,15 @@ RealtimeSessionCreateRequest <- R6::R6Class(
       }
       if (!is.null(self$`input_audio_transcription`)) {
         RealtimeSessionCreateRequestObject[["input_audio_transcription"]] <-
-          self$`input_audio_transcription`$toSimpleType()
+          self$extractSimpleType(self$`input_audio_transcription`)
       }
       if (!is.null(self$`turn_detection`)) {
         RealtimeSessionCreateRequestObject[["turn_detection"]] <-
-          self$`turn_detection`$toSimpleType()
+          self$extractSimpleType(self$`turn_detection`)
       }
       if (!is.null(self$`tools`)) {
         RealtimeSessionCreateRequestObject[["tools"]] <-
-          lapply(self$`tools`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`tools`)
       }
       if (!is.null(self$`tool_choice`)) {
         RealtimeSessionCreateRequestObject[["tool_choice"]] <-
@@ -207,9 +207,32 @@ RealtimeSessionCreateRequest <- R6::R6Class(
       }
       if (!is.null(self$`max_response_output_tokens`)) {
         RealtimeSessionCreateRequestObject[["max_response_output_tokens"]] <-
-          self$`max_response_output_tokens`$toSimpleType()
+          self$extractSimpleType(self$`max_response_output_tokens`)
       }
       return(RealtimeSessionCreateRequestObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

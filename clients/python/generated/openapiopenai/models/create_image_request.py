@@ -24,19 +24,20 @@ from typing_extensions import Annotated
 from openapiopenai.models.create_image_request_model import CreateImageRequestModel
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class CreateImageRequest(BaseModel):
     """
     CreateImageRequest
     """ # noqa: E501
-    prompt: StrictStr = Field(description="A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`.")
+    prompt: StrictStr = Field(description="A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`.", json_schema_extra={"examples": ["A cute baby sea otter"]})
     model: Optional[CreateImageRequestModel] = None
-    n: Optional[Annotated[int, Field(le=10, strict=True, ge=1)]] = Field(default=1, description="The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.")
-    quality: Optional[StrictStr] = Field(default='standard', description="The quality of the image that will be generated. `hd` creates images with finer details and greater consistency across the image. This param is only supported for `dall-e-3`.")
-    response_format: Optional[StrictStr] = Field(default='url', description="The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.")
-    size: Optional[StrictStr] = Field(default='1024x1024', description="The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3` models.")
-    style: Optional[StrictStr] = Field(default='vivid', description="The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`.")
-    user: Optional[StrictStr] = Field(default=None, description="A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ")
+    n: Optional[Annotated[int, Field(le=10, strict=True, ge=1)]] = Field(default=1, description="The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.", json_schema_extra={"examples": [1]})
+    quality: Optional[StrictStr] = Field(default='standard', description="The quality of the image that will be generated. `hd` creates images with finer details and greater consistency across the image. This param is only supported for `dall-e-3`.", json_schema_extra={"examples": ["standard"]})
+    response_format: Optional[StrictStr] = Field(default='url', description="The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.", json_schema_extra={"examples": ["url"]})
+    size: Optional[StrictStr] = Field(default='1024x1024', description="The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3` models.", json_schema_extra={"examples": ["1024x1024"]})
+    style: Optional[StrictStr] = Field(default='vivid', description="The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`.", json_schema_extra={"examples": ["vivid"]})
+    user: Optional[StrictStr] = Field(default=None, description="A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ", json_schema_extra={"examples": ["user-1234"]})
     __properties: ClassVar[List[str]] = ["prompt", "model", "n", "quality", "response_format", "size", "style", "user"]
 
     @field_validator('quality')
@@ -80,7 +81,8 @@ class CreateImageRequest(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -92,8 +94,7 @@ class CreateImageRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

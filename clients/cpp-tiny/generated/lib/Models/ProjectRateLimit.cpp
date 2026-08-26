@@ -232,7 +232,7 @@ ProjectRateLimit::getObject()
 }
 
 void
-ProjectRateLimit::setObject(std::string  object)
+ProjectRateLimit::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -244,7 +244,7 @@ ProjectRateLimit::getId()
 }
 
 void
-ProjectRateLimit::setId(std::string  id)
+ProjectRateLimit::setId(std::string id)
 {
 	this->id = id;
 }
@@ -256,7 +256,7 @@ ProjectRateLimit::getModel()
 }
 
 void
-ProjectRateLimit::setModel(std::string  model)
+ProjectRateLimit::setModel(std::string model)
 {
 	this->model = model;
 }
@@ -268,7 +268,7 @@ ProjectRateLimit::getMaxRequestsPer1Minute()
 }
 
 void
-ProjectRateLimit::setMaxRequestsPer1Minute(int  max_requests_per_1_minute)
+ProjectRateLimit::setMaxRequestsPer1Minute(int max_requests_per_1_minute)
 {
 	this->max_requests_per_1_minute = max_requests_per_1_minute;
 }
@@ -280,7 +280,7 @@ ProjectRateLimit::getMaxTokensPer1Minute()
 }
 
 void
-ProjectRateLimit::setMaxTokensPer1Minute(int  max_tokens_per_1_minute)
+ProjectRateLimit::setMaxTokensPer1Minute(int max_tokens_per_1_minute)
 {
 	this->max_tokens_per_1_minute = max_tokens_per_1_minute;
 }
@@ -292,7 +292,7 @@ ProjectRateLimit::getMaxImagesPer1Minute()
 }
 
 void
-ProjectRateLimit::setMaxImagesPer1Minute(int  max_images_per_1_minute)
+ProjectRateLimit::setMaxImagesPer1Minute(int max_images_per_1_minute)
 {
 	this->max_images_per_1_minute = max_images_per_1_minute;
 }
@@ -304,7 +304,7 @@ ProjectRateLimit::getMaxAudioMegabytesPer1Minute()
 }
 
 void
-ProjectRateLimit::setMaxAudioMegabytesPer1Minute(int  max_audio_megabytes_per_1_minute)
+ProjectRateLimit::setMaxAudioMegabytesPer1Minute(int max_audio_megabytes_per_1_minute)
 {
 	this->max_audio_megabytes_per_1_minute = max_audio_megabytes_per_1_minute;
 }
@@ -316,7 +316,7 @@ ProjectRateLimit::getMaxRequestsPer1Day()
 }
 
 void
-ProjectRateLimit::setMaxRequestsPer1Day(int  max_requests_per_1_day)
+ProjectRateLimit::setMaxRequestsPer1Day(int max_requests_per_1_day)
 {
 	this->max_requests_per_1_day = max_requests_per_1_day;
 }
@@ -328,7 +328,7 @@ ProjectRateLimit::getBatch1DayMaxInputTokens()
 }
 
 void
-ProjectRateLimit::setBatch1DayMaxInputTokens(int  batch_1_day_max_input_tokens)
+ProjectRateLimit::setBatch1DayMaxInputTokens(int batch_1_day_max_input_tokens)
 {
 	this->batch_1_day_max_input_tokens = batch_1_day_max_input_tokens;
 }

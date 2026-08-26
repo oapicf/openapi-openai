@@ -70,13 +70,36 @@ CreateChatCompletionResponseChoicesInnerLogprobs <- R6::R6Class(
       CreateChatCompletionResponseChoicesInnerLogprobsObject <- list()
       if (!is.null(self$`content`)) {
         CreateChatCompletionResponseChoicesInnerLogprobsObject[["content"]] <-
-          lapply(self$`content`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`content`)
       }
       if (!is.null(self$`refusal`)) {
         CreateChatCompletionResponseChoicesInnerLogprobsObject[["refusal"]] <-
-          lapply(self$`refusal`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`refusal`)
       }
       return(CreateChatCompletionResponseChoicesInnerLogprobsObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

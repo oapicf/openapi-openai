@@ -38,8 +38,8 @@ typedef struct project_t {
     char *id; // string
     openai_api_project_OBJECT_e object; //enum
     char *name; // string
-    int created_at; //numeric
-    int archived_at; //numeric
+    int *created_at; //numeric
+    int *archived_at; //numeric
     openai_api_project_STATUS_e status; //enum
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -49,8 +49,8 @@ __attribute__((deprecated)) project_t *project_create(
     char *id,
     openai_api_project_OBJECT_e object,
     char *name,
-    int created_at,
-    int archived_at,
+    int *created_at,
+    int *archived_at,
     openai_api_project_STATUS_e status
 );
 

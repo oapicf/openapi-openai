@@ -55,16 +55,14 @@ class ChatCompletionRequestMessageContentPartImageImageUrl {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ChatCompletionRequestMessageContentPartImageImageUrl[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ChatCompletionRequestMessageContentPartImageImageUrl[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'url'), 'Required key "ChatCompletionRequestMessageContentPartImageImageUrl[url]" is missing from JSON.');
+        assert(json[r'url'] != null, 'Required key "ChatCompletionRequestMessageContentPartImageImageUrl[url]" has a null value in JSON.');
         return true;
       }());
 
       return ChatCompletionRequestMessageContentPartImageImageUrl(
         url: mapValueOfType<String>(json, r'url')!,
-        detail: ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum.fromJson(json[r'detail']) ?? 'auto',
+        detail: ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum.fromJson(json[r'detail']) ?? const ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum._('auto'),
       );
     }
     return null;
@@ -117,31 +115,30 @@ class ChatCompletionRequestMessageContentPartImageImageUrl {
 }
 
 /// Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
-class ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum._(this.value);
+enum ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum {
+  auto._(r'auto'),
+  low._(r'low'),
+  high._(r'high'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const auto = ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum._(r'auto');
-  static const low = ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum._(r'low');
-  static const high = ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum._(r'high');
-
-  /// List of all possible values in this [enum][ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum].
-  static const values = <ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum>[
-    auto,
-    low,
-    high,
-  ];
-
+  /// Returns the instance of [ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum? fromJson(dynamic value) => ChatCompletionRequestMessageContentPartImageImageUrlDetailEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -163,9 +160,10 @@ class ChatCompletionRequestMessageContentPartImageImageUrlDetailEnumTypeTransfor
 
   const ChatCompletionRequestMessageContentPartImageImageUrlDetailEnumTypeTransformer._();
 
-  String encode(ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum data) => data.value;
+  String encode(ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum.
+  /// Returns the instance of [ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -174,6 +172,9 @@ class ChatCompletionRequestMessageContentPartImageImageUrlDetailEnumTypeTransfor
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'auto': return ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum.auto;
@@ -188,7 +189,7 @@ class ChatCompletionRequestMessageContentPartImageImageUrlDetailEnumTypeTransfor
     return null;
   }
 
-  /// Singleton [ChatCompletionRequestMessageContentPartImageImageUrlDetailEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ChatCompletionRequestMessageContentPartImageImageUrlDetailEnumTypeTransformer? _instance;
 }
 

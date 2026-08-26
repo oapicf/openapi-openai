@@ -52,42 +52,42 @@ public:
 
 	/*! \brief Set The identifier, which can be referenced in API endpoints.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The object type, which is always `vector_store.file_batch`.
 	 */
 	std::string getObject();
 
 	/*! \brief Set The object type, which is always `vector_store.file_batch`.
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get The Unix timestamp (in seconds) for when the vector store files batch was created.
 	 */
 	int getCreatedAt();
 
 	/*! \brief Set The Unix timestamp (in seconds) for when the vector store files batch was created.
 	 */
-	void setCreatedAt(int  created_at);
+	void setCreatedAt(int created_at);
 	/*! \brief Get The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.
 	 */
 	std::string getVectorStoreId();
 
 	/*! \brief Set The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.
 	 */
-	void setVectorStoreId(std::string  vector_store_id);
+	void setVectorStoreId(std::string vector_store_id);
 	/*! \brief Get The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.
 	 */
 	std::string getStatus();
 
 	/*! \brief Set The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.
 	 */
-	void setStatus(std::string  status);
+	void setStatus(std::string status);
 	/*! \brief Get 
 	 */
 	VectorStoreFileBatchObject_file_counts getFileCounts();
 
 	/*! \brief Set 
 	 */
-	void setFileCounts(VectorStoreFileBatchObject_file_counts  file_counts);
+	void setFileCounts(VectorStoreFileBatchObject_file_counts file_counts);
 
 
     private:

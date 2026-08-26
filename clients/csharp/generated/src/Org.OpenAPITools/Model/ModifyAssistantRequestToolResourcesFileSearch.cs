@@ -56,7 +56,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Overrides the [vector store](/docs/api-reference/vector-stores/object) attached to this assistant. There can be a maximum of 1 vector store attached to the assistant. </value>
         [JsonPropertyName("vector_store_ids")]
-        public List<string>? VectorStoreIds { get { return this.VectorStoreIdsOption; } set { this.VectorStoreIdsOption = new(value); } }
+        public List<string>? VectorStoreIds { get { return this.VectorStoreIdsOption.Value; } set { this.VectorStoreIdsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ModifyAssistantRequestToolResourcesFileSearch" />
     /// </summary>
-    public class ModifyAssistantRequestToolResourcesFileSearchJsonConverter : JsonConverter<ModifyAssistantRequestToolResourcesFileSearch>
+    public partial class ModifyAssistantRequestToolResourcesFileSearchJsonConverter : JsonConverter<ModifyAssistantRequestToolResourcesFileSearch>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ModifyAssistantRequestToolResourcesFileSearchJsonConverter" /> class.
+        /// </summary>
+        public ModifyAssistantRequestToolResourcesFileSearchJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ModifyAssistantRequestToolResourcesFileSearch" />
         /// </summary>

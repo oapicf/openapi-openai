@@ -1,4 +1,4 @@
-# # FineTuneSupervisedMethodHyperparameters
+# FineTuneSupervisedMethodHyperparameters
 
 ## Properties
 

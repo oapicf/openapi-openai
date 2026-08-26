@@ -55,7 +55,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * Represents an &#x60;assistant&#x60; that can call the model and use tools.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class AssistantObject {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -501,10 +501,7 @@ public class AssistantObject {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -567,16 +564,16 @@ public class AssistantObject {
       if ((jsonObj.get("instructions") != null && !jsonObj.get("instructions").isJsonNull()) && !jsonObj.get("instructions").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `instructions` to be a primitive type in the JSON string but got `%s`", jsonObj.get("instructions").toString()));
       }
-      // ensure the json data is an array
-      if (!jsonObj.get("tools").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `tools` to be an array in the JSON string but got `%s`", jsonObj.get("tools").toString()));
+      if (jsonObj.get("tools") != null) {
+        if (!jsonObj.get("tools").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `tools` to be an array in the JSON string but got `%s`", jsonObj.get("tools").toString()));
+        }
+        JsonArray jsonArraytools = jsonObj.getAsJsonArray("tools");
+        // validate the required field `tools` (array)
+        for (int i = 0; i < jsonArraytools.size(); i++) {
+          AssistantObjectToolsInner.validateJsonElement(jsonArraytools.get(i));
+        }
       }
-
-      JsonArray jsonArraytools = jsonObj.getAsJsonArray("tools");
-      // validate the required field `tools` (array)
-      for (int i = 0; i < jsonArraytools.size(); i++) {
-        AssistantObjectToolsInner.validateJsonElement(jsonArraytools.get(i));
-      };
       // validate the optional field `tool_resources`
       if (jsonObj.get("tool_resources") != null && !jsonObj.get("tool_resources").isJsonNull()) {
         AssistantObjectToolResources.validateJsonElement(jsonObj.get("tool_resources"));

@@ -30,6 +30,8 @@ ListBatchesResponse::ListBatchesResponse()
     
 }
 
+ListBatchesResponse::~ListBatchesResponse() = default;
+
 void ListBatchesResponse::validate() const
 {
     std::stringstream msg;

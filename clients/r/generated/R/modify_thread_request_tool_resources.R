@@ -68,13 +68,36 @@ ModifyThreadRequestToolResources <- R6::R6Class(
       ModifyThreadRequestToolResourcesObject <- list()
       if (!is.null(self$`code_interpreter`)) {
         ModifyThreadRequestToolResourcesObject[["code_interpreter"]] <-
-          self$`code_interpreter`$toSimpleType()
+          self$extractSimpleType(self$`code_interpreter`)
       }
       if (!is.null(self$`file_search`)) {
         ModifyThreadRequestToolResourcesObject[["file_search"]] <-
-          self$`file_search`$toSimpleType()
+          self$extractSimpleType(self$`file_search`)
       }
       return(ModifyThreadRequestToolResourcesObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

@@ -25,6 +25,7 @@ namespace OpenAPI\Server\Model;
 
 /**
  * CreateFineTuningJobRequestIntegrationsInnerType
+ * @description The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported.
  */
 enum CreateFineTuningJobRequestIntegrationsInnerType: string
 {

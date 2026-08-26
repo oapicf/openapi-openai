@@ -27,7 +27,7 @@ export interface DeleteFileResponse {
     id: string;
     /**
      * 
-     * @type {string}
+     * @type {DeleteFileResponseObjectEnum}
      * @memberof DeleteFileResponse
      */
     object: DeleteFileResponseObjectEnum;
@@ -55,6 +55,8 @@ export type DeleteFileResponseObjectEnum = typeof DeleteFileResponseObjectEnum[k
 export function instanceOfDeleteFileResponse(value: object): value is DeleteFileResponse {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'file') return false;
+    
     if (!('deleted' in value) || value['deleted'] === undefined) return false;
     return true;
 }

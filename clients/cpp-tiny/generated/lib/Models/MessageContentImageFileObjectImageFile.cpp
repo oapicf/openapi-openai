@@ -85,7 +85,7 @@ MessageContentImageFileObject_image_file::getFileId()
 }
 
 void
-MessageContentImageFileObject_image_file::setFileId(std::string  file_id)
+MessageContentImageFileObject_image_file::setFileId(std::string file_id)
 {
 	this->file_id = file_id;
 }
@@ -97,7 +97,7 @@ MessageContentImageFileObject_image_file::getDetail()
 }
 
 void
-MessageContentImageFileObject_image_file::setDetail(std::string  detail)
+MessageContentImageFileObject_image_file::setDetail(std::string detail)
 {
 	this->detail = detail;
 }

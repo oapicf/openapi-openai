@@ -25,6 +25,8 @@ CreateChatCompletionRequest_response_format::CreateChatCompletionRequest_respons
     
 }
 
+CreateChatCompletionRequest_response_format::~CreateChatCompletionRequest_response_format() = default;
+
 void CreateChatCompletionRequest_response_format::validate() const
 {
     std::stringstream msg;

@@ -56,7 +56,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * CreateCompletionRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateCompletionRequest {
   public static final String SERIALIZED_NAME_MODEL = "model";
   @SerializedName(SERIALIZED_NAME_MODEL)
@@ -66,7 +66,7 @@ public class CreateCompletionRequest {
   public static final String SERIALIZED_NAME_PROMPT = "prompt";
   @SerializedName(SERIALIZED_NAME_PROMPT)
   @javax.annotation.Nullable
-  private CreateCompletionRequestPrompt prompt = <|endoftext|>;
+  private CreateCompletionRequestPrompt prompt;
 
   public static final String SERIALIZED_NAME_BEST_OF = "best_of";
   @SerializedName(SERIALIZED_NAME_BEST_OF)
@@ -116,7 +116,7 @@ public class CreateCompletionRequest {
   public static final String SERIALIZED_NAME_STOP = "stop";
   @SerializedName(SERIALIZED_NAME_STOP)
   @javax.annotation.Nullable
-  private CreateCompletionRequestStop stop = null;
+  private CreateCompletionRequestStop stop;
 
   public static final String SERIALIZED_NAME_STREAM = "stream";
   @SerializedName(SERIALIZED_NAME_STREAM)
@@ -595,10 +595,7 @@ public class CreateCompletionRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -643,8 +640,10 @@ public class CreateCompletionRequest {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the required field `model`
       CreateCompletionRequestModel.validateJsonElement(jsonObj.get("model"));
+      if (jsonObj.get("prompt") != null && !jsonObj.get("prompt").isJsonNull()) {
       // validate the required field `prompt`
       CreateCompletionRequestPrompt.validateJsonElement(jsonObj.get("prompt"));
+      }
       // validate the optional field `stop`
       if (jsonObj.get("stop") != null && !jsonObj.get("stop").isJsonNull()) {
         CreateCompletionRequestStop.validateJsonElement(jsonObj.get("stop"));

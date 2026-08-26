@@ -12,21 +12,22 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  AuditLogEventType,
-  ListAuditLogsEffectiveAtParameter,
-  ListAuditLogsResponse,
-} from '../models/index';
 import {
+    type AuditLogEventType,
     AuditLogEventTypeFromJSON,
     AuditLogEventTypeToJSON,
+} from '../models/AuditLogEventType';
+import {
+    type ListAuditLogsEffectiveAtParameter,
     ListAuditLogsEffectiveAtParameterFromJSON,
     ListAuditLogsEffectiveAtParameterToJSON,
+} from '../models/ListAuditLogsEffectiveAtParameter';
+import {
+    type ListAuditLogsResponse,
     ListAuditLogsResponseFromJSON,
     ListAuditLogsResponseToJSON,
-} from '../models/index';
+} from '../models/ListAuditLogsResponse';
 
 export interface ListAuditLogsRequest {
     effectiveAt?: ListAuditLogsEffectiveAtParameter;
@@ -46,9 +47,9 @@ export interface ListAuditLogsRequest {
 export class AuditLogsApi extends runtime.BaseAPI {
 
     /**
-     * List user actions and configuration changes within this organization.
+     * Creates request options for listAuditLogs without sending the request
      */
-    async listAuditLogsRaw(requestParameters: ListAuditLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAuditLogsResponse>> {
+    async listAuditLogsRequestOpts(requestParameters: ListAuditLogsRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['effectiveAt'] != null) {
@@ -100,12 +101,20 @@ export class AuditLogsApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/audit_logs`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List user actions and configuration changes within this organization.
+     */
+    async listAuditLogsRaw(requestParameters: ListAuditLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAuditLogsResponse>> {
+        const requestOptions = await this.listAuditLogsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListAuditLogsResponseFromJSON(jsonValue));
     }

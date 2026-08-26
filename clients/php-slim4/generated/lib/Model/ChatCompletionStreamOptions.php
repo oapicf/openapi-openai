@@ -54,7 +54,8 @@ class ChatCompletionStreamOptions extends BaseModel
     }
   },
   "description" : "Options for streaming response. Only set this when you set `stream: true`.\n",
-  "nullable" : true
+  "nullable" : true,
+  "default" : null
 }
 SCHEMA;
 }

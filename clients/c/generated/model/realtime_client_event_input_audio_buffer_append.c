@@ -31,11 +31,11 @@ static realtime_client_event_input_audio_buffer_append_t *realtime_client_event_
     if (!realtime_client_event_input_audio_buffer_append_local_var) {
         return NULL;
     }
+    memset(realtime_client_event_input_audio_buffer_append_local_var, 0, sizeof(realtime_client_event_input_audio_buffer_append_t));
+    realtime_client_event_input_audio_buffer_append_local_var->_library_owned = 1;
     realtime_client_event_input_audio_buffer_append_local_var->event_id = event_id;
     realtime_client_event_input_audio_buffer_append_local_var->type = type;
     realtime_client_event_input_audio_buffer_append_local_var->audio = audio;
-
-    realtime_client_event_input_audio_buffer_append_local_var->_library_owned = 1;
     return realtime_client_event_input_audio_buffer_append_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) realtime_client_event_input_audio_buffer_append_t *r
     openai_api_realtime_client_event_input_audio_buffer_append_TYPE_e type,
     char *audio
     ) {
-    return realtime_client_event_input_audio_buffer_append_create_internal (
+    realtime_client_event_input_audio_buffer_append_t *result = realtime_client_event_input_audio_buffer_append_create_internal (
         event_id,
         type,
         audio
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_client_event_input_audio_buffer_append_free(realtime_client_event_input_audio_buffer_append_t *realtime_client_event_input_audio_buffer_append) {
@@ -112,6 +115,10 @@ realtime_client_event_input_audio_buffer_append_t *realtime_client_event_input_a
 
     realtime_client_event_input_audio_buffer_append_t *realtime_client_event_input_audio_buffer_append_local_var = NULL;
 
+    char *event_id_local_str = NULL;
+
+    char *audio_local_str = NULL;
+
     // realtime_client_event_input_audio_buffer_append->event_id
     cJSON *event_id = cJSON_GetObjectItemCaseSensitive(realtime_client_event_input_audio_buffer_appendJSON, "event_id");
     if (cJSON_IsNull(event_id)) {
@@ -157,14 +164,29 @@ realtime_client_event_input_audio_buffer_append_t *realtime_client_event_input_a
     }
 
 
+    if (event_id && !cJSON_IsNull(event_id)) event_id_local_str = strdup(event_id->valuestring);
+    if (audio && !cJSON_IsNull(audio)) audio_local_str = strdup(audio->valuestring);
+
     realtime_client_event_input_audio_buffer_append_local_var = realtime_client_event_input_audio_buffer_append_create_internal (
-        event_id && !cJSON_IsNull(event_id) ? strdup(event_id->valuestring) : NULL,
+        event_id_local_str,
         typeVariable,
-        strdup(audio->valuestring)
+        audio_local_str
         );
+
+    if (!realtime_client_event_input_audio_buffer_append_local_var) {
+        goto end;
+    }
 
     return realtime_client_event_input_audio_buffer_append_local_var;
 end:
+    if (event_id_local_str) {
+        free(event_id_local_str);
+        event_id_local_str = NULL;
+    }
+    if (audio_local_str) {
+        free(audio_local_str);
+        audio_local_str = NULL;
+    }
     return NULL;
 
 }

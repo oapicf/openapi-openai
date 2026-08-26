@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type CreateVectorStoreFileBatchRequest struct {
@@ -21,8 +26,67 @@ type CreateVectorStoreFileBatchRequest struct {
 
 	ChunkingStrategy ChunkingStrategyRequestParam `json:"chunking_strategy,omitempty"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into CreateVectorStoreFileBatchRequest
+func (o *CreateVectorStoreFileBatchRequest) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"file_ids",
+	}
 
-// AssertCreateVectorStoreFileBatchRequestRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"file_ids": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"file_ids": {},
+		"chunking_strategy": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded CreateVectorStoreFileBatchRequest
+
+	if value, exists := allProperties["file_ids"]; exists {
+		if err = json.Unmarshal(value, &decoded.FileIds); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["chunking_strategy"]; exists {
+		if err = json.Unmarshal(value, &decoded.ChunkingStrategy); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertCreateVectorStoreFileBatchRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateVectorStoreFileBatchRequestRequired(obj CreateVectorStoreFileBatchRequest) error {
 	elements := map[string]interface{}{
 		"file_ids": obj.FileIds,

@@ -30,10 +30,10 @@ static message_content_image_file_object_image_file_t *message_content_image_fil
     if (!message_content_image_file_object_image_file_local_var) {
         return NULL;
     }
+    memset(message_content_image_file_object_image_file_local_var, 0, sizeof(message_content_image_file_object_image_file_t));
+    message_content_image_file_object_image_file_local_var->_library_owned = 1;
     message_content_image_file_object_image_file_local_var->file_id = file_id;
     message_content_image_file_object_image_file_local_var->detail = detail;
-
-    message_content_image_file_object_image_file_local_var->_library_owned = 1;
     return message_content_image_file_object_image_file_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) message_content_image_file_object_image_file_t *mess
     char *file_id,
     openai_api_message_content_image_file_object_image_file_DETAIL_e detail
     ) {
-    return message_content_image_file_object_image_file_create_internal (
+    message_content_image_file_object_image_file_t *result = message_content_image_file_object_image_file_create_internal (
         file_id,
         detail
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_content_image_file_object_image_file_free(message_content_image_file_object_image_file_t *message_content_image_file_object_image_file) {
@@ -95,6 +98,8 @@ message_content_image_file_object_image_file_t *message_content_image_file_objec
 
     message_content_image_file_object_image_file_t *message_content_image_file_object_image_file_local_var = NULL;
 
+    char *file_id_local_str = NULL;
+
     // message_content_image_file_object_image_file->file_id
     cJSON *file_id = cJSON_GetObjectItemCaseSensitive(message_content_image_file_object_image_fileJSON, "file_id");
     if (cJSON_IsNull(file_id)) {
@@ -125,13 +130,23 @@ message_content_image_file_object_image_file_t *message_content_image_file_objec
     }
 
 
+    if (file_id && !cJSON_IsNull(file_id)) file_id_local_str = strdup(file_id->valuestring);
+
     message_content_image_file_object_image_file_local_var = message_content_image_file_object_image_file_create_internal (
-        strdup(file_id->valuestring),
+        file_id_local_str,
         detail ? detailVariable : openai_api_message_content_image_file_object_image_file_DETAIL_NULL
         );
 
+    if (!message_content_image_file_object_image_file_local_var) {
+        goto end;
+    }
+
     return message_content_image_file_object_image_file_local_var;
 end:
+    if (file_id_local_str) {
+        free(file_id_local_str);
+        file_id_local_str = NULL;
+    }
     return NULL;
 
 }

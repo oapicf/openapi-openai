@@ -34,13 +34,13 @@ class OAIRealtimeResponse_usage_output_token_details;
 class OAIRealtimeResponse_usage : public OAIObject {
 public:
     OAIRealtimeResponse_usage();
-    OAIRealtimeResponse_usage(QString json);
+    OAIRealtimeResponse_usage(const QString &json);
     ~OAIRealtimeResponse_usage() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getTotalTokens() const;
     void setTotalTokens(const qint32 &total_tokens);

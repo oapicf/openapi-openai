@@ -136,7 +136,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The ID of the tool call object.</value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -168,8 +168,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepDeltaStepDetailsToolCallsFileSearchObject" />
     /// </summary>
-    public class RunStepDeltaStepDetailsToolCallsFileSearchObjectJsonConverter : JsonConverter<RunStepDeltaStepDetailsToolCallsFileSearchObject>
+    public partial class RunStepDeltaStepDetailsToolCallsFileSearchObjectJsonConverter : JsonConverter<RunStepDeltaStepDetailsToolCallsFileSearchObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepDeltaStepDetailsToolCallsFileSearchObjectJsonConverter" /> class.
+        /// </summary>
+        public RunStepDeltaStepDetailsToolCallsFileSearchObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepDeltaStepDetailsToolCallsFileSearchObject" />
         /// </summary>

@@ -14,6 +14,9 @@ import { CreateFineTuningJobRequestIntegrationsInnerWandb } from '../models/Crea
 import { HttpFile } from '../http/http';
 
 export class CreateFineTuningJobRequestIntegrationsInner {
+    /**
+    * The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
+    */
     'type': CreateFineTuningJobRequestIntegrationsInnerTypeEnum;
     'wandb': CreateFineTuningJobRequestIntegrationsInnerWandb;
 

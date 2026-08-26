@@ -9,20 +9,20 @@ import org.openapitools.model.RealtimeServerEventResponseContentPartDonePart;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Returned when a content part is done streaming in an assistant message item. Also emitted when a Response is interrupted, incomplete, or cancelled. 
  */
 
 @Schema(name = "RealtimeServerEventResponseContentPartDone", description = "Returned when a content part is done streaming in an assistant message item. Also emitted when a Response is interrupted, incomplete, or cancelled. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeServerEventResponseContentPartDone {
 
   private String eventId;
@@ -105,6 +105,7 @@ public class RealtimeServerEventResponseContentPartDone {
     return eventId;
   }
 
+  @JsonProperty("event_id")
   public void setEventId(String eventId) {
     this.eventId = eventId;
   }
@@ -125,6 +126,7 @@ public class RealtimeServerEventResponseContentPartDone {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -145,6 +147,7 @@ public class RealtimeServerEventResponseContentPartDone {
     return responseId;
   }
 
+  @JsonProperty("response_id")
   public void setResponseId(String responseId) {
     this.responseId = responseId;
   }
@@ -165,6 +168,7 @@ public class RealtimeServerEventResponseContentPartDone {
     return itemId;
   }
 
+  @JsonProperty("item_id")
   public void setItemId(String itemId) {
     this.itemId = itemId;
   }
@@ -185,6 +189,7 @@ public class RealtimeServerEventResponseContentPartDone {
     return outputIndex;
   }
 
+  @JsonProperty("output_index")
   public void setOutputIndex(Integer outputIndex) {
     this.outputIndex = outputIndex;
   }
@@ -205,6 +210,7 @@ public class RealtimeServerEventResponseContentPartDone {
     return contentIndex;
   }
 
+  @JsonProperty("content_index")
   public void setContentIndex(Integer contentIndex) {
     this.contentIndex = contentIndex;
   }
@@ -225,6 +231,7 @@ public class RealtimeServerEventResponseContentPartDone {
     return part;
   }
 
+  @JsonProperty("part")
   public void setPart(RealtimeServerEventResponseContentPartDonePart part) {
     this.part = part;
   }
@@ -271,11 +278,8 @@ public class RealtimeServerEventResponseContentPartDone {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

@@ -127,10 +127,7 @@ SUBMIT_TOOL_OUTPUTS(String.valueOf("submit_tool_outputs"));
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

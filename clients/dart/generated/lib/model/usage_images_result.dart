@@ -127,10 +127,12 @@ class UsageImagesResult {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UsageImagesResult[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UsageImagesResult[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "UsageImagesResult[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "UsageImagesResult[object]" has a null value in JSON.');
+        assert(json.containsKey(r'images'), 'Required key "UsageImagesResult[images]" is missing from JSON.');
+        assert(json[r'images'] != null, 'Required key "UsageImagesResult[images]" has a null value in JSON.');
+        assert(json.containsKey(r'num_model_requests'), 'Required key "UsageImagesResult[num_model_requests]" is missing from JSON.');
+        assert(json[r'num_model_requests'] != null, 'Required key "UsageImagesResult[num_model_requests]" has a null value in JSON.');
         return true;
       }());
 
@@ -198,27 +200,28 @@ class UsageImagesResult {
 }
 
 
-class UsageImagesResultObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const UsageImagesResultObjectEnum._(this.value);
+enum UsageImagesResultObjectEnum {
+  organizationPeriodUsagePeriodImagesPeriodResult._(r'organization.usage.images.result'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const UsageImagesResultObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const organizationPeriodUsagePeriodImagesPeriodResult = UsageImagesResultObjectEnum._(r'organization.usage.images.result');
-
-  /// List of all possible values in this [enum][UsageImagesResultObjectEnum].
-  static const values = <UsageImagesResultObjectEnum>[
-    organizationPeriodUsagePeriodImagesPeriodResult,
-  ];
-
+  /// Returns the instance of [UsageImagesResultObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static UsageImagesResultObjectEnum? fromJson(dynamic value) => UsageImagesResultObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [UsageImagesResultObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<UsageImagesResultObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <UsageImagesResultObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -240,9 +243,10 @@ class UsageImagesResultObjectEnumTypeTransformer {
 
   const UsageImagesResultObjectEnumTypeTransformer._();
 
-  String encode(UsageImagesResultObjectEnum data) => data.value;
+  String encode(UsageImagesResultObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a UsageImagesResultObjectEnum.
+  /// Returns the instance of [UsageImagesResultObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -251,6 +255,9 @@ class UsageImagesResultObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   UsageImagesResultObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is UsageImagesResultObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'organization.usage.images.result': return UsageImagesResultObjectEnum.organizationPeriodUsagePeriodImagesPeriodResult;
@@ -263,7 +270,7 @@ class UsageImagesResultObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [UsageImagesResultObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static UsageImagesResultObjectEnumTypeTransformer? _instance;
 }
 

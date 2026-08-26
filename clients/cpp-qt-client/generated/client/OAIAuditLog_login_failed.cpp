@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIAuditLog_login_failed::OAIAuditLog_login_failed(QString json) {
+OAIAuditLog_login_failed::OAIAuditLog_login_failed(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIAuditLog_login_failed::initializeModel() {
     m_error_message_isValid = false;
 }
 
-void OAIAuditLog_login_failed::fromJson(QString jsonString) {
+void OAIAuditLog_login_failed::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

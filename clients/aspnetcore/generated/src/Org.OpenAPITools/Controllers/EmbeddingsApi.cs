@@ -46,7 +46,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"data\" : [ {\n    \"index\" : 0,\n    \"embedding\" : [ 6.027456183070403, 6.027456183070403 ],\n    \"object\" : \"embedding\"\n  }, {\n    \"index\" : 0,\n    \"embedding\" : [ 6.027456183070403, 6.027456183070403 ],\n    \"object\" : \"embedding\"\n  } ],\n  \"usage\" : {\n    \"prompt_tokens\" : 1,\n    \"total_tokens\" : 5\n  },\n  \"model\" : \"model\",\n  \"object\" : \"list\"\n}";
+            exampleJson = "{\n  \"data\" : [ {\n    \"index\" : 0,\n    \"embedding\" : [ 6.027456183070403, 6.027456183070403 ],\n    \"object\" : \"embedding\"\n  }, {\n    \"index\" : 0,\n    \"embedding\" : [ 6.027456183070403, 6.027456183070403 ],\n    \"object\" : \"embedding\"\n  } ],\n  \"model\" : \"model\",\n  \"object\" : \"list\",\n  \"usage\" : {\n    \"prompt_tokens\" : 1,\n    \"total_tokens\" : 5\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<CreateEmbeddingResponse>(exampleJson)

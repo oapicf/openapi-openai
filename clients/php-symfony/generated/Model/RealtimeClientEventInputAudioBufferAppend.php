@@ -51,7 +51,7 @@ class RealtimeClientEventInputAudioBufferAppend
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $eventId = null;
 
@@ -61,7 +61,7 @@ class RealtimeClientEventInputAudioBufferAppend
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['input_audio_buffer.append'])]
     #[Assert\Type("string")]
@@ -73,7 +73,7 @@ class RealtimeClientEventInputAudioBufferAppend
      * @var string|null
      * @SerializedName("audio")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $audio = null;
@@ -102,12 +102,12 @@ class RealtimeClientEventInputAudioBufferAppend
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  Optional client-generated ID used to identify this event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  Optional client-generated ID used to identify this event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId = null): self
     {
         $this->eventId = $eventId;
@@ -129,12 +129,12 @@ class RealtimeClientEventInputAudioBufferAppend
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `input_audio_buffer.append`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `input_audio_buffer.append`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -156,12 +156,12 @@ class RealtimeClientEventInputAudioBufferAppend
     }
 
     /**
-    * Sets audio.
-    *
-    * @param string|null $audio  Base64-encoded audio bytes. This must be in the format specified by the  `input_audio_format` field in the session configuration.
-    *
-    * @return $this
-    */
+     * Sets audio.
+     *
+     * @param string|null $audio  Base64-encoded audio bytes. This must be in the format specified by the  `input_audio_format` field in the session configuration.
+     *
+     * @return $this
+     */
     public function setAudio(?string $audio): self
     {
         $this->audio = $audio;

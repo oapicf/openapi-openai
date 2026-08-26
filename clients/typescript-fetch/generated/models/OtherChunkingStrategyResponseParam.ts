@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface OtherChunkingStrategyResponseParam {
     /**
      * Always `other`.
-     * @type {string}
+     * @type {OtherChunkingStrategyResponseParamTypeEnum}
      * @memberof OtherChunkingStrategyResponseParam
      */
     type: OtherChunkingStrategyResponseParamTypeEnum;
@@ -42,6 +42,8 @@ export type OtherChunkingStrategyResponseParamTypeEnum = typeof OtherChunkingStr
  */
 export function instanceOfOtherChunkingStrategyResponseParam(value: object): value is OtherChunkingStrategyResponseParam {
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (value['type'] !== 'other') return false;
+    
     return true;
 }
 

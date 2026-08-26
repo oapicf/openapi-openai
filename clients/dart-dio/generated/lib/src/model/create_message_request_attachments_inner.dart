@@ -88,15 +88,17 @@ class _$CreateMessageRequestAttachmentsInnerSerializer implements PrimitiveSeria
         case r'file_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.fileId = valueDes;
           break;
         case r'tools':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(CreateMessageRequestAttachmentsInnerToolsInner)]),
-          ) as BuiltList<CreateMessageRequestAttachmentsInnerToolsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(CreateMessageRequestAttachmentsInnerToolsInner)]),
+          ) as BuiltList<CreateMessageRequestAttachmentsInnerToolsInner>?;
+          if (valueDes == null) continue;
           result.tools.replace(valueDes);
           break;
         default:

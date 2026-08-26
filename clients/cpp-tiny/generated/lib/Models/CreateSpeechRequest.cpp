@@ -149,7 +149,7 @@ CreateSpeechRequest::getModel()
 }
 
 void
-CreateSpeechRequest::setModel(CreateSpeechRequest_model  model)
+CreateSpeechRequest::setModel(CreateSpeechRequest_model model)
 {
 	this->model = model;
 }
@@ -161,7 +161,7 @@ CreateSpeechRequest::getInput()
 }
 
 void
-CreateSpeechRequest::setInput(std::string  input)
+CreateSpeechRequest::setInput(std::string input)
 {
 	this->input = input;
 }
@@ -173,7 +173,7 @@ CreateSpeechRequest::getVoice()
 }
 
 void
-CreateSpeechRequest::setVoice(std::string  voice)
+CreateSpeechRequest::setVoice(std::string voice)
 {
 	this->voice = voice;
 }
@@ -185,7 +185,7 @@ CreateSpeechRequest::getResponseFormat()
 }
 
 void
-CreateSpeechRequest::setResponseFormat(std::string  response_format)
+CreateSpeechRequest::setResponseFormat(std::string response_format)
 {
 	this->response_format = response_format;
 }
@@ -197,7 +197,7 @@ CreateSpeechRequest::getSpeed()
 }
 
 void
-CreateSpeechRequest::setSpeed(long  speed)
+CreateSpeechRequest::setSpeed(long speed)
 {
 	this->speed = speed;
 }

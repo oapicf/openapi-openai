@@ -51,7 +51,7 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<Response> usageAudioSpeechesWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, }) async {
+  Future<Response> usageAudioSpeechesWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/usage/audio_speeches';
 
@@ -102,6 +102,7 @@ class UsageApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -138,8 +139,8 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<UsageResponse?> usageAudioSpeeches(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, }) async {
-    final response = await usageAudioSpeechesWithHttpInfo(startTime,  endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page, );
+  Future<UsageResponse?> usageAudioSpeeches(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
+    final response = await usageAudioSpeechesWithHttpInfo(startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -188,7 +189,7 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<Response> usageAudioTranscriptionsWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, }) async {
+  Future<Response> usageAudioTranscriptionsWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/usage/audio_transcriptions';
 
@@ -239,6 +240,7 @@ class UsageApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -275,8 +277,8 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<UsageResponse?> usageAudioTranscriptions(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, }) async {
-    final response = await usageAudioTranscriptionsWithHttpInfo(startTime,  endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page, );
+  Future<UsageResponse?> usageAudioTranscriptions(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
+    final response = await usageAudioTranscriptionsWithHttpInfo(startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -316,7 +318,7 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<Response> usageCodeInterpreterSessionsWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? groupBy, int? limit, String? page, }) async {
+  Future<Response> usageCodeInterpreterSessionsWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/usage/code_interpreter_sessions';
 
@@ -358,6 +360,7 @@ class UsageApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -385,8 +388,8 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<UsageResponse?> usageCodeInterpreterSessions(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? groupBy, int? limit, String? page, }) async {
-    final response = await usageCodeInterpreterSessionsWithHttpInfo(startTime,  endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, groupBy: groupBy, limit: limit, page: page, );
+  Future<UsageResponse?> usageCodeInterpreterSessions(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
+    final response = await usageCodeInterpreterSessionsWithHttpInfo(startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, groupBy: groupBy, limit: limit, page: page, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -438,7 +441,7 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<Response> usageCompletionsWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, bool? batch, List<String>? groupBy, int? limit, String? page, }) async {
+  Future<Response> usageCompletionsWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, bool? batch, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/usage/completions';
 
@@ -492,6 +495,7 @@ class UsageApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -531,8 +535,8 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<UsageResponse?> usageCompletions(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, bool? batch, List<String>? groupBy, int? limit, String? page, }) async {
-    final response = await usageCompletionsWithHttpInfo(startTime,  endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, batch: batch, groupBy: groupBy, limit: limit, page: page, );
+  Future<UsageResponse?> usageCompletions(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, bool? batch, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
+    final response = await usageCompletionsWithHttpInfo(startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, batch: batch, groupBy: groupBy, limit: limit, page: page, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -572,7 +576,7 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<Response> usageCostsWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? groupBy, int? limit, String? page, }) async {
+  Future<Response> usageCostsWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/costs';
 
@@ -614,6 +618,7 @@ class UsageApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -641,8 +646,8 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<UsageResponse?> usageCosts(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? groupBy, int? limit, String? page, }) async {
-    final response = await usageCostsWithHttpInfo(startTime,  endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, groupBy: groupBy, limit: limit, page: page, );
+  Future<UsageResponse?> usageCosts(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
+    final response = await usageCostsWithHttpInfo(startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, groupBy: groupBy, limit: limit, page: page, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -691,7 +696,7 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<Response> usageEmbeddingsWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, }) async {
+  Future<Response> usageEmbeddingsWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/usage/embeddings';
 
@@ -742,6 +747,7 @@ class UsageApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -778,8 +784,8 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<UsageResponse?> usageEmbeddings(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, }) async {
-    final response = await usageEmbeddingsWithHttpInfo(startTime,  endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page, );
+  Future<UsageResponse?> usageEmbeddings(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
+    final response = await usageEmbeddingsWithHttpInfo(startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -834,7 +840,7 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<Response> usageImagesWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? sources, List<String>? sizes, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, }) async {
+  Future<Response> usageImagesWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? sources, List<String>? sizes, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/usage/images';
 
@@ -891,6 +897,7 @@ class UsageApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -933,8 +940,8 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<UsageResponse?> usageImages(int startTime, { int? endTime, String? bucketWidth, List<String>? sources, List<String>? sizes, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, }) async {
-    final response = await usageImagesWithHttpInfo(startTime,  endTime: endTime, bucketWidth: bucketWidth, sources: sources, sizes: sizes, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page, );
+  Future<UsageResponse?> usageImages(int startTime, { int? endTime, String? bucketWidth, List<String>? sources, List<String>? sizes, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
+    final response = await usageImagesWithHttpInfo(startTime, endTime: endTime, bucketWidth: bucketWidth, sources: sources, sizes: sizes, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -983,7 +990,7 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<Response> usageModerationsWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, }) async {
+  Future<Response> usageModerationsWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/usage/moderations';
 
@@ -1034,6 +1041,7 @@ class UsageApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1070,8 +1078,8 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<UsageResponse?> usageModerations(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, }) async {
-    final response = await usageModerationsWithHttpInfo(startTime,  endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page, );
+  Future<UsageResponse?> usageModerations(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? userIds, List<String>? apiKeyIds, List<String>? models, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
+    final response = await usageModerationsWithHttpInfo(startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1111,7 +1119,7 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<Response> usageVectorStoresWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? groupBy, int? limit, String? page, }) async {
+  Future<Response> usageVectorStoresWithHttpInfo(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/usage/vector_stores';
 
@@ -1153,6 +1161,7 @@ class UsageApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1180,8 +1189,8 @@ class UsageApi {
   ///
   /// * [String] page:
   ///   A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
-  Future<UsageResponse?> usageVectorStores(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? groupBy, int? limit, String? page, }) async {
-    final response = await usageVectorStoresWithHttpInfo(startTime,  endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, groupBy: groupBy, limit: limit, page: page, );
+  Future<UsageResponse?> usageVectorStores(int startTime, { int? endTime, String? bucketWidth, List<String>? projectIds, List<String>? groupBy, int? limit, String? page, Future<void>? abortTrigger, }) async {
+    final response = await usageVectorStoresWithHttpInfo(startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, groupBy: groupBy, limit: limit, page: page, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

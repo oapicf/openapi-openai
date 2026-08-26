@@ -57,8 +57,8 @@ function Initialize-StaticChunkingStrategyStatic {
 
 
         $PSO = [PSCustomObject]@{
-            "max_chunk_size_tokens" = ${MaxChunkSizeTokens}
-            "chunk_overlap_tokens" = ${ChunkOverlapTokens}
+            'max_chunk_size_tokens' = ${MaxChunkSizeTokens}
+            'chunk_overlap_tokens' = ${ChunkOverlapTokens}
         }
 
 
@@ -96,7 +96,7 @@ function ConvertFrom-JsonToStaticChunkingStrategyStatic {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in StaticChunkingStrategyStatic
-        $AllProperties = ("max_chunk_size_tokens", "chunk_overlap_tokens")
+        $AllProperties = ('max_chunk_size_tokens', 'chunk_overlap_tokens')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -107,21 +107,21 @@ function ConvertFrom-JsonToStaticChunkingStrategyStatic {
             throw "Error! Empty JSON cannot be serialized due to the required property 'max_chunk_size_tokens' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_chunk_size_tokens"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'max_chunk_size_tokens'))) {
             throw "Error! JSON cannot be serialized due to the required property 'max_chunk_size_tokens' missing."
         } else {
-            $MaxChunkSizeTokens = $JsonParameters.PSobject.Properties["max_chunk_size_tokens"].value
+            $MaxChunkSizeTokens = $JsonParameters.PSobject.Properties['max_chunk_size_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "chunk_overlap_tokens"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'chunk_overlap_tokens'))) {
             throw "Error! JSON cannot be serialized due to the required property 'chunk_overlap_tokens' missing."
         } else {
-            $ChunkOverlapTokens = $JsonParameters.PSobject.Properties["chunk_overlap_tokens"].value
+            $ChunkOverlapTokens = $JsonParameters.PSobject.Properties['chunk_overlap_tokens'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "max_chunk_size_tokens" = ${MaxChunkSizeTokens}
-            "chunk_overlap_tokens" = ${ChunkOverlapTokens}
+            'max_chunk_size_tokens' = ${MaxChunkSizeTokens}
+            'chunk_overlap_tokens' = ${ChunkOverlapTokens}
         }
 
         return $PSO

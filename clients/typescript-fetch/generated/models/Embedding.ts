@@ -35,7 +35,7 @@ export interface Embedding {
     embedding: Array<number>;
     /**
      * The object type, which is always "embedding".
-     * @type {string}
+     * @type {EmbeddingObjectEnum}
      * @memberof Embedding
      */
     object: EmbeddingObjectEnum;
@@ -58,6 +58,8 @@ export function instanceOfEmbedding(value: object): value is Embedding {
     if (!('index' in value) || value['index'] === undefined) return false;
     if (!('embedding' in value) || value['embedding'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'embedding') return false;
+    
     return true;
 }
 

@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -10,19 +11,19 @@ import org.openapitools.model.CreateEmbeddingRequestModel;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * CreateEmbeddingRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateEmbeddingRequest {
 
   private CreateEmbeddingRequestInput input;
@@ -64,10 +65,13 @@ public class CreateEmbeddingRequest {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private EncodingFormatEnum encodingFormat = EncodingFormatEnum.FLOAT;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer dimensions;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String user;
 
   public CreateEmbeddingRequest() {
@@ -98,6 +102,7 @@ public class CreateEmbeddingRequest {
     return input;
   }
 
+  @JsonProperty("input")
   public void setInput(CreateEmbeddingRequestInput input) {
     this.input = input;
   }
@@ -118,6 +123,7 @@ public class CreateEmbeddingRequest {
     return model;
   }
 
+  @JsonProperty("model")
   public void setModel(CreateEmbeddingRequestModel model) {
     this.model = model;
   }
@@ -138,6 +144,7 @@ public class CreateEmbeddingRequest {
     return encodingFormat;
   }
 
+  @JsonProperty("encoding_format")
   public void setEncodingFormat(EncodingFormatEnum encodingFormat) {
     this.encodingFormat = encodingFormat;
   }
@@ -159,6 +166,7 @@ public class CreateEmbeddingRequest {
     return dimensions;
   }
 
+  @JsonProperty("dimensions")
   public void setDimensions(@Nullable Integer dimensions) {
     this.dimensions = dimensions;
   }
@@ -179,6 +187,7 @@ public class CreateEmbeddingRequest {
     return user;
   }
 
+  @JsonProperty("user")
   public void setUser(@Nullable String user) {
     this.user = user;
   }
@@ -221,11 +230,8 @@ public class CreateEmbeddingRequest {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

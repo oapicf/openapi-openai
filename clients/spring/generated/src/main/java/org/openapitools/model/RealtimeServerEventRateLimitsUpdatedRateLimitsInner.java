@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -10,20 +11,20 @@ import java.math.BigDecimal;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * RealtimeServerEventRateLimitsUpdatedRateLimitsInner
  */
 
 @JsonTypeName("RealtimeServerEventRateLimitsUpdated_rate_limits_inner")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
 
   /**
@@ -61,12 +62,16 @@ public class RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
     }
   }
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable NameEnum name;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer limit;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer remaining;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BigDecimal resetSeconds;
 
   public RealtimeServerEventRateLimitsUpdatedRateLimitsInner name(@Nullable NameEnum name) {
@@ -85,6 +90,7 @@ public class RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
     return name;
   }
 
+  @JsonProperty("name")
   public void setName(@Nullable NameEnum name) {
     this.name = name;
   }
@@ -105,6 +111,7 @@ public class RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
     return limit;
   }
 
+  @JsonProperty("limit")
   public void setLimit(@Nullable Integer limit) {
     this.limit = limit;
   }
@@ -125,6 +132,7 @@ public class RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
     return remaining;
   }
 
+  @JsonProperty("remaining")
   public void setRemaining(@Nullable Integer remaining) {
     this.remaining = remaining;
   }
@@ -145,6 +153,7 @@ public class RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
     return resetSeconds;
   }
 
+  @JsonProperty("reset_seconds")
   public void setResetSeconds(@Nullable BigDecimal resetSeconds) {
     this.resetSeconds = resetSeconds;
   }
@@ -185,11 +194,8 @@ public class RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

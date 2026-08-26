@@ -71,7 +71,7 @@ FineTuneMethod::fromJson(char* jsonStr)
 	
 
 		if (isprimitive("FineTuneSupervisedMethod")) {
-			jsonToValue(&supervised, node, "FineTuneSupervisedMethod", "");
+			jsonToValue(&supervised, node, "FineTuneSupervisedMethod", "FineTuneSupervisedMethod");
 		} else {
 			
 			FineTuneSupervisedMethod* obj = static_cast<FineTuneSupervisedMethod*> (&supervised);
@@ -85,7 +85,7 @@ FineTuneMethod::fromJson(char* jsonStr)
 	
 
 		if (isprimitive("FineTuneDPOMethod")) {
-			jsonToValue(&dpo, node, "FineTuneDPOMethod", "");
+			jsonToValue(&dpo, node, "FineTuneDPOMethod", "FineTuneDPOMethod");
 		} else {
 			
 			FineTuneDPOMethod* obj = static_cast<FineTuneDPOMethod*> (&dpo);

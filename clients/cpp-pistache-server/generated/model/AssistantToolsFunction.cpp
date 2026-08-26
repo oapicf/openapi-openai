@@ -25,6 +25,8 @@ AssistantToolsFunction::AssistantToolsFunction()
     
 }
 
+AssistantToolsFunction::~AssistantToolsFunction() = default;
+
 void AssistantToolsFunction::validate() const
 {
     std::stringstream msg;

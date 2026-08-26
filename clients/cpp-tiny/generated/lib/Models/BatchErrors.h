@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set The object type, which is always `list`.
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get 
 	 */
 	std::list<Batch_errors_data_inner> getData();
 
 	/*! \brief Set 
 	 */
-	void setData(std::list <Batch_errors_data_inner> data);
+	void setData(std::list<Batch_errors_data_inner> data);
 
 
     private:

@@ -39,7 +39,7 @@ class  MessageDeltaObject_delta_content_inner
 {
 public:
     MessageDeltaObject_delta_content_inner();
-    virtual ~MessageDeltaObject_delta_content_inner() = default;
+    virtual ~MessageDeltaObject_delta_content_inner();
 
 
     /// <summary>

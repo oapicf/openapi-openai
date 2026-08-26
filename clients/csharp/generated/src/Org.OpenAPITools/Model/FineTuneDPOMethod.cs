@@ -55,7 +55,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Hyperparameters
         /// </summary>
         [JsonPropertyName("hyperparameters")]
-        public FineTuneDPOMethodHyperparameters? Hyperparameters { get { return this.HyperparametersOption; } set { this.HyperparametersOption = new(value); } }
+        public FineTuneDPOMethodHyperparameters? Hyperparameters { get { return this.HyperparametersOption.Value; } set { this.HyperparametersOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTuneDPOMethod" />
     /// </summary>
-    public class FineTuneDPOMethodJsonConverter : JsonConverter<FineTuneDPOMethod>
+    public partial class FineTuneDPOMethodJsonConverter : JsonConverter<FineTuneDPOMethod>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTuneDPOMethodJsonConverter" /> class.
+        /// </summary>
+        public FineTuneDPOMethodJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTuneDPOMethod" />
         /// </summary>

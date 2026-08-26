@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set Audio input tokens present in the prompt.
 	 */
-	void setAudioTokens(int  audio_tokens);
+	void setAudioTokens(int audio_tokens);
 	/*! \brief Get Cached tokens present in the prompt.
 	 */
 	int getCachedTokens();
 
 	/*! \brief Set Cached tokens present in the prompt.
 	 */
-	void setCachedTokens(int  cached_tokens);
+	void setCachedTokens(int cached_tokens);
 
 
     private:

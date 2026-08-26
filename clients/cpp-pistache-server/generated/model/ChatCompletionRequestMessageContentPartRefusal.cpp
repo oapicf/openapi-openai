@@ -26,6 +26,8 @@ ChatCompletionRequestMessageContentPartRefusal::ChatCompletionRequestMessageCont
     
 }
 
+ChatCompletionRequestMessageContentPartRefusal::~ChatCompletionRequestMessageContentPartRefusal() = default;
+
 void ChatCompletionRequestMessageContentPartRefusal::validate() const
 {
     std::stringstream msg;

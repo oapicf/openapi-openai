@@ -51,7 +51,7 @@ class ThreadStreamEvent
      * @var bool|null
      * @SerializedName("enabled")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $enabled = null;
 
@@ -59,7 +59,7 @@ class ThreadStreamEvent
      * @var string|null
      * @SerializedName("event")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['thread.created'])]
     #[Assert\Type("string")]
@@ -69,7 +69,7 @@ class ThreadStreamEvent
      * @var ThreadObject|null
      * @SerializedName("data")
      * @Type("OpenAPI\Server\Model\ThreadObject")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\ThreadObject")]
@@ -99,12 +99,12 @@ class ThreadStreamEvent
     }
 
     /**
-    * Sets enabled.
-    *
-    * @param bool|null $enabled  Whether to enable input audio transcription.
-    *
-    * @return $this
-    */
+     * Sets enabled.
+     *
+     * @param bool|null $enabled  Whether to enable input audio transcription.
+     *
+     * @return $this
+     */
     public function setEnabled(?bool $enabled = null): self
     {
         $this->enabled = $enabled;
@@ -126,12 +126,12 @@ class ThreadStreamEvent
     }
 
     /**
-    * Sets event.
-    *
-    * @param string|null $event
-    *
-    * @return $this
-    */
+     * Sets event.
+     *
+     * @param string|null $event
+     *
+     * @return $this
+     */
     public function setEvent(?string $event): self
     {
         $this->event = $event;
@@ -153,12 +153,12 @@ class ThreadStreamEvent
     }
 
     /**
-    * Sets data.
-    *
-    * @param ThreadObject|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param ThreadObject|null $data
+     *
+     * @return $this
+     */
     public function setData(?ThreadObject $data): self
     {
         $this->data = $data;

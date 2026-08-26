@@ -89,7 +89,7 @@ export class FineTuningService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.post<FineTuningJob>(`${this.basePath}/fine_tuning/jobs/${encodeURIComponent(String(fine_tuning_job_id))}/cancel`,
+                return this.httpClient.post<FineTuningJob>(`${this.basePath}/fine_tuning/jobs/${encodeURIComponent(String(fineTuningJobId))}/cancel`,
                     null,
                     {
                         withCredentials: this.configuration.withCredentials,
@@ -210,7 +210,7 @@ export class FineTuningService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<ListFineTuningJobEventsResponse>(`${this.basePath}/fine_tuning/jobs/${encodeURIComponent(String(fine_tuning_job_id))}/events`,
+                return this.httpClient.get<ListFineTuningJobEventsResponse>(`${this.basePath}/fine_tuning/jobs/${encodeURIComponent(String(fineTuningJobId))}/events`,
                     {
                         params: queryParameters,
                         withCredentials: this.configuration.withCredentials,
@@ -273,7 +273,7 @@ export class FineTuningService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<ListFineTuningJobCheckpointsResponse>(`${this.basePath}/fine_tuning/jobs/${encodeURIComponent(String(fine_tuning_job_id))}/checkpoints`,
+                return this.httpClient.get<ListFineTuningJobCheckpointsResponse>(`${this.basePath}/fine_tuning/jobs/${encodeURIComponent(String(fineTuningJobId))}/checkpoints`,
                     {
                         params: queryParameters,
                         withCredentials: this.configuration.withCredentials,
@@ -384,7 +384,7 @@ export class FineTuningService {
                     headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
-                return this.httpClient.get<FineTuningJob>(`${this.basePath}/fine_tuning/jobs/${encodeURIComponent(String(fine_tuning_job_id))}`,
+                return this.httpClient.get<FineTuningJob>(`${this.basePath}/fine_tuning/jobs/${encodeURIComponent(String(fineTuningJobId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
                         ...retrieveFineTuningJobOpts?.config,

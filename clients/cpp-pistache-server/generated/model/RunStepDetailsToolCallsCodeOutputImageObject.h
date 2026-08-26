@@ -33,7 +33,7 @@ class  RunStepDetailsToolCallsCodeOutputImageObject
 {
 public:
     RunStepDetailsToolCallsCodeOutputImageObject();
-    virtual ~RunStepDetailsToolCallsCodeOutputImageObject() = default;
+    virtual ~RunStepDetailsToolCallsCodeOutputImageObject();
 
 
     /// <summary>

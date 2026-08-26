@@ -49,7 +49,7 @@ class AssistantObjectToolResources
      * @var AssistantObjectToolResourcesCodeInterpreter|null
      * @SerializedName("code_interpreter")
      * @Type("OpenAPI\Server\Model\AssistantObjectToolResourcesCodeInterpreter")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AssistantObjectToolResourcesCodeInterpreter")]
     protected ?AssistantObjectToolResourcesCodeInterpreter $codeInterpreter = null;
 
@@ -57,7 +57,7 @@ class AssistantObjectToolResources
      * @var AssistantObjectToolResourcesFileSearch|null
      * @SerializedName("file_search")
      * @Type("OpenAPI\Server\Model\AssistantObjectToolResourcesFileSearch")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AssistantObjectToolResourcesFileSearch")]
     protected ?AssistantObjectToolResourcesFileSearch $fileSearch = null;
 
@@ -84,12 +84,12 @@ class AssistantObjectToolResources
     }
 
     /**
-    * Sets codeInterpreter.
-    *
-    * @param AssistantObjectToolResourcesCodeInterpreter|null $codeInterpreter
-    *
-    * @return $this
-    */
+     * Sets codeInterpreter.
+     *
+     * @param AssistantObjectToolResourcesCodeInterpreter|null $codeInterpreter
+     *
+     * @return $this
+     */
     public function setCodeInterpreter(?AssistantObjectToolResourcesCodeInterpreter $codeInterpreter = null): self
     {
         $this->codeInterpreter = $codeInterpreter;
@@ -111,12 +111,12 @@ class AssistantObjectToolResources
     }
 
     /**
-    * Sets fileSearch.
-    *
-    * @param AssistantObjectToolResourcesFileSearch|null $fileSearch
-    *
-    * @return $this
-    */
+     * Sets fileSearch.
+     *
+     * @param AssistantObjectToolResourcesFileSearch|null $fileSearch
+     *
+     * @return $this
+     */
     public function setFileSearch(?AssistantObjectToolResourcesFileSearch $fileSearch = null): self
     {
         $this->fileSearch = $fileSearch;

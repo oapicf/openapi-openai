@@ -86,15 +86,17 @@ class _$RealtimeResponseUsageOutputTokenDetailsSerializer implements PrimitiveSe
         case r'text_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.textTokens = valueDes;
           break;
         case r'audio_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.audioTokens = valueDes;
           break;
         default:

@@ -41,28 +41,30 @@ openai_api_fine_tuning_job_STATUS_e fine_tuning_job_status_FromString(char* stat
 
 static fine_tuning_job_t *fine_tuning_job_create_internal(
     char *id,
-    int created_at,
+    int *created_at,
     fine_tuning_job_error_t *error,
     char *fine_tuned_model,
-    int finished_at,
+    int *finished_at,
     fine_tuning_job_hyperparameters_t *hyperparameters,
     char *model,
     openai_api_fine_tuning_job_OBJECT_e object,
     char *organization_id,
     list_t *result_files,
     openai_api_fine_tuning_job_STATUS_e status,
-    int trained_tokens,
+    int *trained_tokens,
     char *training_file,
     char *validation_file,
     list_t *integrations,
-    int seed,
-    int estimated_finish,
+    int *seed,
+    int *estimated_finish,
     fine_tune_method_t *method
     ) {
     fine_tuning_job_t *fine_tuning_job_local_var = malloc(sizeof(fine_tuning_job_t));
     if (!fine_tuning_job_local_var) {
         return NULL;
     }
+    memset(fine_tuning_job_local_var, 0, sizeof(fine_tuning_job_t));
+    fine_tuning_job_local_var->_library_owned = 1;
     fine_tuning_job_local_var->id = id;
     fine_tuning_job_local_var->created_at = created_at;
     fine_tuning_job_local_var->error = error;
@@ -81,51 +83,82 @@ static fine_tuning_job_t *fine_tuning_job_create_internal(
     fine_tuning_job_local_var->seed = seed;
     fine_tuning_job_local_var->estimated_finish = estimated_finish;
     fine_tuning_job_local_var->method = method;
-
-    fine_tuning_job_local_var->_library_owned = 1;
     return fine_tuning_job_local_var;
 }
 
 __attribute__((deprecated)) fine_tuning_job_t *fine_tuning_job_create(
     char *id,
-    int created_at,
+    int *created_at,
     fine_tuning_job_error_t *error,
     char *fine_tuned_model,
-    int finished_at,
+    int *finished_at,
     fine_tuning_job_hyperparameters_t *hyperparameters,
     char *model,
     openai_api_fine_tuning_job_OBJECT_e object,
     char *organization_id,
     list_t *result_files,
     openai_api_fine_tuning_job_STATUS_e status,
-    int trained_tokens,
+    int *trained_tokens,
     char *training_file,
     char *validation_file,
     list_t *integrations,
-    int seed,
-    int estimated_finish,
+    int *seed,
+    int *estimated_finish,
     fine_tune_method_t *method
     ) {
-    return fine_tuning_job_create_internal (
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    int *finished_at_copy = NULL;
+    if (finished_at) {
+        finished_at_copy = malloc(sizeof(int));
+        if (finished_at_copy) *finished_at_copy = *finished_at;
+    }
+    int *trained_tokens_copy = NULL;
+    if (trained_tokens) {
+        trained_tokens_copy = malloc(sizeof(int));
+        if (trained_tokens_copy) *trained_tokens_copy = *trained_tokens;
+    }
+    int *seed_copy = NULL;
+    if (seed) {
+        seed_copy = malloc(sizeof(int));
+        if (seed_copy) *seed_copy = *seed;
+    }
+    int *estimated_finish_copy = NULL;
+    if (estimated_finish) {
+        estimated_finish_copy = malloc(sizeof(int));
+        if (estimated_finish_copy) *estimated_finish_copy = *estimated_finish;
+    }
+    fine_tuning_job_t *result = fine_tuning_job_create_internal (
         id,
-        created_at,
+        created_at_copy,
         error,
         fine_tuned_model,
-        finished_at,
+        finished_at_copy,
         hyperparameters,
         model,
         object,
         organization_id,
         result_files,
         status,
-        trained_tokens,
+        trained_tokens_copy,
         training_file,
         validation_file,
         integrations,
-        seed,
-        estimated_finish,
+        seed_copy,
+        estimated_finish_copy,
         method
         );
+    if (!result) {
+        free(created_at_copy);
+        free(finished_at_copy);
+        free(trained_tokens_copy);
+        free(seed_copy);
+        free(estimated_finish_copy);
+    }
+    return result;
 }
 
 void fine_tuning_job_free(fine_tuning_job_t *fine_tuning_job) {
@@ -141,6 +174,10 @@ void fine_tuning_job_free(fine_tuning_job_t *fine_tuning_job) {
         free(fine_tuning_job->id);
         fine_tuning_job->id = NULL;
     }
+    if (fine_tuning_job->created_at) {
+        free(fine_tuning_job->created_at);
+        fine_tuning_job->created_at = NULL;
+    }
     if (fine_tuning_job->error) {
         fine_tuning_job_error_free(fine_tuning_job->error);
         fine_tuning_job->error = NULL;
@@ -148,6 +185,10 @@ void fine_tuning_job_free(fine_tuning_job_t *fine_tuning_job) {
     if (fine_tuning_job->fine_tuned_model) {
         free(fine_tuning_job->fine_tuned_model);
         fine_tuning_job->fine_tuned_model = NULL;
+    }
+    if (fine_tuning_job->finished_at) {
+        free(fine_tuning_job->finished_at);
+        fine_tuning_job->finished_at = NULL;
     }
     if (fine_tuning_job->hyperparameters) {
         fine_tuning_job_hyperparameters_free(fine_tuning_job->hyperparameters);
@@ -168,6 +209,10 @@ void fine_tuning_job_free(fine_tuning_job_t *fine_tuning_job) {
         list_freeList(fine_tuning_job->result_files);
         fine_tuning_job->result_files = NULL;
     }
+    if (fine_tuning_job->trained_tokens) {
+        free(fine_tuning_job->trained_tokens);
+        fine_tuning_job->trained_tokens = NULL;
+    }
     if (fine_tuning_job->training_file) {
         free(fine_tuning_job->training_file);
         fine_tuning_job->training_file = NULL;
@@ -182,6 +227,14 @@ void fine_tuning_job_free(fine_tuning_job_t *fine_tuning_job) {
         }
         list_freeList(fine_tuning_job->integrations);
         fine_tuning_job->integrations = NULL;
+    }
+    if (fine_tuning_job->seed) {
+        free(fine_tuning_job->seed);
+        fine_tuning_job->seed = NULL;
+    }
+    if (fine_tuning_job->estimated_finish) {
+        free(fine_tuning_job->estimated_finish);
+        fine_tuning_job->estimated_finish = NULL;
     }
     if (fine_tuning_job->method) {
         fine_tune_method_free(fine_tuning_job->method);
@@ -206,7 +259,7 @@ cJSON *fine_tuning_job_convertToJSON(fine_tuning_job_t *fine_tuning_job) {
     if (!fine_tuning_job->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", fine_tuning_job->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *fine_tuning_job->created_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -238,7 +291,7 @@ cJSON *fine_tuning_job_convertToJSON(fine_tuning_job_t *fine_tuning_job) {
     if (!fine_tuning_job->finished_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "finished_at", fine_tuning_job->finished_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "finished_at", *fine_tuning_job->finished_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -317,7 +370,7 @@ cJSON *fine_tuning_job_convertToJSON(fine_tuning_job_t *fine_tuning_job) {
     if (!fine_tuning_job->trained_tokens) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "trained_tokens", fine_tuning_job->trained_tokens) == NULL) {
+    if(cJSON_AddNumberToObject(item, "trained_tokens", *fine_tuning_job->trained_tokens) == NULL) {
     goto fail; //Numeric
     }
 
@@ -364,14 +417,14 @@ cJSON *fine_tuning_job_convertToJSON(fine_tuning_job_t *fine_tuning_job) {
     if (!fine_tuning_job->seed) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "seed", fine_tuning_job->seed) == NULL) {
+    if(cJSON_AddNumberToObject(item, "seed", *fine_tuning_job->seed) == NULL) {
     goto fail; //Numeric
     }
 
 
     // fine_tuning_job->estimated_finish
     if(fine_tuning_job->estimated_finish) {
-    if(cJSON_AddNumberToObject(item, "estimated_finish", fine_tuning_job->estimated_finish) == NULL) {
+    if(cJSON_AddNumberToObject(item, "estimated_finish", *fine_tuning_job->estimated_finish) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -401,17 +454,44 @@ fine_tuning_job_t *fine_tuning_job_parseFromJSON(cJSON *fine_tuning_jobJSON){
 
     fine_tuning_job_t *fine_tuning_job_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    // define the local variable for fine_tuning_job->created_at
+    int *created_at_local_var = NULL;
+
     // define the local variable for fine_tuning_job->error
     fine_tuning_job_error_t *error_local_nonprim = NULL;
+
+    char *fine_tuned_model_local_str = NULL;
+
+    // define the local variable for fine_tuning_job->finished_at
+    int *finished_at_local_var = NULL;
 
     // define the local variable for fine_tuning_job->hyperparameters
     fine_tuning_job_hyperparameters_t *hyperparameters_local_nonprim = NULL;
 
+    char *model_local_str = NULL;
+
+    char *organization_id_local_str = NULL;
+
     // define the local list for fine_tuning_job->result_files
     list_t *result_filesList = NULL;
 
+    // define the local variable for fine_tuning_job->trained_tokens
+    int *trained_tokens_local_var = NULL;
+
+    char *training_file_local_str = NULL;
+
+    char *validation_file_local_str = NULL;
+
     // define the local list for fine_tuning_job->integrations
     list_t *integrationsList = NULL;
+
+    // define the local variable for fine_tuning_job->seed
+    int *seed_local_var = NULL;
+
+    // define the local variable for fine_tuning_job->estimated_finish
+    int *estimated_finish_local_var = NULL;
 
     // define the local variable for fine_tuning_job->method
     fine_tune_method_t *method_local_nonprim = NULL;
@@ -445,6 +525,12 @@ fine_tuning_job_t *fine_tuning_job_parseFromJSON(cJSON *fine_tuning_jobJSON){
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
     // fine_tuning_job->error
     cJSON *error = cJSON_GetObjectItemCaseSensitive(fine_tuning_jobJSON, "error");
@@ -487,6 +573,12 @@ fine_tuning_job_t *fine_tuning_job_parseFromJSON(cJSON *fine_tuning_jobJSON){
     {
     goto end; //Numeric
     }
+    finished_at_local_var = malloc(sizeof(int));
+    if(!finished_at_local_var)
+    {
+        goto end;
+    }
+    *finished_at_local_var = finished_at->valuedouble;
 
     // fine_tuning_job->hyperparameters
     cJSON *hyperparameters = cJSON_GetObjectItemCaseSensitive(fine_tuning_jobJSON, "hyperparameters");
@@ -603,6 +695,12 @@ fine_tuning_job_t *fine_tuning_job_parseFromJSON(cJSON *fine_tuning_jobJSON){
     {
     goto end; //Numeric
     }
+    trained_tokens_local_var = malloc(sizeof(int));
+    if(!trained_tokens_local_var)
+    {
+        goto end;
+    }
+    *trained_tokens_local_var = trained_tokens->valuedouble;
 
     // fine_tuning_job->training_file
     cJSON *training_file = cJSON_GetObjectItemCaseSensitive(fine_tuning_jobJSON, "training_file");
@@ -672,6 +770,12 @@ fine_tuning_job_t *fine_tuning_job_parseFromJSON(cJSON *fine_tuning_jobJSON){
     {
     goto end; //Numeric
     }
+    seed_local_var = malloc(sizeof(int));
+    if(!seed_local_var)
+    {
+        goto end;
+    }
+    *seed_local_var = seed->valuedouble;
 
     // fine_tuning_job->estimated_finish
     cJSON *estimated_finish = cJSON_GetObjectItemCaseSensitive(fine_tuning_jobJSON, "estimated_finish");
@@ -683,6 +787,12 @@ fine_tuning_job_t *fine_tuning_job_parseFromJSON(cJSON *fine_tuning_jobJSON){
     {
     goto end; //Numeric
     }
+    estimated_finish_local_var = malloc(sizeof(int));
+    if(!estimated_finish_local_var)
+    {
+        goto end;
+    }
+    *estimated_finish_local_var = estimated_finish->valuedouble;
     }
 
     // fine_tuning_job->method
@@ -695,36 +805,71 @@ fine_tuning_job_t *fine_tuning_job_parseFromJSON(cJSON *fine_tuning_jobJSON){
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (fine_tuned_model && !cJSON_IsNull(fine_tuned_model)) fine_tuned_model_local_str = strdup(fine_tuned_model->valuestring);
+    if (model && !cJSON_IsNull(model)) model_local_str = strdup(model->valuestring);
+    if (organization_id && !cJSON_IsNull(organization_id)) organization_id_local_str = strdup(organization_id->valuestring);
+    if (training_file && !cJSON_IsNull(training_file)) training_file_local_str = strdup(training_file->valuestring);
+    if (validation_file && !cJSON_IsNull(validation_file)) validation_file_local_str = strdup(validation_file->valuestring);
+
     fine_tuning_job_local_var = fine_tuning_job_create_internal (
-        strdup(id->valuestring),
-        created_at->valuedouble,
+        id_local_str,
+        created_at_local_var,
         error_local_nonprim,
-        strdup(fine_tuned_model->valuestring),
-        finished_at->valuedouble,
+        fine_tuned_model_local_str,
+        finished_at_local_var,
         hyperparameters_local_nonprim,
-        strdup(model->valuestring),
+        model_local_str,
         objectVariable,
-        strdup(organization_id->valuestring),
+        organization_id_local_str,
         result_filesList,
         statusVariable,
-        trained_tokens->valuedouble,
-        strdup(training_file->valuestring),
-        strdup(validation_file->valuestring),
+        trained_tokens_local_var,
+        training_file_local_str,
+        validation_file_local_str,
         integrations ? integrationsList : NULL,
-        seed->valuedouble,
-        estimated_finish ? estimated_finish->valuedouble : 0,
+        seed_local_var,
+        estimated_finish_local_var,
         method ? method_local_nonprim : NULL
         );
 
+    if (!fine_tuning_job_local_var) {
+        goto end;
+    }
+
     return fine_tuning_job_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
     if (error_local_nonprim) {
         fine_tuning_job_error_free(error_local_nonprim);
         error_local_nonprim = NULL;
     }
+    if (fine_tuned_model_local_str) {
+        free(fine_tuned_model_local_str);
+        fine_tuned_model_local_str = NULL;
+    }
+    if (finished_at_local_var) {
+        free(finished_at_local_var);
+        finished_at_local_var = NULL;
+    }
     if (hyperparameters_local_nonprim) {
         fine_tuning_job_hyperparameters_free(hyperparameters_local_nonprim);
         hyperparameters_local_nonprim = NULL;
+    }
+    if (model_local_str) {
+        free(model_local_str);
+        model_local_str = NULL;
+    }
+    if (organization_id_local_str) {
+        free(organization_id_local_str);
+        organization_id_local_str = NULL;
     }
     if (result_filesList) {
         listEntry_t *listEntry = NULL;
@@ -735,6 +880,18 @@ end:
         list_freeList(result_filesList);
         result_filesList = NULL;
     }
+    if (trained_tokens_local_var) {
+        free(trained_tokens_local_var);
+        trained_tokens_local_var = NULL;
+    }
+    if (training_file_local_str) {
+        free(training_file_local_str);
+        training_file_local_str = NULL;
+    }
+    if (validation_file_local_str) {
+        free(validation_file_local_str);
+        validation_file_local_str = NULL;
+    }
     if (integrationsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, integrationsList) {
@@ -743,6 +900,14 @@ end:
         }
         list_freeList(integrationsList);
         integrationsList = NULL;
+    }
+    if (seed_local_var) {
+        free(seed_local_var);
+        seed_local_var = NULL;
+    }
+    if (estimated_finish_local_var) {
+        free(estimated_finish_local_var);
+        estimated_finish_local_var = NULL;
     }
     if (method_local_nonprim) {
         fine_tune_method_free(method_local_nonprim);

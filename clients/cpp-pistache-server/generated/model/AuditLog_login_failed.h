@@ -32,7 +32,7 @@ class  AuditLog_login_failed
 {
 public:
     AuditLog_login_failed();
-    virtual ~AuditLog_login_failed() = default;
+    virtual ~AuditLog_login_failed();
 
 
     /// <summary>

@@ -67,10 +67,14 @@ class ChatCompletionRequestUserMessageContentPart {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ChatCompletionRequestUserMessageContentPart[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ChatCompletionRequestUserMessageContentPart[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "ChatCompletionRequestUserMessageContentPart[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "ChatCompletionRequestUserMessageContentPart[type]" has a null value in JSON.');
+        assert(json.containsKey(r'text'), 'Required key "ChatCompletionRequestUserMessageContentPart[text]" is missing from JSON.');
+        assert(json[r'text'] != null, 'Required key "ChatCompletionRequestUserMessageContentPart[text]" has a null value in JSON.');
+        assert(json.containsKey(r'image_url'), 'Required key "ChatCompletionRequestUserMessageContentPart[image_url]" is missing from JSON.');
+        assert(json[r'image_url'] != null, 'Required key "ChatCompletionRequestUserMessageContentPart[image_url]" has a null value in JSON.');
+        assert(json.containsKey(r'input_audio'), 'Required key "ChatCompletionRequestUserMessageContentPart[input_audio]" is missing from JSON.');
+        assert(json[r'input_audio'] != null, 'Required key "ChatCompletionRequestUserMessageContentPart[input_audio]" has a null value in JSON.');
         return true;
       }());
 
@@ -134,31 +138,30 @@ class ChatCompletionRequestUserMessageContentPart {
 }
 
 /// The type of the content part.
-class ChatCompletionRequestUserMessageContentPartTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ChatCompletionRequestUserMessageContentPartTypeEnum._(this.value);
+enum ChatCompletionRequestUserMessageContentPartTypeEnum {
+  text._(r'text'),
+  imageUrl._(r'image_url'),
+  inputAudio._(r'input_audio'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const ChatCompletionRequestUserMessageContentPartTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = ChatCompletionRequestUserMessageContentPartTypeEnum._(r'text');
-  static const imageUrl = ChatCompletionRequestUserMessageContentPartTypeEnum._(r'image_url');
-  static const inputAudio = ChatCompletionRequestUserMessageContentPartTypeEnum._(r'input_audio');
-
-  /// List of all possible values in this [enum][ChatCompletionRequestUserMessageContentPartTypeEnum].
-  static const values = <ChatCompletionRequestUserMessageContentPartTypeEnum>[
-    text,
-    imageUrl,
-    inputAudio,
-  ];
-
+  /// Returns the instance of [ChatCompletionRequestUserMessageContentPartTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static ChatCompletionRequestUserMessageContentPartTypeEnum? fromJson(dynamic value) => ChatCompletionRequestUserMessageContentPartTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [ChatCompletionRequestUserMessageContentPartTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<ChatCompletionRequestUserMessageContentPartTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ChatCompletionRequestUserMessageContentPartTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -180,9 +183,10 @@ class ChatCompletionRequestUserMessageContentPartTypeEnumTypeTransformer {
 
   const ChatCompletionRequestUserMessageContentPartTypeEnumTypeTransformer._();
 
-  String encode(ChatCompletionRequestUserMessageContentPartTypeEnum data) => data.value;
+  String encode(ChatCompletionRequestUserMessageContentPartTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a ChatCompletionRequestUserMessageContentPartTypeEnum.
+  /// Returns the instance of [ChatCompletionRequestUserMessageContentPartTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -191,6 +195,9 @@ class ChatCompletionRequestUserMessageContentPartTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   ChatCompletionRequestUserMessageContentPartTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is ChatCompletionRequestUserMessageContentPartTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return ChatCompletionRequestUserMessageContentPartTypeEnum.text;
@@ -205,7 +212,7 @@ class ChatCompletionRequestUserMessageContentPartTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [ChatCompletionRequestUserMessageContentPartTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static ChatCompletionRequestUserMessageContentPartTypeEnumTypeTransformer? _instance;
 }
 

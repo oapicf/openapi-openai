@@ -34,7 +34,7 @@ class  ProjectUserListResponse
 {
 public:
     ProjectUserListResponse();
-    virtual ~ProjectUserListResponse() = default;
+    virtual ~ProjectUserListResponse();
 
 
     /// <summary>

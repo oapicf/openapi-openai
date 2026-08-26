@@ -53,10 +53,10 @@ class RunStreamEventOneOf2 {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStreamEventOneOf2[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStreamEventOneOf2[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event'), 'Required key "RunStreamEventOneOf2[event]" is missing from JSON.');
+        assert(json[r'event'] != null, 'Required key "RunStreamEventOneOf2[event]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "RunStreamEventOneOf2[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "RunStreamEventOneOf2[data]" has a null value in JSON.');
         return true;
       }());
 
@@ -116,27 +116,28 @@ class RunStreamEventOneOf2 {
 }
 
 
-class RunStreamEventOneOf2EventEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStreamEventOneOf2EventEnum._(this.value);
+enum RunStreamEventOneOf2EventEnum {
+  threadPeriodRunPeriodInProgress._(r'thread.run.in_progress'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStreamEventOneOf2EventEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodRunPeriodInProgress = RunStreamEventOneOf2EventEnum._(r'thread.run.in_progress');
-
-  /// List of all possible values in this [enum][RunStreamEventOneOf2EventEnum].
-  static const values = <RunStreamEventOneOf2EventEnum>[
-    threadPeriodRunPeriodInProgress,
-  ];
-
+  /// Returns the instance of [RunStreamEventOneOf2EventEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStreamEventOneOf2EventEnum? fromJson(dynamic value) => RunStreamEventOneOf2EventEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStreamEventOneOf2EventEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStreamEventOneOf2EventEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStreamEventOneOf2EventEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -158,9 +159,10 @@ class RunStreamEventOneOf2EventEnumTypeTransformer {
 
   const RunStreamEventOneOf2EventEnumTypeTransformer._();
 
-  String encode(RunStreamEventOneOf2EventEnum data) => data.value;
+  String encode(RunStreamEventOneOf2EventEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStreamEventOneOf2EventEnum.
+  /// Returns the instance of [RunStreamEventOneOf2EventEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -169,6 +171,9 @@ class RunStreamEventOneOf2EventEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStreamEventOneOf2EventEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStreamEventOneOf2EventEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.run.in_progress': return RunStreamEventOneOf2EventEnum.threadPeriodRunPeriodInProgress;
@@ -181,7 +186,7 @@ class RunStreamEventOneOf2EventEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStreamEventOneOf2EventEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStreamEventOneOf2EventEnumTypeTransformer? _instance;
 }
 

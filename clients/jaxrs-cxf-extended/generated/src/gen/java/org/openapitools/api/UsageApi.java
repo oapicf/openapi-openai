@@ -25,7 +25,7 @@ import javax.validation.Valid;
  * <p>The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
  */
-@Path("/organization")
+@Path("")
 @Api(value = "/", description = "")
 public interface UsageApi  {
 
@@ -34,7 +34,7 @@ public interface UsageApi  {
      *
      */
     @GET
-    @Path("/usage/audio_speeches")
+    @Path("/organization/usage/audio_speeches")
     @Produces({ "application/json" })
     @ApiOperation(value = "Get audio speeches usage details for the organization.", tags={ "Usage" })
     @ApiResponses(value = { 
@@ -46,7 +46,7 @@ public interface UsageApi  {
      *
      */
     @GET
-    @Path("/usage/audio_transcriptions")
+    @Path("/organization/usage/audio_transcriptions")
     @Produces({ "application/json" })
     @ApiOperation(value = "Get audio transcriptions usage details for the organization.", tags={ "Usage" })
     @ApiResponses(value = { 
@@ -58,7 +58,7 @@ public interface UsageApi  {
      *
      */
     @GET
-    @Path("/usage/code_interpreter_sessions")
+    @Path("/organization/usage/code_interpreter_sessions")
     @Produces({ "application/json" })
     @ApiOperation(value = "Get code interpreter sessions usage details for the organization.", tags={ "Usage" })
     @ApiResponses(value = { 
@@ -70,7 +70,7 @@ public interface UsageApi  {
      *
      */
     @GET
-    @Path("/usage/completions")
+    @Path("/organization/usage/completions")
     @Produces({ "application/json" })
     @ApiOperation(value = "Get completions usage details for the organization.", tags={ "Usage" })
     @ApiResponses(value = { 
@@ -82,7 +82,7 @@ public interface UsageApi  {
      *
      */
     @GET
-    @Path("/costs")
+    @Path("/organization/costs")
     @Produces({ "application/json" })
     @ApiOperation(value = "Get costs details for the organization.", tags={ "Usage" })
     @ApiResponses(value = { 
@@ -94,7 +94,7 @@ public interface UsageApi  {
      *
      */
     @GET
-    @Path("/usage/embeddings")
+    @Path("/organization/usage/embeddings")
     @Produces({ "application/json" })
     @ApiOperation(value = "Get embeddings usage details for the organization.", tags={ "Usage" })
     @ApiResponses(value = { 
@@ -106,7 +106,7 @@ public interface UsageApi  {
      *
      */
     @GET
-    @Path("/usage/images")
+    @Path("/organization/usage/images")
     @Produces({ "application/json" })
     @ApiOperation(value = "Get images usage details for the organization.", tags={ "Usage" })
     @ApiResponses(value = { 
@@ -118,7 +118,7 @@ public interface UsageApi  {
      *
      */
     @GET
-    @Path("/usage/moderations")
+    @Path("/organization/usage/moderations")
     @Produces({ "application/json" })
     @ApiOperation(value = "Get moderations usage details for the organization.", tags={ "Usage" })
     @ApiResponses(value = { 
@@ -130,7 +130,7 @@ public interface UsageApi  {
      *
      */
     @GET
-    @Path("/usage/vector_stores")
+    @Path("/organization/usage/vector_stores")
     @Produces({ "application/json" })
     @ApiOperation(value = "Get vector stores usage details for the organization.", tags={ "Usage" })
     @ApiResponses(value = { 

@@ -47,7 +47,7 @@ class ListBatchesResponse
      * @var Batch[]|null
      * @SerializedName("data")
      * @Type("array<OpenAPI\Server\Model\Batch>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -59,7 +59,7 @@ class ListBatchesResponse
      * @var string|null
      * @SerializedName("first_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $firstId = null;
 
@@ -67,7 +67,7 @@ class ListBatchesResponse
      * @var string|null
      * @SerializedName("last_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $lastId = null;
 
@@ -75,7 +75,7 @@ class ListBatchesResponse
      * @var bool|null
      * @SerializedName("has_more")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $hasMore = null;
@@ -84,7 +84,7 @@ class ListBatchesResponse
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['list'])]
     #[Assert\Type("string")]
@@ -116,12 +116,12 @@ class ListBatchesResponse
     }
 
     /**
-    * Sets data.
-    *
-    * @param Batch[]|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param Batch[]|null $data
+     *
+     * @return $this
+     */
     public function setData(?array $data): self
     {
         $this->data = $data;
@@ -143,12 +143,12 @@ class ListBatchesResponse
     }
 
     /**
-    * Sets firstId.
-    *
-    * @param string|null $firstId
-    *
-    * @return $this
-    */
+     * Sets firstId.
+     *
+     * @param string|null $firstId
+     *
+     * @return $this
+     */
     public function setFirstId(?string $firstId = null): self
     {
         $this->firstId = $firstId;
@@ -170,12 +170,12 @@ class ListBatchesResponse
     }
 
     /**
-    * Sets lastId.
-    *
-    * @param string|null $lastId
-    *
-    * @return $this
-    */
+     * Sets lastId.
+     *
+     * @param string|null $lastId
+     *
+     * @return $this
+     */
     public function setLastId(?string $lastId = null): self
     {
         $this->lastId = $lastId;
@@ -197,12 +197,12 @@ class ListBatchesResponse
     }
 
     /**
-    * Sets hasMore.
-    *
-    * @param bool|null $hasMore
-    *
-    * @return $this
-    */
+     * Sets hasMore.
+     *
+     * @param bool|null $hasMore
+     *
+     * @return $this
+     */
     public function setHasMore(?bool $hasMore): self
     {
         $this->hasMore = $hasMore;
@@ -224,12 +224,12 @@ class ListBatchesResponse
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;

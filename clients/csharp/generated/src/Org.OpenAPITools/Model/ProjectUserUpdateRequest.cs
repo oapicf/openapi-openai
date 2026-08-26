@@ -145,8 +145,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectUserUpdateRequest" />
     /// </summary>
-    public class ProjectUserUpdateRequestJsonConverter : JsonConverter<ProjectUserUpdateRequest>
+    public partial class ProjectUserUpdateRequestJsonConverter : JsonConverter<ProjectUserUpdateRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectUserUpdateRequestJsonConverter" /> class.
+        /// </summary>
+        public ProjectUserUpdateRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProjectUserUpdateRequest" />
         /// </summary>

@@ -283,10 +283,44 @@ class RunObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "RunObject[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "RunObject[id]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "RunObject[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "RunObject[object]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "RunObject[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "RunObject[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'thread_id'), 'Required key "RunObject[thread_id]" is missing from JSON.');
+        assert(json[r'thread_id'] != null, 'Required key "RunObject[thread_id]" has a null value in JSON.');
+        assert(json.containsKey(r'assistant_id'), 'Required key "RunObject[assistant_id]" is missing from JSON.');
+        assert(json[r'assistant_id'] != null, 'Required key "RunObject[assistant_id]" has a null value in JSON.');
+        assert(json.containsKey(r'status'), 'Required key "RunObject[status]" is missing from JSON.');
+        assert(json[r'status'] != null, 'Required key "RunObject[status]" has a null value in JSON.');
+        assert(json.containsKey(r'required_action'), 'Required key "RunObject[required_action]" is missing from JSON.');
+        assert(json.containsKey(r'last_error'), 'Required key "RunObject[last_error]" is missing from JSON.');
+        assert(json.containsKey(r'expires_at'), 'Required key "RunObject[expires_at]" is missing from JSON.');
+        assert(json.containsKey(r'started_at'), 'Required key "RunObject[started_at]" is missing from JSON.');
+        assert(json.containsKey(r'cancelled_at'), 'Required key "RunObject[cancelled_at]" is missing from JSON.');
+        assert(json.containsKey(r'failed_at'), 'Required key "RunObject[failed_at]" is missing from JSON.');
+        assert(json.containsKey(r'completed_at'), 'Required key "RunObject[completed_at]" is missing from JSON.');
+        assert(json.containsKey(r'incomplete_details'), 'Required key "RunObject[incomplete_details]" is missing from JSON.');
+        assert(json.containsKey(r'model'), 'Required key "RunObject[model]" is missing from JSON.');
+        assert(json[r'model'] != null, 'Required key "RunObject[model]" has a null value in JSON.');
+        assert(json.containsKey(r'instructions'), 'Required key "RunObject[instructions]" is missing from JSON.');
+        assert(json[r'instructions'] != null, 'Required key "RunObject[instructions]" has a null value in JSON.');
+        assert(json.containsKey(r'tools'), 'Required key "RunObject[tools]" is missing from JSON.');
+        assert(json[r'tools'] != null, 'Required key "RunObject[tools]" has a null value in JSON.');
+        assert(json.containsKey(r'metadata'), 'Required key "RunObject[metadata]" is missing from JSON.');
+        assert(json.containsKey(r'usage'), 'Required key "RunObject[usage]" is missing from JSON.');
+        assert(json.containsKey(r'max_prompt_tokens'), 'Required key "RunObject[max_prompt_tokens]" is missing from JSON.');
+        assert(json.containsKey(r'max_completion_tokens'), 'Required key "RunObject[max_completion_tokens]" is missing from JSON.');
+        assert(json.containsKey(r'truncation_strategy'), 'Required key "RunObject[truncation_strategy]" is missing from JSON.');
+        assert(json[r'truncation_strategy'] != null, 'Required key "RunObject[truncation_strategy]" has a null value in JSON.');
+        assert(json.containsKey(r'tool_choice'), 'Required key "RunObject[tool_choice]" is missing from JSON.');
+        assert(json[r'tool_choice'] != null, 'Required key "RunObject[tool_choice]" has a null value in JSON.');
+        assert(json.containsKey(r'parallel_tool_calls'), 'Required key "RunObject[parallel_tool_calls]" is missing from JSON.');
+        assert(json[r'parallel_tool_calls'] != null, 'Required key "RunObject[parallel_tool_calls]" has a null value in JSON.');
+        assert(json.containsKey(r'response_format'), 'Required key "RunObject[response_format]" is missing from JSON.');
+        assert(json[r'response_format'] != null, 'Required key "RunObject[response_format]" has a null value in JSON.');
         return true;
       }());
 
@@ -398,27 +432,28 @@ class RunObject {
 }
 
 /// The object type, which is always `thread.run`.
-class RunObjectObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunObjectObjectEnum._(this.value);
+enum RunObjectObjectEnum {
+  threadPeriodRun._(r'thread.run'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunObjectObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodRun = RunObjectObjectEnum._(r'thread.run');
-
-  /// List of all possible values in this [enum][RunObjectObjectEnum].
-  static const values = <RunObjectObjectEnum>[
-    threadPeriodRun,
-  ];
-
+  /// Returns the instance of [RunObjectObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunObjectObjectEnum? fromJson(dynamic value) => RunObjectObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunObjectObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunObjectObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunObjectObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -440,9 +475,10 @@ class RunObjectObjectEnumTypeTransformer {
 
   const RunObjectObjectEnumTypeTransformer._();
 
-  String encode(RunObjectObjectEnum data) => data.value;
+  String encode(RunObjectObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunObjectObjectEnum.
+  /// Returns the instance of [RunObjectObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -451,6 +487,9 @@ class RunObjectObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunObjectObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunObjectObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.run': return RunObjectObjectEnum.threadPeriodRun;
@@ -463,49 +502,42 @@ class RunObjectObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunObjectObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunObjectObjectEnumTypeTransformer? _instance;
 }
 
 
 /// The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
-class RunObjectStatusEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunObjectStatusEnum._(this.value);
+enum RunObjectStatusEnum {
+  queued._(r'queued'),
+  inProgress._(r'in_progress'),
+  requiresAction._(r'requires_action'),
+  cancelling._(r'cancelling'),
+  cancelled._(r'cancelled'),
+  failed._(r'failed'),
+  completed._(r'completed'),
+  incomplete._(r'incomplete'),
+  expired._(r'expired'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunObjectStatusEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const queued = RunObjectStatusEnum._(r'queued');
-  static const inProgress = RunObjectStatusEnum._(r'in_progress');
-  static const requiresAction = RunObjectStatusEnum._(r'requires_action');
-  static const cancelling = RunObjectStatusEnum._(r'cancelling');
-  static const cancelled = RunObjectStatusEnum._(r'cancelled');
-  static const failed = RunObjectStatusEnum._(r'failed');
-  static const completed = RunObjectStatusEnum._(r'completed');
-  static const incomplete = RunObjectStatusEnum._(r'incomplete');
-  static const expired = RunObjectStatusEnum._(r'expired');
-
-  /// List of all possible values in this [enum][RunObjectStatusEnum].
-  static const values = <RunObjectStatusEnum>[
-    queued,
-    inProgress,
-    requiresAction,
-    cancelling,
-    cancelled,
-    failed,
-    completed,
-    incomplete,
-    expired,
-  ];
-
+  /// Returns the instance of [RunObjectStatusEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunObjectStatusEnum? fromJson(dynamic value) => RunObjectStatusEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunObjectStatusEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunObjectStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunObjectStatusEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -527,9 +559,10 @@ class RunObjectStatusEnumTypeTransformer {
 
   const RunObjectStatusEnumTypeTransformer._();
 
-  String encode(RunObjectStatusEnum data) => data.value;
+  String encode(RunObjectStatusEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunObjectStatusEnum.
+  /// Returns the instance of [RunObjectStatusEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -538,6 +571,9 @@ class RunObjectStatusEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunObjectStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunObjectStatusEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'queued': return RunObjectStatusEnum.queued;
@@ -558,7 +594,7 @@ class RunObjectStatusEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunObjectStatusEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunObjectStatusEnumTypeTransformer? _instance;
 }
 

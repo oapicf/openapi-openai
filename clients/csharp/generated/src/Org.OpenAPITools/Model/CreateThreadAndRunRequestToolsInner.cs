@@ -104,8 +104,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateThreadAndRunRequestToolsInner" />
     /// </summary>
-    public class CreateThreadAndRunRequestToolsInnerJsonConverter : JsonConverter<CreateThreadAndRunRequestToolsInner>
+    public partial class CreateThreadAndRunRequestToolsInnerJsonConverter : JsonConverter<CreateThreadAndRunRequestToolsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateThreadAndRunRequestToolsInnerJsonConverter" /> class.
+        /// </summary>
+        public CreateThreadAndRunRequestToolsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateThreadAndRunRequestToolsInner" />
         /// </summary>

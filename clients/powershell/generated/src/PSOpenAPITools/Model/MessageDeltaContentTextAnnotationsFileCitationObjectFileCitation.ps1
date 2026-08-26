@@ -41,8 +41,8 @@ function Initialize-MessageDeltaContentTextAnnotationsFileCitationObjectFileCita
 
 
         $PSO = [PSCustomObject]@{
-            "file_id" = ${FileId}
-            "quote" = ${Quote}
+            'file_id' = ${FileId}
+            'quote' = ${Quote}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToMessageDeltaContentTextAnnotationsFileCitationObjectF
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
-        $AllProperties = ("file_id", "quote")
+        $AllProperties = ('file_id', 'quote')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "file_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'file_id'))) { #optional property not found
             $FileId = $null
         } else {
-            $FileId = $JsonParameters.PSobject.Properties["file_id"].value
+            $FileId = $JsonParameters.PSobject.Properties['file_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "quote"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'quote'))) { #optional property not found
             $Quote = $null
         } else {
-            $Quote = $JsonParameters.PSobject.Properties["quote"].value
+            $Quote = $JsonParameters.PSobject.Properties['quote'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "file_id" = ${FileId}
-            "quote" = ${Quote}
+            'file_id' = ${FileId}
+            'quote' = ${Quote}
         }
 
         return $PSO

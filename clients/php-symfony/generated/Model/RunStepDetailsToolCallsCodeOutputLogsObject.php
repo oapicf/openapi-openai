@@ -51,7 +51,7 @@ class RunStepDetailsToolCallsCodeOutputLogsObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['logs'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class RunStepDetailsToolCallsCodeOutputLogsObject
      * @var string|null
      * @SerializedName("logs")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $logs = null;
@@ -91,12 +91,12 @@ class RunStepDetailsToolCallsCodeOutputLogsObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `logs`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `logs`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -118,12 +118,12 @@ class RunStepDetailsToolCallsCodeOutputLogsObject
     }
 
     /**
-    * Sets logs.
-    *
-    * @param string|null $logs  The text output from the Code Interpreter tool call.
-    *
-    * @return $this
-    */
+     * Sets logs.
+     *
+     * @param string|null $logs  The text output from the Code Interpreter tool call.
+     *
+     * @return $this
+     */
     public function setLogs(?string $logs): self
     {
         $this->logs = $logs;

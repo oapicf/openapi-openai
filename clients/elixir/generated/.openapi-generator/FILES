@@ -1,6 +1,5 @@
 .formatter.exs
 .gitignore
-.openapi-generator-ignore
 README.md
 config/config.exs
 config/runtime.exs
@@ -86,7 +85,6 @@ lib/open_aiapi/model/audit_log_user_added_data.ex
 lib/open_aiapi/model/audit_log_user_deleted.ex
 lib/open_aiapi/model/audit_log_user_updated.ex
 lib/open_aiapi/model/audit_log_user_updated_changes_requested.ex
-lib/open_aiapi/model/auto_chunking_strategy.ex
 lib/open_aiapi/model/auto_chunking_strategy_request_param.ex
 lib/open_aiapi/model/batch.ex
 lib/open_aiapi/model/batch_errors.ex
@@ -496,7 +494,6 @@ lib/open_aiapi/model/run_tool_call_object.ex
 lib/open_aiapi/model/run_tool_call_object_function.ex
 lib/open_aiapi/model/static_chunking_strategy.ex
 lib/open_aiapi/model/static_chunking_strategy_request_param.ex
-lib/open_aiapi/model/static_chunking_strategy_response_param.ex
 lib/open_aiapi/model/static_chunking_strategy_static.ex
 lib/open_aiapi/model/submit_tool_outputs_run_request.ex
 lib/open_aiapi/model/submit_tool_outputs_run_request_tool_outputs_inner.ex

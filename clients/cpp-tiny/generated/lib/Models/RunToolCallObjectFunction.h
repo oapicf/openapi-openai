@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The name of the function.
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get The arguments that the model expects you to pass to the function.
 	 */
 	std::string getArguments();
 
 	/*! \brief Set The arguments that the model expects you to pass to the function.
 	 */
-	void setArguments(std::string  arguments);
+	void setArguments(std::string arguments);
 
 
     private:

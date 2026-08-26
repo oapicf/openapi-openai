@@ -20,7 +20,7 @@ case class MessageContentImageFileObject(
   /* Always `image_file`. */
   `type`: MessageContentImageFileObjectEnums.`Type`,
   imageFile: MessageContentImageFileObjectImageFile
-)
+) extends MessageObjectContentInner
 
 object MessageContentImageFileObjectEnums {
 

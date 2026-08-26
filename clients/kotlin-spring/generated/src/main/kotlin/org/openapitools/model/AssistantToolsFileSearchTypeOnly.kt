@@ -21,9 +21,10 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class AssistantToolsFileSearchTypeOnly(
 
-    @Schema(example = "null", required = true, description = "The type of tool being defined: `file_search`")
+    @Schema(required = true, description = "The type of tool being defined: `file_search`")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: AssistantToolsFileSearchTypeOnly.Type
-) {
+) : CreateMessageRequestAttachmentsInnerToolsInner {
 
     /**
     * The type of tool being defined: `file_search`
@@ -38,7 +39,7 @@ data class AssistantToolsFileSearchTypeOnly(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AssistantToolsFileSearchTypeOnly'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

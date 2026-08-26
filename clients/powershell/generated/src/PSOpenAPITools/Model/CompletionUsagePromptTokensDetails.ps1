@@ -41,8 +41,8 @@ function Initialize-CompletionUsagePromptTokensDetails {
 
 
         $PSO = [PSCustomObject]@{
-            "audio_tokens" = ${AudioTokens}
-            "cached_tokens" = ${CachedTokens}
+            'audio_tokens' = ${AudioTokens}
+            'cached_tokens' = ${CachedTokens}
         }
 
 
@@ -80,28 +80,28 @@ function ConvertFrom-JsonToCompletionUsagePromptTokensDetails {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CompletionUsagePromptTokensDetails
-        $AllProperties = ("audio_tokens", "cached_tokens")
+        $AllProperties = ('audio_tokens', 'cached_tokens')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "audio_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'audio_tokens'))) { #optional property not found
             $AudioTokens = $null
         } else {
-            $AudioTokens = $JsonParameters.PSobject.Properties["audio_tokens"].value
+            $AudioTokens = $JsonParameters.PSobject.Properties['audio_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cached_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'cached_tokens'))) { #optional property not found
             $CachedTokens = $null
         } else {
-            $CachedTokens = $JsonParameters.PSobject.Properties["cached_tokens"].value
+            $CachedTokens = $JsonParameters.PSobject.Properties['cached_tokens'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "audio_tokens" = ${AudioTokens}
-            "cached_tokens" = ${CachedTokens}
+            'audio_tokens' = ${AudioTokens}
+            'cached_tokens' = ${CachedTokens}
         }
 
         return $PSO

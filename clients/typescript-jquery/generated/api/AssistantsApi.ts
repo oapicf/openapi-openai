@@ -56,7 +56,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.RunObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}/cancel'.replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId))).replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)));
+        let localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}/cancel'.replace('{thread_id}', encodeURIComponent(String(threadId))).replace('{run_id}', encodeURIComponent(String(runId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -192,7 +192,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.MessageObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/threads/{thread_id}/messages'.replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+        let localVarPath = this.basePath + '/threads/{thread_id}/messages'.replace('{thread_id}', encodeURIComponent(String(threadId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -266,7 +266,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.RunObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/threads/{thread_id}/runs'.replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+        let localVarPath = this.basePath + '/threads/{thread_id}/runs'.replace('{thread_id}', encodeURIComponent(String(threadId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -473,7 +473,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.DeleteAssistantResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/assistants/{assistant_id}'.replace('{' + 'assistant_id' + '}', encodeURIComponent(String(assistantId)));
+        let localVarPath = this.basePath + '/assistants/{assistant_id}'.replace('{assistant_id}', encodeURIComponent(String(assistantId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -537,7 +537,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.DeleteMessageResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/threads/{thread_id}/messages/{message_id}'.replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId))).replace('{' + 'message_id' + '}', encodeURIComponent(String(messageId)));
+        let localVarPath = this.basePath + '/threads/{thread_id}/messages/{message_id}'.replace('{thread_id}', encodeURIComponent(String(threadId))).replace('{message_id}', encodeURIComponent(String(messageId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -605,7 +605,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.DeleteThreadResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/threads/{thread_id}'.replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+        let localVarPath = this.basePath + '/threads/{thread_id}'.replace('{thread_id}', encodeURIComponent(String(threadId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -668,7 +668,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.AssistantObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/assistants/{assistant_id}'.replace('{' + 'assistant_id' + '}', encodeURIComponent(String(assistantId)));
+        let localVarPath = this.basePath + '/assistants/{assistant_id}'.replace('{assistant_id}', encodeURIComponent(String(assistantId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -732,7 +732,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.MessageObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/threads/{thread_id}/messages/{message_id}'.replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId))).replace('{' + 'message_id' + '}', encodeURIComponent(String(messageId)));
+        let localVarPath = this.basePath + '/threads/{thread_id}/messages/{message_id}'.replace('{thread_id}', encodeURIComponent(String(threadId))).replace('{message_id}', encodeURIComponent(String(messageId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -801,7 +801,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.RunObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}'.replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId))).replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)));
+        let localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}'.replace('{thread_id}', encodeURIComponent(String(threadId))).replace('{run_id}', encodeURIComponent(String(runId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -872,7 +872,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.RunStepObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}/steps/{step_id}'.replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId))).replace('{' + 'run_id' + '}', encodeURIComponent(String(runId))).replace('{' + 'step_id' + '}', encodeURIComponent(String(stepId)));
+        let localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}/steps/{step_id}'.replace('{thread_id}', encodeURIComponent(String(threadId))).replace('{run_id}', encodeURIComponent(String(runId))).replace('{step_id}', encodeURIComponent(String(stepId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -951,7 +951,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.ThreadObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/threads/{thread_id}'.replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+        let localVarPath = this.basePath + '/threads/{thread_id}'.replace('{thread_id}', encodeURIComponent(String(threadId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -1092,7 +1092,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.ListMessagesResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/threads/{thread_id}/messages'.replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+        let localVarPath = this.basePath + '/threads/{thread_id}/messages'.replace('{thread_id}', encodeURIComponent(String(threadId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -1176,7 +1176,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.ListRunStepsResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}/steps'.replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId))).replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)));
+        let localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}/steps'.replace('{thread_id}', encodeURIComponent(String(threadId))).replace('{run_id}', encodeURIComponent(String(runId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -1266,7 +1266,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.ListRunsResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/threads/{thread_id}/runs'.replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+        let localVarPath = this.basePath + '/threads/{thread_id}/runs'.replace('{thread_id}', encodeURIComponent(String(threadId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -1342,7 +1342,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.AssistantObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/assistants/{assistant_id}'.replace('{' + 'assistant_id' + '}', encodeURIComponent(String(assistantId)));
+        let localVarPath = this.basePath + '/assistants/{assistant_id}'.replace('{assistant_id}', encodeURIComponent(String(assistantId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -1416,7 +1416,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.MessageObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/threads/{thread_id}/messages/{message_id}'.replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId))).replace('{' + 'message_id' + '}', encodeURIComponent(String(messageId)));
+        let localVarPath = this.basePath + '/threads/{thread_id}/messages/{message_id}'.replace('{thread_id}', encodeURIComponent(String(threadId))).replace('{message_id}', encodeURIComponent(String(messageId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -1495,7 +1495,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.RunObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}'.replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId))).replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)));
+        let localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}'.replace('{thread_id}', encodeURIComponent(String(threadId))).replace('{run_id}', encodeURIComponent(String(runId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -1573,7 +1573,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.ThreadObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/threads/{thread_id}'.replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
+        let localVarPath = this.basePath + '/threads/{thread_id}'.replace('{thread_id}', encodeURIComponent(String(threadId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};
@@ -1647,7 +1647,7 @@ export class AssistantsApi {
     { response: JQueryXHR; body: models.RunObject;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}/submit_tool_outputs'.replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId))).replace('{' + 'run_id' + '}', encodeURIComponent(String(runId)));
+        let localVarPath = this.basePath + '/threads/{thread_id}/runs/{run_id}/submit_tool_outputs'.replace('{thread_id}', encodeURIComponent(String(threadId))).replace('{run_id}', encodeURIComponent(String(runId)));
 
         let queryParameters: any = {};
         let headerParams: any = {};

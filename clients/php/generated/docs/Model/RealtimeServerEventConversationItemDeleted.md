@@ -1,4 +1,4 @@
-# # RealtimeServerEventConversationItemDeleted
+# RealtimeServerEventConversationItemDeleted
 
 ## Properties
 

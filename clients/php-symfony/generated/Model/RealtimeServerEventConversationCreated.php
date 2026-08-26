@@ -51,7 +51,7 @@ class RealtimeServerEventConversationCreated
      * @var string|null
      * @SerializedName("event_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $eventId = null;
@@ -62,7 +62,7 @@ class RealtimeServerEventConversationCreated
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['conversation.created'])]
     #[Assert\Type("string")]
@@ -72,7 +72,7 @@ class RealtimeServerEventConversationCreated
      * @var RealtimeServerEventConversationCreatedConversation|null
      * @SerializedName("conversation")
      * @Type("OpenAPI\Server\Model\RealtimeServerEventConversationCreatedConversation")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RealtimeServerEventConversationCreatedConversation")]
@@ -102,12 +102,12 @@ class RealtimeServerEventConversationCreated
     }
 
     /**
-    * Sets eventId.
-    *
-    * @param string|null $eventId  The unique ID of the server event.
-    *
-    * @return $this
-    */
+     * Sets eventId.
+     *
+     * @param string|null $eventId  The unique ID of the server event.
+     *
+     * @return $this
+     */
     public function setEventId(?string $eventId): self
     {
         $this->eventId = $eventId;
@@ -129,12 +129,12 @@ class RealtimeServerEventConversationCreated
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The event type, must be `conversation.created`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The event type, must be `conversation.created`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -156,12 +156,12 @@ class RealtimeServerEventConversationCreated
     }
 
     /**
-    * Sets conversation.
-    *
-    * @param RealtimeServerEventConversationCreatedConversation|null $conversation
-    *
-    * @return $this
-    */
+     * Sets conversation.
+     *
+     * @param RealtimeServerEventConversationCreatedConversation|null $conversation
+     *
+     * @return $this
+     */
     public function setConversation(?RealtimeServerEventConversationCreatedConversation $conversation): self
     {
         $this->conversation = $conversation;

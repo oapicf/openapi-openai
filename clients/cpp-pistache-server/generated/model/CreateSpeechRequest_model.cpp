@@ -24,6 +24,8 @@ CreateSpeechRequest_model::CreateSpeechRequest_model()
     
 }
 
+CreateSpeechRequest_model::~CreateSpeechRequest_model() = default;
+
 void CreateSpeechRequest_model::validate() const
 {
     std::stringstream msg;

@@ -103,10 +103,6 @@ class RealtimeSessionTurnDetection {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeSessionTurnDetection[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeSessionTurnDetection[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
@@ -166,27 +162,28 @@ class RealtimeSessionTurnDetection {
 }
 
 /// Type of turn detection, only `server_vad` is currently supported. 
-class RealtimeSessionTurnDetectionTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeSessionTurnDetectionTypeEnum._(this.value);
+enum RealtimeSessionTurnDetectionTypeEnum {
+  serverVad._(r'server_vad'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeSessionTurnDetectionTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const serverVad = RealtimeSessionTurnDetectionTypeEnum._(r'server_vad');
-
-  /// List of all possible values in this [enum][RealtimeSessionTurnDetectionTypeEnum].
-  static const values = <RealtimeSessionTurnDetectionTypeEnum>[
-    serverVad,
-  ];
-
+  /// Returns the instance of [RealtimeSessionTurnDetectionTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeSessionTurnDetectionTypeEnum? fromJson(dynamic value) => RealtimeSessionTurnDetectionTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeSessionTurnDetectionTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeSessionTurnDetectionTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeSessionTurnDetectionTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -208,9 +205,10 @@ class RealtimeSessionTurnDetectionTypeEnumTypeTransformer {
 
   const RealtimeSessionTurnDetectionTypeEnumTypeTransformer._();
 
-  String encode(RealtimeSessionTurnDetectionTypeEnum data) => data.value;
+  String encode(RealtimeSessionTurnDetectionTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeSessionTurnDetectionTypeEnum.
+  /// Returns the instance of [RealtimeSessionTurnDetectionTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -219,6 +217,9 @@ class RealtimeSessionTurnDetectionTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeSessionTurnDetectionTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeSessionTurnDetectionTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'server_vad': return RealtimeSessionTurnDetectionTypeEnum.serverVad;
@@ -231,7 +232,7 @@ class RealtimeSessionTurnDetectionTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeSessionTurnDetectionTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeSessionTurnDetectionTypeEnumTypeTransformer? _instance;
 }
 

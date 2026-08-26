@@ -33,7 +33,7 @@ class  VectorStoreFileBatchObject
 {
 public:
     VectorStoreFileBatchObject();
-    virtual ~VectorStoreFileBatchObject() = default;
+    virtual ~VectorStoreFileBatchObject();
 
 
     /// <summary>

@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>An array of projects to which membership is granted at the same time the org invite is accepted. If omitted, the user will be invited to the default project for compatibility with legacy behavior.</value>
         [JsonPropertyName("projects")]
-        public List<InviteRequestProjectsInner>? Projects { get { return this.ProjectsOption; } set { this.ProjectsOption = new(value); } }
+        public List<InviteRequestProjectsInner>? Projects { get { return this.ProjectsOption.Value; } set { this.ProjectsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -172,8 +172,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="InviteRequest" />
     /// </summary>
-    public class InviteRequestJsonConverter : JsonConverter<InviteRequest>
+    public partial class InviteRequestJsonConverter : JsonConverter<InviteRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InviteRequestJsonConverter" /> class.
+        /// </summary>
+        public InviteRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="InviteRequest" />
         /// </summary>

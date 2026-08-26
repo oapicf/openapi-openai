@@ -51,7 +51,7 @@ class ChatCompletionRequestMessageContentPartText
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['text'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class ChatCompletionRequestMessageContentPartText
      * @var string|null
      * @SerializedName("text")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $text = null;
@@ -91,12 +91,12 @@ class ChatCompletionRequestMessageContentPartText
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of the content part.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of the content part.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -118,12 +118,12 @@ class ChatCompletionRequestMessageContentPartText
     }
 
     /**
-    * Sets text.
-    *
-    * @param string|null $text  The text content.
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param string|null $text  The text content.
+     *
+     * @return $this
+     */
     public function setText(?string $text): self
     {
         $this->text = $text;

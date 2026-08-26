@@ -29,7 +29,7 @@ import {
 export interface UsageResponse {
     /**
      * 
-     * @type {string}
+     * @type {UsageResponseObjectEnum}
      * @memberof UsageResponse
      */
     object: UsageResponseObjectEnum;
@@ -68,9 +68,11 @@ export type UsageResponseObjectEnum = typeof UsageResponseObjectEnum[keyof typeo
  */
 export function instanceOfUsageResponse(value: object): value is UsageResponse {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'page') return false;
+    
     if (!('data' in value) || value['data'] === undefined) return false;
-    if (!('hasMore' in value) || value['hasMore'] === undefined) return false;
-    if (!('nextPage' in value) || value['nextPage'] === undefined) return false;
+    if ((!('hasMore' in (value as Record<string, any>)) && !('has_more' in (value as Record<string, any>))) || ((value as Record<string, any>)['hasMore'] === undefined && (value as Record<string, any>)['has_more'] === undefined)) return false;
+    if ((!('nextPage' in (value as Record<string, any>)) && !('next_page' in (value as Record<string, any>))) || ((value as Record<string, any>)['nextPage'] === undefined && (value as Record<string, any>)['next_page'] === undefined)) return false;
     return true;
 }
 

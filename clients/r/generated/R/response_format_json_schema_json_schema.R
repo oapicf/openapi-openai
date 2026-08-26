@@ -97,13 +97,36 @@ ResponseFormatJsonSchemaJsonSchema <- R6::R6Class(
       }
       if (!is.null(self$`schema`)) {
         ResponseFormatJsonSchemaJsonSchemaObject[["schema"]] <-
-          lapply(self$`schema`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`schema`)
       }
       if (!is.null(self$`strict`)) {
         ResponseFormatJsonSchemaJsonSchemaObject[["strict"]] <-
           self$`strict`
       }
       return(ResponseFormatJsonSchemaJsonSchemaObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

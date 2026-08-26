@@ -37,7 +37,8 @@ type RealtimeResponse struct {
 	Usage RealtimeResponseUsage `json:"usage,omitempty"`
 }
 
-// AssertRealtimeResponseRequired checks if the required fields are not zero-ed
+// AssertRealtimeResponseRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeResponseRequired(obj RealtimeResponse) error {
 	if err := AssertRealtimeResponseStatusDetailsRequired(obj.StatusDetails); err != nil {
 		return err

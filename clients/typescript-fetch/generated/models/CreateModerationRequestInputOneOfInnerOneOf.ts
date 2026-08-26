@@ -29,7 +29,7 @@ import {
 export interface CreateModerationRequestInputOneOfInnerOneOf {
     /**
      * Always `image_url`.
-     * @type {string}
+     * @type {CreateModerationRequestInputOneOfInnerOneOfTypeEnum}
      * @memberof CreateModerationRequestInputOneOfInnerOneOf
      */
     type: CreateModerationRequestInputOneOfInnerOneOfTypeEnum;
@@ -56,7 +56,9 @@ export type CreateModerationRequestInputOneOfInnerOneOfTypeEnum = typeof CreateM
  */
 export function instanceOfCreateModerationRequestInputOneOfInnerOneOf(value: object): value is CreateModerationRequestInputOneOfInnerOneOf {
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('imageUrl' in value) || value['imageUrl'] === undefined) return false;
+    if (value['type'] !== 'image_url') return false;
+    
+    if ((!('imageUrl' in (value as Record<string, any>)) && !('image_url' in (value as Record<string, any>))) || ((value as Record<string, any>)['imageUrl'] === undefined && (value as Record<string, any>)['image_url'] === undefined)) return false;
     return true;
 }
 

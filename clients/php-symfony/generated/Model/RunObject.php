@@ -51,7 +51,7 @@ class RunObject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class RunObject
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['thread.run'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class RunObject
      * @var int|null
      * @SerializedName("created_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $createdAt = null;
@@ -85,7 +85,7 @@ class RunObject
      * @var string|null
      * @SerializedName("thread_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $threadId = null;
@@ -96,7 +96,7 @@ class RunObject
      * @var string|null
      * @SerializedName("assistant_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $assistantId = null;
@@ -107,7 +107,7 @@ class RunObject
      * @var string|null
      * @SerializedName("status")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['queued', 'in_progress', 'requires_action', 'cancelling', 'cancelled', 'failed', 'completed', 'incomplete', 'expired'])]
     #[Assert\Type("string")]
@@ -117,7 +117,7 @@ class RunObject
      * @var RunObjectRequiredAction|null
      * @SerializedName("required_action")
      * @Type("OpenAPI\Server\Model\RunObjectRequiredAction")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunObjectRequiredAction")]
@@ -127,7 +127,7 @@ class RunObject
      * @var RunObjectLastError|null
      * @SerializedName("last_error")
      * @Type("OpenAPI\Server\Model\RunObjectLastError")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunObjectLastError")]
@@ -139,7 +139,7 @@ class RunObject
      * @var int|null
      * @SerializedName("expires_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $expiresAt = null;
@@ -150,7 +150,7 @@ class RunObject
      * @var int|null
      * @SerializedName("started_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $startedAt = null;
@@ -161,7 +161,7 @@ class RunObject
      * @var int|null
      * @SerializedName("cancelled_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $cancelledAt = null;
@@ -172,7 +172,7 @@ class RunObject
      * @var int|null
      * @SerializedName("failed_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $failedAt = null;
@@ -183,7 +183,7 @@ class RunObject
      * @var int|null
      * @SerializedName("completed_at")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $completedAt = null;
@@ -192,7 +192,7 @@ class RunObject
      * @var RunObjectIncompleteDetails|null
      * @SerializedName("incomplete_details")
      * @Type("OpenAPI\Server\Model\RunObjectIncompleteDetails")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunObjectIncompleteDetails")]
@@ -204,7 +204,7 @@ class RunObject
      * @var string|null
      * @SerializedName("model")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $model = null;
@@ -215,7 +215,7 @@ class RunObject
      * @var string|null
      * @SerializedName("instructions")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $instructions = null;
@@ -226,7 +226,7 @@ class RunObject
      * @var AssistantObjectToolsInner[]|null
      * @SerializedName("tools")
      * @Type("array<OpenAPI\Server\Model\AssistantObjectToolsInner>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -241,7 +241,7 @@ class RunObject
      * @var array|null
      * @SerializedName("metadata")
      * @Type("array")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("array")]
     protected ?array $metadata = null;
@@ -250,7 +250,7 @@ class RunObject
      * @var RunCompletionUsage|null
      * @SerializedName("usage")
      * @Type("OpenAPI\Server\Model\RunCompletionUsage")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\RunCompletionUsage")]
@@ -262,7 +262,7 @@ class RunObject
      * @var float|null
      * @SerializedName("temperature")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     protected ?float $temperature = null;
 
@@ -272,7 +272,7 @@ class RunObject
      * @var float|null
      * @SerializedName("top_p")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     protected ?float $topP = null;
 
@@ -282,7 +282,7 @@ class RunObject
      * @var int|null
      * @SerializedName("max_prompt_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(256)]
@@ -294,7 +294,7 @@ class RunObject
      * @var int|null
      * @SerializedName("max_completion_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(256)]
@@ -304,7 +304,7 @@ class RunObject
      * @var TruncationObject|null
      * @SerializedName("truncation_strategy")
      * @Type("OpenAPI\Server\Model\TruncationObject")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\TruncationObject")]
@@ -314,7 +314,7 @@ class RunObject
      * @var AssistantsApiToolChoiceOption|null
      * @SerializedName("tool_choice")
      * @Type("OpenAPI\Server\Model\AssistantsApiToolChoiceOption")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\AssistantsApiToolChoiceOption")]
@@ -326,7 +326,7 @@ class RunObject
      * @var bool|null
      * @SerializedName("parallel_tool_calls")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $parallelToolCalls = true;
@@ -335,7 +335,7 @@ class RunObject
      * @var AssistantsApiResponseFormatOption|null
      * @SerializedName("response_format")
      * @Type("OpenAPI\Server\Model\AssistantsApiResponseFormatOption")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\AssistantsApiResponseFormatOption")]
@@ -389,12 +389,12 @@ class RunObject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The identifier, which can be referenced in API endpoints.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The identifier, which can be referenced in API endpoints.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -416,12 +416,12 @@ class RunObject
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `thread.run`.
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `thread.run`.
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -443,12 +443,12 @@ class RunObject
     }
 
     /**
-    * Sets createdAt.
-    *
-    * @param int|null $createdAt  The Unix timestamp (in seconds) for when the run was created.
-    *
-    * @return $this
-    */
+     * Sets createdAt.
+     *
+     * @param int|null $createdAt  The Unix timestamp (in seconds) for when the run was created.
+     *
+     * @return $this
+     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -470,12 +470,12 @@ class RunObject
     }
 
     /**
-    * Sets threadId.
-    *
-    * @param string|null $threadId  The ID of the [thread](/docs/api-reference/threads) that was executed on as a part of this run.
-    *
-    * @return $this
-    */
+     * Sets threadId.
+     *
+     * @param string|null $threadId  The ID of the [thread](/docs/api-reference/threads) that was executed on as a part of this run.
+     *
+     * @return $this
+     */
     public function setThreadId(?string $threadId): self
     {
         $this->threadId = $threadId;
@@ -497,12 +497,12 @@ class RunObject
     }
 
     /**
-    * Sets assistantId.
-    *
-    * @param string|null $assistantId  The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run.
-    *
-    * @return $this
-    */
+     * Sets assistantId.
+     *
+     * @param string|null $assistantId  The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run.
+     *
+     * @return $this
+     */
     public function setAssistantId(?string $assistantId): self
     {
         $this->assistantId = $assistantId;
@@ -524,12 +524,12 @@ class RunObject
     }
 
     /**
-    * Sets status.
-    *
-    * @param string|null $status  The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
-    *
-    * @return $this
-    */
+     * Sets status.
+     *
+     * @param string|null $status  The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
+     *
+     * @return $this
+     */
     public function setStatus(?string $status): self
     {
         $this->status = $status;
@@ -551,12 +551,12 @@ class RunObject
     }
 
     /**
-    * Sets requiredAction.
-    *
-    * @param RunObjectRequiredAction|null $requiredAction
-    *
-    * @return $this
-    */
+     * Sets requiredAction.
+     *
+     * @param RunObjectRequiredAction|null $requiredAction
+     *
+     * @return $this
+     */
     public function setRequiredAction(?RunObjectRequiredAction $requiredAction): self
     {
         $this->requiredAction = $requiredAction;
@@ -578,12 +578,12 @@ class RunObject
     }
 
     /**
-    * Sets lastError.
-    *
-    * @param RunObjectLastError|null $lastError
-    *
-    * @return $this
-    */
+     * Sets lastError.
+     *
+     * @param RunObjectLastError|null $lastError
+     *
+     * @return $this
+     */
     public function setLastError(?RunObjectLastError $lastError): self
     {
         $this->lastError = $lastError;
@@ -605,12 +605,12 @@ class RunObject
     }
 
     /**
-    * Sets expiresAt.
-    *
-    * @param int|null $expiresAt  The Unix timestamp (in seconds) for when the run will expire.
-    *
-    * @return $this
-    */
+     * Sets expiresAt.
+     *
+     * @param int|null $expiresAt  The Unix timestamp (in seconds) for when the run will expire.
+     *
+     * @return $this
+     */
     public function setExpiresAt(?int $expiresAt): self
     {
         $this->expiresAt = $expiresAt;
@@ -632,12 +632,12 @@ class RunObject
     }
 
     /**
-    * Sets startedAt.
-    *
-    * @param int|null $startedAt  The Unix timestamp (in seconds) for when the run was started.
-    *
-    * @return $this
-    */
+     * Sets startedAt.
+     *
+     * @param int|null $startedAt  The Unix timestamp (in seconds) for when the run was started.
+     *
+     * @return $this
+     */
     public function setStartedAt(?int $startedAt): self
     {
         $this->startedAt = $startedAt;
@@ -659,12 +659,12 @@ class RunObject
     }
 
     /**
-    * Sets cancelledAt.
-    *
-    * @param int|null $cancelledAt  The Unix timestamp (in seconds) for when the run was cancelled.
-    *
-    * @return $this
-    */
+     * Sets cancelledAt.
+     *
+     * @param int|null $cancelledAt  The Unix timestamp (in seconds) for when the run was cancelled.
+     *
+     * @return $this
+     */
     public function setCancelledAt(?int $cancelledAt): self
     {
         $this->cancelledAt = $cancelledAt;
@@ -686,12 +686,12 @@ class RunObject
     }
 
     /**
-    * Sets failedAt.
-    *
-    * @param int|null $failedAt  The Unix timestamp (in seconds) for when the run failed.
-    *
-    * @return $this
-    */
+     * Sets failedAt.
+     *
+     * @param int|null $failedAt  The Unix timestamp (in seconds) for when the run failed.
+     *
+     * @return $this
+     */
     public function setFailedAt(?int $failedAt): self
     {
         $this->failedAt = $failedAt;
@@ -713,12 +713,12 @@ class RunObject
     }
 
     /**
-    * Sets completedAt.
-    *
-    * @param int|null $completedAt  The Unix timestamp (in seconds) for when the run was completed.
-    *
-    * @return $this
-    */
+     * Sets completedAt.
+     *
+     * @param int|null $completedAt  The Unix timestamp (in seconds) for when the run was completed.
+     *
+     * @return $this
+     */
     public function setCompletedAt(?int $completedAt): self
     {
         $this->completedAt = $completedAt;
@@ -740,12 +740,12 @@ class RunObject
     }
 
     /**
-    * Sets incompleteDetails.
-    *
-    * @param RunObjectIncompleteDetails|null $incompleteDetails
-    *
-    * @return $this
-    */
+     * Sets incompleteDetails.
+     *
+     * @param RunObjectIncompleteDetails|null $incompleteDetails
+     *
+     * @return $this
+     */
     public function setIncompleteDetails(?RunObjectIncompleteDetails $incompleteDetails): self
     {
         $this->incompleteDetails = $incompleteDetails;
@@ -767,12 +767,12 @@ class RunObject
     }
 
     /**
-    * Sets model.
-    *
-    * @param string|null $model  The model that the [assistant](/docs/api-reference/assistants) used for this run.
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param string|null $model  The model that the [assistant](/docs/api-reference/assistants) used for this run.
+     *
+     * @return $this
+     */
     public function setModel(?string $model): self
     {
         $this->model = $model;
@@ -794,12 +794,12 @@ class RunObject
     }
 
     /**
-    * Sets instructions.
-    *
-    * @param string|null $instructions  The instructions that the [assistant](/docs/api-reference/assistants) used for this run.
-    *
-    * @return $this
-    */
+     * Sets instructions.
+     *
+     * @param string|null $instructions  The instructions that the [assistant](/docs/api-reference/assistants) used for this run.
+     *
+     * @return $this
+     */
     public function setInstructions(?string $instructions): self
     {
         $this->instructions = $instructions;
@@ -821,12 +821,12 @@ class RunObject
     }
 
     /**
-    * Sets tools.
-    *
-    * @param AssistantObjectToolsInner[]|null $tools  The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
-    *
-    * @return $this
-    */
+     * Sets tools.
+     *
+     * @param AssistantObjectToolsInner[]|null $tools  The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
+     *
+     * @return $this
+     */
     public function setTools(?array $tools): self
     {
         $this->tools = $tools;
@@ -848,12 +848,12 @@ class RunObject
     }
 
     /**
-    * Sets metadata.
-    *
-    * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
-    *
-    * @return $this
-    */
+     * Sets metadata.
+     *
+     * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
+     *
+     * @return $this
+     */
     public function setMetadata(?array $metadata): self
     {
         $this->metadata = $metadata;
@@ -875,12 +875,12 @@ class RunObject
     }
 
     /**
-    * Sets usage.
-    *
-    * @param RunCompletionUsage|null $usage
-    *
-    * @return $this
-    */
+     * Sets usage.
+     *
+     * @param RunCompletionUsage|null $usage
+     *
+     * @return $this
+     */
     public function setUsage(?RunCompletionUsage $usage): self
     {
         $this->usage = $usage;
@@ -902,12 +902,12 @@ class RunObject
     }
 
     /**
-    * Sets temperature.
-    *
-    * @param float|null $temperature  The sampling temperature used for this run. If not set, defaults to 1.
-    *
-    * @return $this
-    */
+     * Sets temperature.
+     *
+     * @param float|null $temperature  The sampling temperature used for this run. If not set, defaults to 1.
+     *
+     * @return $this
+     */
     public function setTemperature(?float $temperature = null): self
     {
         $this->temperature = $temperature;
@@ -929,12 +929,12 @@ class RunObject
     }
 
     /**
-    * Sets topP.
-    *
-    * @param float|null $topP  The nucleus sampling value used for this run. If not set, defaults to 1.
-    *
-    * @return $this
-    */
+     * Sets topP.
+     *
+     * @param float|null $topP  The nucleus sampling value used for this run. If not set, defaults to 1.
+     *
+     * @return $this
+     */
     public function setTopP(?float $topP = null): self
     {
         $this->topP = $topP;
@@ -956,12 +956,12 @@ class RunObject
     }
 
     /**
-    * Sets maxPromptTokens.
-    *
-    * @param int|null $maxPromptTokens  The maximum number of prompt tokens specified to have been used over the course of the run.
-    *
-    * @return $this
-    */
+     * Sets maxPromptTokens.
+     *
+     * @param int|null $maxPromptTokens  The maximum number of prompt tokens specified to have been used over the course of the run.
+     *
+     * @return $this
+     */
     public function setMaxPromptTokens(?int $maxPromptTokens): self
     {
         $this->maxPromptTokens = $maxPromptTokens;
@@ -983,12 +983,12 @@ class RunObject
     }
 
     /**
-    * Sets maxCompletionTokens.
-    *
-    * @param int|null $maxCompletionTokens  The maximum number of completion tokens specified to have been used over the course of the run.
-    *
-    * @return $this
-    */
+     * Sets maxCompletionTokens.
+     *
+     * @param int|null $maxCompletionTokens  The maximum number of completion tokens specified to have been used over the course of the run.
+     *
+     * @return $this
+     */
     public function setMaxCompletionTokens(?int $maxCompletionTokens): self
     {
         $this->maxCompletionTokens = $maxCompletionTokens;
@@ -1010,12 +1010,12 @@ class RunObject
     }
 
     /**
-    * Sets truncationStrategy.
-    *
-    * @param TruncationObject|null $truncationStrategy
-    *
-    * @return $this
-    */
+     * Sets truncationStrategy.
+     *
+     * @param TruncationObject|null $truncationStrategy
+     *
+     * @return $this
+     */
     public function setTruncationStrategy(?TruncationObject $truncationStrategy): self
     {
         $this->truncationStrategy = $truncationStrategy;
@@ -1037,12 +1037,12 @@ class RunObject
     }
 
     /**
-    * Sets toolChoice.
-    *
-    * @param AssistantsApiToolChoiceOption|null $toolChoice
-    *
-    * @return $this
-    */
+     * Sets toolChoice.
+     *
+     * @param AssistantsApiToolChoiceOption|null $toolChoice
+     *
+     * @return $this
+     */
     public function setToolChoice(?AssistantsApiToolChoiceOption $toolChoice): self
     {
         $this->toolChoice = $toolChoice;
@@ -1064,12 +1064,12 @@ class RunObject
     }
 
     /**
-    * Sets parallelToolCalls.
-    *
-    * @param bool|null $parallelToolCalls  Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
-    *
-    * @return $this
-    */
+     * Sets parallelToolCalls.
+     *
+     * @param bool|null $parallelToolCalls  Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+     *
+     * @return $this
+     */
     public function setParallelToolCalls(?bool $parallelToolCalls): self
     {
         $this->parallelToolCalls = $parallelToolCalls;
@@ -1091,12 +1091,12 @@ class RunObject
     }
 
     /**
-    * Sets responseFormat.
-    *
-    * @param AssistantsApiResponseFormatOption|null $responseFormat
-    *
-    * @return $this
-    */
+     * Sets responseFormat.
+     *
+     * @param AssistantsApiResponseFormatOption|null $responseFormat
+     *
+     * @return $this
+     */
     public function setResponseFormat(?AssistantsApiResponseFormatOption $responseFormat): self
     {
         $this->responseFormat = $responseFormat;

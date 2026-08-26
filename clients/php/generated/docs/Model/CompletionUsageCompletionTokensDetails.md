@@ -1,4 +1,4 @@
-# # CompletionUsageCompletionTokensDetails
+# CompletionUsageCompletionTokensDetails
 
 ## Properties
 

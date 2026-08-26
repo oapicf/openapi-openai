@@ -1,0 +1,122 @@
+import { AssistantsApiResponseFormatOption } from './assistants-api-response-format-option';
+import { RunObjectLastError } from './run-object-last-error';
+import { RunObjectIncompleteDetails } from './run-object-incomplete-details';
+import { AssistantsApiToolChoiceOption } from './assistants-api-tool-choice-option';
+import { RunCompletionUsage } from './run-completion-usage';
+import { RunObjectRequiredAction } from './run-object-required-action';
+import { AssistantObjectToolsInner } from './assistant-object-tools-inner';
+import { TruncationObject } from './truncation-object';
+
+
+/**
+ * Represents an execution run on a [thread](/docs/api-reference/threads).
+ */
+export interface RunObject { 
+  /**
+   * The identifier, which can be referenced in API endpoints.
+   */
+  id: string;
+  /**
+   * The object type, which is always `thread.run`.
+   */
+  object: RunObject.ObjectEnum;
+  /**
+   * The Unix timestamp (in seconds) for when the run was created.
+   */
+  created_at: number;
+  /**
+   * The ID of the [thread](/docs/api-reference/threads) that was executed on as a part of this run.
+   */
+  thread_id: string;
+  /**
+   * The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run.
+   */
+  assistant_id: string;
+  /**
+   * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
+   */
+  status: RunObject.StatusEnum;
+  required_action: RunObjectRequiredAction | null;
+  last_error: RunObjectLastError | null;
+  /**
+   * The Unix timestamp (in seconds) for when the run will expire.
+   */
+  expires_at: number | null;
+  /**
+   * The Unix timestamp (in seconds) for when the run was started.
+   */
+  started_at: number | null;
+  /**
+   * The Unix timestamp (in seconds) for when the run was cancelled.
+   */
+  cancelled_at: number | null;
+  /**
+   * The Unix timestamp (in seconds) for when the run failed.
+   */
+  failed_at: number | null;
+  /**
+   * The Unix timestamp (in seconds) for when the run was completed.
+   */
+  completed_at: number | null;
+  incomplete_details: RunObjectIncompleteDetails | null;
+  /**
+   * The model that the [assistant](/docs/api-reference/assistants) used for this run.
+   */
+  model: string;
+  /**
+   * The instructions that the [assistant](/docs/api-reference/assistants) used for this run.
+   */
+  instructions: string;
+  /**
+   * The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
+   */
+  tools: Array<AssistantObjectToolsInner>;
+  /**
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
+   */
+  metadata: object | null;
+  usage: RunCompletionUsage | null;
+  /**
+   * The sampling temperature used for this run. If not set, defaults to 1.
+   */
+  temperature?: number | null;
+  /**
+   * The nucleus sampling value used for this run. If not set, defaults to 1.
+   */
+  top_p?: number | null;
+  /**
+   * The maximum number of prompt tokens specified to have been used over the course of the run. 
+   */
+  max_prompt_tokens: number | null;
+  /**
+   * The maximum number of completion tokens specified to have been used over the course of the run. 
+   */
+  max_completion_tokens: number | null;
+  truncation_strategy: TruncationObject;
+  tool_choice: AssistantsApiToolChoiceOption;
+  /**
+   * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+   */
+  parallel_tool_calls: boolean;
+  response_format: AssistantsApiResponseFormatOption;
+}
+export namespace RunObject {
+  export const ObjectEnum = {
+    ThreadRun: 'thread.run'
+  } as const;
+  export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
+  export const StatusEnum = {
+    Queued: 'queued',
+    InProgress: 'in_progress',
+    RequiresAction: 'requires_action',
+    Cancelling: 'cancelling',
+    Cancelled: 'cancelled',
+    Failed: 'failed',
+    Completed: 'completed',
+    Incomplete: 'incomplete',
+    Expired: 'expired'
+  } as const;
+  export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
+}
+
+

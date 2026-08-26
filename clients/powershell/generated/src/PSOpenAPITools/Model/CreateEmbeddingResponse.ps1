@@ -68,10 +68,10 @@ function Initialize-CreateEmbeddingResponse {
 
 
         $PSO = [PSCustomObject]@{
-            "data" = ${VarData}
-            "model" = ${Model}
-            "object" = ${Object}
-            "usage" = ${Usage}
+            'data' = ${VarData}
+            'model' = ${Model}
+            'object' = ${Object}
+            'usage' = ${Usage}
         }
 
 
@@ -109,7 +109,7 @@ function ConvertFrom-JsonToCreateEmbeddingResponse {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CreateEmbeddingResponse
-        $AllProperties = ("data", "model", "object", "usage")
+        $AllProperties = ('data', 'model', 'object', 'usage')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -120,35 +120,35 @@ function ConvertFrom-JsonToCreateEmbeddingResponse {
             throw "Error! Empty JSON cannot be serialized due to the required property 'data' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "data"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'data'))) {
             throw "Error! JSON cannot be serialized due to the required property 'data' missing."
         } else {
-            $VarData = $JsonParameters.PSobject.Properties["data"].value
+            $VarData = $JsonParameters.PSobject.Properties['data'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) {
             throw "Error! JSON cannot be serialized due to the required property 'model' missing."
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "usage"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'usage'))) {
             throw "Error! JSON cannot be serialized due to the required property 'usage' missing."
         } else {
-            $Usage = $JsonParameters.PSobject.Properties["usage"].value
+            $Usage = $JsonParameters.PSobject.Properties['usage'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "data" = ${VarData}
-            "model" = ${Model}
-            "object" = ${Object}
-            "usage" = ${Usage}
+            'data' = ${VarData}
+            'model' = ${Model}
+            'object' = ${Object}
+            'usage' = ${Usage}
         }
 
         return $PSO

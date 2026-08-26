@@ -72,10 +72,10 @@ class RealtimeClientEventInputAudioBufferAppend {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeClientEventInputAudioBufferAppend[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeClientEventInputAudioBufferAppend[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "RealtimeClientEventInputAudioBufferAppend[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeClientEventInputAudioBufferAppend[type]" has a null value in JSON.');
+        assert(json.containsKey(r'audio'), 'Required key "RealtimeClientEventInputAudioBufferAppend[audio]" is missing from JSON.');
+        assert(json[r'audio'] != null, 'Required key "RealtimeClientEventInputAudioBufferAppend[audio]" has a null value in JSON.');
         return true;
       }());
 
@@ -136,27 +136,28 @@ class RealtimeClientEventInputAudioBufferAppend {
 }
 
 /// The event type, must be `input_audio_buffer.append`.
-class RealtimeClientEventInputAudioBufferAppendTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeClientEventInputAudioBufferAppendTypeEnum._(this.value);
+enum RealtimeClientEventInputAudioBufferAppendTypeEnum {
+  inputAudioBufferPeriodAppend._(r'input_audio_buffer.append'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeClientEventInputAudioBufferAppendTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const inputAudioBufferPeriodAppend = RealtimeClientEventInputAudioBufferAppendTypeEnum._(r'input_audio_buffer.append');
-
-  /// List of all possible values in this [enum][RealtimeClientEventInputAudioBufferAppendTypeEnum].
-  static const values = <RealtimeClientEventInputAudioBufferAppendTypeEnum>[
-    inputAudioBufferPeriodAppend,
-  ];
-
+  /// Returns the instance of [RealtimeClientEventInputAudioBufferAppendTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeClientEventInputAudioBufferAppendTypeEnum? fromJson(dynamic value) => RealtimeClientEventInputAudioBufferAppendTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeClientEventInputAudioBufferAppendTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeClientEventInputAudioBufferAppendTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeClientEventInputAudioBufferAppendTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -178,9 +179,10 @@ class RealtimeClientEventInputAudioBufferAppendTypeEnumTypeTransformer {
 
   const RealtimeClientEventInputAudioBufferAppendTypeEnumTypeTransformer._();
 
-  String encode(RealtimeClientEventInputAudioBufferAppendTypeEnum data) => data.value;
+  String encode(RealtimeClientEventInputAudioBufferAppendTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeClientEventInputAudioBufferAppendTypeEnum.
+  /// Returns the instance of [RealtimeClientEventInputAudioBufferAppendTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -189,6 +191,9 @@ class RealtimeClientEventInputAudioBufferAppendTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeClientEventInputAudioBufferAppendTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeClientEventInputAudioBufferAppendTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'input_audio_buffer.append': return RealtimeClientEventInputAudioBufferAppendTypeEnum.inputAudioBufferPeriodAppend;
@@ -201,7 +206,7 @@ class RealtimeClientEventInputAudioBufferAppendTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeClientEventInputAudioBufferAppendTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeClientEventInputAudioBufferAppendTypeEnumTypeTransformer? _instance;
 }
 

@@ -52,49 +52,49 @@ public:
 
 	/*! \brief Set The object type, which is always \"fine_tuning.job.event\".
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get The object identifier.
 	 */
 	std::string getId();
 
 	/*! \brief Set The object identifier.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The Unix timestamp (in seconds) for when the fine-tuning job was created.
 	 */
 	int getCreatedAt();
 
 	/*! \brief Set The Unix timestamp (in seconds) for when the fine-tuning job was created.
 	 */
-	void setCreatedAt(int  created_at);
+	void setCreatedAt(int created_at);
 	/*! \brief Get The log level of the event.
 	 */
 	std::string getLevel();
 
 	/*! \brief Set The log level of the event.
 	 */
-	void setLevel(std::string  level);
+	void setLevel(std::string level);
 	/*! \brief Get The message of the event.
 	 */
 	std::string getMessage();
 
 	/*! \brief Set The message of the event.
 	 */
-	void setMessage(std::string  message);
+	void setMessage(std::string message);
 	/*! \brief Get The type of event.
 	 */
 	std::string getType();
 
 	/*! \brief Set The type of event.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The data associated with the event.
 	 */
 	Object getData();
 
 	/*! \brief Set The data associated with the event.
 	 */
-	void setData(Object  data);
+	void setData(Object data);
 
 
     private:

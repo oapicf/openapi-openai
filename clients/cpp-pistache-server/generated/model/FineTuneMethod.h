@@ -34,7 +34,7 @@ class  FineTuneMethod
 {
 public:
     FineTuneMethod();
-    virtual ~FineTuneMethod() = default;
+    virtual ~FineTuneMethod();
 
 
     /// <summary>

@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type ChatCompletionRequestFunctionMessage struct {
@@ -25,20 +30,78 @@ type ChatCompletionRequestFunctionMessage struct {
 	// The name of the function to call.
 	Name string `json:"name"`
 }
-
-// AssertChatCompletionRequestFunctionMessageRequired checks if the required fields are not zero-ed
-func AssertChatCompletionRequestFunctionMessageRequired(obj ChatCompletionRequestFunctionMessage) error {
-	elements := map[string]interface{}{
-		"role": obj.Role,
-		"content": obj.Content,
-		"name": obj.Name,
+// UnmarshalJSON validates required property keys then unmarshals into ChatCompletionRequestFunctionMessage
+func (o *ChatCompletionRequestFunctionMessage) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"role",
+		"content",
+		"name",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"role": false,
+		"content": true,
+		"name": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"role": {},
+		"content": {},
+		"name": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded ChatCompletionRequestFunctionMessage
+
+	if value, exists := allProperties["role"]; exists {
+		if err = json.Unmarshal(value, &decoded.Role); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["content"]; exists {
+		if err = json.Unmarshal(value, &decoded.Content); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["name"]; exists {
+		if err = json.Unmarshal(value, &decoded.Name); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertChatCompletionRequestFunctionMessageRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertChatCompletionRequestFunctionMessageRequired(obj ChatCompletionRequestFunctionMessage) error {
 	return nil
 }
 

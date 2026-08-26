@@ -21,7 +21,7 @@ typedef struct admin_api_keys_delete_200_response_t admin_api_keys_delete_200_re
 typedef struct admin_api_keys_delete_200_response_t {
     char *id; // string
     char *object; // string
-    int deleted; //boolean
+    int *deleted; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } admin_api_keys_delete_200_response_t;
@@ -29,7 +29,7 @@ typedef struct admin_api_keys_delete_200_response_t {
 __attribute__((deprecated)) admin_api_keys_delete_200_response_t *admin_api_keys_delete_200_response_create(
     char *id,
     char *object,
-    int deleted
+    int *deleted
 );
 
 void admin_api_keys_delete_200_response_free(admin_api_keys_delete_200_response_t *admin_api_keys_delete_200_response);

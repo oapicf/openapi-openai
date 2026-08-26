@@ -24,7 +24,8 @@ type RealtimeResponseStatusDetailsError struct {
 	Code string `json:"code,omitempty"`
 }
 
-// AssertRealtimeResponseStatusDetailsErrorRequired checks if the required fields are not zero-ed
+// AssertRealtimeResponseStatusDetailsErrorRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeResponseStatusDetailsErrorRequired(obj RealtimeResponseStatusDetailsError) error {
 	return nil
 }

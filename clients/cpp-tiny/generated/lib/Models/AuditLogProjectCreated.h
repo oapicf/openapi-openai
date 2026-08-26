@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set The project ID.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	AuditLog_project_created_data getData();
 
 	/*! \brief Set 
 	 */
-	void setData(AuditLog_project_created_data  data);
+	void setData(AuditLog_project_created_data data);
 
 
     private:

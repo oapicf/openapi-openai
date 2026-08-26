@@ -32,13 +32,13 @@ class OAIError;
 class OAIErrorResponse : public OAIObject {
 public:
     OAIErrorResponse();
-    OAIErrorResponse(QString json);
+    OAIErrorResponse(const QString &json);
     ~OAIErrorResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     OAIError getError() const;
     void setError(const OAIError &error);

@@ -24,7 +24,8 @@ type RealtimeServerEventConversationCreatedConversation struct {
 	Object string `json:"object,omitempty"`
 }
 
-// AssertRealtimeServerEventConversationCreatedConversationRequired checks if the required fields are not zero-ed
+// AssertRealtimeServerEventConversationCreatedConversationRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeServerEventConversationCreatedConversationRequired(obj RealtimeServerEventConversationCreatedConversation) error {
 	return nil
 }

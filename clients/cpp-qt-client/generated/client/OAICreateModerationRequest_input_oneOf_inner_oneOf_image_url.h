@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url : public OAIObject {
 public:
     OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url();
-    OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url(QString json);
+    OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url(const QString &json);
     ~OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getUrl() const;
     void setUrl(const QString &url);

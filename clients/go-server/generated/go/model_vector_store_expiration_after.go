@@ -14,6 +14,8 @@ package openapi
 
 import (
 	"errors"
+	"encoding/json"
+	"fmt"
 )
 
 
@@ -27,19 +29,70 @@ type VectorStoreExpirationAfter struct {
 	// The number of days after the anchor time that the vector store will expire.
 	Days int32 `json:"days"`
 }
-
-// AssertVectorStoreExpirationAfterRequired checks if the required fields are not zero-ed
-func AssertVectorStoreExpirationAfterRequired(obj VectorStoreExpirationAfter) error {
-	elements := map[string]interface{}{
-		"anchor": obj.Anchor,
-		"days": obj.Days,
+// UnmarshalJSON validates required property keys then unmarshals into VectorStoreExpirationAfter
+func (o *VectorStoreExpirationAfter) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"anchor",
+		"days",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"anchor": false,
+		"days": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"anchor": {},
+		"days": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded VectorStoreExpirationAfter
+
+	if value, exists := allProperties["anchor"]; exists {
+		if err = json.Unmarshal(value, &decoded.Anchor); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["days"]; exists {
+		if err = json.Unmarshal(value, &decoded.Days); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertVectorStoreExpirationAfterRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertVectorStoreExpirationAfterRequired(obj VectorStoreExpirationAfter) error {
 	return nil
 }
 

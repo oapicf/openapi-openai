@@ -32,7 +32,7 @@ class  RealtimeServerEventInputAudioBufferCleared
 {
 public:
     RealtimeServerEventInputAudioBufferCleared();
-    virtual ~RealtimeServerEventInputAudioBufferCleared() = default;
+    virtual ~RealtimeServerEventInputAudioBufferCleared();
 
 
     /// <summary>

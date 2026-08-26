@@ -86,7 +86,7 @@ AssistantsApiToolChoiceOption::getType()
 }
 
 void
-AssistantsApiToolChoiceOption::setType(std::string  type)
+AssistantsApiToolChoiceOption::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ AssistantsApiToolChoiceOption::getFunction()
 }
 
 void
-AssistantsApiToolChoiceOption::setFunction(AssistantsNamedToolChoice_function  function)
+AssistantsApiToolChoiceOption::setFunction(AssistantsNamedToolChoice_function function)
 {
 	this->function = function;
 }

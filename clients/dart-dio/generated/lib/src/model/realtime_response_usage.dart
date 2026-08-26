@@ -122,36 +122,41 @@ class _$RealtimeResponseUsageSerializer implements PrimitiveSerializer<RealtimeR
         case r'total_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.totalTokens = valueDes;
           break;
         case r'input_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.inputTokens = valueDes;
           break;
         case r'output_tokens':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.outputTokens = valueDes;
           break;
         case r'input_token_details':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeResponseUsageInputTokenDetails),
-          ) as RealtimeResponseUsageInputTokenDetails;
+            specifiedType: const FullType.nullable(RealtimeResponseUsageInputTokenDetails),
+          ) as RealtimeResponseUsageInputTokenDetails?;
+          if (valueDes == null) continue;
           result.inputTokenDetails.replace(valueDes);
           break;
         case r'output_token_details':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RealtimeResponseUsageOutputTokenDetails),
-          ) as RealtimeResponseUsageOutputTokenDetails;
+            specifiedType: const FullType.nullable(RealtimeResponseUsageOutputTokenDetails),
+          ) as RealtimeResponseUsageOutputTokenDetails?;
+          if (valueDes == null) continue;
           result.outputTokenDetails.replace(valueDes);
           break;
         default:

@@ -12,18 +12,21 @@ static error_response_t *error_response_create_internal(
     if (!error_response_local_var) {
         return NULL;
     }
-    error_response_local_var->error = error;
-
+    memset(error_response_local_var, 0, sizeof(error_response_t));
     error_response_local_var->_library_owned = 1;
+    error_response_local_var->error = error;
     return error_response_local_var;
 }
 
 __attribute__((deprecated)) error_response_t *error_response_create(
     error_t *error
     ) {
-    return error_response_create_internal (
+    error_response_t *result = error_response_create_internal (
         error
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void error_response_free(error_response_t *error_response) {
@@ -86,9 +89,14 @@ error_response_t *error_response_parseFromJSON(cJSON *error_responseJSON){
     error_local_nonprim = error_parseFromJSON(error); //nonprimitive
 
 
+
     error_response_local_var = error_response_create_internal (
         error_local_nonprim
         );
+
+    if (!error_response_local_var) {
+        goto end;
+    }
 
     return error_response_local_var;
 end:

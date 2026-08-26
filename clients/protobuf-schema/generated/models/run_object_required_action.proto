@@ -23,7 +23,7 @@ message RunObjectRequiredAction {
     TYPE_SUBMIT_TOOL_OUTPUTS = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   RunObjectRequiredActionSubmitToolOutputs submit_tool_outputs = 344518480;
 

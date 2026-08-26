@@ -169,7 +169,7 @@ Project::getId()
 }
 
 void
-Project::setId(std::string  id)
+Project::setId(std::string id)
 {
 	this->id = id;
 }
@@ -181,7 +181,7 @@ Project::getObject()
 }
 
 void
-Project::setObject(std::string  object)
+Project::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -193,7 +193,7 @@ Project::getName()
 }
 
 void
-Project::setName(std::string  name)
+Project::setName(std::string name)
 {
 	this->name = name;
 }
@@ -205,7 +205,7 @@ Project::getCreatedAt()
 }
 
 void
-Project::setCreatedAt(int  created_at)
+Project::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -217,7 +217,7 @@ Project::getArchivedAt()
 }
 
 void
-Project::setArchivedAt(int  archived_at)
+Project::setArchivedAt(int archived_at)
 {
 	this->archived_at = archived_at;
 }
@@ -229,7 +229,7 @@ Project::getStatus()
 }
 
 void
-Project::setStatus(std::string  status)
+Project::setStatus(std::string status)
 {
 	this->status = status;
 }

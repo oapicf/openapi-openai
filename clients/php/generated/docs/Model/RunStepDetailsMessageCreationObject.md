@@ -1,4 +1,4 @@
-# # RunStepDetailsMessageCreationObject
+# RunStepDetailsMessageCreationObject
 
 ## Properties
 

@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set Return only events whose `effective_at` (Unix seconds) is greater than this value.
 	 */
-	void setGt(int  gt);
+	void setGt(int gt);
 	/*! \brief Get Return only events whose `effective_at` (Unix seconds) is greater than or equal to this value.
 	 */
 	int getGte();
 
 	/*! \brief Set Return only events whose `effective_at` (Unix seconds) is greater than or equal to this value.
 	 */
-	void setGte(int  gte);
+	void setGte(int gte);
 	/*! \brief Get Return only events whose `effective_at` (Unix seconds) is less than this value.
 	 */
 	int getLt();
 
 	/*! \brief Set Return only events whose `effective_at` (Unix seconds) is less than this value.
 	 */
-	void setLt(int  lt);
+	void setLt(int lt);
 	/*! \brief Get Return only events whose `effective_at` (Unix seconds) is less than or equal to this value.
 	 */
 	int getLte();
 
 	/*! \brief Set Return only events whose `effective_at` (Unix seconds) is less than or equal to this value.
 	 */
-	void setLte(int  lte);
+	void setLte(int lte);
 
 
     private:

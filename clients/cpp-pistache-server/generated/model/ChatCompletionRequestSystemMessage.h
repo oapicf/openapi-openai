@@ -33,7 +33,7 @@ class  ChatCompletionRequestSystemMessage
 {
 public:
     ChatCompletionRequestSystemMessage();
-    virtual ~ChatCompletionRequestSystemMessage() = default;
+    virtual ~ChatCompletionRequestSystemMessage();
 
 
     /// <summary>

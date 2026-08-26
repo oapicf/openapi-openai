@@ -174,7 +174,7 @@ export class DefaultApi {
      */
     public async adminApiKeysDelete (keyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AdminApiKeysDelete200Response;  }> {
         const localVarPath = this.basePath + '/organization/admin_api_keys/{key_id}'
-            .replace('{' + 'key_id' + '}', encodeURIComponent(String(keyId)));
+            .replace('{key_id}', encodeURIComponent(String(keyId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -246,7 +246,7 @@ export class DefaultApi {
      */
     public async adminApiKeysGet (keyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AdminApiKey;  }> {
         const localVarPath = this.basePath + '/organization/admin_api_keys/{key_id}'
-            .replace('{' + 'key_id' + '}', encodeURIComponent(String(keyId)));
+            .replace('{key_id}', encodeURIComponent(String(keyId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];

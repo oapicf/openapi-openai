@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 doc/Doxyfile
 doc/README.md
 doc/generateDocumentation.sh
@@ -128,8 +127,6 @@ src/AuditLogUserUpdatedChangesRequested.cpp
 src/AuditLogUserUpdatedChangesRequested.h
 src/AuditLogsManager.cpp
 src/AuditLogsManager.h
-src/AutoChunkingStrategy.cpp
-src/AutoChunkingStrategy.h
 src/AutoChunkingStrategyRequestParam.cpp
 src/AutoChunkingStrategyRequestParam.h
 src/Batch.cpp
@@ -984,8 +981,6 @@ src/StaticChunkingStrategy.h
 src/StaticChunkingStrategy.h
 src/StaticChunkingStrategyRequestParam.cpp
 src/StaticChunkingStrategyRequestParam.h
-src/StaticChunkingStrategyResponseParam.cpp
-src/StaticChunkingStrategyResponseParam.h
 src/StaticChunkingStrategyStatic.cpp
 src/StaticChunkingStrategyStatic.h
 src/SubmitToolOutputsRunRequest.cpp

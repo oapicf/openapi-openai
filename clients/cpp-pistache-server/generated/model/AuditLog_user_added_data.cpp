@@ -26,6 +26,8 @@ AuditLog_user_added_data::AuditLog_user_added_data()
     
 }
 
+AuditLog_user_added_data::~AuditLog_user_added_data() = default;
+
 void AuditLog_user_added_data::validate() const
 {
     std::stringstream msg;

@@ -23,7 +23,7 @@ message FineTuningJobEvent {
     OBJECT_FINE_TUNING_JOB_EVENT = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The object identifier.
   string id = 3355;
@@ -38,7 +38,7 @@ message FineTuningJobEvent {
     LEVEL_ERROR = 2;
   }
 
-  Level level = 102865796;
+  string level = 102865796;
 
   // The message of the event.
   string message = 418054152;
@@ -49,7 +49,7 @@ message FineTuningJobEvent {
     TYPE_METRICS = 1;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // The data associated with the event.
   TODO_OBJECT_MAPPING data = 3076010;

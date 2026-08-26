@@ -32,7 +32,7 @@ typedef struct create_embedding_request_t {
     struct create_embedding_request_input_t *input; //model
     struct create_embedding_request_model_t *model; //model
     openai_api_create_embedding_request_ENCODINGFORMAT_e encoding_format; //enum
-    int dimensions; //numeric
+    int *dimensions; //numeric
     char *user; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -42,7 +42,7 @@ __attribute__((deprecated)) create_embedding_request_t *create_embedding_request
     create_embedding_request_input_t *input,
     create_embedding_request_model_t *model,
     openai_api_create_embedding_request_ENCODINGFORMAT_e encoding_format,
-    int dimensions,
+    int *dimensions,
     char *user
 );
 

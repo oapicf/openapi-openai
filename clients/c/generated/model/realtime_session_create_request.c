@@ -101,13 +101,15 @@ static realtime_session_create_request_t *realtime_session_create_request_create
     realtime_session_create_request_turn_detection_t *turn_detection,
     list_t *tools,
     char *tool_choice,
-    double temperature,
+    double *temperature,
     realtime_response_create_params_max_response_output_tokens_t *max_response_output_tokens
     ) {
     realtime_session_create_request_t *realtime_session_create_request_local_var = malloc(sizeof(realtime_session_create_request_t));
     if (!realtime_session_create_request_local_var) {
         return NULL;
     }
+    memset(realtime_session_create_request_local_var, 0, sizeof(realtime_session_create_request_t));
+    realtime_session_create_request_local_var->_library_owned = 1;
     realtime_session_create_request_local_var->modalities = modalities;
     realtime_session_create_request_local_var->model = model;
     realtime_session_create_request_local_var->instructions = instructions;
@@ -120,8 +122,6 @@ static realtime_session_create_request_t *realtime_session_create_request_create
     realtime_session_create_request_local_var->tool_choice = tool_choice;
     realtime_session_create_request_local_var->temperature = temperature;
     realtime_session_create_request_local_var->max_response_output_tokens = max_response_output_tokens;
-
-    realtime_session_create_request_local_var->_library_owned = 1;
     return realtime_session_create_request_local_var;
 }
 
@@ -136,10 +136,15 @@ __attribute__((deprecated)) realtime_session_create_request_t *realtime_session_
     realtime_session_create_request_turn_detection_t *turn_detection,
     list_t *tools,
     char *tool_choice,
-    double temperature,
+    double *temperature,
     realtime_response_create_params_max_response_output_tokens_t *max_response_output_tokens
     ) {
-    return realtime_session_create_request_create_internal (
+    double *temperature_copy = NULL;
+    if (temperature) {
+        temperature_copy = malloc(sizeof(double));
+        if (temperature_copy) *temperature_copy = *temperature;
+    }
+    realtime_session_create_request_t *result = realtime_session_create_request_create_internal (
         modalities,
         model,
         instructions,
@@ -150,9 +155,13 @@ __attribute__((deprecated)) realtime_session_create_request_t *realtime_session_
         turn_detection,
         tools,
         tool_choice,
-        temperature,
+        temperature_copy,
         max_response_output_tokens
         );
+    if (!result) {
+        free(temperature_copy);
+    }
+    return result;
 }
 
 void realtime_session_create_request_free(realtime_session_create_request_t *realtime_session_create_request) {
@@ -193,6 +202,10 @@ void realtime_session_create_request_free(realtime_session_create_request_t *rea
     if (realtime_session_create_request->tool_choice) {
         free(realtime_session_create_request->tool_choice);
         realtime_session_create_request->tool_choice = NULL;
+    }
+    if (realtime_session_create_request->temperature) {
+        free(realtime_session_create_request->temperature);
+        realtime_session_create_request->temperature = NULL;
     }
     if (realtime_session_create_request->max_response_output_tokens) {
         realtime_response_create_params_max_response_output_tokens_free(realtime_session_create_request->max_response_output_tokens);
@@ -322,7 +335,7 @@ cJSON *realtime_session_create_request_convertToJSON(realtime_session_create_req
 
     // realtime_session_create_request->temperature
     if(realtime_session_create_request->temperature) {
-    if(cJSON_AddNumberToObject(item, "temperature", realtime_session_create_request->temperature) == NULL) {
+    if(cJSON_AddNumberToObject(item, "temperature", *realtime_session_create_request->temperature) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -355,6 +368,8 @@ realtime_session_create_request_t *realtime_session_create_request_parseFromJSON
     // define the local list for realtime_session_create_request->modalities
     list_t *modalitiesList = NULL;
 
+    char *instructions_local_str = NULL;
+
     // define the local variable for realtime_session_create_request->input_audio_transcription
     realtime_session_input_audio_transcription_t *input_audio_transcription_local_nonprim = NULL;
 
@@ -363,6 +378,11 @@ realtime_session_create_request_t *realtime_session_create_request_parseFromJSON
 
     // define the local list for realtime_session_create_request->tools
     list_t *toolsList = NULL;
+
+    char *tool_choice_local_str = NULL;
+
+    // define the local variable for realtime_session_create_request->temperature
+    double *temperature_local_var = NULL;
 
     // define the local variable for realtime_session_create_request->max_response_output_tokens
     realtime_response_create_params_max_response_output_tokens_t *max_response_output_tokens_local_nonprim = NULL;
@@ -524,6 +544,12 @@ realtime_session_create_request_t *realtime_session_create_request_parseFromJSON
     {
     goto end; //Numeric
     }
+    temperature_local_var = malloc(sizeof(double));
+    if(!temperature_local_var)
+    {
+        goto end;
+    }
+    *temperature_local_var = temperature->valuedouble;
     }
 
     // realtime_session_create_request->max_response_output_tokens
@@ -536,20 +562,27 @@ realtime_session_create_request_t *realtime_session_create_request_parseFromJSON
     }
 
 
+    if (instructions && !cJSON_IsNull(instructions)) instructions_local_str = strdup(instructions->valuestring);
+    if (tool_choice && !cJSON_IsNull(tool_choice)) tool_choice_local_str = strdup(tool_choice->valuestring);
+
     realtime_session_create_request_local_var = realtime_session_create_request_create_internal (
         modalities ? modalitiesList : NULL,
         modelVariable,
-        instructions && !cJSON_IsNull(instructions) ? strdup(instructions->valuestring) : NULL,
+        instructions_local_str,
         voice ? voiceVariable : openai_api_realtime_session_create_request_VOICE_NULL,
         input_audio_format ? input_audio_formatVariable : openai_api_realtime_session_create_request_INPUTAUDIOFORMAT_NULL,
         output_audio_format ? output_audio_formatVariable : openai_api_realtime_session_create_request_OUTPUTAUDIOFORMAT_NULL,
         input_audio_transcription ? input_audio_transcription_local_nonprim : NULL,
         turn_detection ? turn_detection_local_nonprim : NULL,
         tools ? toolsList : NULL,
-        tool_choice && !cJSON_IsNull(tool_choice) ? strdup(tool_choice->valuestring) : NULL,
-        temperature ? temperature->valuedouble : 0,
+        tool_choice_local_str,
+        temperature_local_var,
         max_response_output_tokens ? max_response_output_tokens_local_nonprim : NULL
         );
+
+    if (!realtime_session_create_request_local_var) {
+        goto end;
+    }
 
     return realtime_session_create_request_local_var;
 end:
@@ -561,6 +594,10 @@ end:
         }
         list_freeList(modalitiesList);
         modalitiesList = NULL;
+    }
+    if (instructions_local_str) {
+        free(instructions_local_str);
+        instructions_local_str = NULL;
     }
     if (input_audio_transcription_local_nonprim) {
         realtime_session_input_audio_transcription_free(input_audio_transcription_local_nonprim);
@@ -578,6 +615,14 @@ end:
         }
         list_freeList(toolsList);
         toolsList = NULL;
+    }
+    if (tool_choice_local_str) {
+        free(tool_choice_local_str);
+        tool_choice_local_str = NULL;
+    }
+    if (temperature_local_var) {
+        free(temperature_local_var);
+        temperature_local_var = NULL;
     }
     if (max_response_output_tokens_local_nonprim) {
         realtime_response_create_params_max_response_output_tokens_free(max_response_output_tokens_local_nonprim);

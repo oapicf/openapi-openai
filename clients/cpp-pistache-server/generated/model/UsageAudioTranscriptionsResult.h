@@ -32,7 +32,7 @@ class  UsageAudioTranscriptionsResult
 {
 public:
     UsageAudioTranscriptionsResult();
-    virtual ~UsageAudioTranscriptionsResult() = default;
+    virtual ~UsageAudioTranscriptionsResult();
 
 
     /// <summary>

@@ -55,10 +55,10 @@ function Initialize-ResponseFormatJsonSchemaJsonSchema {
 
 
         $PSO = [PSCustomObject]@{
-            "description" = ${Description}
-            "name" = ${Name}
-            "schema" = ${Schema}
-            "strict" = ${Strict}
+            'description' = ${Description}
+            'name' = ${Name}
+            'schema' = ${Schema}
+            'strict' = ${Strict}
         }
 
 
@@ -96,7 +96,7 @@ function ConvertFrom-JsonToResponseFormatJsonSchemaJsonSchema {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ResponseFormatJsonSchemaJsonSchema
-        $AllProperties = ("description", "name", "schema", "strict")
+        $AllProperties = ('description', 'name', 'schema', 'strict')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -107,35 +107,35 @@ function ConvertFrom-JsonToResponseFormatJsonSchemaJsonSchema {
             throw "Error! Empty JSON cannot be serialized due to the required property 'name' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) {
             throw "Error! JSON cannot be serialized due to the required property 'name' missing."
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'description'))) { #optional property not found
             $Description = $null
         } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
+            $Description = $JsonParameters.PSobject.Properties['description'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "schema"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'schema'))) { #optional property not found
             $Schema = $null
         } else {
-            $Schema = $JsonParameters.PSobject.Properties["schema"].value
+            $Schema = $JsonParameters.PSobject.Properties['schema'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "strict"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'strict'))) { #optional property not found
             $Strict = $null
         } else {
-            $Strict = $JsonParameters.PSobject.Properties["strict"].value
+            $Strict = $JsonParameters.PSobject.Properties['strict'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "description" = ${Description}
-            "name" = ${Name}
-            "schema" = ${Schema}
-            "strict" = ${Strict}
+            'description' = ${Description}
+            'name' = ${Name}
+            'schema' = ${Schema}
+            'strict' = ${Strict}
         }
 
         return $PSO

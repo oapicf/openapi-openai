@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 Dockerfile
 Gemfile
 README.md
@@ -89,7 +88,6 @@ app/models/audit_log_user_added_data.rb
 app/models/audit_log_user_deleted.rb
 app/models/audit_log_user_updated.rb
 app/models/audit_log_user_updated_changes_requested.rb
-app/models/auto_chunking_strategy.rb
 app/models/auto_chunking_strategy_request_param.rb
 app/models/batch.rb
 app/models/batch_errors.rb
@@ -499,7 +497,6 @@ app/models/run_tool_call_object.rb
 app/models/run_tool_call_object_function.rb
 app/models/static_chunking_strategy.rb
 app/models/static_chunking_strategy_request_param.rb
-app/models/static_chunking_strategy_response_param.rb
 app/models/static_chunking_strategy_static.rb
 app/models/submit_tool_outputs_run_request.rb
 app/models/submit_tool_outputs_run_request_tool_outputs_inner.rb

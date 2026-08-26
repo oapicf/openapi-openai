@@ -64,7 +64,7 @@ CreateChatCompletionRequest_function_call::getName()
 }
 
 void
-CreateChatCompletionRequest_function_call::setName(std::string  name)
+CreateChatCompletionRequest_function_call::setName(std::string name)
 {
 	this->name = name;
 }

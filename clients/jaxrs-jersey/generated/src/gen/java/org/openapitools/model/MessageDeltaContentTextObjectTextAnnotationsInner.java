@@ -40,7 +40,7 @@ import javax.validation.Valid;
   MessageDeltaContentTextObjectTextAnnotationsInner.JSON_PROPERTY_END_INDEX,
   MessageDeltaContentTextObjectTextAnnotationsInner.JSON_PROPERTY_FILE_PATH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-01-29T14:09:10.882541726Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class MessageDeltaContentTextObjectTextAnnotationsInner   {
   public static final String JSON_PROPERTY_INDEX = "index";
   @JsonProperty(JSON_PROPERTY_INDEX)
@@ -292,10 +292,7 @@ public class MessageDeltaContentTextObjectTextAnnotationsInner   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

@@ -155,8 +155,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunStepObjectLastError" />
     /// </summary>
-    public class RunStepObjectLastErrorJsonConverter : JsonConverter<RunStepObjectLastError>
+    public partial class RunStepObjectLastErrorJsonConverter : JsonConverter<RunStepObjectLastError>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunStepObjectLastErrorJsonConverter" /> class.
+        /// </summary>
+        public RunStepObjectLastErrorJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunStepObjectLastError" />
         /// </summary>

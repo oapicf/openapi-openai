@@ -42,6 +42,7 @@ public:
     void initializeServerConfigs();
     int setDefaultServerValue(int serverIndex,const QString &operation, const QString &variable,const QString &val);
     void setServerIndex(const QString &operation, int serverIndex);
+    void setServerIndex(int serverIndex);
     void setApiKey(const QString &apiKeyName, const QString &apiKey);
     void setBearerToken(const QString &token);
     void setUsername(const QString &username);
@@ -84,6 +85,13 @@ public:
 
 
 private:
+    enum class OauthMethod : int {
+        INVALID_VALUE_OPENAPI_GENERATED = 0,
+        ImplicitFlow = 1,
+        AuthorizationFlow = 2,
+        ClientCredentialsFlow = 3,
+        ResourceOwnerPasswordFlow = 4
+    };
     QMap<QString,int> _serverIndices;
     QMap<QString,QList<OAIServerConfiguration>> _serverConfigs;
     QMap<QString, QString> _apiKeys;
@@ -103,7 +111,7 @@ private:
     OauthImplicit _implicitFlow;
     OauthCredentials _credentialFlow;
     OauthPassword _passwordFlow;
-    int _OauthMethod = 0;
+    OauthMethod _OauthMethod = OauthMethod::INVALID_VALUE_OPENAPI_GENERATED;
 
     void adminApiKeysCreateCallback(OAIHttpRequestWorker *worker);
     void adminApiKeysDeleteCallback(OAIHttpRequestWorker *worker);
@@ -123,30 +131,14 @@ Q_SIGNALS:
     void adminApiKeysGetSignalFull(OAIHttpRequestWorker *worker, OAIAdminApiKey summary);
     void adminApiKeysListSignalFull(OAIHttpRequestWorker *worker, OAIApiKeyList summary);
 
-    Q_DECL_DEPRECATED_X("Use adminApiKeysCreateSignalError() instead")
-    void adminApiKeysCreateSignalE(OAIAdminApiKey summary, QNetworkReply::NetworkError error_type, QString error_str);
     void adminApiKeysCreateSignalError(OAIAdminApiKey summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use adminApiKeysDeleteSignalError() instead")
-    void adminApiKeysDeleteSignalE(OAIAdmin_api_keys_delete_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void adminApiKeysDeleteSignalError(OAIAdmin_api_keys_delete_200_response summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use adminApiKeysGetSignalError() instead")
-    void adminApiKeysGetSignalE(OAIAdminApiKey summary, QNetworkReply::NetworkError error_type, QString error_str);
     void adminApiKeysGetSignalError(OAIAdminApiKey summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use adminApiKeysListSignalError() instead")
-    void adminApiKeysListSignalE(OAIApiKeyList summary, QNetworkReply::NetworkError error_type, QString error_str);
     void adminApiKeysListSignalError(OAIApiKeyList summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
-    Q_DECL_DEPRECATED_X("Use adminApiKeysCreateSignalErrorFull() instead")
-    void adminApiKeysCreateSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void adminApiKeysCreateSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use adminApiKeysDeleteSignalErrorFull() instead")
-    void adminApiKeysDeleteSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void adminApiKeysDeleteSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use adminApiKeysGetSignalErrorFull() instead")
-    void adminApiKeysGetSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void adminApiKeysGetSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use adminApiKeysListSignalErrorFull() instead")
-    void adminApiKeysListSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void adminApiKeysListSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();

@@ -1,7 +1,10 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -20,10 +23,16 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class BatchRequestOutputError(
 
-    @Schema(example = "null", description = "A machine-readable error code.")
+    @Schema(description = "A machine-readable error code.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("code")
     @get:JsonProperty("code") val code: kotlin.String? = null,
 
-    @Schema(example = "null", description = "A human-readable error message.")
+    @Schema(description = "A human-readable error message.")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("message")
     @get:JsonProperty("message") val message: kotlin.String? = null
 ) {
 

@@ -12,7 +12,7 @@ import org.openapitools.model.RunStepDeltaStepDetailsMessageCreationObjectMessag
  * Details of the message creation by the run step.
  */
 @ApiModel(description = "Details of the message creation by the run step.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RunStepDeltaStepDetailsMessageCreationObject   {
   /**
    * Always `message_creation`.
@@ -120,10 +120,7 @@ public class RunStepDeltaStepDetailsMessageCreationObject   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

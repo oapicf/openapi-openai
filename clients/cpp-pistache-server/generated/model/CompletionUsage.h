@@ -33,7 +33,7 @@ class  CompletionUsage
 {
 public:
     CompletionUsage();
-    virtual ~CompletionUsage() = default;
+    virtual ~CompletionUsage();
 
 
     /// <summary>

@@ -62,10 +62,12 @@ class RunCompletionUsage {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunCompletionUsage[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunCompletionUsage[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'completion_tokens'), 'Required key "RunCompletionUsage[completion_tokens]" is missing from JSON.');
+        assert(json[r'completion_tokens'] != null, 'Required key "RunCompletionUsage[completion_tokens]" has a null value in JSON.');
+        assert(json.containsKey(r'prompt_tokens'), 'Required key "RunCompletionUsage[prompt_tokens]" is missing from JSON.');
+        assert(json[r'prompt_tokens'] != null, 'Required key "RunCompletionUsage[prompt_tokens]" has a null value in JSON.');
+        assert(json.containsKey(r'total_tokens'), 'Required key "RunCompletionUsage[total_tokens]" is missing from JSON.');
+        assert(json[r'total_tokens'] != null, 'Required key "RunCompletionUsage[total_tokens]" has a null value in JSON.');
         return true;
       }());
 

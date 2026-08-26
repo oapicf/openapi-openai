@@ -26,6 +26,8 @@ RunStepDeltaStepDetailsMessageCreationObject::RunStepDeltaStepDetailsMessageCrea
     
 }
 
+RunStepDeltaStepDetailsMessageCreationObject::~RunStepDeltaStepDetailsMessageCreationObject() = default;
+
 void RunStepDeltaStepDetailsMessageCreationObject::validate() const
 {
     std::stringstream msg;

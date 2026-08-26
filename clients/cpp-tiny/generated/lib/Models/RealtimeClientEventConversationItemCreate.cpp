@@ -128,7 +128,7 @@ RealtimeClientEventConversationItemCreate::getEventId()
 }
 
 void
-RealtimeClientEventConversationItemCreate::setEventId(std::string  event_id)
+RealtimeClientEventConversationItemCreate::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -140,7 +140,7 @@ RealtimeClientEventConversationItemCreate::getType()
 }
 
 void
-RealtimeClientEventConversationItemCreate::setType(std::string  type)
+RealtimeClientEventConversationItemCreate::setType(std::string type)
 {
 	this->type = type;
 }
@@ -152,7 +152,7 @@ RealtimeClientEventConversationItemCreate::getPreviousItemId()
 }
 
 void
-RealtimeClientEventConversationItemCreate::setPreviousItemId(std::string  previous_item_id)
+RealtimeClientEventConversationItemCreate::setPreviousItemId(std::string previous_item_id)
 {
 	this->previous_item_id = previous_item_id;
 }
@@ -164,7 +164,7 @@ RealtimeClientEventConversationItemCreate::getItem()
 }
 
 void
-RealtimeClientEventConversationItemCreate::setItem(RealtimeConversationItem  item)
+RealtimeClientEventConversationItemCreate::setItem(RealtimeConversationItem item)
 {
 	this->item = item;
 }

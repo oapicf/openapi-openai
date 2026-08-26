@@ -49,7 +49,7 @@ class CreateRunRequest
      * @var string|null
      * @SerializedName("assistant_id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $assistantId = null;
@@ -58,7 +58,7 @@ class CreateRunRequest
      * @var CreateRunRequestModel|null
      * @SerializedName("model")
      * @Type("OpenAPI\Server\Model\CreateRunRequestModel")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\CreateRunRequestModel")]
     protected ?CreateRunRequestModel $model = null;
 
@@ -68,7 +68,7 @@ class CreateRunRequest
      * @var string|null
      * @SerializedName("instructions")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $instructions = null;
 
@@ -78,7 +78,7 @@ class CreateRunRequest
      * @var string|null
      * @SerializedName("additional_instructions")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $additionalInstructions = null;
 
@@ -88,7 +88,7 @@ class CreateRunRequest
      * @var CreateMessageRequest[]|null
      * @SerializedName("additional_messages")
      * @Type("array<OpenAPI\Server\Model\CreateMessageRequest>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\CreateMessageRequest"),
     ])]
@@ -100,7 +100,7 @@ class CreateRunRequest
      * @var AssistantObjectToolsInner[]|null
      * @SerializedName("tools")
      * @Type("array<OpenAPI\Server\Model\AssistantObjectToolsInner>")
-    */
+     */
     #[Assert\All([
         new Assert\Type("OpenAPI\Server\Model\AssistantObjectToolsInner"),
     ])]
@@ -113,7 +113,7 @@ class CreateRunRequest
      * @var array|null
      * @SerializedName("metadata")
      * @Type("array")
-    */
+     */
     #[Assert\Type("array")]
     protected ?array $metadata = null;
 
@@ -123,7 +123,7 @@ class CreateRunRequest
      * @var float|null
      * @SerializedName("temperature")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(0)]
     #[Assert\LessThanOrEqual(2)]
@@ -135,7 +135,7 @@ class CreateRunRequest
      * @var float|null
      * @SerializedName("top_p")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     #[Assert\GreaterThanOrEqual(0)]
     #[Assert\LessThanOrEqual(1)]
@@ -147,7 +147,7 @@ class CreateRunRequest
      * @var bool|null
      * @SerializedName("stream")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $stream = null;
 
@@ -157,7 +157,7 @@ class CreateRunRequest
      * @var int|null
      * @SerializedName("max_prompt_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(256)]
     protected ?int $maxPromptTokens = null;
@@ -168,7 +168,7 @@ class CreateRunRequest
      * @var int|null
      * @SerializedName("max_completion_tokens")
      * @Type("int")
-    */
+     */
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(256)]
     protected ?int $maxCompletionTokens = null;
@@ -177,7 +177,7 @@ class CreateRunRequest
      * @var TruncationObject|null
      * @SerializedName("truncation_strategy")
      * @Type("OpenAPI\Server\Model\TruncationObject")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\TruncationObject")]
     protected ?TruncationObject $truncationStrategy = null;
 
@@ -185,7 +185,7 @@ class CreateRunRequest
      * @var AssistantsApiToolChoiceOption|null
      * @SerializedName("tool_choice")
      * @Type("OpenAPI\Server\Model\AssistantsApiToolChoiceOption")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AssistantsApiToolChoiceOption")]
     protected ?AssistantsApiToolChoiceOption $toolChoice = null;
 
@@ -195,7 +195,7 @@ class CreateRunRequest
      * @var bool|null
      * @SerializedName("parallel_tool_calls")
      * @Type("bool")
-    */
+     */
     #[Assert\Type("bool")]
     protected ?bool $parallelToolCalls = true;
 
@@ -203,7 +203,7 @@ class CreateRunRequest
      * @var AssistantsApiResponseFormatOption|null
      * @SerializedName("response_format")
      * @Type("OpenAPI\Server\Model\AssistantsApiResponseFormatOption")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\AssistantsApiResponseFormatOption")]
     protected ?AssistantsApiResponseFormatOption $responseFormat = null;
 
@@ -244,12 +244,12 @@ class CreateRunRequest
     }
 
     /**
-    * Sets assistantId.
-    *
-    * @param string|null $assistantId  The ID of the [assistant](/docs/api-reference/assistants) to use to execute this run.
-    *
-    * @return $this
-    */
+     * Sets assistantId.
+     *
+     * @param string|null $assistantId  The ID of the [assistant](/docs/api-reference/assistants) to use to execute this run.
+     *
+     * @return $this
+     */
     public function setAssistantId(?string $assistantId): self
     {
         $this->assistantId = $assistantId;
@@ -271,12 +271,12 @@ class CreateRunRequest
     }
 
     /**
-    * Sets model.
-    *
-    * @param CreateRunRequestModel|null $model
-    *
-    * @return $this
-    */
+     * Sets model.
+     *
+     * @param CreateRunRequestModel|null $model
+     *
+     * @return $this
+     */
     public function setModel(?CreateRunRequestModel $model = null): self
     {
         $this->model = $model;
@@ -298,12 +298,12 @@ class CreateRunRequest
     }
 
     /**
-    * Sets instructions.
-    *
-    * @param string|null $instructions  Overrides the [instructions](/docs/api-reference/assistants/createAssistant) of the assistant. This is useful for modifying the behavior on a per-run basis.
-    *
-    * @return $this
-    */
+     * Sets instructions.
+     *
+     * @param string|null $instructions  Overrides the [instructions](/docs/api-reference/assistants/createAssistant) of the assistant. This is useful for modifying the behavior on a per-run basis.
+     *
+     * @return $this
+     */
     public function setInstructions(?string $instructions = null): self
     {
         $this->instructions = $instructions;
@@ -325,12 +325,12 @@ class CreateRunRequest
     }
 
     /**
-    * Sets additionalInstructions.
-    *
-    * @param string|null $additionalInstructions  Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions.
-    *
-    * @return $this
-    */
+     * Sets additionalInstructions.
+     *
+     * @param string|null $additionalInstructions  Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions.
+     *
+     * @return $this
+     */
     public function setAdditionalInstructions(?string $additionalInstructions = null): self
     {
         $this->additionalInstructions = $additionalInstructions;
@@ -352,12 +352,12 @@ class CreateRunRequest
     }
 
     /**
-    * Sets additionalMessages.
-    *
-    * @param CreateMessageRequest[]|null $additionalMessages  Adds additional messages to the thread before creating the run.
-    *
-    * @return $this
-    */
+     * Sets additionalMessages.
+     *
+     * @param CreateMessageRequest[]|null $additionalMessages  Adds additional messages to the thread before creating the run.
+     *
+     * @return $this
+     */
     public function setAdditionalMessages(?array $additionalMessages = null): self
     {
         $this->additionalMessages = $additionalMessages;
@@ -379,12 +379,12 @@ class CreateRunRequest
     }
 
     /**
-    * Sets tools.
-    *
-    * @param AssistantObjectToolsInner[]|null $tools  Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
-    *
-    * @return $this
-    */
+     * Sets tools.
+     *
+     * @param AssistantObjectToolsInner[]|null $tools  Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
+     *
+     * @return $this
+     */
     public function setTools(?array $tools = null): self
     {
         $this->tools = $tools;
@@ -406,12 +406,12 @@ class CreateRunRequest
     }
 
     /**
-    * Sets metadata.
-    *
-    * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
-    *
-    * @return $this
-    */
+     * Sets metadata.
+     *
+     * @param array|null $metadata  Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
+     *
+     * @return $this
+     */
     public function setMetadata(?array $metadata = null): self
     {
         $this->metadata = $metadata;
@@ -433,12 +433,12 @@ class CreateRunRequest
     }
 
     /**
-    * Sets temperature.
-    *
-    * @param float|null $temperature  What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
-    *
-    * @return $this
-    */
+     * Sets temperature.
+     *
+     * @param float|null $temperature  What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+     *
+     * @return $this
+     */
     public function setTemperature(?float $temperature = null): self
     {
         $this->temperature = $temperature;
@@ -460,12 +460,12 @@ class CreateRunRequest
     }
 
     /**
-    * Sets topP.
-    *
-    * @param float|null $topP  An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both.
-    *
-    * @return $this
-    */
+     * Sets topP.
+     *
+     * @param float|null $topP  An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both.
+     *
+     * @return $this
+     */
     public function setTopP(?float $topP = null): self
     {
         $this->topP = $topP;
@@ -487,12 +487,12 @@ class CreateRunRequest
     }
 
     /**
-    * Sets stream.
-    *
-    * @param bool|null $stream  If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message.
-    *
-    * @return $this
-    */
+     * Sets stream.
+     *
+     * @param bool|null $stream  If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message.
+     *
+     * @return $this
+     */
     public function setStream(?bool $stream = null): self
     {
         $this->stream = $stream;
@@ -514,12 +514,12 @@ class CreateRunRequest
     }
 
     /**
-    * Sets maxPromptTokens.
-    *
-    * @param int|null $maxPromptTokens  The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info.
-    *
-    * @return $this
-    */
+     * Sets maxPromptTokens.
+     *
+     * @param int|null $maxPromptTokens  The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info.
+     *
+     * @return $this
+     */
     public function setMaxPromptTokens(?int $maxPromptTokens = null): self
     {
         $this->maxPromptTokens = $maxPromptTokens;
@@ -541,12 +541,12 @@ class CreateRunRequest
     }
 
     /**
-    * Sets maxCompletionTokens.
-    *
-    * @param int|null $maxCompletionTokens  The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info.
-    *
-    * @return $this
-    */
+     * Sets maxCompletionTokens.
+     *
+     * @param int|null $maxCompletionTokens  The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info.
+     *
+     * @return $this
+     */
     public function setMaxCompletionTokens(?int $maxCompletionTokens = null): self
     {
         $this->maxCompletionTokens = $maxCompletionTokens;
@@ -568,12 +568,12 @@ class CreateRunRequest
     }
 
     /**
-    * Sets truncationStrategy.
-    *
-    * @param TruncationObject|null $truncationStrategy
-    *
-    * @return $this
-    */
+     * Sets truncationStrategy.
+     *
+     * @param TruncationObject|null $truncationStrategy
+     *
+     * @return $this
+     */
     public function setTruncationStrategy(?TruncationObject $truncationStrategy = null): self
     {
         $this->truncationStrategy = $truncationStrategy;
@@ -595,12 +595,12 @@ class CreateRunRequest
     }
 
     /**
-    * Sets toolChoice.
-    *
-    * @param AssistantsApiToolChoiceOption|null $toolChoice
-    *
-    * @return $this
-    */
+     * Sets toolChoice.
+     *
+     * @param AssistantsApiToolChoiceOption|null $toolChoice
+     *
+     * @return $this
+     */
     public function setToolChoice(?AssistantsApiToolChoiceOption $toolChoice = null): self
     {
         $this->toolChoice = $toolChoice;
@@ -622,12 +622,12 @@ class CreateRunRequest
     }
 
     /**
-    * Sets parallelToolCalls.
-    *
-    * @param bool|null $parallelToolCalls  Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
-    *
-    * @return $this
-    */
+     * Sets parallelToolCalls.
+     *
+     * @param bool|null $parallelToolCalls  Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+     *
+     * @return $this
+     */
     public function setParallelToolCalls(?bool $parallelToolCalls = null): self
     {
         $this->parallelToolCalls = $parallelToolCalls;
@@ -649,12 +649,12 @@ class CreateRunRequest
     }
 
     /**
-    * Sets responseFormat.
-    *
-    * @param AssistantsApiResponseFormatOption|null $responseFormat
-    *
-    * @return $this
-    */
+     * Sets responseFormat.
+     *
+     * @param AssistantsApiResponseFormatOption|null $responseFormat
+     *
+     * @return $this
+     */
     public function setResponseFormat(?AssistantsApiResponseFormatOption $responseFormat = null): self
     {
         $this->responseFormat = $responseFormat;

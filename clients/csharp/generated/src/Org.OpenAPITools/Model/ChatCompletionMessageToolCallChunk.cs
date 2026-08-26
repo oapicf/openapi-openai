@@ -115,7 +115,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The type of the tool. Currently, only &#x60;function&#x60; is supported.</value>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Gets or Sets Index
@@ -135,7 +135,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The ID of the tool call.</value>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Function
@@ -148,7 +148,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Function
         /// </summary>
         [JsonPropertyName("function")]
-        public ChatCompletionMessageToolCallChunkFunction? Function { get { return this.FunctionOption; } set { this.FunctionOption = new(value); } }
+        public ChatCompletionMessageToolCallChunkFunction? Function { get { return this.FunctionOption.Value; } set { this.FunctionOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -180,8 +180,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ChatCompletionMessageToolCallChunk" />
     /// </summary>
-    public class ChatCompletionMessageToolCallChunkJsonConverter : JsonConverter<ChatCompletionMessageToolCallChunk>
+    public partial class ChatCompletionMessageToolCallChunkJsonConverter : JsonConverter<ChatCompletionMessageToolCallChunk>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChatCompletionMessageToolCallChunkJsonConverter" /> class.
+        /// </summary>
+        public ChatCompletionMessageToolCallChunkJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ChatCompletionMessageToolCallChunk" />
         /// </summary>

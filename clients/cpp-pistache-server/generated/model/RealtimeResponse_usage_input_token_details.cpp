@@ -30,6 +30,8 @@ RealtimeResponse_usage_input_token_details::RealtimeResponse_usage_input_token_d
     
 }
 
+RealtimeResponse_usage_input_token_details::~RealtimeResponse_usage_input_token_details() = default;
+
 void RealtimeResponse_usage_input_token_details::validate() const
 {
     std::stringstream msg;

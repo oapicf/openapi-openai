@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.OtherChunkingStrategyResponseParam;
 import org.openapitools.model.StaticChunkingStrategy;
-import org.openapitools.model.StaticChunkingStrategyResponseParam;
+import org.openapitools.model.StaticChunkingStrategyRequestParam;
 
 @Canonical
 class VectorStoreFileObjectChunkingStrategy {

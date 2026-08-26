@@ -76,11 +76,11 @@ function Initialize-VectorStoreFileBatchObjectFileCounts {
 
 
         $PSO = [PSCustomObject]@{
-            "in_progress" = ${InProgress}
-            "completed" = ${Completed}
-            "failed" = ${Failed}
-            "cancelled" = ${Cancelled}
-            "total" = ${Total}
+            'in_progress' = ${InProgress}
+            'completed' = ${Completed}
+            'failed' = ${Failed}
+            'cancelled' = ${Cancelled}
+            'total' = ${Total}
         }
 
 
@@ -118,7 +118,7 @@ function ConvertFrom-JsonToVectorStoreFileBatchObjectFileCounts {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in VectorStoreFileBatchObjectFileCounts
-        $AllProperties = ("in_progress", "completed", "failed", "cancelled", "total")
+        $AllProperties = ('in_progress', 'completed', 'failed', 'cancelled', 'total')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -129,42 +129,42 @@ function ConvertFrom-JsonToVectorStoreFileBatchObjectFileCounts {
             throw "Error! Empty JSON cannot be serialized due to the required property 'in_progress' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "in_progress"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'in_progress'))) {
             throw "Error! JSON cannot be serialized due to the required property 'in_progress' missing."
         } else {
-            $InProgress = $JsonParameters.PSobject.Properties["in_progress"].value
+            $InProgress = $JsonParameters.PSobject.Properties['in_progress'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "completed"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'completed'))) {
             throw "Error! JSON cannot be serialized due to the required property 'completed' missing."
         } else {
-            $Completed = $JsonParameters.PSobject.Properties["completed"].value
+            $Completed = $JsonParameters.PSobject.Properties['completed'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "failed"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'failed'))) {
             throw "Error! JSON cannot be serialized due to the required property 'failed' missing."
         } else {
-            $Failed = $JsonParameters.PSobject.Properties["failed"].value
+            $Failed = $JsonParameters.PSobject.Properties['failed'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cancelled"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'cancelled'))) {
             throw "Error! JSON cannot be serialized due to the required property 'cancelled' missing."
         } else {
-            $Cancelled = $JsonParameters.PSobject.Properties["cancelled"].value
+            $Cancelled = $JsonParameters.PSobject.Properties['cancelled'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "total"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'total'))) {
             throw "Error! JSON cannot be serialized due to the required property 'total' missing."
         } else {
-            $Total = $JsonParameters.PSobject.Properties["total"].value
+            $Total = $JsonParameters.PSobject.Properties['total'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "in_progress" = ${InProgress}
-            "completed" = ${Completed}
-            "failed" = ${Failed}
-            "cancelled" = ${Cancelled}
-            "total" = ${Total}
+            'in_progress' = ${InProgress}
+            'completed' = ${Completed}
+            'failed' = ${Failed}
+            'cancelled' = ${Cancelled}
+            'total' = ${Total}
         }
 
         return $PSO

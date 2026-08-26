@@ -86,7 +86,7 @@ AssistantToolsFunction::getType()
 }
 
 void
-AssistantToolsFunction::setType(std::string  type)
+AssistantToolsFunction::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ AssistantToolsFunction::getFunction()
 }
 
 void
-AssistantToolsFunction::setFunction(FunctionObject  function)
+AssistantToolsFunction::setFunction(FunctionObject function)
 {
 	this->function = function;
 }

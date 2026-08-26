@@ -32,7 +32,7 @@ class  DeleteVectorStoreResponse
 {
 public:
     DeleteVectorStoreResponse();
-    virtual ~DeleteVectorStoreResponse() = default;
+    virtual ~DeleteVectorStoreResponse();
 
 
     /// <summary>

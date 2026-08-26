@@ -33,7 +33,7 @@ class  CreateModerationRequest_input
 {
 public:
     CreateModerationRequest_input();
-    virtual ~CreateModerationRequest_input() = default;
+    virtual ~CreateModerationRequest_input();
 
 
     /// <summary>

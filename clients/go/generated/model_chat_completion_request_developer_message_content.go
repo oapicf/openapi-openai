@@ -85,7 +85,16 @@ func (dst *ChatCompletionRequestDeveloperMessageContent) UnmarshalJSON(data []by
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(ChatCompletionRequestDeveloperMessageContent)")
+        if err != nil {
+            return fmt.Errorf("data failed to match schemas in oneOf(ChatCompletionRequestDeveloperMessageContent): %v", err)
+        } else {
+            return fmt.Errorf("data failed to match schemas in oneOf(ChatCompletionRequestDeveloperMessageContent)")
+        }
+        if err != nil {
+            return fmt.Errorf("data failed to match schemas in oneOf(ChatCompletionRequestDeveloperMessageContent): %v", err)
+        } else {
+            return fmt.Errorf("data failed to match schemas in oneOf(ChatCompletionRequestDeveloperMessageContent)")
+        }
 	}
 }
 

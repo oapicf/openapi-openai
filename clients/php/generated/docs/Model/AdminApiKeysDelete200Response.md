@@ -1,4 +1,4 @@
-# # AdminApiKeysDelete200Response
+# AdminApiKeysDelete200Response
 
 ## Properties
 

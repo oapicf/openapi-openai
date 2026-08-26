@@ -28,6 +28,8 @@ RealtimeClientEventResponseCreate::RealtimeClientEventResponseCreate()
     
 }
 
+RealtimeClientEventResponseCreate::~RealtimeClientEventResponseCreate() = default;
+
 void RealtimeClientEventResponseCreate::validate() const
 {
     std::stringstream msg;

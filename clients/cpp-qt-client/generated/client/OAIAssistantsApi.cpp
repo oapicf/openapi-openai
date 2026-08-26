@@ -85,9 +85,9 @@ void OAIAssistantsApi::initializeServerConfigs() {
 }
 
 /**
-* returns 0 on success and -1, -2 or -3 on failure.
-* -1 when the variable does not exist and -2 if the value is not defined in the enum and -3 if the operation or server index is not found
-*/
+ * returns 0 on success and -1, -2 or -3 on failure.
+ * -1 when the variable does not exist and -2 if the value is not defined in the enum and -3 if the operation or server index is not found
+ */
 int OAIAssistantsApi::setDefaultServerValue(int serverIndex, const QString &operation, const QString &variable, const QString &value) {
     auto it = _serverConfigs.find(operation);
     if (it != _serverConfigs.end() && serverIndex < it.value().size()) {
@@ -95,9 +95,21 @@ int OAIAssistantsApi::setDefaultServerValue(int serverIndex, const QString &oper
     }
     return -3;
 }
+
+/**
+ * Sets the server index.
+ * @param operation The id to the target operation.
+ * @param serverIndex The server index.
+ */
 void OAIAssistantsApi::setServerIndex(const QString &operation, int serverIndex) {
     if (_serverIndices.contains(operation) && serverIndex < _serverConfigs.find(operation).value().size()) {
         _serverIndices[operation] = serverIndex;
+    }
+}
+
+void OAIAssistantsApi::setServerIndex(int serverIndex) {
+    for (auto keyIt = _serverIndices.keyBegin(); keyIt != _serverIndices.keyEnd(); keyIt++) {
+        setServerIndex(*keyIt, serverIndex);
     }
 }
 
@@ -131,13 +143,13 @@ void OAIAssistantsApi::setNetworkAccessManager(QNetworkAccessManager* manager) {
 }
 
 /**
-    * Appends a new ServerConfiguration to the config map for a specific operation.
-    * @param operation The id to the target operation.
-    * @param url A string that contains the URL of the server
-    * @param description A String that describes the server
-    * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
-    * returns the index of the new server config on success and -1 if the operation is not found
-    */
+ * Appends a new ServerConfiguration to the config map for a specific operation.
+ * @param operation The id to the target operation.
+ * @param url A string that contains the URL of the server
+ * @param description A String that describes the server
+ * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
+ * returns the index of the new server config on success and -1 if the operation is not found
+ */
 int OAIAssistantsApi::addServerConfiguration(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     if (_serverConfigs.contains(operation)) {
         _serverConfigs[operation].append(OAIServerConfiguration(
@@ -151,11 +163,11 @@ int OAIAssistantsApi::addServerConfiguration(const QString &operation, const QUr
 }
 
 /**
-    * Appends a new ServerConfiguration to the config map for a all operations and sets the index to that server.
-    * @param url A string that contains the URL of the server
-    * @param description A String that describes the server
-    * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
-    */
+ * Appends a new ServerConfiguration to the config map for a all operations and sets the index to that server.
+ * @param url A string that contains the URL of the server
+ * @param description A String that describes the server
+ * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
+ */
 void OAIAssistantsApi::setNewServerForAllOperations(const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     for (auto keyIt = _serverIndices.keyBegin(); keyIt != _serverIndices.keyEnd(); keyIt++) {
         setServerIndex(*keyIt, addServerConfiguration(*keyIt, url, description, variables));
@@ -163,11 +175,11 @@ void OAIAssistantsApi::setNewServerForAllOperations(const QUrl &url, const QStri
 }
 
 /**
-    * Appends a new ServerConfiguration to the config map for an operations and sets the index to that server.
-    * @param URL A string that contains the URL of the server
-    * @param description A String that describes the server
-    * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
-    */
+ * Appends a new ServerConfiguration to the config map for an operations and sets the index to that server.
+ * @param URL A string that contains the URL of the server
+ * @param description A String that describes the server
+ * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
+ */
 void OAIAssistantsApi::setNewServer(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     setServerIndex(operation, addServerConfiguration(operation, url, description, variables));
 }
@@ -321,32 +333,6 @@ void OAIAssistantsApi::cancelRunCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT cancelRunSignal(output);
         Q_EMIT cancelRunSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT cancelRunSignalE(output, error_type, error_str);
-        Q_EMIT cancelRunSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT cancelRunSignalError(output, error_type, error_str);
         Q_EMIT cancelRunSignalErrorFull(worker, error_type, error_str);
     }
@@ -399,32 +385,6 @@ void OAIAssistantsApi::createAssistantCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT createAssistantSignal(output);
         Q_EMIT createAssistantSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT createAssistantSignalE(output, error_type, error_str);
-        Q_EMIT createAssistantSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT createAssistantSignalError(output, error_type, error_str);
         Q_EMIT createAssistantSignalErrorFull(worker, error_type, error_str);
     }
@@ -491,32 +451,6 @@ void OAIAssistantsApi::createMessageCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT createMessageSignal(output);
         Q_EMIT createMessageSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT createMessageSignalE(output, error_type, error_str);
-        Q_EMIT createMessageSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT createMessageSignalError(output, error_type, error_str);
         Q_EMIT createMessageSignalErrorFull(worker, error_type, error_str);
     }
@@ -669,32 +603,6 @@ void OAIAssistantsApi::createRunCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT createRunSignal(output);
         Q_EMIT createRunSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT createRunSignalE(output, error_type, error_str);
-        Q_EMIT createRunSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT createRunSignalError(output, error_type, error_str);
         Q_EMIT createRunSignalErrorFull(worker, error_type, error_str);
     }
@@ -747,32 +655,6 @@ void OAIAssistantsApi::createThreadCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT createThreadSignal(output);
         Q_EMIT createThreadSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT createThreadSignalE(output, error_type, error_str);
-        Q_EMIT createThreadSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT createThreadSignalError(output, error_type, error_str);
         Q_EMIT createThreadSignalErrorFull(worker, error_type, error_str);
     }
@@ -825,32 +707,6 @@ void OAIAssistantsApi::createThreadAndRunCallback(OAIHttpRequestWorker *worker) 
         Q_EMIT createThreadAndRunSignal(output);
         Q_EMIT createThreadAndRunSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT createThreadAndRunSignalE(output, error_type, error_str);
-        Q_EMIT createThreadAndRunSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT createThreadAndRunSignalError(output, error_type, error_str);
         Q_EMIT createThreadAndRunSignalErrorFull(worker, error_type, error_str);
     }
@@ -912,32 +768,6 @@ void OAIAssistantsApi::deleteAssistantCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT deleteAssistantSignal(output);
         Q_EMIT deleteAssistantSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT deleteAssistantSignalE(output, error_type, error_str);
-        Q_EMIT deleteAssistantSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT deleteAssistantSignalError(output, error_type, error_str);
         Q_EMIT deleteAssistantSignalErrorFull(worker, error_type, error_str);
     }
@@ -1013,32 +843,6 @@ void OAIAssistantsApi::deleteMessageCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT deleteMessageSignal(output);
         Q_EMIT deleteMessageSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT deleteMessageSignalE(output, error_type, error_str);
-        Q_EMIT deleteMessageSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT deleteMessageSignalError(output, error_type, error_str);
         Q_EMIT deleteMessageSignalErrorFull(worker, error_type, error_str);
     }
@@ -1100,32 +904,6 @@ void OAIAssistantsApi::deleteThreadCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT deleteThreadSignal(output);
         Q_EMIT deleteThreadSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT deleteThreadSignalE(output, error_type, error_str);
-        Q_EMIT deleteThreadSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT deleteThreadSignalError(output, error_type, error_str);
         Q_EMIT deleteThreadSignalErrorFull(worker, error_type, error_str);
     }
@@ -1187,32 +965,6 @@ void OAIAssistantsApi::getAssistantCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT getAssistantSignal(output);
         Q_EMIT getAssistantSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT getAssistantSignalE(output, error_type, error_str);
-        Q_EMIT getAssistantSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT getAssistantSignalError(output, error_type, error_str);
         Q_EMIT getAssistantSignalErrorFull(worker, error_type, error_str);
     }
@@ -1288,32 +1040,6 @@ void OAIAssistantsApi::getMessageCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT getMessageSignal(output);
         Q_EMIT getMessageSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT getMessageSignalE(output, error_type, error_str);
-        Q_EMIT getMessageSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT getMessageSignalError(output, error_type, error_str);
         Q_EMIT getMessageSignalErrorFull(worker, error_type, error_str);
     }
@@ -1389,32 +1115,6 @@ void OAIAssistantsApi::getRunCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT getRunSignal(output);
         Q_EMIT getRunSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT getRunSignalE(output, error_type, error_str);
-        Q_EMIT getRunSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT getRunSignalError(output, error_type, error_str);
         Q_EMIT getRunSignalErrorFull(worker, error_type, error_str);
     }
@@ -1590,32 +1290,6 @@ void OAIAssistantsApi::getRunStepCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT getRunStepSignal(output);
         Q_EMIT getRunStepSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT getRunStepSignalE(output, error_type, error_str);
-        Q_EMIT getRunStepSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT getRunStepSignalError(output, error_type, error_str);
         Q_EMIT getRunStepSignalErrorFull(worker, error_type, error_str);
     }
@@ -1677,32 +1351,6 @@ void OAIAssistantsApi::getThreadCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT getThreadSignal(output);
         Q_EMIT getThreadSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT getThreadSignalE(output, error_type, error_str);
-        Q_EMIT getThreadSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT getThreadSignalError(output, error_type, error_str);
         Q_EMIT getThreadSignalErrorFull(worker, error_type, error_str);
     }
@@ -1811,32 +1459,6 @@ void OAIAssistantsApi::listAssistantsCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT listAssistantsSignal(output);
         Q_EMIT listAssistantsSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT listAssistantsSignalE(output, error_type, error_str);
-        Q_EMIT listAssistantsSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT listAssistantsSignalError(output, error_type, error_str);
         Q_EMIT listAssistantsSignalErrorFull(worker, error_type, error_str);
     }
@@ -1974,32 +1596,6 @@ void OAIAssistantsApi::listMessagesCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT listMessagesSignal(output);
         Q_EMIT listMessagesSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT listMessagesSignalE(output, error_type, error_str);
-        Q_EMIT listMessagesSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT listMessagesSignalError(output, error_type, error_str);
         Q_EMIT listMessagesSignalErrorFull(worker, error_type, error_str);
     }
@@ -2221,32 +1817,6 @@ void OAIAssistantsApi::listRunStepsCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT listRunStepsSignal(output);
         Q_EMIT listRunStepsSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT listRunStepsSignalE(output, error_type, error_str);
-        Q_EMIT listRunStepsSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT listRunStepsSignalError(output, error_type, error_str);
         Q_EMIT listRunStepsSignalErrorFull(worker, error_type, error_str);
     }
@@ -2369,32 +1939,6 @@ void OAIAssistantsApi::listRunsCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT listRunsSignal(output);
         Q_EMIT listRunsSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT listRunsSignalE(output, error_type, error_str);
-        Q_EMIT listRunsSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT listRunsSignalError(output, error_type, error_str);
         Q_EMIT listRunsSignalErrorFull(worker, error_type, error_str);
     }
@@ -2461,32 +2005,6 @@ void OAIAssistantsApi::modifyAssistantCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT modifyAssistantSignal(output);
         Q_EMIT modifyAssistantSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT modifyAssistantSignalE(output, error_type, error_str);
-        Q_EMIT modifyAssistantSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT modifyAssistantSignalError(output, error_type, error_str);
         Q_EMIT modifyAssistantSignalErrorFull(worker, error_type, error_str);
     }
@@ -2567,32 +2085,6 @@ void OAIAssistantsApi::modifyMessageCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT modifyMessageSignal(output);
         Q_EMIT modifyMessageSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT modifyMessageSignalE(output, error_type, error_str);
-        Q_EMIT modifyMessageSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT modifyMessageSignalError(output, error_type, error_str);
         Q_EMIT modifyMessageSignalErrorFull(worker, error_type, error_str);
     }
@@ -2673,32 +2165,6 @@ void OAIAssistantsApi::modifyRunCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT modifyRunSignal(output);
         Q_EMIT modifyRunSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT modifyRunSignalE(output, error_type, error_str);
-        Q_EMIT modifyRunSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT modifyRunSignalError(output, error_type, error_str);
         Q_EMIT modifyRunSignalErrorFull(worker, error_type, error_str);
     }
@@ -2765,32 +2231,6 @@ void OAIAssistantsApi::modifyThreadCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT modifyThreadSignal(output);
         Q_EMIT modifyThreadSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT modifyThreadSignalE(output, error_type, error_str);
-        Q_EMIT modifyThreadSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT modifyThreadSignalError(output, error_type, error_str);
         Q_EMIT modifyThreadSignalErrorFull(worker, error_type, error_str);
     }
@@ -2871,42 +2311,16 @@ void OAIAssistantsApi::submitToolOuputsToRunCallback(OAIHttpRequestWorker *worke
         Q_EMIT submitToolOuputsToRunSignal(output);
         Q_EMIT submitToolOuputsToRunSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT submitToolOuputsToRunSignalE(output, error_type, error_str);
-        Q_EMIT submitToolOuputsToRunSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT submitToolOuputsToRunSignalError(output, error_type, error_str);
         Q_EMIT submitToolOuputsToRunSignalErrorFull(worker, error_type, error_str);
     }
 }
 
-void OAIAssistantsApi::tokenAvailable(){
+void OAIAssistantsApi::tokenAvailable() {
 
     oauthToken token;
     switch (_OauthMethod) {
-    case 1: //implicit flow
+    case OauthMethod::ImplicitFlow:
         token = _implicitFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -2916,7 +2330,7 @@ void OAIAssistantsApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 2: //authorization flow
+    case OauthMethod::AuthorizationFlow:
         token = _authFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -2926,7 +2340,7 @@ void OAIAssistantsApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 3: //client credentials flow
+    case OauthMethod::ClientCredentialsFlow:
         token = _credentialFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -2936,7 +2350,7 @@ void OAIAssistantsApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 4: //resource owner password flow
+    case OauthMethod::ResourceOwnerPasswordFlow:
         token = _passwordFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());

@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set Optional client-generated ID used to identify this event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `input_audio_buffer.append`.
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `input_audio_buffer.append`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get Base64-encoded audio bytes. This must be in the format specified by the  `input_audio_format` field in the session configuration. 
 	 */
 	std::string getAudio();
 
 	/*! \brief Set Base64-encoded audio bytes. This must be in the format specified by the  `input_audio_format` field in the session configuration. 
 	 */
-	void setAudio(std::string  audio);
+	void setAudio(std::string audio);
 
 
     private:

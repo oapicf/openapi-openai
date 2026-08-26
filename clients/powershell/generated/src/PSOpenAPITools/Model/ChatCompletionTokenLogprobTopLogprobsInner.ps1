@@ -54,9 +54,9 @@ function Initialize-ChatCompletionTokenLogprobTopLogprobsInner {
 
 
         $PSO = [PSCustomObject]@{
-            "token" = ${Token}
-            "logprob" = ${Logprob}
-            "bytes" = ${Bytes}
+            'token' = ${Token}
+            'logprob' = ${Logprob}
+            'bytes' = ${Bytes}
         }
 
 
@@ -94,7 +94,7 @@ function ConvertFrom-JsonToChatCompletionTokenLogprobTopLogprobsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ChatCompletionTokenLogprobTopLogprobsInner
-        $AllProperties = ("token", "logprob", "bytes")
+        $AllProperties = ('token', 'logprob', 'bytes')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -105,28 +105,28 @@ function ConvertFrom-JsonToChatCompletionTokenLogprobTopLogprobsInner {
             throw "Error! Empty JSON cannot be serialized due to the required property 'token' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "token"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'token'))) {
             throw "Error! JSON cannot be serialized due to the required property 'token' missing."
         } else {
-            $Token = $JsonParameters.PSobject.Properties["token"].value
+            $Token = $JsonParameters.PSobject.Properties['token'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "logprob"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'logprob'))) {
             throw "Error! JSON cannot be serialized due to the required property 'logprob' missing."
         } else {
-            $Logprob = $JsonParameters.PSobject.Properties["logprob"].value
+            $Logprob = $JsonParameters.PSobject.Properties['logprob'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bytes"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'bytes'))) {
             throw "Error! JSON cannot be serialized due to the required property 'bytes' missing."
         } else {
-            $Bytes = $JsonParameters.PSobject.Properties["bytes"].value
+            $Bytes = $JsonParameters.PSobject.Properties['bytes'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "token" = ${Token}
-            "logprob" = ${Logprob}
-            "bytes" = ${Bytes}
+            'token' = ${Token}
+            'logprob' = ${Logprob}
+            'bytes' = ${Bytes}
         }
 
         return $PSO

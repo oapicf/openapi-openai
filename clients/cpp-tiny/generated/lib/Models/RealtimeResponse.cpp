@@ -210,7 +210,7 @@ RealtimeResponse::getId()
 }
 
 void
-RealtimeResponse::setId(std::string  id)
+RealtimeResponse::setId(std::string id)
 {
 	this->id = id;
 }
@@ -222,7 +222,7 @@ RealtimeResponse::getObject()
 }
 
 void
-RealtimeResponse::setObject(std::string  object)
+RealtimeResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -234,7 +234,7 @@ RealtimeResponse::getStatus()
 }
 
 void
-RealtimeResponse::setStatus(std::string  status)
+RealtimeResponse::setStatus(std::string status)
 {
 	this->status = status;
 }
@@ -246,7 +246,7 @@ RealtimeResponse::getStatusDetails()
 }
 
 void
-RealtimeResponse::setStatusDetails(RealtimeResponse_status_details  status_details)
+RealtimeResponse::setStatusDetails(RealtimeResponse_status_details status_details)
 {
 	this->status_details = status_details;
 }
@@ -258,7 +258,7 @@ RealtimeResponse::getOutput()
 }
 
 void
-RealtimeResponse::setOutput(std::list <RealtimeConversationItem> output)
+RealtimeResponse::setOutput(std::list<RealtimeConversationItem> output)
 {
 	this->output = output;
 }
@@ -270,7 +270,7 @@ RealtimeResponse::getMetadata()
 }
 
 void
-RealtimeResponse::setMetadata(Object  metadata)
+RealtimeResponse::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }
@@ -282,7 +282,7 @@ RealtimeResponse::getUsage()
 }
 
 void
-RealtimeResponse::setUsage(RealtimeResponse_usage  usage)
+RealtimeResponse::setUsage(RealtimeResponse_usage usage)
 {
 	this->usage = usage;
 }

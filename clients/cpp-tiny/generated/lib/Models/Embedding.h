@@ -52,21 +52,21 @@ public:
 
 	/*! \brief Set The index of the embedding in the list of embeddings.
 	 */
-	void setIndex(int  index);
+	void setIndex(int index);
 	/*! \brief Get The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings). 
 	 */
 	std::list<long> getEmbedding();
 
 	/*! \brief Set The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings). 
 	 */
-	void setEmbedding(std::list <long> embedding);
+	void setEmbedding(std::list<long> embedding);
 	/*! \brief Get The object type, which is always \"embedding\".
 	 */
 	std::string getObject();
 
 	/*! \brief Set The object type, which is always \"embedding\".
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 
 
     private:

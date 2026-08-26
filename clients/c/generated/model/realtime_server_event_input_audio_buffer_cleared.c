@@ -30,10 +30,10 @@ static realtime_server_event_input_audio_buffer_cleared_t *realtime_server_event
     if (!realtime_server_event_input_audio_buffer_cleared_local_var) {
         return NULL;
     }
+    memset(realtime_server_event_input_audio_buffer_cleared_local_var, 0, sizeof(realtime_server_event_input_audio_buffer_cleared_t));
+    realtime_server_event_input_audio_buffer_cleared_local_var->_library_owned = 1;
     realtime_server_event_input_audio_buffer_cleared_local_var->event_id = event_id;
     realtime_server_event_input_audio_buffer_cleared_local_var->type = type;
-
-    realtime_server_event_input_audio_buffer_cleared_local_var->_library_owned = 1;
     return realtime_server_event_input_audio_buffer_cleared_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) realtime_server_event_input_audio_buffer_cleared_t *
     char *event_id,
     openai_api_realtime_server_event_input_audio_buffer_cleared_TYPE_e type
     ) {
-    return realtime_server_event_input_audio_buffer_cleared_create_internal (
+    realtime_server_event_input_audio_buffer_cleared_t *result = realtime_server_event_input_audio_buffer_cleared_create_internal (
         event_id,
         type
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_server_event_input_audio_buffer_cleared_free(realtime_server_event_input_audio_buffer_cleared_t *realtime_server_event_input_audio_buffer_cleared) {
@@ -96,6 +99,8 @@ realtime_server_event_input_audio_buffer_cleared_t *realtime_server_event_input_
 
     realtime_server_event_input_audio_buffer_cleared_t *realtime_server_event_input_audio_buffer_cleared_local_var = NULL;
 
+    char *event_id_local_str = NULL;
+
     // realtime_server_event_input_audio_buffer_cleared->event_id
     cJSON *event_id = cJSON_GetObjectItemCaseSensitive(realtime_server_event_input_audio_buffer_clearedJSON, "event_id");
     if (cJSON_IsNull(event_id)) {
@@ -129,13 +134,23 @@ realtime_server_event_input_audio_buffer_cleared_t *realtime_server_event_input_
     typeVariable = realtime_server_event_input_audio_buffer_cleared_type_FromString(type->valuestring);
 
 
+    if (event_id && !cJSON_IsNull(event_id)) event_id_local_str = strdup(event_id->valuestring);
+
     realtime_server_event_input_audio_buffer_cleared_local_var = realtime_server_event_input_audio_buffer_cleared_create_internal (
-        strdup(event_id->valuestring),
+        event_id_local_str,
         typeVariable
         );
 
+    if (!realtime_server_event_input_audio_buffer_cleared_local_var) {
+        goto end;
+    }
+
     return realtime_server_event_input_audio_buffer_cleared_local_var;
 end:
+    if (event_id_local_str) {
+        free(event_id_local_str);
+        event_id_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -32,7 +32,7 @@ class  VectorStoreFileObject_last_error
 {
 public:
     VectorStoreFileObject_last_error();
-    virtual ~VectorStoreFileObject_last_error() = default;
+    virtual ~VectorStoreFileObject_last_error();
 
 
     /// <summary>

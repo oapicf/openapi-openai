@@ -36,7 +36,8 @@ type AuditLogRateLimitUpdatedChangesRequested struct {
 	Batch1DayMaxInputTokens int32 `json:"batch_1_day_max_input_tokens,omitempty"`
 }
 
-// AssertAuditLogRateLimitUpdatedChangesRequestedRequired checks if the required fields are not zero-ed
+// AssertAuditLogRateLimitUpdatedChangesRequestedRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertAuditLogRateLimitUpdatedChangesRequestedRequired(obj AuditLogRateLimitUpdatedChangesRequested) error {
 	return nil
 }

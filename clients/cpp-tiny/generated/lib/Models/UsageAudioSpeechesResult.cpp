@@ -190,7 +190,7 @@ UsageAudioSpeechesResult::getObject()
 }
 
 void
-UsageAudioSpeechesResult::setObject(std::string  object)
+UsageAudioSpeechesResult::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -202,7 +202,7 @@ UsageAudioSpeechesResult::getCharacters()
 }
 
 void
-UsageAudioSpeechesResult::setCharacters(int  characters)
+UsageAudioSpeechesResult::setCharacters(int characters)
 {
 	this->characters = characters;
 }
@@ -214,7 +214,7 @@ UsageAudioSpeechesResult::getNumModelRequests()
 }
 
 void
-UsageAudioSpeechesResult::setNumModelRequests(int  num_model_requests)
+UsageAudioSpeechesResult::setNumModelRequests(int num_model_requests)
 {
 	this->num_model_requests = num_model_requests;
 }
@@ -226,7 +226,7 @@ UsageAudioSpeechesResult::getProjectId()
 }
 
 void
-UsageAudioSpeechesResult::setProjectId(std::string  project_id)
+UsageAudioSpeechesResult::setProjectId(std::string project_id)
 {
 	this->project_id = project_id;
 }
@@ -238,7 +238,7 @@ UsageAudioSpeechesResult::getUserId()
 }
 
 void
-UsageAudioSpeechesResult::setUserId(std::string  user_id)
+UsageAudioSpeechesResult::setUserId(std::string user_id)
 {
 	this->user_id = user_id;
 }
@@ -250,7 +250,7 @@ UsageAudioSpeechesResult::getApiKeyId()
 }
 
 void
-UsageAudioSpeechesResult::setApiKeyId(std::string  api_key_id)
+UsageAudioSpeechesResult::setApiKeyId(std::string api_key_id)
 {
 	this->api_key_id = api_key_id;
 }
@@ -262,7 +262,7 @@ UsageAudioSpeechesResult::getModel()
 }
 
 void
-UsageAudioSpeechesResult::setModel(std::string  model)
+UsageAudioSpeechesResult::setModel(std::string model)
 {
 	this->model = model;
 }

@@ -61,12 +61,12 @@ function Initialize-ProjectRateLimitUpdateRequest {
 
 
         $PSO = [PSCustomObject]@{
-            "max_requests_per_1_minute" = ${MaxRequestsPer1Minute}
-            "max_tokens_per_1_minute" = ${MaxTokensPer1Minute}
-            "max_images_per_1_minute" = ${MaxImagesPer1Minute}
-            "max_audio_megabytes_per_1_minute" = ${MaxAudioMegabytesPer1Minute}
-            "max_requests_per_1_day" = ${MaxRequestsPer1Day}
-            "batch_1_day_max_input_tokens" = ${Batch1DayMaxInputTokens}
+            'max_requests_per_1_minute' = ${MaxRequestsPer1Minute}
+            'max_tokens_per_1_minute' = ${MaxTokensPer1Minute}
+            'max_images_per_1_minute' = ${MaxImagesPer1Minute}
+            'max_audio_megabytes_per_1_minute' = ${MaxAudioMegabytesPer1Minute}
+            'max_requests_per_1_day' = ${MaxRequestsPer1Day}
+            'batch_1_day_max_input_tokens' = ${Batch1DayMaxInputTokens}
         }
 
 
@@ -104,56 +104,56 @@ function ConvertFrom-JsonToProjectRateLimitUpdateRequest {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in ProjectRateLimitUpdateRequest
-        $AllProperties = ("max_requests_per_1_minute", "max_tokens_per_1_minute", "max_images_per_1_minute", "max_audio_megabytes_per_1_minute", "max_requests_per_1_day", "batch_1_day_max_input_tokens")
+        $AllProperties = ('max_requests_per_1_minute', 'max_tokens_per_1_minute', 'max_images_per_1_minute', 'max_audio_megabytes_per_1_minute', 'max_requests_per_1_day', 'batch_1_day_max_input_tokens')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_requests_per_1_minute"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'max_requests_per_1_minute'))) { #optional property not found
             $MaxRequestsPer1Minute = $null
         } else {
-            $MaxRequestsPer1Minute = $JsonParameters.PSobject.Properties["max_requests_per_1_minute"].value
+            $MaxRequestsPer1Minute = $JsonParameters.PSobject.Properties['max_requests_per_1_minute'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_tokens_per_1_minute"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'max_tokens_per_1_minute'))) { #optional property not found
             $MaxTokensPer1Minute = $null
         } else {
-            $MaxTokensPer1Minute = $JsonParameters.PSobject.Properties["max_tokens_per_1_minute"].value
+            $MaxTokensPer1Minute = $JsonParameters.PSobject.Properties['max_tokens_per_1_minute'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_images_per_1_minute"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'max_images_per_1_minute'))) { #optional property not found
             $MaxImagesPer1Minute = $null
         } else {
-            $MaxImagesPer1Minute = $JsonParameters.PSobject.Properties["max_images_per_1_minute"].value
+            $MaxImagesPer1Minute = $JsonParameters.PSobject.Properties['max_images_per_1_minute'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_audio_megabytes_per_1_minute"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'max_audio_megabytes_per_1_minute'))) { #optional property not found
             $MaxAudioMegabytesPer1Minute = $null
         } else {
-            $MaxAudioMegabytesPer1Minute = $JsonParameters.PSobject.Properties["max_audio_megabytes_per_1_minute"].value
+            $MaxAudioMegabytesPer1Minute = $JsonParameters.PSobject.Properties['max_audio_megabytes_per_1_minute'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_requests_per_1_day"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'max_requests_per_1_day'))) { #optional property not found
             $MaxRequestsPer1Day = $null
         } else {
-            $MaxRequestsPer1Day = $JsonParameters.PSobject.Properties["max_requests_per_1_day"].value
+            $MaxRequestsPer1Day = $JsonParameters.PSobject.Properties['max_requests_per_1_day'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "batch_1_day_max_input_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'batch_1_day_max_input_tokens'))) { #optional property not found
             $Batch1DayMaxInputTokens = $null
         } else {
-            $Batch1DayMaxInputTokens = $JsonParameters.PSobject.Properties["batch_1_day_max_input_tokens"].value
+            $Batch1DayMaxInputTokens = $JsonParameters.PSobject.Properties['batch_1_day_max_input_tokens'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "max_requests_per_1_minute" = ${MaxRequestsPer1Minute}
-            "max_tokens_per_1_minute" = ${MaxTokensPer1Minute}
-            "max_images_per_1_minute" = ${MaxImagesPer1Minute}
-            "max_audio_megabytes_per_1_minute" = ${MaxAudioMegabytesPer1Minute}
-            "max_requests_per_1_day" = ${MaxRequestsPer1Day}
-            "batch_1_day_max_input_tokens" = ${Batch1DayMaxInputTokens}
+            'max_requests_per_1_minute' = ${MaxRequestsPer1Minute}
+            'max_tokens_per_1_minute' = ${MaxTokensPer1Minute}
+            'max_images_per_1_minute' = ${MaxImagesPer1Minute}
+            'max_audio_megabytes_per_1_minute' = ${MaxAudioMegabytesPer1Minute}
+            'max_requests_per_1_day' = ${MaxRequestsPer1Day}
+            'batch_1_day_max_input_tokens' = ${Batch1DayMaxInputTokens}
         }
 
         return $PSO

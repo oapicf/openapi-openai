@@ -55,10 +55,10 @@ class RunStepDetailsToolCallsObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepDetailsToolCallsObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepDetailsToolCallsObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "RunStepDetailsToolCallsObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RunStepDetailsToolCallsObject[type]" has a null value in JSON.');
+        assert(json.containsKey(r'tool_calls'), 'Required key "RunStepDetailsToolCallsObject[tool_calls]" is missing from JSON.');
+        assert(json[r'tool_calls'] != null, 'Required key "RunStepDetailsToolCallsObject[tool_calls]" has a null value in JSON.');
         return true;
       }());
 
@@ -118,27 +118,28 @@ class RunStepDetailsToolCallsObject {
 }
 
 /// Always `tool_calls`.
-class RunStepDetailsToolCallsObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepDetailsToolCallsObjectTypeEnum._(this.value);
+enum RunStepDetailsToolCallsObjectTypeEnum {
+  toolCalls._(r'tool_calls'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepDetailsToolCallsObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const toolCalls = RunStepDetailsToolCallsObjectTypeEnum._(r'tool_calls');
-
-  /// List of all possible values in this [enum][RunStepDetailsToolCallsObjectTypeEnum].
-  static const values = <RunStepDetailsToolCallsObjectTypeEnum>[
-    toolCalls,
-  ];
-
+  /// Returns the instance of [RunStepDetailsToolCallsObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepDetailsToolCallsObjectTypeEnum? fromJson(dynamic value) => RunStepDetailsToolCallsObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepDetailsToolCallsObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepDetailsToolCallsObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepDetailsToolCallsObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -160,9 +161,10 @@ class RunStepDetailsToolCallsObjectTypeEnumTypeTransformer {
 
   const RunStepDetailsToolCallsObjectTypeEnumTypeTransformer._();
 
-  String encode(RunStepDetailsToolCallsObjectTypeEnum data) => data.value;
+  String encode(RunStepDetailsToolCallsObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepDetailsToolCallsObjectTypeEnum.
+  /// Returns the instance of [RunStepDetailsToolCallsObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -171,6 +173,9 @@ class RunStepDetailsToolCallsObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepDetailsToolCallsObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepDetailsToolCallsObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'tool_calls': return RunStepDetailsToolCallsObjectTypeEnum.toolCalls;
@@ -183,7 +188,7 @@ class RunStepDetailsToolCallsObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStepDetailsToolCallsObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepDetailsToolCallsObjectTypeEnumTypeTransformer? _instance;
 }
 

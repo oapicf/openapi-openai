@@ -16,23 +16,23 @@ CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy <
     #' @field actual_type the type of the object stored in this instance.
     actual_type = NULL,
     #' @field one_of  a list of types defined in the oneOf schema.
-    one_of = list("AutoChunkingStrategy", "StaticChunkingStrategy"),
+    one_of = list("AutoChunkingStrategyRequestParam", "StaticChunkingStrategy"),
 
     #' @description
     #' Initialize a new CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy.
     #'
-    #' @param instance an instance of the object defined in the oneOf schemas: "AutoChunkingStrategy", "StaticChunkingStrategy"
+    #' @param instance an instance of the object defined in the oneOf schemas: "AutoChunkingStrategyRequestParam", "StaticChunkingStrategy"
     initialize = function(instance = NULL) {
       if (is.null(instance)) {
         # do nothing
-      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "AutoChunkingStrategy") {
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "AutoChunkingStrategyRequestParam") {
         self$actual_instance <- instance
-        self$actual_type <- "AutoChunkingStrategy"
+        self$actual_type <- "AutoChunkingStrategyRequestParam"
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "StaticChunkingStrategy") {
         self$actual_instance <- instance
         self$actual_type <- "StaticChunkingStrategy"
       } else {
-        stop(paste("Failed to initialize CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy with oneOf schemas AutoChunkingStrategy, StaticChunkingStrategy. Provided class name: ",
+        stop(paste("Failed to initialize CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy with oneOf schemas AutoChunkingStrategyRequestParam, StaticChunkingStrategy. Provided class name: ",
                    get(class(instance)[[1]], pos = -1)$classname))
       }
     },
@@ -60,19 +60,19 @@ CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy <
       error_messages <- list()
       instance <- NULL
 
-      `AutoChunkingStrategy_result` <- tryCatch({
-          `AutoChunkingStrategy`$public_methods$validateJSON(input)
-          `AutoChunkingStrategy_instance` <- `AutoChunkingStrategy`$new()
-          instance <- `AutoChunkingStrategy_instance`$fromJSON(input)
-          instance_type <- "AutoChunkingStrategy"
-          matched_schemas <- append(matched_schemas, "AutoChunkingStrategy")
+      `AutoChunkingStrategyRequestParam_result` <- tryCatch({
+          `AutoChunkingStrategyRequestParam`$public_methods$validateJSON(input)
+          `AutoChunkingStrategyRequestParam_instance` <- `AutoChunkingStrategyRequestParam`$new()
+          instance <- `AutoChunkingStrategyRequestParam_instance`$fromJSON(input)
+          instance_type <- "AutoChunkingStrategyRequestParam"
+          matched_schemas <- append(matched_schemas, "AutoChunkingStrategyRequestParam")
           matched <- matched + 1
         },
         error = function(err) err
       )
 
-      if (!is.null(`AutoChunkingStrategy_result`["error"])) {
-        error_messages <- append(error_messages, `AutoChunkingStrategy_result`["message"])
+      if (!is.null(`AutoChunkingStrategyRequestParam_result`["error"])) {
+        error_messages <- append(error_messages, `AutoChunkingStrategyRequestParam_result`["message"])
       }
 
       `StaticChunkingStrategy_result` <- tryCatch({
@@ -96,11 +96,11 @@ CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy <
         self$actual_type <- instance_type
       } else if (matched > 1) {
         # more than 1 match
-        stop(paste("Multiple matches found when deserializing the input into CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy with oneOf schemas AutoChunkingStrategy, StaticChunkingStrategy. Matched schemas: ",
+        stop(paste("Multiple matches found when deserializing the input into CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy with oneOf schemas AutoChunkingStrategyRequestParam, StaticChunkingStrategy. Matched schemas: ",
                    paste(matched_schemas, collapse = ", ")))
       } else {
         # no match
-        stop(paste("No match found when deserializing the input into CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy with oneOf schemas AutoChunkingStrategy, StaticChunkingStrategy. Details: >>",
+        stop(paste("No match found when deserializing the input into CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy with oneOf schemas AutoChunkingStrategyRequestParam, StaticChunkingStrategy. Details: >>",
                    paste(error_messages, collapse = " >> ")))
       }
 

@@ -174,8 +174,9 @@ namespace Org.OpenAPITools.Models
         public List<CreateChatCompletionRequest.ModalitiesEnum> Modalities { get; set; }
 
         /// <summary>
-        /// Gets or Sets Prediction
+        /// Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
         /// </summary>
+        /// <value>Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. </value>
         [DataMember(Name="prediction", EmitDefaultValue=true)]
         public PredictionContent Prediction { get; set; }
 

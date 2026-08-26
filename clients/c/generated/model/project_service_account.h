@@ -39,7 +39,7 @@ typedef struct project_service_account_t {
     char *id; // string
     char *name; // string
     openai_api_project_service_account_ROLE_e role; //enum
-    int created_at; //numeric
+    int *created_at; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } project_service_account_t;
@@ -49,7 +49,7 @@ __attribute__((deprecated)) project_service_account_t *project_service_account_c
     char *id,
     char *name,
     openai_api_project_service_account_ROLE_e role,
-    int created_at
+    int *created_at
 );
 
 void project_service_account_free(project_service_account_t *project_service_account);

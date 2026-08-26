@@ -1,4 +1,4 @@
-# # RunStepDetailsToolCallsObjectToolCallsInner
+# RunStepDetailsToolCallsObjectToolCallsInner
 
 ## Properties
 

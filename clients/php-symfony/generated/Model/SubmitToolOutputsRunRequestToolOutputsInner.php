@@ -49,7 +49,7 @@ class SubmitToolOutputsRunRequestToolOutputsInner
      * @var string|null
      * @SerializedName("tool_call_id")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $toolCallId = null;
 
@@ -59,7 +59,7 @@ class SubmitToolOutputsRunRequestToolOutputsInner
      * @var string|null
      * @SerializedName("output")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $output = null;
 
@@ -86,12 +86,12 @@ class SubmitToolOutputsRunRequestToolOutputsInner
     }
 
     /**
-    * Sets toolCallId.
-    *
-    * @param string|null $toolCallId  The ID of the tool call in the `required_action` object within the run object the output is being submitted for.
-    *
-    * @return $this
-    */
+     * Sets toolCallId.
+     *
+     * @param string|null $toolCallId  The ID of the tool call in the `required_action` object within the run object the output is being submitted for.
+     *
+     * @return $this
+     */
     public function setToolCallId(?string $toolCallId = null): self
     {
         $this->toolCallId = $toolCallId;
@@ -113,12 +113,12 @@ class SubmitToolOutputsRunRequestToolOutputsInner
     }
 
     /**
-    * Sets output.
-    *
-    * @param string|null $output  The output of the tool call to be submitted to continue the run.
-    *
-    * @return $this
-    */
+     * Sets output.
+     *
+     * @param string|null $output  The output of the tool call to be submitted to continue the run.
+     *
+     * @return $this
+     */
     public function setOutput(?string $output = null): self
     {
         $this->output = $output;

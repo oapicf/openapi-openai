@@ -26,6 +26,8 @@ RealtimeServerEventSessionUpdated::RealtimeServerEventSessionUpdated()
     
 }
 
+RealtimeServerEventSessionUpdated::~RealtimeServerEventSessionUpdated() = default;
+
 void RealtimeServerEventSessionUpdated::validate() const
 {
     std::stringstream msg;

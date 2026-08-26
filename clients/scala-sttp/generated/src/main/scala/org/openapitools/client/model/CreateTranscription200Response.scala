@@ -12,16 +12,26 @@
 package org.openapitools.client.model
 
 
-case class CreateTranscription200Response(
+sealed trait CreateTranscription200Response
+object CreateTranscription200Response {
+}
+
+case class CreateTranscriptionResponseJson(
   /* The transcribed text. */
-  text: String,
+  text: String
+) extends CreateTranscription200Response
+
+case class CreateTranscriptionResponseVerboseJson(
   /* The language of the input audio. */
   language: String,
   /* The duration of the input audio. */
   duration: String,
+  /* The transcribed text. */
+  text: String,
   /* Extracted words and their corresponding timestamps. */
   words: Option[Seq[TranscriptionWord]] = None,
   /* Segments of the transcribed text and their corresponding details. */
   segments: Option[Seq[TranscriptionSegment]] = None
-)
+) extends CreateTranscription200Response
+
 

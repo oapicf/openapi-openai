@@ -24,31 +24,40 @@ openai_api_usage_code_interpreter_sessions_result_OBJECT_e usage_code_interprete
 
 static usage_code_interpreter_sessions_result_t *usage_code_interpreter_sessions_result_create_internal(
     openai_api_usage_code_interpreter_sessions_result_OBJECT_e object,
-    int sessions,
+    int *sessions,
     char *project_id
     ) {
     usage_code_interpreter_sessions_result_t *usage_code_interpreter_sessions_result_local_var = malloc(sizeof(usage_code_interpreter_sessions_result_t));
     if (!usage_code_interpreter_sessions_result_local_var) {
         return NULL;
     }
+    memset(usage_code_interpreter_sessions_result_local_var, 0, sizeof(usage_code_interpreter_sessions_result_t));
+    usage_code_interpreter_sessions_result_local_var->_library_owned = 1;
     usage_code_interpreter_sessions_result_local_var->object = object;
     usage_code_interpreter_sessions_result_local_var->sessions = sessions;
     usage_code_interpreter_sessions_result_local_var->project_id = project_id;
-
-    usage_code_interpreter_sessions_result_local_var->_library_owned = 1;
     return usage_code_interpreter_sessions_result_local_var;
 }
 
 __attribute__((deprecated)) usage_code_interpreter_sessions_result_t *usage_code_interpreter_sessions_result_create(
     openai_api_usage_code_interpreter_sessions_result_OBJECT_e object,
-    int sessions,
+    int *sessions,
     char *project_id
     ) {
-    return usage_code_interpreter_sessions_result_create_internal (
+    int *sessions_copy = NULL;
+    if (sessions) {
+        sessions_copy = malloc(sizeof(int));
+        if (sessions_copy) *sessions_copy = *sessions;
+    }
+    usage_code_interpreter_sessions_result_t *result = usage_code_interpreter_sessions_result_create_internal (
         object,
-        sessions,
+        sessions_copy,
         project_id
         );
+    if (!result) {
+        free(sessions_copy);
+    }
+    return result;
 }
 
 void usage_code_interpreter_sessions_result_free(usage_code_interpreter_sessions_result_t *usage_code_interpreter_sessions_result) {
@@ -60,6 +69,10 @@ void usage_code_interpreter_sessions_result_free(usage_code_interpreter_sessions
         return ;
     }
     listEntry_t *listEntry;
+    if (usage_code_interpreter_sessions_result->sessions) {
+        free(usage_code_interpreter_sessions_result->sessions);
+        usage_code_interpreter_sessions_result->sessions = NULL;
+    }
     if (usage_code_interpreter_sessions_result->project_id) {
         free(usage_code_interpreter_sessions_result->project_id);
         usage_code_interpreter_sessions_result->project_id = NULL;
@@ -84,7 +97,7 @@ cJSON *usage_code_interpreter_sessions_result_convertToJSON(usage_code_interpret
     if (!usage_code_interpreter_sessions_result->sessions) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "sessions", usage_code_interpreter_sessions_result->sessions) == NULL) {
+    if(cJSON_AddNumberToObject(item, "sessions", *usage_code_interpreter_sessions_result->sessions) == NULL) {
     goto fail; //Numeric
     }
 
@@ -107,6 +120,11 @@ fail:
 usage_code_interpreter_sessions_result_t *usage_code_interpreter_sessions_result_parseFromJSON(cJSON *usage_code_interpreter_sessions_resultJSON){
 
     usage_code_interpreter_sessions_result_t *usage_code_interpreter_sessions_result_local_var = NULL;
+
+    // define the local variable for usage_code_interpreter_sessions_result->sessions
+    int *sessions_local_var = NULL;
+
+    char *project_id_local_str = NULL;
 
     // usage_code_interpreter_sessions_result->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(usage_code_interpreter_sessions_resultJSON, "object");
@@ -139,6 +157,12 @@ usage_code_interpreter_sessions_result_t *usage_code_interpreter_sessions_result
     {
     goto end; //Numeric
     }
+    sessions_local_var = malloc(sizeof(int));
+    if(!sessions_local_var)
+    {
+        goto end;
+    }
+    *sessions_local_var = sessions->valuedouble;
 
     // usage_code_interpreter_sessions_result->project_id
     cJSON *project_id = cJSON_GetObjectItemCaseSensitive(usage_code_interpreter_sessions_resultJSON, "project_id");
@@ -153,14 +177,28 @@ usage_code_interpreter_sessions_result_t *usage_code_interpreter_sessions_result
     }
 
 
+    if (project_id && !cJSON_IsNull(project_id)) project_id_local_str = strdup(project_id->valuestring);
+
     usage_code_interpreter_sessions_result_local_var = usage_code_interpreter_sessions_result_create_internal (
         objectVariable,
-        sessions->valuedouble,
-        project_id && !cJSON_IsNull(project_id) ? strdup(project_id->valuestring) : NULL
+        sessions_local_var,
+        project_id_local_str
         );
+
+    if (!usage_code_interpreter_sessions_result_local_var) {
+        goto end;
+    }
 
     return usage_code_interpreter_sessions_result_local_var;
 end:
+    if (sessions_local_var) {
+        free(sessions_local_var);
+        sessions_local_var = NULL;
+    }
+    if (project_id_local_str) {
+        free(project_id_local_str);
+        project_id_local_str = NULL;
+    }
     return NULL;
 
 }

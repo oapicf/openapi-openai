@@ -61,10 +61,12 @@ class CreateModerationRequestInputOneOfInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateModerationRequestInputOneOfInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateModerationRequestInputOneOfInner[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "CreateModerationRequestInputOneOfInner[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "CreateModerationRequestInputOneOfInner[type]" has a null value in JSON.');
+        assert(json.containsKey(r'image_url'), 'Required key "CreateModerationRequestInputOneOfInner[image_url]" is missing from JSON.');
+        assert(json[r'image_url'] != null, 'Required key "CreateModerationRequestInputOneOfInner[image_url]" has a null value in JSON.');
+        assert(json.containsKey(r'text'), 'Required key "CreateModerationRequestInputOneOfInner[text]" is missing from JSON.');
+        assert(json[r'text'] != null, 'Required key "CreateModerationRequestInputOneOfInner[text]" has a null value in JSON.');
         return true;
       }());
 
@@ -126,29 +128,29 @@ class CreateModerationRequestInputOneOfInner {
 }
 
 /// Always `image_url`.
-class CreateModerationRequestInputOneOfInnerTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateModerationRequestInputOneOfInnerTypeEnum._(this.value);
+enum CreateModerationRequestInputOneOfInnerTypeEnum {
+  imageUrl._(r'image_url'),
+  text._(r'text'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const CreateModerationRequestInputOneOfInnerTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const imageUrl = CreateModerationRequestInputOneOfInnerTypeEnum._(r'image_url');
-  static const text = CreateModerationRequestInputOneOfInnerTypeEnum._(r'text');
-
-  /// List of all possible values in this [enum][CreateModerationRequestInputOneOfInnerTypeEnum].
-  static const values = <CreateModerationRequestInputOneOfInnerTypeEnum>[
-    imageUrl,
-    text,
-  ];
-
+  /// Returns the instance of [CreateModerationRequestInputOneOfInnerTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static CreateModerationRequestInputOneOfInnerTypeEnum? fromJson(dynamic value) => CreateModerationRequestInputOneOfInnerTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [CreateModerationRequestInputOneOfInnerTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<CreateModerationRequestInputOneOfInnerTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CreateModerationRequestInputOneOfInnerTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -170,9 +172,10 @@ class CreateModerationRequestInputOneOfInnerTypeEnumTypeTransformer {
 
   const CreateModerationRequestInputOneOfInnerTypeEnumTypeTransformer._();
 
-  String encode(CreateModerationRequestInputOneOfInnerTypeEnum data) => data.value;
+  String encode(CreateModerationRequestInputOneOfInnerTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a CreateModerationRequestInputOneOfInnerTypeEnum.
+  /// Returns the instance of [CreateModerationRequestInputOneOfInnerTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -181,6 +184,9 @@ class CreateModerationRequestInputOneOfInnerTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   CreateModerationRequestInputOneOfInnerTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is CreateModerationRequestInputOneOfInnerTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'image_url': return CreateModerationRequestInputOneOfInnerTypeEnum.imageUrl;
@@ -194,7 +200,7 @@ class CreateModerationRequestInputOneOfInnerTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [CreateModerationRequestInputOneOfInnerTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static CreateModerationRequestInputOneOfInnerTypeEnumTypeTransformer? _instance;
 }
 

@@ -45,7 +45,7 @@ export interface CreateVectorStoreFileRequest {
  * Check if a given object implements the CreateVectorStoreFileRequest interface.
  */
 export function instanceOfCreateVectorStoreFileRequest(value: object): value is CreateVectorStoreFileRequest {
-    if (!('fileId' in value) || value['fileId'] === undefined) return false;
+    if ((!('fileId' in (value as Record<string, any>)) && !('file_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['fileId'] === undefined && (value as Record<string, any>)['file_id'] === undefined)) return false;
     return true;
 }
 

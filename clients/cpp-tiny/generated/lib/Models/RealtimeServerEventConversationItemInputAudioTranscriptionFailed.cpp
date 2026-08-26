@@ -149,7 +149,7 @@ RealtimeServerEventConversationItemInputAudioTranscriptionFailed::getEventId()
 }
 
 void
-RealtimeServerEventConversationItemInputAudioTranscriptionFailed::setEventId(std::string  event_id)
+RealtimeServerEventConversationItemInputAudioTranscriptionFailed::setEventId(std::string event_id)
 {
 	this->event_id = event_id;
 }
@@ -161,7 +161,7 @@ RealtimeServerEventConversationItemInputAudioTranscriptionFailed::getType()
 }
 
 void
-RealtimeServerEventConversationItemInputAudioTranscriptionFailed::setType(std::string  type)
+RealtimeServerEventConversationItemInputAudioTranscriptionFailed::setType(std::string type)
 {
 	this->type = type;
 }
@@ -173,7 +173,7 @@ RealtimeServerEventConversationItemInputAudioTranscriptionFailed::getItemId()
 }
 
 void
-RealtimeServerEventConversationItemInputAudioTranscriptionFailed::setItemId(std::string  item_id)
+RealtimeServerEventConversationItemInputAudioTranscriptionFailed::setItemId(std::string item_id)
 {
 	this->item_id = item_id;
 }
@@ -185,7 +185,7 @@ RealtimeServerEventConversationItemInputAudioTranscriptionFailed::getContentInde
 }
 
 void
-RealtimeServerEventConversationItemInputAudioTranscriptionFailed::setContentIndex(int  content_index)
+RealtimeServerEventConversationItemInputAudioTranscriptionFailed::setContentIndex(int content_index)
 {
 	this->content_index = content_index;
 }
@@ -197,7 +197,7 @@ RealtimeServerEventConversationItemInputAudioTranscriptionFailed::getError()
 }
 
 void
-RealtimeServerEventConversationItemInputAudioTranscriptionFailed::setError(RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error  error)
+RealtimeServerEventConversationItemInputAudioTranscriptionFailed::setError(RealtimeServerEventConversationItemInputAudioTranscriptionFailed_error error)
 {
 	this->error = error;
 }

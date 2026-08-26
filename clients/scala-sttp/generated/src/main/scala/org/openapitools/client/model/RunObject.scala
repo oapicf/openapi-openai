@@ -11,6 +11,7 @@
  */
 package org.openapitools.client.model
 
+import org.json4s.JValue
 
   /**
    * A run on a thread
@@ -49,7 +50,7 @@ case class RunObject(
   /* The list of tools that the [assistant](/docs/api-reference/assistants) used for this run. */
   tools: Seq[AssistantObjectToolsInner],
   /* Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  */
-  metadata: Any,
+  metadata: JValue,
   usage: RunCompletionUsage,
   /* The sampling temperature used for this run. If not set, defaults to 1. */
   temperature: Option[Double] = None,

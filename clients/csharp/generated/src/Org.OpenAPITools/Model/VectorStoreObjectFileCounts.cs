@@ -118,8 +118,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="VectorStoreObjectFileCounts" />
     /// </summary>
-    public class VectorStoreObjectFileCountsJsonConverter : JsonConverter<VectorStoreObjectFileCounts>
+    public partial class VectorStoreObjectFileCountsJsonConverter : JsonConverter<VectorStoreObjectFileCounts>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VectorStoreObjectFileCountsJsonConverter" /> class.
+        /// </summary>
+        public VectorStoreObjectFileCountsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="VectorStoreObjectFileCounts" />
         /// </summary>

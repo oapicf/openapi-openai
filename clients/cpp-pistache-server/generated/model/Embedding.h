@@ -33,7 +33,7 @@ class  Embedding
 {
 public:
     Embedding();
-    virtual ~Embedding() = default;
+    virtual ~Embedding();
 
 
     /// <summary>

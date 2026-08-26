@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 // FineTuningJobCheckpoint - The `fine_tuning.job.checkpoint` object represents a model checkpoint for a fine-tuning job that is ready to use. 
@@ -37,17 +42,112 @@ type FineTuningJobCheckpoint struct {
 	// The object type, which is always \"fine_tuning.job.checkpoint\".
 	Object string `json:"object"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into FineTuningJobCheckpoint
+func (o *FineTuningJobCheckpoint) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"id",
+		"created_at",
+		"fine_tuned_model_checkpoint",
+		"step_number",
+		"metrics",
+		"fine_tuning_job_id",
+		"object",
+	}
 
-// AssertFineTuningJobCheckpointRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"id": false,
+		"created_at": false,
+		"fine_tuned_model_checkpoint": false,
+		"step_number": false,
+		"metrics": false,
+		"fine_tuning_job_id": false,
+		"object": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"id": {},
+		"created_at": {},
+		"fine_tuned_model_checkpoint": {},
+		"step_number": {},
+		"metrics": {},
+		"fine_tuning_job_id": {},
+		"object": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded FineTuningJobCheckpoint
+
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["created_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CreatedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["fine_tuned_model_checkpoint"]; exists {
+		if err = json.Unmarshal(value, &decoded.FineTunedModelCheckpoint); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["step_number"]; exists {
+		if err = json.Unmarshal(value, &decoded.StepNumber); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["metrics"]; exists {
+		if err = json.Unmarshal(value, &decoded.Metrics); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["fine_tuning_job_id"]; exists {
+		if err = json.Unmarshal(value, &decoded.FineTuningJobId); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertFineTuningJobCheckpointRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertFineTuningJobCheckpointRequired(obj FineTuningJobCheckpoint) error {
 	elements := map[string]interface{}{
-		"id": obj.Id,
-		"created_at": obj.CreatedAt,
-		"fine_tuned_model_checkpoint": obj.FineTunedModelCheckpoint,
-		"step_number": obj.StepNumber,
 		"metrics": obj.Metrics,
-		"fine_tuning_job_id": obj.FineTuningJobId,
-		"object": obj.Object,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {

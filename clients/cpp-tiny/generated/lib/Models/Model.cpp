@@ -127,7 +127,7 @@ Model::getId()
 }
 
 void
-Model::setId(std::string  id)
+Model::setId(std::string id)
 {
 	this->id = id;
 }
@@ -139,7 +139,7 @@ Model::getCreated()
 }
 
 void
-Model::setCreated(int  created)
+Model::setCreated(int created)
 {
 	this->created = created;
 }
@@ -151,7 +151,7 @@ Model::getObject()
 }
 
 void
-Model::setObject(std::string  object)
+Model::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -163,7 +163,7 @@ Model::getOwnedBy()
 }
 
 void
-Model::setOwnedBy(std::string  owned_by)
+Model::setOwnedBy(std::string owned_by)
 {
 	this->owned_by = owned_by;
 }

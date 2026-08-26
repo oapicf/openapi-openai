@@ -29,7 +29,7 @@ message RunStepDeltaStepDetailsToolCallsFunctionObject {
     TYPE_FUNCTION = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   RunStepDeltaStepDetailsToolCallsFunctionObjectFunction function = 307196890;
 

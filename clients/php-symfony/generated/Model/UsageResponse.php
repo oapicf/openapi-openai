@@ -47,7 +47,7 @@ class UsageResponse
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['page'])]
     #[Assert\Type("string")]
@@ -57,7 +57,7 @@ class UsageResponse
      * @var UsageTimeBucket[]|null
      * @SerializedName("data")
      * @Type("array<OpenAPI\Server\Model\UsageTimeBucket>")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\All([
@@ -69,7 +69,7 @@ class UsageResponse
      * @var bool|null
      * @SerializedName("has_more")
      * @Type("bool")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("bool")]
     protected ?bool $hasMore = null;
@@ -78,7 +78,7 @@ class UsageResponse
      * @var string|null
      * @SerializedName("next_page")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $nextPage = null;
@@ -108,12 +108,12 @@ class UsageResponse
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -135,12 +135,12 @@ class UsageResponse
     }
 
     /**
-    * Sets data.
-    *
-    * @param UsageTimeBucket[]|null $data
-    *
-    * @return $this
-    */
+     * Sets data.
+     *
+     * @param UsageTimeBucket[]|null $data
+     *
+     * @return $this
+     */
     public function setData(?array $data): self
     {
         $this->data = $data;
@@ -162,12 +162,12 @@ class UsageResponse
     }
 
     /**
-    * Sets hasMore.
-    *
-    * @param bool|null $hasMore
-    *
-    * @return $this
-    */
+     * Sets hasMore.
+     *
+     * @param bool|null $hasMore
+     *
+     * @return $this
+     */
     public function setHasMore(?bool $hasMore): self
     {
         $this->hasMore = $hasMore;
@@ -189,12 +189,12 @@ class UsageResponse
     }
 
     /**
-    * Sets nextPage.
-    *
-    * @param string|null $nextPage
-    *
-    * @return $this
-    */
+     * Sets nextPage.
+     *
+     * @param string|null $nextPage
+     *
+     * @return $this
+     */
     public function setNextPage(?string $nextPage): self
     {
         $this->nextPage = $nextPage;

@@ -27,6 +27,8 @@ ThreadStreamEvent::ThreadStreamEvent()
     
 }
 
+ThreadStreamEvent::~ThreadStreamEvent() = default;
+
 void ThreadStreamEvent::validate() const
 {
     std::stringstream msg;

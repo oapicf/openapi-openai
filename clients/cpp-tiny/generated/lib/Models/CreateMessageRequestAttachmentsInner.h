@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set The ID of the file to attach to the message.
 	 */
-	void setFileId(std::string  file_id);
+	void setFileId(std::string file_id);
 	/*! \brief Get The tools to add this file to.
 	 */
 	std::list<CreateMessageRequest_attachments_inner_tools_inner> getTools();
 
 	/*! \brief Set The tools to add this file to.
 	 */
-	void setTools(std::list <CreateMessageRequest_attachments_inner_tools_inner> tools);
+	void setTools(std::list<CreateMessageRequest_attachments_inner_tools_inner> tools);
 
 
     private:

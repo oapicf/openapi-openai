@@ -27,6 +27,8 @@ RealtimeServerEventConversationItemDeleted::RealtimeServerEventConversationItemD
     
 }
 
+RealtimeServerEventConversationItemDeleted::~RealtimeServerEventConversationItemDeleted() = default;
+
 void RealtimeServerEventConversationItemDeleted::validate() const
 {
     std::stringstream msg;

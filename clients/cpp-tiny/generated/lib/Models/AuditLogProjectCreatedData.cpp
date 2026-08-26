@@ -85,7 +85,7 @@ AuditLog_project_created_data::getName()
 }
 
 void
-AuditLog_project_created_data::setName(std::string  name)
+AuditLog_project_created_data::setName(std::string name)
 {
 	this->name = name;
 }
@@ -97,7 +97,7 @@ AuditLog_project_created_data::getTitle()
 }
 
 void
-AuditLog_project_created_data::setTitle(std::string  title)
+AuditLog_project_created_data::setTitle(std::string title)
 {
 	this->title = title;
 }

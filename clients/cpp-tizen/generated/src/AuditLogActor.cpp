@@ -71,7 +71,7 @@ AuditLogActor::fromJson(char* jsonStr)
 	
 
 		if (isprimitive("AuditLogActorSession")) {
-			jsonToValue(&session, node, "AuditLogActorSession", "");
+			jsonToValue(&session, node, "AuditLogActorSession", "AuditLogActorSession");
 		} else {
 			
 			AuditLogActorSession* obj = static_cast<AuditLogActorSession*> (&session);
@@ -85,7 +85,7 @@ AuditLogActor::fromJson(char* jsonStr)
 	
 
 		if (isprimitive("AuditLogActorApiKey")) {
-			jsonToValue(&api_key, node, "AuditLogActorApiKey", "");
+			jsonToValue(&api_key, node, "AuditLogActorApiKey", "AuditLogActorApiKey");
 		} else {
 			
 			AuditLogActorApiKey* obj = static_cast<AuditLogActorApiKey*> (&api_key);

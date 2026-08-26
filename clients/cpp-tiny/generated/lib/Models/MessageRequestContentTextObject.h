@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set Always `text`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get Text content to be sent to the model
 	 */
 	std::string getText();
 
 	/*! \brief Set Text content to be sent to the model
 	 */
-	void setText(std::string  text);
+	void setText(std::string text);
 
 
     private:

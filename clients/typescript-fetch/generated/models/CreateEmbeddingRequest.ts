@@ -48,7 +48,7 @@ export interface CreateEmbeddingRequest {
     model: CreateEmbeddingRequestModel;
     /**
      * The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
-     * @type {string}
+     * @type {CreateEmbeddingRequestEncodingFormatEnum}
      * @memberof CreateEmbeddingRequest
      */
     encodingFormat?: CreateEmbeddingRequestEncodingFormatEnum;

@@ -20,16 +20,16 @@ typedef struct transcription_word_t transcription_word_t;
 
 typedef struct transcription_word_t {
     char *word; // string
-    float start; //numeric
-    float end; //numeric
+    float *start; //numeric
+    float *end; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } transcription_word_t;
 
 __attribute__((deprecated)) transcription_word_t *transcription_word_create(
     char *word,
-    float start,
-    float end
+    float *start,
+    float *end
 );
 
 void transcription_word_free(transcription_word_t *transcription_word);

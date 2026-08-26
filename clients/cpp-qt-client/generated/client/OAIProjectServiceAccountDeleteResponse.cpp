@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIProjectServiceAccountDeleteResponse::OAIProjectServiceAccountDeleteResponse(QString json) {
+OAIProjectServiceAccountDeleteResponse::OAIProjectServiceAccountDeleteResponse(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -44,7 +44,7 @@ void OAIProjectServiceAccountDeleteResponse::initializeModel() {
     m_deleted_isValid = false;
 }
 
-void OAIProjectServiceAccountDeleteResponse::fromJson(QString jsonString) {
+void OAIProjectServiceAccountDeleteResponse::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

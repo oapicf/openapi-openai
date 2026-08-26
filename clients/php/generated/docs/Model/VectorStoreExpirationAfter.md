@@ -1,4 +1,4 @@
-# # VectorStoreExpirationAfter
+# VectorStoreExpirationAfter
 
 ## Properties
 

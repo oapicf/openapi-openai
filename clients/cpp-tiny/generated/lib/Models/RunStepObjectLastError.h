@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set One of `server_error` or `rate_limit_exceeded`.
 	 */
-	void setCode(std::string  code);
+	void setCode(std::string code);
 	/*! \brief Get A human-readable description of the error.
 	 */
 	std::string getMessage();
 
 	/*! \brief Set A human-readable description of the error.
 	 */
-	void setMessage(std::string  message);
+	void setMessage(std::string message);
 
 
     private:

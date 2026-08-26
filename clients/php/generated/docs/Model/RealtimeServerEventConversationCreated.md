@@ -1,4 +1,4 @@
-# # RealtimeServerEventConversationCreated
+# RealtimeServerEventConversationCreated
 
 ## Properties
 

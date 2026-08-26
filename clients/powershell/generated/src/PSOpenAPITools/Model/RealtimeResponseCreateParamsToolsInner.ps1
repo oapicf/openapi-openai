@@ -52,10 +52,10 @@ function Initialize-RealtimeResponseCreateParamsToolsInner {
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "name" = ${Name}
-            "description" = ${Description}
-            "parameters" = ${Parameters}
+            'type' = ${Type}
+            'name' = ${Name}
+            'description' = ${Description}
+            'parameters' = ${Parameters}
         }
 
 
@@ -93,42 +93,42 @@ function ConvertFrom-JsonToRealtimeResponseCreateParamsToolsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeResponseCreateParamsToolsInner
-        $AllProperties = ("type", "name", "description", "parameters")
+        $AllProperties = ('type', 'name', 'description', 'parameters')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) { #optional property not found
             $Type = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) { #optional property not found
             $Name = $null
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'description'))) { #optional property not found
             $Description = $null
         } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
+            $Description = $JsonParameters.PSobject.Properties['description'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "parameters"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'parameters'))) { #optional property not found
             $Parameters = $null
         } else {
-            $Parameters = $JsonParameters.PSobject.Properties["parameters"].value
+            $Parameters = $JsonParameters.PSobject.Properties['parameters'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "name" = ${Name}
-            "description" = ${Description}
-            "parameters" = ${Parameters}
+            'type' = ${Type}
+            'name' = ${Name}
+            'description' = ${Description}
+            'parameters' = ${Parameters}
         }
 
         return $PSO

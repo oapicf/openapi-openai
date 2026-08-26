@@ -127,7 +127,7 @@ UploadPart::getId()
 }
 
 void
-UploadPart::setId(std::string  id)
+UploadPart::setId(std::string id)
 {
 	this->id = id;
 }
@@ -139,7 +139,7 @@ UploadPart::getCreatedAt()
 }
 
 void
-UploadPart::setCreatedAt(int  created_at)
+UploadPart::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -151,7 +151,7 @@ UploadPart::getUploadId()
 }
 
 void
-UploadPart::setUploadId(std::string  upload_id)
+UploadPart::setUploadId(std::string upload_id)
 {
 	this->upload_id = upload_id;
 }
@@ -163,7 +163,7 @@ UploadPart::getObject()
 }
 
 void
-UploadPart::setObject(std::string  object)
+UploadPart::setObject(std::string object)
 {
 	this->object = object;
 }

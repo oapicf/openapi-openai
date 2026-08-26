@@ -1,4 +1,4 @@
-# # ProjectServiceAccountDeleteResponse
+# ProjectServiceAccountDeleteResponse
 
 ## Properties
 

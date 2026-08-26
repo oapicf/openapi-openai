@@ -1,4 +1,4 @@
-# # AssistantObjectToolsInner
+# AssistantObjectToolsInner
 
 ## Properties
 

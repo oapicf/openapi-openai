@@ -56,10 +56,10 @@ function Initialize-CostsResult {
 
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "amount" = ${Amount}
-            "line_item" = ${LineItem}
-            "project_id" = ${ProjectId}
+            'object' = ${Object}
+            'amount' = ${Amount}
+            'line_item' = ${LineItem}
+            'project_id' = ${ProjectId}
         }
 
 
@@ -97,7 +97,7 @@ function ConvertFrom-JsonToCostsResult {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in CostsResult
-        $AllProperties = ("object", "amount", "line_item", "project_id")
+        $AllProperties = ('object', 'amount', 'line_item', 'project_id')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -108,35 +108,35 @@ function ConvertFrom-JsonToCostsResult {
             throw "Error! Empty JSON cannot be serialized due to the required property 'object' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "amount"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'amount'))) { #optional property not found
             $Amount = $null
         } else {
-            $Amount = $JsonParameters.PSobject.Properties["amount"].value
+            $Amount = $JsonParameters.PSobject.Properties['amount'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "line_item"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'line_item'))) { #optional property not found
             $LineItem = $null
         } else {
-            $LineItem = $JsonParameters.PSobject.Properties["line_item"].value
+            $LineItem = $JsonParameters.PSobject.Properties['line_item'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "project_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'project_id'))) { #optional property not found
             $ProjectId = $null
         } else {
-            $ProjectId = $JsonParameters.PSobject.Properties["project_id"].value
+            $ProjectId = $JsonParameters.PSobject.Properties['project_id'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "object" = ${Object}
-            "amount" = ${Amount}
-            "line_item" = ${LineItem}
-            "project_id" = ${ProjectId}
+            'object' = ${Object}
+            'amount' = ${Amount}
+            'line_item' = ${LineItem}
+            'project_id' = ${ProjectId}
         }
 
         return $PSO

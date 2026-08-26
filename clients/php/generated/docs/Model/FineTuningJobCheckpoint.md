@@ -1,4 +1,4 @@
-# # FineTuningJobCheckpoint
+# FineTuningJobCheckpoint
 
 ## Properties
 

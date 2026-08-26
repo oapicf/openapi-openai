@@ -1,4 +1,4 @@
-# # RealtimeResponseCreateParams
+# RealtimeResponseCreateParams
 
 ## Properties
 

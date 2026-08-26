@@ -44,19 +44,19 @@ static project_service_account_t *project_service_account_create_internal(
     char *id,
     char *name,
     openai_api_project_service_account_ROLE_e role,
-    int created_at
+    int *created_at
     ) {
     project_service_account_t *project_service_account_local_var = malloc(sizeof(project_service_account_t));
     if (!project_service_account_local_var) {
         return NULL;
     }
+    memset(project_service_account_local_var, 0, sizeof(project_service_account_t));
+    project_service_account_local_var->_library_owned = 1;
     project_service_account_local_var->object = object;
     project_service_account_local_var->id = id;
     project_service_account_local_var->name = name;
     project_service_account_local_var->role = role;
     project_service_account_local_var->created_at = created_at;
-
-    project_service_account_local_var->_library_owned = 1;
     return project_service_account_local_var;
 }
 
@@ -65,15 +65,24 @@ __attribute__((deprecated)) project_service_account_t *project_service_account_c
     char *id,
     char *name,
     openai_api_project_service_account_ROLE_e role,
-    int created_at
+    int *created_at
     ) {
-    return project_service_account_create_internal (
+    int *created_at_copy = NULL;
+    if (created_at) {
+        created_at_copy = malloc(sizeof(int));
+        if (created_at_copy) *created_at_copy = *created_at;
+    }
+    project_service_account_t *result = project_service_account_create_internal (
         object,
         id,
         name,
         role,
-        created_at
+        created_at_copy
         );
+    if (!result) {
+        free(created_at_copy);
+    }
+    return result;
 }
 
 void project_service_account_free(project_service_account_t *project_service_account) {
@@ -92,6 +101,10 @@ void project_service_account_free(project_service_account_t *project_service_acc
     if (project_service_account->name) {
         free(project_service_account->name);
         project_service_account->name = NULL;
+    }
+    if (project_service_account->created_at) {
+        free(project_service_account->created_at);
+        project_service_account->created_at = NULL;
     }
     free(project_service_account);
 }
@@ -141,7 +154,7 @@ cJSON *project_service_account_convertToJSON(project_service_account_t *project_
     if (!project_service_account->created_at) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created_at", project_service_account->created_at) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created_at", *project_service_account->created_at) == NULL) {
     goto fail; //Numeric
     }
 
@@ -156,6 +169,13 @@ fail:
 project_service_account_t *project_service_account_parseFromJSON(cJSON *project_service_accountJSON){
 
     project_service_account_t *project_service_account_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    // define the local variable for project_service_account->created_at
+    int *created_at_local_var = NULL;
 
     // project_service_account->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(project_service_accountJSON, "object");
@@ -235,18 +255,43 @@ project_service_account_t *project_service_account_parseFromJSON(cJSON *project_
     {
     goto end; //Numeric
     }
+    created_at_local_var = malloc(sizeof(int));
+    if(!created_at_local_var)
+    {
+        goto end;
+    }
+    *created_at_local_var = created_at->valuedouble;
 
+
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
 
     project_service_account_local_var = project_service_account_create_internal (
         objectVariable,
-        strdup(id->valuestring),
-        strdup(name->valuestring),
+        id_local_str,
+        name_local_str,
         roleVariable,
-        created_at->valuedouble
+        created_at_local_var
         );
+
+    if (!project_service_account_local_var) {
+        goto end;
+    }
 
     return project_service_account_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (created_at_local_var) {
+        free(created_at_local_var);
+        created_at_local_var = NULL;
+    }
     return NULL;
 
 }

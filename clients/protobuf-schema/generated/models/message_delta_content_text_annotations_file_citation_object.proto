@@ -26,7 +26,7 @@ message MessageDeltaContentTextAnnotationsFileCitationObject {
     TYPE_FILE_CITATION = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   // The text in the message content that needs to be replaced.
   string text = 3556653;

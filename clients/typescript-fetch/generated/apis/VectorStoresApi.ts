@@ -12,45 +12,62 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  CreateVectorStoreFileBatchRequest,
-  CreateVectorStoreFileRequest,
-  CreateVectorStoreRequest,
-  DeleteVectorStoreFileResponse,
-  DeleteVectorStoreResponse,
-  ListVectorStoreFilesResponse,
-  ListVectorStoresResponse,
-  UpdateVectorStoreRequest,
-  VectorStoreFileBatchObject,
-  VectorStoreFileObject,
-  VectorStoreObject,
-} from '../models/index';
 import {
+    type CreateVectorStoreFileBatchRequest,
     CreateVectorStoreFileBatchRequestFromJSON,
     CreateVectorStoreFileBatchRequestToJSON,
+} from '../models/CreateVectorStoreFileBatchRequest';
+import {
+    type CreateVectorStoreFileRequest,
     CreateVectorStoreFileRequestFromJSON,
     CreateVectorStoreFileRequestToJSON,
+} from '../models/CreateVectorStoreFileRequest';
+import {
+    type CreateVectorStoreRequest,
     CreateVectorStoreRequestFromJSON,
     CreateVectorStoreRequestToJSON,
+} from '../models/CreateVectorStoreRequest';
+import {
+    type DeleteVectorStoreFileResponse,
     DeleteVectorStoreFileResponseFromJSON,
     DeleteVectorStoreFileResponseToJSON,
+} from '../models/DeleteVectorStoreFileResponse';
+import {
+    type DeleteVectorStoreResponse,
     DeleteVectorStoreResponseFromJSON,
     DeleteVectorStoreResponseToJSON,
+} from '../models/DeleteVectorStoreResponse';
+import {
+    type ListVectorStoreFilesResponse,
     ListVectorStoreFilesResponseFromJSON,
     ListVectorStoreFilesResponseToJSON,
+} from '../models/ListVectorStoreFilesResponse';
+import {
+    type ListVectorStoresResponse,
     ListVectorStoresResponseFromJSON,
     ListVectorStoresResponseToJSON,
+} from '../models/ListVectorStoresResponse';
+import {
+    type UpdateVectorStoreRequest,
     UpdateVectorStoreRequestFromJSON,
     UpdateVectorStoreRequestToJSON,
+} from '../models/UpdateVectorStoreRequest';
+import {
+    type VectorStoreFileBatchObject,
     VectorStoreFileBatchObjectFromJSON,
     VectorStoreFileBatchObjectToJSON,
+} from '../models/VectorStoreFileBatchObject';
+import {
+    type VectorStoreFileObject,
     VectorStoreFileObjectFromJSON,
     VectorStoreFileObjectToJSON,
+} from '../models/VectorStoreFileObject';
+import {
+    type VectorStoreObject,
     VectorStoreObjectFromJSON,
     VectorStoreObjectToJSON,
-} from '../models/index';
+} from '../models/VectorStoreObject';
 
 export interface CancelVectorStoreFileBatchRequest {
     vectorStoreId: string;
@@ -131,9 +148,9 @@ export interface ModifyVectorStoreRequest {
 export class VectorStoresApi extends runtime.BaseAPI {
 
     /**
-     * Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
+     * Creates request options for cancelVectorStoreFileBatch without sending the request
      */
-    async cancelVectorStoreFileBatchRaw(requestParameters: CancelVectorStoreFileBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VectorStoreFileBatchObject>> {
+    async cancelVectorStoreFileBatchRequestOpts(requestParameters: CancelVectorStoreFileBatchRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['vectorStoreId'] == null) {
             throw new runtime.RequiredError(
                 'vectorStoreId',
@@ -162,15 +179,23 @@ export class VectorStoresApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel`;
-        urlPath = urlPath.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters['vectorStoreId'])));
-        urlPath = urlPath.replace(`{${"batch_id"}}`, encodeURIComponent(String(requestParameters['batchId'])));
+        urlPath = urlPath.replace('{vector_store_id}', encodeURIComponent(String(requestParameters['vectorStoreId'])));
+        urlPath = urlPath.replace('{batch_id}', encodeURIComponent(String(requestParameters['batchId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
+     */
+    async cancelVectorStoreFileBatchRaw(requestParameters: CancelVectorStoreFileBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VectorStoreFileBatchObject>> {
+        const requestOptions = await this.cancelVectorStoreFileBatchRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => VectorStoreFileBatchObjectFromJSON(jsonValue));
     }
@@ -184,9 +209,9 @@ export class VectorStoresApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a vector store.
+     * Creates request options for createVectorStore without sending the request
      */
-    async createVectorStoreRaw(requestParameters: CreateVectorStoreOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VectorStoreObject>> {
+    async createVectorStoreRequestOpts(requestParameters: CreateVectorStoreOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createVectorStoreRequest'] == null) {
             throw new runtime.RequiredError(
                 'createVectorStoreRequest',
@@ -211,13 +236,21 @@ export class VectorStoresApi extends runtime.BaseAPI {
 
         let urlPath = `/vector_stores`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateVectorStoreRequestToJSON(requestParameters['createVectorStoreRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a vector store.
+     */
+    async createVectorStoreRaw(requestParameters: CreateVectorStoreOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VectorStoreObject>> {
+        const requestOptions = await this.createVectorStoreRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => VectorStoreObjectFromJSON(jsonValue));
     }
@@ -231,9 +264,9 @@ export class VectorStoresApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a vector store file by attaching a [File](/docs/api-reference/files) to a [vector store](/docs/api-reference/vector-stores/object).
+     * Creates request options for createVectorStoreFile without sending the request
      */
-    async createVectorStoreFileRaw(requestParameters: CreateVectorStoreFileOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VectorStoreFileObject>> {
+    async createVectorStoreFileRequestOpts(requestParameters: CreateVectorStoreFileOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['vectorStoreId'] == null) {
             throw new runtime.RequiredError(
                 'vectorStoreId',
@@ -264,15 +297,23 @@ export class VectorStoresApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/vector_stores/{vector_store_id}/files`;
-        urlPath = urlPath.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters['vectorStoreId'])));
+        urlPath = urlPath.replace('{vector_store_id}', encodeURIComponent(String(requestParameters['vectorStoreId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateVectorStoreFileRequestToJSON(requestParameters['createVectorStoreFileRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a vector store file by attaching a [File](/docs/api-reference/files) to a [vector store](/docs/api-reference/vector-stores/object).
+     */
+    async createVectorStoreFileRaw(requestParameters: CreateVectorStoreFileOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VectorStoreFileObject>> {
+        const requestOptions = await this.createVectorStoreFileRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => VectorStoreFileObjectFromJSON(jsonValue));
     }
@@ -286,9 +327,9 @@ export class VectorStoresApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a vector store file batch.
+     * Creates request options for createVectorStoreFileBatch without sending the request
      */
-    async createVectorStoreFileBatchRaw(requestParameters: CreateVectorStoreFileBatchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VectorStoreFileBatchObject>> {
+    async createVectorStoreFileBatchRequestOpts(requestParameters: CreateVectorStoreFileBatchOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['vectorStoreId'] == null) {
             throw new runtime.RequiredError(
                 'vectorStoreId',
@@ -319,15 +360,23 @@ export class VectorStoresApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/vector_stores/{vector_store_id}/file_batches`;
-        urlPath = urlPath.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters['vectorStoreId'])));
+        urlPath = urlPath.replace('{vector_store_id}', encodeURIComponent(String(requestParameters['vectorStoreId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateVectorStoreFileBatchRequestToJSON(requestParameters['createVectorStoreFileBatchRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a vector store file batch.
+     */
+    async createVectorStoreFileBatchRaw(requestParameters: CreateVectorStoreFileBatchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VectorStoreFileBatchObject>> {
+        const requestOptions = await this.createVectorStoreFileBatchRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => VectorStoreFileBatchObjectFromJSON(jsonValue));
     }
@@ -341,9 +390,9 @@ export class VectorStoresApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a vector store.
+     * Creates request options for deleteVectorStore without sending the request
      */
-    async deleteVectorStoreRaw(requestParameters: DeleteVectorStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteVectorStoreResponse>> {
+    async deleteVectorStoreRequestOpts(requestParameters: DeleteVectorStoreRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['vectorStoreId'] == null) {
             throw new runtime.RequiredError(
                 'vectorStoreId',
@@ -365,14 +414,22 @@ export class VectorStoresApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/vector_stores/{vector_store_id}`;
-        urlPath = urlPath.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters['vectorStoreId'])));
+        urlPath = urlPath.replace('{vector_store_id}', encodeURIComponent(String(requestParameters['vectorStoreId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete a vector store.
+     */
+    async deleteVectorStoreRaw(requestParameters: DeleteVectorStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteVectorStoreResponse>> {
+        const requestOptions = await this.deleteVectorStoreRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => DeleteVectorStoreResponseFromJSON(jsonValue));
     }
@@ -386,9 +443,9 @@ export class VectorStoresApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api-reference/files/delete) endpoint.
+     * Creates request options for deleteVectorStoreFile without sending the request
      */
-    async deleteVectorStoreFileRaw(requestParameters: DeleteVectorStoreFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteVectorStoreFileResponse>> {
+    async deleteVectorStoreFileRequestOpts(requestParameters: DeleteVectorStoreFileRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['vectorStoreId'] == null) {
             throw new runtime.RequiredError(
                 'vectorStoreId',
@@ -417,15 +474,23 @@ export class VectorStoresApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/vector_stores/{vector_store_id}/files/{file_id}`;
-        urlPath = urlPath.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters['vectorStoreId'])));
-        urlPath = urlPath.replace(`{${"file_id"}}`, encodeURIComponent(String(requestParameters['fileId'])));
+        urlPath = urlPath.replace('{vector_store_id}', encodeURIComponent(String(requestParameters['vectorStoreId'])));
+        urlPath = urlPath.replace('{file_id}', encodeURIComponent(String(requestParameters['fileId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api-reference/files/delete) endpoint.
+     */
+    async deleteVectorStoreFileRaw(requestParameters: DeleteVectorStoreFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteVectorStoreFileResponse>> {
+        const requestOptions = await this.deleteVectorStoreFileRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => DeleteVectorStoreFileResponseFromJSON(jsonValue));
     }
@@ -439,9 +504,9 @@ export class VectorStoresApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves a vector store.
+     * Creates request options for getVectorStore without sending the request
      */
-    async getVectorStoreRaw(requestParameters: GetVectorStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VectorStoreObject>> {
+    async getVectorStoreRequestOpts(requestParameters: GetVectorStoreRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['vectorStoreId'] == null) {
             throw new runtime.RequiredError(
                 'vectorStoreId',
@@ -463,14 +528,22 @@ export class VectorStoresApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/vector_stores/{vector_store_id}`;
-        urlPath = urlPath.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters['vectorStoreId'])));
+        urlPath = urlPath.replace('{vector_store_id}', encodeURIComponent(String(requestParameters['vectorStoreId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves a vector store.
+     */
+    async getVectorStoreRaw(requestParameters: GetVectorStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VectorStoreObject>> {
+        const requestOptions = await this.getVectorStoreRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => VectorStoreObjectFromJSON(jsonValue));
     }
@@ -484,9 +557,9 @@ export class VectorStoresApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves a vector store file.
+     * Creates request options for getVectorStoreFile without sending the request
      */
-    async getVectorStoreFileRaw(requestParameters: GetVectorStoreFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VectorStoreFileObject>> {
+    async getVectorStoreFileRequestOpts(requestParameters: GetVectorStoreFileRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['vectorStoreId'] == null) {
             throw new runtime.RequiredError(
                 'vectorStoreId',
@@ -515,15 +588,23 @@ export class VectorStoresApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/vector_stores/{vector_store_id}/files/{file_id}`;
-        urlPath = urlPath.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters['vectorStoreId'])));
-        urlPath = urlPath.replace(`{${"file_id"}}`, encodeURIComponent(String(requestParameters['fileId'])));
+        urlPath = urlPath.replace('{vector_store_id}', encodeURIComponent(String(requestParameters['vectorStoreId'])));
+        urlPath = urlPath.replace('{file_id}', encodeURIComponent(String(requestParameters['fileId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves a vector store file.
+     */
+    async getVectorStoreFileRaw(requestParameters: GetVectorStoreFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VectorStoreFileObject>> {
+        const requestOptions = await this.getVectorStoreFileRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => VectorStoreFileObjectFromJSON(jsonValue));
     }
@@ -537,9 +618,9 @@ export class VectorStoresApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves a vector store file batch.
+     * Creates request options for getVectorStoreFileBatch without sending the request
      */
-    async getVectorStoreFileBatchRaw(requestParameters: GetVectorStoreFileBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VectorStoreFileBatchObject>> {
+    async getVectorStoreFileBatchRequestOpts(requestParameters: GetVectorStoreFileBatchRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['vectorStoreId'] == null) {
             throw new runtime.RequiredError(
                 'vectorStoreId',
@@ -568,15 +649,23 @@ export class VectorStoresApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/vector_stores/{vector_store_id}/file_batches/{batch_id}`;
-        urlPath = urlPath.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters['vectorStoreId'])));
-        urlPath = urlPath.replace(`{${"batch_id"}}`, encodeURIComponent(String(requestParameters['batchId'])));
+        urlPath = urlPath.replace('{vector_store_id}', encodeURIComponent(String(requestParameters['vectorStoreId'])));
+        urlPath = urlPath.replace('{batch_id}', encodeURIComponent(String(requestParameters['batchId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves a vector store file batch.
+     */
+    async getVectorStoreFileBatchRaw(requestParameters: GetVectorStoreFileBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VectorStoreFileBatchObject>> {
+        const requestOptions = await this.getVectorStoreFileBatchRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => VectorStoreFileBatchObjectFromJSON(jsonValue));
     }
@@ -590,9 +679,9 @@ export class VectorStoresApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of vector store files in a batch.
+     * Creates request options for listFilesInVectorStoreBatch without sending the request
      */
-    async listFilesInVectorStoreBatchRaw(requestParameters: ListFilesInVectorStoreBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListVectorStoreFilesResponse>> {
+    async listFilesInVectorStoreBatchRequestOpts(requestParameters: ListFilesInVectorStoreBatchRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['vectorStoreId'] == null) {
             throw new runtime.RequiredError(
                 'vectorStoreId',
@@ -641,15 +730,23 @@ export class VectorStoresApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/vector_stores/{vector_store_id}/file_batches/{batch_id}/files`;
-        urlPath = urlPath.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters['vectorStoreId'])));
-        urlPath = urlPath.replace(`{${"batch_id"}}`, encodeURIComponent(String(requestParameters['batchId'])));
+        urlPath = urlPath.replace('{vector_store_id}', encodeURIComponent(String(requestParameters['vectorStoreId'])));
+        urlPath = urlPath.replace('{batch_id}', encodeURIComponent(String(requestParameters['batchId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns a list of vector store files in a batch.
+     */
+    async listFilesInVectorStoreBatchRaw(requestParameters: ListFilesInVectorStoreBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListVectorStoreFilesResponse>> {
+        const requestOptions = await this.listFilesInVectorStoreBatchRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListVectorStoreFilesResponseFromJSON(jsonValue));
     }
@@ -663,9 +760,9 @@ export class VectorStoresApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of vector store files.
+     * Creates request options for listVectorStoreFiles without sending the request
      */
-    async listVectorStoreFilesRaw(requestParameters: ListVectorStoreFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListVectorStoreFilesResponse>> {
+    async listVectorStoreFilesRequestOpts(requestParameters: ListVectorStoreFilesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['vectorStoreId'] == null) {
             throw new runtime.RequiredError(
                 'vectorStoreId',
@@ -707,14 +804,22 @@ export class VectorStoresApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/vector_stores/{vector_store_id}/files`;
-        urlPath = urlPath.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters['vectorStoreId'])));
+        urlPath = urlPath.replace('{vector_store_id}', encodeURIComponent(String(requestParameters['vectorStoreId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns a list of vector store files.
+     */
+    async listVectorStoreFilesRaw(requestParameters: ListVectorStoreFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListVectorStoreFilesResponse>> {
+        const requestOptions = await this.listVectorStoreFilesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListVectorStoreFilesResponseFromJSON(jsonValue));
     }
@@ -728,9 +833,9 @@ export class VectorStoresApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of vector stores.
+     * Creates request options for listVectorStores without sending the request
      */
-    async listVectorStoresRaw(requestParameters: ListVectorStoresRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListVectorStoresResponse>> {
+    async listVectorStoresRequestOpts(requestParameters: ListVectorStoresRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['limit'] != null) {
@@ -762,12 +867,20 @@ export class VectorStoresApi extends runtime.BaseAPI {
 
         let urlPath = `/vector_stores`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns a list of vector stores.
+     */
+    async listVectorStoresRaw(requestParameters: ListVectorStoresRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListVectorStoresResponse>> {
+        const requestOptions = await this.listVectorStoresRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListVectorStoresResponseFromJSON(jsonValue));
     }
@@ -781,9 +894,9 @@ export class VectorStoresApi extends runtime.BaseAPI {
     }
 
     /**
-     * Modifies a vector store.
+     * Creates request options for modifyVectorStore without sending the request
      */
-    async modifyVectorStoreRaw(requestParameters: ModifyVectorStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VectorStoreObject>> {
+    async modifyVectorStoreRequestOpts(requestParameters: ModifyVectorStoreRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['vectorStoreId'] == null) {
             throw new runtime.RequiredError(
                 'vectorStoreId',
@@ -814,15 +927,23 @@ export class VectorStoresApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/vector_stores/{vector_store_id}`;
-        urlPath = urlPath.replace(`{${"vector_store_id"}}`, encodeURIComponent(String(requestParameters['vectorStoreId'])));
+        urlPath = urlPath.replace('{vector_store_id}', encodeURIComponent(String(requestParameters['vectorStoreId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateVectorStoreRequestToJSON(requestParameters['updateVectorStoreRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Modifies a vector store.
+     */
+    async modifyVectorStoreRaw(requestParameters: ModifyVectorStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VectorStoreObject>> {
+        const requestOptions = await this.modifyVectorStoreRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => VectorStoreObjectFromJSON(jsonValue));
     }

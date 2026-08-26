@@ -1,4 +1,4 @@
-# # ProjectServiceAccountCreateResponse
+# ProjectServiceAccountCreateResponse
 
 ## Properties
 

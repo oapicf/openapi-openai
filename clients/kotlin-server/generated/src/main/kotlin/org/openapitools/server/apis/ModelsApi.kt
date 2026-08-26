@@ -30,18 +30,16 @@ import org.openapitools.server.models.ListModelsResponse
 import org.openapitools.server.models.Model
 
 fun Route.ModelsApi() {
-    val empty = mutableMapOf<String, Any?>()
-
     authenticate("ApiKeyAuth") {
-    delete<Paths.deleteModel> {
+    delete<Paths.deleteModel> { deleteModel ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "deleted" : true,
               "id" : "id",
+              "deleted" : true,
               "object" : "object"
             }"""
             
@@ -53,27 +51,26 @@ fun Route.ModelsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.listModels> {
+    get<Paths.listModels> { listModels ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
+              "object" : "list",
               "data" : [ {
-                "created" : 0,
-                "owned_by" : "owned_by",
                 "id" : "id",
-                "object" : "model"
+                "created" : 0,
+                "object" : "model",
+                "owned_by" : "owned_by"
               }, {
-                "created" : 0,
-                "owned_by" : "owned_by",
                 "id" : "id",
-                "object" : "model"
-              } ],
-              "object" : "list"
+                "created" : 0,
+                "object" : "model",
+                "owned_by" : "owned_by"
+              } ]
             }"""
             
             when (exampleContentType) {
@@ -84,19 +81,18 @@ fun Route.ModelsApi() {
         
     }
     }
-
     authenticate("ApiKeyAuth") {
-    get<Paths.retrieveModel> {
+    get<Paths.retrieveModel> { retrieveModel ->
         
         val principal = null!!
         
         
         val exampleContentType = "application/json"
             val exampleContentString = """{
-              "created" : 0,
-              "owned_by" : "owned_by",
               "id" : "id",
-              "object" : "model"
+              "created" : 0,
+              "object" : "model",
+              "owned_by" : "owned_by"
             }"""
             
             when (exampleContentType) {
@@ -107,5 +103,4 @@ fun Route.ModelsApi() {
         
     }
     }
-
 }

@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set The data that makes up the text.
 	 */
-	void setValue(std::string  value);
+	void setValue(std::string value);
 	/*! \brief Get 
 	 */
 	std::list<MessageContentTextObject_text_annotations_inner> getAnnotations();
 
 	/*! \brief Set 
 	 */
-	void setAnnotations(std::list <MessageContentTextObject_text_annotations_inner> annotations);
+	void setAnnotations(std::list<MessageContentTextObject_text_annotations_inner> annotations);
 
 
     private:

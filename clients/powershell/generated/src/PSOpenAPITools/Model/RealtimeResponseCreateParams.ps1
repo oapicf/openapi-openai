@@ -89,17 +89,17 @@ function Initialize-RealtimeResponseCreateParams {
 
 
         $PSO = [PSCustomObject]@{
-            "modalities" = ${Modalities}
-            "instructions" = ${Instructions}
-            "voice" = ${Voice}
-            "output_audio_format" = ${OutputAudioFormat}
-            "tools" = ${Tools}
-            "tool_choice" = ${ToolChoice}
-            "temperature" = ${Temperature}
-            "max_response_output_tokens" = ${MaxResponseOutputTokens}
-            "conversation" = ${Conversation}
-            "metadata" = ${Metadata}
-            "input" = ${VarInput}
+            'modalities' = ${Modalities}
+            'instructions' = ${Instructions}
+            'voice' = ${Voice}
+            'output_audio_format' = ${OutputAudioFormat}
+            'tools' = ${Tools}
+            'tool_choice' = ${ToolChoice}
+            'temperature' = ${Temperature}
+            'max_response_output_tokens' = ${MaxResponseOutputTokens}
+            'conversation' = ${Conversation}
+            'metadata' = ${Metadata}
+            'input' = ${VarInput}
         }
 
 
@@ -137,91 +137,91 @@ function ConvertFrom-JsonToRealtimeResponseCreateParams {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeResponseCreateParams
-        $AllProperties = ("modalities", "instructions", "voice", "output_audio_format", "tools", "tool_choice", "temperature", "max_response_output_tokens", "conversation", "metadata", "input")
+        $AllProperties = ('modalities', 'instructions', 'voice', 'output_audio_format', 'tools', 'tool_choice', 'temperature', 'max_response_output_tokens', 'conversation', 'metadata', 'input')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "modalities"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'modalities'))) { #optional property not found
             $Modalities = $null
         } else {
-            $Modalities = $JsonParameters.PSobject.Properties["modalities"].value
+            $Modalities = $JsonParameters.PSobject.Properties['modalities'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "instructions"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'instructions'))) { #optional property not found
             $Instructions = $null
         } else {
-            $Instructions = $JsonParameters.PSobject.Properties["instructions"].value
+            $Instructions = $JsonParameters.PSobject.Properties['instructions'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "voice"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'voice'))) { #optional property not found
             $Voice = $null
         } else {
-            $Voice = $JsonParameters.PSobject.Properties["voice"].value
+            $Voice = $JsonParameters.PSobject.Properties['voice'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "output_audio_format"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'output_audio_format'))) { #optional property not found
             $OutputAudioFormat = $null
         } else {
-            $OutputAudioFormat = $JsonParameters.PSobject.Properties["output_audio_format"].value
+            $OutputAudioFormat = $JsonParameters.PSobject.Properties['output_audio_format'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tools"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tools'))) { #optional property not found
             $Tools = $null
         } else {
-            $Tools = $JsonParameters.PSobject.Properties["tools"].value
+            $Tools = $JsonParameters.PSobject.Properties['tools'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tool_choice"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tool_choice'))) { #optional property not found
             $ToolChoice = $null
         } else {
-            $ToolChoice = $JsonParameters.PSobject.Properties["tool_choice"].value
+            $ToolChoice = $JsonParameters.PSobject.Properties['tool_choice'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "temperature"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'temperature'))) { #optional property not found
             $Temperature = $null
         } else {
-            $Temperature = $JsonParameters.PSobject.Properties["temperature"].value
+            $Temperature = $JsonParameters.PSobject.Properties['temperature'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_response_output_tokens"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'max_response_output_tokens'))) { #optional property not found
             $MaxResponseOutputTokens = $null
         } else {
-            $MaxResponseOutputTokens = $JsonParameters.PSobject.Properties["max_response_output_tokens"].value
+            $MaxResponseOutputTokens = $JsonParameters.PSobject.Properties['max_response_output_tokens'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "conversation"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'conversation'))) { #optional property not found
             $Conversation = $null
         } else {
-            $Conversation = $JsonParameters.PSobject.Properties["conversation"].value
+            $Conversation = $JsonParameters.PSobject.Properties['conversation'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) { #optional property not found
             $Metadata = $null
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "input"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'input'))) { #optional property not found
             $VarInput = $null
         } else {
-            $VarInput = $JsonParameters.PSobject.Properties["input"].value
+            $VarInput = $JsonParameters.PSobject.Properties['input'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "modalities" = ${Modalities}
-            "instructions" = ${Instructions}
-            "voice" = ${Voice}
-            "output_audio_format" = ${OutputAudioFormat}
-            "tools" = ${Tools}
-            "tool_choice" = ${ToolChoice}
-            "temperature" = ${Temperature}
-            "max_response_output_tokens" = ${MaxResponseOutputTokens}
-            "conversation" = ${Conversation}
-            "metadata" = ${Metadata}
-            "input" = ${VarInput}
+            'modalities' = ${Modalities}
+            'instructions' = ${Instructions}
+            'voice' = ${Voice}
+            'output_audio_format' = ${OutputAudioFormat}
+            'tools' = ${Tools}
+            'tool_choice' = ${ToolChoice}
+            'temperature' = ${Temperature}
+            'max_response_output_tokens' = ${MaxResponseOutputTokens}
+            'conversation' = ${Conversation}
+            'metadata' = ${Metadata}
+            'input' = ${VarInput}
         }
 
         return $PSO

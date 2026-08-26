@@ -55,10 +55,10 @@ class VectorStoreFileObjectLastError {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "VectorStoreFileObjectLastError[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "VectorStoreFileObjectLastError[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'code'), 'Required key "VectorStoreFileObjectLastError[code]" is missing from JSON.');
+        assert(json[r'code'] != null, 'Required key "VectorStoreFileObjectLastError[code]" has a null value in JSON.');
+        assert(json.containsKey(r'message'), 'Required key "VectorStoreFileObjectLastError[message]" is missing from JSON.');
+        assert(json[r'message'] != null, 'Required key "VectorStoreFileObjectLastError[message]" has a null value in JSON.');
         return true;
       }());
 
@@ -118,31 +118,30 @@ class VectorStoreFileObjectLastError {
 }
 
 /// One of `server_error` or `rate_limit_exceeded`.
-class VectorStoreFileObjectLastErrorCodeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const VectorStoreFileObjectLastErrorCodeEnum._(this.value);
+enum VectorStoreFileObjectLastErrorCodeEnum {
+  serverError._(r'server_error'),
+  unsupportedFile._(r'unsupported_file'),
+  invalidFile._(r'invalid_file'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const VectorStoreFileObjectLastErrorCodeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const serverError = VectorStoreFileObjectLastErrorCodeEnum._(r'server_error');
-  static const unsupportedFile = VectorStoreFileObjectLastErrorCodeEnum._(r'unsupported_file');
-  static const invalidFile = VectorStoreFileObjectLastErrorCodeEnum._(r'invalid_file');
-
-  /// List of all possible values in this [enum][VectorStoreFileObjectLastErrorCodeEnum].
-  static const values = <VectorStoreFileObjectLastErrorCodeEnum>[
-    serverError,
-    unsupportedFile,
-    invalidFile,
-  ];
-
+  /// Returns the instance of [VectorStoreFileObjectLastErrorCodeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static VectorStoreFileObjectLastErrorCodeEnum? fromJson(dynamic value) => VectorStoreFileObjectLastErrorCodeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [VectorStoreFileObjectLastErrorCodeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<VectorStoreFileObjectLastErrorCodeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <VectorStoreFileObjectLastErrorCodeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -164,9 +163,10 @@ class VectorStoreFileObjectLastErrorCodeEnumTypeTransformer {
 
   const VectorStoreFileObjectLastErrorCodeEnumTypeTransformer._();
 
-  String encode(VectorStoreFileObjectLastErrorCodeEnum data) => data.value;
+  String encode(VectorStoreFileObjectLastErrorCodeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a VectorStoreFileObjectLastErrorCodeEnum.
+  /// Returns the instance of [VectorStoreFileObjectLastErrorCodeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -175,6 +175,9 @@ class VectorStoreFileObjectLastErrorCodeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   VectorStoreFileObjectLastErrorCodeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is VectorStoreFileObjectLastErrorCodeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'server_error': return VectorStoreFileObjectLastErrorCodeEnum.serverError;
@@ -189,7 +192,7 @@ class VectorStoreFileObjectLastErrorCodeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [VectorStoreFileObjectLastErrorCodeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static VectorStoreFileObjectLastErrorCodeEnumTypeTransformer? _instance;
 }
 

@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIFileSearchRankingOptions::OAIFileSearchRankingOptions(QString json) {
+OAIFileSearchRankingOptions::OAIFileSearchRankingOptions(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIFileSearchRankingOptions::initializeModel() {
     m_score_threshold_isValid = false;
 }
 
-void OAIFileSearchRankingOptions::fromJson(QString jsonString) {
+void OAIFileSearchRankingOptions::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

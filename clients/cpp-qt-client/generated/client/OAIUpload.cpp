@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIUpload::OAIUpload(QString json) {
+OAIUpload::OAIUpload(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -62,7 +62,7 @@ void OAIUpload::initializeModel() {
     m_file_isValid = false;
 }
 
-void OAIUpload::fromJson(QString jsonString) {
+void OAIUpload::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

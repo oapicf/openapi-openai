@@ -24,31 +24,40 @@ openai_api_create_chat_completion_function_response_choices_inner_FINISHREASON_e
 
 static create_chat_completion_function_response_choices_inner_t *create_chat_completion_function_response_choices_inner_create_internal(
     openai_api_create_chat_completion_function_response_choices_inner_FINISHREASON_e finish_reason,
-    int index,
+    int *index,
     chat_completion_response_message_t *message
     ) {
     create_chat_completion_function_response_choices_inner_t *create_chat_completion_function_response_choices_inner_local_var = malloc(sizeof(create_chat_completion_function_response_choices_inner_t));
     if (!create_chat_completion_function_response_choices_inner_local_var) {
         return NULL;
     }
+    memset(create_chat_completion_function_response_choices_inner_local_var, 0, sizeof(create_chat_completion_function_response_choices_inner_t));
+    create_chat_completion_function_response_choices_inner_local_var->_library_owned = 1;
     create_chat_completion_function_response_choices_inner_local_var->finish_reason = finish_reason;
     create_chat_completion_function_response_choices_inner_local_var->index = index;
     create_chat_completion_function_response_choices_inner_local_var->message = message;
-
-    create_chat_completion_function_response_choices_inner_local_var->_library_owned = 1;
     return create_chat_completion_function_response_choices_inner_local_var;
 }
 
 __attribute__((deprecated)) create_chat_completion_function_response_choices_inner_t *create_chat_completion_function_response_choices_inner_create(
     openai_api_create_chat_completion_function_response_choices_inner_FINISHREASON_e finish_reason,
-    int index,
+    int *index,
     chat_completion_response_message_t *message
     ) {
-    return create_chat_completion_function_response_choices_inner_create_internal (
+    int *index_copy = NULL;
+    if (index) {
+        index_copy = malloc(sizeof(int));
+        if (index_copy) *index_copy = *index;
+    }
+    create_chat_completion_function_response_choices_inner_t *result = create_chat_completion_function_response_choices_inner_create_internal (
         finish_reason,
-        index,
+        index_copy,
         message
         );
+    if (!result) {
+        free(index_copy);
+    }
+    return result;
 }
 
 void create_chat_completion_function_response_choices_inner_free(create_chat_completion_function_response_choices_inner_t *create_chat_completion_function_response_choices_inner) {
@@ -60,6 +69,10 @@ void create_chat_completion_function_response_choices_inner_free(create_chat_com
         return ;
     }
     listEntry_t *listEntry;
+    if (create_chat_completion_function_response_choices_inner->index) {
+        free(create_chat_completion_function_response_choices_inner->index);
+        create_chat_completion_function_response_choices_inner->index = NULL;
+    }
     if (create_chat_completion_function_response_choices_inner->message) {
         chat_completion_response_message_free(create_chat_completion_function_response_choices_inner->message);
         create_chat_completion_function_response_choices_inner->message = NULL;
@@ -84,7 +97,7 @@ cJSON *create_chat_completion_function_response_choices_inner_convertToJSON(crea
     if (!create_chat_completion_function_response_choices_inner->index) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "index", create_chat_completion_function_response_choices_inner->index) == NULL) {
+    if(cJSON_AddNumberToObject(item, "index", *create_chat_completion_function_response_choices_inner->index) == NULL) {
     goto fail; //Numeric
     }
 
@@ -113,6 +126,9 @@ fail:
 create_chat_completion_function_response_choices_inner_t *create_chat_completion_function_response_choices_inner_parseFromJSON(cJSON *create_chat_completion_function_response_choices_innerJSON){
 
     create_chat_completion_function_response_choices_inner_t *create_chat_completion_function_response_choices_inner_local_var = NULL;
+
+    // define the local variable for create_chat_completion_function_response_choices_inner->index
+    int *index_local_var = NULL;
 
     // define the local variable for create_chat_completion_function_response_choices_inner->message
     chat_completion_response_message_t *message_local_nonprim = NULL;
@@ -148,6 +164,12 @@ create_chat_completion_function_response_choices_inner_t *create_chat_completion
     {
     goto end; //Numeric
     }
+    index_local_var = malloc(sizeof(int));
+    if(!index_local_var)
+    {
+        goto end;
+    }
+    *index_local_var = index->valuedouble;
 
     // create_chat_completion_function_response_choices_inner->message
     cJSON *message = cJSON_GetObjectItemCaseSensitive(create_chat_completion_function_response_choices_innerJSON, "message");
@@ -162,14 +184,23 @@ create_chat_completion_function_response_choices_inner_t *create_chat_completion
     message_local_nonprim = chat_completion_response_message_parseFromJSON(message); //nonprimitive
 
 
+
     create_chat_completion_function_response_choices_inner_local_var = create_chat_completion_function_response_choices_inner_create_internal (
         finish_reasonVariable,
-        index->valuedouble,
+        index_local_var,
         message_local_nonprim
         );
 
+    if (!create_chat_completion_function_response_choices_inner_local_var) {
+        goto end;
+    }
+
     return create_chat_completion_function_response_choices_inner_local_var;
 end:
+    if (index_local_var) {
+        free(index_local_var);
+        index_local_var = NULL;
+    }
     if (message_local_nonprim) {
         chat_completion_response_message_free(message_local_nonprim);
         message_local_nonprim = NULL;

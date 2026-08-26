@@ -12,15 +12,12 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  UsageResponse,
-} from '../models/index';
 import {
+    type UsageResponse,
     UsageResponseFromJSON,
     UsageResponseToJSON,
-} from '../models/index';
+} from '../models/UsageResponse';
 
 export interface UsageAudioSpeechesRequest {
     startTime: number;
@@ -139,9 +136,9 @@ export interface UsageVectorStoresRequest {
 export class UsageApi extends runtime.BaseAPI {
 
     /**
-     * Get audio speeches usage details for the organization.
+     * Creates request options for usageAudioSpeeches without sending the request
      */
-    async usageAudioSpeechesRaw(requestParameters: UsageAudioSpeechesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+    async usageAudioSpeechesRequestOpts(requestParameters: UsageAudioSpeechesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['startTime'] == null) {
             throw new runtime.RequiredError(
                 'startTime',
@@ -204,12 +201,20 @@ export class UsageApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/usage/audio_speeches`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get audio speeches usage details for the organization.
+     */
+    async usageAudioSpeechesRaw(requestParameters: UsageAudioSpeechesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+        const requestOptions = await this.usageAudioSpeechesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UsageResponseFromJSON(jsonValue));
     }
@@ -223,9 +228,9 @@ export class UsageApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get audio transcriptions usage details for the organization.
+     * Creates request options for usageAudioTranscriptions without sending the request
      */
-    async usageAudioTranscriptionsRaw(requestParameters: UsageAudioTranscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+    async usageAudioTranscriptionsRequestOpts(requestParameters: UsageAudioTranscriptionsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['startTime'] == null) {
             throw new runtime.RequiredError(
                 'startTime',
@@ -288,12 +293,20 @@ export class UsageApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/usage/audio_transcriptions`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get audio transcriptions usage details for the organization.
+     */
+    async usageAudioTranscriptionsRaw(requestParameters: UsageAudioTranscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+        const requestOptions = await this.usageAudioTranscriptionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UsageResponseFromJSON(jsonValue));
     }
@@ -307,9 +320,9 @@ export class UsageApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get code interpreter sessions usage details for the organization.
+     * Creates request options for usageCodeInterpreterSessions without sending the request
      */
-    async usageCodeInterpreterSessionsRaw(requestParameters: UsageCodeInterpreterSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+    async usageCodeInterpreterSessionsRequestOpts(requestParameters: UsageCodeInterpreterSessionsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['startTime'] == null) {
             throw new runtime.RequiredError(
                 'startTime',
@@ -360,12 +373,20 @@ export class UsageApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/usage/code_interpreter_sessions`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get code interpreter sessions usage details for the organization.
+     */
+    async usageCodeInterpreterSessionsRaw(requestParameters: UsageCodeInterpreterSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+        const requestOptions = await this.usageCodeInterpreterSessionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UsageResponseFromJSON(jsonValue));
     }
@@ -379,9 +400,9 @@ export class UsageApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get completions usage details for the organization.
+     * Creates request options for usageCompletions without sending the request
      */
-    async usageCompletionsRaw(requestParameters: UsageCompletionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+    async usageCompletionsRequestOpts(requestParameters: UsageCompletionsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['startTime'] == null) {
             throw new runtime.RequiredError(
                 'startTime',
@@ -448,12 +469,20 @@ export class UsageApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/usage/completions`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get completions usage details for the organization.
+     */
+    async usageCompletionsRaw(requestParameters: UsageCompletionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+        const requestOptions = await this.usageCompletionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UsageResponseFromJSON(jsonValue));
     }
@@ -467,9 +496,9 @@ export class UsageApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get costs details for the organization.
+     * Creates request options for usageCosts without sending the request
      */
-    async usageCostsRaw(requestParameters: UsageCostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+    async usageCostsRequestOpts(requestParameters: UsageCostsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['startTime'] == null) {
             throw new runtime.RequiredError(
                 'startTime',
@@ -520,12 +549,20 @@ export class UsageApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/costs`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get costs details for the organization.
+     */
+    async usageCostsRaw(requestParameters: UsageCostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+        const requestOptions = await this.usageCostsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UsageResponseFromJSON(jsonValue));
     }
@@ -539,9 +576,9 @@ export class UsageApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get embeddings usage details for the organization.
+     * Creates request options for usageEmbeddings without sending the request
      */
-    async usageEmbeddingsRaw(requestParameters: UsageEmbeddingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+    async usageEmbeddingsRequestOpts(requestParameters: UsageEmbeddingsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['startTime'] == null) {
             throw new runtime.RequiredError(
                 'startTime',
@@ -604,12 +641,20 @@ export class UsageApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/usage/embeddings`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get embeddings usage details for the organization.
+     */
+    async usageEmbeddingsRaw(requestParameters: UsageEmbeddingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+        const requestOptions = await this.usageEmbeddingsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UsageResponseFromJSON(jsonValue));
     }
@@ -623,9 +668,9 @@ export class UsageApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get images usage details for the organization.
+     * Creates request options for usageImages without sending the request
      */
-    async usageImagesRaw(requestParameters: UsageImagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+    async usageImagesRequestOpts(requestParameters: UsageImagesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['startTime'] == null) {
             throw new runtime.RequiredError(
                 'startTime',
@@ -696,12 +741,20 @@ export class UsageApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/usage/images`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get images usage details for the organization.
+     */
+    async usageImagesRaw(requestParameters: UsageImagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+        const requestOptions = await this.usageImagesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UsageResponseFromJSON(jsonValue));
     }
@@ -715,9 +768,9 @@ export class UsageApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get moderations usage details for the organization.
+     * Creates request options for usageModerations without sending the request
      */
-    async usageModerationsRaw(requestParameters: UsageModerationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+    async usageModerationsRequestOpts(requestParameters: UsageModerationsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['startTime'] == null) {
             throw new runtime.RequiredError(
                 'startTime',
@@ -780,12 +833,20 @@ export class UsageApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/usage/moderations`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get moderations usage details for the organization.
+     */
+    async usageModerationsRaw(requestParameters: UsageModerationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+        const requestOptions = await this.usageModerationsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UsageResponseFromJSON(jsonValue));
     }
@@ -799,9 +860,9 @@ export class UsageApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get vector stores usage details for the organization.
+     * Creates request options for usageVectorStores without sending the request
      */
-    async usageVectorStoresRaw(requestParameters: UsageVectorStoresRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+    async usageVectorStoresRequestOpts(requestParameters: UsageVectorStoresRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['startTime'] == null) {
             throw new runtime.RequiredError(
                 'startTime',
@@ -852,12 +913,20 @@ export class UsageApi extends runtime.BaseAPI {
 
         let urlPath = `/organization/usage/vector_stores`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get vector stores usage details for the organization.
+     */
+    async usageVectorStoresRaw(requestParameters: UsageVectorStoresRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UsageResponse>> {
+        const requestOptions = await this.usageVectorStoresRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UsageResponseFromJSON(jsonValue));
     }

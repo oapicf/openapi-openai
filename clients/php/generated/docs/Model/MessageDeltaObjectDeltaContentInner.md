@@ -1,4 +1,4 @@
-# # MessageDeltaObjectDeltaContentInner
+# MessageDeltaObjectDeltaContentInner
 
 ## Properties
 

@@ -20,7 +20,7 @@ typedef struct chat_completion_response_message_audio_t chat_completion_response
 
 typedef struct chat_completion_response_message_audio_t {
     char *id; // string
-    int expires_at; //numeric
+    int *expires_at; //numeric
     char *data; // string
     char *transcript; // string
 
@@ -29,7 +29,7 @@ typedef struct chat_completion_response_message_audio_t {
 
 __attribute__((deprecated)) chat_completion_response_message_audio_t *chat_completion_response_message_audio_create(
     char *id,
-    int expires_at,
+    int *expires_at,
     char *data,
     char *transcript
 );

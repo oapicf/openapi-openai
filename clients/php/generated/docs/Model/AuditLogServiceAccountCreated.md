@@ -1,4 +1,4 @@
-# # AuditLogServiceAccountCreated
+# AuditLogServiceAccountCreated
 
 ## Properties
 

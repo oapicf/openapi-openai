@@ -32,7 +32,7 @@ class  DefaultProjectErrorResponse
 {
 public:
     DefaultProjectErrorResponse();
-    virtual ~DefaultProjectErrorResponse() = default;
+    virtual ~DefaultProjectErrorResponse();
 
 
     /// <summary>

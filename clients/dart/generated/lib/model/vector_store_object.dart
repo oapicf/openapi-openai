@@ -138,10 +138,22 @@ class VectorStoreObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "VectorStoreObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "VectorStoreObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "VectorStoreObject[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "VectorStoreObject[id]" has a null value in JSON.');
+        assert(json.containsKey(r'object'), 'Required key "VectorStoreObject[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "VectorStoreObject[object]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "VectorStoreObject[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "VectorStoreObject[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'name'), 'Required key "VectorStoreObject[name]" is missing from JSON.');
+        assert(json[r'name'] != null, 'Required key "VectorStoreObject[name]" has a null value in JSON.');
+        assert(json.containsKey(r'usage_bytes'), 'Required key "VectorStoreObject[usage_bytes]" is missing from JSON.');
+        assert(json[r'usage_bytes'] != null, 'Required key "VectorStoreObject[usage_bytes]" has a null value in JSON.');
+        assert(json.containsKey(r'file_counts'), 'Required key "VectorStoreObject[file_counts]" is missing from JSON.');
+        assert(json[r'file_counts'] != null, 'Required key "VectorStoreObject[file_counts]" has a null value in JSON.');
+        assert(json.containsKey(r'status'), 'Required key "VectorStoreObject[status]" is missing from JSON.');
+        assert(json[r'status'] != null, 'Required key "VectorStoreObject[status]" has a null value in JSON.');
+        assert(json.containsKey(r'last_active_at'), 'Required key "VectorStoreObject[last_active_at]" is missing from JSON.');
+        assert(json.containsKey(r'metadata'), 'Required key "VectorStoreObject[metadata]" is missing from JSON.');
         return true;
       }());
 
@@ -217,27 +229,28 @@ class VectorStoreObject {
 }
 
 /// The object type, which is always `vector_store`.
-class VectorStoreObjectObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const VectorStoreObjectObjectEnum._(this.value);
+enum VectorStoreObjectObjectEnum {
+  vectorStore._(r'vector_store'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const VectorStoreObjectObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const vectorStore = VectorStoreObjectObjectEnum._(r'vector_store');
-
-  /// List of all possible values in this [enum][VectorStoreObjectObjectEnum].
-  static const values = <VectorStoreObjectObjectEnum>[
-    vectorStore,
-  ];
-
+  /// Returns the instance of [VectorStoreObjectObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static VectorStoreObjectObjectEnum? fromJson(dynamic value) => VectorStoreObjectObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [VectorStoreObjectObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<VectorStoreObjectObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <VectorStoreObjectObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -259,9 +272,10 @@ class VectorStoreObjectObjectEnumTypeTransformer {
 
   const VectorStoreObjectObjectEnumTypeTransformer._();
 
-  String encode(VectorStoreObjectObjectEnum data) => data.value;
+  String encode(VectorStoreObjectObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a VectorStoreObjectObjectEnum.
+  /// Returns the instance of [VectorStoreObjectObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -270,6 +284,9 @@ class VectorStoreObjectObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   VectorStoreObjectObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is VectorStoreObjectObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'vector_store': return VectorStoreObjectObjectEnum.vectorStore;
@@ -282,37 +299,36 @@ class VectorStoreObjectObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [VectorStoreObjectObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static VectorStoreObjectObjectEnumTypeTransformer? _instance;
 }
 
 
 /// The status of the vector store, which can be either `expired`, `in_progress`, or `completed`. A status of `completed` indicates that the vector store is ready for use.
-class VectorStoreObjectStatusEnum {
-  /// Instantiate a new enum with the provided [value].
-  const VectorStoreObjectStatusEnum._(this.value);
+enum VectorStoreObjectStatusEnum {
+  expired._(r'expired'),
+  inProgress._(r'in_progress'),
+  completed._(r'completed'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const VectorStoreObjectStatusEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const expired = VectorStoreObjectStatusEnum._(r'expired');
-  static const inProgress = VectorStoreObjectStatusEnum._(r'in_progress');
-  static const completed = VectorStoreObjectStatusEnum._(r'completed');
-
-  /// List of all possible values in this [enum][VectorStoreObjectStatusEnum].
-  static const values = <VectorStoreObjectStatusEnum>[
-    expired,
-    inProgress,
-    completed,
-  ];
-
+  /// Returns the instance of [VectorStoreObjectStatusEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static VectorStoreObjectStatusEnum? fromJson(dynamic value) => VectorStoreObjectStatusEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [VectorStoreObjectStatusEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<VectorStoreObjectStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <VectorStoreObjectStatusEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -334,9 +350,10 @@ class VectorStoreObjectStatusEnumTypeTransformer {
 
   const VectorStoreObjectStatusEnumTypeTransformer._();
 
-  String encode(VectorStoreObjectStatusEnum data) => data.value;
+  String encode(VectorStoreObjectStatusEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a VectorStoreObjectStatusEnum.
+  /// Returns the instance of [VectorStoreObjectStatusEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -345,6 +362,9 @@ class VectorStoreObjectStatusEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   VectorStoreObjectStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is VectorStoreObjectStatusEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'expired': return VectorStoreObjectStatusEnum.expired;
@@ -359,7 +379,7 @@ class VectorStoreObjectStatusEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [VectorStoreObjectStatusEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static VectorStoreObjectStatusEnumTypeTransformer? _instance;
 }
 

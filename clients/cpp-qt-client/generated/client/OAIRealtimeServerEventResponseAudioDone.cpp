@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRealtimeServerEventResponseAudioDone::OAIRealtimeServerEventResponseAudioDone(QString json) {
+OAIRealtimeServerEventResponseAudioDone::OAIRealtimeServerEventResponseAudioDone(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -53,7 +53,7 @@ void OAIRealtimeServerEventResponseAudioDone::initializeModel() {
     m_content_index_isValid = false;
 }
 
-void OAIRealtimeServerEventResponseAudioDone::fromJson(QString jsonString) {
+void OAIRealtimeServerEventResponseAudioDone::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

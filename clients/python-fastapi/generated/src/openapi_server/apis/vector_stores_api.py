@@ -57,7 +57,7 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
 )
 async def list_vector_stores(
     limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
-    order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query(desc, description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
+    order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query('desc', description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
     after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
     before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
     token_ApiKeyAuth: TokenModel = Security(
@@ -160,7 +160,7 @@ async def delete_vector_store(
     response_model_by_alias=True,
 )
 async def create_vector_store_file_batch(
-    vector_store_id: Annotated[StrictStr, Field(description="The ID of the vector store for which to create a File Batch. ")] = Path(..., description="The ID of the vector store for which to create a File Batch. "),
+    vector_store_id: Annotated[StrictStr, Field(description="The ID of the vector store for which to create a File Batch. ")] = Path(..., description="The ID of the vector store for which to create a File Batch. ", examples=["vs_abc123"]),
     create_vector_store_file_batch_request: CreateVectorStoreFileBatchRequest = Body(None, description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
@@ -181,8 +181,8 @@ async def create_vector_store_file_batch(
     response_model_by_alias=True,
 )
 async def get_vector_store_file_batch(
-    vector_store_id: Annotated[StrictStr, Field(description="The ID of the vector store that the file batch belongs to.")] = Path(..., description="The ID of the vector store that the file batch belongs to."),
-    batch_id: Annotated[StrictStr, Field(description="The ID of the file batch being retrieved.")] = Path(..., description="The ID of the file batch being retrieved."),
+    vector_store_id: Annotated[StrictStr, Field(description="The ID of the vector store that the file batch belongs to.")] = Path(..., description="The ID of the vector store that the file batch belongs to.", examples=["vs_abc123"]),
+    batch_id: Annotated[StrictStr, Field(description="The ID of the file batch being retrieved.")] = Path(..., description="The ID of the file batch being retrieved.", examples=["vsfb_abc123"]),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -226,7 +226,7 @@ async def list_files_in_vector_store_batch(
     vector_store_id: Annotated[StrictStr, Field(description="The ID of the vector store that the files belong to.")] = Path(..., description="The ID of the vector store that the files belong to."),
     batch_id: Annotated[StrictStr, Field(description="The ID of the file batch that the files belong to.")] = Path(..., description="The ID of the file batch that the files belong to."),
     limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
-    order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query(desc, description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
+    order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query('desc', description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
     after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
     before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
     filter: Annotated[Optional[StrictStr], Field(description="Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.")] = Query(None, description="Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;.", alias="filter"),
@@ -251,7 +251,7 @@ async def list_files_in_vector_store_batch(
 async def list_vector_store_files(
     vector_store_id: Annotated[StrictStr, Field(description="The ID of the vector store that the files belong to.")] = Path(..., description="The ID of the vector store that the files belong to."),
     limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
-    order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query(desc, description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
+    order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query('desc', description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
     after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
     before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
     filter: Annotated[Optional[StrictStr], Field(description="Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.")] = Query(None, description="Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;.", alias="filter"),
@@ -274,7 +274,7 @@ async def list_vector_store_files(
     response_model_by_alias=True,
 )
 async def create_vector_store_file(
-    vector_store_id: Annotated[StrictStr, Field(description="The ID of the vector store for which to create a File. ")] = Path(..., description="The ID of the vector store for which to create a File. "),
+    vector_store_id: Annotated[StrictStr, Field(description="The ID of the vector store for which to create a File. ")] = Path(..., description="The ID of the vector store for which to create a File. ", examples=["vs_abc123"]),
     create_vector_store_file_request: CreateVectorStoreFileRequest = Body(None, description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
@@ -295,8 +295,8 @@ async def create_vector_store_file(
     response_model_by_alias=True,
 )
 async def get_vector_store_file(
-    vector_store_id: Annotated[StrictStr, Field(description="The ID of the vector store that the file belongs to.")] = Path(..., description="The ID of the vector store that the file belongs to."),
-    file_id: Annotated[StrictStr, Field(description="The ID of the file being retrieved.")] = Path(..., description="The ID of the file being retrieved."),
+    vector_store_id: Annotated[StrictStr, Field(description="The ID of the vector store that the file belongs to.")] = Path(..., description="The ID of the vector store that the file belongs to.", examples=["vs_abc123"]),
+    file_id: Annotated[StrictStr, Field(description="The ID of the file being retrieved.")] = Path(..., description="The ID of the file being retrieved.", examples=["file-abc123"]),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),

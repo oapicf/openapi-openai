@@ -9,7 +9,7 @@ import play.api.libs.json._
   * @param score The score of the result. All values must be a floating point number between 0 and 1.
   * @param content The content of the result that was found. The content is only included if requested via the include query parameter.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 case class RunStepDetailsToolCallsFileSearchResultObject(
   fileId: String,
   fileName: String,

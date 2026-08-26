@@ -47,7 +47,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"upload_id\" : \"upload_id\",\n  \"created_at\" : 0,\n  \"id\" : \"id\",\n  \"object\" : \"upload.part\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"created_at\" : 0,\n  \"upload_id\" : \"upload_id\",\n  \"object\" : \"upload.part\"\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<UploadPart>(exampleJson)
@@ -73,7 +73,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"filename\" : \"filename\",\n  \"expires_at\" : 1,\n  \"file\" : {\n    \"filename\" : \"filename\",\n    \"purpose\" : \"assistants\",\n    \"bytes\" : 0,\n    \"created_at\" : 6,\n    \"id\" : \"id\",\n    \"status_details\" : \"status_details\",\n    \"object\" : \"file\",\n    \"status\" : \"uploaded\"\n  },\n  \"purpose\" : \"purpose\",\n  \"bytes\" : 6,\n  \"created_at\" : 0,\n  \"id\" : \"id\",\n  \"status\" : \"pending\",\n  \"object\" : \"upload\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"created_at\" : 0,\n  \"filename\" : \"filename\",\n  \"bytes\" : 6,\n  \"purpose\" : \"purpose\",\n  \"status\" : \"pending\",\n  \"expires_at\" : 1,\n  \"object\" : \"upload\",\n  \"file\" : {\n    \"id\" : \"id\",\n    \"bytes\" : 0,\n    \"created_at\" : 6,\n    \"filename\" : \"filename\",\n    \"object\" : \"file\",\n    \"purpose\" : \"assistants\",\n    \"status\" : \"uploaded\",\n    \"status_details\" : \"status_details\"\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<Upload>(exampleJson)
@@ -101,7 +101,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"filename\" : \"filename\",\n  \"expires_at\" : 1,\n  \"file\" : {\n    \"filename\" : \"filename\",\n    \"purpose\" : \"assistants\",\n    \"bytes\" : 0,\n    \"created_at\" : 6,\n    \"id\" : \"id\",\n    \"status_details\" : \"status_details\",\n    \"object\" : \"file\",\n    \"status\" : \"uploaded\"\n  },\n  \"purpose\" : \"purpose\",\n  \"bytes\" : 6,\n  \"created_at\" : 0,\n  \"id\" : \"id\",\n  \"status\" : \"pending\",\n  \"object\" : \"upload\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"created_at\" : 0,\n  \"filename\" : \"filename\",\n  \"bytes\" : 6,\n  \"purpose\" : \"purpose\",\n  \"status\" : \"pending\",\n  \"expires_at\" : 1,\n  \"object\" : \"upload\",\n  \"file\" : {\n    \"id\" : \"id\",\n    \"bytes\" : 0,\n    \"created_at\" : 6,\n    \"filename\" : \"filename\",\n    \"object\" : \"file\",\n    \"purpose\" : \"assistants\",\n    \"status\" : \"uploaded\",\n    \"status_details\" : \"status_details\"\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<Upload>(exampleJson)
@@ -128,7 +128,7 @@ namespace Org.OpenAPITools.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default);
             string exampleJson = null;
-            exampleJson = "{\n  \"filename\" : \"filename\",\n  \"expires_at\" : 1,\n  \"file\" : {\n    \"filename\" : \"filename\",\n    \"purpose\" : \"assistants\",\n    \"bytes\" : 0,\n    \"created_at\" : 6,\n    \"id\" : \"id\",\n    \"status_details\" : \"status_details\",\n    \"object\" : \"file\",\n    \"status\" : \"uploaded\"\n  },\n  \"purpose\" : \"purpose\",\n  \"bytes\" : 6,\n  \"created_at\" : 0,\n  \"id\" : \"id\",\n  \"status\" : \"pending\",\n  \"object\" : \"upload\"\n}";
+            exampleJson = "{\n  \"id\" : \"id\",\n  \"created_at\" : 0,\n  \"filename\" : \"filename\",\n  \"bytes\" : 6,\n  \"purpose\" : \"purpose\",\n  \"status\" : \"pending\",\n  \"expires_at\" : 1,\n  \"object\" : \"upload\",\n  \"file\" : {\n    \"id\" : \"id\",\n    \"bytes\" : 0,\n    \"created_at\" : 6,\n    \"filename\" : \"filename\",\n    \"object\" : \"file\",\n    \"purpose\" : \"assistants\",\n    \"status\" : \"uploaded\",\n    \"status_details\" : \"status_details\"\n  }\n}";
             
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<Upload>(exampleJson)

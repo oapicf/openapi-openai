@@ -1,4 +1,4 @@
-# # FineTuneChatRequestInput
+# FineTuneChatRequestInput
 
 ## Properties
 

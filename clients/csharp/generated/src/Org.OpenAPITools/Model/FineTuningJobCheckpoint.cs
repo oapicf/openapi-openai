@@ -190,8 +190,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTuningJobCheckpoint" />
     /// </summary>
-    public class FineTuningJobCheckpointJsonConverter : JsonConverter<FineTuningJobCheckpoint>
+    public partial class FineTuningJobCheckpointJsonConverter : JsonConverter<FineTuningJobCheckpoint>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTuningJobCheckpointJsonConverter" /> class.
+        /// </summary>
+        public FineTuningJobCheckpointJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTuningJobCheckpoint" />
         /// </summary>

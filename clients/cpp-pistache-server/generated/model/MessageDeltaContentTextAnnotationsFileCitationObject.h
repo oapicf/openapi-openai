@@ -33,7 +33,7 @@ class  MessageDeltaContentTextAnnotationsFileCitationObject
 {
 public:
     MessageDeltaContentTextAnnotationsFileCitationObject();
-    virtual ~MessageDeltaContentTextAnnotationsFileCitationObject() = default;
+    virtual ~MessageDeltaContentTextAnnotationsFileCitationObject();
 
 
     /// <summary>

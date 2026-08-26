@@ -32,7 +32,7 @@ class  DeleteVectorStoreFileResponse
 {
 public:
     DeleteVectorStoreFileResponse();
-    virtual ~DeleteVectorStoreFileResponse() = default;
+    virtual ~DeleteVectorStoreFileResponse();
 
 
     /// <summary>

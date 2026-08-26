@@ -64,10 +64,8 @@ class CreateVectorStoreFileBatchRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateVectorStoreFileBatchRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateVectorStoreFileBatchRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'file_ids'), 'Required key "CreateVectorStoreFileBatchRequest[file_ids]" is missing from JSON.');
+        assert(json[r'file_ids'] != null, 'Required key "CreateVectorStoreFileBatchRequest[file_ids]" has a null value in JSON.');
         return true;
       }());
 

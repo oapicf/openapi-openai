@@ -86,7 +86,7 @@ MessageContentTextObject::getType()
 }
 
 void
-MessageContentTextObject::setType(std::string  type)
+MessageContentTextObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ MessageContentTextObject::getText()
 }
 
 void
-MessageContentTextObject::setText(MessageContentTextObject_text  text)
+MessageContentTextObject::setText(MessageContentTextObject_text text)
 {
 	this->text = text;
 }

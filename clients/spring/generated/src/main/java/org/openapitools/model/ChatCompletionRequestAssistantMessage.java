@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -18,24 +19,26 @@ import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Messages sent by the model in response to user messages. 
  */
 
 @Schema(name = "ChatCompletionRequestAssistantMessage", description = "Messages sent by the model in response to user messages. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequestMessage, FineTunePreferenceRequestInputPreferredCompletionInner {
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<ChatCompletionRequestAssistantMessageContent> content = JsonNullable.<ChatCompletionRequestAssistantMessageContent>undefined();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> refusal = JsonNullable.<String>undefined();
 
   /**
@@ -73,13 +76,16 @@ public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequ
 
   private RoleEnum role;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String name;
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<ChatCompletionRequestAssistantMessageAudio> audio = JsonNullable.<ChatCompletionRequestAssistantMessageAudio>undefined();
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid ChatCompletionMessageToolCall> toolCalls = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   @Deprecated
   private JsonNullable<ChatCompletionRequestAssistantMessageFunctionCall> functionCall = JsonNullable.<ChatCompletionRequestAssistantMessageFunctionCall>undefined();
 
@@ -150,6 +156,7 @@ public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequ
     return role;
   }
 
+  @JsonProperty("role")
   public void setRole(RoleEnum role) {
     this.role = role;
   }
@@ -170,6 +177,7 @@ public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequ
     return name;
   }
 
+  @JsonProperty("name")
   public void setName(@Nullable String name) {
     this.name = name;
   }
@@ -218,6 +226,7 @@ public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequ
     return toolCalls;
   }
 
+  @JsonProperty("tool_calls")
   public void setToolCalls(List<@Valid ChatCompletionMessageToolCall> toolCalls) {
     this.toolCalls = toolCalls;
   }
@@ -234,8 +243,8 @@ public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequ
    */
   @Valid 
   @Schema(name = "function_call", deprecated = true, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("function_call")
   @Deprecated
+  @JsonProperty("function_call")
   public JsonNullable<ChatCompletionRequestAssistantMessageFunctionCall> getFunctionCall() {
     return functionCall;
   }
@@ -301,11 +310,8 @@ public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequ
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

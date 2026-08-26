@@ -27,6 +27,8 @@ AuditLog_service_account_created::AuditLog_service_account_created()
     
 }
 
+AuditLog_service_account_created::~AuditLog_service_account_created() = default;
+
 void AuditLog_service_account_created::validate() const
 {
     std::stringstream msg;

@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The error code of the failure.
 	 */
-	void setErrorCode(std::string  error_code);
+	void setErrorCode(std::string error_code);
 	/*! \brief Get The error message of the failure.
 	 */
 	std::string getErrorMessage();
 
 	/*! \brief Set The error message of the failure.
 	 */
-	void setErrorMessage(std::string  error_message);
+	void setErrorMessage(std::string error_message);
 
 
     private:

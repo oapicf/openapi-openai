@@ -120,7 +120,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Optional client-generated ID used to identify this event.</value>
         [JsonPropertyName("event_id")]
-        public string? EventId { get { return this.EventIdOption; } set { this.EventIdOption = new(value); } }
+        public string? EventId { get { return this.EventIdOption.Value; } set { this.EventIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Response
@@ -133,7 +133,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Response
         /// </summary>
         [JsonPropertyName("response")]
-        public RealtimeResponseCreateParams? Response { get { return this.ResponseOption; } set { this.ResponseOption = new(value); } }
+        public RealtimeResponseCreateParams? Response { get { return this.ResponseOption.Value; } set { this.ResponseOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,8 +164,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeClientEventResponseCreate" />
     /// </summary>
-    public class RealtimeClientEventResponseCreateJsonConverter : JsonConverter<RealtimeClientEventResponseCreate>
+    public partial class RealtimeClientEventResponseCreateJsonConverter : JsonConverter<RealtimeClientEventResponseCreate>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeClientEventResponseCreateJsonConverter" /> class.
+        /// </summary>
+        public RealtimeClientEventResponseCreateJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeClientEventResponseCreate" />
         /// </summary>

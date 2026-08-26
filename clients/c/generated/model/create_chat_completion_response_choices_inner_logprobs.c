@@ -13,10 +13,10 @@ static create_chat_completion_response_choices_inner_logprobs_t *create_chat_com
     if (!create_chat_completion_response_choices_inner_logprobs_local_var) {
         return NULL;
     }
+    memset(create_chat_completion_response_choices_inner_logprobs_local_var, 0, sizeof(create_chat_completion_response_choices_inner_logprobs_t));
+    create_chat_completion_response_choices_inner_logprobs_local_var->_library_owned = 1;
     create_chat_completion_response_choices_inner_logprobs_local_var->content = content;
     create_chat_completion_response_choices_inner_logprobs_local_var->refusal = refusal;
-
-    create_chat_completion_response_choices_inner_logprobs_local_var->_library_owned = 1;
     return create_chat_completion_response_choices_inner_logprobs_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) create_chat_completion_response_choices_inner_logpro
     list_t *content,
     list_t *refusal
     ) {
-    return create_chat_completion_response_choices_inner_logprobs_create_internal (
+    create_chat_completion_response_choices_inner_logprobs_t *result = create_chat_completion_response_choices_inner_logprobs_create_internal (
         content,
         refusal
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void create_chat_completion_response_choices_inner_logprobs_free(create_chat_completion_response_choices_inner_logprobs_t *create_chat_completion_response_choices_inner_logprobs) {
@@ -173,10 +176,15 @@ create_chat_completion_response_choices_inner_logprobs_t *create_chat_completion
     }
 
 
+
     create_chat_completion_response_choices_inner_logprobs_local_var = create_chat_completion_response_choices_inner_logprobs_create_internal (
         contentList,
         refusalList
         );
+
+    if (!create_chat_completion_response_choices_inner_logprobs_local_var) {
+        goto end;
+    }
 
     return create_chat_completion_response_choices_inner_logprobs_local_var;
 end:

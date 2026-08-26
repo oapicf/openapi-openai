@@ -23,7 +23,7 @@ message RunStepDeltaStepDetailsMessageCreationObject {
     TYPE_MESSAGE_CREATION = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   RunStepDeltaStepDetailsMessageCreationObjectMessageCreation message_creation = 10635243;
 

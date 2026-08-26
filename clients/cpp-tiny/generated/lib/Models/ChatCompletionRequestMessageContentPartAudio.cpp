@@ -86,7 +86,7 @@ ChatCompletionRequestMessageContentPartAudio::getType()
 }
 
 void
-ChatCompletionRequestMessageContentPartAudio::setType(std::string  type)
+ChatCompletionRequestMessageContentPartAudio::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ ChatCompletionRequestMessageContentPartAudio::getInputAudio()
 }
 
 void
-ChatCompletionRequestMessageContentPartAudio::setInputAudio(ChatCompletionRequestMessageContentPartAudio_input_audio  input_audio)
+ChatCompletionRequestMessageContentPartAudio::setInputAudio(ChatCompletionRequestMessageContentPartAudio_input_audio input_audio)
 {
 	this->input_audio = input_audio;
 }

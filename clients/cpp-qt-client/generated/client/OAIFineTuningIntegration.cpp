@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIFineTuningIntegration::OAIFineTuningIntegration(QString json) {
+OAIFineTuningIntegration::OAIFineTuningIntegration(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIFineTuningIntegration::initializeModel() {
     m_wandb_isValid = false;
 }
 
-void OAIFineTuningIntegration::fromJson(QString jsonString) {
+void OAIFineTuningIntegration::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

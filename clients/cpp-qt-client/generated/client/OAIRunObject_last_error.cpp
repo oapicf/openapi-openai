@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIRunObject_last_error::OAIRunObject_last_error(QString json) {
+OAIRunObject_last_error::OAIRunObject_last_error(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIRunObject_last_error::initializeModel() {
     m_message_isValid = false;
 }
 
-void OAIRunObject_last_error::fromJson(QString jsonString) {
+void OAIRunObject_last_error::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

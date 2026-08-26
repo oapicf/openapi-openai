@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIUsageAudioSpeechesResult : public OAIObject {
 public:
     OAIUsageAudioSpeechesResult();
-    OAIUsageAudioSpeechesResult(QString json);
+    OAIUsageAudioSpeechesResult(const QString &json);
     ~OAIUsageAudioSpeechesResult() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getObject() const;
     void setObject(const QString &object);

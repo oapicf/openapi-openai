@@ -25,6 +25,8 @@ CreateTranscriptionResponseJson::CreateTranscriptionResponseJson()
     
 }
 
+CreateTranscriptionResponseJson::~CreateTranscriptionResponseJson() = default;
+
 void CreateTranscriptionResponseJson::validate() const
 {
     std::stringstream msg;

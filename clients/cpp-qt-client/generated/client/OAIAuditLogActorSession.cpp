@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIAuditLogActorSession::OAIAuditLogActorSession(QString json) {
+OAIAuditLogActorSession::OAIAuditLogActorSession(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIAuditLogActorSession::initializeModel() {
     m_ip_address_isValid = false;
 }
 
-void OAIAuditLogActorSession::fromJson(QString jsonString) {
+void OAIAuditLogActorSession::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

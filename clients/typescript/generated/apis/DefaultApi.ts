@@ -82,7 +82,7 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/admin_api_keys/{key_id}'
-            .replace('{' + 'key_id' + '}', encodeURIComponent(String(keyId)));
+            .replace('{key_id}', encodeURIComponent(String(keyId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -120,7 +120,7 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/organization/admin_api_keys/{key_id}'
-            .replace('{' + 'key_id' + '}', encodeURIComponent(String(keyId)));
+            .replace('{key_id}', encodeURIComponent(String(keyId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

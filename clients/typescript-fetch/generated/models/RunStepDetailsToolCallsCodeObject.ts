@@ -35,7 +35,7 @@ export interface RunStepDetailsToolCallsCodeObject {
     id: string;
     /**
      * The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
-     * @type {string}
+     * @type {RunStepDetailsToolCallsCodeObjectTypeEnum}
      * @memberof RunStepDetailsToolCallsCodeObject
      */
     type: RunStepDetailsToolCallsCodeObjectTypeEnum;
@@ -63,7 +63,9 @@ export type RunStepDetailsToolCallsCodeObjectTypeEnum = typeof RunStepDetailsToo
 export function instanceOfRunStepDetailsToolCallsCodeObject(value: object): value is RunStepDetailsToolCallsCodeObject {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('codeInterpreter' in value) || value['codeInterpreter'] === undefined) return false;
+    if (value['type'] !== 'code_interpreter') return false;
+    
+    if ((!('codeInterpreter' in (value as Record<string, any>)) && !('code_interpreter' in (value as Record<string, any>))) || ((value as Record<string, any>)['codeInterpreter'] === undefined && (value as Record<string, any>)['code_interpreter'] === undefined)) return false;
     return true;
 }
 

@@ -35,7 +35,7 @@ class  CreateChatCompletionFunctionResponse
 {
 public:
     CreateChatCompletionFunctionResponse();
-    virtual ~CreateChatCompletionFunctionResponse() = default;
+    virtual ~CreateChatCompletionFunctionResponse();
 
 
     /// <summary>

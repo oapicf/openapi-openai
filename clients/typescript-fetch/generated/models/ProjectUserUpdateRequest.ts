@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface ProjectUserUpdateRequest {
     /**
      * `owner` or `member`
-     * @type {string}
+     * @type {ProjectUserUpdateRequestRoleEnum}
      * @memberof ProjectUserUpdateRequest
      */
     role: ProjectUserUpdateRequestRoleEnum;

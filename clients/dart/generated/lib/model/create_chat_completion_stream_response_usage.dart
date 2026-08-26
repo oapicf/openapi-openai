@@ -62,10 +62,12 @@ class CreateChatCompletionStreamResponseUsage {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateChatCompletionStreamResponseUsage[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateChatCompletionStreamResponseUsage[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'completion_tokens'), 'Required key "CreateChatCompletionStreamResponseUsage[completion_tokens]" is missing from JSON.');
+        assert(json[r'completion_tokens'] != null, 'Required key "CreateChatCompletionStreamResponseUsage[completion_tokens]" has a null value in JSON.');
+        assert(json.containsKey(r'prompt_tokens'), 'Required key "CreateChatCompletionStreamResponseUsage[prompt_tokens]" is missing from JSON.');
+        assert(json[r'prompt_tokens'] != null, 'Required key "CreateChatCompletionStreamResponseUsage[prompt_tokens]" has a null value in JSON.');
+        assert(json.containsKey(r'total_tokens'), 'Required key "CreateChatCompletionStreamResponseUsage[total_tokens]" is missing from JSON.');
+        assert(json[r'total_tokens'] != null, 'Required key "CreateChatCompletionStreamResponseUsage[total_tokens]" has a null value in JSON.');
         return true;
       }());
 

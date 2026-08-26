@@ -39,7 +39,7 @@ message CreateChatCompletionFunctionResponse {
     OBJECT_CHAT_COMPLETION = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   CompletionUsage usage = 111574433;
 

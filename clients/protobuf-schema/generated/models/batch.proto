@@ -27,7 +27,7 @@ message Batch {
     OBJECT_BATCH = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   // The OpenAI API endpoint used by the batch.
   string endpoint = 130489752;
@@ -52,7 +52,7 @@ message Batch {
     STATUS_CANCELLED = 7;
   }
 
-  Status status = 355610639;
+  string status = 355610639;
 
   // The ID of the file containing the outputs of successfully executed requests.
   string output_file_id = 3806850;

@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAITranscriptionWord : public OAIObject {
 public:
     OAITranscriptionWord();
-    OAITranscriptionWord(QString json);
+    OAITranscriptionWord(const QString &json);
     ~OAITranscriptionWord() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getWord() const;
     void setWord(const QString &word);

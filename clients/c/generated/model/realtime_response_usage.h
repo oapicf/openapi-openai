@@ -21,9 +21,9 @@ typedef struct realtime_response_usage_t realtime_response_usage_t;
 
 
 typedef struct realtime_response_usage_t {
-    int total_tokens; //numeric
-    int input_tokens; //numeric
-    int output_tokens; //numeric
+    int *total_tokens; //numeric
+    int *input_tokens; //numeric
+    int *output_tokens; //numeric
     struct realtime_response_usage_input_token_details_t *input_token_details; //model
     struct realtime_response_usage_output_token_details_t *output_token_details; //model
 
@@ -31,9 +31,9 @@ typedef struct realtime_response_usage_t {
 } realtime_response_usage_t;
 
 __attribute__((deprecated)) realtime_response_usage_t *realtime_response_usage_create(
-    int total_tokens,
-    int input_tokens,
-    int output_tokens,
+    int *total_tokens,
+    int *input_tokens,
+    int *output_tokens,
     realtime_response_usage_input_token_details_t *input_token_details,
     realtime_response_usage_output_token_details_t *output_token_details
 );

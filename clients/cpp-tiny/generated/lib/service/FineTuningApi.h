@@ -25,7 +25,7 @@ class FineTuningApi : public Service {
 public:
     FineTuningApi() = default;
 
-    virtual ~FineTuningApi() = default;
+    virtual ~FineTuningApi();
 
     /**
     * Immediately cancel a fine-tune job. .

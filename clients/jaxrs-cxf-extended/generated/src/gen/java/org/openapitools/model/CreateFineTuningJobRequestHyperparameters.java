@@ -21,15 +21,15 @@ public class CreateFineTuningJobRequestHyperparameters  {
   
   @ApiModelProperty(value = "")
   @Valid
-  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
+  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
 
   @ApiModelProperty(value = "")
   @Valid
-  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
 
   @ApiModelProperty(value = "")
   @Valid
-  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
+  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
  /**
   * Get batchSize
   * @return batchSize
@@ -139,10 +139,7 @@ public class CreateFineTuningJobRequestHyperparameters  {
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

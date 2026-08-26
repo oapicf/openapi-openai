@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set A list of message content tokens with log probability information.
 	 */
-	void setContent(std::list <ChatCompletionTokenLogprob> content);
+	void setContent(std::list<ChatCompletionTokenLogprob> content);
 	/*! \brief Get A list of message refusal tokens with log probability information.
 	 */
 	std::list<ChatCompletionTokenLogprob> getRefusal();
 
 	/*! \brief Set A list of message refusal tokens with log probability information.
 	 */
-	void setRefusal(std::list <ChatCompletionTokenLogprob> refusal);
+	void setRefusal(std::list<ChatCompletionTokenLogprob> refusal);
 
 
     private:

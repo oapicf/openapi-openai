@@ -139,7 +139,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Specifies the detail level of the image if specified by the user. &#x60;low&#x60; uses fewer tokens, you can opt in to high resolution using &#x60;high&#x60;.</value>
         [JsonPropertyName("detail")]
-        public DetailEnum? Detail { get { return this.DetailOption; } set { this.DetailOption = new(value); } }
+        public DetailEnum? Detail { get { return this.DetailOption.Value; } set { this.DetailOption = new(value); } }
 
         /// <summary>
         /// The [File](/docs/api-reference/files) ID of the image in the message content. Set &#x60;purpose&#x3D;\&quot;vision\&quot;&#x60; when uploading the File if you need to later display the file content.
@@ -176,8 +176,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageContentImageFileObjectImageFile" />
     /// </summary>
-    public class MessageContentImageFileObjectImageFileJsonConverter : JsonConverter<MessageContentImageFileObjectImageFile>
+    public partial class MessageContentImageFileObjectImageFileJsonConverter : JsonConverter<MessageContentImageFileObjectImageFile>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageContentImageFileObjectImageFileJsonConverter" /> class.
+        /// </summary>
+        public MessageContentImageFileObjectImageFileJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageContentImageFileObjectImageFile" />
         /// </summary>

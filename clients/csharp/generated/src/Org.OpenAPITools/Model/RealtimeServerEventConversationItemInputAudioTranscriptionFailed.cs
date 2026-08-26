@@ -170,8 +170,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeServerEventConversationItemInputAudioTranscriptionFailed" />
     /// </summary>
-    public class RealtimeServerEventConversationItemInputAudioTranscriptionFailedJsonConverter : JsonConverter<RealtimeServerEventConversationItemInputAudioTranscriptionFailed>
+    public partial class RealtimeServerEventConversationItemInputAudioTranscriptionFailedJsonConverter : JsonConverter<RealtimeServerEventConversationItemInputAudioTranscriptionFailed>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeServerEventConversationItemInputAudioTranscriptionFailedJsonConverter" /> class.
+        /// </summary>
+        public RealtimeServerEventConversationItemInputAudioTranscriptionFailedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeServerEventConversationItemInputAudioTranscriptionFailed" />
         /// </summary>

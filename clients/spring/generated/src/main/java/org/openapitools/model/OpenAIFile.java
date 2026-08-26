@@ -2,26 +2,27 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * The &#x60;File&#x60; object represents a document that has been uploaded to OpenAI.
  */
 
 @Schema(name = "OpenAIFile", description = "The `File` object represents a document that has been uploaded to OpenAI.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class OpenAIFile {
 
   private String id;
@@ -154,6 +155,7 @@ public class OpenAIFile {
   @Deprecated
   private StatusEnum status;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   @Deprecated
   private @Nullable String statusDetails;
 
@@ -190,6 +192,7 @@ public class OpenAIFile {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
@@ -210,6 +213,7 @@ public class OpenAIFile {
     return bytes;
   }
 
+  @JsonProperty("bytes")
   public void setBytes(Integer bytes) {
     this.bytes = bytes;
   }
@@ -230,6 +234,7 @@ public class OpenAIFile {
     return createdAt;
   }
 
+  @JsonProperty("created_at")
   public void setCreatedAt(Integer createdAt) {
     this.createdAt = createdAt;
   }
@@ -250,6 +255,7 @@ public class OpenAIFile {
     return filename;
   }
 
+  @JsonProperty("filename")
   public void setFilename(String filename) {
     this.filename = filename;
   }
@@ -270,6 +276,7 @@ public class OpenAIFile {
     return _object;
   }
 
+  @JsonProperty("object")
   public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
@@ -290,6 +297,7 @@ public class OpenAIFile {
     return purpose;
   }
 
+  @JsonProperty("purpose")
   public void setPurpose(PurposeEnum purpose) {
     this.purpose = purpose;
   }
@@ -306,8 +314,8 @@ public class OpenAIFile {
    */
   @NotNull 
   @Schema(name = "status", description = "Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.", deprecated = true, requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("status")
   @Deprecated
+  @JsonProperty("status")
   public StatusEnum getStatus() {
     return status;
   }
@@ -316,6 +324,7 @@ public class OpenAIFile {
    * @deprecated
    */
   @Deprecated
+  @JsonProperty("status")
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -332,8 +341,8 @@ public class OpenAIFile {
    */
   
   @Schema(name = "status_details", description = "Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.", deprecated = true, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("status_details")
   @Deprecated
+  @JsonProperty("status_details")
   public @Nullable String getStatusDetails() {
     return statusDetails;
   }
@@ -342,6 +351,7 @@ public class OpenAIFile {
    * @deprecated
    */
   @Deprecated
+  @JsonProperty("status_details")
   public void setStatusDetails(@Nullable String statusDetails) {
     this.statusDetails = statusDetails;
   }
@@ -390,11 +400,8 @@ public class OpenAIFile {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

@@ -34,6 +34,8 @@ AdminApiKey_owner::AdminApiKey_owner()
     
 }
 
+AdminApiKey_owner::~AdminApiKey_owner() = default;
+
 void AdminApiKey_owner::validate() const
 {
     std::stringstream msg;

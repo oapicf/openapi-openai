@@ -61,10 +61,12 @@ class RunToolCallObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunToolCallObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunToolCallObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "RunToolCallObject[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "RunToolCallObject[id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RunToolCallObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RunToolCallObject[type]" has a null value in JSON.');
+        assert(json.containsKey(r'function'), 'Required key "RunToolCallObject[function]" is missing from JSON.');
+        assert(json[r'function'] != null, 'Required key "RunToolCallObject[function]" has a null value in JSON.');
         return true;
       }());
 
@@ -126,27 +128,28 @@ class RunToolCallObject {
 }
 
 /// The type of tool call the output is required for. For now, this is always `function`.
-class RunToolCallObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunToolCallObjectTypeEnum._(this.value);
+enum RunToolCallObjectTypeEnum {
+  function_._(r'function'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunToolCallObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const function_ = RunToolCallObjectTypeEnum._(r'function');
-
-  /// List of all possible values in this [enum][RunToolCallObjectTypeEnum].
-  static const values = <RunToolCallObjectTypeEnum>[
-    function_,
-  ];
-
+  /// Returns the instance of [RunToolCallObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunToolCallObjectTypeEnum? fromJson(dynamic value) => RunToolCallObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunToolCallObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunToolCallObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunToolCallObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -168,9 +171,10 @@ class RunToolCallObjectTypeEnumTypeTransformer {
 
   const RunToolCallObjectTypeEnumTypeTransformer._();
 
-  String encode(RunToolCallObjectTypeEnum data) => data.value;
+  String encode(RunToolCallObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunToolCallObjectTypeEnum.
+  /// Returns the instance of [RunToolCallObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -179,6 +183,9 @@ class RunToolCallObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunToolCallObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunToolCallObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'function': return RunToolCallObjectTypeEnum.function_;
@@ -191,7 +198,7 @@ class RunToolCallObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunToolCallObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunToolCallObjectTypeEnumTypeTransformer? _instance;
 }
 

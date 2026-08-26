@@ -92,8 +92,9 @@ class _$CompleteUploadRequestSerializer implements PrimitiveSerializer<CompleteU
         case r'md5':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.md5 = valueDes;
           break;
         default:

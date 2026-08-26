@@ -122,13 +122,13 @@ configuration = openapiopenai.Configuration(
 with openapiopenai.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapiopenai.ImagesApi(api_client)
-    image = None # bytearray | The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.
+    image = None # bytes | The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.
     prompt = 'prompt_example' # str | A text description of the desired image(s). The maximum length is 1000 characters.
-    mask = None # bytearray | An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as `image`. (optional)
+    mask = None # bytes | An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as `image`. (optional)
     model = openapiopenai.CreateImageEditRequestModel() # CreateImageEditRequestModel |  (optional)
     n = 1 # int | The number of images to generate. Must be between 1 and 10. (optional) (default to 1)
-    size = 1024x1024 # str | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. (optional) (default to 1024x1024)
-    response_format = url # str | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. (optional) (default to url)
+    size = '1024x1024' # str | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. (optional) (default to '1024x1024')
+    response_format = 'url' # str | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. (optional) (default to 'url')
     user = 'user_example' # str | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)
 
     try:
@@ -147,13 +147,13 @@ with openapiopenai.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **image** | **bytearray**| The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask. | 
+ **image** | **bytes**| The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask. | 
  **prompt** | **str**| A text description of the desired image(s). The maximum length is 1000 characters. | 
- **mask** | **bytearray**| An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where &#x60;image&#x60; should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as &#x60;image&#x60;. | [optional] 
+ **mask** | **bytes**| An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where &#x60;image&#x60; should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as &#x60;image&#x60;. | [optional] 
  **model** | [**CreateImageEditRequestModel**](CreateImageEditRequestModel.md)|  | [optional] 
  **n** | **int**| The number of images to generate. Must be between 1 and 10. | [optional] [default to 1]
- **size** | **str**| The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. | [optional] [default to 1024x1024]
- **response_format** | **str**| The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. | [optional] [default to url]
+ **size** | **str**| The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. | [optional] [default to &#39;1024x1024&#39;]
+ **response_format** | **str**| The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. | [optional] [default to &#39;url&#39;]
  **user** | **str**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  | [optional] 
 
 ### Return type
@@ -213,11 +213,11 @@ configuration = openapiopenai.Configuration(
 with openapiopenai.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapiopenai.ImagesApi(api_client)
-    image = None # bytearray | The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
+    image = None # bytes | The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
     model = openapiopenai.CreateImageEditRequestModel() # CreateImageEditRequestModel |  (optional)
     n = 1 # int | The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. (optional) (default to 1)
-    response_format = url # str | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. (optional) (default to url)
-    size = 1024x1024 # str | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. (optional) (default to 1024x1024)
+    response_format = 'url' # str | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. (optional) (default to 'url')
+    size = '1024x1024' # str | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. (optional) (default to '1024x1024')
     user = 'user_example' # str | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)
 
     try:
@@ -236,11 +236,11 @@ with openapiopenai.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **image** | **bytearray**| The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square. | 
+ **image** | **bytes**| The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square. | 
  **model** | [**CreateImageEditRequestModel**](CreateImageEditRequestModel.md)|  | [optional] 
  **n** | **int**| The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported. | [optional] [default to 1]
- **response_format** | **str**| The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. | [optional] [default to url]
- **size** | **str**| The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. | [optional] [default to 1024x1024]
+ **response_format** | **str**| The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. | [optional] [default to &#39;url&#39;]
+ **size** | **str**| The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. | [optional] [default to &#39;1024x1024&#39;]
  **user** | **str**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  | [optional] 
 
 ### Return type

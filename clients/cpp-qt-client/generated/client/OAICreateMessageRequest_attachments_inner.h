@@ -34,13 +34,13 @@ class OAICreateMessageRequest_attachments_inner_tools_inner;
 class OAICreateMessageRequest_attachments_inner : public OAIObject {
 public:
     OAICreateMessageRequest_attachments_inner();
-    OAICreateMessageRequest_attachments_inner(QString json);
+    OAICreateMessageRequest_attachments_inner(const QString &json);
     ~OAICreateMessageRequest_attachments_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getFileId() const;
     void setFileId(const QString &file_id);

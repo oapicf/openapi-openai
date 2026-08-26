@@ -53,10 +53,10 @@ class RunStreamEventOneOf5 {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStreamEventOneOf5[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStreamEventOneOf5[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event'), 'Required key "RunStreamEventOneOf5[event]" is missing from JSON.');
+        assert(json[r'event'] != null, 'Required key "RunStreamEventOneOf5[event]" has a null value in JSON.');
+        assert(json.containsKey(r'data'), 'Required key "RunStreamEventOneOf5[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "RunStreamEventOneOf5[data]" has a null value in JSON.');
         return true;
       }());
 
@@ -116,27 +116,28 @@ class RunStreamEventOneOf5 {
 }
 
 
-class RunStreamEventOneOf5EventEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStreamEventOneOf5EventEnum._(this.value);
+enum RunStreamEventOneOf5EventEnum {
+  threadPeriodRunPeriodIncomplete._(r'thread.run.incomplete'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStreamEventOneOf5EventEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const threadPeriodRunPeriodIncomplete = RunStreamEventOneOf5EventEnum._(r'thread.run.incomplete');
-
-  /// List of all possible values in this [enum][RunStreamEventOneOf5EventEnum].
-  static const values = <RunStreamEventOneOf5EventEnum>[
-    threadPeriodRunPeriodIncomplete,
-  ];
-
+  /// Returns the instance of [RunStreamEventOneOf5EventEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStreamEventOneOf5EventEnum? fromJson(dynamic value) => RunStreamEventOneOf5EventEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStreamEventOneOf5EventEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStreamEventOneOf5EventEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStreamEventOneOf5EventEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -158,9 +159,10 @@ class RunStreamEventOneOf5EventEnumTypeTransformer {
 
   const RunStreamEventOneOf5EventEnumTypeTransformer._();
 
-  String encode(RunStreamEventOneOf5EventEnum data) => data.value;
+  String encode(RunStreamEventOneOf5EventEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStreamEventOneOf5EventEnum.
+  /// Returns the instance of [RunStreamEventOneOf5EventEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -169,6 +171,9 @@ class RunStreamEventOneOf5EventEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStreamEventOneOf5EventEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStreamEventOneOf5EventEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'thread.run.incomplete': return RunStreamEventOneOf5EventEnum.threadPeriodRunPeriodIncomplete;
@@ -181,7 +186,7 @@ class RunStreamEventOneOf5EventEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStreamEventOneOf5EventEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStreamEventOneOf5EventEnumTypeTransformer? _instance;
 }
 

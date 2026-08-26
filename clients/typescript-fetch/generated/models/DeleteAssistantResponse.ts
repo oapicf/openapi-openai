@@ -33,7 +33,7 @@ export interface DeleteAssistantResponse {
     deleted: boolean;
     /**
      * 
-     * @type {string}
+     * @type {DeleteAssistantResponseObjectEnum}
      * @memberof DeleteAssistantResponse
      */
     object: DeleteAssistantResponseObjectEnum;
@@ -56,6 +56,8 @@ export function instanceOfDeleteAssistantResponse(value: object): value is Delet
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('deleted' in value) || value['deleted'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'assistant.deleted') return false;
+    
     return true;
 }
 

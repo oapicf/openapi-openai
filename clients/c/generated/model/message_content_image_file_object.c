@@ -30,10 +30,10 @@ static message_content_image_file_object_t *message_content_image_file_object_cr
     if (!message_content_image_file_object_local_var) {
         return NULL;
     }
+    memset(message_content_image_file_object_local_var, 0, sizeof(message_content_image_file_object_t));
+    message_content_image_file_object_local_var->_library_owned = 1;
     message_content_image_file_object_local_var->type = type;
     message_content_image_file_object_local_var->image_file = image_file;
-
-    message_content_image_file_object_local_var->_library_owned = 1;
     return message_content_image_file_object_local_var;
 }
 
@@ -41,10 +41,13 @@ __attribute__((deprecated)) message_content_image_file_object_t *message_content
     openai_api_message_content_image_file_object_TYPE_e type,
     message_content_image_file_object_image_file_t *image_file
     ) {
-    return message_content_image_file_object_create_internal (
+    message_content_image_file_object_t *result = message_content_image_file_object_create_internal (
         type,
         image_file
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_content_image_file_object_free(message_content_image_file_object_t *message_content_image_file_object) {
@@ -134,10 +137,15 @@ message_content_image_file_object_t *message_content_image_file_object_parseFrom
     image_file_local_nonprim = message_content_image_file_object_image_file_parseFromJSON(image_file); //nonprimitive
 
 
+
     message_content_image_file_object_local_var = message_content_image_file_object_create_internal (
         typeVariable,
         image_file_local_nonprim
         );
+
+    if (!message_content_image_file_object_local_var) {
+        goto end;
+    }
 
     return message_content_image_file_object_local_var;
 end:

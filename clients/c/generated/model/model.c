@@ -24,7 +24,7 @@ openai_api_model_OBJECT_e model_object_FromString(char* object){
 
 static model_t *model_create_internal(
     char *id,
-    int created,
+    int *created,
     openai_api_model_OBJECT_e object,
     char *owned_by
     ) {
@@ -32,27 +32,36 @@ static model_t *model_create_internal(
     if (!model_local_var) {
         return NULL;
     }
+    memset(model_local_var, 0, sizeof(model_t));
+    model_local_var->_library_owned = 1;
     model_local_var->id = id;
     model_local_var->created = created;
     model_local_var->object = object;
     model_local_var->owned_by = owned_by;
-
-    model_local_var->_library_owned = 1;
     return model_local_var;
 }
 
 __attribute__((deprecated)) model_t *model_create(
     char *id,
-    int created,
+    int *created,
     openai_api_model_OBJECT_e object,
     char *owned_by
     ) {
-    return model_create_internal (
+    int *created_copy = NULL;
+    if (created) {
+        created_copy = malloc(sizeof(int));
+        if (created_copy) *created_copy = *created;
+    }
+    model_t *result = model_create_internal (
         id,
-        created,
+        created_copy,
         object,
         owned_by
         );
+    if (!result) {
+        free(created_copy);
+    }
+    return result;
 }
 
 void model_free(model_t *model) {
@@ -67,6 +76,10 @@ void model_free(model_t *model) {
     if (model->id) {
         free(model->id);
         model->id = NULL;
+    }
+    if (model->created) {
+        free(model->created);
+        model->created = NULL;
     }
     if (model->owned_by) {
         free(model->owned_by);
@@ -91,7 +104,7 @@ cJSON *model_convertToJSON(model_t *model) {
     if (!model->created) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "created", model->created) == NULL) {
+    if(cJSON_AddNumberToObject(item, "created", *model->created) == NULL) {
     goto fail; //Numeric
     }
 
@@ -126,6 +139,13 @@ model_t *model_parseFromJSON(cJSON *modelJSON){
 
     model_t *model_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    // define the local variable for model->created
+    int *created_local_var = NULL;
+
+    char *owned_by_local_str = NULL;
+
     // model->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(modelJSON, "id");
     if (cJSON_IsNull(id)) {
@@ -155,6 +175,12 @@ model_t *model_parseFromJSON(cJSON *modelJSON){
     {
     goto end; //Numeric
     }
+    created_local_var = malloc(sizeof(int));
+    if(!created_local_var)
+    {
+        goto end;
+    }
+    *created_local_var = created->valuedouble;
 
     // model->object
     cJSON *object = cJSON_GetObjectItemCaseSensitive(modelJSON, "object");
@@ -189,15 +215,34 @@ model_t *model_parseFromJSON(cJSON *modelJSON){
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (owned_by && !cJSON_IsNull(owned_by)) owned_by_local_str = strdup(owned_by->valuestring);
+
     model_local_var = model_create_internal (
-        strdup(id->valuestring),
-        created->valuedouble,
+        id_local_str,
+        created_local_var,
         objectVariable,
-        strdup(owned_by->valuestring)
+        owned_by_local_str
         );
+
+    if (!model_local_var) {
+        goto end;
+    }
 
     return model_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (created_local_var) {
+        free(created_local_var);
+        created_local_var = NULL;
+    }
+    if (owned_by_local_str) {
+        free(owned_by_local_str);
+        owned_by_local_str = NULL;
+    }
     return NULL;
 
 }

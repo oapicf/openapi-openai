@@ -1,4 +1,4 @@
-# # ProjectRateLimitListResponse
+# ProjectRateLimitListResponse
 
 ## Properties
 

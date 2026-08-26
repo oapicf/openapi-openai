@@ -68,7 +68,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>organization.admin_api_key</example> */
         [JsonPropertyName("object")]
-        public string? Object { get { return this.ObjectOption; } set { this.ObjectOption = new(value); } }
+        public string? Object { get { return this.ObjectOption.Value; } set { this.ObjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -82,7 +82,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>key_abc</example> */
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -96,7 +96,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>Administration Key</example> */
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RedactedValue
@@ -110,7 +110,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>sk-admin...def</example> */
         [JsonPropertyName("redacted_value")]
-        public string? RedactedValue { get { return this.RedactedValueOption; } set { this.RedactedValueOption = new(value); } }
+        public string? RedactedValue { get { return this.RedactedValueOption.Value; } set { this.RedactedValueOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Value
@@ -124,7 +124,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>sk-admin-1234abcd</example> */
         [JsonPropertyName("value")]
-        public string? Value { get { return this.ValueOption; } set { this.ValueOption = new(value); } }
+        public string? Value { get { return this.ValueOption.Value; } set { this.ValueOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -138,7 +138,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>1711471533</example> */
         [JsonPropertyName("created_at")]
-        public long? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public long? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Owner
@@ -151,7 +151,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Owner
         /// </summary>
         [JsonPropertyName("owner")]
-        public AdminApiKeyOwner? Owner { get { return this.OwnerOption; } set { this.OwnerOption = new(value); } }
+        public AdminApiKeyOwner? Owner { get { return this.OwnerOption.Value; } set { this.OwnerOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -186,8 +186,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AdminApiKey" />
     /// </summary>
-    public class AdminApiKeyJsonConverter : JsonConverter<AdminApiKey>
+    public partial class AdminApiKeyJsonConverter : JsonConverter<AdminApiKey>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminApiKeyJsonConverter" /> class.
+        /// </summary>
+        public AdminApiKeyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AdminApiKey" />
         /// </summary>

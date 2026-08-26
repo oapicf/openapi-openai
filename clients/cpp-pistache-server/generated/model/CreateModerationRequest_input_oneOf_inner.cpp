@@ -26,6 +26,8 @@ CreateModerationRequest_input_oneOf_inner::CreateModerationRequest_input_oneOf_i
     
 }
 
+CreateModerationRequest_input_oneOf_inner::~CreateModerationRequest_input_oneOf_inner() = default;
+
 void CreateModerationRequest_input_oneOf_inner::validate() const
 {
     std::stringstream msg;

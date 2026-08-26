@@ -334,7 +334,7 @@ RealtimeSessionCreateResponse::getClientSecret()
 }
 
 void
-RealtimeSessionCreateResponse::setClientSecret(RealtimeSessionCreateResponse_client_secret  client_secret)
+RealtimeSessionCreateResponse::setClientSecret(RealtimeSessionCreateResponse_client_secret client_secret)
 {
 	this->client_secret = client_secret;
 }
@@ -346,7 +346,7 @@ RealtimeSessionCreateResponse::getModalities()
 }
 
 void
-RealtimeSessionCreateResponse::setModalities(std::list <std::string> modalities)
+RealtimeSessionCreateResponse::setModalities(std::list<std::string> modalities)
 {
 	this->modalities = modalities;
 }
@@ -358,7 +358,7 @@ RealtimeSessionCreateResponse::getInstructions()
 }
 
 void
-RealtimeSessionCreateResponse::setInstructions(std::string  instructions)
+RealtimeSessionCreateResponse::setInstructions(std::string instructions)
 {
 	this->instructions = instructions;
 }
@@ -370,7 +370,7 @@ RealtimeSessionCreateResponse::getVoice()
 }
 
 void
-RealtimeSessionCreateResponse::setVoice(std::string  voice)
+RealtimeSessionCreateResponse::setVoice(std::string voice)
 {
 	this->voice = voice;
 }
@@ -382,7 +382,7 @@ RealtimeSessionCreateResponse::getInputAudioFormat()
 }
 
 void
-RealtimeSessionCreateResponse::setInputAudioFormat(std::string  input_audio_format)
+RealtimeSessionCreateResponse::setInputAudioFormat(std::string input_audio_format)
 {
 	this->input_audio_format = input_audio_format;
 }
@@ -394,7 +394,7 @@ RealtimeSessionCreateResponse::getOutputAudioFormat()
 }
 
 void
-RealtimeSessionCreateResponse::setOutputAudioFormat(std::string  output_audio_format)
+RealtimeSessionCreateResponse::setOutputAudioFormat(std::string output_audio_format)
 {
 	this->output_audio_format = output_audio_format;
 }
@@ -406,7 +406,7 @@ RealtimeSessionCreateResponse::getInputAudioTranscription()
 }
 
 void
-RealtimeSessionCreateResponse::setInputAudioTranscription(RealtimeSession_input_audio_transcription  input_audio_transcription)
+RealtimeSessionCreateResponse::setInputAudioTranscription(RealtimeSession_input_audio_transcription input_audio_transcription)
 {
 	this->input_audio_transcription = input_audio_transcription;
 }
@@ -418,7 +418,7 @@ RealtimeSessionCreateResponse::getTurnDetection()
 }
 
 void
-RealtimeSessionCreateResponse::setTurnDetection(RealtimeSessionCreateResponse_turn_detection  turn_detection)
+RealtimeSessionCreateResponse::setTurnDetection(RealtimeSessionCreateResponse_turn_detection turn_detection)
 {
 	this->turn_detection = turn_detection;
 }
@@ -430,7 +430,7 @@ RealtimeSessionCreateResponse::getTools()
 }
 
 void
-RealtimeSessionCreateResponse::setTools(std::list <RealtimeResponseCreateParams_tools_inner> tools)
+RealtimeSessionCreateResponse::setTools(std::list<RealtimeResponseCreateParams_tools_inner> tools)
 {
 	this->tools = tools;
 }
@@ -442,7 +442,7 @@ RealtimeSessionCreateResponse::getToolChoice()
 }
 
 void
-RealtimeSessionCreateResponse::setToolChoice(std::string  tool_choice)
+RealtimeSessionCreateResponse::setToolChoice(std::string tool_choice)
 {
 	this->tool_choice = tool_choice;
 }
@@ -454,7 +454,7 @@ RealtimeSessionCreateResponse::getTemperature()
 }
 
 void
-RealtimeSessionCreateResponse::setTemperature(long  temperature)
+RealtimeSessionCreateResponse::setTemperature(long temperature)
 {
 	this->temperature = temperature;
 }
@@ -466,7 +466,7 @@ RealtimeSessionCreateResponse::getMaxResponseOutputTokens()
 }
 
 void
-RealtimeSessionCreateResponse::setMaxResponseOutputTokens(RealtimeResponseCreateParams_max_response_output_tokens  max_response_output_tokens)
+RealtimeSessionCreateResponse::setMaxResponseOutputTokens(RealtimeResponseCreateParams_max_response_output_tokens max_response_output_tokens)
 {
 	this->max_response_output_tokens = max_response_output_tokens;
 }

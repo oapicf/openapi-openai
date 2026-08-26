@@ -29,6 +29,8 @@ ProjectServiceAccount::ProjectServiceAccount()
     
 }
 
+ProjectServiceAccount::~ProjectServiceAccount() = default;
+
 void ProjectServiceAccount::validate() const
 {
     std::stringstream msg;

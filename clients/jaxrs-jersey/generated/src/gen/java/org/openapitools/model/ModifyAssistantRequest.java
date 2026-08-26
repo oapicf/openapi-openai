@@ -44,7 +44,7 @@ import javax.validation.Valid;
   ModifyAssistantRequest.JSON_PROPERTY_TOP_P,
   ModifyAssistantRequest.JSON_PROPERTY_RESPONSE_FORMAT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-01-29T14:09:10.882541726Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ModifyAssistantRequest   {
   public static final String JSON_PROPERTY_MODEL = "model";
   @JsonProperty(JSON_PROPERTY_MODEL)
@@ -92,11 +92,11 @@ public class ModifyAssistantRequest   {
   }
 
   /**
-   * Get model
+   * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
    * @return model
    **/
   @JsonProperty(value = "model")
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. ")
   
   public String getModel() {
     return model;
@@ -349,10 +349,7 @@ public class ModifyAssistantRequest   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

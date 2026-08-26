@@ -52,7 +52,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * SubmitToolOutputsRunRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class SubmitToolOutputsRunRequest {
   public static final String SERIALIZED_NAME_TOOL_OUTPUTS = "tool_outputs";
   @SerializedName(SERIALIZED_NAME_TOOL_OUTPUTS)
@@ -158,10 +158,7 @@ public class SubmitToolOutputsRunRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -204,16 +201,16 @@ public class SubmitToolOutputsRunRequest {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the json data is an array
-      if (!jsonObj.get("tool_outputs").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `tool_outputs` to be an array in the JSON string but got `%s`", jsonObj.get("tool_outputs").toString()));
+      if (jsonObj.get("tool_outputs") != null) {
+        if (!jsonObj.get("tool_outputs").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `tool_outputs` to be an array in the JSON string but got `%s`", jsonObj.get("tool_outputs").toString()));
+        }
+        JsonArray jsonArraytoolOutputs = jsonObj.getAsJsonArray("tool_outputs");
+        // validate the required field `tool_outputs` (array)
+        for (int i = 0; i < jsonArraytoolOutputs.size(); i++) {
+          SubmitToolOutputsRunRequestToolOutputsInner.validateJsonElement(jsonArraytoolOutputs.get(i));
+        }
       }
-
-      JsonArray jsonArraytoolOutputs = jsonObj.getAsJsonArray("tool_outputs");
-      // validate the required field `tool_outputs` (array)
-      for (int i = 0; i < jsonArraytoolOutputs.size(); i++) {
-        SubmitToolOutputsRunRequestToolOutputsInner.validateJsonElement(jsonArraytoolOutputs.get(i));
-      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

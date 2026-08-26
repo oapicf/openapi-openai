@@ -1,4 +1,4 @@
-# # RealtimeResponse
+# RealtimeResponse
 
 ## Properties
 

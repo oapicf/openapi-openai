@@ -231,7 +231,7 @@ FineTuneChatCompletionRequestAssistantMessage::getContent()
 }
 
 void
-FineTuneChatCompletionRequestAssistantMessage::setContent(ChatCompletionRequestAssistantMessage_content  content)
+FineTuneChatCompletionRequestAssistantMessage::setContent(ChatCompletionRequestAssistantMessage_content content)
 {
 	this->content = content;
 }
@@ -243,7 +243,7 @@ FineTuneChatCompletionRequestAssistantMessage::getRefusal()
 }
 
 void
-FineTuneChatCompletionRequestAssistantMessage::setRefusal(std::string  refusal)
+FineTuneChatCompletionRequestAssistantMessage::setRefusal(std::string refusal)
 {
 	this->refusal = refusal;
 }
@@ -255,7 +255,7 @@ FineTuneChatCompletionRequestAssistantMessage::getRole()
 }
 
 void
-FineTuneChatCompletionRequestAssistantMessage::setRole(std::string  role)
+FineTuneChatCompletionRequestAssistantMessage::setRole(std::string role)
 {
 	this->role = role;
 }
@@ -267,7 +267,7 @@ FineTuneChatCompletionRequestAssistantMessage::getName()
 }
 
 void
-FineTuneChatCompletionRequestAssistantMessage::setName(std::string  name)
+FineTuneChatCompletionRequestAssistantMessage::setName(std::string name)
 {
 	this->name = name;
 }
@@ -279,7 +279,7 @@ FineTuneChatCompletionRequestAssistantMessage::getAudio()
 }
 
 void
-FineTuneChatCompletionRequestAssistantMessage::setAudio(ChatCompletionRequestAssistantMessage_audio  audio)
+FineTuneChatCompletionRequestAssistantMessage::setAudio(ChatCompletionRequestAssistantMessage_audio audio)
 {
 	this->audio = audio;
 }
@@ -291,7 +291,7 @@ FineTuneChatCompletionRequestAssistantMessage::getToolCalls()
 }
 
 void
-FineTuneChatCompletionRequestAssistantMessage::setToolCalls(std::list <ChatCompletionMessageToolCall> tool_calls)
+FineTuneChatCompletionRequestAssistantMessage::setToolCalls(std::list<ChatCompletionMessageToolCall> tool_calls)
 {
 	this->tool_calls = tool_calls;
 }
@@ -303,7 +303,7 @@ FineTuneChatCompletionRequestAssistantMessage::getFunctionCall()
 }
 
 void
-FineTuneChatCompletionRequestAssistantMessage::setFunctionCall(ChatCompletionRequestAssistantMessage_function_call  function_call)
+FineTuneChatCompletionRequestAssistantMessage::setFunctionCall(ChatCompletionRequestAssistantMessage_function_call function_call)
 {
 	this->function_call = function_call;
 }
@@ -315,7 +315,7 @@ FineTuneChatCompletionRequestAssistantMessage::getWeight()
 }
 
 void
-FineTuneChatCompletionRequestAssistantMessage::setWeight(int  weight)
+FineTuneChatCompletionRequestAssistantMessage::setWeight(int weight)
 {
 	this->weight = weight;
 }

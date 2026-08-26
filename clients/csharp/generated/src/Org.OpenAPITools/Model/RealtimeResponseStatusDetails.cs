@@ -155,7 +155,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The type of error that caused the response to fail, corresponding  with the &#x60;status&#x60; field (&#x60;completed&#x60;, &#x60;cancelled&#x60;, &#x60;incomplete&#x60;,  &#x60;failed&#x60;). </value>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// The reason the Response did not complete. For a &#x60;cancelled&#x60; Response,  one of &#x60;turn_detected&#x60; (the server VAD detected a new start of speech)  or &#x60;client_cancelled&#x60; (the client sent a cancel event). For an  &#x60;incomplete&#x60; Response, one of &#x60;max_output_tokens&#x60; or &#x60;content_filter&#x60;  (the server-side safety filter activated and cut off the response). 
@@ -264,7 +264,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The reason the Response did not complete. For a &#x60;cancelled&#x60; Response,  one of &#x60;turn_detected&#x60; (the server VAD detected a new start of speech)  or &#x60;client_cancelled&#x60; (the client sent a cancel event). For an  &#x60;incomplete&#x60; Response, one of &#x60;max_output_tokens&#x60; or &#x60;content_filter&#x60;  (the server-side safety filter activated and cut off the response). </value>
         [JsonPropertyName("reason")]
-        public ReasonEnum? Reason { get { return this.ReasonOption; } set { this.ReasonOption = new(value); } }
+        public ReasonEnum? Reason { get { return this.ReasonOption.Value; } set { this.ReasonOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Error
@@ -277,7 +277,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Error
         /// </summary>
         [JsonPropertyName("error")]
-        public RealtimeResponseStatusDetailsError? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public RealtimeResponseStatusDetailsError? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -308,8 +308,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeResponseStatusDetails" />
     /// </summary>
-    public class RealtimeResponseStatusDetailsJsonConverter : JsonConverter<RealtimeResponseStatusDetails>
+    public partial class RealtimeResponseStatusDetailsJsonConverter : JsonConverter<RealtimeResponseStatusDetails>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeResponseStatusDetailsJsonConverter" /> class.
+        /// </summary>
+        public RealtimeResponseStatusDetailsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeResponseStatusDetails" />
         /// </summary>

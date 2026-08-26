@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIUsageCompletionsResult::OAIUsageCompletionsResult(QString json) {
+OAIUsageCompletionsResult::OAIUsageCompletionsResult(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -71,7 +71,7 @@ void OAIUsageCompletionsResult::initializeModel() {
     m_batch_isValid = false;
 }
 
-void OAIUsageCompletionsResult::fromJson(QString jsonString) {
+void OAIUsageCompletionsResult::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

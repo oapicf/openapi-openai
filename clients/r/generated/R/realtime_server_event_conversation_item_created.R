@@ -103,9 +103,32 @@ RealtimeServerEventConversationItemCreated <- R6::R6Class(
       }
       if (!is.null(self$`item`)) {
         RealtimeServerEventConversationItemCreatedObject[["item"]] <-
-          self$`item`$toSimpleType()
+          self$extractSimpleType(self$`item`)
       }
       return(RealtimeServerEventConversationItemCreatedObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

@@ -49,7 +49,7 @@ class FineTuningIntegration
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['wandb'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class FineTuningIntegration
      * @var CreateFineTuningJobRequestIntegrationsInnerWandb|null
      * @SerializedName("wandb")
      * @Type("OpenAPI\Server\Model\CreateFineTuningJobRequestIntegrationsInnerWandb")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\CreateFineTuningJobRequestIntegrationsInnerWandb")]
@@ -88,12 +88,12 @@ class FineTuningIntegration
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of the integration being enabled for the fine-tuning job
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of the integration being enabled for the fine-tuning job
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -115,12 +115,12 @@ class FineTuningIntegration
     }
 
     /**
-    * Sets wandb.
-    *
-    * @param CreateFineTuningJobRequestIntegrationsInnerWandb|null $wandb
-    *
-    * @return $this
-    */
+     * Sets wandb.
+     *
+     * @param CreateFineTuningJobRequestIntegrationsInnerWandb|null $wandb
+     *
+     * @return $this
+     */
     public function setWandb(?CreateFineTuningJobRequestIntegrationsInnerWandb $wandb): self
     {
         $this->wandb = $wandb;

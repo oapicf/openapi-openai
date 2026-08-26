@@ -145,7 +145,7 @@ CreateEmbeddingResponse::getData()
 }
 
 void
-CreateEmbeddingResponse::setData(std::list <Embedding> data)
+CreateEmbeddingResponse::setData(std::list<Embedding> data)
 {
 	this->data = data;
 }
@@ -157,7 +157,7 @@ CreateEmbeddingResponse::getModel()
 }
 
 void
-CreateEmbeddingResponse::setModel(std::string  model)
+CreateEmbeddingResponse::setModel(std::string model)
 {
 	this->model = model;
 }
@@ -169,7 +169,7 @@ CreateEmbeddingResponse::getObject()
 }
 
 void
-CreateEmbeddingResponse::setObject(std::string  object)
+CreateEmbeddingResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -181,7 +181,7 @@ CreateEmbeddingResponse::getUsage()
 }
 
 void
-CreateEmbeddingResponse::setUsage(CreateEmbeddingResponse_usage  usage)
+CreateEmbeddingResponse::setUsage(CreateEmbeddingResponse_usage usage)
 {
 	this->usage = usage;
 }

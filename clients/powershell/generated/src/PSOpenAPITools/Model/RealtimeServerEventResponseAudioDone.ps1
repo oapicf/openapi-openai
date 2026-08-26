@@ -86,12 +86,12 @@ function Initialize-RealtimeServerEventResponseAudioDone {
 
 
         $PSO = [PSCustomObject]@{
-            "event_id" = ${EventId}
-            "type" = ${Type}
-            "response_id" = ${ResponseId}
-            "item_id" = ${ItemId}
-            "output_index" = ${OutputIndex}
-            "content_index" = ${ContentIndex}
+            'event_id' = ${EventId}
+            'type' = ${Type}
+            'response_id' = ${ResponseId}
+            'item_id' = ${ItemId}
+            'output_index' = ${OutputIndex}
+            'content_index' = ${ContentIndex}
         }
 
 
@@ -129,7 +129,7 @@ function ConvertFrom-JsonToRealtimeServerEventResponseAudioDone {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeServerEventResponseAudioDone
-        $AllProperties = ("event_id", "type", "response_id", "item_id", "output_index", "content_index")
+        $AllProperties = ('event_id', 'type', 'response_id', 'item_id', 'output_index', 'content_index')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -140,49 +140,49 @@ function ConvertFrom-JsonToRealtimeServerEventResponseAudioDone {
             throw "Error! Empty JSON cannot be serialized due to the required property 'event_id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "event_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'event_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'event_id' missing."
         } else {
-            $EventId = $JsonParameters.PSobject.Properties["event_id"].value
+            $EventId = $JsonParameters.PSobject.Properties['event_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "response_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'response_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'response_id' missing."
         } else {
-            $ResponseId = $JsonParameters.PSobject.Properties["response_id"].value
+            $ResponseId = $JsonParameters.PSobject.Properties['response_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "item_id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'item_id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'item_id' missing."
         } else {
-            $ItemId = $JsonParameters.PSobject.Properties["item_id"].value
+            $ItemId = $JsonParameters.PSobject.Properties['item_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "output_index"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'output_index'))) {
             throw "Error! JSON cannot be serialized due to the required property 'output_index' missing."
         } else {
-            $OutputIndex = $JsonParameters.PSobject.Properties["output_index"].value
+            $OutputIndex = $JsonParameters.PSobject.Properties['output_index'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content_index"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'content_index'))) {
             throw "Error! JSON cannot be serialized due to the required property 'content_index' missing."
         } else {
-            $ContentIndex = $JsonParameters.PSobject.Properties["content_index"].value
+            $ContentIndex = $JsonParameters.PSobject.Properties['content_index'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "event_id" = ${EventId}
-            "type" = ${Type}
-            "response_id" = ${ResponseId}
-            "item_id" = ${ItemId}
-            "output_index" = ${OutputIndex}
-            "content_index" = ${ContentIndex}
+            'event_id' = ${EventId}
+            'type' = ${Type}
+            'response_id' = ${ResponseId}
+            'item_id' = ${ItemId}
+            'output_index' = ${OutputIndex}
+            'content_index' = ${ContentIndex}
         }
 
         return $PSO

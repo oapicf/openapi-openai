@@ -21,11 +21,13 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RunStepDetailsToolCallsCodeObjectCodeInterpreter(
 
-    @Schema(example = "null", required = true, description = "The input to the Code Interpreter tool call.")
+    @Schema(required = true, description = "The input to the Code Interpreter tool call.")
+    @param:JsonProperty("input")
     @get:JsonProperty("input", required = true) val input: kotlin.String,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.")
+    @Schema(required = true, description = "The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.")
+    @param:JsonProperty("outputs")
     @get:JsonProperty("outputs", required = true) val outputs: kotlin.collections.List<RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>
 ) {
 

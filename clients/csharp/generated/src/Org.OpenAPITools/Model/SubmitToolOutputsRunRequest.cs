@@ -65,7 +65,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>If &#x60;true&#x60;, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a &#x60;data: [DONE]&#x60; message. </value>
         [JsonPropertyName("stream")]
-        public bool? Stream { get { return this.StreamOption; } set { this.StreamOption = new(value); } }
+        public bool? Stream { get { return this.StreamOption.Value; } set { this.StreamOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -95,8 +95,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="SubmitToolOutputsRunRequest" />
     /// </summary>
-    public class SubmitToolOutputsRunRequestJsonConverter : JsonConverter<SubmitToolOutputsRunRequest>
+    public partial class SubmitToolOutputsRunRequestJsonConverter : JsonConverter<SubmitToolOutputsRunRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SubmitToolOutputsRunRequestJsonConverter" /> class.
+        /// </summary>
+        public SubmitToolOutputsRunRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SubmitToolOutputsRunRequest" />
         /// </summary>

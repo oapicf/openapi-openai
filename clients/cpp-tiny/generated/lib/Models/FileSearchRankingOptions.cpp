@@ -85,7 +85,7 @@ FileSearchRankingOptions::getRanker()
 }
 
 void
-FileSearchRankingOptions::setRanker(std::string  ranker)
+FileSearchRankingOptions::setRanker(std::string ranker)
 {
 	this->ranker = ranker;
 }
@@ -97,7 +97,7 @@ FileSearchRankingOptions::getScoreThreshold()
 }
 
 void
-FileSearchRankingOptions::setScoreThreshold(long  score_threshold)
+FileSearchRankingOptions::setScoreThreshold(long score_threshold)
 {
 	this->score_threshold = score_threshold;
 }

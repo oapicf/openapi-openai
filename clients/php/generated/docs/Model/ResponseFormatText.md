@@ -1,4 +1,4 @@
-# # ResponseFormatText
+# ResponseFormatText
 
 ## Properties
 

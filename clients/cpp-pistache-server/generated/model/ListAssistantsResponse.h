@@ -34,7 +34,7 @@ class  ListAssistantsResponse
 {
 public:
     ListAssistantsResponse();
-    virtual ~ListAssistantsResponse() = default;
+    virtual ~ListAssistantsResponse();
 
 
     /// <summary>

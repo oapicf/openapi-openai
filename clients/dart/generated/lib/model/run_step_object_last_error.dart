@@ -55,10 +55,10 @@ class RunStepObjectLastError {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RunStepObjectLastError[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RunStepObjectLastError[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'code'), 'Required key "RunStepObjectLastError[code]" is missing from JSON.');
+        assert(json[r'code'] != null, 'Required key "RunStepObjectLastError[code]" has a null value in JSON.');
+        assert(json.containsKey(r'message'), 'Required key "RunStepObjectLastError[message]" is missing from JSON.');
+        assert(json[r'message'] != null, 'Required key "RunStepObjectLastError[message]" has a null value in JSON.');
         return true;
       }());
 
@@ -118,29 +118,29 @@ class RunStepObjectLastError {
 }
 
 /// One of `server_error` or `rate_limit_exceeded`.
-class RunStepObjectLastErrorCodeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RunStepObjectLastErrorCodeEnum._(this.value);
+enum RunStepObjectLastErrorCodeEnum {
+  serverError._(r'server_error'),
+  rateLimitExceeded._(r'rate_limit_exceeded'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RunStepObjectLastErrorCodeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const serverError = RunStepObjectLastErrorCodeEnum._(r'server_error');
-  static const rateLimitExceeded = RunStepObjectLastErrorCodeEnum._(r'rate_limit_exceeded');
-
-  /// List of all possible values in this [enum][RunStepObjectLastErrorCodeEnum].
-  static const values = <RunStepObjectLastErrorCodeEnum>[
-    serverError,
-    rateLimitExceeded,
-  ];
-
+  /// Returns the instance of [RunStepObjectLastErrorCodeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RunStepObjectLastErrorCodeEnum? fromJson(dynamic value) => RunStepObjectLastErrorCodeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RunStepObjectLastErrorCodeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RunStepObjectLastErrorCodeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RunStepObjectLastErrorCodeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -162,9 +162,10 @@ class RunStepObjectLastErrorCodeEnumTypeTransformer {
 
   const RunStepObjectLastErrorCodeEnumTypeTransformer._();
 
-  String encode(RunStepObjectLastErrorCodeEnum data) => data.value;
+  String encode(RunStepObjectLastErrorCodeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RunStepObjectLastErrorCodeEnum.
+  /// Returns the instance of [RunStepObjectLastErrorCodeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -173,6 +174,9 @@ class RunStepObjectLastErrorCodeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RunStepObjectLastErrorCodeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RunStepObjectLastErrorCodeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'server_error': return RunStepObjectLastErrorCodeEnum.serverError;
@@ -186,7 +190,7 @@ class RunStepObjectLastErrorCodeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RunStepObjectLastErrorCodeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RunStepObjectLastErrorCodeEnumTypeTransformer? _instance;
 }
 

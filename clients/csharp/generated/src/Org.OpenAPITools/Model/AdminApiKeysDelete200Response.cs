@@ -60,7 +60,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>key_abc</example> */
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Object
@@ -74,7 +74,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>organization.admin_api_key.deleted</example> */
         [JsonPropertyName("object")]
-        public string? Object { get { return this.ObjectOption; } set { this.ObjectOption = new(value); } }
+        public string? Object { get { return this.ObjectOption.Value; } set { this.ObjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Deleted
@@ -88,7 +88,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>true</example> */
         [JsonPropertyName("deleted")]
-        public bool? Deleted { get { return this.DeletedOption; } set { this.DeletedOption = new(value); } }
+        public bool? Deleted { get { return this.DeletedOption.Value; } set { this.DeletedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -119,8 +119,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="AdminApiKeysDelete200Response" />
     /// </summary>
-    public class AdminApiKeysDelete200ResponseJsonConverter : JsonConverter<AdminApiKeysDelete200Response>
+    public partial class AdminApiKeysDelete200ResponseJsonConverter : JsonConverter<AdminApiKeysDelete200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminApiKeysDelete200ResponseJsonConverter" /> class.
+        /// </summary>
+        public AdminApiKeysDelete200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AdminApiKeysDelete200Response" />
         /// </summary>

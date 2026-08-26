@@ -1,4 +1,4 @@
-import connexion
+import flask
 from typing import Dict
 from typing import Tuple
 from typing import Union
@@ -33,8 +33,8 @@ def create_batch(body):  # noqa: E501
     :rtype: Union[Batch, Tuple[Batch, int], Tuple[Batch, int, Dict[str, str]]
     """
     create_batch_request = body
-    if connexion.request.is_json:
-        create_batch_request = CreateBatchRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        create_batch_request = CreateBatchRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 

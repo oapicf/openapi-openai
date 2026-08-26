@@ -69,10 +69,14 @@ class RealtimeServerEventInputAudioBufferCommitted {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeServerEventInputAudioBufferCommitted[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeServerEventInputAudioBufferCommitted[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'event_id'), 'Required key "RealtimeServerEventInputAudioBufferCommitted[event_id]" is missing from JSON.');
+        assert(json[r'event_id'] != null, 'Required key "RealtimeServerEventInputAudioBufferCommitted[event_id]" has a null value in JSON.');
+        assert(json.containsKey(r'type'), 'Required key "RealtimeServerEventInputAudioBufferCommitted[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "RealtimeServerEventInputAudioBufferCommitted[type]" has a null value in JSON.');
+        assert(json.containsKey(r'previous_item_id'), 'Required key "RealtimeServerEventInputAudioBufferCommitted[previous_item_id]" is missing from JSON.');
+        assert(json[r'previous_item_id'] != null, 'Required key "RealtimeServerEventInputAudioBufferCommitted[previous_item_id]" has a null value in JSON.');
+        assert(json.containsKey(r'item_id'), 'Required key "RealtimeServerEventInputAudioBufferCommitted[item_id]" is missing from JSON.');
+        assert(json[r'item_id'] != null, 'Required key "RealtimeServerEventInputAudioBufferCommitted[item_id]" has a null value in JSON.');
         return true;
       }());
 
@@ -136,27 +140,28 @@ class RealtimeServerEventInputAudioBufferCommitted {
 }
 
 /// The event type, must be `input_audio_buffer.committed`.
-class RealtimeServerEventInputAudioBufferCommittedTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeServerEventInputAudioBufferCommittedTypeEnum._(this.value);
+enum RealtimeServerEventInputAudioBufferCommittedTypeEnum {
+  inputAudioBufferPeriodCommitted._(r'input_audio_buffer.committed'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeServerEventInputAudioBufferCommittedTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const inputAudioBufferPeriodCommitted = RealtimeServerEventInputAudioBufferCommittedTypeEnum._(r'input_audio_buffer.committed');
-
-  /// List of all possible values in this [enum][RealtimeServerEventInputAudioBufferCommittedTypeEnum].
-  static const values = <RealtimeServerEventInputAudioBufferCommittedTypeEnum>[
-    inputAudioBufferPeriodCommitted,
-  ];
-
+  /// Returns the instance of [RealtimeServerEventInputAudioBufferCommittedTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeServerEventInputAudioBufferCommittedTypeEnum? fromJson(dynamic value) => RealtimeServerEventInputAudioBufferCommittedTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeServerEventInputAudioBufferCommittedTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeServerEventInputAudioBufferCommittedTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeServerEventInputAudioBufferCommittedTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -178,9 +183,10 @@ class RealtimeServerEventInputAudioBufferCommittedTypeEnumTypeTransformer {
 
   const RealtimeServerEventInputAudioBufferCommittedTypeEnumTypeTransformer._();
 
-  String encode(RealtimeServerEventInputAudioBufferCommittedTypeEnum data) => data.value;
+  String encode(RealtimeServerEventInputAudioBufferCommittedTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeServerEventInputAudioBufferCommittedTypeEnum.
+  /// Returns the instance of [RealtimeServerEventInputAudioBufferCommittedTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -189,6 +195,9 @@ class RealtimeServerEventInputAudioBufferCommittedTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeServerEventInputAudioBufferCommittedTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeServerEventInputAudioBufferCommittedTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'input_audio_buffer.committed': return RealtimeServerEventInputAudioBufferCommittedTypeEnum.inputAudioBufferPeriodCommitted;
@@ -201,7 +210,7 @@ class RealtimeServerEventInputAudioBufferCommittedTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeServerEventInputAudioBufferCommittedTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeServerEventInputAudioBufferCommittedTypeEnumTypeTransformer? _instance;
 }
 

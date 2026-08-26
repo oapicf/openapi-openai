@@ -35,7 +35,7 @@ class  CreateAssistantRequest_tool_resources_file_search_vector_stores_inner
 {
 public:
     CreateAssistantRequest_tool_resources_file_search_vector_stores_inner();
-    virtual ~CreateAssistantRequest_tool_resources_file_search_vector_stores_inner() = default;
+    virtual ~CreateAssistantRequest_tool_resources_file_search_vector_stores_inner();
 
 
     /// <summary>

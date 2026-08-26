@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -13,32 +14,33 @@ import org.openapitools.model.FineTuneChatRequestInputMessagesInner;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * The per-line training example of a fine-tuning input file for chat models using the supervised method.
  */
 
 @Schema(name = "FineTuneChatRequestInput", description = "The per-line training example of a fine-tuning input file for chat models using the supervised method.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTuneChatRequestInput {
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Boolean parallelToolCalls = true;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   @Deprecated
-  @Valid
   private List<@Valid ChatCompletionFunctions> functions = new ArrayList<>();
 
   public FineTuneChatRequestInput messages(List<FineTuneChatRequestInputMessagesInner> messages) {
@@ -65,6 +67,7 @@ public class FineTuneChatRequestInput {
     return messages;
   }
 
+  @JsonProperty("messages")
   public void setMessages(List<FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
   }
@@ -93,6 +96,7 @@ public class FineTuneChatRequestInput {
     return tools;
   }
 
+  @JsonProperty("tools")
   public void setTools(List<@Valid ChatCompletionTool> tools) {
     this.tools = tools;
   }
@@ -113,6 +117,7 @@ public class FineTuneChatRequestInput {
     return parallelToolCalls;
   }
 
+  @JsonProperty("parallel_tool_calls")
   public void setParallelToolCalls(Boolean parallelToolCalls) {
     this.parallelToolCalls = parallelToolCalls;
   }
@@ -137,8 +142,8 @@ public class FineTuneChatRequestInput {
    */
   @Valid @Size(min = 1, max = 128) 
   @Schema(name = "functions", description = "A list of functions the model may generate JSON inputs for.", deprecated = true, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("functions")
   @Deprecated
+  @JsonProperty("functions")
   public List<@Valid ChatCompletionFunctions> getFunctions() {
     return functions;
   }
@@ -147,6 +152,7 @@ public class FineTuneChatRequestInput {
    * @deprecated
    */
   @Deprecated
+  @JsonProperty("functions")
   public void setFunctions(List<@Valid ChatCompletionFunctions> functions) {
     this.functions = functions;
   }
@@ -187,11 +193,8 @@ public class FineTuneChatRequestInput {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

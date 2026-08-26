@@ -1,4 +1,4 @@
-# # RealtimeServerEventResponseTextDelta
+# RealtimeServerEventResponseTextDelta
 
 ## Properties
 

@@ -29,7 +29,7 @@ import {
 export interface InviteListResponse {
     /**
      * The object type, which is always `list`
-     * @type {string}
+     * @type {InviteListResponseObjectEnum}
      * @memberof InviteListResponse
      */
     object: InviteListResponseObjectEnum;
@@ -74,6 +74,8 @@ export type InviteListResponseObjectEnum = typeof InviteListResponseObjectEnum[k
  */
 export function instanceOfInviteListResponse(value: object): value is InviteListResponse {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'list') return false;
+    
     if (!('data' in value) || value['data'] === undefined) return false;
     return true;
 }

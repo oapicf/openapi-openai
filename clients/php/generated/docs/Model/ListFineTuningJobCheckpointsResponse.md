@@ -1,4 +1,4 @@
-# # ListFineTuningJobCheckpointsResponse
+# ListFineTuningJobCheckpointsResponse
 
 ## Properties
 

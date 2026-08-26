@@ -86,7 +86,7 @@ AssistantsApiResponseFormatOption::getType()
 }
 
 void
-AssistantsApiResponseFormatOption::setType(std::string  type)
+AssistantsApiResponseFormatOption::setType(std::string type)
 {
 	this->type = type;
 }
@@ -98,7 +98,7 @@ AssistantsApiResponseFormatOption::getJsonSchema()
 }
 
 void
-AssistantsApiResponseFormatOption::setJsonSchema(ResponseFormatJsonSchema_json_schema  json_schema)
+AssistantsApiResponseFormatOption::setJsonSchema(ResponseFormatJsonSchema_json_schema json_schema)
 {
 	this->json_schema = json_schema;
 }

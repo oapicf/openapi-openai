@@ -431,6 +431,9 @@ namespace Org.OpenAPITools.Model
         /// <returns></returns>
         public override AuditLogEventType? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
+            if (reader.TokenType == JsonTokenType.Null)
+                return null;
+
             string? rawValue = reader.GetString();
 
             AuditLogEventType? result = rawValue == null
@@ -451,7 +454,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="options"></param>
         public override void Write(Utf8JsonWriter writer, AuditLogEventType? auditLogEventType, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(auditLogEventType.HasValue ? AuditLogEventTypeValueConverter.ToJsonValue(auditLogEventType.Value).ToString() : "null");
+            if (auditLogEventType.HasValue)
+                writer.WriteStringValue(AuditLogEventTypeValueConverter.ToJsonValue(auditLogEventType.Value).ToString());
+            else
+                writer.WriteNullValue();
         }
     }
 }

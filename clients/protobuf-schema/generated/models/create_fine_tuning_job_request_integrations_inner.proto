@@ -18,11 +18,12 @@ import public "models/create_fine_tuning_job_request_integrations_inner_wandb.pr
 
 message CreateFineTuningJobRequestIntegrationsInner {
 
+  // The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
   enum Type {
     TYPE_WANDB = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
   CreateFineTuningJobRequestIntegrationsInnerWandb wandb = 112897634;
 

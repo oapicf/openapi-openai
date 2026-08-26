@@ -36,7 +36,7 @@ class  CreateTranslation_200_response
 {
 public:
     CreateTranslation_200_response();
-    virtual ~CreateTranslation_200_response() = default;
+    virtual ~CreateTranslation_200_response();
 
 
     /// <summary>

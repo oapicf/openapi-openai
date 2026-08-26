@@ -1,4 +1,4 @@
-# # UsageAudioTranscriptionsResult
+# UsageAudioTranscriptionsResult
 
 ## Properties
 

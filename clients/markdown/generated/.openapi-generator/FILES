@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 Apis/AssistantsApi.md
 Apis/AudioApi.md
 Apis/AuditLogsApi.md
@@ -78,7 +77,6 @@ Models/AuditLog_user_deleted.md
 Models/AuditLog_user_updated.md
 Models/AuditLog_user_updated_changes_requested.md
 Models/AutoChunkingStrategyRequestParam.md
-Models/Auto_Chunking_Strategy.md
 Models/Batch.md
 Models/BatchRequestInput.md
 Models/BatchRequestOutput.md
@@ -483,7 +481,6 @@ Models/RunToolCallObject.md
 Models/RunToolCallObject_function.md
 Models/StaticChunkingStrategy.md
 Models/StaticChunkingStrategyRequestParam.md
-Models/StaticChunkingStrategyResponseParam.md
 Models/Static_Chunking_Strategy.md
 Models/Static_Chunking_Strategy_static.md
 Models/SubmitToolOutputsRunRequest.md

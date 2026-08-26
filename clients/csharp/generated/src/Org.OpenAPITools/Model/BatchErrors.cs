@@ -58,7 +58,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The object type, which is always &#x60;list&#x60;.</value>
         [JsonPropertyName("object")]
-        public string? Object { get { return this.ObjectOption; } set { this.ObjectOption = new(value); } }
+        public string? Object { get { return this.ObjectOption.Value; } set { this.ObjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Data
@@ -71,7 +71,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public List<BatchErrorsDataInner>? Data { get { return this.DataOption; } set { this.DataOption = new(value); } }
+        public List<BatchErrorsDataInner>? Data { get { return this.DataOption.Value; } set { this.DataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="BatchErrors" />
     /// </summary>
-    public class BatchErrorsJsonConverter : JsonConverter<BatchErrors>
+    public partial class BatchErrorsJsonConverter : JsonConverter<BatchErrors>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BatchErrorsJsonConverter" /> class.
+        /// </summary>
+        public BatchErrorsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="BatchErrors" />
         /// </summary>

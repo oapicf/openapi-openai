@@ -147,9 +147,9 @@ func (a *UsageAPIService) UsageAudioSpeechesExecute(r ApiUsageAudioSpeechesReque
 	if r.bucketWidth != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", r.bucketWidth, "form", "")
 	} else {
-        var defaultValue string = "1d"
-        parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
-        r.bucketWidth = &defaultValue
+		var defaultValue string = "1d"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
+		r.bucketWidth = &defaultValue
 	}
 	if r.projectIds != nil {
 		t := *r.projectIds
@@ -389,9 +389,9 @@ func (a *UsageAPIService) UsageAudioTranscriptionsExecute(r ApiUsageAudioTranscr
 	if r.bucketWidth != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", r.bucketWidth, "form", "")
 	} else {
-        var defaultValue string = "1d"
-        parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
-        r.bucketWidth = &defaultValue
+		var defaultValue string = "1d"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
+		r.bucketWidth = &defaultValue
 	}
 	if r.projectIds != nil {
 		t := *r.projectIds
@@ -610,9 +610,9 @@ func (a *UsageAPIService) UsageCodeInterpreterSessionsExecute(r ApiUsageCodeInte
 	if r.bucketWidth != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", r.bucketWidth, "form", "")
 	} else {
-        var defaultValue string = "1d"
-        parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
-        r.bucketWidth = &defaultValue
+		var defaultValue string = "1d"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
+		r.bucketWidth = &defaultValue
 	}
 	if r.projectIds != nil {
 		t := *r.projectIds
@@ -826,9 +826,9 @@ func (a *UsageAPIService) UsageCompletionsExecute(r ApiUsageCompletionsRequest) 
 	if r.bucketWidth != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", r.bucketWidth, "form", "")
 	} else {
-        var defaultValue string = "1d"
-        parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
-        r.bucketWidth = &defaultValue
+		var defaultValue string = "1d"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
+		r.bucketWidth = &defaultValue
 	}
 	if r.projectIds != nil {
 		t := *r.projectIds
@@ -1050,9 +1050,9 @@ func (a *UsageAPIService) UsageCostsExecute(r ApiUsageCostsRequest) (*UsageRespo
 	if r.bucketWidth != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", r.bucketWidth, "form", "")
 	} else {
-        var defaultValue string = "1d"
-        parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
-        r.bucketWidth = &defaultValue
+		var defaultValue string = "1d"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
+		r.bucketWidth = &defaultValue
 	}
 	if r.projectIds != nil {
 		t := *r.projectIds
@@ -1079,9 +1079,9 @@ func (a *UsageAPIService) UsageCostsExecute(r ApiUsageCostsRequest) (*UsageRespo
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
-        var defaultValue int32 = 7
-        parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-        r.limit = &defaultValue
+		var defaultValue int32 = 7
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+		r.limit = &defaultValue
 	}
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
@@ -1263,9 +1263,9 @@ func (a *UsageAPIService) UsageEmbeddingsExecute(r ApiUsageEmbeddingsRequest) (*
 	if r.bucketWidth != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", r.bucketWidth, "form", "")
 	} else {
-        var defaultValue string = "1d"
-        parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
-        r.bucketWidth = &defaultValue
+		var defaultValue string = "1d"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
+		r.bucketWidth = &defaultValue
 	}
 	if r.projectIds != nil {
 		t := *r.projectIds
@@ -1519,9 +1519,9 @@ func (a *UsageAPIService) UsageImagesExecute(r ApiUsageImagesRequest) (*UsageRes
 	if r.bucketWidth != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", r.bucketWidth, "form", "")
 	} else {
-        var defaultValue string = "1d"
-        parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
-        r.bucketWidth = &defaultValue
+		var defaultValue string = "1d"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
+		r.bucketWidth = &defaultValue
 	}
 	if r.sources != nil {
 		t := *r.sources
@@ -1783,9 +1783,9 @@ func (a *UsageAPIService) UsageModerationsExecute(r ApiUsageModerationsRequest) 
 	if r.bucketWidth != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", r.bucketWidth, "form", "")
 	} else {
-        var defaultValue string = "1d"
-        parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
-        r.bucketWidth = &defaultValue
+		var defaultValue string = "1d"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
+		r.bucketWidth = &defaultValue
 	}
 	if r.projectIds != nil {
 		t := *r.projectIds
@@ -2004,9 +2004,9 @@ func (a *UsageAPIService) UsageVectorStoresExecute(r ApiUsageVectorStoresRequest
 	if r.bucketWidth != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", r.bucketWidth, "form", "")
 	} else {
-        var defaultValue string = "1d"
-        parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
-        r.bucketWidth = &defaultValue
+		var defaultValue string = "1d"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket_width", defaultValue, "form", "")
+		r.bucketWidth = &defaultValue
 	}
 	if r.projectIds != nil {
 		t := *r.projectIds

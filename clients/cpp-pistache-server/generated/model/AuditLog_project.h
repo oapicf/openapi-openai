@@ -32,7 +32,7 @@ class  AuditLog_project
 {
 public:
     AuditLog_project();
-    virtual ~AuditLog_project() = default;
+    virtual ~AuditLog_project();
 
 
     /// <summary>

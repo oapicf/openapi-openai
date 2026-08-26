@@ -49,12 +49,12 @@ openai_api_message_object_ROLE_e message_object_role_FromString(char* role);
 typedef struct message_object_t {
     char *id; // string
     openai_api_message_object_OBJECT_e object; //enum
-    int created_at; //numeric
+    int *created_at; //numeric
     char *thread_id; // string
     openai_api_message_object_STATUS_e status; //enum
     struct message_object_incomplete_details_t *incomplete_details; //model
-    int completed_at; //numeric
-    int incomplete_at; //numeric
+    int *completed_at; //numeric
+    int *incomplete_at; //numeric
     openai_api_message_object_ROLE_e role; //enum
     list_t *content; //nonprimitive container
     char *assistant_id; // string
@@ -68,12 +68,12 @@ typedef struct message_object_t {
 __attribute__((deprecated)) message_object_t *message_object_create(
     char *id,
     openai_api_message_object_OBJECT_e object,
-    int created_at,
+    int *created_at,
     char *thread_id,
     openai_api_message_object_STATUS_e status,
     message_object_incomplete_details_t *incomplete_details,
-    int completed_at,
-    int incomplete_at,
+    int *completed_at,
+    int *incomplete_at,
     openai_api_message_object_ROLE_e role,
     list_t *content,
     char *assistant_id,

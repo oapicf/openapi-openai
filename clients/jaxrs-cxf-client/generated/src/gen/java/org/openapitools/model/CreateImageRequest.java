@@ -19,7 +19,7 @@ public class CreateImageRequest  {
 
   @ApiModelProperty(value = "")
 
-  private CreateImageRequestModel model = dall-e-2;
+  private CreateImageRequestModel model;
 
  /**
   * The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
@@ -386,10 +386,7 @@ VIVID(String.valueOf("vivid")), NATURAL(String.valueOf("natural"));
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

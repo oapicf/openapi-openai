@@ -33,13 +33,13 @@ static run_step_details_tool_calls_object_tool_calls_inner_t *run_step_details_t
     if (!run_step_details_tool_calls_object_tool_calls_inner_local_var) {
         return NULL;
     }
+    memset(run_step_details_tool_calls_object_tool_calls_inner_local_var, 0, sizeof(run_step_details_tool_calls_object_tool_calls_inner_t));
+    run_step_details_tool_calls_object_tool_calls_inner_local_var->_library_owned = 1;
     run_step_details_tool_calls_object_tool_calls_inner_local_var->id = id;
     run_step_details_tool_calls_object_tool_calls_inner_local_var->type = type;
     run_step_details_tool_calls_object_tool_calls_inner_local_var->code_interpreter = code_interpreter;
     run_step_details_tool_calls_object_tool_calls_inner_local_var->file_search = file_search;
     run_step_details_tool_calls_object_tool_calls_inner_local_var->function = function;
-
-    run_step_details_tool_calls_object_tool_calls_inner_local_var->_library_owned = 1;
     return run_step_details_tool_calls_object_tool_calls_inner_local_var;
 }
 
@@ -50,13 +50,16 @@ __attribute__((deprecated)) run_step_details_tool_calls_object_tool_calls_inner_
     run_step_details_tool_calls_file_search_object_file_search_t *file_search,
     run_step_details_tool_calls_function_object_function_t *function
     ) {
-    return run_step_details_tool_calls_object_tool_calls_inner_create_internal (
+    run_step_details_tool_calls_object_tool_calls_inner_t *result = run_step_details_tool_calls_object_tool_calls_inner_create_internal (
         id,
         type,
         code_interpreter,
         file_search,
         function
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void run_step_details_tool_calls_object_tool_calls_inner_free(run_step_details_tool_calls_object_tool_calls_inner_t *run_step_details_tool_calls_object_tool_calls_inner) {
@@ -162,6 +165,8 @@ run_step_details_tool_calls_object_tool_calls_inner_t *run_step_details_tool_cal
 
     run_step_details_tool_calls_object_tool_calls_inner_t *run_step_details_tool_calls_object_tool_calls_inner_local_var = NULL;
 
+    char *id_local_str = NULL;
+
     // define the local variable for run_step_details_tool_calls_object_tool_calls_inner->code_interpreter
     run_step_details_tool_calls_code_object_code_interpreter_t *code_interpreter_local_nonprim = NULL;
 
@@ -240,16 +245,26 @@ run_step_details_tool_calls_object_tool_calls_inner_t *run_step_details_tool_cal
     function_local_nonprim = run_step_details_tool_calls_function_object_function_parseFromJSON(function); //nonprimitive
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+
     run_step_details_tool_calls_object_tool_calls_inner_local_var = run_step_details_tool_calls_object_tool_calls_inner_create_internal (
-        strdup(id->valuestring),
+        id_local_str,
         typeVariable,
         code_interpreter_local_nonprim,
         file_search_local_nonprim,
         function_local_nonprim
         );
 
+    if (!run_step_details_tool_calls_object_tool_calls_inner_local_var) {
+        goto end;
+    }
+
     return run_step_details_tool_calls_object_tool_calls_inner_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     if (code_interpreter_local_nonprim) {
         run_step_details_tool_calls_code_object_code_interpreter_free(code_interpreter_local_nonprim);
         code_interpreter_local_nonprim = NULL;

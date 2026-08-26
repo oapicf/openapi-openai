@@ -32,7 +32,7 @@ class  MessageContentImageUrlObject_image_url
 {
 public:
     MessageContentImageUrlObject_image_url();
-    virtual ~MessageContentImageUrlObject_image_url() = default;
+    virtual ~MessageContentImageUrlObject_image_url();
 
 
     /// <summary>

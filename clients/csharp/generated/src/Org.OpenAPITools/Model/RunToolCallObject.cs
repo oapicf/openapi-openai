@@ -150,8 +150,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RunToolCallObject" />
     /// </summary>
-    public class RunToolCallObjectJsonConverter : JsonConverter<RunToolCallObject>
+    public partial class RunToolCallObjectJsonConverter : JsonConverter<RunToolCallObject>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunToolCallObjectJsonConverter" /> class.
+        /// </summary>
+        public RunToolCallObjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RunToolCallObject" />
         /// </summary>

@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set Always `image_url`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	CreateModerationRequest_input_oneOf_inner_oneOf_image_url getImageUrl();
 
 	/*! \brief Set 
 	 */
-	void setImageUrl(CreateModerationRequest_input_oneOf_inner_oneOf_image_url  image_url);
+	void setImageUrl(CreateModerationRequest_input_oneOf_inner_oneOf_image_url image_url);
 
 
     private:

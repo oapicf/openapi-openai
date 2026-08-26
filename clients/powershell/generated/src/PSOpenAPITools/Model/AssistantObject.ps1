@@ -149,19 +149,19 @@ function Initialize-AssistantObject {
 
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "created_at" = ${CreatedAt}
-            "name" = ${Name}
-            "description" = ${Description}
-            "model" = ${Model}
-            "instructions" = ${Instructions}
-            "tools" = ${Tools}
-            "tool_resources" = ${ToolResources}
-            "metadata" = ${Metadata}
-            "temperature" = ${Temperature}
-            "top_p" = ${TopP}
-            "response_format" = ${ResponseFormat}
+            'id' = ${Id}
+            'object' = ${Object}
+            'created_at' = ${CreatedAt}
+            'name' = ${Name}
+            'description' = ${Description}
+            'model' = ${Model}
+            'instructions' = ${Instructions}
+            'tools' = ${Tools}
+            'tool_resources' = ${ToolResources}
+            'metadata' = ${Metadata}
+            'temperature' = ${Temperature}
+            'top_p' = ${TopP}
+            'response_format' = ${ResponseFormat}
         }
 
 
@@ -199,7 +199,7 @@ function ConvertFrom-JsonToAssistantObject {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in AssistantObject
-        $AllProperties = ("id", "object", "created_at", "name", "description", "model", "instructions", "tools", "tool_resources", "metadata", "temperature", "top_p", "response_format")
+        $AllProperties = ('id', 'object', 'created_at', 'name', 'description', 'model', 'instructions', 'tools', 'tool_resources', 'metadata', 'temperature', 'top_p', 'response_format')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -210,98 +210,98 @@ function ConvertFrom-JsonToAssistantObject {
             throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'id'))) {
             throw "Error! JSON cannot be serialized due to the required property 'id' missing."
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Id = $JsonParameters.PSobject.Properties['id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "object"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'object'))) {
             throw "Error! JSON cannot be serialized due to the required property 'object' missing."
         } else {
-            $Object = $JsonParameters.PSobject.Properties["object"].value
+            $Object = $JsonParameters.PSobject.Properties['object'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created_at"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'created_at'))) {
             throw "Error! JSON cannot be serialized due to the required property 'created_at' missing."
         } else {
-            $CreatedAt = $JsonParameters.PSobject.Properties["created_at"].value
+            $CreatedAt = $JsonParameters.PSobject.Properties['created_at'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'name'))) {
             throw "Error! JSON cannot be serialized due to the required property 'name' missing."
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Name = $JsonParameters.PSobject.Properties['name'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'description'))) {
             throw "Error! JSON cannot be serialized due to the required property 'description' missing."
         } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
+            $Description = $JsonParameters.PSobject.Properties['description'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'model'))) {
             throw "Error! JSON cannot be serialized due to the required property 'model' missing."
         } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
+            $Model = $JsonParameters.PSobject.Properties['model'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "instructions"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'instructions'))) {
             throw "Error! JSON cannot be serialized due to the required property 'instructions' missing."
         } else {
-            $Instructions = $JsonParameters.PSobject.Properties["instructions"].value
+            $Instructions = $JsonParameters.PSobject.Properties['instructions'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tools"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tools'))) {
             throw "Error! JSON cannot be serialized due to the required property 'tools' missing."
         } else {
-            $Tools = $JsonParameters.PSobject.Properties["tools"].value
+            $Tools = $JsonParameters.PSobject.Properties['tools'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'metadata'))) {
             throw "Error! JSON cannot be serialized due to the required property 'metadata' missing."
         } else {
-            $Metadata = $JsonParameters.PSobject.Properties["metadata"].value
+            $Metadata = $JsonParameters.PSobject.Properties['metadata'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tool_resources"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'tool_resources'))) { #optional property not found
             $ToolResources = $null
         } else {
-            $ToolResources = $JsonParameters.PSobject.Properties["tool_resources"].value
+            $ToolResources = $JsonParameters.PSobject.Properties['tool_resources'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "temperature"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'temperature'))) { #optional property not found
             $Temperature = $null
         } else {
-            $Temperature = $JsonParameters.PSobject.Properties["temperature"].value
+            $Temperature = $JsonParameters.PSobject.Properties['temperature'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "top_p"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'top_p'))) { #optional property not found
             $TopP = $null
         } else {
-            $TopP = $JsonParameters.PSobject.Properties["top_p"].value
+            $TopP = $JsonParameters.PSobject.Properties['top_p'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "response_format"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'response_format'))) { #optional property not found
             $ResponseFormat = $null
         } else {
-            $ResponseFormat = $JsonParameters.PSobject.Properties["response_format"].value
+            $ResponseFormat = $JsonParameters.PSobject.Properties['response_format'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "object" = ${Object}
-            "created_at" = ${CreatedAt}
-            "name" = ${Name}
-            "description" = ${Description}
-            "model" = ${Model}
-            "instructions" = ${Instructions}
-            "tools" = ${Tools}
-            "tool_resources" = ${ToolResources}
-            "metadata" = ${Metadata}
-            "temperature" = ${Temperature}
-            "top_p" = ${TopP}
-            "response_format" = ${ResponseFormat}
+            'id' = ${Id}
+            'object' = ${Object}
+            'created_at' = ${CreatedAt}
+            'name' = ${Name}
+            'description' = ${Description}
+            'model' = ${Model}
+            'instructions' = ${Instructions}
+            'tools' = ${Tools}
+            'tool_resources' = ${ToolResources}
+            'metadata' = ${Metadata}
+            'temperature' = ${Temperature}
+            'top_p' = ${TopP}
+            'response_format' = ${ResponseFormat}
         }
 
         return $PSO

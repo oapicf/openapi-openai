@@ -49,9 +49,9 @@ typedef struct invite_t {
     char *email; // string
     openai_api_invite_ROLE_e role; //enum
     openai_api_invite_STATUS_e status; //enum
-    int invited_at; //numeric
-    int expires_at; //numeric
-    int accepted_at; //numeric
+    int *invited_at; //numeric
+    int *expires_at; //numeric
+    int *accepted_at; //numeric
     list_t *projects; //nonprimitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -63,9 +63,9 @@ __attribute__((deprecated)) invite_t *invite_create(
     char *email,
     openai_api_invite_ROLE_e role,
     openai_api_invite_STATUS_e status,
-    int invited_at,
-    int expires_at,
-    int accepted_at,
+    int *invited_at,
+    int *expires_at,
+    int *accepted_at,
     list_t *projects
 );
 

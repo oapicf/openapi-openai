@@ -52,49 +52,49 @@ public:
 
 	/*! \brief Set The checkpoint identifier, which can be referenced in the API endpoints.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The Unix timestamp (in seconds) for when the checkpoint was created.
 	 */
 	int getCreatedAt();
 
 	/*! \brief Set The Unix timestamp (in seconds) for when the checkpoint was created.
 	 */
-	void setCreatedAt(int  created_at);
+	void setCreatedAt(int created_at);
 	/*! \brief Get The name of the fine-tuned checkpoint model that is created.
 	 */
 	std::string getFineTunedModelCheckpoint();
 
 	/*! \brief Set The name of the fine-tuned checkpoint model that is created.
 	 */
-	void setFineTunedModelCheckpoint(std::string  fine_tuned_model_checkpoint);
+	void setFineTunedModelCheckpoint(std::string fine_tuned_model_checkpoint);
 	/*! \brief Get The step number that the checkpoint was created at.
 	 */
 	int getStepNumber();
 
 	/*! \brief Set The step number that the checkpoint was created at.
 	 */
-	void setStepNumber(int  step_number);
+	void setStepNumber(int step_number);
 	/*! \brief Get 
 	 */
 	FineTuningJobCheckpoint_metrics getMetrics();
 
 	/*! \brief Set 
 	 */
-	void setMetrics(FineTuningJobCheckpoint_metrics  metrics);
+	void setMetrics(FineTuningJobCheckpoint_metrics metrics);
 	/*! \brief Get The name of the fine-tuning job that this checkpoint was created from.
 	 */
 	std::string getFineTuningJobId();
 
 	/*! \brief Set The name of the fine-tuning job that this checkpoint was created from.
 	 */
-	void setFineTuningJobId(std::string  fine_tuning_job_id);
+	void setFineTuningJobId(std::string fine_tuning_job_id);
 	/*! \brief Get The object type, which is always \"fine_tuning.job.checkpoint\".
 	 */
 	std::string getObject();
 
 	/*! \brief Set The object type, which is always \"fine_tuning.job.checkpoint\".
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 
 
     private:

@@ -97,7 +97,7 @@ class RealtimeController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\RealtimeSessionCreateRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\RealtimeSessionCreateRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($realtimeSessionCreateRequest, $asserts);
         if ($response instanceof Response) {

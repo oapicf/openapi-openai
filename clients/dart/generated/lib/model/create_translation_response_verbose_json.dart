@@ -69,10 +69,12 @@ class CreateTranslationResponseVerboseJson {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateTranslationResponseVerboseJson[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateTranslationResponseVerboseJson[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'language'), 'Required key "CreateTranslationResponseVerboseJson[language]" is missing from JSON.');
+        assert(json[r'language'] != null, 'Required key "CreateTranslationResponseVerboseJson[language]" has a null value in JSON.');
+        assert(json.containsKey(r'duration'), 'Required key "CreateTranslationResponseVerboseJson[duration]" is missing from JSON.');
+        assert(json[r'duration'] != null, 'Required key "CreateTranslationResponseVerboseJson[duration]" has a null value in JSON.');
+        assert(json.containsKey(r'text'), 'Required key "CreateTranslationResponseVerboseJson[text]" is missing from JSON.');
+        assert(json[r'text'] != null, 'Required key "CreateTranslationResponseVerboseJson[text]" has a null value in JSON.');
         return true;
       }());
 

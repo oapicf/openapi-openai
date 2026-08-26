@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | **String** |  | 
+**object** | **Object** |  (enum: organization.usage.moderations.result) | 
 **input_tokens** | **i32** | The aggregated number of input tokens used. | 
 **num_model_requests** | **i32** | The count of requests made to the model. | 
 **project_id** | Option<**String**> | When `group_by=project_id`, this field provides the project ID of the grouped usage result. | [optional]

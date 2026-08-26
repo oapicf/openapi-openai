@@ -44,19 +44,19 @@ static create_speech_request_t *create_speech_request_create_internal(
     char *input,
     openai_api_create_speech_request_VOICE_e voice,
     openai_api_create_speech_request_RESPONSEFORMAT_e response_format,
-    double speed
+    double *speed
     ) {
     create_speech_request_t *create_speech_request_local_var = malloc(sizeof(create_speech_request_t));
     if (!create_speech_request_local_var) {
         return NULL;
     }
+    memset(create_speech_request_local_var, 0, sizeof(create_speech_request_t));
+    create_speech_request_local_var->_library_owned = 1;
     create_speech_request_local_var->model = model;
     create_speech_request_local_var->input = input;
     create_speech_request_local_var->voice = voice;
     create_speech_request_local_var->response_format = response_format;
     create_speech_request_local_var->speed = speed;
-
-    create_speech_request_local_var->_library_owned = 1;
     return create_speech_request_local_var;
 }
 
@@ -65,15 +65,24 @@ __attribute__((deprecated)) create_speech_request_t *create_speech_request_creat
     char *input,
     openai_api_create_speech_request_VOICE_e voice,
     openai_api_create_speech_request_RESPONSEFORMAT_e response_format,
-    double speed
+    double *speed
     ) {
-    return create_speech_request_create_internal (
+    double *speed_copy = NULL;
+    if (speed) {
+        speed_copy = malloc(sizeof(double));
+        if (speed_copy) *speed_copy = *speed;
+    }
+    create_speech_request_t *result = create_speech_request_create_internal (
         model,
         input,
         voice,
         response_format,
-        speed
+        speed_copy
         );
+    if (!result) {
+        free(speed_copy);
+    }
+    return result;
 }
 
 void create_speech_request_free(create_speech_request_t *create_speech_request) {
@@ -92,6 +101,10 @@ void create_speech_request_free(create_speech_request_t *create_speech_request) 
     if (create_speech_request->input) {
         free(create_speech_request->input);
         create_speech_request->input = NULL;
+    }
+    if (create_speech_request->speed) {
+        free(create_speech_request->speed);
+        create_speech_request->speed = NULL;
     }
     free(create_speech_request);
 }
@@ -143,7 +156,7 @@ cJSON *create_speech_request_convertToJSON(create_speech_request_t *create_speec
 
     // create_speech_request->speed
     if(create_speech_request->speed) {
-    if(cJSON_AddNumberToObject(item, "speed", create_speech_request->speed) == NULL) {
+    if(cJSON_AddNumberToObject(item, "speed", *create_speech_request->speed) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -162,6 +175,11 @@ create_speech_request_t *create_speech_request_parseFromJSON(cJSON *create_speec
 
     // define the local variable for create_speech_request->model
     create_speech_request_model_t *model_local_nonprim = NULL;
+
+    char *input_local_str = NULL;
+
+    // define the local variable for create_speech_request->speed
+    double *speed_local_var = NULL;
 
     // create_speech_request->model
     cJSON *model = cJSON_GetObjectItemCaseSensitive(create_speech_requestJSON, "model");
@@ -231,22 +249,42 @@ create_speech_request_t *create_speech_request_parseFromJSON(cJSON *create_speec
     {
     goto end; //Numeric
     }
+    speed_local_var = malloc(sizeof(double));
+    if(!speed_local_var)
+    {
+        goto end;
+    }
+    *speed_local_var = speed->valuedouble;
     }
 
 
+    if (input && !cJSON_IsNull(input)) input_local_str = strdup(input->valuestring);
+
     create_speech_request_local_var = create_speech_request_create_internal (
         model_local_nonprim,
-        strdup(input->valuestring),
+        input_local_str,
         voiceVariable,
         response_format ? response_formatVariable : openai_api_create_speech_request_RESPONSEFORMAT_NULL,
-        speed ? speed->valuedouble : 0
+        speed_local_var
         );
+
+    if (!create_speech_request_local_var) {
+        goto end;
+    }
 
     return create_speech_request_local_var;
 end:
     if (model_local_nonprim) {
         create_speech_request_model_free(model_local_nonprim);
         model_local_nonprim = NULL;
+    }
+    if (input_local_str) {
+        free(input_local_str);
+        input_local_str = NULL;
+    }
+    if (speed_local_var) {
+        free(speed_local_var);
+        speed_local_var = NULL;
     }
     return NULL;
 

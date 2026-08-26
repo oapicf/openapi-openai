@@ -34,7 +34,7 @@ class  UserListResponse
 {
 public:
     UserListResponse();
-    virtual ~UserListResponse() = default;
+    virtual ~UserListResponse();
 
 
     /// <summary>

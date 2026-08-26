@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIRunStepDetailsMessageCreationObject_message_creation : public OAIObject {
 public:
     OAIRunStepDetailsMessageCreationObject_message_creation();
-    OAIRunStepDetailsMessageCreationObject_message_creation(QString json);
+    OAIRunStepDetailsMessageCreationObject_message_creation(const QString &json);
     ~OAIRunStepDetailsMessageCreationObject_message_creation() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getMessageId() const;
     void setMessageId(const QString &message_id);

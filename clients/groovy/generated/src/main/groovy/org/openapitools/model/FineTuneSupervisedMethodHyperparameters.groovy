@@ -10,9 +10,9 @@ import org.openapitools.model.FineTuneDPOMethodHyperparametersNEpochs;
 @Canonical
 class FineTuneSupervisedMethodHyperparameters {
     
-    FineTuneDPOMethodHyperparametersBatchSize batchSize = auto
+    FineTuneDPOMethodHyperparametersBatchSize batchSize
     
-    FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto
+    FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier
     
-    FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto
+    FineTuneDPOMethodHyperparametersNEpochs nEpochs
 }

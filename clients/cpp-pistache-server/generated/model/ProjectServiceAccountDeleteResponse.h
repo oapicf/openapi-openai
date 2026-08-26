@@ -32,7 +32,7 @@ class  ProjectServiceAccountDeleteResponse
 {
 public:
     ProjectServiceAccountDeleteResponse();
-    virtual ~ProjectServiceAccountDeleteResponse() = default;
+    virtual ~ProjectServiceAccountDeleteResponse();
 
 
     /// <summary>

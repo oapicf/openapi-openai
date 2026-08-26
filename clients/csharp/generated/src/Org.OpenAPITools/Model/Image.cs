@@ -60,7 +60,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The base64-encoded JSON of the generated image, if &#x60;response_format&#x60; is &#x60;b64_json&#x60;.</value>
         [JsonPropertyName("b64_json")]
-        public string? B64Json { get { return this.B64JsonOption; } set { this.B64JsonOption = new(value); } }
+        public string? B64Json { get { return this.B64JsonOption.Value; } set { this.B64JsonOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Url
@@ -74,7 +74,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The URL of the generated image, if &#x60;response_format&#x60; is &#x60;url&#x60; (default).</value>
         [JsonPropertyName("url")]
-        public string? Url { get { return this.UrlOption; } set { this.UrlOption = new(value); } }
+        public string? Url { get { return this.UrlOption.Value; } set { this.UrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RevisedPrompt
@@ -88,7 +88,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The prompt that was used to generate the image, if there was any revision to the prompt.</value>
         [JsonPropertyName("revised_prompt")]
-        public string? RevisedPrompt { get { return this.RevisedPromptOption; } set { this.RevisedPromptOption = new(value); } }
+        public string? RevisedPrompt { get { return this.RevisedPromptOption.Value; } set { this.RevisedPromptOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -119,8 +119,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="Image" />
     /// </summary>
-    public class ImageJsonConverter : JsonConverter<Image>
+    public partial class ImageJsonConverter : JsonConverter<Image>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImageJsonConverter" /> class.
+        /// </summary>
+        public ImageJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="Image" />
         /// </summary>

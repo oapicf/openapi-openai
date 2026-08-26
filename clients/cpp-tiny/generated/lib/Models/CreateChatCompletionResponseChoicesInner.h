@@ -53,28 +53,28 @@ public:
 
 	/*! \brief Set The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
 	 */
-	void setFinishReason(std::string  finish_reason);
+	void setFinishReason(std::string finish_reason);
 	/*! \brief Get The index of the choice in the list of choices.
 	 */
 	int getIndex();
 
 	/*! \brief Set The index of the choice in the list of choices.
 	 */
-	void setIndex(int  index);
+	void setIndex(int index);
 	/*! \brief Get 
 	 */
 	ChatCompletionResponseMessage getMessage();
 
 	/*! \brief Set 
 	 */
-	void setMessage(ChatCompletionResponseMessage  message);
+	void setMessage(ChatCompletionResponseMessage message);
 	/*! \brief Get 
 	 */
 	CreateChatCompletionResponse_choices_inner_logprobs getLogprobs();
 
 	/*! \brief Set 
 	 */
-	void setLogprobs(CreateChatCompletionResponse_choices_inner_logprobs  logprobs);
+	void setLogprobs(CreateChatCompletionResponse_choices_inner_logprobs logprobs);
 
 
     private:

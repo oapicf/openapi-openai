@@ -34,13 +34,13 @@ class OAIRunStepDetailsToolCallsFileSearchResultObject_content_inner;
 class OAIRunStepDetailsToolCallsFileSearchResultObject : public OAIObject {
 public:
     OAIRunStepDetailsToolCallsFileSearchResultObject();
-    OAIRunStepDetailsToolCallsFileSearchResultObject(QString json);
+    OAIRunStepDetailsToolCallsFileSearchResultObject(const QString &json);
     ~OAIRunStepDetailsToolCallsFileSearchResultObject() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getFileId() const;
     void setFileId(const QString &file_id);

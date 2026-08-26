@@ -29,6 +29,8 @@ ProjectApiKey::ProjectApiKey()
     
 }
 
+ProjectApiKey::~ProjectApiKey() = default;
+
 void ProjectApiKey::validate() const
 {
     std::stringstream msg;

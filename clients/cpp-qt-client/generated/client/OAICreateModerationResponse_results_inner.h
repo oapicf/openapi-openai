@@ -36,13 +36,13 @@ class OAICreateModerationResponse_results_inner_category_applied_input_types;
 class OAICreateModerationResponse_results_inner : public OAIObject {
 public:
     OAICreateModerationResponse_results_inner();
-    OAICreateModerationResponse_results_inner(QString json);
+    OAICreateModerationResponse_results_inner(const QString &json);
     ~OAICreateModerationResponse_results_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     bool isFlagged() const;
     void setFlagged(const bool &flagged);

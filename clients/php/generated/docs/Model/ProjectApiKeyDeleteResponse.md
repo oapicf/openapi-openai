@@ -1,4 +1,4 @@
-# # ProjectApiKeyDeleteResponse
+# ProjectApiKeyDeleteResponse
 
 ## Properties
 

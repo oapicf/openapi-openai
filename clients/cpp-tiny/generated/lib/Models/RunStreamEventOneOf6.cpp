@@ -86,7 +86,7 @@ RunStreamEvent_oneOf_6::getEvent()
 }
 
 void
-RunStreamEvent_oneOf_6::setEvent(std::string  event)
+RunStreamEvent_oneOf_6::setEvent(std::string event)
 {
 	this->event = event;
 }
@@ -98,7 +98,7 @@ RunStreamEvent_oneOf_6::getData()
 }
 
 void
-RunStreamEvent_oneOf_6::setData(RunObject  data)
+RunStreamEvent_oneOf_6::setData(RunObject data)
 {
 	this->data = data;
 }

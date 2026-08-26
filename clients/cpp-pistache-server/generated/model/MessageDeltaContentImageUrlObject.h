@@ -33,7 +33,7 @@ class  MessageDeltaContentImageUrlObject
 {
 public:
     MessageDeltaContentImageUrlObject();
-    virtual ~MessageDeltaContentImageUrlObject() = default;
+    virtual ~MessageDeltaContentImageUrlObject();
 
 
     /// <summary>

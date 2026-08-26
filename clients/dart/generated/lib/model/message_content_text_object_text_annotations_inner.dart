@@ -81,10 +81,18 @@ class MessageContentTextObjectTextAnnotationsInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageContentTextObjectTextAnnotationsInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageContentTextObjectTextAnnotationsInner[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "MessageContentTextObjectTextAnnotationsInner[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "MessageContentTextObjectTextAnnotationsInner[type]" has a null value in JSON.');
+        assert(json.containsKey(r'text'), 'Required key "MessageContentTextObjectTextAnnotationsInner[text]" is missing from JSON.');
+        assert(json[r'text'] != null, 'Required key "MessageContentTextObjectTextAnnotationsInner[text]" has a null value in JSON.');
+        assert(json.containsKey(r'file_citation'), 'Required key "MessageContentTextObjectTextAnnotationsInner[file_citation]" is missing from JSON.');
+        assert(json[r'file_citation'] != null, 'Required key "MessageContentTextObjectTextAnnotationsInner[file_citation]" has a null value in JSON.');
+        assert(json.containsKey(r'start_index'), 'Required key "MessageContentTextObjectTextAnnotationsInner[start_index]" is missing from JSON.');
+        assert(json[r'start_index'] != null, 'Required key "MessageContentTextObjectTextAnnotationsInner[start_index]" has a null value in JSON.');
+        assert(json.containsKey(r'end_index'), 'Required key "MessageContentTextObjectTextAnnotationsInner[end_index]" is missing from JSON.');
+        assert(json[r'end_index'] != null, 'Required key "MessageContentTextObjectTextAnnotationsInner[end_index]" has a null value in JSON.');
+        assert(json.containsKey(r'file_path'), 'Required key "MessageContentTextObjectTextAnnotationsInner[file_path]" is missing from JSON.');
+        assert(json[r'file_path'] != null, 'Required key "MessageContentTextObjectTextAnnotationsInner[file_path]" has a null value in JSON.');
         return true;
       }());
 
@@ -152,29 +160,29 @@ class MessageContentTextObjectTextAnnotationsInner {
 }
 
 /// Always `file_citation`.
-class MessageContentTextObjectTextAnnotationsInnerTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageContentTextObjectTextAnnotationsInnerTypeEnum._(this.value);
+enum MessageContentTextObjectTextAnnotationsInnerTypeEnum {
+  fileCitation._(r'file_citation'),
+  filePath._(r'file_path'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageContentTextObjectTextAnnotationsInnerTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const fileCitation = MessageContentTextObjectTextAnnotationsInnerTypeEnum._(r'file_citation');
-  static const filePath = MessageContentTextObjectTextAnnotationsInnerTypeEnum._(r'file_path');
-
-  /// List of all possible values in this [enum][MessageContentTextObjectTextAnnotationsInnerTypeEnum].
-  static const values = <MessageContentTextObjectTextAnnotationsInnerTypeEnum>[
-    fileCitation,
-    filePath,
-  ];
-
+  /// Returns the instance of [MessageContentTextObjectTextAnnotationsInnerTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageContentTextObjectTextAnnotationsInnerTypeEnum? fromJson(dynamic value) => MessageContentTextObjectTextAnnotationsInnerTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageContentTextObjectTextAnnotationsInnerTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageContentTextObjectTextAnnotationsInnerTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageContentTextObjectTextAnnotationsInnerTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -196,9 +204,10 @@ class MessageContentTextObjectTextAnnotationsInnerTypeEnumTypeTransformer {
 
   const MessageContentTextObjectTextAnnotationsInnerTypeEnumTypeTransformer._();
 
-  String encode(MessageContentTextObjectTextAnnotationsInnerTypeEnum data) => data.value;
+  String encode(MessageContentTextObjectTextAnnotationsInnerTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageContentTextObjectTextAnnotationsInnerTypeEnum.
+  /// Returns the instance of [MessageContentTextObjectTextAnnotationsInnerTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -207,6 +216,9 @@ class MessageContentTextObjectTextAnnotationsInnerTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageContentTextObjectTextAnnotationsInnerTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageContentTextObjectTextAnnotationsInnerTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'file_citation': return MessageContentTextObjectTextAnnotationsInnerTypeEnum.fileCitation;
@@ -220,7 +232,7 @@ class MessageContentTextObjectTextAnnotationsInnerTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageContentTextObjectTextAnnotationsInnerTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageContentTextObjectTextAnnotationsInnerTypeEnumTypeTransformer? _instance;
 }
 

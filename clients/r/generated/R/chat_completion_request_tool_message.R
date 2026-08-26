@@ -86,13 +86,36 @@ ChatCompletionRequestToolMessage <- R6::R6Class(
       }
       if (!is.null(self$`content`)) {
         ChatCompletionRequestToolMessageObject[["content"]] <-
-          self$`content`$toSimpleType()
+          self$extractSimpleType(self$`content`)
       }
       if (!is.null(self$`tool_call_id`)) {
         ChatCompletionRequestToolMessageObject[["tool_call_id"]] <-
           self$`tool_call_id`
       }
       return(ChatCompletionRequestToolMessageObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

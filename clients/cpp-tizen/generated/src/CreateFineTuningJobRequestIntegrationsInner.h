@@ -46,11 +46,11 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get 
+	/*! \brief Get The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
 	 */
 	std::string getType();
 
-	/*! \brief Set 
+	/*! \brief Set The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
 	 */
 	void setType(std::string  type);
 	/*! \brief Get 

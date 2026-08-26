@@ -39,7 +39,7 @@ class  MessageObject_content_inner
 {
 public:
     MessageObject_content_inner();
-    virtual ~MessageObject_content_inner() = default;
+    virtual ~MessageObject_content_inner();
 
 
     /// <summary>

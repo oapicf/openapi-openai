@@ -139,7 +139,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Specifies the detail level of the image. &#x60;low&#x60; uses fewer tokens, you can opt in to high resolution using &#x60;high&#x60;. Default value is &#x60;auto&#x60;</value>
         [JsonPropertyName("detail")]
-        public DetailEnum? Detail { get { return this.DetailOption; } set { this.DetailOption = new(value); } }
+        public DetailEnum? Detail { get { return this.DetailOption.Value; } set { this.DetailOption = new(value); } }
 
         /// <summary>
         /// The external URL of the image, must be a supported image types: jpeg, jpg, png, gif, webp.
@@ -176,8 +176,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageContentImageUrlObjectImageUrl" />
     /// </summary>
-    public class MessageContentImageUrlObjectImageUrlJsonConverter : JsonConverter<MessageContentImageUrlObjectImageUrl>
+    public partial class MessageContentImageUrlObjectImageUrlJsonConverter : JsonConverter<MessageContentImageUrlObjectImageUrl>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageContentImageUrlObjectImageUrlJsonConverter" /> class.
+        /// </summary>
+        public MessageContentImageUrlObjectImageUrlJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageContentImageUrlObjectImageUrl" />
         /// </summary>

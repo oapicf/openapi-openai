@@ -2,8 +2,11 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.AuditLogActor
 import org.openapitools.model.AuditLogApiKeyCreated
 import org.openapitools.model.AuditLogApiKeyDeleted
@@ -66,102 +69,169 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class AuditLog(
 
-    @Schema(example = "null", required = true, description = "The ID of this log.")
+    @Schema(required = true, description = "The ID of this log.")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: AuditLogEventType,
 
-    @Schema(example = "null", required = true, description = "The Unix timestamp (in seconds) of the event.")
+    @Schema(required = true, description = "The Unix timestamp (in seconds) of the event.")
+    @param:JsonProperty("effective_at")
     @get:JsonProperty("effective_at", required = true) val effectiveAt: kotlin.Int,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("actor")
     @get:JsonProperty("actor", required = true) val actor: AuditLogActor,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("project")
     @get:JsonProperty("project") val project: AuditLogProject? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("api_key.created")
     @get:JsonProperty("api_key.created") val apiKeyCreated: AuditLogApiKeyCreated? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("api_key.updated")
     @get:JsonProperty("api_key.updated") val apiKeyUpdated: AuditLogApiKeyUpdated? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("api_key.deleted")
     @get:JsonProperty("api_key.deleted") val apiKeyDeleted: AuditLogApiKeyDeleted? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("invite.sent")
     @get:JsonProperty("invite.sent") val inviteSent: AuditLogInviteSent? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("invite.accepted")
     @get:JsonProperty("invite.accepted") val inviteAccepted: AuditLogInviteAccepted? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("invite.deleted")
     @get:JsonProperty("invite.deleted") val inviteDeleted: AuditLogInviteAccepted? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("login.failed")
     @get:JsonProperty("login.failed") val loginFailed: AuditLogLoginFailed? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("logout.failed")
     @get:JsonProperty("logout.failed") val logoutFailed: AuditLogLoginFailed? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("organization.updated")
     @get:JsonProperty("organization.updated") val organizationUpdated: AuditLogOrganizationUpdated? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("project.created")
     @get:JsonProperty("project.created") val projectCreated: AuditLogProjectCreated? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("project.updated")
     @get:JsonProperty("project.updated") val projectUpdated: AuditLogProjectUpdated? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("project.archived")
     @get:JsonProperty("project.archived") val projectArchived: AuditLogProjectArchived? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("rate_limit.updated")
     @get:JsonProperty("rate_limit.updated") val rateLimitUpdated: AuditLogRateLimitUpdated? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("rate_limit.deleted")
     @get:JsonProperty("rate_limit.deleted") val rateLimitDeleted: AuditLogRateLimitDeleted? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("service_account.created")
     @get:JsonProperty("service_account.created") val serviceAccountCreated: AuditLogServiceAccountCreated? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("service_account.updated")
     @get:JsonProperty("service_account.updated") val serviceAccountUpdated: AuditLogServiceAccountUpdated? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("service_account.deleted")
     @get:JsonProperty("service_account.deleted") val serviceAccountDeleted: AuditLogServiceAccountDeleted? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("user.added")
     @get:JsonProperty("user.added") val userAdded: AuditLogUserAdded? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("user.updated")
     @get:JsonProperty("user.updated") val userUpdated: AuditLogUserUpdated? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("user.deleted")
     @get:JsonProperty("user.deleted") val userDeleted: AuditLogUserDeleted? = null
 ) {
 

@@ -1,4 +1,4 @@
-# # RealtimeServerEventConversationItemInputAudioTranscriptionFailed
+# RealtimeServerEventConversationItemInputAudioTranscriptionFailed
 
 ## Properties
 

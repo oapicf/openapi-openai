@@ -26,6 +26,8 @@ RunToolCallObject_function::RunToolCallObject_function()
     
 }
 
+RunToolCallObject_function::~RunToolCallObject_function() = default;
+
 void RunToolCallObject_function::validate() const
 {
     std::stringstream msg;

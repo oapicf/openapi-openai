@@ -165,7 +165,7 @@ ListFilesResponse::getObject()
 }
 
 void
-ListFilesResponse::setObject(std::string  object)
+ListFilesResponse::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -177,7 +177,7 @@ ListFilesResponse::getData()
 }
 
 void
-ListFilesResponse::setData(std::list <OpenAIFile> data)
+ListFilesResponse::setData(std::list<OpenAIFile> data)
 {
 	this->data = data;
 }
@@ -189,7 +189,7 @@ ListFilesResponse::getFirstId()
 }
 
 void
-ListFilesResponse::setFirstId(std::string  first_id)
+ListFilesResponse::setFirstId(std::string first_id)
 {
 	this->first_id = first_id;
 }
@@ -201,7 +201,7 @@ ListFilesResponse::getLastId()
 }
 
 void
-ListFilesResponse::setLastId(std::string  last_id)
+ListFilesResponse::setLastId(std::string last_id)
 {
 	this->last_id = last_id;
 }
@@ -213,7 +213,7 @@ ListFilesResponse::isHasMore()
 }
 
 void
-ListFilesResponse::setHasMore(bool  has_more)
+ListFilesResponse::setHasMore(bool has_more)
 {
 	this->has_more = has_more;
 }

@@ -114,10 +114,20 @@ class Invite {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Invite[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Invite[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'object'), 'Required key "Invite[object]" is missing from JSON.');
+        assert(json[r'object'] != null, 'Required key "Invite[object]" has a null value in JSON.');
+        assert(json.containsKey(r'id'), 'Required key "Invite[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "Invite[id]" has a null value in JSON.');
+        assert(json.containsKey(r'email'), 'Required key "Invite[email]" is missing from JSON.');
+        assert(json[r'email'] != null, 'Required key "Invite[email]" has a null value in JSON.');
+        assert(json.containsKey(r'role'), 'Required key "Invite[role]" is missing from JSON.');
+        assert(json[r'role'] != null, 'Required key "Invite[role]" has a null value in JSON.');
+        assert(json.containsKey(r'status'), 'Required key "Invite[status]" is missing from JSON.');
+        assert(json[r'status'] != null, 'Required key "Invite[status]" has a null value in JSON.');
+        assert(json.containsKey(r'invited_at'), 'Required key "Invite[invited_at]" is missing from JSON.');
+        assert(json[r'invited_at'] != null, 'Required key "Invite[invited_at]" has a null value in JSON.');
+        assert(json.containsKey(r'expires_at'), 'Required key "Invite[expires_at]" is missing from JSON.');
+        assert(json[r'expires_at'] != null, 'Required key "Invite[expires_at]" has a null value in JSON.');
         return true;
       }());
 
@@ -189,27 +199,28 @@ class Invite {
 }
 
 /// The object type, which is always `organization.invite`
-class InviteObjectEnum {
-  /// Instantiate a new enum with the provided [value].
-  const InviteObjectEnum._(this.value);
+enum InviteObjectEnum {
+  organizationPeriodInvite._(r'organization.invite'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const InviteObjectEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const organizationPeriodInvite = InviteObjectEnum._(r'organization.invite');
-
-  /// List of all possible values in this [enum][InviteObjectEnum].
-  static const values = <InviteObjectEnum>[
-    organizationPeriodInvite,
-  ];
-
+  /// Returns the instance of [InviteObjectEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static InviteObjectEnum? fromJson(dynamic value) => InviteObjectEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [InviteObjectEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<InviteObjectEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <InviteObjectEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -231,9 +242,10 @@ class InviteObjectEnumTypeTransformer {
 
   const InviteObjectEnumTypeTransformer._();
 
-  String encode(InviteObjectEnum data) => data.value;
+  String encode(InviteObjectEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a InviteObjectEnum.
+  /// Returns the instance of [InviteObjectEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -242,6 +254,9 @@ class InviteObjectEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   InviteObjectEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is InviteObjectEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'organization.invite': return InviteObjectEnum.organizationPeriodInvite;
@@ -254,35 +269,35 @@ class InviteObjectEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [InviteObjectEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static InviteObjectEnumTypeTransformer? _instance;
 }
 
 
 /// `owner` or `reader`
-class InviteRoleEnum {
-  /// Instantiate a new enum with the provided [value].
-  const InviteRoleEnum._(this.value);
+enum InviteRoleEnum {
+  owner._(r'owner'),
+  reader._(r'reader'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const InviteRoleEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const owner = InviteRoleEnum._(r'owner');
-  static const reader = InviteRoleEnum._(r'reader');
-
-  /// List of all possible values in this [enum][InviteRoleEnum].
-  static const values = <InviteRoleEnum>[
-    owner,
-    reader,
-  ];
-
+  /// Returns the instance of [InviteRoleEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static InviteRoleEnum? fromJson(dynamic value) => InviteRoleEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [InviteRoleEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<InviteRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <InviteRoleEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -304,9 +319,10 @@ class InviteRoleEnumTypeTransformer {
 
   const InviteRoleEnumTypeTransformer._();
 
-  String encode(InviteRoleEnum data) => data.value;
+  String encode(InviteRoleEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a InviteRoleEnum.
+  /// Returns the instance of [InviteRoleEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -315,6 +331,9 @@ class InviteRoleEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   InviteRoleEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is InviteRoleEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'owner': return InviteRoleEnum.owner;
@@ -328,37 +347,36 @@ class InviteRoleEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [InviteRoleEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static InviteRoleEnumTypeTransformer? _instance;
 }
 
 
 /// `accepted`,`expired`, or `pending`
-class InviteStatusEnum {
-  /// Instantiate a new enum with the provided [value].
-  const InviteStatusEnum._(this.value);
+enum InviteStatusEnum {
+  accepted._(r'accepted'),
+  expired._(r'expired'),
+  pending._(r'pending'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const InviteStatusEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const accepted = InviteStatusEnum._(r'accepted');
-  static const expired = InviteStatusEnum._(r'expired');
-  static const pending = InviteStatusEnum._(r'pending');
-
-  /// List of all possible values in this [enum][InviteStatusEnum].
-  static const values = <InviteStatusEnum>[
-    accepted,
-    expired,
-    pending,
-  ];
-
+  /// Returns the instance of [InviteStatusEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static InviteStatusEnum? fromJson(dynamic value) => InviteStatusEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [InviteStatusEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<InviteStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <InviteStatusEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -380,9 +398,10 @@ class InviteStatusEnumTypeTransformer {
 
   const InviteStatusEnumTypeTransformer._();
 
-  String encode(InviteStatusEnum data) => data.value;
+  String encode(InviteStatusEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a InviteStatusEnum.
+  /// Returns the instance of [InviteStatusEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -391,6 +410,9 @@ class InviteStatusEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   InviteStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is InviteStatusEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'accepted': return InviteStatusEnum.accepted;
@@ -405,7 +427,7 @@ class InviteStatusEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [InviteStatusEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static InviteStatusEnumTypeTransformer? _instance;
 }
 

@@ -95,7 +95,7 @@ CostsResult <- R6::R6Class(
       }
       if (!is.null(self$`amount`)) {
         CostsResultObject[["amount"]] <-
-          self$`amount`$toSimpleType()
+          self$extractSimpleType(self$`amount`)
       }
       if (!is.null(self$`line_item`)) {
         CostsResultObject[["line_item"]] <-
@@ -106,6 +106,29 @@ CostsResult <- R6::R6Class(
           self$`project_id`
       }
       return(CostsResultObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

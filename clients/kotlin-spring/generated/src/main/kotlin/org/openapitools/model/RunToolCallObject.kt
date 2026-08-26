@@ -24,14 +24,17 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class RunToolCallObject(
 
-    @Schema(example = "null", required = true, description = "The ID of the tool call. This ID must be referenced when you submit the tool outputs in using the [Submit tool outputs to run](/docs/api-reference/runs/submitToolOutputs) endpoint.")
+    @Schema(required = true, description = "The ID of the tool call. This ID must be referenced when you submit the tool outputs in using the [Submit tool outputs to run](/docs/api-reference/runs/submitToolOutputs) endpoint.")
+    @param:JsonProperty("id")
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The type of tool call the output is required for. For now, this is always `function`.")
+    @Schema(required = true, description = "The type of tool call the output is required for. For now, this is always `function`.")
+    @param:JsonProperty("type")
     @get:JsonProperty("type", required = true) val type: RunToolCallObject.Type,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
+    @Schema(required = true, description = "")
+    @param:JsonProperty("function")
     @get:JsonProperty("function", required = true) val function: RunToolCallObjectFunction
 ) {
 
@@ -48,7 +51,7 @@ data class RunToolCallObject(
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'RunToolCallObject'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
     }

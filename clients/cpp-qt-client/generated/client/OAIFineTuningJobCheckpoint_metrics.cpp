@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIFineTuningJobCheckpoint_metrics::OAIFineTuningJobCheckpoint_metrics(QString json) {
+OAIFineTuningJobCheckpoint_metrics::OAIFineTuningJobCheckpoint_metrics(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -56,7 +56,7 @@ void OAIFineTuningJobCheckpoint_metrics::initializeModel() {
     m_full_valid_mean_token_accuracy_isValid = false;
 }
 
-void OAIFineTuningJobCheckpoint_metrics::fromJson(QString jsonString) {
+void OAIFineTuningJobCheckpoint_metrics::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

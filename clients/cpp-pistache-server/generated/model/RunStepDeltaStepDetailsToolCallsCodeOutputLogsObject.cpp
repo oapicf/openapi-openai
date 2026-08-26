@@ -28,6 +28,8 @@ RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject::RunStepDeltaStepDetailsToo
     
 }
 
+RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject::~RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject() = default;
+
 void RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject::validate() const
 {
     std::stringstream msg;

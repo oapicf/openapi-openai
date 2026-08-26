@@ -106,7 +106,7 @@ MessageDeltaContentRefusalObject::getIndex()
 }
 
 void
-MessageDeltaContentRefusalObject::setIndex(int  index)
+MessageDeltaContentRefusalObject::setIndex(int index)
 {
 	this->index = index;
 }
@@ -118,7 +118,7 @@ MessageDeltaContentRefusalObject::getType()
 }
 
 void
-MessageDeltaContentRefusalObject::setType(std::string  type)
+MessageDeltaContentRefusalObject::setType(std::string type)
 {
 	this->type = type;
 }
@@ -130,7 +130,7 @@ MessageDeltaContentRefusalObject::getRefusal()
 }
 
 void
-MessageDeltaContentRefusalObject::setRefusal(std::string  refusal)
+MessageDeltaContentRefusalObject::setRefusal(std::string refusal)
 {
 	this->refusal = refusal;
 }

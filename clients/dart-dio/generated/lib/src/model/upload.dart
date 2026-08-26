@@ -208,15 +208,17 @@ class _$UploadSerializer implements PrimitiveSerializer<Upload> {
         case r'object':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UploadObjectEnum),
-          ) as UploadObjectEnum;
+            specifiedType: const FullType.nullable(UploadObjectEnum),
+          ) as UploadObjectEnum?;
+          if (valueDes == null) continue;
           result.object = valueDes;
           break;
         case r'file':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(OpenAIFile),
-          ) as OpenAIFile;
+            specifiedType: const FullType.nullable(OpenAIFile),
+          ) as OpenAIFile?;
+          if (valueDes == null) continue;
           result.file.replace(valueDes);
           break;
         default:

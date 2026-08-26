@@ -50,7 +50,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * A list of files attached to a vector store.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class VectorStoreFileObject {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -399,10 +399,7 @@ public class VectorStoreFileObject {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -461,8 +458,10 @@ public class VectorStoreFileObject {
       }
       // validate the required field `status`
       StatusEnum.validateJsonElement(jsonObj.get("status"));
+      if (jsonObj.get("last_error") != null && !jsonObj.get("last_error").isJsonNull()) {
       // validate the required field `last_error`
       VectorStoreFileObjectLastError.validateJsonElement(jsonObj.get("last_error"));
+      }
       // validate the optional field `chunking_strategy`
       if (jsonObj.get("chunking_strategy") != null && !jsonObj.get("chunking_strategy").isJsonNull()) {
         VectorStoreFileObjectChunkingStrategy.validateJsonElement(jsonObj.get("chunking_strategy"));

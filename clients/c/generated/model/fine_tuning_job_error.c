@@ -14,11 +14,11 @@ static fine_tuning_job_error_t *fine_tuning_job_error_create_internal(
     if (!fine_tuning_job_error_local_var) {
         return NULL;
     }
+    memset(fine_tuning_job_error_local_var, 0, sizeof(fine_tuning_job_error_t));
+    fine_tuning_job_error_local_var->_library_owned = 1;
     fine_tuning_job_error_local_var->code = code;
     fine_tuning_job_error_local_var->message = message;
     fine_tuning_job_error_local_var->param = param;
-
-    fine_tuning_job_error_local_var->_library_owned = 1;
     return fine_tuning_job_error_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) fine_tuning_job_error_t *fine_tuning_job_error_creat
     char *message,
     char *param
     ) {
-    return fine_tuning_job_error_create_internal (
+    fine_tuning_job_error_t *result = fine_tuning_job_error_create_internal (
         code,
         message,
         param
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void fine_tuning_job_error_free(fine_tuning_job_error_t *fine_tuning_job_error) {
@@ -99,6 +102,12 @@ fine_tuning_job_error_t *fine_tuning_job_error_parseFromJSON(cJSON *fine_tuning_
 
     fine_tuning_job_error_t *fine_tuning_job_error_local_var = NULL;
 
+    char *code_local_str = NULL;
+
+    char *message_local_str = NULL;
+
+    char *param_local_str = NULL;
+
     // fine_tuning_job_error->code
     cJSON *code = cJSON_GetObjectItemCaseSensitive(fine_tuning_job_errorJSON, "code");
     if (cJSON_IsNull(code)) {
@@ -145,14 +154,34 @@ fine_tuning_job_error_t *fine_tuning_job_error_parseFromJSON(cJSON *fine_tuning_
     }
 
 
+    if (code && !cJSON_IsNull(code)) code_local_str = strdup(code->valuestring);
+    if (message && !cJSON_IsNull(message)) message_local_str = strdup(message->valuestring);
+    if (param && !cJSON_IsNull(param)) param_local_str = strdup(param->valuestring);
+
     fine_tuning_job_error_local_var = fine_tuning_job_error_create_internal (
-        strdup(code->valuestring),
-        strdup(message->valuestring),
-        strdup(param->valuestring)
+        code_local_str,
+        message_local_str,
+        param_local_str
         );
+
+    if (!fine_tuning_job_error_local_var) {
+        goto end;
+    }
 
     return fine_tuning_job_error_local_var;
 end:
+    if (code_local_str) {
+        free(code_local_str);
+        code_local_str = NULL;
+    }
+    if (message_local_str) {
+        free(message_local_str);
+        message_local_str = NULL;
+    }
+    if (param_local_str) {
+        free(param_local_str);
+        param_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -26,6 +26,8 @@ CreateThreadAndRunRequest_tools_inner::CreateThreadAndRunRequest_tools_inner()
     
 }
 
+CreateThreadAndRunRequest_tools_inner::~CreateThreadAndRunRequest_tools_inner() = default;
+
 void CreateThreadAndRunRequest_tools_inner::validate() const
 {
     std::stringstream msg;

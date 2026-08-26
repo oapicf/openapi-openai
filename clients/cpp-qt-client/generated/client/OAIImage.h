@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIImage : public OAIObject {
 public:
     OAIImage();
-    OAIImage(QString json);
+    OAIImage(const QString &json);
     ~OAIImage() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getB64Json() const;
     void setB64Json(const QString &b64_json);

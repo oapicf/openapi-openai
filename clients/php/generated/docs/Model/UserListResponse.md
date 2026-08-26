@@ -1,4 +1,4 @@
-# # UserListResponse
+# UserListResponse
 
 ## Properties
 

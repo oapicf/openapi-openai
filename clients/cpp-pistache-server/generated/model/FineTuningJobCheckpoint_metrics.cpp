@@ -38,6 +38,8 @@ FineTuningJobCheckpoint_metrics::FineTuningJobCheckpoint_metrics()
     
 }
 
+FineTuningJobCheckpoint_metrics::~FineTuningJobCheckpoint_metrics() = default;
+
 void FineTuningJobCheckpoint_metrics::validate() const
 {
     std::stringstream msg;

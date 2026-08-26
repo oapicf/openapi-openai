@@ -1,4 +1,4 @@
-# # AssistantsNamedToolChoiceFunction
+# AssistantsNamedToolChoiceFunction
 
 ## Properties
 

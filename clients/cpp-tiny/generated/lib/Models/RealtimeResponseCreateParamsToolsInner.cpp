@@ -128,7 +128,7 @@ RealtimeResponseCreateParams_tools_inner::getType()
 }
 
 void
-RealtimeResponseCreateParams_tools_inner::setType(std::string  type)
+RealtimeResponseCreateParams_tools_inner::setType(std::string type)
 {
 	this->type = type;
 }
@@ -140,7 +140,7 @@ RealtimeResponseCreateParams_tools_inner::getName()
 }
 
 void
-RealtimeResponseCreateParams_tools_inner::setName(std::string  name)
+RealtimeResponseCreateParams_tools_inner::setName(std::string name)
 {
 	this->name = name;
 }
@@ -152,7 +152,7 @@ RealtimeResponseCreateParams_tools_inner::getDescription()
 }
 
 void
-RealtimeResponseCreateParams_tools_inner::setDescription(std::string  description)
+RealtimeResponseCreateParams_tools_inner::setDescription(std::string description)
 {
 	this->description = description;
 }
@@ -164,7 +164,7 @@ RealtimeResponseCreateParams_tools_inner::getParameters()
 }
 
 void
-RealtimeResponseCreateParams_tools_inner::setParameters(Object  parameters)
+RealtimeResponseCreateParams_tools_inner::setParameters(Object parameters)
 {
 	this->parameters = parameters;
 }

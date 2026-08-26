@@ -36,17 +36,17 @@ import io.swagger.v3.oas.annotations.media.Schema;
   FineTuningJobHyperparameters.JSON_PROPERTY_N_EPOCHS
 })
 @JsonTypeName("FineTuningJob_hyperparameters")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-01-29T14:08:04.353155660Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class FineTuningJobHyperparameters {
     public static final String JSON_PROPERTY_BATCH_SIZE = "batch_size";
-    private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
+    private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
 
     public static final String JSON_PROPERTY_LEARNING_RATE_MULTIPLIER = "learning_rate_multiplier";
-    private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+    private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
 
     public static final String JSON_PROPERTY_N_EPOCHS = "n_epochs";
-    private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
+    private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
 
     public FineTuningJobHyperparameters() {
     }
@@ -158,10 +158,7 @@ public class FineTuningJobHyperparameters {
      * (except the first line).
      */
     private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
+        return o == null ? "null" : o.toString().replace("\n", "\n    ");
     }
 
 }

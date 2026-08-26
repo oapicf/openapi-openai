@@ -99,17 +99,40 @@ CreateVectorStoreRequest <- R6::R6Class(
       }
       if (!is.null(self$`expires_after`)) {
         CreateVectorStoreRequestObject[["expires_after"]] <-
-          self$`expires_after`$toSimpleType()
+          self$extractSimpleType(self$`expires_after`)
       }
       if (!is.null(self$`chunking_strategy`)) {
         CreateVectorStoreRequestObject[["chunking_strategy"]] <-
-          self$`chunking_strategy`$toSimpleType()
+          self$extractSimpleType(self$`chunking_strategy`)
       }
       if (!is.null(self$`metadata`)) {
         CreateVectorStoreRequestObject[["metadata"]] <-
           self$`metadata`
       }
       return(CreateVectorStoreRequestObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

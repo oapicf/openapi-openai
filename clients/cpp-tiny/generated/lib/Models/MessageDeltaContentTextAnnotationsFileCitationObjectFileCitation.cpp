@@ -85,7 +85,7 @@ MessageDeltaContentTextAnnotationsFileCitationObject_file_citation::getFileId()
 }
 
 void
-MessageDeltaContentTextAnnotationsFileCitationObject_file_citation::setFileId(std::string  file_id)
+MessageDeltaContentTextAnnotationsFileCitationObject_file_citation::setFileId(std::string file_id)
 {
 	this->file_id = file_id;
 }
@@ -97,7 +97,7 @@ MessageDeltaContentTextAnnotationsFileCitationObject_file_citation::getQuote()
 }
 
 void
-MessageDeltaContentTextAnnotationsFileCitationObject_file_citation::setQuote(std::string  quote)
+MessageDeltaContentTextAnnotationsFileCitationObject_file_citation::setQuote(std::string quote)
 {
 	this->quote = quote;
 }

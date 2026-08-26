@@ -171,8 +171,9 @@ class _$CreateFineTuningJobRequestSerializer implements PrimitiveSerializer<Crea
         case r'hyperparameters':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateFineTuningJobRequestHyperparameters),
-          ) as CreateFineTuningJobRequestHyperparameters;
+            specifiedType: const FullType.nullable(CreateFineTuningJobRequestHyperparameters),
+          ) as CreateFineTuningJobRequestHyperparameters?;
+          if (valueDes == null) continue;
           result.hyperparameters.replace(valueDes);
           break;
         case r'suffix':
@@ -210,8 +211,9 @@ class _$CreateFineTuningJobRequestSerializer implements PrimitiveSerializer<Crea
         case r'method':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FineTuneMethod),
-          ) as FineTuneMethod;
+            specifiedType: const FullType.nullable(FineTuneMethod),
+          ) as FineTuneMethod?;
+          if (valueDes == null) continue;
           result.method.replace(valueDes);
           break;
         default:

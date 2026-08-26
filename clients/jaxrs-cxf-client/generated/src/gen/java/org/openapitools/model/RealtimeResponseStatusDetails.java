@@ -187,10 +187,7 @@ TURN_DETECTED(String.valueOf("turn_detected")), CLIENT_CANCELLED(String.valueOf(
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

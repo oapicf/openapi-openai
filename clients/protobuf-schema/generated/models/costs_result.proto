@@ -22,7 +22,7 @@ message CostsResult {
     OBJECT_ORGANIZATION_COSTS_RESULT = 0;
   }
 
-  Object object = 486497474;
+  string object = 486497474;
 
   CostsResultAmount amount = 340111274;
 

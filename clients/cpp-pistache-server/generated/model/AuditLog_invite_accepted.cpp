@@ -26,6 +26,8 @@ AuditLog_invite_accepted::AuditLog_invite_accepted()
     
 }
 
+AuditLog_invite_accepted::~AuditLog_invite_accepted() = default;
+
 void AuditLog_invite_accepted::validate() const
 {
     std::stringstream msg;

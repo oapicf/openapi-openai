@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIInvite_projects_inner::OAIInvite_projects_inner(QString json) {
+OAIInvite_projects_inner::OAIInvite_projects_inner(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIInvite_projects_inner::initializeModel() {
     m_role_isValid = false;
 }
 
-void OAIInvite_projects_inner::fromJson(QString jsonString) {
+void OAIInvite_projects_inner::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

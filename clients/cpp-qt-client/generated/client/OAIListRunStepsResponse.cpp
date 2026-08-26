@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIListRunStepsResponse::OAIListRunStepsResponse(QString json) {
+OAIListRunStepsResponse::OAIListRunStepsResponse(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -50,7 +50,7 @@ void OAIListRunStepsResponse::initializeModel() {
     m_has_more_isValid = false;
 }
 
-void OAIListRunStepsResponse::fromJson(QString jsonString) {
+void OAIListRunStepsResponse::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

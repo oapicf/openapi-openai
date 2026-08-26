@@ -91,7 +91,7 @@ class UploadsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($uploadId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -176,7 +176,7 @@ class UploadsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($uploadId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -264,14 +264,14 @@ class UploadsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($uploadId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CompleteUploadRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CompleteUploadRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($completeUploadRequest, $asserts);
         if ($response instanceof Response) {
@@ -359,7 +359,7 @@ class UploadsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateUploadRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateUploadRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($createUploadRequest, $asserts);
         if ($response instanceof Response) {

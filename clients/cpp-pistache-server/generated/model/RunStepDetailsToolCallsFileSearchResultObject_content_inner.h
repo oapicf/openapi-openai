@@ -32,7 +32,7 @@ class  RunStepDetailsToolCallsFileSearchResultObject_content_inner
 {
 public:
     RunStepDetailsToolCallsFileSearchResultObject_content_inner();
-    virtual ~RunStepDetailsToolCallsFileSearchResultObject_content_inner() = default;
+    virtual ~RunStepDetailsToolCallsFileSearchResultObject_content_inner();
 
 
     /// <summary>

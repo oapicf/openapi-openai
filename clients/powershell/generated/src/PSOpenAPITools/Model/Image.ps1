@@ -46,9 +46,9 @@ function Initialize-Image {
 
 
         $PSO = [PSCustomObject]@{
-            "b64_json" = ${B64Json}
-            "url" = ${Url}
-            "revised_prompt" = ${RevisedPrompt}
+            'b64_json' = ${B64Json}
+            'url' = ${Url}
+            'revised_prompt' = ${RevisedPrompt}
         }
 
 
@@ -86,35 +86,35 @@ function ConvertFrom-JsonToImage {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in Image
-        $AllProperties = ("b64_json", "url", "revised_prompt")
+        $AllProperties = ('b64_json', 'url', 'revised_prompt')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "b64_json"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'b64_json'))) { #optional property not found
             $B64Json = $null
         } else {
-            $B64Json = $JsonParameters.PSobject.Properties["b64_json"].value
+            $B64Json = $JsonParameters.PSobject.Properties['b64_json'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'url'))) { #optional property not found
             $Url = $null
         } else {
-            $Url = $JsonParameters.PSobject.Properties["url"].value
+            $Url = $JsonParameters.PSobject.Properties['url'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "revised_prompt"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'revised_prompt'))) { #optional property not found
             $RevisedPrompt = $null
         } else {
-            $RevisedPrompt = $JsonParameters.PSobject.Properties["revised_prompt"].value
+            $RevisedPrompt = $JsonParameters.PSobject.Properties['revised_prompt'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "b64_json" = ${B64Json}
-            "url" = ${Url}
-            "revised_prompt" = ${RevisedPrompt}
+            'b64_json' = ${B64Json}
+            'url' = ${Url}
+            'revised_prompt' = ${RevisedPrompt}
         }
 
         return $PSO

@@ -49,7 +49,7 @@ class FineTuningJobCheckpointMetrics
      * @var float|null
      * @SerializedName("step")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     protected ?float $step = null;
 
@@ -57,7 +57,7 @@ class FineTuningJobCheckpointMetrics
      * @var float|null
      * @SerializedName("train_loss")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     protected ?float $trainLoss = null;
 
@@ -65,7 +65,7 @@ class FineTuningJobCheckpointMetrics
      * @var float|null
      * @SerializedName("train_mean_token_accuracy")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     protected ?float $trainMeanTokenAccuracy = null;
 
@@ -73,7 +73,7 @@ class FineTuningJobCheckpointMetrics
      * @var float|null
      * @SerializedName("valid_loss")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     protected ?float $validLoss = null;
 
@@ -81,7 +81,7 @@ class FineTuningJobCheckpointMetrics
      * @var float|null
      * @SerializedName("valid_mean_token_accuracy")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     protected ?float $validMeanTokenAccuracy = null;
 
@@ -89,7 +89,7 @@ class FineTuningJobCheckpointMetrics
      * @var float|null
      * @SerializedName("full_valid_loss")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     protected ?float $fullValidLoss = null;
 
@@ -97,7 +97,7 @@ class FineTuningJobCheckpointMetrics
      * @var float|null
      * @SerializedName("full_valid_mean_token_accuracy")
      * @Type("float")
-    */
+     */
     #[Assert\Type("float")]
     protected ?float $fullValidMeanTokenAccuracy = null;
 
@@ -129,12 +129,12 @@ class FineTuningJobCheckpointMetrics
     }
 
     /**
-    * Sets step.
-    *
-    * @param float|null $step
-    *
-    * @return $this
-    */
+     * Sets step.
+     *
+     * @param float|null $step
+     *
+     * @return $this
+     */
     public function setStep(?float $step = null): self
     {
         $this->step = $step;
@@ -156,12 +156,12 @@ class FineTuningJobCheckpointMetrics
     }
 
     /**
-    * Sets trainLoss.
-    *
-    * @param float|null $trainLoss
-    *
-    * @return $this
-    */
+     * Sets trainLoss.
+     *
+     * @param float|null $trainLoss
+     *
+     * @return $this
+     */
     public function setTrainLoss(?float $trainLoss = null): self
     {
         $this->trainLoss = $trainLoss;
@@ -183,12 +183,12 @@ class FineTuningJobCheckpointMetrics
     }
 
     /**
-    * Sets trainMeanTokenAccuracy.
-    *
-    * @param float|null $trainMeanTokenAccuracy
-    *
-    * @return $this
-    */
+     * Sets trainMeanTokenAccuracy.
+     *
+     * @param float|null $trainMeanTokenAccuracy
+     *
+     * @return $this
+     */
     public function setTrainMeanTokenAccuracy(?float $trainMeanTokenAccuracy = null): self
     {
         $this->trainMeanTokenAccuracy = $trainMeanTokenAccuracy;
@@ -210,12 +210,12 @@ class FineTuningJobCheckpointMetrics
     }
 
     /**
-    * Sets validLoss.
-    *
-    * @param float|null $validLoss
-    *
-    * @return $this
-    */
+     * Sets validLoss.
+     *
+     * @param float|null $validLoss
+     *
+     * @return $this
+     */
     public function setValidLoss(?float $validLoss = null): self
     {
         $this->validLoss = $validLoss;
@@ -237,12 +237,12 @@ class FineTuningJobCheckpointMetrics
     }
 
     /**
-    * Sets validMeanTokenAccuracy.
-    *
-    * @param float|null $validMeanTokenAccuracy
-    *
-    * @return $this
-    */
+     * Sets validMeanTokenAccuracy.
+     *
+     * @param float|null $validMeanTokenAccuracy
+     *
+     * @return $this
+     */
     public function setValidMeanTokenAccuracy(?float $validMeanTokenAccuracy = null): self
     {
         $this->validMeanTokenAccuracy = $validMeanTokenAccuracy;
@@ -264,12 +264,12 @@ class FineTuningJobCheckpointMetrics
     }
 
     /**
-    * Sets fullValidLoss.
-    *
-    * @param float|null $fullValidLoss
-    *
-    * @return $this
-    */
+     * Sets fullValidLoss.
+     *
+     * @param float|null $fullValidLoss
+     *
+     * @return $this
+     */
     public function setFullValidLoss(?float $fullValidLoss = null): self
     {
         $this->fullValidLoss = $fullValidLoss;
@@ -291,12 +291,12 @@ class FineTuningJobCheckpointMetrics
     }
 
     /**
-    * Sets fullValidMeanTokenAccuracy.
-    *
-    * @param float|null $fullValidMeanTokenAccuracy
-    *
-    * @return $this
-    */
+     * Sets fullValidMeanTokenAccuracy.
+     *
+     * @param float|null $fullValidMeanTokenAccuracy
+     *
+     * @return $this
+     */
     public function setFullValidMeanTokenAccuracy(?float $fullValidMeanTokenAccuracy = null): self
     {
         $this->fullValidMeanTokenAccuracy = $fullValidMeanTokenAccuracy;

@@ -70,13 +70,36 @@ AuditLogActorSession <- R6::R6Class(
       AuditLogActorSessionObject <- list()
       if (!is.null(self$`user`)) {
         AuditLogActorSessionObject[["user"]] <-
-          self$`user`$toSimpleType()
+          self$extractSimpleType(self$`user`)
       }
       if (!is.null(self$`ip_address`)) {
         AuditLogActorSessionObject[["ip_address"]] <-
           self$`ip_address`
       }
       return(AuditLogActorSessionObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

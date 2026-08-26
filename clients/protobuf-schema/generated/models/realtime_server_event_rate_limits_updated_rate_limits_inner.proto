@@ -23,7 +23,7 @@ message RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
     NAME_TOKENS = 1;
   }
 
-  Name name = 3373707;
+  string name = 3373707;
 
   // The maximum allowed value for the rate limit.
   int32 limit = 102976443;

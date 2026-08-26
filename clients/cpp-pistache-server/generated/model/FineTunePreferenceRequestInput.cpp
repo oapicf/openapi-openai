@@ -27,6 +27,8 @@ FineTunePreferenceRequestInput::FineTunePreferenceRequestInput()
     
 }
 
+FineTunePreferenceRequestInput::~FineTunePreferenceRequestInput() = default;
+
 void FineTunePreferenceRequestInput::validate() const
 {
     std::stringstream msg;

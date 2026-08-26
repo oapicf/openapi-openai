@@ -33,7 +33,7 @@ class  ThreadStreamEvent
 {
 public:
     ThreadStreamEvent();
-    virtual ~ThreadStreamEvent() = default;
+    virtual ~ThreadStreamEvent();
 
 
     /// <summary>

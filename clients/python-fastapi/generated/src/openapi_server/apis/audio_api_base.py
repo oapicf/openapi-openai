@@ -10,6 +10,7 @@ from openapi_server.models.create_speech_request import CreateSpeechRequest
 from openapi_server.models.create_transcription200_response import CreateTranscription200Response
 from openapi_server.models.create_transcription_request_model import CreateTranscriptionRequestModel
 from openapi_server.models.create_translation200_response import CreateTranslation200Response
+from fastapi import File, UploadFile
 from openapi_server.security_api import get_token_ApiKeyAuth
 
 class BaseAudioApi:
@@ -21,13 +22,13 @@ class BaseAudioApi:
     async def create_speech(
         self,
         create_speech_request: CreateSpeechRequest,
-    ) -> file:
+    ) -> bytes:
         ...
 
 
     async def create_transcription(
         self,
-        file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. ")],
+        file: UploadFile,
         model: CreateTranscriptionRequestModel,
         language: Annotated[Optional[StrictStr], Field(description="The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. ")],
         prompt: Annotated[Optional[StrictStr], Field(description="An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language. ")],
@@ -40,7 +41,7 @@ class BaseAudioApi:
 
     async def create_translation(
         self,
-        file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. ")],
+        file: UploadFile,
         model: CreateTranscriptionRequestModel,
         prompt: Annotated[Optional[StrictStr], Field(description="An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. ")],
         response_format: Optional[AudioResponseFormat],

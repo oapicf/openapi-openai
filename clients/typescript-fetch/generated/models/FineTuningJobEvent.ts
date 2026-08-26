@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface FineTuningJobEvent {
     /**
      * The object type, which is always "fine_tuning.job.event".
-     * @type {string}
+     * @type {FineTuningJobEventObjectEnum}
      * @memberof FineTuningJobEvent
      */
     object: FineTuningJobEventObjectEnum;
@@ -39,7 +39,7 @@ export interface FineTuningJobEvent {
     createdAt: number;
     /**
      * The log level of the event.
-     * @type {string}
+     * @type {FineTuningJobEventLevelEnum}
      * @memberof FineTuningJobEvent
      */
     level: FineTuningJobEventLevelEnum;
@@ -51,7 +51,7 @@ export interface FineTuningJobEvent {
     message: string;
     /**
      * The type of event.
-     * @type {string}
+     * @type {FineTuningJobEventTypeEnum}
      * @memberof FineTuningJobEvent
      */
     type?: FineTuningJobEventTypeEnum;
@@ -97,8 +97,10 @@ export type FineTuningJobEventTypeEnum = typeof FineTuningJobEventTypeEnum[keyof
  */
 export function instanceOfFineTuningJobEvent(value: object): value is FineTuningJobEvent {
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (value['object'] !== 'fine_tuning.job.event') return false;
+    
     if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if ((!('createdAt' in (value as Record<string, any>)) && !('created_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['createdAt'] === undefined && (value as Record<string, any>)['created_at'] === undefined)) return false;
     if (!('level' in value) || value['level'] === undefined) return false;
     if (!('message' in value) || value['message'] === undefined) return false;
     return true;

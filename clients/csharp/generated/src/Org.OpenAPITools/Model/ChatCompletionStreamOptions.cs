@@ -56,7 +56,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>If set, an additional chunk will be streamed before the &#x60;data: [DONE]&#x60; message. The &#x60;usage&#x60; field on this chunk shows the token usage statistics for the entire request, and the &#x60;choices&#x60; field will always be an empty array. All other chunks will also include a &#x60;usage&#x60; field, but with a null value. </value>
         [JsonPropertyName("include_usage")]
-        public bool? IncludeUsage { get { return this.IncludeUsageOption; } set { this.IncludeUsageOption = new(value); } }
+        public bool? IncludeUsage { get { return this.IncludeUsageOption.Value; } set { this.IncludeUsageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ChatCompletionStreamOptions" />
     /// </summary>
-    public class ChatCompletionStreamOptionsJsonConverter : JsonConverter<ChatCompletionStreamOptions>
+    public partial class ChatCompletionStreamOptionsJsonConverter : JsonConverter<ChatCompletionStreamOptions>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChatCompletionStreamOptionsJsonConverter" /> class.
+        /// </summary>
+        public ChatCompletionStreamOptionsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ChatCompletionStreamOptions" />
         /// </summary>

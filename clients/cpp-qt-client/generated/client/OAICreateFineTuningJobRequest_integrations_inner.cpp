@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateFineTuningJobRequest_integrations_inner::OAICreateFineTuningJobRequest_integrations_inner(QString json) {
+OAICreateFineTuningJobRequest_integrations_inner::OAICreateFineTuningJobRequest_integrations_inner(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAICreateFineTuningJobRequest_integrations_inner::initializeModel() {
     m_wandb_isValid = false;
 }
 
-void OAICreateFineTuningJobRequest_integrations_inner::fromJson(QString jsonString) {
+void OAICreateFineTuningJobRequest_integrations_inner::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

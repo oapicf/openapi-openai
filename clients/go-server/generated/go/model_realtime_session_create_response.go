@@ -50,7 +50,8 @@ type RealtimeSessionCreateResponse struct {
 	MaxResponseOutputTokens RealtimeResponseCreateParamsMaxResponseOutputTokens `json:"max_response_output_tokens,omitempty"`
 }
 
-// AssertRealtimeSessionCreateResponseRequired checks if the required fields are not zero-ed
+// AssertRealtimeSessionCreateResponseRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertRealtimeSessionCreateResponseRequired(obj RealtimeSessionCreateResponse) error {
 	if err := AssertRealtimeSessionCreateResponseClientSecretRequired(obj.ClientSecret); err != nil {
 		return err

@@ -18,7 +18,8 @@ package openapi
 type FineTuneDpoMethodHyperparametersBeta struct {
 }
 
-// AssertFineTuneDpoMethodHyperparametersBetaRequired checks if the required fields are not zero-ed
+// AssertFineTuneDpoMethodHyperparametersBetaRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertFineTuneDpoMethodHyperparametersBetaRequired(obj FineTuneDpoMethodHyperparametersBeta) error {
 	return nil
 }

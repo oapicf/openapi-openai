@@ -12,18 +12,21 @@ static modify_thread_request_tool_resources_file_search_t *modify_thread_request
     if (!modify_thread_request_tool_resources_file_search_local_var) {
         return NULL;
     }
-    modify_thread_request_tool_resources_file_search_local_var->vector_store_ids = vector_store_ids;
-
+    memset(modify_thread_request_tool_resources_file_search_local_var, 0, sizeof(modify_thread_request_tool_resources_file_search_t));
     modify_thread_request_tool_resources_file_search_local_var->_library_owned = 1;
+    modify_thread_request_tool_resources_file_search_local_var->vector_store_ids = vector_store_ids;
     return modify_thread_request_tool_resources_file_search_local_var;
 }
 
 __attribute__((deprecated)) modify_thread_request_tool_resources_file_search_t *modify_thread_request_tool_resources_file_search_create(
     list_t *vector_store_ids
     ) {
-    return modify_thread_request_tool_resources_file_search_create_internal (
+    modify_thread_request_tool_resources_file_search_t *result = modify_thread_request_tool_resources_file_search_create_internal (
         vector_store_ids
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void modify_thread_request_tool_resources_file_search_free(modify_thread_request_tool_resources_file_search_t *modify_thread_request_tool_resources_file_search) {
@@ -102,9 +105,14 @@ modify_thread_request_tool_resources_file_search_t *modify_thread_request_tool_r
     }
 
 
+
     modify_thread_request_tool_resources_file_search_local_var = modify_thread_request_tool_resources_file_search_create_internal (
         vector_store_ids ? vector_store_idsList : NULL
         );
+
+    if (!modify_thread_request_tool_resources_file_search_local_var) {
+        goto end;
+    }
 
     return modify_thread_request_tool_resources_file_search_local_var;
 end:

@@ -24,6 +24,8 @@ CreateCompletionRequest_stop::CreateCompletionRequest_stop()
     
 }
 
+CreateCompletionRequest_stop::~CreateCompletionRequest_stop() = default;
+
 void CreateCompletionRequest_stop::validate() const
 {
     std::stringstream msg;

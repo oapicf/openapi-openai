@@ -90,7 +90,7 @@ class UsersController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($userId, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -170,13 +170,13 @@ class UsersController extends Controller
 
         // Validate the input values
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($after, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -264,14 +264,14 @@ class UsersController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($userId, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\UserRoleUpdateRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\UserRoleUpdateRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($userRoleUpdateRequest, $asserts);
         if ($response instanceof Response) {
@@ -350,7 +350,7 @@ class UsersController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($userId, $asserts);
         if ($response instanceof Response) {
             return $response;

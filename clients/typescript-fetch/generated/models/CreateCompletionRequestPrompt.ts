@@ -35,13 +35,13 @@ export function CreateCompletionRequestPromptFromJSONTyped(json: any, ignoreDisc
             return json;
         }
     }
-    if (typeof json === 'string') {
-        return json;
-    }
     if (Array.isArray(json)) {
         if (json.every(item => typeof item === 'number')) {
             return json;
         }
+    }
+    if (typeof json === 'string') {
+        return json;
     }
     return {} as any;
 }
@@ -59,13 +59,13 @@ export function CreateCompletionRequestPromptToJSONTyped(value?: CreateCompletio
             return value;
         }
     }
-    if (typeof value === 'string') {
-        return value;
-    }
     if (Array.isArray(value)) {
         if (value.every(item => typeof item === 'number')) {
             return value;
         }
+    }
+    if (typeof value === 'string') {
+        return value;
     }
     return {};
 }

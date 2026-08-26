@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIProjectUserCreateRequest::OAIProjectUserCreateRequest(QString json) {
+OAIProjectUserCreateRequest::OAIProjectUserCreateRequest(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIProjectUserCreateRequest::initializeModel() {
     m_role_isValid = false;
 }
 
-void OAIProjectUserCreateRequest::fromJson(QString jsonString) {
+void OAIProjectUserCreateRequest::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -64,7 +64,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>list</example> */
         [JsonPropertyName("object")]
-        public string? Object { get { return this.ObjectOption; } set { this.ObjectOption = new(value); } }
+        public string? Object { get { return this.ObjectOption.Value; } set { this.ObjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Data
@@ -77,7 +77,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public List<AdminApiKey>? Data { get { return this.DataOption; } set { this.DataOption = new(value); } }
+        public List<AdminApiKey>? Data { get { return this.DataOption.Value; } set { this.DataOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of HasMore
@@ -91,7 +91,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>false</example> */
         [JsonPropertyName("has_more")]
-        public bool? HasMore { get { return this.HasMoreOption; } set { this.HasMoreOption = new(value); } }
+        public bool? HasMore { get { return this.HasMoreOption.Value; } set { this.HasMoreOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FirstId
@@ -105,7 +105,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>key_abc</example> */
         [JsonPropertyName("first_id")]
-        public string? FirstId { get { return this.FirstIdOption; } set { this.FirstIdOption = new(value); } }
+        public string? FirstId { get { return this.FirstIdOption.Value; } set { this.FirstIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastId
@@ -119,7 +119,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>key_xyz</example> */
         [JsonPropertyName("last_id")]
-        public string? LastId { get { return this.LastIdOption; } set { this.LastIdOption = new(value); } }
+        public string? LastId { get { return this.LastIdOption.Value; } set { this.LastIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -152,8 +152,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ApiKeyList" />
     /// </summary>
-    public class ApiKeyListJsonConverter : JsonConverter<ApiKeyList>
+    public partial class ApiKeyListJsonConverter : JsonConverter<ApiKeyList>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiKeyListJsonConverter" /> class.
+        /// </summary>
+        public ApiKeyListJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ApiKeyList" />
         /// </summary>

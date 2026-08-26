@@ -51,7 +51,7 @@ class MessageDeltaObject
      * @var string|null
      * @SerializedName("id")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $id = null;
@@ -62,7 +62,7 @@ class MessageDeltaObject
      * @var string|null
      * @SerializedName("object")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['thread.message.delta'])]
     #[Assert\Type("string")]
@@ -72,7 +72,7 @@ class MessageDeltaObject
      * @var MessageDeltaObjectDelta|null
      * @SerializedName("delta")
      * @Type("OpenAPI\Server\Model\MessageDeltaObjectDelta")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\MessageDeltaObjectDelta")]
@@ -102,12 +102,12 @@ class MessageDeltaObject
     }
 
     /**
-    * Sets id.
-    *
-    * @param string|null $id  The identifier of the message, which can be referenced in API endpoints.
-    *
-    * @return $this
-    */
+     * Sets id.
+     *
+     * @param string|null $id  The identifier of the message, which can be referenced in API endpoints.
+     *
+     * @return $this
+     */
     public function setId(?string $id): self
     {
         $this->id = $id;
@@ -129,12 +129,12 @@ class MessageDeltaObject
     }
 
     /**
-    * Sets object.
-    *
-    * @param string|null $object  The object type, which is always `thread.message.delta`.
-    *
-    * @return $this
-    */
+     * Sets object.
+     *
+     * @param string|null $object  The object type, which is always `thread.message.delta`.
+     *
+     * @return $this
+     */
     public function setObject(?string $object): self
     {
         $this->object = $object;
@@ -156,12 +156,12 @@ class MessageDeltaObject
     }
 
     /**
-    * Sets delta.
-    *
-    * @param MessageDeltaObjectDelta|null $delta
-    *
-    * @return $this
-    */
+     * Sets delta.
+     *
+     * @param MessageDeltaObjectDelta|null $delta
+     *
+     * @return $this
+     */
     public function setDelta(?MessageDeltaObjectDelta $delta): self
     {
         $this->delta = $delta;

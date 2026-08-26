@@ -50,7 +50,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.OrganizationApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -67,7 +66,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.openAI.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:/v1}")
 class OrganizationApiController() {
 
     @Operation(
@@ -80,7 +79,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_ADMIN_API_KEYS_CREATE /* "/organization/admin_api_keys" */],
+        // "/organization/admin_api_keys"
+        value = [PATH_ADMIN_API_KEYS_CREATE],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -100,7 +100,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = [PATH_ADMIN_API_KEYS_DELETE /* "/organization/admin_api_keys/{key_id}" */],
+        // "/organization/admin_api_keys/{key_id}"
+        value = [PATH_ADMIN_API_KEYS_DELETE],
         produces = ["application/json"]
     )
     fun adminApiKeysDelete(
@@ -119,7 +120,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_ADMIN_API_KEYS_GET /* "/organization/admin_api_keys/{key_id}" */],
+        // "/organization/admin_api_keys/{key_id}"
+        value = [PATH_ADMIN_API_KEYS_GET],
         produces = ["application/json"]
     )
     fun adminApiKeysGet(
@@ -138,7 +140,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_ADMIN_API_KEYS_LIST /* "/organization/admin_api_keys" */],
+        // "/organization/admin_api_keys"
+        value = [PATH_ADMIN_API_KEYS_LIST],
         produces = ["application/json"]
     )
     fun adminApiKeysList(
@@ -159,7 +162,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_ARCHIVE_PROJECT /* "/organization/projects/{project_id}/archive" */],
+        // "/organization/projects/{project_id}/archive"
+        value = [PATH_ARCHIVE_PROJECT],
         produces = ["application/json"]
     )
     fun archiveProject(
@@ -178,7 +182,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_PROJECT /* "/organization/projects" */],
+        // "/organization/projects"
+        value = [PATH_CREATE_PROJECT],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -199,7 +204,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_PROJECT_SERVICE_ACCOUNT /* "/organization/projects/{project_id}/service_accounts" */],
+        // "/organization/projects/{project_id}/service_accounts"
+        value = [PATH_CREATE_PROJECT_SERVICE_ACCOUNT],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -221,7 +227,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_CREATE_PROJECT_USER /* "/organization/projects/{project_id}/users" */],
+        // "/organization/projects/{project_id}/users"
+        value = [PATH_CREATE_PROJECT_USER],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -242,7 +249,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = [PATH_DELETE_INVITE /* "/organization/invites/{invite_id}" */],
+        // "/organization/invites/{invite_id}"
+        value = [PATH_DELETE_INVITE],
         produces = ["application/json"]
     )
     fun deleteInvite(
@@ -262,7 +270,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = [PATH_DELETE_PROJECT_API_KEY /* "/organization/projects/{project_id}/api_keys/{key_id}" */],
+        // "/organization/projects/{project_id}/api_keys/{key_id}"
+        value = [PATH_DELETE_PROJECT_API_KEY],
         produces = ["application/json"]
     )
     fun deleteProjectApiKey(
@@ -282,7 +291,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = [PATH_DELETE_PROJECT_SERVICE_ACCOUNT /* "/organization/projects/{project_id}/service_accounts/{service_account_id}" */],
+        // "/organization/projects/{project_id}/service_accounts/{service_account_id}"
+        value = [PATH_DELETE_PROJECT_SERVICE_ACCOUNT],
         produces = ["application/json"]
     )
     fun deleteProjectServiceAccount(
@@ -303,7 +313,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = [PATH_DELETE_PROJECT_USER /* "/organization/projects/{project_id}/users/{user_id}" */],
+        // "/organization/projects/{project_id}/users/{user_id}"
+        value = [PATH_DELETE_PROJECT_USER],
         produces = ["application/json"]
     )
     fun deleteProjectUser(
@@ -323,7 +334,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = [PATH_DELETE_USER /* "/organization/users/{user_id}" */],
+        // "/organization/users/{user_id}"
+        value = [PATH_DELETE_USER],
         produces = ["application/json"]
     )
     fun deleteUser(
@@ -342,7 +354,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_INVITE_USER /* "/organization/invites" */],
+        // "/organization/invites"
+        value = [PATH_INVITE_USER],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -362,7 +375,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_AUDIT_LOGS /* "/organization/audit_logs" */],
+        // "/organization/audit_logs"
+        value = [PATH_LIST_AUDIT_LOGS],
         produces = ["application/json"]
     )
     fun listAuditLogs(
@@ -389,7 +403,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_INVITES /* "/organization/invites" */],
+        // "/organization/invites"
+        value = [PATH_LIST_INVITES],
         produces = ["application/json"]
     )
     fun listInvites(
@@ -409,7 +424,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_PROJECT_API_KEYS /* "/organization/projects/{project_id}/api_keys" */],
+        // "/organization/projects/{project_id}/api_keys"
+        value = [PATH_LIST_PROJECT_API_KEYS],
         produces = ["application/json"]
     )
     fun listProjectApiKeys(
@@ -430,7 +446,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_PROJECT_RATE_LIMITS /* "/organization/projects/{project_id}/rate_limits" */],
+        // "/organization/projects/{project_id}/rate_limits"
+        value = [PATH_LIST_PROJECT_RATE_LIMITS],
         produces = ["application/json"]
     )
     fun listProjectRateLimits(
@@ -453,7 +470,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_PROJECT_SERVICE_ACCOUNTS /* "/organization/projects/{project_id}/service_accounts" */],
+        // "/organization/projects/{project_id}/service_accounts"
+        value = [PATH_LIST_PROJECT_SERVICE_ACCOUNTS],
         produces = ["application/json"]
     )
     fun listProjectServiceAccounts(
@@ -475,7 +493,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_PROJECT_USERS /* "/organization/projects/{project_id}/users" */],
+        // "/organization/projects/{project_id}/users"
+        value = [PATH_LIST_PROJECT_USERS],
         produces = ["application/json"]
     )
     fun listProjectUsers(
@@ -496,7 +515,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_PROJECTS /* "/organization/projects" */],
+        // "/organization/projects"
+        value = [PATH_LIST_PROJECTS],
         produces = ["application/json"]
     )
     fun listProjects(
@@ -517,7 +537,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_LIST_USERS /* "/organization/users" */],
+        // "/organization/users"
+        value = [PATH_LIST_USERS],
         produces = ["application/json"]
     )
     fun listUsers(
@@ -538,7 +559,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_MODIFY_PROJECT /* "/organization/projects/{project_id}" */],
+        // "/organization/projects/{project_id}"
+        value = [PATH_MODIFY_PROJECT],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -560,7 +582,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_MODIFY_PROJECT_USER /* "/organization/projects/{project_id}/users/{user_id}" */],
+        // "/organization/projects/{project_id}/users/{user_id}"
+        value = [PATH_MODIFY_PROJECT_USER],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -582,7 +605,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_MODIFY_USER /* "/organization/users/{user_id}" */],
+        // "/organization/users/{user_id}"
+        value = [PATH_MODIFY_USER],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -603,7 +627,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_RETRIEVE_INVITE /* "/organization/invites/{invite_id}" */],
+        // "/organization/invites/{invite_id}"
+        value = [PATH_RETRIEVE_INVITE],
         produces = ["application/json"]
     )
     fun retrieveInvite(
@@ -622,7 +647,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_RETRIEVE_PROJECT /* "/organization/projects/{project_id}" */],
+        // "/organization/projects/{project_id}"
+        value = [PATH_RETRIEVE_PROJECT],
         produces = ["application/json"]
     )
     fun retrieveProject(
@@ -641,7 +667,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_RETRIEVE_PROJECT_API_KEY /* "/organization/projects/{project_id}/api_keys/{key_id}" */],
+        // "/organization/projects/{project_id}/api_keys/{key_id}"
+        value = [PATH_RETRIEVE_PROJECT_API_KEY],
         produces = ["application/json"]
     )
     fun retrieveProjectApiKey(
@@ -661,7 +688,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_RETRIEVE_PROJECT_SERVICE_ACCOUNT /* "/organization/projects/{project_id}/service_accounts/{service_account_id}" */],
+        // "/organization/projects/{project_id}/service_accounts/{service_account_id}"
+        value = [PATH_RETRIEVE_PROJECT_SERVICE_ACCOUNT],
         produces = ["application/json"]
     )
     fun retrieveProjectServiceAccount(
@@ -681,7 +709,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_RETRIEVE_PROJECT_USER /* "/organization/projects/{project_id}/users/{user_id}" */],
+        // "/organization/projects/{project_id}/users/{user_id}"
+        value = [PATH_RETRIEVE_PROJECT_USER],
         produces = ["application/json"]
     )
     fun retrieveProjectUser(
@@ -701,7 +730,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_RETRIEVE_USER /* "/organization/users/{user_id}" */],
+        // "/organization/users/{user_id}"
+        value = [PATH_RETRIEVE_USER],
         produces = ["application/json"]
     )
     fun retrieveUser(
@@ -721,7 +751,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_UPDATE_PROJECT_RATE_LIMITS /* "/organization/projects/{project_id}/rate_limits/{rate_limit_id}" */],
+        // "/organization/projects/{project_id}/rate_limits/{rate_limit_id}"
+        value = [PATH_UPDATE_PROJECT_RATE_LIMITS],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -743,7 +774,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_USAGE_AUDIO_SPEECHES /* "/organization/usage/audio_speeches" */],
+        // "/organization/usage/audio_speeches"
+        value = [PATH_USAGE_AUDIO_SPEECHES],
         produces = ["application/json"]
     )
     fun usageAudioSpeeches(
@@ -771,7 +803,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_USAGE_AUDIO_TRANSCRIPTIONS /* "/organization/usage/audio_transcriptions" */],
+        // "/organization/usage/audio_transcriptions"
+        value = [PATH_USAGE_AUDIO_TRANSCRIPTIONS],
         produces = ["application/json"]
     )
     fun usageAudioTranscriptions(
@@ -799,7 +832,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_USAGE_CODE_INTERPRETER_SESSIONS /* "/organization/usage/code_interpreter_sessions" */],
+        // "/organization/usage/code_interpreter_sessions"
+        value = [PATH_USAGE_CODE_INTERPRETER_SESSIONS],
         produces = ["application/json"]
     )
     fun usageCodeInterpreterSessions(
@@ -824,7 +858,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_USAGE_COMPLETIONS /* "/organization/usage/completions" */],
+        // "/organization/usage/completions"
+        value = [PATH_USAGE_COMPLETIONS],
         produces = ["application/json"]
     )
     fun usageCompletions(
@@ -853,7 +888,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_USAGE_COSTS /* "/organization/costs" */],
+        // "/organization/costs"
+        value = [PATH_USAGE_COSTS],
         produces = ["application/json"]
     )
     fun usageCosts(
@@ -878,7 +914,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_USAGE_EMBEDDINGS /* "/organization/usage/embeddings" */],
+        // "/organization/usage/embeddings"
+        value = [PATH_USAGE_EMBEDDINGS],
         produces = ["application/json"]
     )
     fun usageEmbeddings(
@@ -906,7 +943,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_USAGE_IMAGES /* "/organization/usage/images" */],
+        // "/organization/usage/images"
+        value = [PATH_USAGE_IMAGES],
         produces = ["application/json"]
     )
     fun usageImages(
@@ -936,7 +974,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_USAGE_MODERATIONS /* "/organization/usage/moderations" */],
+        // "/organization/usage/moderations"
+        value = [PATH_USAGE_MODERATIONS],
         produces = ["application/json"]
     )
     fun usageModerations(
@@ -964,7 +1003,8 @@ class OrganizationApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_USAGE_VECTOR_STORES /* "/organization/usage/vector_stores" */],
+        // "/organization/usage/vector_stores"
+        value = [PATH_USAGE_VECTOR_STORES],
         produces = ["application/json"]
     )
     fun usageVectorStores(

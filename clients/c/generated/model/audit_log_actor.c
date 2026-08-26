@@ -31,11 +31,11 @@ static audit_log_actor_t *audit_log_actor_create_internal(
     if (!audit_log_actor_local_var) {
         return NULL;
     }
+    memset(audit_log_actor_local_var, 0, sizeof(audit_log_actor_t));
+    audit_log_actor_local_var->_library_owned = 1;
     audit_log_actor_local_var->type = type;
     audit_log_actor_local_var->session = session;
     audit_log_actor_local_var->api_key = api_key;
-
-    audit_log_actor_local_var->_library_owned = 1;
     return audit_log_actor_local_var;
 }
 
@@ -44,11 +44,14 @@ __attribute__((deprecated)) audit_log_actor_t *audit_log_actor_create(
     audit_log_actor_session_t *session,
     audit_log_actor_api_key_t *api_key
     ) {
-    return audit_log_actor_create_internal (
+    audit_log_actor_t *result = audit_log_actor_create_internal (
         type,
         session,
         api_key
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void audit_log_actor_free(audit_log_actor_t *audit_log_actor) {
@@ -61,11 +64,11 @@ void audit_log_actor_free(audit_log_actor_t *audit_log_actor) {
     }
     listEntry_t *listEntry;
     if (audit_log_actor->session) {
-        object_free(audit_log_actor->session);
+        audit_log_actor_session_free(audit_log_actor->session);
         audit_log_actor->session = NULL;
     }
     if (audit_log_actor->api_key) {
-        object_free(audit_log_actor->api_key);
+        audit_log_actor_api_key_free(audit_log_actor->api_key);
         audit_log_actor->api_key = NULL;
     }
     free(audit_log_actor);
@@ -85,11 +88,11 @@ cJSON *audit_log_actor_convertToJSON(audit_log_actor_t *audit_log_actor) {
 
     // audit_log_actor->session
     if(audit_log_actor->session) {
-    cJSON *session_object = object_convertToJSON(audit_log_actor->session);
-    if(session_object == NULL) {
+    cJSON *session_local_JSON = audit_log_actor_session_convertToJSON(audit_log_actor->session);
+    if(session_local_JSON == NULL) {
     goto fail; //model
     }
-    cJSON_AddItemToObject(item, "session", session_object);
+    cJSON_AddItemToObject(item, "session", session_local_JSON);
     if(item->child == NULL) {
     goto fail;
     }
@@ -98,11 +101,11 @@ cJSON *audit_log_actor_convertToJSON(audit_log_actor_t *audit_log_actor) {
 
     // audit_log_actor->api_key
     if(audit_log_actor->api_key) {
-    cJSON *api_key_object = object_convertToJSON(audit_log_actor->api_key);
-    if(api_key_object == NULL) {
+    cJSON *api_key_local_JSON = audit_log_actor_api_key_convertToJSON(audit_log_actor->api_key);
+    if(api_key_local_JSON == NULL) {
     goto fail; //model
     }
-    cJSON_AddItemToObject(item, "api_key", api_key_object);
+    cJSON_AddItemToObject(item, "api_key", api_key_local_JSON);
     if(item->child == NULL) {
     goto fail;
     }
@@ -119,6 +122,12 @@ fail:
 audit_log_actor_t *audit_log_actor_parseFromJSON(cJSON *audit_log_actorJSON){
 
     audit_log_actor_t *audit_log_actor_local_var = NULL;
+
+    // define the local variable for audit_log_actor->session
+    audit_log_actor_session_t *session_local_nonprim = NULL;
+
+    // define the local variable for audit_log_actor->api_key
+    audit_log_actor_api_key_t *api_key_local_nonprim = NULL;
 
     // audit_log_actor->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(audit_log_actorJSON, "type");
@@ -139,9 +148,8 @@ audit_log_actor_t *audit_log_actor_parseFromJSON(cJSON *audit_log_actorJSON){
     if (cJSON_IsNull(session)) {
         session = NULL;
     }
-    object_t *session_local_object = NULL;
     if (session) { 
-    session_local_object = object_parseFromJSON(session); //object
+    session_local_nonprim = audit_log_actor_session_parseFromJSON(session); //nonprimitive
     }
 
     // audit_log_actor->api_key
@@ -149,20 +157,32 @@ audit_log_actor_t *audit_log_actor_parseFromJSON(cJSON *audit_log_actorJSON){
     if (cJSON_IsNull(api_key)) {
         api_key = NULL;
     }
-    object_t *api_key_local_object = NULL;
     if (api_key) { 
-    api_key_local_object = object_parseFromJSON(api_key); //object
+    api_key_local_nonprim = audit_log_actor_api_key_parseFromJSON(api_key); //nonprimitive
     }
+
 
 
     audit_log_actor_local_var = audit_log_actor_create_internal (
         type ? typeVariable : openai_api_audit_log_actor_TYPE_NULL,
-        session ? session_local_object : NULL,
-        api_key ? api_key_local_object : NULL
+        session ? session_local_nonprim : NULL,
+        api_key ? api_key_local_nonprim : NULL
         );
+
+    if (!audit_log_actor_local_var) {
+        goto end;
+    }
 
     return audit_log_actor_local_var;
 end:
+    if (session_local_nonprim) {
+        audit_log_actor_session_free(session_local_nonprim);
+        session_local_nonprim = NULL;
+    }
+    if (api_key_local_nonprim) {
+        audit_log_actor_api_key_free(api_key_local_nonprim);
+        api_key_local_nonprim = NULL;
+    }
     return NULL;
 
 }

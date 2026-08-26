@@ -50,7 +50,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * The method used for fine-tuning.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTuneMethod {
   /**
    * The type of method. Is either &#x60;supervised&#x60; or &#x60;dpo&#x60;.
@@ -215,10 +215,7 @@ public class FineTuneMethod {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -260,6 +257,14 @@ public class FineTuneMethod {
       // validate the optional field `type`
       if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
         TypeEnum.validateJsonElement(jsonObj.get("type"));
+      }
+      // validate the optional field `supervised`
+      if (jsonObj.get("supervised") != null && !jsonObj.get("supervised").isJsonNull()) {
+        FineTuneSupervisedMethod.validateJsonElement(jsonObj.get("supervised"));
+      }
+      // validate the optional field `dpo`
+      if (jsonObj.get("dpo") != null && !jsonObj.get("dpo").isJsonNull()) {
+        FineTuneDPOMethod.validateJsonElement(jsonObj.get("dpo"));
       }
   }
 

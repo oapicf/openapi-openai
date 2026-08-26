@@ -61,10 +61,8 @@ class TruncationObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TruncationObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TruncationObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "TruncationObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "TruncationObject[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -123,29 +121,29 @@ class TruncationObject {
 }
 
 /// The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.
-class TruncationObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const TruncationObjectTypeEnum._(this.value);
+enum TruncationObjectTypeEnum {
+  auto._(r'auto'),
+  lastMessages._(r'last_messages'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const TruncationObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const auto = TruncationObjectTypeEnum._(r'auto');
-  static const lastMessages = TruncationObjectTypeEnum._(r'last_messages');
-
-  /// List of all possible values in this [enum][TruncationObjectTypeEnum].
-  static const values = <TruncationObjectTypeEnum>[
-    auto,
-    lastMessages,
-  ];
-
+  /// Returns the instance of [TruncationObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static TruncationObjectTypeEnum? fromJson(dynamic value) => TruncationObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [TruncationObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<TruncationObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <TruncationObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -167,9 +165,10 @@ class TruncationObjectTypeEnumTypeTransformer {
 
   const TruncationObjectTypeEnumTypeTransformer._();
 
-  String encode(TruncationObjectTypeEnum data) => data.value;
+  String encode(TruncationObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a TruncationObjectTypeEnum.
+  /// Returns the instance of [TruncationObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -178,6 +177,9 @@ class TruncationObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   TruncationObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is TruncationObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'auto': return TruncationObjectTypeEnum.auto;
@@ -191,7 +193,7 @@ class TruncationObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [TruncationObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static TruncationObjectTypeEnumTypeTransformer? _instance;
 }
 

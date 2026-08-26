@@ -33,13 +33,13 @@ class OAIMessageDeltaObject_delta;
 class OAIMessageDeltaObject : public OAIObject {
 public:
     OAIMessageDeltaObject();
-    OAIMessageDeltaObject(QString json);
+    OAIMessageDeltaObject(const QString &json);
     ~OAIMessageDeltaObject() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

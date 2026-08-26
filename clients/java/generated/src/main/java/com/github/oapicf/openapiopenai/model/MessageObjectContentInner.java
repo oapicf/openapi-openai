@@ -64,7 +64,7 @@ import com.google.gson.JsonParseException;
 
 import com.github.oapicf.openapiopenai.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-29T14:07:28.170688005Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class MessageObjectContentInner extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(MessageObjectContentInner.class.getName());
 
@@ -261,6 +261,7 @@ public class MessageObjectContentInner extends AbstractOpenApiSchema {
      * @return The actual instance of `MessageContentImageFileObject`
      * @throws ClassCastException if the instance is not `MessageContentImageFileObject`
      */
+    @SuppressWarnings("unchecked")
     public MessageContentImageFileObject getMessageContentImageFileObject() throws ClassCastException {
         return (MessageContentImageFileObject)super.getActualInstance();
     }
@@ -272,6 +273,7 @@ public class MessageObjectContentInner extends AbstractOpenApiSchema {
      * @return The actual instance of `MessageContentImageUrlObject`
      * @throws ClassCastException if the instance is not `MessageContentImageUrlObject`
      */
+    @SuppressWarnings("unchecked")
     public MessageContentImageUrlObject getMessageContentImageUrlObject() throws ClassCastException {
         return (MessageContentImageUrlObject)super.getActualInstance();
     }
@@ -283,6 +285,7 @@ public class MessageObjectContentInner extends AbstractOpenApiSchema {
      * @return The actual instance of `MessageContentTextObject`
      * @throws ClassCastException if the instance is not `MessageContentTextObject`
      */
+    @SuppressWarnings("unchecked")
     public MessageContentTextObject getMessageContentTextObject() throws ClassCastException {
         return (MessageContentTextObject)super.getActualInstance();
     }
@@ -294,6 +297,7 @@ public class MessageObjectContentInner extends AbstractOpenApiSchema {
      * @return The actual instance of `MessageContentRefusalObject`
      * @throws ClassCastException if the instance is not `MessageContentRefusalObject`
      */
+    @SuppressWarnings("unchecked")
     public MessageContentRefusalObject getMessageContentRefusalObject() throws ClassCastException {
         return (MessageContentRefusalObject)super.getActualInstance();
     }

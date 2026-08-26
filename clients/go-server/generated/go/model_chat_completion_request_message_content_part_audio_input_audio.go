@@ -12,6 +12,11 @@
 package openapi
 
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 
 
 type ChatCompletionRequestMessageContentPartAudioInputAudio struct {
@@ -22,19 +27,70 @@ type ChatCompletionRequestMessageContentPartAudioInputAudio struct {
 	// The format of the encoded audio data. Currently supports \"wav\" and \"mp3\". 
 	Format string `json:"format"`
 }
-
-// AssertChatCompletionRequestMessageContentPartAudioInputAudioRequired checks if the required fields are not zero-ed
-func AssertChatCompletionRequestMessageContentPartAudioInputAudioRequired(obj ChatCompletionRequestMessageContentPartAudioInputAudio) error {
-	elements := map[string]interface{}{
-		"data": obj.Data,
-		"format": obj.Format,
+// UnmarshalJSON validates required property keys then unmarshals into ChatCompletionRequestMessageContentPartAudioInputAudio
+func (o *ChatCompletionRequestMessageContentPartAudioInputAudio) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"data",
+		"format",
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
+
+	requiredNullableProperties := map[string]bool{
+		"data": false,
+		"format": false,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"data": {},
+		"format": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
 		}
 	}
 
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded ChatCompletionRequestMessageContentPartAudioInputAudio
+
+	if value, exists := allProperties["data"]; exists {
+		if err = json.Unmarshal(value, &decoded.Data); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["format"]; exists {
+		if err = json.Unmarshal(value, &decoded.Format); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertChatCompletionRequestMessageContentPartAudioInputAudioRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
+func AssertChatCompletionRequestMessageContentPartAudioInputAudioRequired(obj ChatCompletionRequestMessageContentPartAudioInputAudio) error {
 	return nil
 }
 

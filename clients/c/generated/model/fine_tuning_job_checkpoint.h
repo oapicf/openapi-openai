@@ -29,9 +29,9 @@ openai_api_fine_tuning_job_checkpoint_OBJECT_e fine_tuning_job_checkpoint_object
 
 typedef struct fine_tuning_job_checkpoint_t {
     char *id; // string
-    int created_at; //numeric
+    int *created_at; //numeric
     char *fine_tuned_model_checkpoint; // string
-    int step_number; //numeric
+    int *step_number; //numeric
     struct fine_tuning_job_checkpoint_metrics_t *metrics; //model
     char *fine_tuning_job_id; // string
     openai_api_fine_tuning_job_checkpoint_OBJECT_e object; //enum
@@ -41,9 +41,9 @@ typedef struct fine_tuning_job_checkpoint_t {
 
 __attribute__((deprecated)) fine_tuning_job_checkpoint_t *fine_tuning_job_checkpoint_create(
     char *id,
-    int created_at,
+    int *created_at,
     char *fine_tuned_model_checkpoint,
-    int step_number,
+    int *step_number,
     fine_tuning_job_checkpoint_metrics_t *metrics,
     char *fine_tuning_job_id,
     openai_api_fine_tuning_job_checkpoint_OBJECT_e object

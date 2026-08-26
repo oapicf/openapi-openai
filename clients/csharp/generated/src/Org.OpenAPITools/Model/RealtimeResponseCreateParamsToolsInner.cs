@@ -115,7 +115,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The type of the tool, i.e. &#x60;function&#x60;.</value>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -129,7 +129,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The name of the function.</value>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -143,7 +143,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The description of the function, including guidance on when and how  to call it, and guidance about what to tell the user when calling  (if anything). </value>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Parameters
@@ -157,7 +157,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Parameters of the function in JSON Schema.</value>
         [JsonPropertyName("parameters")]
-        public Object? Parameters { get { return this.ParametersOption; } set { this.ParametersOption = new(value); } }
+        public Object? Parameters { get { return this.ParametersOption.Value; } set { this.ParametersOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -189,8 +189,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeResponseCreateParamsToolsInner" />
     /// </summary>
-    public class RealtimeResponseCreateParamsToolsInnerJsonConverter : JsonConverter<RealtimeResponseCreateParamsToolsInner>
+    public partial class RealtimeResponseCreateParamsToolsInnerJsonConverter : JsonConverter<RealtimeResponseCreateParamsToolsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeResponseCreateParamsToolsInnerJsonConverter" /> class.
+        /// </summary>
+        public RealtimeResponseCreateParamsToolsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeResponseCreateParamsToolsInner" />
         /// </summary>

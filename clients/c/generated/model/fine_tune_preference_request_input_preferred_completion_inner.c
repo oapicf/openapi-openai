@@ -35,6 +35,8 @@ static fine_tune_preference_request_input_preferred_completion_inner_t *fine_tun
     if (!fine_tune_preference_request_input_preferred_completion_inner_local_var) {
         return NULL;
     }
+    memset(fine_tune_preference_request_input_preferred_completion_inner_local_var, 0, sizeof(fine_tune_preference_request_input_preferred_completion_inner_t));
+    fine_tune_preference_request_input_preferred_completion_inner_local_var->_library_owned = 1;
     fine_tune_preference_request_input_preferred_completion_inner_local_var->content = content;
     fine_tune_preference_request_input_preferred_completion_inner_local_var->refusal = refusal;
     fine_tune_preference_request_input_preferred_completion_inner_local_var->role = role;
@@ -42,8 +44,6 @@ static fine_tune_preference_request_input_preferred_completion_inner_t *fine_tun
     fine_tune_preference_request_input_preferred_completion_inner_local_var->audio = audio;
     fine_tune_preference_request_input_preferred_completion_inner_local_var->tool_calls = tool_calls;
     fine_tune_preference_request_input_preferred_completion_inner_local_var->function_call = function_call;
-
-    fine_tune_preference_request_input_preferred_completion_inner_local_var->_library_owned = 1;
     return fine_tune_preference_request_input_preferred_completion_inner_local_var;
 }
 
@@ -56,7 +56,7 @@ __attribute__((deprecated)) fine_tune_preference_request_input_preferred_complet
     list_t *tool_calls,
     chat_completion_request_assistant_message_function_call_t *function_call
     ) {
-    return fine_tune_preference_request_input_preferred_completion_inner_create_internal (
+    fine_tune_preference_request_input_preferred_completion_inner_t *result = fine_tune_preference_request_input_preferred_completion_inner_create_internal (
         content,
         refusal,
         role,
@@ -65,6 +65,9 @@ __attribute__((deprecated)) fine_tune_preference_request_input_preferred_complet
         tool_calls,
         function_call
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void fine_tune_preference_request_input_preferred_completion_inner_free(fine_tune_preference_request_input_preferred_completion_inner_t *fine_tune_preference_request_input_preferred_completion_inner) {
@@ -208,6 +211,10 @@ fine_tune_preference_request_input_preferred_completion_inner_t *fine_tune_prefe
     // define the local variable for fine_tune_preference_request_input_preferred_completion_inner->content
     chat_completion_request_assistant_message_content_t *content_local_nonprim = NULL;
 
+    char *refusal_local_str = NULL;
+
+    char *name_local_str = NULL;
+
     // define the local variable for fine_tune_preference_request_input_preferred_completion_inner->audio
     chat_completion_request_assistant_message_audio_t *audio_local_nonprim = NULL;
 
@@ -310,21 +317,36 @@ fine_tune_preference_request_input_preferred_completion_inner_t *fine_tune_prefe
     }
 
 
+    if (refusal && !cJSON_IsNull(refusal)) refusal_local_str = strdup(refusal->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     fine_tune_preference_request_input_preferred_completion_inner_local_var = fine_tune_preference_request_input_preferred_completion_inner_create_internal (
         content ? content_local_nonprim : NULL,
-        refusal && !cJSON_IsNull(refusal) ? strdup(refusal->valuestring) : NULL,
+        refusal_local_str,
         roleVariable,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
+        name_local_str,
         audio ? audio_local_nonprim : NULL,
         tool_calls ? tool_callsList : NULL,
         function_call ? function_call_local_nonprim : NULL
         );
+
+    if (!fine_tune_preference_request_input_preferred_completion_inner_local_var) {
+        goto end;
+    }
 
     return fine_tune_preference_request_input_preferred_completion_inner_local_var;
 end:
     if (content_local_nonprim) {
         chat_completion_request_assistant_message_content_free(content_local_nonprim);
         content_local_nonprim = NULL;
+    }
+    if (refusal_local_str) {
+        free(refusal_local_str);
+        refusal_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
     }
     if (audio_local_nonprim) {
         chat_completion_request_assistant_message_audio_free(audio_local_nonprim);

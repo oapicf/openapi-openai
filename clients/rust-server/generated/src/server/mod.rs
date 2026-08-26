@@ -760,6 +760,661 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
 
             // CreateAssistant - POST /assistants
             hyper::Method::POST if path.matched(paths::ID_ASSISTANTS) => {
+                handle_create_assistant(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateThread - POST /threads
+            hyper::Method::POST if path.matched(paths::ID_THREADS) => {
+                handle_create_thread(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateThreadAndRun - POST /threads/runs
+            hyper::Method::POST if path.matched(paths::ID_THREADS_RUNS) => {
+                handle_create_thread_and_run(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListAssistants - GET /assistants
+            hyper::Method::GET if path.matched(paths::ID_ASSISTANTS) => {
+                handle_list_assistants(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateMessage - POST /threads/{thread_id}/messages
+            hyper::Method::POST if path.matched(paths::ID_THREADS_THREAD_ID_MESSAGES) => {
+                handle_create_message(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateRun - POST /threads/{thread_id}/runs
+            hyper::Method::POST if path.matched(paths::ID_THREADS_THREAD_ID_RUNS) => {
+                handle_create_run(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // DeleteAssistant - DELETE /assistants/{assistant_id}
+            hyper::Method::DELETE if path.matched(paths::ID_ASSISTANTS_ASSISTANT_ID) => {
+                handle_delete_assistant(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // DeleteThread - DELETE /threads/{thread_id}
+            hyper::Method::DELETE if path.matched(paths::ID_THREADS_THREAD_ID) => {
+                handle_delete_thread(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // GetAssistant - GET /assistants/{assistant_id}
+            hyper::Method::GET if path.matched(paths::ID_ASSISTANTS_ASSISTANT_ID) => {
+                handle_get_assistant(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // GetThread - GET /threads/{thread_id}
+            hyper::Method::GET if path.matched(paths::ID_THREADS_THREAD_ID) => {
+                handle_get_thread(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListMessages - GET /threads/{thread_id}/messages
+            hyper::Method::GET if path.matched(paths::ID_THREADS_THREAD_ID_MESSAGES) => {
+                handle_list_messages(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListRuns - GET /threads/{thread_id}/runs
+            hyper::Method::GET if path.matched(paths::ID_THREADS_THREAD_ID_RUNS) => {
+                handle_list_runs(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ModifyAssistant - POST /assistants/{assistant_id}
+            hyper::Method::POST if path.matched(paths::ID_ASSISTANTS_ASSISTANT_ID) => {
+                handle_modify_assistant(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ModifyThread - POST /threads/{thread_id}
+            hyper::Method::POST if path.matched(paths::ID_THREADS_THREAD_ID) => {
+                handle_modify_thread(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CancelRun - POST /threads/{thread_id}/runs/{run_id}/cancel
+            hyper::Method::POST if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID_CANCEL) => {
+                handle_cancel_run(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // DeleteMessage - DELETE /threads/{thread_id}/messages/{message_id}
+            hyper::Method::DELETE if path.matched(paths::ID_THREADS_THREAD_ID_MESSAGES_MESSAGE_ID) => {
+                handle_delete_message(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // GetMessage - GET /threads/{thread_id}/messages/{message_id}
+            hyper::Method::GET if path.matched(paths::ID_THREADS_THREAD_ID_MESSAGES_MESSAGE_ID) => {
+                handle_get_message(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // GetRun - GET /threads/{thread_id}/runs/{run_id}
+            hyper::Method::GET if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID) => {
+                handle_get_run(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListRunSteps - GET /threads/{thread_id}/runs/{run_id}/steps
+            hyper::Method::GET if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID_STEPS) => {
+                handle_list_run_steps(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ModifyMessage - POST /threads/{thread_id}/messages/{message_id}
+            hyper::Method::POST if path.matched(paths::ID_THREADS_THREAD_ID_MESSAGES_MESSAGE_ID) => {
+                handle_modify_message(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ModifyRun - POST /threads/{thread_id}/runs/{run_id}
+            hyper::Method::POST if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID) => {
+                handle_modify_run(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // SubmitToolOuputsToRun - POST /threads/{thread_id}/runs/{run_id}/submit_tool_outputs
+            hyper::Method::POST if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID_SUBMIT_TOOL_OUTPUTS) => {
+                handle_submit_tool_ouputs_to_run(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // GetRunStep - GET /threads/{thread_id}/runs/{run_id}/steps/{step_id}
+            hyper::Method::GET if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID_STEPS_STEP_ID) => {
+                handle_get_run_step(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateSpeech - POST /audio/speech
+            hyper::Method::POST if path.matched(paths::ID_AUDIO_SPEECH) => {
+                handle_create_speech(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateTranscription - POST /audio/transcriptions
+            hyper::Method::POST if path.matched(paths::ID_AUDIO_TRANSCRIPTIONS) => {
+                handle_create_transcription(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateTranslation - POST /audio/translations
+            hyper::Method::POST if path.matched(paths::ID_AUDIO_TRANSLATIONS) => {
+                handle_create_translation(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListAuditLogs - GET /organization/audit_logs
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_AUDIT_LOGS) => {
+                handle_list_audit_logs(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateBatch - POST /batches
+            hyper::Method::POST if path.matched(paths::ID_BATCHES) => {
+                handle_create_batch(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListBatches - GET /batches
+            hyper::Method::GET if path.matched(paths::ID_BATCHES) => {
+                handle_list_batches(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CancelBatch - POST /batches/{batch_id}/cancel
+            hyper::Method::POST if path.matched(paths::ID_BATCHES_BATCH_ID_CANCEL) => {
+                handle_cancel_batch(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // RetrieveBatch - GET /batches/{batch_id}
+            hyper::Method::GET if path.matched(paths::ID_BATCHES_BATCH_ID) => {
+                handle_retrieve_batch(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateChatCompletion - POST /chat/completions
+            hyper::Method::POST if path.matched(paths::ID_CHAT_COMPLETIONS) => {
+                handle_create_chat_completion(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateCompletion - POST /completions
+            hyper::Method::POST if path.matched(paths::ID_COMPLETIONS) => {
+                handle_create_completion(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // AdminApiKeysCreate - POST /organization/admin_api_keys
+            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_ADMIN_API_KEYS) => {
+                handle_admin_api_keys_create(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // AdminApiKeysList - GET /organization/admin_api_keys
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_ADMIN_API_KEYS) => {
+                handle_admin_api_keys_list(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // AdminApiKeysDelete - DELETE /organization/admin_api_keys/{key_id}
+            hyper::Method::DELETE if path.matched(paths::ID_ORGANIZATION_ADMIN_API_KEYS_KEY_ID) => {
+                handle_admin_api_keys_delete(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // AdminApiKeysGet - GET /organization/admin_api_keys/{key_id}
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_ADMIN_API_KEYS_KEY_ID) => {
+                handle_admin_api_keys_get(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateEmbedding - POST /embeddings
+            hyper::Method::POST if path.matched(paths::ID_EMBEDDINGS) => {
+                handle_create_embedding(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateFile - POST /files
+            hyper::Method::POST if path.matched(paths::ID_FILES) => {
+                handle_create_file(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListFiles - GET /files
+            hyper::Method::GET if path.matched(paths::ID_FILES) => {
+                handle_list_files(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // DeleteFile - DELETE /files/{file_id}
+            hyper::Method::DELETE if path.matched(paths::ID_FILES_FILE_ID) => {
+                handle_delete_file(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // DownloadFile - GET /files/{file_id}/content
+            hyper::Method::GET if path.matched(paths::ID_FILES_FILE_ID_CONTENT) => {
+                handle_download_file(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // RetrieveFile - GET /files/{file_id}
+            hyper::Method::GET if path.matched(paths::ID_FILES_FILE_ID) => {
+                handle_retrieve_file(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateFineTuningJob - POST /fine_tuning/jobs
+            hyper::Method::POST if path.matched(paths::ID_FINE_TUNING_JOBS) => {
+                handle_create_fine_tuning_job(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListPaginatedFineTuningJobs - GET /fine_tuning/jobs
+            hyper::Method::GET if path.matched(paths::ID_FINE_TUNING_JOBS) => {
+                handle_list_paginated_fine_tuning_jobs(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CancelFineTuningJob - POST /fine_tuning/jobs/{fine_tuning_job_id}/cancel
+            hyper::Method::POST if path.matched(paths::ID_FINE_TUNING_JOBS_FINE_TUNING_JOB_ID_CANCEL) => {
+                handle_cancel_fine_tuning_job(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListFineTuningEvents - GET /fine_tuning/jobs/{fine_tuning_job_id}/events
+            hyper::Method::GET if path.matched(paths::ID_FINE_TUNING_JOBS_FINE_TUNING_JOB_ID_EVENTS) => {
+                handle_list_fine_tuning_events(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListFineTuningJobCheckpoints - GET /fine_tuning/jobs/{fine_tuning_job_id}/checkpoints
+            hyper::Method::GET if path.matched(paths::ID_FINE_TUNING_JOBS_FINE_TUNING_JOB_ID_CHECKPOINTS) => {
+                handle_list_fine_tuning_job_checkpoints(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // RetrieveFineTuningJob - GET /fine_tuning/jobs/{fine_tuning_job_id}
+            hyper::Method::GET if path.matched(paths::ID_FINE_TUNING_JOBS_FINE_TUNING_JOB_ID) => {
+                handle_retrieve_fine_tuning_job(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateImage - POST /images/generations
+            hyper::Method::POST if path.matched(paths::ID_IMAGES_GENERATIONS) => {
+                handle_create_image(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateImageEdit - POST /images/edits
+            hyper::Method::POST if path.matched(paths::ID_IMAGES_EDITS) => {
+                handle_create_image_edit(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateImageVariation - POST /images/variations
+            hyper::Method::POST if path.matched(paths::ID_IMAGES_VARIATIONS) => {
+                handle_create_image_variation(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // InviteUser - POST /organization/invites
+            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_INVITES) => {
+                handle_invite_user(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListInvites - GET /organization/invites
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_INVITES) => {
+                handle_list_invites(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // DeleteInvite - DELETE /organization/invites/{invite_id}
+            hyper::Method::DELETE if path.matched(paths::ID_ORGANIZATION_INVITES_INVITE_ID) => {
+                handle_delete_invite(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // RetrieveInvite - GET /organization/invites/{invite_id}
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_INVITES_INVITE_ID) => {
+                handle_retrieve_invite(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListModels - GET /models
+            hyper::Method::GET if path.matched(paths::ID_MODELS) => {
+                handle_list_models(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // DeleteModel - DELETE /models/{model}
+            hyper::Method::DELETE if path.matched(paths::ID_MODELS_MODEL) => {
+                handle_delete_model(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // RetrieveModel - GET /models/{model}
+            hyper::Method::GET if path.matched(paths::ID_MODELS_MODEL) => {
+                handle_retrieve_model(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateModeration - POST /moderations
+            hyper::Method::POST if path.matched(paths::ID_MODERATIONS) => {
+                handle_create_moderation(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateProject - POST /organization/projects
+            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_PROJECTS) => {
+                handle_create_project(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListProjects - GET /organization/projects
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS) => {
+                handle_list_projects(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ArchiveProject - POST /organization/projects/{project_id}/archive
+            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_ARCHIVE) => {
+                handle_archive_project(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateProjectServiceAccount - POST /organization/projects/{project_id}/service_accounts
+            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_SERVICE_ACCOUNTS) => {
+                handle_create_project_service_account(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateProjectUser - POST /organization/projects/{project_id}/users
+            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_USERS) => {
+                handle_create_project_user(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListProjectApiKeys - GET /organization/projects/{project_id}/api_keys
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_API_KEYS) => {
+                handle_list_project_api_keys(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListProjectRateLimits - GET /organization/projects/{project_id}/rate_limits
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_RATE_LIMITS) => {
+                handle_list_project_rate_limits(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListProjectServiceAccounts - GET /organization/projects/{project_id}/service_accounts
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_SERVICE_ACCOUNTS) => {
+                handle_list_project_service_accounts(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListProjectUsers - GET /organization/projects/{project_id}/users
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_USERS) => {
+                handle_list_project_users(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ModifyProject - POST /organization/projects/{project_id}
+            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID) => {
+                handle_modify_project(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // RetrieveProject - GET /organization/projects/{project_id}
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID) => {
+                handle_retrieve_project(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // DeleteProjectApiKey - DELETE /organization/projects/{project_id}/api_keys/{key_id}
+            hyper::Method::DELETE if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_API_KEYS_KEY_ID) => {
+                handle_delete_project_api_key(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // DeleteProjectServiceAccount - DELETE /organization/projects/{project_id}/service_accounts/{service_account_id}
+            hyper::Method::DELETE if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_SERVICE_ACCOUNTS_SERVICE_ACCOUNT_ID) => {
+                handle_delete_project_service_account(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // DeleteProjectUser - DELETE /organization/projects/{project_id}/users/{user_id}
+            hyper::Method::DELETE if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_USERS_USER_ID) => {
+                handle_delete_project_user(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ModifyProjectUser - POST /organization/projects/{project_id}/users/{user_id}
+            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_USERS_USER_ID) => {
+                handle_modify_project_user(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // RetrieveProjectApiKey - GET /organization/projects/{project_id}/api_keys/{key_id}
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_API_KEYS_KEY_ID) => {
+                handle_retrieve_project_api_key(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // RetrieveProjectServiceAccount - GET /organization/projects/{project_id}/service_accounts/{service_account_id}
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_SERVICE_ACCOUNTS_SERVICE_ACCOUNT_ID) => {
+                handle_retrieve_project_service_account(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // RetrieveProjectUser - GET /organization/projects/{project_id}/users/{user_id}
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_USERS_USER_ID) => {
+                handle_retrieve_project_user(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // UpdateProjectRateLimits - POST /organization/projects/{project_id}/rate_limits/{rate_limit_id}
+            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_RATE_LIMITS_RATE_LIMIT_ID) => {
+                handle_update_project_rate_limits(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateRealtimeSession - POST /realtime/sessions
+            hyper::Method::POST if path.matched(paths::ID_REALTIME_SESSIONS) => {
+                handle_create_realtime_session(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateUpload - POST /uploads
+            hyper::Method::POST if path.matched(paths::ID_UPLOADS) => {
+                handle_create_upload(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // AddUploadPart - POST /uploads/{upload_id}/parts
+            hyper::Method::POST if path.matched(paths::ID_UPLOADS_UPLOAD_ID_PARTS) => {
+                handle_add_upload_part(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CancelUpload - POST /uploads/{upload_id}/cancel
+            hyper::Method::POST if path.matched(paths::ID_UPLOADS_UPLOAD_ID_CANCEL) => {
+                handle_cancel_upload(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CompleteUpload - POST /uploads/{upload_id}/complete
+            hyper::Method::POST if path.matched(paths::ID_UPLOADS_UPLOAD_ID_COMPLETE) => {
+                handle_complete_upload(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // UsageAudioSpeeches - GET /organization/usage/audio_speeches
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USAGE_AUDIO_SPEECHES) => {
+                handle_usage_audio_speeches(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // UsageAudioTranscriptions - GET /organization/usage/audio_transcriptions
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USAGE_AUDIO_TRANSCRIPTIONS) => {
+                handle_usage_audio_transcriptions(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // UsageCodeInterpreterSessions - GET /organization/usage/code_interpreter_sessions
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USAGE_CODE_INTERPRETER_SESSIONS) => {
+                handle_usage_code_interpreter_sessions(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // UsageCompletions - GET /organization/usage/completions
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USAGE_COMPLETIONS) => {
+                handle_usage_completions(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // UsageCosts - GET /organization/costs
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_COSTS) => {
+                handle_usage_costs(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // UsageEmbeddings - GET /organization/usage/embeddings
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USAGE_EMBEDDINGS) => {
+                handle_usage_embeddings(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // UsageImages - GET /organization/usage/images
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USAGE_IMAGES) => {
+                handle_usage_images(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // UsageModerations - GET /organization/usage/moderations
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USAGE_MODERATIONS) => {
+                handle_usage_moderations(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // UsageVectorStores - GET /organization/usage/vector_stores
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USAGE_VECTOR_STORES) => {
+                handle_usage_vector_stores(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListUsers - GET /organization/users
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USERS) => {
+                handle_list_users(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // DeleteUser - DELETE /organization/users/{user_id}
+            hyper::Method::DELETE if path.matched(paths::ID_ORGANIZATION_USERS_USER_ID) => {
+                handle_delete_user(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ModifyUser - POST /organization/users/{user_id}
+            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_USERS_USER_ID) => {
+                handle_modify_user(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // RetrieveUser - GET /organization/users/{user_id}
+            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USERS_USER_ID) => {
+                handle_retrieve_user(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateVectorStore - POST /vector_stores
+            hyper::Method::POST if path.matched(paths::ID_VECTOR_STORES) => {
+                handle_create_vector_store(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListVectorStores - GET /vector_stores
+            hyper::Method::GET if path.matched(paths::ID_VECTOR_STORES) => {
+                handle_list_vector_stores(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateVectorStoreFile - POST /vector_stores/{vector_store_id}/files
+            hyper::Method::POST if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILES) => {
+                handle_create_vector_store_file(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CreateVectorStoreFileBatch - POST /vector_stores/{vector_store_id}/file_batches
+            hyper::Method::POST if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILE_BATCHES) => {
+                handle_create_vector_store_file_batch(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // DeleteVectorStore - DELETE /vector_stores/{vector_store_id}
+            hyper::Method::DELETE if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID) => {
+                handle_delete_vector_store(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // GetVectorStore - GET /vector_stores/{vector_store_id}
+            hyper::Method::GET if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID) => {
+                handle_get_vector_store(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListVectorStoreFiles - GET /vector_stores/{vector_store_id}/files
+            hyper::Method::GET if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILES) => {
+                handle_list_vector_store_files(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ModifyVectorStore - POST /vector_stores/{vector_store_id}
+            hyper::Method::POST if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID) => {
+                handle_modify_vector_store(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // CancelVectorStoreFileBatch - POST /vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel
+            hyper::Method::POST if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILE_BATCHES_BATCH_ID_CANCEL) => {
+                handle_cancel_vector_store_file_batch(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // DeleteVectorStoreFile - DELETE /vector_stores/{vector_store_id}/files/{file_id}
+            hyper::Method::DELETE if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILES_FILE_ID) => {
+                handle_delete_vector_store_file(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // GetVectorStoreFile - GET /vector_stores/{vector_store_id}/files/{file_id}
+            hyper::Method::GET if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILES_FILE_ID) => {
+                handle_get_vector_store_file(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // GetVectorStoreFileBatch - GET /vector_stores/{vector_store_id}/file_batches/{batch_id}
+            hyper::Method::GET if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILE_BATCHES_BATCH_ID) => {
+                handle_get_vector_store_file_batch(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            // ListFilesInVectorStoreBatch - GET /vector_stores/{vector_store_id}/file_batches/{batch_id}/files
+            hyper::Method::GET if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILE_BATCHES_BATCH_ID_FILES) => {
+                handle_list_files_in_vector_store_batch(api_impl, uri, headers, body, context, validation, multipart_form_size_limit).await
+            },
+
+            _ if path.matched(paths::ID_ASSISTANTS) => method_not_allowed(),
+            _ if path.matched(paths::ID_ASSISTANTS_ASSISTANT_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_AUDIO_SPEECH) => method_not_allowed(),
+            _ if path.matched(paths::ID_AUDIO_TRANSCRIPTIONS) => method_not_allowed(),
+            _ if path.matched(paths::ID_AUDIO_TRANSLATIONS) => method_not_allowed(),
+            _ if path.matched(paths::ID_BATCHES) => method_not_allowed(),
+            _ if path.matched(paths::ID_BATCHES_BATCH_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_BATCHES_BATCH_ID_CANCEL) => method_not_allowed(),
+            _ if path.matched(paths::ID_CHAT_COMPLETIONS) => method_not_allowed(),
+            _ if path.matched(paths::ID_COMPLETIONS) => method_not_allowed(),
+            _ if path.matched(paths::ID_EMBEDDINGS) => method_not_allowed(),
+            _ if path.matched(paths::ID_FILES) => method_not_allowed(),
+            _ if path.matched(paths::ID_FILES_FILE_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_FILES_FILE_ID_CONTENT) => method_not_allowed(),
+            _ if path.matched(paths::ID_FINE_TUNING_JOBS) => method_not_allowed(),
+            _ if path.matched(paths::ID_FINE_TUNING_JOBS_FINE_TUNING_JOB_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_FINE_TUNING_JOBS_FINE_TUNING_JOB_ID_CANCEL) => method_not_allowed(),
+            _ if path.matched(paths::ID_FINE_TUNING_JOBS_FINE_TUNING_JOB_ID_CHECKPOINTS) => method_not_allowed(),
+            _ if path.matched(paths::ID_FINE_TUNING_JOBS_FINE_TUNING_JOB_ID_EVENTS) => method_not_allowed(),
+            _ if path.matched(paths::ID_IMAGES_EDITS) => method_not_allowed(),
+            _ if path.matched(paths::ID_IMAGES_GENERATIONS) => method_not_allowed(),
+            _ if path.matched(paths::ID_IMAGES_VARIATIONS) => method_not_allowed(),
+            _ if path.matched(paths::ID_MODELS) => method_not_allowed(),
+            _ if path.matched(paths::ID_MODELS_MODEL) => method_not_allowed(),
+            _ if path.matched(paths::ID_MODERATIONS) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_ADMIN_API_KEYS) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_ADMIN_API_KEYS_KEY_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_AUDIT_LOGS) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_COSTS) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_INVITES) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_INVITES_INVITE_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_API_KEYS) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_API_KEYS_KEY_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_ARCHIVE) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_RATE_LIMITS) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_RATE_LIMITS_RATE_LIMIT_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_SERVICE_ACCOUNTS) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_SERVICE_ACCOUNTS_SERVICE_ACCOUNT_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_USERS) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_USERS_USER_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_USAGE_AUDIO_SPEECHES) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_USAGE_AUDIO_TRANSCRIPTIONS) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_USAGE_CODE_INTERPRETER_SESSIONS) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_USAGE_COMPLETIONS) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_USAGE_EMBEDDINGS) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_USAGE_IMAGES) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_USAGE_MODERATIONS) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_USAGE_VECTOR_STORES) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_USERS) => method_not_allowed(),
+            _ if path.matched(paths::ID_ORGANIZATION_USERS_USER_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_REALTIME_SESSIONS) => method_not_allowed(),
+            _ if path.matched(paths::ID_THREADS) => method_not_allowed(),
+            _ if path.matched(paths::ID_THREADS_RUNS) => method_not_allowed(),
+            _ if path.matched(paths::ID_THREADS_THREAD_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_THREADS_THREAD_ID_MESSAGES) => method_not_allowed(),
+            _ if path.matched(paths::ID_THREADS_THREAD_ID_MESSAGES_MESSAGE_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_THREADS_THREAD_ID_RUNS) => method_not_allowed(),
+            _ if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID_CANCEL) => method_not_allowed(),
+            _ if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID_STEPS) => method_not_allowed(),
+            _ if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID_STEPS_STEP_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID_SUBMIT_TOOL_OUTPUTS) => method_not_allowed(),
+            _ if path.matched(paths::ID_UPLOADS) => method_not_allowed(),
+            _ if path.matched(paths::ID_UPLOADS_UPLOAD_ID_CANCEL) => method_not_allowed(),
+            _ if path.matched(paths::ID_UPLOADS_UPLOAD_ID_COMPLETE) => method_not_allowed(),
+            _ if path.matched(paths::ID_UPLOADS_UPLOAD_ID_PARTS) => method_not_allowed(),
+            _ if path.matched(paths::ID_VECTOR_STORES) => method_not_allowed(),
+            _ if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILE_BATCHES) => method_not_allowed(),
+            _ if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILE_BATCHES_BATCH_ID) => method_not_allowed(),
+            _ if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILE_BATCHES_BATCH_ID_CANCEL) => method_not_allowed(),
+            _ if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILE_BATCHES_BATCH_ID_FILES) => method_not_allowed(),
+            _ if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILES) => method_not_allowed(),
+            _ if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILES_FILE_ID) => method_not_allowed(),
+                _ => Ok(Response::builder().status(StatusCode::NOT_FOUND)
+                        .body(BoxBody::new(http_body_util::Empty::new()))
+                        .expect("Unable to create Not Found response"))
+            }
+        }
+        Box::pin(run(
+            self.api_impl.clone(),
+            req,
+            self.validation,
+            self.multipart_form_size_limit
+        ))
+    }
+}
+
+#[allow(unused_variables)]
+async fn handle_create_assistant<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -802,7 +1457,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_assistant_request, "CreateAssistantRequest", validation);
-
 
                                 let result = api_impl.create_assistant(
                                             param_create_assistant_request,
@@ -850,10 +1504,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CreateThread - POST /threads
-            hyper::Method::POST if path.matched(paths::ID_THREADS) => {
+#[allow(unused_variables)]
+async fn handle_create_thread<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -883,7 +1552,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_thread_request, "CreateThreadRequest", validation);
-
 
                                 let result = api_impl.create_thread(
                                             param_create_thread_request,
@@ -931,10 +1599,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CreateThreadAndRun - POST /threads/runs
-            hyper::Method::POST if path.matched(paths::ID_THREADS_RUNS) => {
+#[allow(unused_variables)]
+async fn handle_create_thread_and_run<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -977,7 +1660,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_thread_and_run_request, "CreateThreadAndRunRequest", validation);
-
 
                                 let result = api_impl.create_thread_and_run(
                                             param_create_thread_and_run_request,
@@ -1025,10 +1707,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // ListAssistants - GET /assistants
-            hyper::Method::GET if path.matched(paths::ID_ASSISTANTS) => {
+#[allow(unused_variables)]
+async fn handle_list_assistants<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -1149,10 +1846,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // CreateMessage - POST /threads/{thread_id}/messages
-            hyper::Method::POST if path.matched(paths::ID_THREADS_THREAD_ID_MESSAGES) => {
+#[allow(unused_variables)]
+async fn handle_create_message<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -1219,7 +1931,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_message_request, "CreateMessageRequest", validation);
 
-
                                 let result = api_impl.create_message(
                                             param_thread_id,
                                             param_create_message_request,
@@ -1267,10 +1978,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CreateRun - POST /threads/{thread_id}/runs
-            hyper::Method::POST if path.matched(paths::ID_THREADS_THREAD_ID_RUNS) => {
+#[allow(unused_variables)]
+async fn handle_create_run<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -1348,7 +2074,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_run_request, "CreateRunRequest", validation);
 
-
                                 let result = api_impl.create_run(
                                             param_thread_id,
                                             param_create_run_request,
@@ -1397,10 +2122,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // DeleteAssistant - DELETE /assistants/{assistant_id}
-            hyper::Method::DELETE if path.matched(paths::ID_ASSISTANTS_ASSISTANT_ID) => {
+#[allow(unused_variables)]
+async fn handle_delete_assistant<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -1468,10 +2208,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // DeleteThread - DELETE /threads/{thread_id}
-            hyper::Method::DELETE if path.matched(paths::ID_THREADS_THREAD_ID) => {
+#[allow(unused_variables)]
+async fn handle_delete_thread<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -1539,10 +2294,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // GetAssistant - GET /assistants/{assistant_id}
-            hyper::Method::GET if path.matched(paths::ID_ASSISTANTS_ASSISTANT_ID) => {
+#[allow(unused_variables)]
+async fn handle_get_assistant<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -1610,10 +2380,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // GetThread - GET /threads/{thread_id}
-            hyper::Method::GET if path.matched(paths::ID_THREADS_THREAD_ID) => {
+#[allow(unused_variables)]
+async fn handle_get_thread<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -1681,10 +2466,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ListMessages - GET /threads/{thread_id}/messages
-            hyper::Method::GET if path.matched(paths::ID_THREADS_THREAD_ID_MESSAGES) => {
+#[allow(unused_variables)]
+async fn handle_list_messages<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -1847,10 +2647,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ListRuns - GET /threads/{thread_id}/runs
-            hyper::Method::GET if path.matched(paths::ID_THREADS_THREAD_ID_RUNS) => {
+#[allow(unused_variables)]
+async fn handle_list_runs<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -1995,10 +2810,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ModifyAssistant - POST /assistants/{assistant_id}
-            hyper::Method::POST if path.matched(paths::ID_ASSISTANTS_ASSISTANT_ID) => {
+#[allow(unused_variables)]
+async fn handle_modify_assistant<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -2065,7 +2895,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_modify_assistant_request, "ModifyAssistantRequest", validation);
 
-
                                 let result = api_impl.modify_assistant(
                                             param_assistant_id,
                                             param_modify_assistant_request,
@@ -2113,10 +2942,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // ModifyThread - POST /threads/{thread_id}
-            hyper::Method::POST if path.matched(paths::ID_THREADS_THREAD_ID) => {
+#[allow(unused_variables)]
+async fn handle_modify_thread<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -2183,7 +3027,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_modify_thread_request, "ModifyThreadRequest", validation);
 
-
                                 let result = api_impl.modify_thread(
                                             param_thread_id,
                                             param_modify_thread_request,
@@ -2231,10 +3074,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CancelRun - POST /threads/{thread_id}/runs/{run_id}/cancel
-            hyper::Method::POST if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID_CANCEL) => {
+#[allow(unused_variables)]
+async fn handle_cancel_run<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -2317,10 +3175,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // DeleteMessage - DELETE /threads/{thread_id}/messages/{message_id}
-            hyper::Method::DELETE if path.matched(paths::ID_THREADS_THREAD_ID_MESSAGES_MESSAGE_ID) => {
+#[allow(unused_variables)]
+async fn handle_delete_message<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -2403,10 +3276,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // GetMessage - GET /threads/{thread_id}/messages/{message_id}
-            hyper::Method::GET if path.matched(paths::ID_THREADS_THREAD_ID_MESSAGES_MESSAGE_ID) => {
+#[allow(unused_variables)]
+async fn handle_get_message<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -2489,10 +3377,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // GetRun - GET /threads/{thread_id}/runs/{run_id}
-            hyper::Method::GET if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID) => {
+#[allow(unused_variables)]
+async fn handle_get_run<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -2575,10 +3478,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ListRunSteps - GET /threads/{thread_id}/runs/{run_id}/steps
-            hyper::Method::GET if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID_STEPS) => {
+#[allow(unused_variables)]
+async fn handle_list_run_steps<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -2747,10 +3665,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ModifyMessage - POST /threads/{thread_id}/messages/{message_id}
-            hyper::Method::POST if path.matched(paths::ID_THREADS_THREAD_ID_MESSAGES_MESSAGE_ID) => {
+#[allow(unused_variables)]
+async fn handle_modify_message<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -2831,7 +3764,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_modify_message_request, "ModifyMessageRequest", validation);
 
-
                                 let result = api_impl.modify_message(
                                             param_thread_id,
                                             param_message_id,
@@ -2880,10 +3812,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // ModifyRun - POST /threads/{thread_id}/runs/{run_id}
-            hyper::Method::POST if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID) => {
+#[allow(unused_variables)]
+async fn handle_modify_run<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -2964,7 +3911,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_modify_run_request, "ModifyRunRequest", validation);
 
-
                                 let result = api_impl.modify_run(
                                             param_thread_id,
                                             param_run_id,
@@ -3013,10 +3959,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // SubmitToolOuputsToRun - POST /threads/{thread_id}/runs/{run_id}/submit_tool_outputs
-            hyper::Method::POST if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID_SUBMIT_TOOL_OUTPUTS) => {
+#[allow(unused_variables)]
+async fn handle_submit_tool_ouputs_to_run<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -3097,7 +4058,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_submit_tool_outputs_run_request, "SubmitToolOutputsRunRequest", validation);
 
-
                                 let result = api_impl.submit_tool_ouputs_to_run(
                                             param_thread_id,
                                             param_run_id,
@@ -3146,10 +4106,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // GetRunStep - GET /threads/{thread_id}/runs/{run_id}/steps/{step_id}
-            hyper::Method::GET if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID_STEPS_STEP_ID) => {
+#[allow(unused_variables)]
+async fn handle_get_run_step<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -3259,10 +4234,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // CreateSpeech - POST /audio/speech
-            hyper::Method::POST if path.matched(paths::ID_AUDIO_SPEECH) => {
+#[allow(unused_variables)]
+async fn handle_create_speech<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -3305,7 +4295,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_speech_request, "CreateSpeechRequest", validation);
-
 
                                 let result = api_impl.create_speech(
                                             param_create_speech_request,
@@ -3372,10 +4361,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CreateTranscription - POST /audio/transcriptions
-            hyper::Method::POST if path.matched(paths::ID_AUDIO_TRANSCRIPTIONS) => {
+#[allow(unused_variables)]
+async fn handle_create_transcription<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -3615,7 +4619,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                     }
                                 };
 
-
                                 let result = api_impl.create_transcription(
                                             param_file,
                                             param_model,
@@ -3662,10 +4665,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CreateTranslation - POST /audio/translations
-            hyper::Method::POST if path.matched(paths::ID_AUDIO_TRANSLATIONS) => {
+#[allow(unused_variables)]
+async fn handle_create_translation<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -3857,7 +4875,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                     }
                                 };
 
-
                                 let result = api_impl.create_translation(
                                             param_file,
                                             param_model,
@@ -3902,10 +4919,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // ListAuditLogs - GET /organization/audit_logs
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_AUDIT_LOGS) => {
+#[allow(unused_variables)]
+async fn handle_list_audit_logs<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -4071,10 +5103,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // CreateBatch - POST /batches
-            hyper::Method::POST if path.matched(paths::ID_BATCHES) => {
+#[allow(unused_variables)]
+async fn handle_create_batch<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -4117,7 +5164,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_batch_request, "CreateBatchRequest", validation);
-
 
                                 let result = api_impl.create_batch(
                                             param_create_batch_request,
@@ -4165,10 +5211,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // ListBatches - GET /batches
-            hyper::Method::GET if path.matched(paths::ID_BATCHES) => {
+#[allow(unused_variables)]
+async fn handle_list_batches<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -4251,10 +5312,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // CancelBatch - POST /batches/{batch_id}/cancel
-            hyper::Method::POST if path.matched(paths::ID_BATCHES_BATCH_ID_CANCEL) => {
+#[allow(unused_variables)]
+async fn handle_cancel_batch<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -4322,10 +5398,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // RetrieveBatch - GET /batches/{batch_id}
-            hyper::Method::GET if path.matched(paths::ID_BATCHES_BATCH_ID) => {
+#[allow(unused_variables)]
+async fn handle_retrieve_batch<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -4393,10 +5484,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // CreateChatCompletion - POST /chat/completions
-            hyper::Method::POST if path.matched(paths::ID_CHAT_COMPLETIONS) => {
+#[allow(unused_variables)]
+async fn handle_create_chat_completion<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -4439,7 +5545,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_chat_completion_request, "CreateChatCompletionRequest", validation);
-
 
                                 let result = api_impl.create_chat_completion(
                                             param_create_chat_completion_request,
@@ -4487,10 +5592,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CreateCompletion - POST /completions
-            hyper::Method::POST if path.matched(paths::ID_COMPLETIONS) => {
+#[allow(unused_variables)]
+async fn handle_create_completion<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -4533,7 +5653,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_completion_request, "CreateCompletionRequest", validation);
-
 
                                 let result = api_impl.create_completion(
                                             param_create_completion_request,
@@ -4581,10 +5700,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // AdminApiKeysCreate - POST /organization/admin_api_keys
-            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_ADMIN_API_KEYS) => {
+#[allow(unused_variables)]
+async fn handle_admin_api_keys_create<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -4627,7 +5761,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_admin_api_keys_create_request, "AdminApiKeysCreateRequest", validation);
-
 
                                 let result = api_impl.admin_api_keys_create(
                                             param_admin_api_keys_create_request,
@@ -4675,10 +5808,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // AdminApiKeysList - GET /organization/admin_api_keys
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_ADMIN_API_KEYS) => {
+#[allow(unused_variables)]
+async fn handle_admin_api_keys_list<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -4781,10 +5929,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // AdminApiKeysDelete - DELETE /organization/admin_api_keys/{key_id}
-            hyper::Method::DELETE if path.matched(paths::ID_ORGANIZATION_ADMIN_API_KEYS_KEY_ID) => {
+#[allow(unused_variables)]
+async fn handle_admin_api_keys_delete<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -4852,10 +6015,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // AdminApiKeysGet - GET /organization/admin_api_keys/{key_id}
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_ADMIN_API_KEYS_KEY_ID) => {
+#[allow(unused_variables)]
+async fn handle_admin_api_keys_get<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -4923,10 +6101,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // CreateEmbedding - POST /embeddings
-            hyper::Method::POST if path.matched(paths::ID_EMBEDDINGS) => {
+#[allow(unused_variables)]
+async fn handle_create_embedding<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -4969,7 +6162,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_embedding_request, "CreateEmbeddingRequest", validation);
-
 
                                 let result = api_impl.create_embedding(
                                             param_create_embedding_request,
@@ -5017,10 +6209,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CreateFile - POST /files
-            hyper::Method::POST if path.matched(paths::ID_FILES) => {
+#[allow(unused_variables)]
+async fn handle_create_file<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -5140,7 +6347,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                     }
                                 };
 
-
                                 let result = api_impl.create_file(
                                             param_file,
                                             param_purpose,
@@ -5182,10 +6388,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // ListFiles - GET /files
-            hyper::Method::GET if path.matched(paths::ID_FILES) => {
+#[allow(unused_variables)]
+async fn handle_list_files<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -5306,10 +6527,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // DeleteFile - DELETE /files/{file_id}
-            hyper::Method::DELETE if path.matched(paths::ID_FILES_FILE_ID) => {
+#[allow(unused_variables)]
+async fn handle_delete_file<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -5377,10 +6613,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // DownloadFile - GET /files/{file_id}/content
-            hyper::Method::GET if path.matched(paths::ID_FILES_FILE_ID_CONTENT) => {
+#[allow(unused_variables)]
+async fn handle_download_file<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -5448,10 +6699,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // RetrieveFile - GET /files/{file_id}
-            hyper::Method::GET if path.matched(paths::ID_FILES_FILE_ID) => {
+#[allow(unused_variables)]
+async fn handle_retrieve_file<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -5519,10 +6785,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // CreateFineTuningJob - POST /fine_tuning/jobs
-            hyper::Method::POST if path.matched(paths::ID_FINE_TUNING_JOBS) => {
+#[allow(unused_variables)]
+async fn handle_create_fine_tuning_job<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -5565,7 +6846,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_fine_tuning_job_request, "CreateFineTuningJobRequest", validation);
-
 
                                 let result = api_impl.create_fine_tuning_job(
                                             param_create_fine_tuning_job_request,
@@ -5613,10 +6893,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // ListPaginatedFineTuningJobs - GET /fine_tuning/jobs
-            hyper::Method::GET if path.matched(paths::ID_FINE_TUNING_JOBS) => {
+#[allow(unused_variables)]
+async fn handle_list_paginated_fine_tuning_jobs<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -5699,10 +6994,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // CancelFineTuningJob - POST /fine_tuning/jobs/{fine_tuning_job_id}/cancel
-            hyper::Method::POST if path.matched(paths::ID_FINE_TUNING_JOBS_FINE_TUNING_JOB_ID_CANCEL) => {
+#[allow(unused_variables)]
+async fn handle_cancel_fine_tuning_job<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -5770,10 +7080,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ListFineTuningEvents - GET /fine_tuning/jobs/{fine_tuning_job_id}/events
-            hyper::Method::GET if path.matched(paths::ID_FINE_TUNING_JOBS_FINE_TUNING_JOB_ID_EVENTS) => {
+#[allow(unused_variables)]
+async fn handle_list_fine_tuning_events<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -5880,10 +7205,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ListFineTuningJobCheckpoints - GET /fine_tuning/jobs/{fine_tuning_job_id}/checkpoints
-            hyper::Method::GET if path.matched(paths::ID_FINE_TUNING_JOBS_FINE_TUNING_JOB_ID_CHECKPOINTS) => {
+#[allow(unused_variables)]
+async fn handle_list_fine_tuning_job_checkpoints<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -5990,10 +7330,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // RetrieveFineTuningJob - GET /fine_tuning/jobs/{fine_tuning_job_id}
-            hyper::Method::GET if path.matched(paths::ID_FINE_TUNING_JOBS_FINE_TUNING_JOB_ID) => {
+#[allow(unused_variables)]
+async fn handle_retrieve_fine_tuning_job<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -6061,10 +7416,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // CreateImage - POST /images/generations
-            hyper::Method::POST if path.matched(paths::ID_IMAGES_GENERATIONS) => {
+#[allow(unused_variables)]
+async fn handle_create_image<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -6107,7 +7477,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_image_request, "CreateImageRequest", validation);
-
 
                                 let result = api_impl.create_image(
                                             param_create_image_request,
@@ -6155,10 +7524,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CreateImageEdit - POST /images/edits
-            hyper::Method::POST if path.matched(paths::ID_IMAGES_EDITS) => {
+#[allow(unused_variables)]
+async fn handle_create_image_edit<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -6332,7 +7716,7 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                     Some({
                                         let mut data = String::new();
                                         reader.read_to_string(&mut data).expect("Reading saved String should never fail");
-                                        let n_model: swagger::Nullable<i32> = match serde_json::from_str(&data) {
+                                        let n_model: u8 = match serde_json::from_str(&data) {
                                             Ok(model) => model,
                                             Err(e) => {
                                                 return Ok(
@@ -6422,7 +7806,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                     }
                                 };
 
-
                                 let result = api_impl.create_image_edit(
                                             param_image,
                                             param_prompt,
@@ -6470,10 +7853,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CreateImageVariation - POST /images/variations
-            hyper::Method::POST if path.matched(paths::ID_IMAGES_VARIATIONS) => {
+#[allow(unused_variables)]
+async fn handle_create_image_variation<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -6597,7 +7995,7 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                     Some({
                                         let mut data = String::new();
                                         reader.read_to_string(&mut data).expect("Reading saved String should never fail");
-                                        let n_model: swagger::Nullable<i32> = match serde_json::from_str(&data) {
+                                        let n_model: u8 = match serde_json::from_str(&data) {
                                             Ok(model) => model,
                                             Err(e) => {
                                                 return Ok(
@@ -6687,7 +8085,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                     }
                                 };
 
-
                                 let result = api_impl.create_image_variation(
                                             param_image,
                                             param_model,
@@ -6733,10 +8130,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // InviteUser - POST /organization/invites
-            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_INVITES) => {
+#[allow(unused_variables)]
+async fn handle_invite_user<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -6779,7 +8191,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_invite_request, "InviteRequest", validation);
-
 
                                 let result = api_impl.invite_user(
                                             param_invite_request,
@@ -6827,10 +8238,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // ListInvites - GET /organization/invites
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_INVITES) => {
+#[allow(unused_variables)]
+async fn handle_list_invites<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -6913,10 +8339,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // DeleteInvite - DELETE /organization/invites/{invite_id}
-            hyper::Method::DELETE if path.matched(paths::ID_ORGANIZATION_INVITES_INVITE_ID) => {
+#[allow(unused_variables)]
+async fn handle_delete_invite<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -6984,10 +8425,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // RetrieveInvite - GET /organization/invites/{invite_id}
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_INVITES_INVITE_ID) => {
+#[allow(unused_variables)]
+async fn handle_retrieve_invite<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -7055,10 +8511,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ListModels - GET /models
-            hyper::Method::GET if path.matched(paths::ID_MODELS) => {
+#[allow(unused_variables)]
+async fn handle_list_models<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -7102,10 +8573,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // DeleteModel - DELETE /models/{model}
-            hyper::Method::DELETE if path.matched(paths::ID_MODELS_MODEL) => {
+#[allow(unused_variables)]
+async fn handle_delete_model<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -7173,10 +8659,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // RetrieveModel - GET /models/{model}
-            hyper::Method::GET if path.matched(paths::ID_MODELS_MODEL) => {
+#[allow(unused_variables)]
+async fn handle_retrieve_model<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -7244,10 +8745,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // CreateModeration - POST /moderations
-            hyper::Method::POST if path.matched(paths::ID_MODERATIONS) => {
+#[allow(unused_variables)]
+async fn handle_create_moderation<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -7290,7 +8806,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_moderation_request, "CreateModerationRequest", validation);
-
 
                                 let result = api_impl.create_moderation(
                                             param_create_moderation_request,
@@ -7338,10 +8853,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CreateProject - POST /organization/projects
-            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_PROJECTS) => {
+#[allow(unused_variables)]
+async fn handle_create_project<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -7384,7 +8914,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_project_create_request, "ProjectCreateRequest", validation);
-
 
                                 let result = api_impl.create_project(
                                             param_project_create_request,
@@ -7432,10 +8961,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // ListProjects - GET /organization/projects
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS) => {
+#[allow(unused_variables)]
+async fn handle_list_projects<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -7536,10 +9080,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ArchiveProject - POST /organization/projects/{project_id}/archive
-            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_ARCHIVE) => {
+#[allow(unused_variables)]
+async fn handle_archive_project<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -7607,10 +9166,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // CreateProjectServiceAccount - POST /organization/projects/{project_id}/service_accounts
-            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_SERVICE_ACCOUNTS) => {
+#[allow(unused_variables)]
+async fn handle_create_project_service_account<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -7677,7 +9251,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_project_service_account_create_request, "ProjectServiceAccountCreateRequest", validation);
 
-
                                 let result = api_impl.create_project_service_account(
                                             param_project_id,
                                             param_project_service_account_create_request,
@@ -7737,10 +9310,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CreateProjectUser - POST /organization/projects/{project_id}/users
-            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_USERS) => {
+#[allow(unused_variables)]
+async fn handle_create_project_user<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -7807,7 +9395,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_project_user_create_request, "ProjectUserCreateRequest", validation);
 
-
                                 let result = api_impl.create_project_user(
                                             param_project_id,
                                             param_project_user_create_request,
@@ -7867,10 +9454,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // ListProjectApiKeys - GET /organization/projects/{project_id}/api_keys
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_API_KEYS) => {
+#[allow(unused_variables)]
+async fn handle_list_project_api_keys<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -7977,10 +9579,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ListProjectRateLimits - GET /organization/projects/{project_id}/rate_limits
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_RATE_LIMITS) => {
+#[allow(unused_variables)]
+async fn handle_list_project_rate_limits<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -8105,10 +9722,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ListProjectServiceAccounts - GET /organization/projects/{project_id}/service_accounts
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_SERVICE_ACCOUNTS) => {
+#[allow(unused_variables)]
+async fn handle_list_project_service_accounts<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -8227,10 +9859,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ListProjectUsers - GET /organization/projects/{project_id}/users
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_USERS) => {
+#[allow(unused_variables)]
+async fn handle_list_project_users<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -8349,10 +9996,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ModifyProject - POST /organization/projects/{project_id}
-            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID) => {
+#[allow(unused_variables)]
+async fn handle_modify_project<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -8419,7 +10081,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_project_update_request, "ProjectUpdateRequest", validation);
 
-
                                 let result = api_impl.modify_project(
                                             param_project_id,
                                             param_project_update_request,
@@ -8479,10 +10140,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // RetrieveProject - GET /organization/projects/{project_id}
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID) => {
+#[allow(unused_variables)]
+async fn handle_retrieve_project<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -8550,10 +10226,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // DeleteProjectApiKey - DELETE /organization/projects/{project_id}/api_keys/{key_id}
-            hyper::Method::DELETE if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_API_KEYS_KEY_ID) => {
+#[allow(unused_variables)]
+async fn handle_delete_project_api_key<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -8648,10 +10339,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // DeleteProjectServiceAccount - DELETE /organization/projects/{project_id}/service_accounts/{service_account_id}
-            hyper::Method::DELETE if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_SERVICE_ACCOUNTS_SERVICE_ACCOUNT_ID) => {
+#[allow(unused_variables)]
+async fn handle_delete_project_service_account<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -8734,10 +10440,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // DeleteProjectUser - DELETE /organization/projects/{project_id}/users/{user_id}
-            hyper::Method::DELETE if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_USERS_USER_ID) => {
+#[allow(unused_variables)]
+async fn handle_delete_project_user<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -8832,10 +10553,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ModifyProjectUser - POST /organization/projects/{project_id}/users/{user_id}
-            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_USERS_USER_ID) => {
+#[allow(unused_variables)]
+async fn handle_modify_project_user<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -8916,7 +10652,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_project_user_update_request, "ProjectUserUpdateRequest", validation);
 
-
                                 let result = api_impl.modify_project_user(
                                             param_project_id,
                                             param_user_id,
@@ -8977,10 +10712,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // RetrieveProjectApiKey - GET /organization/projects/{project_id}/api_keys/{key_id}
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_API_KEYS_KEY_ID) => {
+#[allow(unused_variables)]
+async fn handle_retrieve_project_api_key<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -9063,10 +10813,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // RetrieveProjectServiceAccount - GET /organization/projects/{project_id}/service_accounts/{service_account_id}
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_SERVICE_ACCOUNTS_SERVICE_ACCOUNT_ID) => {
+#[allow(unused_variables)]
+async fn handle_retrieve_project_service_account<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -9149,10 +10914,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // RetrieveProjectUser - GET /organization/projects/{project_id}/users/{user_id}
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_USERS_USER_ID) => {
+#[allow(unused_variables)]
+async fn handle_retrieve_project_user<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -9235,10 +11015,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // UpdateProjectRateLimits - POST /organization/projects/{project_id}/rate_limits/{rate_limit_id}
-            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_RATE_LIMITS_RATE_LIMIT_ID) => {
+#[allow(unused_variables)]
+async fn handle_update_project_rate_limits<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -9319,7 +11114,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_project_rate_limit_update_request, "ProjectRateLimitUpdateRequest", validation);
 
-
                                 let result = api_impl.update_project_rate_limits(
                                             param_project_id,
                                             param_rate_limit_id,
@@ -9380,10 +11174,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CreateRealtimeSession - POST /realtime/sessions
-            hyper::Method::POST if path.matched(paths::ID_REALTIME_SESSIONS) => {
+#[allow(unused_variables)]
+async fn handle_create_realtime_session<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -9426,7 +11235,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_realtime_session_create_request, "RealtimeSessionCreateRequest", validation);
-
 
                                 let result = api_impl.create_realtime_session(
                                             param_realtime_session_create_request,
@@ -9474,10 +11282,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CreateUpload - POST /uploads
-            hyper::Method::POST if path.matched(paths::ID_UPLOADS) => {
+#[allow(unused_variables)]
+async fn handle_create_upload<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -9520,7 +11343,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_upload_request, "CreateUploadRequest", validation);
-
 
                                 let result = api_impl.create_upload(
                                             param_create_upload_request,
@@ -9568,10 +11390,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // AddUploadPart - POST /uploads/{upload_id}/parts
-            hyper::Method::POST if path.matched(paths::ID_UPLOADS_UPLOAD_ID_PARTS) => {
+#[allow(unused_variables)]
+async fn handle_add_upload_part<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -9688,7 +11525,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                     }
                                 };
 
-
                                 let result = api_impl.add_upload_part(
                                             param_upload_id,
                                             param_data,
@@ -9730,10 +11566,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CancelUpload - POST /uploads/{upload_id}/cancel
-            hyper::Method::POST if path.matched(paths::ID_UPLOADS_UPLOAD_ID_CANCEL) => {
+#[allow(unused_variables)]
+async fn handle_cancel_upload<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -9801,10 +11652,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // CompleteUpload - POST /uploads/{upload_id}/complete
-            hyper::Method::POST if path.matched(paths::ID_UPLOADS_UPLOAD_ID_COMPLETE) => {
+#[allow(unused_variables)]
+async fn handle_complete_upload<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -9871,7 +11737,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_complete_upload_request, "CompleteUploadRequest", validation);
 
-
                                 let result = api_impl.complete_upload(
                                             param_upload_id,
                                             param_complete_upload_request,
@@ -9919,10 +11784,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // UsageAudioSpeeches - GET /organization/usage/audio_speeches
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USAGE_AUDIO_SPEECHES) => {
+#[allow(unused_variables)]
+async fn handle_usage_audio_speeches<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -10113,10 +11993,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // UsageAudioTranscriptions - GET /organization/usage/audio_transcriptions
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USAGE_AUDIO_TRANSCRIPTIONS) => {
+#[allow(unused_variables)]
+async fn handle_usage_audio_transcriptions<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -10307,10 +12202,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // UsageCodeInterpreterSessions - GET /organization/usage/code_interpreter_sessions
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USAGE_CODE_INTERPRETER_SESSIONS) => {
+#[allow(unused_variables)]
+async fn handle_usage_code_interpreter_sessions<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -10474,10 +12384,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // UsageCompletions - GET /organization/usage/completions
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USAGE_COMPLETIONS) => {
+#[allow(unused_variables)]
+async fn handle_usage_completions<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -10686,10 +12611,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // UsageCosts - GET /organization/costs
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_COSTS) => {
+#[allow(unused_variables)]
+async fn handle_usage_costs<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -10853,10 +12793,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // UsageEmbeddings - GET /organization/usage/embeddings
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USAGE_EMBEDDINGS) => {
+#[allow(unused_variables)]
+async fn handle_usage_embeddings<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -11047,10 +13002,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // UsageImages - GET /organization/usage/images
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USAGE_IMAGES) => {
+#[allow(unused_variables)]
+async fn handle_usage_images<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -11259,10 +13229,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // UsageModerations - GET /organization/usage/moderations
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USAGE_MODERATIONS) => {
+#[allow(unused_variables)]
+async fn handle_usage_moderations<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -11453,10 +13438,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // UsageVectorStores - GET /organization/usage/vector_stores
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USAGE_VECTOR_STORES) => {
+#[allow(unused_variables)]
+async fn handle_usage_vector_stores<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -11620,10 +13620,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ListUsers - GET /organization/users
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USERS) => {
+#[allow(unused_variables)]
+async fn handle_list_users<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -11706,10 +13721,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // DeleteUser - DELETE /organization/users/{user_id}
-            hyper::Method::DELETE if path.matched(paths::ID_ORGANIZATION_USERS_USER_ID) => {
+#[allow(unused_variables)]
+async fn handle_delete_user<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -11777,10 +13807,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ModifyUser - POST /organization/users/{user_id}
-            hyper::Method::POST if path.matched(paths::ID_ORGANIZATION_USERS_USER_ID) => {
+#[allow(unused_variables)]
+async fn handle_modify_user<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -11847,7 +13892,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_user_role_update_request, "UserRoleUpdateRequest", validation);
 
-
                                 let result = api_impl.modify_user(
                                             param_user_id,
                                             param_user_role_update_request,
@@ -11895,10 +13939,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // RetrieveUser - GET /organization/users/{user_id}
-            hyper::Method::GET if path.matched(paths::ID_ORGANIZATION_USERS_USER_ID) => {
+#[allow(unused_variables)]
+async fn handle_retrieve_user<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -11966,10 +14025,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // CreateVectorStore - POST /vector_stores
-            hyper::Method::POST if path.matched(paths::ID_VECTOR_STORES) => {
+#[allow(unused_variables)]
+async fn handle_create_vector_store<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -12012,7 +14086,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                 };
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_vector_store_request, "CreateVectorStoreRequest", validation);
-
 
                                 let result = api_impl.create_vector_store(
                                             param_create_vector_store_request,
@@ -12060,10 +14133,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // ListVectorStores - GET /vector_stores
-            hyper::Method::GET if path.matched(paths::ID_VECTOR_STORES) => {
+#[allow(unused_variables)]
+async fn handle_list_vector_stores<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -12184,10 +14272,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // CreateVectorStoreFile - POST /vector_stores/{vector_store_id}/files
-            hyper::Method::POST if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILES) => {
+#[allow(unused_variables)]
+async fn handle_create_vector_store_file<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -12254,7 +14357,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_vector_store_file_request, "CreateVectorStoreFileRequest", validation);
 
-
                                 let result = api_impl.create_vector_store_file(
                                             param_vector_store_id,
                                             param_create_vector_store_file_request,
@@ -12302,10 +14404,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CreateVectorStoreFileBatch - POST /vector_stores/{vector_store_id}/file_batches
-            hyper::Method::POST if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILE_BATCHES) => {
+#[allow(unused_variables)]
+async fn handle_create_vector_store_file_batch<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -12372,7 +14489,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_create_vector_store_file_batch_request, "CreateVectorStoreFileBatchRequest", validation);
 
-
                                 let result = api_impl.create_vector_store_file_batch(
                                             param_vector_store_id,
                                             param_create_vector_store_file_batch_request,
@@ -12420,10 +14536,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // DeleteVectorStore - DELETE /vector_stores/{vector_store_id}
-            hyper::Method::DELETE if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID) => {
+#[allow(unused_variables)]
+async fn handle_delete_vector_store<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -12491,10 +14622,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // GetVectorStore - GET /vector_stores/{vector_store_id}
-            hyper::Method::GET if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID) => {
+#[allow(unused_variables)]
+async fn handle_get_vector_store<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -12562,10 +14708,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ListVectorStoreFiles - GET /vector_stores/{vector_store_id}/files
-            hyper::Method::GET if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILES) => {
+#[allow(unused_variables)]
+async fn handle_list_vector_store_files<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -12730,10 +14891,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ModifyVectorStore - POST /vector_stores/{vector_store_id}
-            hyper::Method::POST if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID) => {
+#[allow(unused_variables)]
+async fn handle_modify_vector_store<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -12800,7 +14976,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
         #[cfg(not(feature = "validate"))]
                                 run_validation!(param_update_vector_store_request, "UpdateVectorStoreRequest", validation);
 
-
                                 let result = api_impl.modify_vector_store(
                                             param_vector_store_id,
                                             param_update_vector_store_request,
@@ -12848,10 +15023,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                                 .body(body_from_string(format!("Unable to read body: {}", e.into())))
                                                 .expect("Unable to create Bad Request response due to unable to read body")),
                         }
-            },
+}
 
-            // CancelVectorStoreFileBatch - POST /vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel
-            hyper::Method::POST if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILE_BATCHES_BATCH_ID_CANCEL) => {
+#[allow(unused_variables)]
+async fn handle_cancel_vector_store_file_batch<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -12934,10 +15124,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // DeleteVectorStoreFile - DELETE /vector_stores/{vector_store_id}/files/{file_id}
-            hyper::Method::DELETE if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILES_FILE_ID) => {
+#[allow(unused_variables)]
+async fn handle_delete_vector_store_file<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -13020,10 +15225,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // GetVectorStoreFile - GET /vector_stores/{vector_store_id}/files/{file_id}
-            hyper::Method::GET if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILES_FILE_ID) => {
+#[allow(unused_variables)]
+async fn handle_get_vector_store_file<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -13106,10 +15326,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // GetVectorStoreFileBatch - GET /vector_stores/{vector_store_id}/file_batches/{batch_id}
-            hyper::Method::GET if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILE_BATCHES_BATCH_ID) => {
+#[allow(unused_variables)]
+async fn handle_get_vector_store_file_batch<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -13192,10 +15427,25 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
+}
 
-            // ListFilesInVectorStoreBatch - GET /vector_stores/{vector_store_id}/file_batches/{batch_id}/files
-            hyper::Method::GET if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILE_BATCHES_BATCH_ID_FILES) => {
+#[allow(unused_variables)]
+async fn handle_list_files_in_vector_store_batch<T, C, ReqBody>(
+    mut api_impl: T,
+    uri: hyper::Uri,
+    headers: HeaderMap,
+    body: ReqBody,
+    context: C,
+    validation: bool,
+    multipart_form_size_limit: Option<u64>,
+) -> Result<Response<BoxBody<Bytes, Infallible>>, crate::ServiceError>
+where
+    T: Api<C> + Clone + Send + 'static,
+    C: Has<XSpanIdString> + Has<Option<Authorization>> + Send + Sync + 'static,
+    ReqBody: Body + Send + 'static,
+    ReqBody::Error: Into<Box<dyn Error + Send + Sync>> + Send,
+    ReqBody::Data: Send,
+{
                 {
                     let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
                         Some(ref authorization) => authorization,
@@ -13375,96 +15625,6 @@ impl<T, C, ReqBody> hyper::service::Service<(Request<ReqBody>, C)> for Service<T
                                         }
 
                                         Ok(response)
-            },
-
-            _ if path.matched(paths::ID_ASSISTANTS) => method_not_allowed(),
-            _ if path.matched(paths::ID_ASSISTANTS_ASSISTANT_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_AUDIO_SPEECH) => method_not_allowed(),
-            _ if path.matched(paths::ID_AUDIO_TRANSCRIPTIONS) => method_not_allowed(),
-            _ if path.matched(paths::ID_AUDIO_TRANSLATIONS) => method_not_allowed(),
-            _ if path.matched(paths::ID_BATCHES) => method_not_allowed(),
-            _ if path.matched(paths::ID_BATCHES_BATCH_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_BATCHES_BATCH_ID_CANCEL) => method_not_allowed(),
-            _ if path.matched(paths::ID_CHAT_COMPLETIONS) => method_not_allowed(),
-            _ if path.matched(paths::ID_COMPLETIONS) => method_not_allowed(),
-            _ if path.matched(paths::ID_EMBEDDINGS) => method_not_allowed(),
-            _ if path.matched(paths::ID_FILES) => method_not_allowed(),
-            _ if path.matched(paths::ID_FILES_FILE_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_FILES_FILE_ID_CONTENT) => method_not_allowed(),
-            _ if path.matched(paths::ID_FINE_TUNING_JOBS) => method_not_allowed(),
-            _ if path.matched(paths::ID_FINE_TUNING_JOBS_FINE_TUNING_JOB_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_FINE_TUNING_JOBS_FINE_TUNING_JOB_ID_CANCEL) => method_not_allowed(),
-            _ if path.matched(paths::ID_FINE_TUNING_JOBS_FINE_TUNING_JOB_ID_CHECKPOINTS) => method_not_allowed(),
-            _ if path.matched(paths::ID_FINE_TUNING_JOBS_FINE_TUNING_JOB_ID_EVENTS) => method_not_allowed(),
-            _ if path.matched(paths::ID_IMAGES_EDITS) => method_not_allowed(),
-            _ if path.matched(paths::ID_IMAGES_GENERATIONS) => method_not_allowed(),
-            _ if path.matched(paths::ID_IMAGES_VARIATIONS) => method_not_allowed(),
-            _ if path.matched(paths::ID_MODELS) => method_not_allowed(),
-            _ if path.matched(paths::ID_MODELS_MODEL) => method_not_allowed(),
-            _ if path.matched(paths::ID_MODERATIONS) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_ADMIN_API_KEYS) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_ADMIN_API_KEYS_KEY_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_AUDIT_LOGS) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_COSTS) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_INVITES) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_INVITES_INVITE_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_API_KEYS) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_API_KEYS_KEY_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_ARCHIVE) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_RATE_LIMITS) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_RATE_LIMITS_RATE_LIMIT_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_SERVICE_ACCOUNTS) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_SERVICE_ACCOUNTS_SERVICE_ACCOUNT_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_USERS) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_PROJECTS_PROJECT_ID_USERS_USER_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_USAGE_AUDIO_SPEECHES) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_USAGE_AUDIO_TRANSCRIPTIONS) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_USAGE_CODE_INTERPRETER_SESSIONS) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_USAGE_COMPLETIONS) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_USAGE_EMBEDDINGS) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_USAGE_IMAGES) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_USAGE_MODERATIONS) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_USAGE_VECTOR_STORES) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_USERS) => method_not_allowed(),
-            _ if path.matched(paths::ID_ORGANIZATION_USERS_USER_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_REALTIME_SESSIONS) => method_not_allowed(),
-            _ if path.matched(paths::ID_THREADS) => method_not_allowed(),
-            _ if path.matched(paths::ID_THREADS_RUNS) => method_not_allowed(),
-            _ if path.matched(paths::ID_THREADS_THREAD_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_THREADS_THREAD_ID_MESSAGES) => method_not_allowed(),
-            _ if path.matched(paths::ID_THREADS_THREAD_ID_MESSAGES_MESSAGE_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_THREADS_THREAD_ID_RUNS) => method_not_allowed(),
-            _ if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID_CANCEL) => method_not_allowed(),
-            _ if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID_STEPS) => method_not_allowed(),
-            _ if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID_STEPS_STEP_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_THREADS_THREAD_ID_RUNS_RUN_ID_SUBMIT_TOOL_OUTPUTS) => method_not_allowed(),
-            _ if path.matched(paths::ID_UPLOADS) => method_not_allowed(),
-            _ if path.matched(paths::ID_UPLOADS_UPLOAD_ID_CANCEL) => method_not_allowed(),
-            _ if path.matched(paths::ID_UPLOADS_UPLOAD_ID_COMPLETE) => method_not_allowed(),
-            _ if path.matched(paths::ID_UPLOADS_UPLOAD_ID_PARTS) => method_not_allowed(),
-            _ if path.matched(paths::ID_VECTOR_STORES) => method_not_allowed(),
-            _ if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILE_BATCHES) => method_not_allowed(),
-            _ if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILE_BATCHES_BATCH_ID) => method_not_allowed(),
-            _ if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILE_BATCHES_BATCH_ID_CANCEL) => method_not_allowed(),
-            _ if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILE_BATCHES_BATCH_ID_FILES) => method_not_allowed(),
-            _ if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILES) => method_not_allowed(),
-            _ if path.matched(paths::ID_VECTOR_STORES_VECTOR_STORE_ID_FILES_FILE_ID) => method_not_allowed(),
-                _ => Ok(Response::builder().status(StatusCode::NOT_FOUND)
-                        .body(BoxBody::new(http_body_util::Empty::new()))
-                        .expect("Unable to create Not Found response"))
-            }
-        }
-        Box::pin(run(
-            self.api_impl.clone(),
-            req,
-            self.validation,
-            self.multipart_form_size_limit
-        ))
-    }
 }
 
 /// Request parser for `Api`.

@@ -34,7 +34,7 @@ class  Batch_errors
 {
 public:
     Batch_errors();
-    virtual ~Batch_errors() = default;
+    virtual ~Batch_errors();
 
 
     /// <summary>

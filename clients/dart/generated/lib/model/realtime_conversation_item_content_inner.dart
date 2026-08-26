@@ -120,10 +120,6 @@ class RealtimeConversationItemContentInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealtimeConversationItemContentInner[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealtimeConversationItemContentInner[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
@@ -184,33 +180,31 @@ class RealtimeConversationItemContentInner {
 }
 
 /// The content type (`input_text`, `input_audio`, `item_reference`, `text`). 
-class RealtimeConversationItemContentInnerTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RealtimeConversationItemContentInnerTypeEnum._(this.value);
+enum RealtimeConversationItemContentInnerTypeEnum {
+  inputAudio._(r'input_audio'),
+  inputText._(r'input_text'),
+  itemReference._(r'item_reference'),
+  text._(r'text'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const RealtimeConversationItemContentInnerTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const inputAudio = RealtimeConversationItemContentInnerTypeEnum._(r'input_audio');
-  static const inputText = RealtimeConversationItemContentInnerTypeEnum._(r'input_text');
-  static const itemReference = RealtimeConversationItemContentInnerTypeEnum._(r'item_reference');
-  static const text = RealtimeConversationItemContentInnerTypeEnum._(r'text');
-
-  /// List of all possible values in this [enum][RealtimeConversationItemContentInnerTypeEnum].
-  static const values = <RealtimeConversationItemContentInnerTypeEnum>[
-    inputAudio,
-    inputText,
-    itemReference,
-    text,
-  ];
-
+  /// Returns the instance of [RealtimeConversationItemContentInnerTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static RealtimeConversationItemContentInnerTypeEnum? fromJson(dynamic value) => RealtimeConversationItemContentInnerTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [RealtimeConversationItemContentInnerTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<RealtimeConversationItemContentInnerTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <RealtimeConversationItemContentInnerTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -232,9 +226,10 @@ class RealtimeConversationItemContentInnerTypeEnumTypeTransformer {
 
   const RealtimeConversationItemContentInnerTypeEnumTypeTransformer._();
 
-  String encode(RealtimeConversationItemContentInnerTypeEnum data) => data.value;
+  String encode(RealtimeConversationItemContentInnerTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a RealtimeConversationItemContentInnerTypeEnum.
+  /// Returns the instance of [RealtimeConversationItemContentInnerTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -243,6 +238,9 @@ class RealtimeConversationItemContentInnerTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   RealtimeConversationItemContentInnerTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is RealtimeConversationItemContentInnerTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'input_audio': return RealtimeConversationItemContentInnerTypeEnum.inputAudio;
@@ -258,7 +256,7 @@ class RealtimeConversationItemContentInnerTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [RealtimeConversationItemContentInnerTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static RealtimeConversationItemContentInnerTypeEnumTypeTransformer? _instance;
 }
 

@@ -134,7 +134,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>batch_abc123</example> */
         [JsonPropertyName("first_id")]
-        public string? FirstId { get { return this.FirstIdOption; } set { this.FirstIdOption = new(value); } }
+        public string? FirstId { get { return this.FirstIdOption.Value; } set { this.FirstIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastId
@@ -148,7 +148,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /* <example>batch_abc456</example> */
         [JsonPropertyName("last_id")]
-        public string? LastId { get { return this.LastIdOption; } set { this.LastIdOption = new(value); } }
+        public string? LastId { get { return this.LastIdOption.Value; } set { this.LastIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -181,8 +181,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="ListBatchesResponse" />
     /// </summary>
-    public class ListBatchesResponseJsonConverter : JsonConverter<ListBatchesResponse>
+    public partial class ListBatchesResponseJsonConverter : JsonConverter<ListBatchesResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListBatchesResponseJsonConverter" /> class.
+        /// </summary>
+        public ListBatchesResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ListBatchesResponse" />
         /// </summary>

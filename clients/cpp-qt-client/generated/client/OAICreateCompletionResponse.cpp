@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAICreateCompletionResponse::OAICreateCompletionResponse(QString json) {
+OAICreateCompletionResponse::OAICreateCompletionResponse(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -56,7 +56,7 @@ void OAICreateCompletionResponse::initializeModel() {
     m_usage_isValid = false;
 }
 
-void OAICreateCompletionResponse::fromJson(QString jsonString) {
+void OAICreateCompletionResponse::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

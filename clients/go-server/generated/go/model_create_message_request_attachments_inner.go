@@ -23,7 +23,8 @@ type CreateMessageRequestAttachmentsInner struct {
 	Tools []CreateMessageRequestAttachmentsInnerToolsInner `json:"tools,omitempty"`
 }
 
-// AssertCreateMessageRequestAttachmentsInnerRequired checks if the required fields are not zero-ed
+// AssertCreateMessageRequestAttachmentsInnerRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertCreateMessageRequestAttachmentsInnerRequired(obj CreateMessageRequestAttachmentsInner) error {
 	for _, el := range obj.Tools {
 		if err := AssertCreateMessageRequestAttachmentsInnerToolsInnerRequired(el); err != nil {

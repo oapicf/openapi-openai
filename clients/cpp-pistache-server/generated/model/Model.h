@@ -32,7 +32,7 @@ class  Model
 {
 public:
     Model();
-    virtual ~Model() = default;
+    virtual ~Model();
 
 
     /// <summary>

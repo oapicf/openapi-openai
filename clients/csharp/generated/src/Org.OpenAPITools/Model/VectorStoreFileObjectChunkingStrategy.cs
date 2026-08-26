@@ -34,10 +34,10 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="VectorStoreFileObjectChunkingStrategy" /> class.
         /// </summary>
-        /// <param name="staticChunkingStrategyResponseParam"></param>
-        public VectorStoreFileObjectChunkingStrategy(StaticChunkingStrategyResponseParam staticChunkingStrategyResponseParam)
+        /// <param name="staticChunkingStrategyRequestParam"></param>
+        public VectorStoreFileObjectChunkingStrategy(StaticChunkingStrategyRequestParam staticChunkingStrategyRequestParam)
         {
-            StaticChunkingStrategyResponseParam = staticChunkingStrategyResponseParam;
+            StaticChunkingStrategyRequestParam = staticChunkingStrategyRequestParam;
             OnCreated();
         }
 
@@ -54,9 +54,9 @@ namespace Org.OpenAPITools.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets StaticChunkingStrategyResponseParam
+        /// Gets or Sets StaticChunkingStrategyRequestParam
         /// </summary>
-        public StaticChunkingStrategyResponseParam? StaticChunkingStrategyResponseParam { get; set; }
+        public StaticChunkingStrategyRequestParam? StaticChunkingStrategyRequestParam { get; set; }
 
         /// <summary>
         /// Gets or Sets OtherChunkingStrategyResponseParam
@@ -89,8 +89,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="VectorStoreFileObjectChunkingStrategy" />
     /// </summary>
-    public class VectorStoreFileObjectChunkingStrategyJsonConverter : JsonConverter<VectorStoreFileObjectChunkingStrategy>
+    public partial class VectorStoreFileObjectChunkingStrategyJsonConverter : JsonConverter<VectorStoreFileObjectChunkingStrategy>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VectorStoreFileObjectChunkingStrategyJsonConverter" /> class.
+        /// </summary>
+        public VectorStoreFileObjectChunkingStrategyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="VectorStoreFileObjectChunkingStrategy" />
         /// </summary>
@@ -108,7 +118,7 @@ namespace Org.OpenAPITools.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            StaticChunkingStrategyResponseParam? staticChunkingStrategyResponseParam = default;
+            StaticChunkingStrategyRequestParam? staticChunkingStrategyRequestParam = default;
             OtherChunkingStrategyResponseParam? otherChunkingStrategyResponseParam = default;
 
             Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
@@ -122,8 +132,8 @@ namespace Org.OpenAPITools.Model
 
                 if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
                 {
-                    Utf8JsonReader utf8JsonReaderStaticChunkingStrategyResponseParam = utf8JsonReader;
-                    ClientUtils.TryDeserialize<StaticChunkingStrategyResponseParam?>(ref utf8JsonReaderStaticChunkingStrategyResponseParam, jsonSerializerOptions, out staticChunkingStrategyResponseParam);
+                    Utf8JsonReader utf8JsonReaderStaticChunkingStrategyRequestParam = utf8JsonReader;
+                    ClientUtils.TryDeserialize<StaticChunkingStrategyRequestParam?>(ref utf8JsonReaderStaticChunkingStrategyRequestParam, jsonSerializerOptions, out staticChunkingStrategyRequestParam);
 
                     Utf8JsonReader utf8JsonReaderOtherChunkingStrategyResponseParam = utf8JsonReader;
                     ClientUtils.TryDeserialize<OtherChunkingStrategyResponseParam?>(ref utf8JsonReaderOtherChunkingStrategyResponseParam, jsonSerializerOptions, out otherChunkingStrategyResponseParam);
@@ -151,8 +161,8 @@ namespace Org.OpenAPITools.Model
                 }
             }
 
-            if (staticChunkingStrategyResponseParam != null)
-                return new VectorStoreFileObjectChunkingStrategy(staticChunkingStrategyResponseParam);
+            if (staticChunkingStrategyRequestParam != null)
+                return new VectorStoreFileObjectChunkingStrategy(staticChunkingStrategyRequestParam);
 
             if (otherChunkingStrategyResponseParam != null)
                 return new VectorStoreFileObjectChunkingStrategy(otherChunkingStrategyResponseParam);

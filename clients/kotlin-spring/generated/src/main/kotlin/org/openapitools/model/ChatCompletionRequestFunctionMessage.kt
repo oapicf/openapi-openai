@@ -4,6 +4,9 @@ import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -23,15 +26,18 @@ import io.swagger.v3.oas.annotations.media.Schema
  */
 data class ChatCompletionRequestFunctionMessage(
 
-    @Schema(example = "null", required = true, description = "The role of the messages author, in this case `function`.")
+    @Schema(required = true, description = "The role of the messages author, in this case `function`.")
+    @param:JsonProperty("role")
     @get:JsonProperty("role", required = true) val role: ChatCompletionRequestFunctionMessage.Role,
 
-    @Schema(example = "null", required = true, description = "The contents of the function message.")
+    @Schema(required = true, description = "The contents of the function message.")
+    @param:JsonProperty("content")
     @get:JsonProperty("content", required = true) val content: kotlin.String?,
 
-    @Schema(example = "null", required = true, description = "The name of the function to call.")
+    @Schema(required = true, description = "The name of the function to call.")
+    @param:JsonProperty("name")
     @get:JsonProperty("name", required = true) val name: kotlin.String
-) {
+) : ChatCompletionRequestMessage, FineTuneChatRequestInputMessagesInner {
 
     /**
     * The role of the messages author, in this case `function`.
@@ -46,7 +52,7 @@ data class ChatCompletionRequestFunctionMessage(
             @JsonCreator
             fun forValue(value: kotlin.String): Role {
                 return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ChatCompletionRequestFunctionMessage'")
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Role'")
             }
         }
     }

@@ -25,6 +25,8 @@ ChatCompletionRequestAssistantMessage_audio::ChatCompletionRequestAssistantMessa
     
 }
 
+ChatCompletionRequestAssistantMessage_audio::~ChatCompletionRequestAssistantMessage_audio() = default;
+
 void ChatCompletionRequestAssistantMessage_audio::validate() const
 {
     std::stringstream msg;

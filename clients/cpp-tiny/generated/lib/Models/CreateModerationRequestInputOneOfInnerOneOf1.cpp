@@ -85,7 +85,7 @@ CreateModerationRequest_input_oneOf_inner_oneOf_1::getType()
 }
 
 void
-CreateModerationRequest_input_oneOf_inner_oneOf_1::setType(std::string  type)
+CreateModerationRequest_input_oneOf_inner_oneOf_1::setType(std::string type)
 {
 	this->type = type;
 }
@@ -97,7 +97,7 @@ CreateModerationRequest_input_oneOf_inner_oneOf_1::getText()
 }
 
 void
-CreateModerationRequest_input_oneOf_inner_oneOf_1::setText(std::string  text)
+CreateModerationRequest_input_oneOf_inner_oneOf_1::setText(std::string text)
 {
 	this->text = text;
 }

@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set The [vector store](/docs/api-reference/vector-stores/object) attached to this thread. There can be a maximum of 1 vector store attached to the thread. 
 	 */
-	void setVectorStoreIds(std::list <std::string> vector_store_ids);
+	void setVectorStoreIds(std::list<std::string> vector_store_ids);
 	/*! \brief Get A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this thread. There can be a maximum of 1 vector store attached to the thread. 
 	 */
 	std::list<CreateThreadRequest_tool_resources_file_search_vector_stores_inner> getVectorStores();
 
 	/*! \brief Set A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this thread. There can be a maximum of 1 vector store attached to the thread. 
 	 */
-	void setVectorStores(std::list <CreateThreadRequest_tool_resources_file_search_vector_stores_inner> vector_stores);
+	void setVectorStores(std::list<CreateThreadRequest_tool_resources_file_search_vector_stores_inner> vector_stores);
 
 
     private:

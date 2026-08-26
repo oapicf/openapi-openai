@@ -1,4 +1,4 @@
-# # ApiKeyList
+# ApiKeyList
 
 ## Properties
 

@@ -201,7 +201,7 @@ namespace Org.OpenAPITools.Model
         /// <value>The service tier used for processing the request. This field is only included if the &#x60;service_tier&#x60; parameter is specified in the request.</value>
         /* <example>scale</example> */
         [JsonPropertyName("service_tier")]
-        public ServiceTierEnum? ServiceTier { get { return this.ServiceTierOption; } set { this.ServiceTierOption = new(value); } }
+        public ServiceTierEnum? ServiceTier { get { return this.ServiceTierOption.Value; } set { this.ServiceTierOption = new(value); } }
 
         /// <summary>
         /// A unique identifier for the chat completion. Each chunk has the same ID.
@@ -243,7 +243,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. </value>
         [JsonPropertyName("system_fingerprint")]
-        public string? SystemFingerprint { get { return this.SystemFingerprintOption; } set { this.SystemFingerprintOption = new(value); } }
+        public string? SystemFingerprint { get { return this.SystemFingerprintOption.Value; } set { this.SystemFingerprintOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Usage
@@ -256,7 +256,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Usage
         /// </summary>
         [JsonPropertyName("usage")]
-        public CreateChatCompletionStreamResponseUsage? Usage { get { return this.UsageOption; } set { this.UsageOption = new(value); } }
+        public CreateChatCompletionStreamResponseUsage? Usage { get { return this.UsageOption.Value; } set { this.UsageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -292,8 +292,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateChatCompletionStreamResponse" />
     /// </summary>
-    public class CreateChatCompletionStreamResponseJsonConverter : JsonConverter<CreateChatCompletionStreamResponse>
+    public partial class CreateChatCompletionStreamResponseJsonConverter : JsonConverter<CreateChatCompletionStreamResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateChatCompletionStreamResponseJsonConverter" /> class.
+        /// </summary>
+        public CreateChatCompletionStreamResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateChatCompletionStreamResponse" />
         /// </summary>
@@ -354,8 +364,7 @@ namespace Org.OpenAPITools.Model
                             break;
                         case "service_tier":
                             string? serviceTierRawValue = utf8JsonReader.GetString();
-                            if (serviceTierRawValue != null)
-                                serviceTier = new Option<CreateChatCompletionStreamResponse.ServiceTierEnum?>(CreateChatCompletionStreamResponse.ServiceTierEnumFromStringOrDefault(serviceTierRawValue));
+                            serviceTier = new Option<CreateChatCompletionStreamResponse.ServiceTierEnum?>(serviceTierRawValue == null ? null : CreateChatCompletionStreamResponse.ServiceTierEnumFromStringOrDefault(serviceTierRawValue));
                             break;
                         case "system_fingerprint":
                             systemFingerprint = new Option<string?>(utf8JsonReader.GetString()!);

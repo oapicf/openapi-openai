@@ -76,12 +76,12 @@ class AuditLogsController extends Controller
         $securityApiKeyAuth = $request->headers->get('authorization');
 
         // Read out all input parameter values into variables
-        $effectiveAt = $request->query->get('effectiveAt');
-        $projectIds = $request->query->get('projectIds');
-        $eventTypes = $request->query->get('eventTypes');
-        $actorIds = $request->query->get('actorIds');
-        $actorEmails = $request->query->get('actorEmails');
-        $resourceIds = $request->query->get('resourceIds');
+        $effectiveAt = $request->query->get('effective_at');
+        $projectIds = $request->query->get('project_ids[]');
+        $eventTypes = $request->query->get('event_types[]');
+        $actorIds = $request->query->get('actor_ids[]');
+        $actorEmails = $request->query->get('actor_emails[]');
+        $resourceIds = $request->query->get('resource_ids[]');
         $limit = $request->query->get('limit', 20);
         $after = $request->query->get('after');
         $before = $request->query->get('before');
@@ -105,7 +105,7 @@ class AuditLogsController extends Controller
 
         // Validate the input values
         $asserts = [];
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\ListAuditLogsEffectiveAtParameter");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\ListAuditLogsEffectiveAtParameter');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($effectiveAt, $asserts);
         if ($response instanceof Response) {
@@ -157,19 +157,19 @@ class AuditLogsController extends Controller
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("int");
+        $asserts[] = new Assert\Type('int');
         $response = $this->validate($limit, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($after, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type("string");
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($before, $asserts);
         if ($response instanceof Response) {
             return $response;

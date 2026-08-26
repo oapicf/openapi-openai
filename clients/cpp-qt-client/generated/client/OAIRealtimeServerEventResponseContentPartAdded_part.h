@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIRealtimeServerEventResponseContentPartAdded_part : public OAIObject {
 public:
     OAIRealtimeServerEventResponseContentPartAdded_part();
-    OAIRealtimeServerEventResponseContentPartAdded_part(QString json);
+    OAIRealtimeServerEventResponseContentPartAdded_part(const QString &json);
     ~OAIRealtimeServerEventResponseContentPartAdded_part() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

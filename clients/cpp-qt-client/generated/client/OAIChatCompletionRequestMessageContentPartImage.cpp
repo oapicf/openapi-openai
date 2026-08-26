@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIChatCompletionRequestMessageContentPartImage::OAIChatCompletionRequestMessageContentPartImage(QString json) {
+OAIChatCompletionRequestMessageContentPartImage::OAIChatCompletionRequestMessageContentPartImage(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIChatCompletionRequestMessageContentPartImage::initializeModel() {
     m_image_url_isValid = false;
 }
 
-void OAIChatCompletionRequestMessageContentPartImage::fromJson(QString jsonString) {
+void OAIChatCompletionRequestMessageContentPartImage::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

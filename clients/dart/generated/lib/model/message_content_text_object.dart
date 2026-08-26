@@ -54,10 +54,10 @@ class MessageContentTextObject {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MessageContentTextObject[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MessageContentTextObject[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'type'), 'Required key "MessageContentTextObject[type]" is missing from JSON.');
+        assert(json[r'type'] != null, 'Required key "MessageContentTextObject[type]" has a null value in JSON.');
+        assert(json.containsKey(r'text'), 'Required key "MessageContentTextObject[text]" is missing from JSON.');
+        assert(json[r'text'] != null, 'Required key "MessageContentTextObject[text]" has a null value in JSON.');
         return true;
       }());
 
@@ -117,27 +117,28 @@ class MessageContentTextObject {
 }
 
 /// Always `text`.
-class MessageContentTextObjectTypeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MessageContentTextObjectTypeEnum._(this.value);
+enum MessageContentTextObjectTypeEnum {
+  text._(r'text'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MessageContentTextObjectTypeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const text = MessageContentTextObjectTypeEnum._(r'text');
-
-  /// List of all possible values in this [enum][MessageContentTextObjectTypeEnum].
-  static const values = <MessageContentTextObjectTypeEnum>[
-    text,
-  ];
-
+  /// Returns the instance of [MessageContentTextObjectTypeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MessageContentTextObjectTypeEnum? fromJson(dynamic value) => MessageContentTextObjectTypeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MessageContentTextObjectTypeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MessageContentTextObjectTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MessageContentTextObjectTypeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -159,9 +160,10 @@ class MessageContentTextObjectTypeEnumTypeTransformer {
 
   const MessageContentTextObjectTypeEnumTypeTransformer._();
 
-  String encode(MessageContentTextObjectTypeEnum data) => data.value;
+  String encode(MessageContentTextObjectTypeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MessageContentTextObjectTypeEnum.
+  /// Returns the instance of [MessageContentTextObjectTypeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -170,6 +172,9 @@ class MessageContentTextObjectTypeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MessageContentTextObjectTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MessageContentTextObjectTypeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'text': return MessageContentTextObjectTypeEnum.text;
@@ -182,7 +187,7 @@ class MessageContentTextObjectTypeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MessageContentTextObjectTypeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MessageContentTextObjectTypeEnumTypeTransformer? _instance;
 }
 

@@ -31,7 +31,7 @@ class  StaticChunkingStrategy
 {
 public:
     StaticChunkingStrategy();
-    virtual ~StaticChunkingStrategy() = default;
+    virtual ~StaticChunkingStrategy();
 
 
     /// <summary>

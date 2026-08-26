@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The ID of the user.
 	 */
-	void setUserId(std::string  user_id);
+	void setUserId(std::string user_id);
 	/*! \brief Get `owner` or `member`
 	 */
 	std::string getRole();
 
 	/*! \brief Set `owner` or `member`
 	 */
-	void setRole(std::string  role);
+	void setRole(std::string role);
 
 
     private:

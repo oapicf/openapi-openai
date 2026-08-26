@@ -49,7 +49,7 @@ class ChatCompletionTool
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['function'])]
     #[Assert\Type("string")]
@@ -59,7 +59,7 @@ class ChatCompletionTool
      * @var FunctionObject|null
      * @SerializedName("function")
      * @Type("OpenAPI\Server\Model\FunctionObject")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\FunctionObject")]
@@ -88,12 +88,12 @@ class ChatCompletionTool
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of the tool. Currently, only `function` is supported.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of the tool. Currently, only `function` is supported.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -115,12 +115,12 @@ class ChatCompletionTool
     }
 
     /**
-    * Sets function.
-    *
-    * @param FunctionObject|null $function
-    *
-    * @return $this
-    */
+     * Sets function.
+     *
+     * @param FunctionObject|null $function
+     *
+     * @return $this
+     */
     public function setFunction(?FunctionObject $function): self
     {
         $this->function = $function;

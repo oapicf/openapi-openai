@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIApiKeyList::OAIApiKeyList(QString json) {
+OAIApiKeyList::OAIApiKeyList(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -50,7 +50,7 @@ void OAIApiKeyList::initializeModel() {
     m_last_id_isValid = false;
 }
 
-void OAIApiKeyList::fromJson(QString jsonString) {
+void OAIApiKeyList::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

@@ -403,7 +403,7 @@ CreateThreadAndRunRequest::getAssistantId()
 }
 
 void
-CreateThreadAndRunRequest::setAssistantId(std::string  assistant_id)
+CreateThreadAndRunRequest::setAssistantId(std::string assistant_id)
 {
 	this->assistant_id = assistant_id;
 }
@@ -415,7 +415,7 @@ CreateThreadAndRunRequest::getThread()
 }
 
 void
-CreateThreadAndRunRequest::setThread(CreateThreadRequest  thread)
+CreateThreadAndRunRequest::setThread(CreateThreadRequest thread)
 {
 	this->thread = thread;
 }
@@ -427,7 +427,7 @@ CreateThreadAndRunRequest::getModel()
 }
 
 void
-CreateThreadAndRunRequest::setModel(CreateRunRequest_model  model)
+CreateThreadAndRunRequest::setModel(CreateRunRequest_model model)
 {
 	this->model = model;
 }
@@ -439,7 +439,7 @@ CreateThreadAndRunRequest::getInstructions()
 }
 
 void
-CreateThreadAndRunRequest::setInstructions(std::string  instructions)
+CreateThreadAndRunRequest::setInstructions(std::string instructions)
 {
 	this->instructions = instructions;
 }
@@ -451,7 +451,7 @@ CreateThreadAndRunRequest::getTools()
 }
 
 void
-CreateThreadAndRunRequest::setTools(std::list <CreateThreadAndRunRequest_tools_inner> tools)
+CreateThreadAndRunRequest::setTools(std::list<CreateThreadAndRunRequest_tools_inner> tools)
 {
 	this->tools = tools;
 }
@@ -463,7 +463,7 @@ CreateThreadAndRunRequest::getToolResources()
 }
 
 void
-CreateThreadAndRunRequest::setToolResources(CreateThreadAndRunRequest_tool_resources  tool_resources)
+CreateThreadAndRunRequest::setToolResources(CreateThreadAndRunRequest_tool_resources tool_resources)
 {
 	this->tool_resources = tool_resources;
 }
@@ -475,7 +475,7 @@ CreateThreadAndRunRequest::getMetadata()
 }
 
 void
-CreateThreadAndRunRequest::setMetadata(Object  metadata)
+CreateThreadAndRunRequest::setMetadata(Object metadata)
 {
 	this->metadata = metadata;
 }
@@ -487,7 +487,7 @@ CreateThreadAndRunRequest::getTemperature()
 }
 
 void
-CreateThreadAndRunRequest::setTemperature(long  temperature)
+CreateThreadAndRunRequest::setTemperature(long temperature)
 {
 	this->temperature = temperature;
 }
@@ -499,7 +499,7 @@ CreateThreadAndRunRequest::getTopP()
 }
 
 void
-CreateThreadAndRunRequest::setTopP(long  top_p)
+CreateThreadAndRunRequest::setTopP(long top_p)
 {
 	this->top_p = top_p;
 }
@@ -511,7 +511,7 @@ CreateThreadAndRunRequest::isStream()
 }
 
 void
-CreateThreadAndRunRequest::setStream(bool  stream)
+CreateThreadAndRunRequest::setStream(bool stream)
 {
 	this->stream = stream;
 }
@@ -523,7 +523,7 @@ CreateThreadAndRunRequest::getMaxPromptTokens()
 }
 
 void
-CreateThreadAndRunRequest::setMaxPromptTokens(int  max_prompt_tokens)
+CreateThreadAndRunRequest::setMaxPromptTokens(int max_prompt_tokens)
 {
 	this->max_prompt_tokens = max_prompt_tokens;
 }
@@ -535,7 +535,7 @@ CreateThreadAndRunRequest::getMaxCompletionTokens()
 }
 
 void
-CreateThreadAndRunRequest::setMaxCompletionTokens(int  max_completion_tokens)
+CreateThreadAndRunRequest::setMaxCompletionTokens(int max_completion_tokens)
 {
 	this->max_completion_tokens = max_completion_tokens;
 }
@@ -547,7 +547,7 @@ CreateThreadAndRunRequest::getTruncationStrategy()
 }
 
 void
-CreateThreadAndRunRequest::setTruncationStrategy(TruncationObject  truncation_strategy)
+CreateThreadAndRunRequest::setTruncationStrategy(TruncationObject truncation_strategy)
 {
 	this->truncation_strategy = truncation_strategy;
 }
@@ -559,7 +559,7 @@ CreateThreadAndRunRequest::getToolChoice()
 }
 
 void
-CreateThreadAndRunRequest::setToolChoice(AssistantsApiToolChoiceOption  tool_choice)
+CreateThreadAndRunRequest::setToolChoice(AssistantsApiToolChoiceOption tool_choice)
 {
 	this->tool_choice = tool_choice;
 }
@@ -571,7 +571,7 @@ CreateThreadAndRunRequest::isParallelToolCalls()
 }
 
 void
-CreateThreadAndRunRequest::setParallelToolCalls(bool  parallel_tool_calls)
+CreateThreadAndRunRequest::setParallelToolCalls(bool parallel_tool_calls)
 {
 	this->parallel_tool_calls = parallel_tool_calls;
 }
@@ -583,7 +583,7 @@ CreateThreadAndRunRequest::getResponseFormat()
 }
 
 void
-CreateThreadAndRunRequest::setResponseFormat(AssistantsApiResponseFormatOption  response_format)
+CreateThreadAndRunRequest::setResponseFormat(AssistantsApiResponseFormatOption response_format)
 {
 	this->response_format = response_format;
 }

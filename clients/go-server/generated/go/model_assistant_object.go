@@ -14,6 +14,8 @@ package openapi
 
 import (
 	"errors"
+	"encoding/json"
+	"fmt"
 )
 
 
@@ -58,19 +60,152 @@ type AssistantObject struct {
 
 	ResponseFormat AssistantsApiResponseFormatOption `json:"response_format,omitempty"`
 }
+// UnmarshalJSON validates required property keys then unmarshals into AssistantObject
+func (o *AssistantObject) UnmarshalJSON(data []byte) (err error) {
+	// Presence is checked against required fields that exist on this struct,
+	// including fields promoted from embedded allOf parents.
+	requiredProperties := []string{
+		"id",
+		"object",
+		"created_at",
+		"name",
+		"description",
+		"model",
+		"instructions",
+		"tools",
+		"metadata",
+	}
 
-// AssertAssistantObjectRequired checks if the required fields are not zero-ed
+	requiredNullableProperties := map[string]bool{
+		"id": false,
+		"object": false,
+		"created_at": false,
+		"name": true,
+		"description": true,
+		"model": false,
+		"instructions": true,
+		"tools": false,
+		"metadata": true,
+	}
+
+	allowedJsonKeys := map[string]struct{}{
+		"id": {},
+		"object": {},
+		"created_at": {},
+		"name": {},
+		"description": {},
+		"model": {},
+		"instructions": {},
+		"tools": {},
+		"tool_resources": {},
+		"metadata": {},
+		"temperature": {},
+		"top_p": {},
+		"response_format": {},
+	}
+
+	allProperties := make(map[string]json.RawMessage)
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		value, exists := allProperties[requiredProperty]
+		if !exists {
+			return &RequiredError{Field: requiredProperty}
+		}
+		if string(value) == "null" && !requiredNullableProperties[requiredProperty] {
+			return &RequiredError{Field: requiredProperty}
+		}
+	}
+
+	for key := range allProperties {
+		if _, exists := allowedJsonKeys[key]; !exists {
+			return fmt.Errorf("json: unknown field %q", key)
+		}
+	}
+
+	var decoded AssistantObject
+
+	if value, exists := allProperties["id"]; exists {
+		if err = json.Unmarshal(value, &decoded.Id); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["object"]; exists {
+		if err = json.Unmarshal(value, &decoded.Object); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["created_at"]; exists {
+		if err = json.Unmarshal(value, &decoded.CreatedAt); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["name"]; exists {
+		if err = json.Unmarshal(value, &decoded.Name); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["description"]; exists {
+		if err = json.Unmarshal(value, &decoded.Description); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["model"]; exists {
+		if err = json.Unmarshal(value, &decoded.Model); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["instructions"]; exists {
+		if err = json.Unmarshal(value, &decoded.Instructions); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["tools"]; exists {
+		if err = json.Unmarshal(value, &decoded.Tools); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["tool_resources"]; exists {
+		if err = json.Unmarshal(value, &decoded.ToolResources); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["metadata"]; exists {
+		if err = json.Unmarshal(value, &decoded.Metadata); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["temperature"]; exists {
+		if err = json.Unmarshal(value, &decoded.Temperature); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["top_p"]; exists {
+		if err = json.Unmarshal(value, &decoded.TopP); err != nil {
+			return err
+		}
+	}
+	if value, exists := allProperties["response_format"]; exists {
+		if err = json.Unmarshal(value, &decoded.ResponseFormat); err != nil {
+			return err
+		}
+	}
+
+	*o = decoded
+
+	return nil
+}
+
+// AssertAssistantObjectRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertAssistantObjectRequired(obj AssistantObject) error {
 	elements := map[string]interface{}{
-		"id": obj.Id,
-		"object": obj.Object,
-		"created_at": obj.CreatedAt,
-		"name": obj.Name,
-		"description": obj.Description,
-		"model": obj.Model,
-		"instructions": obj.Instructions,
 		"tools": obj.Tools,
-		"metadata": obj.Metadata,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {

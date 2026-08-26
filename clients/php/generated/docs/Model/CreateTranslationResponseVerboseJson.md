@@ -1,4 +1,4 @@
-# # CreateTranslationResponseVerboseJson
+# CreateTranslationResponseVerboseJson
 
 ## Properties
 

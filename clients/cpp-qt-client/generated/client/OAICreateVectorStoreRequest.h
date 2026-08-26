@@ -37,13 +37,13 @@ class OAICreateVectorStoreRequest_chunking_strategy;
 class OAICreateVectorStoreRequest : public OAIObject {
 public:
     OAICreateVectorStoreRequest();
-    OAICreateVectorStoreRequest(QString json);
+    OAICreateVectorStoreRequest(const QString &json);
     ~OAICreateVectorStoreRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QList<QString> getFileIds() const;
     void setFileIds(const QList<QString> &file_ids);

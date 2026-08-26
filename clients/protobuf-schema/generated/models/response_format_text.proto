@@ -22,7 +22,7 @@ message ResponseFormatText {
     TYPE_TEXT = 0;
   }
 
-  Type type = 3575610;
+  string type = 3575610;
 
 }
 

@@ -52,21 +52,21 @@ public:
 
 	/*! \brief Set The identifier of the run step, which can be referenced in API endpoints.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get The object type, which is always `thread.run.step.delta`.
 	 */
 	std::string getObject();
 
 	/*! \brief Set The object type, which is always `thread.run.step.delta`.
 	 */
-	void setObject(std::string  object);
+	void setObject(std::string object);
 	/*! \brief Get 
 	 */
 	RunStepDeltaObject_delta getDelta();
 
 	/*! \brief Set 
 	 */
-	void setDelta(RunStepDeltaObject_delta  delta);
+	void setDelta(RunStepDeltaObject_delta delta);
 
 
     private:

@@ -369,7 +369,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>A list of integrations to enable for this fine-tuning job.</value>
         [JsonPropertyName("integrations")]
-        public List<FineTuningJobIntegrationsInner>? Integrations { get { return this.IntegrationsOption; } set { this.IntegrationsOption = new(value); } }
+        public List<FineTuningJobIntegrationsInner>? Integrations { get { return this.IntegrationsOption.Value; } set { this.IntegrationsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EstimatedFinish
@@ -383,7 +383,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.</value>
         [JsonPropertyName("estimated_finish")]
-        public int? EstimatedFinish { get { return this.EstimatedFinishOption; } set { this.EstimatedFinishOption = new(value); } }
+        public int? EstimatedFinish { get { return this.EstimatedFinishOption.Value; } set { this.EstimatedFinishOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Method
@@ -396,7 +396,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Method
         /// </summary>
         [JsonPropertyName("method")]
-        public FineTuneMethod? Method { get { return this.MethodOption; } set { this.MethodOption = new(value); } }
+        public FineTuneMethod? Method { get { return this.MethodOption.Value; } set { this.MethodOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -442,8 +442,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="FineTuningJob" />
     /// </summary>
-    public class FineTuningJobJsonConverter : JsonConverter<FineTuningJob>
+    public partial class FineTuningJobJsonConverter : JsonConverter<FineTuningJob>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FineTuningJobJsonConverter" /> class.
+        /// </summary>
+        public FineTuningJobJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FineTuningJob" />
         /// </summary>

@@ -1,4 +1,4 @@
-# # DoneEvent
+# DoneEvent
 
 ## Properties
 

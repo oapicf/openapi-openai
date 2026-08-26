@@ -12,15 +12,27 @@
 package org.openapitools.client.model
 
 
-case class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner(
+sealed trait RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
+object RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner {
+}
+
+case class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject(
+  /* The index of the output in the outputs array. */
+  index: Int,
+  /* Always `image`. */
+  `type`: RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectEnums.`Type`,
+  image: Option[RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage] = None
+) extends RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
+
+case class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject(
   /* The index of the output in the outputs array. */
   index: Int,
   /* Always `logs`. */
-  `type`: RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerEnums.`Type`,
+  `type`: RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectEnums.`Type`,
   /* The text output from the Code Interpreter tool call. */
-  logs: Option[String] = None,
-  image: Option[RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage] = None
-)
+  logs: Option[String] = None
+) extends RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
+
 
 object RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerEnums {
 

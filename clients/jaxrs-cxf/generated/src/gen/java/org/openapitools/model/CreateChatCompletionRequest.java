@@ -188,7 +188,10 @@ TEXT(String.valueOf("text")), AUDIO(String.valueOf("audio"));
 
   private List<ModalitiesEnum> modalities;
 
-  @ApiModelProperty(value = "")
+ /**
+  * Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
+  */
+  @ApiModelProperty(value = "Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. ")
 
   @Valid
 
@@ -265,7 +268,7 @@ AUTO(String.valueOf("auto")), DEFAULT(String.valueOf("default"));
 
   @Valid
 
-  private CreateChatCompletionRequestStop stop = null;
+  private CreateChatCompletionRequestStop stop;
 
  /**
   * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). 
@@ -607,7 +610,7 @@ AUTO(String.valueOf("auto")), DEFAULT(String.valueOf("default"));
   }
 
  /**
-   * Get prediction
+   * Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
    * @return prediction
   **/
   @JsonProperty("prediction")
@@ -1023,10 +1026,7 @@ AUTO(String.valueOf("auto")), DEFAULT(String.valueOf("default"));
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

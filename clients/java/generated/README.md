@@ -2,8 +2,8 @@
 
 OpenAI API
 - API version: 2.3.0
-  - Build date: 2026-01-29T14:07:28.170688005Z[Etc/UTC]
-  - Generator version: 7.18.0
+  - Build date: 2026-08-26T05:15:06.374984127Z[Etc/UTC]
+  - Generator version: 7.24.0
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
@@ -296,7 +296,6 @@ Class | Method | HTTP request | Description
  - [AuditLogUserDeleted](docs/AuditLogUserDeleted.md)
  - [AuditLogUserUpdated](docs/AuditLogUserUpdated.md)
  - [AuditLogUserUpdatedChangesRequested](docs/AuditLogUserUpdatedChangesRequested.md)
- - [AutoChunkingStrategy](docs/AutoChunkingStrategy.md)
  - [AutoChunkingStrategyRequestParam](docs/AutoChunkingStrategyRequestParam.md)
  - [Batch](docs/Batch.md)
  - [BatchErrors](docs/BatchErrors.md)
@@ -706,7 +705,6 @@ Class | Method | HTTP request | Description
  - [RunToolCallObjectFunction](docs/RunToolCallObjectFunction.md)
  - [StaticChunkingStrategy](docs/StaticChunkingStrategy.md)
  - [StaticChunkingStrategyRequestParam](docs/StaticChunkingStrategyRequestParam.md)
- - [StaticChunkingStrategyResponseParam](docs/StaticChunkingStrategyResponseParam.md)
  - [StaticChunkingStrategyStatic](docs/StaticChunkingStrategyStatic.md)
  - [SubmitToolOutputsRunRequest](docs/SubmitToolOutputsRunRequest.md)
  - [SubmitToolOutputsRunRequestToolOutputsInner](docs/SubmitToolOutputsRunRequestToolOutputsInner.md)

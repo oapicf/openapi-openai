@@ -28,7 +28,7 @@ openai_api_run_step_delta_step_details_tool_calls_code_output_image_object_TYPE_
 
 
 typedef struct run_step_delta_step_details_tool_calls_code_output_image_object_t {
-    int index; //numeric
+    int *index; //numeric
     openai_api_run_step_delta_step_details_tool_calls_code_output_image_object_TYPE_e type; //enum
     struct run_step_delta_step_details_tool_calls_code_output_image_object_image_t *image; //model
 
@@ -36,7 +36,7 @@ typedef struct run_step_delta_step_details_tool_calls_code_output_image_object_t
 } run_step_delta_step_details_tool_calls_code_output_image_object_t;
 
 __attribute__((deprecated)) run_step_delta_step_details_tool_calls_code_output_image_object_t *run_step_delta_step_details_tool_calls_code_output_image_object_create(
-    int index,
+    int *index,
     openai_api_run_step_delta_step_details_tool_calls_code_output_image_object_TYPE_e type,
     run_step_delta_step_details_tool_calls_code_output_image_object_image_t *image
 );

@@ -28,18 +28,18 @@ openai_api_realtime_server_event_rate_limits_updated_rate_limits_inner_NAME_e re
 
 typedef struct realtime_server_event_rate_limits_updated_rate_limits_inner_t {
     openai_api_realtime_server_event_rate_limits_updated_rate_limits_inner_NAME_e name; //enum
-    int limit; //numeric
-    int remaining; //numeric
-    double reset_seconds; //numeric
+    int *limit; //numeric
+    int *remaining; //numeric
+    double *reset_seconds; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } realtime_server_event_rate_limits_updated_rate_limits_inner_t;
 
 __attribute__((deprecated)) realtime_server_event_rate_limits_updated_rate_limits_inner_t *realtime_server_event_rate_limits_updated_rate_limits_inner_create(
     openai_api_realtime_server_event_rate_limits_updated_rate_limits_inner_NAME_e name,
-    int limit,
-    int remaining,
-    double reset_seconds
+    int *limit,
+    int *remaining,
+    double *reset_seconds
 );
 
 void realtime_server_event_rate_limits_updated_rate_limits_inner_free(realtime_server_event_rate_limits_updated_rate_limits_inner_t *realtime_server_event_rate_limits_updated_rate_limits_inner);

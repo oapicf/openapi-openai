@@ -58,8 +58,8 @@ function Initialize-VectorStoreExpirationAfter {
 
 
         $PSO = [PSCustomObject]@{
-            "anchor" = ${Anchor}
-            "days" = ${Days}
+            'anchor' = ${Anchor}
+            'days' = ${Days}
         }
 
 
@@ -97,7 +97,7 @@ function ConvertFrom-JsonToVectorStoreExpirationAfter {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in VectorStoreExpirationAfter
-        $AllProperties = ("anchor", "days")
+        $AllProperties = ('anchor', 'days')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -108,21 +108,21 @@ function ConvertFrom-JsonToVectorStoreExpirationAfter {
             throw "Error! Empty JSON cannot be serialized due to the required property 'anchor' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "anchor"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'anchor'))) {
             throw "Error! JSON cannot be serialized due to the required property 'anchor' missing."
         } else {
-            $Anchor = $JsonParameters.PSobject.Properties["anchor"].value
+            $Anchor = $JsonParameters.PSobject.Properties['anchor'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "days"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'days'))) {
             throw "Error! JSON cannot be serialized due to the required property 'days' missing."
         } else {
-            $Days = $JsonParameters.PSobject.Properties["days"].value
+            $Days = $JsonParameters.PSobject.Properties['days'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "anchor" = ${Anchor}
-            "days" = ${Days}
+            'anchor' = ${Anchor}
+            'days' = ${Days}
         }
 
         return $PSO

@@ -33,13 +33,13 @@ class OAIMessageContentImageUrlObject_image_url;
 class OAIMessageContentImageUrlObject : public OAIObject {
 public:
     OAIMessageContentImageUrlObject();
-    OAIMessageContentImageUrlObject(QString json);
+    OAIMessageContentImageUrlObject(const QString &json);
     ~OAIMessageContentImageUrlObject() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getType() const;
     void setType(const QString &type);

@@ -31,7 +31,7 @@ message RealtimeSession {
     MODALITIES_AUDIO = 1;
   }
 
-  Modalities modalities = 361980099;
+  repeated string modalities = 361980099;
 
   RealtimeSessionModel model = 104069929;
 
@@ -50,7 +50,7 @@ message RealtimeSession {
     VOICE_VERSE = 7;
   }
 
-  Voice voice = 112386354;
+  string voice = 112386354;
 
   // The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
   enum Input_audio_format {
@@ -59,7 +59,7 @@ message RealtimeSession {
     INPUT_AUDIO_FORMAT_G711_ALAW = 2;
   }
 
-  Input_audio_format input_audio_format = 420742872;
+  string input_audio_format = 420742872;
 
   // The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
   enum Output_audio_format {
@@ -68,7 +68,7 @@ message RealtimeSession {
     OUTPUT_AUDIO_FORMAT_G711_ALAW = 2;
   }
 
-  Output_audio_format output_audio_format = 523880707;
+  string output_audio_format = 523880707;
 
   RealtimeSessionInputAudioTranscription input_audio_transcription = 535029774;
 

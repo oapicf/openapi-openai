@@ -32,13 +32,13 @@ namespace OpenAPI {
 class OAIBatchRequestOutput_response : public OAIObject {
 public:
     OAIBatchRequestOutput_response();
-    OAIBatchRequestOutput_response(QString json);
+    OAIBatchRequestOutput_response(const QString &json);
     ~OAIBatchRequestOutput_response() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getStatusCode() const;
     void setStatusCode(const qint32 &status_code);

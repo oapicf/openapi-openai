@@ -25,6 +25,8 @@ RunStepDetailsMessageCreationObject::RunStepDetailsMessageCreationObject()
     
 }
 
+RunStepDetailsMessageCreationObject::~RunStepDetailsMessageCreationObject() = default;
+
 void RunStepDetailsMessageCreationObject::validate() const
 {
     std::stringstream msg;

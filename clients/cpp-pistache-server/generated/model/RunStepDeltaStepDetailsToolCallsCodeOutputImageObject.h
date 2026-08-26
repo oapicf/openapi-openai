@@ -33,7 +33,7 @@ class  RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
 {
 public:
     RunStepDeltaStepDetailsToolCallsCodeOutputImageObject();
-    virtual ~RunStepDeltaStepDetailsToolCallsCodeOutputImageObject() = default;
+    virtual ~RunStepDeltaStepDetailsToolCallsCodeOutputImageObject();
 
 
     /// <summary>

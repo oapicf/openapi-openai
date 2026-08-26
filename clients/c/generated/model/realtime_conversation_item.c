@@ -89,6 +89,8 @@ static realtime_conversation_item_t *realtime_conversation_item_create_internal(
     if (!realtime_conversation_item_local_var) {
         return NULL;
     }
+    memset(realtime_conversation_item_local_var, 0, sizeof(realtime_conversation_item_t));
+    realtime_conversation_item_local_var->_library_owned = 1;
     realtime_conversation_item_local_var->id = id;
     realtime_conversation_item_local_var->type = type;
     realtime_conversation_item_local_var->object = object;
@@ -99,8 +101,6 @@ static realtime_conversation_item_t *realtime_conversation_item_create_internal(
     realtime_conversation_item_local_var->name = name;
     realtime_conversation_item_local_var->arguments = arguments;
     realtime_conversation_item_local_var->output = output;
-
-    realtime_conversation_item_local_var->_library_owned = 1;
     return realtime_conversation_item_local_var;
 }
 
@@ -116,7 +116,7 @@ __attribute__((deprecated)) realtime_conversation_item_t *realtime_conversation_
     char *arguments,
     char *output
     ) {
-    return realtime_conversation_item_create_internal (
+    realtime_conversation_item_t *result = realtime_conversation_item_create_internal (
         id,
         type,
         object,
@@ -128,6 +128,9 @@ __attribute__((deprecated)) realtime_conversation_item_t *realtime_conversation_
         arguments,
         output
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void realtime_conversation_item_free(realtime_conversation_item_t *realtime_conversation_item) {
@@ -279,8 +282,18 @@ realtime_conversation_item_t *realtime_conversation_item_parseFromJSON(cJSON *re
 
     realtime_conversation_item_t *realtime_conversation_item_local_var = NULL;
 
+    char *id_local_str = NULL;
+
     // define the local list for realtime_conversation_item->content
     list_t *contentList = NULL;
+
+    char *call_id_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    char *arguments_local_str = NULL;
+
+    char *output_local_str = NULL;
 
     // realtime_conversation_item->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(realtime_conversation_itemJSON, "id");
@@ -423,21 +436,35 @@ realtime_conversation_item_t *realtime_conversation_item_parseFromJSON(cJSON *re
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (call_id && !cJSON_IsNull(call_id)) call_id_local_str = strdup(call_id->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (arguments && !cJSON_IsNull(arguments)) arguments_local_str = strdup(arguments->valuestring);
+    if (output && !cJSON_IsNull(output)) output_local_str = strdup(output->valuestring);
+
     realtime_conversation_item_local_var = realtime_conversation_item_create_internal (
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
+        id_local_str,
         type ? typeVariable : openai_api_realtime_conversation_item_TYPE_NULL,
         object ? objectVariable : openai_api_realtime_conversation_item_OBJECT_NULL,
         status ? statusVariable : openai_api_realtime_conversation_item_STATUS_NULL,
         role ? roleVariable : openai_api_realtime_conversation_item_ROLE_NULL,
         content ? contentList : NULL,
-        call_id && !cJSON_IsNull(call_id) ? strdup(call_id->valuestring) : NULL,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        arguments && !cJSON_IsNull(arguments) ? strdup(arguments->valuestring) : NULL,
-        output && !cJSON_IsNull(output) ? strdup(output->valuestring) : NULL
+        call_id_local_str,
+        name_local_str,
+        arguments_local_str,
+        output_local_str
         );
+
+    if (!realtime_conversation_item_local_var) {
+        goto end;
+    }
 
     return realtime_conversation_item_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     if (contentList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, contentList) {
@@ -446,6 +473,22 @@ end:
         }
         list_freeList(contentList);
         contentList = NULL;
+    }
+    if (call_id_local_str) {
+        free(call_id_local_str);
+        call_id_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (arguments_local_str) {
+        free(arguments_local_str);
+        arguments_local_str = NULL;
+    }
+    if (output_local_str) {
+        free(output_local_str);
+        output_local_str = NULL;
     }
     return NULL;
 

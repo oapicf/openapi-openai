@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -9,22 +10,23 @@ import org.openapitools.model.RealtimeConversationItem;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Add a new Item to the Conversation&#39;s context, including messages, function  calls, and function call responses. This event can be used both to populate a  \&quot;history\&quot; of the conversation and to add new items mid-stream, but has the  current limitation that it cannot populate assistant audio messages.  If successful, the server will respond with a &#x60;conversation.item.created&#x60;  event, otherwise an &#x60;error&#x60; event will be sent. 
  */
 
 @Schema(name = "RealtimeClientEventConversationItemCreate", description = "Add a new Item to the Conversation's context, including messages, function  calls, and function call responses. This event can be used both to populate a  \"history\" of the conversation and to add new items mid-stream, but has the  current limitation that it cannot populate assistant audio messages.  If successful, the server will respond with a `conversation.item.created`  event, otherwise an `error` event will be sent. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeClientEventConversationItemCreate {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String eventId;
 
   /**
@@ -62,6 +64,7 @@ public class RealtimeClientEventConversationItemCreate {
 
   private TypeEnum type;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String previousItemId;
 
   private RealtimeConversationItem item;
@@ -94,6 +97,7 @@ public class RealtimeClientEventConversationItemCreate {
     return eventId;
   }
 
+  @JsonProperty("event_id")
   public void setEventId(@Nullable String eventId) {
     this.eventId = eventId;
   }
@@ -114,6 +118,7 @@ public class RealtimeClientEventConversationItemCreate {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -134,6 +139,7 @@ public class RealtimeClientEventConversationItemCreate {
     return previousItemId;
   }
 
+  @JsonProperty("previous_item_id")
   public void setPreviousItemId(@Nullable String previousItemId) {
     this.previousItemId = previousItemId;
   }
@@ -154,6 +160,7 @@ public class RealtimeClientEventConversationItemCreate {
     return item;
   }
 
+  @JsonProperty("item")
   public void setItem(RealtimeConversationItem item) {
     this.item = item;
   }
@@ -194,11 +201,8 @@ public class RealtimeClientEventConversationItemCreate {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

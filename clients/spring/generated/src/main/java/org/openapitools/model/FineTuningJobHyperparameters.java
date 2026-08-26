@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -11,13 +12,13 @@ import org.openapitools.model.CreateFineTuningJobRequestHyperparametersNEpochs;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * The hyperparameters used for the fine-tuning job. This value will only be returned when running &#x60;supervised&#x60; jobs.
@@ -25,16 +26,19 @@ import javax.annotation.Generated;
 
 @Schema(name = "FineTuningJob_hyperparameters", description = "The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.")
 @JsonTypeName("FineTuningJob_hyperparameters")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FineTuningJobHyperparameters {
 
-  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private @Nullable CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
 
-  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private @Nullable CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
 
-  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  private @Nullable CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
 
-  public FineTuningJobHyperparameters batchSize(CreateFineTuningJobRequestHyperparametersBatchSize batchSize) {
+  public FineTuningJobHyperparameters batchSize(@Nullable CreateFineTuningJobRequestHyperparametersBatchSize batchSize) {
     this.batchSize = batchSize;
     return this;
   }
@@ -46,15 +50,16 @@ public class FineTuningJobHyperparameters {
   @Valid 
   @Schema(name = "batch_size", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("batch_size")
-  public CreateFineTuningJobRequestHyperparametersBatchSize getBatchSize() {
+  public @Nullable CreateFineTuningJobRequestHyperparametersBatchSize getBatchSize() {
     return batchSize;
   }
 
-  public void setBatchSize(CreateFineTuningJobRequestHyperparametersBatchSize batchSize) {
+  @JsonProperty("batch_size")
+  public void setBatchSize(@Nullable CreateFineTuningJobRequestHyperparametersBatchSize batchSize) {
     this.batchSize = batchSize;
   }
 
-  public FineTuningJobHyperparameters learningRateMultiplier(CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier) {
+  public FineTuningJobHyperparameters learningRateMultiplier(@Nullable CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier) {
     this.learningRateMultiplier = learningRateMultiplier;
     return this;
   }
@@ -66,15 +71,16 @@ public class FineTuningJobHyperparameters {
   @Valid 
   @Schema(name = "learning_rate_multiplier", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("learning_rate_multiplier")
-  public CreateFineTuningJobRequestHyperparametersLearningRateMultiplier getLearningRateMultiplier() {
+  public @Nullable CreateFineTuningJobRequestHyperparametersLearningRateMultiplier getLearningRateMultiplier() {
     return learningRateMultiplier;
   }
 
-  public void setLearningRateMultiplier(CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier) {
+  @JsonProperty("learning_rate_multiplier")
+  public void setLearningRateMultiplier(@Nullable CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier) {
     this.learningRateMultiplier = learningRateMultiplier;
   }
 
-  public FineTuningJobHyperparameters nEpochs(CreateFineTuningJobRequestHyperparametersNEpochs nEpochs) {
+  public FineTuningJobHyperparameters nEpochs(@Nullable CreateFineTuningJobRequestHyperparametersNEpochs nEpochs) {
     this.nEpochs = nEpochs;
     return this;
   }
@@ -86,11 +92,12 @@ public class FineTuningJobHyperparameters {
   @Valid 
   @Schema(name = "n_epochs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("n_epochs")
-  public CreateFineTuningJobRequestHyperparametersNEpochs getnEpochs() {
+  public @Nullable CreateFineTuningJobRequestHyperparametersNEpochs getnEpochs() {
     return nEpochs;
   }
 
-  public void setnEpochs(CreateFineTuningJobRequestHyperparametersNEpochs nEpochs) {
+  @JsonProperty("n_epochs")
+  public void setnEpochs(@Nullable CreateFineTuningJobRequestHyperparametersNEpochs nEpochs) {
     this.nEpochs = nEpochs;
   }
 
@@ -128,11 +135,8 @@ public class FineTuningJobHyperparameters {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

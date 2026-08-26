@@ -64,7 +64,7 @@ RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image::getFileId()
 }
 
 void
-RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image::setFileId(std::string  file_id)
+RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image::setFileId(std::string file_id)
 {
 	this->file_id = file_id;
 }

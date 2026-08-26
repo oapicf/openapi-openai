@@ -97,7 +97,7 @@ class CompletionsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\CreateCompletionRequest");
+        $asserts[] = new Assert\Type('OpenAPI\Server\Model\CreateCompletionRequest');
         $asserts[] = new Assert\Valid();
         $response = $this->validate($createCompletionRequest, $asserts);
         if ($response instanceof Response) {

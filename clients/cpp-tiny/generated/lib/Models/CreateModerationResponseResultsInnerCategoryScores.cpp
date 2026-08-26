@@ -316,7 +316,7 @@ CreateModerationResponse_results_inner_category_scores::getHate()
 }
 
 void
-CreateModerationResponse_results_inner_category_scores::setHate(long  hate)
+CreateModerationResponse_results_inner_category_scores::setHate(long hate)
 {
 	this->hate = hate;
 }
@@ -328,7 +328,7 @@ CreateModerationResponse_results_inner_category_scores::getHatethreatening()
 }
 
 void
-CreateModerationResponse_results_inner_category_scores::setHatethreatening(long  hatethreatening)
+CreateModerationResponse_results_inner_category_scores::setHatethreatening(long hatethreatening)
 {
 	this->hatethreatening = hatethreatening;
 }
@@ -340,7 +340,7 @@ CreateModerationResponse_results_inner_category_scores::getHarassment()
 }
 
 void
-CreateModerationResponse_results_inner_category_scores::setHarassment(long  harassment)
+CreateModerationResponse_results_inner_category_scores::setHarassment(long harassment)
 {
 	this->harassment = harassment;
 }
@@ -352,7 +352,7 @@ CreateModerationResponse_results_inner_category_scores::getHarassmentthreatening
 }
 
 void
-CreateModerationResponse_results_inner_category_scores::setHarassmentthreatening(long  harassmentthreatening)
+CreateModerationResponse_results_inner_category_scores::setHarassmentthreatening(long harassmentthreatening)
 {
 	this->harassmentthreatening = harassmentthreatening;
 }
@@ -364,7 +364,7 @@ CreateModerationResponse_results_inner_category_scores::getIllicit()
 }
 
 void
-CreateModerationResponse_results_inner_category_scores::setIllicit(long  illicit)
+CreateModerationResponse_results_inner_category_scores::setIllicit(long illicit)
 {
 	this->illicit = illicit;
 }
@@ -376,7 +376,7 @@ CreateModerationResponse_results_inner_category_scores::getIllicitviolent()
 }
 
 void
-CreateModerationResponse_results_inner_category_scores::setIllicitviolent(long  illicitviolent)
+CreateModerationResponse_results_inner_category_scores::setIllicitviolent(long illicitviolent)
 {
 	this->illicitviolent = illicitviolent;
 }
@@ -388,7 +388,7 @@ CreateModerationResponse_results_inner_category_scores::getSelfharm()
 }
 
 void
-CreateModerationResponse_results_inner_category_scores::setSelfharm(long  selfharm)
+CreateModerationResponse_results_inner_category_scores::setSelfharm(long selfharm)
 {
 	this->selfharm = selfharm;
 }
@@ -400,7 +400,7 @@ CreateModerationResponse_results_inner_category_scores::getSelfharmintent()
 }
 
 void
-CreateModerationResponse_results_inner_category_scores::setSelfharmintent(long  selfharmintent)
+CreateModerationResponse_results_inner_category_scores::setSelfharmintent(long selfharmintent)
 {
 	this->selfharmintent = selfharmintent;
 }
@@ -412,7 +412,7 @@ CreateModerationResponse_results_inner_category_scores::getSelfharminstructions(
 }
 
 void
-CreateModerationResponse_results_inner_category_scores::setSelfharminstructions(long  selfharminstructions)
+CreateModerationResponse_results_inner_category_scores::setSelfharminstructions(long selfharminstructions)
 {
 	this->selfharminstructions = selfharminstructions;
 }
@@ -424,7 +424,7 @@ CreateModerationResponse_results_inner_category_scores::getSexual()
 }
 
 void
-CreateModerationResponse_results_inner_category_scores::setSexual(long  sexual)
+CreateModerationResponse_results_inner_category_scores::setSexual(long sexual)
 {
 	this->sexual = sexual;
 }
@@ -436,7 +436,7 @@ CreateModerationResponse_results_inner_category_scores::getSexualminors()
 }
 
 void
-CreateModerationResponse_results_inner_category_scores::setSexualminors(long  sexualminors)
+CreateModerationResponse_results_inner_category_scores::setSexualminors(long sexualminors)
 {
 	this->sexualminors = sexualminors;
 }
@@ -448,7 +448,7 @@ CreateModerationResponse_results_inner_category_scores::getViolence()
 }
 
 void
-CreateModerationResponse_results_inner_category_scores::setViolence(long  violence)
+CreateModerationResponse_results_inner_category_scores::setViolence(long violence)
 {
 	this->violence = violence;
 }
@@ -460,7 +460,7 @@ CreateModerationResponse_results_inner_category_scores::getViolencegraphic()
 }
 
 void
-CreateModerationResponse_results_inner_category_scores::setViolencegraphic(long  violencegraphic)
+CreateModerationResponse_results_inner_category_scores::setViolencegraphic(long violencegraphic)
 {
 	this->violencegraphic = violencegraphic;
 }

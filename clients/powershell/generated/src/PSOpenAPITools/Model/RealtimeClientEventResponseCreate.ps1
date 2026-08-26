@@ -51,9 +51,9 @@ function Initialize-RealtimeClientEventResponseCreate {
 
 
         $PSO = [PSCustomObject]@{
-            "event_id" = ${EventId}
-            "type" = ${Type}
-            "response" = ${Response}
+            'event_id' = ${EventId}
+            'type' = ${Type}
+            'response' = ${Response}
         }
 
 
@@ -91,7 +91,7 @@ function ConvertFrom-JsonToRealtimeClientEventResponseCreate {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in RealtimeClientEventResponseCreate
-        $AllProperties = ("event_id", "type", "response")
+        $AllProperties = ('event_id', 'type', 'response')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -102,28 +102,28 @@ function ConvertFrom-JsonToRealtimeClientEventResponseCreate {
             throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'type'))) {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Type = $JsonParameters.PSobject.Properties['type'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "event_id"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'event_id'))) { #optional property not found
             $EventId = $null
         } else {
-            $EventId = $JsonParameters.PSobject.Properties["event_id"].value
+            $EventId = $JsonParameters.PSobject.Properties['event_id'].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "response"))) { #optional property not found
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match 'response'))) { #optional property not found
             $Response = $null
         } else {
-            $Response = $JsonParameters.PSobject.Properties["response"].value
+            $Response = $JsonParameters.PSobject.Properties['response'].value
         }
 
         $PSO = [PSCustomObject]@{
-            "event_id" = ${EventId}
-            "type" = ${Type}
-            "response" = ${Response}
+            'event_id' = ${EventId}
+            'type' = ${Type}
+            'response' = ${Response}
         }
 
         return $PSO

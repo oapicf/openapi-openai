@@ -53,21 +53,21 @@ public:
 
 	/*! \brief Set The unique ID of the server event.
 	 */
-	void setEventId(std::string  event_id);
+	void setEventId(std::string event_id);
 	/*! \brief Get The event type, must be `rate_limits.updated`.
 	 */
 	std::string getType();
 
 	/*! \brief Set The event type, must be `rate_limits.updated`.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get List of rate limit information.
 	 */
 	std::list<RealtimeServerEventRateLimitsUpdated_rate_limits_inner> getRateLimits();
 
 	/*! \brief Set List of rate limit information.
 	 */
-	void setRateLimits(std::list <RealtimeServerEventRateLimitsUpdated_rate_limits_inner> rate_limits);
+	void setRateLimits(std::list<RealtimeServerEventRateLimitsUpdated_rate_limits_inner> rate_limits);
 
 
     private:

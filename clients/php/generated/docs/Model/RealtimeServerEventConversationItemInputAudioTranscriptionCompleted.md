@@ -1,4 +1,4 @@
-# # RealtimeServerEventConversationItemInputAudioTranscriptionCompleted
+# RealtimeServerEventConversationItemInputAudioTranscriptionCompleted
 
 ## Properties
 

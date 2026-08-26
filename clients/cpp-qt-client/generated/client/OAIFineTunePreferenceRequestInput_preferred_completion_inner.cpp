@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIFineTunePreferenceRequestInput_preferred_completion_inner::OAIFineTunePreferenceRequestInput_preferred_completion_inner(QString json) {
+OAIFineTunePreferenceRequestInput_preferred_completion_inner::OAIFineTunePreferenceRequestInput_preferred_completion_inner(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -56,7 +56,7 @@ void OAIFineTunePreferenceRequestInput_preferred_completion_inner::initializeMod
     m_function_call_isValid = false;
 }
 
-void OAIFineTunePreferenceRequestInput_preferred_completion_inner::fromJson(QString jsonString) {
+void OAIFineTunePreferenceRequestInput_preferred_completion_inner::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

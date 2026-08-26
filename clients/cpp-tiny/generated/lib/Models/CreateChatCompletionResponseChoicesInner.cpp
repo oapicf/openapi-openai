@@ -129,7 +129,7 @@ CreateChatCompletionResponse_choices_inner::getFinishReason()
 }
 
 void
-CreateChatCompletionResponse_choices_inner::setFinishReason(std::string  finish_reason)
+CreateChatCompletionResponse_choices_inner::setFinishReason(std::string finish_reason)
 {
 	this->finish_reason = finish_reason;
 }
@@ -141,7 +141,7 @@ CreateChatCompletionResponse_choices_inner::getIndex()
 }
 
 void
-CreateChatCompletionResponse_choices_inner::setIndex(int  index)
+CreateChatCompletionResponse_choices_inner::setIndex(int index)
 {
 	this->index = index;
 }
@@ -153,7 +153,7 @@ CreateChatCompletionResponse_choices_inner::getMessage()
 }
 
 void
-CreateChatCompletionResponse_choices_inner::setMessage(ChatCompletionResponseMessage  message)
+CreateChatCompletionResponse_choices_inner::setMessage(ChatCompletionResponseMessage message)
 {
 	this->message = message;
 }
@@ -165,7 +165,7 @@ CreateChatCompletionResponse_choices_inner::getLogprobs()
 }
 
 void
-CreateChatCompletionResponse_choices_inner::setLogprobs(CreateChatCompletionResponse_choices_inner_logprobs  logprobs)
+CreateChatCompletionResponse_choices_inner::setLogprobs(CreateChatCompletionResponse_choices_inner_logprobs logprobs)
 {
 	this->logprobs = logprobs;
 }

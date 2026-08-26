@@ -191,8 +191,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="RealtimeServerEventResponseTextDone" />
     /// </summary>
-    public class RealtimeServerEventResponseTextDoneJsonConverter : JsonConverter<RealtimeServerEventResponseTextDone>
+    public partial class RealtimeServerEventResponseTextDoneJsonConverter : JsonConverter<RealtimeServerEventResponseTextDone>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RealtimeServerEventResponseTextDoneJsonConverter" /> class.
+        /// </summary>
+        public RealtimeServerEventResponseTextDoneJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RealtimeServerEventResponseTextDone" />
         /// </summary>

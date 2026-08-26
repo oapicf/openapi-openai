@@ -64,7 +64,7 @@ ResponseFormatJsonObject::getType()
 }
 
 void
-ResponseFormatJsonObject::setType(std::string  type)
+ResponseFormatJsonObject::setType(std::string type)
 {
 	this->type = type;
 }

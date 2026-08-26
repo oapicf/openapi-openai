@@ -1,4 +1,4 @@
-# # ProjectUserListResponse
+# ProjectUserListResponse
 
 ## Properties
 

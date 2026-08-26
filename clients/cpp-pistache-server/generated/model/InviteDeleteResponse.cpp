@@ -27,6 +27,8 @@ InviteDeleteResponse::InviteDeleteResponse()
     
 }
 
+InviteDeleteResponse::~InviteDeleteResponse() = default;
+
 void InviteDeleteResponse::validate() const
 {
     std::stringstream msg;

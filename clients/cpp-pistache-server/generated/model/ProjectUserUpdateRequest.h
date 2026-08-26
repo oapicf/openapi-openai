@@ -32,7 +32,7 @@ class  ProjectUserUpdateRequest
 {
 public:
     ProjectUserUpdateRequest();
-    virtual ~ProjectUserUpdateRequest() = default;
+    virtual ~ProjectUserUpdateRequest();
 
 
     /// <summary>

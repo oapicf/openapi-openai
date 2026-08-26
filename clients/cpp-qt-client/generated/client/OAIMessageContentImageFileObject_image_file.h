@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIMessageContentImageFileObject_image_file : public OAIObject {
 public:
     OAIMessageContentImageFileObject_image_file();
-    OAIMessageContentImageFileObject_image_file(QString json);
+    OAIMessageContentImageFileObject_image_file(const QString &json);
     ~OAIMessageContentImageFileObject_image_file() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getFileId() const;
     void setFileId(const QString &file_id);

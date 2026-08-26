@@ -40,9 +40,8 @@ The following models have been auto-generated from the provided OpenAPI schema:
 - model/SubmitToolOutputsRunRequestToolOutputsInnerModel.fs
 - model/SubmitToolOutputsRunRequestModel.fs
 - model/StaticChunkingStrategyModel.fs
-- model/StaticChunkingStrategyResponseParamModel.fs
-- model/VectorStoreFileObjectChunkingStrategyModel.fs
 - model/StaticChunkingStrategyRequestParamModel.fs
+- model/VectorStoreFileObjectChunkingStrategyModel.fs
 - model/RunToolCallObjectFunctionModel.fs
 - model/RunToolCallObjectModel.fs
 - model/ResponseFormatJsonSchemaJsonSchemaModel.fs
@@ -322,7 +321,7 @@ The following models have been auto-generated from the provided OpenAPI schema:
 - model/CreateTranscriptionResponseJsonModel.fs
 - model/CreateTranscriptionRequestModelModel.fs
 - model/CreateTranscription200ResponseModel.fs
-- model/AutoChunkingStrategyModel.fs
+- model/CreateVectorStoreFileRequestModel.fs
 - model/CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyModel.fs
 - model/CreateThreadRequestToolResourcesFileSearchVectorStoresInnerModel.fs
 - model/MessageStreamEventOneOfModel.fs
@@ -400,7 +399,7 @@ The following models have been auto-generated from the provided OpenAPI schema:
 - model/CompletionUsageModel.fs
 - model/CreateCompletionResponseModel.fs
 - model/CompleteUploadRequestModel.fs
-- model/CreateVectorStoreFileRequestModel.fs
+- model/CreateAssistantRequestToolResourcesModel.fs
 - model/ChatCompletionNamedToolChoiceModel.fs
 - model/ChatCompletionToolModel.fs
 - model/ChatCompletionTokenLogprobModel.fs
@@ -450,7 +449,6 @@ The following models have been auto-generated from the provided OpenAPI schema:
 - model/BatchModel.fs
 - model/ListBatchesResponseModel.fs
 - model/CreateVectorStoreFileBatchRequestModel.fs
-- model/CreateAssistantRequestToolResourcesModel.fs
 - model/AuditLogUserUpdatedChangesRequestedModel.fs
 - model/AuditLogUserUpdatedModel.fs
 - model/AuditLogUserDeletedModel.fs

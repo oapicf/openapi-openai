@@ -51,7 +51,7 @@ class MessageContentTextAnnotationsFilePathObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['file_path'])]
     #[Assert\Type("string")]
@@ -63,7 +63,7 @@ class MessageContentTextAnnotationsFilePathObject
      * @var string|null
      * @SerializedName("text")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("string")]
     protected ?string $text = null;
@@ -72,7 +72,7 @@ class MessageContentTextAnnotationsFilePathObject
      * @var MessageContentTextAnnotationsFilePathObjectFilePath|null
      * @SerializedName("file_path")
      * @Type("OpenAPI\Server\Model\MessageContentTextAnnotationsFilePathObjectFilePath")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Valid]
     #[Assert\Type("OpenAPI\Server\Model\MessageContentTextAnnotationsFilePathObjectFilePath")]
@@ -82,7 +82,7 @@ class MessageContentTextAnnotationsFilePathObject
      * @var int|null
      * @SerializedName("start_index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(0)]
@@ -92,7 +92,7 @@ class MessageContentTextAnnotationsFilePathObject
      * @var int|null
      * @SerializedName("end_index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     #[Assert\GreaterThanOrEqual(0)]
@@ -124,12 +124,12 @@ class MessageContentTextAnnotationsFilePathObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `file_path`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `file_path`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -151,12 +151,12 @@ class MessageContentTextAnnotationsFilePathObject
     }
 
     /**
-    * Sets text.
-    *
-    * @param string|null $text  The text in the message content that needs to be replaced.
-    *
-    * @return $this
-    */
+     * Sets text.
+     *
+     * @param string|null $text  The text in the message content that needs to be replaced.
+     *
+     * @return $this
+     */
     public function setText(?string $text): self
     {
         $this->text = $text;
@@ -178,12 +178,12 @@ class MessageContentTextAnnotationsFilePathObject
     }
 
     /**
-    * Sets filePath.
-    *
-    * @param MessageContentTextAnnotationsFilePathObjectFilePath|null $filePath
-    *
-    * @return $this
-    */
+     * Sets filePath.
+     *
+     * @param MessageContentTextAnnotationsFilePathObjectFilePath|null $filePath
+     *
+     * @return $this
+     */
     public function setFilePath(?MessageContentTextAnnotationsFilePathObjectFilePath $filePath): self
     {
         $this->filePath = $filePath;
@@ -205,12 +205,12 @@ class MessageContentTextAnnotationsFilePathObject
     }
 
     /**
-    * Sets startIndex.
-    *
-    * @param int|null $startIndex
-    *
-    * @return $this
-    */
+     * Sets startIndex.
+     *
+     * @param int|null $startIndex
+     *
+     * @return $this
+     */
     public function setStartIndex(?int $startIndex): self
     {
         $this->startIndex = $startIndex;
@@ -232,12 +232,12 @@ class MessageContentTextAnnotationsFilePathObject
     }
 
     /**
-    * Sets endIndex.
-    *
-    * @param int|null $endIndex
-    *
-    * @return $this
-    */
+     * Sets endIndex.
+     *
+     * @param int|null $endIndex
+     *
+     * @return $this
+     */
     public function setEndIndex(?int $endIndex): self
     {
         $this->endIndex = $endIndex;

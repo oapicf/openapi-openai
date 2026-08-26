@@ -86,15 +86,17 @@ class _$AuditLogActorSessionSerializer implements PrimitiveSerializer<AuditLogAc
         case r'user':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuditLogActorUser),
-          ) as AuditLogActorUser;
+            specifiedType: const FullType.nullable(AuditLogActorUser),
+          ) as AuditLogActorUser?;
+          if (valueDes == null) continue;
           result.user.replace(valueDes);
           break;
         case r'ip_address':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.ipAddress = valueDes;
           break;
         default:

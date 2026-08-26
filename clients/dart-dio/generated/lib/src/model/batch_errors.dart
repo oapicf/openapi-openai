@@ -87,15 +87,17 @@ class _$BatchErrorsSerializer implements PrimitiveSerializer<BatchErrors> {
         case r'object':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.object = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(BatchErrorsDataInner)]),
-          ) as BuiltList<BatchErrorsDataInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(BatchErrorsDataInner)]),
+          ) as BuiltList<BatchErrorsDataInner>?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

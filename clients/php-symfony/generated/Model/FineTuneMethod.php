@@ -51,7 +51,7 @@ class FineTuneMethod
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\Choice(['supervised', 'dpo'])]
     #[Assert\Type("string")]
     protected ?string $type = null;
@@ -60,7 +60,7 @@ class FineTuneMethod
      * @var FineTuneSupervisedMethod|null
      * @SerializedName("supervised")
      * @Type("OpenAPI\Server\Model\FineTuneSupervisedMethod")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\FineTuneSupervisedMethod")]
     protected ?FineTuneSupervisedMethod $supervised = null;
 
@@ -68,7 +68,7 @@ class FineTuneMethod
      * @var FineTuneDPOMethod|null
      * @SerializedName("dpo")
      * @Type("OpenAPI\Server\Model\FineTuneDPOMethod")
-    */
+     */
     #[Assert\Type("OpenAPI\Server\Model\FineTuneDPOMethod")]
     protected ?FineTuneDPOMethod $dpo = null;
 
@@ -96,12 +96,12 @@ class FineTuneMethod
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  The type of method. Is either `supervised` or `dpo`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  The type of method. Is either `supervised` or `dpo`.
+     *
+     * @return $this
+     */
     public function setType(?string $type = null): self
     {
         $this->type = $type;
@@ -123,12 +123,12 @@ class FineTuneMethod
     }
 
     /**
-    * Sets supervised.
-    *
-    * @param FineTuneSupervisedMethod|null $supervised
-    *
-    * @return $this
-    */
+     * Sets supervised.
+     *
+     * @param FineTuneSupervisedMethod|null $supervised
+     *
+     * @return $this
+     */
     public function setSupervised(?FineTuneSupervisedMethod $supervised = null): self
     {
         $this->supervised = $supervised;
@@ -150,12 +150,12 @@ class FineTuneMethod
     }
 
     /**
-    * Sets dpo.
-    *
-    * @param FineTuneDPOMethod|null $dpo
-    *
-    * @return $this
-    */
+     * Sets dpo.
+     *
+     * @param FineTuneDPOMethod|null $dpo
+     *
+     * @return $this
+     */
     public function setDpo(?FineTuneDPOMethod $dpo = null): self
     {
         $this->dpo = $dpo;

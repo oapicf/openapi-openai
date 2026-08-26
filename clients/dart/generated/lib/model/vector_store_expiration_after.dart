@@ -58,10 +58,10 @@ class VectorStoreExpirationAfter {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "VectorStoreExpirationAfter[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "VectorStoreExpirationAfter[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'anchor'), 'Required key "VectorStoreExpirationAfter[anchor]" is missing from JSON.');
+        assert(json[r'anchor'] != null, 'Required key "VectorStoreExpirationAfter[anchor]" has a null value in JSON.');
+        assert(json.containsKey(r'days'), 'Required key "VectorStoreExpirationAfter[days]" is missing from JSON.');
+        assert(json[r'days'] != null, 'Required key "VectorStoreExpirationAfter[days]" has a null value in JSON.');
         return true;
       }());
 
@@ -121,27 +121,28 @@ class VectorStoreExpirationAfter {
 }
 
 /// Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`.
-class VectorStoreExpirationAfterAnchorEnum {
-  /// Instantiate a new enum with the provided [value].
-  const VectorStoreExpirationAfterAnchorEnum._(this.value);
+enum VectorStoreExpirationAfterAnchorEnum {
+  lastActiveAt._(r'last_active_at'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const VectorStoreExpirationAfterAnchorEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const lastActiveAt = VectorStoreExpirationAfterAnchorEnum._(r'last_active_at');
-
-  /// List of all possible values in this [enum][VectorStoreExpirationAfterAnchorEnum].
-  static const values = <VectorStoreExpirationAfterAnchorEnum>[
-    lastActiveAt,
-  ];
-
+  /// Returns the instance of [VectorStoreExpirationAfterAnchorEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static VectorStoreExpirationAfterAnchorEnum? fromJson(dynamic value) => VectorStoreExpirationAfterAnchorEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [VectorStoreExpirationAfterAnchorEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<VectorStoreExpirationAfterAnchorEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <VectorStoreExpirationAfterAnchorEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -163,9 +164,10 @@ class VectorStoreExpirationAfterAnchorEnumTypeTransformer {
 
   const VectorStoreExpirationAfterAnchorEnumTypeTransformer._();
 
-  String encode(VectorStoreExpirationAfterAnchorEnum data) => data.value;
+  String encode(VectorStoreExpirationAfterAnchorEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a VectorStoreExpirationAfterAnchorEnum.
+  /// Returns the instance of [VectorStoreExpirationAfterAnchorEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -174,6 +176,9 @@ class VectorStoreExpirationAfterAnchorEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   VectorStoreExpirationAfterAnchorEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is VectorStoreExpirationAfterAnchorEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'last_active_at': return VectorStoreExpirationAfterAnchorEnum.lastActiveAt;
@@ -186,7 +191,7 @@ class VectorStoreExpirationAfterAnchorEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [VectorStoreExpirationAfterAnchorEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static VectorStoreExpirationAfterAnchorEnumTypeTransformer? _instance;
 }
 

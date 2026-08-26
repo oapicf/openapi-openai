@@ -12,18 +12,21 @@ static message_content_text_annotations_file_path_object_file_path_t *message_co
     if (!message_content_text_annotations_file_path_object_file_path_local_var) {
         return NULL;
     }
-    message_content_text_annotations_file_path_object_file_path_local_var->file_id = file_id;
-
+    memset(message_content_text_annotations_file_path_object_file_path_local_var, 0, sizeof(message_content_text_annotations_file_path_object_file_path_t));
     message_content_text_annotations_file_path_object_file_path_local_var->_library_owned = 1;
+    message_content_text_annotations_file_path_object_file_path_local_var->file_id = file_id;
     return message_content_text_annotations_file_path_object_file_path_local_var;
 }
 
 __attribute__((deprecated)) message_content_text_annotations_file_path_object_file_path_t *message_content_text_annotations_file_path_object_file_path_create(
     char *file_id
     ) {
-    return message_content_text_annotations_file_path_object_file_path_create_internal (
+    message_content_text_annotations_file_path_object_file_path_t *result = message_content_text_annotations_file_path_object_file_path_create_internal (
         file_id
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void message_content_text_annotations_file_path_object_file_path_free(message_content_text_annotations_file_path_object_file_path_t *message_content_text_annotations_file_path_object_file_path) {
@@ -65,6 +68,8 @@ message_content_text_annotations_file_path_object_file_path_t *message_content_t
 
     message_content_text_annotations_file_path_object_file_path_t *message_content_text_annotations_file_path_object_file_path_local_var = NULL;
 
+    char *file_id_local_str = NULL;
+
     // message_content_text_annotations_file_path_object_file_path->file_id
     cJSON *file_id = cJSON_GetObjectItemCaseSensitive(message_content_text_annotations_file_path_object_file_pathJSON, "file_id");
     if (cJSON_IsNull(file_id)) {
@@ -81,12 +86,22 @@ message_content_text_annotations_file_path_object_file_path_t *message_content_t
     }
 
 
+    if (file_id && !cJSON_IsNull(file_id)) file_id_local_str = strdup(file_id->valuestring);
+
     message_content_text_annotations_file_path_object_file_path_local_var = message_content_text_annotations_file_path_object_file_path_create_internal (
-        strdup(file_id->valuestring)
+        file_id_local_str
         );
+
+    if (!message_content_text_annotations_file_path_object_file_path_local_var) {
+        goto end;
+    }
 
     return message_content_text_annotations_file_path_object_file_path_local_var;
 end:
+    if (file_id_local_str) {
+        free(file_id_local_str);
+        file_id_local_str = NULL;
+    }
     return NULL;
 
 }

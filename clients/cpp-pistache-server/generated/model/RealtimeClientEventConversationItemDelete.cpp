@@ -28,6 +28,8 @@ RealtimeClientEventConversationItemDelete::RealtimeClientEventConversationItemDe
     
 }
 
+RealtimeClientEventConversationItemDelete::~RealtimeClientEventConversationItemDelete() = default;
+
 void RealtimeClientEventConversationItemDelete::validate() const
 {
     std::stringstream msg;

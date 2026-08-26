@@ -31,7 +31,7 @@ export interface RunStepDetailsMessageCreationObjectMessageCreation {
  * Check if a given object implements the RunStepDetailsMessageCreationObjectMessageCreation interface.
  */
 export function instanceOfRunStepDetailsMessageCreationObjectMessageCreation(value: object): value is RunStepDetailsMessageCreationObjectMessageCreation {
-    if (!('messageId' in value) || value['messageId'] === undefined) return false;
+    if ((!('messageId' in (value as Record<string, any>)) && !('message_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['messageId'] === undefined && (value as Record<string, any>)['message_id'] === undefined)) return false;
     return true;
 }
 

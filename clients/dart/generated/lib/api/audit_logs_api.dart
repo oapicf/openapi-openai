@@ -48,7 +48,7 @@ class AuditLogsApi {
   ///
   /// * [String] before:
   ///   A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-  Future<Response> listAuditLogsWithHttpInfo({ ListAuditLogsEffectiveAtParameter? effectiveAt, List<String>? projectIdsLeftSquareBracketRightSquareBracket, List<AuditLogEventType>? eventTypesLeftSquareBracketRightSquareBracket, List<String>? actorIdsLeftSquareBracketRightSquareBracket, List<String>? actorEmailsLeftSquareBracketRightSquareBracket, List<String>? resourceIdsLeftSquareBracketRightSquareBracket, int? limit, String? after, String? before, }) async {
+  Future<Response> listAuditLogsWithHttpInfo({ ListAuditLogsEffectiveAtParameter? effectiveAt, List<String>? projectIdsLeftSquareBracketRightSquareBracket, List<AuditLogEventType>? eventTypesLeftSquareBracketRightSquareBracket, List<String>? actorIdsLeftSquareBracketRightSquareBracket, List<String>? actorEmailsLeftSquareBracketRightSquareBracket, List<String>? resourceIdsLeftSquareBracketRightSquareBracket, int? limit, String? after, String? before, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/organization/audit_logs';
 
@@ -98,6 +98,7 @@ class AuditLogsApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -131,8 +132,8 @@ class AuditLogsApi {
   ///
   /// * [String] before:
   ///   A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-  Future<ListAuditLogsResponse?> listAuditLogs({ ListAuditLogsEffectiveAtParameter? effectiveAt, List<String>? projectIdsLeftSquareBracketRightSquareBracket, List<AuditLogEventType>? eventTypesLeftSquareBracketRightSquareBracket, List<String>? actorIdsLeftSquareBracketRightSquareBracket, List<String>? actorEmailsLeftSquareBracketRightSquareBracket, List<String>? resourceIdsLeftSquareBracketRightSquareBracket, int? limit, String? after, String? before, }) async {
-    final response = await listAuditLogsWithHttpInfo( effectiveAt: effectiveAt, projectIdsLeftSquareBracketRightSquareBracket: projectIdsLeftSquareBracketRightSquareBracket, eventTypesLeftSquareBracketRightSquareBracket: eventTypesLeftSquareBracketRightSquareBracket, actorIdsLeftSquareBracketRightSquareBracket: actorIdsLeftSquareBracketRightSquareBracket, actorEmailsLeftSquareBracketRightSquareBracket: actorEmailsLeftSquareBracketRightSquareBracket, resourceIdsLeftSquareBracketRightSquareBracket: resourceIdsLeftSquareBracketRightSquareBracket, limit: limit, after: after, before: before, );
+  Future<ListAuditLogsResponse?> listAuditLogs({ ListAuditLogsEffectiveAtParameter? effectiveAt, List<String>? projectIdsLeftSquareBracketRightSquareBracket, List<AuditLogEventType>? eventTypesLeftSquareBracketRightSquareBracket, List<String>? actorIdsLeftSquareBracketRightSquareBracket, List<String>? actorEmailsLeftSquareBracketRightSquareBracket, List<String>? resourceIdsLeftSquareBracketRightSquareBracket, int? limit, String? after, String? before, Future<void>? abortTrigger, }) async {
+    final response = await listAuditLogsWithHttpInfo(effectiveAt: effectiveAt, projectIdsLeftSquareBracketRightSquareBracket: projectIdsLeftSquareBracketRightSquareBracket, eventTypesLeftSquareBracketRightSquareBracket: eventTypesLeftSquareBracketRightSquareBracket, actorIdsLeftSquareBracketRightSquareBracket: actorIdsLeftSquareBracketRightSquareBracket, actorEmailsLeftSquareBracketRightSquareBracket: actorEmailsLeftSquareBracketRightSquareBracket, resourceIdsLeftSquareBracketRightSquareBracket: resourceIdsLeftSquareBracketRightSquareBracket, limit: limit, after: after, before: before, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

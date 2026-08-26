@@ -51,7 +51,7 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
      * @var int|null
      * @SerializedName("index")
      * @Type("int")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Type("int")]
     protected ?int $index = null;
@@ -62,7 +62,7 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
      * @var string|null
      * @SerializedName("type")
      * @Type("string")
-    */
+     */
     #[Assert\NotNull]
     #[Assert\Choice(['logs'])]
     #[Assert\Type("string")]
@@ -74,7 +74,7 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
      * @var string|null
      * @SerializedName("logs")
      * @Type("string")
-    */
+     */
     #[Assert\Type("string")]
     protected ?string $logs = null;
 
@@ -102,12 +102,12 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
     }
 
     /**
-    * Sets index.
-    *
-    * @param int|null $index  The index of the output in the outputs array.
-    *
-    * @return $this
-    */
+     * Sets index.
+     *
+     * @param int|null $index  The index of the output in the outputs array.
+     *
+     * @return $this
+     */
     public function setIndex(?int $index): self
     {
         $this->index = $index;
@@ -129,12 +129,12 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
     }
 
     /**
-    * Sets type.
-    *
-    * @param string|null $type  Always `logs`.
-    *
-    * @return $this
-    */
+     * Sets type.
+     *
+     * @param string|null $type  Always `logs`.
+     *
+     * @return $this
+     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -156,12 +156,12 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject
     }
 
     /**
-    * Sets logs.
-    *
-    * @param string|null $logs  The text output from the Code Interpreter tool call.
-    *
-    * @return $this
-    */
+     * Sets logs.
+     *
+     * @param string|null $logs  The text output from the Code Interpreter tool call.
+     *
+     * @return $this
+     */
     public function setLogs(?string $logs = null): self
     {
         $this->logs = $logs;

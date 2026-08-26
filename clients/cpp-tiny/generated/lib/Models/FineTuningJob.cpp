@@ -459,7 +459,7 @@ FineTuningJob::getId()
 }
 
 void
-FineTuningJob::setId(std::string  id)
+FineTuningJob::setId(std::string id)
 {
 	this->id = id;
 }
@@ -471,7 +471,7 @@ FineTuningJob::getCreatedAt()
 }
 
 void
-FineTuningJob::setCreatedAt(int  created_at)
+FineTuningJob::setCreatedAt(int created_at)
 {
 	this->created_at = created_at;
 }
@@ -483,7 +483,7 @@ FineTuningJob::getError()
 }
 
 void
-FineTuningJob::setError(FineTuningJob_error  error)
+FineTuningJob::setError(FineTuningJob_error error)
 {
 	this->error = error;
 }
@@ -495,7 +495,7 @@ FineTuningJob::getFineTunedModel()
 }
 
 void
-FineTuningJob::setFineTunedModel(std::string  fine_tuned_model)
+FineTuningJob::setFineTunedModel(std::string fine_tuned_model)
 {
 	this->fine_tuned_model = fine_tuned_model;
 }
@@ -507,7 +507,7 @@ FineTuningJob::getFinishedAt()
 }
 
 void
-FineTuningJob::setFinishedAt(int  finished_at)
+FineTuningJob::setFinishedAt(int finished_at)
 {
 	this->finished_at = finished_at;
 }
@@ -519,7 +519,7 @@ FineTuningJob::getHyperparameters()
 }
 
 void
-FineTuningJob::setHyperparameters(FineTuningJob_hyperparameters  hyperparameters)
+FineTuningJob::setHyperparameters(FineTuningJob_hyperparameters hyperparameters)
 {
 	this->hyperparameters = hyperparameters;
 }
@@ -531,7 +531,7 @@ FineTuningJob::getModel()
 }
 
 void
-FineTuningJob::setModel(std::string  model)
+FineTuningJob::setModel(std::string model)
 {
 	this->model = model;
 }
@@ -543,7 +543,7 @@ FineTuningJob::getObject()
 }
 
 void
-FineTuningJob::setObject(std::string  object)
+FineTuningJob::setObject(std::string object)
 {
 	this->object = object;
 }
@@ -555,7 +555,7 @@ FineTuningJob::getOrganizationId()
 }
 
 void
-FineTuningJob::setOrganizationId(std::string  organization_id)
+FineTuningJob::setOrganizationId(std::string organization_id)
 {
 	this->organization_id = organization_id;
 }
@@ -567,7 +567,7 @@ FineTuningJob::getResultFiles()
 }
 
 void
-FineTuningJob::setResultFiles(std::list <std::string> result_files)
+FineTuningJob::setResultFiles(std::list<std::string> result_files)
 {
 	this->result_files = result_files;
 }
@@ -579,7 +579,7 @@ FineTuningJob::getStatus()
 }
 
 void
-FineTuningJob::setStatus(std::string  status)
+FineTuningJob::setStatus(std::string status)
 {
 	this->status = status;
 }
@@ -591,7 +591,7 @@ FineTuningJob::getTrainedTokens()
 }
 
 void
-FineTuningJob::setTrainedTokens(int  trained_tokens)
+FineTuningJob::setTrainedTokens(int trained_tokens)
 {
 	this->trained_tokens = trained_tokens;
 }
@@ -603,7 +603,7 @@ FineTuningJob::getTrainingFile()
 }
 
 void
-FineTuningJob::setTrainingFile(std::string  training_file)
+FineTuningJob::setTrainingFile(std::string training_file)
 {
 	this->training_file = training_file;
 }
@@ -615,7 +615,7 @@ FineTuningJob::getValidationFile()
 }
 
 void
-FineTuningJob::setValidationFile(std::string  validation_file)
+FineTuningJob::setValidationFile(std::string validation_file)
 {
 	this->validation_file = validation_file;
 }
@@ -627,7 +627,7 @@ FineTuningJob::getIntegrations()
 }
 
 void
-FineTuningJob::setIntegrations(std::list <FineTuningJob_integrations_inner> integrations)
+FineTuningJob::setIntegrations(std::list<FineTuningJob_integrations_inner> integrations)
 {
 	this->integrations = integrations;
 }
@@ -639,7 +639,7 @@ FineTuningJob::getSeed()
 }
 
 void
-FineTuningJob::setSeed(int  seed)
+FineTuningJob::setSeed(int seed)
 {
 	this->seed = seed;
 }
@@ -651,7 +651,7 @@ FineTuningJob::getEstimatedFinish()
 }
 
 void
-FineTuningJob::setEstimatedFinish(int  estimated_finish)
+FineTuningJob::setEstimatedFinish(int estimated_finish)
 {
 	this->estimated_finish = estimated_finish;
 }
@@ -663,7 +663,7 @@ FineTuningJob::getMethod()
 }
 
 void
-FineTuningJob::setMethod(FineTuneMethod  method)
+FineTuningJob::setMethod(FineTuneMethod method)
 {
 	this->method = method;
 }

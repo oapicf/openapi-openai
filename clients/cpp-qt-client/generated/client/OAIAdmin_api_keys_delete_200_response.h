@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIAdmin_api_keys_delete_200_response : public OAIObject {
 public:
     OAIAdmin_api_keys_delete_200_response();
-    OAIAdmin_api_keys_delete_200_response(QString json);
+    OAIAdmin_api_keys_delete_200_response(const QString &json);
     ~OAIAdmin_api_keys_delete_200_response() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getId() const;
     void setId(const QString &id);

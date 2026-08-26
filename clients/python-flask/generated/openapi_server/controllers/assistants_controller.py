@@ -1,4 +1,4 @@
-import connexion
+import flask
 from typing import Dict
 from typing import Tuple
 from typing import Union
@@ -54,8 +54,8 @@ def create_assistant(body):  # noqa: E501
     :rtype: Union[AssistantObject, Tuple[AssistantObject, int], Tuple[AssistantObject, int, Dict[str, str]]
     """
     create_assistant_request = body
-    if connexion.request.is_json:
-        create_assistant_request = CreateAssistantRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        create_assistant_request = CreateAssistantRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -72,8 +72,8 @@ def create_message(thread_id, body):  # noqa: E501
     :rtype: Union[MessageObject, Tuple[MessageObject, int], Tuple[MessageObject, int, Dict[str, str]]
     """
     create_message_request = body
-    if connexion.request.is_json:
-        create_message_request = CreateMessageRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        create_message_request = CreateMessageRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -92,8 +92,8 @@ def create_run(thread_id, body, include=None):  # noqa: E501
     :rtype: Union[RunObject, Tuple[RunObject, int], Tuple[RunObject, int, Dict[str, str]]
     """
     create_run_request = body
-    if connexion.request.is_json:
-        create_run_request = CreateRunRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        create_run_request = CreateRunRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -108,8 +108,8 @@ def create_thread(body=None):  # noqa: E501
     :rtype: Union[ThreadObject, Tuple[ThreadObject, int], Tuple[ThreadObject, int, Dict[str, str]]
     """
     create_thread_request = body
-    if connexion.request.is_json:
-        create_thread_request = CreateThreadRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        create_thread_request = CreateThreadRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -124,8 +124,8 @@ def create_thread_and_run(body):  # noqa: E501
     :rtype: Union[RunObject, Tuple[RunObject, int], Tuple[RunObject, int, Dict[str, str]]
     """
     create_thread_and_run_request = body
-    if connexion.request.is_json:
-        create_thread_and_run_request = CreateThreadAndRunRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        create_thread_and_run_request = CreateThreadAndRunRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -346,8 +346,8 @@ def modify_assistant(assistant_id, body):  # noqa: E501
     :rtype: Union[AssistantObject, Tuple[AssistantObject, int], Tuple[AssistantObject, int, Dict[str, str]]
     """
     modify_assistant_request = body
-    if connexion.request.is_json:
-        modify_assistant_request = ModifyAssistantRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        modify_assistant_request = ModifyAssistantRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -366,8 +366,8 @@ def modify_message(thread_id, message_id, body):  # noqa: E501
     :rtype: Union[MessageObject, Tuple[MessageObject, int], Tuple[MessageObject, int, Dict[str, str]]
     """
     modify_message_request = body
-    if connexion.request.is_json:
-        modify_message_request = ModifyMessageRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        modify_message_request = ModifyMessageRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -386,8 +386,8 @@ def modify_run(thread_id, run_id, body):  # noqa: E501
     :rtype: Union[RunObject, Tuple[RunObject, int], Tuple[RunObject, int, Dict[str, str]]
     """
     modify_run_request = body
-    if connexion.request.is_json:
-        modify_run_request = ModifyRunRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        modify_run_request = ModifyRunRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -404,8 +404,8 @@ def modify_thread(thread_id, body):  # noqa: E501
     :rtype: Union[ThreadObject, Tuple[ThreadObject, int], Tuple[ThreadObject, int, Dict[str, str]]
     """
     modify_thread_request = body
-    if connexion.request.is_json:
-        modify_thread_request = ModifyThreadRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        modify_thread_request = ModifyThreadRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
@@ -424,6 +424,6 @@ def submit_tool_ouputs_to_run(thread_id, run_id, body):  # noqa: E501
     :rtype: Union[RunObject, Tuple[RunObject, int], Tuple[RunObject, int, Dict[str, str]]
     """
     submit_tool_outputs_run_request = body
-    if connexion.request.is_json:
-        submit_tool_outputs_run_request = SubmitToolOutputsRunRequest.from_dict(connexion.request.get_json())  # noqa: E501
+    if flask.request.is_json:
+        submit_tool_outputs_run_request = SubmitToolOutputsRunRequest.from_dict(flask.request.get_json())  # noqa: E501
     return 'do some magic!'

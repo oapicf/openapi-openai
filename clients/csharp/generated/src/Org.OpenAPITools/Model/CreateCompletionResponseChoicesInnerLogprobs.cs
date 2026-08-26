@@ -61,7 +61,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets TextOffset
         /// </summary>
         [JsonPropertyName("text_offset")]
-        public List<int>? TextOffset { get { return this.TextOffsetOption; } set { this.TextOffsetOption = new(value); } }
+        public List<int>? TextOffset { get { return this.TextOffsetOption.Value; } set { this.TextOffsetOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TokenLogprobs
@@ -74,7 +74,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets TokenLogprobs
         /// </summary>
         [JsonPropertyName("token_logprobs")]
-        public List<decimal>? TokenLogprobs { get { return this.TokenLogprobsOption; } set { this.TokenLogprobsOption = new(value); } }
+        public List<decimal>? TokenLogprobs { get { return this.TokenLogprobsOption.Value; } set { this.TokenLogprobsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Tokens
@@ -87,7 +87,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Tokens
         /// </summary>
         [JsonPropertyName("tokens")]
-        public List<string>? Tokens { get { return this.TokensOption; } set { this.TokensOption = new(value); } }
+        public List<string>? Tokens { get { return this.TokensOption.Value; } set { this.TokensOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TopLogprobs
@@ -100,7 +100,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets TopLogprobs
         /// </summary>
         [JsonPropertyName("top_logprobs")]
-        public List<Dictionary<string, decimal>>? TopLogprobs { get { return this.TopLogprobsOption; } set { this.TopLogprobsOption = new(value); } }
+        public List<Dictionary<string, decimal>>? TopLogprobs { get { return this.TopLogprobsOption.Value; } set { this.TopLogprobsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateCompletionResponseChoicesInnerLogprobs" />
     /// </summary>
-    public class CreateCompletionResponseChoicesInnerLogprobsJsonConverter : JsonConverter<CreateCompletionResponseChoicesInnerLogprobs>
+    public partial class CreateCompletionResponseChoicesInnerLogprobsJsonConverter : JsonConverter<CreateCompletionResponseChoicesInnerLogprobs>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateCompletionResponseChoicesInnerLogprobsJsonConverter" /> class.
+        /// </summary>
+        public CreateCompletionResponseChoicesInnerLogprobsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateCompletionResponseChoicesInnerLogprobs" />
         /// </summary>

@@ -36,13 +36,13 @@ class OAICreateThreadRequest_tool_resources;
 class OAICreateThreadRequest : public OAIObject {
 public:
     OAICreateThreadRequest();
-    OAICreateThreadRequest(QString json);
+    OAICreateThreadRequest(const QString &json);
     ~OAICreateThreadRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QList<OAICreateMessageRequest> getMessages() const;
     void setMessages(const QList<OAICreateMessageRequest> &messages);

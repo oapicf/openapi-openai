@@ -25,7 +25,7 @@ import org.openapitools.model.RealtimeServerEventConversationCreatedConversation
  */
 
 @ApiModel(description = "Returned when a conversation is created. Emitted right after session creation. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-26T05:15:47.876757065Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class RealtimeServerEventConversationCreated   {
   
   private String eventId;
@@ -140,10 +140,7 @@ public class RealtimeServerEventConversationCreated   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

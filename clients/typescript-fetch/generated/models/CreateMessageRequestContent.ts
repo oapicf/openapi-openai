@@ -41,6 +41,8 @@ export function CreateMessageRequestContentFromJSONTyped(json: any, ignoreDiscri
                 return json.map(value => ArrayOfContentPartsInnerFromJSONTyped(value, true));
             }
         }
+    }
+    if (Array.isArray(json)) {
         return json;
     }
     if (typeof json === 'string') {
@@ -63,6 +65,8 @@ export function CreateMessageRequestContentToJSONTyped(value?: CreateMessageRequ
                 return value.map(value => ArrayOfContentPartsInnerToJSON(value as ArrayOfContentPartsInner));
             }
         }
+    }
+    if (Array.isArray(value)) {
         return value;
     }
     if (typeof value === 'string') {

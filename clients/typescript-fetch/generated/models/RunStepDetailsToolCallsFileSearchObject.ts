@@ -35,7 +35,7 @@ export interface RunStepDetailsToolCallsFileSearchObject {
     id: string;
     /**
      * The type of tool call. This is always going to be `file_search` for this type of tool call.
-     * @type {string}
+     * @type {RunStepDetailsToolCallsFileSearchObjectTypeEnum}
      * @memberof RunStepDetailsToolCallsFileSearchObject
      */
     type: RunStepDetailsToolCallsFileSearchObjectTypeEnum;
@@ -63,7 +63,9 @@ export type RunStepDetailsToolCallsFileSearchObjectTypeEnum = typeof RunStepDeta
 export function instanceOfRunStepDetailsToolCallsFileSearchObject(value: object): value is RunStepDetailsToolCallsFileSearchObject {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('fileSearch' in value) || value['fileSearch'] === undefined) return false;
+    if (value['type'] !== 'file_search') return false;
+    
+    if ((!('fileSearch' in (value as Record<string, any>)) && !('file_search' in (value as Record<string, any>))) || ((value as Record<string, any>)['fileSearch'] === undefined && (value as Record<string, any>)['file_search'] === undefined)) return false;
     return true;
 }
 

@@ -1,4 +1,4 @@
-# # ListAssistantsResponse
+# ListAssistantsResponse
 
 ## Properties
 

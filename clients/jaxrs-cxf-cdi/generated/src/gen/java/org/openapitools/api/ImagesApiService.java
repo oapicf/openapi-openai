@@ -20,7 +20,7 @@ import javax.validation.Valid;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-01-29T14:09:03.843054404Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-08-26T05:16:04.319549348Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public interface ImagesApiService {
       public Response createImage(CreateImageRequest createImageRequest, SecurityContext securityContext);
       public Response createImageEdit(Attachment imageDetail, String prompt, Attachment maskDetail, CreateImageEditRequestModel model, Integer n, String size, String responseFormat, String user, SecurityContext securityContext);

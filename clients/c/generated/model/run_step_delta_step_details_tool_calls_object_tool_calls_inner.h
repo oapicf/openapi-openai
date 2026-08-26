@@ -33,7 +33,7 @@ openai_api_run_step_delta_step_details_tool_calls_object_tool_calls_inner_TYPE_e
 
 
 typedef struct run_step_delta_step_details_tool_calls_object_tool_calls_inner_t {
-    int index; //numeric
+    int *index; //numeric
     char *id; // string
     openai_api_run_step_delta_step_details_tool_calls_object_tool_calls_inner_TYPE_e type; //enum
     struct run_step_delta_step_details_tool_calls_code_object_code_interpreter_t *code_interpreter; //model
@@ -44,7 +44,7 @@ typedef struct run_step_delta_step_details_tool_calls_object_tool_calls_inner_t 
 } run_step_delta_step_details_tool_calls_object_tool_calls_inner_t;
 
 __attribute__((deprecated)) run_step_delta_step_details_tool_calls_object_tool_calls_inner_t *run_step_delta_step_details_tool_calls_object_tool_calls_inner_create(
-    int index,
+    int *index,
     char *id,
     openai_api_run_step_delta_step_details_tool_calls_object_tool_calls_inner_TYPE_e type,
     run_step_delta_step_details_tool_calls_code_object_code_interpreter_t *code_interpreter,

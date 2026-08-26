@@ -36,13 +36,13 @@ class OAITranscriptionSegment;
 class OAICreateTranslation_200_response : public OAIObject {
 public:
     OAICreateTranslation_200_response();
-    OAICreateTranslation_200_response(QString json);
+    OAICreateTranslation_200_response(const QString &json);
     ~OAICreateTranslation_200_response() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getText() const;
     void setText(const QString &text);

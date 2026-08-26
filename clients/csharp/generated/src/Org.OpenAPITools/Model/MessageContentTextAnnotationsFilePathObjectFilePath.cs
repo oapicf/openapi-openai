@@ -78,8 +78,18 @@ namespace Org.OpenAPITools.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageContentTextAnnotationsFilePathObjectFilePath" />
     /// </summary>
-    public class MessageContentTextAnnotationsFilePathObjectFilePathJsonConverter : JsonConverter<MessageContentTextAnnotationsFilePathObjectFilePath>
+    public partial class MessageContentTextAnnotationsFilePathObjectFilePathJsonConverter : JsonConverter<MessageContentTextAnnotationsFilePathObjectFilePath>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageContentTextAnnotationsFilePathObjectFilePathJsonConverter" /> class.
+        /// </summary>
+        public MessageContentTextAnnotationsFilePathObjectFilePathJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageContentTextAnnotationsFilePathObjectFilePath" />
         /// </summary>

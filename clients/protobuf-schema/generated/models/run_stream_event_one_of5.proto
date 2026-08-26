@@ -22,7 +22,7 @@ message RunStreamEventOneOf5 {
     EVENT_THREAD_RUN_INCOMPLETE = 0;
   }
 
-  Event event = 96891546;
+  string event = 96891546;
 
   RunObject data = 3076010;
 
